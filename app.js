@@ -3982,13 +3982,36 @@ function ensureGoogleEarth3dElement() {
     el.removeAttribute('default-ui-disabled');
     el.removeAttribute('default-ui-hidden');
     el.hidden = true;
-    el.addEventListener('gmp-error', () => {
+    el.addEventListener('gmp-error', (event) => {
       el.hidden = true;
-      updateStatus('Google Earth 3D could not render. Switch to Google Maps or DWR map.');
+      const details = String(event?.detail?.message || event?.message || '').trim();
+      const reason = details
+        ? `Google Earth 3D could not render (${details}).`
+        : 'Google Earth 3D could not render.';
+      handleGoogleEarth3dUnavailable(reason);
     });
     stage.appendChild(el);
   }
   return el;
+}
+
+function handleGoogleEarth3dUnavailable(reason = 'Google Earth 3D unavailable.') {
+  const map3d = document.getElementById('googleEarth3dMap');
+  if (map3d) {
+    map3d.hidden = true;
+  }
+  clearGoogleEarth3dBoundaryOverlays();
+
+  const currentMode = safe(mapTypeSelect?.value).toLowerCase();
+  if (currentMode === 'earth' && mapTypeSelect) {
+    mapTypeSelect.value = 'google';
+    applyMapMode();
+    updateStatus(`${reason} Switched to Google Maps.`);
+  } else {
+    updateStatus(reason);
+  }
+
+  renderDevDebugPanel();
 }
 
 function applyGoogleEarthAtmosphereProfile(el = googleEarth3dMap) {
@@ -4070,6 +4093,11 @@ async function ensureGoogleEarth3dMap() {
     googleEarth3dLibraryPromise = window.google.maps.importLibrary('maps3d');
   }
   const maps3d = await googleEarth3dLibraryPromise;
+  if (!maps3d?.Map3DElement) {
+    handleGoogleEarth3dUnavailable('Google Earth 3D is not available for this API key/runtime.');
+    return null;
+  }
+
   googleEarth3dMap = el;
   el.mode = maps3d?.MapMode?.HYBRID || 'hybrid';
   // Keep Google Earth native controls enabled.
@@ -4485,6 +4513,7 @@ async function refreshGoogleEarth3dBoundaryOverlay() {
   if (safe(mapTypeSelect?.value).toLowerCase() !== 'earth') return;
   const map3d = await ensureGoogleEarth3dMap();
   if (!map3d) return;
+  if (map3d.hidden) return;
   const maps3d = await googleEarth3dLibraryPromise;
   const Polygon3DElement = maps3d?.Polygon3DElement || google?.maps?.maps3d?.Polygon3DElement;
   if (!Polygon3DElement) return;
@@ -4701,11 +4730,14 @@ function applyMapMode() {
           refreshGoogleEarth3dBoundaryOverlay();
           return;
         }
-        updateStatus('Google Earth 3D unavailable. Switch to Google Maps or DWR map.');
+        handleGoogleEarth3dUnavailable('Google Earth 3D unavailable. Switch to Google Maps or DWR map.');
       })
       .catch((err) => {
         console.error('Google Earth 3D failed to load.', err);
-        updateStatus('Google Earth 3D failed to load. Switch to Google Maps or DWR map.');
+        const details = String(err?.message || '').trim();
+        handleGoogleEarth3dUnavailable(
+          details ? `Google Earth 3D failed to load (${details}).` : 'Google Earth 3D failed to load.'
+        );
       });
     return;
   }

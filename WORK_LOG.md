@@ -1,3 +1,39 @@
+## 2026-06-01T02:11:06-06:00 - Builder Google Earth 3D Failure Handling (Blank Map Prevention + Automatic Fallback)
+
+- Assigned action:
+  - Fix Builder map behavior where Google Earth / Google Maps 3D can fail to initialize and leave a blank map surface.
+
+- Root cause confirmed:
+  - In live verification, Google 3D runtime emitted:
+    - `Attempted to load a 3D Map, but failed...`
+  - Current code path could still report Earth as active while both `#map` and `#googleEarth3dMap` were hidden.
+
+- Fix implemented:
+  - `app.js`
+    - Added Earth failure handler:
+      - `handleGoogleEarth3dUnavailable(reason)`
+    - Wired `gmp-error` event on `gmp-map-3d` to invoke failure handler.
+    - Added safety check in Earth setup:
+      - if `maps3d.Map3DElement` is unavailable, fail fast and fallback.
+    - Prevented overlay/status path from running when Earth element is hidden.
+    - Updated Earth mode branch to fallback to Google Maps on init failure, with accurate status messaging.
+  - Behavior change:
+    - If Earth 3D cannot render, app now auto-switches to Google Maps and shows:
+      - `Google Earth 3D could not render... Switched to Google Maps.`
+    - No more blank dual-hidden map state on Earth failure.
+
+- Validation:
+  - `npm run build` PASS.
+  - Local runtime fallback test (forced `gmp-error` dispatch) PASS:
+    - `mapTypeSelect` changed from `earth` to `google`.
+    - `#map.hidden` = `false`.
+    - `#googleEarth3dMap.hidden` = `true`.
+    - status text confirms Earth failure + Google fallback.
+
+- Note:
+  - This fix is in local code and requires deployment before it affects `huntbuilder.uoga.org`.
+  - If Earth fails in production after deploy, it indicates key/runtime support limits for 3D; app now degrades cleanly to Google Maps instead of blanking.
+
 ## 2026-06-01T02:03:53-06:00 - Research Page Runtime Render Speed Pass (No-Store Removal + Faster Source Order + Dashboard Parallelism)
 
 - Assigned action:
