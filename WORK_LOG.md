@@ -8944,3 +8944,64 @@ o_table=0).
   - `rg -n "app.js\\?v=" index.html` => updated token present
   - Live pre-deploy check (2026-06-01):
     - `https://huntbuilder.uoga.org/` still served prior app token and remained in iframe mode until new deployment is published.
+
+## 2026-06-01T14:05:00-06:00 - Comprehensive Google Earth / 3D Runtime Contract Audit + Validation
+
+- Trigger:
+  - User requested full end-to-end verification and repair audit for Google Maps 3D selector mode, including direct boundary GeoJSON integrity and live runtime behavior.
+
+- Scope executed:
+  - Audited current live 3D code path in `app.js`:
+    - `applyMapMode` earth branch
+    - `ensureGoogleEarth3dElement`
+    - `ensureGoogleEarth3dMap`
+    - `refreshGoogleEarth3dBoundaryOverlay`
+    - direct boundary paths via `boundary_geojson_path`
+  - Compared implementation parity against old `HUNTS` repo path.
+  - Audited all direct boundary files referenced by:
+    - `processed_data/display-boundary-index-2026.json`
+  - Validated local + live JSON/GeoJSON integrity for every referenced boundary file.
+  - Verified selector flow in both local and live environments for Google, DWR, and Earth modes.
+
+- Files added:
+  - `processed_data/audits/google_earth_3d_boundary_assets_audit_20260601.json`
+  - `processed_data/audits/google_earth_3d_boundary_assets_audit_20260601.csv`
+  - `processed_data/audits/google_earth_3d_boundary_assets_audit_20260601_mismatches.csv`
+
+- Boundary asset audit results:
+  - Source index rows: `1394`
+  - Distinct direct boundary paths: `1394`
+  - Local valid GeoJSON: `1394/1394`
+  - Live valid GeoJSON at `https://huntbuilder.uoga.org/...`: `1394/1394`
+  - Missing: `0`
+  - Invalid JSON: `0`
+  - Invalid GeoJSON: `0`
+  - Git LFS pointer files: `0`
+  - Mismatches (local vs live validity): `0`
+
+- EB3024 specific result:
+  - Path: `processed_data/boundaries/EB3024.geojson`
+  - Local: valid GeoJSON FeatureCollection
+  - Live: `200` with `application/geo+json`, valid GeoJSON
+  - Classification: **not** a Git LFS pointer
+
+- Deprecated property cleanup verification:
+  - Runtime code search:
+    - `defaultUIDisabled` / `default-ui-disabled` in active `app.js`: no matches
+    - active path uses `defaultUIHidden` handling and attribute removal pattern
+
+- Mode/render verification (Playwright):
+  - Local: `http://127.0.0.1:8080/`
+    - Google mode: PASS
+    - DWR mode: PASS
+    - Earth mode: PASS (`<gmp-map-3d>` visible, mode `SATELLITE`, overlays rendered)
+  - Live: `https://huntbuilder.uoga.org/`
+    - Google mode: PASS
+    - DWR mode: PASS
+    - Earth mode: PASS (`<gmp-map-3d>` visible, mode `SATELLITE`, overlays rendered)
+  - Non-fatal console note still observed from Maps runtime:
+    - `"Attempted to load a 3D Map, but failed..."` appears despite successful render; treated as runtime warning noise while map remains visible and usable.
+
+- Validation commands run:
+  - automated local/live mode switching checks via Playwright
+  - full boundary asset integrity/fetch audit against local files and live URLs
