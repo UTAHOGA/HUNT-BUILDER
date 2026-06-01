@@ -53,6 +53,24 @@
     { folderId: "units2026", title: "2026 Hunt Units / Permit Numbers", subtitle: "Current 2026 hunt code, hunt unit, and permit workbook.", href: "./public/hard-copy/DISPLAY%20DATA/data/2026_hunt_units_permit_numbers.xlsx", type: "xlsx", year: "2026", sortOrder: 10 },
     { folderId: "outfitters", title: "Utah Outfitters by Hunt Code / Hunt Name", subtitle: "Public outfitter workbook tied to hunt code and hunt name.", href: "./public/hard-copy/DISPLAY%20DATA/data/utah_outfitters_by_hunt_code_hunt_name.xlsx", type: "xlsx", year: "2026", sortOrder: 10 },
   ];
+  const APPROVED_PUBLIC_EXTENSIONS = new Set(["pdf", "xlsx"]);
+  const APPROVED_PUBLIC_PATH_PREFIXES = [
+    "./public/hard-copy/",
+    "/public/hard-copy/",
+    "./hard-copy/",
+    "/hard-copy/",
+  ];
+  const BLOCKED_INTERNAL_PATTERNS = [
+    /\bagents\b/i,
+    /\bcodex\b/i,
+    /\baudit\b/i,
+    /\bimplementation\b/i,
+    /\binternal\b/i,
+    /\bplanning\b/i,
+    /\btask\b/i,
+    /\.md($|[?#])/i,
+    /\.txt($|[?#])/i,
+  ];
 
   function byId(id) {
     return document.getElementById(id);
@@ -103,6 +121,34 @@
     return "";
   }
 
+  function decodeSafe(value) {
+    try {
+      return decodeURIComponent(String(value || ""));
+    } catch {
+      return String(value || "");
+    }
+  }
+
+  function hasBlockedInternalToken(value) {
+    const text = decodeSafe(String(value || ""));
+    return BLOCKED_INTERNAL_PATTERNS.some((pattern) => pattern.test(text));
+  }
+
+  function extractExtensionFromHref(href) {
+    const cleaned = String(href || "").trim().split("#")[0].split("?")[0];
+    const match = cleaned.match(/\.([a-z0-9]+)$/i);
+    return match ? String(match[1]).toLowerCase() : "";
+  }
+
+  function isApprovedPublicHref(href) {
+    const normalized = String(href || "").trim();
+    if (!normalized) return false;
+    if (!APPROVED_PUBLIC_PATH_PREFIXES.some((prefix) => normalized.startsWith(prefix))) return false;
+    if (hasBlockedInternalToken(normalized)) return false;
+    const ext = extractExtensionFromHref(normalized);
+    return APPROVED_PUBLIC_EXTENSIONS.has(ext);
+  }
+
   function isRuntimeDenied(item) {
     const hay = `${item.href || ""} ${item.local_href || ""} ${item.title || ""} ${item.subtitle || ""} ${item.source || ""}`.toLowerCase();
     return RUNTIME_DENYLIST.some((token) => hay.includes(token.toLowerCase()));
@@ -142,6 +188,10 @@
     const folderId = (rawFolderId && knownFolderIds.has(rawFolderId)) ? rawFolderId : toFolderId(raw);
 
     if (!title || !href || !folderId) return null;
+    if (hasBlockedInternalToken(`${title} ${subtitle} ${raw.source || ""}`)) return null;
+    if (!isApprovedPublicHref(href)) return null;
+    const inferredExt = extractExtensionFromHref(href);
+    if (!APPROVED_PUBLIC_EXTENSIONS.has(inferredExt)) return null;
     if (type === "json") return null;
     if (!["pdf", "xlsx", "iframe", "link"].includes(type)) return null;
     if (type === "csv") return null;
@@ -162,7 +212,7 @@
           ? "Current 2026 hunt code, hunt name, hunt unit, and permit table."
           : "Public hunt-library source file."),
       href,
-      type,
+      type: inferredExt || type,
       year,
       group,
       delivery,

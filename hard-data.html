@@ -293,70 +293,23 @@
   <script>
     const RUNTIME_MANIFEST = './processed_data/hard_data_exports/hard_data_manifest.web.json';
 
-    const STATIC_CATALOG = [
-      {
-        group: 'pipeline_logs',
-        type: 'csv',
-        title: 'Staging Ingest Execution Log (2026-05-06)',
-        subtitle: 'All staging moves executed in the most recent cleanup pass.',
-        href: './pipeline/manifests/staging_ingest_execution_20260506.csv',
-        source: 'pipeline',
-        scope: 'operations'
-      },
-      {
-        group: 'pipeline_logs',
-        type: 'csv',
-        title: 'Year Retarget Execution Log (2026-05-06)',
-        subtitle: 'High-confidence model-year retarget file moves.',
-        href: './pipeline/manifests/pdf_high_conf_year_retarg_execution_20260506.csv',
-        source: 'pipeline',
-        scope: 'operations'
-      },
-      {
-        group: 'pipeline_logs',
-        type: 'csv',
-        title: 'PDF Misplacement Final Audit (2026-05-06)',
-        subtitle: 'Current mismatch report after safe auto-fixes.',
-        href: './pipeline/manifests/pdf_misplacement_audit_20260506_final.csv',
-        source: 'pipeline',
-        scope: 'audit'
-      },
-      {
-        group: 'database',
-        type: 'sqlite',
-        title: 'Truth Database From JSON',
-        subtitle: 'Built from canonical hunt JSON + mapped boundary references.',
-        href: './processed_data/hunt_truth_from_json.sqlite',
-        source: 'processed_data',
-        scope: 'database'
-      },
-      {
-        group: 'database',
-        type: 'sqlite',
-        title: 'Truth Downloads Comprehensive',
-        subtitle: 'External download-based SQLite for cross-check and comparison.',
-        href: './processed_data/truth_downloads_comprehensive.sqlite',
-        source: 'processed_data',
-        scope: 'database'
-      },
-      {
-        group: 'database',
-        type: 'md',
-        title: 'Truth Crosscheck Report',
-        subtitle: 'Cross-validation notes between canonical, boundary, and download truth paths.',
-        href: './processed_data/truth_crosscheck_report.md',
-        source: 'processed_data',
-        scope: 'audit'
-      },
-      {
-        group: 'database',
-        type: 'json',
-        title: 'Truth Crosscheck Report (JSON)',
-        subtitle: 'Machine-readable crosscheck summary metrics.',
-        href: './processed_data/truth_crosscheck_report.json',
-        source: 'processed_data',
-        scope: 'audit'
-      }
+    const STATIC_CATALOG = [];
+    const APPROVED_RENDER_EXTENSIONS = new Set(['csv', 'json', 'pdf', 'xlsx']);
+    const APPROVED_RENDER_PREFIXES = [
+      './processed_data/hard_data_exports/library/',
+      './public/hard-copy/',
+      './hard-copy/'
+    ];
+    const BLOCKED_INTERNAL_PATTERNS = [
+      /\bagents\b/i,
+      /\bcodex\b/i,
+      /\baudit\b/i,
+      /\bimplementation\b/i,
+      /\binternal\b/i,
+      /\bplanning\b/i,
+      /\btask\b/i,
+      /\.md($|[?#])/i,
+      /\.txt($|[?#])/i
     ];
 
     const GROUP_LABELS = {
@@ -386,6 +339,35 @@
       }
     }
 
+    function decodeSafe(value) {
+      try {
+        return decodeURIComponent(String(value || ''));
+      } catch {
+        return String(value || '');
+      }
+    }
+
+    function isBlockedInternalValue(value) {
+      const text = decodeSafe(String(value || ''));
+      return BLOCKED_INTERNAL_PATTERNS.some((pattern) => pattern.test(text));
+    }
+
+    function extensionFromHref(href) {
+      const cleaned = String(href || '').trim().split('#')[0].split('?')[0];
+      const match = cleaned.match(/\.([a-z0-9]+)$/i);
+      return match ? String(match[1]).toLowerCase() : '';
+    }
+
+    function isApprovedPublicRenderItem(item) {
+      const href = String(item.href || '').trim();
+      const ext = extensionFromHref(href);
+      if (!href || !ext) return false;
+      if (!APPROVED_RENDER_EXTENSIONS.has(ext)) return false;
+      if (!APPROVED_RENDER_PREFIXES.some((prefix) => href.startsWith(prefix))) return false;
+      if (isBlockedInternalValue(`${item.title || ''} ${item.subtitle || ''} ${href}`)) return false;
+      return true;
+    }
+
     function inferYear(item) {
       const hay = [item.title, item.subtitle, item.href].join(' ');
       const m = String(hay).match(/\b(20\d{2})\b/);
@@ -403,7 +385,7 @@
           source: String(item.source || (item.href || '').startsWith('./pipeline/') ? 'pipeline' : 'processed_data').trim().toLowerCase(),
           scope: String(item.scope || 'runtime').trim().toLowerCase()
         };
-      });
+      }).filter(isApprovedPublicRenderItem);
     }
 
     function iconLabel(type) {

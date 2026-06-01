@@ -172,6 +172,43 @@ function groupFor(rel) {
 }
 function typeFor(rel) { return path.extname(rel).replace('.', '').toLowerCase() || 'file'; }
 function titleFromRel(rel) { return path.basename(rel, path.extname(rel)).replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim().replace(/\b\w/g, (m) => m.toUpperCase()); }
+const PUBLIC_WEB_MANIFEST_ALLOWED_PREFIXES = [
+  './processed_data/hard_data_exports/library/',
+  './public/hard-copy/',
+  './hard-copy/',
+];
+const PUBLIC_WEB_MANIFEST_ALLOWED_TYPES = new Set(['csv', 'json', 'pdf', 'xlsx']);
+const BLOCKED_INTERNAL_PATTERNS = [
+  /\bagents\b/i,
+  /\bcodex\b/i,
+  /\baudit\b/i,
+  /\bimplementation\b/i,
+  /\binternal\b/i,
+  /\bplanning\b/i,
+  /\btask\b/i,
+  /\.md($|[?#])/i,
+  /\.txt($|[?#])/i,
+];
+function decodeSafe(value) {
+  try {
+    return decodeURIComponent(String(value || ''));
+  } catch {
+    return String(value || '');
+  }
+}
+function isBlockedInternalToken(value) {
+  return BLOCKED_INTERNAL_PATTERNS.some((pattern) => pattern.test(decodeSafe(value)));
+}
+function isPublicWebManifestItemAllowed(item) {
+  const href = String(item?.href || '').trim();
+  const type = String(item?.type || '').trim().toLowerCase();
+  const title = String(item?.title || '').trim();
+  const subtitle = String(item?.subtitle || '').trim();
+  if (!href || !type) return false;
+  if (!PUBLIC_WEB_MANIFEST_ALLOWED_TYPES.has(type)) return false;
+  if (!PUBLIC_WEB_MANIFEST_ALLOWED_PREFIXES.some((prefix) => href.startsWith(prefix))) return false;
+  return !isBlockedInternalToken(`${href} ${title} ${subtitle}`);
+}
 function manifestItem(rel, subtitle, options = {}) {
   return {
     group: options.group || groupFor(rel),
@@ -322,13 +359,19 @@ async function main() {
     manifestItem(OUTPUTS.hardDataExportCsv, 'Page-ready hard-data hunt library records as CSV.', { group: 'exports', title: 'Hard Data Library Page Records CSV' }),
     manifestItem(OUTPUTS.hardDataExportJson, 'Page-ready hard-data hunt library records as JSON.', { group: 'exports', title: 'Hard Data Library Page Records JSON' }),
     manifestItem(OUTPUTS.hardDataExportSummary, 'Build summary for modeled, excluded, manual-review, and gate status counts.', { group: 'exports', title: 'Hard Data Library Page Summary' }),
-    manifestItem(OUTPUTS.hardDataExportManifestCsv, 'CSV manifest of source files used to build the hard-data library page package.', { group: 'exports', title: 'Hard Data Library Source Manifest CSV', scope: 'audit' }),
-    manifestItem(OUTPUTS.hardDataExportManifestJson, 'JSON manifest and build status for the hard-data library page package.', { group: 'exports', title: 'Hard Data Library Source Manifest JSON', scope: 'audit' }),
   ];
   for (const input of inputs.filter((item) => item.exists === 'true' && item.source_file.startsWith('processed_data/'))) {
-    webManifest.push(manifestItem(input.source_file, `${input.role}; size ${input.size_mb || 0} MB.`, { group: groupFor(input.source_file), title: titleFromRel(input.source_file), scope: input.role.includes('coverage') || input.role.includes('crosswalk') ? 'audit' : 'runtime' }));
+    webManifest.push(
+      manifestItem(input.source_file, `${input.role}; size ${input.size_mb || 0} MB.`, {
+        group: groupFor(input.source_file),
+        title: titleFromRel(input.source_file),
+        scope: input.role.includes('coverage') || input.role.includes('crosswalk') ? 'audit' : 'runtime',
+      })
+    );
   }
-  writeJson(OUTPUTS.hardDataWebManifestJson, Array.from(new Map(webManifest.map((item) => [item.href, item])).values()));
+  const safeWebManifest = Array.from(new Map(webManifest.map((item) => [item.href, item])).values())
+    .filter(isPublicWebManifestItemAllowed);
+  writeJson(OUTPUTS.hardDataWebManifestJson, safeWebManifest);
   writeJson(OUTPUTS.buildReport, summary);
 
   console.log('\nHard-data library page build complete');

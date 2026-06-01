@@ -1,3 +1,62 @@
+## 2026-06-01T00:58:00-06:00 - Public Surface Hardening: Internal Instruction/Planning File Exposure Guardrails
+
+- Assigned action:
+  - Remove/deny internal instruction, AGENTS/task/audit-planning markdown/text exposure from public website surfaces.
+  - Enforce public rendering allowlists for extension + path.
+  - Add automated guardrail check.
+
+- Exposure audit completed:
+  - Reviewed live/public manifests and runtime feeds with focus on:
+    - `public/hard-copy/data/documents.json`
+    - `processed_data/hard_data_exports/hard_data_manifest.web.json`
+    - hard-copy and hard-data runtime rendering logic
+  - Verified `public/hard-copy/data/documents.json` remained visitor-safe (PDF/XLSX only).
+  - Identified public-surface risks:
+    - `hard-data.html` static catalog referenced internal/audit-oriented files (including `.md`).
+    - `scripts/build-pages-dist.js` explicitly included internal `.md` audit files and copied directory trees without internal-file filtering.
+
+- Fixes applied:
+  - `assets/js/hard-copy-public-library.js`
+    - Added strict rendering allowlist:
+      - approved path prefixes: `./public/hard-copy/`, `/public/hard-copy/`, `./hard-copy/`, `/hard-copy/`
+      - approved extensions: `.pdf`, `.xlsx`
+    - Added hard block patterns for internal names/tokens:
+      - `AGENTS*`, `CODEX*`, `audit*`, `implementation*`, `internal*`, `planning*`, `task*`, `.md`, `.txt`
+    - Enforced these checks before any manifest item can render.
+  - `hard-data.html`
+    - Removed internal static catalog entries.
+    - Added runtime render allowlist:
+      - approved prefixes: `./processed_data/hard_data_exports/library/`, `./public/hard-copy/`, `./hard-copy/`
+      - approved extensions: `.csv`, `.json`, `.pdf`, `.xlsx`
+    - Added same internal-token blocklist (`AGENTS/CODEX/audit/implementation/internal/planning/task/.md/.txt`).
+  - `scripts/build-library-page-data.js`
+    - Added public web-manifest safety filter before writing `hard_data_manifest.web.json`.
+    - Removed audit-manifest rows from web manifest seed.
+    - Enforced safe item filtering (prefix + extension + internal-token block).
+  - `scripts/build-pages-dist.js`
+    - Removed `staging-audit.html` from root publish list.
+    - Removed explicit `.md` processed-data audit file entries from publish list.
+    - Added path-level publish deny rules:
+      - deny `.md`, `.txt`
+      - deny `AGENTS*`, `CODEX*`, `audit*`, `implementation*`, `internal*`, `planning*`, `task*`
+      - deny `/audit(s)/` and `/internal/` path segments
+    - Applied deny filtering for both direct file copies and recursive directory copies.
+  - `package.json`
+    - Added `guard:public-manifests` script.
+    - Integrated guard into `build:pages` pipeline before `build-pages-dist`.
+  - Added new guard script:
+    - `scripts/guard-public-manifest-exposure.js`
+    - Fails build if blocked tokens/extensions/paths appear in target public manifests or public-serving directories.
+
+- Validation:
+  - `node scripts/build-library-page-data.js` PASS (manifest regenerated with safe entries)
+  - `npm run guard:public-manifests` PASS
+  - `npm run build` PASS (includes guard during build pipeline)
+  - Post-checks:
+    - `public/hard-copy/data/documents.json` -> rows `10`, blocked rows `0`
+    - `processed_data/hard_data_exports/hard_data_manifest.web.json` -> rows `3`, blocked rows `0`
+    - No `.md` or `.txt` files found under `public/` or `processed_data/hard_data_exports/`
+
 ## 2026-06-01T00:22:00-06:00 - Full Repo / Live Site / Data / Prediction Engine Audit + Domain Parity Rule Update
 
 - Assigned action:

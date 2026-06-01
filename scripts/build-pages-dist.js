@@ -16,7 +16,6 @@ const rootFiles = [
   'hard-data.html',
   'coverage.html',
   'builder.html',
-  'staging-audit.html',
   'vetting.html',
   'app.js',
   'config.js',
@@ -91,7 +90,6 @@ const processedFiles = [
   'processed_data/harvest_master.csv',
   'processed_data/harvest_quality_features_all_years_by_hunt_code.csv',
   'processed_data/online_runtime_crosscheck.json',
-  'processed_data/online_runtime_crosscheck.md',
   'processed_data/hunt_code_boundary_map_2026.csv',
   'processed_data/boundary_registry_2026.csv',
   'processed_data/boundary-manifest-2026.json',
@@ -102,7 +100,6 @@ const processedFiles = [
   'processed_data/display-boundary-synthetic-id-map-2026.json',
   'processed_data/display-boundary-synthetic-id-map-2026.csv',
   'processed_data/boundary_id_render_map_verification_2026.json',
-  'processed_data/boundary_id_render_map_verification_2026.md',
   'processed_data/outfitter-federal-unit-coverage-review.json',
   'processed_data/coverage-matrix.json',
   'processed_data/normalized-staging-audit.csv',
@@ -121,6 +118,35 @@ const dirsToCopy = [
   'processed_data/research_page',
   'public/hard-copy',
 ];
+
+const BLOCKED_PUBLIC_EXTENSIONS = new Set(['.md', '.txt']);
+const BLOCKED_PUBLIC_BASENAME_PATTERNS = [
+  /^agents(?:[._-]|$)/i,
+  /^codex(?:[._-]|$)/i,
+  /^audit(?:[._-]|$)/i,
+  /^implementation(?:[._-]|$)/i,
+  /^internal(?:[._-]|$)/i,
+  /^planning(?:[._-]|$)/i,
+  /^task(?:[._-]|$)/i,
+];
+const BLOCKED_PUBLIC_PATH_PATTERNS = [
+  /\/audits?\//i,
+  /\/internal\//i,
+];
+
+function normalizeRelPath(relPath) {
+  return String(relPath || '').replace(/\\/g, '/');
+}
+
+function isBlockedPublicPath(relPath) {
+  const normalized = normalizeRelPath(relPath);
+  const lower = normalized.toLowerCase();
+  const ext = path.extname(lower);
+  if (BLOCKED_PUBLIC_EXTENSIONS.has(ext)) return true;
+  if (BLOCKED_PUBLIC_PATH_PATTERNS.some((pattern) => pattern.test(lower))) return true;
+  const base = path.basename(lower);
+  return BLOCKED_PUBLIC_BASENAME_PATTERNS.some((pattern) => pattern.test(base));
+}
 
 function simplifyRing(points) {
   if (!Array.isArray(points) || points.length < 4) return null;
@@ -236,6 +262,7 @@ async function ensureParent(filePath) {
 }
 
 async function copyFileIfExists(relPath, missing, tooLarge) {
+  if (isBlockedPublicPath(relPath)) return;
   const src = path.join(repoRoot, relPath);
   const dest = path.join(outDir, relPath);
   if (!(await exists(src))) {
@@ -259,7 +286,13 @@ async function copyDirIfExists(relPath, missing) {
     return;
   }
   await fs.mkdir(path.dirname(dest), { recursive: true });
-  await fs.cp(src, dest, { recursive: true });
+  await fs.cp(src, dest, {
+    recursive: true,
+    filter: (sourcePath) => {
+      const rel = normalizeRelPath(path.relative(repoRoot, sourcePath));
+      return !isBlockedPublicPath(rel);
+    },
+  });
 }
 
 async function writeConfigLocalStub() {
