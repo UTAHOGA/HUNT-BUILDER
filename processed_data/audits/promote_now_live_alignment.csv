@@ -1,0 +1,17 @@
+bucket,path,item_type,live_status,repo_status,why_needed,live_gap_closed,recommended_action
+REQUIRED_NOW,embed-mode.js,code,out_of_sync,canonical_head,Live file is byte-different from repo canonical head,Enable canonical-host safety redirect and latest runtime normalizer behavior,Deploy current file
+REQUIRED_NOW,config.js,config,out_of_sync,canonical_head,Live file is byte-different from repo canonical head,Enable repo-canonical source ordering and manifest-aware behavior,Deploy current file
+REQUIRED_NOW,data.js,code,out_of_sync,canonical_head,Live file is byte-different from repo canonical head,Align runtime JSON fetch/fallback behavior with repo head,Deploy current file
+REQUIRED_NOW,app.js,code,out_of_sync,canonical_head,Live file is byte-different from repo canonical head,Align Builder runtime and Earth-mode behavior with repo head,Deploy current file
+REQUIRED_NOW,hunt-research.js,code,out_of_sync,canonical_head,Live file is byte-different from repo canonical head,Align Research runtime contract handling with repo head,Deploy current file
+REQUIRED_NOW,assets/js/research-outlook-dashboard.js,code,out_of_sync,canonical_head,Live file is byte-different from repo canonical head,Align flagship dashboard rendering and field labeling logic,Deploy current file
+REQUIRED_NOW,assets/css/hard-copy-public-library.css,runtime_asset,out_of_sync,canonical_head,Live file is byte-different from repo canonical head,Align hard-copy styling baseline with repo canonical output,Deploy current file
+REQUIRED_NOW,public/data/runtime-manifest.json,manifest,404,exists_repo,Canonical runtime manifest is missing live,Expose canonical runtime contract endpoint,Deploy/publish file
+REQUIRED_NOW,data/runtime-manifest.json,manifest,404,exists_repo,Mirror runtime manifest is missing live,Enable backward-compatible manifest endpoint,Deploy/publish file
+REQUIRED_NOW,processed_data/hunt_research_2026.json,data,404_r2_and_local,exists_repo,Research summary contract is missing from both expected runtime locations,Restore research summary source used by runtime ordering,Publish to canonical R2 key first then optional local fallback
+SHOULD_WAIT,hunt-builder.uoga.org,infra_dns,dns_unresolved,policy_defined,DNS unresolved blocks parity verification,No canonical production gap on primary domain now,Restore DNS then run parity audit
+SHOULD_WAIT,hunt-builder-google-earth.html,optional_runtime_asset,404,not_required_current_mode,Current earth path does not use iframe mode,No immediate primary-domain canonical gap,Defer unless iframe mode is re-enabled
+NOT_REQUIRED,assets/js/hard-copy-public-library.js,code,byte_equal,canonical_head,Live and repo are already identical,None,None
+NOT_REQUIRED,data/outfitters-public.json,data,200,available,Endpoint already healthy in production,None,None
+NOT_REQUIRED,data/conservation-permit-areas.json,data,200,available,Endpoint already healthy in production,None,None
+NOT_REQUIRED,data/conservation-permit-hunt-table-2025-27.json,data,200,available,Endpoint already healthy in production,None,None

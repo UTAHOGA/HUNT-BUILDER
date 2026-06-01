@@ -1,3 +1,46 @@
+## 2026-06-01T09:05:00-06:00 - Strict Promote-Now Live Alignment List (Live Canonical vs Repo Canonical)
+
+- Assigned action:
+  - Produce strict promote-now list to align live canonical with repo canonical.
+
+- Outputs created:
+  - `docs/promote_now_live_alignment_checklist.md`
+  - `processed_data/audits/promote_now_live_alignment.csv`
+
+- Method:
+  - Pulled live HTML shells for:
+    - `/`
+    - `/research.html`
+    - `/verify.html`
+    - `/hard-copy.html`
+  - Enumerated live script/style payload URLs from those pages.
+  - Compared live payload hashes to local repo head for the loaded runtime files.
+  - Probed required runtime endpoints (primary domain + Cloudflare runtime paths).
+
+- Key findings used for categorization:
+  - Out-of-sync live payloads:
+    - `embed-mode.js`
+    - `config.js`
+    - `data.js`
+    - `app.js`
+    - `hunt-research.js`
+    - `assets/js/research-outlook-dashboard.js`
+    - `assets/css/hard-copy-public-library.css`
+  - In-sync payload:
+    - `assets/js/hard-copy-public-library.js`
+  - Missing canonical manifest endpoints:
+    - `/public/data/runtime-manifest.json` -> 404
+    - `/data/runtime-manifest.json` -> 404
+  - Missing research summary contract:
+    - `https://json.uoga.workers.dev/processed_data/hunt_research_2026.json` -> 404
+    - `https://huntbuilder.uoga.org/processed_data/hunt_research_2026.json` -> 404
+  - Alternate domain remains DNS unresolved:
+    - `https://hunt-builder.uoga.org`
+
+- Validation:
+  - `curl -I` endpoint checks for all listed items (200/404/DNS states recorded in checklist/audit outputs).
+  - Hash comparison script run for live-vs-local payload byte equality.
+
 ## 2026-06-01T08:40:00-06:00 - Focused Runtime Promotion Pass (LFS Pointer Runtime Prune + Alternate Domain Canonical Enforcement)
 
 - Assigned action:
