@@ -8273,3 +8273,56 @@ o_table=0).
   - `node --check assets/js/hard-copy-public-library.js` passed.
   - `npm.cmd run build` passed.
   - Build still reports existing optional-missing runtime artifacts; these are unchanged baseline warnings.
+## 2026-06-01T08:35:00-06:00 - Live Verification Sweep (Builder + Hard-Copy + Research Context + MASTER Report)
+
+- Requested verification scope:
+  1. Builder loads without console/runtime 404s.
+  2. `hard-copy.html` still works after runtime cleanup.
+  3. Research page resolves selected hunt context correctly.
+  4. MASTER reconciliation report states DATABASE truth and MASTER recipient/export role.
+  5. Record exact verification steps + final live status.
+
+- Exact live verification steps run:
+  - Builder runtime pass:
+    - Opened `https://huntbuilder.uoga.org/` with Playwright.
+    - Captured all network responses and filtered 4xx/5xx for `huntbuilder.uoga.org`.
+    - Result: `MISS_COUNT=0` (no 404s on Builder load).
+  - Hard-copy runtime + render pass:
+    - Opened `https://huntbuilder.uoga.org/hard-copy.html`.
+    - Captured 4xx/5xx network responses.
+    - Checked render state:
+      - `#uogaFolderWall` children count = `8`
+      - results title = `UTAH DWR RULES & REGULATIONS`
+      - results count label = `3 files`
+      - content nodes present in results panel
+    - Result: page functional and rendering cards/folders.
+  - Research context pass:
+    - Opened:
+      - `https://huntbuilder.uoga.org/research.html?hunt_code=EA1180&residency=Resident&points=12&draw_pool=standard`
+    - Verified UI context fields:
+      - `huntCodeInput = EA1180`
+      - `residencySelect = Resident`
+      - `drawPoolSelect = standard`
+      - `pointsInput = 12`
+      - `selectedHuntCodeRead = EA1180`
+      - `detailTitle = EA1180 | La Sal (Conservation)`
+    - Verified persisted context keys:
+      - `selected_hunt_code = EA1180`
+      - `selected_hunt_research_residency = Resident`
+      - `selected_hunt_research_points = 12`
+      - `selected_hunt_research_draw_pool = standard`
+    - Result: selected-hunt context resolution PASS.
+  - MASTER reconciliation report integrity pass:
+    - Read:
+      - `generated/audits/master_reconciliation_2026/master_database_2026_reconciliation_report.json`
+    - Confirmed fields:
+      - `truth_rule = DATABASE.csv authoritative; permit truth uses permit_allotment_2026_* with fallback to permits_2026_*.`
+      - `database_path = pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+      - `master_path = processed_data/hard_data_exports/hunt_tables/2026/CLEAN_XLXS_STAGED/MASTER.xlsx`
+    - Result: truth-source/recipient-export contract PASS.
+
+- Final live status:
+  - Builder: PASS for requested 404 condition (`0` runtime 404s on load).
+  - Hard-copy: functional PASS (folders + cards render); still logs optional fallback-path 404s for non-required manifest fallback files.
+  - Research: PASS (query + persisted selected-hunt context correctly resolved).
+  - MASTER report contract: PASS (DATABASE truth explicitly declared; MASTER path identified as recipient/export target).
