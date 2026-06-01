@@ -1,3 +1,27 @@
+## 2026-06-01T09:02:00-06:00 - Canonical R2 Promotion Completed (hunt_research_2026.json)
+
+- Assigned follow-up:
+  - Re-run canonical R2 promotion once Wrangler auth was restored.
+
+- Cloudflare access validation:
+  - `wrangler whoami` -> PASS
+  - Account: `cd6d0adbdac9690cdae5f1c6d52aaa9b`
+
+- Promotion action:
+  - `wrangler r2 object put uoga-data/processed_data/hunt_research_2026.json --file processed_data/hunt_research_2026.json --config wrangler.r2-runtime.jsonc --remote`
+  - Result: upload complete.
+
+- Runtime verification:
+  - `https://json.uoga.workers.dev/processed_data/hunt_research_2026.json` -> `200` (28,329,606 bytes)
+  - `https://huntbuilder.uoga.org/data/runtime-manifest.json` -> `200`
+  - `https://huntbuilder.uoga.org/` -> `200`
+  - `https://huntbuilder.uoga.org/research.html` -> `200`
+  - `https://huntbuilder.uoga.org/verify.html` -> `200`
+  - `https://huntbuilder.uoga.org/hard-copy.html` -> `200`
+
+- Note:
+  - `https://huntbuilder.uoga.org/processed_data/hunt_research_2026.json` remains `404`, which is expected for Cloudflare-canonical runtime delivery and not required when pages consume canonical manifest/runtime URLs.
+
 ## 2026-06-01T08:55:00-06:00 - Promote-Now Alignment Release Execution
 
 - Assigned action:
