@@ -10268,3 +10268,33 @@ o_table=0).
 - Result:
   - Strict legacy-style mismatch rows remain for formatting/hierarchy reasons, but targeted true-defect unresolved rows are `0`.
   - Targeted six-field verification status: **FULLY VERIFIED**.
+
+## 2026-06-01T12:32:00-06:00 - Hunt Research Production Runtime Finalization (Canonical Contract)
+
+- Scope:
+  - Finalized Hunt Research runtime behavior to use verified canonical contract as production source of record.
+  - Reduced active runtime dependence on legacy feeder path by disabling fallback by default.
+  - Kept emergency legacy fallback path available only as explicit local opt-in.
+
+- Code changes:
+  - `config.js`
+    - added `HUNT_RESEARCH_ALLOW_LEGACY_FALLBACK` (default false unless explicitly enabled in `UOGA_LOCAL_CONFIG`).
+  - `hunt-research.js`
+    - reads `HUNT_RESEARCH_ALLOW_LEGACY_FALLBACK` from runtime config.
+    - canonical contract load failure now throws when fallback flag is not enabled.
+    - legacy parallel-feed load path remains gated behind explicit opt-in flag only.
+    - standardized user-facing copy from "Not loaded" to "Not available" for clarity.
+    - updated data-load error wording to "canonical Hunt Research contract sources."
+
+- Canonical hierarchy preserved for key fields:
+  - `permits_2026_total` from canonical contract (DATABASE/DWR hierarchy already baked in contract build).
+  - `average_harvest_age` from canonical contract annual-age source hierarchy.
+  - `current_age_3yr_average` from canonical contract source hierarchy.
+  - `display_odds_pct` and `p_draw_*` from canonical contract outputs.
+
+- Validation run:
+  - `node --check hunt-research.js`
+  - `node --check config.js`
+  - `node --check assets/js/research-outlook-dashboard.js`
+  - contract presence check for key fields in `processed_data/hunt_research_2026.json`
+  - `git diff --check`

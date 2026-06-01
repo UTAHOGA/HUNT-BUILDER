@@ -20,6 +20,7 @@
   const REFERENCE_SOURCES = (window.UOGA_CONFIG && Array.isArray(window.UOGA_CONFIG.HUNT_RESEARCH_REFERENCE_SOURCES) && window.UOGA_CONFIG.HUNT_RESEARCH_REFERENCE_SOURCES.length)
     ? window.UOGA_CONFIG.HUNT_RESEARCH_REFERENCE_SOURCES
     : ['./processed_data/hunt_unit_reference_linked.csv'];
+  const ALLOW_LEGACY_FALLBACK = Boolean(window.UOGA_CONFIG?.HUNT_RESEARCH_ALLOW_LEGACY_FALLBACK);
 
   const SELECTED_HUNT_KEY = 'selected_hunt_code';
   const SELECTED_RESIDENCY_KEY = 'selected_hunt_research_residency';
@@ -1146,7 +1147,7 @@
     if (meta?.success_percent !== undefined && meta?.success_percent !== null && String(meta.success_percent).trim() !== '') {
       return `${meta.success_percent}%`;
     }
-    return 'Not loaded';
+    return 'Not available';
   }
 
   function getResidentPermitsDisplay(meta, referenceRow) {
@@ -1159,7 +1160,7 @@
     const resident = firstAvailable(referenceRow, ['permits_2026_res'])
       || firstAvailable(meta, ['public_resident_permits', 'permits_2026_res', 'permit_allotment_2026_res']);
     if (resident) return resident;
-    return total ? `${total} total` : 'Not loaded';
+    return total ? `${total} total` : 'Not available';
   }
 
   function getNonresidentPermitsDisplay(meta, referenceRow) {
@@ -1172,7 +1173,7 @@
     const nonresident = firstAvailable(referenceRow, ['permits_2026_nr'])
       || firstAvailable(meta, ['public_nonresident_permits', 'permits_2026_nr', 'permit_allotment_2026_nr']);
     if (nonresident) return nonresident;
-    return total ? `${total} total` : 'Not loaded';
+    return total ? `${total} total` : 'Not available';
   }
 
   function getVerdictState(meta, row, filters, coverageMessage, referenceRow) {
@@ -1290,7 +1291,7 @@
     if (els.summaryGuaranteedTop) {
       els.summaryGuaranteedTop.textContent = row
         ? (isRandomOnlyBonusCase(meta, row, referenceRow) ? 'Not applicable' : (guaranteedLinePoint === null ? 'Not available pts' : `${formatInteger(guaranteedLinePoint)} pts`))
-        : 'Not loaded';
+        : 'Not available';
     }
 
     if (els.summaryPointsTop) {
@@ -1298,11 +1299,11 @@
     }
 
     if (els.summaryOddsTop) {
-      els.summaryOddsTop.textContent = row ? displayedOdds.value : 'Not loaded';
+      els.summaryOddsTop.textContent = row ? displayedOdds.value : 'Not available';
     }
 
     if (els.selectedHuntCodeRead) {
-      els.selectedHuntCodeRead.textContent = meta?.hunt_code || filters.huntCode || 'Not loaded';
+      els.selectedHuntCodeRead.textContent = meta?.hunt_code || filters.huntCode || 'Not available';
     }
   }
 
@@ -1495,7 +1496,7 @@
       ['Max Point Pool', maxPoolDisplay],
       ['Random Pool', randomDisplay],
       ['Last Draw Result', formatHistoricalDrawResult(row) || 'Not available'],
-      ['Permit Context', `${referenceRow?.permits_2026_total || meta?.public_permits_2026 || 'Not loaded'} total public permits in 2026`],
+      ['Permit Context', `${referenceRow?.permits_2026_total || meta?.public_permits_2026 || 'Not available'} total public permits in 2026`],
       ['Harvest Snapshot', getHarvestSnapshot(meta, referenceRow)],
       ['Plain-English Formula', getPlainFormulaText(meta, row, referenceRow), 'is-wide'],
       ['What I Would Do With This', getRecommendation(meta, row, referenceRow), 'is-wide'],
@@ -2108,11 +2109,16 @@
           master: 'derived_from_canonical_contract',
           reference: 'derived_from_canonical_contract',
           legacyFallbackUsed: false,
+          legacyFallbackAllowed: ALLOW_LEGACY_FALLBACK,
         };
         state.loaded = true;
         return state.loadedSources;
       } catch (canonicalError) {
-        console.warn('Canonical Hunt Research contract load failed; falling back to legacy parallel feeds.', canonicalError);
+        console.warn('Canonical Hunt Research contract load failed.', canonicalError);
+        if (!ALLOW_LEGACY_FALLBACK) {
+          throw new Error('Canonical Hunt Research contract is unavailable. Legacy fallback is disabled.');
+        }
+        console.warn('Legacy Hunt Research fallback is enabled via HUNT_RESEARCH_ALLOW_LEGACY_FALLBACK. Loading legacy parallel feeds.');
       }
 
       const [engine, ladder, master, reference] = await Promise.all([
@@ -2136,6 +2142,7 @@
         master: master.source,
         reference: reference.source,
         legacyFallbackUsed: true,
+        legacyFallbackAllowed: true,
       };
       state.loaded = true;
       return state.loadedSources;
@@ -2215,8 +2222,8 @@
       } catch (error) {
         console.error(error);
         els.filterReadout.textContent = (error && error.message)
-          ? `${error.message} (checked local + Cloudflare backup sources).`
-          : 'Hunt Research data failed to load (checked local + Cloudflare backup sources).';
+          ? `${error.message} (checked canonical Hunt Research contract sources).`
+          : 'Hunt Research data failed to load (checked canonical Hunt Research contract sources).';
         els.plannerReadout.textContent = 'Page loaded. Production data did not.';
         renderEmpty(filters, 'Runtime rows could not be loaded yet.');
         return;
@@ -2324,8 +2331,8 @@
     } catch (error) {
       console.error(error);
       els.filterReadout.textContent = (error && error.message)
-        ? `${error.message} (checked local + Cloudflare backup sources).`
-        : 'Hunt Research data failed to load (checked local + Cloudflare backup sources).';
+        ? `${error.message} (checked canonical Hunt Research contract sources).`
+        : 'Hunt Research data failed to load (checked canonical Hunt Research contract sources).';
       els.plannerReadout.textContent = 'Page loaded. Production data did not.';
     }
   }
