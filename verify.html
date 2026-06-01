@@ -424,6 +424,20 @@
       text-transform: uppercase;
     }
 
+    .outfitter-list-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .outfitter-list-badges .outfitter-badge {
+      min-height: 22px;
+      padding: 3px 8px;
+      font-size: 10px;
+      letter-spacing: .03em;
+    }
+
     .outfitter-public-meta {
       margin: 0;
       padding: 0;
@@ -459,6 +473,12 @@
       letter-spacing: .03em;
       text-transform: uppercase;
       background: var(--panel2);
+    }
+
+    .outfitter-public-actions .is-primary {
+      border-color: transparent;
+      color: #fff6ed;
+      background: linear-gradient(180deg, var(--accent), var(--accent-dark));
     }
 
     .outfitter-public-actions a:hover {
@@ -784,6 +804,20 @@
         return v ? [v] : [];
       }
 
+      function dedupeList(values) {
+        const seen = new Set();
+        const out = [];
+        values.forEach((item) => {
+          const text = safe(item);
+          if (!text) return;
+          const key = text.toLowerCase();
+          if (seen.has(key)) return;
+          seen.add(key);
+          out.push(text);
+        });
+        return out;
+      }
+
       function firstValue() {
         for (let i = 0; i < arguments.length; i += 1) {
           const v = safe(arguments[i]);
@@ -793,28 +827,41 @@
       }
 
       function pickServiceBadges(item) {
-        const explicit = normalizeList(item.serviceTypes || item.service_types);
-        if (explicit.length) return explicit.slice(0, 8);
+        const explicit = normalizeList(item.serviceTypes || item.service_types)
+          .map((entry) => safe(entry).replace(/_/g, ' '));
+        if (explicit.length) return dedupeList(explicit).slice(0, 10);
         const badges = [];
         if (item.guidedHunts) badges.push('Fully Guided');
         if (item.diySupport) badges.push('Semi-Guided');
-        if (item.packTrips) badges.push('Pack-Out / Recovery');
+        if (item.scoutingPackage || item.scouting_package) badges.push('Scouting Package');
+        if (item.packTrips || item.pack_out || item.recovery) badges.push('Pack-Out / Recovery');
         if (item.youthHunts) badges.push('Youth Friendly');
-        if (item.trespassAccess) badges.push('Private Land Access');
+        if (item.antlerless || item.freezer_hunt) badges.push('Antlerless / Freezer Hunt');
+        if (item.trespassAccess || item.private_land_access) badges.push('Private Land Access');
         if (item.archery || item.muzzleloader) badges.push('Weapon-Specific Service');
-        return badges.length ? badges : ['Guide Service'];
+        if (item.high_country || item.mountain_goat) badges.push('High-Country / Mountain Goat');
+        if (item.oil_species) badges.push('O.I.L. Species');
+        return dedupeList(badges).length ? dedupeList(badges) : ['Guide Service'];
+      }
+
+      function formatReviewedDate(value) {
+        const raw = safe(value);
+        if (!raw) return 'Review date pending publication';
+        const parsed = new Date(raw);
+        if (Number.isNaN(parsed.getTime())) return raw;
+        return parsed.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
       }
 
       function normalizeOutfitter(raw) {
-        const species = normalizeList(raw.speciesServed || raw.species_served);
-        const units = normalizeList(raw.unitsServed || raw.units_served);
+        const species = dedupeList(normalizeList(raw.speciesServed || raw.species_served));
+        const units = dedupeList(normalizeList(raw.unitsServed || raw.units_served));
         const services = pickServiceBadges(raw);
         const phone = normalizeList(raw.phone);
         const email = normalizeList(raw.email);
         const website = firstValue(raw.website, raw.url);
         const city = firstValue(raw.city, raw.hometown);
         const state = firstValue(raw.state, raw.region, 'Utah');
-        const reviewed = firstValue(raw.reviewed_at, raw.reviewedAt, raw.lastReviewed, 'Review date pending publication');
+        const reviewed = formatReviewedDate(firstValue(raw.reviewed_at, raw.reviewedAt, raw.lastReviewed, ''));
         const verification = firstValue(raw.verificationStatus, raw.certLevel, raw.listingType, 'Verified');
         const permitContext = firstValue(raw.federal_permit_context, raw.state_permit_context, raw.permit_context, raw.notes);
         return {
@@ -832,6 +879,11 @@
         };
       }
 
+      function renderBadgeList(items, fallbackText) {
+        if (!items.length) return `<span class="outfitter-public-sub">${escapeHtml(fallbackText)}</span>`;
+        return `<div class="outfitter-list-badges">${items.slice(0, 10).map((item) => `<span class="outfitter-badge">${escapeHtml(item)}</span>`).join('')}</div>`;
+      }
+
       function renderCards(items, dataClass) {
         if (!items.length) {
           gridEl.innerHTML = '<div class="outfitter-public-card"><p>No reviewed outfitter records are published yet.</p></div>';
@@ -844,13 +896,22 @@
             : `Showing ${items.length} reviewed records (fallback source).`;
         gridEl.innerHTML = items.map((item) => {
           const serviceBadges = item.services.map((tag) => `<span class="outfitter-badge">${escapeHtml(tag)}</span>`).join('');
-          const speciesText = item.species.length ? item.species.slice(0, 4).join(', ') : 'Species not published';
-          const unitsText = item.units.length ? item.units.slice(0, 4).join(', ') : 'Units not published';
+          const speciesBadges = renderBadgeList(item.species, 'Species not published');
+          const unitBadges = renderBadgeList(item.units, 'Units not published');
+          const primaryContact = item.phone
+            ? `<a class="is-primary" href="tel:${escapeHtml(item.phone.replace(/[^0-9+]/g, ''))}">Contact</a>`
+            : item.email
+              ? `<a class="is-primary" href="mailto:${escapeHtml(item.email)}">Contact</a>`
+              : item.website
+                ? `<a class="is-primary" href="${escapeHtml(item.website)}" target="_blank" rel="noopener noreferrer">Contact</a>`
+                : '';
           const actions = [
+            primaryContact,
             item.website ? `<a href="${escapeHtml(item.website)}" target="_blank" rel="noopener noreferrer">Website</a>` : '',
             item.phone ? `<a href="tel:${escapeHtml(item.phone.replace(/[^0-9+]/g, ''))}">Call</a>` : '',
             item.email ? `<a href="mailto:${escapeHtml(item.email)}">Email</a>` : ''
-          ].filter(Boolean).join('');
+          ].filter(Boolean);
+          const uniqueActions = [...new Set(actions)].join('');
           return `
             <article class="outfitter-public-card">
               <div class="outfitter-public-head">
@@ -862,12 +923,12 @@
               </div>
               <div class="outfitter-badge-row">${serviceBadges}</div>
               <ul class="outfitter-public-meta">
-                <li><strong>Species served:</strong> ${escapeHtml(speciesText)}</li>
-                <li><strong>Units served:</strong> ${escapeHtml(unitsText)}</li>
+                <li><strong>Species served:</strong> ${speciesBadges}</li>
+                <li><strong>Units served:</strong> ${unitBadges}</li>
                 <li><strong>Reviewed:</strong> ${escapeHtml(item.reviewed)}</li>
                 <li><strong>Permit context:</strong> ${escapeHtml(item.permitContext || 'Public permit context not published.')}</li>
               </ul>
-              <div class="outfitter-public-actions">${actions || '<span class="outfitter-public-sub">Contact route not published</span>'}</div>
+              <div class="outfitter-public-actions">${uniqueActions || '<span class="outfitter-public-sub">Contact route not published</span>'}</div>
             </article>`;
         }).join('');
       }

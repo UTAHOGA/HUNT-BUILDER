@@ -1,3 +1,31 @@
+## 2026-06-01T09:24:00-06:00 - Verify Directory Card Upgrade + Trust/Label Pass
+
+- Assigned action:
+  - Continue ordered completion sequence:
+    - step 4: actionable verified outfitter directory cards
+    - step 5: trust/label/dead-path pass.
+
+- Files changed:
+  - `verify.html`
+
+- Work completed:
+  - Upgraded public outfitter cards to be more actionable:
+    - added primary `Contact` CTA routing (phone, then email, then website)
+    - retained dedicated `Website`, `Call`, and `Email` actions where published
+    - converted `Species served` and `Units served` from plain text lines to badge groups
+    - formatted reviewed timestamps to readable date labels
+    - expanded service-badge derivation with additional service categories and dedupe handling
+  - Added card styling support for service/species/unit badge groups and primary action emphasis.
+  - Trust/cleanup checks:
+    - verified `verify.htmlm` remains a live redirect shim to `verify.html`
+    - scanned known misspelling set from prior QA notes; no active matches found in current repo text search scope.
+
+- Validation:
+  - `node --check app.js` PASS (existing modified runtime file still valid)
+  - `node --check config.js` PASS (existing modified runtime file still valid)
+  - `node --check assets/js/research-outlook-dashboard.js` PASS
+  - `node --check hunt-research.js` PASS
+
 ## 2026-06-01T09:05:00-06:00 - Research Flagship Dashboard Polish (Decision Grid + Collapsed Secondary Sections + Ladder Header Cleanup)
 
 - Assigned action:
