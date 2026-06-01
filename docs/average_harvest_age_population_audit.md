@@ -1,46 +1,70 @@
-# average_harvest_age Population Audit (Continuation)
+# average_harvest_age Source Family + Label Accuracy Audit
 
-Generated: 2026-06-01 (America/Denver)
+Generated: 2026-06-01T09:38:36.920021
 
-## 1. Bottleneck test: stale primary source path
-- Expected primary age source path: `processed_data/harvest_age_features_by_hunt_code_latest.csv`
-- Primary path exists: `false`
-- Runtime-resolved age source used by builder: `data_model/harvest_quality/harvest_average_age_global_merge_database.csv`
-- Resolved path differs from stale primary: `true`
+## 1. Current public export source usage
+Audited current export: `processed_data/public_contracts/hunt_application_outlook.json` (with upstream lineage from `processed_data/research_page/hunt_application_outlook.json`).
 
-### Bottleneck quantification
-- Current populated `average_harvest_age` rows: `1268`
-- Current blank rows: `1630`
-- Prior committed populated rows before this continuation: `1268`
-- Delta after path repair: `0`
-- Rows attributable to stale primary path as a completeness bottleneck: `0`
+Source family counts:
+- ANNUAL_HARVEST_REPORT_AGE: 974
+- UNIT_LEVEL_REPEATED_ANNUAL_AGE: 156
+- FALLBACK_MERGED_AGE: 138
+- HUNT_PLANNER_CURRENT_3YR_AVG: 6
+- SOURCE_MISSING: 1624
 
-Conclusion: missing primary path is a **real configuration defect** but **not** the current completeness bottleneck because fallback source resolution preserves coverage (delta `0`).
+Interpretation:
+- The export age value is primarily annual-harvest-report based (direct + repeated + annual-derived merged fallbacks).
+- Hunt Planner 3-year age is separate context (`current_age_3yr_average`) and not the primary source for the export age field.
 
-## 2. Required blank-age cause breakdown
-- SOURCE_MISSING: `1616`
-- STALE_SOURCE_PATH: `0`
-- JOIN_FAILURE: `0`
-- MAPPING_FAILURE: `0`
-- VALIDATION_BLOCK: `0`
-- INTENTIONAL_BLANK: `14`
+## 2. Label accuracy: "Average Harvest Age Prior Year"
+Assumption: 2026 contract context => "prior year" = reported hunt year 2025.
 
-## 3. Coverage comparison vs harvest success and avg days hunted
-- Total rows: `2898`
-- Rows with age populated: `1268`
-- Rows with age blank: `1630`
-- Rows with harvest_success and/or avg_days_hunted populated while age is blank: `1430`
+Among populated age rows (1268):
+- ACCURATE: 0
+- NOT_ACCURATE: 904
+- UNKNOWN: 364
 
-## 4. Defect repair applied (limited scope)
-- Repaired stale primary source path in:
-  - `scripts/build-hunt-research-classification-layer.js`
-- Change:
-  - `paths.age` now points to existing canonical file `data_model/harvest_quality/harvest_average_age_global_merge_database.csv`
-  - stale path retained only as fallback candidate
-- Regenerated sample export:
-  - `processed_data/research_page/hunt_application_outlook.json`
+Conclusion:
+- "Average Harvest Age Prior Year" is **not generally accurate** for this export.
+- Recommended label: **"Verified Harvest Age (Most Recent Annual Report)"**.
 
-## 5. Guardrails
-- No DATABASE.csv edits.
-- No broad pipeline refactor.
-- No prediction/draw math changes.
+## 3. Valid annual data loss check
+- Join status: {'NO_DIRECT_ANNUAL_SOURCE': 1630, 'JOIN_SUCCESS': 1268}
+- Mapping status: {'NO_UNIT_LEVEL_ANNUAL_SOURCE': 1630, 'MAPPING_SUCCESS': 156, 'NOT_NEEDED': 1112}
+- Validation status: {'NO_VALIDATED_AGE': 1630, 'PASS': 1268}
+- Rows with direct annual evidence but blank export age (`JOIN_FAILURE`): 0 rows / 0 hunt codes.
+
+Conclusion:
+- No direct annual-report age loss found in current join path (0 join failures with valid direct annual evidence).
+
+## 4. Coverage vs harvest success / avg days
+- Total rows: 2898
+- Blank export age rows: 1630
+- Blank age rows with harvest success and/or avg days present: 1430
+
+## 5. EB3038 sample comparison
+[
+  {
+    "residency": "Resident",
+    "public_export_value_average_harvest_age": "6",
+    "annual_harvest_report_age_value": 6.0,
+    "annual_harvest_report_reported_hunt_year": 2024,
+    "hunt_planner_current_3yr_avg": "6.3",
+    "upstream_age_source_file": "",
+    "upstream_harvest_source_file": "2026-03-06-2025-preliminary-bg-harvest.pdf"
+  },
+  {
+    "residency": "Nonresident",
+    "public_export_value_average_harvest_age": "6",
+    "annual_harvest_report_age_value": 6.0,
+    "annual_harvest_report_reported_hunt_year": 2024,
+    "hunt_planner_current_3yr_avg": "6.3",
+    "upstream_age_source_file": "",
+    "upstream_harvest_source_file": "2026-03-06-2025-preliminary-bg-harvest.pdf"
+  }
+]
+
+## 6. Recommendation
+- Keep export `average_harvest_age` annual-report based.
+- Keep Hunt Planner 3-year age in separate field (`current_age_3yr_average`), not as replacement.
+- If any UI/export label currently says "Prior Year", relabel to "Most Recent Annual Report".

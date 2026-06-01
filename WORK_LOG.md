@@ -9585,3 +9585,62 @@ o_table=0).
   - JSON parse + row count checks on rebuilt contract
   - coverage audit rows generated and reviewed
   - final `git diff --check`
+
+## 2026-06-01T18:05:00-06:00 - average_harvest_age Source-Correction Audit (Annual Report vs Hunt Planner)
+
+- Trigger:
+  - User correction that primary average-harvest-age source should be annual harvest report data, not primarily Hunt Planner current 3-year age.
+
+- Scope completed:
+  1. Audited current public export age column source lineage.
+  2. Classified each public export row into required source families:
+     - `ANNUAL_HARVEST_REPORT_AGE`
+     - `UNIT_LEVEL_REPEATED_ANNUAL_AGE`
+     - `FALLBACK_MERGED_AGE`
+     - `HUNT_PLANNER_CURRENT_3YR_AVG`
+     - `SOURCE_MISSING`
+  3. Tested label accuracy for phrase: **Average Harvest Age Prior Year** (for 2026 context, prior year interpreted as 2025).
+  4. Tested whether valid annual-report age is being lost by join/mapping/validation.
+  5. Audited sample hunt `EB3038` against public export, annual-report source value, and 3-year age context.
+  6. Determined export strategy recommendation (annual-report age primary, 3-year age separate).
+
+- Files audited:
+  - `processed_data/public_contracts/hunt_application_outlook.json` (public export surface)
+  - `processed_data/research_page/hunt_application_outlook.json` (upstream source lineage columns)
+  - `data_model/harvest_quality/harvest_average_age_global_merge_database.csv` (annual age source family)
+  - `processed_data/harvest_quality_features_all_years_by_hunt_code.csv` (merged annual harvest fallback)
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv` (`current_age_3yr_average` context)
+
+- Source family results (rows):
+  - `ANNUAL_HARVEST_REPORT_AGE = 974`
+  - `UNIT_LEVEL_REPEATED_ANNUAL_AGE = 156`
+  - `FALLBACK_MERGED_AGE = 138`
+  - `HUNT_PLANNER_CURRENT_3YR_AVG = 6`
+  - `SOURCE_MISSING = 1624`
+
+- Label accuracy result:
+  - Populated age rows: `1268`
+  - `ACCURATE (year == 2025): 0`
+  - `NOT_ACCURATE: 904`
+  - `UNKNOWN: 364`
+  - Conclusion: label **Average Harvest Age Prior Year** is not generally accurate for current rendered data.
+  - Recommended wording: **Verified Harvest Age (Most Recent Annual Report)**.
+
+- Join/mapping/validation result:
+  - Direct annual-evidence join failures: `0`
+  - No evidence that valid direct annual age is currently being dropped by join path.
+  - Hunt Planner 3-year age remains a separate context field, not a replacement source.
+
+- EB3038 sample:
+  - Public export `average_harvest_age`: `6`
+  - Annual-report age value: `6.0` (reported hunt year `2024`)
+  - Hunt Planner current 3-year age: `6.3`
+  - Interpretation: rendered export age aligns to annual-report age family; 3-year value is separate context.
+
+- Outputs updated:
+  - `docs/average_harvest_age_population_audit.md`
+  - `processed_data/audits/average_harvest_age_population_audit.csv`
+
+- Regeneration decision:
+  - No additional sample export regeneration performed in this step.
+  - Reason: confirmed issue is label/semantics accuracy, not a new value-loss defect in current join pipeline.
