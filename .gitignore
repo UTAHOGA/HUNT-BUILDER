@@ -125,3 +125,5 @@ data_truth/draw_results_truth/normalized/*.csv
 
 # Backup artifacts
 processed_data/backups/**/point_ladder_view.csv
+
+processed_data/hunt_research_2026.json
