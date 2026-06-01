@@ -157,6 +157,7 @@ let googleEarth3dLastFocusSignature = '';
 let googleEarth3dLastSelectedHuntKey = '';
 let googleEarth3dLastBoundaryFocusSignature = '';
 let googleEarth3dReorientTimeoutId = null;
+let googleEarth3dModeRetryUsed = false;
 let dwrFrameLoadTimeoutId = null;
 let controlsBound = false;
 let conservationPermitAreas = [];
@@ -3983,11 +3984,32 @@ function ensureGoogleEarth3dElement() {
     el.removeAttribute('default-ui-hidden');
     el.hidden = true;
     el.addEventListener('gmp-error', (event) => {
+      const currentMode = safe(el?.mode || el?.getAttribute?.('mode') || '').toUpperCase();
+      if (!googleEarth3dModeRetryUsed && currentMode === 'HYBRID') {
+        googleEarth3dModeRetryUsed = true;
+        try {
+          const retryMode = 'SATELLITE';
+          el.mode = retryMode;
+          el.setAttribute('mode', retryMode);
+          el.hidden = false;
+          updateStatus('Google Earth 3D retrying in SATELLITE mode...');
+          return;
+        } catch (_) {
+          // continue to failure handling below
+        }
+      }
       el.hidden = true;
       const details = String(event?.detail?.message || event?.message || '').trim();
       const reason = details
         ? `Google Earth 3D could not render (${details}).`
         : 'Google Earth 3D could not render.';
+      try {
+        console.error('Google Earth 3D gmp-error payload:', {
+          detail: event?.detail || null,
+          message: event?.message || null,
+          mode: currentMode || null,
+        });
+      } catch (_) {}
       handleGoogleEarth3dUnavailable(reason);
     });
     stage.appendChild(el);
@@ -3996,7 +4018,24 @@ function ensureGoogleEarth3dElement() {
 }
 
 function getGoogleEarth3dTroubleshootingHint() {
-  return 'Check browser hardware acceleration and ensure 3D mode is enabled (HYBRID/SATELLITE runtime).';
+  return 'Check browser hardware acceleration, WebGL2 support, and 3D coverage availability.';
+}
+
+function getWebGlRuntimeDiagnostics() {
+  try {
+    const canvas = document.createElement('canvas');
+    const webgl2 = !!canvas.getContext('webgl2');
+    const webgl = !!canvas.getContext('webgl') || !!canvas.getContext('experimental-webgl');
+    return { webgl2, webgl };
+  } catch (_err) {
+    return { webgl2: false, webgl: false };
+  }
+}
+
+function buildGoogleEarth3dUnavailableMessage(reason) {
+  const diag = getWebGlRuntimeDiagnostics();
+  const mode = safe(googleEarth3dMap?.mode || googleEarth3dMap?.getAttribute?.('mode') || '').toUpperCase() || 'UNKNOWN';
+  return `${reason} ${getGoogleEarth3dTroubleshootingHint()} (mode=${mode}, webgl2=${diag.webgl2}, webgl=${diag.webgl})`.trim();
 }
 
 function handleGoogleEarth3dUnavailable(reason = 'Google Earth 3D unavailable.') {
@@ -4013,7 +4052,18 @@ function handleGoogleEarth3dUnavailable(reason = 'Google Earth 3D unavailable.')
       mapWrap.classList.add('is-earth-mode');
     }
   }
-  updateStatus(`${reason} ${getGoogleEarth3dTroubleshootingHint()}`.trim());
+  const message = buildGoogleEarth3dUnavailableMessage(reason);
+  try {
+    console.error('Google Earth 3D unavailable diagnostics:', {
+      reason,
+      message,
+      userAgent: navigator?.userAgent || '',
+      platform: navigator?.platform || '',
+      hardwareConcurrency: navigator?.hardwareConcurrency ?? null,
+      webgl: getWebGlRuntimeDiagnostics(),
+    });
+  } catch (_) {}
+  updateStatus(message);
 
   renderDevDebugPanel();
 }
@@ -4100,6 +4150,7 @@ async function ensureGoogleEarth3dMap() {
   }
 
   googleEarth3dMap = el;
+  googleEarth3dModeRetryUsed = false;
   const hybridMode = maps3d?.MapMode?.HYBRID || 'HYBRID';
   el.mode = hybridMode;
   try { el.setAttribute('mode', String(hybridMode)); } catch (_) {}

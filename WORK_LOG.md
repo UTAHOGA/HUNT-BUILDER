@@ -8811,3 +8811,25 @@ o_table=0).
 - Validation:
   - `node -e "new Function(fs.readFileSync('app.js','utf8'))"` => syntax OK
   - `npm run build` => PASS
+
+## 2026-06-01T11:42:00-06:00 - Google Earth 3D Failure Diagnostics + SATELLITE Retry
+
+- Trigger:
+  - Runtime still emitting generic `maps3d.js` load failure with no actionable detail.
+
+- File changed:
+  - `app.js`
+
+- Changes applied:
+  - Added one-time `HYBRID -> SATELLITE` retry on `gmp-error` before final failure state.
+  - Added structured console diagnostics on failure:
+    - `gmp-error` payload
+    - active mode
+    - WebGL / WebGL2 support check
+    - browser runtime metadata
+  - Enhanced on-page status text to include runtime diagnostics tuple:
+    - `(mode=..., webgl2=..., webgl=...)`
+  - Kept Earth mode active (no 2D auto-fallback).
+
+- Validation:
+  - `node -e "new Function(fs.readFileSync('app.js','utf8'))"` => syntax OK
