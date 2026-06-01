@@ -1,3 +1,58 @@
+## 2026-06-01T12:00:00-06:00 - Hunt Research Full Final Verification Rerun (All Mapped Fields)
+
+- Assigned action:
+  - Run one final strict full-field reconciliation across all mapped Hunt Research fields.
+  - Re-run runtime publication check across all mapped fields.
+  - Determine final status: FULLY VERIFIED vs PARTIALLY VERIFIED.
+
+- Implementation:
+  - Added:
+    - `scripts/hunt-research-full-final-verification.py`
+  - Generated outputs:
+    - `docs/hunt_research_full_final_verification.md`
+    - `processed_data/audits/hunt_research_full_final_reconciliation.csv`
+    - `processed_data/audits/hunt_research_full_final_runtime_publication_check.csv`
+
+- Reconciliation scope:
+  - full DATABASE universe: `1449` hunt codes
+  - mapped fields audited: `28`
+  - total comparison rows: `40572`
+
+- Full-field reconciliation status counts:
+  - `MATCH`: `22151`
+  - `IMPROVED_FROM_CANONICAL_SOURCE`: `1738`
+  - `NOT_PRESENT_IN_FEEDER`: `13295`
+  - `MISSING_IN_TARGET`: `128`
+  - `MISMATCH`: `3260`
+  - `REVIEW_REQUIRED`: `0`
+
+- Runtime publication check (all mapped fields):
+  - `PUBLISHED`: `28`
+  - `LEGACY_ONLY`: `0`
+  - `MISSING_IN_TARGET`: `0`
+  - `REVIEW_REQUIRED`: `0`
+
+- Prior blocker-set integrity check:
+  - blocker-set `MISMATCH` introduced: `0`
+  - blocker-set `MISSING_IN_TARGET` introduced: `0`
+
+- Remaining unresolved fields from strict full-field reconciliation:
+  - `display_odds_pct` (`MISMATCH`: 98)
+  - `p_draw_mean` (`MISMATCH`: 1023)
+  - `p_draw_p10` (`MISMATCH`: 1023)
+  - `p_draw_p90` (`MISMATCH`: 1023)
+  - `permits_2026_total` (`MISSING_IN_TARGET`: 128, `MISMATCH`: 1)
+  - `average_harvest_age` (`MISMATCH`: 92)
+
+- Final status:
+  - **PARTIALLY VERIFIED**
+
+- Validation:
+  - `python -m py_compile scripts/hunt-research-full-final-verification.py` -> PASS
+  - `python scripts/hunt-research-full-final-verification.py` -> PASS
+  - universe alignment check in output -> `1449/1449`
+  - blocker-set mismatch regression check -> PASS (`0` introduced)
+
 ## 2026-06-01T11:55:00-06:00 - LFS Runtime Canonicalization Pass (Website Universe Redirect)
 
 - Assigned action:
