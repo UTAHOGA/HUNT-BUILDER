@@ -1,3 +1,1 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e3e5e5dc298dcd6dae9c8c32943330b18e7591974e8e00af8ab4efd384cd1361
-size 397
+{"type":"FeatureCollection","metadata":{"hunt_code":"PB5301","boundary_id":"528","member_boundary_ids":[],"source_boundary_ids":["528"],"source_hunt_code":"PB5301","merged_boundary_id":null,"boundary_geometry_type":"single_kmz","generated_from":"display-boundary-index-2026-builder","boundary_source_authority":"Utah DWR","boundary_source_file":"pronghorn_hunt_table_official.json"},"features":[]}
