@@ -9406,3 +9406,44 @@ o_table=0).
     - confirmed `dwrStatusLeakedIntoEarth = false`
   - live mode-switch audit:
     - confirmed `dwrStatusLeakedIntoEarth = false`
+
+## 2026-06-01T16:03:00-06:00 - hunt_research_2026 Contract Completeness Audit
+
+- Scope:
+  - Audited `processed_data/hunt_research_2026.json` for completeness as the Research page canonical contract.
+  - Compared contract coverage and field completeness against:
+    - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+    - `processed_data/point_ladder_view.csv`
+    - `processed_data/draw_reality_engine.csv`
+    - `processed_data/hunt_master_enriched.csv` (Cloudflare canonical runtime copy used when local file resolved as LFS pointer text)
+  - Audited active Research runtime expectations from:
+    - `hunt-research.js`
+    - `assets/js/research-outlook-dashboard.js`
+
+- Outputs created:
+  - `docs/hunt_research_2026_contract_audit.md`
+  - `processed_data/audits/hunt_research_2026_contract_audit.csv`
+
+- Key results:
+  - JSON parse: PASS
+  - Top-level type: `list`
+  - Total rows: `1117`
+  - Unique hunt codes in contract: `1117`
+  - Unique hunt codes in DATABASE truth: `1449`
+  - Missing vs DATABASE: `337`
+  - Extra codes not in DATABASE: `5`
+  - Runtime-expected fields discovered from JS: `63`
+  - Runtime-expected fields missing from contract rows: `59`
+  - Contract status: **INCOMPLETE**
+
+- Why INCOMPLETE:
+  - Coverage gap to DATABASE 2026 universe (`337` missing hunt codes).
+  - Major missing Research-facing contract concepts (residency, points, draw-line/guaranteed-line family, point-creep, explicit recommendation/output contract fields, explicit source/model freshness contract fields).
+  - Runtime still depends on multiple parallel CSV/JSON feeds and does not yet consume this JSON as full single-source contract.
+
+- Validation run:
+  - `python` parse check for `processed_data/hunt_research_2026.json` (list + row count + unique hunt_code count)
+  - output file existence checks:
+    - `docs/hunt_research_2026_contract_audit.md`
+    - `processed_data/audits/hunt_research_2026_contract_audit.csv`
+  - `git diff --check` (final pass)
