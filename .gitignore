@@ -72,8 +72,13 @@ point_ladder_view1.csv
 
 # /processed_data/hunt_research_2026
 
+# /.wrangler*
+
+.wrangler*
+
 
 point_ladder_view1.csv
 *.md
 processed_data/hunt_research_2026.json
 
+hunt-research.js
