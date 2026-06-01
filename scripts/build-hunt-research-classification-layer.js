@@ -328,6 +328,20 @@ function normalizeResidency(value) {
   return text(value) || 'All';
 }
 
+function normalizeUnitKey(value) {
+  return upper(value)
+    .replace(/\b(UNIT|HUNT|AREA|MOUNTAINS|MOUNTAIN|MTNS|LE|LIMITED ENTRY|GENERAL SEASON|ARCHERY|MUZZLELOADER|ANY WEAPON|ANY LEGAL WEAPON|RIFLE|BUCK|BULL|COW|DOE|PRIVATE LAND ONLY|LANDOWNER ASSOCIATION|CWMU|PREMIUM|PRIVATE)\b/g, ' ')
+    .replace(/[^A-Z0-9]+/g, ' ')
+    .trim()
+    .replace(/\s+/g, ' ');
+}
+
+function unitSpeciesKey(unitName, species) {
+  const unit = normalizeUnitKey(unitName);
+  const sp = upper(species);
+  return unit && sp ? `${unit}|${sp}` : '';
+}
+
 function chooseText(target, field, value) {
   if (!hasValue(target[field]) && hasValue(value)) target[field] = text(value);
 }
@@ -707,21 +721,55 @@ async function build() {
   });
 
   const harvestByCode = new Map();
+  const unitSpeciesAgeCandidates = new Map();
   harvest.forEach((row) => {
     const c = code(row);
-    if (!c) return;
     const year = num(row.reported_hunt_year) || 0;
-    const existing = harvestByCode.get(c);
-    if (!existing || year >= existing.year) {
-      harvestByCode.set(c, {
+    const harvestAverageAge = num(row.average_age || row.average_harvest_age);
+    if (c) {
+      const existing = harvestByCode.get(c);
+      if (!existing || year >= existing.year) {
+        harvestByCode.set(c, {
+          year,
+          harvest_success_pct: pct(row.percent_success),
+          average_days_hunted: num(row.average_days),
+          harvest_average_age: harvestAverageAge,
+          source_file: text(row.source_file),
+          source_page: text(row.source_page),
+        });
+      }
+    }
+    const key = unitSpeciesKey(row.hunt_name || row.unit_name, row.species);
+    if (key && harvestAverageAge != null && harvestAverageAge > 0) {
+      const prior = unitSpeciesAgeCandidates.get(key);
+      const payload = {
         year,
-        harvest_success_pct: pct(row.percent_success),
-        average_days_hunted: num(row.average_days),
-        harvest_average_age: num(row.average_age),
+        age: harvestAverageAge,
         source_file: text(row.source_file),
         source_page: text(row.source_page),
-      });
+      };
+      if (!prior || year > prior.year) {
+        unitSpeciesAgeCandidates.set(key, { year, rows: [payload] });
+      } else if (year === prior.year) {
+        prior.rows.push(payload);
+      }
     }
+  });
+
+  const unitSpeciesAgeFallback = new Map();
+  unitSpeciesAgeCandidates.forEach((entry, key) => {
+    if (!entry?.rows?.length) return;
+    const ages = [...new Set(entry.rows.map((row) => round(row.age, 3)))];
+    const minAge = Math.min(...ages);
+    const maxAge = Math.max(...ages);
+    if (maxAge - minAge > 0.2) return;
+    unitSpeciesAgeFallback.set(key, {
+      age: round(median(ages)),
+      source_file: entry.rows[0].source_file,
+      source_page: entry.rows[0].source_page,
+      reported_hunt_year: entry.year,
+      source_scope: 'unit_level_repeated_to_hunt_code',
+    });
   });
 
   const ageByCode = new Map();
@@ -760,6 +808,17 @@ async function build() {
     if (a.average_harvest_age != null) {
       row.average_harvest_age = round(a.average_harvest_age);
       row._ageSource = resolved.age;
+    }
+    if ((row.average_harvest_age == null || row.average_harvest_age === '')) {
+      const unitKey = unitSpeciesKey(row.unit_name || row.hunt_name, row.species);
+      const fallback = unitSpeciesAgeFallback.get(unitKey);
+      if (fallback && num(fallback.age) != null && num(fallback.age) > 0) {
+        row.average_harvest_age = round(fallback.age);
+        row._ageSource = `${resolved.harvest}:unit_species_fallback`;
+        if (!hasValue(row.age_source_file) && hasValue(fallback.source_file)) row.age_source_file = fallback.source_file;
+        if (!hasValue(row.age_source_page) && hasValue(fallback.source_page)) row.age_source_page = fallback.source_page;
+        if (!hasValue(row.age_review_status)) row.age_review_status = 'REVIEW_UNIT_LEVEL_REPEATED';
+      }
     }
     if (a.percent_5plus != null) row.percent_5plus = round(a.percent_5plus);
     if (hasValue(a.source_file)) row.age_source_file = a.source_file;

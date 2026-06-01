@@ -9447,3 +9447,58 @@ o_table=0).
     - `docs/hunt_research_2026_contract_audit.md`
     - `processed_data/audits/hunt_research_2026_contract_audit.csv`
   - `git diff --check` (final pass)
+
+## 2026-06-01T17:08:00-06:00 - average_harvest_age Population Audit + Mapping Repair
+
+- Assigned task:
+  - Audit and repair `average_harvest_age` population in public hunt table exports only.
+  - Focus on upstream join/mapping logic without changing prediction math or DATABASE truth.
+
+- Pipeline path identified:
+  - Upstream population script: `scripts/build-hunt-research-classification-layer.js`
+  - Public contract pass-through: `scripts/build-public-data-contracts.js`
+  - Audited public hunt table exports:
+    - `processed_data/research_page/hunt_application_outlook.json`
+    - `processed_data/public_contracts/hunt_application_outlook.json`
+
+- Defect found:
+  - Direct hunt-code joins were largely functioning.
+  - Major remaining weakness was missing direct hunt-code age coverage plus a smaller unit/species mapping gap where valid latest-year age evidence existed in harvest source rows but was not carried to the export.
+
+- Repair applied (upstream logic):
+  - File changed: `scripts/build-hunt-research-classification-layer.js`
+  - Added strict unit+species age fallback for blank `average_harvest_age` rows:
+    - source: harvest quality feed (`average_age` / `average_harvest_age`)
+    - matching: normalized unit name + species
+    - guardrail: only latest-year unit rows; only apply when age values are stable (spread <= 0.2)
+    - output tagging: `age_review_status = REVIEW_UNIT_LEVEL_REPEATED` for fallback-populated rows
+  - No loose fuzzy inference used.
+  - No DATABASE.csv writes.
+  - No draw/odds model math changes.
+
+- Regenerated outputs:
+  - `processed_data/research_page/hunt_application_outlook.json`
+  - `processed_data/research_page/hunt_application_outlook.csv`
+  - `processed_data/public_contracts/hunt_application_outlook.json`
+  - `processed_data/audits/hunt_classification_layer_audit.json`
+
+- Required audit outputs created:
+  - `docs/average_harvest_age_population_audit.md`
+  - `processed_data/audits/average_harvest_age_population_audit.csv`
+
+- Outcome:
+  - `average_harvest_age` populated rows increased from `1112` to `1268` (`+156` rows).
+  - Blank rows reduced from `1786` to `1630`.
+  - Blank classification totals:
+    - `SOURCE_MISSING = 1616`
+    - `MAPPING_FAILURE = 0` (after repair under strict rules)
+    - `JOIN_FAILURE = 0`
+    - `VALIDATION_BLOCK = 0`
+    - `INTENTIONAL_BLANK = 14`
+
+- Validation run:
+  - `node --check scripts/build-hunt-research-classification-layer.js`
+  - `node scripts/build-hunt-research-classification-layer.js`
+  - `node scripts/build-public-data-contracts.js`
+  - Python consistency checks for pre/post nonblank delta and blank classification
+  - final `git diff --check`
