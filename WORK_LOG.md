@@ -9824,3 +9824,137 @@ o_table=0).
 - Regeneration decision:
   - No additional sample export regeneration performed in this step.
   - Reason: confirmed issue is label/semantics accuracy, not a new value-loss defect in current join pipeline.
+
+## 2026-06-01T18:32:00-06:00 - DATABASE(2) vs Public Export Universe Gap Audit (55-Code Delta)
+
+- Scope:
+  - Audited the reported 55-hunt-code difference between a 1,394-code "DATABASE(2)" universe and the public age/export universe (1,449).
+  - Produced required markdown + CSV outputs and classification of the gap cause.
+
+- Source resolution:
+  - No file named `DATABASE(2).csv` exists in active repo path.
+  - To match the stated `1,394` universe, audit used:
+    - `data/hunt-master-canonical-2026-foundation.json` (1,394 unique hunt codes)
+  - Public universe source:
+    - `processed_data/audits/average_harvest_age_two_column_audit.csv` (1,449 unique hunt codes)
+  - Canonical truth cross-check:
+    - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv` (1,449 unique hunt codes)
+
+- Results:
+  - `public_export_universe - database2_1394_universe = 55`
+  - `database2_1394_universe - public_export_universe = 0`
+  - All 55 gap codes are present in canonical `DATABASE.csv`.
+  - All 55 are missing from both:
+    - `data/hunt-master-canonical-2026-foundation.json` (1,394 baseline)
+    - `data/hunt-master-canonical-2026-source-of-truth.json` (1,411 baseline)
+
+- Gap profile:
+  - Hunt type breakdown:
+    - `CWMU = 36`
+    - `General Season = 6`
+    - `Limited Entry = 6`
+    - `Once-in-a-lifetime = 3`
+    - `Limited Entry - Spring/Summer/Fall = 4`
+  - Species breakdown:
+    - `Deer = 15`, `Moose = 15`, `Elk = 10`, `Pronghorn = 9`, `Black Bear = 4`, `Bison = 1`, `Desert Bighorn Sheep = 1`
+
+- Conclusion:
+  - This is a **stale canonical baseline** issue, not a public export overreach.
+  - Public age/export universe aligns with current `DATABASE.csv` truth (1,449).
+  - 1,394 and 1,411 JSON baselines should be regenerated or marked stale.
+
+- Outputs created:
+  - `docs/database_vs_public_export_universe_gap_report.md`
+  - `processed_data/audits/database_vs_public_export_universe_gap.csv`
+
+- Validation run:
+  - CSV/JSON parse and unique-hunt-code set-difference checks via Python
+  - Spot-check that all 55 gap codes exist in `DATABASE.csv`
+  - final `git diff --check`
+
+## 2026-06-01T19:06:00-06:00 - Harvest Age Production Behavior Formalization
+
+- Scope:
+  - Locked production behavior for age fields without broad repair work.
+  - Documented intentional blanks policy.
+  - Confirmed public contract/export field stability.
+  - Limited future proposals to species-by-species source-family expansion only.
+
+- Production behavior confirmed:
+  1. Blanks are intentional when no defensible age source exists.
+  2. Canonical contract targets are:
+     - `processed_data/public_contracts/hunt_application_outlook.json`
+     - `processed_data/research_page/hunt_application_outlook.json`
+  3. Both canonical targets include both fields on all rows:
+     - `average_harvest_age`
+     - `current_age_3yr_average`
+  4. Canonical target counts are aligned:
+     - rows: `2898`
+     - nonblank `average_harvest_age`: `1268`
+     - nonblank `current_age_3yr_average`: `440`
+
+- Stability/export note:
+  - `processed_data/audits/average_harvest_age_two_column_full_promotion_audit.json` confirms full export-set promotion activity:
+    - files scanned: `168`
+    - files updated: `165`
+    - average age rows filled: `2030`
+    - current 3-yr rows filled: `716`
+
+- Non-canonical copy note:
+  - `data/hunt_application_outlook.json` remains non-canonical/stale for `average_harvest_age` (`1112` nonblank) and should not be treated as production contract truth until explicitly re-synced.
+
+- File updated:
+  - `docs/average_harvest_age_two_column_policy.md`
+
+## 2026-06-01T19:18:00-06:00 - Backfill `data/hunt_application_outlook.json` From Canonical Processed Copies
+
+- Scope:
+  - Verified canonical alignment state.
+  - Audited differences between canonical contract and stale compatibility mirror.
+  - Backfilled `data/hunt_application_outlook.json` from canonical public contract source.
+  - Documented source-of-truth and derived-copy policy.
+
+- Canonical alignment check:
+  - `processed_data/public_contracts/hunt_application_outlook.json`:
+    - rows: `2898`
+    - schema keys: `28`
+  - `processed_data/research_page/hunt_application_outlook.json`:
+    - rows: `2898`
+    - schema keys: `45`
+  - Interpretation:
+    - Row universe is aligned.
+    - Research copy includes additional metadata fields; public-contract copy is the compatibility-schema baseline.
+
+- Pre-backfill stale copy audit (`data/hunt_application_outlook.json`):
+  - rows: `2898`, keys: `28`
+  - nonblank `average_harvest_age`: `1112` (stale)
+  - canonical nonblank `average_harvest_age`: `1268`
+  - nonblank `current_age_3yr_average`: `440` in both
+  - additional field-level value mismatches were recorded in:
+    - `processed_data/audits/hunt_application_outlook_backfill_diff.csv`
+
+- Backfill action:
+  - Source used: `processed_data/public_contracts/hunt_application_outlook.json`
+  - Target updated: `data/hunt_application_outlook.json`
+  - Method: direct file copy (no hand-editing)
+
+- Post-backfill validation:
+  - `data/hunt_application_outlook.json` row count: `2898` (matches canonical)
+  - `data/hunt_application_outlook.json` schema keys: `28` (compatibility schema preserved)
+  - hash equality: `data/...` == `processed_data/public_contracts/...` (`True`)
+  - nonblank `average_harvest_age`: `1268` (now aligned)
+  - nonblank `current_age_3yr_average`: `440` (aligned)
+
+- Runtime compatibility check:
+  - Active research runtime reads canonical processed paths in `assets/js/research-outlook-dashboard.js`.
+  - `data/hunt_application_outlook.json` is retained as derived compatibility mirror.
+
+- Outputs created:
+  - `docs/hunt_application_outlook_backfill_policy.md`
+  - `processed_data/audits/hunt_application_outlook_backfill_diff.csv`
+  - updated `data/hunt_application_outlook.json`
+
+- Validation run:
+  - JSON parse + row/field/hash checks
+  - runtime consumer path check
+  - final `git diff --check`
