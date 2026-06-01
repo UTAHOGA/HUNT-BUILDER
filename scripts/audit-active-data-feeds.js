@@ -624,7 +624,7 @@ function yearAudit(core) {
 }
 
 function loadConfig() {
-  const sandbox = { window: { location: { protocol: 'https:', hostname: 'hunt-builder.uoga.org' } }, console };
+  const sandbox = { window: { location: { protocol: 'https:', hostname: 'huntbuilder.uoga.org' } }, console };
   vm.createContext(sandbox);
   vm.runInContext(fs.readFileSync(path.join(root, 'config.js'), 'utf8'), sandbox, { filename: 'config.js' });
   return sandbox.window.UOGA_CONFIG || {};

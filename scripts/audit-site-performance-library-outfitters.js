@@ -170,7 +170,7 @@ function parseHtmlDeps(page) {
 function loadConfig() {
   const sandbox = {
     window: {
-      location: { protocol: 'https:', hostname: 'hunt-builder.uoga.org' },
+      location: { protocol: 'https:', hostname: 'huntbuilder.uoga.org' },
       UOGA_LOCAL_CONFIG: {},
     },
     console,

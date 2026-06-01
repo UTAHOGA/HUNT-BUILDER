@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://hunt-builder.uoga.org/schemas/hunt-master-canonical-2026.schema.json",
+  "$id": "https://huntbuilder.uoga.org/schemas/hunt-master-canonical-2026.schema.json",
   "title": "Hunt Master Canonical 2026 Schema",
   "type": "object",
   "required": [

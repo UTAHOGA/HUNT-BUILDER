@@ -1,3 +1,39 @@
+## 2026-06-01T09:44:00-06:00 - Domain Canonicalization (Single Production Domain Policy)
+
+- Assigned action:
+  - Consolidate domain references to one canonical production domain:
+    - `https://huntbuilder.uoga.org`
+  - Eliminate active usage assumptions for:
+    - `https://hunt-builder.uoga.org`
+
+- Outputs created:
+  - `docs/domain_canonicalization_report.md`
+  - `processed_data/audits/domain_reference_audit.csv`
+
+- Files updated:
+  - `AGENTS.MD`
+  - `hunt-master-canonical-2026.json`
+  - `schemas/hunt-master-canonical-2026.schema (2).json`
+  - `scripts/audit-active-data-feeds.js`
+  - `scripts/audit-site-performance-library-outfitters.js`
+  - `processed_data/final_live_push_verification_report.json`
+
+- Domain handling decisions:
+  - Canonical domain remains `huntbuilder.uoga.org`.
+  - `hunt-builder.uoga.org` references are retained only where needed for redirect enforcement:
+    - `vercel.json` host redirect rule
+    - `embed-mode.js` runtime redirect detection
+  - Historical audit artifact reference retained as legacy evidence:
+    - `processed_data/audits/promote_now_live_alignment.csv`
+
+- Validation:
+  - `rg -l "hunt-builder\\.uoga\\.org"` returns only:
+    - `embed-mode.js`
+    - `vercel.json`
+    - `processed_data/audits/promote_now_live_alignment.csv`
+  - `rg -l "huntbuilder\\.uoga\\.org"` confirms canonical references across active runtime/config/docs.
+  - `git diff --check` clean.
+
 ## 2026-06-01T09:02:00-06:00 - Canonical R2 Promotion Completed (hunt_research_2026.json)
 
 - Assigned follow-up:

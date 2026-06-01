@@ -69,7 +69,7 @@
     "Browser automation modules were unavailable in this session, so local verification used HTTP fetches and runtime source-selection checks."
   ],
   "production_live_url_verified": true,
-  "production_live_url": "https://hunt-builder.uoga.org/research.html",
+  "production_live_url": "https://huntbuilder.uoga.org/research.html",
   "production_verification_notes": [
     "research.html, config.js, and hunt-research.js on production matched local SHA-256 hashes.",
     "GitHub Pages serves LFS-backed CSV paths as pointer files, as expected.",
