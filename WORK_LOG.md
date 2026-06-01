@@ -9005,3 +9005,29 @@ o_table=0).
 - Validation commands run:
   - automated local/live mode switching checks via Playwright
   - full boundary asset integrity/fetch audit against local files and live URLs
+
+## 2026-06-01T14:42:00-06:00 - Earth Mode Stability Patch (DWR Status Leak + SATELLITE-First Init)
+
+- Trigger:
+  - User runtime showed Earth mode selected with 3D element present, but status text was overwritten by stale DWR iframe timeout messaging.
+
+- File changed:
+  - `app.js`
+
+- Changes applied:
+  - Added mode guard to DWR iframe timeout status update:
+    - only shows DWR timeout status when current mode is `dwr`.
+  - Added mode guard to DWR iframe error status update:
+    - only shows DWR iframe error when current mode is `dwr`.
+  - Cleared pending DWR iframe timeout when switching to Earth mode.
+  - Cleared pending DWR iframe timeout when switching to Google mode.
+  - Set default 3D mode startup to `SATELLITE` (`GOOGLE_MAPS_3D_DEFAULT_MODE`) instead of HYBRID-first.
+  - Kept existing non-fatal Earth overlay behavior intact.
+
+- Validation:
+  - `node --check app.js` => syntax OK
+  - `git diff --check` => clean
+  - local mode-switch audit:
+    - confirmed `dwrStatusLeakedIntoEarth = false`
+  - live mode-switch audit:
+    - confirmed `dwrStatusLeakedIntoEarth = false`

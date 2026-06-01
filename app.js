@@ -179,6 +179,7 @@ const FORCE_GOOGLE_ONLY_DEBUG = false;
 const GOOGLE_MAPS_SCRIPT_CHANNEL = 'beta';
 const GOOGLE_MAPS_SCRIPT_LIBRARIES = 'maps3d';
 const USE_GOOGLE_EARTH_IFRAME_MODE = false;
+const GOOGLE_MAPS_3D_DEFAULT_MODE = 'SATELLITE';
 const GOOGLE_EARTH_IFRAME_URL = './hunt-builder-google-earth.html?v=20260601-earth-3d-bridge-1';
 const GOOGLE_EARTH_OUTLINE_ONLY_RANGE = 120000;
 const GOOGLE_EARTH_TRANSPARENT_FILL = 'rgba(0,0,0,0)';
@@ -3930,7 +3931,9 @@ function updateDwrMapFrame(hunt = selectedHunt) {
       dwrFrameLoadTimeoutId = null;
     }
     dwrFrameLoadTimeoutId = setTimeout(() => {
-      updateStatus('DWR map may be blocked in iframe. Use the DWR logo to open map directly.');
+      if (safe(mapTypeSelect?.value).toLowerCase() === 'dwr') {
+        updateStatus('DWR map may be blocked in iframe. Use the DWR logo to open map directly.');
+      }
       dwrFrameLoadTimeoutId = null;
     }, 7000);
   }
@@ -3970,7 +3973,9 @@ function initDwrFrameEvents() {
       clearTimeout(dwrFrameLoadTimeoutId);
       dwrFrameLoadTimeoutId = null;
     }
-    updateStatus('DWR iframe failed to load. Use the DWR logo to open map directly.');
+    if (safe(mapTypeSelect?.value).toLowerCase() === 'dwr') {
+      updateStatus('DWR iframe failed to load. Use the DWR logo to open map directly.');
+    }
   });
 }
 
@@ -4081,7 +4086,7 @@ function ensureGoogleEarth3dElement() {
     el.className = 'google-earth-3d-map';
     el.setAttribute('aria-label', 'Google Earth 3D map');
     // 2025 Maps JS 3D requirement: mode must be explicitly HYBRID or SATELLITE.
-    el.setAttribute('mode', 'HYBRID');
+    el.setAttribute('mode', GOOGLE_MAPS_3D_DEFAULT_MODE);
     if (safe(GOOGLE_MAPS_3D_MAP_ID).trim()) {
       el.setAttribute('map-id', safe(GOOGLE_MAPS_3D_MAP_ID).trim());
     } else {
@@ -4097,7 +4102,7 @@ function ensureGoogleEarth3dElement() {
     el.hidden = true;
     el.addEventListener('gmp-error', (event) => {
       const currentMode = safe(el?.mode || el?.getAttribute?.('mode') || '').toUpperCase();
-      if (!googleEarth3dModeRetryUsed && currentMode === 'HYBRID') {
+      if (!googleEarth3dModeRetryUsed && currentMode !== 'SATELLITE') {
         googleEarth3dModeRetryUsed = true;
         try {
           const retryMode = 'SATELLITE';
@@ -4264,9 +4269,9 @@ async function ensureGoogleEarth3dMap() {
 
   googleEarth3dMap = el;
   googleEarth3dModeRetryUsed = false;
-  const hybridMode = maps3d?.MapMode?.HYBRID || 'HYBRID';
-  el.mode = hybridMode;
-  try { el.setAttribute('mode', String(hybridMode)); } catch (_) {}
+  const default3dMode = maps3d?.MapMode?.SATELLITE || GOOGLE_MAPS_3D_DEFAULT_MODE;
+  el.mode = default3dMode;
+  try { el.setAttribute('mode', String(default3dMode)); } catch (_) {}
   const mapId = safe(GOOGLE_MAPS_3D_MAP_ID).trim();
   if (mapId) {
     try { el.mapId = mapId; } catch (_) {}
@@ -4880,6 +4885,10 @@ function applyMapMode() {
   }
 
   if (value === 'earth') {
+    if (dwrFrameLoadTimeoutId) {
+      clearTimeout(dwrFrameLoadTimeoutId);
+      dwrFrameLoadTimeoutId = null;
+    }
     clearSelectedBoundaryFallbackLayer();
     if (basemapControl) basemapControl.hidden = true;
     window.UOGA_BASEMAP_UI?.setPanelOpen?.(false);
@@ -4928,6 +4937,10 @@ function applyMapMode() {
   }
 
   // Switching back to Google mode should show the Google map container even if the API is still loading.
+  if (dwrFrameLoadTimeoutId) {
+    clearTimeout(dwrFrameLoadTimeoutId);
+    dwrFrameLoadTimeoutId = null;
+  }
   mapWrap.classList.remove('is-earth-mode');
   const mapEl = document.getElementById('map');
   if (mapEl) mapEl.hidden = false;
