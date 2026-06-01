@@ -161,7 +161,9 @@ let googleEarth3dLastBoundaryFocusSignature = '';
 let googleEarth3dReorientTimeoutId = null;
 let googleEarth3dGlobalIntroTimerId = null;
 let googleEarth3dNeedsIntroFlight = false;
-let googleEarth3dModeRetryUsed = false;
+let googleEarth3dTriedModes = new Set();
+let googleEarth3dModeCycle = ['SATELLITE', 'HYBRID'];
+let googleEarth3dLastGmpError = null;
 let dwrFrameLoadTimeoutId = null;
 let controlsBound = false;
 let conservationPermitAreas = [];
@@ -4099,6 +4101,57 @@ function initGoogleEarthFrameEvents() {
   });
 }
 
+function normalizeGoogleEarth3dMode(value) {
+  const mode = safe(value).trim().toUpperCase();
+  if (mode === 'SATELLITE' || mode === 'HYBRID') return mode;
+  return '';
+}
+
+function buildGoogleEarth3dModeCycle(maps3d) {
+  const preferred = normalizeGoogleEarth3dMode(GOOGLE_MAPS_3D_DEFAULT_MODE) || 'SATELLITE';
+  const mapMode = maps3d?.MapMode || {};
+  const knownModes = [
+    normalizeGoogleEarth3dMode(mapMode.SATELLITE),
+    normalizeGoogleEarth3dMode(mapMode.HYBRID),
+    'SATELLITE',
+    'HYBRID',
+  ].filter(Boolean);
+  const cycle = [preferred, ...knownModes].filter((mode, index, arr) => arr.indexOf(mode) === index);
+  return cycle.length ? cycle : ['SATELLITE', 'HYBRID'];
+}
+
+function setGoogleEarth3dMode(el, mode) {
+  if (!el) return '';
+  const normalized = normalizeGoogleEarth3dMode(mode);
+  if (!normalized) return '';
+  try { el.mode = normalized; } catch (_) {}
+  try { el.setAttribute('mode', normalized.toLowerCase()); } catch (_) {}
+  return normalized;
+}
+
+function toSerializableGoogleEarth3dError(value) {
+  if (!value || typeof value !== 'object') return value ?? null;
+  try {
+    return JSON.parse(JSON.stringify(value));
+  } catch (_) {
+    const out = {};
+    Object.keys(value).forEach((key) => {
+      const next = value[key];
+      if (typeof next === 'function') return;
+      if (next && typeof next === 'object') {
+        try {
+          out[key] = JSON.parse(JSON.stringify(next));
+        } catch (_err) {
+          out[key] = String(next);
+        }
+      } else {
+        out[key] = next;
+      }
+    });
+    return out;
+  }
+}
+
 function ensureGoogleEarth3dElement() {
   if (USE_GOOGLE_EARTH_IFRAME_MODE) return null;
   const stage = document.querySelector('.map-stage') || document.querySelector('.map-wrap');
@@ -4110,7 +4163,7 @@ function ensureGoogleEarth3dElement() {
     el.className = 'google-earth-3d-map';
     el.setAttribute('aria-label', 'Google Earth 3D map');
     // 2025 Maps JS 3D requirement: mode must be explicitly HYBRID or SATELLITE.
-    el.setAttribute('mode', GOOGLE_MAPS_3D_DEFAULT_MODE);
+    el.setAttribute('mode', normalizeGoogleEarth3dMode(GOOGLE_MAPS_3D_DEFAULT_MODE).toLowerCase() || 'satellite');
     if (safe(GOOGLE_MAPS_3D_MAP_ID).trim()) {
       el.setAttribute('map-id', safe(GOOGLE_MAPS_3D_MAP_ID).trim());
     } else {
@@ -4125,15 +4178,21 @@ function ensureGoogleEarth3dElement() {
     el.removeAttribute('default-ui-hidden');
     el.hidden = true;
     el.addEventListener('gmp-error', (event) => {
-      const currentMode = safe(el?.mode || el?.getAttribute?.('mode') || '').toUpperCase();
-      if (!googleEarth3dModeRetryUsed && currentMode !== 'SATELLITE') {
-        googleEarth3dModeRetryUsed = true;
+      const currentMode = normalizeGoogleEarth3dMode(el?.mode || el?.getAttribute?.('mode')) || 'UNKNOWN';
+      const detailPayload = toSerializableGoogleEarth3dError(event?.detail || null);
+      googleEarth3dLastGmpError = {
+        mode: currentMode,
+        detail: detailPayload,
+        message: String(event?.detail?.message || event?.message || '').trim() || null,
+        at: new Date().toISOString(),
+      };
+      const retryMode = googleEarth3dModeCycle.find((mode) => !googleEarth3dTriedModes.has(mode));
+      if (retryMode) {
+        googleEarth3dTriedModes.add(retryMode);
         try {
-          const retryMode = 'SATELLITE';
-          el.mode = retryMode;
-          el.setAttribute('mode', retryMode);
+          setGoogleEarth3dMode(el, retryMode);
           el.hidden = false;
-          updateStatus('Google Earth 3D retrying in SATELLITE mode...');
+          updateStatus(`Google Earth 3D retrying in ${retryMode} mode...`);
           return;
         } catch (_) {
           // continue to failure handling below
@@ -4146,9 +4205,11 @@ function ensureGoogleEarth3dElement() {
         : 'Google Earth 3D could not render.';
       try {
         console.error('Google Earth 3D gmp-error payload:', {
-          detail: event?.detail || null,
+          detail: detailPayload,
           message: event?.message || null,
           mode: currentMode || null,
+          triedModes: Array.from(googleEarth3dTriedModes),
+          modeCycle: googleEarth3dModeCycle,
         });
       } catch (_) {}
       handleGoogleEarth3dUnavailable(reason);
@@ -4164,12 +4225,25 @@ function getGoogleEarth3dTroubleshootingHint() {
 
 function getWebGlRuntimeDiagnostics() {
   try {
-    const canvas = document.createElement('canvas');
-    const webgl2 = !!canvas.getContext('webgl2');
-    const webgl = !!canvas.getContext('webgl') || !!canvas.getContext('experimental-webgl');
-    return { webgl2, webgl };
+    const canvas2 = document.createElement('canvas');
+    const canvas1 = document.createElement('canvas');
+    const gl2 = canvas2.getContext('webgl2');
+    const gl1 = canvas1.getContext('webgl') || canvas1.getContext('experimental-webgl');
+    const webgl2 = !!gl2;
+    const webgl = !!gl1;
+    let renderer = '';
+    let vendor = '';
+    const gl = gl2 || gl1;
+    if (gl) {
+      const dbg = gl.getExtension('WEBGL_debug_renderer_info');
+      if (dbg) {
+        renderer = String(gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) || '');
+        vendor = String(gl.getParameter(dbg.UNMASKED_VENDOR_WEBGL) || '');
+      }
+    }
+    return { webgl2, webgl, renderer, vendor };
   } catch (_err) {
-    return { webgl2: false, webgl: false };
+    return { webgl2: false, webgl: false, renderer: '', vendor: '' };
   }
 }
 
@@ -4177,7 +4251,18 @@ function buildGoogleEarth3dUnavailableMessage(reason) {
   const diag = getWebGlRuntimeDiagnostics();
   const mode = safe(googleEarth3dMap?.mode || googleEarth3dMap?.getAttribute?.('mode') || '').toUpperCase() || 'UNKNOWN';
   const mapId = safe(googleEarth3dMap?.mapId || googleEarth3dMap?.getAttribute?.('map-id') || GOOGLE_MAPS_3D_MAP_ID || '').trim();
-  return `${reason} ${getGoogleEarth3dTroubleshootingHint()} (mode=${mode}, webgl2=${diag.webgl2}, webgl=${diag.webgl}, mapId=${mapId || 'MISSING'})`.trim();
+  const gmpCode = firstNonEmpty(
+    googleEarth3dLastGmpError?.detail?.errorCode,
+    googleEarth3dLastGmpError?.detail?.code,
+    googleEarth3dLastGmpError?.detail?.status,
+    ''
+  );
+  const gmpMsg = firstNonEmpty(
+    googleEarth3dLastGmpError?.detail?.message,
+    googleEarth3dLastGmpError?.message,
+    ''
+  );
+  return `${reason} ${getGoogleEarth3dTroubleshootingHint()} (mode=${mode}, webgl2=${diag.webgl2}, webgl=${diag.webgl}, mapId=${mapId || 'MISSING'}, gmpCode=${gmpCode || 'NA'}, gmpMessage=${gmpMsg || 'NA'})`.trim();
 }
 
 function handleGoogleEarth3dUnavailable(reason = 'Google Earth 3D unavailable.') {
@@ -4208,6 +4293,9 @@ function handleGoogleEarth3dUnavailable(reason = 'Google Earth 3D unavailable.')
       platform: navigator?.platform || '',
       hardwareConcurrency: navigator?.hardwareConcurrency ?? null,
       webgl: getWebGlRuntimeDiagnostics(),
+      gmpError: googleEarth3dLastGmpError,
+      triedModes: Array.from(googleEarth3dTriedModes),
+      modeCycle: googleEarth3dModeCycle,
     });
   } catch (_) {}
   updateStatus(message);
@@ -4322,10 +4410,12 @@ async function ensureGoogleEarth3dMap() {
   }
 
   googleEarth3dMap = el;
-  googleEarth3dModeRetryUsed = false;
-  const default3dMode = maps3d?.MapMode?.SATELLITE || GOOGLE_MAPS_3D_DEFAULT_MODE;
-  el.mode = default3dMode;
-  try { el.setAttribute('mode', String(default3dMode)); } catch (_) {}
+  googleEarth3dLastGmpError = null;
+  googleEarth3dModeCycle = buildGoogleEarth3dModeCycle(maps3d);
+  googleEarth3dTriedModes = new Set();
+  const default3dMode = googleEarth3dModeCycle[0];
+  googleEarth3dTriedModes.add(default3dMode);
+  setGoogleEarth3dMode(el, default3dMode);
   const mapId = safe(GOOGLE_MAPS_3D_MAP_ID).trim();
   if (mapId) {
     try { el.mapId = mapId; } catch (_) {}

@@ -1,3 +1,32 @@
+## 2026-06-01T07:48:00-06:00 - Google Earth 3D Chrome Runtime Reliability Patch (Dual-Mode Retry + Structured Diagnostics)
+
+- Assigned action:
+  - Investigate continued Chrome-only Earth mode failures where Edge still renders.
+  - Keep Earth mode active (no forced fallback), improve resilience and diagnostics.
+
+- Files changed:
+  - `app.js`
+
+- Work completed:
+  - Replaced single-attempt Earth mode logic with controlled retry cycle:
+    - tries configured default mode first
+    - retries alternate mode (`SATELLITE` <-> `HYBRID`) once via tracked mode cycle
+  - Added normalized Earth mode setters to keep element property/attribute values consistent.
+  - Added structured `gmp-error` capture:
+    - serializable payload snapshot
+    - attempted mode list
+    - timestamp and normalized current mode
+  - Enhanced unavailable diagnostics/status context with:
+    - gmp error code/message fields where available
+    - tried mode list and mode cycle in console diagnostics
+  - Corrected WebGL diagnostics capture:
+    - separate WebGL2/WebGL contexts
+    - renderer/vendor extraction via `WEBGL_debug_renderer_info` where available
+
+- Validation:
+  - `node --check app.js` PASS
+  - `git diff --check` PASS
+
 ## 2026-06-01T09:24:00-06:00 - Verify Directory Card Upgrade + Trust/Label Pass
 
 - Assigned action:
