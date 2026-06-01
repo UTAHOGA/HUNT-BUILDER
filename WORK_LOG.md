@@ -1,3 +1,47 @@
+## 2026-06-01T08:55:00-06:00 - Promote-Now Alignment Release Execution
+
+- Assigned action:
+  - Execute strict promote-now alignment release (no scope expansion).
+
+- Release actions completed:
+  - Pushed release trigger commit to `main`:
+    - `4fec81e8` (`docs: add promote-now live alignment checklist and audit`)
+  - Re-verified live production routes:
+    - `https://huntbuilder.uoga.org/` -> `200`
+    - `https://huntbuilder.uoga.org/research.html` -> `200`
+    - `https://huntbuilder.uoga.org/verify.html` -> `200`
+    - `https://huntbuilder.uoga.org/hard-copy.html` -> `200`
+  - Re-verified route-loaded JS/CSS assets for those pages:
+    - all resolved with `200`
+  - Re-verified runtime manifest endpoints:
+    - `https://huntbuilder.uoga.org/data/runtime-manifest.json` -> `200`
+    - `https://huntbuilder.uoga.org/public/data/runtime-manifest.json` -> `200`
+  - Re-verified canonical runtime sources used by Builder:
+    - `https://json.uoga.workers.dev/processed_data/display-boundary-index-2026.json` -> `200`
+    - `https://json.uoga.workers.dev/processed_data/statewide_composite_boundaries_2026.geojson` -> `200`
+    - `https://json.uoga.workers.dev/processed_data/composite_hunt_unit_mapping_2026.geojson` -> `200`
+
+- Payload parity check (repo head vs live):
+  - Checked:
+    - `embed-mode.js`
+    - `config.js`
+    - `data.js`
+    - `app.js`
+    - `hunt-research.js`
+    - `assets/js/research-outlook-dashboard.js`
+    - `assets/css/hard-copy-public-library.css`
+  - Result:
+    - live content matches repo head after normalizing line endings (`CRLF` local vs `LF` live).
+
+- Blocker on required step 1 (R2 publish):
+  - Attempted remote upload:
+    - `wrangler r2 object put uoga-data/processed_data/hunt_research_2026.json --file processed_data/hunt_research_2026.json --config wrangler.r2-runtime.jsonc --remote`
+  - Cloudflare response:
+    - `403 Forbidden` / `code 10000 Authentication error`
+  - Current status:
+    - `https://json.uoga.workers.dev/processed_data/hunt_research_2026.json` -> `404`
+    - canonical R2 publish for `hunt_research_2026.json` remains blocked pending valid Cloudflare auth token/account binding in this environment.
+
 ## 2026-06-01T09:05:00-06:00 - Strict Promote-Now Live Alignment List (Live Canonical vs Repo Canonical)
 
 - Assigned action:
