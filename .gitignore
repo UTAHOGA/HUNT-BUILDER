@@ -107,3 +107,21 @@ data_model/runtime_drafts/mixed_predictive_engine_2026.materialized.csv
 data_model/runtime_drafts/mixed_predictive_engine_2026.audit.csv
 processed_data/draw_system_coverage_report.csv
 processed_data/draw_reality_engine_backup_before_2024_import.csv
+
+# Large generated/runtime artifacts — serve from Cloudflare R2, not GitHub
+processed_data/public_contracts/*.json
+processed_data/*.geojson
+processed_data/*.sqlite
+processed_data/*predictive*.csv
+processed_data/*reality_engine*.csv
+processed_data/*coverage_report*.csv
+processed_data/*master_enriched*.csv
+
+# Runtime draft outputs
+data_model/runtime_drafts/*.csv
+
+# Large truth exports
+data_truth/draw_results_truth/normalized/*.csv
+
+# Backup artifacts
+processed_data/backups/**/point_ladder_view.csv
