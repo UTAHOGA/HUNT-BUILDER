@@ -1,10 +1,76 @@
 window.UOGA_DATA = (() => {
   let officialBoundaryLookupPromise = null;
+  const GIT_LFS_POINTER_PREFIX = 'version https://git-lfs.github.com/spec/v1';
+
+  function isGitLfsPointerText(text) {
+    return String(text || '').startsWith(GIT_LFS_POINTER_PREFIX);
+  }
+
+  function getCloudflareBase() {
+    const configured = String(window.UOGA_CONFIG?.CLOUDFLARE_BASE || '').trim();
+    return configured ? configured.replace(/\/+$/, '') : '';
+  }
+
+  function getCloudflareFallbackUrl(url) {
+    const cloudflareBase = getCloudflareBase();
+    if (!cloudflareBase) return '';
+
+    const raw = String(url || '').trim();
+    if (!raw) return '';
+
+    // Relative runtime JSON under processed_data should be available from Cloudflare.
+    const relativeProcessed = raw.match(/^\.?\/?(processed_data\/.+)$/i);
+    if (relativeProcessed?.[1]) {
+      return `${cloudflareBase}/${relativeProcessed[1]}`;
+    }
+
+    // If primary domain served an LFS pointer, retry same path on Cloudflare.
+    try {
+      const parsed = new URL(raw, window.location.origin);
+      const host = parsed.hostname.toLowerCase();
+      if (host === 'huntbuilder.uoga.org' && parsed.pathname.startsWith('/processed_data/')) {
+        return `${cloudflareBase}${parsed.pathname}`;
+      }
+    } catch {
+      // Ignore URL parse failures and keep default behavior.
+    }
+    return '';
+  }
 
   async function fetchJson(url) {
-    const resp = await fetch(url, { cache: 'no-store' });
-    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    return resp.json();
+    const attempted = new Set();
+    let activeUrl = String(url || '').trim();
+    let lastError = null;
+
+    while (activeUrl && !attempted.has(activeUrl)) {
+      attempted.add(activeUrl);
+      try {
+        const resp = await fetch(activeUrl, { cache: 'no-store' });
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+
+        const text = await resp.text();
+        if (isGitLfsPointerText(text)) {
+          const lfsError = new Error(`Git LFS pointer served instead of JSON: ${activeUrl}`);
+          lfsError.code = 'GIT_LFS_POINTER';
+          throw lfsError;
+        }
+
+        return JSON.parse(text);
+      } catch (error) {
+        lastError = error;
+        if (error?.code === 'GIT_LFS_POINTER') {
+          const fallbackUrl = getCloudflareFallbackUrl(activeUrl);
+          if (fallbackUrl && !attempted.has(fallbackUrl)) {
+            console.warn(`JSON source returned Git LFS pointer, retrying via Cloudflare: ${activeUrl} -> ${fallbackUrl}`);
+            activeUrl = fallbackUrl;
+            continue;
+          }
+        }
+        throw error;
+      }
+    }
+
+    throw lastError || new Error('Unable to load JSON source.');
   }
 
   async function fetchGeoJson(url) {

@@ -1,3 +1,58 @@
+## 2026-06-01T02:31:14-06:00 - Entry Page 3D Runtime Contract Verification (Live Script Pin Audit + Cache-Bust Tokens)
+
+- Assigned action:
+  - Verify why live site still exhibits old 3D behavior after local fixes.
+
+- Findings:
+  - Live entry page currently serves older pinned bundles:
+    - `./data.js?v=20260404-selection-matrix-fix-1`
+    - `app.js?v=20260506-card-select-flyin-popup-6`
+  - Live `app.js` still contains deprecated `defaultUIDisabled/defaultUiDisabled` paths and does not include new LFS-pointer-aware JSON fallback logic.
+  - Live `processed_data/boundaries/EB3024.geojson` still returns Git LFS pointer text, while Cloudflare path serves real GeoJSON.
+
+- Fix applied:
+  - `index.html`
+    - bumped runtime script tokens to force fresh bundle retrieval after deploy:
+      - `data.js?v=20260601-3d-runtime-lfs-fallback-1`
+      - `app.js?v=20260601-earth3d-runtime-repair-1`
+
+- Validation:
+  - `npm run build` PASS.
+  - Confirms runtime path changes are production-ready once deployed.
+
+- Note:
+  - Until deployment, `huntbuilder.uoga.org` will continue executing old pinned scripts and old 3D behavior.
+
+## 2026-06-01T02:21:15-06:00 - Builder Runtime Error Fixes (LFS Boundary Pointer Fallback + Google Earth 3D Deprecation Cleanup)
+
+- Assigned action:
+  - Address runtime console errors:
+    - `Direct boundary GeoJSON load failed ... Unexpected token 'v', "version ht"...`
+    - repeated `defaultUIDisabled` deprecation warnings from Maps 3D runtime.
+
+- Root causes confirmed:
+  - Live `https://huntbuilder.uoga.org/processed_data/boundaries/EB3024.geojson` returns a Git LFS pointer payload (not GeoJSON JSON).
+  - Cloudflare mirror path returns valid GeoJSON JSON.
+  - Google Maps 3D runtime logs deprecation warning when legacy `defaultUIDisabled`-related usage is touched.
+
+- Fixes applied:
+  - `data.js`
+    - Reworked `fetchJson` to parse response text first.
+    - Added Git LFS pointer detection (`version https://git-lfs.github.com/spec/v1`).
+    - Added automatic Cloudflare retry for `processed_data/*` URLs when an LFS pointer is returned.
+    - Added runtime warning message identifying pointer retry path.
+  - `app.js`
+    - Removed deprecated `defaultUiDisabled/defaultUIDisabled` property usage in Earth control setup.
+    - Removed legacy `default-ui-disabled` attribute removal touchpoint so 3D runtime no longer emits that deprecation warning path from app code.
+
+- Validation:
+  - JS parse check PASS for modified files (`app.js`, `data.js`).
+  - `npm run build` PASS.
+  - Code scan confirms no remaining `defaultUIDisabled/defaultUiDisabled/default-ui-disabled` references in `app.js`.
+
+- Note:
+  - These fixes require deployment before live console errors clear on `huntbuilder.uoga.org`.
+
 ## 2026-06-01T02:11:06-06:00 - Builder Google Earth 3D Failure Handling (Blank Map Prevention + Automatic Fallback)
 
 - Assigned action:

@@ -3979,7 +3979,6 @@ function ensureGoogleEarth3dElement() {
     el.setAttribute('heading', '25');
     el.setAttribute('gesture-handling', 'greedy');
     // Keep Google Earth native controls enabled.
-    el.removeAttribute('default-ui-disabled');
     el.removeAttribute('default-ui-hidden');
     el.hidden = true;
     el.addEventListener('gmp-error', (event) => {
@@ -4027,10 +4026,7 @@ function applyGoogleEarthAtmosphereProfile(el = googleEarth3dMap) {
 function forceGoogleEarthNavigationControlsOpen(el = googleEarth3dMap) {
   if (!el) return;
   // Keep native Earth controls visible.
-  try { el.removeAttribute('default-ui-disabled'); } catch (_) {}
   try { el.removeAttribute('default-ui-hidden'); } catch (_) {}
-  try { el.defaultUiDisabled = false; } catch (_) {}
-  try { el.defaultUIDisabled = false; } catch (_) {}
   try { el.defaultUiHidden = false; } catch (_) {}
   try { el.defaultUIHidden = false; } catch (_) {}
 
@@ -4101,11 +4097,7 @@ async function ensureGoogleEarth3dMap() {
   googleEarth3dMap = el;
   el.mode = maps3d?.MapMode?.HYBRID || 'hybrid';
   // Keep Google Earth native controls enabled.
-  el.removeAttribute('default-ui-disabled');
   el.removeAttribute('default-ui-hidden');
-  if ('defaultUiDisabled' in el) {
-    try { el.defaultUiDisabled = false; } catch (_) {}
-  }
   if ('defaultUiHidden' in el) {
     try { el.defaultUiHidden = false; } catch (_) {}
   }
