@@ -1,3 +1,20 @@
+## 2026-05-31T16:05:00-06:00 - MASTER Reconciliation Audit Artifact Durability
+
+- Follow-up action:
+  - Preserve MASTER reconciliation evidence in a tracked location (repo ignores `processed_data/*`).
+- File updated:
+  - `scripts/reconcile-master-xlsx-from-database-2026.py`
+- Change:
+  - Script now writes duplicate reconciliation audit outputs to:
+    - `generated/audits/master_reconciliation_2026/master_database_2026_reconciliation_report.json`
+    - `generated/audits/master_reconciliation_2026/master_database_2026_reconciliation_changes.csv`
+  - Existing `processed_data/audits/*` outputs remain for local pipeline compatibility.
+- Validation:
+  - `python scripts/reconcile-master-xlsx-from-database-2026.py` PASS
+  - Re-run after prior sync showed idempotent state:
+    - `Changes: 0`
+    - `Changed hunt codes: 0`
+
 ## 2026-05-31T15:10:00-06:00 - Builder Runtime 404 Repair + MASTER.xlsx Reconciliation From DATABASE Truth
 
 - Assigned action:

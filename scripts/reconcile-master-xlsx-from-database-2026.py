@@ -15,6 +15,9 @@ MASTER_PATH = ROOT / "processed_data" / "hard_data_exports" / "hunt_tables" / "2
 AUDIT_DIR = ROOT / "processed_data" / "audits"
 REPORT_JSON = AUDIT_DIR / "master_database_2026_reconciliation_report.json"
 REPORT_CSV = AUDIT_DIR / "master_database_2026_reconciliation_changes.csv"
+TRACKED_AUDIT_DIR = ROOT / "generated" / "audits" / "master_reconciliation_2026"
+TRACKED_REPORT_JSON = TRACKED_AUDIT_DIR / "master_database_2026_reconciliation_report.json"
+TRACKED_REPORT_CSV = TRACKED_AUDIT_DIR / "master_database_2026_reconciliation_changes.csv"
 
 SYNC_FIELDS = [
     ("HUNT NAME", "hunt_name"),
@@ -186,6 +189,12 @@ def reconcile_master_with_database() -> dict[str, object]:
         writer.writeheader()
         writer.writerows(changes)
 
+    TRACKED_AUDIT_DIR.mkdir(parents=True, exist_ok=True)
+    with TRACKED_REPORT_CSV.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=["row_number", "hunt_code", "field", "old_value", "new_value"])
+        writer.writeheader()
+        writer.writerows(changes)
+
     database_codes_missing_in_master = sorted(set(db_index.keys()) - master_codes_seen)
 
     report = {
@@ -210,6 +219,8 @@ def reconcile_master_with_database() -> dict[str, object]:
 
     with REPORT_JSON.open("w", encoding="utf-8") as handle:
         json.dump(report, handle, indent=2)
+    with TRACKED_REPORT_JSON.open("w", encoding="utf-8") as handle:
+        json.dump(report, handle, indent=2)
 
     return report
 
@@ -225,6 +236,8 @@ def main() -> None:
     )
     print(REPORT_JSON)
     print(REPORT_CSV)
+    print(TRACKED_REPORT_JSON)
+    print(TRACKED_REPORT_CSV)
 
 
 if __name__ == "__main__":
