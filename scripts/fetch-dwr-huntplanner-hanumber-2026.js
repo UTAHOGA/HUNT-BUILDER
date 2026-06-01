@@ -10,6 +10,7 @@ const ROOT = path.resolve(__dirname, '..');
 const DATABASE_CSV = path.join(ROOT, 'pipeline', 'RAW', 'hunt_unit_database', '2026', 'csv', 'DATABASE.csv');
 const OUT_CSV = path.join(ROOT, 'processed_data', 'dwr_huntplanner_hanumber_2026.csv');
 const OUT_JSON = path.join(ROOT, 'processed_data', 'dwr_huntplanner_hanumber_2026.json');
+const OUT_RAW_JSON = path.join(ROOT, 'processed_data', 'dwr_huntplanner_hanumber_2026_raw_payloads.json');
 const AUDIT_JSON = path.join(ROOT, 'processed_data', 'audits', 'dwr_huntplanner_hanumber_2026_audit.json');
 const AUDIT_CSV = path.join(ROOT, 'processed_data', 'audits', 'dwr_huntplanner_hanumber_2026_audit.csv');
 const BASE_URL = 'https://dwrapps.utah.gov/huntboundary/HaNumber?roles=&hn=';
@@ -37,16 +38,32 @@ const OUTPUT_COLUMNS = [
   'dwr_hunt_type',
   'dwr_season_type',
   'dwr_draw_designation',
+  'dwr_waiting_period_years',
+  'dwr_special_provisions_text',
+  'dwr_notes_text',
+  'dwr_harvest_reporting_text',
   'hunt_year',
+  'duplicate_until_date',
+  'otc_sales_begin_date',
+  'otc_sales_end_date',
+  'permit_qty',
   'season_date_text',
   'permits_2026_res',
   'permits_2026_nr',
   'permits_2026_total',
   'permits_2026_res_youth',
   'permits_2026_nr_youth',
+  'permits_sold_draw_total',
+  'permits_sold_draw_res',
+  'permits_sold_draw_nr',
+  'permits_sold_otc_total',
+  'permits_sold_otc_res',
+  'permits_sold_otc_nr',
   'harvest_survey_due',
   'harvest_penalty_date',
   'surrender_info_text',
+  'security_level',
+  'display_non_approved',
   'boundaries',
   'boundary_count',
   'management_stats_available',
@@ -60,9 +77,11 @@ const OUTPUT_COLUMNS = [
   'bulls_per_100_cows_objective',
   'bulls_per_100_cows_estimate',
   'total_hunters_previous_hunting_season',
+  'draw_odds_report_note',
   'big_game_annual_report_note',
   'management_obj_raw',
   'management_obj_labels_json',
+  'management_obj_pairs_json',
   'hunt_bio_general_information',
   'hunt_bio_biologist_notes',
   'hunt_bio_safety_considerations',
@@ -192,6 +211,7 @@ function assignManagementField(row, label, value) {
   else if (l.includes('bulls per 100 cows objective')) row.bulls_per_100_cows_objective = v;
   else if (l.includes('bulls per 100 cows estimate')) row.bulls_per_100_cows_estimate = v;
   else if (l.includes('total hunters')) row.total_hunters_previous_hunting_season = v;
+  else if (l.includes('drawing odds report')) row.draw_odds_report_note = v;
   else if (l.includes('big game annual report')) row.big_game_annual_report_note = v;
 }
 
@@ -249,6 +269,11 @@ function flattenRecord(code, dbRow, result, retrievedAt) {
   const labels = managementLabelMap(data.huntDisplayNames || []);
   const rawManagement = bio.MANAGEMENT_OBJ || '';
   const statValues = rawManagement ? String(rawManagement).split('~') : [];
+  const managementPairs = {};
+  for (let i = 0; i < statValues.length; i++) {
+    const label = labels[`MANAGEMENT_OBJ${i}`] || `MANAGEMENT_OBJ${i}`;
+    managementPairs[label] = numericText(statValues[i] || '');
+  }
 
   Object.assign(base, {
     fetch_status: 'OK',
@@ -261,21 +286,39 @@ function flattenRecord(code, dbRow, result, retrievedAt) {
     dwr_hunt_type: stripHtml(master.HUNT_TYPE || ''),
     dwr_season_type: stripHtml(master.SEASON_TYPE || ''),
     dwr_draw_designation: stripHtml(master.DRAW_DESIGNATION || ''),
+    dwr_waiting_period_years: master.WAITING_PERIOD_YEARS ?? '',
+    dwr_special_provisions_text: stripHtml(master.SPECIAL_PROVISIONS || ''),
+    dwr_notes_text: stripHtml(master.NOTES || ''),
+    dwr_harvest_reporting_text: stripHtml(master.HARVEST_REPORTING || ''),
     hunt_year: year.HUNT_YEAR || '',
+    duplicate_until_date: stripHtml(year.DUPLICATE_UNTIL_DATE || ''),
+    otc_sales_begin_date: stripHtml(year.OTC_SALES_BEGIN_DATE || ''),
+    otc_sales_end_date: stripHtml(year.OTC_SALES_END_DATE || ''),
+    permit_qty: year.PERMIT_QTY ?? '',
     season_date_text: stripHtml(year.SEASON_DATE_TEXT || ''),
     permits_2026_res: year.QUOTA_RES ?? '',
     permits_2026_nr: year.QUOTA_NRES ?? '',
     permits_2026_total: year.QUOTA ?? '',
     permits_2026_res_youth: year.QUOTA_RES_YOUTH ?? '',
     permits_2026_nr_youth: year.QUOTA_NRES_YOUTH ?? '',
+    permits_sold_draw_total: year.QUOTA_SOLD_DRAW ?? '',
+    permits_sold_draw_res: year.QUOTA_RES_SOLD_DRAW ?? '',
+    permits_sold_draw_nr: year.QUOTA_NRES_SOLD_DRAW ?? '',
+    permits_sold_otc_total: year.QUOTA_OTC ?? '',
+    permits_sold_otc_res: year.QUOTA_RES_OTC ?? '',
+    permits_sold_otc_nr: year.QUOTA_NRES_OTC ?? '',
     harvest_survey_due: stripHtml(year.HARV_SURV_DUE || ''),
     harvest_penalty_date: stripHtml(year.HARV_PENALTY_DATE || ''),
     surrender_info_text: stripHtml(year.SURRENDER_INFO || ''),
+    security_level: data.SecurityLevel ?? '',
+    display_non_approved: data.displayNonApproved ?? '',
     boundaries: Array.isArray(data.boundaries) ? data.boundaries.join('|') : '',
     boundary_count: Array.isArray(data.boundaries) ? data.boundaries.length : '',
+    hunt_boundary_infos_json: JSON.stringify(data.huntBoundaryInfos || []),
     management_stats_available: rawManagement && statValues.some(v => stripHtml(v)) ? 'true' : 'false',
     management_obj_raw: stripHtml(rawManagement),
     management_obj_labels_json: JSON.stringify(labels),
+    management_obj_pairs_json: JSON.stringify(managementPairs),
     hunt_bio_general_information: stripHtml(bio.GENERAL_INFORMATION || ''),
     hunt_bio_biologist_notes: stripHtml(bio.BIOLOGIST_NOTES || ''),
     hunt_bio_safety_considerations: stripHtml(bio.SAFETY_CONS || ''),
@@ -331,17 +374,30 @@ async function main() {
   const codes = [...dbByCode.keys()].sort();
   const retrievedAt = new Date().toISOString();
   console.log(`Fetching ${codes.length} DWR Hunt Planner popup records with concurrency=${CONCURRENCY}`);
-  const rows = await mapLimit(codes, CONCURRENCY, async (code) => {
+  const pulled = await mapLimit(codes, CONCURRENCY, async (code) => {
     const url = BASE_URL + encodeURIComponent(code);
     const result = await fetchJson(url);
-    return flattenRecord(code, dbByCode.get(code), result, retrievedAt);
+    return {
+      record: flattenRecord(code, dbByCode.get(code), result, retrievedAt),
+      raw: result.ok && result.data ? result.data : null
+    };
   });
+  const rows = pulled.map(item => item.record);
+  const rawPayloads = pulled
+    .filter(item => item.raw)
+    .map(item => ({
+      hunt_code: item.record.hunt_code,
+      source_url: item.record.source_url,
+      source_retrieved_at: item.record.source_retrieved_at,
+      payload: item.raw
+    }));
 
   rows.sort((a, b) => String(a.hunt_code).localeCompare(String(b.hunt_code)));
   fs.mkdirSync(path.dirname(OUT_CSV), { recursive: true });
   fs.mkdirSync(path.dirname(AUDIT_JSON), { recursive: true });
   writeCsv(OUT_CSV, rows, OUTPUT_COLUMNS);
   fs.writeFileSync(OUT_JSON, JSON.stringify(rows, null, 2) + '\n', 'utf8');
+  fs.writeFileSync(OUT_RAW_JSON, JSON.stringify(rawPayloads, null, 2) + '\n', 'utf8');
 
   const audit = {
     created_at: new Date().toISOString(),
@@ -359,6 +415,12 @@ async function main() {
     rows_with_age_objective: rows.filter(r => r.age_objective).length,
     rows_with_population_objective: rows.filter(r => r.population_objective).length,
     rows_with_current_population_estimate: rows.filter(r => r.current_population_estimate).length,
+    rows_with_waiting_period_years: rows.filter(r => String(r.dwr_waiting_period_years).trim() !== '').length,
+    rows_with_special_provisions: rows.filter(r => r.dwr_special_provisions_text).length,
+    rows_with_notes: rows.filter(r => r.dwr_notes_text).length,
+    rows_with_harvest_reporting_text: rows.filter(r => r.dwr_harvest_reporting_text).length,
+    rows_with_surrender_info: rows.filter(r => r.surrender_info_text).length,
+    rows_with_draw_odds_note: rows.filter(r => r.draw_odds_report_note).length,
     rows_with_permit_total: rows.filter(r => r.permits_2026_total !== undefined && r.permits_2026_total !== null && String(r.permits_2026_total) !== '').length,
     species_counts: countBy(rows, 'dwr_species'),
     review_reason_counts: countBy(rows.map(r => ({ reason: r.review_reason || 'OK' })), 'reason'),
@@ -366,6 +428,7 @@ async function main() {
     outputs: {
       csv: path.relative(ROOT, OUT_CSV).replace(/\\/g, '/'),
       json: path.relative(ROOT, OUT_JSON).replace(/\\/g, '/'),
+      raw_payloads_json: path.relative(ROOT, OUT_RAW_JSON).replace(/\\/g, '/'),
       audit_json: path.relative(ROOT, AUDIT_JSON).replace(/\\/g, '/'),
       audit_csv: path.relative(ROOT, AUDIT_CSV).replace(/\\/g, '/')
     },
@@ -384,7 +447,7 @@ async function main() {
   console.log(`Management stats: ${audit.rows_with_management_stats}`);
   console.log(`Percent harvest success: ${audit.rows_with_percent_harvest_success}`);
   console.log(`Current age 3yr average: ${audit.rows_with_current_age_3yr_average}`);
-  console.log(`Outputs:\n- ${OUT_CSV}\n- ${OUT_JSON}\n- ${AUDIT_JSON}\n- ${AUDIT_CSV}`);
+  console.log(`Outputs:\n- ${OUT_CSV}\n- ${OUT_JSON}\n- ${OUT_RAW_JSON}\n- ${AUDIT_JSON}\n- ${AUDIT_CSV}`);
 }
 
 main().catch(err => {

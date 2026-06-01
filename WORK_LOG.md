@@ -1,3 +1,75 @@
+## 2026-06-01T13:05:00-06:00 - Comprehensive DWR Hunt Planner HaNumber Pull (2026 Universe)
+
+- Assigned action:
+  - Perform a more comprehensive live data pull from DWR Hunt Planner popup source:
+    - `https://dwrapps.utah.gov/huntboundary/HaNumber?roles=&hn={hunt_code}`
+  - Keep this as source evidence only (no `DATABASE.csv` overwrite).
+
+- Script updated:
+  - `scripts/fetch-dwr-huntplanner-hanumber-2026.js`
+  - Expanded extracted fields to include additional popup metadata and text blocks:
+    - `dwr_waiting_period_years`
+    - `dwr_special_provisions_text`
+    - `dwr_notes_text`
+    - `dwr_harvest_reporting_text`
+    - `duplicate_until_date`
+    - `otc_sales_begin_date`
+    - `otc_sales_end_date`
+    - sold draw/OTC quota fields
+    - security/display flags
+    - management label-value pair JSON
+  - Added raw payload export:
+    - `processed_data/dwr_huntplanner_hanumber_2026_raw_payloads.json`
+
+- Pull run:
+  - command:
+    - `node scripts/fetch-dwr-huntplanner-hanumber-2026.js`
+  - scope:
+    - 2026 hunt codes sourced from `DATABASE.csv` canonical universe
+  - result:
+    - rows written: `1449`
+    - fetch OK: `1449`
+    - fetch errors: `0`
+    - rows with management stats: `970`
+    - rows with percent harvest success: `960`
+    - rows with current age 3yr average: `220`
+    - rows with waiting period years: `1272`
+    - rows with special provisions: `668`
+    - rows with notes: `937`
+    - rows with harvest reporting text: `698`
+    - rows with surrender info: `814`
+
+- EB3038 verification against user-provided example:
+  - `hunt_code`: `EB3038`
+  - `dwr_hunt_name`: `Manti`
+  - `dwr_weapon`: `Any Legal Weapon`
+  - `season_date_text`: `Sept 16 2026 - Sept 20 2026`
+  - permits: `61 res / 7 nr / 68 total`
+  - `dwr_harvest_reporting_text`: populated
+  - `harvest_survey_due`: `Oct 20, 2026`
+  - `harvest_penalty_date`: `Oct 21, 2026`
+  - `surrender_info_text`: populated
+  - `dwr_notes_text`: populated
+  - `dwr_special_provisions_text`: `Permit holders may NOT hunt on CWMUs`
+  - `dwr_waiting_period_years`: `5`
+  - `percent_harvest_success_previous_hunting_season`: `72.4`
+  - `population_objective`: `12000`
+  - `current_population_estimate`: `12200`
+  - `age_objective`: `5.5-6.0`
+  - `current_age_3yr_average`: `6.3`
+
+- Outputs created:
+  - `processed_data/dwr_huntplanner_hanumber_2026.csv`
+  - `processed_data/dwr_huntplanner_hanumber_2026.json`
+  - `processed_data/dwr_huntplanner_hanumber_2026_raw_payloads.json`
+  - `processed_data/audits/dwr_huntplanner_hanumber_2026_audit.json`
+  - `processed_data/audits/dwr_huntplanner_hanumber_2026_audit.csv`
+
+- Validation:
+  - `node --check scripts/fetch-dwr-huntplanner-hanumber-2026.js` -> PASS
+  - live run completed with `0` fetch failures
+  - manual EB3038 row inspection confirms expected field population
+
 ## 2026-06-01T12:20:00-06:00 - Full Promotion of Two-Column Age Structure to Public Hunt-Table Export Set
 
 - Assigned action:
