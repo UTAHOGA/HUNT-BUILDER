@@ -405,6 +405,10 @@
       </section>`;
   }
 
+  function panelKicker(label) {
+    return `<p class="uoga-panel-kicker">${escapeHtml(label)}</p>`;
+  }
+
   function listRows(items) {
     if (!items.length) return `<p class="uoga-outlook-muted">Not available from the loaded runtime rows.</p>`;
     return `<div class="uoga-outlook-metrics">${items.join("")}</div>`;
@@ -555,8 +559,9 @@
       : hasValue(row.objective_status)
       ? formatValue(row.objective_status)
       : "Objective known, observed evidence is limited.";
-    return panel("Management Benchmark", `
-      <div class="uoga-badge-row">${badge("Management Plan Context")}</div>
+    return panel("U.O.G.A. Curated Context", `
+      ${panelKicker("U.O.G.A. curated fields")}
+      <div class="uoga-badge-row">${badge("Management Plan Context", "management")}</div>
       ${listRows([
         metricRow("State objective", `${formatValue(row.management_objective_type, "Objective type pending")} / ${objectiveRange}`),
         metricRow("Observed evidence", formatValue(row.management_objective_note || row.notes || row.objective_status_rule, "Observed comparison details are limited.")),
@@ -680,30 +685,36 @@
           <p class="uoga-outlook-recommendation">${escapeHtml(recommendation)}</p>
         </section>
         <div class="uoga-outlook-grid">
-          ${panel("Model-Generated Draw Outlook", listRows([
+          ${panel("Model-Generated Draw Outlook", `
+            ${panelKicker("Model-generated fields")}
+            ${listRows([
             metricRow("Estimated draw odds", formatPercent(odds)),
             metricRow("Point status", formatValue(pointStatus)),
             metricRow("Guaranteed line", formatValue(guaranteedLine)),
             metricRow("Point creep / trend", formatValue(pointTrend)),
             metricRow("Permits", formatInteger(permitTotal)),
-          ]), "is-modeled")}
-          ${panel("Official DWR Field Evidence", listRows([
+          ])}
+          `, "is-modeled")}
+          ${panel("Official DWR Field Evidence", `
+            ${panelKicker("Official DWR source fields")}
+            ${listRows([
             metricRow("Harvest success", formatPercent(harvestSuccess)),
             metricRow("Average days hunted", formatValue(avgDays)),
             metricRow("Average harvest age", formatAge(averageAge)),
             metricRow("Current 3-year age avg", formatAge(currentAge)),
             metricRow("Percent 5+", formatPercent(percentFivePlus)),
-          ]), "is-official")}
+          ])}
+          `, "is-official")}
           ${renderManagementPanel(effectiveManagementRows)}
         </div>
-        <section class="uoga-outlook-panel is-compact uoga-outlook-wide">
-          <h3>Hunter-Fit Signals</h3>
-          ${renderPersonaPanel(contract)}
-        </section>
-        <section class="uoga-outlook-panel is-compact uoga-outlook-wide">
-          <h3>Comparable Hunts</h3>
-          ${renderComparableCards(comparable)}
-        </section>
+        <details class="uoga-outlook-panel is-compact uoga-outlook-wide uoga-collapsed-panel">
+          <summary>Hunter-Fit Signals</summary>
+          <div class="uoga-collapsed-panel-body">${renderPersonaPanel(contract)}</div>
+        </details>
+        <details class="uoga-outlook-panel is-compact uoga-outlook-wide uoga-collapsed-panel">
+          <summary>Comparable Hunts</summary>
+          <div class="uoga-collapsed-panel-body">${renderComparableCards(comparable)}</div>
+        </details>
         ${sourceDetails(selection, selectedRow, { ...(meta || {}), ...contract })}
       </div>`;
   }
@@ -809,6 +820,14 @@
       .uoga-outlook-panel h3 {
         font-family: var(--font-display);
         margin: 0 0 10px;
+      }
+      .uoga-panel-kicker {
+        color: #7a3f0c;
+        font-size: 11px;
+        font-weight: 900;
+        letter-spacing: .05em;
+        margin: 0 0 8px;
+        text-transform: uppercase;
       }
       .uoga-outlook-wide { grid-column: 1 / -1; }
       .uoga-outlook-metrics {
@@ -926,6 +945,30 @@
         margin-top: 4px;
         min-width: 0;
         padding: 12px 14px;
+      }
+      .uoga-collapsed-panel summary {
+        color: #5c2f10;
+        cursor: pointer;
+        font-family: var(--font-display);
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: .02em;
+        list-style: none;
+        margin: 0;
+      }
+      .uoga-collapsed-panel summary::-webkit-details-marker {
+        display: none;
+      }
+      .uoga-collapsed-panel summary::after {
+        content: "v";
+        float: right;
+        font-size: 14px;
+      }
+      .uoga-collapsed-panel[open] summary::after {
+        content: "^";
+      }
+      .uoga-collapsed-panel-body {
+        margin-top: 10px;
       }
       .uoga-source-details summary {
         cursor: pointer;

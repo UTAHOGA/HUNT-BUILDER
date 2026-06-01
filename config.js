@@ -46,6 +46,16 @@ window.UOGA_CONFIG = (() => {
   // prefer explicit R2 custom domain, otherwise fall back to existing Cloudflare endpoint.
   const CLOUDFLARE_OBJECT_BASE = CLOUDFLARE_R2_BASE || CLOUDFLARE_BASE;
   const fromR2 = (relPath) => CLOUDFLARE_OBJECT_BASE ? `${CLOUDFLARE_OBJECT_BASE}/${relPath}` : '';
+  const withVersion = (url, version) => `${url}?v=${version}`;
+  const orderedProcessedRuntimeCandidates = (relativePath, version) => {
+    const local = `./${relativePath}?v=${version}`;
+    const remoteBase = fromR2(relativePath);
+    const remote = remoteBase ? withVersion(remoteBase, version) : '';
+    // Production should prefer CDN/object-hosted runtime assets over repo-served processed_data.
+    return isDevLikeHost()
+      ? [local, remote].filter(Boolean)
+      : [remote, local].filter(Boolean);
+  };
 
   /*
     ============================================================================
@@ -98,12 +108,11 @@ window.UOGA_CONFIG = (() => {
     // in production, while some processed_data variants may be LFS pointers.
     `./data/hunt_boundaries.geojson?v=${HUNT_DATA_VERSION}`,
     `./data/hunt-boundaries-lite.geojson?v=${HUNT_DATA_VERSION}`,
-    `./processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson?v=${HUNT_DATA_VERSION}`,
-    `./processed_data/statewide_composite_boundaries_2026.geojson?v=${HUNT_DATA_VERSION}`,
+    ...orderedProcessedRuntimeCandidates('processed_data/statewide_composite_boundaries_2026.geojson', HUNT_DATA_VERSION),
   ].filter(Boolean);
   const BOUNDARY_MANIFEST_SOURCES = [];
   const DISPLAY_BOUNDARY_INDEX_SOURCES = [
-    `./processed_data/display-boundary-index-2026.json?v=${HUNT_DATA_VERSION}`,
+    ...orderedProcessedRuntimeCandidates('processed_data/display-boundary-index-2026.json', HUNT_DATA_VERSION),
     `./processed_data/display-boundary-index-2026.csv?v=${HUNT_DATA_VERSION}`,
   ].filter(Boolean);
   const FINALIZED_BOUNDARY_SOURCES = [
@@ -112,8 +121,7 @@ window.UOGA_CONFIG = (() => {
   ].filter(Boolean);
   const COMPOSITE_BOUNDARY_SOURCES = [
     `./data/statewide-composite-members-2026-lite.geojson?v=${HUNT_DATA_VERSION}`,
-    `./processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson?v=${HUNT_DATA_VERSION}`,
-    `./processed_data/statewide_composite_boundaries_2026.geojson?v=${HUNT_DATA_VERSION}`,
+    ...orderedProcessedRuntimeCandidates('processed_data/statewide_composite_boundaries_2026.geojson', HUNT_DATA_VERSION),
   ].filter(Boolean);
 
   const HUNT_DATA_SOURCES = [
@@ -124,7 +132,6 @@ window.UOGA_CONFIG = (() => {
       candidates: [
         `./data/hunt-master-canonical-2026-foundation.json?v=${HUNT_DATA_VERSION}`,
         `./data/hunt-master-canonical-2026-source-of-truth.json?v=${HUNT_DATA_VERSION}`,
-        `./processed_data/hunt-master-canonical-2026-source-of-truth.json?v=${HUNT_DATA_VERSION}`,
       ],
     },
   ];
@@ -177,7 +184,7 @@ window.UOGA_CONFIG = (() => {
     ============================================================================
   */
   const HUNT_RESEARCH_DATA_SOURCES = [
-    `${CLOUDFLARE_BASE}/hunt_research_2026.json?v=${HUNT_RESEARCH_DATA_VERSION}`,
+    `${CLOUDFLARE_BASE}/processed_data/hunt_research_2026.json?v=${HUNT_RESEARCH_DATA_VERSION}`,
     `./processed_data/hunt_research_2026.json?v=${HUNT_RESEARCH_DATA_VERSION}`,
   ];
 

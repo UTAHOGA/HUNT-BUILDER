@@ -973,7 +973,7 @@
       ],
       [DRAW_MODE.YOUTH_RESERVE]: ['Points', '2025 Draw Results', '2026 Youth Reserve', '2026 Rollover', 'Notes'],
       [DRAW_MODE.ALLOCATION_AVAILABILITY]: ['Status', 'Permit Availability', '2026 Allocation', 'Rule / Source', 'Notes'],
-      [DRAW_MODE.STATUS_ONLY]: ['Points', '2025 Result', '2026 Status', 'Estimated Odds', 'Notes'],
+      [DRAW_MODE.STATUS_ONLY]: ['Points', '2025 Draw Results', '2026 Status', 'Estimated Odds', 'Notes'],
     };
     const headers = headersByMode[mode] || headersByMode[DRAW_MODE.STATUS_ONLY];
     [

@@ -1,3 +1,68 @@
+## 2026-06-01T09:05:00-06:00 - Research Flagship Dashboard Polish (Decision Grid + Collapsed Secondary Sections + Ladder Header Cleanup)
+
+- Assigned action:
+  - Continue step 3 of build completion:
+    - keep Hunt Research as flagship decision page
+    - preserve model math
+    - polish dashboard structure and ladder clarity.
+
+- Files changed:
+  - `assets/js/research-outlook-dashboard.js`
+  - `hunt-research.js`
+
+- Work completed:
+  - Kept `Hunt Application Outlook` hero + 3-column decision grid as primary research surface.
+  - Added explicit field-class separation labels in dashboard panels:
+    - Official DWR source fields
+    - Model-generated fields
+    - U.O.G.A. curated context
+  - Kept source/freshness/model details in collapsed `<details>` section.
+  - Collapsed non-core secondary blocks (Hunter-Fit Signals, Comparable Hunts) so the ladder remains the main decision surface below the dashboard.
+  - Standardized ladder header language:
+    - `2025 Result` -> `2025 Draw Results` (status-only mode)
+
+- Validation:
+  - `node --check assets/js/research-outlook-dashboard.js` PASS
+  - `node --check hunt-research.js` PASS
+
+## 2026-06-01T08:42:00-06:00 - Runtime Contract Cleanup Pass (Canonical Domain Rule + Cloudflare-First Processed Data)
+
+- Assigned action:
+  - Execute next-priority runtime cleanup:
+    1) lock canonical domain behavior
+    2) reduce runtime dependence on repo-served `processed_data/*` for production.
+
+- Files changed:
+  - `vercel.json`
+  - `config.js`
+  - `app.js`
+
+- Work completed:
+  - Added host-conditional redirect rule in `vercel.json`:
+    - `hunt-builder.uoga.org` -> `https://huntbuilder.uoga.org/:path*` (permanent).
+  - Added Cloudflare/object-first candidate helper in `config.js` for processed runtime assets.
+  - Switched these source groups to Cloudflare-first ordering in production:
+    - `HUNT_BOUNDARY_SOURCES` (composite boundary runtime file)
+    - `DISPLAY_BOUNDARY_INDEX_SOURCES` (JSON)
+    - `COMPOSITE_BOUNDARY_SOURCES` (composite boundaries file)
+  - Removed `./processed_data/hunt-master-canonical-2026-source-of-truth.json` from canonical hunt master candidates (local `data/*` canonical files remain).
+  - Fixed research contract URL from non-existent Cloudflare root path to:
+    - `${CLOUDFLARE_BASE}/processed_data/hunt_research_2026.json`
+  - Added production path remap in `app.js` `normalizeRelativeGeoPath()`:
+    - relative `processed_data/*` boundary paths now resolve to Cloudflare base outside local dev.
+
+- Runtime checks performed:
+  - `hunt-builder.uoga.org` DNS currently unresolved (still retired at DNS level).
+  - `huntbuilder.uoga.org` reachable (200).
+  - Verified Cloudflare availability:
+    - `processed_data/display-boundary-index-2026.json` -> 200
+    - `processed_data/statewide_composite_boundaries_2026.geojson` -> 200
+    - `processed_data/draw_reality_engine.csv` -> 200
+    - `processed_data/point_ladder_view.csv` -> 200
+    - `processed_data/hunt_master_enriched.csv` -> 200
+    - `processed_data/hunt_unit_reference_linked.csv` -> 200
+  - Observed `processed_data/hunt_research_2026.json` on Cloudflare currently 404, so local fallback remains in source list.
+
 ## 2026-06-01T08:05:00-06:00 - Builder Map UX Pass (DWR Panel Hide + Earth Intro Flight + Top Direction Controls)
 
 - Assigned action:

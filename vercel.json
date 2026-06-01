@@ -2,6 +2,19 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "npm run build",
   "outputDirectory": "pages-dist",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "hunt-builder.uoga.org"
+        }
+      ],
+      "destination": "https://huntbuilder.uoga.org/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/hard-copy/:path*",

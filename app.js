@@ -701,6 +701,17 @@ function normalizeRelativeGeoPath(pathValue) {
   const raw = safe(pathValue).trim();
   if (!raw) return '';
   if (/^https?:\/\//i.test(raw)) return raw;
+  const normalizedRaw = raw.replace(/^\.?\/*/, '');
+  // Production runtime should prefer Cloudflare/object-hosted boundary files over
+  // repo-served processed_data paths that may be LFS-backed in some deployments.
+  if (
+    !isLocalDevHost()
+    && normalizedRaw.startsWith('processed_data/')
+    && window.UOGA_CONFIG?.CLOUDFLARE_BASE
+  ) {
+    const cfBase = safe(window.UOGA_CONFIG.CLOUDFLARE_BASE).trim().replace(/\/+$/, '');
+    if (cfBase) return `${cfBase}/${normalizedRaw}`;
+  }
   if (raw.startsWith('./')) return raw;
   return `./${raw.replace(/^\/+/, '')}`;
 }
