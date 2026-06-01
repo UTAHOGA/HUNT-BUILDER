@@ -16,4 +16,3 @@ processed_data/hunt_truth_from_json.sqlite filter=lfs diff=lfs merge=lfs -text
 processed_data/draw_system_coverage_report.csv filter=lfs diff=lfs merge=lfs -text
 processed_data/draw_reality_engine_backup_before_2024_import.csv filter=lfs diff=lfs merge=lfs -text
 processed_data/backups/**/point_ladder_view.csv filter=lfs diff=lfs merge=lfs -text
-Git[[:space:]]LFS/*.exe filter=lfs diff=lfs merge=lfs -text

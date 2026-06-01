@@ -88,9 +88,40 @@ window.UOGA_CONFIG = (() => {
     const k = String(key || '').trim();
     return k ? (RUNTIME_MANIFEST?.byKey?.[k] || null) : null;
   };
+  const runtimeAssetIsLfsPointer = (key) => {
+    const mode = String(runtimeManifestAsset(key)?.current_storage_mode || '').trim().toUpperCase();
+    return mode === 'GIT_LFS_POINTER';
+  };
   const manifestCanonical = (key, version) => {
     const url = String(runtimeManifestAsset(key)?.canonical_url || '').trim();
     return url ? appendVersion(url, version) : '';
+  };
+  const uniqueUrls = (urls) => {
+    const out = [];
+    const seen = new Set();
+    for (const value of (Array.isArray(urls) ? urls : [])) {
+      const next = String(value || '').trim();
+      if (!next || seen.has(next)) continue;
+      seen.add(next);
+      out.push(next);
+    }
+    return out;
+  };
+  const runtimeSourceCandidates = ({
+    key = '',
+    relativePath = '',
+    version = '',
+    includeLocalFallback = true,
+  }) => {
+    const canonical = manifestCanonical(key, version);
+    const remote = relativePath ? withVersion(fromR2(relativePath), version) : '';
+    const local = relativePath ? `./${relativePath}?v=${version}` : '';
+    const skipLocal = runtimeAssetIsLfsPointer(key);
+    return uniqueUrls([
+      canonical,
+      remote,
+      (includeLocalFallback && !skipLocal) ? local : '',
+    ]);
   };
 
   const orderedProcessedRuntimeCandidates = (relativePath, version) => {
@@ -232,49 +263,60 @@ window.UOGA_CONFIG = (() => {
     HUNT RESEARCH DATA SOURCES
     ============================================================================
   */
-  const HUNT_RESEARCH_DATA_SOURCES = [
-    manifestCanonical('research_hunt_research_2026_json', HUNT_RESEARCH_DATA_VERSION),
-    `${CLOUDFLARE_BASE}/processed_data/hunt_research_2026.json?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `./processed_data/hunt_research_2026.json?v=${HUNT_RESEARCH_DATA_VERSION}`,
-  ];
+  const HUNT_RESEARCH_DATA_SOURCES = runtimeSourceCandidates({
+    key: 'research_hunt_research_2026_json',
+    relativePath: 'processed_data/hunt_research_2026.json',
+    version: HUNT_RESEARCH_DATA_VERSION,
+    includeLocalFallback: true,
+  });
 
-  const HUNT_RESEARCH_OBSERVED_ENGINE_SOURCES = [
-    manifestCanonical('research_draw_reality_engine_csv', HUNT_RESEARCH_DATA_VERSION),
-    manifestCanonical('research_draw_reality_engine_v2_csv', HUNT_RESEARCH_DATA_VERSION),
-    `${CLOUDFLARE_BASE}/processed_data/draw_reality_engine.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `./processed_data/draw_reality_engine.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `${CLOUDFLARE_BASE}/processed_data/draw_reality_engine_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `./processed_data/draw_reality_engine_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-  ];
+  const HUNT_RESEARCH_OBSERVED_ENGINE_SOURCES = uniqueUrls([
+    ...runtimeSourceCandidates({
+      key: 'research_draw_reality_engine_csv',
+      relativePath: 'processed_data/draw_reality_engine.csv',
+      version: HUNT_RESEARCH_DATA_VERSION,
+      includeLocalFallback: true,
+    }),
+    ...runtimeSourceCandidates({
+      key: 'research_draw_reality_engine_v2_csv',
+      relativePath: 'processed_data/draw_reality_engine_v2.csv',
+      version: HUNT_RESEARCH_DATA_VERSION,
+      includeLocalFallback: true,
+    }),
+  ]);
 
-  const HUNT_RESEARCH_PREDICTIVE_ENGINE_SOURCES = [
-    manifestCanonical('research_draw_reality_engine_predictive_v2_csv', HUNT_RESEARCH_DATA_VERSION),
-    `${CLOUDFLARE_BASE}/processed_data/draw_reality_engine_predictive_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `./processed_data/draw_reality_engine_predictive_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-  ];
+  const HUNT_RESEARCH_PREDICTIVE_ENGINE_SOURCES = runtimeSourceCandidates({
+    key: 'research_draw_reality_engine_predictive_v2_csv',
+    relativePath: 'processed_data/draw_reality_engine_predictive_v2.csv',
+    version: HUNT_RESEARCH_DATA_VERSION,
+    includeLocalFallback: true,
+  });
 
   const HUNT_RESEARCH_ENGINE_MODE = USE_PREDICTIVE_DRAW_ENGINE ? 'predictive' : 'observed';
   const HUNT_RESEARCH_ENGINE_SOURCES = HUNT_RESEARCH_ENGINE_MODE === 'predictive'
     ? HUNT_RESEARCH_PREDICTIVE_ENGINE_SOURCES
     : HUNT_RESEARCH_OBSERVED_ENGINE_SOURCES;
 
-  const HUNT_RESEARCH_LADDER_SOURCES = [
-    manifestCanonical('research_point_ladder_view_csv', HUNT_RESEARCH_DATA_VERSION),
-    `${CLOUDFLARE_BASE}/processed_data/point_ladder_view.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `./processed_data/point_ladder_view.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-  ];
+  const HUNT_RESEARCH_LADDER_SOURCES = runtimeSourceCandidates({
+    key: 'research_point_ladder_view_csv',
+    relativePath: 'processed_data/point_ladder_view.csv',
+    version: HUNT_RESEARCH_DATA_VERSION,
+    includeLocalFallback: true,
+  });
 
-  const HUNT_RESEARCH_MASTER_SOURCES = [
-    manifestCanonical('research_hunt_master_enriched_csv', HUNT_RESEARCH_DATA_VERSION),
-    `${CLOUDFLARE_BASE}/processed_data/hunt_master_enriched.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `./processed_data/hunt_master_enriched.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-  ];
+  const HUNT_RESEARCH_MASTER_SOURCES = runtimeSourceCandidates({
+    key: 'research_hunt_master_enriched_csv',
+    relativePath: 'processed_data/hunt_master_enriched.csv',
+    version: HUNT_RESEARCH_DATA_VERSION,
+    includeLocalFallback: true,
+  });
 
-  const HUNT_RESEARCH_REFERENCE_SOURCES = [
-    manifestCanonical('research_hunt_unit_reference_linked_csv', HUNT_RESEARCH_DATA_VERSION),
-    `${CLOUDFLARE_BASE}/processed_data/hunt_unit_reference_linked.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `./processed_data/hunt_unit_reference_linked.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-  ];
+  const HUNT_RESEARCH_REFERENCE_SOURCES = runtimeSourceCandidates({
+    key: 'research_hunt_unit_reference_linked_csv',
+    relativePath: 'processed_data/hunt_unit_reference_linked.csv',
+    version: HUNT_RESEARCH_DATA_VERSION,
+    includeLocalFallback: true,
+  });
 
   /*
     ============================================================================

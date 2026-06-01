@@ -1,4 +1,14 @@
 (() => {
+  function enforceCanonicalHost() {
+    if (typeof window === 'undefined' || !window.location) return;
+    const host = String(window.location.hostname || '').toLowerCase();
+    const isAltDomain = host === 'hunt-builder.uoga.org';
+    if (!isAltDomain) return;
+    const target = `https://huntbuilder.uoga.org${window.location.pathname}${window.location.search}${window.location.hash}`;
+    if (window.location.href === target) return;
+    window.location.replace(target);
+  }
+
   function isEmbedded() {
     try {
       return window.self !== window.top;
@@ -61,6 +71,7 @@
   }
 
   installConfigNormalizer();
+  enforceCanonicalHost();
 
   if (resolveEmbedMode()) {
     document.documentElement.classList.add('embed');
