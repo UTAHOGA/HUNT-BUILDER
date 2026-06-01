@@ -1,6 +1,6 @@
 # AGENTS.md — HUNT-BUILDER Repo Execution Orders
 
-**Updated:** 2026-05-31T00:00:00+00:00
+**Updated:** 2026-06-01T00:00:00+00:00
 
 ## Purpose Of This File
 
@@ -76,6 +76,30 @@ Rules:
 - Heavy public visitor files may be served from Cloudflare only if the URLs are verified and currently returning 200 in production.
 - If Cloudflare runtime/public URLs are not verified and working, Codex must not assume they exist.
 - If a visitor-facing file must work in production and no working Cloudflare source exists, the file must be repo-served through the proper public path contract.
+
+### Live Domain Audit Rule (Required)
+
+When the assigned task is:
+
+`CODEX TASK — FULL REPO / LIVE SITE / DATA / PREDICTION ENGINE AUDIT`
+
+Codex must apply this exact domain policy:
+
+- Primary production site:
+  - `https://huntbuilder.uoga.org/`
+- Secondary/alternate domain for parity checks:
+  - `https://hunt-builder.uoga.org/`
+
+Codex must treat `https://huntbuilder.uoga.org/` as the primary live production render.
+
+Codex must treat `https://hunt-builder.uoga.org/` as a secondary/alternate domain and explicitly report any mismatch in:
+- redirects
+- page content
+- runtime asset paths
+- JSON/GeoJSON feeds
+- hard-copy behavior
+- Builder/map behavior
+- stale deployment or stale branch indicators
 
 ---
 

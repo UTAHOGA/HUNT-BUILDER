@@ -1,3 +1,43 @@
+## 2026-06-01T00:22:00-06:00 - Full Repo / Live Site / Data / Prediction Engine Audit + Domain Parity Rule Update
+
+- Assigned action:
+  - Execute full audit of live site, repo active vs obsolete files, data lineage, and prediction-engine architecture.
+  - Add explicit primary/secondary domain parity policy to `AGENTS.md`.
+
+- Policy update completed:
+  - `AGENTS.md` updated with required rule:
+    - Primary domain: `https://huntbuilder.uoga.org/`
+    - Secondary parity domain: `https://hunt-builder.uoga.org/`
+    - Required mismatch reporting categories: redirects, page content, runtime paths, JSON/GeoJSON feeds, hard-copy, Builder/map, stale deployment indicators.
+
+- Audit outputs created:
+  - `docs/site_map_and_runtime_audit.md`
+  - `docs/repo_active_vs_obsolete_audit.csv`
+  - `docs/data_lineage_and_obsolescence_report.md`
+  - `docs/prediction_engine_architecture_report.md`
+
+- Live verification executed:
+  - Route HTTP checks for:
+    - `/`, `/index.html`, `/builder.html`, `/research.html`, `/hunt-research.html`, `/verify.html`, `/vetting.html`, `/hard-copy.html`, `/hard-data.html`, `/coverage.html`, `/verify.htmlm`
+  - Playwright runtime checks:
+    - Builder: loads, no 404s, one parse error from `processed_data/composite_hunt_unit_mapping_2026.geojson` payload.
+    - Research: loads clean with selected hunt params.
+    - Verify: loads clean.
+    - Hard-copy: loads folder wall (8 folders), but still logs fallback 404 noise.
+  - Domain parity checks:
+    - `huntbuilder.uoga.org` resolves and serves pages.
+    - `hunt-builder.uoga.org` does not resolve (NXDOMAIN), parity not testable.
+
+- Additional evidence generation run:
+  - `node scripts/audit-active-data-feeds.js` PASS
+  - Generated/updated `processed_data/audits/*` readiness and runtime source audit artifacts used as supporting evidence.
+
+- Scope control:
+  - No prediction math changes.
+  - No UI redesign.
+  - No broad refactor.
+  - Task completed as audit/documentation + verification.
+
 ## 2026-05-31T16:05:00-06:00 - MASTER Reconciliation Audit Artifact Durability
 
 - Follow-up action:
