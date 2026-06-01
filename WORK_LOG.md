@@ -10003,3 +10003,57 @@ o_table=0).
   - `node --check hunt-research.js`
   - source-path and dependency chain audit checks
   - final `git diff --check`
+
+## 2026-06-01T20:34:00-06:00 - Four-Feeder Preservation Reconciliation vs `hunt_research_2026.json`
+
+- Scope:
+  - Verified whether the rebuilt canonical contract preserves prior Hunt Research feeder data.
+  - Reconciled full `1449` hunt-code universe by mapped hunter-facing fields.
+  - Verified runtime publication state (contract-published vs legacy/fallback).
+
+- Locked feeder set (legacy runtime):
+  1. `processed_data/draw_reality_engine.csv`
+  2. `processed_data/point_ladder_view.csv`
+  3. `processed_data/hunt_master_enriched.csv`
+  4. `processed_data/hunt_unit_reference_linked.csv`
+
+- Important feeder condition:
+  - Local `processed_data/hunt_master_enriched.csv` is an LFS pointer payload (not row-usable).
+  - Master-owned field reconciliation is marked `REVIEW_REQUIRED` rather than guessed.
+
+- Reconciliation coverage:
+  - Universe: `1449` hunt codes (from `DATABASE.csv`)
+  - Mapped hunter-facing fields: `28`
+  - Total comparison rows: `40572`
+
+- Comparison status counts:
+  - `MATCH = 16120`
+  - `IMPROVED_FROM_CANONICAL_SOURCE = 4147`
+  - `MISSING_IN_TARGET = 590`
+  - `MISMATCH = 0`
+  - `NOT_PRESENT_IN_FEEDER = 9572`
+  - `INTENTIONALLY_RETIRED = 0`
+  - `REVIEW_REQUIRED = 10143`
+
+- Runtime publication check counts:
+  - `PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK = 21`
+  - `MISSING_IN_CONTRACT = 2`
+  - `REVIEW_REQUIRED = 5`
+
+- Fields not fully published from canonical contract path:
+  - `availability_status`
+  - `current_age_3yr_average`
+  - `dwr_result_display`
+  - `guaranteed_at_2026`
+  - `management_direction`
+  - `management_objective_range`
+  - `management_objective_type`
+
+- Replacement verdict:
+  - **PARTIALLY VERIFIED** as a strict replacement for prior four-feeder runtime.
+  - Core runtime is now canonical-contract-primary, but full feeder-equivalence publication is not yet complete.
+
+- Outputs created:
+  - `docs/hunt_research_feeder_to_contract_reconciliation.md`
+  - `processed_data/audits/hunt_research_feeder_to_contract_reconciliation.csv`
+  - `processed_data/audits/hunt_research_runtime_publication_check.csv`
