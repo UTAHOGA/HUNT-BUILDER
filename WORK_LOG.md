@@ -8830,6 +8830,28 @@ o_table=0).
 - Validation:
   - `node --check app.js` => syntax OK
   - `rg` checks confirm Earth iframe startup binding and DOM element presence.
+
+## 2026-06-01T12:22:00-06:00 - Fix Google Earth Iframe 404 + Force New App Bundle Token
+
+- Trigger:
+  - Earth mode iframe path was returning `404` in production (`hunt-builder-google-earth`).
+
+- Files changed:
+  - `app.js`
+  - `index.html`
+  - `hunt-builder-google-earth.html` (new)
+
+- Changes applied:
+  - Replaced dead Earth iframe target with local served route:
+    - `./hunt-builder-google-earth.html?v=20260601-earth-frame-local-1`
+  - Added new local Earth frame page that renders a satellite Google map using existing site key/config.
+  - Bumped `index.html` app bundle token to:
+    - `app.js?v=20260601-earth-frame-404-fix-1`
+    - to force browser refresh off stale cached JS.
+
+- Validation:
+  - `node --check app.js` => syntax OK
+  - `rg` checks confirm new iframe target and updated app bundle token.
   - `npm run build` => PASS
 
 ## 2026-06-01T11:42:00-06:00 - Google Earth 3D Failure Diagnostics + SATELLITE Retry

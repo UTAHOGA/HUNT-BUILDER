@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>U.O.G.A. Earth View</title>
+  <style>
+    html, body, #earthMap {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #0b1220;
+      overflow: hidden;
+    }
+    .earth-status {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      z-index: 2;
+      font: 12px/1.4 Arial, sans-serif;
+      color: #f2f5fb;
+      background: rgba(9, 15, 28, 0.62);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 10px;
+      padding: 8px 10px;
+      backdrop-filter: blur(4px);
+    }
+  </style>
+</head>
+<body>
+  <div id="earthMap" aria-label="Earth view map"></div>
+  <div id="earthStatus" class="earth-status">Loading Earth view…</div>
+
+  <script src="./config.js?v=20260506-ui-fixes-1"></script>
+  <script>
+    (function initEarthFrame() {
+      const statusEl = document.getElementById('earthStatus');
+      const cfg = window.UOGA_CONFIG || {};
+      const key = String(cfg.GOOGLE_MAPS_API_KEY || '').trim();
+      const center = cfg.GOOGLE_BASELINE_DEFAULT_CENTER || { lat: 39.3, lng: -111.7 };
+      const zoom = Number(cfg.GOOGLE_BASELINE_DEFAULT_ZOOM || 7);
+
+      function setStatus(msg) {
+        if (statusEl) statusEl.textContent = msg;
+      }
+
+      if (!key) {
+        setStatus('Google key missing for Earth view.');
+        return;
+      }
+
+      window.__UOGA_EARTH_FRAME_INIT__ = function () {
+        try {
+          const map = new google.maps.Map(document.getElementById('earthMap'), {
+            center,
+            zoom,
+            mapTypeId: 'satellite',
+            fullscreenControl: true,
+            mapTypeControl: false,
+            streetViewControl: false,
+            rotateControl: true,
+            tilt: 0,
+            gestureHandling: 'greedy',
+            disableDefaultUI: false
+          });
+          // Try to angle the map where available; harmless if unsupported.
+          try { map.setTilt(67.5); } catch (_) {}
+          setStatus('Earth view active.');
+        } catch (err) {
+          setStatus('Earth view failed to initialize.');
+          console.error('Earth frame map init error:', err);
+        }
+      };
+
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(key)}&v=weekly&callback=__UOGA_EARTH_FRAME_INIT__`;
+      script.async = true;
+      script.defer = true;
+      script.onerror = function () {
+        setStatus('Failed to load Google Maps API in Earth frame.');
+      };
+      document.head.appendChild(script);
+    })();
+  </script>
+</body>
+</html>

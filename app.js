@@ -179,7 +179,7 @@ const FORCE_GOOGLE_ONLY_DEBUG = false;
 const GOOGLE_MAPS_SCRIPT_CHANNEL = 'beta';
 const GOOGLE_MAPS_SCRIPT_LIBRARIES = 'maps3d';
 const USE_GOOGLE_EARTH_IFRAME_MODE = true;
-const GOOGLE_EARTH_IFRAME_URL = 'https://www.uoga.org/hunt-builder-google-earth';
+const GOOGLE_EARTH_IFRAME_URL = './hunt-builder-google-earth.html?v=20260601-earth-frame-local-1';
 const GOOGLE_EARTH_OUTLINE_ONLY_RANGE = 120000;
 const GOOGLE_EARTH_TRANSPARENT_FILL = 'rgba(0,0,0,0)';
 const GOOGLE_EARTH_ATMOSPHERE_PROFILE = 'standard';
