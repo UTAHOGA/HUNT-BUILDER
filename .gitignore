@@ -90,3 +90,4 @@ processed_data/*backup*.csv
 processed_data/*coverage_report*.csv
 processed_data/*.sqlite
 processed_data/public_contracts/*.with_permits*.pdf
+processed_data/hunt_research_2026.json
