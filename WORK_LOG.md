@@ -9958,3 +9958,48 @@ o_table=0).
   - JSON parse + row/field/hash checks
   - runtime consumer path check
   - final `git diff --check`
+
+## 2026-06-01T20:02:00-06:00 - Hunt Research Runtime Canonicalization (Single Contract Primary)
+
+- Scope:
+  - Migrated active Hunt Research runtime to canonical-contract-first loading.
+  - Reduced legacy parallel feed dependence to fallback-only for core runtime.
+  - Kept UI behavior and existing render logic structure stable.
+
+- Code changes:
+  - `hunt-research.js`
+    - Added canonical runtime source intake via `HUNT_RESEARCH_DATA_SOURCES`.
+    - Implemented canonical JSON parsing + derived runtime table adapter for:
+      - engine rows
+      - ladder rows
+      - master rows
+      - reference rows
+    - Updated `loadData()` to:
+      1. load canonical contract first
+      2. fall back to legacy CSV feeds only if canonical load fails
+    - Added load-source metadata:
+      - `canonicalContract`
+      - `canonicalRows`
+      - `legacyFallbackUsed`
+
+- Runtime dependency posture after change:
+  - Primary core feed: `processed_data/hunt_research_2026.json`
+  - Fallback-only (temporary safety):
+    - `processed_data/draw_reality_engine.csv`
+    - `processed_data/draw_reality_engine_predictive_v2.csv`
+    - `processed_data/point_ladder_view.csv`
+    - `processed_data/hunt_master_enriched.csv`
+    - `processed_data/hunt_unit_reference_linked.csv`
+  - Secondary dashboard layers intentionally unchanged:
+    - `processed_data/public_contracts/hunt_application_outlook.json`
+    - `processed_data/research_page/hunt_application_outlook.json`
+    - `processed_data/management_context/hunt_management_objective_context.json`
+
+- Required outputs created:
+  - `docs/hunt_research_runtime_canonicalization.md`
+  - `processed_data/audits/hunt_research_runtime_dependency_reduction.csv`
+
+- Validation run:
+  - `node --check hunt-research.js`
+  - source-path and dependency chain audit checks
+  - final `git diff --check`

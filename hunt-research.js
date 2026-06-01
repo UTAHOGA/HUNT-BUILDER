@@ -2,6 +2,9 @@
   const ENGINE_MODE = (window.UOGA_CONFIG && window.UOGA_CONFIG.HUNT_RESEARCH_ENGINE_MODE)
     ? String(window.UOGA_CONFIG.HUNT_RESEARCH_ENGINE_MODE).trim().toLowerCase()
     : 'observed';
+  const DATA_SOURCES = (window.UOGA_CONFIG && Array.isArray(window.UOGA_CONFIG.HUNT_RESEARCH_DATA_SOURCES) && window.UOGA_CONFIG.HUNT_RESEARCH_DATA_SOURCES.length)
+    ? window.UOGA_CONFIG.HUNT_RESEARCH_DATA_SOURCES
+    : ['./processed_data/hunt_research_2026.json'];
   const ENGINE_SOURCES = (window.UOGA_CONFIG && Array.isArray(window.UOGA_CONFIG.HUNT_RESEARCH_ENGINE_SOURCES) && window.UOGA_CONFIG.HUNT_RESEARCH_ENGINE_SOURCES.length)
     ? window.UOGA_CONFIG.HUNT_RESEARCH_ENGINE_SOURCES
     : ['./processed_data/draw_reality_engine.csv'];
@@ -482,6 +485,65 @@
       }
     }
     throw lastError || new Error('No data source could be loaded.');
+  }
+
+  function parseJsonRows(text) {
+    const parsed = JSON.parse(String(text || '[]'));
+    if (Array.isArray(parsed)) return parsed;
+    if (parsed && Array.isArray(parsed.rows)) return parsed.rows;
+    if (parsed && Array.isArray(parsed.data)) return parsed.data;
+    throw new Error('Canonical contract JSON did not contain a row array.');
+  }
+
+  function deriveCanonicalRuntimeTables(contractRows) {
+    const engineRows = Array.isArray(contractRows) ? contractRows : [];
+    const ladderRows = engineRows;
+    const masterRows = [];
+    const referenceRows = [];
+    const seenMasterGroups = new Set();
+    const seenReferenceGroups = new Set();
+    const seenReferenceCodes = new Set();
+
+    engineRows.forEach((row) => {
+      const huntCode = normalizeKey(row?.hunt_code);
+      if (!huntCode) return;
+      const residency = normalizeResidencyLabel(row?.residency);
+      const drawPool = normalizeDrawPool(row?.draw_pool);
+      const group = groupKey(huntCode, residency, drawPool);
+      const codeOnlyKey = huntCode;
+
+      if (!seenMasterGroups.has(group)) {
+        seenMasterGroups.add(group);
+        masterRows.push({
+          ...row,
+          hunt_code: huntCode,
+          residency,
+          draw_pool: drawPool,
+        });
+      }
+
+      if (!seenReferenceGroups.has(group)) {
+        seenReferenceGroups.add(group);
+        referenceRows.push({
+          ...row,
+          hunt_code: huntCode,
+          residency,
+          draw_pool: drawPool,
+        });
+      }
+
+      if (!seenReferenceCodes.has(codeOnlyKey)) {
+        seenReferenceCodes.add(codeOnlyKey);
+        referenceRows.push({
+          ...row,
+          hunt_code: huntCode,
+          residency,
+          draw_pool: drawPool,
+        });
+      }
+    });
+
+    return { engineRows, ladderRows, masterRows, referenceRows };
   }
 
   function indexData(engineRows, ladderRows, masterRows, referenceRows) {
@@ -2025,6 +2087,34 @@
     if (state.loadingPromise) return state.loadingPromise;
 
     state.loadingPromise = (async () => {
+      try {
+        const canonical = await loadFirstAvailable(DATA_SOURCES);
+        const contractRows = parseJsonRows(canonical.text);
+        const derived = deriveCanonicalRuntimeTables(contractRows);
+
+        indexData(
+          derived.engineRows,
+          derived.ladderRows,
+          derived.masterRows,
+          derived.referenceRows
+        );
+
+        state.loadedSources = {
+          engineMode: ENGINE_MODE,
+          canonicalContract: canonical.source,
+          canonicalRows: contractRows.length,
+          engine: 'derived_from_canonical_contract',
+          ladder: 'derived_from_canonical_contract',
+          master: 'derived_from_canonical_contract',
+          reference: 'derived_from_canonical_contract',
+          legacyFallbackUsed: false,
+        };
+        state.loaded = true;
+        return state.loadedSources;
+      } catch (canonicalError) {
+        console.warn('Canonical Hunt Research contract load failed; falling back to legacy parallel feeds.', canonicalError);
+      }
+
       const [engine, ladder, master, reference] = await Promise.all([
         loadFirstAvailable(ENGINE_SOURCES),
         loadFirstAvailable(LADDER_SOURCES),
@@ -2045,6 +2135,7 @@
         ladder: ladder.source,
         master: master.source,
         reference: reference.source,
+        legacyFallbackUsed: true,
       };
       state.loaded = true;
       return state.loadedSources;
