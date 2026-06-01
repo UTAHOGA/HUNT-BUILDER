@@ -84,11 +84,17 @@ window.UOGA_CONFIG = (() => {
   }
 
   const RUNTIME_MANIFEST = loadRuntimeManifestSync();
+  const KNOWN_RUNTIME_POINTER_KEYS = new Set([
+    'research_draw_reality_engine_predictive_v2_csv',
+    'research_hunt_master_enriched_csv',
+  ]);
   const runtimeManifestAsset = (key) => {
     const k = String(key || '').trim();
     return k ? (RUNTIME_MANIFEST?.byKey?.[k] || null) : null;
   };
   const runtimeAssetIsLfsPointer = (key) => {
+    const k = String(key || '').trim();
+    if (KNOWN_RUNTIME_POINTER_KEYS.has(k)) return true;
     const mode = String(runtimeManifestAsset(key)?.current_storage_mode || '').trim().toUpperCase();
     return mode === 'GIT_LFS_POINTER';
   };

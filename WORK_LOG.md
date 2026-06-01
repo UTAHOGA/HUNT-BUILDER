@@ -1,3 +1,37 @@
+## 2026-06-01T08:40:00-06:00 - Focused Runtime Promotion Pass (LFS Pointer Runtime Prune + Alternate Domain Canonical Enforcement)
+
+- Assigned action:
+  - Run focused promotion pass to replace remaining LFS-pointer runtime source usage with verified canonical R2 objects.
+  - Resolve alternate domain parity/redirect policy gap.
+
+- Files changed:
+  - `config.js`
+  - `embed-mode.js`
+  - `docs/large_file_delivery_architecture.md`
+
+- Work completed:
+  - Added hard pointer-key guardrail in runtime config for known pointer feeds:
+    - `research_draw_reality_engine_predictive_v2_csv`
+    - `research_hunt_master_enriched_csv`
+  - Pruned local processed_data fallback paths for those pointer feeds even if manifest is unavailable early.
+  - Confirmed source arrays now resolve to canonical R2/Cloudflare URLs only for those two feeds.
+  - Added client-side canonical host safety redirect:
+    - if host is `hunt-builder.uoga.org`, redirect to `https://huntbuilder.uoga.org` preserving path/query/hash.
+  - Documented canonical-domain enforcement as dual layer:
+    - host redirect in `vercel.json`
+    - client safety redirect in `embed-mode.js`.
+
+- Validation:
+  - `node --check config.js` PASS
+  - `node --check embed-mode.js` PASS
+  - `node scripts/publish-runtime-assets-r2.js --dry-run --verbose` PASS
+  - config runtime evaluation check (Node VM):
+    - predictive feed local fallback removed
+    - hunt_master_enriched local fallback removed
+  - `curl -I https://huntbuilder.uoga.org/` -> `200`
+  - `curl -I https://hunt-builder.uoga.org/` -> DNS unresolved (`curl: (6) Could not resolve host`)
+  - `npm run build` PASS
+
 ## 2026-06-01T08:12:00-06:00 - Large-File Delivery Architecture Pass (R2 + Runtime Manifest)
 
 - Assigned action:

@@ -106,6 +106,13 @@ Integrated source groups include:
 - Hunt Research core summary + observed/predictive engine groups
 - Hunt Research ladder/master/reference groups
 
+Focused promotion pass (June 1, 2026):
+
+- Local fallback chains for known LFS-pointer runtime feeds were pruned:
+  - `processed_data/draw_reality_engine_predictive_v2.csv`
+  - `processed_data/hunt_master_enriched.csv`
+- These now resolve to canonical R2/Cloudflare URLs only in runtime source lists.
+
 ## Build/deploy compatibility
 
 `scripts/build-pages-dist.js` now includes:
@@ -114,6 +121,25 @@ Integrated source groups include:
 - `public/data/*`
 
 This keeps the manifest reachable in `pages-dist` deployments while preserving old routes.
+
+## Canonical domain policy (parity)
+
+Primary host:
+
+- `https://huntbuilder.uoga.org`
+
+Alternate host:
+
+- `https://hunt-builder.uoga.org`
+
+Enforcement layers:
+
+- Edge redirect rule in `vercel.json` (host-based redirect to canonical host)
+- Client safety redirect in `embed-mode.js` for alternate host requests that reach the app shell
+
+Current risk:
+
+- If alternate host DNS is not resolvable, parity cannot be tested end-to-end until DNS is restored.
 
 ## LFS cleanup guidance
 
