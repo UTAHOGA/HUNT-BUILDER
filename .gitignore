@@ -82,3 +82,11 @@ point_ladder_view1.csv
 processed_data/hunt_research_2026.json
 
 hunt-research.js
+
+# Large local artifacts (prevent accidental GitHub Desktop staging)
+.tmp_r2_test.csv
+processed_data/backups/
+processed_data/*backup*.csv
+processed_data/*coverage_report*.csv
+processed_data/*.sqlite
+processed_data/public_contracts/*.with_permits*.pdf
