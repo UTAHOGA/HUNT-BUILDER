@@ -179,7 +179,7 @@ const FORCE_GOOGLE_ONLY_DEBUG = false;
 const GOOGLE_MAPS_SCRIPT_CHANNEL = 'beta';
 const GOOGLE_MAPS_SCRIPT_LIBRARIES = 'maps3d';
 const USE_GOOGLE_EARTH_IFRAME_MODE = true;
-const GOOGLE_EARTH_IFRAME_URL = './hunt-builder-google-earth.html?v=20260601-earth-frame-local-1';
+const GOOGLE_EARTH_IFRAME_URL = './hunt-builder-google-earth.html?v=20260601-earth-3d-bridge-1';
 const GOOGLE_EARTH_OUTLINE_ONLY_RANGE = 120000;
 const GOOGLE_EARTH_TRANSPARENT_FILL = 'rgba(0,0,0,0)';
 const GOOGLE_EARTH_ATMOSPHERE_PROFILE = 'standard';
@@ -2612,6 +2612,7 @@ async function syncSelectedHuntAcrossMapModes({ closeChooser = true, zoomGoogle 
 
   const mode = safe(mapTypeSelect?.value || 'google').toLowerCase();
   if (mode === 'earth') {
+    postGoogleEarthFrameContext(selectedHunt);
     refreshGoogleEarth3dBoundaryOverlaySoon();
     return;
   }
@@ -3996,13 +3997,62 @@ function getGoogleEarthUrl(hunt = selectedHunt) {
   return GOOGLE_EARTH_IFRAME_URL;
 }
 
+function buildGoogleEarthFrameContext(hunt = selectedHunt) {
+  if (!hunt) return null;
+  const resolved = resolveBoundaryForHuntRuntime(hunt);
+  const boundaryIds = [
+    ...parseBoundaryIdCandidates(resolved?.dwr_member_boundary_ids),
+    ...parseBoundaryIdCandidates(resolved?.member_boundary_ids),
+    ...parseBoundaryIdCandidates(resolved?.dwr_boundary_id),
+    ...parseBoundaryIdCandidates(resolved?.boundary_id),
+    ...parseBoundaryIdCandidates(getBoundaryId(hunt)),
+    ...parseBoundaryIdCandidates(hunt?.boundary_id),
+    ...parseBoundaryIdCandidates(hunt?.boundaryId),
+    ...parseBoundaryIdCandidates(hunt?.BoundaryID),
+  ]
+    .map((id) => safe(id).trim())
+    .filter(Boolean);
+  const uniqueBoundaryIds = [...new Set(boundaryIds)];
+  const centerLatLng = getSelectedHuntCenter();
+  const center = centerLatLng
+    ? { lat: Number(centerLatLng.lat()), lng: Number(centerLatLng.lng()) }
+    : { lat: Number(GOOGLE_BASELINE_DEFAULT_CENTER.lat), lng: Number(GOOGLE_BASELINE_DEFAULT_CENTER.lng) };
+  return {
+    huntCode: safe(getHuntCode(hunt)).trim().toUpperCase(),
+    huntTitle: firstNonEmpty(hunt?.hunt_name, getUnitName(hunt), getHuntTitle(hunt), ''),
+    species: firstNonEmpty(getSpeciesDisplay(hunt), ''),
+    weapon: firstNonEmpty(getWeapon(hunt), ''),
+    boundaryIds: uniqueBoundaryIds,
+    center,
+    timestamp: Date.now(),
+  };
+}
+
+function postGoogleEarthFrameContext(hunt = selectedHunt) {
+  const frame = ensureGoogleEarthFrame();
+  if (!frame?.contentWindow) return;
+  const payload = buildGoogleEarthFrameContext(hunt);
+  if (!payload) return;
+  const message = {
+    type: 'uoga-earth-context',
+    payload,
+  };
+  try {
+    frame.contentWindow.postMessage(message, window.location.origin);
+  } catch (error) {
+    console.warn('Failed posting Earth frame context.', error);
+  }
+}
+
 function updateGoogleEarthFrame(hunt = selectedHunt) {
   const frame = ensureGoogleEarthFrame();
   if (!frame) return;
   const src = getGoogleEarthUrl(hunt);
   if (frame.getAttribute('src') !== src) {
     frame.setAttribute('src', src);
+    return;
   }
+  postGoogleEarthFrameContext(hunt);
 }
 
 function initGoogleEarthFrameEvents() {
@@ -4010,6 +4060,7 @@ function initGoogleEarthFrameEvents() {
   if (!frame || frame.__uogaEventsBound) return;
   frame.__uogaEventsBound = true;
   frame.addEventListener('load', () => {
+    postGoogleEarthFrameContext(selectedHunt);
     if (safe(mapTypeSelect?.value).toLowerCase() === 'earth') {
       updateStatus('Google Earth iframe active. Hunt boundaries and ownership layers stay on Google Map.');
     }
@@ -4843,6 +4894,7 @@ function applyMapMode() {
       if (googleEarthFrame) {
         googleEarthFrame.hidden = false;
       }
+      postGoogleEarthFrameContext(selectedHunt);
       updateStatus('Google Earth iframe active. Hunt boundaries and ownership layers stay on Google Map.');
       return;
     }

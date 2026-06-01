@@ -3,84 +3,441 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>U.O.G.A. Earth View</title>
+  <title>U.O.G.A. Earth 3D</title>
   <style>
-    html, body, #earthMap {
+    html, body {
       width: 100%;
       height: 100%;
       margin: 0;
       padding: 0;
-      background: #0b1220;
+      background: #0a1120;
       overflow: hidden;
     }
-    .earth-status {
-      position: absolute;
+    #earthStage {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: #0a1120;
+    }
+    #earthStatus {
+      position: fixed;
       left: 12px;
       bottom: 12px;
-      z-index: 2;
+      z-index: 10;
+      max-width: min(520px, calc(100vw - 24px));
       font: 12px/1.4 Arial, sans-serif;
-      color: #f2f5fb;
-      background: rgba(9, 15, 28, 0.62);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #f4f7ff;
+      background: rgba(11, 18, 35, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.26);
       border-radius: 10px;
       padding: 8px 10px;
       backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
     }
   </style>
 </head>
 <body>
-  <div id="earthMap" aria-label="Earth view map"></div>
-  <div id="earthStatus" class="earth-status">Loading Earth view…</div>
+  <div id="earthStage" aria-label="Google Earth 3D"></div>
+  <div id="earthStatus">Loading Google Earth 3D...</div>
 
   <script src="./config.js?v=20260506-ui-fixes-1"></script>
   <script>
-    (function initEarthFrame() {
+    (function earth3dBootstrap() {
       const statusEl = document.getElementById('earthStatus');
+      const stageEl = document.getElementById('earthStage');
       const cfg = window.UOGA_CONFIG || {};
-      const key = String(cfg.GOOGLE_MAPS_API_KEY || '').trim();
-      const center = cfg.GOOGLE_BASELINE_DEFAULT_CENTER || { lat: 39.3, lng: -111.7 };
-      const zoom = Number(cfg.GOOGLE_BASELINE_DEFAULT_ZOOM || 7);
+      const params = new URLSearchParams(window.location.search || '');
 
-      function setStatus(msg) {
-        if (statusEl) statusEl.textContent = msg;
+      const GOOGLE_KEY = String(cfg.GOOGLE_MAPS_API_KEY || '').trim();
+      const GOOGLE_MAP_ID = String(cfg.GOOGLE_MAPS_3D_MAP_ID || '').trim();
+      const DEFAULT_CENTER = cfg.GOOGLE_BASELINE_DEFAULT_CENTER || { lat: 39.2672138, lng: -111.6346885 };
+      const HUNT_DATA_VERSION = String(cfg.HUNT_DATA_VERSION || '20260508-boundary-zero-unmapped-1').trim();
+
+      const HUNT_MASTER_URL = `./data/hunt-master-canonical-2026-foundation.json?v=${encodeURIComponent(HUNT_DATA_VERSION)}`;
+      const HUNT_BOUNDARY_URL = `./data/hunt_boundaries.geojson?v=${encodeURIComponent(HUNT_DATA_VERSION)}`;
+
+      let map3d = null;
+      let Polygon3DElement = null;
+      let overlays = [];
+      let huntRowsByCode = new Map();
+      let boundaryFeaturesById = new Map();
+      let latestContext = null;
+
+      function setStatus(message) {
+        if (statusEl) statusEl.textContent = String(message || '');
       }
 
-      if (!key) {
-        setStatus('Google key missing for Earth view.');
-        return;
+      function safe(value) {
+        return String(value == null ? '' : value);
       }
 
-      window.__UOGA_EARTH_FRAME_INIT__ = function () {
-        try {
-          const map = new google.maps.Map(document.getElementById('earthMap'), {
-            center,
-            zoom,
-            mapTypeId: 'satellite',
-            fullscreenControl: true,
-            mapTypeControl: false,
-            streetViewControl: false,
-            rotateControl: true,
-            tilt: 0,
-            gestureHandling: 'greedy',
-            disableDefaultUI: false
-          });
-          // Try to angle the map where available; harmless if unsupported.
-          try { map.setTilt(67.5); } catch (_) {}
-          setStatus('Earth view active.');
-        } catch (err) {
-          setStatus('Earth view failed to initialize.');
-          console.error('Earth frame map init error:', err);
+      function firstNonEmpty() {
+        for (let i = 0; i < arguments.length; i += 1) {
+          const text = safe(arguments[i]).trim();
+          if (text) return text;
         }
-      };
+        return '';
+      }
 
-      const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(key)}&v=weekly&callback=__UOGA_EARTH_FRAME_INIT__`;
-      script.async = true;
-      script.defer = true;
-      script.onerror = function () {
-        setStatus('Failed to load Google Maps API in Earth frame.');
-      };
-      document.head.appendChild(script);
+      function normalizeHuntCode(value) {
+        return safe(value).trim().toUpperCase();
+      }
+
+      function parseBoundaryIdCandidates(value) {
+        if (Array.isArray(value)) {
+          return value.flatMap(parseBoundaryIdCandidates).map((v) => safe(v).trim()).filter(Boolean);
+        }
+        if (value == null) return [];
+        const text = safe(value).trim();
+        if (!text) return [];
+        if ((text.startsWith('[') && text.endsWith(']')) || (text.startsWith('{') && text.endsWith('}'))) {
+          try {
+            return parseBoundaryIdCandidates(JSON.parse(text));
+          } catch (_err) {}
+        }
+        if (/[,\|;\/]/.test(text)) {
+          return text.split(/[,\|;\/]/).map((v) => safe(v).trim()).filter(Boolean);
+        }
+        return [text];
+      }
+
+      function getFeatureBoundaryCandidateIds(props) {
+        const ids = new Set();
+        const add = function(value) {
+          parseBoundaryIdCandidates(value).forEach((id) => {
+            const normalized = safe(id).trim();
+            if (normalized) ids.add(normalized);
+          });
+        };
+        add(props && props.BoundaryID);
+        add(props && props.Boundary_Id);
+        add(props && props.BOUNDARYID);
+        add(props && props.boundary_id);
+        add(props && props.member_boundary_ids);
+        add(props && props.memberBoundaryIds);
+        return Array.from(ids);
+      }
+
+      function closeRingIfNeeded(points) {
+        if (points.length < 3) return points;
+        const first = points[0];
+        const last = points[points.length - 1];
+        if (first.lat === last.lat && first.lng === last.lng) return points;
+        return points.concat([{ lat: first.lat, lng: first.lng }]);
+      }
+
+      function simplifyRing(ring, maxPoints) {
+        if (!Array.isArray(ring)) return [];
+        const clean = ring
+          .map((coord) => Array.isArray(coord) ? { lng: Number(coord[0]), lat: Number(coord[1]) } : null)
+          .filter((point) => Number.isFinite(point && point.lat) && Number.isFinite(point && point.lng));
+        if (clean.length <= maxPoints) return closeRingIfNeeded(clean);
+        const step = Math.ceil(clean.length / maxPoints);
+        const sampled = clean.filter((_, index) => index % step === 0);
+        return closeRingIfNeeded(sampled);
+      }
+
+      function getFeatureCoordinateBounds(features) {
+        const bounds = { north: -90, south: 90, east: -180, west: 180, count: 0 };
+        const visitCoord = function(coord) {
+          if (!Array.isArray(coord)) return;
+          const lng = Number(coord[0]);
+          const lat = Number(coord[1]);
+          if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+          bounds.north = Math.max(bounds.north, lat);
+          bounds.south = Math.min(bounds.south, lat);
+          bounds.east = Math.max(bounds.east, lng);
+          bounds.west = Math.min(bounds.west, lng);
+          bounds.count += 1;
+        };
+        const visitNested = function(value) {
+          if (!Array.isArray(value)) return;
+          if (typeof value[0] === 'number') {
+            visitCoord(value);
+            return;
+          }
+          value.forEach(visitNested);
+        };
+        features.forEach((feature) => visitNested(feature && feature.geometry && feature.geometry.coordinates));
+        return bounds.count ? bounds : null;
+      }
+
+      function getCameraFromFeatures(features) {
+        const bounds = getFeatureCoordinateBounds(features);
+        if (!bounds) return null;
+        const center = {
+          lat: (bounds.north + bounds.south) / 2,
+          lng: (bounds.east + bounds.west) / 2,
+          altitude: 1800
+        };
+        const latMeters = Math.max(1, Math.abs(bounds.north - bounds.south) * 111320);
+        const lngMeters = Math.max(1, Math.abs(bounds.east - bounds.west) * 111320 * Math.cos(center.lat * Math.PI / 180));
+        const range = Math.min(900000, Math.max(45000, Math.max(latMeters, lngMeters) * 1.9));
+        return { center, range, tilt: 64, heading: 25 };
+      }
+
+      function clearOverlays() {
+        overlays.forEach((overlay) => {
+          try { overlay && overlay.remove && overlay.remove(); } catch (_err) {}
+        });
+        overlays = [];
+      }
+
+      function drawBoundaryFeatures(features) {
+        if (!map3d || !Polygon3DElement) return 0;
+        clearOverlays();
+        let drawn = 0;
+        const style = {
+          strokeColor: '#ff6600ff',
+          strokeWidth: 5,
+          fillColor: '#00000000',
+          drawsOccludedSegments: true
+        };
+        features.forEach((feature) => {
+          const geometry = feature && feature.geometry ? feature.geometry : {};
+          const polygons = geometry.type === 'Polygon'
+            ? [geometry.coordinates]
+            : geometry.type === 'MultiPolygon'
+              ? geometry.coordinates
+              : [];
+          polygons.slice(0, 10).forEach((polygon) => {
+            const paths = (Array.isArray(polygon) ? polygon : [])
+              .map((ring) => simplifyRing(ring, features.length > 1 ? 450 : 900))
+              .filter((ring) => ring.length >= 4);
+            if (!paths.length) return;
+            const overlay = new Polygon3DElement(style);
+            overlay.path = paths[0];
+            if (paths.length > 1 && 'innerPaths' in overlay) {
+              overlay.innerPaths = paths.slice(1);
+            }
+            map3d.append(overlay);
+            overlays.push(overlay);
+            drawn += 1;
+          });
+        });
+        return drawn;
+      }
+
+      function extractBoundaryIdsFromHuntRow(row) {
+        if (!row || typeof row !== 'object') return [];
+        const ids = [
+          ...parseBoundaryIdCandidates(row.boundaryId),
+          ...parseBoundaryIdCandidates(row.boundary_id),
+          ...parseBoundaryIdCandidates(row.BoundaryID),
+          ...parseBoundaryIdCandidates(row.dwr_boundary_id),
+          ...parseBoundaryIdCandidates(row.dwrBoundaryId),
+          ...parseBoundaryIdCandidates(row.dwr_member_boundary_ids),
+          ...parseBoundaryIdCandidates(row.member_boundary_ids),
+          ...parseBoundaryIdCandidates(row.memberBoundaryIds),
+          ...parseBoundaryIdCandidates(row.resolved_boundary_ids),
+        ].map((id) => safe(id).trim()).filter(Boolean);
+        return Array.from(new Set(ids));
+      }
+
+      function collectFeaturesForBoundaryIds(boundaryIds) {
+        const featureSet = new Set();
+        const collected = [];
+        (Array.isArray(boundaryIds) ? boundaryIds : []).forEach((id) => {
+          const normalized = safe(id).trim();
+          if (!normalized) return;
+          const candidates = boundaryFeaturesById.get(normalized);
+          if (!Array.isArray(candidates) || !candidates.length) return;
+          candidates.forEach((feature) => {
+            if (featureSet.has(feature)) return;
+            featureSet.add(feature);
+            collected.push(feature);
+          });
+        });
+        return collected;
+      }
+
+      function focusMap(camera) {
+        if (!map3d || !camera) return;
+        map3d.center = camera.center;
+        map3d.range = camera.range;
+        map3d.tilt = camera.tilt;
+        map3d.heading = camera.heading;
+      }
+
+      function buildContextFromQuery() {
+        const huntCode = normalizeHuntCode(params.get('hunt_code') || '');
+        const lat = Number(params.get('lat'));
+        const lng = Number(params.get('lng'));
+        const center = Number.isFinite(lat) && Number.isFinite(lng) ? { lat, lng } : null;
+        return {
+          huntCode,
+          center,
+          boundaryIds: parseBoundaryIdCandidates(params.get('boundary_ids') || ''),
+        };
+      }
+
+      function findHuntRowByCode(huntCode) {
+        if (!huntCode) return null;
+        return huntRowsByCode.get(huntCode) || null;
+      }
+
+      function applyContext(context) {
+        if (!map3d) return;
+        if (!context || typeof context !== 'object') {
+          setStatus('Google Earth 3D ready.');
+          return;
+        }
+
+        const huntCode = normalizeHuntCode(context.huntCode || context.hunt_code || '');
+        const huntRow = findHuntRowByCode(huntCode);
+        const explicitBoundaryIds = parseBoundaryIdCandidates(context.boundaryIds || context.boundary_ids || []);
+        const rowBoundaryIds = extractBoundaryIdsFromHuntRow(huntRow);
+        const boundaryIds = Array.from(new Set([].concat(explicitBoundaryIds, rowBoundaryIds))).filter(Boolean);
+        const features = collectFeaturesForBoundaryIds(boundaryIds);
+
+        if (features.length) {
+          const drawn = drawBoundaryFeatures(features);
+          const camera = getCameraFromFeatures(features);
+          if (camera) {
+            focusMap(camera);
+          } else if (context.center && Number.isFinite(context.center.lat) && Number.isFinite(context.center.lng)) {
+            focusMap({
+              center: { lat: Number(context.center.lat), lng: Number(context.center.lng), altitude: 1800 },
+              range: 180000,
+              tilt: 64,
+              heading: 25
+            });
+          }
+          setStatus(`Google Earth 3D active. ${huntCode || 'Selected hunt'} boundary loaded (${drawn} polygon${drawn === 1 ? '' : 's'}).`);
+          return;
+        }
+
+        clearOverlays();
+        if (context.center && Number.isFinite(context.center.lat) && Number.isFinite(context.center.lng)) {
+          focusMap({
+            center: { lat: Number(context.center.lat), lng: Number(context.center.lng), altitude: 1800 },
+            range: 220000,
+            tilt: 64,
+            heading: 25
+          });
+          setStatus(`Google Earth 3D active. ${huntCode || 'Selected hunt'} has no matched boundary overlay yet.`);
+          return;
+        }
+
+        setStatus('Google Earth 3D active. Select a hunt on the main map to focus this view.');
+      }
+
+      async function loadRuntimeData() {
+        try {
+          const [huntRowsResp, boundaryResp] = await Promise.all([
+            fetch(HUNT_MASTER_URL, { cache: 'no-store' }),
+            fetch(HUNT_BOUNDARY_URL, { cache: 'no-store' }),
+          ]);
+          if (!huntRowsResp.ok) throw new Error(`Hunt master HTTP ${huntRowsResp.status}`);
+          if (!boundaryResp.ok) throw new Error(`Boundary GeoJSON HTTP ${boundaryResp.status}`);
+          const huntRows = await huntRowsResp.json();
+          const boundaryGeoJson = await boundaryResp.json();
+          if (!Array.isArray(huntRows)) throw new Error('Hunt master is not an array.');
+          if (!Array.isArray(boundaryGeoJson && boundaryGeoJson.features)) throw new Error('Boundary GeoJSON missing features.');
+
+          huntRowsByCode = new Map();
+          huntRows.forEach((row) => {
+            const code = normalizeHuntCode(firstNonEmpty(
+              row && row.huntCode,
+              row && row.hunt_code,
+              row && row.HuntCode,
+              row && row.code
+            ));
+            if (!code) return;
+            if (!huntRowsByCode.has(code)) {
+              huntRowsByCode.set(code, row);
+            }
+          });
+
+          boundaryFeaturesById = new Map();
+          boundaryGeoJson.features.forEach((feature) => {
+            const ids = getFeatureBoundaryCandidateIds((feature && feature.properties) || {});
+            ids.forEach((id) => {
+              if (!boundaryFeaturesById.has(id)) boundaryFeaturesById.set(id, []);
+              boundaryFeaturesById.get(id).push(feature);
+            });
+          });
+        } catch (error) {
+          console.error('Earth 3D runtime data load failed:', error);
+          setStatus(`Google Earth 3D loaded, but boundary data failed: ${error && error.message ? error.message : 'unknown error'}`);
+        }
+      }
+
+      function bindContextBridge() {
+        window.addEventListener('message', (event) => {
+          if (!event || event.origin !== window.location.origin) return;
+          if (!event.data || event.data.type !== 'uoga-earth-context') return;
+          latestContext = event.data.payload || null;
+          applyContext(latestContext);
+        });
+      }
+
+      function loadGoogleMaps3dScript() {
+        return new Promise((resolve, reject) => {
+          if (!GOOGLE_KEY) {
+            reject(new Error('Google Maps API key missing.'));
+            return;
+          }
+          if (window.google && window.google.maps && typeof window.google.maps.importLibrary === 'function') {
+            resolve();
+            return;
+          }
+          const script = document.createElement('script');
+          script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(GOOGLE_KEY)}&v=beta&libraries=maps3d&loading=async`;
+          script.async = true;
+          script.defer = true;
+          script.onload = () => resolve();
+          script.onerror = () => reject(new Error('Google Maps script failed to load.'));
+          document.head.appendChild(script);
+        });
+      }
+
+      async function init3dMap() {
+        await loadGoogleMaps3dScript();
+        const maps3d = await window.google.maps.importLibrary('maps3d');
+        if (!maps3d || !maps3d.Map3DElement) {
+          throw new Error('Maps 3D library unavailable.');
+        }
+        Polygon3DElement = maps3d.Polygon3DElement || (window.google.maps.maps3d && window.google.maps.maps3d.Polygon3DElement);
+        if (!Polygon3DElement) {
+          throw new Error('Polygon3DElement unavailable.');
+        }
+        map3d = new maps3d.Map3DElement({
+          center: { lat: Number(DEFAULT_CENTER.lat), lng: Number(DEFAULT_CENTER.lng), altitude: 2200 },
+          range: 520000,
+          tilt: 58,
+          heading: 15,
+          mode: maps3d.MapMode.SATELLITE,
+          gestureHandling: 'GREEDY',
+        });
+        if (GOOGLE_MAP_ID) {
+          map3d.setAttribute('map-id', GOOGLE_MAP_ID);
+        }
+        map3d.setAttribute('mode', 'SATELLITE');
+        map3d.addEventListener('gmp-error', (event) => {
+          const detail = safe(event && event.detail && event.detail.message).trim();
+          const reason = detail ? `Google Earth 3D unavailable (${detail}).` : 'Google Earth 3D unavailable.';
+          setStatus(`${reason} Check hardware acceleration, WebGL2, and 3D map ID.`);
+        });
+        stageEl.appendChild(map3d);
+      }
+
+      async function boot() {
+        try {
+          bindContextBridge();
+          await init3dMap();
+          await loadRuntimeData();
+          latestContext = buildContextFromQuery();
+          applyContext(latestContext);
+        } catch (error) {
+          console.error('Earth 3D bootstrap failed:', error);
+          const reason = error && error.message ? error.message : 'unknown error';
+          setStatus(`Google Earth 3D failed to initialize: ${reason}`);
+        }
+      }
+
+      boot();
     })();
   </script>
 </body>

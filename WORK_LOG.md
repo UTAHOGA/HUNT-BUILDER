@@ -8852,6 +8852,39 @@ o_table=0).
 - Validation:
   - `node --check app.js` => syntax OK
   - `rg` checks confirm new iframe target and updated app bundle token.
+
+## 2026-06-01T12:45:00-06:00 - Repo-Native Google Earth 3D Page + 2D-to-3D Context Bridge
+
+- Trigger:
+  - Replace dead external Earth dependency with a repo-native 3D Earth runtime that stays integrated with Builder hunt selection.
+
+- Files changed:
+  - `app.js`
+  - `index.html`
+  - `hunt-builder-google-earth.html`
+
+- Changes applied:
+  - Added Earth iframe context bridge in `app.js`:
+    - emits `postMessage` payload (`uoga-earth-context`) containing selected hunt code, boundary IDs, species/weapon labels, and center point.
+    - sends payload on Earth iframe load, Earth mode activation, and selected-hunt sync.
+  - Updated Earth iframe URL token:
+    - `./hunt-builder-google-earth.html?v=20260601-earth-3d-bridge-1`
+  - Rebuilt `hunt-builder-google-earth.html` as a true Maps JS 3D page:
+    - loads `maps3d` library (`v=beta`)
+    - creates `Map3DElement` in `SATELLITE` mode
+    - loads canonical hunt master and boundary GeoJSON from repo runtime paths
+    - resolves hunt/boundary IDs and renders selected boundary overlays via `Polygon3DElement`
+    - focuses 3D camera on selected hunt context from parent page
+    - displays explicit diagnostics if 3D/map data fails
+  - Bumped Builder app bundle token in `index.html`:
+    - `app.js?v=20260601-earth-3d-bridge-1`
+
+- Validation:
+  - `node --check app.js` => syntax OK
+  - `rg` checks confirm:
+    - new app token in `index.html`
+    - Earth iframe URL token in `app.js`
+    - context bridge message type in both parent and Earth page
   - `npm run build` => PASS
 
 ## 2026-06-01T11:42:00-06:00 - Google Earth 3D Failure Diagnostics + SATELLITE Retry
