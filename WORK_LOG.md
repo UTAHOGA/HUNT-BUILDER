@@ -1,3 +1,62 @@
+## 2026-05-31T15:10:00-06:00 - Builder Runtime 404 Repair + MASTER.xlsx Reconciliation From DATABASE Truth
+
+- Assigned action:
+  - Repair Builder/map runtime 404s with minimal path/config changes.
+  - Reconcile `MASTER.xlsx` from authoritative `DATABASE.csv` values.
+
+- Part 1 (Builder runtime) findings:
+  - Live Builder load audit (Playwright network capture on `https://huntbuilder.uoga.org/`) showed 2 runtime 404s:
+    - `./processed_data/outfitter-federal-unit-coverage-review.json`
+    - `./data/hunt_boundaries_finalized_2026.geojson`
+  - Remaining core Builder runtime files and map assets were returning `200`.
+
+- Part 1 fix:
+  - `config.js` updated to use a single repo-served static strategy for Builder runtime-critical sources.
+  - Removed broken/missing local-first candidates and removed Builder Cloudflare fallback candidates for:
+    - boundary sources
+    - boundary manifest fallback list
+    - canonical hunt master candidates
+    - elk boundary table candidates
+    - outfitter directory sources
+    - conservation permit sources
+  - Set `OUTFITTER_FEDERAL_COVERAGE_SOURCES` to empty list (optional dataset absent; runtime now fail-safe without 404).
+  - Removed missing `hunt_boundaries_finalized_2026.geojson` from finalized boundary source order; retained existing local boundary files.
+
+- Part 1 validation:
+  - Local Builder runtime network capture (`https://localhost:4173/index.html`) after change:
+    - `MISS_COUNT=0` (no 4xx/5xx requests during page load)
+  - `npm run build` PASS.
+
+- Part 2 (MASTER reconciliation) implementation:
+  - Added repeatable reconciliation script:
+    - `scripts/reconcile-master-xlsx-from-database-2026.py`
+  - Script behavior:
+    - Loads authoritative `DATABASE.csv`.
+    - Reconciles `MASTER.xlsx` by `HUNT CODE`.
+    - Syncs truth fields:
+      - `HUNT NAME`, `SPECIES`, `SEX TYPE`, `SEASON`
+      - `2026 PERMITS RES`, `2026 PERMITS NR`, `2026 PERMITS TOTAL`
+    - Permit truth selection rule:
+      - `permit_allotment_2026_*` primary
+      - fallback to `permits_2026_*`
+    - Preserves normalized export columns (`HUNT TYPE`, `WEAPON`, `HUNT CLASS`) and writes normalization audit stats (no overwrite).
+    - Emits audit outputs:
+      - `processed_data/audits/master_database_2026_reconciliation_report.json`
+      - `processed_data/audits/master_database_2026_reconciliation_changes.csv`
+
+- Part 2 run result:
+  - `python scripts/reconcile-master-xlsx-from-database-2026.py` PASS.
+  - Reconciliation summary:
+    - Total cell changes: `17`
+    - Fields changed:
+      - `SEASON`: `2`
+      - `2026 PERMITS TOTAL`: `15`
+    - Corrected missing `2026 PERMITS TOTAL` hunt codes:
+      - `BR7324`, `DB1056`, `DB1075`, `DB1076`, `DB1118`,
+      - `EA1180`, `EA1270`, `EA1271`, `EA2041`, `EA2045`,
+      - `TK1012`, `TK1013`, `TK1014`, `TK1015`, `TK1016`
+    - `MASTER` and `DATABASE` hunt-code universes aligned (`1449` rows each; no missing code on either side).
+
 ## 2026-05-31T13:35:00-06:00 - Hard-Copy Deployment Path Repair (Path Mapping + Deploy-Critical Library Assets)
 
 - Assigned action:
