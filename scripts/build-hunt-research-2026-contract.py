@@ -164,6 +164,9 @@ def build_dwr_lookup(rows):
             continue
         lookup[code] = {
             "current_age_3yr_average": number_text(row.get("current_age_3yr_average")),
+            "permits_2026_res": number_text(row.get("permits_2026_res")),
+            "permits_2026_nr": number_text(row.get("permits_2026_nr")),
+            "permits_2026_total": number_text(row.get("permits_2026_total")),
         }
     return lookup
 
@@ -276,6 +279,12 @@ def main():
         p_draw_pct = first_text(row.get("p_draw_pct"), row.get("display_odds_pct"))
         if not p_draw_pct and p_draw_mean:
             p_draw_pct = pct_text(p_draw_mean)
+        display_odds_raw = clean(row.get("display_odds_pct"))
+        if display_odds_raw:
+            # point_ladder_view display_odds_pct is already a percent-format display field.
+            display_odds_pct = number_text(display_odds_raw, digits=4)
+        else:
+            display_odds_pct = pct_text(p_draw_pct)
 
         p_draw = first_text(row.get("p_draw"))
         if not p_draw and p_draw_pct:
@@ -326,13 +335,13 @@ def main():
             "random_permits_2026": number_text(row.get("random_permits_2026")),
             "permits_2026_res": number_text(first_text(row.get("permits_2026_res"), row.get("permit_allotment_2026_res"), db.get("permit_allotment_2026_res"))),
             "permits_2026_nr": number_text(first_text(row.get("permits_2026_nr"), row.get("permit_allotment_2026_nr"), db.get("permit_allotment_2026_nr"))),
-            "permits_2026_total": number_text(first_text(row.get("permits_2026_total"), row.get("permit_allotment_2026_total"), db.get("permit_allotment_2026_total"))),
+            "permits_2026_total": number_text(first_text(row.get("permits_2026_total"), row.get("permit_allotment_2026_total"), db.get("permit_allotment_2026_total"), dwr.get("permits_2026_total"))),
             "p_draw": p_draw,
-            "p_draw_mean": number_text(p_draw_mean),
+            "p_draw_mean": number_text(p_draw_mean, digits=6),
             "p_draw_pct": pct_text(p_draw_pct),
-            "p_draw_p10": number_text(row.get("p_draw_p10")),
-            "p_draw_p90": number_text(row.get("p_draw_p90")),
-            "display_odds_pct": pct_text(first_text(row.get("display_odds_pct"), p_draw_pct)),
+            "p_draw_p10": number_text(row.get("p_draw_p10"), digits=6),
+            "p_draw_p90": number_text(row.get("p_draw_p90"), digits=6),
+            "display_odds_pct": display_odds_pct,
             "p_max_pool_mean": number_text(p_max),
             "p_max_pool_mean_pct": pct_text(p_max),
             "p_max_pool_pct": pct_text(first_text(row.get("p_max_pool_pct"), p_max)),
@@ -440,7 +449,7 @@ def main():
             "random_permits_2026": "",
             "permits_2026_res": number_text(db.get("permit_allotment_2026_res")),
             "permits_2026_nr": number_text(db.get("permit_allotment_2026_nr")),
-            "permits_2026_total": number_text(db.get("permit_allotment_2026_total")),
+            "permits_2026_total": number_text(first_text(db.get("permit_allotment_2026_total"), dwr.get("permits_2026_total"))),
             "p_draw": "",
             "p_draw_mean": "",
             "p_draw_pct": "",

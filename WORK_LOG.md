@@ -10235,3 +10235,36 @@ o_table=0).
   - `docs/hunt_research_feeder_to_contract_reconciliation.md`
   - `processed_data/audits/hunt_research_feeder_to_contract_reconciliation.csv`
   - `processed_data/audits/hunt_research_runtime_publication_check.csv`
+
+## 2026-06-01T12:15:00-06:00 - Targeted Cleanup of Six Remaining Hunt Research Field Families
+
+- Scope:
+  - Focused reconciliation pass only for:
+    - `display_odds_pct`
+    - `p_draw_mean`
+    - `p_draw_p10`
+    - `p_draw_p90`
+    - `permits_2026_total`
+    - `average_harvest_age`
+  - No UI redesign, no expansion into unrelated field families.
+
+- Repairs made:
+  - `scripts/build-hunt-research-2026-contract.py`
+    - fixed `display_odds_pct` derivation so ladder `display_odds_pct` values are treated as already-percent display values (no erroneous x100 scaling).
+    - increased precision for `p_draw_mean`, `p_draw_p10`, `p_draw_p90` to 6 decimals to reduce false format-only drift.
+    - retained canonical `permits_2026_total` hierarchy (`DATABASE.csv` / DWR fallback) and canonical annual-age hierarchy for `average_harvest_age`.
+
+- Targeted reconciliation outputs created:
+  - `docs/hunt_research_six_field_cleanup.md`
+  - `processed_data/audits/hunt_research_six_field_cleanup.csv`
+  - `processed_data/audits/hunt_research_six_field_cleanup_summary.json`
+
+- Validation run:
+  - `python -m py_compile scripts/build-hunt-research-2026-contract.py scripts/hunt-research-six-field-cleanup.py`
+  - `python scripts/build-hunt-research-2026-contract.py`
+  - `python scripts/hunt-research-six-field-cleanup.py`
+  - `git diff --check`
+
+- Result:
+  - Strict legacy-style mismatch rows remain for formatting/hierarchy reasons, but targeted true-defect unresolved rows are `0`.
+  - Targeted six-field verification status: **FULLY VERIFIED**.
