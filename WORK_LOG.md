@@ -1,3 +1,54 @@
+## 2026-06-01T12:20:00-06:00 - Full Promotion of Two-Column Age Structure to Public Hunt-Table Export Set
+
+- Assigned action:
+  - Promote validated two-column age export structure from samples into the full public hunt-table workbook set:
+    - `Average Harvest Age`
+    - `Current Age (3-Yr Avg)`
+  - Preserve existing safeguards.
+  - Regenerate public-facing hunt-table outputs.
+
+- Implementation:
+  - Extended:
+    - `scripts/repair-two-column-public-age-exports-2026.py`
+  - Added full-promotion mode:
+    - `--promote-full`
+    - applies in-place updates to:
+      - `processed_data/hard_data_exports/hunt_tables/2026/CLEAN_XLXS_STAGED/*.xlsx`
+  - Added full-promotion audit artifacts:
+    - `processed_data/audits/average_harvest_age_two_column_full_promotion_audit.json`
+    - `processed_data/audits/average_harvest_age_two_column_full_promotion_audit.csv`
+  - Regenerated validated sample outputs from updated full set:
+    - `processed_data/hard_data_exports/hunt_tables/2026/SAMPLES_TWO_COLUMN_AGE/*.xlsx`
+
+- Full-promotion run result:
+  - Command:
+    - `python scripts/repair-two-column-public-age-exports-2026.py --promote-full`
+  - Summary:
+    - files scanned: `168`
+    - files updated: `165`
+    - hunt-table files with hunt rows: `165`
+    - columns added total: `169`
+    - files where old age header was replaced: `161`
+    - total rows filled with `Average Harvest Age`: `2030`
+    - total rows filled with `Current Age (3-Yr Avg)`: `716`
+  - Header coverage:
+    - hunt-header files: `165`
+    - files with `Average Harvest Age`: `165/165`
+    - files with `Current Age (3-Yr Avg)`: `165/165`
+    - old header string hits after promotion: `0`
+    - non-hunt workbooks unchanged by design: `3`
+
+- Safeguard validation:
+  - `python -m py_compile scripts/repair-two-column-public-age-exports-2026.py scripts/augment_hunt_tables_prior_year_harvest.py scripts/redraft-hunt-tables-2026-clean-display.py` -> PASS
+  - No zero values written:
+    - `Average Harvest Age`: `0` zero cells
+    - `Current Age (3-Yr Avg)`: `0` zero cells
+  - `Current Age (3-Yr Avg)` source guard:
+    - rows with current-age value but no canonical `DATABASE.csv` current-age value: `0`
+    - current-age mismatches against canonical `DATABASE.csv`: `0`
+  - `Age Objective` remains excluded by rule:
+    - two-column script sources are limited to approved annual-age families + canonical DWR current-age field.
+
 ## 2026-06-01T10:45:00-06:00 - Two-Column Public Age Repair (Average Harvest Age + Current Age 3-Yr Avg)
 
 - Assigned action:

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 import re
@@ -17,6 +18,8 @@ TABLE_EXPORT_DIR = ROOT / "processed_data" / "hard_data_exports" / "hunt_tables"
 SAMPLE_OUTPUT_DIR = ROOT / "processed_data" / "hard_data_exports" / "hunt_tables" / "2026" / "SAMPLES_TWO_COLUMN_AGE"
 
 AUDIT_CSV = ROOT / "processed_data" / "audits" / "average_harvest_age_two_column_audit.csv"
+FULL_PROMOTION_AUDIT_JSON = ROOT / "processed_data" / "audits" / "average_harvest_age_two_column_full_promotion_audit.json"
+FULL_PROMOTION_AUDIT_CSV = ROOT / "processed_data" / "audits" / "average_harvest_age_two_column_full_promotion_audit.csv"
 POLICY_MD = ROOT / "docs" / "average_harvest_age_two_column_policy.md"
 
 AVERAGE_HEADER = "Average Harvest Age"
@@ -221,18 +224,28 @@ def choose_sample_files() -> list[Path]:
     return files
 
 
-def rewrite_sample_exports(avg_lookup: dict[str, dict[str, Any]], current_lookup: dict[str, float]) -> list[dict[str, Any]]:
-    SAMPLE_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+def list_full_export_files() -> list[Path]:
+    return sorted([p for p in TABLE_EXPORT_DIR.glob("*.xlsx") if not p.name.startswith("~$")])
+
+
+def rewrite_workbooks(
+    sources: list[Path],
+    avg_lookup: dict[str, dict[str, Any]],
+    current_lookup: dict[str, float],
+    write_mode: str,
+) -> list[dict[str, Any]]:
+    if write_mode == "sample_copy":
+        SAMPLE_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     reports: list[dict[str, Any]] = []
-    for src in choose_sample_files():
-        dst = SAMPLE_OUTPUT_DIR / src.name
+    for src in sources:
+        dst = SAMPLE_OUTPUT_DIR / src.name if write_mode == "sample_copy" else src
         wb = load_workbook(src)
         ws = wb[wb.sheetnames[0]]
         header_row = find_header_row(ws)
         if header_row is None:
             wb.save(dst)
             wb.close()
-            reports.append({"file": dst.name, "status": "NO_HUNT_CODE_HEADER"})
+            reports.append({"file": src.name, "status": "NO_HUNT_CODE_HEADER"})
             continue
         index = header_map(ws, header_row)
         code_col = find_column(index, {"hunt code", "hunt_code", "hunt no", "hunt_no"})
@@ -241,17 +254,25 @@ def rewrite_sample_exports(avg_lookup: dict[str, dict[str, Any]], current_lookup
         if code_col is None:
             wb.save(dst)
             wb.close()
-            reports.append({"file": dst.name, "status": "NO_HUNT_CODE_COLUMN"})
+            reports.append({"file": src.name, "status": "NO_HUNT_CODE_COLUMN"})
             continue
+        columns_added = 0
+        old_header_replaced = 0
+        if age_col is not None:
+            old_header = clean(ws.cell(row=header_row, column=age_col).value).lower()
+            if old_header in {"average harvest age prior year", "average age harvested (previous hunting season)"}:
+                old_header_replaced = 1
         if age_col is None:
             age_col = ws.max_column + 1
             ws.cell(row=header_row, column=age_col).value = AVERAGE_HEADER
+            columns_added += 1
         else:
             ws.cell(row=header_row, column=age_col).value = AVERAGE_HEADER
         if current_col is None:
             ws.insert_cols(age_col + 1)
             current_col = age_col + 1
             ws.cell(row=header_row, column=current_col).value = CURRENT_AGE_HEADER
+            columns_added += 1
         else:
             ws.cell(row=header_row, column=current_col).value = CURRENT_AGE_HEADER
 
@@ -284,11 +305,14 @@ def rewrite_sample_exports(avg_lookup: dict[str, dict[str, Any]], current_lookup
         wb.close()
         reports.append(
             {
-                "file": dst.name,
+                "file": src.name,
                 "status": "UPDATED",
                 "rows_touched": rows_touched,
                 "average_harvest_age_filled": avg_filled,
                 "current_age_3yr_filled": current_filled,
+                "columns_added": columns_added,
+                "old_header_replaced": old_header_replaced,
+                "write_mode": write_mode,
             }
         )
     return reports
@@ -524,14 +548,104 @@ def write_outputs(
     POLICY_MD.write_text("\n".join(policy_lines) + "\n", encoding="utf-8")
 
 
+def write_full_promotion_audit(full_reports: list[dict[str, Any]]) -> dict[str, Any]:
+    updated = [r for r in full_reports if r.get("status") == "UPDATED"]
+    with_hunt_table_headers = [r for r in updated if int(r.get("rows_touched", 0)) > 0]
+    summary = {
+        "files_scanned": len(full_reports),
+        "files_updated": len(updated),
+        "files_with_hunt_rows": len(with_hunt_table_headers),
+        "columns_added_total": sum(int(r.get("columns_added", 0)) for r in updated),
+        "old_header_replaced_files": sum(int(r.get("old_header_replaced", 0)) for r in updated),
+        "average_harvest_age_filled_rows_total": sum(int(r.get("average_harvest_age_filled", 0)) for r in updated),
+        "current_age_3yr_filled_rows_total": sum(int(r.get("current_age_3yr_filled", 0)) for r in updated),
+    }
+    payload = {
+        "summary": summary,
+        "files": full_reports,
+    }
+    FULL_PROMOTION_AUDIT_JSON.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    FULL_PROMOTION_AUDIT_CSV.parent.mkdir(parents=True, exist_ok=True)
+    with FULL_PROMOTION_AUDIT_CSV.open("w", newline="", encoding="utf-8") as fh:
+        fieldnames = [
+            "file",
+            "status",
+            "rows_touched",
+            "average_harvest_age_filled",
+            "current_age_3yr_filled",
+            "columns_added",
+            "old_header_replaced",
+            "write_mode",
+        ]
+        writer = csv.DictWriter(fh, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in full_reports:
+            writer.writerow({k: row.get(k, "") for k in fieldnames})
+    return summary
+
+
+def audit_full_export_headers() -> dict[str, int]:
+    files = list_full_export_files()
+    counts: Counter[str] = Counter()
+    for path in files:
+        wb = load_workbook(path, read_only=True, data_only=True)
+        ws = wb[wb.sheetnames[0]]
+        header_row = find_header_row(ws)
+        if header_row is None:
+            counts["no_hunt_header_row"] += 1
+            wb.close()
+            continue
+        index = header_map(ws, header_row)
+        has_avg = find_column(index, {AVERAGE_HEADER, *AVG_AGE_HEADER_ALIASES}) is not None
+        has_current = find_column(index, {CURRENT_AGE_HEADER, *CURRENT_AGE_HEADER_ALIASES}) is not None
+        if has_avg:
+            counts["has_average_header"] += 1
+        else:
+            counts["missing_average_header"] += 1
+        if has_current:
+            counts["has_current_3yr_header"] += 1
+        else:
+            counts["missing_current_3yr_header"] += 1
+        wb.close()
+    counts["files_scanned"] = len(files)
+    return dict(counts)
+
+
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Repair two-column public age exports for 2026 hunt tables.")
+    parser.add_argument(
+        "--promote-full",
+        action="store_true",
+        help="Apply two-column age headers/values in-place to the full CLEAN_XLXS_STAGED workbook set.",
+    )
+    args = parser.parse_args()
+
     rows = load_research_rows()
     avg_lookup = build_average_age_lookup(rows)
     current_lookup = load_current_age_lookup()
-    sample_reports = rewrite_sample_exports(avg_lookup, current_lookup)
+    if args.promote_full:
+        full_reports = rewrite_workbooks(list_full_export_files(), avg_lookup, current_lookup, "in_place_full")
+        full_summary = write_full_promotion_audit(full_reports)
+    else:
+        full_reports = []
+        full_summary = {}
+    sample_reports = rewrite_workbooks(choose_sample_files(), avg_lookup, current_lookup, "sample_copy")
     audit_rows, summary = build_two_column_audit(rows, avg_lookup, current_lookup)
     write_outputs(audit_rows, summary, sample_reports)
-    print(json.dumps({"ok": True, "summary": summary, "sample_outputs": sample_reports}, indent=2))
+    header_summary = audit_full_export_headers()
+    print(
+        json.dumps(
+            {
+                "ok": True,
+                "summary": summary,
+                "sample_outputs": sample_reports,
+                "full_promotion_summary": full_summary,
+                "full_header_summary": header_summary,
+                "promote_full": bool(args.promote_full),
+            },
+            indent=2,
+        )
+    )
 
 
 if __name__ == "__main__":
