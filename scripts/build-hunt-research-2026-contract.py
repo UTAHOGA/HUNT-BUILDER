@@ -27,6 +27,7 @@ HARVEST_CANDIDATES = [
 ]
 AGE_PATH = ROOT / "data_model" / "harvest_quality" / "harvest_average_age_global_merge_database.csv"
 MANAGEMENT_PATH = ROOT / "processed_data" / "management_context" / "hunt_management_objective_context.json"
+DWR_HANUMBER_PATH = ROOT / "processed_data" / "dwr_huntplanner_hanumber_2026.csv"
 
 
 def clean(value):
@@ -140,6 +141,7 @@ def build_draw_history_lookup(rows):
                 "odds_2025_actual": pct_text(odds),
                 "source_file": clean(row.get("source_file")),
                 "source_page": clean(row.get("page_number")),
+                "availability_status": first_text(row.get("availability_status"), row.get("allocation_status"), row.get("status"), row.get("draw_outlook")),
             }
         res_key = (code, residency)
         current_res = by_code_res.get(res_key)
@@ -149,8 +151,21 @@ def build_draw_history_lookup(rows):
                 "odds_2025_actual": pct_text(odds),
                 "source_file": clean(row.get("source_file")),
                 "source_page": clean(row.get("page_number")),
+                "availability_status": first_text(row.get("availability_status"), row.get("allocation_status"), row.get("status"), row.get("draw_outlook")),
             }
     return by_key, by_code_res
+
+
+def build_dwr_lookup(rows):
+    lookup = {}
+    for row in rows:
+        code = upper(row.get("hunt_code"))
+        if not code:
+            continue
+        lookup[code] = {
+            "current_age_3yr_average": number_text(row.get("current_age_3yr_average")),
+        }
+    return lookup
 
 
 def build_harvest_lookup(rows):
@@ -211,11 +226,13 @@ def main():
     harvest_rows = read_csv(harvest_path)
     age_rows = read_csv(AGE_PATH)
     management_rows = read_json(MANAGEMENT_PATH)
+    dwr_rows = read_csv(DWR_HANUMBER_PATH)
 
     db_map = {upper(r.get("hunt_code")): r for r in db_rows if upper(r.get("hunt_code"))}
     master_map = {upper(r.get("hunt_code")): r for r in master_rows if upper(r.get("hunt_code"))}
     management_map = {upper(r.get("hunt_code")): r for r in management_rows if upper(r.get("hunt_code"))}
     draw_by_key, draw_by_code_res = build_draw_history_lookup(draw_rows)
+    dwr_map = build_dwr_lookup(dwr_rows)
     harvest_map = build_harvest_lookup(harvest_rows)
     age_map = build_age_lookup(age_rows)
 
@@ -233,6 +250,7 @@ def main():
         "permit_direction_watch", "point_pool_zone", "points", "preference_model_note",
         "projected_2026_max_cutoff_point", "push", "quota_source_status", "random_permits_2026", "reason",
         "residency", "some", "total_permits", "trend", "year", "hunt_code", "hunt_name", "species", "weapon",
+        "availability_status", "current_age_3yr_average",
     ]
 
     rows = []
@@ -246,6 +264,7 @@ def main():
         db = db_map.get(code, {})
         master = master_map.get(code, {})
         mgmt = management_map.get(code, {})
+        dwr = dwr_map.get(code, {})
         residency = clean(row.get("residency"))
         points = clean(row.get("points"))
 
@@ -292,6 +311,13 @@ def main():
             "draw_outlook": first_text(row.get("draw_outlook"), row.get("status")),
             "trend": first_text(row.get("trend")),
             "status": first_text(row.get("status"), row.get("data_status")),
+            "availability_status": first_text(
+                row.get("availability_status"),
+                row.get("allocation_status"),
+                hist.get("availability_status"),
+                row.get("status"),
+                row.get("draw_outlook"),
+            ),
             "algorithm_status": first_text(row.get("algorithm_status"), row.get("draw_model_class"), row.get("probability_model"), row.get("draw_system_type")),
             "eligible_applicants": number_text(first_text(row.get("eligible_applicants"), row.get("forecast_applicants_at_level"), row.get("applicants_at_level"))),
             "applicants": number_text(first_text(row.get("forecast_applicants_at_level"), row.get("applicants_at_level"), row.get("applicants"))),
@@ -339,6 +365,11 @@ def main():
             "objective_unit": first_text(mgmt.get("objective_unit")),
             "management_direction": first_text(mgmt.get("management_direction")),
             "average_harvest_age": first_text(age.get("average_harvest_age"), harvest.get("average_age"), db.get("average_harvest_age")),
+            "current_age_3yr_average": first_text(
+                number_text(row.get("current_age_3yr_average")),
+                number_text(db.get("current_age_3yr_average")),
+                dwr.get("current_age_3yr_average"),
+            ),
             "harvest_success_pct": first_text(harvest.get("harvest_success_pct")),
             "average_days_hunted": first_text(harvest.get("average_days_hunted")),
             "source_file": first_text(hist.get("source_file"), harvest.get("harvest_source_file"), age.get("age_source_file")),
@@ -352,7 +383,7 @@ def main():
             "generated_at": generated_at,
             "data_as_of": data_as_of,
             "runtime_contract_version": "hunt_research_2026.v2",
-            "dwr_result_display": first_text(hist.get("odds_2025_actual")),
+            "dwr_result_display": first_text(row.get("dwr_result_display"), hist.get("odds_2025_actual")),
             "display_2025_draw_results": first_text(hist.get("odds_2025_actual")),
             "display_2026_max_point_pool": number_text(row.get("max_point_permits_2026")),
             "display_2026_random_draw": number_text(row.get("random_permits_2026")),
@@ -377,6 +408,7 @@ def main():
         db = db_map.get(code, {})
         master = master_map.get(code, {})
         mgmt = management_map.get(code, {})
+        dwr = dwr_map.get(code, {})
         harvest = harvest_map.get(code, {})
         age = age_map.get(code, {})
         rows.append({
@@ -399,6 +431,7 @@ def main():
             "draw_outlook": "NO_LADDER_ROWS",
             "trend": "",
             "status": "NO_LADDER_ROWS",
+            "availability_status": "NO_LADDER_ROWS",
             "algorithm_status": "",
             "eligible_applicants": "",
             "applicants": "",
@@ -443,6 +476,10 @@ def main():
             "objective_unit": first_text(mgmt.get("objective_unit")),
             "management_direction": first_text(mgmt.get("management_direction")),
             "average_harvest_age": first_text(age.get("average_harvest_age"), harvest.get("average_age"), db.get("average_harvest_age")),
+            "current_age_3yr_average": first_text(
+                number_text(db.get("current_age_3yr_average")),
+                dwr.get("current_age_3yr_average"),
+            ),
             "harvest_success_pct": first_text(harvest.get("harvest_success_pct")),
             "average_days_hunted": first_text(harvest.get("average_days_hunted")),
             "source_file": "",

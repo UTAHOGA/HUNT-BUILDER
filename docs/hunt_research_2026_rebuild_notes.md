@@ -1,6 +1,6 @@
 # hunt_research_2026 Rebuild Notes
 
-Generated: 2026-06-01T09:29:44.994597
+Generated: 2026-06-01T11:30:13.295533
 
 ## Contract rebuild goal
 - Rebuilt `processed_data/hunt_research_2026.json` from canonical sources with full 2026 hunt-code coverage and runtime-aligned field set.
@@ -22,7 +22,7 @@ Generated: 2026-06-01T09:29:44.994597
 - Missing runtime fields with zero population: 4
 
 ## Runtime field status
-- Expected runtime field set size: 63
+- Expected runtime field set size: 65
 - Fields with no populated values: length, p_bonus_pool_pct, push, some
 
 ## Notes

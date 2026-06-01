@@ -1,29 +1,8 @@
 field_name,expected_in_contract,present_in_contract,used_by_runtime_from_contract,still_used_from_legacy_feeder,publication_status,notes
-hunt_name,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-species,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-weapon,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-hunt_type,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-residency,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-draw_pool,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-points,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-draw_outlook,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-status,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-trend,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-display_odds_pct,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-p_draw_mean,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-p_draw_p10,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-p_draw_p90,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-point_pool_zone,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-guaranteed_at_2026,YES,YES,NO,YES,REVIEW_REQUIRED,Field present but runtime usage not detected by static scan.
-permits_2026_res,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-permits_2026_nr,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-permits_2026_total,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-harvest_success_pct,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-average_days_hunted,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-average_harvest_age,YES,YES,YES,YES,PRIMARY_FROM_CONTRACT_WITH_LEGACY_FALLBACK,Runtime now contract-primary; legacy feeder path retained as fallback.
-current_age_3yr_average,YES,NO,YES,YES,MISSING_IN_CONTRACT,Expected field absent from contract schema.
-management_objective_type,YES,YES,NO,YES,REVIEW_REQUIRED,Field present but runtime usage not detected by static scan.
-management_objective_range,YES,YES,NO,YES,REVIEW_REQUIRED,Field present but runtime usage not detected by static scan.
-management_direction,YES,YES,NO,YES,REVIEW_REQUIRED,Field present but runtime usage not detected by static scan.
-availability_status,YES,NO,YES,YES,MISSING_IN_CONTRACT,Expected field absent from contract schema.
-dwr_result_display,YES,YES,NO,YES,REVIEW_REQUIRED,Field present but runtime usage not detected by static scan.
+availability_status,YES,YES,YES,YES,PUBLISHED,
+current_age_3yr_average,YES,YES,YES,YES,PUBLISHED,
+dwr_result_display,YES,YES,YES,YES,PUBLISHED,
+guaranteed_at_2026,YES,YES,YES,YES,PUBLISHED,
+management_direction,YES,YES,YES,NO,PUBLISHED,
+management_objective_range,YES,YES,YES,NO,PUBLISHED,
+management_objective_type,YES,YES,YES,NO,PUBLISHED,

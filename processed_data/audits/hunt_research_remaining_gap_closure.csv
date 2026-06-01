@@ -1,0 +1,8 @@
+field_name,should_exist_in_contract,present_in_contract,used_by_runtime_from_contract,legacy_fallback_still_present,field_status,contract_nonblank_rows,contract_nonblank_hunt_codes,match_count,improved_count,missing_in_target_count,mismatch_count,not_present_in_feeder_count,notes
+availability_status,YES,YES,YES,YES,PUBLISHED,91712,1449,59,0,0,0,1390,
+current_age_3yr_average,YES,YES,YES,YES,PUBLISHED,14520,220,219,0,0,0,1230,
+dwr_result_display,YES,YES,YES,YES,PUBLISHED,44555,1075,184,831,0,0,434,
+guaranteed_at_2026,YES,YES,YES,YES,PUBLISHED,44068,792,792,0,0,0,657,
+management_direction,YES,YES,YES,NO,PUBLISHED,40848,632,632,0,0,0,817,
+management_objective_range,YES,YES,YES,NO,PUBLISHED,40848,632,0,0,0,0,1449,
+management_objective_type,YES,YES,YES,NO,PUBLISHED,40848,632,632,0,0,0,817,

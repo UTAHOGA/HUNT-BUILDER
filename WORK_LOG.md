@@ -1,3 +1,57 @@
+## 2026-06-01T11:40:00-06:00 - Hunt Research Remaining Gap Closure (Contract Verification)
+
+- Assigned action:
+  - Close remaining Hunt Research contract verification blockers:
+    - `availability_status`
+    - `current_age_3yr_average`
+    - `dwr_result_display`
+    - `guaranteed_at_2026`
+    - `management_direction`
+    - `management_objective_range`
+    - `management_objective_type`
+  - Resolve `hunt_master_enriched.csv` LFS verification blocker with a runtime-readable canonical substitute.
+
+- Contract rebuild update:
+  - Updated:
+    - `scripts/build-hunt-research-2026-contract.py`
+  - Added contract fields:
+    - `availability_status`
+    - `current_age_3yr_average`
+  - Source order used:
+    - `availability_status`: ladder/draw status families (`availability_status`, `allocation_status`, `status`, `draw_outlook`)
+    - `current_age_3yr_average`: ladder -> `DATABASE.csv` -> DWR HaNumber pull (`processed_data/dwr_huntplanner_hanumber_2026.csv`)
+  - Regenerated:
+    - `processed_data/hunt_research_2026.json`
+    - `processed_data/audits/hunt_research_2026_rebuild_coverage.csv`
+    - `docs/hunt_research_2026_rebuild_notes.md`
+
+- Gap-closure verification run:
+  - Added:
+    - `scripts/close-hunt-research-remaining-gaps.py`
+  - Outputs:
+    - `docs/hunt_research_remaining_gap_closure.md`
+    - `processed_data/audits/hunt_research_remaining_gap_closure.csv`
+    - `processed_data/audits/hunt_research_runtime_publication_check.csv` (updated)
+    - `processed_data/audits/hunt_research_remaining_gap_closure_detail.csv` (row-level trace)
+  - Master feeder blocker resolution:
+    - `processed_data/hunt_master_enriched.csv` detected as local LFS pointer
+    - substitute verification source used:
+      - `pipeline/RAW/hunt_unit_database/2026/csv/hunt_master_canonical_2026_built.csv`
+    - management-objective verification moved to canonical:
+      - `processed_data/management_context/hunt_management_objective_context.json`
+
+- Validation:
+  - `python -m py_compile scripts/build-hunt-research-2026-contract.py` -> PASS
+  - `python scripts/build-hunt-research-2026-contract.py` -> PASS
+  - `python -m py_compile scripts/close-hunt-research-remaining-gaps.py` -> PASS
+  - `python scripts/close-hunt-research-remaining-gaps.py` -> PASS
+  - Contract coverage checks:
+    - unique hunt codes: `1449` in contract vs `1449` in `DATABASE.csv`
+    - unresolved fields present in contract: `7/7`
+    - unresolved fields runtime-published from contract: `7/7`
+    - unresolved-field mismatches: `0`
+    - unresolved-field missing-in-target: `0`
+
 ## 2026-06-01T13:05:00-06:00 - Comprehensive DWR Hunt Planner HaNumber Pull (2026 Universe)
 
 - Assigned action:
