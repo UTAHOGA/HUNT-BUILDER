@@ -10298,3 +10298,54 @@ o_table=0).
   - `node --check assets/js/research-outlook-dashboard.js`
   - contract presence check for key fields in `processed_data/hunt_research_2026.json`
   - `git diff --check`
+
+## 2026-06-01T12:45:00-06:00 - LFS Runtime Canonicalization Audit + R2 Redirect Verification
+
+- Scope:
+  - Audited all Git LFS tracked files against live website runtime/public dependency usage.
+  - Classified files into runtime/public/reference/legacy categories.
+  - Promoted live-required LFS runtime assets to Cloudflare R2 (remote bucket) where real local content exists.
+  - Verified canonical Cloudflare URLs and live page reachability.
+
+- Key outputs:
+  - `docs/lfs_runtime_canonicalization_report.md`
+  - `processed_data/audits/lfs_runtime_canonicalization_audit.csv`
+  - updated `public/data/runtime-manifest.json`
+  - updated `data/runtime-manifest.json`
+
+- Remote uploads completed (R2 bucket `uoga-data`):
+  - `processed_data/draw_reality_engine.csv`
+  - `processed_data/statewide_composite_boundaries_2026.geojson`
+  - plus additional active runtime files published/verified for canonical URL health:
+    - `processed_data/display-boundary-index-2026.json`
+    - `processed_data/composite_hunt_unit_mapping_2026.geojson`
+    - `processed_data/hunt_research_2026.json`
+    - `processed_data/draw_reality_engine_v2.csv`
+    - `processed_data/point_ladder_view.csv` (decompressed payload upload to support browser CSV reads)
+    - `processed_data/hunt_unit_reference_linked.csv`
+    - `processed_data/public_contracts/outfitters-public.json`
+
+- Classification result summary:
+  - LFS files audited: `20`
+  - `LIVE_RUNTIME_REQUIRED`: `2`
+  - `PUBLIC_DOWNLOAD_REQUIRED`: `0`
+  - `INTERNAL_REFERENCE_ONLY`: `8`
+  - `GENERATED_REFERENCE_ONLY`: `4`
+  - `OBSOLETE_OR_LEGACY`: `4`
+  - `REVIEW_REQUIRED`: `2`
+
+- REVIEW_REQUIRED runtime files:
+  - `processed_data/draw_reality_engine_predictive_v2.csv`
+  - `processed_data/hunt_master_enriched.csv`
+  - both are local LFS pointer payloads and require promotion from verified non-pointer source copies.
+
+- Validation run:
+  - `git lfs ls-files`
+  - local pointer-vs-real content checks for LFS runtime candidates
+  - Cloudflare canonical URL `200` checks for live-required R2 assets
+  - live page `200` checks:
+    - `https://huntbuilder.uoga.org/`
+    - `https://huntbuilder.uoga.org/research.html`
+    - `https://huntbuilder.uoga.org/verify.html`
+    - `https://huntbuilder.uoga.org/hard-copy.html`
+  - `git diff --check`

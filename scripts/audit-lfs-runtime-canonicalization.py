@@ -109,9 +109,11 @@ def load_hard_copy_public_paths():
     return out
 
 
-def classify_website_universe(path_rel, manifest_asset, live_runtime_used, public_download_used):
+def classify_website_universe(path_rel, manifest_asset, live_runtime_used, public_download_used, local_real_file_present):
     path_lower = path_rel.lower()
     if live_runtime_used:
+        if not local_real_file_present:
+            return "REVIEW_REQUIRED", "CLOUDFLARE_R2_PUBLIC", "REVIEW_REQUIRED"
         if manifest_asset:
             canonical_url = str(manifest_asset.get("canonical_url") or "").strip()
             if canonical_url.startswith("http"):
@@ -164,11 +166,10 @@ def main():
 
         public_download_used = rel in hard_copy_paths
 
-        universe_class, canonical_source, action = classify_website_universe(
-            rel, manifest_asset, live_runtime_used, public_download_used
-        )
-
         real_file_present = full_path.exists() and full_path.is_file() and not is_lfs_pointer(full_path)
+        universe_class, canonical_source, action = classify_website_universe(
+            rel, manifest_asset, live_runtime_used, public_download_used, real_file_present
+        )
         notes = []
         notes.append(f"lfs_status={row['status']}")
         if manifest_asset:
@@ -183,6 +184,7 @@ def main():
         out = {
             "path": rel,
             "lfs_tracked": "YES",
+            "classification": universe_class,
             "local_real_file_present": "YES" if real_file_present else "NO",
             "live_runtime_used": "YES" if live_runtime_used else "NO",
             "public_download_used": "YES" if public_download_used else "NO",
@@ -208,6 +210,7 @@ def main():
             fieldnames=[
                 "path",
                 "lfs_tracked",
+                "classification",
                 "local_real_file_present",
                 "live_runtime_used",
                 "public_download_used",
