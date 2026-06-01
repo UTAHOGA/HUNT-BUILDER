@@ -8469,3 +8469,35 @@ o_table=0).
   - Hard-copy: functional PASS (folders + cards render); still logs optional fallback-path 404s for non-required manifest fallback files.
   - Research: PASS (query + persisted selected-hunt context correctly resolved).
   - MASTER report contract: PASS (DATABASE truth explicitly declared; MASTER path identified as recipient/export target).
+
+## 2026-06-01T08:58:00-06:00 - Builder Hunt-Unit Mapping Online Fix (LFS Pointer Runtime Guard)
+
+- Issue observed:
+  - Selected hunts were not drawing boundaries online.
+  - Live boundary endpoints under `processed_data/` were serving Git LFS pointer payloads (about 129-133 bytes), not GeoJSON.
+
+- Root-cause verification:
+  - Live checks confirmed:
+    - `https://huntbuilder.uoga.org/processed_data/statewide_composite_boundaries_2026.geojson` returned `200` with `size=133`.
+    - `https://huntbuilder.uoga.org/processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson` returned `200` with `size=133`.
+    - `https://huntbuilder.uoga.org/processed_data/boundaries/DB1001.geojson` returned LFS pointer text (`version https://git-lfs.github.com/spec/v1`).
+  - Live non-LFS boundary assets confirmed valid:
+    - `https://huntbuilder.uoga.org/data/hunt_boundaries.geojson` returned `200` with full payload (`~4.28 MB`).
+    - `https://huntbuilder.uoga.org/data/hunt-boundaries-lite.geojson` returned `200` with full payload (`~4.28 MB`).
+
+- Code changes applied:
+  - `config.js`
+    - Updated `HUNT_BOUNDARY_SOURCES` ordering to prefer runtime-safe `./data/hunt_boundaries.geojson` and `./data/hunt-boundaries-lite.geojson` before `processed_data` composite files.
+  - `app.js`
+    - Added fallback feature-collection resolver `getFallbackFeatureCollectionForResolvedBoundary(...)` that reconstructs map features from loaded boundary index by boundary IDs.
+    - Updated `applySelectedHuntBoundaryResolution(...)`:
+      - after direct per-hunt geojson load failure, fallback now draws from boundary-index features.
+    - Updated `getIndependentBoundaryFeatureCollection(...)`:
+      - fallback now resolves features from boundary index before attempting direct per-hunt path fetch.
+    - Updated `getResolvedBoundaryIdsForHunt(...)`:
+      - removed short-circuit that returned no IDs whenever `boundary_geojson_path` existed, allowing matcher/highlight logic to use manifest boundary IDs even when per-hunt files are unavailable online.
+
+- Validation run:
+  - `node -e "new Function(fs.readFileSync('app.js','utf8')); new Function(fs.readFileSync('config.js','utf8'))"` -> `syntax-ok`
+  - `npm run build` -> PASS
+  - Build emitted expected baseline warnings for oversized optional files in `pages-dist`; no build break from map fix.

@@ -92,6 +92,10 @@ window.UOGA_CONFIG = (() => {
     ============================================================================
   */
   const HUNT_BOUNDARY_SOURCES = [
+    // Live runtime-safe sources first. These files are served as plain GeoJSON
+    // in production, while some processed_data variants may be LFS pointers.
+    `./data/hunt_boundaries.geojson?v=${HUNT_DATA_VERSION}`,
+    `./data/hunt-boundaries-lite.geojson?v=${HUNT_DATA_VERSION}`,
     `./processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson?v=${HUNT_DATA_VERSION}`,
     `./processed_data/statewide_composite_boundaries_2026.geojson?v=${HUNT_DATA_VERSION}`,
   ].filter(Boolean);

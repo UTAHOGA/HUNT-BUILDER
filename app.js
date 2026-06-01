@@ -563,10 +563,6 @@ function getCompositeMemberBoundaryIds(boundaryId) {
 function getResolvedBoundaryIdsForHunt(hunt) {
   const huntCode = normalizeHuntCodeFromResolver(getHuntCode(hunt));
   const manifestRow = huntCode ? boundaryManifestByHuntCode.get(huntCode) : null;
-  const manifestGeojsonPath = safe(firstNonEmpty(
-    manifestRow?.boundary_geojson_path,
-    manifestRow?.boundaryGeojsonPath,
-  )).trim();
 
   const resolvedRaw = firstNonEmpty(
     hunt?.resolvedBoundaryIds,
@@ -578,9 +574,6 @@ function getResolvedBoundaryIdsForHunt(hunt) {
     .map(id => safe(id).trim())
     .filter(Boolean);
   if (resolved.length) return [...new Set(resolved)];
-  // Direct per-hunt GeoJSON is the selected-hunt render source. Do not use the
-  // display boundary_id as a legacy DWR feature ID when a direct file exists.
-  if (manifestGeojsonPath) return [];
   const manifestBoundaryId = safe(normalizeBoundaryIdFromResolver(firstNonEmpty(
     manifestRow?.dwr_boundary_id,
     manifestRow?.boundary_id,
@@ -845,6 +838,11 @@ async function applySelectedHuntBoundaryResolution(hunt) {
       console.warn(`Direct boundary GeoJSON load failed for ${safe(getHuntCode(hunt))}: ${directPath}`, error);
     }
   }
+  const fallbackCollection = getFallbackFeatureCollectionForResolvedBoundary(hunt, resolved);
+  if (fallbackCollection?.features?.length) {
+    drawSelectedBoundaryFallbackFeatureCollection(fallbackCollection);
+    return;
+  }
   if (resolved?.feature_collection?.features?.length) {
     drawSelectedBoundaryFallbackFeatureCollection(resolved.feature_collection);
   }
@@ -914,9 +912,59 @@ function buildIndependentBoundaryTargets(hunts) {
   return Array.from(targetsByDisplayId.values());
 }
 
+function getFallbackFeatureCollectionForResolvedBoundary(hunt, resolved) {
+  const featureIndex = getBoundaryFeatureIndex();
+  const byBoundaryId = featureIndex?.byBoundaryId instanceof Map ? featureIndex.byBoundaryId : null;
+  if (!byBoundaryId?.size) return null;
+
+  const candidateIds = [];
+  const addCandidates = (value) => {
+    parseBoundaryIdCandidates(value).forEach((id) => {
+      const normalized = safe(id).trim();
+      if (normalized) candidateIds.push(normalized);
+    });
+  };
+
+  addCandidates(resolved?.dwr_member_boundary_ids);
+  addCandidates(resolved?.member_boundary_ids);
+  addCandidates(resolved?.dwr_boundary_id);
+  addCandidates(resolved?.boundary_id);
+  addCandidates(getBoundaryId(hunt));
+  addCandidates(hunt?.boundary_id);
+  addCandidates(hunt?.boundaryId);
+  addCandidates(hunt?.BoundaryID);
+
+  const uniqueIds = [...new Set(candidateIds)];
+  if (!uniqueIds.length) return null;
+
+  const features = [];
+  const seen = new Set();
+  uniqueIds.forEach((id) => {
+    const candidateFeatures = byBoundaryId.get(id);
+    if (!Array.isArray(candidateFeatures) || !candidateFeatures.length) return;
+    candidateFeatures.forEach((feature) => {
+      const props = feature?.properties || {};
+      const featureId = safe(firstNonEmpty(props.BoundaryID, props.Boundary_Id, props.BOUNDARYID, props.boundary_id)).trim();
+      const dedupeKey = `${id}|${featureId}|${feature?.geometry?.type || ''}`;
+      if (seen.has(dedupeKey)) return;
+      seen.add(dedupeKey);
+      features.push(feature);
+    });
+  });
+
+  return features.length ? { type: 'FeatureCollection', features } : null;
+}
+
 async function getIndependentBoundaryFeatureCollection(target) {
   if (!target) return null;
   if (target.featureCollection?.features?.length) return target.featureCollection;
+  if (Array.isArray(target.hunts) && target.hunts.length) {
+    for (const hunt of target.hunts) {
+      const resolved = resolveBoundaryForHuntRuntime(hunt);
+      const fallbackCollection = getFallbackFeatureCollectionForResolvedBoundary(hunt, resolved);
+      if (fallbackCollection?.features?.length) return fallbackCollection;
+    }
+  }
   const geojsonPath = safe(target.geojsonPath).trim();
   if (!geojsonPath) return null;
   if (independentBoundaryGeoJsonCache.has(geojsonPath)) {
