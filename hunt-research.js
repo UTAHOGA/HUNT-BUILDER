@@ -241,9 +241,24 @@
     STATUS_ONLY: 'STATUS_ONLY',
   };
 
+  function normalizeHistoricalOddsDisplay(value) {
+    const text = String(value || '').trim();
+    if (!text) return '';
+    if (/[0-9]\s*in\s*[0-9]/i.test(text)) {
+      return text.replace(/~/g, DOCUMENTED_DRAW_RESULT_PREFIX);
+    }
+
+    const pct = num(text);
+    if (pct === null || pct <= 0) return '';
+    return formatOddsAsOneInOrPercent(pct).replace(/~/g, DOCUMENTED_DRAW_RESULT_PREFIX);
+  }
+
   function formatHistoricalDrawResult(row) {
-    const display = String(row?.display_2025_draw_results || row?.dwr_result_display || '').trim();
-    if (display) return display.replace(/~/g, DOCUMENTED_DRAW_RESULT_PREFIX);
+    const dwrDisplay = normalizeHistoricalOddsDisplay(row?.dwr_result_display);
+    if (dwrDisplay) return dwrDisplay;
+
+    const display = normalizeHistoricalOddsDisplay(row?.display_2025_draw_results);
+    if (display) return display;
 
     const totalPermits = num(row?.total_permits);
     if (totalPermits === null || totalPermits <= 0) return '';

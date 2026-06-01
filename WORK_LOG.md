@@ -1,3 +1,27 @@
+## 2026-06-01T13:05:00-06:00 - Hunt Research Ladder Odds Publish Fix (2025 Draw Results Precedence)
+
+- Assigned action:
+  - Fix ladder odds publishing where the 2025 draw-result column can render incorrect/empty values from weak field precedence.
+
+- Root cause found:
+  - In `hunt-research.js`, `formatHistoricalDrawResult` prioritized `display_2025_draw_results` before `dwr_result_display`.
+  - For active rows (example family: `EB3025`), `display_2025_draw_results` can be `0` while `dwr_result_display` contains the correct historical odds string (for example `~1 in 2.0 or 50.0%`).
+  - This caused ladder rows to show `0`/blank-style output rather than the documented 2025 draw result odds.
+
+- Implementation:
+  - Updated `hunt-research.js`:
+    - Added `normalizeHistoricalOddsDisplay(...)` to normalize historical values safely.
+    - `formatHistoricalDrawResult(...)` now uses:
+      1. `dwr_result_display` (preferred, when valid),
+      2. then `display_2025_draw_results` (normalized),
+      3. then existing applicants/permits computed fallback.
+    - Numeric historical percentages now normalize to `=1 in X or Y%` display.
+    - Zero/blank historical placeholders are ignored instead of being published as odds.
+
+- Validation:
+  - `node --check hunt-research.js` -> PASS
+  - `git diff --check` -> PASS
+
 ## 2026-06-01T12:00:00-06:00 - Hunt Research Full Final Verification Rerun (All Mapped Fields)
 
 - Assigned action:
