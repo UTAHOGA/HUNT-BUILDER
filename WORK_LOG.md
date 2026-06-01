@@ -1,3 +1,34 @@
+## 2026-06-01T02:03:53-06:00 - Research Page Runtime Render Speed Pass (No-Store Removal + Faster Source Order + Dashboard Parallelism)
+
+- Assigned action:
+  - Improve Research page render speed without changing prediction math or UI layout.
+
+- Changes applied:
+  - `config.js`
+    - Updated observed engine source order to prefer smaller valid runtime engine first:
+      - added `draw_reality_engine.csv` (Cloudflare/local) ahead of `draw_reality_engine_v2.csv`.
+      - retained v2 as fallback.
+  - `hunt-research.js`
+    - Removed forced no-cache fetch for research datasets (`cache: no-store`).
+    - Removed duplicate `masterRows` indexing pass in `indexData` to avoid redundant per-load CPU work.
+  - `assets/js/research-outlook-dashboard.js`
+    - Removed forced no-cache fetch for dashboard feeds.
+    - Increased fetch timeout from `2200ms` to `6000ms` to reduce unnecessary fallback churn.
+    - Reordered outlook contract lookup to try local repo-served contract first.
+    - Parallelized management + outlook supplemental loading with `Promise.allSettled`.
+
+- Validation:
+  - `npm run build` PASS.
+  - Code scan confirms no remaining `no-store` usage in:
+    - `hunt-research.js`
+    - `assets/js/research-outlook-dashboard.js`
+  - Data compatibility check:
+    - `draw_reality_engine.csv` header contains required core research keys (`hunt_code`, `year`, `residency`, `points`, `draw_pool`, permits/allotment fields).
+
+- Notes:
+  - Largest first-load cost is still full browser parse/index of the engine CSV.
+  - This pass improves repeat-load behavior and reduces first-hit overhead, but a next pass should move to a pre-indexed per-hunt contract to remove full-file client parse cost.
+
 ## 2026-06-01T01:24:00-06:00 - Focused Runtime-Contract Cleanup Pass (Fallback Prune + Composite Source Fix + Alternate Domain Retirement)
 
 - Assigned action:

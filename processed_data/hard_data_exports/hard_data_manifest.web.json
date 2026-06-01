@@ -9,7 +9,7 @@
     "local_href": "./processed_data/hard_data_exports/library/library_page_hunts.csv",
     "cloudflare_href": "https://json.uoga.workers.dev/processed_data/hard_data_exports/library/library_page_hunts.csv",
     "delivery": "pages-local",
-    "size_mb": 0.25,
+    "size_mb": 0.6,
     "source": "processed_data",
     "scope": "runtime"
   },
@@ -23,7 +23,7 @@
     "local_href": "./processed_data/hard_data_exports/library/library_page_data.json",
     "cloudflare_href": "https://json.uoga.workers.dev/processed_data/hard_data_exports/library/library_page_data.json",
     "delivery": "pages-local",
-    "size_mb": 1.01,
+    "size_mb": 1.36,
     "source": "processed_data",
     "scope": "runtime"
   },

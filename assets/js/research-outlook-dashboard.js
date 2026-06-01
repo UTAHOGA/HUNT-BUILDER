@@ -225,9 +225,9 @@
 
   async function fetchText(url) {
     const controller = new AbortController();
-    const timer = window.setTimeout(() => controller.abort(), 2200);
+    const timer = window.setTimeout(() => controller.abort(), 6000);
     try {
-      const response = await fetch(url, { cache: "no-store", signal: controller.signal });
+      const response = await fetch(url, { signal: controller.signal });
       if (!response.ok) throw new Error(`Request failed for ${url}`);
       const text = await response.text();
       if (text.startsWith("version https://git-lfs.github.com/spec/v1")) {
@@ -266,9 +266,9 @@
     const version = window.UOGA_CONFIG?.HUNT_RESEARCH_DATA_VERSION || "research-outlook-dashboard-2";
     const cloudflare = "https://json.uoga.workers.dev";
     return [
+      `./processed_data/public_contracts/hunt_application_outlook.json?v=${version}`,
       `${cloudflare}/processed_data/public_contracts/hunt_application_outlook.json?v=${version}`,
       `${cloudflare}/public_contracts/hunt_application_outlook.json?v=${version}`,
-      `./processed_data/public_contracts/hunt_application_outlook.json?v=${version}`,
       `${cloudflare}/processed_data/research_page/hunt_application_outlook.json?v=${version}`,
       `${cloudflare}/research_page/hunt_application_outlook.json?v=${version}`,
       `./processed_data/research_page/hunt_application_outlook.json?v=${version}`,
@@ -280,24 +280,27 @@
     if (state.loadPromise) return state.loadPromise;
     state.loading = true;
     state.loadPromise = (async () => {
-      try {
-        const outlook = await loadFirst(getOutlookSources());
-        state.rows.outlook = JSON.parse(outlook.text);
-        state.sources.outlook = outlook.source;
-      } catch (error) {
+      const [outlookResult, managementResult] = await Promise.allSettled([
+        loadFirst(getOutlookSources()),
+        loadFirst(getManagementSources()),
+      ]);
+
+      if (outlookResult.status === "fulfilled") {
+        state.rows.outlook = JSON.parse(outlookResult.value.text);
+        state.sources.outlook = outlookResult.value.source;
+      } else {
         state.rows.outlook = [];
         state.sources.outlook = "";
-        console.info("No Hunt Application Outlook contract loaded for dashboard.", error);
+        console.info("No Hunt Application Outlook contract loaded for dashboard.", outlookResult.reason);
       }
 
-      try {
-        const management = await loadFirst(getManagementSources());
-        state.rows.management = JSON.parse(management.text);
-        state.sources.management = management.source;
-      } catch (error) {
+      if (managementResult.status === "fulfilled") {
+        state.rows.management = JSON.parse(managementResult.value.text);
+        state.sources.management = managementResult.value.source;
+      } else {
         state.rows.management = [];
         state.sources.management = "";
-        console.info("No management objective context loaded for dashboard.", error);
+        console.info("No management objective context loaded for dashboard.", managementResult.reason);
       }
 
       state.loaded = true;

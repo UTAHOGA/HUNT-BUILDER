@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-06-01T06:34:35.108Z",
+  "generated_at": "2026-06-01T08:03:40.770Z",
   "input_resolution": {
-    "predictive": "data_model/harvest_quality/draw_reality_engine_predictive_with_harvest_features.csv",
-    "oddsHistory": "data_model/runtime_drafts/draw_reality_engine_v2.csv",
+    "predictive": "processed_data/draw_reality_engine_predictive_v2.csv",
+    "oddsHistory": "processed_data/draw_reality_engine_v2.csv",
     "outlook": "processed_data/research_page/hunt_application_outlook.json",
     "outfittersPublic": "data/outfitters-public.json",
     "huntUnitsLite": "data/hunt_boundaries.geojson"
   },
   "outputs": {
-    "hunt_predictions_rows": 27940,
+    "hunt_predictions_rows": 2898,
     "hunt_odds_history_rows": 176753,
     "hunt_application_outlook_rows": 2898,
     "outfitters_public_rows": 11,
     "hunt_units_features": 683,
-    "unique_prediction_hunts": 1065,
+    "unique_prediction_hunts": 1449,
     "unique_outlook_hunts": 1449,
-    "prediction_source_mode": "runtime_csv",
+    "prediction_source_mode": "outlook_fallback",
     "odds_history_source_mode": "runtime_csv",
     "outfitters_source_mode": "outfitters_public_json"
   },

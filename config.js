@@ -180,6 +180,8 @@ window.UOGA_CONFIG = (() => {
   ];
 
   const HUNT_RESEARCH_OBSERVED_ENGINE_SOURCES = [
+    `${CLOUDFLARE_BASE}/processed_data/draw_reality_engine.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
+    `./processed_data/draw_reality_engine.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
     `${CLOUDFLARE_BASE}/processed_data/draw_reality_engine_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
     `./processed_data/draw_reality_engine_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
   ];

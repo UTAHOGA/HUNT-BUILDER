@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-06-01T06:34:35.108Z",
+  "generated_at": "2026-06-01T08:03:40.770Z",
   "input_resolution": {
-    "predictive": "data_model/harvest_quality/draw_reality_engine_predictive_with_harvest_features.csv",
-    "oddsHistory": "data_model/runtime_drafts/draw_reality_engine_v2.csv",
+    "predictive": "processed_data/draw_reality_engine_predictive_v2.csv",
+    "oddsHistory": "processed_data/draw_reality_engine_v2.csv",
     "outlook": "processed_data/research_page/hunt_application_outlook.json",
     "outfittersPublic": "data/outfitters-public.json",
     "huntUnitsLite": "data/hunt_boundaries.geojson"
   },
   "outputs": {
-    "hunt_predictions_rows": 27940,
+    "hunt_predictions_rows": 2898,
     "hunt_odds_history_rows": 176753,
     "hunt_application_outlook_rows": 2898,
     "outfitters_public_rows": 11,
     "hunt_units_features": 683,
-    "unique_prediction_hunts": 1065,
+    "unique_prediction_hunts": 1449,
     "unique_outlook_hunts": 1449,
-    "prediction_source_mode": "runtime_csv",
+    "prediction_source_mode": "outlook_fallback",
     "odds_history_source_mode": "runtime_csv",
     "outfitters_source_mode": "outfitters_public_json"
   },
@@ -28,19 +28,19 @@
   ],
   "snapshots": [
     {
-      "file_path": "data_model/harvest_quality/draw_reality_engine_predictive_with_harvest_features.csv",
+      "file_path": "processed_data/draw_reality_engine_predictive_v2.csv",
       "role": "source_runtime_for_hunt_predictions",
       "exists": true,
-      "size_bytes": 47785207,
-      "sha256": "fcfb2ac0b413fe4f7e3d52c5e4111c4059c2e6e32be649a1937bc81d91a773d4",
-      "row_count": 27940
+      "size_bytes": 133,
+      "sha256": "9c841e57d6e83cbf67196ff0c2eebfa9439aa498865c6feec3abfaac8ab6bb9e",
+      "row_count": 2
     },
     {
-      "file_path": "data_model/runtime_drafts/draw_reality_engine_v2.csv",
+      "file_path": "processed_data/draw_reality_engine_v2.csv",
       "role": "source_runtime_for_hunt_odds_history",
       "exists": true,
-      "size_bytes": 44792285,
-      "sha256": "46da956d0ac8cd0f72c137c2bed0905e5c2c1609dc845c9d7284fb9a1d2d56f7",
+      "size_bytes": 44863034,
+      "sha256": "8fb11adc4c4e8e9154de110090b927ce1ae6b3d0f7a840d7232469ceb7d3e07a",
       "row_count": 176753
     },
     {
@@ -71,24 +71,24 @@
       "file_path": "processed_data/public_contracts/hunt_predictions.json",
       "role": "public_contract:hunt_predictions.json",
       "exists": true,
-      "size_bytes": 29495505,
-      "sha256": "e421d515502396b4d29bec67d330af7bb4fb51759d1714e94c058bc1bec0b08a",
-      "row_count": 27940
+      "size_bytes": 1810650,
+      "sha256": "75296adc4988846fdd42cbcb4891ad0d063024f10b7eaa240da9c101bd761984",
+      "row_count": 2898
     },
     {
       "file_path": "processed_data/public_contracts/hunt_odds_history.json",
       "role": "public_contract:hunt_odds_history.json",
       "exists": true,
-      "size_bytes": 113970739,
-      "sha256": "506fc32a1161c8478c8601d126fa887cd8a92f9dcb2c283c83de1a76e67d0c34",
+      "size_bytes": 113951774,
+      "sha256": "6deba17909890592f8ae6b1fab2123fb574e0985f0eacb53f134cb4ce0d8c3cf",
       "row_count": 176753
     },
     {
       "file_path": "processed_data/public_contracts/hunt_odds_history.csv",
       "role": "public_contract:hunt_odds_history.csv",
       "exists": true,
-      "size_bytes": 30516275,
-      "sha256": "fcf57d7d32c6245bfc0b0f04b84889d2207f50f24a527fa6be85a00a71ceee3a",
+      "size_bytes": 30497310,
+      "sha256": "5f9ccbbb6855f672718cb70ff6e8ae3eb03627a9a5c16430e92891e7e4976083",
       "row_count": 176753
     },
     {
