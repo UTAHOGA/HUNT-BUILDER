@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-05-29T21:53:52.137Z",
+  "outputs": {
+    "hunt_application_outlook_json": "processed_data/research_page/hunt_application_outlook.json",
+    "hunt_application_outlook_manifest_json": "processed_data/research_page/hunt_application_outlook_manifest.json"
+  },
+  "sources": {
+    "point_ladder_view": "https://json.uoga.workers.dev/point_ladder_view.csv",
+    "hunt_research_2026_json": "processed_data/hunt_research_2026.json",
+    "harvest_quality_features_all_years_by_hunt_code_csv": "processed_data/harvest_quality_features_all_years_by_hunt_code.csv"
+  },
+  "counts": {
+    "outlook_rows": 91712,
+    "unique_hunt_codes": 1449,
+    "duplicate_row_keys": 0
+  },
+  "validation": {
+    "duplicate_row_keys": 0,
+    "has_required_contract_fields": true,
+    "data_as_of_present_rows": 91712,
+    "model_version_present_rows": 91602,
+    "source_badges_present_rows": 91712
+  },
+  "contract_format": {
+    "type": "shared_fields_plus_point_rows",
+    "shared_field_count": 19,
+    "point_field_count": 9,
+    "group_count": 2987
+  }
+}

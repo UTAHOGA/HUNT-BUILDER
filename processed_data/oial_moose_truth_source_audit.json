@@ -1,0 +1,129 @@
+{
+  "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_oial_bull_moose_permits.csv",
+  "truth_rows": 26,
+  "unique_hunt_codes": 13,
+  "all_2026_repo_matches_truth": true,
+  "significance_counts": {
+    "UNCHANGED": 20,
+    "SIGNIFICANT": 1,
+    "MINOR": 5
+  },
+  "group_changes": [
+    {
+      "permit_group": "Cache",
+      "permits_2025_total": 15,
+      "permits_2026_total": 17,
+      "permit_delta_total": 2,
+      "significance": "SIGNIFICANT"
+    },
+    {
+      "permit_group": "Chalk Creek",
+      "permits_2025_total": 3,
+      "permits_2026_total": 4,
+      "permit_delta_total": 1,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "East Canyon, Morgan-Summit",
+      "permits_2025_total": 4,
+      "permits_2026_total": 5,
+      "permit_delta_total": 1,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Kamas",
+      "permits_2025_total": 5,
+      "permits_2026_total": 6,
+      "permit_delta_total": 1,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "North Slope, Summit",
+      "permits_2025_total": 22,
+      "permits_2026_total": 23,
+      "permit_delta_total": 1,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Yellowstone",
+      "permits_2025_total": 5,
+      "permits_2026_total": 6,
+      "permit_delta_total": 1,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Box Elder",
+      "permits_2025_total": 2,
+      "permits_2026_total": 2,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Diamond Mtn/Vernal",
+      "permits_2025_total": 2,
+      "permits_2026_total": 2,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "East Canyon",
+      "permits_2025_total": 5,
+      "permits_2026_total": 5,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Morgan-South Rich",
+      "permits_2025_total": 6,
+      "permits_2026_total": 6,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "North Slope, Three Corners/West Daggett",
+      "permits_2025_total": 8,
+      "permits_2026_total": 8,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Ogden",
+      "permits_2025_total": 7,
+      "permits_2026_total": 7,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Wasatch Mtns/Central Mtns",
+      "permits_2025_total": 22,
+      "permits_2026_total": 22,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    }
+  ],
+  "row_changes_abs_gt_1": [
+    {
+      "permit_group": "Cache",
+      "weapon": "Any Legal Weapon",
+      "hunt_code": "MB6000",
+      "residency": "Resident",
+      "permits_2025_truth": 12,
+      "permits_2026_truth": 14,
+      "permit_delta": 2,
+      "significance": "SIGNIFICANT",
+      "repo_public_permits_2026": 14,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided OIAL bull moose comparison table for 2025 to 2026."
+    }
+  ],
+  "grand_total_2025": 106,
+  "grand_total_2026": 113,
+  "grand_total_delta": 7,
+  "notable_findings": [
+    "Grand total increased from 106 to 113 (+7).",
+    "Cache total increased from 15 to 17 (+2).",
+    "All other unit-level changes are +1 or unchanged.",
+    "Nonresident total stayed flat at 11 while resident total increased from 95 to 102 (+7)."
+  ]
+}

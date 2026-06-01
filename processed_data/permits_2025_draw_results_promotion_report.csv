@@ -1,0 +1,15 @@
+file,kind,status,rows_checked,matched_hunt_codes,rows_changed,changed_cells
+pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv,csv,written,1411,1028,0,0
+processed_data/hunt_master_enriched.csv,csv,written,54357,1028,0,0
+processed_data/hunt_unit_reference_linked.csv,csv,written,2997,1028,0,0
+processed_data/point_ladder_view.csv,csv,written,92844,1028,0,0
+processed_data/draw_reality_engine.csv,csv,written,36892,1028,0,0
+data/hunt-master-canonical-2026-database-candidate.csv,csv,written,1411,1028,0,0
+data/hunt-master-canonical-2026-source-of-truth.csv,csv,written,1411,1028,0,0
+processed_data/hunt-master-canonical-2026-source-of-truth.csv,csv,written,1411,1028,0,0
+hunt-master-canonical-2026.json,json,written,1411,1028,0,0
+canonical/hunt-planner-2026.json,json,written,1411,1028,0,0
+generated/pages/hunt-planner.json,json,written,1411,1028,0,0
+data/hunt-master-canonical-2026-database-candidate.json,json,written,1411,1028,0,0
+data/hunt-master-canonical-2026-source-of-truth.json,json,written,1411,1028,0,0
+processed_data/hunt-master-canonical-2026-source-of-truth.json,json,written,1411,1028,0,0

@@ -1,0 +1,115 @@
+{
+  "generated_at_utc": "2026-05-23T08:03:51.112697+00:00",
+  "mode": "write",
+  "rac_current_year_allotment_source": "2026_RAC_CURRENT_YEAR_ALLOTMENT",
+  "excluded_promotion_tokens": [
+    "metadata",
+    "comparison",
+    "verification",
+    "control_units",
+    "supplemental",
+    "permit_rows_from_pdf"
+  ],
+  "rac_direct_hunt_code_count": 519,
+  "rac_family_hunt_code_counts": {
+    "antlerless_deer": 16,
+    "antlerless_elk": 116,
+    "antlerless_moose": 3,
+    "buck_deer_limited_entry": 36,
+    "buck_deer_premium_management": 15,
+    "doe_pronghorn": 16,
+    "ewe_rocky_mountain_bighorn_sheep": 1,
+    "limited_entry_buck_pronghorn": 66,
+    "limited_entry_bull_elk": 119,
+    "limited_entry_bull_elk_hamss_and_september_archery": 9,
+    "limited_entry_bull_elk_late_archery": 17,
+    "oial_bison": 16,
+    "oial_bull_moose": 13,
+    "oial_desert_bighorn_sheep": 18,
+    "oial_mountain_goat": 17,
+    "oial_rocky_mountain_bighorn_sheep": 15,
+    "private_lands_only_antlerless_elk": 26
+  },
+  "files": [
+    {
+      "file": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+      "kind": "csv",
+      "rows_after": 1411,
+      "corrected_rows": 519,
+      "added_rows": 0,
+      "changed_cells": 3114,
+      "backup_path": "processed_data/backups/rac_current_year_database_promotion_20260523_080350/pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+    },
+    {
+      "file": "data/hunt-master-canonical-2026-database-candidate.csv",
+      "kind": "csv",
+      "rows_after": 1411,
+      "corrected_rows": 0,
+      "added_rows": 0,
+      "changed_cells": 0,
+      "backup_path": ""
+    },
+    {
+      "file": "data/hunt-master-canonical-2026-source-of-truth.csv",
+      "kind": "csv",
+      "rows_after": 1411,
+      "corrected_rows": 0,
+      "added_rows": 0,
+      "changed_cells": 0,
+      "backup_path": ""
+    },
+    {
+      "file": "processed_data/hunt-master-canonical-2026-source-of-truth.csv",
+      "kind": "csv",
+      "rows_after": 1305,
+      "corrected_rows": 519,
+      "added_rows": 0,
+      "changed_cells": 1038,
+      "backup_path": "processed_data/backups/rac_current_year_database_promotion_20260523_080350/processed_data/hunt-master-canonical-2026-source-of-truth.csv"
+    },
+    {
+      "file": "data/hunt-master-canonical-2026-database-candidate.json",
+      "kind": "json:root_list",
+      "rows_after": 1411,
+      "corrected_rows": 0,
+      "added_rows": 0,
+      "changed_cells": 0,
+      "backup_path": ""
+    },
+    {
+      "file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "kind": "json:root_list",
+      "rows_after": 1411,
+      "corrected_rows": 0,
+      "added_rows": 0,
+      "changed_cells": 0,
+      "backup_path": ""
+    },
+    {
+      "file": "processed_data/hunt-master-canonical-2026-source-of-truth.json",
+      "kind": "json:root_list",
+      "rows_after": 1411,
+      "corrected_rows": 0,
+      "added_rows": 0,
+      "changed_cells": 0,
+      "backup_path": ""
+    },
+    {
+      "file": "canonical/hunt-planner-2026.json",
+      "kind": "json:hunt_catalog",
+      "rows_after": 1411,
+      "corrected_rows": 0,
+      "added_rows": 0,
+      "changed_cells": 0,
+      "backup_path": ""
+    }
+  ],
+  "validation": {
+    "database_rows": 1411,
+    "database_unique_hunt_codes": 1411,
+    "rac_direct_hunt_code_count": 519,
+    "missing_after_promotion": [],
+    "mismatch_count_after_promotion": 0,
+    "mismatches_after_promotion": []
+  }
+}

@@ -1,0 +1,10 @@
+file,kind,status,rows_checked,columns_removed,removed_fields,written
+pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv,csv,columns_removed,1411,3,permits_year_res|permits_year_nr|permits_year_total,True
+processed_data/hunt_master_enriched.csv,csv,columns_removed,54357,3,permits_year_res|permits_year_nr|permits_year_total,True
+processed_data/hunt_unit_reference_linked.csv,csv,columns_removed,2997,3,permits_year_res|permits_year_nr|permits_year_total,True
+processed_data/point_ladder_view.csv,csv,columns_removed,92844,3,permits_year_res|permits_year_nr|permits_year_total,True
+processed_data/draw_reality_engine.csv,csv,columns_removed,36892,3,permits_year_res|permits_year_nr|permits_year_total,True
+data/hunt-master-canonical-2026-database-candidate.csv,csv,no_ambiguous_columns,1411,0,,False
+data/hunt-master-canonical-2026-source-of-truth.csv,csv,no_ambiguous_columns,1411,0,,False
+processed_data/hunt-master-canonical-2026-source-of-truth.csv,csv,no_ambiguous_columns,1411,0,,False
+generated/pages/hunt-research.json,json,list_references_removed,0,12,permits_year_res|permits_year_nr|permits_year_total,True

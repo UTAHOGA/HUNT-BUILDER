@@ -1,0 +1,19 @@
+permit_family,permit_group,weapon,hunt_code,residency,permits_2025_truth,permits_2026_truth,permit_delta,significance,repo_public_permits_2026,repo_match_2026,source_document,source_note
+HAMSS,Barney Top/Kaiparowits,HAMSS,EB3142,Resident,9,9,0,UNCHANGED,9,True,2026-05-user-verified-table,User-provided limited-entry HAMSS bull elk comparison table for 2025 to 2026.
+HAMSS,Barney Top/Kaiparowits,HAMSS,EB3142,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry HAMSS bull elk comparison table for 2025 to 2026.
+HAMSS,"Cache, North",HAMSS,EB3139,Resident,25,22,-3,MINOR,22,True,2026-05-user-verified-table,User-provided limited-entry HAMSS bull elk comparison table for 2025 to 2026.
+HAMSS,"Cache, North",HAMSS,EB3139,Nonresident,3,2,-1,MINOR,2,True,2026-05-user-verified-table,User-provided limited-entry HAMSS bull elk comparison table for 2025 to 2026.
+HAMSS,East Canyon,HAMSS,EB3205,Resident,9,7,-2,MINOR,7,True,2026-05-user-verified-table,User-provided limited-entry HAMSS bull elk comparison table for 2025 to 2026.
+HAMSS,East Canyon,HAMSS,EB3205,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry HAMSS bull elk comparison table for 2025 to 2026.
+HAMSS,"Southwest Desert, North",HAMSS,EB3143,Resident,16,21,5,MINOR,21,True,2026-05-user-verified-table,User-provided limited-entry HAMSS bull elk comparison table for 2025 to 2026.
+HAMSS,"Southwest Desert, North",HAMSS,EB3143,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry HAMSS bull elk comparison table for 2025 to 2026.
+HAMSS,"West Desert, Deep Creek",HAMSS,EB3144,Resident,13,13,0,UNCHANGED,13,True,2026-05-user-verified-table,User-provided limited-entry HAMSS bull elk comparison table for 2025 to 2026.
+HAMSS,"West Desert, Deep Creek",HAMSS,EB3144,Nonresident,1,2,1,MINOR,2,True,2026-05-user-verified-table,User-provided limited-entry HAMSS bull elk comparison table for 2025 to 2026.
+SEPTEMBER_ARCHERY,Barney Top/Kaiparowits,September Archery,EB3135,Resident,9,9,0,UNCHANGED,9,True,2026-05-user-verified-table,User-provided limited-entry September archery bull elk comparison table for 2025 to 2026.
+SEPTEMBER_ARCHERY,Barney Top/Kaiparowits,September Archery,EB3135,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry September archery bull elk comparison table for 2025 to 2026.
+SEPTEMBER_ARCHERY,"Cache, North",September Archery,EB3132,Resident,25,22,-3,MINOR,22,True,2026-05-user-verified-table,User-provided limited-entry September archery bull elk comparison table for 2025 to 2026.
+SEPTEMBER_ARCHERY,"Cache, North",September Archery,EB3132,Nonresident,3,2,-1,MINOR,2,True,2026-05-user-verified-table,User-provided limited-entry September archery bull elk comparison table for 2025 to 2026.
+SEPTEMBER_ARCHERY,"Southwest Desert, North",September Archery,EB3136,Resident,16,21,5,MINOR,21,True,2026-05-user-verified-table,User-provided limited-entry September archery bull elk comparison table for 2025 to 2026.
+SEPTEMBER_ARCHERY,"Southwest Desert, North",September Archery,EB3136,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry September archery bull elk comparison table for 2025 to 2026.
+SEPTEMBER_ARCHERY,"West Desert, Deep Creek",September Archery,EB3137,Resident,13,13,0,UNCHANGED,13,True,2026-05-user-verified-table,User-provided limited-entry September archery bull elk comparison table for 2025 to 2026.
+SEPTEMBER_ARCHERY,"West Desert, Deep Creek",September Archery,EB3137,Nonresident,1,2,1,MINOR,2,True,2026-05-user-verified-table,User-provided limited-entry September archery bull elk comparison table for 2025 to 2026.

@@ -1,0 +1,4855 @@
+{
+  "generated_at": "2026-05-08T15:45:59.628Z",
+  "sources": [
+    {
+      "id": "database_csv",
+      "label": "DATABASE.csv",
+      "file": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+      "kind": "csv"
+    },
+    {
+      "id": "built_csv",
+      "label": "hunt_master_canonical_2026_built.csv",
+      "file": "pipeline/RAW/hunt_unit_database/2026/csv/hunt_master_canonical_2026_built.csv",
+      "kind": "csv"
+    },
+    {
+      "id": "hunt_master_enriched_csv",
+      "label": "processed_data/hunt_master_enriched.csv",
+      "file": "processed_data/hunt_master_enriched.csv",
+      "kind": "csv"
+    },
+    {
+      "id": "foundation_json",
+      "label": "hunt-master-canonical-2026-foundation.json",
+      "file": "data/hunt-master-canonical-2026-foundation.json",
+      "kind": "json-array"
+    }
+  ],
+  "targets": [
+    {
+      "id": "canonical_hunt_planner",
+      "label": "canonical/hunt-planner-2026.json hunt_catalog",
+      "file": "canonical/hunt-planner-2026.json",
+      "kind": "json-path",
+      "path": [
+        "hunt_catalog"
+      ]
+    },
+    {
+      "id": "generated_hunt_planner",
+      "label": "generated/pages/hunt-planner.json hunt_catalog",
+      "file": "generated/pages/hunt-planner.json",
+      "kind": "json-path",
+      "path": [
+        "hunt_catalog"
+      ]
+    },
+    {
+      "id": "root_hunt_master_canonical",
+      "label": "hunt-master-canonical-2026.json hunt_catalog",
+      "file": "hunt-master-canonical-2026.json",
+      "kind": "json-path",
+      "path": [
+        "hunt_catalog"
+      ],
+      "optional": true
+    }
+  ],
+  "comparisons": [
+    {
+      "source": "DATABASE.csv",
+      "target": "canonical/hunt-planner-2026.json hunt_catalog",
+      "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+      "target_file": "canonical/hunt-planner-2026.json",
+      "source_rows": 1395,
+      "target_rows": 1394,
+      "source_unique_codes": 1394,
+      "target_unique_codes": 1394,
+      "shared_codes": 1394,
+      "missing_in_target_count": 0,
+      "missing_in_target": [],
+      "extra_in_target_count": 0,
+      "extra_in_target": [],
+      "source_duplicate_code_count": 0,
+      "source_duplicate_codes": [],
+      "target_duplicate_code_count": 0,
+      "target_duplicate_codes": [],
+      "source_field_count": 18,
+      "target_field_count": 61,
+      "source_only_fields": [],
+      "target_only_fields": [
+        "access_type",
+        "avg_days_2025",
+        "avg_points_2025",
+        "boundaryId",
+        "boundary_id",
+        "boundary_id_numeric",
+        "boundary_token",
+        "code",
+        "data_status",
+        "draw_2025_bg_pdf_page",
+        "draw_2025_bg_report_page",
+        "draw_2025_species_section",
+        "draw_2025_type",
+        "draw_family",
+        "eligibility_class",
+        "harvest_2025",
+        "has_antlerless_draw",
+        "has_bonus_draw",
+        "has_harvest",
+        "huntCode",
+        "hunt_class",
+        "hunters_2025",
+        "permit_allocation_type",
+        "permit_note",
+        "permit_overlay_source",
+        "permit_source_authority",
+        "permit_status",
+        "permits_2025_draw_nr",
+        "permits_2025_draw_res",
+        "permits_2025_draw_total",
+        "permits_2025_nr",
+        "permits_2025_res",
+        "permits_2025_total",
+        "permits_2026_source",
+        "resolvedBoundaryIds",
+        "satisfaction_2025",
+        "source_authority",
+        "source_file",
+        "success_percent_2025",
+        "title",
+        "unitCode",
+        "unitName",
+        "youth_flag"
+      ],
+      "meaningful_source_only_fields": [],
+      "mismatched_shared_fields": [
+        {
+          "field": "NOTES",
+          "checked": 5,
+          "mismatch": 5,
+          "examples": [
+            {
+              "hunt_code": "BR1000",
+              "source": "../notes/DATABASE/BR1000-notes.md",
+              "target": "Black Bear statewide permit: Any open season on any open bear unit during the 2026 season. See the 2026 Black Bear Guidebook and the BR1000 print packet for season dates, legal methods, access notes, land ownership, and unit-specific restrictions. Special provisions: this packet identifies the statewide permit as a late-season bear conservation permit and includes the required harvest reporting language. Any harvested bear must be checked by a DWR employee within 48 hours of kill; permanent possession tag requirements apply. Full BR1000 area-specific information is indexed in 2026_black_bear_statewide_BR1000_area_info_index.csv and sourced from BR1000 Print.pdf."
+            },
+            {
+              "hunt_code": "BR1001",
+              "source": "../notes/DATABASE/BR1001-notes.md",
+              "target": "Harvest-objective permits: Biologists set harvest objectives/quotas for certain bear units. When the objective is met, the unit closes to bear hunting for the rest of the season. A harvest-objective permit allows an eligible hunter to use any legal weapon to harvest one black bear on any open harvest-objective unit until the season ends or that unit objective is met. The permit is available to residents and nonresidents beginning March 10, 2026 at 8 a.m. MDT through wildlife.utah.gov, license agents, or DWR offices. A harvest-objective permit purchased after the season opens is not valid until three days from purchase; the last day to purchase a 2026 harvest-objective permit is Nov. 5, 2026. Hunters may not use bait with a harvest-objective permit. Fall harvest-objective hunts may include additional method restrictions such as no dogs/no bait or no bait, as listed by unit. Harvest-objective permits are available to eligible hunters except those who drew a bear limited-entry permit, not including pursuit or restricted pursuit permits. Hunters may only obtain one permit to harvest a bear during the 2026 season. Before every hunting trip, hunters must verify the unit is still open at wildlife.utah.gov/bearharvest. DWR updates closures daily by noon, effective the following day 30 minutes before official sunrise. After a harvest-objective unit closes, the permit may still be used on other open harvest-objective units. Multiseason limited-entry permit holders may hunt open harvest-objective seasons on the unit they draw without obtaining an additional harvest-objective permit; harvest-objective closures still apply. Source: 2026 Bear Cougar Furbearer Guidebook, Utah Admin. Rule R657-33-29 through R657-33-31. Harvest-objective unit detail: Beaver: 2026 objective 5 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Book Cliffs, Bitter Creek/South: 2026 objective 20 bears; Season: Aug 15 - Oct 1, 2026; no dogs/no bait | Boulder/Kaiparowits: 2026 objective 22 bears; Season: July 5-31, 2026 & Sept 1-Oct 25, 2026; no dogs/no bait | Cache/Ogden: 2026 objective 10 bears; Season: July 5-31, 2026 & Sept 1-Oct 25, 2026; no dogs/no bait | Chalk Creek/East Canyon/Morgan-South Rich: 2026 objective 20 bears; Season: March 28-May 25, 2026; no bait allowed | Chalk Creek/East Canyon/Morgan-South Rich: 2026 objective 20 bears; Season: Aug 1-31, 2026 & Nov 2-8, 2026; no bait | Chalk Creek/East Canyon/Morgan-South Rich: 2026 objective 20 bears; Season: July 5-31, 2026 & Sept 1 - Oct 25, 2026; no dogs/no bait | Diamond Mtn/Vernal/Bonanza: 2026 objective 9 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Fillmore, Pahvant: 2026 objective 1 bear; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Fishlake/Thousand Lakes: 2026 objective 5 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Kamas/North Slope, Summit: 2026 objective 5 bears; Season: Jul 5-31, 2026 & Sept 1-Oct 25, 2026; no dogs/no bait | La Sal Mtns: 2026 objective 12 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Manti, North: 2026 objective 15 bears; Season: Jul 5-31, 2026 & Sept 1 - Oct 25, 2026; no dogs/no bait | Manti, South/San Rafael, North: 2026 objective 25 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Mt Dutton: 2026 objective 2 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Nebo: 2026 objective 10 bears; Season: Jul 5-31, 2026 & Sept 1 - Oct 25, 2026; no dogs/no bait | Nine Mile: 2026 objective 25 bears; Season: March 28 - May 25, 2026; no bait allowed | Nine Mile: 2026 objective 10 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | North Slope, Three Corners/West Daggett: 2026 objective 5 bears; Season: March 28 - May 25, 2026; no bait allowed | North Slope, Three Corners/West Daggett: 2026 objective 3 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Panguitch Lake/Zion: 2026 objective 3 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | San Juan: 2026 objective 12 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Wasatch Mtns, Avintaquin/Currant Creek: 2026 objective 15 bears; Season: March 28 - May 25, 2026; no bait allowed | Wasatch Mtns, Avintaquin/Currant Creek: 2026 objective 10 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Wasatch Mtns, West-Central: 2026 objective 20 bears; Season: July 5-31, 2026 & Sept 1 - Oct 25, 2026; no dogs/no bait | Yellowstone: 2026 objective 10 bears; Season: March 28 - May 25, 2026; no bait allowed | Yellowstone: 2026 objective 10 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait Full BR1001 area-specific information is indexed in 2026_black_bear_harvest_objective_BR1001_area_info_index.csv and sourced from BR1001 Print bear harvest objective.pdf."
+            },
+            {
+              "hunt_code": "BR1007",
+              "source": "../notes/DATABASE/BR1007-notes.md",
+              "target": "Black Bear pursuit permit - resident: Pursuit only; this permit authorizes pursuit, but not harvest, of black bears. Season dates shown in the BR1007 print packet are Spring: Mar 28-May 25, 2026; Summer: July 5-July 31, 2026; Fall: Nov 2-8, 2026. The packet states a pursuit permit allows pursuit during open pursuit seasons and includes a warning that National Forests may contain private land requiring written permission. Full BR1007 area-specific pursuit information is indexed in 2026_black_bear_pursuit_BR1007_area_info_index.csv and sourced from black bear pursuit.pdf."
+            },
+            {
+              "hunt_code": "BR1018",
+              "source": "../notes/DATABASE/BR1018-notes.md",
+              "target": "Black Bear pursuit permit - nonresident: Pursuit only; a pursuit permit authorizes pursuit, but not harvest, of black bears on units not designated as restricted during open pursuit seasons. Season dates are Spring: Mar 28-May 25, 2026; Summer: July 5-July 31, 2026; Fall: Nov 2-8, 2026. Nonresidents with pursuit permits may not use them on restricted pursuit units unless accompanying someone who possesses a valid restricted pursuit permit or hunting permit for that unit and season. See the 2026 Bear Cougar Furbearer Guidebook and hunt.utah.gov for complete unit availability."
+            },
+            {
+              "hunt_code": "DB0007",
+              "source": "Statewide buck deer permit: 1 public draw permit; separate auction/conservation permit noted outside standard draw allocation.",
+              "target": ""
+            }
+          ]
+        }
+      ],
+      "significant_drop": false
+    },
+    {
+      "source": "DATABASE.csv",
+      "target": "generated/pages/hunt-planner.json hunt_catalog",
+      "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+      "target_file": "generated/pages/hunt-planner.json",
+      "source_rows": 1395,
+      "target_rows": 1394,
+      "source_unique_codes": 1394,
+      "target_unique_codes": 1394,
+      "shared_codes": 1394,
+      "missing_in_target_count": 0,
+      "missing_in_target": [],
+      "extra_in_target_count": 0,
+      "extra_in_target": [],
+      "source_duplicate_code_count": 0,
+      "source_duplicate_codes": [],
+      "target_duplicate_code_count": 0,
+      "target_duplicate_codes": [],
+      "source_field_count": 18,
+      "target_field_count": 61,
+      "source_only_fields": [],
+      "target_only_fields": [
+        "access_type",
+        "avg_days_2025",
+        "avg_points_2025",
+        "boundaryId",
+        "boundary_id",
+        "boundary_id_numeric",
+        "boundary_token",
+        "code",
+        "data_status",
+        "draw_2025_bg_pdf_page",
+        "draw_2025_bg_report_page",
+        "draw_2025_species_section",
+        "draw_2025_type",
+        "draw_family",
+        "eligibility_class",
+        "harvest_2025",
+        "has_antlerless_draw",
+        "has_bonus_draw",
+        "has_harvest",
+        "huntCode",
+        "hunt_class",
+        "hunters_2025",
+        "permit_allocation_type",
+        "permit_note",
+        "permit_overlay_source",
+        "permit_source_authority",
+        "permit_status",
+        "permits_2025_draw_nr",
+        "permits_2025_draw_res",
+        "permits_2025_draw_total",
+        "permits_2025_nr",
+        "permits_2025_res",
+        "permits_2025_total",
+        "permits_2026_source",
+        "resolvedBoundaryIds",
+        "satisfaction_2025",
+        "source_authority",
+        "source_file",
+        "success_percent_2025",
+        "title",
+        "unitCode",
+        "unitName",
+        "youth_flag"
+      ],
+      "meaningful_source_only_fields": [],
+      "mismatched_shared_fields": [
+        {
+          "field": "NOTES",
+          "checked": 5,
+          "mismatch": 5,
+          "examples": [
+            {
+              "hunt_code": "BR1000",
+              "source": "../notes/DATABASE/BR1000-notes.md",
+              "target": "Black Bear statewide permit: Any open season on any open bear unit during the 2026 season. See the 2026 Black Bear Guidebook and the BR1000 print packet for season dates, legal methods, access notes, land ownership, and unit-specific restrictions. Special provisions: this packet identifies the statewide permit as a late-season bear conservation permit and includes the required harvest reporting language. Any harvested bear must be checked by a DWR employee within 48 hours of kill; permanent possession tag requirements apply. Full BR1000 area-specific information is indexed in 2026_black_bear_statewide_BR1000_area_info_index.csv and sourced from BR1000 Print.pdf."
+            },
+            {
+              "hunt_code": "BR1001",
+              "source": "../notes/DATABASE/BR1001-notes.md",
+              "target": "Harvest-objective permits: Biologists set harvest objectives/quotas for certain bear units. When the objective is met, the unit closes to bear hunting for the rest of the season. A harvest-objective permit allows an eligible hunter to use any legal weapon to harvest one black bear on any open harvest-objective unit until the season ends or that unit objective is met. The permit is available to residents and nonresidents beginning March 10, 2026 at 8 a.m. MDT through wildlife.utah.gov, license agents, or DWR offices. A harvest-objective permit purchased after the season opens is not valid until three days from purchase; the last day to purchase a 2026 harvest-objective permit is Nov. 5, 2026. Hunters may not use bait with a harvest-objective permit. Fall harvest-objective hunts may include additional method restrictions such as no dogs/no bait or no bait, as listed by unit. Harvest-objective permits are available to eligible hunters except those who drew a bear limited-entry permit, not including pursuit or restricted pursuit permits. Hunters may only obtain one permit to harvest a bear during the 2026 season. Before every hunting trip, hunters must verify the unit is still open at wildlife.utah.gov/bearharvest. DWR updates closures daily by noon, effective the following day 30 minutes before official sunrise. After a harvest-objective unit closes, the permit may still be used on other open harvest-objective units. Multiseason limited-entry permit holders may hunt open harvest-objective seasons on the unit they draw without obtaining an additional harvest-objective permit; harvest-objective closures still apply. Source: 2026 Bear Cougar Furbearer Guidebook, Utah Admin. Rule R657-33-29 through R657-33-31. Harvest-objective unit detail: Beaver: 2026 objective 5 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Book Cliffs, Bitter Creek/South: 2026 objective 20 bears; Season: Aug 15 - Oct 1, 2026; no dogs/no bait | Boulder/Kaiparowits: 2026 objective 22 bears; Season: July 5-31, 2026 & Sept 1-Oct 25, 2026; no dogs/no bait | Cache/Ogden: 2026 objective 10 bears; Season: July 5-31, 2026 & Sept 1-Oct 25, 2026; no dogs/no bait | Chalk Creek/East Canyon/Morgan-South Rich: 2026 objective 20 bears; Season: March 28-May 25, 2026; no bait allowed | Chalk Creek/East Canyon/Morgan-South Rich: 2026 objective 20 bears; Season: Aug 1-31, 2026 & Nov 2-8, 2026; no bait | Chalk Creek/East Canyon/Morgan-South Rich: 2026 objective 20 bears; Season: July 5-31, 2026 & Sept 1 - Oct 25, 2026; no dogs/no bait | Diamond Mtn/Vernal/Bonanza: 2026 objective 9 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Fillmore, Pahvant: 2026 objective 1 bear; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Fishlake/Thousand Lakes: 2026 objective 5 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Kamas/North Slope, Summit: 2026 objective 5 bears; Season: Jul 5-31, 2026 & Sept 1-Oct 25, 2026; no dogs/no bait | La Sal Mtns: 2026 objective 12 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Manti, North: 2026 objective 15 bears; Season: Jul 5-31, 2026 & Sept 1 - Oct 25, 2026; no dogs/no bait | Manti, South/San Rafael, North: 2026 objective 25 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Mt Dutton: 2026 objective 2 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Nebo: 2026 objective 10 bears; Season: Jul 5-31, 2026 & Sept 1 - Oct 25, 2026; no dogs/no bait | Nine Mile: 2026 objective 25 bears; Season: March 28 - May 25, 2026; no bait allowed | Nine Mile: 2026 objective 10 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | North Slope, Three Corners/West Daggett: 2026 objective 5 bears; Season: March 28 - May 25, 2026; no bait allowed | North Slope, Three Corners/West Daggett: 2026 objective 3 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Panguitch Lake/Zion: 2026 objective 3 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | San Juan: 2026 objective 12 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Wasatch Mtns, Avintaquin/Currant Creek: 2026 objective 15 bears; Season: March 28 - May 25, 2026; no bait allowed | Wasatch Mtns, Avintaquin/Currant Creek: 2026 objective 10 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Wasatch Mtns, West-Central: 2026 objective 20 bears; Season: July 5-31, 2026 & Sept 1 - Oct 25, 2026; no dogs/no bait | Yellowstone: 2026 objective 10 bears; Season: March 28 - May 25, 2026; no bait allowed | Yellowstone: 2026 objective 10 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait Full BR1001 area-specific information is indexed in 2026_black_bear_harvest_objective_BR1001_area_info_index.csv and sourced from BR1001 Print bear harvest objective.pdf."
+            },
+            {
+              "hunt_code": "BR1007",
+              "source": "../notes/DATABASE/BR1007-notes.md",
+              "target": "Black Bear pursuit permit - resident: Pursuit only; this permit authorizes pursuit, but not harvest, of black bears. Season dates shown in the BR1007 print packet are Spring: Mar 28-May 25, 2026; Summer: July 5-July 31, 2026; Fall: Nov 2-8, 2026. The packet states a pursuit permit allows pursuit during open pursuit seasons and includes a warning that National Forests may contain private land requiring written permission. Full BR1007 area-specific pursuit information is indexed in 2026_black_bear_pursuit_BR1007_area_info_index.csv and sourced from black bear pursuit.pdf."
+            },
+            {
+              "hunt_code": "BR1018",
+              "source": "../notes/DATABASE/BR1018-notes.md",
+              "target": "Black Bear pursuit permit - nonresident: Pursuit only; a pursuit permit authorizes pursuit, but not harvest, of black bears on units not designated as restricted during open pursuit seasons. Season dates are Spring: Mar 28-May 25, 2026; Summer: July 5-July 31, 2026; Fall: Nov 2-8, 2026. Nonresidents with pursuit permits may not use them on restricted pursuit units unless accompanying someone who possesses a valid restricted pursuit permit or hunting permit for that unit and season. See the 2026 Bear Cougar Furbearer Guidebook and hunt.utah.gov for complete unit availability."
+            },
+            {
+              "hunt_code": "DB0007",
+              "source": "Statewide buck deer permit: 1 public draw permit; separate auction/conservation permit noted outside standard draw allocation.",
+              "target": ""
+            }
+          ]
+        }
+      ],
+      "significant_drop": false
+    },
+    {
+      "source": "DATABASE.csv",
+      "target": "hunt-master-canonical-2026.json hunt_catalog",
+      "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+      "target_file": "hunt-master-canonical-2026.json",
+      "source_rows": 1395,
+      "target_rows": 1394,
+      "source_unique_codes": 1394,
+      "target_unique_codes": 1394,
+      "shared_codes": 1394,
+      "missing_in_target_count": 0,
+      "missing_in_target": [],
+      "extra_in_target_count": 0,
+      "extra_in_target": [],
+      "source_duplicate_code_count": 0,
+      "source_duplicate_codes": [],
+      "target_duplicate_code_count": 0,
+      "target_duplicate_codes": [],
+      "source_field_count": 18,
+      "target_field_count": 61,
+      "source_only_fields": [
+        "permits_2026_conservation",
+        "permits_2026_expo",
+        "permits_2026_sportsman",
+        "special_permit_area_id",
+        "special_permit_category",
+        "special_permit_note",
+        "special_permit_overlay_source"
+      ],
+      "target_only_fields": [
+        "access_type",
+        "avg_days_2025",
+        "avg_points_2025",
+        "boundaryId",
+        "boundary_id",
+        "boundary_id_numeric",
+        "boundary_token",
+        "code",
+        "data_status",
+        "documents",
+        "draw_2025_bg_pdf_page",
+        "draw_2025_bg_report_page",
+        "draw_2025_species_section",
+        "draw_2025_type",
+        "draw_family",
+        "eligibility_class",
+        "geometry",
+        "harvest_2025",
+        "has_antlerless_draw",
+        "has_bonus_draw",
+        "has_harvest",
+        "huntCode",
+        "hunt_class",
+        "hunters_2025",
+        "id",
+        "permit_allocation_type",
+        "permit_note",
+        "permit_overlay_source",
+        "permit_source_authority",
+        "permit_status",
+        "permits_2025_draw_nr",
+        "permits_2025_draw_res",
+        "permits_2025_draw_total",
+        "permits_2025_nr",
+        "permits_2025_res",
+        "permits_2025_total",
+        "provenance",
+        "regulations_references",
+        "resolvedBoundaryIds",
+        "satisfaction_2025",
+        "season_id",
+        "source_authority",
+        "source_file",
+        "species_id",
+        "success_percent_2025",
+        "tags_and_permits",
+        "title",
+        "unitCode",
+        "unitName",
+        "youth_flag"
+      ],
+      "meaningful_source_only_fields": [
+        {
+          "field": "permits_2026_conservation",
+          "examples": [
+            "1",
+            "2",
+            "8",
+            "4"
+          ]
+        },
+        {
+          "field": "special_permit_area_id",
+          "examples": [
+            "CONSERVATION_ROCKY_MOUNTAIN_BIGHORN_SHEEP_BOOK_CLIFFS_SOUTH_2026",
+            "CONSERVATION_ROCKY_MOUNTAIN_BIGHORN_SHEEP_BOX_ELDER_NEWFOUNDLAND_MTNS_2026",
+            "CONSERVATION_ROCKY_MOUNTAIN_BIGHORN_SHEEP_NINE_MILE_GRAY_CANYON_2026",
+            "CONSERVATION_TURKEY_CENTRAL_AREA_2026"
+          ]
+        },
+        {
+          "field": "special_permit_category",
+          "examples": [
+            "CONSERVATION"
+          ]
+        },
+        {
+          "field": "special_permit_note",
+          "examples": [
+            "2026 conservation permit count from 2025-2027 conservation workbook source area: Book Cliffs, South (Any Legal Weapon). Kept outside normal public draw quota.",
+            "2026 conservation permit count from 2025-2027 conservation workbook source area: Box Elder, Newfoundland Mtns (early) (Any Legal Weapon); Box Elder, Newfoundland Mtns (late) (Any Legal Weapon). Kept outside normal public draw quota.",
+            "2026 conservation permit count from 2025-2027 conservation workbook source area: Nine Mile, Gray Canyon (Any Legal Weapon). Kept outside normal public draw quota.",
+            "2026 conservation permit count from 2025-2027 conservation workbook source area: Central Area (Multiseason). Kept outside normal public draw quota."
+          ]
+        },
+        {
+          "field": "special_permit_overlay_source",
+          "examples": [
+            "pipeline/RAW/hunt_unit_database/2026/reports/conservation_raw_workbook_grouped_2026.csv",
+            "pipeline/RAW/hunt_unit_database/2026/reports/conservation_area_crosswalk_2026.csv"
+          ]
+        }
+      ],
+      "mismatched_shared_fields": [
+        {
+          "field": "permits_2026_total",
+          "checked": 1074,
+          "mismatch": 1,
+          "examples": [
+            {
+              "hunt_code": "DB0007",
+              "source": "1",
+              "target": ""
+            }
+          ]
+        },
+        {
+          "field": "NOTES",
+          "checked": 5,
+          "mismatch": 5,
+          "examples": [
+            {
+              "hunt_code": "BR1000",
+              "source": "../notes/DATABASE/BR1000-notes.md",
+              "target": "Black Bear statewide permit: Any open season on any open bear unit during the 2026 season. See the 2026 Black Bear Guidebook and the BR1000 print packet for season dates, legal methods, access notes, land ownership, and unit-specific restrictions. Special provisions: this packet identifies the statewide permit as a late-season bear conservation permit and includes the required harvest reporting language. Any harvested bear must be checked by a DWR employee within 48 hours of kill; permanent possession tag requirements apply. Full BR1000 area-specific information is indexed in 2026_black_bear_statewide_BR1000_area_info_index.csv and sourced from BR1000 Print.pdf."
+            },
+            {
+              "hunt_code": "BR1001",
+              "source": "../notes/DATABASE/BR1001-notes.md",
+              "target": "Harvest-objective permits: Biologists set harvest objectives/quotas for certain bear units. When the objective is met, the unit closes to bear hunting for the rest of the season. A harvest-objective permit allows an eligible hunter to use any legal weapon to harvest one black bear on any open harvest-objective unit until the season ends or that unit objective is met. The permit is available to residents and nonresidents beginning March 10, 2026 at 8 a.m. MDT through wildlife.utah.gov, license agents, or DWR offices. A harvest-objective permit purchased after the season opens is not valid until three days from purchase; the last day to purchase a 2026 harvest-objective permit is Nov. 5, 2026. Hunters may not use bait with a harvest-objective permit. Fall harvest-objective hunts may include additional method restrictions such as no dogs/no bait or no bait, as listed by unit. Harvest-objective permits are available to eligible hunters except those who drew a bear limited-entry permit, not including pursuit or restricted pursuit permits. Hunters may only obtain one permit to harvest a bear during the 2026 season. Before every hunting trip, hunters must verify the unit is still open at wildlife.utah.gov/bearharvest. DWR updates closures daily by noon, effective the following day 30 minutes before official sunrise. After a harvest-objective unit closes, the permit may still be used on other open harvest-objective units. Multiseason limited-entry permit holders may hunt open harvest-objective seasons on the unit they draw without obtaining an additional harvest-objective permit; harvest-objective closures still apply. Source: 2026 Bear Cougar Furbearer Guidebook, Utah Admin. Rule R657-33-29 through R657-33-31. Harvest-objective unit detail: Beaver: 2026 objective 5 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Book Cliffs, Bitter Creek/South: 2026 objective 20 bears; Season: Aug 15 - Oct 1, 2026; no dogs/no bait | Boulder/Kaiparowits: 2026 objective 22 bears; Season: July 5-31, 2026 & Sept 1-Oct 25, 2026; no dogs/no bait | Cache/Ogden: 2026 objective 10 bears; Season: July 5-31, 2026 & Sept 1-Oct 25, 2026; no dogs/no bait | Chalk Creek/East Canyon/Morgan-South Rich: 2026 objective 20 bears; Season: March 28-May 25, 2026; no bait allowed | Chalk Creek/East Canyon/Morgan-South Rich: 2026 objective 20 bears; Season: Aug 1-31, 2026 & Nov 2-8, 2026; no bait | Chalk Creek/East Canyon/Morgan-South Rich: 2026 objective 20 bears; Season: July 5-31, 2026 & Sept 1 - Oct 25, 2026; no dogs/no bait | Diamond Mtn/Vernal/Bonanza: 2026 objective 9 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Fillmore, Pahvant: 2026 objective 1 bear; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Fishlake/Thousand Lakes: 2026 objective 5 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Kamas/North Slope, Summit: 2026 objective 5 bears; Season: Jul 5-31, 2026 & Sept 1-Oct 25, 2026; no dogs/no bait | La Sal Mtns: 2026 objective 12 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Manti, North: 2026 objective 15 bears; Season: Jul 5-31, 2026 & Sept 1 - Oct 25, 2026; no dogs/no bait | Manti, South/San Rafael, North: 2026 objective 25 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Mt Dutton: 2026 objective 2 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Nebo: 2026 objective 10 bears; Season: Jul 5-31, 2026 & Sept 1 - Oct 25, 2026; no dogs/no bait | Nine Mile: 2026 objective 25 bears; Season: March 28 - May 25, 2026; no bait allowed | Nine Mile: 2026 objective 10 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | North Slope, Three Corners/West Daggett: 2026 objective 5 bears; Season: March 28 - May 25, 2026; no bait allowed | North Slope, Three Corners/West Daggett: 2026 objective 3 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Panguitch Lake/Zion: 2026 objective 3 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | San Juan: 2026 objective 12 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Wasatch Mtns, Avintaquin/Currant Creek: 2026 objective 15 bears; Season: March 28 - May 25, 2026; no bait allowed | Wasatch Mtns, Avintaquin/Currant Creek: 2026 objective 10 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait | Wasatch Mtns, West-Central: 2026 objective 20 bears; Season: July 5-31, 2026 & Sept 1 - Oct 25, 2026; no dogs/no bait | Yellowstone: 2026 objective 10 bears; Season: March 28 - May 25, 2026; no bait allowed | Yellowstone: 2026 objective 10 bears; Season: Sept 1 - Oct 25, 2026; no dogs/no bait Full BR1001 area-specific information is indexed in 2026_black_bear_harvest_objective_BR1001_area_info_index.csv and sourced from BR1001 Print bear harvest objective.pdf."
+            },
+            {
+              "hunt_code": "BR1007",
+              "source": "../notes/DATABASE/BR1007-notes.md",
+              "target": "Black Bear pursuit permit - resident: Pursuit only; this permit authorizes pursuit, but not harvest, of black bears. Season dates shown in the BR1007 print packet are Spring: Mar 28-May 25, 2026; Summer: July 5-July 31, 2026; Fall: Nov 2-8, 2026. The packet states a pursuit permit allows pursuit during open pursuit seasons and includes a warning that National Forests may contain private land requiring written permission. Full BR1007 area-specific pursuit information is indexed in 2026_black_bear_pursuit_BR1007_area_info_index.csv and sourced from black bear pursuit.pdf."
+            },
+            {
+              "hunt_code": "BR1018",
+              "source": "../notes/DATABASE/BR1018-notes.md",
+              "target": "Black Bear pursuit permit - nonresident: Pursuit only; a pursuit permit authorizes pursuit, but not harvest, of black bears on units not designated as restricted during open pursuit seasons. Season dates are Spring: Mar 28-May 25, 2026; Summer: July 5-July 31, 2026; Fall: Nov 2-8, 2026. Nonresidents with pursuit permits may not use them on restricted pursuit units unless accompanying someone who possesses a valid restricted pursuit permit or hunting permit for that unit and season. See the 2026 Bear Cougar Furbearer Guidebook and hunt.utah.gov for complete unit availability."
+            },
+            {
+              "hunt_code": "DB0007",
+              "source": "Statewide buck deer permit: 1 public draw permit; separate auction/conservation permit noted outside standard draw allocation.",
+              "target": ""
+            }
+          ]
+        }
+      ],
+      "significant_drop": true
+    },
+    {
+      "source": "hunt_master_canonical_2026_built.csv",
+      "target": "canonical/hunt-planner-2026.json hunt_catalog",
+      "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/hunt_master_canonical_2026_built.csv",
+      "target_file": "canonical/hunt-planner-2026.json",
+      "source_rows": 1289,
+      "target_rows": 1394,
+      "source_unique_codes": 1289,
+      "target_unique_codes": 1394,
+      "shared_codes": 1288,
+      "missing_in_target_count": 1,
+      "missing_in_target": [
+        "DB1276"
+      ],
+      "extra_in_target_count": 106,
+      "extra_in_target": [
+        "BR1001",
+        "BR1008",
+        "BR1009",
+        "BR1010",
+        "BR1011",
+        "BR1012",
+        "BR1013",
+        "BR1015",
+        "BR1016",
+        "BR1017",
+        "BR1018",
+        "BR7000",
+        "BR7001",
+        "BR7003",
+        "BR7004",
+        "BR7005",
+        "BR7007",
+        "BR7009",
+        "BR7010",
+        "BR7011",
+        "BR7012",
+        "BR7013",
+        "BR7014",
+        "BR7015",
+        "BR7016",
+        "BR7017",
+        "BR7018",
+        "BR7020",
+        "BR7021",
+        "BR7022",
+        "BR7100",
+        "BR7101",
+        "BR7102",
+        "BR7104",
+        "BR7105",
+        "BR7106",
+        "BR7109",
+        "BR7110",
+        "BR7111",
+        "BR7112",
+        "BR7113",
+        "BR7114",
+        "BR7115",
+        "BR7116",
+        "BR7117",
+        "BR7118",
+        "BR7119",
+        "BR7120",
+        "BR7121",
+        "BR7122",
+        "BR7123",
+        "BR7124",
+        "BR7125",
+        "BR7126",
+        "BR7127",
+        "BR7200",
+        "BR7201",
+        "BR7203",
+        "BR7204",
+        "BR7205",
+        "BR7207",
+        "BR7210",
+        "BR7211",
+        "BR7212",
+        "BR7213",
+        "BR7214",
+        "BR7215",
+        "BR7216",
+        "BR7217",
+        "BR7218",
+        "BR7219",
+        "BR7220",
+        "BR7221",
+        "BR7224",
+        "BR7225",
+        "BR7228",
+        "BR7229",
+        "BR7237",
+        "BR7238",
+        "BR7239",
+        "BR7300",
+        "BR7301",
+        "BR7303",
+        "BR7304",
+        "BR7305",
+        "BR7307",
+        "BR7308",
+        "BR7309",
+        "BR7310",
+        "BR7311",
+        "BR7312",
+        "BR7313",
+        "BR7314",
+        "BR7315",
+        "BR7316",
+        "BR7317",
+        "BR7318",
+        "BR7320",
+        "BR7321",
+        "BR7322",
+        "BR7323",
+        "BR7324",
+        "BR7325",
+        "BR7326",
+        "DS1000",
+        "LO0010"
+      ],
+      "source_duplicate_code_count": 0,
+      "source_duplicate_codes": [],
+      "target_duplicate_code_count": 0,
+      "target_duplicate_codes": [],
+      "source_field_count": 30,
+      "target_field_count": 61,
+      "source_only_fields": [
+        "avg_days_2026",
+        "avg_points_2026",
+        "satisfaction_2026"
+      ],
+      "target_only_fields": [
+        "NOTES",
+        "avg_days_2025",
+        "avg_points_2025",
+        "boundaryId",
+        "boundary_id_numeric",
+        "boundary_token",
+        "code",
+        "draw_2025_bg_pdf_page",
+        "draw_2025_bg_report_page",
+        "draw_2025_species_section",
+        "draw_2025_type",
+        "huntCode",
+        "permit_allocation_type",
+        "permit_note",
+        "permit_source_authority",
+        "permits_2025_draw_nr",
+        "permits_2025_draw_res",
+        "permits_2025_draw_total",
+        "permits_2025_nr",
+        "permits_2025_res",
+        "permits_2025_total",
+        "permits_2026_conservation",
+        "permits_2026_expo",
+        "permits_2026_source",
+        "permits_2026_sportsman",
+        "resolvedBoundaryIds",
+        "satisfaction_2025",
+        "special_permit_area_id",
+        "special_permit_category",
+        "special_permit_note",
+        "special_permit_overlay_source",
+        "title",
+        "unitCode",
+        "unitName"
+      ],
+      "meaningful_source_only_fields": [
+        {
+          "field": "avg_days_2026",
+          "examples": [
+            "9.0",
+            "4.0",
+            "5.5",
+            "1.8"
+          ]
+        },
+        {
+          "field": "satisfaction_2026",
+          "examples": [
+            "3.6",
+            "4.0",
+            "4.3",
+            "4.8"
+          ]
+        }
+      ],
+      "mismatched_shared_fields": [
+        {
+          "field": "sex_type",
+          "checked": 1288,
+          "mismatch": 134,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "Hunter's Choice",
+              "target": "Hunters Choice"
+            },
+            {
+              "hunt_code": "BI6500",
+              "source": "Hunter's Choice",
+              "target": "Hunters Choice"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "Hunter's Choice",
+              "target": "Hunters Choice"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "Hunter's Choice",
+              "target": "Hunters Choice"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "Antlerless",
+              "target": "Cow Only"
+            }
+          ]
+        },
+        {
+          "field": "hunt_type",
+          "checked": 1288,
+          "mismatch": 85,
+          "examples": [
+            {
+              "hunt_code": "BI6500",
+              "source": "Once-in-a-Lifetime",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "Once-in-a-Lifetime",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "Once-in-a-Lifetime",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "Once-in-a-Lifetime",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6506",
+              "source": "Once-in-a-Lifetime",
+              "target": "Once-in-a-lifetime"
+            }
+          ]
+        },
+        {
+          "field": "weapon",
+          "checked": 1288,
+          "mismatch": 108,
+          "examples": [
+            {
+              "hunt_code": "DA1001",
+              "source": "Archery",
+              "target": "Archery, Muzzleloader, Shotgun"
+            },
+            {
+              "hunt_code": "DA1002",
+              "source": "Archery",
+              "target": "Archery, Muzzleloader, Shotgun"
+            },
+            {
+              "hunt_code": "DA1003",
+              "source": "Archery",
+              "target": "Archery, Muzzleloader, Shotgun"
+            },
+            {
+              "hunt_code": "DA1018",
+              "source": "Archery",
+              "target": "Archery, Muzzleloader, Shotgun"
+            },
+            {
+              "hunt_code": "DA1046",
+              "source": "Archery",
+              "target": "Archery, Muzzleloader, Shotgun"
+            }
+          ]
+        },
+        {
+          "field": "hunt_name",
+          "checked": 1288,
+          "mismatch": 128,
+          "examples": [
+            {
+              "hunt_code": "DB1119",
+              "source": "La Sal, Moab Valley",
+              "target": "Moab Valley"
+            },
+            {
+              "hunt_code": "EB3000",
+              "source": "Beaver, East",
+              "target": "Beaver East"
+            },
+            {
+              "hunt_code": "EB3002",
+              "source": "Book Cliffs, Little Creek Roadless",
+              "target": "Book Cliffs Little Creek Roadless"
+            },
+            {
+              "hunt_code": "EB3003",
+              "source": "Cache, Meadowville",
+              "target": "Cache Meadowville"
+            },
+            {
+              "hunt_code": "EB3005",
+              "source": "Cache, South",
+              "target": "Cache South"
+            }
+          ]
+        },
+        {
+          "field": "season",
+          "checked": 1288,
+          "mismatch": 12,
+          "examples": [
+            {
+              "hunt_code": "BI6538",
+              "source": "Aug 1, 2025 - Jan 31, 2026 | Harvest survey due by Feb 15, 2026 Visit: http://wildlife.utah.gov/harvest to submit your survey",
+              "target": "Aug 1, 2025 - Jan 31, 2026"
+            },
+            {
+              "hunt_code": "BR1000",
+              "source": "Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates",
+              "target": ""
+            },
+            {
+              "hunt_code": "CG9999",
+              "source": "open",
+              "target": ""
+            },
+            {
+              "hunt_code": "LO0008",
+              "source": "Aug 16 2025 - Sept 12 2025 - Valid only on property enrolled in the Diamond Mtn LOA",
+              "target": "Aug 15 2026 - Sept 11 2026 - Valid only on property enrolled in the Diamond Mtn LOA"
+            },
+            {
+              "hunt_code": "LO0009",
+              "source": "Oct 18 2025 - Oct 26 2025 - Valid only on property enrolled in the Diamond Mtn LOA",
+              "target": "Oct 17 2026 - Oct 25 2026 - Valid only on property enrolled in the Diamond Mtn LOA"
+            }
+          ]
+        },
+        {
+          "field": "permits_2026_res",
+          "checked": 792,
+          "mismatch": 792,
+          "examples": [
+            {
+              "hunt_code": "BI6500",
+              "source": "2.0",
+              "target": "2"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "4.0",
+              "target": "4"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "5.0",
+              "target": "5"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "8.0",
+              "target": "8"
+            },
+            {
+              "hunt_code": "BI6506",
+              "source": "11.0",
+              "target": "11"
+            }
+          ]
+        },
+        {
+          "field": "permits_2026_nr",
+          "checked": 788,
+          "mismatch": 788,
+          "examples": [
+            {
+              "hunt_code": "BI6500",
+              "source": "0.0",
+              "target": "0"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "2.0",
+              "target": "2"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "2.0",
+              "target": "2"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "3.0",
+              "target": "3"
+            },
+            {
+              "hunt_code": "BI6506",
+              "source": "0.0",
+              "target": "0"
+            }
+          ]
+        },
+        {
+          "field": "permits_2026_total",
+          "checked": 986,
+          "mismatch": 986,
+          "examples": [
+            {
+              "hunt_code": "BI6500",
+              "source": "2.0",
+              "target": "2"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "6.0",
+              "target": "6"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "7.0",
+              "target": "7"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "11.0",
+              "target": "11"
+            },
+            {
+              "hunt_code": "BI6506",
+              "source": "11.0",
+              "target": "11"
+            }
+          ]
+        },
+        {
+          "field": "permit_status",
+          "checked": 1288,
+          "mismatch": 316,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "MISSING",
+              "target": "NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BI6527",
+              "source": "MISSING",
+              "target": "NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BI6538",
+              "source": "MISSING",
+              "target": "NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BR1000",
+              "source": "MISSING",
+              "target": "NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BR1007",
+              "source": "MISSING",
+              "target": "NO_QUOTA_PUBLISHED"
+            }
+          ]
+        },
+        {
+          "field": "permit_overlay_source",
+          "checked": 1288,
+          "mismatch": 1288,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "",
+              "target": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "hunt_code": "BI6500",
+              "source": "hunt_join_2025.1.csv",
+              "target": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "hunt_join_2025.1.csv",
+              "target": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "hunt_join_2025.1.csv",
+              "target": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "hunt_join_2025.1.csv",
+              "target": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            }
+          ]
+        },
+        {
+          "field": "source_authority",
+          "checked": 1288,
+          "mismatch": 175,
+          "examples": [
+            {
+              "hunt_code": "EA2002",
+              "source": "official_uploaded_source",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "EA2003",
+              "source": "official_uploaded_source",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "EA2004",
+              "source": "official_uploaded_source",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "EA2005",
+              "source": "official_uploaded_source",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "EA2006",
+              "source": "official_uploaded_source",
+              "target": "Utah DWR Hunt Planner"
+            }
+          ]
+        },
+        {
+          "field": "data_status",
+          "checked": 1288,
+          "mismatch": 502,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "MISSING_STATEWIDE_SOURCE",
+              "target": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BI6527",
+              "source": "MISSING_GENERAL_SOURCE",
+              "target": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BI6538",
+              "source": "MISSING_GENERAL_SOURCE",
+              "target": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BR1000",
+              "source": "MISSING_STATEWIDE_SOURCE",
+              "target": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BR1007",
+              "source": "MISSING_PURSUIT_SOURCE",
+              "target": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED"
+            }
+          ]
+        },
+        {
+          "field": "boundary_id",
+          "checked": 1288,
+          "mismatch": 1288,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "",
+              "target": "5000"
+            },
+            {
+              "hunt_code": "BI6500",
+              "source": "",
+              "target": "1"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "",
+              "target": "94"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "",
+              "target": "94"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "",
+              "target": "94"
+            }
+          ]
+        }
+      ],
+      "significant_drop": true
+    },
+    {
+      "source": "hunt_master_canonical_2026_built.csv",
+      "target": "generated/pages/hunt-planner.json hunt_catalog",
+      "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/hunt_master_canonical_2026_built.csv",
+      "target_file": "generated/pages/hunt-planner.json",
+      "source_rows": 1289,
+      "target_rows": 1394,
+      "source_unique_codes": 1289,
+      "target_unique_codes": 1394,
+      "shared_codes": 1288,
+      "missing_in_target_count": 1,
+      "missing_in_target": [
+        "DB1276"
+      ],
+      "extra_in_target_count": 106,
+      "extra_in_target": [
+        "BR1001",
+        "BR1008",
+        "BR1009",
+        "BR1010",
+        "BR1011",
+        "BR1012",
+        "BR1013",
+        "BR1015",
+        "BR1016",
+        "BR1017",
+        "BR1018",
+        "BR7000",
+        "BR7001",
+        "BR7003",
+        "BR7004",
+        "BR7005",
+        "BR7007",
+        "BR7009",
+        "BR7010",
+        "BR7011",
+        "BR7012",
+        "BR7013",
+        "BR7014",
+        "BR7015",
+        "BR7016",
+        "BR7017",
+        "BR7018",
+        "BR7020",
+        "BR7021",
+        "BR7022",
+        "BR7100",
+        "BR7101",
+        "BR7102",
+        "BR7104",
+        "BR7105",
+        "BR7106",
+        "BR7109",
+        "BR7110",
+        "BR7111",
+        "BR7112",
+        "BR7113",
+        "BR7114",
+        "BR7115",
+        "BR7116",
+        "BR7117",
+        "BR7118",
+        "BR7119",
+        "BR7120",
+        "BR7121",
+        "BR7122",
+        "BR7123",
+        "BR7124",
+        "BR7125",
+        "BR7126",
+        "BR7127",
+        "BR7200",
+        "BR7201",
+        "BR7203",
+        "BR7204",
+        "BR7205",
+        "BR7207",
+        "BR7210",
+        "BR7211",
+        "BR7212",
+        "BR7213",
+        "BR7214",
+        "BR7215",
+        "BR7216",
+        "BR7217",
+        "BR7218",
+        "BR7219",
+        "BR7220",
+        "BR7221",
+        "BR7224",
+        "BR7225",
+        "BR7228",
+        "BR7229",
+        "BR7237",
+        "BR7238",
+        "BR7239",
+        "BR7300",
+        "BR7301",
+        "BR7303",
+        "BR7304",
+        "BR7305",
+        "BR7307",
+        "BR7308",
+        "BR7309",
+        "BR7310",
+        "BR7311",
+        "BR7312",
+        "BR7313",
+        "BR7314",
+        "BR7315",
+        "BR7316",
+        "BR7317",
+        "BR7318",
+        "BR7320",
+        "BR7321",
+        "BR7322",
+        "BR7323",
+        "BR7324",
+        "BR7325",
+        "BR7326",
+        "DS1000",
+        "LO0010"
+      ],
+      "source_duplicate_code_count": 0,
+      "source_duplicate_codes": [],
+      "target_duplicate_code_count": 0,
+      "target_duplicate_codes": [],
+      "source_field_count": 30,
+      "target_field_count": 61,
+      "source_only_fields": [
+        "avg_days_2026",
+        "avg_points_2026",
+        "satisfaction_2026"
+      ],
+      "target_only_fields": [
+        "NOTES",
+        "avg_days_2025",
+        "avg_points_2025",
+        "boundaryId",
+        "boundary_id_numeric",
+        "boundary_token",
+        "code",
+        "draw_2025_bg_pdf_page",
+        "draw_2025_bg_report_page",
+        "draw_2025_species_section",
+        "draw_2025_type",
+        "huntCode",
+        "permit_allocation_type",
+        "permit_note",
+        "permit_source_authority",
+        "permits_2025_draw_nr",
+        "permits_2025_draw_res",
+        "permits_2025_draw_total",
+        "permits_2025_nr",
+        "permits_2025_res",
+        "permits_2025_total",
+        "permits_2026_conservation",
+        "permits_2026_expo",
+        "permits_2026_source",
+        "permits_2026_sportsman",
+        "resolvedBoundaryIds",
+        "satisfaction_2025",
+        "special_permit_area_id",
+        "special_permit_category",
+        "special_permit_note",
+        "special_permit_overlay_source",
+        "title",
+        "unitCode",
+        "unitName"
+      ],
+      "meaningful_source_only_fields": [
+        {
+          "field": "avg_days_2026",
+          "examples": [
+            "9.0",
+            "4.0",
+            "5.5",
+            "1.8"
+          ]
+        },
+        {
+          "field": "satisfaction_2026",
+          "examples": [
+            "3.6",
+            "4.0",
+            "4.3",
+            "4.8"
+          ]
+        }
+      ],
+      "mismatched_shared_fields": [
+        {
+          "field": "sex_type",
+          "checked": 1288,
+          "mismatch": 134,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "Hunter's Choice",
+              "target": "Hunters Choice"
+            },
+            {
+              "hunt_code": "BI6500",
+              "source": "Hunter's Choice",
+              "target": "Hunters Choice"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "Hunter's Choice",
+              "target": "Hunters Choice"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "Hunter's Choice",
+              "target": "Hunters Choice"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "Antlerless",
+              "target": "Cow Only"
+            }
+          ]
+        },
+        {
+          "field": "hunt_type",
+          "checked": 1288,
+          "mismatch": 85,
+          "examples": [
+            {
+              "hunt_code": "BI6500",
+              "source": "Once-in-a-Lifetime",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "Once-in-a-Lifetime",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "Once-in-a-Lifetime",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "Once-in-a-Lifetime",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6506",
+              "source": "Once-in-a-Lifetime",
+              "target": "Once-in-a-lifetime"
+            }
+          ]
+        },
+        {
+          "field": "weapon",
+          "checked": 1288,
+          "mismatch": 108,
+          "examples": [
+            {
+              "hunt_code": "DA1001",
+              "source": "Archery",
+              "target": "Archery, Muzzleloader, Shotgun"
+            },
+            {
+              "hunt_code": "DA1002",
+              "source": "Archery",
+              "target": "Archery, Muzzleloader, Shotgun"
+            },
+            {
+              "hunt_code": "DA1003",
+              "source": "Archery",
+              "target": "Archery, Muzzleloader, Shotgun"
+            },
+            {
+              "hunt_code": "DA1018",
+              "source": "Archery",
+              "target": "Archery, Muzzleloader, Shotgun"
+            },
+            {
+              "hunt_code": "DA1046",
+              "source": "Archery",
+              "target": "Archery, Muzzleloader, Shotgun"
+            }
+          ]
+        },
+        {
+          "field": "hunt_name",
+          "checked": 1288,
+          "mismatch": 128,
+          "examples": [
+            {
+              "hunt_code": "DB1119",
+              "source": "La Sal, Moab Valley",
+              "target": "Moab Valley"
+            },
+            {
+              "hunt_code": "EB3000",
+              "source": "Beaver, East",
+              "target": "Beaver East"
+            },
+            {
+              "hunt_code": "EB3002",
+              "source": "Book Cliffs, Little Creek Roadless",
+              "target": "Book Cliffs Little Creek Roadless"
+            },
+            {
+              "hunt_code": "EB3003",
+              "source": "Cache, Meadowville",
+              "target": "Cache Meadowville"
+            },
+            {
+              "hunt_code": "EB3005",
+              "source": "Cache, South",
+              "target": "Cache South"
+            }
+          ]
+        },
+        {
+          "field": "season",
+          "checked": 1288,
+          "mismatch": 12,
+          "examples": [
+            {
+              "hunt_code": "BI6538",
+              "source": "Aug 1, 2025 - Jan 31, 2026 | Harvest survey due by Feb 15, 2026 Visit: http://wildlife.utah.gov/harvest to submit your survey",
+              "target": "Aug 1, 2025 - Jan 31, 2026"
+            },
+            {
+              "hunt_code": "BR1000",
+              "source": "Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates",
+              "target": ""
+            },
+            {
+              "hunt_code": "CG9999",
+              "source": "open",
+              "target": ""
+            },
+            {
+              "hunt_code": "LO0008",
+              "source": "Aug 16 2025 - Sept 12 2025 - Valid only on property enrolled in the Diamond Mtn LOA",
+              "target": "Aug 15 2026 - Sept 11 2026 - Valid only on property enrolled in the Diamond Mtn LOA"
+            },
+            {
+              "hunt_code": "LO0009",
+              "source": "Oct 18 2025 - Oct 26 2025 - Valid only on property enrolled in the Diamond Mtn LOA",
+              "target": "Oct 17 2026 - Oct 25 2026 - Valid only on property enrolled in the Diamond Mtn LOA"
+            }
+          ]
+        },
+        {
+          "field": "permits_2026_res",
+          "checked": 792,
+          "mismatch": 792,
+          "examples": [
+            {
+              "hunt_code": "BI6500",
+              "source": "2.0",
+              "target": "2"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "4.0",
+              "target": "4"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "5.0",
+              "target": "5"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "8.0",
+              "target": "8"
+            },
+            {
+              "hunt_code": "BI6506",
+              "source": "11.0",
+              "target": "11"
+            }
+          ]
+        },
+        {
+          "field": "permits_2026_nr",
+          "checked": 788,
+          "mismatch": 788,
+          "examples": [
+            {
+              "hunt_code": "BI6500",
+              "source": "0.0",
+              "target": "0"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "2.0",
+              "target": "2"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "2.0",
+              "target": "2"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "3.0",
+              "target": "3"
+            },
+            {
+              "hunt_code": "BI6506",
+              "source": "0.0",
+              "target": "0"
+            }
+          ]
+        },
+        {
+          "field": "permits_2026_total",
+          "checked": 986,
+          "mismatch": 986,
+          "examples": [
+            {
+              "hunt_code": "BI6500",
+              "source": "2.0",
+              "target": "2"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "6.0",
+              "target": "6"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "7.0",
+              "target": "7"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "11.0",
+              "target": "11"
+            },
+            {
+              "hunt_code": "BI6506",
+              "source": "11.0",
+              "target": "11"
+            }
+          ]
+        },
+        {
+          "field": "permit_status",
+          "checked": 1288,
+          "mismatch": 316,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "MISSING",
+              "target": "NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BI6527",
+              "source": "MISSING",
+              "target": "NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BI6538",
+              "source": "MISSING",
+              "target": "NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BR1000",
+              "source": "MISSING",
+              "target": "NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BR1007",
+              "source": "MISSING",
+              "target": "NO_QUOTA_PUBLISHED"
+            }
+          ]
+        },
+        {
+          "field": "permit_overlay_source",
+          "checked": 1288,
+          "mismatch": 1288,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "",
+              "target": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "hunt_code": "BI6500",
+              "source": "hunt_join_2025.1.csv",
+              "target": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "hunt_join_2025.1.csv",
+              "target": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "hunt_join_2025.1.csv",
+              "target": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "hunt_join_2025.1.csv",
+              "target": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            }
+          ]
+        },
+        {
+          "field": "source_authority",
+          "checked": 1288,
+          "mismatch": 175,
+          "examples": [
+            {
+              "hunt_code": "EA2002",
+              "source": "official_uploaded_source",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "EA2003",
+              "source": "official_uploaded_source",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "EA2004",
+              "source": "official_uploaded_source",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "EA2005",
+              "source": "official_uploaded_source",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "EA2006",
+              "source": "official_uploaded_source",
+              "target": "Utah DWR Hunt Planner"
+            }
+          ]
+        },
+        {
+          "field": "data_status",
+          "checked": 1288,
+          "mismatch": 502,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "MISSING_STATEWIDE_SOURCE",
+              "target": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BI6527",
+              "source": "MISSING_GENERAL_SOURCE",
+              "target": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BI6538",
+              "source": "MISSING_GENERAL_SOURCE",
+              "target": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BR1000",
+              "source": "MISSING_STATEWIDE_SOURCE",
+              "target": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BR1007",
+              "source": "MISSING_PURSUIT_SOURCE",
+              "target": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED"
+            }
+          ]
+        },
+        {
+          "field": "boundary_id",
+          "checked": 1288,
+          "mismatch": 1288,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "",
+              "target": "5000"
+            },
+            {
+              "hunt_code": "BI6500",
+              "source": "",
+              "target": "1"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "",
+              "target": "94"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "",
+              "target": "94"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "",
+              "target": "94"
+            }
+          ]
+        }
+      ],
+      "significant_drop": true
+    },
+    {
+      "source": "hunt_master_canonical_2026_built.csv",
+      "target": "hunt-master-canonical-2026.json hunt_catalog",
+      "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/hunt_master_canonical_2026_built.csv",
+      "target_file": "hunt-master-canonical-2026.json",
+      "source_rows": 1289,
+      "target_rows": 1394,
+      "source_unique_codes": 1289,
+      "target_unique_codes": 1394,
+      "shared_codes": 1288,
+      "missing_in_target_count": 1,
+      "missing_in_target": [
+        "DB1276"
+      ],
+      "extra_in_target_count": 106,
+      "extra_in_target": [
+        "BR1001",
+        "BR1008",
+        "BR1009",
+        "BR1010",
+        "BR1011",
+        "BR1012",
+        "BR1013",
+        "BR1015",
+        "BR1016",
+        "BR1017",
+        "BR1018",
+        "BR7000",
+        "BR7001",
+        "BR7003",
+        "BR7004",
+        "BR7005",
+        "BR7007",
+        "BR7009",
+        "BR7010",
+        "BR7011",
+        "BR7012",
+        "BR7013",
+        "BR7014",
+        "BR7015",
+        "BR7016",
+        "BR7017",
+        "BR7018",
+        "BR7020",
+        "BR7021",
+        "BR7022",
+        "BR7100",
+        "BR7101",
+        "BR7102",
+        "BR7104",
+        "BR7105",
+        "BR7106",
+        "BR7109",
+        "BR7110",
+        "BR7111",
+        "BR7112",
+        "BR7113",
+        "BR7114",
+        "BR7115",
+        "BR7116",
+        "BR7117",
+        "BR7118",
+        "BR7119",
+        "BR7120",
+        "BR7121",
+        "BR7122",
+        "BR7123",
+        "BR7124",
+        "BR7125",
+        "BR7126",
+        "BR7127",
+        "BR7200",
+        "BR7201",
+        "BR7203",
+        "BR7204",
+        "BR7205",
+        "BR7207",
+        "BR7210",
+        "BR7211",
+        "BR7212",
+        "BR7213",
+        "BR7214",
+        "BR7215",
+        "BR7216",
+        "BR7217",
+        "BR7218",
+        "BR7219",
+        "BR7220",
+        "BR7221",
+        "BR7224",
+        "BR7225",
+        "BR7228",
+        "BR7229",
+        "BR7237",
+        "BR7238",
+        "BR7239",
+        "BR7300",
+        "BR7301",
+        "BR7303",
+        "BR7304",
+        "BR7305",
+        "BR7307",
+        "BR7308",
+        "BR7309",
+        "BR7310",
+        "BR7311",
+        "BR7312",
+        "BR7313",
+        "BR7314",
+        "BR7315",
+        "BR7316",
+        "BR7317",
+        "BR7318",
+        "BR7320",
+        "BR7321",
+        "BR7322",
+        "BR7323",
+        "BR7324",
+        "BR7325",
+        "BR7326",
+        "DS1000",
+        "LO0010"
+      ],
+      "source_duplicate_code_count": 0,
+      "source_duplicate_codes": [],
+      "target_duplicate_code_count": 0,
+      "target_duplicate_codes": [],
+      "source_field_count": 30,
+      "target_field_count": 61,
+      "source_only_fields": [
+        "avg_days_2026",
+        "avg_points_2026",
+        "satisfaction_2026"
+      ],
+      "target_only_fields": [
+        "NOTES",
+        "avg_days_2025",
+        "avg_points_2025",
+        "boundaryId",
+        "boundary_id_numeric",
+        "boundary_token",
+        "code",
+        "documents",
+        "draw_2025_bg_pdf_page",
+        "draw_2025_bg_report_page",
+        "draw_2025_species_section",
+        "draw_2025_type",
+        "geometry",
+        "huntCode",
+        "id",
+        "permit_allocation_type",
+        "permit_note",
+        "permit_source_authority",
+        "permits_2025_draw_nr",
+        "permits_2025_draw_res",
+        "permits_2025_draw_total",
+        "permits_2025_nr",
+        "permits_2025_res",
+        "permits_2025_total",
+        "provenance",
+        "regulations_references",
+        "resolvedBoundaryIds",
+        "satisfaction_2025",
+        "season_id",
+        "species_id",
+        "tags_and_permits",
+        "title",
+        "unitCode",
+        "unitName"
+      ],
+      "meaningful_source_only_fields": [
+        {
+          "field": "avg_days_2026",
+          "examples": [
+            "9.0",
+            "4.0",
+            "5.5",
+            "1.8"
+          ]
+        },
+        {
+          "field": "satisfaction_2026",
+          "examples": [
+            "3.6",
+            "4.0",
+            "4.3",
+            "4.8"
+          ]
+        }
+      ],
+      "mismatched_shared_fields": [
+        {
+          "field": "sex_type",
+          "checked": 1288,
+          "mismatch": 134,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "Hunter's Choice",
+              "target": "Hunters Choice"
+            },
+            {
+              "hunt_code": "BI6500",
+              "source": "Hunter's Choice",
+              "target": "Hunters Choice"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "Hunter's Choice",
+              "target": "Hunters Choice"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "Hunter's Choice",
+              "target": "Hunters Choice"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "Antlerless",
+              "target": "Cow Only"
+            }
+          ]
+        },
+        {
+          "field": "hunt_type",
+          "checked": 1288,
+          "mismatch": 85,
+          "examples": [
+            {
+              "hunt_code": "BI6500",
+              "source": "Once-in-a-Lifetime",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "Once-in-a-Lifetime",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "Once-in-a-Lifetime",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "Once-in-a-Lifetime",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6506",
+              "source": "Once-in-a-Lifetime",
+              "target": "Once-in-a-lifetime"
+            }
+          ]
+        },
+        {
+          "field": "weapon",
+          "checked": 1288,
+          "mismatch": 108,
+          "examples": [
+            {
+              "hunt_code": "DA1001",
+              "source": "Archery",
+              "target": "Archery, Muzzleloader, Shotgun"
+            },
+            {
+              "hunt_code": "DA1002",
+              "source": "Archery",
+              "target": "Archery, Muzzleloader, Shotgun"
+            },
+            {
+              "hunt_code": "DA1003",
+              "source": "Archery",
+              "target": "Archery, Muzzleloader, Shotgun"
+            },
+            {
+              "hunt_code": "DA1018",
+              "source": "Archery",
+              "target": "Archery, Muzzleloader, Shotgun"
+            },
+            {
+              "hunt_code": "DA1046",
+              "source": "Archery",
+              "target": "Archery, Muzzleloader, Shotgun"
+            }
+          ]
+        },
+        {
+          "field": "hunt_name",
+          "checked": 1288,
+          "mismatch": 128,
+          "examples": [
+            {
+              "hunt_code": "DB1119",
+              "source": "La Sal, Moab Valley",
+              "target": "Moab Valley"
+            },
+            {
+              "hunt_code": "EB3000",
+              "source": "Beaver, East",
+              "target": "Beaver East"
+            },
+            {
+              "hunt_code": "EB3002",
+              "source": "Book Cliffs, Little Creek Roadless",
+              "target": "Book Cliffs Little Creek Roadless"
+            },
+            {
+              "hunt_code": "EB3003",
+              "source": "Cache, Meadowville",
+              "target": "Cache Meadowville"
+            },
+            {
+              "hunt_code": "EB3005",
+              "source": "Cache, South",
+              "target": "Cache South"
+            }
+          ]
+        },
+        {
+          "field": "season",
+          "checked": 1288,
+          "mismatch": 12,
+          "examples": [
+            {
+              "hunt_code": "BI6538",
+              "source": "Aug 1, 2025 - Jan 31, 2026 | Harvest survey due by Feb 15, 2026 Visit: http://wildlife.utah.gov/harvest to submit your survey",
+              "target": "Aug 1, 2025 - Jan 31, 2026"
+            },
+            {
+              "hunt_code": "BR1000",
+              "source": "Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates",
+              "target": ""
+            },
+            {
+              "hunt_code": "CG9999",
+              "source": "open",
+              "target": ""
+            },
+            {
+              "hunt_code": "LO0008",
+              "source": "Aug 16 2025 - Sept 12 2025 - Valid only on property enrolled in the Diamond Mtn LOA",
+              "target": "Aug 15 2026 - Sept 11 2026 - Valid only on property enrolled in the Diamond Mtn LOA"
+            },
+            {
+              "hunt_code": "LO0009",
+              "source": "Oct 18 2025 - Oct 26 2025 - Valid only on property enrolled in the Diamond Mtn LOA",
+              "target": "Oct 17 2026 - Oct 25 2026 - Valid only on property enrolled in the Diamond Mtn LOA"
+            }
+          ]
+        },
+        {
+          "field": "permits_2026_res",
+          "checked": 792,
+          "mismatch": 792,
+          "examples": [
+            {
+              "hunt_code": "BI6500",
+              "source": "2.0",
+              "target": "2"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "4.0",
+              "target": "4"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "5.0",
+              "target": "5"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "8.0",
+              "target": "8"
+            },
+            {
+              "hunt_code": "BI6506",
+              "source": "11.0",
+              "target": "11"
+            }
+          ]
+        },
+        {
+          "field": "permits_2026_nr",
+          "checked": 788,
+          "mismatch": 788,
+          "examples": [
+            {
+              "hunt_code": "BI6500",
+              "source": "0.0",
+              "target": "0"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "2.0",
+              "target": "2"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "2.0",
+              "target": "2"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "3.0",
+              "target": "3"
+            },
+            {
+              "hunt_code": "BI6506",
+              "source": "0.0",
+              "target": "0"
+            }
+          ]
+        },
+        {
+          "field": "permits_2026_total",
+          "checked": 985,
+          "mismatch": 985,
+          "examples": [
+            {
+              "hunt_code": "BI6500",
+              "source": "2.0",
+              "target": "2"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "6.0",
+              "target": "6"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "7.0",
+              "target": "7"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "11.0",
+              "target": "11"
+            },
+            {
+              "hunt_code": "BI6506",
+              "source": "11.0",
+              "target": "11"
+            }
+          ]
+        },
+        {
+          "field": "permit_status",
+          "checked": 1288,
+          "mismatch": 510,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "MISSING",
+              "target": "NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BI6527",
+              "source": "MISSING",
+              "target": "NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BI6538",
+              "source": "MISSING",
+              "target": "NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BR1000",
+              "source": "MISSING",
+              "target": "TOTAL_ONLY"
+            },
+            {
+              "hunt_code": "BR1007",
+              "source": "MISSING",
+              "target": "NO_QUOTA_PUBLISHED"
+            }
+          ]
+        },
+        {
+          "field": "permit_overlay_source",
+          "checked": 1174,
+          "mismatch": 896,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "",
+              "target": "2026_bison_either-sex.xlsx"
+            },
+            {
+              "hunt_code": "BI6500",
+              "source": "hunt_join_2025.1.csv",
+              "target": "2026_bison_either-sex.xlsx"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "hunt_join_2025.1.csv",
+              "target": "2026_bison_either-sex.xlsx"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "hunt_join_2025.1.csv",
+              "target": "2026_bison_either-sex.xlsx"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "hunt_join_2025.1.csv",
+              "target": "2026_bison_cow_only.xlsx"
+            }
+          ]
+        },
+        {
+          "field": "source_authority",
+          "checked": 1288,
+          "mismatch": 175,
+          "examples": [
+            {
+              "hunt_code": "EA2002",
+              "source": "official_uploaded_source",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "EA2003",
+              "source": "official_uploaded_source",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "EA2004",
+              "source": "official_uploaded_source",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "EA2005",
+              "source": "official_uploaded_source",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "EA2006",
+              "source": "official_uploaded_source",
+              "target": "Utah DWR Hunt Planner"
+            }
+          ]
+        },
+        {
+          "field": "data_status",
+          "checked": 1288,
+          "mismatch": 510,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "MISSING_STATEWIDE_SOURCE",
+              "target": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BI6527",
+              "source": "MISSING_GENERAL_SOURCE",
+              "target": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BI6538",
+              "source": "MISSING_GENERAL_SOURCE",
+              "target": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BR1000",
+              "source": "MISSING_STATEWIDE_SOURCE",
+              "target": "COMPLETE_TOTAL_ONLY"
+            },
+            {
+              "hunt_code": "BR1007",
+              "source": "MISSING_PURSUIT_SOURCE",
+              "target": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED"
+            }
+          ]
+        },
+        {
+          "field": "boundary_id",
+          "checked": 1288,
+          "mismatch": 1288,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "",
+              "target": "SW_BISON_2026"
+            },
+            {
+              "hunt_code": "BI6500",
+              "source": "",
+              "target": "1"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "",
+              "target": "94"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "",
+              "target": "94"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "",
+              "target": "94"
+            }
+          ]
+        }
+      ],
+      "significant_drop": true
+    },
+    {
+      "source": "processed_data/hunt_master_enriched.csv",
+      "target": "canonical/hunt-planner-2026.json hunt_catalog",
+      "source_file": "processed_data/hunt_master_enriched.csv",
+      "target_file": "canonical/hunt-planner-2026.json",
+      "source_rows": 53060,
+      "target_rows": 1394,
+      "source_unique_codes": 1394,
+      "target_unique_codes": 1394,
+      "shared_codes": 1394,
+      "missing_in_target_count": 0,
+      "missing_in_target": [],
+      "extra_in_target_count": 0,
+      "extra_in_target": [],
+      "source_duplicate_code_count": 1394,
+      "source_duplicate_codes": [
+        "BI1000",
+        "BI6500",
+        "BI6503",
+        "BI6504",
+        "BI6505",
+        "BI6506",
+        "BI6509",
+        "BI6516",
+        "BI6527",
+        "BI6528",
+        "BI6529",
+        "BI6531",
+        "BI6532",
+        "BI6534",
+        "BI6535",
+        "BI6536",
+        "BI6537",
+        "BI6538",
+        "BI6539",
+        "BR1000",
+        "BR1001",
+        "BR1007",
+        "BR1008",
+        "BR1009",
+        "BR1010",
+        "BR1011",
+        "BR1012",
+        "BR1013",
+        "BR1015",
+        "BR1016",
+        "BR1017",
+        "BR1018",
+        "BR7000",
+        "BR7001",
+        "BR7003",
+        "BR7004",
+        "BR7005",
+        "BR7007",
+        "BR7009",
+        "BR7010",
+        "BR7011",
+        "BR7012",
+        "BR7013",
+        "BR7014",
+        "BR7015",
+        "BR7016",
+        "BR7017",
+        "BR7018",
+        "BR7020",
+        "BR7021",
+        "BR7022",
+        "BR7100",
+        "BR7101",
+        "BR7102",
+        "BR7104",
+        "BR7105",
+        "BR7106",
+        "BR7109",
+        "BR7110",
+        "BR7111",
+        "BR7112",
+        "BR7113",
+        "BR7114",
+        "BR7115",
+        "BR7116",
+        "BR7117",
+        "BR7118",
+        "BR7119",
+        "BR7120",
+        "BR7121",
+        "BR7122",
+        "BR7123",
+        "BR7124",
+        "BR7125",
+        "BR7126",
+        "BR7127",
+        "BR7200",
+        "BR7201",
+        "BR7203",
+        "BR7204",
+        "BR7205",
+        "BR7207",
+        "BR7210",
+        "BR7211",
+        "BR7212",
+        "BR7213",
+        "BR7214",
+        "BR7215",
+        "BR7216",
+        "BR7217",
+        "BR7218",
+        "BR7219",
+        "BR7220",
+        "BR7221",
+        "BR7224",
+        "BR7225",
+        "BR7228",
+        "BR7229",
+        "BR7237",
+        "BR7238",
+        "BR7239",
+        "BR7300",
+        "BR7301",
+        "BR7303",
+        "BR7304",
+        "BR7305",
+        "BR7307",
+        "BR7308",
+        "BR7309",
+        "BR7310",
+        "BR7311",
+        "BR7312",
+        "BR7313",
+        "BR7314",
+        "BR7315",
+        "BR7316",
+        "BR7317",
+        "BR7318",
+        "BR7320",
+        "BR7321",
+        "BR7322",
+        "BR7323",
+        "BR7324",
+        "BR7325",
+        "BR7326",
+        "CG9999",
+        "DA1001",
+        "DA1002",
+        "DA1003",
+        "DA1009",
+        "DA1011",
+        "DA1012",
+        "DA1013",
+        "DA1018",
+        "DA1027",
+        "DA1030",
+        "DA1031",
+        "DA1033",
+        "DA1041",
+        "DA1042",
+        "DA1045",
+        "DA1046",
+        "DA1047",
+        "DA1048",
+        "DA1049",
+        "DA1050",
+        "DB0001",
+        "DB0002",
+        "DB0003",
+        "DB0004",
+        "DB0005",
+        "DB0006",
+        "DB0007",
+        "DB0008",
+        "DB0009",
+        "DB0010",
+        "DB0011",
+        "DB0012",
+        "DB0013",
+        "DB1000",
+        "DB1001",
+        "DB1002",
+        "DB1003",
+        "DB1004",
+        "DB1005",
+        "DB1006",
+        "DB1007",
+        "DB1008",
+        "DB1009",
+        "DB1010",
+        "DB1011",
+        "DB1012",
+        "DB1013",
+        "DB1014",
+        "DB1015",
+        "DB1016",
+        "DB1017",
+        "DB1018",
+        "DB1019",
+        "DB1020",
+        "DB1022",
+        "DB1023",
+        "DB1024",
+        "DB1025",
+        "DB1026",
+        "DB1028",
+        "DB1029",
+        "DB1030",
+        "DB1031",
+        "DB1032",
+        "DB1033",
+        "DB1034",
+        "DB1037",
+        "DB1038",
+        "DB1039",
+        "DB1040",
+        "DB1041",
+        "DB1042",
+        "DB1043",
+        "DB1044",
+        "DB1045",
+        "DB1046",
+        "DB1047",
+        "DB1048",
+        "DB1053",
+        "DB1054",
+        "DB1055",
+        "DB1056",
+        "DB1058",
+        "DB1065",
+        "DB1073",
+        "DB1074",
+        "DB1075",
+        "DB1076",
+        "DB1077",
+        "DB1078",
+        "DB1079",
+        "DB1080",
+        "DB1081",
+        "DB1083",
+        "DB1084",
+        "DB1085",
+        "DB1086",
+        "DB1087",
+        "DB1090",
+        "DB1091",
+        "DB1100",
+        "DB1101",
+        "DB1103",
+        "DB1105",
+        "DB1106",
+        "DB1107",
+        "DB1108",
+        "DB1109",
+        "DB1110",
+        "DB1111",
+        "DB1112",
+        "DB1113",
+        "DB1114",
+        "DB1115",
+        "DB1116",
+        "DB1118",
+        "DB1119",
+        "DB1120",
+        "DB1121",
+        "DB1200",
+        "DB1201",
+        "DB1202",
+        "DB1203",
+        "DB1204"
+      ],
+      "target_duplicate_code_count": 0,
+      "target_duplicate_codes": [],
+      "source_field_count": 41,
+      "target_field_count": 61,
+      "source_only_fields": [
+        "applicants_2025",
+        "max_point_permits_2026",
+        "missing_draw_data",
+        "missing_permits",
+        "missing_projection",
+        "odds_2025",
+        "odds_2026_projected",
+        "points",
+        "projected_applicants_2026",
+        "projected_applicants_2026_source",
+        "public_permits_2025",
+        "public_permits_2026",
+        "public_permits_2026_source",
+        "random_permits_2026",
+        "residency",
+        "success_harvest",
+        "success_hunters",
+        "success_percent"
+      ],
+      "target_only_fields": [
+        "NOTES",
+        "avg_days_2025",
+        "avg_points_2025",
+        "boundaryId",
+        "boundary_id",
+        "boundary_id_numeric",
+        "boundary_token",
+        "code",
+        "draw_2025_bg_pdf_page",
+        "draw_2025_bg_report_page",
+        "draw_2025_species_section",
+        "draw_2025_type",
+        "draw_family",
+        "eligibility_class",
+        "harvest_2025",
+        "has_antlerless_draw",
+        "has_bonus_draw",
+        "has_harvest",
+        "huntCode",
+        "hunt_class",
+        "hunters_2025",
+        "permits_2025_draw_nr",
+        "permits_2025_draw_res",
+        "permits_2025_draw_total",
+        "permits_2025_nr",
+        "permits_2025_res",
+        "permits_2025_total",
+        "resolvedBoundaryIds",
+        "satisfaction_2025",
+        "season",
+        "sex_type",
+        "source_authority",
+        "source_file",
+        "success_percent_2025",
+        "title",
+        "unitCode",
+        "unitName",
+        "youth_flag"
+      ],
+      "meaningful_source_only_fields": [
+        {
+          "field": "applicants_2025",
+          "examples": [
+            "0",
+            "2",
+            "3",
+            "12"
+          ]
+        },
+        {
+          "field": "max_point_permits_2026",
+          "examples": [
+            "1",
+            "0",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "field": "missing_draw_data",
+          "examples": [
+            "TRUE",
+            "FALSE"
+          ]
+        },
+        {
+          "field": "missing_permits",
+          "examples": [
+            "TRUE",
+            "FALSE"
+          ]
+        },
+        {
+          "field": "missing_projection",
+          "examples": [
+            "TRUE",
+            "FALSE"
+          ]
+        },
+        {
+          "field": "odds_2025",
+          "examples": [
+            "N/A",
+            "1 in 2.0",
+            "1 in 342.0",
+            "1 in 6.5"
+          ]
+        },
+        {
+          "field": "odds_2026_projected",
+          "examples": [
+            "100.000",
+            "50.075",
+            "0.102",
+            "0.110"
+          ]
+        },
+        {
+          "field": "points",
+          "examples": [
+            "32",
+            "31",
+            "30",
+            "29"
+          ]
+        },
+        {
+          "field": "projected_applicants_2026",
+          "examples": [
+            "0",
+            "1",
+            "3",
+            "12"
+          ]
+        },
+        {
+          "field": "projected_applicants_2026_source",
+          "examples": [
+            "projected_2026",
+            "fallback_2025",
+            "missing_projection_fill_v1"
+          ]
+        },
+        {
+          "field": "public_permits_2025",
+          "examples": [
+            "2",
+            "4",
+            "5",
+            "25"
+          ]
+        },
+        {
+          "field": "public_permits_2026",
+          "examples": [
+            "2",
+            "0",
+            "4",
+            "5"
+          ]
+        },
+        {
+          "field": "public_permits_2026_source",
+          "examples": [
+            "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+          ]
+        },
+        {
+          "field": "random_permits_2026",
+          "examples": [
+            "1",
+            "0",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "field": "residency",
+          "examples": [
+            "Resident",
+            "Nonresident"
+          ]
+        },
+        {
+          "field": "success_harvest",
+          "examples": [
+            "2",
+            "14",
+            "13",
+            "22"
+          ]
+        },
+        {
+          "field": "success_hunters",
+          "examples": [
+            "2",
+            "15",
+            "13",
+            "28"
+          ]
+        },
+        {
+          "field": "success_percent",
+          "examples": [
+            "100",
+            "93.3",
+            "78.6",
+            "93.1"
+          ]
+        }
+      ],
+      "mismatched_shared_fields": [
+        {
+          "field": "species",
+          "checked": 1394,
+          "mismatch": 5,
+          "examples": [
+            {
+              "hunt_code": "LO0012",
+              "source": "Deer",
+              "target": "Elk"
+            },
+            {
+              "hunt_code": "LO0013",
+              "source": "Deer",
+              "target": "Elk"
+            },
+            {
+              "hunt_code": "LO0014",
+              "source": "Deer",
+              "target": "Elk"
+            },
+            {
+              "hunt_code": "LO0015",
+              "source": "Deer",
+              "target": "Elk"
+            },
+            {
+              "hunt_code": "PB1000",
+              "source": "Moose",
+              "target": "Pronghorn"
+            }
+          ]
+        },
+        {
+          "field": "hunt_name",
+          "checked": 1394,
+          "mismatch": 389,
+          "examples": [
+            {
+              "hunt_code": "DA1011",
+              "source": "George Creek",
+              "target": "George Creek CWMU"
+            },
+            {
+              "hunt_code": "DA1012",
+              "source": "Junction Valley",
+              "target": "Junction Valley CWMU"
+            },
+            {
+              "hunt_code": "DA1013",
+              "source": "Mt Carmel",
+              "target": "Mt Carmel CWMU"
+            },
+            {
+              "hunt_code": "DA1050",
+              "source": "The Rose of Snowville",
+              "target": "The Rose of Snowville CWMU"
+            },
+            {
+              "hunt_code": "DB0008",
+              "source": "Deer Extended Archery Only",
+              "target": "Extended Archery Deer"
+            }
+          ]
+        },
+        {
+          "field": "weapon",
+          "checked": 1394,
+          "mismatch": 207,
+          "examples": [
+            {
+              "hunt_code": "DA1001",
+              "source": "Any Legal Weapon",
+              "target": "Archery, Muzzleloader, Shotgun"
+            },
+            {
+              "hunt_code": "DA1002",
+              "source": "Any Legal Weapon",
+              "target": "Archery, Muzzleloader, Shotgun"
+            },
+            {
+              "hunt_code": "DB0008",
+              "source": "Extended Archery",
+              "target": "Archery"
+            },
+            {
+              "hunt_code": "DB1090",
+              "source": "HAMSS",
+              "target": "HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)"
+            },
+            {
+              "hunt_code": "DB1091",
+              "source": "HAMSS",
+              "target": "HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)"
+            }
+          ]
+        },
+        {
+          "field": "hunt_type",
+          "checked": 1394,
+          "mismatch": 450,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "Sportsman",
+              "target": "Statewide"
+            },
+            {
+              "hunt_code": "BI6500",
+              "source": "OIAL",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "OIAL",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "OIAL",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "OIAL",
+              "target": "Once-in-a-lifetime"
+            }
+          ]
+        },
+        {
+          "field": "access_type",
+          "checked": 1394,
+          "mismatch": 238,
+          "examples": [
+            {
+              "hunt_code": "BI6538",
+              "source": "Public",
+              "target": "Private"
+            },
+            {
+              "hunt_code": "BR1001",
+              "source": "Public",
+              "target": ""
+            },
+            {
+              "hunt_code": "BR1008",
+              "source": "Public",
+              "target": ""
+            },
+            {
+              "hunt_code": "BR1009",
+              "source": "Public",
+              "target": ""
+            },
+            {
+              "hunt_code": "BR1010",
+              "source": "Public",
+              "target": ""
+            }
+          ]
+        }
+      ],
+      "significant_drop": true
+    },
+    {
+      "source": "processed_data/hunt_master_enriched.csv",
+      "target": "generated/pages/hunt-planner.json hunt_catalog",
+      "source_file": "processed_data/hunt_master_enriched.csv",
+      "target_file": "generated/pages/hunt-planner.json",
+      "source_rows": 53060,
+      "target_rows": 1394,
+      "source_unique_codes": 1394,
+      "target_unique_codes": 1394,
+      "shared_codes": 1394,
+      "missing_in_target_count": 0,
+      "missing_in_target": [],
+      "extra_in_target_count": 0,
+      "extra_in_target": [],
+      "source_duplicate_code_count": 1394,
+      "source_duplicate_codes": [
+        "BI1000",
+        "BI6500",
+        "BI6503",
+        "BI6504",
+        "BI6505",
+        "BI6506",
+        "BI6509",
+        "BI6516",
+        "BI6527",
+        "BI6528",
+        "BI6529",
+        "BI6531",
+        "BI6532",
+        "BI6534",
+        "BI6535",
+        "BI6536",
+        "BI6537",
+        "BI6538",
+        "BI6539",
+        "BR1000",
+        "BR1001",
+        "BR1007",
+        "BR1008",
+        "BR1009",
+        "BR1010",
+        "BR1011",
+        "BR1012",
+        "BR1013",
+        "BR1015",
+        "BR1016",
+        "BR1017",
+        "BR1018",
+        "BR7000",
+        "BR7001",
+        "BR7003",
+        "BR7004",
+        "BR7005",
+        "BR7007",
+        "BR7009",
+        "BR7010",
+        "BR7011",
+        "BR7012",
+        "BR7013",
+        "BR7014",
+        "BR7015",
+        "BR7016",
+        "BR7017",
+        "BR7018",
+        "BR7020",
+        "BR7021",
+        "BR7022",
+        "BR7100",
+        "BR7101",
+        "BR7102",
+        "BR7104",
+        "BR7105",
+        "BR7106",
+        "BR7109",
+        "BR7110",
+        "BR7111",
+        "BR7112",
+        "BR7113",
+        "BR7114",
+        "BR7115",
+        "BR7116",
+        "BR7117",
+        "BR7118",
+        "BR7119",
+        "BR7120",
+        "BR7121",
+        "BR7122",
+        "BR7123",
+        "BR7124",
+        "BR7125",
+        "BR7126",
+        "BR7127",
+        "BR7200",
+        "BR7201",
+        "BR7203",
+        "BR7204",
+        "BR7205",
+        "BR7207",
+        "BR7210",
+        "BR7211",
+        "BR7212",
+        "BR7213",
+        "BR7214",
+        "BR7215",
+        "BR7216",
+        "BR7217",
+        "BR7218",
+        "BR7219",
+        "BR7220",
+        "BR7221",
+        "BR7224",
+        "BR7225",
+        "BR7228",
+        "BR7229",
+        "BR7237",
+        "BR7238",
+        "BR7239",
+        "BR7300",
+        "BR7301",
+        "BR7303",
+        "BR7304",
+        "BR7305",
+        "BR7307",
+        "BR7308",
+        "BR7309",
+        "BR7310",
+        "BR7311",
+        "BR7312",
+        "BR7313",
+        "BR7314",
+        "BR7315",
+        "BR7316",
+        "BR7317",
+        "BR7318",
+        "BR7320",
+        "BR7321",
+        "BR7322",
+        "BR7323",
+        "BR7324",
+        "BR7325",
+        "BR7326",
+        "CG9999",
+        "DA1001",
+        "DA1002",
+        "DA1003",
+        "DA1009",
+        "DA1011",
+        "DA1012",
+        "DA1013",
+        "DA1018",
+        "DA1027",
+        "DA1030",
+        "DA1031",
+        "DA1033",
+        "DA1041",
+        "DA1042",
+        "DA1045",
+        "DA1046",
+        "DA1047",
+        "DA1048",
+        "DA1049",
+        "DA1050",
+        "DB0001",
+        "DB0002",
+        "DB0003",
+        "DB0004",
+        "DB0005",
+        "DB0006",
+        "DB0007",
+        "DB0008",
+        "DB0009",
+        "DB0010",
+        "DB0011",
+        "DB0012",
+        "DB0013",
+        "DB1000",
+        "DB1001",
+        "DB1002",
+        "DB1003",
+        "DB1004",
+        "DB1005",
+        "DB1006",
+        "DB1007",
+        "DB1008",
+        "DB1009",
+        "DB1010",
+        "DB1011",
+        "DB1012",
+        "DB1013",
+        "DB1014",
+        "DB1015",
+        "DB1016",
+        "DB1017",
+        "DB1018",
+        "DB1019",
+        "DB1020",
+        "DB1022",
+        "DB1023",
+        "DB1024",
+        "DB1025",
+        "DB1026",
+        "DB1028",
+        "DB1029",
+        "DB1030",
+        "DB1031",
+        "DB1032",
+        "DB1033",
+        "DB1034",
+        "DB1037",
+        "DB1038",
+        "DB1039",
+        "DB1040",
+        "DB1041",
+        "DB1042",
+        "DB1043",
+        "DB1044",
+        "DB1045",
+        "DB1046",
+        "DB1047",
+        "DB1048",
+        "DB1053",
+        "DB1054",
+        "DB1055",
+        "DB1056",
+        "DB1058",
+        "DB1065",
+        "DB1073",
+        "DB1074",
+        "DB1075",
+        "DB1076",
+        "DB1077",
+        "DB1078",
+        "DB1079",
+        "DB1080",
+        "DB1081",
+        "DB1083",
+        "DB1084",
+        "DB1085",
+        "DB1086",
+        "DB1087",
+        "DB1090",
+        "DB1091",
+        "DB1100",
+        "DB1101",
+        "DB1103",
+        "DB1105",
+        "DB1106",
+        "DB1107",
+        "DB1108",
+        "DB1109",
+        "DB1110",
+        "DB1111",
+        "DB1112",
+        "DB1113",
+        "DB1114",
+        "DB1115",
+        "DB1116",
+        "DB1118",
+        "DB1119",
+        "DB1120",
+        "DB1121",
+        "DB1200",
+        "DB1201",
+        "DB1202",
+        "DB1203",
+        "DB1204"
+      ],
+      "target_duplicate_code_count": 0,
+      "target_duplicate_codes": [],
+      "source_field_count": 41,
+      "target_field_count": 61,
+      "source_only_fields": [
+        "applicants_2025",
+        "max_point_permits_2026",
+        "missing_draw_data",
+        "missing_permits",
+        "missing_projection",
+        "odds_2025",
+        "odds_2026_projected",
+        "points",
+        "projected_applicants_2026",
+        "projected_applicants_2026_source",
+        "public_permits_2025",
+        "public_permits_2026",
+        "public_permits_2026_source",
+        "random_permits_2026",
+        "residency",
+        "success_harvest",
+        "success_hunters",
+        "success_percent"
+      ],
+      "target_only_fields": [
+        "NOTES",
+        "avg_days_2025",
+        "avg_points_2025",
+        "boundaryId",
+        "boundary_id",
+        "boundary_id_numeric",
+        "boundary_token",
+        "code",
+        "draw_2025_bg_pdf_page",
+        "draw_2025_bg_report_page",
+        "draw_2025_species_section",
+        "draw_2025_type",
+        "draw_family",
+        "eligibility_class",
+        "harvest_2025",
+        "has_antlerless_draw",
+        "has_bonus_draw",
+        "has_harvest",
+        "huntCode",
+        "hunt_class",
+        "hunters_2025",
+        "permits_2025_draw_nr",
+        "permits_2025_draw_res",
+        "permits_2025_draw_total",
+        "permits_2025_nr",
+        "permits_2025_res",
+        "permits_2025_total",
+        "resolvedBoundaryIds",
+        "satisfaction_2025",
+        "season",
+        "sex_type",
+        "source_authority",
+        "source_file",
+        "success_percent_2025",
+        "title",
+        "unitCode",
+        "unitName",
+        "youth_flag"
+      ],
+      "meaningful_source_only_fields": [
+        {
+          "field": "applicants_2025",
+          "examples": [
+            "0",
+            "2",
+            "3",
+            "12"
+          ]
+        },
+        {
+          "field": "max_point_permits_2026",
+          "examples": [
+            "1",
+            "0",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "field": "missing_draw_data",
+          "examples": [
+            "TRUE",
+            "FALSE"
+          ]
+        },
+        {
+          "field": "missing_permits",
+          "examples": [
+            "TRUE",
+            "FALSE"
+          ]
+        },
+        {
+          "field": "missing_projection",
+          "examples": [
+            "TRUE",
+            "FALSE"
+          ]
+        },
+        {
+          "field": "odds_2025",
+          "examples": [
+            "N/A",
+            "1 in 2.0",
+            "1 in 342.0",
+            "1 in 6.5"
+          ]
+        },
+        {
+          "field": "odds_2026_projected",
+          "examples": [
+            "100.000",
+            "50.075",
+            "0.102",
+            "0.110"
+          ]
+        },
+        {
+          "field": "points",
+          "examples": [
+            "32",
+            "31",
+            "30",
+            "29"
+          ]
+        },
+        {
+          "field": "projected_applicants_2026",
+          "examples": [
+            "0",
+            "1",
+            "3",
+            "12"
+          ]
+        },
+        {
+          "field": "projected_applicants_2026_source",
+          "examples": [
+            "projected_2026",
+            "fallback_2025",
+            "missing_projection_fill_v1"
+          ]
+        },
+        {
+          "field": "public_permits_2025",
+          "examples": [
+            "2",
+            "4",
+            "5",
+            "25"
+          ]
+        },
+        {
+          "field": "public_permits_2026",
+          "examples": [
+            "2",
+            "0",
+            "4",
+            "5"
+          ]
+        },
+        {
+          "field": "public_permits_2026_source",
+          "examples": [
+            "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+          ]
+        },
+        {
+          "field": "random_permits_2026",
+          "examples": [
+            "1",
+            "0",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "field": "residency",
+          "examples": [
+            "Resident",
+            "Nonresident"
+          ]
+        },
+        {
+          "field": "success_harvest",
+          "examples": [
+            "2",
+            "14",
+            "13",
+            "22"
+          ]
+        },
+        {
+          "field": "success_hunters",
+          "examples": [
+            "2",
+            "15",
+            "13",
+            "28"
+          ]
+        },
+        {
+          "field": "success_percent",
+          "examples": [
+            "100",
+            "93.3",
+            "78.6",
+            "93.1"
+          ]
+        }
+      ],
+      "mismatched_shared_fields": [
+        {
+          "field": "species",
+          "checked": 1394,
+          "mismatch": 5,
+          "examples": [
+            {
+              "hunt_code": "LO0012",
+              "source": "Deer",
+              "target": "Elk"
+            },
+            {
+              "hunt_code": "LO0013",
+              "source": "Deer",
+              "target": "Elk"
+            },
+            {
+              "hunt_code": "LO0014",
+              "source": "Deer",
+              "target": "Elk"
+            },
+            {
+              "hunt_code": "LO0015",
+              "source": "Deer",
+              "target": "Elk"
+            },
+            {
+              "hunt_code": "PB1000",
+              "source": "Moose",
+              "target": "Pronghorn"
+            }
+          ]
+        },
+        {
+          "field": "hunt_name",
+          "checked": 1394,
+          "mismatch": 389,
+          "examples": [
+            {
+              "hunt_code": "DA1011",
+              "source": "George Creek",
+              "target": "George Creek CWMU"
+            },
+            {
+              "hunt_code": "DA1012",
+              "source": "Junction Valley",
+              "target": "Junction Valley CWMU"
+            },
+            {
+              "hunt_code": "DA1013",
+              "source": "Mt Carmel",
+              "target": "Mt Carmel CWMU"
+            },
+            {
+              "hunt_code": "DA1050",
+              "source": "The Rose of Snowville",
+              "target": "The Rose of Snowville CWMU"
+            },
+            {
+              "hunt_code": "DB0008",
+              "source": "Deer Extended Archery Only",
+              "target": "Extended Archery Deer"
+            }
+          ]
+        },
+        {
+          "field": "weapon",
+          "checked": 1394,
+          "mismatch": 207,
+          "examples": [
+            {
+              "hunt_code": "DA1001",
+              "source": "Any Legal Weapon",
+              "target": "Archery, Muzzleloader, Shotgun"
+            },
+            {
+              "hunt_code": "DA1002",
+              "source": "Any Legal Weapon",
+              "target": "Archery, Muzzleloader, Shotgun"
+            },
+            {
+              "hunt_code": "DB0008",
+              "source": "Extended Archery",
+              "target": "Archery"
+            },
+            {
+              "hunt_code": "DB1090",
+              "source": "HAMSS",
+              "target": "HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)"
+            },
+            {
+              "hunt_code": "DB1091",
+              "source": "HAMSS",
+              "target": "HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)"
+            }
+          ]
+        },
+        {
+          "field": "hunt_type",
+          "checked": 1394,
+          "mismatch": 450,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "Sportsman",
+              "target": "Statewide"
+            },
+            {
+              "hunt_code": "BI6500",
+              "source": "OIAL",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "OIAL",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "OIAL",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "OIAL",
+              "target": "Once-in-a-lifetime"
+            }
+          ]
+        },
+        {
+          "field": "access_type",
+          "checked": 1394,
+          "mismatch": 238,
+          "examples": [
+            {
+              "hunt_code": "BI6538",
+              "source": "Public",
+              "target": "Private"
+            },
+            {
+              "hunt_code": "BR1001",
+              "source": "Public",
+              "target": ""
+            },
+            {
+              "hunt_code": "BR1008",
+              "source": "Public",
+              "target": ""
+            },
+            {
+              "hunt_code": "BR1009",
+              "source": "Public",
+              "target": ""
+            },
+            {
+              "hunt_code": "BR1010",
+              "source": "Public",
+              "target": ""
+            }
+          ]
+        }
+      ],
+      "significant_drop": true
+    },
+    {
+      "source": "processed_data/hunt_master_enriched.csv",
+      "target": "hunt-master-canonical-2026.json hunt_catalog",
+      "source_file": "processed_data/hunt_master_enriched.csv",
+      "target_file": "hunt-master-canonical-2026.json",
+      "source_rows": 53060,
+      "target_rows": 1394,
+      "source_unique_codes": 1394,
+      "target_unique_codes": 1394,
+      "shared_codes": 1394,
+      "missing_in_target_count": 0,
+      "missing_in_target": [],
+      "extra_in_target_count": 0,
+      "extra_in_target": [],
+      "source_duplicate_code_count": 1394,
+      "source_duplicate_codes": [
+        "BI1000",
+        "BI6500",
+        "BI6503",
+        "BI6504",
+        "BI6505",
+        "BI6506",
+        "BI6509",
+        "BI6516",
+        "BI6527",
+        "BI6528",
+        "BI6529",
+        "BI6531",
+        "BI6532",
+        "BI6534",
+        "BI6535",
+        "BI6536",
+        "BI6537",
+        "BI6538",
+        "BI6539",
+        "BR1000",
+        "BR1001",
+        "BR1007",
+        "BR1008",
+        "BR1009",
+        "BR1010",
+        "BR1011",
+        "BR1012",
+        "BR1013",
+        "BR1015",
+        "BR1016",
+        "BR1017",
+        "BR1018",
+        "BR7000",
+        "BR7001",
+        "BR7003",
+        "BR7004",
+        "BR7005",
+        "BR7007",
+        "BR7009",
+        "BR7010",
+        "BR7011",
+        "BR7012",
+        "BR7013",
+        "BR7014",
+        "BR7015",
+        "BR7016",
+        "BR7017",
+        "BR7018",
+        "BR7020",
+        "BR7021",
+        "BR7022",
+        "BR7100",
+        "BR7101",
+        "BR7102",
+        "BR7104",
+        "BR7105",
+        "BR7106",
+        "BR7109",
+        "BR7110",
+        "BR7111",
+        "BR7112",
+        "BR7113",
+        "BR7114",
+        "BR7115",
+        "BR7116",
+        "BR7117",
+        "BR7118",
+        "BR7119",
+        "BR7120",
+        "BR7121",
+        "BR7122",
+        "BR7123",
+        "BR7124",
+        "BR7125",
+        "BR7126",
+        "BR7127",
+        "BR7200",
+        "BR7201",
+        "BR7203",
+        "BR7204",
+        "BR7205",
+        "BR7207",
+        "BR7210",
+        "BR7211",
+        "BR7212",
+        "BR7213",
+        "BR7214",
+        "BR7215",
+        "BR7216",
+        "BR7217",
+        "BR7218",
+        "BR7219",
+        "BR7220",
+        "BR7221",
+        "BR7224",
+        "BR7225",
+        "BR7228",
+        "BR7229",
+        "BR7237",
+        "BR7238",
+        "BR7239",
+        "BR7300",
+        "BR7301",
+        "BR7303",
+        "BR7304",
+        "BR7305",
+        "BR7307",
+        "BR7308",
+        "BR7309",
+        "BR7310",
+        "BR7311",
+        "BR7312",
+        "BR7313",
+        "BR7314",
+        "BR7315",
+        "BR7316",
+        "BR7317",
+        "BR7318",
+        "BR7320",
+        "BR7321",
+        "BR7322",
+        "BR7323",
+        "BR7324",
+        "BR7325",
+        "BR7326",
+        "CG9999",
+        "DA1001",
+        "DA1002",
+        "DA1003",
+        "DA1009",
+        "DA1011",
+        "DA1012",
+        "DA1013",
+        "DA1018",
+        "DA1027",
+        "DA1030",
+        "DA1031",
+        "DA1033",
+        "DA1041",
+        "DA1042",
+        "DA1045",
+        "DA1046",
+        "DA1047",
+        "DA1048",
+        "DA1049",
+        "DA1050",
+        "DB0001",
+        "DB0002",
+        "DB0003",
+        "DB0004",
+        "DB0005",
+        "DB0006",
+        "DB0007",
+        "DB0008",
+        "DB0009",
+        "DB0010",
+        "DB0011",
+        "DB0012",
+        "DB0013",
+        "DB1000",
+        "DB1001",
+        "DB1002",
+        "DB1003",
+        "DB1004",
+        "DB1005",
+        "DB1006",
+        "DB1007",
+        "DB1008",
+        "DB1009",
+        "DB1010",
+        "DB1011",
+        "DB1012",
+        "DB1013",
+        "DB1014",
+        "DB1015",
+        "DB1016",
+        "DB1017",
+        "DB1018",
+        "DB1019",
+        "DB1020",
+        "DB1022",
+        "DB1023",
+        "DB1024",
+        "DB1025",
+        "DB1026",
+        "DB1028",
+        "DB1029",
+        "DB1030",
+        "DB1031",
+        "DB1032",
+        "DB1033",
+        "DB1034",
+        "DB1037",
+        "DB1038",
+        "DB1039",
+        "DB1040",
+        "DB1041",
+        "DB1042",
+        "DB1043",
+        "DB1044",
+        "DB1045",
+        "DB1046",
+        "DB1047",
+        "DB1048",
+        "DB1053",
+        "DB1054",
+        "DB1055",
+        "DB1056",
+        "DB1058",
+        "DB1065",
+        "DB1073",
+        "DB1074",
+        "DB1075",
+        "DB1076",
+        "DB1077",
+        "DB1078",
+        "DB1079",
+        "DB1080",
+        "DB1081",
+        "DB1083",
+        "DB1084",
+        "DB1085",
+        "DB1086",
+        "DB1087",
+        "DB1090",
+        "DB1091",
+        "DB1100",
+        "DB1101",
+        "DB1103",
+        "DB1105",
+        "DB1106",
+        "DB1107",
+        "DB1108",
+        "DB1109",
+        "DB1110",
+        "DB1111",
+        "DB1112",
+        "DB1113",
+        "DB1114",
+        "DB1115",
+        "DB1116",
+        "DB1118",
+        "DB1119",
+        "DB1120",
+        "DB1121",
+        "DB1200",
+        "DB1201",
+        "DB1202",
+        "DB1203",
+        "DB1204"
+      ],
+      "target_duplicate_code_count": 0,
+      "target_duplicate_codes": [],
+      "source_field_count": 41,
+      "target_field_count": 61,
+      "source_only_fields": [
+        "applicants_2025",
+        "max_point_permits_2026",
+        "missing_draw_data",
+        "missing_permits",
+        "missing_projection",
+        "odds_2025",
+        "odds_2026_projected",
+        "permits_2026_conservation",
+        "permits_2026_expo",
+        "permits_2026_source",
+        "permits_2026_sportsman",
+        "points",
+        "projected_applicants_2026",
+        "projected_applicants_2026_source",
+        "public_permits_2025",
+        "public_permits_2026",
+        "public_permits_2026_source",
+        "random_permits_2026",
+        "residency",
+        "special_permit_area_id",
+        "special_permit_category",
+        "special_permit_note",
+        "special_permit_overlay_source",
+        "success_harvest",
+        "success_hunters",
+        "success_percent"
+      ],
+      "target_only_fields": [
+        "NOTES",
+        "avg_days_2025",
+        "avg_points_2025",
+        "boundaryId",
+        "boundary_id",
+        "boundary_id_numeric",
+        "boundary_token",
+        "code",
+        "documents",
+        "draw_2025_bg_pdf_page",
+        "draw_2025_bg_report_page",
+        "draw_2025_species_section",
+        "draw_2025_type",
+        "draw_family",
+        "eligibility_class",
+        "geometry",
+        "harvest_2025",
+        "has_antlerless_draw",
+        "has_bonus_draw",
+        "has_harvest",
+        "huntCode",
+        "hunt_class",
+        "hunters_2025",
+        "id",
+        "permits_2025_draw_nr",
+        "permits_2025_draw_res",
+        "permits_2025_draw_total",
+        "permits_2025_nr",
+        "permits_2025_res",
+        "permits_2025_total",
+        "provenance",
+        "regulations_references",
+        "resolvedBoundaryIds",
+        "satisfaction_2025",
+        "season",
+        "season_id",
+        "sex_type",
+        "source_authority",
+        "source_file",
+        "species_id",
+        "success_percent_2025",
+        "tags_and_permits",
+        "title",
+        "unitCode",
+        "unitName",
+        "youth_flag"
+      ],
+      "meaningful_source_only_fields": [
+        {
+          "field": "applicants_2025",
+          "examples": [
+            "0",
+            "2",
+            "3",
+            "12"
+          ]
+        },
+        {
+          "field": "max_point_permits_2026",
+          "examples": [
+            "1",
+            "0",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "field": "missing_draw_data",
+          "examples": [
+            "TRUE",
+            "FALSE"
+          ]
+        },
+        {
+          "field": "missing_permits",
+          "examples": [
+            "TRUE",
+            "FALSE"
+          ]
+        },
+        {
+          "field": "missing_projection",
+          "examples": [
+            "TRUE",
+            "FALSE"
+          ]
+        },
+        {
+          "field": "odds_2025",
+          "examples": [
+            "N/A",
+            "1 in 2.0",
+            "1 in 342.0",
+            "1 in 6.5"
+          ]
+        },
+        {
+          "field": "odds_2026_projected",
+          "examples": [
+            "100.000",
+            "50.075",
+            "0.102",
+            "0.110"
+          ]
+        },
+        {
+          "field": "permits_2026_conservation",
+          "examples": [
+            "2",
+            "1",
+            "4",
+            "8"
+          ]
+        },
+        {
+          "field": "permits_2026_source",
+          "examples": [
+            "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+          ]
+        },
+        {
+          "field": "points",
+          "examples": [
+            "32",
+            "31",
+            "30",
+            "29"
+          ]
+        },
+        {
+          "field": "projected_applicants_2026",
+          "examples": [
+            "0",
+            "1",
+            "3",
+            "12"
+          ]
+        },
+        {
+          "field": "projected_applicants_2026_source",
+          "examples": [
+            "projected_2026",
+            "fallback_2025",
+            "missing_projection_fill_v1"
+          ]
+        },
+        {
+          "field": "public_permits_2025",
+          "examples": [
+            "2",
+            "4",
+            "5",
+            "25"
+          ]
+        },
+        {
+          "field": "public_permits_2026",
+          "examples": [
+            "2",
+            "0",
+            "4",
+            "5"
+          ]
+        },
+        {
+          "field": "public_permits_2026_source",
+          "examples": [
+            "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+          ]
+        },
+        {
+          "field": "random_permits_2026",
+          "examples": [
+            "1",
+            "0",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "field": "residency",
+          "examples": [
+            "Resident",
+            "Nonresident"
+          ]
+        },
+        {
+          "field": "special_permit_area_id",
+          "examples": [
+            "CONSERVATION_DEER_BOOK_CLIFFS_2026",
+            "CONSERVATION_DESERT_BIGHORN_SHEEP_KAIPAROWITS_EAST_2026",
+            "CONSERVATION_DESERT_BIGHORN_SHEEP_KAIPAROWITS_ESCALANTE_2026",
+            "CONSERVATION_DESERT_BIGHORN_SHEEP_SAN_RAFAEL_DIRTY_DEVIL_2026"
+          ]
+        },
+        {
+          "field": "special_permit_category",
+          "examples": [
+            "CONSERVATION"
+          ]
+        },
+        {
+          "field": "special_permit_note",
+          "examples": [
+            "2026 conservation permit count from 2025-2027 conservation workbook source area: Book Cliffs (Hunter's Choice - winning bidder chooses one eligible season for that unit/species; not a multiseason permit). Kept outside normal public draw quota.",
+            "2026 conservation permit count from 2025-2027 conservation workbook source area: Kaiparowits, East (Any Legal Weapon). Kept outside normal public draw quota.",
+            "2026 conservation permit count from 2025-2027 conservation workbook source area: Kaiparowits, Escalante (Any Legal Weapon). Kept outside normal public draw quota.",
+            "2026 conservation permit count from 2025-2027 conservation workbook source area: San Rafael, Dirty Devil (Any Legal Weapon). Kept outside normal public draw quota."
+          ]
+        },
+        {
+          "field": "special_permit_overlay_source",
+          "examples": [
+            "pipeline/RAW/hunt_unit_database/2026/reports/conservation_raw_workbook_grouped_2026.csv",
+            "pipeline/RAW/hunt_unit_database/2026/reports/conservation_area_crosswalk_2026.csv"
+          ]
+        },
+        {
+          "field": "success_harvest",
+          "examples": [
+            "2",
+            "14",
+            "13",
+            "22"
+          ]
+        },
+        {
+          "field": "success_hunters",
+          "examples": [
+            "2",
+            "15",
+            "13",
+            "28"
+          ]
+        },
+        {
+          "field": "success_percent",
+          "examples": [
+            "100",
+            "93.3",
+            "78.6",
+            "93.1"
+          ]
+        }
+      ],
+      "mismatched_shared_fields": [
+        {
+          "field": "species",
+          "checked": 1394,
+          "mismatch": 5,
+          "examples": [
+            {
+              "hunt_code": "LO0012",
+              "source": "Deer",
+              "target": "Elk"
+            },
+            {
+              "hunt_code": "LO0013",
+              "source": "Deer",
+              "target": "Elk"
+            },
+            {
+              "hunt_code": "LO0014",
+              "source": "Deer",
+              "target": "Elk"
+            },
+            {
+              "hunt_code": "LO0015",
+              "source": "Deer",
+              "target": "Elk"
+            },
+            {
+              "hunt_code": "PB1000",
+              "source": "Moose",
+              "target": "Pronghorn"
+            }
+          ]
+        },
+        {
+          "field": "hunt_name",
+          "checked": 1394,
+          "mismatch": 389,
+          "examples": [
+            {
+              "hunt_code": "DA1011",
+              "source": "George Creek",
+              "target": "George Creek CWMU"
+            },
+            {
+              "hunt_code": "DA1012",
+              "source": "Junction Valley",
+              "target": "Junction Valley CWMU"
+            },
+            {
+              "hunt_code": "DA1013",
+              "source": "Mt Carmel",
+              "target": "Mt Carmel CWMU"
+            },
+            {
+              "hunt_code": "DA1050",
+              "source": "The Rose of Snowville",
+              "target": "The Rose of Snowville CWMU"
+            },
+            {
+              "hunt_code": "DB0008",
+              "source": "Deer Extended Archery Only",
+              "target": "Extended Archery Deer"
+            }
+          ]
+        },
+        {
+          "field": "weapon",
+          "checked": 1394,
+          "mismatch": 207,
+          "examples": [
+            {
+              "hunt_code": "DA1001",
+              "source": "Any Legal Weapon",
+              "target": "Archery, Muzzleloader, Shotgun"
+            },
+            {
+              "hunt_code": "DA1002",
+              "source": "Any Legal Weapon",
+              "target": "Archery, Muzzleloader, Shotgun"
+            },
+            {
+              "hunt_code": "DB0008",
+              "source": "Extended Archery",
+              "target": "Archery"
+            },
+            {
+              "hunt_code": "DB1090",
+              "source": "HAMSS",
+              "target": "HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)"
+            },
+            {
+              "hunt_code": "DB1091",
+              "source": "HAMSS",
+              "target": "HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)"
+            }
+          ]
+        },
+        {
+          "field": "hunt_type",
+          "checked": 1394,
+          "mismatch": 450,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "Sportsman",
+              "target": "Statewide"
+            },
+            {
+              "hunt_code": "BI6500",
+              "source": "OIAL",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "OIAL",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "OIAL",
+              "target": "Once-in-a-lifetime"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "OIAL",
+              "target": "Once-in-a-lifetime"
+            }
+          ]
+        },
+        {
+          "field": "access_type",
+          "checked": 1394,
+          "mismatch": 238,
+          "examples": [
+            {
+              "hunt_code": "BI6538",
+              "source": "Public",
+              "target": "Private"
+            },
+            {
+              "hunt_code": "BR1001",
+              "source": "Public",
+              "target": ""
+            },
+            {
+              "hunt_code": "BR1008",
+              "source": "Public",
+              "target": ""
+            },
+            {
+              "hunt_code": "BR1009",
+              "source": "Public",
+              "target": ""
+            },
+            {
+              "hunt_code": "BR1010",
+              "source": "Public",
+              "target": ""
+            }
+          ]
+        },
+        {
+          "field": "permits_2026_total",
+          "checked": 1074,
+          "mismatch": 1,
+          "examples": [
+            {
+              "hunt_code": "DB0007",
+              "source": "1",
+              "target": ""
+            }
+          ]
+        },
+        {
+          "field": "permit_status",
+          "checked": 1394,
+          "mismatch": 335,
+          "examples": [
+            {
+              "hunt_code": "BR1000",
+              "source": "NO_QUOTA_PUBLISHED",
+              "target": "TOTAL_ONLY"
+            },
+            {
+              "hunt_code": "BR1008",
+              "source": "FULL_SPLIT",
+              "target": "DATABASE_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BR1009",
+              "source": "FULL_SPLIT",
+              "target": "DATABASE_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BR1010",
+              "source": "FULL_SPLIT",
+              "target": "DATABASE_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BR1011",
+              "source": "FULL_SPLIT",
+              "target": "DATABASE_QUOTA_PUBLISHED"
+            }
+          ]
+        },
+        {
+          "field": "permit_allocation_type",
+          "checked": 1394,
+          "mismatch": 1114,
+          "examples": [
+            {
+              "hunt_code": "BI6500",
+              "source": "FULL_SPLIT",
+              "target": "DRAW_RES_NR_SPLIT"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "FULL_SPLIT",
+              "target": "DRAW_RES_NR_SPLIT"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "FULL_SPLIT",
+              "target": "DRAW_RES_NR_SPLIT"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "FULL_SPLIT",
+              "target": "DRAW_RES_NR_SPLIT"
+            },
+            {
+              "hunt_code": "BI6506",
+              "source": "FULL_SPLIT",
+              "target": "DRAW_RES_NR_SPLIT"
+            }
+          ]
+        },
+        {
+          "field": "permit_source_authority",
+          "checked": 1394,
+          "mismatch": 1394,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "Utah DWR published 2026 permit allocation",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "BI6500",
+              "source": "Utah DWR published 2026 permit allocation",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "Utah DWR published 2026 permit allocation",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "Utah DWR published 2026 permit allocation",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "Utah DWR published 2026 permit allocation",
+              "target": "Utah DWR Hunt Planner"
+            }
+          ]
+        },
+        {
+          "field": "permit_note",
+          "checked": 1003,
+          "mismatch": 1003,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "",
+              "target": "Utah DWR Hunt Planner source confirms hunt in 2026_bison_either-sex.xlsx; no quota or permit total published in uploaded source."
+            },
+            {
+              "hunt_code": "BI6500",
+              "source": "",
+              "target": "2026 resident/nonresident permit split from Utah DWR Hunt Planner export 2026_bison_either-sex.xlsx."
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "",
+              "target": "2026 resident/nonresident permit split from Utah DWR Hunt Planner export 2026_bison_either-sex.xlsx."
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "",
+              "target": "2026 resident/nonresident permit split from Utah DWR Hunt Planner export 2026_bison_either-sex.xlsx."
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "",
+              "target": "2026 resident/nonresident permit split from Utah DWR Hunt Planner export 2026_bison_cow_only.xlsx."
+            }
+          ]
+        },
+        {
+          "field": "permit_overlay_source",
+          "checked": 1394,
+          "mismatch": 1394,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+              "target": "2026_bison_either-sex.xlsx"
+            },
+            {
+              "hunt_code": "BI6500",
+              "source": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+              "target": "2026_bison_either-sex.xlsx"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+              "target": "2026_bison_either-sex.xlsx"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+              "target": "2026_bison_either-sex.xlsx"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+              "target": "2026_bison_cow_only.xlsx"
+            }
+          ]
+        },
+        {
+          "field": "data_status",
+          "checked": 1394,
+          "mismatch": 516,
+          "examples": [
+            {
+              "hunt_code": "BR1000",
+              "source": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED",
+              "target": "COMPLETE_TOTAL_ONLY"
+            },
+            {
+              "hunt_code": "BR1001",
+              "source": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED",
+              "target": "DATABASE_ONLY_NEEDS_CANONICAL_REVIEW"
+            },
+            {
+              "hunt_code": "BR1008",
+              "source": "COMPLETE",
+              "target": "DATABASE_ONLY_NEEDS_CANONICAL_REVIEW"
+            },
+            {
+              "hunt_code": "BR1009",
+              "source": "COMPLETE",
+              "target": "DATABASE_ONLY_NEEDS_CANONICAL_REVIEW"
+            },
+            {
+              "hunt_code": "BR1010",
+              "source": "COMPLETE",
+              "target": "DATABASE_ONLY_NEEDS_CANONICAL_REVIEW"
+            }
+          ]
+        }
+      ],
+      "significant_drop": true
+    },
+    {
+      "source": "hunt-master-canonical-2026-foundation.json",
+      "target": "canonical/hunt-planner-2026.json hunt_catalog",
+      "source_file": "data/hunt-master-canonical-2026-foundation.json",
+      "target_file": "canonical/hunt-planner-2026.json",
+      "source_rows": 1394,
+      "target_rows": 1394,
+      "source_unique_codes": 1394,
+      "target_unique_codes": 1394,
+      "shared_codes": 1394,
+      "missing_in_target_count": 0,
+      "missing_in_target": [],
+      "extra_in_target_count": 0,
+      "extra_in_target": [],
+      "source_duplicate_code_count": 0,
+      "source_duplicate_codes": [],
+      "target_duplicate_code_count": 0,
+      "target_duplicate_codes": [],
+      "source_field_count": 61,
+      "target_field_count": 61,
+      "source_only_fields": [],
+      "target_only_fields": [],
+      "meaningful_source_only_fields": [],
+      "mismatched_shared_fields": [],
+      "significant_drop": false
+    },
+    {
+      "source": "hunt-master-canonical-2026-foundation.json",
+      "target": "generated/pages/hunt-planner.json hunt_catalog",
+      "source_file": "data/hunt-master-canonical-2026-foundation.json",
+      "target_file": "generated/pages/hunt-planner.json",
+      "source_rows": 1394,
+      "target_rows": 1394,
+      "source_unique_codes": 1394,
+      "target_unique_codes": 1394,
+      "shared_codes": 1394,
+      "missing_in_target_count": 0,
+      "missing_in_target": [],
+      "extra_in_target_count": 0,
+      "extra_in_target": [],
+      "source_duplicate_code_count": 0,
+      "source_duplicate_codes": [],
+      "target_duplicate_code_count": 0,
+      "target_duplicate_codes": [],
+      "source_field_count": 61,
+      "target_field_count": 61,
+      "source_only_fields": [],
+      "target_only_fields": [],
+      "meaningful_source_only_fields": [],
+      "mismatched_shared_fields": [],
+      "significant_drop": false
+    },
+    {
+      "source": "hunt-master-canonical-2026-foundation.json",
+      "target": "hunt-master-canonical-2026.json hunt_catalog",
+      "source_file": "data/hunt-master-canonical-2026-foundation.json",
+      "target_file": "hunt-master-canonical-2026.json",
+      "source_rows": 1394,
+      "target_rows": 1394,
+      "source_unique_codes": 1394,
+      "target_unique_codes": 1394,
+      "shared_codes": 1394,
+      "missing_in_target_count": 0,
+      "missing_in_target": [],
+      "extra_in_target_count": 0,
+      "extra_in_target": [],
+      "source_duplicate_code_count": 0,
+      "source_duplicate_codes": [],
+      "target_duplicate_code_count": 0,
+      "target_duplicate_codes": [],
+      "source_field_count": 61,
+      "target_field_count": 61,
+      "source_only_fields": [
+        "permits_2026_conservation",
+        "permits_2026_expo",
+        "permits_2026_source",
+        "permits_2026_sportsman",
+        "special_permit_area_id",
+        "special_permit_category",
+        "special_permit_note",
+        "special_permit_overlay_source"
+      ],
+      "target_only_fields": [
+        "documents",
+        "geometry",
+        "id",
+        "provenance",
+        "regulations_references",
+        "season_id",
+        "species_id",
+        "tags_and_permits"
+      ],
+      "meaningful_source_only_fields": [
+        {
+          "field": "permits_2026_conservation",
+          "examples": [
+            "2",
+            "1",
+            "4",
+            "8"
+          ]
+        },
+        {
+          "field": "permits_2026_source",
+          "examples": [
+            "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+          ]
+        },
+        {
+          "field": "special_permit_area_id",
+          "examples": [
+            "CONSERVATION_DEER_BOOK_CLIFFS_2026",
+            "CONSERVATION_DEER_LA_SAL_DOLORES_TRIANGLE_2026",
+            "CONSERVATION_DESERT_BIGHORN_SHEEP_KAIPAROWITS_EAST_2026",
+            "CONSERVATION_DESERT_BIGHORN_SHEEP_KAIPAROWITS_ESCALANTE_2026"
+          ]
+        },
+        {
+          "field": "special_permit_category",
+          "examples": [
+            "CONSERVATION"
+          ]
+        },
+        {
+          "field": "special_permit_note",
+          "examples": [
+            "2026 conservation permit count from 2025-2027 conservation workbook source area: Book Cliffs (Hunter's Choice - winning bidder chooses one eligible season for that unit/species; not a multiseason permit). Kept outside normal public draw quota.",
+            "2026 conservation permit count from 2025-2027 conservation workbook source area: Book Cliffs (Archery). Kept outside normal public draw quota.",
+            "2026 conservation permit count from 2025-2027 conservation workbook source area: La Sal, Dolores Triangle (Multiseason). Kept outside normal public draw quota.",
+            "2026 conservation permit count from 2025-2027 conservation workbook source area: Book Cliffs (Muzzleloader). Kept outside normal public draw quota."
+          ]
+        },
+        {
+          "field": "special_permit_overlay_source",
+          "examples": [
+            "pipeline/RAW/hunt_unit_database/2026/reports/conservation_raw_workbook_grouped_2026.csv",
+            "pipeline/RAW/hunt_unit_database/2026/reports/conservation_area_crosswalk_2026.csv"
+          ]
+        }
+      ],
+      "mismatched_shared_fields": [
+        {
+          "field": "boundary_id",
+          "checked": 1394,
+          "mismatch": 143,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "5000",
+              "target": "SW_BISON_2026"
+            },
+            {
+              "hunt_code": "BR1000",
+              "source": "5001",
+              "target": "SW_BLACK_BEAR_2026"
+            },
+            {
+              "hunt_code": "BR1001",
+              "source": "5002",
+              "target": ""
+            },
+            {
+              "hunt_code": "BR1007",
+              "source": "5003",
+              "target": "SW_BLACK_BEAR_2026"
+            },
+            {
+              "hunt_code": "BR1008",
+              "source": "7",
+              "target": ""
+            }
+          ]
+        },
+        {
+          "field": "permits_2026_total",
+          "checked": 1074,
+          "mismatch": 1,
+          "examples": [
+            {
+              "hunt_code": "DB0007",
+              "source": "1",
+              "target": ""
+            }
+          ]
+        },
+        {
+          "field": "permit_status",
+          "checked": 1394,
+          "mismatch": 335,
+          "examples": [
+            {
+              "hunt_code": "BR1000",
+              "source": "NO_QUOTA_PUBLISHED",
+              "target": "TOTAL_ONLY"
+            },
+            {
+              "hunt_code": "BR1008",
+              "source": "FULL_SPLIT",
+              "target": "DATABASE_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BR1009",
+              "source": "FULL_SPLIT",
+              "target": "DATABASE_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BR1010",
+              "source": "FULL_SPLIT",
+              "target": "DATABASE_QUOTA_PUBLISHED"
+            },
+            {
+              "hunt_code": "BR1011",
+              "source": "FULL_SPLIT",
+              "target": "DATABASE_QUOTA_PUBLISHED"
+            }
+          ]
+        },
+        {
+          "field": "permit_allocation_type",
+          "checked": 1394,
+          "mismatch": 1114,
+          "examples": [
+            {
+              "hunt_code": "BI6500",
+              "source": "FULL_SPLIT",
+              "target": "DRAW_RES_NR_SPLIT"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "FULL_SPLIT",
+              "target": "DRAW_RES_NR_SPLIT"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "FULL_SPLIT",
+              "target": "DRAW_RES_NR_SPLIT"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "FULL_SPLIT",
+              "target": "DRAW_RES_NR_SPLIT"
+            },
+            {
+              "hunt_code": "BI6506",
+              "source": "FULL_SPLIT",
+              "target": "DRAW_RES_NR_SPLIT"
+            }
+          ]
+        },
+        {
+          "field": "permit_source_authority",
+          "checked": 1394,
+          "mismatch": 1394,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "Utah DWR published 2026 permit allocation",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "BI6500",
+              "source": "Utah DWR published 2026 permit allocation",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "Utah DWR published 2026 permit allocation",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "Utah DWR published 2026 permit allocation",
+              "target": "Utah DWR Hunt Planner"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "Utah DWR published 2026 permit allocation",
+              "target": "Utah DWR Hunt Planner"
+            }
+          ]
+        },
+        {
+          "field": "permit_note",
+          "checked": 1003,
+          "mismatch": 1003,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "",
+              "target": "Utah DWR Hunt Planner source confirms hunt in 2026_bison_either-sex.xlsx; no quota or permit total published in uploaded source."
+            },
+            {
+              "hunt_code": "BI6500",
+              "source": "",
+              "target": "2026 resident/nonresident permit split from Utah DWR Hunt Planner export 2026_bison_either-sex.xlsx."
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "",
+              "target": "2026 resident/nonresident permit split from Utah DWR Hunt Planner export 2026_bison_either-sex.xlsx."
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "",
+              "target": "2026 resident/nonresident permit split from Utah DWR Hunt Planner export 2026_bison_either-sex.xlsx."
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "",
+              "target": "2026 resident/nonresident permit split from Utah DWR Hunt Planner export 2026_bison_cow_only.xlsx."
+            }
+          ]
+        },
+        {
+          "field": "permit_overlay_source",
+          "checked": 1394,
+          "mismatch": 1394,
+          "examples": [
+            {
+              "hunt_code": "BI1000",
+              "source": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+              "target": "2026_bison_either-sex.xlsx"
+            },
+            {
+              "hunt_code": "BI6500",
+              "source": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+              "target": "2026_bison_either-sex.xlsx"
+            },
+            {
+              "hunt_code": "BI6503",
+              "source": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+              "target": "2026_bison_either-sex.xlsx"
+            },
+            {
+              "hunt_code": "BI6504",
+              "source": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+              "target": "2026_bison_either-sex.xlsx"
+            },
+            {
+              "hunt_code": "BI6505",
+              "source": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+              "target": "2026_bison_cow_only.xlsx"
+            }
+          ]
+        },
+        {
+          "field": "data_status",
+          "checked": 1394,
+          "mismatch": 516,
+          "examples": [
+            {
+              "hunt_code": "BR1000",
+              "source": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED",
+              "target": "COMPLETE_TOTAL_ONLY"
+            },
+            {
+              "hunt_code": "BR1001",
+              "source": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED",
+              "target": "DATABASE_ONLY_NEEDS_CANONICAL_REVIEW"
+            },
+            {
+              "hunt_code": "BR1008",
+              "source": "COMPLETE",
+              "target": "DATABASE_ONLY_NEEDS_CANONICAL_REVIEW"
+            },
+            {
+              "hunt_code": "BR1009",
+              "source": "COMPLETE",
+              "target": "DATABASE_ONLY_NEEDS_CANONICAL_REVIEW"
+            },
+            {
+              "hunt_code": "BR1010",
+              "source": "COMPLETE",
+              "target": "DATABASE_ONLY_NEEDS_CANONICAL_REVIEW"
+            }
+          ]
+        }
+      ],
+      "significant_drop": true
+    }
+  ]
+}

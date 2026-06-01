@@ -1,0 +1,17 @@
+dataset_id,group,title,path,format,row_count,notes
+canonical_hunt_master_2026,public_table,Canonical Hunt Master 2026,D:/DOCUMENTS/GitHub/HUNTS\processed_data\hunt_master_canonical_2026_priority_ordered_with_unit_specific_permit_bundles.csv,csv,1288,Primary hunt table with boundary_id + boundary_ids + multi-unit flags.
+statewide_permits_csv,public_table,statewide permits (CSV),D:/DOCUMENTS/GitHub/HUNTS\processed_data\hard_data_exports\statewide_permits.csv,csv,11,Pattern-specific export.
+statewide_permits_xlsx,public_table,statewide permits (XLSX),D:/DOCUMENTS/GitHub/HUNTS\processed_data\hard_data_exports\statewide_permits.xlsx,xlsx,11,Pattern-specific export.
+general_bull_any_bull_permits_csv,public_table,general bull any bull permits (CSV),D:/DOCUMENTS/GitHub/HUNTS\processed_data\hard_data_exports\general_bull_any_bull_permits.csv,csv,7,Pattern-specific export.
+general_bull_any_bull_permits_xlsx,public_table,general bull any bull permits (XLSX),D:/DOCUMENTS/GitHub/HUNTS\processed_data\hard_data_exports\general_bull_any_bull_permits.xlsx,xlsx,7,Pattern-specific export.
+spike_only_permits_csv,public_table,spike only permits (CSV),D:/DOCUMENTS/GitHub/HUNTS\processed_data\hard_data_exports\spike_only_permits.csv,csv,3,Pattern-specific export.
+spike_only_permits_xlsx,public_table,spike only permits (XLSX),D:/DOCUMENTS/GitHub/HUNTS\processed_data\hard_data_exports\spike_only_permits.xlsx,xlsx,3,Pattern-specific export.
+youth_permits_csv,public_table,youth permits (CSV),D:/DOCUMENTS/GitHub/HUNTS\processed_data\hard_data_exports\youth_permits.csv,csv,8,Pattern-specific export.
+youth_permits_xlsx,public_table,youth permits (XLSX),D:/DOCUMENTS/GitHub/HUNTS\processed_data\hard_data_exports\youth_permits.xlsx,xlsx,8,Pattern-specific export.
+extended_archery_permits_csv,public_table,extended archery permits (CSV),D:/DOCUMENTS/GitHub/HUNTS\processed_data\hard_data_exports\extended_archery_permits.csv,csv,2,Pattern-specific export.
+extended_archery_permits_xlsx,public_table,extended archery permits (XLSX),D:/DOCUMENTS/GitHub/HUNTS\processed_data\hard_data_exports\extended_archery_permits.xlsx,xlsx,2,Pattern-specific export.
+unit_specific_conservation_expo_bundles_csv,public_table,unit specific conservation expo bundles (CSV),D:/DOCUMENTS/GitHub/HUNTS\processed_data\hard_data_exports\unit_specific_conservation_expo_bundles.csv,csv,8,Pattern-specific export.
+unit_specific_conservation_expo_bundles_xlsx,public_table,unit specific conservation expo bundles (XLSX),D:/DOCUMENTS/GitHub/HUNTS\processed_data\hard_data_exports\unit_specific_conservation_expo_bundles.xlsx,xlsx,8,Pattern-specific export.
+boundary_tiebreak_conflicts_remaining,audit_table,boundary tiebreak conflicts remaining,D:/DOCUMENTS/GitHub/HUNTS\pipeline\quality\boundary_tiebreak_conflicts_remaining.csv,csv,,Tie-break conflicts for manual review.
+multiunit_rule_enforcement_log,audit_table,multiunit rule enforcement log,D:/DOCUMENTS/GitHub/HUNTS\pipeline\quality\multiunit_rule_enforcement_log.csv,csv,,Log of multi-unit rule changes.
+mule_deer_migration_overlay,overlay_data,mule deer migration overlay,D:/DOCUMENTS/GitHub/HUNTS\data\optional_layers\mule_deer_migration_corridors.geojson,geojson,,Optional thematic overlay (not enabled by default).

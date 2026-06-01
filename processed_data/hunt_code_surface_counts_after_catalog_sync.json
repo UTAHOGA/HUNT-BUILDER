@@ -1,0 +1,110 @@
+{
+  "database_unique_hunt_codes": 1411,
+  "surfaces": [
+    {
+      "file": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+      "rows": 1411,
+      "unique_hunt_codes": 1411,
+      "missing_database_hunt_codes": 0,
+      "extra_hunt_codes_vs_database": 0
+    },
+    {
+      "file": "processed_data/hunt_master_enriched.csv",
+      "rows": 54357,
+      "unique_hunt_codes": 1471,
+      "missing_database_hunt_codes": 0,
+      "extra_hunt_codes_vs_database": 60
+    },
+    {
+      "file": "processed_data/hunt_unit_reference_linked.csv",
+      "rows": 2997,
+      "unique_hunt_codes": 1471,
+      "missing_database_hunt_codes": 0,
+      "extra_hunt_codes_vs_database": 60
+    },
+    {
+      "file": "processed_data/point_ladder_view.csv",
+      "rows": 92844,
+      "unique_hunt_codes": 1471,
+      "missing_database_hunt_codes": 0,
+      "extra_hunt_codes_vs_database": 60
+    },
+    {
+      "file": "processed_data/draw_reality_engine.csv",
+      "rows": 36892,
+      "unique_hunt_codes": 1623,
+      "missing_database_hunt_codes": 0,
+      "extra_hunt_codes_vs_database": 212
+    },
+    {
+      "file": "processed_data/draw_reality_engine_predictive_v2.csv",
+      "rows": 27940,
+      "unique_hunt_codes": 1065,
+      "missing_database_hunt_codes": 406,
+      "extra_hunt_codes_vs_database": 60
+    },
+    {
+      "file": "processed_data/ml_draw_predictions_v1.csv",
+      "rows": 27940,
+      "unique_hunt_codes": 1065,
+      "missing_database_hunt_codes": 406,
+      "extra_hunt_codes_vs_database": 60
+    },
+    {
+      "file": "hunt-master-canonical-2026.json",
+      "rows": 1411,
+      "unique_hunt_codes": 1411,
+      "missing_database_hunt_codes": 0,
+      "extra_hunt_codes_vs_database": 0
+    },
+    {
+      "file": "canonical/hunt-planner-2026.json",
+      "rows": 1411,
+      "unique_hunt_codes": 1411,
+      "missing_database_hunt_codes": 0,
+      "extra_hunt_codes_vs_database": 0
+    },
+    {
+      "file": "generated/pages/hunt-planner.json",
+      "rows": 1411,
+      "unique_hunt_codes": 1411,
+      "missing_database_hunt_codes": 0,
+      "extra_hunt_codes_vs_database": 0
+    },
+    {
+      "file": "data/hunt-master-canonical-2026-database-candidate.csv",
+      "rows": 1411,
+      "unique_hunt_codes": 1411,
+      "missing_database_hunt_codes": 0,
+      "extra_hunt_codes_vs_database": 0
+    },
+    {
+      "file": "data/hunt-master-canonical-2026-source-of-truth.csv",
+      "rows": 1411,
+      "unique_hunt_codes": 1411,
+      "missing_database_hunt_codes": 0,
+      "extra_hunt_codes_vs_database": 0
+    },
+    {
+      "file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "rows": 1411,
+      "unique_hunt_codes": 1411,
+      "missing_database_hunt_codes": 0,
+      "extra_hunt_codes_vs_database": 0
+    },
+    {
+      "file": "processed_data/hunt-master-canonical-2026-source-of-truth.csv",
+      "rows": 1411,
+      "unique_hunt_codes": 1411,
+      "missing_database_hunt_codes": 0,
+      "extra_hunt_codes_vs_database": 0
+    },
+    {
+      "file": "processed_data/hunt-master-canonical-2026-source-of-truth.json",
+      "rows": 1411,
+      "unique_hunt_codes": 1411,
+      "missing_database_hunt_codes": 0,
+      "extra_hunt_codes_vs_database": 0
+    }
+  ]
+}

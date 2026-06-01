@@ -1,0 +1,10 @@
+control_unit,new_this_year,matched_any_truth_rows,standard_hunt_code_count,private_lands_hunt_code_count,matched_hunt_codes,standard_hunt_codes,private_lands_hunt_codes,season_examples,truth_permits_2026_total_across_matches
+"Box Elder, Grouse Creek",YES,TRUE,1,0,EA1287,EA1287,,Nov 06 2026 - Jan 31 2027,30
+Chalk Creek,NO,TRUE,1,1,EA1026|EA2004,EA1026,EA2004,Aug 01 2026 - Jan 31 2027|Nov 07 2026 - Jan 30 2027,950
+East Canyon,NO,TRUE,1,1,EA1236|EA2003,EA1236,EA2003,Aug 01 2026 - Jan 31 2027|Dec 01 2026 - Jan 11 2027,650
+Henry Mtns,NO,FALSE,0,0,,,,,0
+Kamas,NO,TRUE,2,1,EA1033|EA2033|EA2040,EA1033|EA2033,EA2040,Aug 01 2026 - Jan 31 2027|Aug 15 2026 - Sept 16 2026|Nov 07 2026 - Jan 17 2027,450
+Morgan-South Rich,NO,TRUE,2,1,EA1228|EA1229|EA2002,EA1228|EA1229,EA2002,Aug 01 2026 - Jan 31 2027|Dec 01 2026 - Dec 21 2026|Dec 22 2026 - Jan 31 2027,835
+Ogden,NO,TRUE,2,0,EA1063|EA1064,EA1063|EA1064,,Nov 07 2026 - Nov 29 2026|Oct 03 2026 - Oct 25 2026,175
+Pine Valley,NO,TRUE,1,0,EA1254,EA1254,,Nov 11 2026 - Jan 11 2027,30
+Zion,NO,TRUE,1,1,EA1117|EA2020,EA1117,EA2020,Aug 01 2026 - Jan 31 2027|Nov 11 2026 - Jan 10 2027,540

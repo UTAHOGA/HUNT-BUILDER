@@ -1,0 +1,266 @@
+{
+  "database_path": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "master_path": "processed_data/hard_data_exports/hunt_tables/2026/CLEAN_XLXS_STAGED/MASTER.xlsx",
+  "truth_rule": "DATABASE.csv authoritative; permit truth uses permit_allotment_2026_* with fallback to permits_2026_*.",
+  "master_rows_processed": 1449,
+  "database_rows_available": 1449,
+  "unmatched_master_hunt_codes_count": 0,
+  "unmatched_master_hunt_codes": [],
+  "database_hunt_codes_missing_in_master_count": 0,
+  "database_hunt_codes_missing_in_master": [],
+  "changes_total": 0,
+  "changes_by_field": {},
+  "changed_hunt_codes_count": 0,
+  "changed_hunt_codes": [],
+  "corrected_missing_permits_total_hunt_codes_count": 0,
+  "corrected_missing_permits_total_hunt_codes": [],
+  "normalization_audit": {
+    "HUNT TYPE": {
+      "same_count": 0,
+      "different_count": 1449,
+      "blank_both_count": 0,
+      "top_mappings": [
+        {
+          "master_value": "L.E.",
+          "database_value": "CWMU",
+          "count": 319
+        },
+        {
+          "master_value": "GENERAL",
+          "database_value": "General Season",
+          "count": 287
+        },
+        {
+          "master_value": "L.E.",
+          "database_value": "Limited Entry",
+          "count": 284
+        },
+        {
+          "master_value": "OTC",
+          "database_value": "Limited Entry - Private Land Only",
+          "count": 146
+        },
+        {
+          "master_value": "OTC",
+          "database_value": "General Season - Private Land Only",
+          "count": 105
+        },
+        {
+          "master_value": "O.I.L.",
+          "database_value": "Once-in-a-lifetime",
+          "count": 82
+        },
+        {
+          "master_value": "OTC",
+          "database_value": "Private Lands Only",
+          "count": 27
+        },
+        {
+          "master_value": "L.E.",
+          "database_value": "Limited Entry - Summer",
+          "count": 26
+        },
+        {
+          "master_value": "L.E.",
+          "database_value": "Conservation",
+          "count": 26
+        },
+        {
+          "master_value": "L.E.",
+          "database_value": "Limited Entry - Fall",
+          "count": 24
+        },
+        {
+          "master_value": "L.E.",
+          "database_value": "Limited Entry - Spring",
+          "count": 22
+        },
+        {
+          "master_value": "L.E.",
+          "database_value": "Limited Entry - Multiseason",
+          "count": 22
+        },
+        {
+          "master_value": "P.L.E.",
+          "database_value": "Premium Limited Entry",
+          "count": 15
+        },
+        {
+          "master_value": "GENERAL",
+          "database_value": "Tribal",
+          "count": 10
+        },
+        {
+          "master_value": "SPORTSMAN",
+          "database_value": "Statewide",
+          "count": 10
+        }
+      ]
+    },
+    "WEAPON": {
+      "same_count": 0,
+      "different_count": 1449,
+      "blank_both_count": 0,
+      "top_mappings": [
+        {
+          "master_value": "A.L.W.",
+          "database_value": "Any Legal Weapon",
+          "count": 791
+        },
+        {
+          "master_value": "ARCHERY",
+          "database_value": "Archery",
+          "count": 193
+        },
+        {
+          "master_value": "ML",
+          "database_value": "Muzzleloader",
+          "count": 171
+        },
+        {
+          "master_value": "A.L.W.",
+          "database_value": "Any Legal Weapon (Late)",
+          "count": 57
+        },
+        {
+          "master_value": "A.L.W.",
+          "database_value": "Multiseason",
+          "count": 54
+        },
+        {
+          "master_value": "A.L.W.",
+          "database_value": "Dedicated Hunter",
+          "count": 31
+        },
+        {
+          "master_value": "A.L.W.",
+          "database_value": "Any Legal Weapon (Early)",
+          "count": 24
+        },
+        {
+          "master_value": "A.L.W.",
+          "database_value": "Early Any Legal Weapon",
+          "count": 21
+        },
+        {
+          "master_value": "A.L.W.",
+          "database_value": "Mid Any Legal Weapon",
+          "count": 20
+        },
+        {
+          "master_value": "A.L.W.",
+          "database_value": "Late Any Legal Weapon",
+          "count": 19
+        },
+        {
+          "master_value": "ARCHERY",
+          "database_value": "Late Archery",
+          "count": 17
+        },
+        {
+          "master_value": "A.L.W.",
+          "database_value": "Pursuit Only",
+          "count": 11
+        },
+        {
+          "master_value": "A.L.W.",
+          "database_value": "Restricted Rifle",
+          "count": 8
+        },
+        {
+          "master_value": "ML",
+          "database_value": "Restricted Muzzleloader",
+          "count": 7
+        },
+        {
+          "master_value": "ARCHERY",
+          "database_value": "Archery, Muzzleloader, Shotgun",
+          "count": 5
+        }
+      ]
+    },
+    "HUNT CLASS": {
+      "same_count": 283,
+      "different_count": 1044,
+      "blank_both_count": 122,
+      "top_mappings": [
+        {
+          "master_value": "PRIVATE",
+          "database_value": "Private Land Only",
+          "count": 252
+        },
+        {
+          "master_value": "",
+          "database_value": "Antlerless",
+          "count": 150
+        },
+        {
+          "master_value": "",
+          "database_value": "Mature Bull",
+          "count": 145
+        },
+        {
+          "master_value": "",
+          "database_value": "General Season",
+          "count": 137
+        },
+        {
+          "master_value": "",
+          "database_value": "Limited Entry",
+          "count": 133
+        },
+        {
+          "master_value": "",
+          "database_value": "Once-in-a-lifetime",
+          "count": 74
+        },
+        {
+          "master_value": "CWMU",
+          "database_value": "",
+          "count": 36
+        },
+        {
+          "master_value": "PRIVATE",
+          "database_value": "Antlerless",
+          "count": 27
+        },
+        {
+          "master_value": "CONSERVATION",
+          "database_value": "Conservation",
+          "count": 25
+        },
+        {
+          "master_value": "",
+          "database_value": "Statewide Permit",
+          "count": 10
+        },
+        {
+          "master_value": "",
+          "database_value": "Tribal",
+          "count": 10
+        },
+        {
+          "master_value": "",
+          "database_value": "Premium Limited Entry",
+          "count": 9
+        },
+        {
+          "master_value": "",
+          "database_value": "Management",
+          "count": 7
+        },
+        {
+          "master_value": "YOUTH",
+          "database_value": "Youth",
+          "count": 6
+        },
+        {
+          "master_value": "GENERAL BULL",
+          "database_value": "General Bull",
+          "count": 4
+        }
+      ]
+    }
+  },
+  "report_csv": "processed_data/audits/master_database_2026_reconciliation_changes.csv"
+}

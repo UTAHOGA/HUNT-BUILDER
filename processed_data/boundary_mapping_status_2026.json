@@ -1,0 +1,14 @@
+{
+  "canonical_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\processed_data\\hunt_master_canonical_2026_SOURCE_OF_TRUTH_FINAL_COMPLETE_NO_PARTIALS.csv",
+  "boundary_geojson": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\data\\hunt_boundaries.geojson",
+  "boundary_manifest": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\processed_data\\display-boundary-index-2026.json",
+  "canonical_rows": 1288,
+  "rows_with_hunt_code": 1288,
+  "mapped_by_merged_manifest": 1288,
+  "mapped_by_single_boundary_id": 0,
+  "mapped_by_member_boundary_fallback": 0,
+  "unresolved_rows": 0,
+  "unresolved_csv": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\processed_data\\unresolved_hunt_boundaries_2026.csv",
+  "boundary_index_count": 683,
+  "manifest_hunt_count": 1288
+}

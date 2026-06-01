@@ -1,0 +1,99 @@
+{
+  "generated_at": "2026-05-30T10:15:25.959Z",
+  "inputs": {
+    "sync_matrix_rows": 0,
+    "readiness_engines": 0,
+    "management_context_rows": 632,
+    "management_context_rows_effective": 632,
+    "management_context_source": "file",
+    "elk_plan_present": true,
+    "mule_deer_plan_present": true,
+    "master_rows": 1289,
+    "ladder_rows": 91712,
+    "predictive_rows": 0,
+    "harvest_rows": 5151,
+    "age_rows": 1303,
+    "database_rows": 1449,
+    "year_change_rows": 0,
+    "source_paths": {
+      "sync_matrix": "processed_data/audits/active_data_feed_sync_matrix.json",
+      "readiness": "processed_data/audits/engine_readiness_report.json",
+      "management": "processed_data/management_context/hunt_management_objective_context.json",
+      "master": "pipeline/RAW/hunt_unit_database/2026/csv/hunt_master_canonical_2026_built.csv",
+      "ladder": "processed_data/point_ladder_view.csv",
+      "predictive": "processed_data/draw_reality_engine_predictive_v2.csv",
+      "harvest": "data_truth/harvest_results_truth/normalized/harvest_quality_features_all_years_by_hunt_code.csv",
+      "age": "data_model/harvest_quality/harvest_average_age_global_merge_database.csv",
+      "year_change": "processed_data/audits/year_to_year_hunt_change_report.csv",
+      "database": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+    }
+  },
+  "outputs": {
+    "outlook_rows": 2898,
+    "tag_rows": 22990,
+    "sleeper_hunt_rows": 430,
+    "new_hunt_rows": 0,
+    "demographic_groups": 10,
+    "management_context_output_rows": 632
+  },
+  "tag_counts": {
+    "STATUS_OR_AVAILABILITY_ONLY": 864,
+    "LONG_SHOT": 2192,
+    "HIGH_HARVEST_SUCCESS": 1586,
+    "NO_VERIFIED_AGE_DATA": 1778,
+    "FREEZER_FILLER": 1890,
+    "HARD_DRIVER": 604,
+    "HIGH_PRESSURE_HUNT": 1410,
+    "TROPHY_DREAMER": 2448,
+    "POINT_SAVER": 1883,
+    "MAX_POINT_HUNT": 508,
+    "POINT_CREEP_WARNING": 171,
+    "INSUFFICIENT_DRAW_DATA": 514,
+    "LOW_HARVEST_SUCCESS": 138,
+    "DATA_LIMITED_DO_NOT_OVERSELL": 514,
+    "EXTEND_THE_SEASON": 192,
+    "VERIFIED_AGE_DATA": 1120,
+    "ELDER_FRIENDLY": 1164,
+    "GROUP_FRIENDLY": 562,
+    "SLEEPER_CANDIDATE": 430,
+    "OVERLOOKED_OPPORTUNITY": 430,
+    "OPPORTUNIST": 430,
+    "OBJECTIVE_KNOWN_NO_OBSERVED_DATA": 796,
+    "BEGINNER_ANTLERLESS": 454,
+    "WITHIN_REACH": 192,
+    "RANDOM_POOL_ONLY": 236,
+    "YOUTH_OPPORTUNITY": 16,
+    "QUALITY_ABOVE_OBJECTIVE": 276,
+    "QUALITY_BELOW_OBJECTIVE": 54,
+    "QUALITY_MEETING_OBJECTIVE": 138
+  },
+  "demographic_counts": {
+    "YOUTH_OPPORTUNITY": 16,
+    "BEGINNER_ANTLERLESS": 454,
+    "FREEZER_FILLER": 1890,
+    "ELDER_FRIENDLY": 1164,
+    "HARD_DRIVER": 604,
+    "TROPHY_DREAMER": 2448,
+    "POINT_SAVER": 1883,
+    "OPPORTUNIST": 430,
+    "GROUP_FRIENDLY": 562,
+    "EXTEND_THE_SEASON": 192
+  },
+  "validations": {
+    "output_average_harvest_age_zero_count": 0,
+    "average_days_hunted_mapped_as_age_suspect_count": 0,
+    "average_days_hunted_same_as_verified_age_count": 12,
+    "blocked_rows": 0
+  },
+  "protected_file_hashes_unchanged": {
+    "database": true,
+    "predictive": true,
+    "ladder": true
+  },
+  "guardrails": [
+    "No DATABASE.csv truth values modified.",
+    "No prediction formulas, point ladder math, p_draw, permits, or quotas modified.",
+    "Management objectives are benchmark/context only and never overwrite observed age or draw probability.",
+    "Mule deer percent_5plus is kept separate from average_harvest_age."
+  ]
+}

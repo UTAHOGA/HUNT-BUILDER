@@ -1,0 +1,53 @@
+{
+  "generated_at": "2026-05-23T08:07:46.478105+00:00",
+  "active_repo": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS",
+  "source_files": {
+    "engine": "processed_data/draw_reality_engine_predictive_v2.csv",
+    "ladder": "processed_data/point_ladder_view.csv",
+    "master": "processed_data/hunt_master_enriched.csv",
+    "reference": "processed_data/hunt_unit_reference_linked.csv",
+    "database": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+  },
+  "rows": {
+    "engine": 27940,
+    "ladder": 92844,
+    "master": 54357,
+    "reference": 2997
+  },
+  "engine_group_count": 2005,
+  "engine_hunt_code_count": 1065,
+  "missing_groups_before": {
+    "ladder": 0,
+    "master": 0,
+    "reference": 0,
+    "draw_system_type_counts": {}
+  },
+  "appended_rows": {
+    "ladder": 0,
+    "master": 0,
+    "reference": 0
+  },
+  "missing_groups_after": {
+    "ladder": 0,
+    "master": 0,
+    "reference": 0
+  },
+  "families_promoted_online": {
+    "sportsman_groups": 10,
+    "mountain_lion_groups": 120,
+    "dedicated_hunter_groups": 41,
+    "youth_groups": 4
+  },
+  "duplicate_keys": {
+    "engine_hunt_residency_points": 0,
+    "ladder_hunt_residency_points_draw_pool": 0,
+    "master_hunt_residency_points_draw_pool": 0,
+    "reference_hunt_residency_draw_pool": 0
+  },
+  "status": "PASS",
+  "sample_groups_added": {
+    "ladder": [],
+    "master": [],
+    "reference": []
+  }
+}

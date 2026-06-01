@@ -1,0 +1,62 @@
+{
+  "classification": "DESERT_BIGHORN_CONSERVATION_PERMIT_CODE_LOCK_2026",
+  "timestamp_utc": "2026-05-25T02:47:54.264142+00:00",
+  "data_cutoff_date": "2026-05-25",
+  "lock_code_count": 7,
+  "lock_codes": [
+    "DS1000",
+    "DS1002",
+    "DS1003",
+    "DS1004",
+    "DS1006",
+    "DS1007",
+    "DS6605"
+  ],
+  "conservation_source": "data_truth/permit_overlay_truth/normalized/conservation_permit_cycle_rows_2022_2027.csv",
+  "all_locked_total": "1",
+  "predictive_reference_codes_locked": [
+    "DS1002",
+    "DS1003",
+    "DS1004",
+    "DS1006",
+    "DS1007",
+    "DS6605"
+  ],
+  "predictive_reference_code_count_locked": 6,
+  "predictive_reference_codes_added_this_run": [],
+  "predictive_reference_code_count_added_this_run": 0,
+  "target_surface_results": {
+    "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv": {
+      "row_count": 1411,
+      "rows_touched": 7,
+      "rows_changed": 0
+    },
+    "processed_data/hunt_master_enriched.csv": {
+      "row_count": 54357,
+      "rows_touched": 15,
+      "rows_changed": 0
+    },
+    "processed_data/draw_reality_engine.csv": {
+      "row_count": 36892,
+      "rows_touched": 14,
+      "rows_changed": 0
+    },
+    "processed_data/point_ladder_view.csv": {
+      "row_count": 92844,
+      "rows_touched": 463,
+      "rows_changed": 0
+    },
+    "processed_data/draw_reality_engine_predictive_v2.csv": {
+      "row_count": 28346,
+      "rows_touched": 7,
+      "rows_changed": 0
+    }
+  },
+  "runtime_update_row_count": 506,
+  "lock_output": "data_truth/permit_overlay_truth/normalized/desert_bighorn_conservation_permit_code_lock_2026.csv",
+  "runtime_updates_output": "processed_data/desert_bighorn_conservation_permit_code_lock_2026_runtime_updates.csv",
+  "validation_error_count": 0,
+  "validation_errors": [],
+  "blockers": 0,
+  "guardrail": "Desert bighorn conservation rows are locked as reference records; no draw odds, applicant counts, or probability values are invented."
+}

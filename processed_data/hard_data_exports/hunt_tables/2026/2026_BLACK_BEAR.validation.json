@@ -1,0 +1,65 @@
+{
+  "built_at_utc": "2026-05-26T15:17:49+00:00",
+  "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026 Permits/2026 black bear permits reviewed res-nr-total.csv",
+  "source_sha256": "33da13f4d1c6b1038bd623755373beda3e2de1278f1b48056eefc5dd16f36359",
+  "xlsx_file": "processed_data/hard_data_exports/hunt_tables/2026/2026_BLACK_BEAR.xlsx",
+  "pdf_file": "processed_data/hard_data_exports/hunt_tables/2026/2026_BLACK_BEAR.pdf",
+  "row_count": 106,
+  "unique_hunt_code_count": 106,
+  "status_counts": {
+    "FULL_SPLIT": 100,
+    "NO_PUBLISHED_NUMERIC_PERMIT": 5,
+    "TOTAL_ONLY": 1
+  },
+  "numeric_total_permits": 1020,
+  "checked_codes": {
+    "BR7004": {
+      "hunt_name": "Manti, South/San Rafael, North",
+      "res": "18",
+      "nr": "0",
+      "total": "18",
+      "status": "FULL_SPLIT",
+      "code_reuse_warning": ""
+    },
+    "BR7210": {
+      "hunt_name": "Mt Dutton",
+      "res": "3",
+      "nr": "0",
+      "total": "3",
+      "status": "FULL_SPLIT",
+      "code_reuse_warning": ""
+    },
+    "BR7211": {
+      "hunt_name": "Nine Mile",
+      "res": "26",
+      "nr": "3",
+      "total": "29",
+      "status": "FULL_SPLIT",
+      "code_reuse_warning": ""
+    },
+    "BR7307": {
+      "hunt_name": "La Sal",
+      "res": "",
+      "nr": "",
+      "total": "4",
+      "status": "TOTAL_ONLY",
+      "code_reuse_warning": "2026 BR7307 is code reuse: it is the La Sal multiseason conservation package; older La Sal limited-entry multiseason history crosswalks to current BR7326."
+    },
+    "BR7317": {
+      "hunt_name": "Nine Mile",
+      "res": "9",
+      "nr": "1",
+      "total": "10",
+      "status": "FULL_SPLIT",
+      "code_reuse_warning": ""
+    },
+    "BR7326": {
+      "hunt_name": "La Sal Mtns",
+      "res": "13",
+      "nr": "1",
+      "total": "14",
+      "status": "FULL_SPLIT",
+      "code_reuse_warning": ""
+    }
+  }
+}

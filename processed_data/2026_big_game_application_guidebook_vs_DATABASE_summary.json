@@ -1,0 +1,45 @@
+{
+  "source_pdf": "pipeline/RAW/hunt_unit_database/2026/pdf/regulations/2026 Big Game Application.pdf",
+  "database": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "guidebook_unique_hunt_codes": 728,
+  "guidebook_rows": 728,
+  "matched_database_hunt_codes": 728,
+  "missing_database_hunt_codes": 0,
+  "name_review_warnings": 6,
+  "season_review_warnings": 0,
+  "blockers": 0,
+  "warnings": 6,
+  "post_publication_correction_count": 4,
+  "post_publication_correction_review_count": 0,
+  "post_publication_correction_status_counts": {
+    "PASS": 4
+  },
+  "status_counts": {
+    "OK": 722,
+    "WARNING": 6
+  },
+  "name_status_counts": {
+    "SPORTSMAN_STATEWIDE_LABEL_VARIANT": 10,
+    "MATCH": 699,
+    "MULTI_COLUMN_TEXT_NOT_COMPARABLE": 13,
+    "REVIEW": 6
+  },
+  "season_status_counts": {
+    "MATCH": 457,
+    "NOT_COMPARABLE": 4,
+    "REFERENCE_OR_COMPOSITE_SEASON": 267
+  },
+  "section_counts": {
+    "SPORTSMAN_AND_STATEWIDE_CONSERVATION_DATES": 10,
+    "BISON_HUNT_TABLES": 16,
+    "BUCK_DEER_HUNT_TABLES": 219,
+    "CWMU_HUNT_TABLES": 208,
+    "BIGHORN_SHEEP_HUNT_TABLES": 33,
+    "BULL_ELK_HUNT_TABLES": 141,
+    "BUCK_PRONGHORN_HUNT_TABLES": 67,
+    "MOUNTAIN_GOAT_HUNT_TABLES": 17,
+    "BUCK_PRONGHORN_OR_BULL_MOOSE_HUNT_TABLES": 17
+  },
+  "classification": "REGULATION_REFERENCE_ONLY",
+  "modeling_guardrail": "DO_NOT_USE_AS_DRAW_ODDS_HARVEST_FEATURE_OR_2026_QUOTA_INPUT"
+}

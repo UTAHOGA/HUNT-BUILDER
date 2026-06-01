@@ -1,0 +1,44 @@
+[
+  {
+    "group": "exports",
+    "type": "csv",
+    "year": "2026",
+    "title": "Hard Data Library Page Records CSV",
+    "subtitle": "Page-ready hard-data hunt library records as CSV.",
+    "href": "./processed_data/hard_data_exports/library/library_page_hunts.csv",
+    "local_href": "./processed_data/hard_data_exports/library/library_page_hunts.csv",
+    "cloudflare_href": "https://json.uoga.workers.dev/processed_data/hard_data_exports/library/library_page_hunts.csv",
+    "delivery": "pages-local",
+    "size_mb": 0.25,
+    "source": "processed_data",
+    "scope": "runtime"
+  },
+  {
+    "group": "exports",
+    "type": "json",
+    "year": "2026",
+    "title": "Hard Data Library Page Records JSON",
+    "subtitle": "Page-ready hard-data hunt library records as JSON.",
+    "href": "./processed_data/hard_data_exports/library/library_page_data.json",
+    "local_href": "./processed_data/hard_data_exports/library/library_page_data.json",
+    "cloudflare_href": "https://json.uoga.workers.dev/processed_data/hard_data_exports/library/library_page_data.json",
+    "delivery": "pages-local",
+    "size_mb": 1.01,
+    "source": "processed_data",
+    "scope": "runtime"
+  },
+  {
+    "group": "exports",
+    "type": "json",
+    "year": "2026",
+    "title": "Hard Data Library Page Summary",
+    "subtitle": "Build summary for modeled, excluded, manual-review, and gate status counts.",
+    "href": "./processed_data/hard_data_exports/library/library_page_summary.json",
+    "local_href": "./processed_data/hard_data_exports/library/library_page_summary.json",
+    "cloudflare_href": "https://json.uoga.workers.dev/processed_data/hard_data_exports/library/library_page_summary.json",
+    "delivery": "pages-local",
+    "size_mb": 0.01,
+    "source": "processed_data",
+    "scope": "runtime"
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "generated_at_utc": "2026-05-23T10:59:57.981571+00:00",
+  "source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+  "target_hunt_code_count": 1411,
+  "results": [
+    {
+      "file": "hunt-master-canonical-2026.json",
+      "before_codes": 1411,
+      "after_codes": 1411,
+      "added_codes": [],
+      "changed_cells": 3278,
+      "seasons_count": 1411
+    },
+    {
+      "file": "generated/pages/hunt-planner.json",
+      "before_codes": 1411,
+      "after_codes": 1411,
+      "added_codes": []
+    },
+    {
+      "file": "processed_data/hunt-master-canonical-2026-source-of-truth.csv",
+      "before_codes": 1411,
+      "after_codes": 1411,
+      "added_count": 0
+    },
+    {
+      "file": "data/hunt-master-canonical-2026-database-candidate.csv",
+      "codes": 1411,
+      "changed_cells": 0
+    }
+  ]
+}

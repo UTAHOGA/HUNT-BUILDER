@@ -1,0 +1,28 @@
+{
+  "generated_at_utc": "2026-05-23T15:34:43.090370+00:00",
+  "forecast_year": 2026,
+  "active_2026_hunt_codes": 1411,
+  "harvest_quality_index_count": 1384,
+  "demand_pressure_signal_count": 1404,
+  "match_method_counts": {
+    "EXACT_HUNT_CODE_HISTORY": 1188,
+    "NO_HARVEST_HISTORY": 1,
+    "SAME_HUNT_NAME_SPECIES_HISTORY": 174,
+    "SPECIES_FAMILY_HISTORY": 37,
+    "UNIT_SPECIES_HISTORY": 11
+  },
+  "data_quality_grade_counts": {
+    "A": 964,
+    "B": 25,
+    "C": 351,
+    "D": 70,
+    "F": 1
+  },
+  "protected_probability_and_quota_fields_unchanged": true,
+  "outputs": {
+    "feature_by_hunt_code": "data_model\\harvest_quality\\harvest_feature_model_by_hunt_code_2026.csv",
+    "feature_by_species_year": "data_model\\harvest_quality\\harvest_feature_model_by_species_year.csv",
+    "ml_with_features": "data_model\\harvest_quality\\ml_draw_predictions_with_harvest_features.csv",
+    "draw_reality_with_features": "data_model\\harvest_quality\\draw_reality_engine_predictive_with_harvest_features.csv"
+  }
+}

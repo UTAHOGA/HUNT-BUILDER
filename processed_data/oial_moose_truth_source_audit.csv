@@ -1,0 +1,27 @@
+permit_group,weapon,hunt_code,residency,permits_2025_truth,permits_2026_truth,permit_delta,significance,repo_public_permits_2026,repo_match_2026,source_document,source_note
+Box Elder,Any Legal Weapon,MB6012,Resident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+Box Elder,Any Legal Weapon,MB6012,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+Cache,Any Legal Weapon,MB6000,Resident,12,14,2,SIGNIFICANT,14,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+Cache,Any Legal Weapon,MB6000,Nonresident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+Chalk Creek,Any Legal Weapon,MB6001,Resident,3,4,1,MINOR,4,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+Chalk Creek,Any Legal Weapon,MB6001,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+Diamond Mtn/Vernal,Any Legal Weapon,MB6009,Resident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+Diamond Mtn/Vernal,Any Legal Weapon,MB6009,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+East Canyon,Any Legal Weapon,MB6002,Resident,5,5,0,UNCHANGED,5,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+East Canyon,Any Legal Weapon,MB6002,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+"East Canyon, Morgan-Summit",Any Legal Weapon,MB6003,Resident,4,5,1,MINOR,5,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+"East Canyon, Morgan-Summit",Any Legal Weapon,MB6003,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+Kamas,Any Legal Weapon,MB6004,Resident,5,6,1,MINOR,6,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+Kamas,Any Legal Weapon,MB6004,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+Morgan-South Rich,Any Legal Weapon,MB6005,Resident,6,6,0,UNCHANGED,6,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+Morgan-South Rich,Any Legal Weapon,MB6005,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+"North Slope, Summit",Any Legal Weapon,MB6006,Resident,19,20,1,MINOR,20,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+"North Slope, Summit",Any Legal Weapon,MB6006,Nonresident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+"North Slope, Three Corners/West Daggett",Any Legal Weapon,MB6007,Resident,6,6,0,UNCHANGED,6,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+"North Slope, Three Corners/West Daggett",Any Legal Weapon,MB6007,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+Ogden,Any Legal Weapon,MB6008,Resident,7,7,0,UNCHANGED,7,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+Ogden,Any Legal Weapon,MB6008,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+Wasatch Mtns/Central Mtns,Any Legal Weapon,MB6011,Resident,19,19,0,UNCHANGED,19,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+Wasatch Mtns/Central Mtns,Any Legal Weapon,MB6011,Nonresident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+Yellowstone,Any Legal Weapon,MB6010,Resident,5,6,1,MINOR,6,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.
+Yellowstone,Any Legal Weapon,MB6010,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL bull moose comparison table for 2025 to 2026.

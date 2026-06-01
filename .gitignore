@@ -69,12 +69,9 @@ processed_data/permit_allocation_2026_last_sync.json
 point_ladder_view1.csv
 
 
-/processed_data/public_contracts?/*
 
-processed_data/
-*.xlsx
-*.pdf
-*.csv
+
+
 
 
 

@@ -1,0 +1,35 @@
+permit_group,weapon,hunt_code,residency,permits_2025_truth,permits_2026_truth,permit_delta,significance,repo_public_permits_2026,repo_match_2026,source_document,source_note
+"Beaver, East",Late Archery,EB3158,Resident,13,18,5,MINOR,18,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+"Beaver, East",Late Archery,EB3158,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Bitter Creek/East",Late Archery,EB3161,Resident,4,4,0,UNCHANGED,4,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Bitter Creek/East",Late Archery,EB3161,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+Boulder,Late Archery,EB3190,Resident,4,4,0,UNCHANGED,4,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+Boulder,Late Archery,EB3190,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+"Cache, Meadowville",Late Archery,EB3168,Resident,4,4,0,UNCHANGED,4,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+"Cache, Meadowville",Late Archery,EB3168,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+"Cache, South",Late Archery,EB3170,Resident,4,4,0,UNCHANGED,4,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+"Cache, South",Late Archery,EB3170,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+Diamond Mtn,Late Archery,EB3195,Resident,4,4,0,UNCHANGED,4,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+Diamond Mtn,Late Archery,EB3195,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+"Fillmore, Pahvant",Late Archery,EB3180,Resident,13,18,5,MINOR,18,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+"Fillmore, Pahvant",Late Archery,EB3180,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+Fishlake/Thousand Lakes,Late Archery,EB3192,Resident,13,13,0,UNCHANGED,13,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+Fishlake/Thousand Lakes,Late Archery,EB3192,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+La Sal Mtns,Late Archery,EB3182,Resident,9,9,0,UNCHANGED,9,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+La Sal Mtns,Late Archery,EB3182,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+Manti,Late Archery,EB3172,Resident,9,9,0,UNCHANGED,9,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+Manti,Late Archery,EB3172,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+Monroe,Late Archery,EB3184,Resident,7,7,0,UNCHANGED,7,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+Monroe,Late Archery,EB3184,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+Mt Dutton,Late Archery,EB3186,Resident,9,13,4,MINOR,13,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+Mt Dutton,Late Archery,EB3186,Nonresident,1,2,1,MINOR,2,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+Nebo/San Pitch Mtns,Late Archery,EB3174,Resident,9,13,4,MINOR,13,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+Nebo/San Pitch Mtns,Late Archery,EB3174,Nonresident,1,2,1,MINOR,2,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+Panguitch Lake,Late Archery,EB3188,Resident,9,13,4,MINOR,13,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+Panguitch Lake,Late Archery,EB3188,Nonresident,1,2,1,MINOR,2,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+San Juan Bull Elk,Late Archery,EB3193,Resident,9,9,0,UNCHANGED,9,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+San Juan Bull Elk,Late Archery,EB3193,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+"Southwest Desert, South",Late Archery,EB3197,Resident,9,18,9,SIGNIFICANT,18,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+"Southwest Desert, South",Late Archery,EB3197,Nonresident,1,2,1,MINOR,2,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+Wasatch Mtns,Late Archery,EB3199,Resident,9,9,0,UNCHANGED,9,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.
+Wasatch Mtns,Late Archery,EB3199,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry late archery bull elk comparison table for 2025 to 2026.

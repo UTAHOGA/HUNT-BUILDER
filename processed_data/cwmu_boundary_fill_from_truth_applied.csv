@@ -1,0 +1,276 @@
+﻿row_number,hunt_code,hunt_name,species,matched_boundary_name,boundary_id,match_type
+1,DA1011,George Creek CWMU,Deer,,806,alias_or_truth_fill
+2,DA1012,Junction Valley CWMU,Deer,,589,alias_or_truth_fill
+3,DA1013,Mt Carmel CWMU,Deer,,533,alias_or_truth_fill
+4,DA1050,The Rose of Snowville CWMU,Deer,,509,alias_or_truth_fill
+5,DB1200,Alton - Premium Buck CWMU,Deer,,526,alias_or_truth_fill
+6,DB1201,Alton - Management Buck CWMU,Deer,,526,alias_or_truth_fill
+7,DB1202,Antelope Creek CWMU,Deer,,581,alias_or_truth_fill
+8,DB1203,Avintaquin Canyon CWMU,Deer,,599,alias_or_truth_fill
+9,DB1204,Bally Watts CWMU,Deer,,559,alias_or_truth_fill
+10,DB1205,Bar J Ranch CWMU,Deer,,527,alias_or_truth_fill
+11,DB1206,Bear Mountain CWMU,Deer,,582,alias_or_truth_fill
+12,DB1207,Bear Springs CWMU,Deer,,575,alias_or_truth_fill
+13,DB1208,Blackhawk CWMU,Deer,,808,alias_or_truth_fill
+14,DB1209,Blind Springs CWMU,Deer,,500,alias_or_truth_fill
+15,DB1211,Blue Spring Hills CWMU,Deer,,510,alias_or_truth_fill
+16,DB1212,Bluebell CWMU,Deer,,604,alias_or_truth_fill
+17,DB1213,Boobe Hole CWMU,Deer,,529,alias_or_truth_fill
+18,DB1215,Buckhorn Ranch CWMU,Deer,,598,alias_or_truth_fill
+19,DB1216,Castle Valley Outdoors CWMU,Deer,,545,alias_or_truth_fill
+20,DB1217,Causey Spring CWMU,Deer,,560,alias_or_truth_fill
+21,DB1219,Chimney Rock CWMU,Deer,,732,alias_or_truth_fill
+22,DB1222,Coldwater Ranch CWMU,Deer,,505,alias_or_truth_fill
+23,DB1224,Cotton Thomas CWMU,Deer,,640,alias_or_truth_fill
+24,DB1227,Deer Haven CWMU,Deer,,606,alias_or_truth_fill
+25,DB1228,Deseret CWMU,Deer,,568,alias_or_truth_fill
+26,DB1229,Dilly Ranch CWMU,Deer,,733,alias_or_truth_fill
+27,DB1230,Double R Ranch CWMU,Deer,,554,alias_or_truth_fill
+28,DB1231,Dove Creek CWMU,Deer,,512,alias_or_truth_fill
+29,DB1232,Durst Mountain CWMU,Deer,,567,alias_or_truth_fill
+30,DB1233,East Fork Chalk Creek CWMU,Deer,,520,alias_or_truth_fill
+31,DB1234,East Zion CWMU,Deer,,807,alias_or_truth_fill
+32,DB1236,Engineer Springs CWMU,Deer,,519,alias_or_truth_fill
+33,DB1237,Ensign Ranches CWMU,Deer,,522,alias_or_truth_fill
+34,DB1238,Folley Ridge CWMU,Deer,,579,alias_or_truth_fill
+35,DB1239,Fort Ranch CWMU,Deer,,514,alias_or_truth_fill
+36,DB1240,George Creek CWMU,Deer,,806,alias_or_truth_fill
+37,DB1241,Golden Spike CWMU,Deer,,497,alias_or_truth_fill
+38,DB1242,Grass Valley/Clark Canyon CWMU,Deer,,525,alias_or_truth_fill
+39,DB1243,Grazing Pasture CWMU,Deer,,530,alias_or_truth_fill
+40,DB1244,Green Canyon CWMU,Deer,,489,alias_or_truth_fill
+41,DB1245,Guildersleeve CWMU,Deer,,573,alias_or_truth_fill
+42,DB1246,Hardscrabble CWMU,Deer,,577,alias_or_truth_fill
+43,DB1248,Heaston East CWMU,Deer,,555,alias_or_truth_fill
+44,DB1249,Hiawatha CWMU,Deer,,550,alias_or_truth_fill
+45,DB1250,Indian Creek CWMU,Deer,,495,alias_or_truth_fill
+46,DB1251,Indian Head CWMU,Deer,,735,alias_or_truth_fill
+47,DB1252,Ingham Peak CWMU,Deer,,493,alias_or_truth_fill
+48,DB1253,Circle E Ranch CWMU,Deer,,549,alias_or_truth_fill
+49,DB1255,Johnson Mountain Ranch CWMU,Deer,,531,alias_or_truth_fill
+50,DB1256,Junction Valley CWMU,Deer,,589,alias_or_truth_fill
+51,DB1258,Little Red Creek CWMU,Deer,,484,alias_or_truth_fill
+52,DB1259,Tunnel Hollow CWMU,Deer,,569,alias_or_truth_fill
+53,DB1260,Middle Ridge CWMU,Deer,,565,alias_or_truth_fill
+54,DB1261,Minnie Maud Ridge CWMU,Deer,,551,alias_or_truth_fill
+55,DB1263,Moon Ranch CWMU,Deer,,485,alias_or_truth_fill
+56,DB1264,Mountain Meadow CWMU,Deer,,518,alias_or_truth_fill
+57,DB1265,Mountain Top CWMU,Deer,,572,alias_or_truth_fill
+58,DB1266,Mt Carmel CWMU,Deer,,533,alias_or_truth_fill
+59,DB1269,North Promontory CWMU,Deer,,513,alias_or_truth_fill
+60,DB1270,Nucor West CWMU,Deer,,503,alias_or_truth_fill
+61,DB1271,Oak Ranch CWMU,Deer,,534,alias_or_truth_fill
+62,DB1272,Old Woman Plateau CWMU,Deer,,535,alias_or_truth_fill
+63,DB1273,Park Valley Hereford CWMU,Deer,,504,alias_or_truth_fill
+64,DB1274,Patmos Ridge CWMU,Deer,,736,alias_or_truth_fill
+65,DB1275,Pine Canyon CWMU,Deer,,592,alias_or_truth_fill
+66,DB1277,Pocatello Valley CWMU,Deer,,501,alias_or_truth_fill
+67,DB1279,Preston Nutter Ranch CWMU,Deer,,542,alias_or_truth_fill
+68,DB1280,Promontory Point CWMU,Deer,,502,alias_or_truth_fill
+69,DB1281,Rattlesnake Pass CWMU,Deer,,496,alias_or_truth_fill
+70,DB1282,Redd Ranches CWMU,Deer,,548,alias_or_truth_fill
+71,DB1283,Roan Cliffs CWMU,Deer,,543,alias_or_truth_fill
+72,DB1285,Sand Creek CWMU,Deer,,740,alias_or_truth_fill
+73,DB1286,Pisgah Mountain CWMU,Deer,,574,alias_or_truth_fill
+74,DB1287,Scofield Canyons CWMU,Deer,,539,alias_or_truth_fill
+75,DB1288,Scofield West CWMU,Deer,,541,alias_or_truth_fill
+76,DB1289,Sharp Mountain CWMU,Deer,,490,alias_or_truth_fill
+77,DB1290,Skull Crack CWMU,Deer,,578,alias_or_truth_fill
+78,DB1291,Skull Valley South CWMU,Deer,,585,alias_or_truth_fill
+79,DB1292,Soldier Summit CWMU,Deer,,552,alias_or_truth_fill
+80,DB1293,South Canyon CWMU,Deer,,491,alias_or_truth_fill
+81,DB1294,Spring Creek Acres CWMU,Deer,,741,alias_or_truth_fill
+82,DB1295,Spring Creek/Dodge CWMU,Deer,,546,alias_or_truth_fill
+83,DB1298,Strawberry Ridge CWMU,Deer,,562,alias_or_truth_fill
+84,DB1299,Summit Point CWMU,Deer,,547,alias_or_truth_fill
+85,DB1300,Thatcher Mountain CWMU,Deer,,602,alias_or_truth_fill
+86,DB1301,Three C CWMU,Deer,,553,alias_or_truth_fill
+87,DB1303,North Peaks CWMU,Deer,,492,alias_or_truth_fill
+88,DB1304,Two Bear CWMU,Deer,,521,alias_or_truth_fill
+89,DB1305,Wallsburg CWMU,Deer,,586,alias_or_truth_fill
+90,DB1306,Washakie CWMU,Deer,,499,alias_or_truth_fill
+91,DB1308,West Hills CWMU,Deer,,511,alias_or_truth_fill
+92,DB1309,West Willow Creek Ranch CWMU,Deer,,805,alias_or_truth_fill
+93,DB1310,White's Valley CWMU,Deer,,488,alias_or_truth_fill
+94,DB1312,Woodruff Creek South CWMU,Deer,,571,alias_or_truth_fill
+95,DB1317,Jacob's Creek CWMU,Deer,,580,alias_or_truth_fill
+96,DB1322,Pahvant Ensign CWMU,Deer,,826,alias_or_truth_fill
+97,DB1323,Rock House CWMU,Deer,,827,alias_or_truth_fill
+98,DB1325,Double Cone CWMU,Deer,,516,alias_or_truth_fill
+99,DB1326,Rosette CWMU,Deer,,856,alias_or_truth_fill
+100,DB1327,Mountain Sky Ranch CWMU,Deer,,858,alias_or_truth_fill
+101,DB1328,Clear Creek CWMU,Deer,,494,alias_or_truth_fill
+102,DB1330,Iron Spring CWMU,Deer,,876,alias_or_truth_fill
+103,DB1331,Raft River CWMU,Deer,,875,alias_or_truth_fill
+104,DB1332,West Ridge CWMU,Deer,,874,alias_or_truth_fill
+105,DB1333,5S CWMU,Deer,,878,alias_or_truth_fill
+106,DB1334,Alton - Cactus Buck CWMU,Deer,,526,alias_or_truth_fill
+107,DB1335,Big Piney Ranch CWMU,Deer,,892,alias_or_truth_fill
+108,DB1336,First Light CWMU,Deer,,890,alias_or_truth_fill
+109,DB1337,Little Pole Canyon CWMU,Deer,,556,alias_or_truth_fill
+110,DB1341,Dry Creek CWMU,Deer,,908,alias_or_truth_fill
+111,DB1342,Faust Valley CWMU,Deer,,905,alias_or_truth_fill
+112,DB1347,The Rose of Snowville CWMU,Deer,,509,alias_or_truth_fill
+114,DB1351,The Dirty Dozen,Deer,,923,alias_or_truth_fill
+115,EA1118,Alton CWMU,Elk,,526,alias_or_truth_fill
+116,EA1119,Bar J Ranch CWMU,Elk,,527,alias_or_truth_fill
+117,EA1120,Bear Mountain CWMU,Elk,,582,alias_or_truth_fill
+118,EA1121,Boobe Hole CWMU,Elk,,529,alias_or_truth_fill
+119,EA1122,Causey Spring CWMU,Elk,,560,alias_or_truth_fill
+120,EA1124,Chimney Rock CWMU,Elk,,732,alias_or_truth_fill
+121,EA1125,Coldwater Ranch CWMU,Elk,,505,alias_or_truth_fill
+122,EA1129,Deseret CWMU,Elk,,568,alias_or_truth_fill
+123,EA1130,Double Cone CWMU,Elk,,516,alias_or_truth_fill
+124,EA1131,Durst Mountain CWMU,Elk,,567,alias_or_truth_fill
+125,EA1132,East Fork Chalk Creek CWMU,Elk,,520,alias_or_truth_fill
+126,EA1134,Ensign Ranches CWMU,Elk,,522,alias_or_truth_fill
+127,EA1135,Folley Ridge CWMU,Elk,,579,alias_or_truth_fill
+128,EA1136,Grass Valley/Clark Canyon CWMU,Elk,,525,alias_or_truth_fill
+129,EA1137,Grazing Pasture CWMU,Elk,,530,alias_or_truth_fill
+130,EA1138,Guildersleeve CWMU,Elk,,573,alias_or_truth_fill
+131,EA1139,Hardscrabble CWMU,Elk,,577,alias_or_truth_fill
+132,EA1140,Heaston East CWMU,Elk,,555,alias_or_truth_fill
+133,EA1141,Hiawatha CWMU,Elk,,550,alias_or_truth_fill
+134,EA1142,Indian Head CWMU,Elk,,735,alias_or_truth_fill
+135,EA1143,Circle E Ranch CWMU,Elk,,549,alias_or_truth_fill
+136,EA1145,Johnson Mountain Ranch CWMU,Elk,,531,alias_or_truth_fill
+137,EA1146,Jump Creek CWMU,Elk,,734,alias_or_truth_fill
+138,EA1147,Little Red Creek CWMU,Elk,,484,alias_or_truth_fill
+139,EA1149,Minnie Maud Ridge CWMU,Elk,,551,alias_or_truth_fill
+140,EA1151,Moon Ranch CWMU,Elk,,485,alias_or_truth_fill
+141,EA1153,Old Woman Plateau CWMU,Elk,,535,alias_or_truth_fill
+142,EA1156,Preston Nutter Ranch CWMU,Elk,,542,alias_or_truth_fill
+143,EA1157,Redd Ranches CWMU,Elk,,548,alias_or_truth_fill
+145,EA1159,Roan Cliffs CWMU,Elk,,543,alias_or_truth_fill
+146,EA1160,Sand Creek CWMU,Elk,,740,alias_or_truth_fill
+147,EA1161,Scofield Canyons CWMU,Elk,,539,alias_or_truth_fill
+148,EA1162,Scofield East CWMU,Elk,,540,alias_or_truth_fill
+149,EA1163,Scofield West CWMU,Elk,,541,alias_or_truth_fill
+150,EA1164,SJ Ranch CWMU,Elk,,576,alias_or_truth_fill
+151,EA1165,Skull Crack CWMU,Elk,,578,alias_or_truth_fill
+152,EA1166,Soldier Summit CWMU,Elk,,552,alias_or_truth_fill
+153,EA1167,South Canyon CWMU,Elk,,491,alias_or_truth_fill
+154,EA1168,Spring Creek/Dodge CWMU,Elk,,546,alias_or_truth_fill
+155,EA1170,Strawberry Ridge CWMU,Elk,,562,alias_or_truth_fill
+156,EA1171,Summit Point CWMU,Elk,,547,alias_or_truth_fill
+157,EA1172,Three C CWMU,Elk,,553,alias_or_truth_fill
+158,EA1174,Two Bear CWMU,Elk,,521,alias_or_truth_fill
+159,EA1175,Wallsburg CWMU,Elk,,586,alias_or_truth_fill
+160,EA1177,Woodruff Creek South CWMU,Elk,,571,alias_or_truth_fill
+161,EA1192,Pahvant Ensign CWMU,Elk,,826,alias_or_truth_fill
+162,EA1198,Bear Springs CWMU,Elk,,575,alias_or_truth_fill
+163,EA1200,Double R Ranch CWMU,Elk,,554,alias_or_truth_fill
+164,EA1201,Mountain Sky Ranch CWMU,Elk,,858,alias_or_truth_fill
+165,EA1233,Avintaquin Canyon CWMU,Elk,,599,alias_or_truth_fill
+166,EA1234,Royal Ivory Outfitters CWMU,Elk,,828,alias_or_truth_fill
+167,EA1235,Sharp Mountain CWMU,Elk,,490,alias_or_truth_fill
+168,EA1256,Little Pole Canyon CWMU,Elk,,556,alias_or_truth_fill
+169,EA1257,Tunnel Hollow CWMU,Elk,,569,alias_or_truth_fill
+171,EA1260,West Ridge CWMU,Elk,,874,alias_or_truth_fill
+172,EA1261,Blackhawk CWMU,Elk,,808,alias_or_truth_fill
+174,EB3500,Alton CWMU,Elk,,526,alias_or_truth_fill
+175,EB3501,Bar J Ranch CWMU,Elk,,527,alias_or_truth_fill
+176,EB3502,Bear Mountain CWMU,Elk,,582,alias_or_truth_fill
+177,EB3503,Bear Springs CWMU,Elk,,575,alias_or_truth_fill
+178,EB3504,Blackhawk CWMU,Elk,,808,alias_or_truth_fill
+179,EB3505,Boobe Hole CWMU,Elk,,529,alias_or_truth_fill
+180,EB3506,Causey Spring CWMU,Elk,,560,alias_or_truth_fill
+181,EB3508,Chimney Rock CWMU,Elk,,732,alias_or_truth_fill
+182,EB3509,Coldwater Ranch CWMU,Elk,,505,alias_or_truth_fill
+183,EB3511,Cotton Thomas CWMU,Elk,,640,alias_or_truth_fill
+184,EB3514,Deseret CWMU,Elk,,568,alias_or_truth_fill
+185,EB3515,Double Cone CWMU,Elk,,516,alias_or_truth_fill
+186,EB3516,Durst Mountain CWMU,Elk,,567,alias_or_truth_fill
+187,EB3517,East Fork Chalk Creek CWMU,Elk,,520,alias_or_truth_fill
+188,EB3519,Ensign Ranches CWMU,Elk,,522,alias_or_truth_fill
+189,EB3520,Folley Ridge CWMU,Elk,,579,alias_or_truth_fill
+190,EB3521,Grass Valley/Clark Canyon CWMU,Elk,,525,alias_or_truth_fill
+191,EB3522,Grazing Pasture CWMU,Elk,,530,alias_or_truth_fill
+192,EB3523,Guildersleeve CWMU,Elk,,573,alias_or_truth_fill
+193,EB3524,Hardscrabble CWMU,Elk,,577,alias_or_truth_fill
+194,EB3525,Heaston East CWMU,Elk,,555,alias_or_truth_fill
+195,EB3526,Hiawatha CWMU,Elk,,550,alias_or_truth_fill
+196,EB3527,Indian Head CWMU,Elk,,735,alias_or_truth_fill
+197,EB3528,Ingham Peak CWMU,Elk,,493,alias_or_truth_fill
+198,EB3529,Circle E Ranch CWMU,Elk,,549,alias_or_truth_fill
+199,EB3530,Jacob's Creek CWMU,Elk,,580,alias_or_truth_fill
+200,EB3531,Johnson Mountain Ranch CWMU,Elk,,531,alias_or_truth_fill
+201,EB3532,Jump Creek CWMU,Elk,,734,alias_or_truth_fill
+202,EB3533,Junction Valley CWMU,Elk,,589,alias_or_truth_fill
+203,EB3534,Little Red Creek CWMU,Elk,,484,alias_or_truth_fill
+204,EB3536,Minnie Maud Ridge CWMU,Elk,,551,alias_or_truth_fill
+205,EB3538,Moon Ranch CWMU,Elk,,485,alias_or_truth_fill
+206,EB3540,Old Woman Plateau CWMU,Elk,,535,alias_or_truth_fill
+207,EB3541,Patmos Ridge CWMU,Elk,,736,alias_or_truth_fill
+208,EB3543,Preston Nutter Ranch CWMU,Elk,,542,alias_or_truth_fill
+209,EB3544,Redd Ranches CWMU,Elk,,548,alias_or_truth_fill
+211,EB3546,Roan Cliffs CWMU,Elk,,543,alias_or_truth_fill
+212,EB3547,Sand Creek CWMU,Elk,,740,alias_or_truth_fill
+213,EB3548,Scofield Canyons CWMU,Elk,,539,alias_or_truth_fill
+214,EB3549,Scofield East CWMU,Elk,,540,alias_or_truth_fill
+215,EB3550,Scofield West CWMU,Elk,,541,alias_or_truth_fill
+216,EB3551,SJ Ranch CWMU,Elk,,576,alias_or_truth_fill
+217,EB3552,Skull Crack CWMU,Elk,,578,alias_or_truth_fill
+218,EB3553,Soldier Summit CWMU,Elk,,552,alias_or_truth_fill
+219,EB3554,South Canyon CWMU,Elk,,491,alias_or_truth_fill
+220,EB3555,Spring Creek/Dodge CWMU,Elk,,546,alias_or_truth_fill
+221,EB3557,Strawberry Ridge CWMU,Elk,,562,alias_or_truth_fill
+222,EB3558,Summit Point CWMU,Elk,,547,alias_or_truth_fill
+223,EB3559,Three C CWMU,Elk,,553,alias_or_truth_fill
+224,EB3562,Wallsburg CWMU,Elk,,586,alias_or_truth_fill
+225,EB3564,Woodruff Creek South CWMU,Elk,,571,alias_or_truth_fill
+226,EB3565,North Peaks CWMU,Elk,,492,alias_or_truth_fill
+227,EB3603,Pahvant Ensign CWMU,Elk,,826,alias_or_truth_fill
+228,EB3604,Double R Ranch CWMU,Elk,,554,alias_or_truth_fill
+229,EB3606,Mountain Sky Ranch CWMU,Elk,,858,alias_or_truth_fill
+230,EB3607,West Willow Creek Ranch CWMU,Elk,,805,alias_or_truth_fill
+231,EB3608,Avintaquin Canyon CWMU,Elk,,599,alias_or_truth_fill
+232,EB3610,Sharp Mountain CWMU,Elk,,490,alias_or_truth_fill
+233,EB3611,West Ridge CWMU,Elk,,874,alias_or_truth_fill
+234,EB3613,Little Pole Canyon CWMU,Elk,,556,alias_or_truth_fill
+235,EB3614,Tunnel Hollow CWMU,Elk,,569,alias_or_truth_fill
+237,EB3620,The Dirty Dozen,Elk,,923,alias_or_truth_fill
+238,MA1009,Causey Spring CWMU,Moose,,560,alias_or_truth_fill
+239,MA1010,Deseret CWMU,Moose,,568,alias_or_truth_fill
+241,MB6202,Causey Spring CWMU,Moose,,560,alias_or_truth_fill
+242,MB6206,Deseret CWMU,Moose,,568,alias_or_truth_fill
+243,MB6208,East Fork Chalk Creek CWMU,Moose,,520,alias_or_truth_fill
+244,MB6211,Grass Valley/Clark Canyon CWMU,Moose,,525,alias_or_truth_fill
+245,MB6219,Skull Crack CWMU,Moose,,578,alias_or_truth_fill
+246,MB6222,Strawberry Ridge CWMU,Moose,,562,alias_or_truth_fill
+247,MB6251,Hardscrabble CWMU,Moose,,577,alias_or_truth_fill
+248,MB6256,Woodruff Creek South CWMU,Moose,,571,alias_or_truth_fill
+249,MB6258,Jacob's Creek CWMU,Moose,,580,alias_or_truth_fill
+250,MB6262,Junction Valley CWMU,Moose,,589,alias_or_truth_fill
+251,MB6265,Little Pole Canyon CWMU,Moose,,556,alias_or_truth_fill
+253,PB5300,Antelope Creek CWMU,Pronghorn,,581,alias_or_truth_fill
+254,PB5302,Deseret CWMU,Pronghorn,,568,alias_or_truth_fill
+255,PB5305,Park Valley CWMU,Pronghorn,,603,alias_or_truth_fill
+256,PB5306,Rabbit Creek CWMU,Pronghorn,,590,alias_or_truth_fill
+257,PB5309,Skull Valley South CWMU,Pronghorn,,585,alias_or_truth_fill
+258,PB5311,The Rose of Snowville CWMU,Pronghorn,,509,alias_or_truth_fill
+259,PB5312,TL Bar Ranch CWMU,Pronghorn,,721,alias_or_truth_fill
+260,PB5314,Westlake CWMU,Pronghorn,,558,alias_or_truth_fill
+261,PB5315,Zane CWMU,Pronghorn,,537,alias_or_truth_fill
+262,PB5325,Allen Ranch CWMU,Pronghorn,,557,alias_or_truth_fill
+263,PB5326,Cedar Springs CWMU,Pronghorn,,830,alias_or_truth_fill
+264,PB5327,Cottonwood Ridge CWMU,Pronghorn,,824,alias_or_truth_fill
+265,PB5328,Pahvant Ensign CWMU,Pronghorn,,826,alias_or_truth_fill
+266,PB5329,Snowville Flat CWMU,Pronghorn,,829,alias_or_truth_fill
+267,PB5330,George Creek CWMU,Pronghorn,,806,alias_or_truth_fill
+268,PB5337,Heist CWMU,Pronghorn,,201,alias_or_truth_fill
+269,PB5338,Castle Valley Outdoors CWMU,Pronghorn,,545,alias_or_truth_fill
+270,PB5339,Iron Spring CWMU,Pronghorn,,876,alias_or_truth_fill
+271,PB5342,Salt Wells CWMU,Pronghorn,,906,alias_or_truth_fill
+272,PB5345,Green River Flat CWMU,Pronghorn,,918,alias_or_truth_fill
+273,PB5346,Junction Valley CWMU,Pronghorn,,589,alias_or_truth_fill
+274,PD1031,Westlake CWMU,Pronghorn,,558,alias_or_truth_fill
+275,PD1047,Antelope Creek CWMU,Pronghorn,,581,alias_or_truth_fill
+276,PD1048,The Rose of Snowville CWMU,Pronghorn,,509,alias_or_truth_fill
+277,PD1049,Zane CWMU,Pronghorn,,537,alias_or_truth_fill
+278,PD1050,Cottonwood Ridge CWMU,Pronghorn,,824,alias_or_truth_fill
+279,PD1051,Pahvant Ensign CWMU,Pronghorn,,826,alias_or_truth_fill
+280,PD1052,Heist CWMU,Pronghorn,,201,alias_or_truth_fill
+281,PD1053,Green River Flat CWMU,Pronghorn,,918,alias_or_truth_fill
+282,TK1018,Pahvant Ensign CWMU,Turkey,,826,alias_or_truth_fill
+283,TK1021,East Zion CWMU,Turkey,,807,alias_or_truth_fill

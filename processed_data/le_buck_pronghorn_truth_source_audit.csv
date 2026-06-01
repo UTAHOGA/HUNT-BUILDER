@@ -1,0 +1,133 @@
+permit_group,weapon,hunt_code,residency,permits_2025_truth,permits_2026_truth,permit_delta,significance,repo_public_permits_2026,repo_match_2026,source_document,source_note
+Beaver,Archery,PB5000,Resident,10,11,1,MINOR,11,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Beaver,Archery,PB5000,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Beaver,Any Legal Weapon,PB5025,Resident,40,43,3,MINOR,43,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Beaver,Any Legal Weapon,PB5025,Nonresident,4,5,1,MINOR,5,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Book Cliffs, Bitter Creek",Archery,PB5001,Resident,13,13,0,UNCHANGED,13,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Book Cliffs, Bitter Creek",Archery,PB5001,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Book Cliffs, Bitter Creek",Any Legal Weapon,PB5026,Resident,50,50,0,UNCHANGED,50,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Book Cliffs, Bitter Creek",Any Legal Weapon,PB5026,Nonresident,6,6,0,UNCHANGED,6,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Book Cliffs, South",Archery,PB5002,Resident,7,8,1,MINOR,8,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Book Cliffs, South",Archery,PB5002,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Book Cliffs, South",Any Legal Weapon,PB5027,Resident,31,34,3,MINOR,34,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Book Cliffs, South",Any Legal Weapon,PB5027,Nonresident,3,4,1,MINOR,4,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, Promontory",Archery,PB5003,Resident,4,4,0,UNCHANGED,4,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, Promontory",Archery,PB5003,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, Promontory",Any Legal Weapon,PB5028,Resident,14,14,0,UNCHANGED,14,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, Promontory",Any Legal Weapon,PB5028,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, Puddle Valley",Archery,PB5004,Resident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, Puddle Valley",Archery,PB5004,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, Puddle Valley",Any Legal Weapon,PB5029,Resident,14,14,0,UNCHANGED,14,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, Puddle Valley",Any Legal Weapon,PB5029,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, Snowville",Archery,PB5005,Resident,9,9,0,UNCHANGED,9,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, Snowville",Archery,PB5005,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, Snowville",Any Legal Weapon,PB5030,Resident,27,28,1,MINOR,28,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, Snowville",Any Legal Weapon,PB5030,Nonresident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, Snowville",Muzzleloader,PB5080,Resident,9,9,0,UNCHANGED,9,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, Snowville",Muzzleloader,PB5080,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, West",Archery,PB5006,Resident,9,10,1,MINOR,10,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, West",Archery,PB5006,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, West",Any Legal Weapon,PB5031,Resident,27,30,3,MINOR,30,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, West",Any Legal Weapon,PB5031,Nonresident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, West",Muzzleloader,PB5079,Resident,9,10,1,MINOR,10,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Box Elder, West",Muzzleloader,PB5079,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Cache, Rich",Any Legal Weapon,PB5073,Resident,6,6,0,UNCHANGED,6,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Cache, Rich",Any Legal Weapon,PB5073,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Cache, Rich",Archery,PB5074,Resident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Cache, Rich",Archery,PB5074,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Cache, Rich",Muzzleloader,PB5075,Resident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Cache, Rich",Muzzleloader,PB5075,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Diamond Mtn/Bonanza,Archery,PB5016,Resident,17,17,0,UNCHANGED,17,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Diamond Mtn/Bonanza,Archery,PB5016,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Diamond Mtn/Bonanza,Any Legal Weapon,PB5047,Resident,50,50,0,UNCHANGED,50,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Diamond Mtn/Bonanza,Any Legal Weapon,PB5047,Nonresident,6,6,0,UNCHANGED,6,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Diamond Mtn/Bonanza,Muzzleloader,PB5060,Resident,17,17,0,UNCHANGED,17,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Diamond Mtn/Bonanza,Muzzleloader,PB5060,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Fillmore, Oak Creek South",Archery,PB5008,Resident,13,15,2,MINOR,15,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Fillmore, Oak Creek South",Archery,PB5008,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Fillmore, Oak Creek South",Any Legal Weapon,PB5033,Resident,40,46,6,SIGNIFICANT,46,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Fillmore, Oak Creek South",Any Legal Weapon,PB5033,Nonresident,5,5,0,UNCHANGED,5,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Fillmore, Oak Creek South",Muzzleloader,PB5065,Resident,13,15,2,MINOR,15,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Fillmore, Oak Creek South",Muzzleloader,PB5065,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Kaiparowits,Any Legal Weapon,PB5034,Resident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Kaiparowits,Any Legal Weapon,PB5034,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"La Sal, Potash/South Cisco",Archery,PB5009,Resident,6,6,0,UNCHANGED,6,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"La Sal, Potash/South Cisco",Archery,PB5009,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"La Sal, Potash/South Cisco",Any Legal Weapon,PB5035,Resident,20,22,2,MINOR,22,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"La Sal, Potash/South Cisco",Any Legal Weapon,PB5035,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Mt Dutton/Paunsaugunt,Any Legal Weapon,PB5331,Resident,14,13,-1,MINOR,13,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Mt Dutton/Paunsaugunt,Any Legal Weapon,PB5331,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Mt Dutton/Paunsaugunt,Archery,PB5332,Resident,3,4,1,MINOR,4,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Mt Dutton/Paunsaugunt,Archery,PB5332,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Nine Mile, Anthro-Myton Bench",Archery,PB5011,Resident,30,30,0,UNCHANGED,30,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Nine Mile, Anthro-Myton Bench",Archery,PB5011,Nonresident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Nine Mile, Anthro-Myton Bench",Any Legal Weapon,PB5037,Resident,89,89,0,UNCHANGED,89,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Nine Mile, Anthro-Myton Bench",Any Legal Weapon,PB5037,Nonresident,10,10,0,UNCHANGED,10,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Nine Mile, Anthro-Myton Bench",Muzzleloader,PB5059,Resident,30,30,0,UNCHANGED,30,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Nine Mile, Anthro-Myton Bench",Muzzleloader,PB5059,Nonresident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Nine Mile, Range Creek",Any Legal Weapon,PB5038,Resident,11,13,2,MINOR,13,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Nine Mile, Range Creek",Any Legal Weapon,PB5038,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Nine Mile, Range Creek",Archery,PB5053,Resident,3,4,1,MINOR,4,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Nine Mile, Range Creek",Archery,PB5053,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"North Slope, Summit",Any Legal Weapon,PB5039,Resident,15,15,0,UNCHANGED,15,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"North Slope, Summit",Any Legal Weapon,PB5039,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"North Slope, Three Corners/West Daggett",Archery,PB5012,Resident,12,10,-2,MINOR,10,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"North Slope, Three Corners/West Daggett",Archery,PB5012,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"North Slope, Three Corners/West Daggett",Any Legal Weapon,PB5040,Resident,34,29,-5,MINOR,29,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"North Slope, Three Corners/West Daggett",Any Legal Weapon,PB5040,Nonresident,4,3,-1,MINOR,3,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"North Slope, Three Corners/West Daggett",Muzzleloader,PB5066,Resident,12,10,-2,MINOR,10,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"North Slope, Three Corners/West Daggett",Muzzleloader,PB5066,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Panguitch Lake/Zion, North",Any Legal Weapon,PB5041,Resident,21,21,0,UNCHANGED,21,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Panguitch Lake/Zion, North",Any Legal Weapon,PB5041,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Panguitch Lake/Zion, North",Archery,PB5054,Resident,7,7,0,UNCHANGED,7,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Panguitch Lake/Zion, North",Archery,PB5054,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Panguitch Lake/Zion, North",Muzzleloader,PB5061,Resident,7,7,0,UNCHANGED,7,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"Panguitch Lake/Zion, North",Muzzleloader,PB5061,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Parker Mtn,Any Legal Weapon,PB5076,Resident,72,135,63,MAJOR,135,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Parker Mtn,Any Legal Weapon,PB5076,Nonresident,8,15,7,SIGNIFICANT,15,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Parker Mtn,Archery,PB5077,Resident,54,45,-9,SIGNIFICANT,45,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Parker Mtn,Archery,PB5077,Nonresident,6,5,-1,MINOR,5,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Parker Mtn,Muzzleloader,PB5078,Resident,54,45,-9,SIGNIFICANT,45,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Parker Mtn,Muzzleloader,PB5078,Nonresident,6,5,-1,MINOR,5,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Pine Valley,Archery,PB5013,Resident,7,7,0,UNCHANGED,7,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Pine Valley,Archery,PB5013,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Pine Valley,Any Legal Weapon,PB5042,Resident,21,21,0,UNCHANGED,21,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Pine Valley,Any Legal Weapon,PB5042,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Pine Valley,Muzzleloader,PB5062,Resident,7,7,0,UNCHANGED,7,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Pine Valley,Muzzleloader,PB5062,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"San Juan, Hatch Point",Any Legal Weapon,PB5044,Resident,4,3,-1,MINOR,3,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"San Juan, Hatch Point",Any Legal Weapon,PB5044,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"San Rafael, Desert",Any Legal Weapon,PB5045,Resident,5,7,2,MINOR,7,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"San Rafael, Desert",Any Legal Weapon,PB5045,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"San Rafael, Desert",Archery,PB5055,Resident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"San Rafael, Desert",Archery,PB5055,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"San Rafael, North",Archery,PB5015,Resident,20,21,1,MINOR,21,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"San Rafael, North",Archery,PB5015,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"San Rafael, North",Any Legal Weapon,PB5046,Resident,59,62,3,MINOR,62,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"San Rafael, North",Any Legal Weapon,PB5046,Nonresident,7,7,0,UNCHANGED,7,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"San Rafael, North",Muzzleloader,PB5056,Resident,20,21,1,MINOR,21,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"San Rafael, North",Muzzleloader,PB5056,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Southwest Desert,Archery,PB5018,Resident,31,31,0,UNCHANGED,31,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Southwest Desert,Archery,PB5018,Nonresident,4,4,0,UNCHANGED,4,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Southwest Desert,Muzzleloader,PB5024,Resident,31,31,0,UNCHANGED,31,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Southwest Desert,Muzzleloader,PB5024,Nonresident,4,4,0,UNCHANGED,4,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Southwest Desert,Any Legal Weapon,PB5049,Resident,94,94,0,UNCHANGED,94,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Southwest Desert,Any Legal Weapon,PB5049,Nonresident,11,11,0,UNCHANGED,11,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Vernal,Archery,PB5017,Resident,20,18,-2,MINOR,18,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Vernal,Archery,PB5017,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Vernal,Any Legal Weapon,PB5048,Resident,59,54,-5,MINOR,54,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Vernal,Any Legal Weapon,PB5048,Nonresident,7,6,-1,MINOR,6,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Vernal,Muzzleloader,PB5072,Resident,20,18,-2,MINOR,18,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+Vernal,Muzzleloader,PB5072,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"West Desert, Riverbed",Archery,PB5019,Resident,16,18,2,MINOR,18,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"West Desert, Riverbed",Archery,PB5019,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"West Desert, Riverbed",Any Legal Weapon,PB5050,Resident,67,73,6,SIGNIFICANT,73,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"West Desert, Riverbed",Any Legal Weapon,PB5050,Nonresident,7,8,1,MINOR,8,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"West Desert, Rush Valley",Archery,PB5020,Resident,8,8,0,UNCHANGED,8,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"West Desert, Rush Valley",Archery,PB5020,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"West Desert, Rush Valley",Any Legal Weapon,PB5051,Resident,32,32,0,UNCHANGED,32,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"West Desert, Rush Valley",Any Legal Weapon,PB5051,Nonresident,4,4,0,UNCHANGED,4,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"West Desert, Snake Valley",Archery,PB5021,Resident,22,23,1,MINOR,23,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"West Desert, Snake Valley",Archery,PB5021,Nonresident,2,3,1,MINOR,3,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"West Desert, Snake Valley",Any Legal Weapon,PB5052,Resident,86,95,9,SIGNIFICANT,95,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.
+"West Desert, Snake Valley",Any Legal Weapon,PB5052,Nonresident,10,11,1,MINOR,11,True,2026-05-user-verified-table,User-provided limited-entry buck pronghorn comparison table for 2025 to 2026.

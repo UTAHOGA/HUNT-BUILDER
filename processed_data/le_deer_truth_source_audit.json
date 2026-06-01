@@ -1,0 +1,177 @@
+{
+  "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_buck_deer_limited_entry_permits.csv",
+  "truth_rows": 72,
+  "unique_hunt_codes": 36,
+  "all_2026_repo_matches_truth": true,
+  "significance_counts": {
+    "MAJOR": 4,
+    "MINOR": 31,
+    "UNCHANGED": 37
+  },
+  "group_changes": [
+    {
+      "permit_group": "Book Cliffs, North",
+      "permits_2025_total": 127,
+      "permits_2026_total": 152,
+      "permit_delta_total": 25,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Book Cliffs",
+      "permits_2025_total": 107,
+      "permits_2026_total": 131,
+      "permit_delta_total": 24,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "West Desert, Vernon",
+      "permits_2025_total": 230,
+      "permits_2026_total": 254,
+      "permit_delta_total": 24,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Diamond Mtn",
+      "permits_2025_total": 110,
+      "permits_2026_total": 120,
+      "permit_delta_total": 10,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Book Cliffs, South",
+      "permits_2025_total": 32,
+      "permits_2026_total": 38,
+      "permit_delta_total": 6,
+      "significance": "SIGNIFICANT"
+    },
+    {
+      "permit_group": "Dolores Triangle",
+      "permits_2025_total": 20,
+      "permits_2026_total": 25,
+      "permit_delta_total": 5,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Fillmore, Oak Creek LE",
+      "permits_2025_total": 60,
+      "permits_2026_total": 65,
+      "permit_delta_total": 5,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "San Juan, Elk Ridge",
+      "permits_2025_total": 78,
+      "permits_2026_total": 83,
+      "permit_delta_total": 5,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Cache, Crawford Mtn",
+      "permits_2025_total": 8,
+      "permits_2026_total": 9,
+      "permit_delta_total": 1,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Castle Valley",
+      "permits_2025_total": 15,
+      "permits_2026_total": 15,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "HAMSS",
+      "permits_2025_total": 24,
+      "permits_2026_total": 24,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Little Rockies",
+      "permits_2025_total": 5,
+      "permits_2026_total": 5,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Moab Valley",
+      "permits_2025_total": 10,
+      "permits_2026_total": 10,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Thousand Lakes",
+      "permits_2025_total": 76,
+      "permits_2026_total": 76,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    }
+  ],
+  "significant_row_changes_abs_gt_5": [
+    {
+      "permit_group": "Book Cliffs, North",
+      "weapon": "Any Legal Weapon",
+      "hunt_code": "DB1017",
+      "residency": "Resident",
+      "permits_2025_truth": 114,
+      "permits_2026_truth": 137,
+      "permit_delta": 23,
+      "significance": "MAJOR",
+      "repo_public_permits_2026": 137,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry buck deer comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "West Desert, Vernon",
+      "weapon": "Any Legal Weapon",
+      "hunt_code": "DB1024",
+      "residency": "Resident",
+      "permits_2025_truth": 118,
+      "permits_2026_truth": 130,
+      "permit_delta": 12,
+      "significance": "MAJOR",
+      "repo_public_permits_2026": 130,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry buck deer comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Book Cliffs",
+      "weapon": "Archery",
+      "hunt_code": "DB1011",
+      "residency": "Resident",
+      "permits_2025_truth": 45,
+      "permits_2026_truth": 55,
+      "permit_delta": 10,
+      "significance": "MAJOR",
+      "repo_public_permits_2026": 55,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry buck deer comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Book Cliffs",
+      "weapon": "Muzzleloader",
+      "hunt_code": "DB1025",
+      "residency": "Resident",
+      "permits_2025_truth": 45,
+      "permits_2026_truth": 55,
+      "permit_delta": 10,
+      "significance": "MAJOR",
+      "repo_public_permits_2026": 55,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry buck deer comparison table for 2025 to 2026."
+    }
+  ],
+  "notable_findings": [
+    "Book Cliffs total increased from 266 to 321 (+55).",
+    "West Desert, Vernon total increased from 230 to 254 (+24).",
+    "Diamond Mtn total increased from 110 to 120 (+10).",
+    "Book Cliffs, North DB1017 increased from 127 to 152 (+25 total).",
+    "Book Cliffs Archery DB1011 increased from 50 to 61 (+11 total).",
+    "Book Cliffs Muzzleloader DB1025 increased from 50 to 61 (+11 total)."
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-05-10T17:19:43.984Z",
+  "display_index_path": "processed_data/display-boundary-index-2026.json",
+  "synthetic_id_map_path": "processed_data/display-boundary-synthetic-id-map-2026.json",
+  "rows_checked": 1394,
+  "mapped_rows": 1394,
+  "single_boundary_rows": 1353,
+  "synthetic_5000_boundary_rows": 41,
+  "official_hunt_codes_with_boundary_ids": 571,
+  "unavailable_rows": 0,
+  "unavailable_hunt_codes": [],
+  "failures": [],
+  "warnings": [],
+  "promotion_safe": true
+}

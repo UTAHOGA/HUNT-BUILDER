@@ -1,0 +1,23 @@
+﻿hunt_number,hunt_name,status,old_boundary,new_boundary,candidate_boundaries,reason
+EB3001,"Book Cliffs, Bitter Creek/South",auto_filled_exact_or_alias,,449,449,single canonical boundary candidate
+EB3026,"Book Cliffs, Bitter Creek/South",auto_filled_exact_or_alias,,449,449,single canonical boundary candidate
+EB3040,Nebo,auto_filled_exact_or_alias,,616,616,single canonical boundary candidate
+EB3078,"Book Cliffs, Bitter Creek/South",auto_filled_exact_or_alias,,449,449,single canonical boundary candidate
+LE0015,Book Cliffs,ambiguous,,,12;449;899,multiple candidates
+LE0001,"La Sal, La Sal Mtns",auto_filled_exact_or_alias,,617,617,single canonical boundary candidate
+LE0013,Southwest Desert,auto_filled_exact_or_alias,,625,625,single canonical boundary candidate
+LE0014,Beaver,auto_filled_exact_or_alias,,685,685,single canonical boundary candidate
+LE0016,Cache,auto_filled_exact_or_alias,,29,29,single canonical boundary candidate
+LE0029,Cache,auto_filled_exact_or_alias,,29,29,single canonical boundary candidate
+LE0018,"La Sal, La Sal Mtns",auto_filled_exact_or_alias,,617,617,single canonical boundary candidate
+LE0002,Manti,auto_filled_exact_or_alias,,51,51,single canonical boundary candidate
+LE0003,Manti,auto_filled_exact_or_alias,,51,51,single canonical boundary candidate
+LE0004,Manti,auto_filled_exact_or_alias,,51,51,single canonical boundary candidate
+LE0005,Manti,auto_filled_exact_or_alias,,51,51,single canonical boundary candidate
+LE0017,Nebo,auto_filled_exact_or_alias,,616,616,single canonical boundary candidate
+LE0006,San Juan,auto_filled_exact_or_alias,,710,710,single canonical boundary candidate
+LE0007,San Juan,auto_filled_exact_or_alias,,710,710,single canonical boundary candidate
+LE0008,Wasatch Mtns,auto_filled_exact_or_alias,,222,222,single canonical boundary candidate
+LE0009,Wasatch Mtns,auto_filled_exact_or_alias,,222,222,single canonical boundary candidate
+LE0011,Manti,auto_filled_exact_or_alias,,51,51,single canonical boundary candidate
+EB3109,Nebo,auto_filled_exact_or_alias,,616,616,single canonical boundary candidate

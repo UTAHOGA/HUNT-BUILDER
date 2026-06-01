@@ -1,0 +1,13 @@
+{
+  "active_database_2026_hunt_codes": 1411,
+  "harvest_union_2023_hunt_codes": 592,
+  "draw_union_2023_hunt_codes": 984,
+  "both_harvest_and_draw": 579,
+  "harvest_only": 13,
+  "draw_only": 405,
+  "harvest_in_active_database_2026": 543,
+  "draw_in_active_database_2026": 890,
+  "harvest_only_in_active_database_2026": 2,
+  "draw_only_in_active_database_2026": 349,
+  "csv": "processed_data\\harvest_vs_draw_2023_hunt_code_comparison.csv"
+}

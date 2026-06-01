@@ -1,0 +1,239 @@
+permit_group,weapon,hunt_code,residency,permits_2025_truth,permits_2026_truth,permit_delta,significance,repo_public_permits_2026,repo_match_2026,source_document,source_note
+"Beaver, East",Archery,EB3000,Resident,22,22,0,UNCHANGED,22,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Beaver, East",Archery,EB3000,Nonresident,2,3,1,MINOR,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Beaver, East",Early Any Legal Weapon,EB3024,Resident,9,9,0,UNCHANGED,9,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Beaver, East",Early Any Legal Weapon,EB3024,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Beaver, East",Mid Any Legal Weapon,EB3159,Resident,25,27,2,MINOR,27,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Beaver, East",Mid Any Legal Weapon,EB3159,Nonresident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Beaver, East",Late Any Legal Weapon,EB3025,Resident,14,15,1,MINOR,15,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Beaver, East",Late Any Legal Weapon,EB3025,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Beaver, East",Multiseason,EB3102,Resident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Beaver, East",Multiseason,EB3102,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Beaver, East",Muzzleloader,EB3077,Resident,13,13,0,UNCHANGED,13,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Beaver, East",Muzzleloader,EB3077,Nonresident,1,2,1,MINOR,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Bitter Creek/East",Archery,EB3160,Resident,20,22,2,MINOR,22,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Bitter Creek/East",Archery,EB3160,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Bitter Creek/East",Early Any Legal Weapon,EB3162,Resident,8,9,1,MINOR,9,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Bitter Creek/East",Early Any Legal Weapon,EB3162,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Bitter Creek/East",Mid Any Legal Weapon,EB3164,Resident,23,25,2,MINOR,25,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Bitter Creek/East",Mid Any Legal Weapon,EB3164,Nonresident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Bitter Creek/East",Late Any Legal Weapon,EB3163,Resident,13,14,1,MINOR,14,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Bitter Creek/East",Late Any Legal Weapon,EB3163,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Bitter Creek/East",Multiseason,EB3165,Resident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Bitter Creek/East",Multiseason,EB3165,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Bitter Creek/East",Muzzleloader,EB3166,Resident,12,13,1,MINOR,13,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Bitter Creek/East",Muzzleloader,EB3166,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Little Creek Roadless",Archery,EB3002,Resident,3,4,1,MINOR,4,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Little Creek Roadless",Archery,EB3002,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Little Creek Roadless",Early Any Legal Weapon,EB3028,Resident,2,3,1,MINOR,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Little Creek Roadless",Early Any Legal Weapon,EB3028,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Little Creek Roadless",Mid Any Legal Weapon,EB3167,Resident,3,4,1,MINOR,4,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Little Creek Roadless",Mid Any Legal Weapon,EB3167,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Little Creek Roadless",Multiseason,EB3104,Resident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Little Creek Roadless",Multiseason,EB3104,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Little Creek Roadless",Muzzleloader,EB3079,Resident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Book Cliffs, Little Creek Roadless",Muzzleloader,EB3079,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Boulder,Archery,EB3145,Resident,28,31,3,MINOR,31,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Boulder,Archery,EB3145,Nonresident,3,4,1,MINOR,4,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Boulder,Early Any Legal Weapon,EB3148,Resident,12,13,1,MINOR,13,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Boulder,Early Any Legal Weapon,EB3148,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Boulder,Mid Any Legal Weapon,EB3191,Resident,33,37,4,MINOR,37,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Boulder,Mid Any Legal Weapon,EB3191,Nonresident,4,4,0,UNCHANGED,4,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Boulder,Late Any Legal Weapon,EB3151,Resident,19,22,3,MINOR,22,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Boulder,Late Any Legal Weapon,EB3151,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Boulder,Multiseason,EB3156,Resident,4,4,0,UNCHANGED,4,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Boulder,Multiseason,EB3156,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Boulder,Muzzleloader,EB3154,Resident,17,19,2,MINOR,19,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Boulder,Muzzleloader,EB3154,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Box Elder, Grouse Creek",Early Any Legal Weapon,EB3147,Resident,6,6,0,UNCHANGED,6,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Box Elder, Grouse Creek",Early Any Legal Weapon,EB3147,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Box Elder, Grouse Creek",Mid Any Legal Weapon,EB3150,Resident,12,12,0,UNCHANGED,12,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Box Elder, Grouse Creek",Mid Any Legal Weapon,EB3150,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Box Elder, Grouse Creek",Muzzleloader,EB3153,Resident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Box Elder, Grouse Creek",Muzzleloader,EB3153,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Box Elder, Pilot Mtn",Archery,EB3130,Resident,3,2,-1,MINOR,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Box Elder, Pilot Mtn",Archery,EB3130,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Box Elder, Pilot Mtn",Early Any Legal Weapon,EB3031,Resident,9,6,-3,MINOR,6,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Box Elder, Pilot Mtn",Early Any Legal Weapon,EB3031,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, Meadowville",Archery,EB3003,Resident,11,9,-2,MINOR,9,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, Meadowville",Archery,EB3003,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, Meadowville",Early Any Legal Weapon,EB3032,Resident,4,3,-1,MINOR,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, Meadowville",Early Any Legal Weapon,EB3032,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, Meadowville",Mid Any Legal Weapon,EB3169,Resident,13,11,-2,MINOR,11,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, Meadowville",Mid Any Legal Weapon,EB3169,Nonresident,2,1,-1,MINOR,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, Meadowville",Late Any Legal Weapon,EB3033,Resident,7,6,-1,MINOR,6,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, Meadowville",Late Any Legal Weapon,EB3033,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, Meadowville",Multiseason,EB3105,Resident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, Meadowville",Multiseason,EB3105,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, Meadowville",Muzzleloader,EB3081,Resident,6,5,-1,MINOR,5,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, Meadowville",Muzzleloader,EB3081,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, South",Archery,EB3005,Resident,9,10,1,MINOR,10,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, South",Archery,EB3005,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, South",Early Any Legal Weapon,EB3036,Resident,4,4,0,UNCHANGED,4,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, South",Early Any Legal Weapon,EB3036,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, South",Mid Any Legal Weapon,EB3171,Resident,10,11,1,MINOR,11,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, South",Mid Any Legal Weapon,EB3171,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, South",Late Any Legal Weapon,EB3037,Resident,5,6,1,MINOR,6,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, South",Late Any Legal Weapon,EB3037,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, South",Multiseason,EB3107,Resident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, South",Multiseason,EB3107,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, South",Muzzleloader,EB3083,Resident,5,5,0,UNCHANGED,5,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Cache, South",Muzzleloader,EB3083,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Diamond Mtn,Archery,EB3020,Resident,22,25,3,MINOR,25,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Diamond Mtn,Archery,EB3020,Nonresident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Diamond Mtn,Early Any Legal Weapon,EB3068,Resident,9,10,1,MINOR,10,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Diamond Mtn,Early Any Legal Weapon,EB3068,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Diamond Mtn,Mid Any Legal Weapon,EB3069,Resident,27,30,3,MINOR,30,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Diamond Mtn,Mid Any Legal Weapon,EB3069,Nonresident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Diamond Mtn,Late Any Legal Weapon,EB3196,Resident,15,17,2,MINOR,17,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Diamond Mtn,Late Any Legal Weapon,EB3196,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Diamond Mtn,Multiseason,EB3122,Resident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Diamond Mtn,Multiseason,EB3122,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Diamond Mtn,Muzzleloader,EB3098,Resident,13,15,2,MINOR,15,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Diamond Mtn,Muzzleloader,EB3098,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Fillmore, Pahvant",Archery,EB3008,Resident,19,19,0,UNCHANGED,19,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Fillmore, Pahvant",Archery,EB3008,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Fillmore, Pahvant",Early Any Legal Weapon,EB3042,Resident,8,8,0,UNCHANGED,8,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Fillmore, Pahvant",Early Any Legal Weapon,EB3042,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Fillmore, Pahvant",Mid Any Legal Weapon,EB3181,Resident,22,22,0,UNCHANGED,22,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Fillmore, Pahvant",Mid Any Legal Weapon,EB3181,Nonresident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Fillmore, Pahvant",Late Any Legal Weapon,EB3043,Resident,13,13,0,UNCHANGED,13,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Fillmore, Pahvant",Late Any Legal Weapon,EB3043,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Fillmore, Pahvant",Multiseason,EB3110,Resident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Fillmore, Pahvant",Multiseason,EB3110,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Fillmore, Pahvant",Muzzleloader,EB3086,Resident,12,12,0,UNCHANGED,12,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Fillmore, Pahvant",Muzzleloader,EB3086,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Dolores Triangle,Late Any Legal Weapon,EB3044,Resident,6,6,0,UNCHANGED,6,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Dolores Triangle,Late Any Legal Weapon,EB3044,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Fishlake/Thousand Lakes,Archery,EB3018,Resident,81,84,3,MINOR,84,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Fishlake/Thousand Lakes,Archery,EB3018,Nonresident,9,9,0,UNCHANGED,9,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Fishlake/Thousand Lakes,Early Any Legal Weapon,EB3063,Resident,33,34,1,MINOR,34,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Fishlake/Thousand Lakes,Early Any Legal Weapon,EB3063,Nonresident,4,4,0,UNCHANGED,4,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Fishlake/Thousand Lakes,Mid Any Legal Weapon,EB3064,Resident,96,99,3,MINOR,99,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Fishlake/Thousand Lakes,Mid Any Legal Weapon,EB3064,Nonresident,11,11,0,UNCHANGED,11,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Fishlake/Thousand Lakes,Late Any Legal Weapon,EB3065,Resident,56,57,1,MINOR,57,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Fishlake/Thousand Lakes,Late Any Legal Weapon,EB3065,Nonresident,6,6,0,UNCHANGED,6,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Fishlake/Thousand Lakes,Multiseason,EB3120,Resident,10,10,0,UNCHANGED,10,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Fishlake/Thousand Lakes,Multiseason,EB3120,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Fishlake/Thousand Lakes,Muzzleloader,EB3096,Resident,49,50,1,MINOR,50,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Fishlake/Thousand Lakes,Muzzleloader,EB3096,Nonresident,5,6,1,MINOR,6,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+La Sal Mtns,Archery,EB3009,Resident,36,36,0,UNCHANGED,36,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+La Sal Mtns,Archery,EB3009,Nonresident,4,4,0,UNCHANGED,4,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+La Sal Mtns,Early Any Legal Weapon,EB3045,Resident,14,14,0,UNCHANGED,14,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+La Sal Mtns,Early Any Legal Weapon,EB3045,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+La Sal Mtns,Mid Any Legal Weapon,EB3183,Resident,42,42,0,UNCHANGED,42,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+La Sal Mtns,Mid Any Legal Weapon,EB3183,Nonresident,5,5,0,UNCHANGED,5,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+La Sal Mtns,Late Any Legal Weapon,EB3046,Resident,24,24,0,UNCHANGED,24,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+La Sal Mtns,Late Any Legal Weapon,EB3046,Nonresident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+La Sal Mtns,Multiseason,EB3111,Resident,5,5,0,UNCHANGED,5,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+La Sal Mtns,Multiseason,EB3111,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+La Sal Mtns,Muzzleloader,EB3087,Resident,22,22,0,UNCHANGED,22,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+La Sal Mtns,Muzzleloader,EB3087,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Manti,Archery,EB3006,Resident,157,148,-9,SIGNIFICANT,148,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Manti,Archery,EB3006,Nonresident,18,17,-1,MINOR,17,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Manti,Early Any Legal Weapon,EB3038,Resident,65,61,-4,MINOR,61,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Manti,Early Any Legal Weapon,EB3038,Nonresident,7,7,0,UNCHANGED,7,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Manti,Mid Any Legal Weapon,EB3126,Resident,186,175,-11,MAJOR,175,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Manti,Mid Any Legal Weapon,EB3126,Nonresident,21,20,-1,MINOR,20,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Manti,Late Any Legal Weapon,EB3039,Resident,108,102,-6,SIGNIFICANT,102,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Manti,Late Any Legal Weapon,EB3039,Nonresident,12,11,-1,MINOR,11,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Manti,Multiseason,EB3108,Resident,19,18,-1,MINOR,18,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Manti,Multiseason,EB3108,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Manti,Muzzleloader,EB3084,Resident,94,89,-5,MINOR,89,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Manti,Muzzleloader,EB3084,Nonresident,11,10,-1,MINOR,10,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Monroe,Archery,EB3010,Resident,19,21,2,MINOR,10,False,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Monroe,Archery,EB3010,Nonresident,2,2,0,UNCHANGED,1,False,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Monroe,Early Any Legal Weapon,EB3047,Resident,8,8,0,UNCHANGED,3,False,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Monroe,Early Any Legal Weapon,EB3047,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Monroe,Mid Any Legal Weapon,EB3185,Resident,22,24,2,MINOR,18,False,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Monroe,Mid Any Legal Weapon,EB3185,Nonresident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Monroe,Late Any Legal Weapon,EB3048,Resident,13,13,0,UNCHANGED,13,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Monroe,Late Any Legal Weapon,EB3048,Nonresident,1,2,1,MINOR,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Monroe,Multiseason,EB3112,Resident,2,3,1,MINOR,2,False,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Monroe,Multiseason,EB3112,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Monroe,Muzzleloader,EB3088,Resident,11,13,2,MINOR,10,False,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Monroe,Muzzleloader,EB3088,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Morgan-South Rich,Late Any Legal Weapon,EB3208,Resident,9,9,0,UNCHANGED,9,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Morgan-South Rich,Late Any Legal Weapon,EB3208,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Mt Dutton,Archery,EB3011,Resident,18,19,1,MINOR,19,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Mt Dutton,Archery,EB3011,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Mt Dutton,Early Any Legal Weapon,EB3049,Resident,7,8,1,MINOR,8,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Mt Dutton,Early Any Legal Weapon,EB3049,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Mt Dutton,Mid Any Legal Weapon,EB3187,Resident,22,22,0,UNCHANGED,22,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Mt Dutton,Mid Any Legal Weapon,EB3187,Nonresident,2,3,1,MINOR,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Mt Dutton,Late Any Legal Weapon,EB3050,Resident,13,13,0,UNCHANGED,13,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Mt Dutton,Late Any Legal Weapon,EB3050,Nonresident,1,2,1,MINOR,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Mt Dutton,Multiseason,EB3113,Resident,2,3,1,MINOR,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Mt Dutton,Multiseason,EB3113,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Mt Dutton,Muzzleloader,EB3089,Resident,11,12,1,MINOR,12,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Mt Dutton,Muzzleloader,EB3089,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Nebo/San Pitch Mtns,Archery,EB3173,Resident,22,29,7,SIGNIFICANT,29,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Nebo/San Pitch Mtns,Archery,EB3173,Nonresident,2,3,1,MINOR,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Nebo/San Pitch Mtns,Early Any Legal Weapon,EB3175,Resident,9,12,3,MINOR,12,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Nebo/San Pitch Mtns,Early Any Legal Weapon,EB3175,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Nebo/San Pitch Mtns,Mid Any Legal Weapon,EB3177,Resident,25,34,9,SIGNIFICANT,34,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Nebo/San Pitch Mtns,Mid Any Legal Weapon,EB3177,Nonresident,3,4,1,MINOR,4,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Nebo/San Pitch Mtns,Late Any Legal Weapon,EB3176,Resident,14,20,6,SIGNIFICANT,20,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Nebo/San Pitch Mtns,Late Any Legal Weapon,EB3176,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Nebo/San Pitch Mtns,Multiseason,EB3178,Resident,3,4,1,MINOR,4,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Nebo/San Pitch Mtns,Multiseason,EB3178,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Nebo/San Pitch Mtns,Muzzleloader,EB3179,Resident,13,17,4,MINOR,17,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Nebo/San Pitch Mtns,Muzzleloader,EB3179,Nonresident,1,2,1,MINOR,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"North Slope, Three Corners",Archery,EB3013,Resident,6,6,0,UNCHANGED,6,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"North Slope, Three Corners",Archery,EB3013,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"North Slope, Three Corners",Early Any Legal Weapon,EB3210,Resident,5,5,0,UNCHANGED,5,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"North Slope, Three Corners",Early Any Legal Weapon,EB3210,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"North Slope, Three Corners",Mid Any Legal Weapon,EB3053,Resident,9,9,0,UNCHANGED,9,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"North Slope, Three Corners",Mid Any Legal Weapon,EB3053,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"North Slope, Three Corners",Multiseason,EB3115,Resident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"North Slope, Three Corners",Multiseason,EB3115,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"North Slope, Three Corners",Muzzleloader,EB3091,Resident,4,4,0,UNCHANGED,4,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"North Slope, Three Corners",Muzzleloader,EB3091,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Panguitch Lake,Archery,EB3015,Resident,16,17,1,MINOR,17,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Panguitch Lake,Archery,EB3015,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Panguitch Lake,Early Any Legal Weapon,EB3056,Resident,6,7,1,MINOR,7,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Panguitch Lake,Early Any Legal Weapon,EB3056,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Panguitch Lake,Mid Any Legal Weapon,EB3189,Resident,19,20,1,MINOR,20,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Panguitch Lake,Mid Any Legal Weapon,EB3189,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Panguitch Lake,Late Any Legal Weapon,EB3057,Resident,11,12,1,MINOR,12,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Panguitch Lake,Late Any Legal Weapon,EB3057,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Panguitch Lake,Multiseason,EB3117,Resident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Panguitch Lake,Multiseason,EB3117,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Panguitch Lake,Muzzleloader,EB3093,Resident,10,10,0,UNCHANGED,10,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Panguitch Lake,Muzzleloader,EB3093,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+San Juan Bull Elk,Archery,EB3019,Resident,26,29,3,MINOR,29,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+San Juan Bull Elk,Archery,EB3019,Nonresident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+San Juan Bull Elk,Early Any Legal Weapon,EB3066,Resident,11,12,1,MINOR,12,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+San Juan Bull Elk,Early Any Legal Weapon,EB3066,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+San Juan Bull Elk,Mid Any Legal Weapon,EB3194,Resident,31,33,2,MINOR,33,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+San Juan Bull Elk,Mid Any Legal Weapon,EB3194,Nonresident,3,4,1,MINOR,4,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+San Juan Bull Elk,Late Any Legal Weapon,EB3067,Resident,18,20,2,MINOR,20,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+San Juan Bull Elk,Late Any Legal Weapon,EB3067,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+San Juan Bull Elk,Multiseason,EB3121,Resident,3,4,1,MINOR,4,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+San Juan Bull Elk,Multiseason,EB3121,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+San Juan Bull Elk,Muzzleloader,EB3097,Resident,15,17,2,MINOR,17,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+San Juan Bull Elk,Muzzleloader,EB3097,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Southwest Desert, South",Archery,EB3146,Resident,37,39,2,MINOR,39,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Southwest Desert, South",Archery,EB3146,Nonresident,4,4,0,UNCHANGED,4,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Southwest Desert, South",Early Any Legal Weapon,EB3149,Resident,15,16,1,MINOR,16,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Southwest Desert, South",Early Any Legal Weapon,EB3149,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Southwest Desert, South",Mid Any Legal Weapon,EB3198,Resident,43,46,3,MINOR,46,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Southwest Desert, South",Mid Any Legal Weapon,EB3198,Nonresident,5,5,0,UNCHANGED,5,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Southwest Desert, South",Late Any Legal Weapon,EB3152,Resident,25,26,1,MINOR,26,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Southwest Desert, South",Late Any Legal Weapon,EB3152,Nonresident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Southwest Desert, South",Multiseason,EB3157,Resident,5,5,0,UNCHANGED,5,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Southwest Desert, South",Multiseason,EB3157,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Southwest Desert, South",Muzzleloader,EB3155,Resident,22,23,1,MINOR,23,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+"Southwest Desert, South",Muzzleloader,EB3155,Nonresident,2,3,1,MINOR,3,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Wasatch Mtns,Archery,EB3022,Resident,164,130,-34,MAJOR,130,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Wasatch Mtns,Archery,EB3022,Nonresident,18,15,-3,MINOR,15,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Wasatch Mtns,Early Any Legal Weapon,EB3072,Resident,67,54,-13,MAJOR,54,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Wasatch Mtns,Early Any Legal Weapon,EB3072,Nonresident,7,6,-1,MINOR,6,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Wasatch Mtns,Mid Any Legal Weapon,EB3127,Resident,193,155,-38,MAJOR,155,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Wasatch Mtns,Mid Any Legal Weapon,EB3127,Nonresident,22,17,-5,MINOR,17,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Wasatch Mtns,Late Any Legal Weapon,EB3073,Resident,112,89,-23,MAJOR,89,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Wasatch Mtns,Late Any Legal Weapon,EB3073,Nonresident,12,10,-2,MINOR,10,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Wasatch Mtns,Multiseason,EB3124,Resident,20,15,-5,MINOR,15,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Wasatch Mtns,Multiseason,EB3124,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Wasatch Mtns,Muzzleloader,EB3100,Resident,98,78,-20,MAJOR,78,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.
+Wasatch Mtns,Muzzleloader,EB3100,Nonresident,11,9,-2,MINOR,9,True,2026-05-user-verified-table,User-provided limited-entry bull elk comparison table for 2025 to 2026.

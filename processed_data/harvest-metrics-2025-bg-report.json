@@ -1,0 +1,6335 @@
+{
+  "report": {
+    "source": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\pipeline\\RAW\\hunt_unit_database\\2025\\pdf\\harvest_report\\24_bg_report.pdf",
+    "generatedAt": "2026-05-09T02:15:56.053Z",
+    "pages": 216,
+    "chunksDetected": 979,
+    "rowsParsed": 649,
+    "rowsUnique": 649,
+    "rejects": [
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1500",
+        "raw": "DB1500 Beaver 75 340 309 8.2 24.3 25C/26"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1506",
+        "raw": "DB1506 Fillmore 76 376 347 7.0 21.9 25A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1508",
+        "raw": "DB1508 Kamas 14 226 182 7.2 7.4 13A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1509",
+        "raw": "DB1509 La Sal, La Sal Mtns 74 251 216 6.7 34.4 16B/12"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1511",
+        "raw": "DB1511 Mt Dutton 14 67 63 7.9 22.2 16A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1517",
+        "raw": "DB1517 Pine Valley 134 624 553 8.1 24.2 14A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1524",
+        "raw": "DB1524 Southwest Desert 19 83 76 11.0 24.6 25B"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1520",
+        "raw": "DB1520 Thousand Lakes 9 57 48 7.6 17.9 9BD"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1522",
+        "raw": "DB1522 Vernal/Bonanza 105 323 293 8.5 36.0 17BC"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1525",
+        "raw": "DB1525 Wasatch Mtns, East 114 922 793 7.3 14.4 17A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1526",
+        "raw": "DB1526 Wasatch Mtns, West 159 1121 895 6.7 17.8 19C"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1527",
+        "raw": "DB1527 West Desert, Tintic 18 145 121 7.6 14.6 19A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1528",
+        "raw": "DB1528 West Desert, West 12 77 58 5.3 20.8 9A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1529",
+        "raw": "DB1529 Zion 186 603 542 7.9 34.4 Statewide totals 2416 13428 11472 7.4 21.1 *Does not include harvest from extended archery season. 13"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1560",
+        "raw": "DB1560 Beaver 103 300 267 4.2 38.7 25C/26"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1566",
+        "raw": "DB1566 Fillmore 114 356 330 4.2 34.4 25A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1568",
+        "raw": "DB1568 Kamas 28 219 170 4.1 16.7 13A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1569",
+        "raw": "DB1569 La Sal, La Sal Mtns 97 230 198 4.2 48.9 16B/12"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1571",
+        "raw": "DB1571 Mt Dutton 24 63 59 4.8 41.1 16A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1577",
+        "raw": "DB1577 Pine Valley 173 596 539 4.6 32.0 14A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1584",
+        "raw": "DB1584 Southwest Desert 25 83 76 5.0 32.9 25B"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1580",
+        "raw": "DB1580 Thousand Lakes 9 51 42 3.9 21.2 9BD"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1582",
+        "raw": "DB1582 Vernal/Bonanza 87 174 156 3.9 55.7 17BC"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1585",
+        "raw": "DB1585 Wasatch Mtns, East 156 858 756 4.2 20.7 17A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1586",
+        "raw": "DB1586 Wasatch Mtns, West 98 1074 938 4.3 10.5 19C"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1587",
+        "raw": "DB1587 West Desert, Tintic 40 137 119 4.2 33.9 19A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1588",
+        "raw": "DB1588 West Desert, West 18 78 58 4.1 30.2 9A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1591",
+        "raw": "DB1591 Fillmore 118 368 323 3.6 36.6 25A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1530",
+        "raw": "DB1530 Beaver 516 969 909 4.4 56.8 25C/26"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1536",
+        "raw": "DB1536 Fillmore 339 778 724 4.9 46.8 25A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1538",
+        "raw": "DB1538 Kamas 52 429 337 4.0 15.5 13A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1539",
+        "raw": "DB1539 La Sal, La Sal Mtns 372 714 623 4.2 59.7 16B/12"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1607",
+        "raw": "DB1607 Morgan-South Rich 86 537 441.0 4.0 19.6 24"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1541",
+        "raw": "DB1541 Mt Dutton 105 199 185 4.5 56.8 16A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1547",
+        "raw": "DB1547 Pine Valley 526 1244 1126 4.7 46.7 14A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1554",
+        "raw": "DB1554 Southwest Desert 82 270 251 5.3 32.9 25B"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1550",
+        "raw": "DB1550 Thousand Lakes 28 69 59 4.0 47.9 9BD"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1552",
+        "raw": "DB1552 Vernal/Bonanza 299 442 396 3.3 75.3 17BC"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1555",
+        "raw": "DB1555 Wasatch Mtns, East 801 2561 2285 4.3 35.0 17A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1556",
+        "raw": "DB1556 Wasatch Mtns, West 474 3219 2756 4.2 17.2 19C"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1557",
+        "raw": "DB1557 West Desert, Tintic 154 426 379 4.2 40.5 19A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1558",
+        "raw": "DB1558 West Desert, West 55 223 186 4.5 29.9 9A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1769",
+        "raw": "DB1769 Beaver 94 226 217 9.1 43.1 25C/26"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1799",
+        "raw": "DB1799 Chalk Creek 9 32 26 10.8 36.4 4/5/6"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1775",
+        "raw": "DB1775 Fillmore 88 266 256 10.9 34.2 25A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1777",
+        "raw": "DB1777 Kamas 16 121 107 9.2 14.7 13A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1778",
+        "raw": "DB1778 La Sal, La Sal Mtns 71 184 166 9.8 42.8 16B/12"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1779",
+        "raw": "DB1779 Monroe 39 97 89.0 7.6 44.3 4"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1780",
+        "raw": "DB1780 Mt Dutton 20 48 46 8.5 43.9 16A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1786",
+        "raw": "DB1786 Pine Valley 113 417 394 11.1 28.8 14A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1793",
+        "raw": "DB1793 Southwest Desert 15 57 53 11.6 28.0 25B"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1789",
+        "raw": "DB1789 Thousand Lakes 5 23 21 7.8 23.5 9BD"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1791",
+        "raw": "DB1791 Vernal/Bonanza 67 118 113 10.2 59.8 17BC"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1794",
+        "raw": "DB1794 Wasatch Mtns, East 197 629 583 9.5 33.8 17A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1795",
+        "raw": "DB1795 Wasatch Mtns, West 123 655 587 9.2 21.0 19C"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1796",
+        "raw": "DB1796 West Desert, Tintic 31 88 84 9.8 37.2 19A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1797",
+        "raw": "DB1797 West Desert, West 14 56 50 8.9 27.3 9A"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1798",
+        "raw": "DB1798 Zion 130 405 375 9.6 34.5 Statewide totals 2324 7317 6774 9.7 34.3 *Dedicated hunters could hunt all 3 general deer seasons. This table summarizes data from all 3 seasons (not including extended archery season). 18"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1008",
+        "raw": "DB1008 Paunsaugunt Multiseason 4 4 4 18.5 100.0 Sportsman/Conservation Multiseason 2 2 2 8.5 100.0 Cactus buck and management buck deer harvest, Utah 2024. Unit Hunt number Hunt name Weapon type Buck harvest Permits Hunters afield Mean days hunted Success rate (%) 27"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1074",
+        "raw": "DB1074 Paunsaugunt ( management ) Muzzleloader 2 3 3 5.3 66.7 Landowner limited -entry buck deer harvest, Utah 2024. Unit Hunt number Property unit Weapon type Buck harvest Permits Hunters afield Mean days hunted Success rate (%) 10B"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "LD0004",
+        "raw": "LD0004 Book Cliffs, South Any legal weapon 1 1 1 3.0 100.0 9C"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "LD0005",
+        "raw": "LD0005 Diamond Mtn Any legal weapon 1 1 1 3.0 100.0 9C"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1011",
+        "raw": "DB1011 Book Cliffs Archery 34 42 41 4.8 83.8 9C"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1015",
+        "raw": "DB1015 Diamond Mtn Archery 25 29 27 7.7 92.0 21C"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1012",
+        "raw": "DB1012 Fillmore, Oak Creek LE Archery 10 15 15 8.5 69.2 13B"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1013",
+        "raw": "DB1013 La Sal, Dolores Triangle Archery 4 4 4 5.8 100.0 14B"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1014",
+        "raw": "DB1014 San Juan, Elk Ridge Archery 11 15 15 9.3 73.3 19B"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1075",
+        "raw": "DB1075 Book Cliffs (conservation) Archery 2 3 3 5.0 50.0 10AC"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1017",
+        "raw": "DB1017 Book Cliffs, North Any legal weapon 91 101 100 4.5 90.6 10B"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1018",
+        "raw": "DB1018 Book Cliffs, South Any legal weapon 22 26 26 4.8 84.6 9C"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1023",
+        "raw": "DB1023 Diamond Mtn Any legal weapon 97 102 101 3.1 95.8 21C"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1019",
+        "raw": "DB1019 Fillmore, Oak Creek LE Any legal weapon 33 35 35 4.7 93.8 13B"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1020",
+        "raw": "DB1020 La Sal, Dolores Triangle Any legal weapon 10 11 11 3.7 90.0 14B"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1022",
+        "raw": "DB1022 San Juan, Elk Ridge Any legal weapon 30 42 42 5.3 70.7 19B"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1025",
+        "raw": "DB1025 Book Cliffs Muzzleloader 32 44 44 4.2 73.8 2C"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1026",
+        "raw": "DB1026 Cache, Crawford Mtn Muzzleloader 8 9 9 4.9 87.5 9C"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1038",
+        "raw": "DB1038 Diamond Mtn Muzzleloader 25 30 30 4.1 82.1 21C"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1029",
+        "raw": "DB1029 Fillmore, Oak Creek LE Muzzleloader 12 12 12 3.6 100.0 13B"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1031",
+        "raw": "DB1031 La Sal, Dolores Triangle Muzzleloader 1 2 2 5.0 50.0 14B"
+      },
+      {
+        "ok": false,
+        "reason": "no_tail_metrics",
+        "code": "DB1037",
+        "raw": "DB1037 San Juan, Elk Ridge Muzzleloader 14 17 17 5.1 82.4 19B"
+      }
+    ]
+  },
+  "rows": [
+    {
+      "huntCode": "BI6503",
+      "permits": 1,
+      "hunters": 11,
+      "harvest": 12,
+      "percentSuccess": 12,
+      "avgDays": 2.5,
+      "avgSatisfaction": 90.9
+    },
+    {
+      "huntCode": "BI6504",
+      "permits": 1,
+      "hunters": 10,
+      "harvest": 11,
+      "percentSuccess": 11,
+      "avgDays": 4.6,
+      "avgSatisfaction": 90.9
+    },
+    {
+      "huntCode": "BI6505",
+      "permits": 5,
+      "hunters": 5,
+      "harvest": 6,
+      "percentSuccess": 6,
+      "avgDays": 2.8,
+      "avgSatisfaction": 80
+    },
+    {
+      "huntCode": "BI6506",
+      "permits": 6,
+      "hunters": 6,
+      "harvest": 8,
+      "percentSuccess": 8,
+      "avgDays": 8.1,
+      "avgSatisfaction": 75
+    },
+    {
+      "huntCode": "BI6509",
+      "permits": 3,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 4,
+      "avgDays": 9.3,
+      "avgSatisfaction": 100
+    },
+    {
+      "huntCode": "BI6516",
+      "permits": 1,
+      "hunters": 8,
+      "harvest": 8,
+      "percentSuccess": 8,
+      "avgDays": 3.1,
+      "avgSatisfaction": 100
+    },
+    {
+      "huntCode": "BI6527",
+      "permits": 0,
+      "hunters": 2,
+      "harvest": 20,
+      "percentSuccess": 16,
+      "avgDays": 9.6,
+      "avgSatisfaction": 14.3
+    },
+    {
+      "huntCode": "BI6528",
+      "permits": 0,
+      "hunters": 1,
+      "harvest": 3,
+      "percentSuccess": 3,
+      "avgDays": 8.7,
+      "avgSatisfaction": 33.3
+    },
+    {
+      "huntCode": "BI6529",
+      "permits": 3,
+      "hunters": 3,
+      "harvest": 5,
+      "percentSuccess": 5,
+      "avgDays": 4.6,
+      "avgSatisfaction": 60
+    },
+    {
+      "huntCode": "BI6530",
+      "permits": 0,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 5,
+      "avgDays": 4.3,
+      "avgSatisfaction": 100
+    },
+    {
+      "huntCode": "BI6532",
+      "permits": 4,
+      "hunters": 4,
+      "harvest": 5,
+      "percentSuccess": 5,
+      "avgDays": 13.5,
+      "avgSatisfaction": 75
+    },
+    {
+      "huntCode": "BI6534",
+      "permits": 0,
+      "hunters": 2,
+      "harvest": 5,
+      "percentSuccess": 5,
+      "avgDays": 6.2,
+      "avgSatisfaction": 40
+    },
+    {
+      "huntCode": "BI6535",
+      "permits": 1,
+      "hunters": 4,
+      "harvest": 5,
+      "percentSuccess": 5,
+      "avgDays": 3.8,
+      "avgSatisfaction": 80
+    },
+    {
+      "huntCode": "BI6536",
+      "permits": 3,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 3,
+      "avgDays": 1,
+      "avgSatisfaction": 100
+    },
+    {
+      "huntCode": "BI6537",
+      "permits": 0,
+      "hunters": 6,
+      "harvest": 8,
+      "percentSuccess": 7,
+      "avgDays": 2,
+      "avgSatisfaction": 83.3
+    },
+    {
+      "huntCode": "BI6538",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 1,
+      "avgDays": 100,
+      "avgSatisfaction": 175
+    },
+    {
+      "huntCode": "DA1001",
+      "permits": 4,
+      "hunters": 30,
+      "harvest": 12,
+      "percentSuccess": 4.5,
+      "avgDays": 30,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DA1002",
+      "permits": 10,
+      "hunters": 28,
+      "harvest": 18,
+      "percentSuccess": 3.5,
+      "avgDays": 55.6,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "DA1009",
+      "permits": 18,
+      "hunters": 25,
+      "harvest": 20,
+      "percentSuccess": 2.6,
+      "avgDays": 90,
+      "avgSatisfaction": 30
+    },
+    {
+      "huntCode": "DA1011",
+      "permits": 4,
+      "hunters": 5,
+      "harvest": 4,
+      "percentSuccess": 1,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DA1012",
+      "permits": 24,
+      "hunters": 15,
+      "harvest": 13,
+      "percentSuccess": 2,
+      "avgDays": 100,
+      "avgSatisfaction": 29
+    },
+    {
+      "huntCode": "DA1013",
+      "permits": 3,
+      "hunters": 5,
+      "harvest": 4,
+      "percentSuccess": 1,
+      "avgDays": 75,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DA1027",
+      "permits": 14,
+      "hunters": 30,
+      "harvest": 29,
+      "percentSuccess": 3.4,
+      "avgDays": 48.3,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "DA1030",
+      "permits": 7,
+      "hunters": 25,
+      "harvest": 18,
+      "percentSuccess": 5.9,
+      "avgDays": 38.9,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "DA1031",
+      "permits": 12,
+      "hunters": 20,
+      "harvest": 17,
+      "percentSuccess": 3.2,
+      "avgDays": 68.8,
+      "avgSatisfaction": 30
+    },
+    {
+      "huntCode": "DA1041",
+      "permits": 3,
+      "hunters": 14,
+      "harvest": 9,
+      "percentSuccess": 1.5,
+      "avgDays": 37.5,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "DA1044",
+      "permits": 28,
+      "hunters": 47,
+      "harvest": 28,
+      "percentSuccess": 3.8,
+      "avgDays": 70.8,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "DA1045",
+      "permits": 7,
+      "hunters": 14,
+      "harvest": 13,
+      "percentSuccess": 3.7,
+      "avgDays": 54.5,
+      "avgSatisfaction": 23
+    },
+    {
+      "huntCode": "DA1046",
+      "permits": 9,
+      "hunters": 24,
+      "harvest": 21,
+      "percentSuccess": 4.2,
+      "avgDays": 42.1,
+      "avgSatisfaction": 18
+    },
+    {
+      "huntCode": "DA1048",
+      "permits": 8,
+      "hunters": 15,
+      "harvest": 13,
+      "percentSuccess": 4.1,
+      "avgDays": 60,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "DB0009",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 1,
+      "avgDays": 100,
+      "avgSatisfaction": 31
+    },
+    {
+      "huntCode": "DB1000",
+      "permits": 11,
+      "hunters": 11,
+      "harvest": 11,
+      "percentSuccess": 9.7,
+      "avgDays": 100,
+      "avgSatisfaction": 27
+    },
+    {
+      "huntCode": "DB1001",
+      "permits": 20,
+      "hunters": 36,
+      "harvest": 36,
+      "percentSuccess": 9.6,
+      "avgDays": 55.9,
+      "avgSatisfaction": 31
+    },
+    {
+      "huntCode": "DB1002",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 2,
+      "avgDays": 100,
+      "avgSatisfaction": 15
+    },
+    {
+      "huntCode": "DB1003",
+      "permits": 26,
+      "hunters": 28,
+      "harvest": 27,
+      "percentSuccess": 3.8,
+      "avgDays": 96.2,
+      "avgSatisfaction": 27
+    },
+    {
+      "huntCode": "DB1004",
+      "permits": 72,
+      "hunters": 87,
+      "harvest": 86,
+      "percentSuccess": 7.1,
+      "avgDays": 83.8,
+      "avgSatisfaction": 15
+    },
+    {
+      "huntCode": "DB1005",
+      "permits": 11,
+      "hunters": 11,
+      "harvest": 11,
+      "percentSuccess": 3.4,
+      "avgDays": 100,
+      "avgSatisfaction": 27
+    },
+    {
+      "huntCode": "DB1006",
+      "permits": 23,
+      "hunters": 30,
+      "harvest": 30,
+      "percentSuccess": 5.2,
+      "avgDays": 77.8,
+      "avgSatisfaction": 15
+    },
+    {
+      "huntCode": "DB1007",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 14,
+      "avgDays": 100,
+      "avgSatisfaction": 27
+    },
+    {
+      "huntCode": "DB1010",
+      "permits": 19,
+      "hunters": 21,
+      "harvest": 21,
+      "percentSuccess": 3,
+      "avgDays": 90.5,
+      "avgSatisfaction": 27
+    },
+    {
+      "huntCode": "DB1016",
+      "permits": 25,
+      "hunters": 45,
+      "harvest": 45,
+      "percentSuccess": 11.9,
+      "avgDays": 54.8,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "DB1024",
+      "permits": 127,
+      "hunters": 147,
+      "harvest": 147,
+      "percentSuccess": 4.2,
+      "avgDays": 86.6,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "DB1032",
+      "permits": 3,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 6.6,
+      "avgDays": 60,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "DB1033",
+      "permits": 5,
+      "hunters": 6,
+      "harvest": 6,
+      "percentSuccess": 4,
+      "avgDays": 80,
+      "avgSatisfaction": 8
+    },
+    {
+      "huntCode": "DB1039",
+      "permits": 4,
+      "hunters": 6,
+      "harvest": 6,
+      "percentSuccess": 5.8,
+      "avgDays": 60,
+      "avgSatisfaction": 29
+    },
+    {
+      "huntCode": "DB1042",
+      "permits": 27,
+      "hunters": 47,
+      "harvest": 46,
+      "percentSuccess": 5.2,
+      "avgDays": 58.1,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "DB1043",
+      "permits": 11,
+      "hunters": 16,
+      "harvest": 15,
+      "percentSuccess": 6.9,
+      "avgDays": 73.3,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "DB1048",
+      "permits": 6,
+      "hunters": 6,
+      "harvest": 6,
+      "percentSuccess": 14.5,
+      "avgDays": 100,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "DB1054",
+      "permits": 5,
+      "hunters": 9,
+      "harvest": 7,
+      "percentSuccess": 4.3,
+      "avgDays": 71.4,
+      "avgSatisfaction": 18
+    },
+    {
+      "huntCode": "DB1055",
+      "permits": 4,
+      "hunters": 6,
+      "harvest": 5,
+      "percentSuccess": 6,
+      "avgDays": 80,
+      "avgSatisfaction": 7
+    },
+    {
+      "huntCode": "DB1056",
+      "permits": 3,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 7,
+      "avgDays": 100,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "DB1058",
+      "permits": 13,
+      "hunters": 29,
+      "harvest": 28,
+      "percentSuccess": 5.4,
+      "avgDays": 48,
+      "avgSatisfaction": 27
+    },
+    {
+      "huntCode": "DB1065",
+      "permits": 9,
+      "hunters": 12,
+      "harvest": 12,
+      "percentSuccess": 5.3,
+      "avgDays": 75,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "DB1073",
+      "permits": 4,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 7.8,
+      "avgDays": 100,
+      "avgSatisfaction": 27
+    },
+    {
+      "huntCode": "DB1076",
+      "permits": 0,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 2,
+      "avgDays": 0,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "DB1077",
+      "permits": 14,
+      "hunters": 23,
+      "harvest": 21,
+      "percentSuccess": 3.8,
+      "avgDays": 65,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "DB1078",
+      "permits": 4,
+      "hunters": 6,
+      "harvest": 6,
+      "percentSuccess": 5.6,
+      "avgDays": 60,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "DB1079",
+      "permits": 29,
+      "hunters": 39,
+      "harvest": 38,
+      "percentSuccess": 6.1,
+      "avgDays": 77.1,
+      "avgSatisfaction": 23
+    },
+    {
+      "huntCode": "DB1080",
+      "permits": 18,
+      "hunters": 23,
+      "harvest": 23,
+      "percentSuccess": 6.2,
+      "avgDays": 76.2,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "DB1082",
+      "permits": 12,
+      "hunters": 13,
+      "harvest": 13,
+      "percentSuccess": 4.7,
+      "avgDays": 92.3,
+      "avgSatisfaction": 28
+    },
+    {
+      "huntCode": "DB1083",
+      "permits": 4,
+      "hunters": 8,
+      "harvest": 7,
+      "percentSuccess": 6.3,
+      "avgDays": 57.1,
+      "avgSatisfaction": 30
+    },
+    {
+      "huntCode": "DB1084",
+      "permits": 4,
+      "hunters": 9,
+      "harvest": 9,
+      "percentSuccess": 5.3,
+      "avgDays": 44.4,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1085",
+      "permits": 7,
+      "hunters": 9,
+      "harvest": 8,
+      "percentSuccess": 6,
+      "avgDays": 87.5,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "DB1090",
+      "permits": 5,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 6.4,
+      "avgDays": 100,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "DB1091",
+      "permits": 4,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 14.7,
+      "avgDays": 100,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "DB1100",
+      "permits": 9,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 4.7,
+      "avgDays": 88.9,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "DB1101",
+      "permits": 2,
+      "hunters": 6,
+      "harvest": 5,
+      "percentSuccess": 4.8,
+      "avgDays": 50,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "DB1103",
+      "permits": 3,
+      "hunters": 6,
+      "harvest": 6,
+      "percentSuccess": 4.8,
+      "avgDays": 50,
+      "avgSatisfaction": 24
+    },
+    {
+      "huntCode": "DB1105",
+      "permits": 3,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 6.3,
+      "avgDays": 50,
+      "avgSatisfaction": 26
+    },
+    {
+      "huntCode": "DB1200",
+      "permits": 18,
+      "hunters": 21,
+      "harvest": 21,
+      "percentSuccess": 4.9,
+      "avgDays": 85.7,
+      "avgSatisfaction": 27
+    },
+    {
+      "huntCode": "DB1201",
+      "permits": 5,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 2.6,
+      "avgDays": 100,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "DB1203",
+      "permits": 5,
+      "hunters": 11,
+      "harvest": 11,
+      "percentSuccess": 4.1,
+      "avgDays": 44.4,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "DB1206",
+      "permits": 9,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 3.3,
+      "avgDays": 85.7,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "DB1207",
+      "permits": 2,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 2.8,
+      "avgDays": 50,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "DB1208",
+      "permits": 5,
+      "hunters": 9,
+      "harvest": 9,
+      "percentSuccess": 3.5,
+      "avgDays": 50,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1209",
+      "permits": 9,
+      "hunters": 9,
+      "harvest": 9,
+      "percentSuccess": 3.2,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1211",
+      "permits": 9,
+      "hunters": 9,
+      "harvest": 9,
+      "percentSuccess": 5.1,
+      "avgDays": 100,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "DB1215",
+      "permits": 4,
+      "hunters": 6,
+      "harvest": 6,
+      "percentSuccess": 3.8,
+      "avgDays": 60,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "DB1217",
+      "permits": 11,
+      "hunters": 12,
+      "harvest": 12,
+      "percentSuccess": 2.7,
+      "avgDays": 88.9,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "DB1219",
+      "permits": 14,
+      "hunters": 16,
+      "harvest": 16,
+      "percentSuccess": 3.3,
+      "avgDays": 86.7,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1222",
+      "permits": 11,
+      "hunters": 12,
+      "harvest": 12,
+      "percentSuccess": 3.5,
+      "avgDays": 90.9,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1227",
+      "permits": 17,
+      "hunters": 19,
+      "harvest": 19,
+      "percentSuccess": 4.1,
+      "avgDays": 88.9,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "DB1229",
+      "permits": 10,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 2.5,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1230",
+      "permits": 13,
+      "hunters": 18,
+      "harvest": 18,
+      "percentSuccess": 3.3,
+      "avgDays": 73.3,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1231",
+      "permits": 12,
+      "hunters": 14,
+      "harvest": 14,
+      "percentSuccess": 3.2,
+      "avgDays": 85.7,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "DB1232",
+      "permits": 4,
+      "hunters": 7,
+      "harvest": 4,
+      "percentSuccess": 3,
+      "avgDays": 100,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "DB1233",
+      "permits": 25,
+      "hunters": 39,
+      "harvest": 39,
+      "percentSuccess": 7.3,
+      "avgDays": 63.6,
+      "avgSatisfaction": 29
+    },
+    {
+      "huntCode": "DB1234",
+      "permits": 6,
+      "hunters": 11,
+      "harvest": 11,
+      "percentSuccess": 8.1,
+      "avgDays": 55.6,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1236",
+      "permits": 2,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 3.7,
+      "avgDays": 66.7,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "DB1237",
+      "permits": 28,
+      "hunters": 32,
+      "harvest": 30,
+      "percentSuccess": 3.2,
+      "avgDays": 95.8,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1238",
+      "permits": 6,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 4.1,
+      "avgDays": 60,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1239",
+      "permits": 0,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 7,
+      "avgDays": 0,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1240",
+      "permits": 8,
+      "hunters": 8,
+      "harvest": 8,
+      "percentSuccess": 4,
+      "avgDays": 100,
+      "avgSatisfaction": 22
+    },
+    {
+      "huntCode": "DB1241",
+      "permits": 4,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 3.2,
+      "avgDays": 80,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "DB1243",
+      "permits": 1,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 5.3,
+      "avgDays": 25,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "DB1244",
+      "permits": 4,
+      "hunters": 7,
+      "harvest": 5,
+      "percentSuccess": 3,
+      "avgDays": 75,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "DB1251",
+      "permits": 16,
+      "hunters": 17,
+      "harvest": 16,
+      "percentSuccess": 5.2,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1252",
+      "permits": 28,
+      "hunters": 32,
+      "harvest": 32,
+      "percentSuccess": 2,
+      "avgDays": 86.4,
+      "avgSatisfaction": 30
+    },
+    {
+      "huntCode": "DB1253",
+      "permits": 4,
+      "hunters": 8,
+      "harvest": 7,
+      "percentSuccess": 2.6,
+      "avgDays": 57.1,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "DB1258",
+      "permits": 5,
+      "hunters": 8,
+      "harvest": 8,
+      "percentSuccess": 4.4,
+      "avgDays": 57.1,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "DB1259",
+      "permits": 2,
+      "hunters": 6,
+      "harvest": 6,
+      "percentSuccess": 5.2,
+      "avgDays": 40,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "DB1263",
+      "permits": 10,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 3.4,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1266",
+      "permits": 17,
+      "hunters": 20,
+      "harvest": 20,
+      "percentSuccess": 3.8,
+      "avgDays": 83.3,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1273",
+      "permits": 20,
+      "hunters": 22,
+      "harvest": 22,
+      "percentSuccess": 3.1,
+      "avgDays": 88.9,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "DB1274",
+      "permits": 6,
+      "hunters": 17,
+      "harvest": 16,
+      "percentSuccess": 4.8,
+      "avgDays": 40,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "DB1276",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 1,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1277",
+      "permits": 4,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 2,
+      "avgDays": 100,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "DB1279",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 4,
+      "avgDays": 100,
+      "avgSatisfaction": 23
+    },
+    {
+      "huntCode": "DB1280",
+      "permits": 9,
+      "hunters": 9,
+      "harvest": 9,
+      "percentSuccess": 2.9,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1282",
+      "permits": 17,
+      "hunters": 19,
+      "harvest": 18,
+      "percentSuccess": 4.6,
+      "avgDays": 93.3,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "DB1286",
+      "permits": 7,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 4.8,
+      "avgDays": 66.7,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1288",
+      "permits": 10,
+      "hunters": 15,
+      "harvest": 15,
+      "percentSuccess": 6.7,
+      "avgDays": 66.7,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "DB1289",
+      "permits": 14,
+      "hunters": 17,
+      "harvest": 17,
+      "percentSuccess": 4.3,
+      "avgDays": 81.8,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "DB1292",
+      "permits": 10,
+      "hunters": 14,
+      "harvest": 13,
+      "percentSuccess": 4.4,
+      "avgDays": 80,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "DB1293",
+      "permits": 8,
+      "hunters": 11,
+      "harvest": 11,
+      "percentSuccess": 3.5,
+      "avgDays": 75,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "DB1295",
+      "permits": 51,
+      "hunters": 56,
+      "harvest": 56,
+      "percentSuccess": 3.6,
+      "avgDays": 91.8,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "DB1300",
+      "permits": 1,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 9,
+      "avgDays": 33.3,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1301",
+      "permits": 20,
+      "hunters": 20,
+      "harvest": 20,
+      "percentSuccess": 3,
+      "avgDays": 100,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "DB1303",
+      "permits": 3,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 2.7,
+      "avgDays": 66.7,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1305",
+      "permits": 2,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 4.8,
+      "avgDays": 50,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1306",
+      "permits": 10,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 2.1,
+      "avgDays": 100,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "DB1307",
+      "permits": 28,
+      "hunters": 44,
+      "harvest": 44,
+      "percentSuccess": 4.1,
+      "avgDays": 64.7,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "DB1308",
+      "permits": 15,
+      "hunters": 17,
+      "harvest": 17,
+      "percentSuccess": 2.7,
+      "avgDays": 87.5,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "DB1309",
+      "permits": 16,
+      "hunters": 18,
+      "harvest": 18,
+      "percentSuccess": 2.8,
+      "avgDays": 88.9,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1310",
+      "permits": 9,
+      "hunters": 9,
+      "harvest": 9,
+      "percentSuccess": 2.6,
+      "avgDays": 100,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "DB1312",
+      "permits": 0,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 5,
+      "avgDays": 0,
+      "avgSatisfaction": 24
+    },
+    {
+      "huntCode": "DB1317",
+      "permits": 1,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 3.5,
+      "avgDays": 50,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1322",
+      "permits": 9,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 4.8,
+      "avgDays": 88.9,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1323",
+      "permits": 4,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 4.3,
+      "avgDays": 75,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1324",
+      "permits": 2,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 6,
+      "avgDays": 50,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1326",
+      "permits": 4,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 1.5,
+      "avgDays": 100,
+      "avgSatisfaction": 8
+    },
+    {
+      "huntCode": "DB1327",
+      "permits": 6,
+      "hunters": 12,
+      "harvest": 12,
+      "percentSuccess": 4.6,
+      "avgDays": 50,
+      "avgSatisfaction": 29
+    },
+    {
+      "huntCode": "DB1328",
+      "permits": 2,
+      "hunters": 6,
+      "harvest": 6,
+      "percentSuccess": 3.5,
+      "avgDays": 25,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "DB1331",
+      "permits": 8,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 3.1,
+      "avgDays": 77.8,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1333",
+      "permits": 12,
+      "hunters": 15,
+      "harvest": 15,
+      "percentSuccess": 5.6,
+      "avgDays": 76.9,
+      "avgSatisfaction": 27
+    },
+    {
+      "huntCode": "DB1334",
+      "permits": 2,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 2.7,
+      "avgDays": 66.7,
+      "avgSatisfaction": 27
+    },
+    {
+      "huntCode": "DB1335",
+      "permits": 1,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 2.8,
+      "avgDays": 25,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "DB1336",
+      "permits": 2,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 4,
+      "avgDays": 66.7,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "DB1338",
+      "permits": 0,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 1,
+      "avgDays": 0,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1341",
+      "permits": 10,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 6,
+      "avgDays": 100,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "DB1342",
+      "permits": 4,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 3.5,
+      "avgDays": 100,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "DB1345",
+      "permits": 9,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 2.4,
+      "avgDays": 88.9,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1349",
+      "permits": 5,
+      "hunters": 10,
+      "harvest": 9,
+      "percentSuccess": 4.2,
+      "avgDays": 55.6,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1501",
+      "permits": 185,
+      "hunters": 905,
+      "harvest": 714,
+      "percentSuccess": 6.6,
+      "avgDays": 25.9,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "DB1502",
+      "permits": 75,
+      "hunters": 732,
+      "harvest": 623,
+      "percentSuccess": 7.5,
+      "avgDays": 12,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "DB1503",
+      "permits": 256,
+      "hunters": 1500,
+      "harvest": 1305,
+      "percentSuccess": 7.1,
+      "avgDays": 19.6,
+      "avgSatisfaction": 23
+    },
+    {
+      "huntCode": "DB1504",
+      "permits": 89,
+      "hunters": 807,
+      "harvest": 711,
+      "percentSuccess": 8.1,
+      "avgDays": 12.6,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "DB1510",
+      "permits": 42,
+      "hunters": 180,
+      "harvest": 158,
+      "percentSuccess": 7.1,
+      "avgDays": 26.4,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "DB1512",
+      "permits": 56,
+      "hunters": 230,
+      "harvest": 198,
+      "percentSuccess": 6.7,
+      "avgDays": 28.1,
+      "avgSatisfaction": 8
+    },
+    {
+      "huntCode": "DB1513",
+      "permits": 49,
+      "hunters": 457,
+      "harvest": 384,
+      "percentSuccess": 7.9,
+      "avgDays": 12.9,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "DB1514",
+      "permits": 57,
+      "hunters": 346,
+      "harvest": 271,
+      "percentSuccess": 7.4,
+      "avgDays": 21.2,
+      "avgSatisfaction": 18
+    },
+    {
+      "huntCode": "DB1515",
+      "permits": 65,
+      "hunters": 459,
+      "harvest": 407,
+      "percentSuccess": 7.3,
+      "avgDays": 16,
+      "avgSatisfaction": 28
+    },
+    {
+      "huntCode": "DB1516",
+      "permits": 121,
+      "hunters": 390,
+      "harvest": 361,
+      "percentSuccess": 7.8,
+      "avgDays": 33.4,
+      "avgSatisfaction": 30
+    },
+    {
+      "huntCode": "DB1518",
+      "permits": 90,
+      "hunters": 355,
+      "harvest": 338,
+      "percentSuccess": 7,
+      "avgDays": 26.5,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1519",
+      "permits": 46,
+      "hunters": 222,
+      "harvest": 198,
+      "percentSuccess": 7.8,
+      "avgDays": 23.1,
+      "avgSatisfaction": 7
+    },
+    {
+      "huntCode": "DB1521",
+      "permits": 108,
+      "hunters": 419,
+      "harvest": 362,
+      "percentSuccess": 6.8,
+      "avgDays": 29.7,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "DB1523",
+      "permits": 47,
+      "hunters": 234,
+      "harvest": 196,
+      "percentSuccess": 7.1,
+      "avgDays": 24.2,
+      "avgSatisfaction": 29
+    },
+    {
+      "huntCode": "DB1531",
+      "permits": 945,
+      "hunters": 2720,
+      "harvest": 2353,
+      "percentSuccess": 4.1,
+      "avgDays": 40.1,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "DB1532",
+      "permits": 512,
+      "hunters": 2138,
+      "harvest": 1886,
+      "percentSuccess": 4.3,
+      "avgDays": 27.2,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "DB1533",
+      "permits": 1530,
+      "hunters": 4173,
+      "harvest": 3782,
+      "percentSuccess": 4.3,
+      "avgDays": 40.5,
+      "avgSatisfaction": 23
+    },
+    {
+      "huntCode": "DB1534",
+      "permits": 750,
+      "hunters": 2339,
+      "harvest": 2081,
+      "percentSuccess": 4.3,
+      "avgDays": 36,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "DB1540",
+      "permits": 263,
+      "hunters": 465,
+      "harvest": 426,
+      "percentSuccess": 4.6,
+      "avgDays": 61.8,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "DB1542",
+      "permits": 185,
+      "hunters": 468,
+      "harvest": 426,
+      "percentSuccess": 4.7,
+      "avgDays": 43.4,
+      "avgSatisfaction": 8
+    },
+    {
+      "huntCode": "DB1543",
+      "permits": 252,
+      "hunters": 842,
+      "harvest": 717,
+      "percentSuccess": 4.9,
+      "avgDays": 35.1,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "DB1544",
+      "permits": 230,
+      "hunters": 1034,
+      "harvest": 891,
+      "percentSuccess": 4.1,
+      "avgDays": 25.8,
+      "avgSatisfaction": 18
+    },
+    {
+      "huntCode": "DB1545",
+      "permits": 610,
+      "hunters": 1306,
+      "harvest": 1168,
+      "percentSuccess": 4.1,
+      "avgDays": 52.2,
+      "avgSatisfaction": 28
+    },
+    {
+      "huntCode": "DB1546",
+      "permits": 410,
+      "hunters": 780,
+      "harvest": 725,
+      "percentSuccess": 4.4,
+      "avgDays": 56.6,
+      "avgSatisfaction": 30
+    },
+    {
+      "huntCode": "DB1548",
+      "permits": 505,
+      "hunters": 1033,
+      "harvest": 946,
+      "percentSuccess": 4.3,
+      "avgDays": 53.4,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1549",
+      "permits": 182,
+      "hunters": 378,
+      "harvest": 343,
+      "percentSuccess": 4.2,
+      "avgDays": 53,
+      "avgSatisfaction": 7
+    },
+    {
+      "huntCode": "DB1551",
+      "permits": 537,
+      "hunters": 1232,
+      "harvest": 1085,
+      "percentSuccess": 4.3,
+      "avgDays": 49.4,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "DB1553",
+      "permits": 296,
+      "hunters": 598,
+      "harvest": 515,
+      "percentSuccess": 3.7,
+      "avgDays": 57.5,
+      "avgSatisfaction": 29
+    },
+    {
+      "huntCode": "DB1559",
+      "permits": 12038,
+      "hunters": 34163,
+      "harvest": 30230,
+      "percentSuccess": 4.3,
+      "avgDays": 39.8,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "DB1561",
+      "permits": 198,
+      "hunters": 894,
+      "harvest": 709,
+      "percentSuccess": 3.9,
+      "avgDays": 28,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "DB1562",
+      "permits": 100,
+      "hunters": 702,
+      "harvest": 610,
+      "percentSuccess": 4.3,
+      "avgDays": 16.3,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "DB1563",
+      "permits": 321,
+      "hunters": 1371,
+      "harvest": 1203,
+      "percentSuccess": 4.1,
+      "avgDays": 26.7,
+      "avgSatisfaction": 23
+    },
+    {
+      "huntCode": "DB1564",
+      "permits": 148,
+      "hunters": 774,
+      "harvest": 688,
+      "percentSuccess": 4.1,
+      "avgDays": 21.5,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "DB1570",
+      "permits": 58,
+      "hunters": 148,
+      "harvest": 136,
+      "percentSuccess": 4.4,
+      "avgDays": 42.9,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "DB1572",
+      "permits": 38,
+      "hunters": 220,
+      "harvest": 183,
+      "percentSuccess": 4.2,
+      "avgDays": 20.8,
+      "avgSatisfaction": 8
+    },
+    {
+      "huntCode": "DB1573",
+      "permits": 38,
+      "hunters": 423,
+      "harvest": 370,
+      "percentSuccess": 4.5,
+      "avgDays": 10.2,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "DB1574",
+      "permits": 39,
+      "hunters": 343,
+      "harvest": 263,
+      "percentSuccess": 4.3,
+      "avgDays": 14.9,
+      "avgSatisfaction": 18
+    },
+    {
+      "huntCode": "DB1575",
+      "permits": 117,
+      "hunters": 430,
+      "harvest": 386,
+      "percentSuccess": 3.9,
+      "avgDays": 30.3,
+      "avgSatisfaction": 28
+    },
+    {
+      "huntCode": "DB1576",
+      "permits": 132,
+      "hunters": 363,
+      "harvest": 327,
+      "percentSuccess": 4.3,
+      "avgDays": 40.5,
+      "avgSatisfaction": 30
+    },
+    {
+      "huntCode": "DB1578",
+      "permits": 107,
+      "hunters": 339,
+      "harvest": 297,
+      "percentSuccess": 4.4,
+      "avgDays": 35.9,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1579",
+      "permits": 64,
+      "hunters": 193,
+      "harvest": 170,
+      "percentSuccess": 4,
+      "avgDays": 37.7,
+      "avgSatisfaction": 7
+    },
+    {
+      "huntCode": "DB1581",
+      "permits": 152,
+      "hunters": 404,
+      "harvest": 354,
+      "percentSuccess": 4.1,
+      "avgDays": 42.9,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "DB1583",
+      "permits": 65,
+      "hunters": 192,
+      "harvest": 172,
+      "percentSuccess": 4.3,
+      "avgDays": 38.1,
+      "avgSatisfaction": 29
+    },
+    {
+      "huntCode": "DB1589",
+      "permits": 2770,
+      "hunters": 12535,
+      "harvest": 10796,
+      "percentSuccess": 4.2,
+      "avgDays": 25.7,
+      "avgSatisfaction": 15
+    },
+    {
+      "huntCode": "DB1592",
+      "permits": 16,
+      "hunters": 216,
+      "harvest": 141,
+      "percentSuccess": 2.8,
+      "avgDays": 11.3,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "DB1593",
+      "permits": 61,
+      "hunters": 236,
+      "harvest": 197,
+      "percentSuccess": 3.4,
+      "avgDays": 31.1,
+      "avgSatisfaction": 8
+    },
+    {
+      "huntCode": "DB1594",
+      "permits": 161,
+      "hunters": 364,
+      "harvest": 334,
+      "percentSuccess": 3.4,
+      "avgDays": 48.2,
+      "avgSatisfaction": 30
+    },
+    {
+      "huntCode": "DB1595",
+      "permits": 183,
+      "hunters": 578,
+      "harvest": 518,
+      "percentSuccess": 3.7,
+      "avgDays": 35.4,
+      "avgSatisfaction": 29
+    },
+    {
+      "huntCode": "DB1596",
+      "permits": 91,
+      "hunters": 189,
+      "harvest": 172,
+      "percentSuccess": 3.3,
+      "avgDays": 52.8,
+      "avgSatisfaction": 7
+    },
+    {
+      "huntCode": "DB1597",
+      "permits": 1092,
+      "hunters": 3904,
+      "harvest": 3275,
+      "percentSuccess": 3.3,
+      "avgDays": 33.3,
+      "avgSatisfaction": 16
+    },
+    {
+      "huntCode": "DB1598",
+      "permits": 85,
+      "hunters": 421,
+      "harvest": 349,
+      "percentSuccess": 3.7,
+      "avgDays": 24.3,
+      "avgSatisfaction": 28
+    },
+    {
+      "huntCode": "DB1599",
+      "permits": 196,
+      "hunters": 762,
+      "harvest": 639,
+      "percentSuccess": 4,
+      "avgDays": 30.7,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "DB1600",
+      "permits": 45,
+      "hunters": 383,
+      "harvest": 309,
+      "percentSuccess": 7.3,
+      "avgDays": 14.6,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "DB1601",
+      "permits": 58,
+      "hunters": 375,
+      "harvest": 284,
+      "percentSuccess": 3.3,
+      "avgDays": 20.2,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "DB1602",
+      "permits": 23,
+      "hunters": 378,
+      "harvest": 296,
+      "percentSuccess": 4.1,
+      "avgDays": 7.9,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "DB1603",
+      "permits": 135,
+      "hunters": 621,
+      "harvest": 479,
+      "percentSuccess": 3.6,
+      "avgDays": 28.2,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "DB1604",
+      "permits": 50,
+      "hunters": 320,
+      "harvest": 238,
+      "percentSuccess": 6.6,
+      "avgDays": 21.1,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "DB1605",
+      "permits": 46,
+      "hunters": 307,
+      "harvest": 239,
+      "percentSuccess": 2.9,
+      "avgDays": 19.2,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "DB1606",
+      "permits": 27,
+      "hunters": 310,
+      "harvest": 228,
+      "percentSuccess": 3.7,
+      "avgDays": 11.9,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "DB1608",
+      "permits": 26,
+      "hunters": 274,
+      "harvest": 203,
+      "percentSuccess": 7.6,
+      "avgDays": 12.9,
+      "avgSatisfaction": 24
+    },
+    {
+      "huntCode": "DB1609",
+      "permits": 28,
+      "hunters": 265,
+      "harvest": 192,
+      "percentSuccess": 3.1,
+      "avgDays": 14.5,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "DB1610",
+      "permits": 12,
+      "hunters": 262,
+      "harvest": 185,
+      "percentSuccess": 4,
+      "avgDays": 6.7,
+      "avgSatisfaction": 24
+    },
+    {
+      "huntCode": "DB1770",
+      "permits": 28,
+      "hunters": 74,
+      "harvest": 67,
+      "percentSuccess": 7.8,
+      "avgDays": 41.9,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "DB1771",
+      "permits": 142,
+      "hunters": 481,
+      "harvest": 453,
+      "percentSuccess": 9,
+      "avgDays": 31.5,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "DB1772",
+      "permits": 353,
+      "hunters": 978,
+      "harvest": 922,
+      "percentSuccess": 10.5,
+      "avgDays": 38.3,
+      "avgSatisfaction": 23
+    },
+    {
+      "huntCode": "DB1773",
+      "permits": 163,
+      "hunters": 512,
+      "harvest": 473,
+      "percentSuccess": 10.7,
+      "avgDays": 34.4,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "DB1774",
+      "permits": 19,
+      "hunters": 82,
+      "harvest": 71,
+      "percentSuccess": 9.2,
+      "avgDays": 27.1,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "DB1781",
+      "permits": 56,
+      "hunters": 161,
+      "harvest": 148,
+      "percentSuccess": 12.4,
+      "avgDays": 37.5,
+      "avgSatisfaction": 8
+    },
+    {
+      "huntCode": "DB1782",
+      "permits": 32,
+      "hunters": 157,
+      "harvest": 147,
+      "percentSuccess": 10.9,
+      "avgDays": 22,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "DB1783",
+      "permits": 31,
+      "hunters": 126,
+      "harvest": 116,
+      "percentSuccess": 8.8,
+      "avgDays": 27.1,
+      "avgSatisfaction": 18
+    },
+    {
+      "huntCode": "DB1784",
+      "permits": 115,
+      "hunters": 299,
+      "harvest": 274,
+      "percentSuccess": 7.6,
+      "avgDays": 42,
+      "avgSatisfaction": 28
+    },
+    {
+      "huntCode": "DB1785",
+      "permits": 118,
+      "hunters": 248,
+      "harvest": 239,
+      "percentSuccess": 12.2,
+      "avgDays": 49.3,
+      "avgSatisfaction": 30
+    },
+    {
+      "huntCode": "DB1787",
+      "permits": 58,
+      "hunters": 243,
+      "harvest": 223,
+      "percentSuccess": 9.1,
+      "avgDays": 26.1,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "DB1788",
+      "permits": 56,
+      "hunters": 130,
+      "harvest": 119,
+      "percentSuccess": 10.5,
+      "avgDays": 47,
+      "avgSatisfaction": 7
+    },
+    {
+      "huntCode": "DB1790",
+      "permits": 48,
+      "hunters": 176,
+      "harvest": 159,
+      "percentSuccess": 9.2,
+      "avgDays": 30,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "DB1792",
+      "permits": 56,
+      "hunters": 138,
+      "harvest": 125,
+      "percentSuccess": 8.7,
+      "avgDays": 45.1,
+      "avgSatisfaction": 29
+    },
+    {
+      "huntCode": "DB1800",
+      "permits": 16,
+      "hunters": 70,
+      "harvest": 57,
+      "percentSuccess": 9.3,
+      "avgDays": 28,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "DB1801",
+      "permits": 1,
+      "hunters": 20,
+      "harvest": 14,
+      "percentSuccess": 10.4,
+      "avgDays": 8.3,
+      "avgSatisfaction": 24
+    },
+    {
+      "huntCode": "DS1001",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 3,
+      "avgDays": 100,
+      "avgSatisfaction": 26
+    },
+    {
+      "huntCode": "DS1003",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 7,
+      "avgDays": 100,
+      "avgSatisfaction": 26
+    },
+    {
+      "huntCode": "DS1005",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 9,
+      "avgDays": 100,
+      "avgSatisfaction": 12
+    },
+    {
+      "huntCode": "DS1006",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 1,
+      "avgDays": 100,
+      "avgSatisfaction": 13
+    },
+    {
+      "huntCode": "DS1007",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 12,
+      "avgDays": 100,
+      "avgSatisfaction": 29
+    },
+    {
+      "huntCode": "DS6600",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 12.5,
+      "avgDays": 100,
+      "avgSatisfaction": 15
+    },
+    {
+      "huntCode": "DS6601",
+      "permits": 9,
+      "hunters": 9,
+      "harvest": 9,
+      "percentSuccess": 15,
+      "avgDays": 100,
+      "avgSatisfaction": 26
+    },
+    {
+      "huntCode": "DS6602",
+      "permits": 7,
+      "hunters": 8,
+      "harvest": 8,
+      "percentSuccess": 10.3,
+      "avgDays": 87.5,
+      "avgSatisfaction": 26
+    },
+    {
+      "huntCode": "DS6603",
+      "permits": 6,
+      "hunters": 6,
+      "harvest": 6,
+      "percentSuccess": 4,
+      "avgDays": 100,
+      "avgSatisfaction": 26
+    },
+    {
+      "huntCode": "DS6604",
+      "permits": 7,
+      "hunters": 7,
+      "harvest": 7,
+      "percentSuccess": 9.3,
+      "avgDays": 100,
+      "avgSatisfaction": 22
+    },
+    {
+      "huntCode": "DS6606",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 8.5,
+      "avgDays": 100,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "DS6607",
+      "permits": 1,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 13,
+      "avgDays": 50,
+      "avgSatisfaction": 12
+    },
+    {
+      "huntCode": "DS6608",
+      "permits": 6,
+      "hunters": 7,
+      "harvest": 7,
+      "percentSuccess": 11.9,
+      "avgDays": 85.7,
+      "avgSatisfaction": 12
+    },
+    {
+      "huntCode": "DS6609",
+      "permits": 4,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 14.3,
+      "avgDays": 100,
+      "avgSatisfaction": 12
+    },
+    {
+      "huntCode": "DS6610",
+      "permits": 9,
+      "hunters": 12,
+      "harvest": 11,
+      "percentSuccess": 8.3,
+      "avgDays": 81.8,
+      "avgSatisfaction": 12
+    },
+    {
+      "huntCode": "DS6620",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 8.5,
+      "avgDays": 100,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "DS6621",
+      "permits": 6,
+      "hunters": 6,
+      "harvest": 6,
+      "percentSuccess": 7.7,
+      "avgDays": 100,
+      "avgSatisfaction": 30
+    },
+    {
+      "huntCode": "DS6622",
+      "permits": 0,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 19,
+      "avgDays": 0,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "DS6624",
+      "permits": 1,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 4.5,
+      "avgDays": 50,
+      "avgSatisfaction": 12
+    },
+    {
+      "huntCode": "DS6625",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 2,
+      "avgDays": 100,
+      "avgSatisfaction": 30
+    },
+    {
+      "huntCode": "EA1010",
+      "permits": 3,
+      "hunters": 18,
+      "harvest": 18,
+      "percentSuccess": 8.1,
+      "avgDays": 14.3,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EA1011",
+      "permits": 13,
+      "hunters": 20,
+      "harvest": 19,
+      "percentSuccess": 5,
+      "avgDays": 68.4,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EA1012",
+      "permits": 1,
+      "hunters": 10,
+      "harvest": 5,
+      "percentSuccess": 8.6,
+      "avgDays": 20,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EA1025",
+      "permits": 42,
+      "hunters": 109,
+      "harvest": 87,
+      "percentSuccess": 8.3,
+      "avgDays": 48.6,
+      "avgSatisfaction": 23
+    },
+    {
+      "huntCode": "EA1030",
+      "permits": 15,
+      "hunters": 49,
+      "harvest": 45,
+      "percentSuccess": 4.4,
+      "avgDays": 33.3,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "EA1033",
+      "permits": 25,
+      "hunters": 124,
+      "harvest": 107,
+      "percentSuccess": 6.2,
+      "avgDays": 23.8,
+      "avgSatisfaction": 7
+    },
+    {
+      "huntCode": "EA1040",
+      "permits": 1,
+      "hunters": 6,
+      "harvest": 4,
+      "percentSuccess": 2.5,
+      "avgDays": 25,
+      "avgSatisfaction": 90
+    },
+    {
+      "huntCode": "EA1044",
+      "permits": 11,
+      "hunters": 35,
+      "harvest": 24,
+      "percentSuccess": 3.2,
+      "avgDays": 47.1,
+      "avgSatisfaction": 24
+    },
+    {
+      "huntCode": "EA1061",
+      "permits": 3,
+      "hunters": 20,
+      "harvest": 18,
+      "percentSuccess": 5.3,
+      "avgDays": 16.7,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA1063",
+      "permits": 10,
+      "hunters": 73,
+      "harvest": 62,
+      "percentSuccess": 7.3,
+      "avgDays": 16.4,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "EA1064",
+      "permits": 9,
+      "hunters": 50,
+      "harvest": 40,
+      "percentSuccess": 5.1,
+      "avgDays": 23.5,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "EA1069",
+      "permits": 9,
+      "hunters": 23,
+      "harvest": 20,
+      "percentSuccess": 3.2,
+      "avgDays": 44.4,
+      "avgSatisfaction": 27
+    },
+    {
+      "huntCode": "EA1073",
+      "permits": 3,
+      "hunters": 20,
+      "harvest": 11,
+      "percentSuccess": 6,
+      "avgDays": 30,
+      "avgSatisfaction": 27
+    },
+    {
+      "huntCode": "EA1074",
+      "permits": 0,
+      "hunters": 4,
+      "harvest": 3,
+      "percentSuccess": 9.3,
+      "avgDays": 0,
+      "avgSatisfaction": 30
+    },
+    {
+      "huntCode": "EA1077",
+      "permits": 14,
+      "hunters": 20,
+      "harvest": 19,
+      "percentSuccess": 4.6,
+      "avgDays": 76.5,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "EA1080",
+      "permits": 23,
+      "hunters": 28,
+      "harvest": 27,
+      "percentSuccess": 3.9,
+      "avgDays": 84.6,
+      "avgSatisfaction": 7
+    },
+    {
+      "huntCode": "EA1081",
+      "permits": 30,
+      "hunters": 124,
+      "harvest": 112,
+      "percentSuccess": 4.8,
+      "avgDays": 27.1,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "EA1082",
+      "permits": 46,
+      "hunters": 122,
+      "harvest": 106,
+      "percentSuccess": 6.8,
+      "avgDays": 43,
+      "avgSatisfaction": 12
+    },
+    {
+      "huntCode": "EA1084",
+      "permits": 0,
+      "hunters": 4,
+      "harvest": 2,
+      "percentSuccess": 11.5,
+      "avgDays": 0,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "EA1085",
+      "permits": 12,
+      "hunters": 100,
+      "harvest": 89,
+      "percentSuccess": 8.2,
+      "avgDays": 13.6,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA1087",
+      "permits": 27,
+      "hunters": 98,
+      "harvest": 91,
+      "percentSuccess": 5.9,
+      "avgDays": 29.5,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA1090",
+      "permits": 14,
+      "hunters": 48,
+      "harvest": 46,
+      "percentSuccess": 3.2,
+      "avgDays": 31.1,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "EA1101",
+      "permits": 52,
+      "hunters": 84,
+      "harvest": 80,
+      "percentSuccess": 4.2,
+      "avgDays": 64.9,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "EA1106",
+      "permits": 34,
+      "hunters": 193,
+      "harvest": 157,
+      "percentSuccess": 4,
+      "avgDays": 21.4,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA1110",
+      "permits": 15,
+      "hunters": 41,
+      "harvest": 35,
+      "percentSuccess": 7.9,
+      "avgDays": 42.4,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA1111",
+      "permits": 7,
+      "hunters": 35,
+      "harvest": 27,
+      "percentSuccess": 3.7,
+      "avgDays": 28,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA1112",
+      "permits": 8,
+      "hunters": 51,
+      "harvest": 44,
+      "percentSuccess": 6.3,
+      "avgDays": 17.9,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA1113",
+      "permits": 9,
+      "hunters": 30,
+      "harvest": 23,
+      "percentSuccess": 4.8,
+      "avgDays": 38.9,
+      "avgSatisfaction": 91
+    },
+    {
+      "huntCode": "EA1114",
+      "permits": 17,
+      "hunters": 34,
+      "harvest": 29,
+      "percentSuccess": 5.2,
+      "avgDays": 57.7,
+      "avgSatisfaction": 19
+    },
+    {
+      "huntCode": "EA1116",
+      "permits": 0,
+      "hunters": 20,
+      "harvest": 15,
+      "percentSuccess": 7.7,
+      "avgDays": 0,
+      "avgSatisfaction": 29
+    },
+    {
+      "huntCode": "EA1117",
+      "permits": 20,
+      "hunters": 177,
+      "harvest": 136,
+      "percentSuccess": 7,
+      "avgDays": 14.5,
+      "avgSatisfaction": 92
+    },
+    {
+      "huntCode": "EA1118",
+      "permits": 1,
+      "hunters": 4,
+      "harvest": 3,
+      "percentSuccess": 8.5,
+      "avgDays": 50,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA1120",
+      "permits": 4,
+      "hunters": 17,
+      "harvest": 17,
+      "percentSuccess": 3.9,
+      "avgDays": 21.4,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "EA1121",
+      "permits": 6,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 2.6,
+      "avgDays": 60,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "EA1122",
+      "permits": 2,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 3,
+      "avgDays": 40,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "EA1124",
+      "permits": 3,
+      "hunters": 12,
+      "harvest": 12,
+      "percentSuccess": 2.1,
+      "avgDays": 25,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "EA1125",
+      "permits": 14,
+      "hunters": 20,
+      "harvest": 19,
+      "percentSuccess": 1.8,
+      "avgDays": 72.2,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "EA1126",
+      "permits": 0,
+      "hunters": 5,
+      "harvest": 3,
+      "percentSuccess": 3,
+      "avgDays": 0,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "EA1130",
+      "permits": 1,
+      "hunters": 7,
+      "harvest": 6,
+      "percentSuccess": 5,
+      "avgDays": 20,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA1131",
+      "permits": 22,
+      "hunters": 29,
+      "harvest": 29,
+      "percentSuccess": 1.7,
+      "avgDays": 75,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "EA1132",
+      "permits": 24,
+      "hunters": 66,
+      "harvest": 59,
+      "percentSuccess": 4.3,
+      "avgDays": 40,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "EA1134",
+      "permits": 55,
+      "hunters": 110,
+      "harvest": 100,
+      "percentSuccess": 2.2,
+      "avgDays": 55.1,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "EA1135",
+      "permits": 11,
+      "hunters": 19,
+      "harvest": 18,
+      "percentSuccess": 2.1,
+      "avgDays": 60,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "EA1137",
+      "permits": 14,
+      "hunters": 15,
+      "harvest": 14,
+      "percentSuccess": 3.4,
+      "avgDays": 100,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "EA1138",
+      "permits": 11,
+      "hunters": 20,
+      "harvest": 20,
+      "percentSuccess": 3.3,
+      "avgDays": 52.6,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "EA1139",
+      "permits": 4,
+      "hunters": 9,
+      "harvest": 9,
+      "percentSuccess": 3.4,
+      "avgDays": 44.4,
+      "avgSatisfaction": 18
+    },
+    {
+      "huntCode": "EA1141",
+      "permits": 9,
+      "hunters": 15,
+      "harvest": 13,
+      "percentSuccess": 3.1,
+      "avgDays": 71.4,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA1146",
+      "permits": 4,
+      "hunters": 14,
+      "harvest": 12,
+      "percentSuccess": 3.3,
+      "avgDays": 33.3,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA1149",
+      "permits": 0,
+      "hunters": 8,
+      "harvest": 8,
+      "percentSuccess": 7,
+      "avgDays": 0,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA1153",
+      "permits": 1,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 3,
+      "avgDays": 33.3,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "EA1157",
+      "permits": 21,
+      "hunters": 33,
+      "harvest": 32,
+      "percentSuccess": 2.7,
+      "avgDays": 66.7,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "EA1159",
+      "permits": 1,
+      "hunters": 6,
+      "harvest": 5,
+      "percentSuccess": 2.8,
+      "avgDays": 25,
+      "avgSatisfaction": 94
+    },
+    {
+      "huntCode": "EA1163",
+      "permits": 13,
+      "hunters": 26,
+      "harvest": 22,
+      "percentSuccess": 3.3,
+      "avgDays": 57.9,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "EA1164",
+      "permits": 2,
+      "hunters": 6,
+      "harvest": 6,
+      "percentSuccess": 3.2,
+      "avgDays": 33.3,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "EA1166",
+      "permits": 5,
+      "hunters": 16,
+      "harvest": 15,
+      "percentSuccess": 2.5,
+      "avgDays": 30.8,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "EA1167",
+      "permits": 8,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 1.9,
+      "avgDays": 80,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "EA1168",
+      "permits": 13,
+      "hunters": 20,
+      "harvest": 17,
+      "percentSuccess": 3.8,
+      "avgDays": 80,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EA1170",
+      "permits": 10,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 1.7,
+      "avgDays": 100,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "EA1171",
+      "permits": 8,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 4.9,
+      "avgDays": 75,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA1172",
+      "permits": 16,
+      "hunters": 17,
+      "harvest": 17,
+      "percentSuccess": 2.1,
+      "avgDays": 93.3,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "EA1174",
+      "permits": 40,
+      "hunters": 56,
+      "harvest": 53,
+      "percentSuccess": 1.6,
+      "avgDays": 76.5,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA1175",
+      "permits": 0,
+      "hunters": 10,
+      "harvest": 9,
+      "percentSuccess": 2.6,
+      "avgDays": 0,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "EA1177",
+      "permits": 4,
+      "hunters": 8,
+      "harvest": 8,
+      "percentSuccess": 4.3,
+      "avgDays": 50,
+      "avgSatisfaction": 95
+    },
+    {
+      "huntCode": "EA1187",
+      "permits": 1,
+      "hunters": 15,
+      "harvest": 12,
+      "percentSuccess": 8.7,
+      "avgDays": 8.3,
+      "avgSatisfaction": 30
+    },
+    {
+      "huntCode": "EA1193",
+      "permits": 6,
+      "hunters": 19,
+      "harvest": 14,
+      "percentSuccess": 4.7,
+      "avgDays": 46.2,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EA1200",
+      "permits": 6,
+      "hunters": 10,
+      "harvest": 8,
+      "percentSuccess": 2.3,
+      "avgDays": 75,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "EA1203",
+      "permits": 3,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 4.5,
+      "avgDays": 50,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "EA1204",
+      "permits": 0,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 3.2,
+      "avgDays": 0,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EA1206",
+      "permits": 4,
+      "hunters": 10,
+      "harvest": 9,
+      "percentSuccess": 7.5,
+      "avgDays": 50,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "EA1209",
+      "permits": 15,
+      "hunters": 49,
+      "harvest": 44,
+      "percentSuccess": 9.4,
+      "avgDays": 34.3,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "EA1217",
+      "permits": 26,
+      "hunters": 149,
+      "harvest": 129,
+      "percentSuccess": 4.3,
+      "avgDays": 20.5,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA1222",
+      "permits": 12,
+      "hunters": 29,
+      "harvest": 26,
+      "percentSuccess": 3.9,
+      "avgDays": 45.8,
+      "avgSatisfaction": 22
+    },
+    {
+      "huntCode": "EA1223",
+      "permits": 15,
+      "hunters": 29,
+      "harvest": 24,
+      "percentSuccess": 4.1,
+      "avgDays": 60.9,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "EA1228",
+      "permits": 12,
+      "hunters": 98,
+      "harvest": 78,
+      "percentSuccess": 2.9,
+      "avgDays": 14.7,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "EA1229",
+      "permits": 85,
+      "hunters": 174,
+      "harvest": 159,
+      "percentSuccess": 3.5,
+      "avgDays": 53.6,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "EA1234",
+      "permits": 6,
+      "hunters": 14,
+      "harvest": 14,
+      "percentSuccess": 2.3,
+      "avgDays": 41.7,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA1235",
+      "permits": 5,
+      "hunters": 8,
+      "harvest": 7,
+      "percentSuccess": 2.3,
+      "avgDays": 71.4,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EA1236",
+      "permits": 85,
+      "hunters": 296,
+      "harvest": 250,
+      "percentSuccess": 5.6,
+      "avgDays": 34.1,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "EA1244",
+      "permits": 12,
+      "hunters": 100,
+      "harvest": 81,
+      "percentSuccess": 4.5,
+      "avgDays": 14.7,
+      "avgSatisfaction": 29
+    },
+    {
+      "huntCode": "EA1245",
+      "permits": 5,
+      "hunters": 49,
+      "harvest": 39,
+      "percentSuccess": 4.9,
+      "avgDays": 13.5,
+      "avgSatisfaction": 89
+    },
+    {
+      "huntCode": "EA1250",
+      "permits": 7,
+      "hunters": 30,
+      "harvest": 29,
+      "percentSuccess": 6,
+      "avgDays": 25,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "EA1251",
+      "permits": 6,
+      "hunters": 14,
+      "harvest": 13,
+      "percentSuccess": 2.6,
+      "avgDays": 50,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "EA1254",
+      "permits": 3,
+      "hunters": 17,
+      "harvest": 14,
+      "percentSuccess": 7,
+      "avgDays": 25,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "EA1256",
+      "permits": 4,
+      "hunters": 12,
+      "harvest": 11,
+      "percentSuccess": 2.6,
+      "avgDays": 36.4,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA1259",
+      "permits": 3,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 1,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "EA1261",
+      "permits": 4,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 5.4,
+      "avgDays": 80,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "EA1264",
+      "permits": 33,
+      "hunters": 97,
+      "harvest": 92,
+      "percentSuccess": 3.4,
+      "avgDays": 36.3,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA1265",
+      "permits": 47,
+      "hunters": 97,
+      "harvest": 86,
+      "percentSuccess": 2.5,
+      "avgDays": 54.4,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA1266",
+      "permits": 3,
+      "hunters": 20,
+      "harvest": 18,
+      "percentSuccess": 7.3,
+      "avgDays": 18.8,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "EA1267",
+      "permits": 19,
+      "hunters": 120,
+      "harvest": 112,
+      "percentSuccess": 6.1,
+      "avgDays": 17.3,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EA1269",
+      "permits": 59,
+      "hunters": 174,
+      "harvest": 145,
+      "percentSuccess": 4.5,
+      "avgDays": 40.5,
+      "avgSatisfaction": 18
+    },
+    {
+      "huntCode": "EA2002",
+      "permits": 64,
+      "hunters": 231,
+      "harvest": 186,
+      "percentSuccess": 5.8,
+      "avgDays": 34.4,
+      "avgSatisfaction": 24
+    },
+    {
+      "huntCode": "EA2003",
+      "permits": 97,
+      "hunters": 295,
+      "harvest": 255,
+      "percentSuccess": 8.4,
+      "avgDays": 38.1,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "EA2005",
+      "permits": 40,
+      "hunters": 75,
+      "harvest": 62,
+      "percentSuccess": 4.3,
+      "avgDays": 64.7,
+      "avgSatisfaction": 28
+    },
+    {
+      "huntCode": "EA2006",
+      "permits": 168,
+      "hunters": 450,
+      "harvest": 356,
+      "percentSuccess": 11.3,
+      "avgDays": 47.2,
+      "avgSatisfaction": 29
+    },
+    {
+      "huntCode": "EA2011",
+      "permits": 106,
+      "hunters": 248,
+      "harvest": 205,
+      "percentSuccess": 8.8,
+      "avgDays": 51.6,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "EA2012",
+      "permits": 81,
+      "hunters": 237,
+      "harvest": 193,
+      "percentSuccess": 4.4,
+      "avgDays": 41.9,
+      "avgSatisfaction": 19
+    },
+    {
+      "huntCode": "EA2013",
+      "permits": 50,
+      "hunters": 149,
+      "harvest": 121,
+      "percentSuccess": 5.4,
+      "avgDays": 41.2,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA2014",
+      "permits": 8,
+      "hunters": 51,
+      "harvest": 37,
+      "percentSuccess": 5.2,
+      "avgDays": 21.7,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA2015",
+      "permits": 14,
+      "hunters": 92,
+      "harvest": 76,
+      "percentSuccess": 6,
+      "avgDays": 17.9,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "EA2018",
+      "permits": 24,
+      "hunters": 50,
+      "harvest": 43,
+      "percentSuccess": 11.8,
+      "avgDays": 54.5,
+      "avgSatisfaction": 27
+    },
+    {
+      "huntCode": "EA2020",
+      "permits": 64,
+      "hunters": 281,
+      "harvest": 229,
+      "percentSuccess": 13.1,
+      "avgDays": 28,
+      "avgSatisfaction": 93
+    },
+    {
+      "huntCode": "EA2021",
+      "permits": 6,
+      "hunters": 28,
+      "harvest": 19,
+      "percentSuccess": 7,
+      "avgDays": 33.3,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "EA2026",
+      "permits": 11,
+      "hunters": 83,
+      "harvest": 64,
+      "percentSuccess": 7.3,
+      "avgDays": 16.7,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EA2027",
+      "permits": 74,
+      "hunters": 268,
+      "harvest": 240,
+      "percentSuccess": 6.7,
+      "avgDays": 31.1,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "EA2028",
+      "permits": 85,
+      "hunters": 244,
+      "harvest": 211,
+      "percentSuccess": 7.5,
+      "avgDays": 40.4,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EA2030",
+      "permits": 96,
+      "hunters": 259,
+      "harvest": 214,
+      "percentSuccess": 5.6,
+      "avgDays": 45,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "EA2033",
+      "permits": 1,
+      "hunters": 100,
+      "harvest": 64,
+      "percentSuccess": 6.4,
+      "avgDays": 1.9,
+      "avgSatisfaction": 7
+    },
+    {
+      "huntCode": "EA2036",
+      "permits": 36,
+      "hunters": 39,
+      "harvest": 39,
+      "percentSuccess": 3.1,
+      "avgDays": 91.9,
+      "avgSatisfaction": 28
+    },
+    {
+      "huntCode": "EA2039",
+      "permits": 36,
+      "hunters": 150,
+      "harvest": 108,
+      "percentSuccess": 9.3,
+      "avgDays": 33.8,
+      "avgSatisfaction": 7
+    },
+    {
+      "huntCode": "EB3000",
+      "permits": 15,
+      "hunters": 21,
+      "harvest": 21,
+      "percentSuccess": 10.7,
+      "avgDays": 70,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "EB3001",
+      "permits": 1,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 9.5,
+      "avgDays": 50,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "EB3003",
+      "permits": 3,
+      "hunters": 11,
+      "harvest": 9,
+      "percentSuccess": 5.2,
+      "avgDays": 33.3,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EB3006",
+      "permits": 46,
+      "hunters": 170,
+      "harvest": 168,
+      "percentSuccess": 12.6,
+      "avgDays": 27.2,
+      "avgSatisfaction": 23
+    },
+    {
+      "huntCode": "EB3010",
+      "permits": 11,
+      "hunters": 19,
+      "harvest": 19,
+      "percentSuccess": 11.8,
+      "avgDays": 57.9,
+      "avgSatisfaction": 24
+    },
+    {
+      "huntCode": "EB3013",
+      "permits": 3,
+      "hunters": 8,
+      "harvest": 7,
+      "percentSuccess": 11.8,
+      "avgDays": 50,
+      "avgSatisfaction": 28
+    },
+    {
+      "huntCode": "EB3015",
+      "permits": 9,
+      "hunters": 18,
+      "harvest": 18,
+      "percentSuccess": 9.3,
+      "avgDays": 50,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "EB3019",
+      "permits": 12,
+      "hunters": 26,
+      "harvest": 26,
+      "percentSuccess": 12.5,
+      "avgDays": 48,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "EB3020",
+      "permits": 8,
+      "hunters": 25,
+      "harvest": 24,
+      "percentSuccess": 12.4,
+      "avgDays": 35,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "EB3022",
+      "permits": 37,
+      "hunters": 203,
+      "harvest": 199,
+      "percentSuccess": 11.6,
+      "avgDays": 18.6,
+      "avgSatisfaction": 79
+    },
+    {
+      "huntCode": "EB3024",
+      "permits": 11,
+      "hunters": 11,
+      "harvest": 11,
+      "percentSuccess": 2.9,
+      "avgDays": 100,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "EB3025",
+      "permits": 14,
+      "hunters": 15,
+      "harvest": 15,
+      "percentSuccess": 4.9,
+      "avgDays": 93.3,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "EB3026",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 2.5,
+      "avgDays": 100,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "EB3031",
+      "permits": 7,
+      "hunters": 11,
+      "harvest": 11,
+      "percentSuccess": 7.4,
+      "avgDays": 60,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EB3032",
+      "permits": 5,
+      "hunters": 8,
+      "harvest": 8,
+      "percentSuccess": 3.7,
+      "avgDays": 57.1,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EB3033",
+      "permits": 3,
+      "hunters": 8,
+      "harvest": 7,
+      "percentSuccess": 3.3,
+      "avgDays": 50,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EB3038",
+      "permits": 56,
+      "hunters": 78,
+      "harvest": 77,
+      "percentSuccess": 3.1,
+      "avgDays": 72.4,
+      "avgSatisfaction": 23
+    },
+    {
+      "huntCode": "EB3039",
+      "permits": 91,
+      "hunters": 115,
+      "harvest": 115,
+      "percentSuccess": 4.7,
+      "avgDays": 79.1,
+      "avgSatisfaction": 23
+    },
+    {
+      "huntCode": "EB3047",
+      "permits": 12,
+      "hunters": 12,
+      "harvest": 12,
+      "percentSuccess": 2.5,
+      "avgDays": 100,
+      "avgSatisfaction": 24
+    },
+    {
+      "huntCode": "EB3048",
+      "permits": 8,
+      "hunters": 12,
+      "harvest": 12,
+      "percentSuccess": 5.2,
+      "avgDays": 66.7,
+      "avgSatisfaction": 24
+    },
+    {
+      "huntCode": "EB3053",
+      "permits": 12,
+      "hunters": 14,
+      "harvest": 14,
+      "percentSuccess": 3.4,
+      "avgDays": 85.7,
+      "avgSatisfaction": 28
+    },
+    {
+      "huntCode": "EB3056",
+      "permits": 6,
+      "hunters": 9,
+      "harvest": 9,
+      "percentSuccess": 2.9,
+      "avgDays": 66.7,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "EB3057",
+      "permits": 10,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 3.3,
+      "avgDays": 100,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "EB3066",
+      "permits": 16,
+      "hunters": 20,
+      "harvest": 20,
+      "percentSuccess": 3.3,
+      "avgDays": 78.9,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "EB3067",
+      "permits": 12,
+      "hunters": 17,
+      "harvest": 17,
+      "percentSuccess": 5.8,
+      "avgDays": 70.6,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "EB3068",
+      "permits": 21,
+      "hunters": 25,
+      "harvest": 25,
+      "percentSuccess": 3.1,
+      "avgDays": 82.6,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "EB3069",
+      "permits": 32,
+      "hunters": 36,
+      "harvest": 36,
+      "percentSuccess": 4.6,
+      "avgDays": 88.6,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "EB3072",
+      "permits": 57,
+      "hunters": 89,
+      "harvest": 88,
+      "percentSuccess": 3.7,
+      "avgDays": 65,
+      "avgSatisfaction": 81
+    },
+    {
+      "huntCode": "EB3073",
+      "permits": 93,
+      "hunters": 140,
+      "harvest": 139,
+      "percentSuccess": 5.1,
+      "avgDays": 66.9,
+      "avgSatisfaction": 83
+    },
+    {
+      "huntCode": "EB3077",
+      "permits": 10,
+      "hunters": 13,
+      "harvest": 13,
+      "percentSuccess": 4.6,
+      "avgDays": 76.9,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "EB3078",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 3,
+      "avgDays": 100,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "EB3081",
+      "permits": 4,
+      "hunters": 8,
+      "harvest": 8,
+      "percentSuccess": 5.6,
+      "avgDays": 50,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EB3084",
+      "permits": 68,
+      "hunters": 103,
+      "harvest": 103,
+      "percentSuccess": 5.9,
+      "avgDays": 66.3,
+      "avgSatisfaction": 23
+    },
+    {
+      "huntCode": "EB3088",
+      "permits": 9,
+      "hunters": 11,
+      "harvest": 11,
+      "percentSuccess": 5.8,
+      "avgDays": 81.8,
+      "avgSatisfaction": 24
+    },
+    {
+      "huntCode": "EB3091",
+      "permits": 3,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 3.5,
+      "avgDays": 75,
+      "avgSatisfaction": 28
+    },
+    {
+      "huntCode": "EB3093",
+      "permits": 9,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 4.9,
+      "avgDays": 90,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "EB3097",
+      "permits": 12,
+      "hunters": 17,
+      "harvest": 17,
+      "percentSuccess": 5.3,
+      "avgDays": 68.8,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "EB3098",
+      "permits": 17,
+      "hunters": 21,
+      "harvest": 21,
+      "percentSuccess": 5.1,
+      "avgDays": 80,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "EB3100",
+      "permits": 82,
+      "hunters": 122,
+      "harvest": 122,
+      "percentSuccess": 5.8,
+      "avgDays": 67.5,
+      "avgSatisfaction": 84
+    },
+    {
+      "huntCode": "EB3102",
+      "permits": 4,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 14.8,
+      "avgDays": 100,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "EB3105",
+      "permits": 2,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 1.7,
+      "avgDays": 66.7,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EB3108",
+      "permits": 19,
+      "hunters": 22,
+      "harvest": 22,
+      "percentSuccess": 16.3,
+      "avgDays": 85.7,
+      "avgSatisfaction": 23
+    },
+    {
+      "huntCode": "EB3112",
+      "permits": 3,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 5.7,
+      "avgDays": 100,
+      "avgSatisfaction": 24
+    },
+    {
+      "huntCode": "EB3115",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 6,
+      "avgDays": 100,
+      "avgSatisfaction": 28
+    },
+    {
+      "huntCode": "EB3117",
+      "permits": 2,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 13,
+      "avgDays": 50,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "EB3121",
+      "permits": 4,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 12.3,
+      "avgDays": 100,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "EB3122",
+      "permits": 1,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 24.3,
+      "avgDays": 25,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "EB3124",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 16,
+      "avgDays": 100,
+      "avgSatisfaction": 86
+    },
+    {
+      "huntCode": "EB3126",
+      "permits": 124,
+      "hunters": 197,
+      "harvest": 195,
+      "percentSuccess": 6.8,
+      "avgDays": 63.4,
+      "avgSatisfaction": 23
+    },
+    {
+      "huntCode": "EB3127",
+      "permits": 129,
+      "hunters": 241,
+      "harvest": 239,
+      "percentSuccess": 6.3,
+      "avgDays": 53.9,
+      "avgSatisfaction": 82
+    },
+    {
+      "huntCode": "EB3130",
+      "permits": 0,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 14,
+      "avgDays": 0,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EB3132",
+      "permits": 7,
+      "hunters": 28,
+      "harvest": 28,
+      "percentSuccess": 14.1,
+      "avgDays": 25.9,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "EB3135",
+      "permits": 3,
+      "hunters": 9,
+      "harvest": 9,
+      "percentSuccess": 16.1,
+      "avgDays": 33.3,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EB3136",
+      "permits": 9,
+      "hunters": 11,
+      "harvest": 11,
+      "percentSuccess": 9.8,
+      "avgDays": 81.8,
+      "avgSatisfaction": 19
+    },
+    {
+      "huntCode": "EB3139",
+      "permits": 10,
+      "hunters": 28,
+      "harvest": 28,
+      "percentSuccess": 10.6,
+      "avgDays": 34.6,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "EB3142",
+      "permits": 4,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 8.4,
+      "avgDays": 44.4,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EB3143",
+      "permits": 10,
+      "hunters": 13,
+      "harvest": 13,
+      "percentSuccess": 11.4,
+      "avgDays": 75,
+      "avgSatisfaction": 19
+    },
+    {
+      "huntCode": "EB3145",
+      "permits": 21,
+      "hunters": 32,
+      "harvest": 32,
+      "percentSuccess": 13.3,
+      "avgDays": 64.3,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "EB3146",
+      "permits": 17,
+      "hunters": 37,
+      "harvest": 36,
+      "percentSuccess": 12.9,
+      "avgDays": 47.1,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EB3147",
+      "permits": 5,
+      "hunters": 8,
+      "harvest": 8,
+      "percentSuccess": 4,
+      "avgDays": 62.5,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "EB3148",
+      "permits": 13,
+      "hunters": 15,
+      "harvest": 15,
+      "percentSuccess": 3.1,
+      "avgDays": 86.7,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "EB3149",
+      "permits": 15,
+      "hunters": 19,
+      "harvest": 19,
+      "percentSuccess": 2.9,
+      "avgDays": 77.8,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EB3150",
+      "permits": 7,
+      "hunters": 14,
+      "harvest": 14,
+      "percentSuccess": 5.4,
+      "avgDays": 50,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EB3151",
+      "permits": 18,
+      "hunters": 21,
+      "harvest": 21,
+      "percentSuccess": 5.3,
+      "avgDays": 85,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EB3152",
+      "permits": 16,
+      "hunters": 24,
+      "harvest": 24,
+      "percentSuccess": 5.1,
+      "avgDays": 65.2,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EB3153",
+      "permits": 1,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 6.3,
+      "avgDays": 25,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EB3154",
+      "permits": 15,
+      "hunters": 19,
+      "harvest": 19,
+      "percentSuccess": 6,
+      "avgDays": 78.9,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "EB3155",
+      "permits": 14,
+      "hunters": 23,
+      "harvest": 23,
+      "percentSuccess": 6,
+      "avgDays": 61.9,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EB3156",
+      "permits": 5,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 19.4,
+      "avgDays": 100,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EB3157",
+      "permits": 3,
+      "hunters": 6,
+      "harvest": 6,
+      "percentSuccess": 9.3,
+      "avgDays": 50,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EB3158",
+      "permits": 5,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 8.7,
+      "avgDays": 50,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "EB3159",
+      "permits": 21,
+      "hunters": 26,
+      "harvest": 26,
+      "percentSuccess": 6.1,
+      "avgDays": 80,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "EB3160",
+      "permits": 8,
+      "hunters": 21,
+      "harvest": 21,
+      "percentSuccess": 10.9,
+      "avgDays": 40,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "EB3162",
+      "permits": 9,
+      "hunters": 9,
+      "harvest": 9,
+      "percentSuccess": 2.4,
+      "avgDays": 100,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "EB3164",
+      "permits": 15,
+      "hunters": 26,
+      "harvest": 26,
+      "percentSuccess": 6.2,
+      "avgDays": 56,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "EB3165",
+      "permits": 3,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 12,
+      "avgDays": 100,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "EB3166",
+      "permits": 9,
+      "hunters": 13,
+      "harvest": 13,
+      "percentSuccess": 5.7,
+      "avgDays": 69.2,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "EB3168",
+      "permits": 0,
+      "hunters": 2,
+      "harvest": 1,
+      "percentSuccess": 1,
+      "avgDays": 0,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EB3169",
+      "permits": 3,
+      "hunters": 16,
+      "harvest": 13,
+      "percentSuccess": 5.8,
+      "avgDays": 25,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EB3172",
+      "permits": 0,
+      "hunters": 7,
+      "harvest": 7,
+      "percentSuccess": 10.6,
+      "avgDays": 0,
+      "avgSatisfaction": 23
+    },
+    {
+      "huntCode": "EB3174",
+      "permits": 1,
+      "hunters": 5,
+      "harvest": 4,
+      "percentSuccess": 9,
+      "avgDays": 25,
+      "avgSatisfaction": 28
+    },
+    {
+      "huntCode": "EB3175",
+      "permits": 8,
+      "hunters": 9,
+      "harvest": 9,
+      "percentSuccess": 2.4,
+      "avgDays": 88.9,
+      "avgSatisfaction": 28
+    },
+    {
+      "huntCode": "EB3176",
+      "permits": 9,
+      "hunters": 14,
+      "harvest": 14,
+      "percentSuccess": 3.9,
+      "avgDays": 64.3,
+      "avgSatisfaction": 28
+    },
+    {
+      "huntCode": "EB3184",
+      "permits": 1,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 8.5,
+      "avgDays": 25,
+      "avgSatisfaction": 24
+    },
+    {
+      "huntCode": "EB3185",
+      "permits": 15,
+      "hunters": 23,
+      "harvest": 21,
+      "percentSuccess": 6.3,
+      "avgDays": 73.7,
+      "avgSatisfaction": 24
+    },
+    {
+      "huntCode": "EB3188",
+      "permits": 1,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 11,
+      "avgDays": 20,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "EB3189",
+      "permits": 10,
+      "hunters": 19,
+      "harvest": 19,
+      "percentSuccess": 7.3,
+      "avgDays": 52.6,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "EB3190",
+      "permits": 0,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 8.5,
+      "avgDays": 0,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EB3191",
+      "permits": 26,
+      "hunters": 37,
+      "harvest": 36,
+      "percentSuccess": 8,
+      "avgDays": 71.4,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "EB3193",
+      "permits": 0,
+      "hunters": 5,
+      "harvest": 4,
+      "percentSuccess": 6.3,
+      "avgDays": 0,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "EB3194",
+      "permits": 20,
+      "hunters": 32,
+      "harvest": 32,
+      "percentSuccess": 6.5,
+      "avgDays": 62.1,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "EB3195",
+      "permits": 1,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 7.5,
+      "avgDays": 25,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "EB3196",
+      "permits": 8,
+      "hunters": 17,
+      "harvest": 17,
+      "percentSuccess": 5.8,
+      "avgDays": 47.1,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "EB3197",
+      "permits": 0,
+      "hunters": 5,
+      "harvest": 4,
+      "percentSuccess": 8.8,
+      "avgDays": 0,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EB3198",
+      "permits": 30,
+      "hunters": 43,
+      "harvest": 43,
+      "percentSuccess": 6.9,
+      "avgDays": 70.7,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EB3199",
+      "permits": 1,
+      "hunters": 8,
+      "harvest": 6,
+      "percentSuccess": 7.2,
+      "avgDays": 20,
+      "avgSatisfaction": 80
+    },
+    {
+      "huntCode": "EB3500",
+      "permits": 4,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 7.2,
+      "avgDays": 80,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EB3502",
+      "permits": 3,
+      "hunters": 7,
+      "harvest": 7,
+      "percentSuccess": 4,
+      "avgDays": 42.9,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "EB3505",
+      "permits": 16,
+      "hunters": 16,
+      "harvest": 16,
+      "percentSuccess": 3.4,
+      "avgDays": 100,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "EB3506",
+      "permits": 8,
+      "hunters": 11,
+      "harvest": 11,
+      "percentSuccess": 4,
+      "avgDays": 70,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "EB3508",
+      "permits": 16,
+      "hunters": 20,
+      "harvest": 20,
+      "percentSuccess": 3.8,
+      "avgDays": 82.4,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "EB3509",
+      "permits": 18,
+      "hunters": 18,
+      "harvest": 18,
+      "percentSuccess": 3.3,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "EB3511",
+      "permits": 3,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 4,
+      "avgDays": 100,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "EB3515",
+      "permits": 7,
+      "hunters": 7,
+      "harvest": 7,
+      "percentSuccess": 3.2,
+      "avgDays": 100,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EB3516",
+      "permits": 14,
+      "hunters": 25,
+      "harvest": 20,
+      "percentSuccess": 3.5,
+      "avgDays": 72.7,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "EB3517",
+      "permits": 23,
+      "hunters": 30,
+      "harvest": 30,
+      "percentSuccess": 7.8,
+      "avgDays": 75.9,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "EB3519",
+      "permits": 24,
+      "hunters": 26,
+      "harvest": 26,
+      "percentSuccess": 4.1,
+      "avgDays": 90.9,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "EB3520",
+      "permits": 15,
+      "hunters": 17,
+      "harvest": 17,
+      "percentSuccess": 2.9,
+      "avgDays": 85.7,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "EB3522",
+      "permits": 5,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 2.6,
+      "avgDays": 100,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "EB3523",
+      "permits": 17,
+      "hunters": 19,
+      "harvest": 19,
+      "percentSuccess": 4,
+      "avgDays": 87.5,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "EB3524",
+      "permits": 10,
+      "hunters": 12,
+      "harvest": 12,
+      "percentSuccess": 6.4,
+      "avgDays": 80,
+      "avgSatisfaction": 18
+    },
+    {
+      "huntCode": "EB3526",
+      "permits": 9,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 5.8,
+      "avgDays": 87.5,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EB3527",
+      "permits": 10,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 3.5,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "EB3529",
+      "permits": 9,
+      "hunters": 9,
+      "harvest": 9,
+      "percentSuccess": 3,
+      "avgDays": 100,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "EB3532",
+      "permits": 4,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 3.8,
+      "avgDays": 80,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "EB3533",
+      "permits": 2,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 4.7,
+      "avgDays": 33.3,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EB3536",
+      "permits": 37,
+      "hunters": 45,
+      "harvest": 44,
+      "percentSuccess": 4.8,
+      "avgDays": 85.4,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EB3540",
+      "permits": 10,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 5.4,
+      "avgDays": 100,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "EB3544",
+      "permits": 17,
+      "hunters": 19,
+      "harvest": 19,
+      "percentSuccess": 4.1,
+      "avgDays": 88.9,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "EB3550",
+      "permits": 8,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 3.4,
+      "avgDays": 77.8,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "EB3551",
+      "permits": 6,
+      "hunters": 8,
+      "harvest": 8,
+      "percentSuccess": 4.8,
+      "avgDays": 75,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "EB3553",
+      "permits": 14,
+      "hunters": 16,
+      "harvest": 16,
+      "percentSuccess": 4.3,
+      "avgDays": 87.5,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "EB3554",
+      "permits": 9,
+      "hunters": 12,
+      "harvest": 12,
+      "percentSuccess": 3.6,
+      "avgDays": 72.7,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "EB3555",
+      "permits": 12,
+      "hunters": 13,
+      "harvest": 13,
+      "percentSuccess": 3.4,
+      "avgDays": 90.9,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EB3557",
+      "permits": 19,
+      "hunters": 20,
+      "harvest": 20,
+      "percentSuccess": 3.3,
+      "avgDays": 95,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "EB3559",
+      "permits": 10,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 4.9,
+      "avgDays": 100,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "EB3561",
+      "permits": 43,
+      "hunters": 50,
+      "harvest": 50,
+      "percentSuccess": 3.3,
+      "avgDays": 86.8,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EB3562",
+      "permits": 7,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 4.6,
+      "avgDays": 70,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "EB3563",
+      "permits": 70,
+      "hunters": 90,
+      "harvest": 89,
+      "percentSuccess": 3.7,
+      "avgDays": 79,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "EB3564",
+      "permits": 14,
+      "hunters": 18,
+      "harvest": 18,
+      "percentSuccess": 4.5,
+      "avgDays": 75,
+      "avgSatisfaction": 88
+    },
+    {
+      "huntCode": "EB3603",
+      "permits": 7,
+      "hunters": 7,
+      "harvest": 7,
+      "percentSuccess": 3,
+      "avgDays": 100,
+      "avgSatisfaction": 87
+    },
+    {
+      "huntCode": "EB3604",
+      "permits": 8,
+      "hunters": 9,
+      "harvest": 9,
+      "percentSuccess": 3.3,
+      "avgDays": 87.5,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "EB3606",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 15.5,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "EB3607",
+      "permits": 3,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 3.5,
+      "avgDays": 100,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "EB3609",
+      "permits": 18,
+      "hunters": 19,
+      "harvest": 19,
+      "percentSuccess": 4.8,
+      "avgDays": 94.4,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EB3610",
+      "permits": 15,
+      "hunters": 18,
+      "harvest": 18,
+      "percentSuccess": 5,
+      "avgDays": 83.3,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "EB3611",
+      "permits": 9,
+      "hunters": 18,
+      "harvest": 18,
+      "percentSuccess": 6.6,
+      "avgDays": 50,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "EB3613",
+      "permits": 2,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 4.7,
+      "avgDays": 66.7,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EB3614",
+      "permits": 6,
+      "hunters": 7,
+      "harvest": 7,
+      "percentSuccess": 4.2,
+      "avgDays": 83.3,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "EB3616",
+      "permits": 3,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 5,
+      "avgDays": 100,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "EB3617",
+      "permits": 5,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 3.5,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "GO6800",
+      "permits": 10,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 3.8,
+      "avgDays": 100,
+      "avgSatisfaction": 22
+    },
+    {
+      "huntCode": "GO6801",
+      "permits": 9,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 2.8,
+      "avgDays": 88.9,
+      "avgSatisfaction": 22
+    },
+    {
+      "huntCode": "GO6808",
+      "permits": 9,
+      "hunters": 10,
+      "harvest": 9,
+      "percentSuccess": 4.9,
+      "avgDays": 100,
+      "avgSatisfaction": 13
+    },
+    {
+      "huntCode": "GO6810",
+      "permits": 0,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 10,
+      "avgDays": 0,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "GO6813",
+      "permits": 4,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 6.3,
+      "avgDays": 75,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "GO6817",
+      "permits": 10,
+      "hunters": 11,
+      "harvest": 11,
+      "percentSuccess": 5.2,
+      "avgDays": 90.9,
+      "avgSatisfaction": 24
+    },
+    {
+      "huntCode": "GO6818",
+      "permits": 3,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 7.5,
+      "avgDays": 100,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "GO6819",
+      "permits": 1,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 8.5,
+      "avgDays": 50,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "GO6820",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 11.5,
+      "avgDays": 100,
+      "avgSatisfaction": 205
+    },
+    {
+      "huntCode": "GO6821",
+      "permits": 9,
+      "hunters": 11,
+      "harvest": 11,
+      "percentSuccess": 2.4,
+      "avgDays": 80,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "LD0001",
+      "permits": 5,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 4,
+      "avgDays": 100,
+      "avgSatisfaction": 27
+    },
+    {
+      "huntCode": "LD0003",
+      "permits": 0,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 7,
+      "avgDays": 0,
+      "avgSatisfaction": 19
+    },
+    {
+      "huntCode": "LD0007",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 2,
+      "avgDays": 100,
+      "avgSatisfaction": 27
+    },
+    {
+      "huntCode": "LE0001",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 3,
+      "avgDays": 100,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "LE0006",
+      "permits": 0,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 5,
+      "avgDays": 0,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "LE0007",
+      "permits": 0,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 10,
+      "avgDays": 0,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "LE0008",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 1,
+      "avgDays": 100,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "LE0011",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 1,
+      "avgDays": 100,
+      "avgSatisfaction": 85
+    },
+    {
+      "huntCode": "LE0013",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 7,
+      "avgDays": 100,
+      "avgSatisfaction": 22
+    },
+    {
+      "huntCode": "LE0014",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 6,
+      "avgDays": 100,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "LE0016",
+      "permits": 0,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 9,
+      "avgDays": 0,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "LE0017",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 1,
+      "avgDays": 100,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "LP0001",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 3,
+      "avgDays": 100,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "LP0002",
+      "permits": 0,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 4,
+      "avgDays": 0,
+      "avgSatisfaction": 19
+    },
+    {
+      "huntCode": "MA1005",
+      "permits": 5,
+      "hunters": 7,
+      "harvest": 7,
+      "percentSuccess": 4.9,
+      "avgDays": 71.4,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "MA1006",
+      "permits": 3,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 5.8,
+      "avgDays": 60,
+      "avgSatisfaction": 163
+    },
+    {
+      "huntCode": "MB6000",
+      "permits": 16,
+      "hunters": 16,
+      "harvest": 16,
+      "percentSuccess": 7.4,
+      "avgDays": 100,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "MB6002",
+      "permits": 4,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 12.3,
+      "avgDays": 100,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "MB6003",
+      "permits": 2,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 22.3,
+      "avgDays": 66.7,
+      "avgSatisfaction": 7
+    },
+    {
+      "huntCode": "MB6004",
+      "permits": 5,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 10.3,
+      "avgDays": 100,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "MB6005",
+      "permits": 4,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 9.8,
+      "avgDays": 80,
+      "avgSatisfaction": 8
+    },
+    {
+      "huntCode": "MB6006",
+      "permits": 27,
+      "hunters": 27,
+      "harvest": 27,
+      "percentSuccess": 6.1,
+      "avgDays": 100,
+      "avgSatisfaction": 8
+    },
+    {
+      "huntCode": "MB6007",
+      "permits": 9,
+      "hunters": 9,
+      "harvest": 9,
+      "percentSuccess": 3.2,
+      "avgDays": 100,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "MB6009",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 7,
+      "avgDays": 100,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "MB6200",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 10,
+      "avgDays": 100,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "MB6202",
+      "permits": 3,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 2,
+      "avgDays": 100,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "MB6206",
+      "permits": 4,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 3.8,
+      "avgDays": 100,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "MB6207",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 3,
+      "avgDays": 100,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "MB6208",
+      "permits": 4,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 4,
+      "avgDays": 75,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "MB6209",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 2.5,
+      "avgDays": 100,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "MB6211",
+      "permits": 9,
+      "hunters": 9,
+      "harvest": 9,
+      "percentSuccess": 1.7,
+      "avgDays": 100,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "MB6217",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 3.5,
+      "avgDays": 100,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "MB6219",
+      "permits": 6,
+      "hunters": 6,
+      "harvest": 6,
+      "percentSuccess": 2.8,
+      "avgDays": 100,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "MB6220",
+      "permits": 1,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 4.5,
+      "avgDays": 50,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "MB6222",
+      "permits": 3,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 4,
+      "avgDays": 100,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "MB6223",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 5.5,
+      "avgDays": 100,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "MB6224",
+      "permits": 1,
+      "hunters": 2,
+      "harvest": 1,
+      "percentSuccess": 3,
+      "avgDays": 100,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "MB6225",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 4,
+      "avgDays": 100,
+      "avgSatisfaction": 6
+    },
+    {
+      "huntCode": "MB6240",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 3,
+      "avgDays": 100,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "MB6251",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 2.5,
+      "avgDays": 100,
+      "avgSatisfaction": 5
+    },
+    {
+      "huntCode": "MB6254",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 4.5,
+      "avgDays": 100,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "MB6256",
+      "permits": 3,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 5.3,
+      "avgDays": 100,
+      "avgSatisfaction": 164
+    },
+    {
+      "huntCode": "MB6258",
+      "permits": 3,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 3.3,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "MB6259",
+      "permits": 2,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 2.5,
+      "avgDays": 50,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "MB6262",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 2,
+      "avgDays": 100,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "MB6264",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 1,
+      "avgDays": 100,
+      "avgSatisfaction": 3
+    },
+    {
+      "huntCode": "MB6265",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 1,
+      "avgDays": 100,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "MB6266",
+      "permits": 9,
+      "hunters": 9,
+      "harvest": 9,
+      "percentSuccess": 3.9,
+      "avgDays": 100,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "PB5000",
+      "permits": 7,
+      "hunters": 10,
+      "harvest": 9,
+      "percentSuccess": 6.3,
+      "avgDays": 77.8,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "PB5001",
+      "permits": 11,
+      "hunters": 13,
+      "harvest": 12,
+      "percentSuccess": 1.4,
+      "avgDays": 91.7,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "PB5002",
+      "permits": 4,
+      "hunters": 8,
+      "harvest": 8,
+      "percentSuccess": 4,
+      "avgDays": 50,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "PB5003",
+      "permits": 0,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 4,
+      "avgDays": 0,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "PB5004",
+      "permits": 4,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 2,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "PB5005",
+      "permits": 3,
+      "hunters": 9,
+      "harvest": 7,
+      "percentSuccess": 5.1,
+      "avgDays": 42.9,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "PB5006",
+      "permits": 6,
+      "hunters": 9,
+      "harvest": 8,
+      "percentSuccess": 3.9,
+      "avgDays": 71.4,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "PB5008",
+      "permits": 10,
+      "hunters": 13,
+      "harvest": 12,
+      "percentSuccess": 7.1,
+      "avgDays": 83.3,
+      "avgSatisfaction": 13
+    },
+    {
+      "huntCode": "PB5011",
+      "permits": 25,
+      "hunters": 29,
+      "harvest": 28,
+      "percentSuccess": 4.3,
+      "avgDays": 89.3,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "PB5013",
+      "permits": 5,
+      "hunters": 7,
+      "harvest": 7,
+      "percentSuccess": 6.4,
+      "avgDays": 71.4,
+      "avgSatisfaction": 12
+    },
+    {
+      "huntCode": "PB5015",
+      "permits": 13,
+      "hunters": 21,
+      "harvest": 20,
+      "percentSuccess": 6.3,
+      "avgDays": 65,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "PB5016",
+      "permits": 17,
+      "hunters": 19,
+      "harvest": 18,
+      "percentSuccess": 4,
+      "avgDays": 94.4,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "PB5017",
+      "permits": 13,
+      "hunters": 19,
+      "harvest": 19,
+      "percentSuccess": 6.9,
+      "avgDays": 68.4,
+      "avgSatisfaction": 19
+    },
+    {
+      "huntCode": "PB5019",
+      "permits": 15,
+      "hunters": 16,
+      "harvest": 15,
+      "percentSuccess": 3.2,
+      "avgDays": 100,
+      "avgSatisfaction": 19
+    },
+    {
+      "huntCode": "PB5020",
+      "permits": 2,
+      "hunters": 8,
+      "harvest": 8,
+      "percentSuccess": 8,
+      "avgDays": 25,
+      "avgSatisfaction": 19
+    },
+    {
+      "huntCode": "PB5021",
+      "permits": 12,
+      "hunters": 20,
+      "harvest": 19,
+      "percentSuccess": 4.9,
+      "avgDays": 61.1,
+      "avgSatisfaction": 130
+    },
+    {
+      "huntCode": "PB5026",
+      "permits": 45,
+      "hunters": 53,
+      "harvest": 50,
+      "percentSuccess": 1.6,
+      "avgDays": 91.1,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "PB5027",
+      "permits": 29,
+      "hunters": 31,
+      "harvest": 30,
+      "percentSuccess": 1.4,
+      "avgDays": 96.6,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "PB5028",
+      "permits": 9,
+      "hunters": 16,
+      "harvest": 15,
+      "percentSuccess": 2.3,
+      "avgDays": 57.1,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "PB5029",
+      "permits": 36,
+      "hunters": 39,
+      "harvest": 38,
+      "percentSuccess": 2.2,
+      "avgDays": 94.7,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "PB5031",
+      "permits": 32,
+      "hunters": 40,
+      "harvest": 40,
+      "percentSuccess": 3,
+      "avgDays": 80,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "PB5033",
+      "permits": 37,
+      "hunters": 41,
+      "harvest": 37,
+      "percentSuccess": 2,
+      "avgDays": 100,
+      "avgSatisfaction": 26
+    },
+    {
+      "huntCode": "PB5037",
+      "permits": 85,
+      "hunters": 89,
+      "harvest": 87,
+      "percentSuccess": 1.8,
+      "avgDays": 97.5,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "PB5038",
+      "permits": 11,
+      "hunters": 11,
+      "harvest": 11,
+      "percentSuccess": 1.6,
+      "avgDays": 100,
+      "avgSatisfaction": 8
+    },
+    {
+      "huntCode": "PB5042",
+      "permits": 20,
+      "hunters": 24,
+      "harvest": 24,
+      "percentSuccess": 2,
+      "avgDays": 81.8,
+      "avgSatisfaction": 14
+    },
+    {
+      "huntCode": "PB5044",
+      "permits": 4,
+      "hunters": 6,
+      "harvest": 6,
+      "percentSuccess": 2,
+      "avgDays": 66.7,
+      "avgSatisfaction": 12
+    },
+    {
+      "huntCode": "PB5046",
+      "permits": 66,
+      "hunters": 67,
+      "harvest": 67,
+      "percentSuccess": 1.8,
+      "avgDays": 98.5,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "PB5047",
+      "permits": 57,
+      "hunters": 59,
+      "harvest": 57,
+      "percentSuccess": 2.1,
+      "avgDays": 100,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "PB5048",
+      "permits": 64,
+      "hunters": 68,
+      "harvest": 66,
+      "percentSuccess": 1.7,
+      "avgDays": 96.8,
+      "avgSatisfaction": 19
+    },
+    {
+      "huntCode": "PB5051",
+      "permits": 29,
+      "hunters": 34,
+      "harvest": 34,
+      "percentSuccess": 1.9,
+      "avgDays": 85.3,
+      "avgSatisfaction": 19
+    },
+    {
+      "huntCode": "PB5052",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 6,
+      "avgDays": 100,
+      "avgSatisfaction": 132
+    },
+    {
+      "huntCode": "PB5053",
+      "permits": 2,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 6,
+      "avgDays": 50,
+      "avgSatisfaction": 8
+    },
+    {
+      "huntCode": "PB5055",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 13,
+      "avgDays": 100,
+      "avgSatisfaction": 12
+    },
+    {
+      "huntCode": "PB5056",
+      "permits": 16,
+      "hunters": 21,
+      "harvest": 21,
+      "percentSuccess": 3,
+      "avgDays": 76.2,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "PB5060",
+      "permits": 17,
+      "hunters": 18,
+      "harvest": 18,
+      "percentSuccess": 1.8,
+      "avgDays": 94.4,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "PB5062",
+      "permits": 4,
+      "hunters": 7,
+      "harvest": 7,
+      "percentSuccess": 3.7,
+      "avgDays": 57.1,
+      "avgSatisfaction": 12
+    },
+    {
+      "huntCode": "PB5065",
+      "permits": 11,
+      "hunters": 13,
+      "harvest": 13,
+      "percentSuccess": 2.8,
+      "avgDays": 84.6,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "PB5072",
+      "permits": 13,
+      "hunters": 20,
+      "harvest": 20,
+      "percentSuccess": 3.3,
+      "avgDays": 63.2,
+      "avgSatisfaction": 131
+    },
+    {
+      "huntCode": "PB5076",
+      "permits": 42,
+      "hunters": 44,
+      "harvest": 43,
+      "percentSuccess": 2,
+      "avgDays": 97.4,
+      "avgSatisfaction": 30
+    },
+    {
+      "huntCode": "PB5077",
+      "permits": 6,
+      "hunters": 14,
+      "harvest": 14,
+      "percentSuccess": 7.1,
+      "avgDays": 46.2,
+      "avgSatisfaction": 30
+    },
+    {
+      "huntCode": "PB5078",
+      "permits": 12,
+      "hunters": 15,
+      "harvest": 15,
+      "percentSuccess": 2.9,
+      "avgDays": 78.6,
+      "avgSatisfaction": 30
+    },
+    {
+      "huntCode": "PB5300",
+      "permits": 10,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 1.6,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "PB5302",
+      "permits": 34,
+      "hunters": 36,
+      "harvest": 36,
+      "percentSuccess": 1.9,
+      "avgDays": 93.5,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "PB5305",
+      "permits": 3,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 3,
+      "avgDays": 66.7,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "PB5306",
+      "permits": 2,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 5,
+      "avgDays": 50,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "PB5309",
+      "permits": 5,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 1.5,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "PB5311",
+      "permits": 7,
+      "hunters": 9,
+      "harvest": 9,
+      "percentSuccess": 1.7,
+      "avgDays": 77.8,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "PB5312",
+      "permits": 0,
+      "hunters": 1,
+      "harvest": 0,
+      "percentSuccess": 0,
+      "avgDays": 0,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "PB5313",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 10,
+      "avgDays": 100,
+      "avgSatisfaction": 19
+    },
+    {
+      "huntCode": "PB5314",
+      "permits": 8,
+      "hunters": 8,
+      "harvest": 8,
+      "percentSuccess": 1.3,
+      "avgDays": 100,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "PB5315",
+      "permits": 5,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 2.5,
+      "avgDays": 100,
+      "avgSatisfaction": 133
+    },
+    {
+      "huntCode": "PB5325",
+      "permits": 3,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 1,
+      "avgDays": 100,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "PB5326",
+      "permits": 2,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 2.3,
+      "avgDays": 66.7,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "PB5327",
+      "permits": 10,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 1.3,
+      "avgDays": 100,
+      "avgSatisfaction": 4
+    },
+    {
+      "huntCode": "PB5328",
+      "permits": 6,
+      "hunters": 7,
+      "harvest": 6,
+      "percentSuccess": 1.7,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "PB5330",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 1.5,
+      "avgDays": 100,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "PB5331",
+      "permits": 24,
+      "hunters": 38,
+      "harvest": 38,
+      "percentSuccess": 3.7,
+      "avgDays": 62.9,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "PB5332",
+      "permits": 0,
+      "hunters": 8,
+      "harvest": 8,
+      "percentSuccess": 9,
+      "avgDays": 0,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "PB5337",
+      "permits": 4,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 2.3,
+      "avgDays": 75,
+      "avgSatisfaction": 30
+    },
+    {
+      "huntCode": "PB5339",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 4,
+      "avgDays": 100,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "PB5341",
+      "permits": 0,
+      "hunters": 1,
+      "harvest": 0,
+      "percentSuccess": 0,
+      "avgDays": 0,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "PB5342",
+      "permits": 4,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 1.8,
+      "avgDays": 80,
+      "avgSatisfaction": 19
+    },
+    {
+      "huntCode": "PB5343",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 1.5,
+      "avgDays": 100,
+      "avgSatisfaction": 2
+    },
+    {
+      "huntCode": "PB5345",
+      "permits": 5,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 1,
+      "avgDays": 100,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "PD1000",
+      "permits": 18,
+      "hunters": 39,
+      "harvest": 35,
+      "percentSuccess": 2.2,
+      "avgDays": 51.5,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "PD1006",
+      "permits": 18,
+      "hunters": 25,
+      "harvest": 22,
+      "percentSuccess": 1.7,
+      "avgDays": 81,
+      "avgSatisfaction": 12
+    },
+    {
+      "huntCode": "PD1012",
+      "permits": 5,
+      "hunters": 9,
+      "harvest": 8,
+      "percentSuccess": 2.1,
+      "avgDays": 62.5,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "PD1014",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 1,
+      "avgDays": 100,
+      "avgSatisfaction": 19
+    },
+    {
+      "huntCode": "PD1016",
+      "permits": 2,
+      "hunters": 10,
+      "harvest": 9,
+      "percentSuccess": 1.5,
+      "avgDays": 25,
+      "avgSatisfaction": 135
+    },
+    {
+      "huntCode": "PD1017",
+      "permits": 24,
+      "hunters": 35,
+      "harvest": 30,
+      "percentSuccess": 2,
+      "avgDays": 79.3,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "PD1025",
+      "permits": 10,
+      "hunters": 10,
+      "harvest": 10,
+      "percentSuccess": 1.5,
+      "avgDays": 100,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "PD1026",
+      "permits": 9,
+      "hunters": 9,
+      "harvest": 9,
+      "percentSuccess": 1.7,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "PD1031",
+      "permits": 12,
+      "hunters": 6,
+      "harvest": 6,
+      "percentSuccess": 1,
+      "avgDays": 100,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "PD1032",
+      "permits": 8,
+      "hunters": 10,
+      "harvest": 8,
+      "percentSuccess": 1.2,
+      "avgDays": 100,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "PD1034",
+      "permits": 21,
+      "hunters": 24,
+      "harvest": 23,
+      "percentSuccess": 1.7,
+      "avgDays": 90,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "PD1035",
+      "permits": 16,
+      "hunters": 25,
+      "harvest": 20,
+      "percentSuccess": 2.3,
+      "avgDays": 80,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "PD1041",
+      "permits": 4,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 7,
+      "avgDays": 100,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "PD1044",
+      "permits": 15,
+      "hunters": 24,
+      "harvest": 22,
+      "percentSuccess": 1.5,
+      "avgDays": 66.7,
+      "avgSatisfaction": 134
+    },
+    {
+      "huntCode": "PD1046",
+      "permits": 9,
+      "hunters": 10,
+      "harvest": 9,
+      "percentSuccess": 1.4,
+      "avgDays": 100,
+      "avgSatisfaction": 20
+    },
+    {
+      "huntCode": "RE1000",
+      "permits": 4,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 1.4,
+      "avgDays": 80,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "RS1001",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 5,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "RS1002",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 1,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "RS1003",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 1,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "RS1004",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 2,
+      "avgDays": 100,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "RS1006",
+      "permits": 1,
+      "hunters": 1,
+      "harvest": 1,
+      "percentSuccess": 20,
+      "avgDays": 100,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "RS6701",
+      "permits": 6,
+      "hunters": 6,
+      "harvest": 6,
+      "percentSuccess": 9.3,
+      "avgDays": 100,
+      "avgSatisfaction": 10
+    },
+    {
+      "huntCode": "RS6703",
+      "permits": 6,
+      "hunters": 6,
+      "harvest": 6,
+      "percentSuccess": 4.3,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "RS6704",
+      "permits": 6,
+      "hunters": 6,
+      "harvest": 6,
+      "percentSuccess": 2.3,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "RS6708",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 18.5,
+      "avgDays": 100,
+      "avgSatisfaction": 18
+    },
+    {
+      "huntCode": "RS6709",
+      "permits": 3,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 16.3,
+      "avgDays": 100,
+      "avgSatisfaction": 8
+    },
+    {
+      "huntCode": "RS6712",
+      "permits": 5,
+      "hunters": 6,
+      "harvest": 6,
+      "percentSuccess": 6.3,
+      "avgDays": 83.3,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "RS6713",
+      "permits": 4,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 6.3,
+      "avgDays": 100,
+      "avgSatisfaction": 8
+    },
+    {
+      "huntCode": "RS6720",
+      "permits": 4,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 1.3,
+      "avgDays": 100,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "RS6721",
+      "permits": 4,
+      "hunters": 4,
+      "harvest": 4,
+      "percentSuccess": 10,
+      "avgDays": 100,
+      "avgSatisfaction": 17
+    },
+    {
+      "huntCode": "RS6722",
+      "permits": 3,
+      "hunters": 3,
+      "harvest": 3,
+      "percentSuccess": 8,
+      "avgDays": 100,
+      "avgSatisfaction": 1
+    },
+    {
+      "huntCode": "RS6724",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 20,
+      "avgDays": 100,
+      "avgSatisfaction": 194
+    },
+    {
+      "huntCode": "RS6725",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 9.5,
+      "avgDays": 100,
+      "avgSatisfaction": 11
+    },
+    {
+      "huntCode": "RS6726",
+      "permits": 5,
+      "hunters": 5,
+      "harvest": 5,
+      "percentSuccess": 1.6,
+      "avgDays": 100,
+      "avgSatisfaction": 21
+    },
+    {
+      "huntCode": "RS6727",
+      "permits": 2,
+      "hunters": 2,
+      "harvest": 2,
+      "percentSuccess": 4.5,
+      "avgDays": 100,
+      "avgSatisfaction": 21
+    }
+  ]
+}

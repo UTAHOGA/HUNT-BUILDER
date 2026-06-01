@@ -1,0 +1,22 @@
+{
+  "mode": "write",
+  "generated_at": "2026-05-23T05:15:14.581Z",
+  "patch_file": "processed_data/le_elk_2025_database_patch.csv",
+  "patch_rows": 0,
+  "patch_eb_hunt_codes": 0,
+  "had_error": true,
+  "rows": [
+    {
+      "file": "processed_data/le_elk_2025_database_patch.csv",
+      "status": "error",
+      "kind": "patch_csv",
+      "rows checked": 0,
+      "matched rows": 0,
+      "matched hunt codes": 0,
+      "changed cells": 0,
+      "written": false,
+      "backup path": "",
+      "error": "Required patch file is missing: processed_data/le_elk_2025_database_patch.csv"
+    }
+  ]
+}

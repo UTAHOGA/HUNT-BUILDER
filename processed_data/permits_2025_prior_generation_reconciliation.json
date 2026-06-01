@@ -1,0 +1,125 @@
+{
+  "generated_at_utc": "2026-05-23T12:05:59.766361+00:00",
+  "prior_generation_file": "data/hunt-master-canonical-2026-foundation.json",
+  "prior_generation_hunt_code_count": 1394,
+  "active_database_hunt_code_count": 1411,
+  "active_not_in_prior_count": 17,
+  "active_not_in_prior_codes": [
+    "EA1007",
+    "EA1053",
+    "EA1287",
+    "EA1288",
+    "EA1289",
+    "EA1290",
+    "EA1291",
+    "EA1292",
+    "EA1293",
+    "EA1294",
+    "EA1295",
+    "EA1296",
+    "EA1297",
+    "EA1298",
+    "EA1299",
+    "EA1300",
+    "PD1039"
+  ],
+  "prior_not_in_active_count": 0,
+  "prior_not_in_active_codes": [],
+  "new_2026_gap_codes_match_active_not_prior": true,
+  "prior_overlap_hunt_code_count": 1394,
+  "comparison_row_count": 1395,
+  "comparison_hunt_code_count": 523,
+  "status_counts": {
+    "ACTIVE_ONLY": 951,
+    "DIFFERS_FROM_PRIOR_GENERATION": 412,
+    "PRIOR_ONLY": 32
+  },
+  "surface_checks": [
+    {
+      "file": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+      "row_count": 1411,
+      "hunt_code_count": 1411,
+      "missing_required_columns_or_json_fields": [],
+      "missing_json_keys_count": 0,
+      "new_2026_hunts_with_nonblank_2025_count": 0,
+      "new_2026_hunts_with_nonblank_2025_examples": []
+    },
+    {
+      "file": "data/hunt-master-canonical-2026-source-of-truth.csv",
+      "row_count": 1411,
+      "hunt_code_count": 1411,
+      "missing_required_columns_or_json_fields": [],
+      "missing_json_keys_count": 0,
+      "new_2026_hunts_with_nonblank_2025_count": 0,
+      "new_2026_hunts_with_nonblank_2025_examples": []
+    },
+    {
+      "file": "processed_data/hunt-master-canonical-2026-source-of-truth.csv",
+      "row_count": 1411,
+      "hunt_code_count": 1411,
+      "missing_required_columns_or_json_fields": [],
+      "missing_json_keys_count": 0,
+      "new_2026_hunts_with_nonblank_2025_count": 0,
+      "new_2026_hunts_with_nonblank_2025_examples": []
+    },
+    {
+      "file": "data/hunt-master-canonical-2026-database-candidate.csv",
+      "row_count": 1411,
+      "hunt_code_count": 1411,
+      "missing_required_columns_or_json_fields": [],
+      "missing_json_keys_count": 0,
+      "new_2026_hunts_with_nonblank_2025_count": 0,
+      "new_2026_hunts_with_nonblank_2025_examples": []
+    },
+    {
+      "file": "hunt-master-canonical-2026.json",
+      "row_count": 1411,
+      "hunt_code_count": 1411,
+      "missing_required_columns_or_json_fields": [],
+      "missing_json_keys_count": 0,
+      "new_2026_hunts_with_nonblank_2025_count": 0,
+      "new_2026_hunts_with_nonblank_2025_examples": []
+    },
+    {
+      "file": "canonical/hunt-planner-2026.json",
+      "row_count": 1411,
+      "hunt_code_count": 1411,
+      "missing_required_columns_or_json_fields": [],
+      "missing_json_keys_count": 0,
+      "new_2026_hunts_with_nonblank_2025_count": 0,
+      "new_2026_hunts_with_nonblank_2025_examples": []
+    },
+    {
+      "file": "generated/pages/hunt-planner.json",
+      "row_count": 1411,
+      "hunt_code_count": 1411,
+      "missing_required_columns_or_json_fields": [],
+      "missing_json_keys_count": 0,
+      "new_2026_hunts_with_nonblank_2025_count": 0,
+      "new_2026_hunts_with_nonblank_2025_examples": []
+    },
+    {
+      "file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "row_count": 1411,
+      "hunt_code_count": 1411,
+      "missing_required_columns_or_json_fields": [],
+      "missing_json_keys_count": 0,
+      "new_2026_hunts_with_nonblank_2025_count": 0,
+      "new_2026_hunts_with_nonblank_2025_examples": []
+    },
+    {
+      "file": "processed_data/hunt-master-canonical-2026-source-of-truth.json",
+      "row_count": 1411,
+      "hunt_code_count": 1411,
+      "missing_required_columns_or_json_fields": [],
+      "missing_json_keys_count": 0,
+      "new_2026_hunts_with_nonblank_2025_count": 0,
+      "new_2026_hunts_with_nonblank_2025_examples": []
+    }
+  ],
+  "outputs": {
+    "csv": "processed_data/permits_2025_prior_generation_reconciliation.csv",
+    "json": "processed_data/permits_2025_prior_generation_reconciliation.json",
+    "md": "processed_data/permits_2025_prior_generation_reconciliation.md"
+  }
+}

@@ -1,0 +1,868 @@
+[
+  {
+    "hunt_code": "DB0008",
+    "hunt_name": "Extended Archery Deer",
+    "species": "Deer",
+    "hunt_type": "Extended Archery",
+    "weapon": "Archery",
+    "boundary_id": "DB0008_EXT_ARCH_2026",
+    "unit_name": "Extended Archery Deer"
+  },
+  {
+    "hunt_code": "EB1001",
+    "hunt_name": "Any Bull Elk Units",
+    "species": "Elk",
+    "hunt_type": "General Season - Any Bull",
+    "weapon": "Any Legal Weapon",
+    "boundary_id": "SW_ELK_ANYBULL_2026",
+    "unit_name": "Any Bull Elk Units"
+  },
+  {
+    "hunt_code": "BR1001",
+    "hunt_name": "Black Bear Harvest Objective Units",
+    "species": "Black Bear",
+    "hunt_type": "Harvest Objective",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Black Bear Harvest Objective Units"
+  },
+  {
+    "hunt_code": "BR1008",
+    "hunt_name": "Book Cliffs",
+    "species": "Black Bear",
+    "hunt_type": "Restricted Pursuit - Summer",
+    "weapon": "Pursuit Only",
+    "unit_name": "Book Cliffs"
+  },
+  {
+    "hunt_code": "BR1009",
+    "hunt_name": "La Sal",
+    "species": "Black Bear",
+    "hunt_type": "Restricted Pursuit - Summer",
+    "weapon": "Pursuit Only",
+    "unit_name": "La Sal"
+  },
+  {
+    "hunt_code": "BR1010",
+    "hunt_name": "San Juan",
+    "species": "Black Bear",
+    "hunt_type": "Restricted Pursuit - Summer",
+    "weapon": "Pursuit Only",
+    "unit_name": "San Juan"
+  },
+  {
+    "hunt_code": "BR1011",
+    "hunt_name": "Book Cliffs",
+    "species": "Black Bear",
+    "hunt_type": "Restricted Pursuit - Late Summer",
+    "weapon": "Pursuit Only",
+    "unit_name": "Book Cliffs"
+  },
+  {
+    "hunt_code": "BR1012",
+    "hunt_name": "La Sal",
+    "species": "Black Bear",
+    "hunt_type": "Restricted Pursuit - Late Summer",
+    "weapon": "Pursuit Only",
+    "unit_name": "La Sal"
+  },
+  {
+    "hunt_code": "BR1013",
+    "hunt_name": "San Juan",
+    "species": "Black Bear",
+    "hunt_type": "Restricted Pursuit - Late Summer",
+    "weapon": "Pursuit Only",
+    "unit_name": "San Juan"
+  },
+  {
+    "hunt_code": "BR1015",
+    "hunt_name": "Book Cliffs",
+    "species": "Black Bear",
+    "hunt_type": "Restricted Pursuit - Spring",
+    "weapon": "Pursuit Only",
+    "unit_name": "Book Cliffs"
+  },
+  {
+    "hunt_code": "BR1016",
+    "hunt_name": "San Juan",
+    "species": "Black Bear",
+    "hunt_type": "Restricted Pursuit - Spring",
+    "weapon": "Pursuit Only",
+    "unit_name": "San Juan"
+  },
+  {
+    "hunt_code": "BR1017",
+    "hunt_name": "La Sal",
+    "species": "Black Bear",
+    "hunt_type": "Restricted Pursuit - Spring",
+    "weapon": "Pursuit Only",
+    "unit_name": "La Sal"
+  },
+  {
+    "hunt_code": "BR1018",
+    "hunt_name": "Black Bear Pursuit - Nonresident",
+    "species": "Black Bear",
+    "hunt_type": "Pursuit",
+    "weapon": "Pursuit Only",
+    "unit_name": "Black Bear Pursuit - Nonresident"
+  },
+  {
+    "hunt_code": "BR7000",
+    "hunt_name": "Beaver",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Beaver"
+  },
+  {
+    "hunt_code": "BR7001",
+    "hunt_name": "Book Cliffs Bitter Creek/South",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Book Cliffs Bitter Creek/South"
+  },
+  {
+    "hunt_code": "BR7003",
+    "hunt_name": "Manti North",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Manti North"
+  },
+  {
+    "hunt_code": "BR7004",
+    "hunt_name": "Manti South/San Rafael North",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Manti South/San Rafael North"
+  },
+  {
+    "hunt_code": "BR7005",
+    "hunt_name": "Nebo",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Nebo"
+  },
+  {
+    "hunt_code": "BR7007",
+    "hunt_name": "Fillmore Pahvant",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Fillmore Pahvant"
+  },
+  {
+    "hunt_code": "BR7009",
+    "hunt_name": "Mt Dutton",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Mt Dutton"
+  },
+  {
+    "hunt_code": "BR7010",
+    "hunt_name": "Panguitch Lake/Zion",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Panguitch Lake/Zion"
+  },
+  {
+    "hunt_code": "BR7011",
+    "hunt_name": "Paunsaugunt",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Paunsaugunt"
+  },
+  {
+    "hunt_code": "BR7012",
+    "hunt_name": "Boulder/Kaiparowits",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Boulder/Kaiparowits"
+  },
+  {
+    "hunt_code": "BR7013",
+    "hunt_name": "Fishlake/Thousand Lakes",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Fishlake/Thousand Lakes"
+  },
+  {
+    "hunt_code": "BR7014",
+    "hunt_name": "San Juan",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "San Juan"
+  },
+  {
+    "hunt_code": "BR7015",
+    "hunt_name": "Diamond Mtn/Vernal/Bonanza",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Diamond Mtn/Vernal/Bonanza"
+  },
+  {
+    "hunt_code": "BR7016",
+    "hunt_name": "Wasatch Mtns West-Central",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Wasatch Mtns West-Central"
+  },
+  {
+    "hunt_code": "BR7017",
+    "hunt_name": "Cache/Ogden",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Cache/Ogden"
+  },
+  {
+    "hunt_code": "BR7018",
+    "hunt_name": "Kamas/North Slope Summit",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Kamas/North Slope Summit"
+  },
+  {
+    "hunt_code": "BR7020",
+    "hunt_name": "Monroe",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Monroe"
+  },
+  {
+    "hunt_code": "BR7021",
+    "hunt_name": "Dolores Triangle",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Dolores Triangle"
+  },
+  {
+    "hunt_code": "BR7022",
+    "hunt_name": "La Sal Mtns",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "La Sal Mtns"
+  },
+  {
+    "hunt_code": "BR7100",
+    "hunt_name": "Beaver",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Beaver"
+  },
+  {
+    "hunt_code": "BR7101",
+    "hunt_name": "Book Cliffs Bitter Creek/South",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Book Cliffs Bitter Creek/South"
+  },
+  {
+    "hunt_code": "BR7102",
+    "hunt_name": "Book Cliffs Little Creek Roadless",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Book Cliffs Little Creek Roadless"
+  },
+  {
+    "hunt_code": "BR7104",
+    "hunt_name": "Manti North",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Manti North"
+  },
+  {
+    "hunt_code": "BR7105",
+    "hunt_name": "Manti South/San Rafael North",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Manti South/San Rafael North"
+  },
+  {
+    "hunt_code": "BR7106",
+    "hunt_name": "Nebo",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Nebo"
+  },
+  {
+    "hunt_code": "BR7109",
+    "hunt_name": "Mt Dutton",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Mt Dutton"
+  },
+  {
+    "hunt_code": "BR7110",
+    "hunt_name": "Nine Mile",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Nine Mile"
+  },
+  {
+    "hunt_code": "BR7111",
+    "hunt_name": "North Slope Three Corners/West Daggett",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "North Slope Three Corners/West Daggett"
+  },
+  {
+    "hunt_code": "BR7112",
+    "hunt_name": "Panguitch Lake/Zion",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Panguitch Lake/Zion"
+  },
+  {
+    "hunt_code": "BR7113",
+    "hunt_name": "Paunsaugunt",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Paunsaugunt"
+  },
+  {
+    "hunt_code": "BR7114",
+    "hunt_name": "Boulder/Kaiparowits",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Boulder/Kaiparowits"
+  },
+  {
+    "hunt_code": "BR7115",
+    "hunt_name": "Fishlake/Thousand Lakes",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Fishlake/Thousand Lakes"
+  },
+  {
+    "hunt_code": "BR7116",
+    "hunt_name": "San Juan",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "San Juan"
+  },
+  {
+    "hunt_code": "BR7117",
+    "hunt_name": "Diamond Mtn/Vernal/Bonanza",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Diamond Mtn/Vernal/Bonanza"
+  },
+  {
+    "hunt_code": "BR7118",
+    "hunt_name": "Yellowstone",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Yellowstone"
+  },
+  {
+    "hunt_code": "BR7119",
+    "hunt_name": "Wasatch Mtns Avintaquin/Currant Creek",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Wasatch Mtns Avintaquin/Currant Creek"
+  },
+  {
+    "hunt_code": "BR7120",
+    "hunt_name": "Wasatch Mtns West-Central",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Wasatch Mtns West-Central"
+  },
+  {
+    "hunt_code": "BR7121",
+    "hunt_name": "Cache/Ogden",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Cache/Ogden"
+  },
+  {
+    "hunt_code": "BR7122",
+    "hunt_name": "Chalk Creek/East Canyon/Morgan-South Rich",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Chalk Creek/East Canyon/Morgan-South Rich"
+  },
+  {
+    "hunt_code": "BR7123",
+    "hunt_name": "Kamas/North Slope Summit",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Kamas/North Slope Summit"
+  },
+  {
+    "hunt_code": "BR7124",
+    "hunt_name": "Fillmore Pahvant",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Fillmore Pahvant"
+  },
+  {
+    "hunt_code": "BR7125",
+    "hunt_name": "Monroe",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Monroe"
+  },
+  {
+    "hunt_code": "BR7126",
+    "hunt_name": "Dolores Triangle",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Dolores Triangle"
+  },
+  {
+    "hunt_code": "BR7127",
+    "hunt_name": "La Sal Mtns",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Summer",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "La Sal Mtns"
+  },
+  {
+    "hunt_code": "BR7200",
+    "hunt_name": "Beaver",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Beaver"
+  },
+  {
+    "hunt_code": "BR7201",
+    "hunt_name": "Book Cliffs Bitter Creek/South",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Book Cliffs Bitter Creek/South"
+  },
+  {
+    "hunt_code": "BR7203",
+    "hunt_name": "Manti North",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Manti North"
+  },
+  {
+    "hunt_code": "BR7204",
+    "hunt_name": "Manti South/San Rafael North",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Manti South/San Rafael North"
+  },
+  {
+    "hunt_code": "BR7205",
+    "hunt_name": "Nebo",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Nebo"
+  },
+  {
+    "hunt_code": "BR7207",
+    "hunt_name": "Fillmore Pahvant",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Fillmore Pahvant"
+  },
+  {
+    "hunt_code": "BR7210",
+    "hunt_name": "Mt Dutton",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Mt Dutton"
+  },
+  {
+    "hunt_code": "BR7211",
+    "hunt_name": "Nine Mile",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Nine Mile"
+  },
+  {
+    "hunt_code": "BR7212",
+    "hunt_name": "North Slope Three Corners/West Daggett",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "North Slope Three Corners/West Daggett"
+  },
+  {
+    "hunt_code": "BR7213",
+    "hunt_name": "Panguitch Lake/Zion",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Panguitch Lake/Zion"
+  },
+  {
+    "hunt_code": "BR7214",
+    "hunt_name": "Paunsaugunt",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Paunsaugunt"
+  },
+  {
+    "hunt_code": "BR7215",
+    "hunt_name": "Boulder/Kaiparowits",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Boulder/Kaiparowits"
+  },
+  {
+    "hunt_code": "BR7216",
+    "hunt_name": "Fishlake/Thousand Lakes",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Fishlake/Thousand Lakes"
+  },
+  {
+    "hunt_code": "BR7217",
+    "hunt_name": "San Juan",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "San Juan"
+  },
+  {
+    "hunt_code": "BR7218",
+    "hunt_name": "Diamond Mtn/Vernal/Bonanza",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Diamond Mtn/Vernal/Bonanza"
+  },
+  {
+    "hunt_code": "BR7219",
+    "hunt_name": "Yellowstone",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Yellowstone"
+  },
+  {
+    "hunt_code": "BR7220",
+    "hunt_name": "Wasatch Mtns Avintaquin/Currant Creek",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Wasatch Mtns Avintaquin/Currant Creek"
+  },
+  {
+    "hunt_code": "BR7221",
+    "hunt_name": "Wasatch Mtns West-Central",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Wasatch Mtns West-Central"
+  },
+  {
+    "hunt_code": "BR7224",
+    "hunt_name": "Book Cliffs Little Creek Roadless",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Spring",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Book Cliffs Little Creek Roadless"
+  },
+  {
+    "hunt_code": "BR7225",
+    "hunt_name": "Book Cliffs Little Creek Roadless",
+    "species": "Black Bear",
+    "hunt_type": "Spot and Stalk",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Book Cliffs Little Creek Roadless"
+  },
+  {
+    "hunt_code": "BR7228",
+    "hunt_name": "Cache/Ogden",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Cache/Ogden"
+  },
+  {
+    "hunt_code": "BR7229",
+    "hunt_name": "Kamas/North Slope Summit",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Kamas/North Slope Summit"
+  },
+  {
+    "hunt_code": "BR7237",
+    "hunt_name": "Monroe",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Monroe"
+  },
+  {
+    "hunt_code": "BR7238",
+    "hunt_name": "Dolores Triangle",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Dolores Triangle"
+  },
+  {
+    "hunt_code": "BR7239",
+    "hunt_name": "La Sal Mtns",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Fall",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "La Sal Mtns"
+  },
+  {
+    "hunt_code": "BR7300",
+    "hunt_name": "Book Cliffs Bitter Creek/South",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "Book Cliffs Bitter Creek/South"
+  },
+  {
+    "hunt_code": "BR7301",
+    "hunt_name": "Book Cliffs Little Creek Roadless",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "Book Cliffs Little Creek Roadless"
+  },
+  {
+    "hunt_code": "BR7303",
+    "hunt_name": "Manti North",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "Manti North"
+  },
+  {
+    "hunt_code": "BR7304",
+    "hunt_name": "Manti South/San Rafael North",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "Manti South/San Rafael North"
+  },
+  {
+    "hunt_code": "BR7305",
+    "hunt_name": "Nebo",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "Nebo"
+  },
+  {
+    "hunt_code": "BR7307",
+    "hunt_name": "La Sal",
+    "species": "Black Bear",
+    "hunt_type": "Multiseason - Conservation",
+    "weapon": "Multiseason",
+    "unit_name": "La Sal"
+  },
+  {
+    "hunt_code": "BR7308",
+    "hunt_name": "North Slope Three Corners/West Daggett",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "North Slope Three Corners/West Daggett"
+  },
+  {
+    "hunt_code": "BR7309",
+    "hunt_name": "Panguitch Lake/Zion",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "Panguitch Lake/Zion"
+  },
+  {
+    "hunt_code": "BR7310",
+    "hunt_name": "Boulder/Kaiparowits",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "Boulder/Kaiparowits"
+  },
+  {
+    "hunt_code": "BR7311",
+    "hunt_name": "Fishlake/Thousand Lakes",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "Fishlake/Thousand Lakes"
+  },
+  {
+    "hunt_code": "BR7312",
+    "hunt_name": "San Juan",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "San Juan"
+  },
+  {
+    "hunt_code": "BR7313",
+    "hunt_name": "Diamond Mtn/Vernal/Bonanza",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "Diamond Mtn/Vernal/Bonanza"
+  },
+  {
+    "hunt_code": "BR7314",
+    "hunt_name": "Yellowstone",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "Yellowstone"
+  },
+  {
+    "hunt_code": "BR7315",
+    "hunt_name": "Wasatch Mtns Avintaquin/Currant Creek",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "Wasatch Mtns Avintaquin/Currant Creek"
+  },
+  {
+    "hunt_code": "BR7316",
+    "hunt_name": "Wasatch Mtns West-Central",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "Wasatch Mtns West-Central"
+  },
+  {
+    "hunt_code": "BR7317",
+    "hunt_name": "Nine Mile",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "Nine Mile"
+  },
+  {
+    "hunt_code": "BR7318",
+    "hunt_name": "Beaver",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "Beaver"
+  },
+  {
+    "hunt_code": "BR7320",
+    "hunt_name": "Cache/Ogden",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "Cache/Ogden"
+  },
+  {
+    "hunt_code": "BR7321",
+    "hunt_name": "Kamas/North Slope Summit",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "Kamas/North Slope Summit"
+  },
+  {
+    "hunt_code": "BR7322",
+    "hunt_name": "Mt Dutton",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "Mt Dutton"
+  },
+  {
+    "hunt_code": "BR7323",
+    "hunt_name": "Paunsaugunt",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "Paunsaugunt"
+  },
+  {
+    "hunt_code": "BR7324",
+    "hunt_name": "Chalk Creek/East Canyon/Morgan-South Rich",
+    "species": "Black Bear",
+    "hunt_type": "Conservation",
+    "weapon": "Multiseason",
+    "unit_name": "Chalk Creek/East Canyon/Morgan-South Rich"
+  },
+  {
+    "hunt_code": "BR7325",
+    "hunt_name": "Chalk Creek/East Canyon/Morgan-South Rich",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "Chalk Creek/East Canyon/Morgan-South Rich"
+  },
+  {
+    "hunt_code": "BR7326",
+    "hunt_name": "La Sal Mtns",
+    "species": "Black Bear",
+    "hunt_type": "Limited Entry - Multiseason",
+    "weapon": "Multiseason",
+    "unit_name": "La Sal Mtns"
+  },
+  {
+    "hunt_code": "DS1000",
+    "hunt_name": "Desert Bighorn Sheep - Statewide Permit",
+    "species": "Desert Bighorn Sheep",
+    "hunt_type": "Statewide",
+    "weapon": "Any Legal Weapon",
+    "unit_name": "Desert Bighorn Sheep - Statewide Permit"
+  },
+  {
+    "hunt_code": "LO0010",
+    "hunt_name": "Diamond Mtn Landowner Association",
+    "species": "Deer",
+    "hunt_type": "Limited Entry - Private Land Only",
+    "weapon": "Muzzleloader",
+    "unit_name": "Diamond Mtn Landowner Association"
+  }
+]

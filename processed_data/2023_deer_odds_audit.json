@@ -1,0 +1,25 @@
+{
+  "classification": "DEER_DRAW_RESULTS_TRUTH_SOURCE_AUDIT",
+  "timestamp_utc": "2026-05-25T02:47:25.324735+00:00",
+  "source_pdf": "pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/2023 DEER ODDS.pdf",
+  "source_sha256": "4188e4c1b712ec1c4973b735b6cb06e489680f15a1b2011857046b49707efabf",
+  "expected_sha256": "4188e4c1b712ec1c4973b735b6cb06e489680f15a1b2011857046b49707efabf",
+  "source_size_bytes": 1028367,
+  "expected_size_bytes": 1028367,
+  "pdf_pages": 190,
+  "text_lines": 7220,
+  "hunt_header_rows": 189,
+  "unique_hunt_header_codes": 189,
+  "hunt_header_prefix_counts": {
+    "DB": 189
+  },
+  "source_long_csv": "pipeline/RAW/hunt_unit_database/2024/csv/draw_results_2023_for_2024_long.csv",
+  "long_csv_db_rows": 11718,
+  "long_csv_unique_db_codes": 189,
+  "pdf_header_codes_match_long_csv_codes": true,
+  "reported_draw_year": 2023,
+  "model_target_year": 2024,
+  "blockers": 0,
+  "blocker_reasons": [],
+  "guardrail": "2023 deer odds rows are prior draw truth; this audit does not forecast or alter probability math."
+}

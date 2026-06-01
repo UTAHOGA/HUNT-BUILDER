@@ -1,0 +1,591 @@
+{
+  "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_antlerless_elk_permits.csv",
+  "truth_rows": 116,
+  "unique_hunt_codes": 116,
+  "grand_total_2025": 10313,
+  "grand_total_2026": 11795,
+  "grand_total_delta": 1482,
+  "group_changes": [
+    {
+      "permit_group": "Wasatch Mtns, Currant Creek",
+      "permits_2025_total": 0,
+      "permits_2026_total": 300,
+      "permit_delta_total": 300,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Mt Dutton, North",
+      "permits_2025_total": 0,
+      "permits_2026_total": 160,
+      "permit_delta_total": 160,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Manti, Ferron Lower Escarpment",
+      "permits_2025_total": 0,
+      "permits_2026_total": 120,
+      "permit_delta_total": 120,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Cache",
+      "permits_2025_total": 90,
+      "permits_2026_total": 200,
+      "permit_delta_total": 110,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Nebo",
+      "permits_2025_total": 505,
+      "permits_2026_total": 605,
+      "permit_delta_total": 100,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Nine Mile, West Anthro",
+      "permits_2025_total": 50,
+      "permits_2026_total": 150,
+      "permit_delta_total": 100,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Ogden (excludes Hyrum)",
+      "permits_2025_total": 200,
+      "permits_2026_total": 300,
+      "permit_delta_total": 100,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Wasatch Mtns, Avintaquin",
+      "permits_2025_total": 350,
+      "permits_2026_total": 450,
+      "permit_delta_total": 100,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Wasatch Mtns, Red Creek West",
+      "permits_2025_total": 0,
+      "permits_2026_total": 100,
+      "permit_delta_total": 100,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Wasatch Mtns, West-Central",
+      "permits_2025_total": 425,
+      "permits_2026_total": 525,
+      "permit_delta_total": 100,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Wasatch Mtns, Wildcat/Timber Canyon",
+      "permits_2025_total": 0,
+      "permits_2026_total": 100,
+      "permit_delta_total": 100,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Kamas",
+      "permits_2025_total": 375,
+      "permits_2026_total": 300,
+      "permit_delta_total": -75,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Box Elder, Grouse Creek",
+      "permits_2025_total": 0,
+      "permits_2026_total": 30,
+      "permit_delta_total": 30,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Cache, Rich",
+      "permits_2025_total": 40,
+      "permits_2026_total": 70,
+      "permit_delta_total": 30,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Kamas, Oakley",
+      "permits_2025_total": 125,
+      "permits_2026_total": 100,
+      "permit_delta_total": -25,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "North Slope, Three Corners",
+      "permits_2025_total": 75,
+      "permits_2026_total": 100,
+      "permit_delta_total": 25,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Ogden",
+      "permits_2025_total": 150,
+      "permits_2026_total": 175,
+      "permit_delta_total": 25,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Paunsaugunt, East Creek",
+      "permits_2025_total": 0,
+      "permits_2026_total": 25,
+      "permit_delta_total": 25,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Beaver, East",
+      "permits_2025_total": 60,
+      "permits_2026_total": 80,
+      "permit_delta_total": 20,
+      "significance": "SIGNIFICANT"
+    },
+    {
+      "permit_group": "Box Elder, Hansel Mtn",
+      "permits_2025_total": 20,
+      "permits_2026_total": 30,
+      "permit_delta_total": 10,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Cache, Richards Hollow",
+      "permits_2025_total": 10,
+      "permits_2026_total": 20,
+      "permit_delta_total": 10,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Monroe",
+      "permits_2025_total": 30,
+      "permits_2026_total": 40,
+      "permit_delta_total": 10,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Oquirrh-Stansbury, East",
+      "permits_2025_total": 60,
+      "permits_2026_total": 70,
+      "permit_delta_total": 10,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Southwest Desert, Burbank/Garrison",
+      "permits_2025_total": 15,
+      "permits_2026_total": 12,
+      "permit_delta_total": -3,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Book Cliffs, Bitter Creek/South",
+      "permits_2025_total": 293,
+      "permits_2026_total": 293,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Boulder-Circle Cliffs",
+      "permits_2025_total": 30,
+      "permits_2026_total": 30,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Boulder East",
+      "permits_2025_total": 50,
+      "permits_2026_total": 50,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Boulder West",
+      "permits_2025_total": 50,
+      "permits_2026_total": 50,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Box Elder, Pilot Mtn",
+      "permits_2025_total": 10,
+      "permits_2026_total": 10,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Chalk Creek",
+      "permits_2025_total": 350,
+      "permits_2026_total": 350,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Diamond Mtn",
+      "permits_2025_total": 100,
+      "permits_2026_total": 100,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Dolores Triangle",
+      "permits_2025_total": 50,
+      "permits_2026_total": 50,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "East Canyon",
+      "permits_2025_total": 150,
+      "permits_2026_total": 150,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "East Canyon, East",
+      "permits_2025_total": 150,
+      "permits_2026_total": 150,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Fillmore, Oak Creek LE",
+      "permits_2025_total": 50,
+      "permits_2026_total": 50,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Fillmore, Pahvant",
+      "permits_2025_total": 100,
+      "permits_2026_total": 100,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Fishlake/Thousand Lakes",
+      "permits_2025_total": 270,
+      "permits_2026_total": 270,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Fishlake/Thousand Lakes East",
+      "permits_2025_total": 65,
+      "permits_2026_total": 65,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Fishlake/Thousand Lakes West",
+      "permits_2025_total": 60,
+      "permits_2026_total": 60,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "La Sal Mtns",
+      "permits_2025_total": 350,
+      "permits_2026_total": 350,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "La Sal Mtns, North",
+      "permits_2025_total": 175,
+      "permits_2026_total": 175,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Manti, Central",
+      "permits_2025_total": 70,
+      "permits_2026_total": 70,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Manti, Ferron Canyon",
+      "permits_2025_total": 70,
+      "permits_2026_total": 70,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Manti, Gordon Creek-Price Canyon",
+      "permits_2025_total": 100,
+      "permits_2026_total": 100,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Manti, Horn Mtn",
+      "permits_2025_total": 60,
+      "permits_2026_total": 60,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Manti, Mohrland-Stump Flat",
+      "permits_2025_total": 120,
+      "permits_2026_total": 120,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Manti, North",
+      "permits_2025_total": 300,
+      "permits_2026_total": 300,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Manti, South",
+      "permits_2025_total": 200,
+      "permits_2026_total": 200,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Manti, West",
+      "permits_2025_total": 120,
+      "permits_2026_total": 120,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Morgan-South Rich",
+      "permits_2025_total": 235,
+      "permits_2026_total": 235,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Morgan-South Rich, South Rich",
+      "permits_2025_total": 35,
+      "permits_2026_total": 35,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Nebo, Moroni Hills",
+      "permits_2025_total": 20,
+      "permits_2026_total": 20,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Nine Mile, Anthro",
+      "permits_2025_total": 200,
+      "permits_2026_total": 200,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Nine Mile, Range Creek",
+      "permits_2025_total": 200,
+      "permits_2026_total": 200,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "North Slope, Greendale",
+      "permits_2025_total": 5,
+      "permits_2026_total": 5,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "North Slope, Henrys Fork-Burnt Fork",
+      "permits_2025_total": 100,
+      "permits_2026_total": 100,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "North Slope, Summit",
+      "permits_2025_total": 275,
+      "permits_2026_total": 275,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "North Slope, West Daggett",
+      "permits_2025_total": 70,
+      "permits_2026_total": 70,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Panguitch Lake",
+      "permits_2025_total": 140,
+      "permits_2026_total": 140,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Paunsaugunt",
+      "permits_2025_total": 20,
+      "permits_2026_total": 20,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Pine Valley",
+      "permits_2025_total": 30,
+      "permits_2026_total": 30,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "San Juan",
+      "permits_2025_total": 250,
+      "permits_2026_total": 250,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "San Rafael, North",
+      "permits_2025_total": 5,
+      "permits_2026_total": 5,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Southwest Desert",
+      "permits_2025_total": 100,
+      "permits_2026_total": 100,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Vernal/Bonanza",
+      "permits_2025_total": 200,
+      "permits_2026_total": 200,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Vernal, Buckskin Hills-Jensen",
+      "permits_2025_total": 200,
+      "permits_2026_total": 200,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Vernal, Mosby Mtn",
+      "permits_2025_total": 100,
+      "permits_2026_total": 100,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Wasatch Mtns",
+      "permits_2025_total": 1200,
+      "permits_2026_total": 1200,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Wasatch Mtns, Box Elder Peak",
+      "permits_2025_total": 45,
+      "permits_2026_total": 45,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Wasatch Mtns, Rabbit Gulch",
+      "permits_2025_total": 50,
+      "permits_2026_total": 50,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Wasatch Mtns, Salt Lake",
+      "permits_2025_total": 45,
+      "permits_2026_total": 45,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Wasatch Mtns, Tabby Mtn",
+      "permits_2025_total": 100,
+      "permits_2026_total": 100,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Wasatch Mtns, Wallsburg",
+      "permits_2025_total": 90,
+      "permits_2026_total": 90,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Wasatch Mtns, West Heber",
+      "permits_2025_total": 30,
+      "permits_2026_total": 30,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Wasatch Mtns, West Timpanogos",
+      "permits_2025_total": 25,
+      "permits_2026_total": 25,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "West Desert, Tintic Valley",
+      "permits_2025_total": 50,
+      "permits_2026_total": 50,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Yellowstone",
+      "permits_2025_total": 350,
+      "permits_2026_total": 350,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Zion",
+      "permits_2025_total": 220,
+      "permits_2026_total": 220,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    }
+  ],
+  "notable_findings": [
+    "Beaver, East changed from 60 to 80 total permits.",
+    "Box Elder, Grouse Creek changed from 0 to 30 total permits.",
+    "Box Elder, Hansel Mtn changed from 20 to 30 total permits.",
+    "Cache changed from 90 to 200 total permits.",
+    "Cache, Rich changed from 40 to 70 total permits.",
+    "Cache, Richards Hollow changed from 10 to 20 total permits.",
+    "Kamas changed from 375 to 300 total permits.",
+    "Kamas, Oakley changed from 125 to 100 total permits.",
+    "Manti, Ferron Lower Escarpment changed from 0 to 120 total permits.",
+    "Monroe changed from 30 to 40 total permits.",
+    "Mt Dutton, North changed from 0 to 160 total permits.",
+    "Nebo changed from 505 to 605 total permits.",
+    "Nine Mile, West Anthro changed from 50 to 150 total permits.",
+    "North Slope, Three Corners changed from 75 to 100 total permits.",
+    "Ogden changed from 150 to 175 total permits.",
+    "Ogden (excludes Hyrum) changed from 200 to 300 total permits.",
+    "Oquirrh-Stansbury, East changed from 60 to 70 total permits.",
+    "Paunsaugunt, East Creek changed from 0 to 25 total permits.",
+    "Southwest Desert, Burbank/Garrison changed from 15 to 12 total permits.",
+    "Wasatch Mtns, Avintaquin changed from 350 to 450 total permits.",
+    "Wasatch Mtns, Currant Creek changed from 0 to 300 total permits.",
+    "Wasatch Mtns, Red Creek West changed from 0 to 100 total permits.",
+    "Wasatch Mtns, West-Central changed from 425 to 525 total permits.",
+    "Wasatch Mtns, Wildcat/Timber Canyon changed from 0 to 100 total permits."
+  ],
+  "all_2026_repo_matches_truth": true,
+  "repo_mismatch_row_count": 0,
+  "repo_mismatch_hunt_codes": [],
+  "surface_mismatch_counts": {
+    "reference": 0,
+    "master": 0,
+    "ladder": 0,
+    "draw_reality": 0
+  }
+}

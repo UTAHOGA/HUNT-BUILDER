@@ -1,0 +1,187 @@
+{
+  "generated_at_utc": "2026-05-23T11:59:04.420486+00:00",
+  "source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+  "source_hunt_codes_with_2025_draw_permits": 572,
+  "files_written": 15,
+  "total_rows_changed": 0,
+  "total_changed_cells": 0,
+  "status_counts": {
+    "written": 15
+  },
+  "results": [
+    {
+      "file": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+      "kind": "csv",
+      "rows_checked": 1411,
+      "matched_hunt_codes": 572,
+      "rows_changed": 0,
+      "changed_cells": 0,
+      "status": "written"
+    },
+    {
+      "file": "processed_data/hunt_master_enriched.csv",
+      "kind": "csv",
+      "rows_checked": 54357,
+      "matched_hunt_codes": 572,
+      "rows_changed": 0,
+      "changed_cells": 0,
+      "status": "written"
+    },
+    {
+      "file": "processed_data/hunt_unit_reference_linked.csv",
+      "kind": "csv",
+      "rows_checked": 2997,
+      "matched_hunt_codes": 572,
+      "rows_changed": 0,
+      "changed_cells": 0,
+      "status": "written"
+    },
+    {
+      "file": "processed_data/point_ladder_view.csv",
+      "kind": "csv",
+      "rows_checked": 92844,
+      "matched_hunt_codes": 572,
+      "rows_changed": 0,
+      "changed_cells": 0,
+      "status": "written"
+    },
+    {
+      "file": "processed_data/draw_reality_engine.csv",
+      "kind": "csv",
+      "rows_checked": 36892,
+      "matched_hunt_codes": 572,
+      "rows_changed": 0,
+      "changed_cells": 0,
+      "status": "written"
+    },
+    {
+      "file": "processed_data/draw_reality_engine_predictive_v2.csv",
+      "kind": "csv",
+      "rows_checked": 27940,
+      "matched_hunt_codes": 572,
+      "rows_changed": 0,
+      "changed_cells": 0,
+      "status": "written"
+    },
+    {
+      "file": "processed_data/ml_draw_predictions_v1.csv",
+      "kind": "csv",
+      "rows_checked": 27940,
+      "matched_hunt_codes": 572,
+      "rows_changed": 0,
+      "changed_cells": 0,
+      "status": "written"
+    },
+    {
+      "file": "data/hunt-master-canonical-2026-database-candidate.csv",
+      "kind": "csv",
+      "rows_checked": 1411,
+      "matched_hunt_codes": 572,
+      "rows_changed": 0,
+      "changed_cells": 0,
+      "status": "written"
+    },
+    {
+      "file": "data/hunt-master-canonical-2026-source-of-truth.csv",
+      "kind": "csv",
+      "rows_checked": 1411,
+      "matched_hunt_codes": 572,
+      "rows_changed": 0,
+      "changed_cells": 0,
+      "status": "written"
+    },
+    {
+      "file": "processed_data/hunt-master-canonical-2026-source-of-truth.csv",
+      "kind": "csv",
+      "rows_checked": 1411,
+      "matched_hunt_codes": 572,
+      "rows_changed": 0,
+      "changed_cells": 0,
+      "status": "written"
+    },
+    {
+      "file": "hunt-master-canonical-2026.json",
+      "kind": "json",
+      "container": "hunt_catalog",
+      "rows_checked": 1411,
+      "matched_hunt_codes": 572,
+      "rows_changed": 0,
+      "changed_cells": 0,
+      "status": "written"
+    },
+    {
+      "file": "canonical/hunt-planner-2026.json",
+      "kind": "json",
+      "container": "hunt_catalog",
+      "rows_checked": 1411,
+      "matched_hunt_codes": 572,
+      "rows_changed": 0,
+      "changed_cells": 0,
+      "status": "written"
+    },
+    {
+      "file": "generated/pages/hunt-planner.json",
+      "kind": "json",
+      "container": "hunt_catalog",
+      "rows_checked": 1411,
+      "matched_hunt_codes": 572,
+      "rows_changed": 0,
+      "changed_cells": 0,
+      "status": "written"
+    },
+    {
+      "file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "kind": "json",
+      "container": "root_array",
+      "rows_checked": 1411,
+      "matched_hunt_codes": 572,
+      "rows_changed": 0,
+      "changed_cells": 0,
+      "status": "written"
+    },
+    {
+      "file": "processed_data/hunt-master-canonical-2026-source-of-truth.json",
+      "kind": "json",
+      "container": "root_array",
+      "rows_checked": 1411,
+      "matched_hunt_codes": 572,
+      "rows_changed": 0,
+      "changed_cells": 0,
+      "status": "written"
+    }
+  ],
+  "db1002_spot_checks": [
+    {
+      "file": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+      "hunt_code": "DB1002",
+      "permits_2025_draw_res": "1",
+      "permits_2025_draw_nr": "0",
+      "permits_2025_draw_total": "1",
+      "draw_2025_bg_report_page": "19"
+    },
+    {
+      "file": "processed_data/hunt_master_enriched.csv",
+      "hunt_code": "DB1002",
+      "permits_2025_draw_res": "1",
+      "permits_2025_draw_nr": "0",
+      "permits_2025_draw_total": "1",
+      "draw_2025_bg_report_page": "19"
+    },
+    {
+      "file": "processed_data/point_ladder_view.csv",
+      "hunt_code": "DB1002",
+      "permits_2025_draw_res": "1",
+      "permits_2025_draw_nr": "0",
+      "permits_2025_draw_total": "1",
+      "draw_2025_bg_report_page": "19"
+    },
+    {
+      "file": "canonical/hunt-planner-2026.json",
+      "hunt_code": "DB1002",
+      "permits_2025_draw_res": "1",
+      "permits_2025_draw_nr": "0",
+      "permits_2025_draw_total": "1",
+      "draw_2025_bg_report_page": "19"
+    }
+  ]
+}

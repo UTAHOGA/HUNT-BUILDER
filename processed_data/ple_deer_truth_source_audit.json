@@ -1,0 +1,99 @@
+{
+  "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_buck_deer_premium_management_permits.csv",
+  "truth_rows": 30,
+  "unique_hunt_codes": 15,
+  "all_2026_repo_matches_truth": true,
+  "significance_counts": {
+    "UNCHANGED": 23,
+    "MINOR": 5,
+    "SIGNIFICANT": 2
+  },
+  "group_changes": [
+    {
+      "permit_group": "Paunsaugunt Cactus",
+      "permits_2025_total": 30,
+      "permits_2026_total": 20,
+      "permit_delta_total": -10,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Paunsaugunt Management",
+      "permits_2025_total": 45,
+      "permits_2026_total": 55,
+      "permit_delta_total": 10,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Antelope Island Management",
+      "permits_2025_total": 0,
+      "permits_2026_total": 2,
+      "permit_delta_total": 2,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Henry Mtns Premium",
+      "permits_2025_total": 44,
+      "permits_2026_total": 46,
+      "permit_delta_total": 2,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Antelope Island Premium",
+      "permits_2025_total": 1,
+      "permits_2026_total": 1,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Henry Mtns Management",
+      "permits_2025_total": 11,
+      "permits_2026_total": 11,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Paunsaugunt Premium",
+      "permits_2025_total": 145,
+      "permits_2026_total": 145,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    }
+  ],
+  "significant_row_changes_abs_gt_5": [
+    {
+      "permit_group": "Paunsaugunt Cactus",
+      "weapon": "Any Legal Weapon",
+      "hunt_code": "DB1058",
+      "residency": "Resident",
+      "permits_2025_truth": 27,
+      "permits_2026_truth": 18,
+      "permit_delta": -9,
+      "significance": "SIGNIFICANT",
+      "repo_public_permits_2026": 18,
+      "repo_match_2026": true,
+      "source_document": "2026-04-rac-packet.pdf",
+      "source_note": "User-provided supplemental RAC premium/management permit table for 2026."
+    },
+    {
+      "permit_group": "Paunsaugunt Management",
+      "weapon": "Any Legal Weapon",
+      "hunt_code": "DB1010",
+      "residency": "Resident",
+      "permits_2025_truth": 24,
+      "permits_2026_truth": 30,
+      "permit_delta": 6,
+      "significance": "SIGNIFICANT",
+      "repo_public_permits_2026": 30,
+      "repo_match_2026": true,
+      "source_document": "2026-04-rac-packet.pdf",
+      "source_note": "User-provided supplemental RAC premium/management permit table for 2026."
+    }
+  ],
+  "notable_findings": [
+    "Paunsaugunt Management total increased from 45 to 55 (+10).",
+    "Paunsaugunt Cactus total decreased from 30 to 20 (-10).",
+    "Paunsaugunt Management Any Legal Weapon DB1010 increased from 27 to 33 (+6 total, all on resident side).",
+    "Paunsaugunt Cactus DB1058 decreased from 30 to 20 (-10 total, mostly on the resident side).",
+    "Antelope Island Management DB1121 is a new 2026 row with 2 resident permits; 2025 normalized to 0."
+  ]
+}

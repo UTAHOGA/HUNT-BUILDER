@@ -1,0 +1,136 @@
+{
+  "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_oial_mountain_goat_permits.csv",
+  "truth_rows": 17,
+  "unique_hunt_codes": 17,
+  "all_2026_repo_matches_truth": true,
+  "significance_counts": {
+    "UNCHANGED": 29,
+    "MINOR": 4,
+    "SIGNIFICANT": 1
+  },
+  "group_changes": [
+    {
+      "permit_group": "Nebo",
+      "permits_2025_total": 30,
+      "permits_2026_total": 36,
+      "permit_delta_total": 6,
+      "significance": "SIGNIFICANT"
+    },
+    {
+      "permit_group": "High Uintas East",
+      "permits_2025_total": 2,
+      "permits_2026_total": 3,
+      "permit_delta_total": 1,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "High Uintas Leidy Peak",
+      "permits_2025_total": 1,
+      "permits_2026_total": 2,
+      "permit_delta_total": 1,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "La Sal Mtns",
+      "permits_2025_total": 11,
+      "permits_2026_total": 12,
+      "permit_delta_total": 1,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Beaver",
+      "permits_2025_total": 20,
+      "permits_2026_total": 20,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "High Uintas Central",
+      "permits_2025_total": 5,
+      "permits_2026_total": 5,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "High Uintas Kamas",
+      "permits_2025_total": 1,
+      "permits_2026_total": 1,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "High Uintas West",
+      "permits_2025_total": 11,
+      "permits_2026_total": 11,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Mt Dutton",
+      "permits_2025_total": 2,
+      "permits_2026_total": 2,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Ogden, Willard Peak",
+      "permits_2025_total": 1,
+      "permits_2026_total": 1,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Wasatch Mtns, Box Elder Peak",
+      "permits_2025_total": 3,
+      "permits_2026_total": 3,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Wasatch Mtns, Lone Peak",
+      "permits_2025_total": 1,
+      "permits_2026_total": 1,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Wasatch Mtns, Provo Peak",
+      "permits_2025_total": 5,
+      "permits_2026_total": 5,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Wasatch Mtns, Timpanogos",
+      "permits_2025_total": 10,
+      "permits_2026_total": 10,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    }
+  ],
+  "row_changes_abs_gt_1": [
+    {
+      "permit_group": "Nebo",
+      "weapon": "Any Legal Weapon",
+      "hunt_code": "GO6803",
+      "residency": "Resident",
+      "permits_2025_truth": 16,
+      "permits_2026_truth": 21,
+      "permit_delta": 5,
+      "significance": "SIGNIFICANT",
+      "repo_public_permits_2026": 21,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided OIAL mountain goat comparison table for 2025 to 2026."
+    }
+  ],
+  "grand_total_2025": 103,
+  "grand_total_2026": 112,
+  "grand_total_delta": 9,
+  "notable_findings": [
+    "Grand total increased from 103 to 112 (+9).",
+    "Nebo total increased from 18 to 24 (+6).",
+    "High Uintas East, High Uintas Leidy Peak, and La Sal Mtns each increased by 1 total permit.",
+    "Nonresident total increased from 10 to 11 (+1) while resident total increased from 93 to 101 (+8)."
+  ]
+}

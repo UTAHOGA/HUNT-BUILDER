@@ -1,0 +1,1395 @@
+hunt_code,boundary_id,hunt_name,sex_type,species,weapon,hunt_type,season,permits_2026_res,permits_2026_nr,permits_2026_total,NOTES,,permits_year_res,permits_year_nr,permits_year_total
+BI6500,1,Antelope Island,Hunters Choice,Bison,Any Legal Weapon,Once-in-a-lifetime,Dec 07 2026 - Dec 09 2026,2,0,2,,,,,
+DB0009,1,Antelope Island - Conservation/Expo,Buck,Deer,Any Legal Weapon,Premium Limited Entry,"Nov 9, 2026 - Nov 16, 2026",,,,,,2,0,2
+DB1002,1,Antelope Island,Buck,Deer,Any Legal Weapon,Premium Limited Entry,Nov 11 2026 - Nov 18 2026,1,0,1,,,4,2,6
+DB1121,1,Antelope Island,Buck,Deer,Any Legal Weapon,Management Buck Deer,"Nov 16 2026 - Nov 20, 2026",2,0,2,,,5,2,7
+RS1000,1,Antelope Island Conservation,Male Only,Rocky Mountain Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Nov 9 2026 - Nov 16 2026,,,,,,8,3,11
+RS6700,1,Antelope Island,Male Only,Rocky Mountain Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,"Nov 11, 2026 - Nov 18, 2026",2,0,2,,,11,0,11
+DA1041,6,"Nine Mile, Green River Valley",Antlerless,Deer,Any Legal Weapon,General Season,Oct 04 2025 - Oct 26 2025,,,15,,,5,0,5
+BR1008,7,Book Cliffs,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Summer,"July 5 - 16, 2026",26,2,28,,,6,0,6
+BR1011,7,Book Cliffs,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Late Summer,"July 18 - July 31, 2026",26,2,28,,,,,
+BR1015,7,Book Cliffs,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Spring,"March 28 - May 25, 2026",0,2,2,,,6,0,6
+DB1011,7,Book Cliffs,Buck,Deer,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,55,6,61,,,8,0,8
+DB1025,7,Book Cliffs,Buck,Deer,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,55,6,61,,,10,0,10
+DB1044,7,Book Cliffs,Buck,Deer,Multiseason,Limited Entry,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-25, 2026",8,1,9,,,6,0,6
+DB1056,7,Book Cliffs (North & South),Buck,Deer,Any Legal Weapon,Conservation,"Oct 17, 2026 - Oct 25, 2026",,,,,,10,0,10
+DB1075,7,Book Cliffs (North & South),Buck,Deer,Archery,Conservation,Aug 16 2025 - Sept 12 2025,,,,,,8,0,8
+DB1076,7,Book Cliffs (North & South),Buck,Deer,Muzzleloader,Conservation,Sept 24 2025 - Oct 02 2025,,,,,,15,0,15
+DA1030,11,"Nine Mile, Price River Valley",Antlerless,Deer,Archery,General Season,Aug 16 2025 - Sep 12 2025,,,25,,,8,7,15
+DA1046,11,"Nine Mile, Price River Valley",Antlerless,Deer,"Archery, Muzzleloader, Shotgun",General Season,Sep 13 2025 - Oct 12 2025,,,25,,,,,
+BR7102,12,Book Cliffs Little Creek Roadless,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",5,0,5,,,11,0,11
+BR7224,12,Book Cliffs Little Creek Roadless,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",14,1,15,,,,,
+BR7225,12,Book Cliffs Little Creek Roadless,Either Sex,Black Bear,Any Legal Weapon,Spot and Stalk,"Sept. 1 - Nov. 8, 2026",5,0,5,,,,,
+BR7301,12,Book Cliffs Little Creek Roadless,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Sept. 1 - Nov. 8, 2026",5,0,5,,,,,
+EB3002,12,Book Cliffs Little Creek Roadless,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 15 2026,4,0,4,,,26,2,28
+EB3028,12,Book Cliffs Little Creek Roadless,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,3,0,3,,,14,1,15
+EB3079,12,Book Cliffs Little Creek Roadless,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,2,0,2,,,14,1,15
+EB3104,12,Book Cliffs Little Creek Roadless,Bull,Elk,Multiseason,Limited Entry,"Arch: Aug 15-Sept 15, 2026 | Muzz: Sept 21-Oct 2, 2026 | ALW: Sept 16-20, 2026 & Oct 3-15, 2026",1,0,1,,,26,2,28
+EB3167,12,Book Cliffs Little Creek Roadless,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,4,1,5,,,14,1,15
+EL3002,12,Book Cliffs Little Creek Roadless,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 16 2025 - Private Land Only,,,16,,,14,1,15
+EL3028,12,Book Cliffs Little Creek Roadless,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,0,2,2
+EL3079,12,Book Cliffs Little Creek Roadless,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,0,2,2
+EL3167,12,Book Cliffs Little Creek Roadless,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,0,2,2
+DB1018,15,"Book Cliffs, South",Buck,Deer,Any Legal Weapon,Limited Entry,Oct 17 2026 - Oct 25 2026,34,4,38,,,,,
+PB5002,15,"Book Cliffs, South",Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,8,1,9,,,9,1,10
+PB5027,15,"Book Cliffs, South",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,34,4,38,,,49,5,54
+RS1001,15,"Book Cliffs, South",Male Only,Rocky Mountain Bighorn Sheep,Any Legal Weapon,Conservation,"Nov 1 - Dec 31, 2025",,,,,,17,2,19
+RS6701,15,"Book Cliffs, South",Male Only,Rocky Mountain Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Oct 31 2026 - Nov 30 2026,5,1,6,,,18,0,18
+EA1266,18,"Box Elder, Hansel Mtn",Antlerless,Elk,Any Legal Weapon,General Season,Aug 01 2025 - Jan 31 2026,18,2,20,,,7,0,7
+EA2026,18,"Box Elder, Hansel Mtn",Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,200,,,1,0,1
+RE1000,20,"Box Elder, Newfoundland Mtn",Ewe,Rocky Mountain Bighorn Sheep,Any Legal Weapon,General Season,Sep 08 2025 - Sep 16 2025,4,1,5,,,4,0,4
+RS1003,20,"Box Elder, Newfoundland Mtn",Male Only,Rocky Mountain Bighorn Sheep,Any Legal Weapon,Conservation,"Oct 25 - Dec 31, 2025",,,,,,9,0,9
+RS6703,20,"Box Elder, Newfoundland Mtn",Male Only,Rocky Mountain Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Oct 03 2026 - Oct 23 2026,4,0,4,,,4,0,4
+RS6704,20,"Box Elder, Newfoundland Mtn",Male Only,Rocky Mountain Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Oct 24 2026 - Nov 13 2026,3,1,4,,,20,2,22
+RS6722,20,"Box Elder, Newfoundland Mtn",Male Only,Rocky Mountain Bighorn Sheep,Archery,Once-in-a-lifetime,Nov 14 2026 - Dec 06 2026,2,0,2,,,7,0,7
+DA1031,21,"Oquirrh-Stansbury, Settlement Cyn",Antlerless,Deer,Archery,General Season,Aug 16 2025 - Sep 12 2025,,,20,,,35,3,38
+DA1033,23,"San Juan, Monticello",Antlerless,Deer,Archery,General Season,Aug 01 2025 - Sep 14 2025,,,5,,,7,0,7
+DA1042,23,"San Juan, Monticello",Antlerless,Deer,Archery,General Season,Nov 24 2025 - Dec 31 2025,,,5,,,36,4,40
+PB5003,24,"Box Elder, Promontory",Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,4,0,4,,,2,0,2
+PB5028,24,"Box Elder, Promontory",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,14,2,16,,,5,0,5
+PD1012,24,"Box Elder, Promontory",Doe,Pronghorn,Any Legal Weapon,General Season,Oct 04 2025 - Oct 26 2025,22,3,25,,,1,0,1
+PB5004,25,"Box Elder, Puddle Valley",Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,3,1,4,,,2,0,2
+PB5029,25,"Box Elder, Puddle Valley",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,14,2,16,,,40,3,43
+PB5005,27,"Box Elder, Snowville",Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,9,1,10,,,9,1,10
+PB5030,27,"Box Elder, Snowville",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,28,3,31,,,14,1,15
+PB5080,27,"Box Elder, Snowville",Buck,Pronghorn,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,9,1,10,,,5,0,5
+PD1000,27,"Box Elder, Snowville",Doe,Pronghorn,Any Legal Weapon,General Season,Nov 08 2025 - Dec 07 2025,72,8,80,,,17,1,18
+DA1001,28,"Box Elder, West Bear River",Antlerless,Deer,"Archery, Muzzleloader, Shotgun",General Season,Aug 18 2025 - Aug 30 2025,,,30,,,18,2,20
+DA1002,28,"Box Elder, West Bear River",Antlerless,Deer,"Archery, Muzzleloader, Shotgun",General Season,Nov 24 2025 - Nov 29 2025,,,30,,,8,0,8
+DB1078,29,Cache,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,11,1,12,,,3,0,3
+DB1502,29,Cache,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,1160,,,18,2,20
+DB1627,29,Cache,Buck,Deer,Restricted Rifle,General Season,Oct 17 2026 - Oct 25 2026,,,3480,,,1,0,1
+DB1628,29,Cache,Buck,Deer,Restricted Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,1160,,,5,0,5
+DB1771,29,Cache,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Restricted Muzz: Sept 23 2026 - Oct 01 2026 | Restricted Rifle: Oct 17 2026 - Oct 25 2026,,,588,,,3,0,3
+EA1267,29,Cache,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 26 2025,81,9,90,,,13,1,14
+EA2027,29,Cache,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,300,,,7,0,7
+LO1502,29,Cache,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,22,2,24
+LO1627,29,Cache,Buck,Deer,Restricted Rifle,General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,2,,,5,0,5
+LO1628,29,Cache,Buck,Deer,Restricted Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,2,,,5,0,5
+MB6000,29,Cache,Bull,Moose,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Oct 31 2026,14,3,17,,,5,0,5
+DB1026,32,"Cache, Crawford Mtn",Buck,Deer,Muzzleloader,Limited Entry,Nov 07 2026 - Nov 22 2026,8,1,9,,,22,1,23
+EB3003,33,Cache Meadowville,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 15 2026,9,1,10,,,4,0,4
+EB3032,33,Cache Meadowville,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,3,1,4,,,7,0,7
+EB3033,33,Cache Meadowville,Bull,Elk,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 15 2026,6,1,7,,,6,0,6
+EB3081,33,Cache Meadowville,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,5,1,6,,,2,0,2
+EB3105,33,Cache Meadowville,Bull,Elk,Multiseason,Limited Entry,"Arch: Aug 15-Sept 15, 2026 | Muzz: Sept 21-Oct 2, 2026 | ALW: Sept 16-20, 2026 & Oct 3-15, 2026 & Nov 7-15, 2026",1,0,1,,,1,0,1
+EB3168,33,Cache Meadowville,Bull,Elk,Archery,Limited Entry,Nov 28 2026 - Dec 13 2026,4,1,5,,,6,0,6
+EB3169,33,Cache Meadowville,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,11,1,12,,,25,2,27
+EL3003,33,Cache Meadowville,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 16 2025 - Private Land Only,,,16,,,9,1,10
+EL3032,33,Cache Meadowville,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,18,2,20
+EL3033,33,Cache Meadowville,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Nov 08 2025 - Nov 16 2025 - Private Land Only,,,16,,,10,1,11
+EL3081,33,Cache Meadowville,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,18,2,20
+EL3168,33,Cache Meadowville,Bull,Elk,Archery,Limited Entry - Private Land Only,Nov 29 2025 - Dec 14 2025 - Private Land Only,,,14,,,5,0,5
+EL3169,33,Cache Meadowville,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,1,0,1
+EB3132,36,Cache North,Bull,Elk,Archery,Limited Entry,Sept 01 2026 - Sept 30 2026,22,2,24,,,3,0,3
+EB3139,36,Cache North,Bull,Elk,"HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",Limited Entry,Nov 07 2026 - Nov 30 2026,22,2,24,,,26,3,29
+EL3132,36,Cache North,Bull,Elk,Archery,Limited Entry - Private Land Only,Sept 01 2025 - Sept 30 2025 - Private Land Only,,,30,,,2,0,2
+EL3139,36,Cache North,Bull,Elk,"HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",Limited Entry - Private Land Only,Nov 08 2025 - Nov 30 2025 - Private Land Only,,,30,,,9,0,9
+EA1010,38,"Cache, Rich",Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 26 2025,18,2,20,,,4,0,4
+EA1193,38,"Cache, Rich",Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Jan 10 2026,18,2,20,,,9,1,10
+PB5073,38,"Cache, Rich",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,6,0,6,,,5,0,5
+PB5074,38,"Cache, Rich",Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,2,0,2,,,6,0,6
+PB5075,38,"Cache, Rich",Buck,Pronghorn,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,2,0,2,,,7,0,7
+EA1011,39,"Cache, Richards Hollow",Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Dec 31 2025,9,1,10,,,4,0,4
+EA1012,40,"Cache, Richmond Hyde Park",Antlerless,Elk,Any Legal Weapon,General Season,Aug 01 2025 - Dec 01 2025,4,1,5,,,9,0,9
+EA1206,40,"Cache, Richmond Hyde Park",Antlerless,Elk,Any Legal Weapon,General Season,Dec 02 2025 - Jan 15 2026,9,1,10,,,18,2,20
+EB3005,41,Cache South,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 15 2026,10,1,11,,,14,1,15
+EB3036,41,Cache South,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,4,0,4,,,5,0,5
+EB3037,41,Cache South,Bull,Elk,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 15 2026,6,1,7,,,1,0,1
+EB3083,41,Cache South,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,5,1,6,,,4,0,4
+EB3107,41,Cache South,Bull,Elk,Multiseason,Limited Entry,"Arch: Aug 15-Sept 15, 2026 | Muzz: Sept 21-Oct 2, 2026 | ALW: Sept 16-20, 2026 & Oct 3-15, 2026 & Nov 7-15, 2026",1,0,1,,,1,0,1
+EB3170,41,Cache South,Bull,Elk,Archery,Limited Entry,Nov 28 2026 - Dec 13 2026,4,1,5,,,2,0,2
+EB3171,41,Cache South,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,11,1,12,,,6,0,6
+EL3005,41,Cache South,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 16 2025 - Private Land Only,,,16,,,9,1,10
+EL3036,41,Cache South,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,5,0,5
+EL3037,41,Cache South,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Nov 08 2025 - Nov 16 2025 - Private Land Only,,,16,,,13,1,14
+EL3083,41,Cache South,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,18,2,20
+EL3170,41,Cache South,Bull,Elk,Archery,Limited Entry - Private Land Only,Nov 29 2025 - Dec 14 2025 - Private Land Only,,,14,,,5,0,5
+EL3171,41,Cache South,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,,,
+EA1013,43,"Manti, Central",Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,63,7,70,,,1,0,1
+EA1015,45,"Manti, Ferron Canyon",Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,63,7,70,,,4,0,4
+EA1017,47,"Manti, Gordon Creek-Price Canyon",Antlerless,Elk,Any Legal Weapon,General Season,Nov 27 2025 - Jan 31 2026,90,10,100,,,10,1,11
+EA1018,49,"Manti, Horn Mtn",Antlerless,Elk,Any Legal Weapon,General Season,Nov 19 2025 - Dec 31 2025,54,6,60,,,3,0,3
+EA2011,51,Manti,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,300,,,11,1,12
+EB3006,51,Manti,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 15 2026,148,17,165,,,5,0,5
+EB3038,51,Manti,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,61,7,68,,,3,0,3
+EB3039,51,Manti,Bull,Elk,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 15 2026,102,11,113,,,3,0,3
+EB3084,51,Manti,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,89,10,99,,,14,1,15
+EB3108,51,Manti,Bull,Elk,Multiseason,Limited Entry,"Arch: Aug 15-Sept 15, 2026 | Muzz: Sept 21-Oct 2, 2026 | ALW: Sept 16-20, 2026 & Oct 3-15, 2026 & Nov 7-15, 2026",18,2,20,,,9,1,10
+EB3126,51,Manti,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,175,20,195,,,1,0,1
+EB3172,51,Manti,Bull,Elk,Archery,Limited Entry,Nov 28 2026 - Dec 13 2026,9,1,10,,,4,0,4
+EL3006,51,Manti,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 16 2025 - Private Land Only,,,16,,,5,0,5
+EL3038,51,Manti,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,1,0,1
+EL3039,51,Manti,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Nov 08 2025 - Nov 16 2025 - Private Land Only,,,16,,,1,0,1
+EL3084,51,Manti,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,,,
+EL3126,51,Manti,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,1,0,1
+EL3172,51,Manti,Bull,Elk,Archery,Limited Entry - Private Land Only,Nov 29 2025 - Dec 14 2025 - Private Land Only,,,14,,,13,1,14
+BR7003,52,Manti North,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",17,2,19,,,,,
+BR7104,52,Manti North,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",17,1,18,,,,,30
+BR7203,52,Manti North,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",10,1,11,,,,,30
+BR7303,52,Manti North,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",13,1,14,,,,,15
+EA1020,55,"Manti, Mohrland-Stump Flat",Antlerless,Elk,Any Legal Weapon,General Season,Nov 27 2025 - Jan 31 2026,108,12,120,,,,,25
+EA1022,58,"Manti, North",Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,270,30,300,,,5,0,5
+DB1100,69,Chalk Creek,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,10,1,11,,,15,0,15
+DB1599,69,Chalk Creek,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,880,,,5,0,5
+DB1600,69,Chalk Creek,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,440,,,,,20
+DB1601,69,Chalk Creek,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,440,,,,,30
+DB1602,69,Chalk Creek,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,440,,,,,25
+DB1799,69,Chalk Creek,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,292,,,,,20
+EA1026,69,Chalk Creek,Antlerless,Elk,Any Legal Weapon,General Season,Nov 08 2025 - Jan 31 2026,315,35,350,,,,,5
+EA2004,69,Chalk Creek,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,600,,,,,15
+LO1599,69,Chalk Creek,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,,,,,5
+LO1600,69,Chalk Creek,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,,,20
+LO1601,69,Chalk Creek,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,,,,,,25
+LO1602,69,Chalk Creek,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,,,25
+MB6001,69,Chalk Creek,Bull,Moose,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Oct 31 2026,4,0,4,,,,,15
+RS6721,75,"Oquirrh-Stansbury, West",Male Only,Rocky Mountain Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Oct 31 2026 - Nov 30 2026,3,0,3,,,,,35
+DA1027,77,"East Canyon, Davis-North Salt Lake",Antlerless,Deer,Any Legal Weapon,General Season,Aug 01 2025 - Sep 15 2025,,,30,,,8,0,8
+MB6003,79,"East Canyon, Morgan-Summit",Bull,Moose,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Oct 31 2026,5,0,5,,,,,
+LP5033,81,"Fillmore, Oak Creek South - Private Land Only",Buck,Pronghorn,Any Legal Weapon,Limited Entry - Private Land Only,Sept 13 2025 - Sept 21 2025 - Private Land Only,,,,,,,,
+PB5008,81,"Fillmore, Oak Creek South",Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,15,2,17,,,,,
+PB5033,81,"Fillmore, Oak Creek South",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,46,5,51,,,,,
+PB5065,81,"Fillmore, Oak Creek South",Buck,Pronghorn,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,15,2,17,,,,,
+PD1034,81,"Fillmore, Oak Creek South",Doe,Pronghorn,Any Legal Weapon,General Season,Aug 01 2025 - Aug 13 2025,27,3,30,,,,,
+PD1035,81,"Fillmore, Oak Creek South",Doe,Pronghorn,Any Legal Weapon,General Season,Nov 01 2025 - Nov 29 2025,27,3,30,,,,,1
+DB1012,85,"Fillmore, Oak Creek LE",Buck,Deer,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,12,1,13,,,,,2000
+DB1019,85,"Fillmore, Oak Creek LE",Buck,Deer,Any Legal Weapon,Limited Entry,Oct 17 2026 - Oct 25 2026,33,4,37,,,,,
+DB1029,85,"Fillmore, Oak Creek LE",Buck,Deer,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,12,1,13,,,,,
+DB1045,85,"Fillmore, Oak Creek LE",Buck,Deer,Multiseason,Limited Entry,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026",2,0,2,,,,,
+EA1209,85,"Fillmore, Oak Creek LE",Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Jan 30 2026,45,5,50,,,,,
+LD1019,85,"Fillmore, Oak Creek LE - Private Land Only",Buck,Deer,Any Legal Weapon,Limited Entry - Private Land Only,Oct 18 2025 - Oct 26 2025 - Private Land Only,,,,,,,,
+EA2036,86,"Oquirrh-Stansbury, East",Antlerless,Elk,Any Legal Weapon,General Season,Nov 08 2025 - Jan 31 2026,54,6,60,,,8,1,9
+BR7007,88,Fillmore Pahvant,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",1,0,1,,,26,3,29
+BR7124,88,Fillmore Pahvant,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",2,0,2,,,1,0,1
+BR7207,88,Fillmore Pahvant,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",1,0,1,,,24,3,27
+EA1030,88,"Fillmore, Pahvant",Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Dec 06 2025,45,5,50,,,75,8,83
+EA1031,88,"Fillmore, Pahvant",Antlerless,Elk,Any Legal Weapon,General Season,Dec 13 2025 - Jan 30 2026,45,5,50,,,8,1,9
+EA2039,88,"Fillmore, Pahvant",Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,150,,,26,3,29
+EB3008,88,Fillmore Pahvant,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 15 2026,19,2,21,,,1,0,1
+EB3042,88,Fillmore Pahvant,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,8,1,9,,,3,1,4
+EB3043,88,Fillmore Pahvant,Bull,Elk,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 15 2026,13,2,15,,,10,1,11
+EB3086,88,Fillmore Pahvant,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,12,1,13,,,30,3,33
+EB3110,88,Fillmore Pahvant,Bull,Elk,Multiseason,Limited Entry,"Arch: Aug 15-Sept 15, 2026 | Muzz: Sept 21-Oct 2, 2026 | ALW: Sept 16-20, 2026 & Oct 3-15, 2026 & Nov 7-15, 2026",3,0,3,,,55,6,61
+EB3180,88,Fillmore Pahvant,Bull,Elk,Archery,Limited Entry,Nov 28 2026 - Dec 13 2026,18,2,20,,,12,1,13
+EB3181,88,Fillmore Pahvant,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,22,3,25,,,5,0,5
+EL3008,88,Fillmore Pahvant,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 16 2025 - Private Land Only,,,16,,,15,2,17
+EL3042,88,Fillmore Pahvant,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,22,2,24
+EL3043,88,Fillmore Pahvant,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Nov 08 2025 - Nov 16 2025 - Private Land Only,,,16,,,46,5,51
+EL3086,88,Fillmore Pahvant,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,137,15,152
+EL3180,88,Fillmore Pahvant,Bull,Elk,Archery,Limited Entry - Private Land Only,Nov 29 2025 - Dec 14 2025 - Private Land Only,,,14,,,34,4,38
+EL3181,88,Fillmore Pahvant,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,33,4,37
+BR7017,92,Cache/Ogden,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",2,0,2,,,13,2,15
+BR7121,92,Cache/Ogden,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",4,0,4,,,42,5,47
+BR7228,92,Cache/Ogden,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",1,0,1,,,61,7,68
+BR7320,92,Cache/Ogden,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",4,0,4,,,130,14,144
+BR7122,93,Chalk Creek/East Canyon/Morgan-South Rich,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",7,0,7,,,55,6,61
+BI6503,94,Henry Mtns,Hunters Choice,Bison,Any Legal Weapon,Once-in-a-lifetime,Oct 28 2026 - Nov 8 2026,4,2,6,,,8,1,9
+BI6504,94,Henry Mtns,Hunters Choice,Bison,Any Legal Weapon,Once-in-a-lifetime,Nov 11 2026 - Nov 22 2026,5,2,7,,,11,1,12
+BI6505,94,Henry Mtns,Cow Only,Bison,Any Legal Weapon,Once-in-a-lifetime,Dec 9 2026 - Dec 20 2026,8,3,11,,,12,1,13
+BI6506,94,Henry Mtns,Cow Only,Bison,Any Legal Weapon,Once-in-a-lifetime,"Dec 23, 2026 - Jan 3, 2027",11,0,11,,,4,1,5
+BI6509,94,Henry Mtns,Hunters Choice,Bison,Archery,Once-in-a-lifetime,"Jan 18 - 31, 2027",5,0,5,,,5,0,5
+BI6516,94,Henry Mtns,Hunters Choice,Bison,Any Legal Weapon,Once-in-a-lifetime,Nov 25 2026 - Dec 6 2026,6,0,6,,,5,1,6
+BI6539,94,Henry Mtns,Cow Only,Bison,Any Legal Weapon,Once-in-a-lifetime,"Jan 6 - 17, 2027",11,0,11,,,6,1,7
+DB1000,94,Henry Mtns,Buck,Deer,Archery,Premium Limited Entry,Aug 15 2026 - Sept 11 2026,8,1,9,,,13,2,15
+DB1003,94,Henry Mtns,Buck,Deer,Any Legal Weapon,Premium Limited Entry,Oct 17 2026 - Oct 25 2026,24,3,27,,,15,2,17
+DB1005,94,Henry Mtns,Buck,Deer,Muzzleloader,Premium Limited Entry,Sept 23 2026 - Oct 01 2026,8,1,9,,,22,2,24
+DB1007,94,Henry Mtns,Buck,Deer,Multiseason,Premium Limited Entry,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026",1,0,1,,,6,1,7
+DB1009,94,Henry Mtns (Management Buck Deer),Buck,Deer,Any Legal Weapon,Management Buck Deer,Oct 26 2026 - Oct 30 2026,10,1,11,,,4,1,5
+DS6600,94,Henry Mtns,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,3,0,3,,,30,3,33
+EA1077,96,Boulder-Circle Cliffs,Antlerless,Elk,Any Legal Weapon,General Season,Oct 07 2025 - Jan 10 2026,27,3,30,,,46,5,51
+PB5034,97,Kaiparowits,Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,2,0,2,,,15,2,17
+DS1002,98,"Kaiparowits, East",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Conservation,"Sept 13, 2025 - Dec 31, 2025",,,,,,8,1,9
+DS6601,98,"Kaiparowits, East",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,10,3,13,,,2,0,2
+DS1006,100,"Kaiparowits, West",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Conservation,"Sept 13, 2025 - Dec 31, 2025",,,,,,2,0,2
+DS6603,100,"Kaiparowits, West",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,3,1,4,,,4,0,4
+GO6804,102,High Uintas Kamas,Hunters Choice,Mountain Goat,Any Legal Weapon,Once-in-a-lifetime,Sept 05 2026 - Oct 31 2026,1,0,1,,,7,1,8
+EA1035,104,"Kamas, Oakley",Antlerless,Elk,Any Legal Weapon,General Season,Nov 08 2025 - Dec 31 2025,112,13,125,,,4,1,5
+EA1207,107,"Nebo, Moroni Hills",Antlerless,Elk,Any Legal Weapon,General Season,Aug 01 2025 - Aug 19 2025,9,1,10,,,13,1,14
+EA1226,107,"Nebo, Moroni Hills",Antlerless,Elk,Any Legal Weapon,General Season,Sep 13 2025 - Oct 03 2025,9,1,10,,,6,1,7
+BR7021,108,Dolores Triangle,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",2,0,2,,,,,
+BR7126,108,Dolores Triangle,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",6,0,6,,,18,2,20
+BR7238,108,Dolores Triangle,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",2,0,2,,,14,2,16
+DB1013,108,Dolores Triangle,Buck,Deer,Archery,Limited Entry,Oct 31 2026 - Nov 13 2026,5,0,5,,,10,1,11
+DB1020,108,Dolores Triangle,Buck,Deer,Any Legal Weapon,Limited Entry,Nov 14 2026 - Nov 22 2026,13,2,15,,,10,1,11
+DB1031,108,Dolores Triangle,Buck,Deer,Muzzleloader,Limited Entry,Nov 23 2026 - Dec 01 2026,5,0,5,,,,,
+DB1118,108,Dolores Triangle,Buck,Deer,Multiseason,Conservation,"Arch: Oct 31-Nov 13, 2026 | Any Legal Weapon: Nov 14-22, 2026 | Muzz: Nov 23-Dec 1, 2026",,,,,,,,
+EA1037,108,"La Sal, Dolores Triangle",Antlerless,Elk,Any Legal Weapon,General Season,Dec 12 2025 - Jan 31 2026,45,5,50,,,23,3,26
+EB3044,108,Dolores Triangle,Bull,Elk,Any Legal Weapon,Limited Entry,Dec 05 2026 - Jan 31 2027,6,1,7,,,11,1,12
+EL3044,108,La Sal Dolores Triangle,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Dec 06 2025 - Jan 31 2026 - Private Land Only,,,31,,,40,5,45
+PD1033,110,"San Rafael, Poison Springs Bench",Doe,Pronghorn,Any Legal Weapon,General Season,Oct 04 2025 - Oct 26 2025,13,2,15,,,23,3,26
+DA1003,115,"Monroe/Plateau, Sevier Valley",Antlerless,Deer,"Archery, Muzzleloader, Shotgun",General Season,Sep 01 2025 - Sep 30 2025,,,15,,,8,1,9
+EA1231,116,"West Desert, Tintic Valley",Antlerless,Elk,Any Legal Weapon,General Season,Nov 08 2025 - Jan 31 2026,45,5,50,,,12,1,13
+EA2019,116,"West Desert, Tintic Valley",Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,60,,,12,1,13
+DB1103,117,Morgan-South Rich,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,7,1,8,,,13,1,14
+DB1607,117,Morgan-South Rich,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,640,,,6,1,7
+DB1608,117,Morgan-South Rich,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,320,,,36,4,40
+DB1609,117,Morgan-South Rich,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,320,,,6,1,7
+DB1610,117,Morgan-South Rich,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,320,,,4,1,5
+DB1801,117,Morgan-South Rich,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,211,,,10,1,11
+EA1228,117,Morgan-South Rich,Antlerless,Elk,Any Legal Weapon,General Season,Dec 01 2025 - Dec 21 2025,67,8,75,,,9,1,10
+EA1229,117,Morgan-South Rich,Antlerless,Elk,Any Legal Weapon,General Season,Dec 22 2025 - Jan 31 2026,144,16,160,,,7,1,8
+EA2002,117,Morgan-South Rich,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,600,,,6,1,7
+EB3208,117,Morgan-South Rich,Bull,Elk,Any Legal Weapon,Limited Entry,Dec 19 2026 - Dec 27 2026,9,1,10,,,20,2,22
+EL3208,117,Morgan-South Rich,Bull,Elk,Any Legal Weapon (Late),Limited Entry - Private Land Only,Dec 20 2025 - Dec 28 2025 - Private Land Only,,,28,,,20,2,22
+LO1607,117,Morgan-South Rich,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,,,27,3,30
+LO1608,117,Morgan-South Rich,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,2,0,2
+LO1609,117,Morgan-South Rich,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,,,,10,1,11
+LO1610,117,Morgan-South Rich,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,4,1,5
+MA1005,117,Morgan-South Rich,Antlerless,Moose,Any Legal Weapon,Limited Entry,Sep 20 2025 - Oct 19 2025,6,1,7,,,4,1,5
+MA1007,117,Morgan-South Rich,Antlerless,Moose,Archery,Limited Entry,Aug 01 2025 - Sep 19 2025,3,0,3,,,10,1,11
+MB6005,117,Morgan-South Rich,Bull,Moose,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Oct 31 2026,6,0,6,,,5,1,6
+EA1044,122,"Morgan-South Rich, South Rich",Antlerless,Elk,Any Legal Weapon,General Season,Dec 01 2025 - Jan 31 2026,31,4,35,,,4,1,5
+EA2034,128,"Nine Mile, Anthro",Antlerless,Elk,Archery,General Season,Aug 16 2025 - Sep 17 2025,180,20,200,,,4,1,5
+EA2008,129,"Nine Mile, Anthro-Myton Bench",Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,250,,,,,
+PB5011,129,"Nine Mile, Anthro-Myton Bench",Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,30,3,33,,,9,1,10
+PB5037,129,"Nine Mile, Anthro-Myton Bench",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,89,10,99,,,13,2,15
+PB5059,129,"Nine Mile, Anthro-Myton Bench",Buck,Pronghorn,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,30,3,33,,,2,0,2
+EA1054,132,"Nine Mile, West Anthro",Antlerless,Elk,Any Legal Weapon,General Season,Dec 13 2025 - Dec 30 2025,45,5,50,,,3,0,3
+EA1056,134,"North Slope, Greendale",Antlerless,Elk,Any Legal Weapon,General Season,Nov 17 2025 - Nov 30 2025,4,1,5,,,1,0,1
+EA1058,135,"North Slope, Henry's Fork-Burnt Fork",Antlerless,Elk,Any Legal Weapon,General Season,Nov 08 2025 - Jan 31 2026,90,10,100,,,1,0,1
+EA1196,138,"North Slope, Summit",Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 26 2025,67,8,75,,,1,0,1
+EA1268,138,"North Slope, Summit",Antlerless,Elk,Archery,General Season,Aug 16 2025 - Sep 17 2025,180,20,200,,,1,0,1
+MB6006,138,"North Slope, Summit",Bull,Moose,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Oct 31 2026,20,3,23,,,1,0,1
+PB5039,138,"North Slope, Summit",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,15,2,17,,,1,0,1
+EA1273,140,"North Slope, Three Corners",Antlerless,Elk,Any Legal Weapon,General Season,Dec 20 2025 - Jan 04 2026,22,3,25,,,1,0,1
+EA1274,140,"North Slope, Three Corners",Antlerless,Elk,Archery,General Season,Aug 16 2025 - Sep 05 2025,22,3,25,,,2,0,2
+EA1277,140,"North Slope, Three Corners",Antlerless,Elk,Any Legal Weapon,General Season,Nov 22 2025 - Nov 30 2025,22,3,25,,,1,0,1
+EB3013,140,North Slope Three Corners,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 15 2026,6,1,7,,,1,0,1
+EB3053,140,North Slope Three Corners,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,9,1,10,,,1,0,1
+EB3091,140,North Slope Three Corners,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,4,0,4,,,2,0,2
+EB3115,140,North Slope Three Corners,Bull,Elk,Multiseason,Limited Entry,"Arch: Aug 15-Sept 15, 2026 | Muzz: Sept 21-Oct 2, 2026 | ALW: Sept 16-20, 2026 & Oct 3-15, 2026",1,0,1,,,1,0,1
+EB3210,140,North Slope Three Corners,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,5,0,5,,,1,0,1
+EL3013,140,North Slope Three Corners,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 16 2025 - Private Land Only,,,16,,,1,0,1
+EL3053,140,North Slope Three Corners,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,2,0,2
+EL3091,140,North Slope Three Corners,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,2,0,2
+EL3210,140,North Slope Three Corners,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,1,0,1
+RS6708,140,"North Slope, Three Corners",Male Only,Rocky Mountain Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 14 2026 - Nov 30 2026,2,0,2,,,2,0,2
+EA1060,142,"North Slope, West Daggett",Antlerless,Elk,Muzzleloader,General Season,Oct 29 2025 - Nov 06 2025,18,2,20,,,13,0,13
+EA1061,142,"North Slope, West Daggett",Antlerless,Elk,Muzzleloader,General Season,Sep 24 2025 - Oct 02 2025,18,2,20,,,1,0,1
+EA1250,142,"North Slope, West Daggett",Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 26 2025,27,3,30,,,2,0,2
+EA2005,142,"North Slope, West Daggett",Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,100,,,2,0,2
+RS6709,143,"North Slope, Summit/West Daggett",Male Only,Rocky Mountain Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 14 2026 - Nov 30 2026,3,0,3,,,2,0,2
+GO6805,145,High Uintas Central,Hunters Choice,Mountain Goat,Any Legal Weapon,Once-in-a-lifetime,Sept 05 2026 - Oct 31 2026,5,0,5,,,4,0,4
+GO6806,146,High Uintas East,Hunters Choice,Mountain Goat,Any Legal Weapon,Once-in-a-lifetime,Sept 05 2026 - Oct 31 2026,3,0,3,,,1,0,1
+GO6807,147,High Uintas Leidy Peak,Hunters Choice,Mountain Goat,Any Legal Weapon,Once-in-a-lifetime,Sept 05 2026 - Oct 31 2026,2,0,2,,,1,0,1
+GO6808,148,High Uintas West,Hunters Choice,Mountain Goat,Any Legal Weapon,Once-in-a-lifetime,Sept 05 2026 - Oct 31 2026,9,2,11,,,3,0,3
+GO6810,157,"Ogden, Willard Peak",Hunters Choice,Mountain Goat,Any Legal Weapon,Once-in-a-lifetime,Sept 05 2026 - Nov 25 2026,1,0,1,,,3,0,3
+BR7011,163,Paunsaugunt,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",4,0,4,,,1,0,1
+BR7113,163,Paunsaugunt,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",3,0,3,,,1,0,1
+BR7214,163,Paunsaugunt,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",4,0,4,,,1,0,1
+BR7323,163,Paunsaugunt,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Nov 2 - Nov. 8, 2026",1,0,1,,,14,0,14
+DB1001,163,Paunsaugunt,Buck,Deer,Archery,Premium Limited Entry,Aug 15 2026 - Sept 11 2026,26,3,29,,,1,0,1
+DB1004,163,Paunsaugunt,Buck,Deer,Any Legal Weapon,Premium Limited Entry,Oct 17 2026 - Oct 31 2026,75,8,83,,,1,0,1
+DB1006,163,Paunsaugunt,Buck,Deer,Muzzleloader,Premium Limited Entry,Sept 23 2026 - Oct 01 2026,26,3,29,,,1,0,1
+DB1008,163,Paunsaugunt,Buck,Deer,Multiseason,Premium Limited Entry,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 31, 2026",3,1,4,,,2,0,2
+DB1010,163,Paunsaugunt,Buck,Deer,Any Legal Weapon,Management Buck Deer,Nov 02 2026 - Nov 20 2026,30,3,33,,,2,0,2
+DB1058,163,Paunsaugunt,Buck,Deer,Any Legal Weapon,Cactus Buck,Nov 02 2026 - Nov 20 2026,18,2,20,,,1,0,1
+DB1073,163,Paunsaugunt,Buck,Deer,Archery,Management Buck Deer,Aug 15 2026 - Sept 11 2026,10,1,11,,,1,0,1
+DB1074,163,Paunsaugunt,Buck,Deer,Muzzleloader,Management Buck Deer,Sept 23 2026 - Oct 01 2026,10,1,11,,,2,0,2
+EA1073,163,Paunsaugunt,Antlerless,Elk,Any Legal Weapon,General Season,Nov 22 2025 - Dec 30 2025,18,2,20,,,3,0,3
+EA2015,163,Paunsaugunt,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,100,,,1,0,1
+LD1001,163,Paunsaugunt - Private Land Only,Buck,Deer,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 12 2025 - Private Land Only,,,,,,1,0,1
+LD1004,163,Paunsaugunt - Private Land Only,Buck,Deer,Any Legal Weapon,Limited Entry - Private Land Only,Oct 18 2025 - Oct 31 2025 - Private Land Only,,,,,,5,0,5
+LD1006,163,Paunsaugunt - Private Land Only,Buck,Deer,Muzzleloader,Limited Entry - Private Land Only,Sept 24 2025 - Oct 02 2025 - Private Land Only,,,,,,1,0,1
+DA1009,169,"Pine Valley, Enterprise",Antlerless,Deer,Any Legal Weapon,General Season,Aug 01 2025 - Aug 15 2025,,,25,,,1,0,1
+EB3145,172,Boulder,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 15 2026,31,4,35,,,1,0,1
+EB3148,172,Boulder,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,13,1,14,,,5,0,5
+EB3151,172,Boulder,Bull,Elk,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 15 2026,22,2,24,,,1,0,1
+EB3154,172,Boulder,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,19,2,21,,,1,0,1
+EB3156,172,Boulder,Bull,Elk,Multiseason,Limited Entry,"Arch: Aug 15-Sept 15, 2026 | Muzz: Sept 21-Oct 2, 2026 | ALW: Sept 16-20, 2026 & Oct 3-15, 2026 & Nov 7-15, 2026",4,0,4,,,2,0,2
+EB3190,172,Boulder,Bull,Elk,Archery,Limited Entry,Nov 28 2026 - Dec 13 2026,4,1,5,,,3,0,3
+EB3191,172,Boulder,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,37,4,41,,,1,0,1
+EL3145,172,Boulder,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 16 2025 - Private Land Only,,,16,,,1,0,1
+EL3148,172,Boulder,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,3,0,3
+EL3151,172,Boulder,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Nov 08 2025 - Nov 16 2025 - Private Land Only,,,16,,,3,0,3
+EL3154,172,Boulder,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,6,0,6
+EL3190,172,Boulder,Bull,Elk,Archery,Limited Entry - Private Land Only,Nov 29 2025 - Dec 14 2025 - Private Land Only,,,14,,,1,0,1
+EL3191,172,Boulder,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,2,0,2
+BR7013,175,Fishlake/Thousand Lakes,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",7,0,7,,,1,0,1
+BR7115,175,Fishlake/Thousand Lakes,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",7,0,7,,,1,0,1
+BR7216,175,Fishlake/Thousand Lakes,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",5,0,5,,,1,0,1
+BR7311,175,Fishlake/Thousand Lakes,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",3,0,3,,,2,0,2
+EA1078,175,Fishlake/Thousand Lakes,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,243,27,270,,,2,0,2
+EB3018,175,Fishlake/Thousand Lakes,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 15 2026,84,9,93,,,1,0,1
+EB3063,175,Fishlake/Thousand Lakes,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,34,4,38,,,1,0,1
+EB3064,175,Fishlake/Thousand Lakes,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,99,11,110,,,2,0,2
+EB3065,175,Fishlake/Thousand Lakes,Bull,Elk,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 15 2026,57,6,63,,,1,0,1
+EB3096,175,Fishlake/Thousand Lakes,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,50,6,56,,,2,0,2
+EB3120,175,Fishlake/Thousand Lakes,Bull,Elk,Multiseason,Limited Entry,"Arch: Aug 15-Sept 15, 2026 | Muzz: Sept 21-Oct 2, 2026 | ALW: Sept 16-20, 2026 & Oct 3-15, 2026 & Nov 7-15, 2026",10,1,11,,,2,0,2
+EB3192,175,Fishlake/Thousand Lakes,Bull,Elk,Archery,Limited Entry,Nov 28 2026 - Dec 13 2026,13,2,15,,,1,0,1
+EL3018,175,Fishlake/Thousand Lakes,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 16 2025 - Private Land Only,,,16,,,1,0,1
+EL3063,175,Fishlake/Thousand Lakes,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,2,0,2
+EL3064,175,Fishlake/Thousand Lakes,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,1,0,1
+EL3065,175,Fishlake/Thousand Lakes,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Nov 08 2025 - Nov 16 2025 - Private Land Only,,,16,,,1,0,1
+EL3096,175,Fishlake/Thousand Lakes,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,6,0,6
+EL3192,175,Fishlake/Thousand Lakes,Bull,Elk,Archery,Limited Entry - Private Land Only,Nov 29 2025 - Dec 14 2025 - Private Land Only,,,14,,,1,0,1
+EB3019,183,San Juan Bull Elk,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 15 2026,29,3,32,,,3,0,3
+EB3066,183,San Juan Bull Elk,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,12,1,13,,,1,0,1
+EB3067,183,San Juan Bull Elk,Bull,Elk,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 15 2026,20,2,22,,,2,0,2
+EB3097,183,San Juan Bull Elk,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,17,2,19,,,1,0,1
+EB3121,183,San Juan Bull Elk,Bull,Elk,Multiseason,Limited Entry,"Arch: Aug 15-Sept 15, 2026 | Muzz: Sept 21-Oct 2, 2026 | ALW: Sept 16-20, 2026 & Oct 3-15, 2026 & Nov 7-15, 2026",4,0,4,,,1,0,1
+EB3193,183,San Juan Bull Elk,Bull,Elk,Archery,Limited Entry,Nov 28 2026 - Dec 13 2026,9,1,10,,,1,0,1
+EB3194,183,San Juan Bull Elk,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,33,4,37,,,1,0,1
+EL3019,183,San Juan Bull Elk,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 16 2025 - Private Land Only,,,16,,,2,0,2
+EL3066,183,San Juan Bull Elk,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,5,0,5
+EL3067,183,San Juan Bull Elk,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Nov 08 2025 - Nov 16 2025 - Private Land Only,,,16,,,1,0,1
+EL3097,183,San Juan Bull Elk,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,1,0,1
+EL3193,183,San Juan Bull Elk,Bull,Elk,Archery,Limited Entry - Private Land Only,Nov 29 2025 - Dec 14 2025 - Private Land Only,,,14,,,2,0,2
+EL3194,183,San Juan Bull Elk,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,1,0,1
+DB1014,185,"San Juan, Elk Ridge",Buck,Deer,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,15,2,17,,,1,0,1
+DB1022,185,"San Juan, Elk Ridge",Buck,Deer,Any Legal Weapon,Limited Entry,Oct 17 2026 - Oct 25 2026,42,5,47,,,1,0,1
+DB1037,185,"San Juan, Elk Ridge",Buck,Deer,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,15,2,17,,,1,0,1
+DB1046,185,"San Juan, Elk Ridge",Buck,Deer,Multiseason,Limited Entry,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026",2,0,2,,,1,0,1
+PB5044,186,"San Juan, Hatch Point",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,3,0,3,,,1,0,1
+DS6606,187,"San Juan, Lockhart",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,2,0,2,,,1,0,1
+DS6607,190,"San Juan, South",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,2,0,2,,,2,0,2
+DS1004,193,"San Rafael, Dirty Devil",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Conservation,"Sept 13 - Dec 31, 2025",,,,,,5,0,5
+DS6608,193,"San Rafael, Dirty Devil",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,3,1,4,,,2,0,2
+DS6624,193,"San Rafael, Dirty Devil",Male Only,Desert Bighorn Sheep,Archery,Once-in-a-lifetime,Nov 11 2026 - Dec 17 2026,2,0,2,,,1,0,1
+DS6609,194,"San Rafael, North",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,8,0,8,,,1,0,1
+EA1084,194,"San Rafael, North",Antlerless,Elk,Any Legal Weapon,General Season,Nov 08 2025 - Jan 31 2026,4,1,5,,,1,0,1
+LP5046,194,"San Rafael, North - Private Land Only",Buck,Pronghorn,Any Legal Weapon,Limited Entry - Private Land Only,Sept 13 2025 - Sept 21 2025 - Private Land Only,,,,,,1,0,1
+PB5015,194,"San Rafael, North",Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,21,2,23,,,1,0,1
+PB5046,194,"San Rafael, North",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,62,7,69,,,1,0,1
+PB5056,194,"San Rafael, North",Buck,Pronghorn,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,21,2,23,,,2,0,2
+DS1007,195,"San Rafael, South",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Conservation,"Sept 13, 2025 - Dec 31, 2025",,,,,,9,0,9
+DS6610,195,"San Rafael, South",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,10,2,12,,,2,0,2
+GO6820,200,"Wasatch Mtns, Timpanogos",Hunters Choice,Mountain Goat,Any Legal Weapon,Once-in-a-lifetime,Sept 05 2026 - Nov 25 2026,8,2,10,,,,,1040
+PB5337,201,Heist CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,,,1160
+PD1052,201,Heist CWMU,Doe,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,6,0,6,,,,,1800
+DB1015,206,Diamond Mtn,Buck,Deer,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,22,2,24,,,,,1060
+DB1023,206,Diamond Mtn,Buck,Deer,Any Legal Weapon,Limited Entry,Oct 17 2026 - Oct 25 2026,61,7,68,,,,,460
+DB1038,206,Diamond Mtn,Buck,Deer,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,22,2,24,,,,,200
+DB1047,206,Diamond Mtn,Buck,Deer,Multiseason,Limited Entry,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026",4,0,4,,,,,360
+EA1089,206,Diamond Mtn,Antlerless,Elk,Any Legal Weapon,General Season,Nov 01 2025 - Nov 09 2025,45,5,50,,,,,220
+EA1090,206,Diamond Mtn,Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Nov 23 2025,45,5,50,,,,,80
+EA2030,206,Diamond Mtn,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,200,,,,,280
+EB3020,206,Diamond Mtn,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 15 2026,25,3,28,,,,,620
+EB3068,206,Diamond Mtn,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,10,1,11,,,,,540
+EB3069,206,Diamond Mtn,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,30,3,33,,,,,500
+EB3098,206,Diamond Mtn,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,15,2,17,,,,,600
+EB3122,206,Diamond Mtn,Bull,Elk,Multiseason,Limited Entry,"Arch: Aug 15-Sept 15, 2026 | Muzz: Sept 21-Oct 2, 2026 | ALW: Sept 16-20, 2026 & Oct 3-15, 2026 & Nov 7-15, 2026",3,0,3,,,,,720
+EB3195,206,Diamond Mtn,Bull,Elk,Archery,Limited Entry,Nov 28 2026 - Dec 13 2026,4,1,5,,,,,260
+EB3196,206,Diamond Mtn,Bull,Elk,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 15 2026,17,2,19,,,,,560
+EL3020,206,Diamond Mtn,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 16 2025 - Private Land Only,,,16,,,,,420
+EL3068,206,Diamond Mtn,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,,,280
+EL3069,206,Diamond Mtn,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,,,100
+EL3098,206,Diamond Mtn,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,,,1300
+EL3195,206,Diamond Mtn,Bull,Elk,Archery,Limited Entry - Private Land Only,Nov 29 2025 - Dec 14 2025 - Private Land Only,,,14,,,,,1580
+EL3196,206,Diamond Mtn,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Nov 08 2025 - Nov 16 2025 - Private Land Only,,,16,,,,,675
+LD1023,206,Diamond Mtn - Private Land Only,Buck,Deer,Any Legal Weapon,Limited Entry - Private Land Only,Oct 18 2025 - Oct 26 2025 - Private Land Only,,,,,,,,2080
+LO0008,206,Diamond Mtn Landowner Association,Buck,Deer,Archery,Limited Entry - Private Land Only,Aug 15 2026 - Sept 11 2026 - Valid only on property enrolled in the Diamond Mtn LOA,,,,,,,,5400
+LO0009,206,Diamond Mtn Landowner Association,Buck,Deer,Any Legal Weapon,Limited Entry - Private Land Only,Oct 17 2026 - Oct 25 2026 - Valid only on property enrolled in the Diamond Mtn LOA,,,,,,,,3180
+LO0010,206,Diamond Mtn Landowner Association,Buck,Deer,Muzzleloader,Limited Entry - Private Land Only,Sept 23 2026 - Oct 01 2026 - Valid only on property enrolled in the Diamond Mtn LOA,,,,,,,,920
+LO0011,206,Diamond Mtn Landowner Association,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 15 2026 - Sept 15 2026 - Valid only on property enrolled in the Diamond Mtn LOA,,,16,,,,,400
+LO0012,206,Diamond Mtn Landowner Association,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,"Sept 16 - Sept 20, 2026 - Valid only on property enrolled in the Diamond Mtn LOA",,,,,,,,1080
+LO0013,206,Diamond Mtn Landowner Association,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,"Oct 3, 2026 - Oct 15, 2026 - Valid only on property enrolled in the Diamond Mtn LOA",,,,,,,,660
+LO0014,206,Diamond Mtn Landowner Association,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,"Sept 21, 2026 - Oct 2, 2026 - Valid only on property enrolled in the Diamond Mtn LOA",,,,,,,,240
+LO0015,206,Diamond Mtn Landowner Association,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Nov 07 2026 - Nov 15 2026 - Valid only on property enrolled in the Diamond Mtn LOA,,,16,,,,,560
+PB5017,208,Vernal,Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,18,2,20,,,,,1240
+PB5048,208,Vernal,Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,54,6,60,,,,,1620
+PB5072,208,Vernal,Buck,Pronghorn,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,18,2,20,,,,,1000
+EA2038,222,Wasatch Mtns,Antlerless,Elk,Archery,General Season,Aug 16 2025 - Sep 05 2025,1080,120,1200,,,,,1200
+EB3022,222,Wasatch Mtns,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 15 2026,130,15,145,,,,,520
+EB3072,222,Wasatch Mtns,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,54,6,60,,,,,1680
+EB3073,222,Wasatch Mtns,Bull,Elk,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 15 2026,89,10,99,,,,,700
+EB3100,222,Wasatch Mtns,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,78,9,87,,,,,840
+EB3124,222,Wasatch Mtns,Bull,Elk,Multiseason,Limited Entry,"Arch: Aug 15-Sept 15, 2026 | Muzz: Sept 21-Oct 2, 2026 | ALW: Sept 16-20, 2026 & Oct 3-15, 2026 & Nov 7-15, 2026",15,2,17,,,,,300
+EB3127,222,Wasatch Mtns,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,155,17,172,,,,,3900
+EB3199,222,Wasatch Mtns,Bull,Elk,Archery,Limited Entry,Nov 28 2026 - Dec 13 2026,9,1,10,,,,,4740
+EL3022,222,Wasatch Mtns,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 16 2025 - Private Land Only,,,16,,,,,1350
+EL3072,222,Wasatch Mtns,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,,,1040
+EL3073,222,Wasatch Mtns,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Nov 08 2025 - Nov 16 2025 - Private Land Only,,,16,,,,,1800
+EL3100,222,Wasatch Mtns,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,,,1060
+EL3127,222,Wasatch Mtns,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,,,460
+EL3199,222,Wasatch Mtns,Bull,Elk,Archery,Limited Entry - Private Land Only,Nov 29 2025 - Dec 14 2025 - Private Land Only,,,14,,,,,200
+EA1106,224,"Wasatch Mtns, Avintaquin",Antlerless,Elk,Any Legal Weapon,General Season,Jan 03 2026 - Jan 18 2026,180,20,200,,,,,360
+EA1217,224,"Wasatch Mtns, Avintaquin",Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,135,15,150,,,,,220
+EA1276,225,"Wasatch Mtns, Box Elder Peak",Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,40,5,45,,,,,80
+GO6818,225,"Wasatch Mtns, Box Elder Peak",Hunters Choice,Mountain Goat,Any Legal Weapon,Once-in-a-lifetime,Sept 05 2026 - Nov 25 2026,3,0,3,,,,,280
+EA2013,227,"Wasatch Mtns, Currant Creek",Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,2000,,,,,620
+GO6819,231,"Wasatch Mtns, Lone Peak",Hunters Choice,Mountain Goat,Any Legal Weapon,Once-in-a-lifetime,Sept 05 2026 - Nov 25 2026,1,0,1,,,,,540
+GO6813,233,"Wasatch Mtns, Provo Peak",Hunters Choice,Mountain Goat,Any Legal Weapon,Once-in-a-lifetime,Sept 05 2026 - Nov 25 2026,5,0,5,,,,,500
+EA1110,234,"Wasatch Mtns, Salt Lake",Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Jan 31 2026,40,5,45,,,,,600
+EA1111,238,"Wasatch Mtns, Wallsburg",Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Dec 14 2025,31,4,35,,,,,260
+EA1112,238,"Wasatch Mtns, Wallsburg",Antlerless,Elk,Any Legal Weapon,General Season,Dec 20 2025 - Jan 31 2026,49,6,55,,,,,560
+EA1113,240,"Wasatch Mtns, West Heber",Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Jan 31 2026,27,3,30,,,,,280
+EB3137,241,West Desert Deep Creek,Bull,Elk,Archery,Limited Entry,Sept 01 2026 - Sept 30 2026,13,2,15,,,,,280
+EB3144,241,West Desert Deep Creek,Bull,Elk,"HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",Limited Entry,Nov 07 2026 - Nov 30 2026,13,2,15,,,,,100
+EL3137,241,West Desert Deep Creek,Bull,Elk,Archery,Limited Entry - Private Land Only,Sept 01 2025 - Sept 30 2025 - Private Land Only,,,30,,,,,1300
+EL3144,241,West Desert Deep Creek,Bull,Elk,"HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",Limited Entry - Private Land Only,Nov 08 2025 - Nov 30 2025 - Private Land Only,,,30,,,,,1580
+PB5019,244,"West Desert, Riverbed",Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,18,2,20,,,,,675
+PB5050,244,"West Desert, Riverbed",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,73,8,81,,,,,460
+LP5051,245,"West Desert, Rush Valley - Private Land Only",Buck,Pronghorn,Any Legal Weapon,Limited Entry - Private Land Only,Sept 13 2025 - Sept 21 2025 - Private Land Only,,,,,,,,200
+PB5020,245,"West Desert, Rush Valley",Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,8,1,9,,,,,280
+PB5051,245,"West Desert, Rush Valley",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,32,4,36,,,,,500
+PB5021,246,"West Desert, Snake Valley",Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,23,3,26,,,,,600
+PB5052,246,"West Desert, Snake Valley",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,95,11,106,,,,,260
+DB1016,248,"West Desert, Vernon",Buck,Deer,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,46,5,51,,,,,675
+DB1024,248,"West Desert, Vernon",Buck,Deer,Any Legal Weapon,Limited Entry,Oct 17 2026 - Oct 25 2026,130,14,144,,,,,620
+DB1042,248,"West Desert, Vernon",Buck,Deer,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,46,5,51,,,,,880
+DB1048,248,"West Desert, Vernon",Buck,Deer,Multiseason,Limited Entry,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026",7,1,8,,,,,440
+BR7018,251,Kamas/North Slope Summit,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",5,0,5,,,,,440
+DB1101,276,East Canyon,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,9,1,10,,,,,440
+DB1105,276,East Canyon,Buck,Deer,"HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",Limited Entry,Nov 07 2026 - Nov 30 2026,6,1,7,,,,,760
+DB1603,276,East Canyon,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,760,,,,,380
+DB1604,276,East Canyon,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,380,,,,,380
+DB1605,276,East Canyon,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,380,,,,,380
+DB1606,276,East Canyon,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,380,,,,,640
+DB1800,276,East Canyon,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,186,,,,,320
+EA1236,276,East Canyon,Antlerless,Elk,Any Legal Weapon,General Season,Dec 01 2025 - Jan 11 2026,135,15,150,,,,,320
+EA2003,276,East Canyon,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,500,,,,,320
+EB3205,276,East Canyon,Bull,Elk,"HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",Limited Entry,Dec 19 2026 - Dec 27 2026,7,1,8,,,,,440
+EL3205,276,East Canyon,Bull,Elk,"HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",Limited Entry - Private Land Only,Dec 20 2025 - Dec 28 2025 - Private Land Only,,,28,,,,,440
+LO1603,276,East Canyon,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,,,,,1320
+LO1604,276,East Canyon,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,,,130
+LO1605,276,East Canyon,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,,,,,,130
+LO1606,276,East Canyon,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,,,390
+MB6002,276,East Canyon,Bull,Moose,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Oct 31 2026,5,0,5,,,,,80
+EA1239,277,"Nine Mile, Range Creek",Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 26 2025,45,5,50,,,,,80
+EA1240,277,"Nine Mile, Range Creek",Antlerless,Elk,Any Legal Weapon,General Season,Nov 27 2025 - Jan 31 2026,135,15,150,,,,,240
+EA2029,277,"Nine Mile, Range Creek",Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,150,,,,,450
+PB5038,277,"Nine Mile, Range Creek",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,13,1,14,,,,,450
+PB5053,277,"Nine Mile, Range Creek",Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,4,0,4,,,,,1350
+BR7111,289,North Slope Three Corners/West Daggett,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",1,0,1,,,,,250
+BR7212,289,North Slope Three Corners/West Daggett,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",2,0,2,,,,,250
+BR7308,289,North Slope Three Corners/West Daggett,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",1,0,1,,,,,750
+MB6007,289,"North Slope, Three Corners/West Daggett",Bull,Moose,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Oct 31 2026,6,2,8,,,,,3480
+PB5012,289,"North Slope, Three Corners/West Daggett",Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,10,1,11,,,,,1160
+PB5040,289,"North Slope, Three Corners/West Daggett",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,29,3,32,,,,,960
+PB5066,289,"North Slope, Three Corners/West Daggett",Buck,Pronghorn,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,10,1,11,,,,,720
+DB1090,301,"Book Cliffs, Floy Canyon",Buck,Deer,"HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",Limited Entry,Nov 07 2026 - Nov 30 2026,6,1,7,,,,,1040
+DS6605,305,"Pine Valley, Beaver Dam",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Conservation,"Sept 13, 2025 - Dec 31, 2025",,,,,,,,688
+DS6621,305,"Pine Valley, Beaver Dam",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Oct 24 2026 - Dec 25 2026,2,0,2,,,,,588
+DS6620,306,"Pine Valley, Virgin River",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Oct 24 2026 - Dec 25 2026,3,0,3,,,,,573
+DS6622,308,"San Juan, North",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,3,0,3,,,,,349
+DS6623,309,"San Juan, San Juan River",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,2,0,2,,,,,42
+DB1091,314,Kaiparowits HAMSS,Buck,Deer,"HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",Limited Entry,Nov 07 2026 - Nov 30 2026,4,1,5,,,,,55
+EA1049,438,"Mt Dutton, Deep Creek",Antlerless,Elk,Any Legal Weapon,General Season,Nov 22 2025 - Dec 07 2025,67,8,75,,,,,67
+EA1281,438,"Mt Dutton, Deep Creek",Antlerless,Elk,Any Legal Weapon,General Season,Dec 20 2025 - Jan 11 2026,67,8,75,,,,,45
+PB5045,443,"San Rafael, Desert",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,7,1,8,,,,,26
+PB5055,443,"San Rafael, Desert",Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,2,0,2,,,,,62
+BR7015,444,Diamond Mtn/Vernal/Bonanza,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",7,0,7,,,,,340
+BR7117,444,Diamond Mtn/Vernal/Bonanza,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",5,0,5,,,,,297
+BR7218,444,Diamond Mtn/Vernal/Bonanza,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",7,0,7,,,,,112
+BR7313,444,Diamond Mtn/Vernal/Bonanza,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",5,0,5,,,,,228
+BR7120,448,Wasatch Mtns West-Central,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",22,1,23,,,,,70
+BR7221,448,Wasatch Mtns West-Central,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",18,2,20,,,,,49
+BR7316,448,Wasatch Mtns West-Central,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",14,1,15,,,,,261
+EA1189,448,"Wasatch Mtns, West-Central",Antlerless,Elk,Muzzleloader,General Season,Nov 01 2025 - Nov 09 2025,382,43,425,,,,,45
+BR7001,449,Book Cliffs Bitter Creek/South,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",49,5,54,,,,,63
+BR7101,449,Book Cliffs Bitter Creek/South,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",14,1,15,,,,,46
+BR7201,449,Book Cliffs Bitter Creek/South,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 14, 2026 & Oct. 2 - Nov. 8, 2026",18,2,20,,,,,271
+BR7300,449,Book Cliffs Bitter Creek/South,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 14 & Aug. 15 - Oct. 1 & Oct. 2 - Nov. 8, 2026",9,1,10,,,,,701
+EA1224,449,"Book Cliffs, Bitter Creek/South",Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,117,13,130,,,,,256
+EA1225,449,"Book Cliffs, Bitter Creek/South",Antlerless,Elk,Any Legal Weapon,General Season,Nov 17 2025 - Dec 14 2025,147,16,163,,,,,292
+MB6009,452,Diamond Mtn/Vernal,Bull,Moose,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Oct 31 2026,2,0,2,,,,,186
+PB5331,453,Mt Dutton/Paunsaugunt,Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,13,2,15,,,,,211
+PB5332,453,Mt Dutton/Paunsaugunt,Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,4,1,5,,,,,61
+TK0001,454,Turkey - Statewide Permit,Bearded,Turkey,Any Legal Weapon,Statewide,"Apr 1 - May 31, 2026",,,,,,,,44
+TK1000,454,Statewide,Bearded,Turkey,Any Legal Weapon,Spring General Season,"May 4 - 31, 2026 | YOUTH ONLY: May 1 - 3, 2026",,,,,,,,42
+BR7012,455,Boulder/Kaiparowits,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",20,2,22,,,,,65
+BR7114,455,Boulder/Kaiparowits,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",13,1,14,,,,,36
+BR7215,455,Boulder/Kaiparowits,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",9,1,10,,,,,
+BR7310,455,Boulder/Kaiparowits,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",10,1,11,,,,,
+DB1084,455,Boulder/Kaiparowits,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,12,1,13,,,,,
+DB1518,455,Boulder/Kaiparowits,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,720,,,,,
+DB1629,455,Boulder/Kaiparowits,Buck,Deer,Restricted Rifle,General Season,Oct 17 2026 - Oct 25 2026,,,960,,,,,
+DB1630,455,Boulder/Kaiparowits,Buck,Deer,Restricted Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,720,,,,,
+DB1787,455,Boulder/Kaiparowits,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Restricted Muzz: Sept 23 2026 - Oct 01 2026 | Restricted Rifle: Oct 17 2026 - Oct 25 2026,,,70,,,3,0,3
+LO1518,455,Boulder/Kaiparowits,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,10,3,13
+LO1629,455,Boulder/Kaiparowits,Buck,Deer,Restricted Rifle,General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,,,3,1,4
+LO1630,455,Boulder/Kaiparowits,Buck,Deer,Restricted Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,8,0,8
+PB5016,461,Diamond Mtn/Bonanza,Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,17,2,19,,,,,
+PB5047,461,Diamond Mtn/Bonanza,Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,50,6,56,,,2,0,2
+PB5060,461,Diamond Mtn/Bonanza,Buck,Pronghorn,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,17,2,19,,,2,0,2
+BR7010,462,Panguitch Lake/Zion,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",9,0,9,,,3,1,4
+BR7112,462,Panguitch Lake/Zion,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",5,0,5,,,8,0,8
+BR7213,462,Panguitch Lake/Zion,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",9,0,9,,,10,2,12
+BR7309,462,Panguitch Lake/Zion,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",4,0,4,,,3,0,3
+BR7119,463,Wasatch Mtns Avintaquin/Currant Creek,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",5,0,5,,,3,0,3
+BR7220,463,Wasatch Mtns Avintaquin/Currant Creek,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",9,0,9,,,2,0,2
+BR7315,463,Wasatch Mtns Avintaquin/Currant Creek,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",3,0,3,,,3,0,3
+DA1045,474,"Fillmore, Oak City",Antlerless,Deer,Archery,General Season,Aug 01 2025 - Sep 04 2025,,,20,,,2,0,2
+EA1114,480,"Wasatch Mtns, West Timpanogos",Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Jan 31 2026,22,3,25,,,2,0,2
+DB1258,484,Little Red Creek CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,4,0,4
+EA1147,484,Little Red Creek CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,15,0,15,,,5,2,7
+EB3534,484,Little Red Creek CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,3,0,3
+DB1263,485,Moon Ranch CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,18,2,20
+EA1151,485,Moon Ranch CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,6,0,6,,,9,1,10
+EB3538,485,Moon Ranch CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,4,1,5
+DB1310,488,White's Valley CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,63,7,70
+DB1244,489,Green Canyon CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,63,7,70
+DB1289,490,Sharp Mountain CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,90,10,100
+EA1235,490,Sharp Mountain CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,10,0,10,,,54,6,60
+EB3610,490,Sharp Mountain CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,108,12,120
+DB1293,491,South Canyon CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,207,23,230
+EA1167,491,South Canyon CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,12,0,12,,,270,30,300
+EB3554,491,South Canyon CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,90,10,100
+DB1303,492,North Peaks CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,90,10,100
+EB3565,492,North Peaks CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,108,12,120
+DB1252,493,Ingham Peak CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,3,0,3,,,315,35,350
+EB3528,493,Ingham Peak CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,45,5,50
+DB1328,494,Clear Creek CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,45,5,50
+DB1250,495,Indian Creek CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,112,13,125
+DB1281,496,Rattlesnake Pass CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,112,13,125
+DB1241,497,Golden Spike CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,45,5,50
+DB1306,499,Washakie CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,180,20,200
+DB1209,500,Blind Springs CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,135,15,150
+DB1277,501,Pocatello Valley CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,31,4,35
+DB1280,502,Promontory Point CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,67,8,75
+DB1270,503,Nucor West CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,45,5,50
+DB1273,504,Park Valley Hereford CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,6,0,6,,,4,1,5
+DB1222,505,Coldwater Ranch CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,90,10,100
+EA1125,505,Coldwater Ranch CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,25,0,25,,,18,2,20
+EB3509,505,Coldwater Ranch CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,3,0,3,,,18,2,20
+DA1050,509,The Rose of Snowville CWMU,Antlerless,Deer,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,8,0,8,,,67,8,75
+DB1347,509,The Rose of Snowville CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,67,8,75
+PB5311,509,The Rose of Snowville CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,3,0,3,,,31,4,35
+PD1048,509,The Rose of Snowville CWMU,Doe,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,2,0,2,,,18,2,20
+DB1211,510,Blue Spring Hills CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,45,5,50
+DB1308,511,West Hills CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,45,5,50
+DB1231,512,Dove Creek CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,27,3,30
+DB1269,513,North Promontory CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,243,27,270
+DB1239,514,Fort Ranch CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,58,7,65
+DB1325,516,Double Cone CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,54,6,60
+EA1130,516,Double Cone CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,7,0,7,,,112,13,125
+EB3515,516,Double Cone CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,112,13,125
+EA1158,517,Cactus Ranch LLC CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,7,0,7,,,4,1,5
+EB3545,517,Cactus Ranch LLC CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,3,0,3,,,90,10,100
+DB1264,518,Mountain Meadow CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,90,10,100
+DB1236,519,Engineer Springs CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,45,5,50
+DB1233,520,East Fork Chalk Creek CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,4,0,4,,,45,5,50
+EA1132,520,East Fork Chalk Creek CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,30,0,30,,,90,10,100
+EB3517,520,East Fork Chalk Creek CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,3,0,3,,,90,10,100
+MB6208,520,East Fork Chalk Creek CWMU,Bull,Moose,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,180,20,200
+DB1304,521,Two Bear CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,40,5,45
+EA1174,521,Two Bear CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,60,0,60,,,31,4,35
+DB1237,522,Ensign Ranches CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,3,0,3,,,49,6,55
+EA1134,522,Ensign Ranches CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,60,0,60,,,27,3,30
+EB3519,522,Ensign Ranches CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,6,0,6,,,22,3,25
+DB1349,524,Weber Florence Creek/Stillman Creek CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,9,0,9,,,198,22,220
+EA1263,524,Weber Florence Creek/Stillman Creek CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,35,0,35,,,6,0,6
+EB3619,524,Weber Florence Creek/Stillman Creek CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,10,0,10,,,12,0,12
+MB6266,524,Weber Florence Creek/Stillman Creek CWMU,Bull,Moose,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,3,0,3,,,20,0,20
+DB1242,525,Grass Valley/Clark Canyon CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,14,0,14,,,10,0,10
+EA1136,525,Grass Valley/Clark Canyon CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,50,0,50,,,5,0,5
+EB3521,525,Grass Valley/Clark Canyon CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,10,0,10,,,12,0,12
+MB6211,525,Grass Valley/Clark Canyon CWMU,Bull,Moose,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,4,0,4,,,25,0,25
+DB1200,526,Alton - Premium Buck CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,3,0,3,,,425,0,425
+DB1201,526,Alton - Management Buck CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,7,0,7
+DB1334,526,Alton - Cactus Buck CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,30,0,30
+EA1118,526,Alton CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,6,0,6,,,30,0,30
+EB3500,526,Alton CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,60,0,60
+DB1205,527,Bar J Ranch CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,20,0,20
+EA1119,527,Bar J Ranch CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,12,0,12,,,50,0,50
+EB3501,527,Bar J Ranch CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,9,0,9
+DB1213,529,Boobe Hole CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,20,0,20
+EA1121,529,Boobe Hole CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,10,0,10,,,10,0,10
+EB3505,529,Boobe Hole CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,24,0,24
+DB1243,530,Grazing Pasture CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,12,0,12
+EA1137,530,Grazing Pasture CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,9,0,9,,,12,0,12
+EB3522,530,Grazing Pasture CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,21,0,21
+DB1255,531,Johnson Mountain Ranch CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,20,0,20
+EA1145,531,Johnson Mountain Ranch CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,20,0,20,,,9,0,9
+EB3531,531,Johnson Mountain Ranch CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,15,0,15
+DA1013,533,Mt Carmel CWMU,Antlerless,Deer,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,5,0,5,,,15,0,15
+DB1266,533,Mt Carmel CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,3,0,3,,,6,0,6
+DB1271,534,Oak Ranch CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,3,0,3,,,4,0,4
+DB1272,535,Old Woman Plateau CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,3,0,3,,,21,0,21
+EA1153,535,Old Woman Plateau CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,4,0,4,,,35,0,35
+EB3540,535,Old Woman Plateau CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,7,0,7
+PB5315,537,Zane CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,6,0,6
+PD1049,537,Zane CWMU,Doe,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,6,0,6,,,5,0,5
+DB1287,539,Scofield Canyons CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,9,0,9
+EA1161,539,Scofield Canyons CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,9,0,9,,,14,0,14
+EB3548,539,Scofield Canyons CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,19,0,19
+EA1162,540,Scofield East CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,14,0,14,,,6,0,6
+EB3549,540,Scofield East CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,15,0,15
+DB1288,541,Scofield West CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,16,0,16
+EA1163,541,Scofield West CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,19,0,19,,,12,0,12
+EB3550,541,Scofield West CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,15,0,15
+DB1279,542,Preston Nutter Ranch CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,10,0,10
+EA1156,542,Preston Nutter Ranch CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,21,0,21,,,5,0,5
+EB3543,542,Preston Nutter Ranch CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,3,0,3,,,9,0,9
+DB1283,543,Roan Cliffs CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,60,0,60
+EA1159,543,Roan Cliffs CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,6,0,6,,,10,0,10
+EB3546,543,Roan Cliffs CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,8,0,8
+DB1216,545,Castle Valley Outdoors CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,17
+PB5338,545,Castle Valley Outdoors CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,13,2,15
+DB1295,546,Spring Creek/Dodge CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,6,0,6,,,382,43,425
+EA1168,546,Spring Creek/Dodge CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,15,0,15,,,6,0,6
+EB3555,546,Spring Creek/Dodge CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,18,2,20
+DB1299,547,Summit Point CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,3,0,3,,,67,8,75
+EA1171,547,Summit Point CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,5,0,5,,,2,0,2
+EB3558,547,Summit Point CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,10,0,10
+DB1282,548,Redd Ranches CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,10,0,10
+EA1157,548,Redd Ranches CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,35,0,35,,,4,1,5
+EB3544,548,Redd Ranches CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,4,1,5
+DB1253,549,Circle E Ranch CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,9,1,10
+EA1143,549,Circle E Ranch CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,21,0,21,,,9,1,10
+EB3529,549,Circle E Ranch CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,247,28,275
+DB1249,550,Hiawatha CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,45,5,50
+EA1141,550,Hiawatha CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,12,0,12,,,135,15,150
+EB3526,550,Hiawatha CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,,,
+DB1261,551,Minnie Maud Ridge CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,5,0,5,,,,,
+EA1149,551,Minnie Maud Ridge CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,15,0,15,,,27,3,30
+EB3536,551,Minnie Maud Ridge CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,5,0,5,,,27,3,30
+DB1292,552,Soldier Summit CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,117,13,130
+EA1166,552,Soldier Summit CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,16,0,16,,,147,16,163
+EB3553,552,Soldier Summit CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,9,1,10
+DB1301,553,Three C CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,67,8,75
+EA1172,553,Three C CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,9,0,9,,,144,16,160
+EB3559,553,Three C CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,45,5,50
+DB1230,554,Double R Ranch CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,4,0,4
+EA1200,554,Double R Ranch CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,10,0,10,,,15,0,15
+EB3604,554,Double R Ranch CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,10,0,10
+DB1248,555,Heaston East CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,135,15,150
+EA1140,555,Heaston East CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,24,0,24,,,157,18,175
+EB3525,555,Heaston East CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,45,5,50
+DB1337,556,Little Pole Canyon CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,135,15,150
+EA1256,556,Little Pole Canyon CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,9,0,9,,,90,10,100
+EB3613,556,Little Pole Canyon CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,90,10,100
+MB6265,556,Little Pole Canyon CWMU,Bull,Moose,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,90,10,100
+PB5325,557,Allen Ranch CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,45,5,50
+PB5314,558,Westlake CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,27,3,30
+PD1031,558,Westlake CWMU,Doe,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,9,0,9,,,13,2,15
+DB1204,559,Bally Watts CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,27,3,30
+DB1217,560,Causey Spring CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,9,0,9
+EA1122,560,Causey Spring CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,5,0,5,,,5,0,5
+EB3506,560,Causey Spring CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,
+MA1009,560,Causey Spring CWMU,Antlerless,Moose,Any Legal Weapon,CWMU,Contact Operator for 2025 season dates,1,0,1,,,2,0,2
+MB6202,560,Causey Spring CWMU,Bull,Moose,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,5,0,5
+MB6201,561,Beaver Hollow CWMU,Bull,Moose,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,5,0,5
+DB1298,562,Strawberry Ridge CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,35,0,35
+EA1170,562,Strawberry Ridge CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,10,0,10,,,45,5,50
+EB3557,562,Strawberry Ridge CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,90,10,100
+MB6222,562,Strawberry Ridge CWMU,Bull,Moose,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,18,2,20
+DB1260,565,Middle Ridge CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,81,9,90
+DB1232,567,Durst Mountain CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,180,20,200
+EA1131,567,Durst Mountain CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,30,0,30,,,180,20,200
+EB3516,567,Durst Mountain CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,3,0,3,,,,,
+DB1228,568,Deseret CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,13,0,13,,,,,
+EA1129,568,Deseret CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,425,0,425,,,135,15,150
+EB3514,568,Deseret CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,19,0,19,,,22,3,25
+MA1010,568,Deseret CWMU,Antlerless,Moose,Any Legal Weapon,CWMU,Contact Operator for 2025 season dates,2,0,2,,,22,3,25
+MB6206,568,Deseret CWMU,Bull,Moose,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,40,5,45
+PB5302,568,Deseret CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,29,0,29,,,22,3,25
+DB1259,569,Tunnel Hollow CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,45,5,50
+EA1257,569,Tunnel Hollow CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,5,0,5,,,45,5,50
+EB3614,569,Tunnel Hollow CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,157,18,175
+DB1312,571,Woodruff Creek South CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,67,8,75
+EA1177,571,Woodruff Creek South CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,8,0,8,,,180,20,200
+EB3564,571,Woodruff Creek South CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,31,4,35
+MB6256,571,Woodruff Creek South CWMU,Bull,Moose,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,31,4,35
+DB1265,572,Mountain Top CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,31,4,35
+DB1245,573,Guildersleeve CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,
+EA1138,573,Guildersleeve CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,20,0,20,,,,,
+EB3523,573,Guildersleeve CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,,,600
+DB1286,574,Pisgah Mountain CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,,,500
+DB1207,575,Bear Springs CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,600
+EA1198,575,Bear Springs CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,2,0,2,,,,,100
+EB3503,575,Bear Springs CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,2000
+EA1164,576,SJ Ranch CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,6,0,6,,,,,250
+EB3551,576,SJ Ranch CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,70
+DB1246,577,Hardscrabble CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,,,50
+EA1139,577,Hardscrabble CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,10,0,10,,,,,300
+EB3524,577,Hardscrabble CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,,,400
+MB6251,577,Hardscrabble CWMU,Bull,Moose,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,2000
+DB1290,578,Skull Crack CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,400
+EA1165,578,Skull Crack CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,15,0,15,,,,,100
+EB3552,578,Skull Crack CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,275
+MB6219,578,Skull Crack CWMU,Bull,Moose,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,,,75
+DB1238,579,Folley Ridge CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,3,0,3,,,,,75
+EA1135,579,Folley Ridge CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,20,0,20,,,,,60
+EB3520,579,Folley Ridge CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,,,320
+DB1317,580,Jacob's Creek CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,,,30
+EB3530,580,Jacob's Creek CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,,,200
+MB6258,580,Jacob's Creek CWMU,Bull,Moose,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,300
+DB1202,581,Antelope Creek CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,450
+PB5300,581,Antelope Creek CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,4,0,4,,,,,150
+PD1047,581,Antelope Creek CWMU,Doe,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,6,0,6,,,,,200
+DB1206,582,Bear Mountain CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,225,25,250
+EA1120,582,Bear Mountain CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,20,0,20,,,180,20,200
+EB3502,582,Bear Mountain CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,54,6,60
+DB1291,585,Skull Valley South CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,180,20,200
+PB5309,585,Skull Valley South CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,1080,120,1200
+DB1305,586,Wallsburg CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,150
+EA1175,586,Wallsburg CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,10,0,10,,,,,150
+EB3562,586,Wallsburg CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,
+DA1012,589,Junction Valley CWMU,Antlerless,Deer,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,15,0,15,,,,,
+DB1256,589,Junction Valley CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,5,0,5,,,,,25
+EB3533,589,Junction Valley CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,15
+MB6262,589,Junction Valley CWMU,Bull,Moose,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,10
+PB5346,589,Junction Valley CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,6
+PB5306,590,Rabbit Creek CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,16
+DB1275,592,Pine Canyon CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,,,6
+DB1215,598,Buckhorn Ranch CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,16
+DB1203,599,Avintaquin Canyon CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,750
+EA1233,599,Avintaquin Canyon CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,4,0,4,,,,,
+EB3608,599,Avintaquin Canyon CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,17
+DB1300,602,Thatcher Mountain CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,
+PB5305,603,Park Valley CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,500
+DB1212,604,Bluebell CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,22,3,25
+DB1227,606,Deer Haven CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,4,0,4
+DB1077,607,Box Elder,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,23,3,26,,,9,1,10
+DB1501,607,Box Elder,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,1040,,,10,1,11
+DB1531,607,Box Elder,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,2080,,,148,17,165
+DB1561,607,Box Elder,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,1040,,,19,2,21
+DB1631,607,Box Elder,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,1040,,,36,4,40
+DB1770,607,Box Elder,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,688,,,10,1,11
+LO1501,607,Box Elder,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,19,2,21
+LO1531,607,Box Elder,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,2,,,6,1,7
+LO1561,607,Box Elder,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,17,2,19
+LO1631,607,Box Elder,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,1,,,84,9,93
+MB6012,607,Box Elder,Bull,Moose,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Oct 31 2026,2,0,2,,,29,3,32
+DB1054,609,Ogden,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,13,1,14,,,25,3,28
+DB1514,609,Ogden,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,540,,,130,15,145
+DB1544,609,Ogden,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,1620,,,9,1,10
+DB1574,609,Ogden,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,540,,,15,2,17
+DB1783,609,Ogden,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,297,,,3,0,3
+EA1063,609,Ogden,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 26 2025,67,8,75,,,6,1,7
+EA1064,609,Ogden,Antlerless,Elk,Any Legal Weapon,General Season,Nov 08 2025 - Nov 30 2025,67,8,75,,,3,1,4
+LO1514,609,Ogden,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,6,1,7
+LO1544,609,Ogden,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,2,,,4,0,4
+LO1574,609,Ogden,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,6,1,7
+MB6008,609,Ogden,Bull,Moose,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Oct 31 2026,7,0,7,,,61,7,68
+BR7324,610,Chalk Creek/East Canyon/Morgan-South Rich,Either Sex,Black Bear,Multiseason,Conservation,"March 29 - May 26, 2025 | Jul 5 - 31, 2025 | Aug 1 - 31, 2025 | Sept 1 - Oct 26, 2025 | Nov 3 - 9, 2025 | Sept 1 - Oct 26, 2025",,,,,,102,11,113
+BR7325,610,Chalk Creek/East Canyon/Morgan-South Rich,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",1,0,1,,,8,1,9
+DB1030,611,Kamas,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,4,1,5,,,13,2,15
+DB1508,611,Kamas,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,200,,,6,1,7
+DB1538,611,Kamas,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,400,,,14,2,16
+DB1568,611,Kamas,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,200,,,24,3,27
+DB1592,611,Kamas,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,200,,,3,1,4
+DB1777,611,Kamas,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,55,,,13,2,15
+EA1033,611,Kamas,Antlerless,Elk,Any Legal Weapon,General Season,Nov 08 2025 - Jan 18 2026,112,13,125,,,8,1,9
+EA2033,611,Kamas,Antlerless,Elk,Archery,General Season,Aug 16 2025 - Sep 17 2025,225,25,250,,,13,2,15
+EA2040,611,Kamas,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,150,,,9,1,10
+LO1508,611,Kamas,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,7,1,8
+LO1538,611,Kamas,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,2,,,12,1,13
+LO1568,611,Kamas,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,34,4,38
+LO1592,611,Kamas,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,1,,,99,11,110
+MB6004,611,Kamas,Bull,Moose,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Oct 31 2026,6,0,6,,,57,6,63
+DB1065,612,North Slope,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,14,2,16,,,12,1,13
+DB1513,612,North Slope,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,620,,,20,2,22
+DB1543,612,North Slope,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,1240,,,10,1,11
+DB1573,612,North Slope,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,620,,,30,3,33
+DB1598,612,North Slope,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,620,,,54,6,60
+DB1782,612,North Slope,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,340,,,89,10,99
+LO1513,612,North Slope,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,13,2,15
+LO1543,612,North Slope,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,,,2,0,2
+LO1573,612,North Slope,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,5,1,6
+LO1598,612,North Slope,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,,,,5,1,6
+BR7118,613,Yellowstone,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",5,0,5,,,89,10,99
+BR7219,613,Yellowstone,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",4,0,4,,,12,1,13
+BR7314,613,Yellowstone,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",3,0,3,,,22,2,24
+DB1039,613,Yellowstone,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,6,1,7,,,10,1,11
+DB1523,613,Yellowstone,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,280,,,12,1,13
+DB1553,613,Yellowstone,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,840,,,4,0,4
+DB1583,613,Yellowstone,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,280,,,10,1,11
+DB1792,613,Yellowstone,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,63,,,50,6,56
+EA1244,613,Yellowstone,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 17 2025,90,10,100,,,17,2,19
+EA1245,613,Yellowstone,Antlerless,Elk,Muzzleloader,General Season,Oct 29 2025 - Nov 06 2025,45,5,50,,,15,2,17
+EA2006,613,Yellowstone,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,2000,,,78,9,87
+EA2037,613,Yellowstone,Antlerless,Elk,Archery,General Season,Aug 16 2025 - Sep 17 2025,180,20,200,,,3,0,3
+LO1523,613,Yellowstone,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,1,0,1
+LO1553,613,Yellowstone,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,,,1,0,1
+LO1583,613,Yellowstone,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,1,0,1
+MB6010,613,Yellowstone,Bull,Moose,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Oct 31 2026,6,0,6,,,18,2,20
+DB1086,614,Vernal/Bonanza,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,6,1,7,,,3,0,3
+DB1522,614,Vernal/Bonanza,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,420,,,5,0,5
+DB1552,614,Vernal/Bonanza,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,700,,,2,0,2
+DB1582,614,Vernal/Bonanza,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,280,,,3,0,3
+DB1791,614,Vernal/Bonanza,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,45,,,1,0,1
+EA1085,614,Vernal/Bonanza,Antlerless,Elk,Archery,General Season,Aug 16 2025 - Sep 17 2025,90,10,100,,,2,0,2
+EA1087,614,Bonanza/Vernal,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 17 2025,90,10,100,,,10,1,11
+EA2028,614,Vernal/Bonanza,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,450,,,4,0,4
+LO1522,614,Vernal/Bonanza,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,3,0,3
+LO1552,614,Vernal/Bonanza,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,,,15,2,17
+LO1582,614,Vernal/Bonanza,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,175,20,195
+BI6527,615,Nine Mile,Hunters Choice,Bison,Any Legal Weapon,General Season,"Aug 1, 2025 - Jan 31, 2026",,,,,,155,17,172
+BI6538,615,"Nine Mile, Private Lands Only",Hunters Choice,Bison,Any Legal Weapon,General Season,"Aug 1, 2025 - Jan 31, 2026",,,,,,,,
+BR7110,615,Nine Mile,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",18,2,20,,,2,0,2
+BR7211,615,Nine Mile,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",26,3,29,,,22,2,24
+BR7317,615,Nine Mile,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",9,1,10,,,9,1,10
+DB1033,615,Nine Mile,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,6,1,7,,,21,2,23
+DB1512,615,Nine Mile,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,280,,,13,2,15
+DB1542,615,Nine Mile,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,560,,,22,2,24
+DB1572,615,Nine Mile,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,280,,,9,1,10
+DB1593,615,Nine Mile,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,280,,,21,2,23
+DB1781,615,Nine Mile,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,62,,,13,2,15
+LO1512,615,Nine Mile,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,31,4,35
+LO1542,615,Nine Mile,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,2,,,39,4,43
+LO1572,615,Nine Mile,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,6,1,7
+LO1593,615,Nine Mile,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,1,,,13,1,14
+BR7005,616,Nebo,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",7,0,7,,,16,2,18
+BR7106,616,Nebo,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",8,0,8,,,12,1,13
+BR7205,616,Nebo,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",5,0,5,,,22,2,24
+BR7305,616,Nebo,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",5,0,5,,,26,3,29
+DB1080,616,Nebo,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,23,3,26,,,2,1,3
+DB1504,616,Nebo,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,1060,,,19,2,21
+DB1534,616,Nebo,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,3180,,,23,3,26
+DB1564,616,Nebo,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,1060,,,4,0,4
+DB1773,616,Nebo,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,349,,,5,0,5
+EA1021,616,Nebo,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,207,23,230,,,18,2,20
+EA1208,616,Nebo,Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Jan 18 2026,247,28,275,,,27,3,30
+EA2016,616,Nebo,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,275,,,22,2,24
+GO6803,616,Nebo,Hunters Choice,Mountain Goat,Any Legal Weapon,Once-in-a-lifetime,Sept 26 2026 - Nov 25 2026,21,3,24,,,4,1,5
+GO6821,616,Nebo,Hunters Choice,Mountain Goat,Archery,Once-in-a-lifetime,Sept 16 2026 - Sept 25 2026,12,0,12,,,9,1,10
+LO1504,616,Nebo,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,14,2,16
+LO1534,616,Nebo,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,2,,,25,3,28
+LO1564,616,Nebo,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,3,0,3
+RS6725,616,Nebo,Male Only,Rocky Mountain Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Oct 31 2026 - Nov 30 2026,2,0,2,,,13,1,14
+BR7022,617,La Sal Mtns,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",40,3,43,,,4,1,5
+BR7127,617,La Sal Mtns,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",25,2,27,,,4,1,5
+BR7239,617,La Sal Mtns,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",6,0,6,,,11,1,12
+BR7326,617,La Sal Mtns,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",13,1,14,,,4,1,5
+DB1081,617,La Sal Mtns,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,8,1,9,,,11,1,12
+DB1509,617,La Sal Mtns,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,360,,,9,1,10
+DB1539,617,La Sal Mtns,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,1080,,,29,3,32
+DB1569,617,La Sal Mtns,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,360,,,13,2,15
+DB1778,617,La Sal Mtns,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,67,,,12,1,13
+EA1038,617,"La Sal, La Sal Mtns",Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,180,20,200,,,20,2,22
+EA1039,617,"La Sal, La Sal Mtns",Antlerless,Elk,Any Legal Weapon,General Season,Nov 17 2025 - Dec 31 2025,135,15,150,,,34,4,38
+EA2009,617,"La Sal, La Sal Mtns",Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,70,,,4,0,4
+EB3009,617,La Sal Mtns,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 15 2026,36,4,40,,,17,2,19
+EB3045,617,La Sal Mtns,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,14,2,16,,,18,2,20
+EB3046,617,La Sal Mtns,Bull,Elk,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 15 2026,24,3,27,,,22,3,25
+EB3087,617,La Sal Mtns,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,22,2,24,,,9,1,10
+EB3111,617,La Sal Mtns,Bull,Elk,Multiseason,Limited Entry,"Arch: Aug 15-Sept 15, 2026 | Muzz: Sept 21-Oct 2, 2026 | ALW: Sept 16-20, 2026 & Oct 3-15, 2026 & Nov 7-15, 2026",5,0,5,,,42,5,47
+EB3182,617,La Sal Mtns,Bull,Elk,Archery,Limited Entry,Nov 28 2026 - Dec 13 2026,9,1,10,,,7,1,8
+EB3183,617,La Sal Mtns,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,42,5,47,,,18,3,21
+EL3009,617,La Sal La Sal Mtns,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 16 2025 - Private Land Only,,,16,,,13,2,15
+EL3045,617,La Sal La Sal Mtns,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,22,3,25
+EL3046,617,La Sal La Sal Mtns,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Nov 08 2025 - Nov 16 2025 - Private Land Only,,,16,,,13,2,15
+EL3087,617,La Sal La Sal Mtns,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,20,2,22
+EL3182,617,La Sal La Sal Mtns,Bull,Elk,Archery,Limited Entry - Private Land Only,Nov 29 2025 - Dec 14 2025 - Private Land Only,,,14,,,4,1,5
+EL3183,617,La Sal La Sal Mtns,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,37,4,41
+GO6817,617,La Sal Mtns,Hunters Choice,Mountain Goat,Any Legal Weapon,Once-in-a-lifetime,Sept 05 2026 - Nov 25 2026,10,2,12,,,13,2,15
+LO1509,617,"La Sal, La Sal Mtns",Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,9,1,10
+LO1539,617,"La Sal, La Sal Mtns",Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,,,33,4,37
+LO1569,617,"La Sal, La Sal Mtns",Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,4,1,5
+DB1085,618,"San Juan, Abajo Mtns",Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,13,1,14,,,17,2,19
+DB1521,618,"San Juan, Abajo Mtns",Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,560,,,18,2,20
+DB1551,618,"San Juan, Abajo Mtns",Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,1680,,,46,5,51
+DB1581,618,"San Juan, Abajo Mtns",Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,560,,,9,1,10
+DB1790,618,"San Juan, Abajo Mtns",Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,261,,,7,1,8
+LO1521,618,"San Juan, Abajo Mtns",Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,9,1,10
+LO1551,618,"San Juan, Abajo Mtns",Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,,,,,
+LO1581,618,"San Juan, Abajo Mtns",Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,5,0,5
+DB1079,619,Manti/San Rafael,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,40,5,45,,,1,0,1
+DB1503,619,Manti/San Rafael,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,1800,,,2,0,2
+DB1533,619,Manti/San Rafael,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,5400,,,1,0,1
+DB1563,619,Manti/San Rafael,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,1800,,,1,0,1
+DB1772,619,Manti/San Rafael,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,573,,,1,0,1
+LO1503,619,Manti/San Rafael,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,2,0,2
+LO1533,619,Manti/San Rafael,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,,,1,0,1
+LO1563,619,Manti/San Rafael,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,2,0,2
+DB1087,620,"Wasatch Mtns, West",Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,36,4,40,,,3,0,3
+DB1526,620,"Wasatch Mtns, West",Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,1580,,,1,0,1
+DB1556,620,"Wasatch Mtns, West",Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,4740,,,19,0,19
+DB1586,620,"Wasatch Mtns, West",Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,1580,,,1,0,1
+DB1795,620,"Wasatch Mtns, West",Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,701,,,3,0,3
+EA2012,620,"Wasatch Mtns, West",Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,400,,,3,0,3
+LO1526,620,"Wasatch Mtns, West",Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,6,0,6
+LO1556,620,"Wasatch Mtns, West",Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,,,2,0,2
+LO1586,620,"Wasatch Mtns, West",Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,10,0,10
+RS6724,620,"Wasatch Mtns, West",Male Only,Rocky Mountain Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Oct 31 2026 - Nov 30 2026,3,0,3,,,1,0,1
+DB1041,621,"Wasatch Mtns, East",Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,30,3,33,,,2,0,2
+DB1525,621,"Wasatch Mtns, East",Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,1300,,,2,0,2
+DB1555,621,"Wasatch Mtns, East",Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,3900,,,2,0,2
+DB1585,621,"Wasatch Mtns, East",Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,1300,,,2,0,2
+DB1794,621,"Wasatch Mtns, East",Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,271,,,2,0,2
+LO1525,621,"Wasatch Mtns, East",Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,1,0,1
+LO1555,621,"Wasatch Mtns, East",Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,,,2,0,2
+LO1585,621,"Wasatch Mtns, East",Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,2,0,2
+DB1040,625,Southwest Desert,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,4,1,5,,,2,0,2
+DB1524,625,Southwest Desert,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,100,,,1,0,1
+DB1554,625,Southwest Desert,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,300,,,1,0,1
+DB1584,625,Southwest Desert,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,100,,,2,0,2
+DB1793,625,Southwest Desert,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,46,,,5,0,5
+EA1101,625,Southwest Desert,Antlerless,Elk,Any Legal Weapon,General Season,Nov 20 2025 - Jan 11 2026,90,10,100,,,1,0,1
+LO1524,625,Southwest Desert,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,2,0,2
+LO1554,625,Southwest Desert,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,,,1,0,1
+LO1584,625,Southwest Desert,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,3,0,3
+LP5049,625,Southwest Desert - Private Land Only,Buck,Pronghorn,Any Legal Weapon,Limited Entry - Private Land Only,Sept 13 2025 - Sept 21 2025 - Private Land Only,,,,,,2,0,2
+PB5018,625,Southwest Desert,Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,31,4,35,,,3,0,3
+PB5024,625,Southwest Desert,Buck,Pronghorn,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,31,4,35,,,1,0,1
+PB5049,625,Southwest Desert,Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,94,11,105,,,1,0,1
+BR7000,628,Beaver,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",9,1,10,,,1,0,1
+BR7100,628,Beaver,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",9,1,10,,,1,0,1
+BR7200,628,Beaver,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",9,1,10,,,2,0,2
+BR7318,628,Beaver,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",1,0,1,,,1,0,1
+GO6800,628,Beaver,Hunters Choice,Mountain Goat,Any Legal Weapon,Once-in-a-lifetime,Sept 05 2026 - Sept 27 2026,7,2,9,,,1,0,1
+GO6801,628,Beaver,Hunters Choice,Mountain Goat,Any Legal Weapon,Once-in-a-lifetime,Sept 28 2026 - Oct 26 2026,9,0,9,,,2,0,2
+GO6822,628,Beaver,Hunters Choice,Mountain Goat,Archery,Once-in-a-lifetime,Nov 14 2026 - Nov 23 2026,2,0,2,,,1,0,1
+LP5025,628,Beaver - Private Land Only,Buck,Pronghorn,Any Legal Weapon,Limited Entry - Private Land Only,Sept 13 2025 - Sept 21 2025 - Private Land Only,,,,,,2,0,2
+PB5000,628,Beaver,Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,11,1,12,,,2,0,2
+PB5025,628,Beaver,Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,43,5,48,,,1,0,1
+BR7020,629,Monroe,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",1,0,1,,,2,0,2
+BR7125,629,Monroe,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",1,0,1,,,1,0,1
+BR7237,629,Monroe,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",1,0,1,,,2,0,2
+DB1032,629,Monroe,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,5,1,6,,,1,0,1
+DB1510,629,Monroe,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,220,,,1,0,1
+DB1540,629,Monroe,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,660,,,1,0,1
+DB1570,629,Monroe,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,220,,,1,0,1
+DB1779,629,Monroe,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,45,,,1,0,1
+EA1286,629,Monroe,Antlerless,Elk,Any Legal Weapon,General Season,2026 Season Dates Pending,,,,,,1,0,1
+EB3010,629,Monroe,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 15 2026,10,1,11,,,2,0,2
+EB3047,629,Monroe,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,3,1,4,,,2,0,2
+EB3048,629,Monroe,Bull,Elk,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 15 2026,13,2,15,,,1,0,1
+EB3088,629,Monroe,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,10,1,11,,,1,0,1
+EB3112,629,Monroe,Bull,Elk,Multiseason,Limited Entry,"Arch: Aug 15-Sept 15, 2026 | Muzz: Sept 21-Oct 2, 2026 | ALW: Sept 16-20, 2026 & Oct 3-15, 2026 & Nov 7-15, 2026",2,0,2,,,10,0,10
+EB3184,629,Monroe,Bull,Elk,Archery,Limited Entry,Nov 28 2026 - Dec 13 2026,7,1,8,,,1,0,1
+EB3185,629,Monroe,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,18,3,21,,,,,16
+EL3010,629,Monroe,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 16 2025 - Private Land Only,,,16,,,,,16
+EL3047,629,Monroe,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,,,16
+EL3048,629,Monroe,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Nov 08 2025 - Nov 16 2025 - Private Land Only,,,16,,,,,16
+EL3088,629,Monroe,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,,,16
+EL3184,629,Monroe,Bull,Elk,Archery,Limited Entry - Private Land Only,Nov 29 2025 - Dec 14 2025 - Private Land Only,,,14,,,,,16
+EL3185,629,Monroe,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,,,16
+LO1510,629,Monroe,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,,,16
+LO1540,629,Monroe,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,2,,,,,16
+LO1570,629,Monroe,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,,,16
+BR7009,630,Mt Dutton,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",4,0,4,,,,,16
+BR7109,630,Mt Dutton,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",3,0,3,,,,,16
+BR7210,630,Mt Dutton,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",3,0,3,,,,,16
+BR7322,630,Mt Dutton,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",1,0,1,,,,,16
+DB1053,630,Mt Dutton,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,4,1,5,,,,,16
+DB1511,630,Mt Dutton,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,80,,,,,21
+DB1541,630,Mt Dutton,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,240,,,,,16
+DB1571,630,Mt Dutton,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,80,,,,,21
+DB1780,630,Mt Dutton,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,26,,,,,3
+EA2017,630,Mt Dutton,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,75,,,,,21
+EB3011,630,Mt Dutton,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 15 2026,19,2,21,,,,,16
+EB3049,630,Mt Dutton,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,8,1,9,,,,,21
+EB3050,630,Mt Dutton,Bull,Elk,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 15 2026,13,2,15,,,,,16
+EB3089,630,Mt Dutton,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,12,1,13,,,,,21
+EB3113,630,Mt Dutton,Bull,Elk,Multiseason,Limited Entry,"Arch: Aug 15-Sept 15, 2026 | Muzz: Sept 21-Oct 2, 2026 | ALW: Sept 16-20, 2026 & Oct 3-15, 2026 & Nov 7-15, 2026",3,0,3,,,,,16
+EB3186,630,Mt Dutton,Bull,Elk,Archery,Limited Entry,Nov 28 2026 - Dec 13 2026,13,2,15,,,,,21
+EB3187,630,Mt Dutton,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,22,3,25,,,,,16
+EL3011,630,Mt Dutton,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 16 2025 - Private Land Only,,,16,,,,,31
+EL3049,630,Mt Dutton,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,,,21
+EL3050,630,Mt Dutton,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Nov 08 2025 - Nov 16 2025 - Private Land Only,,,16,,,,,16
+EL3089,630,Mt Dutton,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,,,21
+EL3186,630,Mt Dutton,Bull,Elk,Archery,Limited Entry - Private Land Only,Nov 29 2025 - Dec 14 2025 - Private Land Only,,,14,,,,,16
+EL3187,630,Mt Dutton,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,,,21
+GO6814,630,Mt Dutton,Hunters Choice,Mountain Goat,Any Legal Weapon,Once-in-a-lifetime,Sept 05 2026 - Nov 25 2026,2,0,2,,,,,16
+LO1511,630,Mt Dutton,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,,,16
+LO1541,630,Mt Dutton,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,2,,,,,21
+LO1571,630,Mt Dutton,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,,,16
+DB1106,632,Thousand Lakes,Buck,Deer,Restricted Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,20,2,22,,,,,21
+DB1107,632,Thousand Lakes,Buck,Deer,Restricted Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,20,2,22,,,,,16
+DB1108,632,Thousand Lakes,Buck,Deer,Restricted Rifle,Limited Entry,Oct 17 2026 - Oct 25 2026,27,3,30,,,,,16
+DB1109,632,Thousand Lakes,Buck,Deer,Restricted Multiseason,Limited Entry,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026",2,0,2,,,,,21
+LD1108,632,Thousand Lakes - Private Land Only,Buck,Deer,Restricted Rifle,Limited Entry - Private Land Only,Oct 18 2025 - Oct 26 2025 - Private Land Only,,,,,,,,16
+DB1055,633,Fishlake,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,6,1,7,,,,,21
+DB1519,633,Fishlake,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,260,,,,,16
+DB1549,633,Fishlake,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,520,,,,,21
+DB1579,633,Fishlake,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,260,,,,,16
+DB1596,633,Fishlake,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,260,,,,,3
+DB1788,633,Fishlake,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,49,,,,,3
+LO1519,633,Fishlake,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,,,3
+LO1549,633,Fishlake,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,2,,,,,3
+LO1579,633,Fishlake,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,,,3
+LO1596,633,Fishlake,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,1,,,,,3
+DB1083,634,Panguitch Lake,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,12,1,13,,,,,3
+DB1516,634,Panguitch Lake,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,500,,,,,3
+DB1546,634,Panguitch Lake,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,1000,,,,,3
+DB1576,634,Panguitch Lake,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,500,,,,,3
+DB1594,634,Panguitch Lake,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,500,,,,,3
+DB1785,634,Panguitch Lake,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,112,,,,,3
+EA1069,634,Panguitch Lake,Antlerless,Elk,Any Legal Weapon,General Season,Nov 22 2025 - Nov 30 2025,31,4,35,,,,,3
+EA1283,634,Panguitch Lake,Antlerless,Elk,Archery,General Season,Aug 16 2025 - Aug 31 2025,31,4,35,,,,,3
+EA1284,634,Panguitch Lake,Antlerless,Elk,Muzzleloader,General Season,Oct 29 2025 - Nov 06 2025,31,4,35,,,,,3
+EA1285,634,Panguitch Lake,Antlerless,Elk,Any Legal Weapon,General Season,Dec 13 2025 - Dec 21 2025,31,4,35,,,,,16
+EA2018,634,Panguitch Lake,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,75,,,,,16
+EB3015,634,Panguitch Lake,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 15 2026,17,2,19,,,,,7
+EB3056,634,Panguitch Lake,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,7,1,8,,,,,30
+EB3057,634,Panguitch Lake,Bull,Elk,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 15 2026,12,1,13,,,,,30
+EB3093,634,Panguitch Lake,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,10,1,11,,,,,30
+EB3117,634,Panguitch Lake,Bull,Elk,Multiseason,Limited Entry,"Arch: Aug 15-Sept 15, 2026 | Muzz: Sept 21-Oct 2, 2026 | ALW: Sept 16-20, 2026 & Oct 3-15, 2026 & Nov 7-15, 2026",2,0,2,,,,,30
+EB3188,634,Panguitch Lake,Bull,Elk,Archery,Limited Entry,Nov 28 2026 - Dec 13 2026,13,2,15,,,,,30
+EB3189,634,Panguitch Lake,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,20,2,22,,,,,30
+EL3015,634,Panguitch Lake,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 16 2025 - Private Land Only,,,16,,,,,30
+EL3056,634,Panguitch Lake,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,,,30
+EL3057,634,Panguitch Lake,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Nov 08 2025 - Nov 16 2025 - Private Land Only,,,16,,,,,16
+EL3093,634,Panguitch Lake,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,,,16
+EL3188,634,Panguitch Lake,Bull,Elk,Archery,Limited Entry - Private Land Only,Nov 29 2025 - Dec 14 2025 - Private Land Only,,,14,,,,,21
+EL3189,634,Panguitch Lake,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,,,21
+LO1516,634,Panguitch Lake,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,,,21
+LO1546,634,Panguitch Lake,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,,,,,16
+LO1576,634,Panguitch Lake,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,,,16
+LO1594,634,Panguitch Lake,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,,,,,,16
+DB1043,635,Zion,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,15,2,17,,,,,3
+DB1529,635,Zion,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,675,,,,,3
+DB1559,635,Zion,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,1350,,,,,3
+DB1589,635,Zion,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,675,,,,,14
+DB1597,635,Zion,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,675,,,,,16
+DB1798,635,Zion,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,256,,,,,16
+DS6611,635,Zion,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,3,0,3,,,,,14
+EA1117,635,Zion,Antlerless,Elk,Any Legal Weapon,General Season,Nov 11 2025 - Jan 11 2026,198,22,220,,,,,21
+EA2020,635,Zion,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,320,,,,,16
+LO1529,635,Zion,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,,,16
+LO1559,635,Zion,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,2,,,,,3
+LO1589,635,Zion,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,,,16
+LO1597,635,Zion,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,1,,,,,14
+DB1034,636,Pine Valley,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,13,2,15,,,,,16
+DB1517,636,Pine Valley,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,600,,,,,14
+DB1547,636,Pine Valley,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,1200,,,,,16
+DB1577,636,Pine Valley,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,600,,,,,14
+DB1595,636,Pine Valley,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,600,,,,,16
+DB1786,636,Pine Valley,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,228,,,,,14
+EA1254,636,Pine Valley,Antlerless,Elk,Any Legal Weapon,General Season,Nov 11 2025 - Jan 11 2026,27,3,30,,,,,21
+LO1517,636,Pine Valley,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,,,16
+LO1547,636,Pine Valley,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,2,,,,,16
+LO1577,636,Pine Valley,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,,,3
+LO1595,636,Pine Valley,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,1,,,,,14
+PB5013,636,Pine Valley,Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,7,1,8,,,,,16
+PB5042,636,Pine Valley,Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,21,2,23,,,,,14
+PB5062,636,Pine Valley,Buck,Pronghorn,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,7,1,8,,,,,16
+DB1224,640,Cotton Thomas CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,14
+EB3511,640,Cotton Thomas CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,16
+BI6532,667,"Book Cliffs, Bitter Creek",Hunters Choice,Bison,Archery,Once-in-a-lifetime,Aug 15 2026 - Sept 11 2026,6,0,6,,,,,14
+BI6534,667,"Book Cliffs, Bitter Creek",Hunters Choice,Bison,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Sept 20 2026,10,0,10,,,,,16
+BI6535,667,"Book Cliffs, Bitter Creek",Hunters Choice,Bison,Any Legal Weapon,Once-in-a-lifetime,Oct 03 2026 - Oct 15 2026,8,0,8,,,,,14
+BI6536,667,"Book Cliffs, Bitter Creek",Cow Only,Bison,Any Legal Weapon,Once-in-a-lifetime,Nov 14 2026 - Nov 29 2026,15,0,15,,,,,16
+PB5001,667,"Book Cliffs, Bitter Creek",Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,13,1,14,,,,,14
+PB5026,667,"Book Cliffs, Bitter Creek",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,50,6,56,,,,,16
+RS6720,668,"Fillmore, Oak Creek",Male Only,Rocky Mountain Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Oct 03 2026 - Oct 23 2026,4,0,4,,,,,14
+RS6726,668,"Fillmore, Oak Creek",Male Only,Rocky Mountain Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Oct 24 2026 - Nov 13 2026,3,1,4,,,,,14
+RS6727,668,"Fillmore, Oak Creek",Male Only,Rocky Mountain Bighorn Sheep,Archery,Once-in-a-lifetime,Nov 14 2026 - Dec 06 2026,2,0,2,,,,,16
+DB1111,672,"Beaver, West",Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,4,1,5,,,,,14
+DB1614,672,"Beaver, West",Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,130,,,,,16
+DB1615,672,"Beaver, West",Buck,Deer,Restricted Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,130,,,,,14
+DB1616,672,"Beaver, West",Buck,Deer,Restricted Rifle,General Season,Oct 17 2026 - Oct 25 2026,,,390,,,,,16
+DB1803,672,"Beaver, West",Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Restricted Muzz: Sept 23 2026 - Oct 01 2026 | Restricted Rifle: Oct 17 2026 - Oct 25 2026,,,44,,,,,14
+LO1614,672,"Beaver, West",Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,,,28
+LO1615,672,"Beaver, West",Buck,Deer,Restricted Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,,,28
+LO1616,672,"Beaver, West",Buck,Deer,Restricted Rifle,General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,,,,,21
+EA1203,682,"Box Elder, Pilot Mtn",Antlerless,Elk,Any Legal Weapon,General Season,Aug 01 2025 - Aug 15 2025,4,1,5,,,,,
+EA1204,682,"Box Elder, Pilot Mtn",Antlerless,Elk,Any Legal Weapon,General Season,Oct 11 2025 - Nov 01 2025,4,1,5,,,,,1
+EB3031,682,Box Elder Pilot Mtn,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 12 2026 - Oct 02 2026,6,1,7,,,7,2,9
+EB3130,682,Box Elder Pilot Mtn,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 06 2026,2,0,2,,,9,0,9
+EL3031,682,Box Elder Pilot Mtn,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 13 2025 - Oct 03 2025 - Private Land Only,,,3,,,21,3,24
+EL3130,682,Box Elder Pilot Mtn,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 07 2025 - Private Land Only,,,7,,,1,0,1
+BR1009,684,La Sal,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Summer,"July 5 - 16, 2026",14,1,15,,,5,0,5
+BR1012,684,La Sal,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Late Summer,"July 18 - July 31, 2026",14,1,15,,,3,0,3
+BR1017,684,La Sal,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Spring,"March 28 - May 25, 2026",0,2,2,,,2,0,2
+BR7307,684,La Sal,Either Sex,Black Bear,Multiseason,Multiseason - Conservation,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Nov 2 - Nov. 8, 2026",,,,,,9,2,11
+DB1110,685,"Beaver, East",Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,10,1,11,,,1,0,1
+DB1611,685,"Beaver, East",Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,440,,,5,0,5
+DB1612,685,"Beaver, East",Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,440,,,2,0,2
+DB1613,685,"Beaver, East",Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,1320,,,10,2,12
+DB1802,685,"Beaver, East",Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,61,,,3,0,3
+EA1222,685,"Beaver, East",Antlerless,Elk,Any Legal Weapon,General Season,Nov 22 2025 - Dec 12 2025,27,3,30,,,1,0,1
+EA1223,685,"Beaver, East",Antlerless,Elk,Any Legal Weapon,General Season,Dec 13 2025 - Dec 27 2025,27,3,30,,,8,2,10
+EA2021,685,"Beaver, East",Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,30,,,12,0,12
+EB3000,685,Beaver East,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 15 2026,22,3,25,,,2,0,2
+EB3024,685,Beaver East,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,9,1,10,,,,,
+EB3025,685,Beaver East,Bull,Elk,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 15 2026,15,2,17,,,,,
+EB3077,685,Beaver East,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,13,2,15,,,,,
+EB3102,685,Beaver East,Bull,Elk,Multiseason,Limited Entry,"Arch: Aug 15-Sept 15, 2026 | Muzz: Sept 21-Oct 2, 2026 | ALW: Sept 16-20, 2026 & Oct 3-15, 2026 & Nov 7-15, 2026",3,0,3,,,,,
+EB3158,685,Beaver East,Bull,Elk,Archery,Limited Entry,Nov 28 2026 - Dec 13 2026,18,2,20,,,,,
+EB3159,685,Beaver East,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,27,3,30,,,,,
+EL3000,685,Beaver East,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 16 2025 - Private Land Only,,,16,,,,,
+EL3024,685,Beaver East,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,,,
+EL3025,685,Beaver East,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Nov 08 2025 - Nov 16 2025 - Private Land Only,,,16,,,,,
+EL3077,685,Beaver East,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,,,16
+EL3158,685,Beaver East,Bull,Elk,Archery,Limited Entry - Private Land Only,Nov 29 2025 - Dec 14 2025 - Private Land Only,,,14,,,,,
+EL3159,685,Beaver East,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,,,
+LO1611,685,"Beaver, East",Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,,,
+LO1612,685,"Beaver, East",Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,,,16
+LO1613,685,"Beaver, East",Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,,,,,
+DS6604,688,"La Sal, Potash/South Cisco",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,8,0,8,,,,,
+PB5009,688,"La Sal, Potash/South Cisco",Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,6,0,6,,,,,
+PB5035,688,"La Sal, Potash/South Cisco",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,22,2,24,,,,,
+EA1075,695,Boulder East,Antlerless,Elk,Any Legal Weapon,General Season,Nov 21 2025 - Dec 31 2025,45,5,50,,,,,
+EA1076,697,Boulder West,Antlerless,Elk,Any Legal Weapon,General Season,Nov 21 2025 - Dec 31 2025,45,5,50,,,,,
+EA1079,698,Fishlake/Thousand Lakes East,Antlerless,Elk,Any Legal Weapon,General Season,Nov 22 2025 - Dec 31 2025,58,7,65,,,,,
+EA1080,699,Fishlake/Thousand Lakes West,Antlerless,Elk,Any Legal Weapon,General Season,Nov 22 2025 - Dec 31 2025,54,6,60,,,,,
+PB5076,703,Parker Mtn,Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,135,15,150,,,,,
+PB5077,703,Parker Mtn,Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,45,5,50,,,,,
+PB5078,703,Parker Mtn,Buck,Pronghorn,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,45,5,50,,,,,
+PD1054,703,Parker Mtn,Doe,Pronghorn,Archery,General Season,Aug 30 2025 - Sep 12 2025,27,3,30,,,,,
+PD1055,703,Parker Mtn,Doe,Pronghorn,Muzzleloader,General Season,Oct 29 2025 - Nov 08 2025,31,4,35,,,,,
+PD1056,703,Parker Mtn,Doe,Pronghorn,Any Legal Weapon,General Season,Dec 13 2025 - Dec 21 2025,36,4,40,,,,,
+BR1010,710,San Juan,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Summer,"July 5 - 16, 2026",14,1,15,,,,,
+BR1013,710,San Juan,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Late Summer,"July 18 - July 31, 2026",14,1,15,,,,,
+BR1016,710,San Juan,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Spring,"March 28 - May 25, 2026",0,2,2,,,,,
+BR7014,710,San Juan,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",35,3,38,,,,,
+BR7116,710,San Juan,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",22,2,24,,,,,
+BR7217,710,San Juan,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",6,0,6,,,,,
+BR7312,710,San Juan,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",11,1,12,,,,,
+EA1081,710,San Juan,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,112,13,125,,,,,
+EA1082,710,San Juan,Antlerless,Elk,Any Legal Weapon,General Season,Nov 19 2025 - Dec 31 2025,112,13,125,,,,,
+EA2010,710,San Juan,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,50,,,,,2
+DB1017,714,"Book Cliffs, North",Buck,Deer,Any Legal Weapon,Limited Entry,Oct 17 2026 - Oct 25 2026,137,15,152,,,,,
+PB5041,718,"Panguitch Lake/Zion, North",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,21,2,23,,,,,2
+PB5054,718,"Panguitch Lake/Zion, North",Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,7,1,8,,,,,2
+PB5061,718,"Panguitch Lake/Zion, North",Buck,Pronghorn,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,7,1,8,,,,,2
+PB5312,721,TL Bar Ranch CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,
+DB1219,732,Chimney Rock CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,,,2
+EA1124,732,Chimney Rock CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,12,0,12,,,,,2
+EB3508,732,Chimney Rock CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,,,2
+DB1229,733,Dilly Ranch CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,
+EA1146,734,Jump Creek CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,9,0,9,,,,,2
+EB3532,734,Jump Creek CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,
+DB1251,735,Indian Head CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,,,2
+EA1142,735,Indian Head CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,12,0,12,,,,,2
+EB3527,735,Indian Head CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,,,
+DB1274,736,Patmos Ridge CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,
+EB3541,736,Patmos Ridge CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,
+DB1285,740,Sand Creek CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,
+EA1160,740,Sand Creek CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,5,0,5,,,,,
+EB3547,740,Sand Creek CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,
+DB1294,741,Spring Creek Acres CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,2
+MB6011,743,Wasatch Mtns/Central Mtns,Bull,Moose,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Oct 31 2026,19,3,22,,,,,
+BR7004,744,Manti South/San Rafael North,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",18,0,18,,,,,
+BR7105,744,Manti South/San Rafael North,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",18,2,20,,,,,
+BR7204,744,Manti South/San Rafael North,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",18,2,20,,,,,
+BR7304,744,Manti South/San Rafael North,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",18,2,20,,,,,
+LP5031,755,"Box Elder, West - Private Land Only",Buck,Pronghorn,Any Legal Weapon,Limited Entry - Private Land Only,Sept 13 2025 - Sept 21 2025 - Private Land Only,,,,,,,,
+PB5006,755,"Box Elder, West",Buck,Pronghorn,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,10,1,11,,,,,
+PB5031,755,"Box Elder, West",Buck,Pronghorn,Any Legal Weapon,Limited Entry,Sept 12 2026 - Sept 20 2026,30,3,33,,,,,
+PB5079,755,"Box Elder, West",Buck,Pronghorn,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,10,1,11,,,,,
+PD1017,755,"Box Elder, West",Doe,Pronghorn,Any Legal Weapon,General Season,Oct 04 2025 - Oct 26 2025,49,6,55,,,,,
+DB1028,804,Fillmore,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,11,1,12,,,,,
+DB1506,804,Fillmore,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,460,,,,,
+DB1536,804,Fillmore,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,920,,,,,
+DB1566,804,Fillmore,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,460,,,,,
+DB1591,804,Fillmore,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,460,,,,,
+DB1775,804,Fillmore,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,42,,,,,
+LO1506,804,Fillmore,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,,,
+LO1536,804,Fillmore,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,2,,,,,
+LO1566,804,Fillmore,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,,,
+LO1591,804,Fillmore,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,1,,,,,
+DB1309,805,West Willow Creek Ranch CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,5,0,5,,,,,
+EB3607,805,West Willow Creek Ranch CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,1
+DA1011,806,George Creek CWMU,Antlerless,Deer,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,5,0,5,,,,,1
+DB1240,806,George Creek CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,1
+PB5330,806,George Creek CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,
+DB1234,807,East Zion CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,1
+TK1021,807,East Zion CWMU,Bearded,Turkey,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,,,4,,,,,1
+DB1208,808,Blackhawk CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,,,1
+EA1261,808,Blackhawk CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,5,0,5,,,,,
+EB3504,808,Blackhawk CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,
+EA1094,814,"Vernal, Mosby Mtn",Antlerless,Elk,Any Legal Weapon,General Season,Nov 08 2025 - Jan 04 2026,90,10,100,,,,,
+EA2014,817,"Wasatch Mtns, Avintaquin - White River",Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,400,,,,,
+RS6713,820,"Nine Mile, Jack Creek",Male Only,Rocky Mountain Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Oct 31 2026 - Nov 30 2026,4,0,4,,,,,
+RS1006,821,"Nine Mile, Gray Canyon",Male Only,Rocky Mountain Bighorn Sheep,Any Legal Weapon,Conservation,"Nov 1 - Dec 31, 2025",,,,,,,,
+RS6712,821,"Nine Mile, Gray Canyon",Male Only,Rocky Mountain Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Oct 31 2026 - Nov 30 2026,4,2,6,,,,,
+PB5327,824,Cottonwood Ridge CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,4,0,4,,,,,
+PD1050,824,Cottonwood Ridge CWMU,Doe,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,6,0,6,,,,,
+DB1322,826,Pahvant Ensign CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,
+EA1192,826,Pahvant Ensign CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,6,0,6,,,,,
+EB3603,826,Pahvant Ensign CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,
+PB5328,826,Pahvant Ensign CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,3,0,3,,,,,
+PD1051,826,Pahvant Ensign CWMU,Doe,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,6,0,6,,,,,
+TK1018,826,Pahvant Ensign CWMU,Bearded,Turkey,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,,,6,,,,,
+DB1323,827,Rock House CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,
+EA1234,828,Royal Ivory Outfitters CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,15,0,15,,,,,
+PB5329,829,Snowville Flat CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,,,
+PB5326,830,Cedar Springs CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,
+EA1187,838,"Paunsaugunt, Hatch Bench",Antlerless,Elk,Any Legal Weapon,General Season,Nov 22 2025 - Dec 30 2025,13,2,15,,,,,
+DA1018,840,"Pine Valley, New Harmony",Antlerless,Deer,"Archery, Muzzleloader, Shotgun",General Season,Aug 01 2025 - Aug 15 2025,,,20,,,,,
+BR7016,845,Wasatch Mtns West-Central,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",36,4,40,,,,,
+DB1326,856,Rosette CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,
+DB1327,858,Mountain Sky Ranch CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,,,
+EA1201,858,Mountain Sky Ranch CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,10,0,10,,,,,
+EB3606,858,Mountain Sky Ranch CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,,,
+EA1025,861,"Manti, West",Antlerless,Elk,Any Legal Weapon,General Season,Nov 19 2025 - Jan 31 2026,108,12,120,,,,,
+EA1023,862,"Manti, South",Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,90,10,100,,,,,
+EA1024,862,"Manti, South",Antlerless,Elk,Any Legal Weapon,General Season,Nov 19 2025 - Jan 31 2026,90,10,100,,,,,2
+DB0004,865,Southern Navajo Buck Deer,Buck,Deer,Any Legal Weapon,Tribal,"Oct 18, 2025 - Oct 26, 2025",,,,,,,,2
+DB0005,865,Southern Navajo Buck Deer,Buck,Deer,Archery,Tribal,"Aug 16, 2025 - Sept 12, 2025",,,,,,,,
+DB0006,865,Southern Navajo Buck Deer,Buck,Deer,Muzzleloader,Tribal,"Sept 24 - Oct 2, 2025",,,,,,,,
+DB0010,865,Southern Paiute Buck Deer (early),Buck,Deer,Any Legal Weapon,Tribal,"Oct 18, 2025 - Oct 26, 2025",,,,,,,,1
+DB0011,865,Southern Paiute Buck Deer,Buck,Deer,Archery,Tribal,"Aug 16, 2025 - Sept 12, 2025",,,,,,,,
+DB0012,865,Southern Paiute Buck Deer,Buck,Deer,Muzzleloader,Tribal,"Sept 24 - Oct 2, 2025",,,,,,,,
+DB0013,865,Southern Paiute Buck Deer (late),Buck,Deer,Any Legal Weapon,Tribal,"Oct 18, 2025 - Oct 26, 2025",,,,,,,,
+DB0001,866,Southeastern Navajo Buck Deer,Buck,Deer,Any Legal Weapon,Tribal,"Oct 18, 2025 - Oct 26, 2025",,,,,,,,
+DB0002,866,Southeastern Navajo Buck Deer,Buck,Deer,Archery,Tribal,"Aug 16, 2025 - Sept 12, 2025",,,,,,,,
+DB0003,866,Southeastern Navajo Buck Deer,Buck,Deer,Muzzleloader,Tribal,"Sept 24 - Oct 2, 2025",,,,,,,,
+EB3128,867,Box Elder Grouse Creek,Bull,Elk,Multiseason,Conservation,"Any Legal Weapon: Sept 16-20, 2026 & Oct 3 - 15, 2026 | Muzz: Sept 21-Oct 2, 2026",,,,,,6,1,7
+EB3147,867,Box Elder Grouse Creek,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,6,1,7,,,3,0,3
+EB3150,867,Box Elder Grouse Creek,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,12,1,13,,,4,1,5
+EB3153,867,Box Elder Grouse Creek,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,2,1,3,,,1,0,1
+EL3147,867,Box Elder Grouse Creek,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,2,0,2
+EL3150,867,Box Elder Grouse Creek,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,,,
+EL3153,867,Box Elder Grouse Creek,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,14,3,17
+EA2046,868,"Box Elder, Sawtooth",Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,25,,,4,0,4
+EB3135,869,Barney Top/Kaiparowits,Bull,Elk,Archery,Limited Entry,Sept 01 2026 - Sept 30 2026,9,1,10,,,5,0,5
+EB3142,869,Barney Top/Kaiparowits,Bull,Elk,"HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",Limited Entry,Nov 07 2026 - Nov 30 2026,9,1,10,,,5,0,5
+EL3135,869,Barney Top/Kaiparowits,Bull,Elk,Archery,Limited Entry - Private Land Only,Sept 01 2025 - Sept 30 2025 - Private Land Only,,,30,,,6,0,6
+EL3142,869,Barney Top/Kaiparowits,Bull,Elk,"HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",Limited Entry - Private Land Only,Nov 08 2025 - Nov 30 2025 - Private Land Only,,,30,,,6,0,6
+EB3136,871,Southwest Desert North,Bull,Elk,Archery,Limited Entry,Sept 01 2026 - Sept 30 2026,21,2,23,,,20,3,23
+EB3143,871,Southwest Desert North,Bull,Elk,"HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",Limited Entry,Nov 07 2026 - Nov 30 2026,21,2,23,,,6,2,8
+EL3136,871,Southwest Desert North,Bull,Elk,Archery,Limited Entry - Private Land Only,Sept 01 2025 - Sept 30 2025 - Private Land Only,,,30,,,7,0,7
+EL3143,871,Southwest Desert North,Bull,Elk,"HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",Limited Entry - Private Land Only,Nov 08 2025 - Nov 30 2025 - Private Land Only,,,30,,,2,0,2
+EB3146,872,Southwest Desert South,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 15 2026,39,4,43,,,6,0,6
+EB3149,872,Southwest Desert South,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,16,2,18,,,19,3,22
+EB3152,872,Southwest Desert South,Bull,Elk,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 15 2026,26,3,29,,,2,0,2
+EB3155,872,Southwest Desert South,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,23,3,26,,,1,0,1
+EB3157,872,Southwest Desert South,Bull,Elk,Multiseason,Limited Entry,"Arch: Aug 15-Sept 15, 2026 | Muzz: Sept 21-Oct 2, 2026 | ALW: Sept 16-20, 2026 & Oct 3-15, 2026 & Nov 7-15, 2026",5,0,5,,,1,0,1
+EB3197,872,Southwest Desert South,Bull,Elk,Archery,Limited Entry,Nov 28 2026 - Dec 13 2026,18,2,20,,,1,0,1
+EB3198,872,Southwest Desert South,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,46,5,51,,,2,0,2
+EL3146,872,Southwest Desert South,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 16 2025 - Private Land Only,,,16,,,4,0,4
+EL3149,872,Southwest Desert South,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,2,0,2
+EL3152,872,Southwest Desert South,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Nov 08 2025 - Nov 16 2025 - Private Land Only,,,16,,,1,0,1
+EL3155,872,Southwest Desert South,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,1,0,1
+EL3197,872,Southwest Desert South,Bull,Elk,Archery,Limited Entry - Private Land Only,Nov 29 2025 - Dec 14 2025 - Private Land Only,,,14,,,1,0,1
+EL3198,872,Southwest Desert South,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,1,0,1
+PD1057,873,"Parker Mtn, Highlands",Doe,Pronghorn,Any Legal Weapon,General Season,Oct 08 2025 - Oct 16 2025,31,4,35,,,1,0,1
+PD1058,873,"Parker Mtn, Highlands",Doe,Pronghorn,Any Legal Weapon,General Season,Nov 22 2025 - Nov 30 2025,36,4,40,,,1,0,1
+DB1332,874,West Ridge CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,5,0,5,,,3,0,3
+EA1260,874,West Ridge CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,5,0,5,,,,,
+EB3611,874,West Ridge CWMU,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,11,1,12
+DB1331,875,Raft River CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,13,1,14
+DB1330,876,Iron Spring CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,8,1,9
+PB5339,876,Iron Spring CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,4,0,4
+DB1333,878,5S CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,3,1,4
+EA1237,879,"La Sal, La Sal Mtns-North",Antlerless,Elk,Any Legal Weapon,General Season,Nov 17 2025 - Dec 07 2025,157,18,175,,,9,1,10
+EA1280,879,"La Sal, La Sal Mtns-North",Antlerless,Elk,Any Legal Weapon,General Season,Dec 08 2025 - Dec 31 2025,157,18,175,,,10,1,11
+EA1242,880,"Vernal, Buckskin Hills-Jensen",Antlerless,Elk,Any Legal Weapon,General Season,Dec 01 2025 - Dec 31 2025,90,10,100,,,15,2,17
+EA1243,880,"Vernal, Buckskin Hills-Jensen",Antlerless,Elk,Any Legal Weapon,General Season,Jan 01 2026 - Jan 31 2026,90,10,100,,,6,0,6
+PD1043,882,"Nine Mile, Anthro-Pleasant Valley",Doe,Pronghorn,Any Legal Weapon,General Season,Aug 01 2025 - Aug 16 2025,9,1,10,,,30,3,33
+TK1006,884,Southeastern Area,Bearded,Turkey,Any Legal Weapon,Limited Entry,"April 11 - April 30, 2026 | Youth only : May 1-3, 2026",,,250,,,10,1,11
+TK1015,884,Southeastern Area,Bearded,Turkey,Any Legal Weapon,Conservation,"Limited Entry: Apr 11-30, 2026 | General Season: May 4-31, 2026 | YOUTH ONLY: May 1-3, 2026",,,,,,7,1,8
+TK1007,885,Southern Area,Bearded,Turkey,Any Legal Weapon,Limited Entry,"April 11 - April 30, 2026 | Youth only : May 1-3, 2026",,,542,,,21,2,23
+TK1016,885,Southern Area,Bearded,Turkey,Any Legal Weapon,Conservation,"Limited Entry: Apr 11-30, 2026 | General Season: May 4-31, 2026 | YOUTH ONLY: May 1-3, 2026",,,,,,17,2,19
+TK1004,886,Northeastern Area,Bearded,Turkey,Any Legal Weapon,Limited Entry,"April 11 - April 30, 2026 | Youth only : May 1-3, 2026",,,347,,,18,2,20
+TK1013,886,Northeastern Area,Bearded,Turkey,Any Legal Weapon,Conservation,"Limited Entry: Apr 11-30, 2026 | General Season: May 4-31, 2026 | YOUTH ONLY: May 1-3, 2026",,,,,,31,4,35
+TK1003,887,Central Area,Bearded,Turkey,Any Legal Weapon,Limited Entry,"April 11 - April 30, 2026 | Youth only : May 1-3, 2026",,,600,,,18,2,20
+TK1012,887,Central Area,Bearded,Turkey,Any Legal Weapon,Conservation,"Limited Entry: Apr 11-30, 2026 | General Season: May 4-31, 2026 | YOUTH ONLY: May 1-3, 2026",,,,,,8,1,9
+TK1005,888,Northern Area,Bearded,Turkey,Any Legal Weapon,Limited Entry,"April 11 - April 30, 2026 | Youth only : May 1-3, 2026",,,500,,,23,3,26
+TK1014,888,Northern Area,Bearded,Turkey,Any Legal Weapon,Conservation,"Limited Entry: Apr 11-30, 2026 | General Season: May 4-31, 2026 | YOUTH ONLY: May 1-3, 2026",,,,,,31,4,35
+BI6528,889,"Book Cliffs, Little Creek/South",Hunters Choice,Bison,Archery,Once-in-a-lifetime,Aug 15 2026 - Sept 11 2026,6,0,6,,,43,5,48
+BI6529,889,"Book Cliffs, Little Creek/South",Cow Only,Bison,Any Legal Weapon,Once-in-a-lifetime,Oct 17 2026 - Oct 27 2026,8,0,8,,,50,6,56
+BI6531,889,"Book Cliffs, Little Creek/South",Hunters Choice,Bison,Any Legal Weapon,Once-in-a-lifetime,Sept 21 2026 - Oct 02 2026,10,0,10,,,34,4,38
+BI6537,889,"Book Cliffs, Little Creek/South",Hunters Choice,Bison,Any Legal Weapon,Once-in-a-lifetime,Nov 07 2026 - Jan 31 2027,8,7,15,,,14,2,16
+DB1336,890,First Light CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,14,2,16
+DB1335,892,Big Piney Ranch CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,28,3,31
+EA1251,893,"Southwest Desert, Burbank/Garrison",Antlerless,Elk,Any Legal Weapon,General Season,Aug 01 2025 - Aug 15 2025,13,2,15,,,30,3,33
+DA1047,895,Vernal-Ouray Valley,Antlerless,Deer,Any Legal Weapon,General Season,Sep 27 2025 - Dec 12 2025,,,25,,,46,5,51
+PD1044,895,Vernal-Ouray Valley,Doe,Pronghorn,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,9,1,10,,,2,0,2
+TK1020,898,Central Region - Private land only,Either Sex,Turkey,Any Legal Weapon,Fall Management,"Oct 1, 2025 - Feb 28, 2026",,,800,,,22,2,24
+EB3160,899,Book Cliffs Bitter Creek/East,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 15 2026,22,2,24,,,89,10,99
+EB3161,899,Book Cliffs Bitter Creek/East,Bull,Elk,Archery,Limited Entry,Nov 28 2026 - Dec 13 2026,4,1,5,,,13,1,14
+EB3162,899,Book Cliffs Bitter Creek/East,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,9,1,10,,,15,2,17
+EB3163,899,Book Cliffs Bitter Creek/East,Bull,Elk,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 15 2026,14,2,16,,,29,3,32
+EB3164,899,Book Cliffs Bitter Creek/East,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,25,3,28,,,21,2,23
+EB3165,899,Book Cliffs Bitter Creek/East,Bull,Elk,Multiseason,Limited Entry,"Arch: Aug 15-Sept 15, 2026 | Muzz: Sept 21-Oct 2, 2026 | ALW: Sept 16-20, 2026 & Oct 3-15, 2026 & Nov 7-15, 2026",3,0,3,,,21,2,23
+EB3166,899,Book Cliffs Bitter Creek/East,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,13,1,14,,,3,0,3
+EL3160,899,Book Cliffs Bitter Creek/East,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 16 2025 - Private Land Only,,,16,,,7,1,8
+EL3161,899,Book Cliffs Bitter Creek/East,Bull,Elk,Archery,Limited Entry - Private Land Only,Nov 29 2025 - Dec 14 2025 - Private Land Only,,,14,,,62,7,69
+EL3162,899,Book Cliffs Bitter Creek/East,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,50,6,56
+EL3163,899,Book Cliffs Bitter Creek/East,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Nov 08 2025 - Nov 16 2025 - Private Land Only,,,16,,,54,6,60
+EL3164,899,Book Cliffs Bitter Creek/East,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,94,11,105
+EL3166,899,Book Cliffs Bitter Creek/East,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,73,8,81
+EB3173,901,Nebo/San Pitch Mtns,Bull,Elk,Archery,Limited Entry,Aug 15 2026 - Sept 15 2026,29,3,32,,,32,4,36
+EB3174,901,Nebo/San Pitch Mtns,Bull,Elk,Archery,Limited Entry,Nov 28 2026 - Dec 13 2026,13,2,15,,,95,11,106
+EB3175,901,Nebo/San Pitch Mtns,Bull,Elk,Any Legal Weapon,Limited Entry,Sept 16 2026 - Sept 20 2026,12,1,13,,,4,0,4
+EB3176,901,Nebo/San Pitch Mtns,Bull,Elk,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 15 2026,20,2,22,,,7,1,8
+EB3177,901,Nebo/San Pitch Mtns,Bull,Elk,Any Legal Weapon,Limited Entry,Oct 03 2026 - Oct 15 2026,34,4,38,,,2,0,2
+EB3178,901,Nebo/San Pitch Mtns,Bull,Elk,Multiseason,Limited Entry,"Arch: Aug 15-Sept 15, 2026 | Muzz: Sept 21-Oct 2, 2026 | ALW: Sept 16-20, 2026 & Oct 3-15, 2026 & Nov 7-15, 2026",4,0,4,,,21,2,23
+EB3179,901,Nebo/San Pitch Mtns,Bull,Elk,Muzzleloader,Limited Entry,Sept 21 2026 - Oct 02 2026,17,2,19,,,30,3,33
+EL3173,901,Nebo/San Pitch Mtns,Bull,Elk,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 16 2025 - Private Land Only,,,16,,,17,2,19
+EL3174,901,Nebo/San Pitch Mtns,Bull,Elk,Archery,Limited Entry - Private Land Only,Nov 29 2025 - Dec 14 2025 - Private Land Only,,,14,,,7,1,8
+EL3175,901,Nebo/San Pitch Mtns,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Sept 17 2025 - Sept 21 2025 - Private Land Only,,,21,,,7,1,8
+EL3176,901,Nebo/San Pitch Mtns,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Nov 08 2025 - Nov 16 2025 - Private Land Only,,,16,,,15,2,17
+EL3177,901,Nebo/San Pitch Mtns,Bull,Elk,Any Legal Weapon,Limited Entry - Private Land Only,Oct 04 2025 - Oct 16 2025 - Private Land Only,,,16,,,10,1,11
+EL3179,901,Nebo/San Pitch Mtns,Bull,Elk,Muzzleloader,Limited Entry - Private Land Only,Sept 22 2025 - Oct 03 2025 - Private Land Only,,,3,,,18,2,20
+DB1342,905,Faust Valley CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,6,0,6
+PB5342,906,Salt Wells CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,2,0,2
+DB1341,908,Dry Creek CWMU,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,,,2,0,2
+DA1049,909,"Vernal, Ashley Valley",Antlerless,Deer,Archery,General Season,Aug 16 2025 - Dec 12 2025,,,35,,,135,15,150
+DA1048,910,Fillmore City,Antlerless,Deer,Archery,General Season,Aug 01 2025 - Sep 04 2025,,,15,,,45,5,50
+PB5345,918,Green River Flat CWMU,Buck,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,2,0,2,,,45,5,50
+PD1053,918,Green River Flat CWMU,Doe,Pronghorn,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,6,0,6,,,10,1,11
+EA1265,920,"Wasatch Mtns, Tabby Mtn",Antlerless,Elk,Any Legal Weapon,General Season,Dec 20 2025 - Dec 30 2025,90,10,100,,,9,1,10
+EA1264,921,"Wasatch Mtns, Rabbit Gulch",Antlerless,Elk,Any Legal Weapon,General Season,Jan 17 2026 - Jan 25 2026,45,5,50,,,4,0,4
+DB1351,923,The Dirty Dozen,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,,,29,0,29
+EA1259,923,Diamond Mountain CWMU,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,2,0,2,,,1,0,1
+EB3620,923,The Dirty Dozen,Bull,Elk,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,,,1,0,1
+EA1269,924,Ogden (Excludes Hyrum),Antlerless,Elk,Any Legal Weapon,General Season,Dec 01 2025 - Dec 31 2025,180,20,200,,,2,0,2
+DB1114,925,Cedar/Stansbury,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,5,1,6,,,3,0,3
+DB1623,925,Cedar/Stansbury,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,250,,,1,0,1
+DB1624,925,Cedar/Stansbury,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,250,,,2,0,2
+DB1625,925,Cedar/Stansbury,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,750,,,2,0,2
+DB1804,925,Cedar/Stansbury,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,42,,,2,0,2
+LO1623,925,Cedar/Stansbury,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,1,0,1
+LO1624,925,Cedar/Stansbury,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,4,0,4
+LO1625,925,Cedar/Stansbury,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,,,3,0,3
+DB1112,926,"West Desert, Swasey",Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,4,1,5,,,2,0,2
+DB1617,926,"West Desert, Swasey",Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,80,,,1,0,1
+DB1618,926,"West Desert, Swasey",Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,80,,,13,2,15
+DB1619,926,"West Desert, Swasey",Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,240,,,4,1,5
+DB1806,926,"West Desert, Swasey",Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,36,,,2,0,2
+LO1617,926,"West Desert, Swasey",Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,1,0,1
+LO1618,926,"West Desert, Swasey",Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,1,0,1
+LO1619,926,"West Desert, Swasey",Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,,,1,0,1
+DB1113,927,Oquirrh/Tintic,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,10,1,11,,,2,0,2
+DB1620,927,Oquirrh/Tintic,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,450,,,1,0,1
+DB1621,927,Oquirrh/Tintic,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,450,,,72,8,80
+DB1622,927,Oquirrh/Tintic,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,1350,,,22,3,25
+DB1805,927,Oquirrh/Tintic,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,65,,,49,6,55
+LO1620,927,Oquirrh/Tintic,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,,,9,0,9
+LO1621,927,Oquirrh/Tintic,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,,,13,2,15
+LO1622,927,Oquirrh/Tintic,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,,,27,3,30
+DB1115,928,Little Rockies,Buck,Deer,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 30 2026,4,1,5,,,27,3,30
+DB1116,929,"San Juan, Mancos Mesa",Buck,Deer,"HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",Limited Entry,Nov 07 2026 - Nov 30 2026,4,1,5,,,9,1,10
+DB1119,930,Moab Valley,Buck,Deer,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 22 2026,9,1,10,,,9,1,10
+EB1012,931,Uinta Basin Private Lands Any Bull Elk,Bull,Elk,Any Legal Weapon,General Season - Any Bull,Aug 01 2025 - Nov 15 2025 - Valid only on private property within the unit,,,500,,,6,0,6
+DB1120,932,Castle Valley,Buck,Deer,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 22 2026,13,2,15,,,2,0,2
+DS6626,933,"Escalante, East",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,5,2,7,,,6,0,6
+DS6627,934,"Escalante, West",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,3,0,3,,,6,0,6
+MA1008,937,"Wasatch Mtns, Salt Lake-Timpanogos",Antlerless,Moose,Any Legal Weapon,Limited Entry,Sep 20 2025 - Oct 19 2025,4,1,5,,,6,0,6
+EA1278,938,"Manti, Ferron-Nelson Mtn",Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Nov 30 2025,45,5,50,,,6,0,6
+EA1279,938,"Manti, Ferron-Nelson Mtn",Antlerless,Elk,Any Legal Weapon,General Season,Dec 01 2025 - Jan 31 2026,45,5,50,,,6,0,6
+EA1282,939,"Ogden, North",Antlerless,Elk,Archery,General Season,Dec 16 2025 - Jan 31 2026,180,20,200,,,27,3,30
+PD1059,940,"Parker Mtn, Plains",Doe,Pronghorn,Any Legal Weapon,General Season,Oct 08 2025 - Oct 16 2025,27,3,30,,,31,4,35
+PD1060,940,"Parker Mtn, Plains",Doe,Pronghorn,Any Legal Weapon,General Season,Nov 22 2025 - Nov 30 2025,36,4,40,,,36,4,40
+EA1272,941,"East Canyon, East",Antlerless,Elk,Any Legal Weapon,General Season,Dec 01 2025 - Jan 31 2026,135,15,150,,,31,4,35
+BI1000,5000,Bison - Statewide Permit,Hunters Choice,Bison,Any Legal Weapon,Statewide,"Aug 1, 2026 - Jan 31, 2027",,,,,,36,4,40
+BR1000,5001,Black Bear - Statewide Permit,Either Sex,Black Bear,Any Legal Weapon,Statewide,,,,,../notes/DATABASE/BR1000-notes.md,,27,3,30
+BR1001,5002,Black Bear Harvest Objective Units,Either Sex,Black Bear,Any Legal Weapon,Harvest Objective,,,,,../notes/DATABASE/BR1001-notes.md,,36,4,40
+BR1007,5003,Black Bear Pursuit - Resident,Either Sex,Black Bear,Pursuit Only,Pursuit,"Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026",,,,../notes/DATABASE/BR1007-notes.md,,4,1,5
+BR1018,5013,Black Bear Pursuit - Nonresident,Either Sex,Black Bear,Pursuit Only,Pursuit,"Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026",,,,../notes/DATABASE/BR1018-notes.md,,,,
+BR7123,5053,Kamas/North Slope Summit,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",6,0,6,,,,,
+BR7229,5079,Kamas/North Slope Summit,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",4,0,4,,,,,
+BR7321,5101,Kamas/North Slope Summit,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",5,0,5,,,,,
+CG9999,5107,Cougar - Statewide,Either Sex,Cougar,Any Legal Weapon,Statewide,,,,,,,,,
+DB0007,5108,Buck Deer - Statewide Permit,Buck,Deer,Any Legal Weapon,Statewide,"Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027",,,1,Statewide buck deer permit: 1 public draw permit; separate auction/conservation permit noted outside standard draw allocation.,,2,0,2
+DB0008,5109,Extended Archery Deer,Hunters Choice,Deer,Archery,Extended Archery,"Sept 12-Oct 15, 2026 -OR- Sept 12-Nov 30, 2026 | See guidebook for units & dates",,,2000,,,5,1,6
+DS1000,5110,Desert Bighorn Sheep - Statewide Permit,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Statewide,"Sept 1 - Dec 31, 2026",,,,,,4,0,4
+EA1180,684,La Sal (Conservation),Antlerless,Elk,Any Legal Weapon,Conservation,"Oct 4 - Oct 16, 2025 & Nov 17 - Dec 31, 2025",,,17,,,3,1,4
+EA1220,5112,Manti (Expo),Antlerless,Elk,Any Legal Weapon,General Season,"Oct 4 - Oct 16, 2025",,,,,,2,0,2
+EA1258,5113,La Sal (Expo),Antlerless,Elk,Any Legal Weapon,General Season,"Oct 4 - Oct 16, 2025",,,,,,3,0,3
+EA1270,175,Fishlake (Conservation),Antlerless,Elk,Any Legal Weapon,Conservation,"Oct 4 - Oct 16, 2025 & Nov 22 - Dec 31, 2025",,,,,,4,2,6
+EA1271,51,Manti (Conservation),Antlerless,Elk,Any Legal Weapon,Conservation,"Oct 4 - Oct 16, 2025 & Nov 19, 2025 - Jan 31, 2026",,,,,,4,0,4
+EA2000,5116,Antlerless Elk Control,Antlerless,Elk,Any Legal Weapon,Antlerless Elk Control,"Valid for the season/weapon listed on your qualifying permit on the Chalk Creek, East Canyon, Kamas, Henry Mtns, Morgan-S. Rich, Ogden, Pine Valley & Zion Units",,,,,,4,0,4
+EA2041,29,Cache (Conservation),Antlerless,Elk,Any Legal Weapon,Conservation,"Oct 4 - Oct 26, 2025",,,,,,3,0,3
+EA2045,5118,Wasatch Mtns (Conservation),Antlerless,Elk,Any Legal Weapon,Conservation,"Oct 4 - Oct 16, 2025 & Nov 15, 2025 - Jan 31, 2026",,,,,,2,0,2
+EB1000,5119,Elk - Statewide Permit,Bull,Elk,Any Legal Weapon,Statewide,"Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027",,,15,,,3,0,3
+EB1001,5120,Any Bull Elk Units,Bull,Elk,Any Legal Weapon,General Season - Any Bull,Oct 04 2025 - Oct 10 2025,,,10,,,2,0,2
+EB1002,5121,Any Bull Elk Units,Bull,Elk,Muzzleloader,General Season - Any Bull,Oct 29 2025 - Nov 06 2025,,,6,,,3,1,4
+EB1003,5122,Spike Only Units,Bull,Elk,Any Legal Weapon,General Season - Spike Bull,Oct 04 2025 - Oct 16 2025,,,16,,,2,0,2
+EB1004,5123,Spike Only Units,Bull,Elk,Muzzleloader,General Season - Spike Bull,Oct 29 2025 - Nov 06 2025,,,6,,,,,
+EB1005,5124,Archery Hunters Choice Elk,Bull,Elk,Archery,General Season - Archery,"Any bull units: Aug 16 2025 - Sept 17 2025 | Spike only units: Aug 16-Sept 5, 2025 (Paunsaugunt closed to archery)",,,16,,,,,
+EB1007,5125,Draw-only Youth Any Bull/Hunters Choice Elk,Bull,Elk,Any Legal Weapon,General Season - Any Bull,Sept 12 2026 - Sept 22 2026,,,750,,,,,2060
+EB1009,5126,Spike Only Elk Units - Multiseason,Bull,Elk,Multiseason,General Season - Spike Bull,"Spike Archery: Aug 16-Sept 5, 2025 (Paunsaugunt closed to archery) Any Bull Archery: Aug 16-Sept 17, 2025 | ALW: Oct 4 - 16, 2025 | Muzz: Oct 29-Nov 6, 2025",,,,,,,,600
+EB1010,5127,Any Bull Elk Units,Bull,Elk,Any Legal Weapon,General Season - Any Bull,Oct 11 2025 - Oct 17 2025,,,17,,,,,347
+EB1011,5128,Youth General Season Bull Elk,Bull,Elk,Any Legal Weapon,General Season - Youth,ANY BULL: Arch: 08/16-09/17/2025|ALW: 10/4-10-17/2025|Muzz: 10/29-11/6/2025 SPIKE ONLY: Arch:8/16-09/05/2025|ALW: 10/4-10/16/2025|Muzz: 10/29-11/6/2025 |Uinta Basin Private Land only:08/01-11/15/2025,,,,,,,,500
+EB3209,683,Box Elder Pilot Mtn,Bull,Elk,Multiseason,Conservation,"Archery: Aug 15-Sept 6, 2026 | Any Legal Weapon: Sept 12-Oct 2, 2026",,,,,,,,250
+EX1000,5130,Elk Extended Archery,Hunters Choice,Elk,Archery,Extended Archery,"Aug 16 - Dec 15, 2025",,,,,,,,542
+GO1000,5131,Mountain Goat - Statewide Permit,Hunters Choice,Mountain Goat,Any Legal Weapon,Statewide,"Sept 1 - Dec 31, 2026",,,1,,,,,
+MB1000,5133,Moose - Statewide Permit,Bull,Moose,Any Legal Weapon,Statewide,"Sept 1 - Nov 15, 2026",,,,,,,,
+PB1000,5134,Pronghorn - Statewide Permit,Buck,Pronghorn,Any Legal Weapon,Statewide,"Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1 - Nov 15, 2026",,,,,,,,
+RS0001,5135,Rocky Mountain Bighorn Sheep - Statewide Permit,Male Only,Rocky Mountain Bighorn Sheep,Any Legal Weapon,Statewide,"Sept 1 - Dec 31, 2026",,,,,,,,
+TK1001,5136,Northern Region - Private land only,Either Sex,Turkey,Any Legal Weapon,Fall Management,"Oct 1, 2025 - Feb 28, 2026",,,2060,,,,,
+TK1019,5137,Southeastern Region - Select areas only,Either Sex,Turkey,Any Legal Weapon,Fall Management,"Oct 1, 2025 - Feb 28, 2026",,,66,,,,,6
+TK1022,5138,Southern Region - Select areas only,Either Sex,Turkey,Any Legal Weapon,Fall Management,"Oct 1, 2025 - Jan 4, 2026",,,155,,,,,66
+DS1003,5141,"Kaiparowits, Escalante East/West",Male Only,Desert Bighorn Sheep,Any Legal Weapon,Conservation,"Sept 12 - Nov 10, 2026",,,,,,,,800
+EA1221,5145,Fishlake/Thousand Lake (Expo),Antlerless,Elk,Any Legal Weapon,General Season,"Oct 4 - Oct 16, 2025",,,,,,,,4
+DS6625,10003,Mineral Mtns,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,4,0,4,,,,,155

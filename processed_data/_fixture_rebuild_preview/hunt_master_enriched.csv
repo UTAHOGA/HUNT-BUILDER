@@ -1,0 +1,3 @@
+hunt_code,species,hunt_name,weapon,hunt_type,access_type,residency,points,public_permits_2025,public_permits_2026,public_permits_2026_source,applicants_2025,projected_applicants_2026,projected_applicants_2026_source,odds_2025,odds_2026_projected,max_point_permits_2026,random_permits_2026,success_hunters,success_harvest,success_percent,missing_draw_data,missing_projection,missing_permits
+DB1001,mule deer,Unit One,rifle,limited_entry,Public,Resident,2,2,2,fixture,2,2,fixture,,50.000,1,1,2,1,50.000,FALSE,FALSE,FALSE
+DB1002,Unknown,Unknown Fixture Hunt,Unknown,other,Public,Resident,7,,,fixture,0,0,fixture,,42.000,,,,,,FALSE,FALSE,FALSE

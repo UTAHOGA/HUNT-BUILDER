@@ -1,0 +1,82 @@
+{
+  "classification": "PRONGHORN_HUNT_CODE_RECONCILIATION",
+  "timestamp_utc": "2026-05-25T00:51:44.640104+00:00",
+  "target_prefixes": [
+    "LP",
+    "PB"
+  ],
+  "current_database_code_count": 94,
+  "current_database_prefix_counts": {
+    "LP": 6,
+    "PB": 88
+  },
+  "export_summary": {
+    "classification": "PRONGHORN_BUCK_REFERENCE_EXPORT",
+    "timestamp_utc": "2026-05-25T00:51:36.950164+00:00",
+    "status": "PASS",
+    "row_count": 94,
+    "prefix_counts": {
+      "LP": 6,
+      "PB": 88
+    },
+    "hunt_type_counts": {
+      "CWMU": 21,
+      "Limited Entry": 66,
+      "Limited Entry - Private Land Only": 6,
+      "Statewide": 1
+    },
+    "duplicate_code_count": 0,
+    "duplicate_codes": [],
+    "lp_quota_leak_count": 0,
+    "lp_quota_leak_codes": [],
+    "required_quota_columns": [
+      "Non Res",
+      "Res",
+      "Total"
+    ],
+    "source_authority": "Utah DWR Hunt Planner",
+    "output_csv": "processed_data\\pronghorn_buck_limited_entry_reference_export.csv",
+    "guardrail": "Public PB rows preserve published quotas; LP private-land rows keep quota columns blank."
+  },
+  "promotion_summary": {
+    "classification": "PRONGHORN_PRIVATE_LAND_REFERENCE_PROMOTION",
+    "timestamp_utc": "2026-05-25T00:51:39.897238+00:00",
+    "target_prefix": "LP",
+    "expected_private_land_hunt_codes": [
+      "LP5025",
+      "LP5031",
+      "LP5033",
+      "LP5046",
+      "LP5049",
+      "LP5051"
+    ],
+    "initial_missing_predictive_hunt_codes": [
+      "LP5025",
+      "LP5031",
+      "LP5033",
+      "LP5046",
+      "LP5049",
+      "LP5051"
+    ],
+    "newly_promoted_hunt_code_count": 6,
+    "newly_promoted_hunt_codes": [
+      "LP5025",
+      "LP5031",
+      "LP5033",
+      "LP5046",
+      "LP5049",
+      "LP5051"
+    ],
+    "promoted_reference_hunt_code_count": 6,
+    "still_missing_predictive_hunt_code_count": 0,
+    "still_missing_predictive_hunt_codes": [],
+    "duplicate_reference_key_count": 0,
+    "quota_leak_reference_row_count": 0,
+    "quota_leak_reference_hunt_codes": [],
+    "guardrail": "LP private-land pronghorn rows are reference-only; no public PB quota or draw probability values are copied into LP rows."
+  },
+  "current_database_reconciliation_failure_count": 0,
+  "current_database_reconciliation_failures": [],
+  "blockers": 0,
+  "guardrail": "Pronghorn resolution closes PB/LP hunt-code coverage without changing public draw odds, harvest features, or probability math."
+}

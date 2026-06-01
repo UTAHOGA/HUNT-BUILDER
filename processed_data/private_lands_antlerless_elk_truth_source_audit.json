@@ -1,0 +1,209 @@
+{
+  "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+  "truth_rows": 26,
+  "unique_hunt_codes": 26,
+  "grand_total_2025": 9755,
+  "grand_total_2026": 9855,
+  "grand_total_delta": 100,
+  "group_changes": [
+    {
+      "permit_group": "Wasatch Mtns, West-Central",
+      "permits_2025_total": 400,
+      "permits_2026_total": 500,
+      "permit_delta_total": 100,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Cache",
+      "permits_2025_total": 300,
+      "permits_2026_total": 250,
+      "permit_delta_total": -50,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Nebo",
+      "permits_2025_total": 275,
+      "permits_2026_total": 325,
+      "permit_delta_total": 50,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Box Elder, Sawtooth",
+      "permits_2025_total": 25,
+      "permits_2026_total": 50,
+      "permit_delta_total": 25,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Paunsaugunt",
+      "permits_2025_total": 100,
+      "permits_2026_total": 75,
+      "permit_delta_total": -25,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Beaver, East",
+      "permits_2025_total": 30,
+      "permits_2026_total": 30,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Box Elder, Hansel Mtn",
+      "permits_2025_total": 200,
+      "permits_2026_total": 200,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Chalk Creek",
+      "permits_2025_total": 600,
+      "permits_2026_total": 600,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Diamond Mtn",
+      "permits_2025_total": 200,
+      "permits_2026_total": 200,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "East Canyon",
+      "permits_2025_total": 500,
+      "permits_2026_total": 500,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Fillmore, Pahvant",
+      "permits_2025_total": 150,
+      "permits_2026_total": 150,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Kamas",
+      "permits_2025_total": 150,
+      "permits_2026_total": 150,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "La Sal Mtns",
+      "permits_2025_total": 70,
+      "permits_2026_total": 70,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Manti",
+      "permits_2025_total": 300,
+      "permits_2026_total": 300,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Morgan-South Rich",
+      "permits_2025_total": 600,
+      "permits_2026_total": 600,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Nine Mile, Anthro-Myton Bench",
+      "permits_2025_total": 250,
+      "permits_2026_total": 250,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Nine Mile, Range Creek",
+      "permits_2025_total": 150,
+      "permits_2026_total": 150,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "North Slope, West Daggett",
+      "permits_2025_total": 100,
+      "permits_2026_total": 100,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Panguitch Lake",
+      "permits_2025_total": 75,
+      "permits_2026_total": 75,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "San Juan",
+      "permits_2025_total": 50,
+      "permits_2026_total": 50,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Vernal/Bonanza",
+      "permits_2025_total": 450,
+      "permits_2026_total": 450,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Wasatch Mtns, Avintaquin-White River",
+      "permits_2025_total": 400,
+      "permits_2026_total": 400,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Wasatch Mtns, Currant Creek",
+      "permits_2025_total": 2000,
+      "permits_2026_total": 2000,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "West Desert, Tintic Valley",
+      "permits_2025_total": 60,
+      "permits_2026_total": 60,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Yellowstone",
+      "permits_2025_total": 2000,
+      "permits_2026_total": 2000,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Zion",
+      "permits_2025_total": 320,
+      "permits_2026_total": 320,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    }
+  ],
+  "notable_findings": [
+    "Box Elder, Sawtooth changed from 25 to 50 total permits.",
+    "Cache changed from 300 to 250 total permits.",
+    "Nebo changed from 275 to 325 total permits.",
+    "Paunsaugunt changed from 100 to 75 total permits.",
+    "Wasatch Mtns, West-Central changed from 400 to 500 total permits."
+  ],
+  "all_2026_repo_matches_truth": true,
+  "repo_mismatch_row_count": 0,
+  "repo_mismatch_hunt_codes": [],
+  "surface_mismatch_counts": {
+    "reference": 0,
+    "master": 0,
+    "ladder": 0,
+    "draw_reality": 0
+  },
+  "structural_duplicated_by_residency_errors": 0
+}

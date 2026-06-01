@@ -1,0 +1,93 @@
+{
+  "correction": {
+    "hunt_code": "RS6700",
+    "source": "2026 Big Game Application Guidebook page 67",
+    "old_values": [
+      "Nov 11 2026 - Nov 18 2026",
+      "Nov 11, 2026 - Nov 18, 2026"
+    ],
+    "new_value": "Nov 09 2026 - Nov 16 2026"
+  },
+  "csv": [
+    {
+      "path": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+      "exists": true,
+      "changed_cells": 0,
+      "touched_rows": 0
+    },
+    {
+      "path": "data/hunt-master-canonical-2026-database-candidate.csv",
+      "exists": true,
+      "changed_cells": 0,
+      "touched_rows": 0
+    },
+    {
+      "path": "data/hunt-master-canonical-2026-foundation.csv",
+      "exists": true,
+      "changed_cells": 1,
+      "touched_rows": 1
+    },
+    {
+      "path": "data/hunt-master-canonical-2026-source-of-truth.csv",
+      "exists": true,
+      "changed_cells": 0,
+      "touched_rows": 0
+    },
+    {
+      "path": "processed_data/hunt-master-canonical-2026-source-of-truth.csv",
+      "exists": true,
+      "changed_cells": 0,
+      "touched_rows": 0
+    },
+    {
+      "path": "data/utah/official_downloads_2026/hunt_master_canonical_2026.csv",
+      "exists": true,
+      "changed_cells": 0,
+      "touched_rows": 0
+    },
+    {
+      "path": "data/utah/foundation_bundle_2026/utah_hunt_codes_canonical_2026.csv",
+      "exists": true,
+      "changed_cells": 0,
+      "touched_rows": 0
+    }
+  ],
+  "json": [
+    {
+      "path": "data/bighorn_sheep_hunt_table_official.json",
+      "exists": true,
+      "changed_cells": 0
+    },
+    {
+      "path": "data/hunt-master-canonical-2026-database-candidate.json",
+      "exists": true,
+      "changed_cells": 0
+    },
+    {
+      "path": "data/hunt-master-canonical-2026-foundation.json",
+      "exists": true,
+      "changed_cells": 0
+    },
+    {
+      "path": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "exists": true,
+      "changed_cells": 0
+    },
+    {
+      "path": "processed_data/hunt-master-canonical-2026-source-of-truth.json",
+      "exists": true,
+      "changed_cells": 0
+    },
+    {
+      "path": "canonical/hunt-planner-2026.json",
+      "exists": true,
+      "changed_cells": 0
+    },
+    {
+      "path": "generated/pages/hunt-planner.json",
+      "exists": true,
+      "changed_cells": 0
+    }
+  ],
+  "total_changed_cells": 1
+}

@@ -1,0 +1,14 @@
+﻿[
+    {
+        "file":  "processed_data/hunt_master_enriched.csv",
+        "boundary_column_created":  false,
+        "rows_with_cwmu_code_match":  16640,
+        "rows_updated":  16640
+    },
+    {
+        "file":  "processed_data/hunt_unit_reference_linked.csv",
+        "boundary_column_created":  false,
+        "rows_with_cwmu_code_match":  512,
+        "rows_updated":  512
+    }
+]

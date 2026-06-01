@@ -1,0 +1,73 @@
+permit_group,weapon,hunt_code,residency,permits_2025_truth,permits_2026_truth,permit_delta,significance,repo_public_permits_2026,repo_match_2026,source_document,source_note
+Book Cliffs,Archery,DB1011,Resident,45,55,10,MAJOR,55,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Book Cliffs,Archery,DB1011,Nonresident,5,6,1,MINOR,6,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Book Cliffs,Multiseason,DB1044,Resident,6,8,2,MINOR,8,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Book Cliffs,Multiseason,DB1044,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Book Cliffs,Muzzleloader,DB1025,Resident,45,55,10,MAJOR,55,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Book Cliffs,Muzzleloader,DB1025,Nonresident,5,6,1,MINOR,6,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"Book Cliffs, North",Any Legal Weapon,DB1017,Resident,114,137,23,MAJOR,137,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"Book Cliffs, North",Any Legal Weapon,DB1017,Nonresident,13,15,2,MINOR,15,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"Book Cliffs, South",Any Legal Weapon,DB1018,Resident,29,34,5,MINOR,34,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"Book Cliffs, South",Any Legal Weapon,DB1018,Nonresident,3,4,1,MINOR,4,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"Cache, Crawford Mtn",Muzzleloader,DB1026,Resident,7,8,1,MINOR,8,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"Cache, Crawford Mtn",Muzzleloader,DB1026,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Castle Valley,Any Legal Weapon,DB1120,Resident,13,13,0,UNCHANGED,13,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Castle Valley,Any Legal Weapon,DB1120,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Diamond Mtn,Any Legal Weapon,DB1023,Resident,57,61,4,MINOR,61,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Diamond Mtn,Any Legal Weapon,DB1023,Nonresident,6,7,1,MINOR,7,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Diamond Mtn,Archery,DB1015,Resident,20,22,2,MINOR,22,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Diamond Mtn,Archery,DB1015,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Diamond Mtn,Multiseason,DB1047,Resident,3,4,1,MINOR,4,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Diamond Mtn,Multiseason,DB1047,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Diamond Mtn,Muzzleloader,DB1038,Resident,20,22,2,MINOR,22,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Diamond Mtn,Muzzleloader,DB1038,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Dolores Triangle,Any Legal Weapon,DB1020,Resident,11,13,2,MINOR,13,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Dolores Triangle,Any Legal Weapon,DB1020,Nonresident,1,2,1,MINOR,2,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Dolores Triangle,Archery,DB1013,Resident,4,5,1,MINOR,5,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Dolores Triangle,Archery,DB1013,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Dolores Triangle,Muzzleloader,DB1031,Resident,4,5,1,MINOR,5,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Dolores Triangle,Muzzleloader,DB1031,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"Fillmore, Oak Creek LE",Any Legal Weapon,DB1019,Resident,31,33,2,MINOR,33,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"Fillmore, Oak Creek LE",Any Legal Weapon,DB1019,Nonresident,3,4,1,MINOR,4,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"Fillmore, Oak Creek LE",Archery,DB1012,Resident,11,12,1,MINOR,12,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"Fillmore, Oak Creek LE",Archery,DB1012,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"Fillmore, Oak Creek LE",Multiseason,DB1045,Resident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"Fillmore, Oak Creek LE",Multiseason,DB1045,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"Fillmore, Oak Creek LE",Muzzleloader,DB1029,Resident,11,12,1,MINOR,12,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"Fillmore, Oak Creek LE",Muzzleloader,DB1029,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Little Rockies,Any Legal Weapon,DB1115,Resident,4,4,0,UNCHANGED,4,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Little Rockies,Any Legal Weapon,DB1115,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Moab Valley,Any Legal Weapon,DB1119,Resident,9,9,0,UNCHANGED,9,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Moab Valley,Any Legal Weapon,DB1119,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"San Juan, Elk Ridge",Any Legal Weapon,DB1022,Resident,40,42,2,MINOR,42,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"San Juan, Elk Ridge",Any Legal Weapon,DB1022,Nonresident,4,5,1,MINOR,5,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"San Juan, Elk Ridge",Archery,DB1014,Resident,14,15,1,MINOR,15,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"San Juan, Elk Ridge",Archery,DB1014,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"San Juan, Elk Ridge",Multiseason,DB1046,Resident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"San Juan, Elk Ridge",Multiseason,DB1046,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"San Juan, Elk Ridge",Muzzleloader,DB1037,Resident,14,15,1,MINOR,15,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"San Juan, Elk Ridge",Muzzleloader,DB1037,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Thousand Lakes,Restricted Rifle,DB1108,Resident,25,27,2,MINOR,27,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Thousand Lakes,Restricted Rifle,DB1108,Nonresident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Thousand Lakes,Restricted Archery,DB1106,Resident,21,20,-1,MINOR,20,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Thousand Lakes,Restricted Archery,DB1106,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Thousand Lakes,Restricted Multiseason,DB1109,Resident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Thousand Lakes,Restricted Multiseason,DB1109,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Thousand Lakes,Restricted Muzzleloader,DB1107,Resident,21,20,-1,MINOR,20,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+Thousand Lakes,Restricted Muzzleloader,DB1107,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"West Desert, Vernon",Any Legal Weapon,DB1024,Resident,118,130,12,MAJOR,130,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"West Desert, Vernon",Any Legal Weapon,DB1024,Nonresident,13,14,1,MINOR,14,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"West Desert, Vernon",Archery,DB1016,Resident,41,46,5,MINOR,46,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"West Desert, Vernon",Archery,DB1016,Nonresident,5,5,0,UNCHANGED,5,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"West Desert, Vernon",Multiseason,DB1048,Resident,6,7,1,MINOR,7,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"West Desert, Vernon",Multiseason,DB1048,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"West Desert, Vernon",Muzzleloader,DB1042,Resident,41,46,5,MINOR,46,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+"West Desert, Vernon",Muzzleloader,DB1042,Nonresident,5,5,0,UNCHANGED,5,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+HAMSS,"Book Cliffs, Floy Canyon",DB1090,Resident,6,6,0,UNCHANGED,6,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+HAMSS,"Book Cliffs, Floy Canyon",DB1090,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+HAMSS,East Canyon,DB1105,Resident,6,6,0,UNCHANGED,6,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+HAMSS,East Canyon,DB1105,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+HAMSS,Kaiparowits HAMSS,DB1091,Resident,4,4,0,UNCHANGED,4,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+HAMSS,Kaiparowits HAMSS,DB1091,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+HAMSS,"San Juan, Mancos Mesa",DB1116,Resident,4,4,0,UNCHANGED,4,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.
+HAMSS,"San Juan, Mancos Mesa",DB1116,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided limited-entry buck deer comparison table for 2025 to 2026.

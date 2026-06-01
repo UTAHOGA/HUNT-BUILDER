@@ -1,0 +1,200 @@
+[
+  {
+    "hunt_number": "EB3001",
+    "hunt_name": "Book Cliffs, Bitter Creek/South",
+    "old_boundary": "",
+    "new_boundary": "449",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "449"
+  },
+  {
+    "hunt_number": "EB3026",
+    "hunt_name": "Book Cliffs, Bitter Creek/South",
+    "old_boundary": "",
+    "new_boundary": "449",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "449"
+  },
+  {
+    "hunt_number": "EB3040",
+    "hunt_name": "Nebo",
+    "old_boundary": "",
+    "new_boundary": "616",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "616"
+  },
+  {
+    "hunt_number": "EB3078",
+    "hunt_name": "Book Cliffs, Bitter Creek/South",
+    "old_boundary": "",
+    "new_boundary": "449",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "449"
+  },
+  {
+    "hunt_number": "LE0015",
+    "hunt_name": "Book Cliffs",
+    "old_boundary": "",
+    "new_boundary": "",
+    "status": "ambiguous",
+    "reason": "multiple candidates",
+    "candidate_boundaries": "12;449;899"
+  },
+  {
+    "hunt_number": "LE0001",
+    "hunt_name": "La Sal, La Sal Mtns",
+    "old_boundary": "",
+    "new_boundary": "617",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "617"
+  },
+  {
+    "hunt_number": "LE0013",
+    "hunt_name": "Southwest Desert",
+    "old_boundary": "",
+    "new_boundary": "625",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "625"
+  },
+  {
+    "hunt_number": "LE0014",
+    "hunt_name": "Beaver",
+    "old_boundary": "",
+    "new_boundary": "685",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "685"
+  },
+  {
+    "hunt_number": "LE0016",
+    "hunt_name": "Cache",
+    "old_boundary": "",
+    "new_boundary": "29",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "29"
+  },
+  {
+    "hunt_number": "LE0029",
+    "hunt_name": "Cache",
+    "old_boundary": "",
+    "new_boundary": "29",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "29"
+  },
+  {
+    "hunt_number": "LE0018",
+    "hunt_name": "La Sal, La Sal Mtns",
+    "old_boundary": "",
+    "new_boundary": "617",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "617"
+  },
+  {
+    "hunt_number": "LE0002",
+    "hunt_name": "Manti",
+    "old_boundary": "",
+    "new_boundary": "51",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "51"
+  },
+  {
+    "hunt_number": "LE0003",
+    "hunt_name": "Manti",
+    "old_boundary": "",
+    "new_boundary": "51",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "51"
+  },
+  {
+    "hunt_number": "LE0004",
+    "hunt_name": "Manti",
+    "old_boundary": "",
+    "new_boundary": "51",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "51"
+  },
+  {
+    "hunt_number": "LE0005",
+    "hunt_name": "Manti",
+    "old_boundary": "",
+    "new_boundary": "51",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "51"
+  },
+  {
+    "hunt_number": "LE0017",
+    "hunt_name": "Nebo",
+    "old_boundary": "",
+    "new_boundary": "616",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "616"
+  },
+  {
+    "hunt_number": "LE0006",
+    "hunt_name": "San Juan",
+    "old_boundary": "",
+    "new_boundary": "710",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "710"
+  },
+  {
+    "hunt_number": "LE0007",
+    "hunt_name": "San Juan",
+    "old_boundary": "",
+    "new_boundary": "710",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "710"
+  },
+  {
+    "hunt_number": "LE0008",
+    "hunt_name": "Wasatch Mtns",
+    "old_boundary": "",
+    "new_boundary": "222",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "222"
+  },
+  {
+    "hunt_number": "LE0009",
+    "hunt_name": "Wasatch Mtns",
+    "old_boundary": "",
+    "new_boundary": "222",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "222"
+  },
+  {
+    "hunt_number": "LE0011",
+    "hunt_name": "Manti",
+    "old_boundary": "",
+    "new_boundary": "51",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "51"
+  },
+  {
+    "hunt_number": "EB3109",
+    "hunt_name": "Nebo",
+    "old_boundary": "",
+    "new_boundary": "616",
+    "status": "auto_filled_exact_or_alias",
+    "reason": "single canonical boundary candidate",
+    "candidate_boundaries": "616"
+  }
+]

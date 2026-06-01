@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-05-10T02:29:57",
+  "source_truth_csv": "pipeline/RAW/hunt_unit_mapping/csv/UDWR.DWRADMIN.CWMU_Active.csv",
+  "database_file": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "cwmu_rows": 283,
+  "applied_rows": 275,
+  "unresolved_rows": 0,
+  "unresolved_hunt_codes": [],
+  "output_applied_csv": "processed_data/cwmu_boundary_fill_from_truth_applied.csv",
+  "output_unresolved_csv": "processed_data/cwmu_boundary_fill_from_truth_unresolved.csv"
+}

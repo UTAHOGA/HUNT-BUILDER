@@ -1,0 +1,100 @@
+{
+  "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_oial_rocky_mountain_bighorn_sheep_permits.csv",
+  "truth_rows": 15,
+  "unique_hunt_codes": 15,
+  "all_2026_repo_matches_truth": true,
+  "significance_counts": {
+    "MINOR": 5,
+    "UNCHANGED": 25
+  },
+  "group_changes": [
+    {
+      "permit_group": "Antelope Island",
+      "permits_2025_total": 1,
+      "permits_2026_total": 2,
+      "permit_delta_total": 1,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Fillmore, Oak Creek",
+      "permits_2025_total": 11,
+      "permits_2026_total": 10,
+      "permit_delta_total": -1,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "North Slope, Summit/West Daggett",
+      "permits_2025_total": 4,
+      "permits_2026_total": 3,
+      "permit_delta_total": -1,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "North Slope, Three Corners",
+      "permits_2025_total": 3,
+      "permits_2026_total": 2,
+      "permit_delta_total": -1,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Wasatch Mtns, West",
+      "permits_2025_total": 2,
+      "permits_2026_total": 3,
+      "permit_delta_total": 1,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Book Cliffs, South",
+      "permits_2025_total": 6,
+      "permits_2026_total": 6,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Box Elder, Newfoundland Mtn",
+      "permits_2025_total": 10,
+      "permits_2026_total": 10,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Nebo",
+      "permits_2025_total": 2,
+      "permits_2026_total": 2,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Nine Mile, Gray Canyon",
+      "permits_2025_total": 6,
+      "permits_2026_total": 6,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Nine Mile, Jack Creek",
+      "permits_2025_total": 4,
+      "permits_2026_total": 4,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Oquirrh-Stansbury, West",
+      "permits_2025_total": 3,
+      "permits_2026_total": 3,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    }
+  ],
+  "row_changes_abs_gt_1": [],
+  "grand_total_2025": 52,
+  "grand_total_2026": 51,
+  "grand_total_delta": -1,
+  "notable_findings": [
+    "Grand total decreased from 52 to 51 (-1).",
+    "Antelope Island increased from 1 to 2 (+1).",
+    "Wasatch Mtns, West increased from 2 to 3 (+1).",
+    "Fillmore, Oak Creek decreased from 11 to 10 (-1) when combining RS6720, RS6726, and RS6727.",
+    "North Slope, Summit/West Daggett and North Slope, Three Corners each decreased by 1 total permit."
+  ]
+}

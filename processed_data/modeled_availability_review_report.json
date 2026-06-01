@@ -1,0 +1,65 @@
+{
+  "forecast_year": 2026,
+  "source_years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "total_MODELED_AVAILABILITY_rows": 124,
+  "total_MODELED_AVAILABILITY_hunt_codes": 63,
+  "total_MODELED_AVAILABILITY_by_draw_system_type": {
+    "BEAR_DRAW": 4,
+    "MOUNTAIN_LION_DRAW": 120
+  },
+  "total_MODELED_AVAILABILITY_by_species": {
+    "Black Bear": 4,
+    "Cougar": 120
+  },
+  "total_MODELED_AVAILABILITY_by_model_strategy": {
+    "bear_bonus_phase8": 4,
+    "mountain_lion_rule_status_phase13": 120
+  },
+  "total_MODELED_AVAILABILITY_by_availability_status": {
+    "AVAILABLE YEAR-ROUND": 120,
+    "HARVEST OBJECTIVE STATUS UNKNOWN": 2,
+    "PURSUIT-ONLY AVAILABLE": 2
+  },
+  "total_MODELED_AVAILABILITY_by_permit_availability_type": {
+    "HARVEST_OBJECTIVE": 2,
+    "UNLIMITED_OTC_STATEWIDE_REPORTING_UNIT": 120,
+    "UNLIMITED_PURSUIT": 2
+  },
+  "total_MODELED_AVAILABILITY_by_reason_code": {
+    "AVAILABILITY_ONLY_NO_DRAW_PROBABILITY": 124,
+    "BEAR_HARVEST_OBJECTIVE_STATUS": 2,
+    "BEAR_PURSUIT_ONLY_STATUS": 2,
+    "MOUNTAIN_LION_RULE_STATUS": 120,
+    "STATEWIDE_OTC_YEAR_ROUND": 120
+  },
+  "mountain_lion_availability_row_count": 120,
+  "bear_availability_row_count": 4,
+  "other_availability_row_count": 0,
+  "other_availability_rows_detail": [],
+  "p_draw_non_null_count": 0,
+  "p_draw_pct_non_null_count": 0,
+  "p_preference_draw_non_null_count": 0,
+  "p_bonus_pool_non_null_count": 0,
+  "p_random_pool_non_null_count": 0,
+  "p_availability_non_null_count": 122,
+  "availability_pct_non_null_count": 122,
+  "availability_status_or_equivalent_non_null_count": 124,
+  "duplicate_key_count": 0,
+  "availability_rows_missing_reason_codes": 0,
+  "availability_rows_missing_availability_status_or_equivalent": 0,
+  "availability_rows_with_draw_probability_fields": 0,
+  "availability_rows_with_invalid_availability_range": 0,
+  "availability_rows_requiring_reclassification": [],
+  "ml_draw_predictions_v1_modeled_availability_count": 124,
+  "draw_reality_engine_predictive_v2_modeled_availability_count": 124,
+  "mountain_lion_report_row_count": 120,
+  "bear_report_availability_row_count": 4,
+  "legacy_reference_modeled_availability_count": 124,
+  "conclusion": "Current live predictive artifacts contain 124 MODELED_AVAILABILITY rows: 120 mountain lion/cougar rows, 4 bear availability rows, and 0 other availability rows. A prior review artifact referenced 139 availability rows; that older count is stale relative to the current live predictive artifacts and does not represent an unexplained hidden family."
+}

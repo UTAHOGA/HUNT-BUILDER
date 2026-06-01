@@ -1,0 +1,4 @@
+hunt_code,residency,field,value,force_overwrite,source_note
+BI1000,Resident,public_permits_2026,10,false,Example permit count from source workbook
+BI1000,Resident,projected_applicants_2026,256,false,Example projection from cleaned draw table
+BI1000,Resident,has_permits,true,true,Set flag once permits are confirmed

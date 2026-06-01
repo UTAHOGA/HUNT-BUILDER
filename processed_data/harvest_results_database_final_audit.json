@@ -1,0 +1,100 @@
+{
+  "generated_at_utc": "2026-05-23T15:34:27.877684+00:00",
+  "harvest_database_row_count": 68657,
+  "best_by_year_hunt_code_row_count": 5151,
+  "source_audit_row_count": 218,
+  "reported_hunt_year_coverage": [
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+  ],
+  "model_target_year_coverage": [
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026"
+  ],
+  "exact_hunt_code_feature_matches": 1188,
+  "fallback_feature_matches": 222,
+  "no_history_rows": 1,
+  "audit_blocker_count": 0,
+  "audit_warning_count": 15529,
+  "metric_issue_count": 15521,
+  "success_rate_math_conflict_count": 12923,
+  "key_integrity_issue_count": 0,
+  "feature_readiness_rows": 1411,
+  "harvest_quality_index_count": 1384,
+  "demand_pressure_signal_count": 1404,
+  "summary_source": {
+    "source_candidates": 218,
+    "normalized_long_rows": 68657,
+    "best_by_year_hunt_code_rows": 5151,
+    "unique_reported_hunt_years": [
+      "2021",
+      "2022",
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "reported_hunt_year_counts": {
+      "2021": 974,
+      "2022": 924,
+      "2023": 1078,
+      "2024": 1048,
+      "2025": 1127
+    },
+    "model_target_year_counts": {
+      "2022": 974,
+      "2023": 924,
+      "2024": 1078,
+      "2025": 1048,
+      "2026": 1127
+    },
+    "active_database_hunt_codes": 1411,
+    "active_database_coverage_by_reported_hunt_year": {
+      "2021": 803,
+      "2022": 781,
+      "2023": 960,
+      "2024": 957,
+      "2025": 1097
+    },
+    "unique_hunt_codes_all_years": 1424,
+    "special_permit_overlay_rows": 1531,
+    "special_permit_overlay_class_counts": {
+      "CONSERVATION": 77,
+      "CWMU": 1429,
+      "EXPO": 9,
+      "SPORTSMAN": 16
+    },
+    "duplicate_source_key_count": 18315,
+    "outputs": {
+      "long_csv": "data_truth\\harvest_results_truth\\normalized\\harvest_results_all_years_long.csv",
+      "best_by_hunt_code_csv": "data_truth\\harvest_results_truth\\normalized\\harvest_quality_features_all_years_by_hunt_code.csv",
+      "source_audit_csv": "data_truth\\harvest_results_truth\\normalized\\harvest_results_all_years_source_audit.csv",
+      "processed_long_csv": "processed_data/harvest_results_all_years_long.csv",
+      "processed_best_by_hunt_code_csv": "processed_data/harvest_quality_features_all_years_by_hunt_code.csv",
+      "data_model_long_csv": "data_model/harvest_quality/harvest_results_all_years_long.csv",
+      "data_model_best_by_hunt_code_csv": "data_model/harvest_quality/harvest_quality_features_all_years_by_hunt_code.csv",
+      "special_permit_overlay_csv": "data_model/permit_overlays/special_permit_overlay_classes_all_years.csv",
+      "summary_json": "data_truth/harvest_results_truth/normalized/harvest_results_all_years_summary.json",
+      "summary_md": "data_truth/harvest_results_truth/normalized/harvest_results_all_years_summary.md"
+    },
+    "guardrails": [
+      "Harvest permits remain harvest-report context and are not current-year draw allotments.",
+      "Harvest rows are marked do_not_use_for_permit_quota=True and do_not_use_directly_for_p_draw=True by default.",
+      "Reported hunt year drives model target year as reported_hunt_year + 1 when model_target_year is missing."
+    ]
+  },
+  "outputs": {
+    "final_audit_csv": "processed_data/harvest_results_database_final_audit.csv",
+    "key_integrity_csv": "processed_data/harvest_results_database_key_integrity_audit.csv",
+    "metric_integrity_csv": "processed_data/harvest_results_database_metric_integrity_audit.csv",
+    "year_coverage_csv": "processed_data/harvest_results_database_year_coverage_audit.csv",
+    "hunt_code_alignment_csv": "processed_data/harvest_results_database_hunt_code_alignment_audit.csv",
+    "feature_readiness_csv": "processed_data/harvest_results_database_feature_readiness_audit.csv",
+    "modeling_contract_md": "processed_data/harvest_results_database_modeling_contract.md"
+  }
+}

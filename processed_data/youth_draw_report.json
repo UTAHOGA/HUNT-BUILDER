@@ -1,0 +1,57 @@
+{
+  "forecast_year": 2026,
+  "source_years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "total_youth_rows_reviewed": 4927,
+  "youth_general_deer_rows_reviewed": 4853,
+  "youth_general_any_bull_elk_rows_reviewed": 74,
+  "active_predictive_youth_row_count": 4,
+  "youth_general_deer_row_count": 0,
+  "youth_general_any_bull_elk_row_count": 4,
+  "youth_hunt_code_count": 2,
+  "rows_by_algorithm_status": {
+    "MODELED_PREFERENCE": 0,
+    "MODELED_ALLOCATION": 0,
+    "MODELED_AVAILABILITY": 0,
+    "IN_SCOPE_MODEL_PENDING": 4,
+    "EXCLUDED_NOT_PREDICTIVE_DRAW": 0
+  },
+  "modeled_preference_row_count": 0,
+  "modeled_allocation_row_count": 0,
+  "modeled_availability_row_count": 0,
+  "in_scope_model_pending_row_count": 4,
+  "excluded_not_predictive_draw_row_count": 0,
+  "p_draw_non_null_count": 0,
+  "p_draw_pct_non_null_count": 0,
+  "p_preference_draw_non_null_count": 0,
+  "p_bonus_pool_non_null_count": 0,
+  "p_random_pool_non_null_count": 0,
+  "p_availability_non_null_count": 0,
+  "availability_pct_non_null_count": 0,
+  "p_draw_outside_0_1_count": 0,
+  "p_draw_pct_outside_0_100_count": 0,
+  "duplicate_key_count": 0,
+  "source_files_used": [
+    "2021 Youth general-season deer draw results.pdf",
+    "2022 Youth draw-only elk bonus point draw results.pdf",
+    "2025 Youth G.S. Deer Draw Results.pdf",
+    "2025 Youth G.S.. Mature Bull Draw.pdf",
+    "21_youth_bull_elk.pdf",
+    "21_youth_deer.pdf",
+    "22_youth_deer.pdf",
+    "22_youth_dh_odds.pdf",
+    "DATABASE.csv",
+    "pipeline\\RAW\\hunt_unit_database\\2026\\csv\\2026_elk_general_anybull_youth.csv"
+  ],
+  "data_quality_flags_summary": {
+    "YOUTH_DEER_ACTIVE_2026_SOURCE_MISSING_OR_SHARED_POOL_AMBIGUOUS": 1,
+    "YOUTH_ELK_MECHANICS_NOT_CONFIRMED": 2,
+    "YOUTH_ELK_MODEL_PENDING": 2,
+    "YOUTH_ELK_QUOTA_NOT_PUBLISHED": 1
+  }
+}

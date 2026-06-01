@@ -1,0 +1,405 @@
+{
+  "generated_at_utc": "2026-05-24T09:19:39.721406+00:00",
+  "publish_ready": true,
+  "blockers": [],
+  "warnings": [
+    "Control-unit overlay unresolved warnings retained: Henry Mtns"
+  ],
+  "source_to_database": {
+    "database_rows": 1411,
+    "database_unique_hunt_codes": 1411,
+    "database_duplicate_hunt_code_count": 0,
+    "rac_cumulative_rows": 562,
+    "rac_hunt_code_rows": 528,
+    "rac_unique_hunt_codes": 528,
+    "rac_hunt_codes_missing_in_database": 0,
+    "rac_numeric_mismatch_rows": 0,
+    "rac_significant_difference_rows_abs_delta_gt_5": 0,
+    "truth_source_family_summary": {
+      "doe_pronghorn": {
+        "truth_rows": 16,
+        "runtime_rows_corrected": 0,
+        "runtime_rows_added": 0,
+        "runtime_rows_unchanged": 2387,
+        "mismatch_rows_before_promotion": 0,
+        "mismatch_rows_after_promotion": 0,
+        "availability_only_rows": 0,
+        "unresolved_overlay_rows": 0,
+        "warnings": [],
+        "surface_mismatch_counts": {
+          "reference": 0,
+          "master": 0,
+          "ladder": 0,
+          "draw_reality": 0
+        }
+      },
+      "antlerless_deer": {
+        "truth_rows": 16,
+        "runtime_rows_corrected": 0,
+        "runtime_rows_added": 0,
+        "runtime_rows_unchanged": 1574,
+        "mismatch_rows_before_promotion": 0,
+        "mismatch_rows_after_promotion": 0,
+        "availability_only_rows": 0,
+        "unresolved_overlay_rows": 0,
+        "warnings": [],
+        "surface_mismatch_counts": {
+          "reference": 0,
+          "master": 0,
+          "ladder": 0,
+          "draw_reality": 0
+        }
+      },
+      "standard_antlerless_elk": {
+        "truth_rows": 116,
+        "runtime_rows_corrected": 0,
+        "runtime_rows_added": 0,
+        "runtime_rows_unchanged": 17011,
+        "mismatch_rows_before_promotion": 0,
+        "mismatch_rows_after_promotion": 0,
+        "availability_only_rows": 0,
+        "unresolved_overlay_rows": 0,
+        "warnings": [],
+        "surface_mismatch_counts": {
+          "reference": 0,
+          "master": 0,
+          "ladder": 0,
+          "draw_reality": 0
+        }
+      },
+      "private_lands_antlerless_elk": {
+        "truth_rows": 26,
+        "runtime_rows_corrected": 0,
+        "runtime_rows_added": 0,
+        "runtime_rows_unchanged": 1872,
+        "mismatch_rows_before_promotion": 0,
+        "mismatch_rows_after_promotion": 0,
+        "availability_only_rows": 52,
+        "unresolved_overlay_rows": 0,
+        "warnings": [],
+        "surface_mismatch_counts": {
+          "reference": 0,
+          "master": 0,
+          "ladder": 0,
+          "draw_reality": 0
+        },
+        "structural_duplicated_by_residency_errors": 0
+      },
+      "antlerless_elk_control_units": {
+        "truth_rows": 9,
+        "runtime_rows_corrected": 0,
+        "runtime_rows_added": 0,
+        "runtime_rows_unchanged": 0,
+        "mismatch_rows_before_promotion": 0,
+        "mismatch_rows_after_promotion": 0,
+        "availability_only_rows": 0,
+        "unresolved_overlay_rows": 1,
+        "warnings": [
+          "Henry Mtns"
+        ]
+      },
+      "antlerless_moose": {
+        "truth_rows": 3,
+        "runtime_rows_corrected": 0,
+        "runtime_rows_added": 0,
+        "runtime_rows_unchanged": 465,
+        "mismatch_rows_before_promotion": 0,
+        "mismatch_rows_after_promotion": 0,
+        "availability_only_rows": 0,
+        "unresolved_overlay_rows": 0,
+        "warnings": [],
+        "surface_mismatch_counts": {
+          "reference": 0,
+          "master": 0,
+          "ladder": 0,
+          "draw_reality": 0
+        }
+      },
+      "ewe_rocky_sheep": {
+        "truth_rows": 1,
+        "runtime_rows_corrected": 0,
+        "runtime_rows_added": 0,
+        "runtime_rows_unchanged": 175,
+        "mismatch_rows_before_promotion": 0,
+        "mismatch_rows_after_promotion": 0,
+        "availability_only_rows": 0,
+        "unresolved_overlay_rows": 0,
+        "warnings": [],
+        "surface_mismatch_counts": {
+          "reference": 0,
+          "master": 0,
+          "ladder": 0,
+          "draw_reality": 0
+        }
+      }
+    }
+  },
+  "database_to_runtime": {
+    "permit_integrity_database_rows": 1411,
+    "permit_integrity_database_unique_hunt_codes": 1411,
+    "permit_integrity_promotion_blocker_count": 0,
+    "permit_integrity_mismatches_after_sync": 0,
+    "antlerless_elk_database_difference_rows": 0,
+    "antlerless_elk_runtime_difference_rows": 0,
+    "antlerless_elk_runtime_status_counts": {
+      "MATCH": 116
+    }
+  },
+  "semantic_guardrails": {
+    "row_counts": {
+      "total_predictive_rows": 27940,
+      "MODELED_BONUS": 25610,
+      "MODELED_PREFERENCE": 1605,
+      "MODELED_ALLOCATION": 54,
+      "MODELED_AVAILABILITY": 124,
+      "MODELED_SPORTSMAN_DRAW": 10,
+      "IN_SCOPE_MODEL_PENDING": 533,
+      "EXCLUDED_NOT_PREDICTIVE_DRAW": 4,
+      "OUT_OF_SCOPE_NON_TARGET": 0
+    },
+    "coverage_modeled_availability": {
+      "modeled_availability_total_row_count": 124,
+      "modeled_availability_hunt_code_count": 63,
+      "modeled_availability_by_draw_system_type": {
+        "BEAR_DRAW": 4,
+        "MOUNTAIN_LION_DRAW": 120
+      },
+      "mountain_lion_cougar_modeled_availability_row_count": 120,
+      "bear_modeled_availability_row_count": 4,
+      "other_modeled_availability_row_count": 0,
+      "modeled_availability_p_draw_non_null_count": 0,
+      "modeled_availability_p_draw_pct_non_null_count": 0,
+      "modeled_availability_p_preference_draw_non_null_count": 0,
+      "modeled_availability_p_bonus_pool_non_null_count": 0,
+      "modeled_availability_p_random_pool_non_null_count": 0,
+      "modeled_availability_p_availability_non_null_count": 122,
+      "modeled_availability_availability_pct_non_null_count": 122,
+      "modeled_availability_duplicate_key_count": 0,
+      "modeled_availability_rows_requiring_reclassification_count": 0,
+      "modeled_availability_pass": true
+    },
+    "availability_review_conclusion": "Current live predictive artifacts contain 124 MODELED_AVAILABILITY rows: 120 mountain lion/cougar rows, 4 bear availability rows, and 0 other availability rows. A prior review artifact referenced 139 availability rows; that older count is stale relative to the current live predictive artifacts and does not represent an unexplained hidden family.",
+    "probability_guardrails": {
+      "algorithm_status_counts": {
+        "EXCLUDED_NOT_PREDICTIVE_DRAW": 4,
+        "IN_SCOPE_MODEL_PENDING": 533,
+        "MODELED_ALLOCATION": 54,
+        "MODELED_AVAILABILITY": 124,
+        "MODELED_BONUS": 25610,
+        "MODELED_PREFERENCE": 1605,
+        "MODELED_SPORTSMAN_DRAW": 10
+      },
+      "null_probability_violation_count": 0,
+      "null_probability_violation_examples": [],
+      "pending_rows_with_p_draw": 0,
+      "out_of_scope_rows_with_p_draw": 0,
+      "excluded_rows_with_p_draw": 0,
+      "availability_rows_with_p_draw": 0
+    },
+    "duplicate_key_counts": {
+      "ml_draw_predictions_v1": 0,
+      "draw_reality_engine_predictive_v2": 0
+    },
+    "draw_family": {
+      "old_internal_label_hit_count": 0,
+      "old_internal_label_hits": [],
+      "files": [
+        {
+          "file": "data/hunt-master-canonical-2026-database-candidate.csv",
+          "exists": true,
+          "rows": 1411,
+          "counts": {
+            "Allocation": 323,
+            "Availability": 1,
+            "CWMU": 283,
+            "General": 302,
+            "Limited Entry": 477,
+            "O.T.C.": 14,
+            "Sportsman": 11
+          }
+        },
+        {
+          "file": "data/hunt-master-canonical-2026-source-of-truth.csv",
+          "exists": true,
+          "rows": 1411,
+          "counts": {
+            "Allocation": 323,
+            "Availability": 1,
+            "CWMU": 283,
+            "General": 308,
+            "Limited Entry": 477,
+            "O.T.C.": 8,
+            "Sportsman": 11
+          }
+        },
+        {
+          "file": "canonical/hunt-planner-2026.json",
+          "exists": true,
+          "rows": 1411,
+          "counts": {
+            "Allocation": 323,
+            "Availability": 1,
+            "CWMU": 283,
+            "General": 308,
+            "Limited Entry": 477,
+            "O.T.C.": 8,
+            "Sportsman": 11
+          }
+        },
+        {
+          "file": "generated/pages/hunt-planner.json",
+          "exists": true,
+          "rows": 1411,
+          "counts": {
+            "Allocation": 323,
+            "Availability": 1,
+            "CWMU": 283,
+            "General": 308,
+            "Limited Entry": 477,
+            "O.T.C.": 8,
+            "Sportsman": 11
+          }
+        },
+        {
+          "file": "hunt-master-canonical-2026.json",
+          "exists": true,
+          "rows": 1411,
+          "counts": {
+            "Allocation": 323,
+            "Availability": 1,
+            "CWMU": 283,
+            "General": 298,
+            "Limited Entry": 480,
+            "O.T.C.": 15,
+            "Sportsman": 11
+          }
+        }
+      ]
+    },
+    "sensitive_rows": {
+      "checks": {
+        "EA1267_DATABASE_2026_TOTAL": {
+          "actual": "200",
+          "expected": "200",
+          "pass": true
+        },
+        "EA1267_DATABASE_2026_RES": {
+          "actual": "180",
+          "expected": "180",
+          "pass": true
+        },
+        "EA1267_DATABASE_2026_NR": {
+          "actual": "20",
+          "expected": "20",
+          "pass": true
+        },
+        "EA2012_REFERENCE_TOTAL_ONLY_TOTAL": {
+          "actual": "500",
+          "expected": "500",
+          "pass": true
+        },
+        "EA2012_REFERENCE_NO_RES_SPLIT": {
+          "actual": "",
+          "expected": "",
+          "pass": true
+        },
+        "EA2012_REFERENCE_PUBLIC_PERMITS_BLANK": {
+          "actual": "",
+          "expected": "",
+          "pass": true
+        },
+        "EA2012_REFERENCE_PROBABILITY_MODEL_NONE": {
+          "actual": "NONE",
+          "expected": "NONE",
+          "pass": true
+        },
+        "PD1039_ADDED_TO_DATABASE": {
+          "actual": true,
+          "expected": true,
+          "pass": true
+        },
+        "PD1039_DATABASE_2026_TOTAL": {
+          "actual": "40",
+          "expected": "40",
+          "pass": true
+        },
+        "EB3024_RESIDENT_POINT_29_QUOTA_TOTAL": {
+          "actual": "9",
+          "expected": "9",
+          "pass": true
+        },
+        "EB3024_RESIDENT_POINT_29_MAX_POOL": {
+          "actual": "5",
+          "expected": "5",
+          "pass": true
+        },
+        "EB3024_RESIDENT_POINT_29_RANDOM_POOL": {
+          "actual": "4",
+          "expected": "4",
+          "pass": true
+        },
+        "EB3024_RESIDENT_RAC_REASON_CODE": {
+          "actual": "BONUS_RULE_SIMULATED|HUNT_KIND_LE|DRAW_POOL_STANDARD|MAX_POOL_DEPRECATED_NO_AUTO_100|APPLICANT_STACK_ROLLED_FORWARD|MAX_POINT_BOUNDARY_RECOMPUTED|OFFICIAL_2026_QUOTA_USED|RAC_CURRENT_YEAR_ALLOTMENT_USED|MIXED_MAX_POINT_CUTOFF|QUOTA_UNCHANGED|ROLLOVER_ADJUSTED_PROBABILITY_USED|HARVEST_DEMAND_NEUTRAL|MIXED_MODEL_USED|PRIOR_YEAR_WEIGHTED_BASELINE|QUOTA_ADJUSTED_COMPONENT_USED|ROLLOVER_COMPONENT_USED|HARVEST_COMPONENT_USED|UNCERTAINTY_BAND_A",
+          "expected_contains": "RAC_CURRENT_YEAR_ALLOTMENT_USED",
+          "pass": true
+        },
+        "EB3022_RESIDENT_QUOTA_TOTAL": {
+          "actual": "130",
+          "expected": "130",
+          "pass": true
+        },
+        "EB3022_RESIDENT_MAX_POOL": {
+          "actual": "65",
+          "expected": "65",
+          "pass": true
+        },
+        "EB3022_RESIDENT_RANDOM_POOL": {
+          "actual": "65",
+          "expected": "65",
+          "pass": true
+        },
+        "BR1000_DATABASE_HUNT_TYPE": {
+          "actual": "Statewide",
+          "expected": "Statewide",
+          "pass": true
+        },
+        "BR1001_P_DRAW_NULL": {
+          "actual": "",
+          "expected": "",
+          "pass": true
+        },
+        "BR1001_ALGORITHM_STATUS": {
+          "actual": "MODELED_AVAILABILITY",
+          "expected": "MODELED_AVAILABILITY",
+          "pass": true
+        },
+        "EB3024_LADDER_29_MAX_POINT_DISPLAY": {
+          "actual": "~1 in 7 or 14.3%",
+          "expected": "~1 in 7 or 14.3%",
+          "pass": true
+        },
+        "EB3024_LADDER_28_MAX_POINT_BLANK": {
+          "actual": "",
+          "expected": "",
+          "pass": true
+        }
+      },
+      "failed_count": 0,
+      "failed": {}
+    }
+  },
+  "validation_commands_expected": [
+    "python scripts/build-all-rac-permit-database-compare.py",
+    "python scripts/compare-antlerless-elk-allotments.py",
+    "python -m engine.utah.truth_source_promotion --truth-root pipeline/RAW/hunt_unit_database/2026/csv --processed-root processed_data --families doe_pronghorn antlerless_deer standard_antlerless_elk private_lands_antlerless_elk antlerless_elk_control_units antlerless_moose ewe_rocky_sheep --promote --write-audits",
+    "python -m engine.utah_draw_predictive.availability_review --output-dir processed_data --forecast-year 2026 --history-years 2021,2022,2023,2024,2025",
+    "npm.cmd run verify:permits-2026",
+    "python -m pytest tests/utah/test_draw_family_labels.py tests/utah/test_current_year_permit_allotments.py tests/utah/test_truth_source_promotion.py tests/utah_bonus_predictive/test_official_2026_quota_inputs.py tests/utah/test_point_ladder_pool_display.py -q",
+    "python -m pytest -q tests/utah_draw_predictive tests/utah/test_frontend_probability_selection.py",
+    "python -m pytest -q tests/utah_bonus_predictive",
+    "python -m compileall engine scripts tests",
+    "node --check hunt-research.js",
+    "node --check scripts/verify-permit-allocations-2026.js",
+    "npm.cmd test"
+  ]
+}

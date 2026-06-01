@@ -1,0 +1,37 @@
+{
+  "classification": "PRONGHORN_PRIVATE_LAND_REFERENCE_PROMOTION",
+  "timestamp_utc": "2026-05-25T00:51:39.897238+00:00",
+  "target_prefix": "LP",
+  "expected_private_land_hunt_codes": [
+    "LP5025",
+    "LP5031",
+    "LP5033",
+    "LP5046",
+    "LP5049",
+    "LP5051"
+  ],
+  "initial_missing_predictive_hunt_codes": [
+    "LP5025",
+    "LP5031",
+    "LP5033",
+    "LP5046",
+    "LP5049",
+    "LP5051"
+  ],
+  "newly_promoted_hunt_code_count": 6,
+  "newly_promoted_hunt_codes": [
+    "LP5025",
+    "LP5031",
+    "LP5033",
+    "LP5046",
+    "LP5049",
+    "LP5051"
+  ],
+  "promoted_reference_hunt_code_count": 6,
+  "still_missing_predictive_hunt_code_count": 0,
+  "still_missing_predictive_hunt_codes": [],
+  "duplicate_reference_key_count": 0,
+  "quota_leak_reference_row_count": 0,
+  "quota_leak_reference_hunt_codes": [],
+  "guardrail": "LP private-land pronghorn rows are reference-only; no public PB quota or draw probability values are copied into LP rows."
+}

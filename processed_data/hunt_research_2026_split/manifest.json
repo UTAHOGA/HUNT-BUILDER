@@ -1,0 +1,8 @@
+{
+  "count": 1288,
+  "index_file": "hunt_research_2026.index.json",
+  "detail_dir": "hunts",
+  "canonical_source": "hunt_master_canonical_2026_SOURCE_OF_TRUTH_FINAL_COMPLETE_NO_PARTIALS.csv",
+  "status": "LOCKED_CANONICAL_DERIVED",
+  "notes": "Regenerated from locked 2026 canonical. Existing research detail sections preserved where prior split detail files existed; missing canonical hunt codes receive locked-canonical stub details."
+}

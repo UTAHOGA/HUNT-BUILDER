@@ -1,0 +1,195 @@
+{
+  "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_oial_bison_permits.csv",
+  "truth_rows": 16,
+  "unique_hunt_codes": 16,
+  "all_2026_repo_matches_truth": false,
+  "significance_counts": {
+    "UNCHANGED": 19,
+    "SIGNIFICANT": 9,
+    "MINOR": 4
+  },
+  "group_changes": [
+    {
+      "permit_group": "Henry Mtns",
+      "permits_2025_total": 82,
+      "permits_2026_total": 57,
+      "permit_delta_total": -25,
+      "significance": "SIGNIFICANT"
+    },
+    {
+      "permit_group": "Book Cliffs, Bitter Creek",
+      "permits_2025_total": 18,
+      "permits_2026_total": 38,
+      "permit_delta_total": 20,
+      "significance": "SIGNIFICANT"
+    },
+    {
+      "permit_group": "Book Cliffs, Little Creek/South",
+      "permits_2025_total": 31,
+      "permits_2026_total": 38,
+      "permit_delta_total": 7,
+      "significance": "SIGNIFICANT"
+    },
+    {
+      "permit_group": "Antelope Island",
+      "permits_2025_total": 2,
+      "permits_2026_total": 2,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    }
+  ],
+  "row_changes_abs_gt_1": [
+    {
+      "permit_group": "Book Cliffs, Bitter Creek",
+      "weapon": "Any Legal Weapon",
+      "hunt_code": "BI6536",
+      "sex_type": "Female Only",
+      "residency": "Resident",
+      "permits_2025_truth": 3,
+      "permits_2026_truth": 15,
+      "permit_delta": 12,
+      "significance": "SIGNIFICANT",
+      "repo_public_permits_2026": 15,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided OIAL bison comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Book Cliffs, Bitter Creek",
+      "weapon": "Any Legal Weapon",
+      "hunt_code": "BI6534",
+      "sex_type": "Hunters Choice",
+      "residency": "Resident",
+      "permits_2025_truth": 5,
+      "permits_2026_truth": 10,
+      "permit_delta": 5,
+      "significance": "SIGNIFICANT",
+      "repo_public_permits_2026": 10,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided OIAL bison comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Book Cliffs, Bitter Creek",
+      "weapon": "Any Legal Weapon",
+      "hunt_code": "BI6535",
+      "sex_type": "Hunters Choice",
+      "residency": "Resident",
+      "permits_2025_truth": 5,
+      "permits_2026_truth": 8,
+      "permit_delta": 3,
+      "significance": "SIGNIFICANT",
+      "repo_public_permits_2026": 8,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided OIAL bison comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Book Cliffs, Little Creek/South",
+      "weapon": "Any Legal Weapon",
+      "hunt_code": "BI6531",
+      "sex_type": "Hunters Choice",
+      "residency": "Resident",
+      "permits_2025_truth": 8,
+      "permits_2026_truth": 10,
+      "permit_delta": 2,
+      "significance": "SIGNIFICANT",
+      "repo_public_permits_2026": 10,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided OIAL bison comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Book Cliffs, Little Creek/South",
+      "weapon": "Any Legal Weapon",
+      "hunt_code": "BI6537",
+      "sex_type": "Hunters Choice",
+      "residency": "Resident",
+      "permits_2025_truth": 5,
+      "permits_2026_truth": 8,
+      "permit_delta": 3,
+      "significance": "SIGNIFICANT",
+      "repo_public_permits_2026": 8,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided OIAL bison comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Book Cliffs, Little Creek/South",
+      "weapon": "Any Legal Weapon",
+      "hunt_code": "BI6537",
+      "sex_type": "Hunters Choice",
+      "residency": "Nonresident",
+      "permits_2025_truth": 5,
+      "permits_2026_truth": 7,
+      "permit_delta": 2,
+      "significance": "SIGNIFICANT",
+      "repo_public_permits_2026": 7,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided OIAL bison comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Henry Mtns",
+      "weapon": "Any Legal Weapon",
+      "hunt_code": "BI6505",
+      "sex_type": "Female Only",
+      "residency": "Resident",
+      "permits_2025_truth": 25,
+      "permits_2026_truth": 8,
+      "permit_delta": -17,
+      "significance": "SIGNIFICANT",
+      "repo_public_permits_2026": 8,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided OIAL bison comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Henry Mtns",
+      "weapon": "Any Legal Weapon",
+      "hunt_code": "BI6506",
+      "sex_type": "Female Only",
+      "residency": "Resident",
+      "permits_2025_truth": 30,
+      "permits_2026_truth": 11,
+      "permit_delta": -19,
+      "significance": "SIGNIFICANT",
+      "repo_public_permits_2026": 11,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided OIAL bison comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Henry Mtns",
+      "weapon": "Any Legal Weapon",
+      "hunt_code": "BI6539",
+      "sex_type": "Female Only",
+      "residency": "Resident",
+      "permits_2025_truth": 0,
+      "permits_2026_truth": 11,
+      "permit_delta": 11,
+      "significance": "SIGNIFICANT",
+      "repo_public_permits_2026": 11,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided OIAL bison comparison table for 2025 to 2026; 2025 permit values were shown as dashes and normalized to zero for audit use."
+    }
+  ],
+  "grand_total_2025": 133,
+  "grand_total_2026": 135,
+  "grand_total_delta": 2,
+  "context_only_rows_not_included": [
+    {
+      "hunt_code": "BI6527",
+      "hunt_name": "Nine Mile",
+      "reason": "OTC/Unlimited context row with no numeric quota split in the user table."
+    }
+  ],
+  "notable_findings": [
+    "Grand total increased from 133 to 135 (+2).",
+    "Book Cliffs, Bitter Creek total increased from 18 to 38 (+20).",
+    "Book Cliffs, Little Creek/South total increased from 31 to 38 (+7).",
+    "Henry Mtns total decreased from 82 to 57 (-25), with BI6505 and BI6506 both sharply reduced and BI6539 added as a new 2026 row.",
+    "Antelope Island remained unchanged at 2 total permits."
+  ]
+}

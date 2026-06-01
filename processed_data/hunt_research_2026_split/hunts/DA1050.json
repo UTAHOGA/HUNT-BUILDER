@@ -1,0 +1,347 @@
+{
+  "hunt_code": "DA1050",
+  "species": "Deer",
+  "hunt_name": "The Rose of Snowville CWMU",
+  "hunt_type": "CWMU",
+  "weapon": "Any Legal Weapon",
+  "sex_type": "Antlerless",
+  "access_type": "CWMU",
+  "permits_total": 8,
+  "hunters": 8,
+  "harvest": 6,
+  "percent_success": 75,
+  "avg_days": 1,
+  "satisfaction": 4,
+  "has_harvest": true,
+  "has_bonus_draw": false,
+  "has_antlerless_draw": true,
+  "draw_family": "ANTLERLESS",
+  "draw_presence_flag": "yes",
+  "score_family": "public_antlerless",
+  "public_rank_eligible": "yes",
+  "draw_difficulty_flag": "",
+  "resident_point_signal": null,
+  "nonresident_point_signal": null,
+  "harvest_success_score": 75,
+  "harvest_pressure_score": 1.0,
+  "harvest_efficiency_score": 0.75,
+  "scoring_notes": "Locked canonical 2026 derived split record. permit_status=TOTAL_ONLY; allocation_type=CWMU_TOTAL.",
+  "draw_access_score": null,
+  "verified_outfitter_count": null,
+  "cpo_outfitter_count": null,
+  "dwr_boundary_link": "https://dwrapps.utah.gov/huntboundary/hbstart?HN=DA1050",
+  "dwr_source_guide": "antlerless deer.xlsx",
+  "dwr_unit_name": "The Rose of Snowville CWMU",
+  "recommended_permits": {
+    "recommendation_year": 2026,
+    "permit_category": "CWMU",
+    "hunt_name": "The Rose of Snowville CWMU",
+    "weapon": "Any Legal Weapon",
+    "sex_type": "Antlerless",
+    "access_class": "CWMU",
+    "resident_permits": null,
+    "nonresident_permits": null,
+    "total_permits": 8,
+    "source_type": "CWMU_TOTAL",
+    "source_authority_level": "Utah DWR Hunt Planner",
+    "source_file": "2026_deer_antlerless_cwmu.csv",
+    "permit_status": "TOTAL_ONLY",
+    "permit_note": "2026 total allotment from Utah DWR Hunt Planner export 2026_deer_antlerless_cwmu.csv; no resident/nonresident split published in this source."
+  },
+  "bonus_draw": null,
+  "antlerless_draw": {
+    "land_type": "cwmu",
+    "resident": [
+      {
+        "point_level": 19,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 18,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 17,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 16,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 15,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 14,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 13,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 12,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 11,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 10,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 9,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 8,
+        "applicants": 1,
+        "permits_awarded": 1,
+        "success_ratio_text": "1 in 1.0",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 7,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 6,
+        "applicants": 10,
+        "permits_awarded": 6,
+        "success_ratio_text": "1 in 1.7",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 5,
+        "applicants": 14,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 4,
+        "applicants": 10,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 3,
+        "applicants": 28,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 2,
+        "applicants": 30,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 1,
+        "applicants": 19,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 0,
+        "applicants": 47,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      }
+    ],
+    "nonresident": [
+      {
+        "point_level": 19,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 18,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 17,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 16,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 15,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 14,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 13,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 12,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 11,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 10,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 9,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 8,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 7,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 6,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 5,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 4,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 3,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 2,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 1,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      },
+      {
+        "point_level": 0,
+        "applicants": 0,
+        "permits_awarded": 0,
+        "success_ratio_text": "N/A",
+        "land_type": "cwmu"
+      }
+    ]
+  },
+  "projected_bonus_draw": null,
+  "detail_path": "hunts/DA1050.json",
+  "boundary_id": "509",
+  "hunt_class": "CWMU",
+  "data_status": "COMPLETE_TOTAL_ONLY",
+  "permit_status": "TOTAL_ONLY",
+  "permit_allocation_type": "CWMU_TOTAL",
+  "permit_source_authority": "Utah DWR Hunt Planner"
+}

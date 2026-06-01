@@ -1,0 +1,437 @@
+{
+  "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_limited_entry_bull_elk_permits.csv",
+  "truth_rows": 119,
+  "unique_hunt_codes": 119,
+  "all_2026_repo_matches_truth": false,
+  "repo_mismatch_row_count": 6,
+  "repo_mismatch_hunt_codes": [
+    "EB3010",
+    "EB3047",
+    "EB3088",
+    "EB3112",
+    "EB3185"
+  ],
+  "significance_counts": {
+    "UNCHANGED": 140,
+    "MINOR": 87,
+    "SIGNIFICANT": 5,
+    "MAJOR": 6
+  },
+  "group_changes": [
+    {
+      "permit_group": "Wasatch Mtns",
+      "permits_2025_total": 726,
+      "permits_2026_total": 580,
+      "permit_delta_total": -146,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Manti",
+      "permits_2025_total": 700,
+      "permits_2026_total": 660,
+      "permit_delta_total": -40,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Nebo/San Pitch Mtns",
+      "permits_2025_total": 95,
+      "permits_2026_total": 128,
+      "permit_delta_total": 33,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Boulder",
+      "permits_2025_total": 125,
+      "permits_2026_total": 139,
+      "permit_delta_total": 14,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "San Juan Bull Elk",
+      "permits_2025_total": 115,
+      "permits_2026_total": 127,
+      "permit_delta_total": 12,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Diamond Mtn",
+      "permits_2025_total": 100,
+      "permits_2026_total": 111,
+      "permit_delta_total": 11,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Fishlake/Thousand Lakes",
+      "permits_2025_total": 361,
+      "permits_2026_total": 371,
+      "permit_delta_total": 10,
+      "significance": "MAJOR"
+    },
+    {
+      "permit_group": "Southwest Desert, South",
+      "permits_2025_total": 163,
+      "permits_2026_total": 172,
+      "permit_delta_total": 9,
+      "significance": "SIGNIFICANT"
+    },
+    {
+      "permit_group": "Cache, Meadowville",
+      "permits_2025_total": 48,
+      "permits_2026_total": 40,
+      "permit_delta_total": -8,
+      "significance": "SIGNIFICANT"
+    },
+    {
+      "permit_group": "Monroe",
+      "permits_2025_total": 83,
+      "permits_2026_total": 91,
+      "permit_delta_total": 8,
+      "significance": "SIGNIFICANT"
+    },
+    {
+      "permit_group": "Book Cliffs, Bitter Creek/East",
+      "permits_2025_total": 88,
+      "permits_2026_total": 95,
+      "permit_delta_total": 7,
+      "significance": "SIGNIFICANT"
+    },
+    {
+      "permit_group": "Mt Dutton",
+      "permits_2025_total": 80,
+      "permits_2026_total": 86,
+      "permit_delta_total": 6,
+      "significance": "SIGNIFICANT"
+    },
+    {
+      "permit_group": "Beaver, East",
+      "permits_2025_total": 95,
+      "permits_2026_total": 100,
+      "permit_delta_total": 5,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Box Elder, Pilot Mtn",
+      "permits_2025_total": 13,
+      "permits_2026_total": 9,
+      "permit_delta_total": -4,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Panguitch Lake",
+      "permits_2025_total": 71,
+      "permits_2026_total": 75,
+      "permit_delta_total": 4,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Book Cliffs, Little Creek Roadless",
+      "permits_2025_total": 12,
+      "permits_2026_total": 15,
+      "permit_delta_total": 3,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Cache, South",
+      "permits_2025_total": 38,
+      "permits_2026_total": 41,
+      "permit_delta_total": 3,
+      "significance": "MINOR"
+    },
+    {
+      "permit_group": "Box Elder, Grouse Creek",
+      "permits_2025_total": 23,
+      "permits_2026_total": 23,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Dolores Triangle",
+      "permits_2025_total": 7,
+      "permits_2026_total": 7,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Fillmore, Pahvant",
+      "permits_2025_total": 86,
+      "permits_2026_total": 86,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "La Sal Mtns",
+      "permits_2025_total": 159,
+      "permits_2026_total": 159,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "Morgan-South Rich",
+      "permits_2025_total": 10,
+      "permits_2026_total": 10,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    },
+    {
+      "permit_group": "North Slope, Three Corners",
+      "permits_2025_total": 27,
+      "permits_2026_total": 27,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    }
+  ],
+  "significant_row_changes_abs_gt_5": [
+    {
+      "permit_group": "Manti",
+      "weapon": "Archery",
+      "hunt_code": "EB3006",
+      "residency": "Resident",
+      "permits_2025_truth": 157,
+      "permits_2026_truth": 148,
+      "permit_delta": -9,
+      "significance": "SIGNIFICANT",
+      "repo_public_permits_2026": 148,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Manti",
+      "weapon": "Mid Any Legal Weapon",
+      "hunt_code": "EB3126",
+      "residency": "Resident",
+      "permits_2025_truth": 186,
+      "permits_2026_truth": 175,
+      "permit_delta": -11,
+      "significance": "MAJOR",
+      "repo_public_permits_2026": 175,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Manti",
+      "weapon": "Late Any Legal Weapon",
+      "hunt_code": "EB3039",
+      "residency": "Resident",
+      "permits_2025_truth": 108,
+      "permits_2026_truth": 102,
+      "permit_delta": -6,
+      "significance": "SIGNIFICANT",
+      "repo_public_permits_2026": 102,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Nebo/San Pitch Mtns",
+      "weapon": "Archery",
+      "hunt_code": "EB3173",
+      "residency": "Resident",
+      "permits_2025_truth": 22,
+      "permits_2026_truth": 29,
+      "permit_delta": 7,
+      "significance": "SIGNIFICANT",
+      "repo_public_permits_2026": 29,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Nebo/San Pitch Mtns",
+      "weapon": "Mid Any Legal Weapon",
+      "hunt_code": "EB3177",
+      "residency": "Resident",
+      "permits_2025_truth": 25,
+      "permits_2026_truth": 34,
+      "permit_delta": 9,
+      "significance": "SIGNIFICANT",
+      "repo_public_permits_2026": 34,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Nebo/San Pitch Mtns",
+      "weapon": "Late Any Legal Weapon",
+      "hunt_code": "EB3176",
+      "residency": "Resident",
+      "permits_2025_truth": 14,
+      "permits_2026_truth": 20,
+      "permit_delta": 6,
+      "significance": "SIGNIFICANT",
+      "repo_public_permits_2026": 20,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Wasatch Mtns",
+      "weapon": "Archery",
+      "hunt_code": "EB3022",
+      "residency": "Resident",
+      "permits_2025_truth": 164,
+      "permits_2026_truth": 130,
+      "permit_delta": -34,
+      "significance": "MAJOR",
+      "repo_public_permits_2026": 130,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Wasatch Mtns",
+      "weapon": "Early Any Legal Weapon",
+      "hunt_code": "EB3072",
+      "residency": "Resident",
+      "permits_2025_truth": 67,
+      "permits_2026_truth": 54,
+      "permit_delta": -13,
+      "significance": "MAJOR",
+      "repo_public_permits_2026": 54,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Wasatch Mtns",
+      "weapon": "Mid Any Legal Weapon",
+      "hunt_code": "EB3127",
+      "residency": "Resident",
+      "permits_2025_truth": 193,
+      "permits_2026_truth": 155,
+      "permit_delta": -38,
+      "significance": "MAJOR",
+      "repo_public_permits_2026": 155,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Wasatch Mtns",
+      "weapon": "Late Any Legal Weapon",
+      "hunt_code": "EB3073",
+      "residency": "Resident",
+      "permits_2025_truth": 112,
+      "permits_2026_truth": 89,
+      "permit_delta": -23,
+      "significance": "MAJOR",
+      "repo_public_permits_2026": 89,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Wasatch Mtns",
+      "weapon": "Muzzleloader",
+      "hunt_code": "EB3100",
+      "residency": "Resident",
+      "permits_2025_truth": 98,
+      "permits_2026_truth": 78,
+      "permit_delta": -20,
+      "significance": "MAJOR",
+      "repo_public_permits_2026": 78,
+      "repo_match_2026": true,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry bull elk comparison table for 2025 to 2026."
+    }
+  ],
+  "repo_mismatch_rows": [
+    {
+      "permit_group": "Monroe",
+      "weapon": "Archery",
+      "hunt_code": "EB3010",
+      "residency": "Resident",
+      "permits_2025_truth": 19,
+      "permits_2026_truth": 21,
+      "permit_delta": 2,
+      "significance": "MINOR",
+      "repo_public_permits_2026": 10,
+      "repo_match_2026": false,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Monroe",
+      "weapon": "Archery",
+      "hunt_code": "EB3010",
+      "residency": "Nonresident",
+      "permits_2025_truth": 2,
+      "permits_2026_truth": 2,
+      "permit_delta": 0,
+      "significance": "UNCHANGED",
+      "repo_public_permits_2026": 1,
+      "repo_match_2026": false,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Monroe",
+      "weapon": "Early Any Legal Weapon",
+      "hunt_code": "EB3047",
+      "residency": "Resident",
+      "permits_2025_truth": 8,
+      "permits_2026_truth": 8,
+      "permit_delta": 0,
+      "significance": "UNCHANGED",
+      "repo_public_permits_2026": 3,
+      "repo_match_2026": false,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Monroe",
+      "weapon": "Mid Any Legal Weapon",
+      "hunt_code": "EB3185",
+      "residency": "Resident",
+      "permits_2025_truth": 22,
+      "permits_2026_truth": 24,
+      "permit_delta": 2,
+      "significance": "MINOR",
+      "repo_public_permits_2026": 18,
+      "repo_match_2026": false,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Monroe",
+      "weapon": "Multiseason",
+      "hunt_code": "EB3112",
+      "residency": "Resident",
+      "permits_2025_truth": 2,
+      "permits_2026_truth": 3,
+      "permit_delta": 1,
+      "significance": "MINOR",
+      "repo_public_permits_2026": 2,
+      "repo_match_2026": false,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "permit_group": "Monroe",
+      "weapon": "Muzzleloader",
+      "hunt_code": "EB3088",
+      "residency": "Resident",
+      "permits_2025_truth": 11,
+      "permits_2026_truth": 13,
+      "permit_delta": 2,
+      "significance": "MINOR",
+      "repo_public_permits_2026": 10,
+      "repo_match_2026": false,
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided limited-entry bull elk comparison table for 2025 to 2026."
+    }
+  ],
+  "grand_total_2025": 3225,
+  "grand_total_2026": 3152,
+  "grand_total_delta": -73,
+  "notable_findings": [
+    "Grand total changed from 3225 to 3152 (-73).",
+    "Wasatch Mtns total decreased from 726 to 580 (-146).",
+    "Manti total decreased from 700 to 660 (-40).",
+    "Nebo/San Pitch Mtns total increased from 95 to 128 (+33).",
+    "Boulder total increased from 125 to 139 (+14).",
+    "San Juan Bull Elk total increased from 115 to 127 (+12).",
+    "EB3024 Beaver, East early any legal weapon remained unchanged at 10 total permits."
+  ]
+}

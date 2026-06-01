@@ -1,0 +1,21 @@
+{
+  "rows": 10557,
+  "year_transitions_tested": [
+    "2021->2022",
+    "2022->2023",
+    "2023->2024",
+    "2024->2025",
+    "2025->2026"
+  ],
+  "distinct_hunt_code": 1616,
+  "distinct_residency": 2,
+  "nonnull_counts": {
+    "mean_absolute_error_applicants_at_level": 10557,
+    "mean_absolute_error_applicants_above": 10557,
+    "bonus_pool_cutoff_error": 3008,
+    "guaranteed_at_error": 3008,
+    "quota_split_error": 10557,
+    "brier_score_by_point_level": 10557,
+    "calibration_error_by_probability_bucket": 10557
+  }
+}

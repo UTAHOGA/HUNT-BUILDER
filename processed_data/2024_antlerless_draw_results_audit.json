@@ -1,0 +1,23 @@
+{
+  "classification": "ANTLERLESS_DRAW_RESULTS_TRUTH_SOURCE_AUDIT",
+  "timestamp_utc": "2026-05-24T14:06:10.205161+00:00",
+  "source_pdf": "pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/2024 antlerless draw results.pdf",
+  "source_sha256": "21ea12abd24abb29b074520eccae1ab1b689d6e969d622803f220c0ca4664789",
+  "expected_sha256": "21ea12abd24abb29b074520eccae1ab1b689d6e969d622803f220c0ca4664789",
+  "source_size_bytes": 732713,
+  "expected_size_bytes": 732713,
+  "pdf_pages": 198,
+  "text_lines": 5346,
+  "draw_result_rows": 198,
+  "unique_draw_result_hunt_codes": 198,
+  "draw_result_prefix_counts": {
+    "DA": 21,
+    "EA": 158,
+    "MA": 2,
+    "PD": 16,
+    "RE": 1
+  },
+  "blockers": 0,
+  "blocker_reasons": [],
+  "guardrail": "2024 antlerless draw-results rows are prior draw truth; this audit does not forecast or alter probability math."
+}

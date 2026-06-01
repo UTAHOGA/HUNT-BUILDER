@@ -1,0 +1,92 @@
+{
+  "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_general_season_bull_elk_permits.csv",
+  "truth_rows": 6,
+  "repo_matches_truth_2026_count": 1,
+  "repo_mismatches_truth_2026_count": 5,
+  "rows": [
+    {
+      "category": "Spike Bull",
+      "hunt_codes": "EB1003|EB1004|EB1009",
+      "truth_2025_text": "15000",
+      "truth_2026_text": "15000",
+      "truth_delta_text": "+0",
+      "repo_current_value_text": "CATEGORY TOTAL NOT REPRESENTED CLEANLY IN CURRENT REPO",
+      "repo_match_truth_2026": false,
+      "significance": "UNCHANGED",
+      "repo_source_basis": "Current repo stores code-level spike rows (16, 6, blank multiseason total) rather than a clean category total of 15000.",
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided general season bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "category": "Any Bull Elk (includes muzzleloader)",
+      "hunt_codes": "EB1001|EB1002|EB1010",
+      "truth_2025_text": "15000",
+      "truth_2026_text": "15000",
+      "truth_delta_text": "+0",
+      "repo_current_value_text": "CATEGORY TOTAL NOT REPRESENTED CLEANLY IN CURRENT REPO",
+      "repo_match_truth_2026": false,
+      "significance": "UNCHANGED",
+      "repo_source_basis": "Current repo stores code-level any-bull rows (10, 6, 17) rather than a clean category total of 15000.",
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided general season bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "category": "Any Bull Late",
+      "hunt_codes": "",
+      "truth_2025_text": "Unlimited",
+      "truth_2026_text": "Unlimited",
+      "truth_delta_text": "UNCHANGED TEXT",
+      "repo_current_value_text": "NO CATEGORY ROW FOUND IN CURRENT REPO",
+      "repo_match_truth_2026": false,
+      "significance": "CONTEXT",
+      "repo_source_basis": "No explicit category-level any-bull-late row was found in the inspected repo-side 2026 CSVs.",
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided general season bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "category": "Youth General Season",
+      "hunt_codes": "EB1011",
+      "truth_2025_text": "Unlimited",
+      "truth_2026_text": "Unlimited",
+      "truth_delta_text": "UNCHANGED TEXT",
+      "repo_current_value_text": "NO NUMERIC QUOTA PUBLISHED",
+      "repo_match_truth_2026": false,
+      "significance": "CONTEXT",
+      "repo_source_basis": "Current repo carries EB1011 as a youth general season context row with no numeric quota published.",
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided general season bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "category": "Uinta Basin Private Lands Only Any Bull",
+      "hunt_codes": "EB1012",
+      "truth_2025_text": "500",
+      "truth_2026_text": "750",
+      "truth_delta_text": "+250",
+      "repo_current_value_text": "500",
+      "repo_match_truth_2026": false,
+      "significance": "SIGNIFICANT",
+      "repo_source_basis": "Current repo carries EB1012 with total 500 in DATABASE-derived source and linked reference.",
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided general season bull elk comparison table for 2025 to 2026."
+    },
+    {
+      "category": "Draw Only Youth Any Bull/Hunter's Choice (any weapon)",
+      "hunt_codes": "EB1007",
+      "truth_2025_text": "750",
+      "truth_2026_text": "750",
+      "truth_delta_text": "+0",
+      "repo_current_value_text": "750",
+      "repo_match_truth_2026": true,
+      "significance": "UNCHANGED",
+      "repo_source_basis": "Current repo carries EB1007 with total 750 in general any-bull youth source and linked reference.",
+      "source_document": "2026-05-user-verified-table",
+      "source_note": "User-provided general season bull elk comparison table for 2025 to 2026."
+    }
+  ],
+  "notable_findings": [
+    "EB1007 draw-only youth any bull matches the truth table at 750 for both 2025 and 2026.",
+    "EB1012 Uinta Basin private lands only any bull is 500 in current repo-side 2026 source rows but 750 in the user-provided truth table (+250).",
+    "The repo does not currently represent the 15000 spike-bull and 15000 any-bull category totals as clean category-level numeric rows.",
+    "The repo also does not currently provide a clean category-level numeric row for Any Bull Late Unlimited, and EB1011 youth general season is context-only with no numeric quota published."
+  ]
+}

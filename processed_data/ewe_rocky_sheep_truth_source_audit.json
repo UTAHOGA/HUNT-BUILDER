@@ -1,0 +1,27 @@
+{
+  "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_ewe_rocky_mountain_bighorn_sheep_permits.csv",
+  "truth_rows": 1,
+  "unique_hunt_codes": 1,
+  "grand_total_2025": 5,
+  "grand_total_2026": 5,
+  "grand_total_delta": 0,
+  "group_changes": [
+    {
+      "permit_group": "Box Elder, Newfoundland Mtn",
+      "permits_2025_total": 5,
+      "permits_2026_total": 5,
+      "permit_delta_total": 0,
+      "significance": "UNCHANGED"
+    }
+  ],
+  "notable_findings": [],
+  "all_2026_repo_matches_truth": true,
+  "repo_mismatch_row_count": 0,
+  "repo_mismatch_hunt_codes": [],
+  "surface_mismatch_counts": {
+    "reference": 0,
+    "master": 0,
+    "ladder": 0,
+    "draw_reality": 0
+  }
+}

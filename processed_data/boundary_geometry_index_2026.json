@@ -1,0 +1,26 @@
+{
+  "count": 683,
+  "keys_sample": [
+    "1",
+    "8",
+    "13",
+    "15",
+    "24",
+    "26",
+    "29",
+    "41",
+    "42",
+    "56",
+    "57",
+    "59",
+    "63",
+    "71",
+    "76",
+    "79",
+    "100",
+    "140",
+    "171",
+    "185"
+  ],
+  "geojson_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\data\\hunt_boundaries.geojson"
+}

@@ -1,0 +1,37 @@
+permit_group,weapon,hunt_code,residency,permits_2025_truth,permits_2026_truth,permit_delta,significance,repo_public_permits_2026,repo_match_2026,source_document,source_note
+"Escalante, East",Any Legal Weapon,DS6626,Resident,5,5,0,UNCHANGED,5,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"Escalante, East",Any Legal Weapon,DS6626,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"Escalante, West",Any Legal Weapon,DS6627,Resident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"Escalante, West",Any Legal Weapon,DS6627,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+Henry Mtns,Any Legal Weapon,DS6600,Resident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+Henry Mtns,Any Legal Weapon,DS6600,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"Kaiparowits, East",Any Legal Weapon,DS6601,Resident,10,10,0,UNCHANGED,10,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"Kaiparowits, East",Any Legal Weapon,DS6601,Nonresident,2,3,1,MINOR,3,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"Kaiparowits, West",Any Legal Weapon,DS6603,Resident,4,3,-1,MINOR,3,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"Kaiparowits, West",Any Legal Weapon,DS6603,Nonresident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"La Sal, Potash/South Cisco",Any Legal Weapon,DS6604,Resident,6,8,2,SIGNIFICANT,8,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"La Sal, Potash/South Cisco",Any Legal Weapon,DS6604,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+Mineral Mtns,Any Legal Weapon,DS6625,Resident,3,4,1,MINOR,4,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+Mineral Mtns,Any Legal Weapon,DS6625,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"Pine Valley, Beaver Dam",Any Legal Weapon,DS6621,Resident,5,2,-3,SIGNIFICANT,2,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"Pine Valley, Beaver Dam",Any Legal Weapon,DS6621,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"Pine Valley, Virgin River",Any Legal Weapon,DS6620,Resident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"Pine Valley, Virgin River",Any Legal Weapon,DS6620,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"San Juan, Lockhart",Any Legal Weapon,DS6606,Resident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"San Juan, Lockhart",Any Legal Weapon,DS6606,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"San Juan, North",Any Legal Weapon,DS6622,Resident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"San Juan, North",Any Legal Weapon,DS6622,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"San Juan, San Juan River",Any Legal Weapon,DS6623,Resident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"San Juan, San Juan River",Any Legal Weapon,DS6623,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"San Juan, South",Any Legal Weapon,DS6607,Resident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"San Juan, South",Any Legal Weapon,DS6607,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"San Rafael, Dirty Devil",Any Legal Weapon,DS6608,Resident,5,3,-2,SIGNIFICANT,3,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"San Rafael, Dirty Devil",Any Legal Weapon,DS6608,Nonresident,2,1,-1,MINOR,1,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"San Rafael, Dirty Devil",Archery,DS6624,Resident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"San Rafael, Dirty Devil",Archery,DS6624,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"San Rafael, North",Any Legal Weapon,DS6609,Resident,8,8,0,UNCHANGED,8,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"San Rafael, North",Any Legal Weapon,DS6609,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"San Rafael, South",Any Legal Weapon,DS6610,Resident,10,10,0,UNCHANGED,10,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+"San Rafael, South",Any Legal Weapon,DS6610,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+Zion,Any Legal Weapon,DS6611,Resident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.
+Zion,Any Legal Weapon,DS6611,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL desert bighorn sheep comparison table for 2025 to 2026.

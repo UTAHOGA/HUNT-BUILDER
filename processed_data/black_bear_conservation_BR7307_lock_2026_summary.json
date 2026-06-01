@@ -1,0 +1,72 @@
+{
+  "changed_cells": 0,
+  "classification": "BLACK_BEAR_CONSERVATION_BR7307_LOCK_2026",
+  "current_black_bear_source_present": true,
+  "data_cutoff_date": "2026-05-26",
+  "failed_database_verification_cells": 0,
+  "files_changed": 0,
+  "guardrail": "BR7307 is locked as total-only conservation reference data. Historical 2025 draw/harvest permit fields are not changed, and no resident/nonresident split or modeled odds are invented.",
+  "hunt_code": "BR7307",
+  "normalized_conservation_source_row_count": 3,
+  "normalized_conservation_source_rows": [
+    {
+      "group": "MDF",
+      "organization": "MDF",
+      "permit_count": "1",
+      "source_page_or_row": "38"
+    },
+    {
+      "group": "SFW",
+      "organization": "SFW",
+      "permit_count": "2",
+      "source_page_or_row": "37"
+    },
+    {
+      "group": "UHA",
+      "organization": "UHA",
+      "permit_count": "1",
+      "source_page_or_row": "36"
+    }
+  ],
+  "normalized_conservation_source_total_if_summed": 4,
+  "outputs": {
+    "audit_csv": "data_truth/permit_overlay_truth/validation/black_bear_conservation_BR7307_lock_2026_audit.csv",
+    "lock_csv": "data_truth/permit_overlay_truth/normalized/black_bear_conservation_BR7307_lock_2026.csv",
+    "report_md": "processed_data/black_bear_conservation_BR7307_lock_2026.md",
+    "summary_json": "processed_data/black_bear_conservation_BR7307_lock_2026_summary.json"
+  },
+  "pdf_evidence_row_count": 4,
+  "pdf_evidence_rows": [
+    {
+      "group": "UHA",
+      "organization": "UHA",
+      "permit_count": "1",
+      "source_page_or_row": "36"
+    },
+    {
+      "group": "SFW",
+      "organization": "SFW",
+      "permit_count": "1",
+      "source_page_or_row": "37"
+    },
+    {
+      "group": "MDF",
+      "organization": "MDF",
+      "permit_count": "1",
+      "source_page_or_row": "38"
+    },
+    {
+      "group": "SFW",
+      "organization": "SFW",
+      "permit_count": "1",
+      "source_page_or_row": "39"
+    }
+  ],
+  "pdf_evidence_total_if_summed": 4,
+  "selected_total": 4,
+  "selected_total_basis": "summed organization allocation rows for the matching conservation source row ID",
+  "timestamp_utc": "2026-05-26T13:46:33.529801+00:00",
+  "validation_error_count": 0,
+  "validation_errors": [],
+  "verified_database_current_cells": 3
+}

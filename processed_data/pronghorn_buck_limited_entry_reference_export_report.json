@@ -1,0 +1,28 @@
+{
+  "classification": "PRONGHORN_BUCK_REFERENCE_EXPORT",
+  "timestamp_utc": "2026-05-25T00:51:36.950164+00:00",
+  "status": "PASS",
+  "row_count": 94,
+  "prefix_counts": {
+    "LP": 6,
+    "PB": 88
+  },
+  "hunt_type_counts": {
+    "CWMU": 21,
+    "Limited Entry": 66,
+    "Limited Entry - Private Land Only": 6,
+    "Statewide": 1
+  },
+  "duplicate_code_count": 0,
+  "duplicate_codes": [],
+  "lp_quota_leak_count": 0,
+  "lp_quota_leak_codes": [],
+  "required_quota_columns": [
+    "Non Res",
+    "Res",
+    "Total"
+  ],
+  "source_authority": "Utah DWR Hunt Planner",
+  "output_csv": "processed_data\\pronghorn_buck_limited_entry_reference_export.csv",
+  "guardrail": "Public PB rows preserve published quotas; LP private-land rows keep quota columns blank."
+}

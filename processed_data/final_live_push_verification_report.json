@@ -1,0 +1,84 @@
+{
+  "timestamp_utc": "2026-05-23T16:05:43.5376915Z",
+  "branch": "main",
+  "commit_sha": "a06b552ea2783bcfa7be3af6e57a071dec2924ce",
+  "push_result": "origin/main matches local main at a06b552ea2783bcfa7be3af6e57a071dec2924ce",
+  "lfs_used": true,
+  "lfs_tracked_file_count": 8,
+  "cloudflare_worker_deployed": true,
+  "cloudflare_worker_name": "json",
+  "cloudflare_worker_url": "https://json.uoga.workers.dev",
+  "cloudflare_r2_bucket": "uoga-data",
+  "validation_results": {
+    "build_database_publish_readiness_report": "PASS",
+    "compare_canonical_hunt_database": "PASS",
+    "build_all_rac_permit_database_compare": "PASS",
+    "audit_harvest_results_database_final": "PASS",
+    "build_mixed_predictive_engine_2026": "PASS",
+    "audit_repo_file_retention": "PASS",
+    "pytest_utah_quality": "PASS 18",
+    "pytest_utah_predictive_mixed": "PASS 20",
+    "pytest_permit_truth_ladder_guardrails": "PASS 43",
+    "pytest_utah_draw_predictive_frontend_probability": "PASS 132",
+    "pytest_utah_bonus_predictive": "PASS 36",
+    "compileall_engine_scripts_tests": "PASS",
+    "node_check_hunt_research": "PASS",
+    "node_check_verify_permit_allocations_2026": "PASS",
+    "npm_verify_permits_2026": "PASS",
+    "npm_test": "PASS",
+    "final_json_validation": "PASS",
+    "required_runtime_files_present": "PASS",
+    "lfs_large_file_check": "PASS",
+    "local_static_research_html_http": "PASS 200",
+    "local_runtime_sample_verification": "PASS",
+    "production_static_shell_hash_match": "PASS",
+    "cloudflare_runtime_content": "PASS",
+    "live_source_selection": "PASS"
+  },
+  "database_publish_ready": true,
+  "database_hunt_code_count": 1411,
+  "harvest_audit_blocker_count": 0,
+  "mixed_predictive_engine_publish_ready": true,
+  "prediction_row_count": 27940,
+  "duplicate_key_count": 0,
+  "probability_guardrail_result": "PASS",
+  "quota_guardrail_result": "PASS",
+  "special_permit_guardrail_result": "PASS",
+  "largest_staged_files": [
+    {
+      "path": "canonical/permit-allocation-2026-integrity-report.json",
+      "size_mb": 0.002
+    },
+    {
+      "path": "docs/permit-allocation-2026-integrity-report.md",
+      "size_mb": 0.002
+    },
+    {
+      "path": "processed_data/final_live_push_staged_files.txt",
+      "size_mb": 0.001
+    }
+  ],
+  "cloudflare_r2_files_still_recommended_by_retention_audit": {
+    "runtime": 2989,
+    "archive": 306,
+    "tracked_files_over_25mb": 29
+  },
+  "local_website_verification_notes": [
+    "Local static server returned HTTP 200 for http://localhost:8000/research.html.",
+    "Runtime sample checks passed for DB1004, EB3024 Resident, EB3022 Resident, EA1267, BR1001, and BR1000.",
+    "Browser automation modules were unavailable in this session, so local verification used HTTP fetches and runtime source-selection checks."
+  ],
+  "production_live_url_verified": true,
+  "production_live_url": "https://hunt-builder.uoga.org/research.html",
+  "production_verification_notes": [
+    "research.html, config.js, and hunt-research.js on production matched local SHA-256 hashes.",
+    "GitHub Pages serves LFS-backed CSV paths as pointer files, as expected.",
+    "The hunt research loader rejects Git LFS pointer text and falls back to Cloudflare.",
+    "Cloudflare Worker json.uoga.workers.dev was deployed with R2 bucket uoga-data and returns real CSV/GeoJSON content for required runtime files.",
+    "Live source-selection simulation selected Cloudflare runtime files for predictive engine, point ladder, and reference data."
+  ],
+  "unresolved_items": [
+    "GitHub Pages cannot directly serve LFS-backed runtime CSVs as full content; production depends on the Cloudflare Worker/R2 fallback for those files.",
+    "Retention audit still recommends a broader Cloudflare/local-archive cleanup pass for backups and archive files, but no files were deleted in this release."
+  ]
+}

@@ -1,0 +1,385 @@
+{
+  "target_dir": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\processed_data\\hard_data_exports\\hunt_tables\\2026",
+  "backup_dir": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\processed_data\\backups\\hunt_tables_2026_age_infill_20260528_124407",
+  "source_audit": [
+    {
+      "source_file": "processed_data\\harvest_master.csv",
+      "exists": true,
+      "rows": 1764,
+      "rows_with_age": 0
+    },
+    {
+      "source_file": "processed_data\\harvest_quality_features_all_years_by_hunt_code.csv",
+      "exists": true,
+      "rows": 5151,
+      "rows_with_age": 0
+    },
+    {
+      "source_file": "pipeline\\RAW\\hunt_unit_database\\2026\\csv\\harvest_quality_features_by_hunt_code_2025_for_2026.csv",
+      "exists": true,
+      "rows": 1120,
+      "rows_with_age": 0
+    },
+    {
+      "source_file": "data_model\\quality\\harvest_quality_2025_for_2026.csv",
+      "exists": true,
+      "rows": 1118,
+      "rows_with_age": 0
+    }
+  ],
+  "age_lookup_count": 0,
+  "file_reports": [
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_ANTLERLESS_ELK_GENERAL_SEASON.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_BISON_COW.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_BISON_HUNTER_CHOICE.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_BLACK_BEAR.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_COUGAR.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_DEER_ANTLERLESS.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_DEER_ANTLERLESS_CWMU.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_DEER_ARCHERY_EXTENDED.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_DEER_BUCK_CACTUS.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_DEER_BUCK_CONSERVATION.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_DEER_BUCK_CWMU.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_DEER_BUCK_DRAW.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_DEER_BUCK_LIMITED_ENTRY.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_DEER_BUCK_LIMITED_ENTRY_MANAGEMENT_BUCK.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_DEER_BUCK_LIMITED_ENTRY_PRIVATE_LANDS_ONLY.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_DEER_BUCK_PREMIUM_LIMITED_ENTRY.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_DEER_BUCK_STATEWIDE.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_DEER_GENERAL_SEASON.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_DEER_GENERAL_SEASON_PRIVATE_LANDS.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_DEER_HUNTER_CHOICE.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_DESERT_BIGHORN_RAM.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_ELK_ANTLERLESS.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_ELK_ANTLERLESS_CONSERVATION.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_ELK_ANTLERLESS_CWMU.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_ELK_ANTLERLESS_PRIVATE_LANDS_ONLY.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_ELK_ARCHERY_EXTENDED.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_ELK_BULL_ALL.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_ELK_BULL_CONSERVATION_PERMIT.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_ELK_BULL_CWMU.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_ELK_BULL_GENERAL_ANY_BULL.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_ELK_GENERAL_ANY_BULL_YOUTH.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_ELK_GENERAL_ARCHERY.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_ELK_GENERAL_SPIKE_ONLY.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_ELK_LIMITED_ENTRY_MATUREBULL.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_ELK_LIMITED_ENTRY_MATUREBULL_PRIVATE_LANDS.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_ELK_LIMITED_ENTRY_STATEWIDE.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_GOAT_HUNTER_CHOICE.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_MOOSE_BULL.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_MOOSE_COW.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_SHEEP_DESERT_RAM.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_SHEEP_ROCKY_MOUNTAIN_EWE.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_SHEEP_ROCKY_MOUNTAIN_RAM.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_TURKEY_BEARDED.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    },
+    {
+      "file": "processed_data\\hard_data_exports\\hunt_tables\\2026\\2026_TURKEY_EITHER_SEX.xlsx",
+      "type": "xlsx",
+      "rows": "",
+      "updated": 0,
+      "status": "updated",
+      "sheets": []
+    }
+  ]
+}

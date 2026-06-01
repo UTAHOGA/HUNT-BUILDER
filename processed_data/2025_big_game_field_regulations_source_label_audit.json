@@ -1,0 +1,44 @@
+{
+  "source_file": "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/field_regs 2025.pdf",
+  "expected_title": "2025 Utah Big Game Field Regulations",
+  "expected_source_year": "2025",
+  "actual_sha256": "05a87b5babd0a22af62c993bd3fe0ba106fb18f7029ed60fc75f6babe4dbdaa7",
+  "expected_sha256": "05a87b5babd0a22af62c993bd3fe0ba106fb18f7029ed60fc75f6babe4dbdaa7",
+  "actual_size_bytes": 3432415,
+  "expected_size_bytes": 3432415,
+  "classification": "REGULATION_REFERENCE_ONLY",
+  "modeling_guardrail": "DO_NOT_USE_AS_DRAW_ODDS_HARVEST_FEATURE_OR_2026_QUOTA_INPUT",
+  "source_inventory_status": "NOT_IN_QUALITY_RAW_INVENTORY",
+  "library_export_status": "NOT_EXPORTED_TO_HUNTING_BIBLE",
+  "post_publication_correction_count": 7,
+  "pdf_page_count": 68,
+  "text_line_count": 3723,
+  "number_token_count": 1483,
+  "token_type_counts": {
+    "number_or_money": 1217,
+    "code_citation": 141,
+    "date": 125
+  },
+  "expected_text_check_count": 50,
+  "expected_text_check_failures": 0,
+  "text_lines_output": "data_truth/regulations_truth/normalized/2025_big_game_field_regulations_text_lines.csv",
+  "number_tokens_output": "data_truth/regulations_truth/normalized/2025_big_game_field_regulations_number_tokens.csv",
+  "expected_text_checks_output": "data_truth/regulations_truth/normalized/2025_big_game_field_regulations_expected_text_checks.csv",
+  "manifest_field_regulation_items_found": 0,
+  "mislabeled_2026_manifest_items": 0,
+  "checks": {
+    "source_pdf_exists": true,
+    "source_path_is_2025_folder": true,
+    "source_hash_matches_expected": true,
+    "source_size_matches_expected": true,
+    "text_mentions_2025_field_regulations": true,
+    "text_does_not_identify_as_2026": true,
+    "not_in_quality_raw_inventory": true,
+    "not_promoted_by_quality_or_draw_audit": true,
+    "no_2026_field_regulations_manifest_label": true
+  },
+  "status_counts": {
+    "PASS": 9
+  },
+  "audit_blocker_count": 0
+}

@@ -1,0 +1,2 @@
+﻿M	canonical/permit-allocation-2026-integrity-report.json
+M	docs/permit-allocation-2026-integrity-report.md

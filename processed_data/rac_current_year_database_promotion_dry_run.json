@@ -1,0 +1,45 @@
+{
+  "generated_at_utc": "2026-05-23T07:55:20.170821+00:00",
+  "mode": "dry_run",
+  "rac_current_year_allotment_source": "2026_RAC_CURRENT_YEAR_ALLOTMENT",
+  "excluded_promotion_tokens": [
+    "metadata",
+    "comparison",
+    "verification",
+    "control_units",
+    "supplemental",
+    "permit_rows_from_pdf"
+  ],
+  "rac_direct_hunt_code_count": 519,
+  "rac_family_hunt_code_counts": {
+    "antlerless_deer": 16,
+    "antlerless_elk": 116,
+    "antlerless_moose": 3,
+    "buck_deer_limited_entry": 36,
+    "buck_deer_premium_management": 15,
+    "doe_pronghorn": 16,
+    "ewe_rocky_mountain_bighorn_sheep": 1,
+    "limited_entry_buck_pronghorn": 66,
+    "limited_entry_bull_elk": 119,
+    "limited_entry_bull_elk_hamss_and_september_archery": 9,
+    "limited_entry_bull_elk_late_archery": 17,
+    "oial_bison": 16,
+    "oial_bull_moose": 13,
+    "oial_desert_bighorn_sheep": 18,
+    "oial_mountain_goat": 17,
+    "oial_rocky_mountain_bighorn_sheep": 15,
+    "private_lands_only_antlerless_elk": 26
+  },
+  "files": [
+    {
+      "file": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+      "kind": "csv",
+      "rows_after": 1394,
+      "corrected_rows": "dry_run",
+      "added_rows": 17,
+      "changed_cells": "dry_run",
+      "backup_path": ""
+    }
+  ],
+  "validation": {}
+}

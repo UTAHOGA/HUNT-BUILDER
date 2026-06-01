@@ -1,0 +1,218 @@
+{
+  "classification": "FINAL_REFERENCE_HUNT_CODE_LOCK_2026",
+  "generated_at_utc": "2026-05-25T02:46:38.417200+00:00",
+  "data_cutoff_date": "2026-05-25",
+  "rule_version": "utah_final_reference_hunt_code_lock_v1.0.0",
+  "lock_code_count": 9,
+  "lock_codes": [
+    "BI6527",
+    "BI6538",
+    "CG9999",
+    "EX1000",
+    "RS0001",
+    "RS1000",
+    "RS1001",
+    "RS1003",
+    "RS1006"
+  ],
+  "predictive_reference_codes_locked": [
+    "BI6527",
+    "BI6538",
+    "CG9999",
+    "EX1000",
+    "RS1000",
+    "RS1001",
+    "RS1003",
+    "RS1006"
+  ],
+  "predictive_reference_codes_added_this_run": [],
+  "permit_status_counts": {
+    "FULL_SPLIT": 4,
+    "NO_QUOTA_PUBLISHED": 5
+  },
+  "counts_by_code": {
+    "RS0001": {
+      "res": "1",
+      "nr": "0",
+      "total": "1",
+      "source_file": "conservation-permit-hunt-table-2025-27.csv",
+      "source_page_or_row": "295",
+      "source_row_id": "CP-ROCKY-MOUNTAIN-BIGHORN-SHEEP-STATEWIDE-RAM-ANY-LEGAL-WEAPON"
+    },
+    "RS1000": {
+      "res": "",
+      "nr": "",
+      "total": "",
+      "source_file": "Utah DWR Hunt Planner"
+    },
+    "RS1001": {
+      "res": "1",
+      "nr": "0",
+      "total": "1",
+      "source_file": "conservation-permit-hunt-table-2025-27.csv",
+      "source_page_or_row": "290",
+      "source_row_id": "CP-ROCKY-MOUNTAIN-BIGHORN-SHEEP-BOOK-CLIFFS-SOUTH-RAM-ANY-LEGAL-WEAPON"
+    },
+    "RS1003": {
+      "res": "1",
+      "nr": "0",
+      "total": "1",
+      "source_file": "conservation-permit-hunt-table-2025-27.csv",
+      "source_page_or_row": "292",
+      "source_row_id": "CP-ROCKY-MOUNTAIN-BIGHORN-SHEEP-BOX-ELDER-NEWFOUNDLAND-MTNS-LATE-RAM-ANY-LEGAL-WEAPON"
+    },
+    "RS1006": {
+      "res": "1",
+      "nr": "0",
+      "total": "1",
+      "source_file": "conservation-permit-hunt-table-2025-27.csv",
+      "source_page_or_row": "294",
+      "source_row_id": "CP-ROCKY-MOUNTAIN-BIGHORN-SHEEP-NINE-MILE-GRAY-CANYON-RAM-ANY-LEGAL-WEAPON"
+    },
+    "BI6527": {
+      "res": "",
+      "nr": "",
+      "total": "",
+      "source_file": "Utah DWR Hunt Planner"
+    },
+    "BI6538": {
+      "res": "",
+      "nr": "",
+      "total": "",
+      "source_file": "Utah DWR Hunt Planner"
+    },
+    "EX1000": {
+      "res": "",
+      "nr": "",
+      "total": "",
+      "source_file": "Utah DWR Hunt Planner"
+    },
+    "CG9999": {
+      "res": "",
+      "nr": "",
+      "total": "",
+      "source_file": "Utah DWR Hunt Planner"
+    }
+  },
+  "runtime_update_counts": {
+    "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv": {
+      "touched": 9,
+      "changed": 0
+    },
+    "processed_data/hunt_master_enriched.csv": {
+      "touched": 19,
+      "changed": 0
+    },
+    "processed_data/draw_reality_engine.csv": {
+      "touched": 18,
+      "changed": 0
+    },
+    "processed_data/point_ladder_view.csv": {
+      "touched": 595,
+      "changed": 0
+    },
+    "processed_data/draw_reality_engine_predictive_v2.csv": {
+      "touched": 9,
+      "changed": 0
+    }
+  },
+  "surface_validations": [
+    {
+      "path": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+      "missing_codes": [],
+      "quota_mismatch_count": 0,
+      "quota_mismatches": [],
+      "bad_predictive_row_count": 0,
+      "bad_predictive_rows": [],
+      "rows_by_code_counts": {
+        "BI6527": 1,
+        "BI6538": 1,
+        "CG9999": 1,
+        "EX1000": 1,
+        "RS0001": 1,
+        "RS1000": 1,
+        "RS1001": 1,
+        "RS1003": 1,
+        "RS1006": 1
+      }
+    },
+    {
+      "path": "processed_data/hunt_master_enriched.csv",
+      "missing_codes": [],
+      "quota_mismatch_count": 0,
+      "quota_mismatches": [],
+      "bad_predictive_row_count": 0,
+      "bad_predictive_rows": [],
+      "rows_by_code_counts": {
+        "BI6527": 2,
+        "BI6538": 2,
+        "CG9999": 2,
+        "EX1000": 2,
+        "RS0001": 3,
+        "RS1000": 2,
+        "RS1001": 2,
+        "RS1003": 2,
+        "RS1006": 2
+      }
+    },
+    {
+      "path": "processed_data/draw_reality_engine.csv",
+      "missing_codes": [],
+      "quota_mismatch_count": 0,
+      "quota_mismatches": [],
+      "bad_predictive_row_count": 0,
+      "bad_predictive_rows": [],
+      "rows_by_code_counts": {
+        "BI6527": 2,
+        "BI6538": 2,
+        "CG9999": 2,
+        "EX1000": 2,
+        "RS0001": 2,
+        "RS1000": 2,
+        "RS1001": 2,
+        "RS1003": 2,
+        "RS1006": 2
+      }
+    },
+    {
+      "path": "processed_data/point_ladder_view.csv",
+      "missing_codes": [],
+      "quota_mismatch_count": 0,
+      "quota_mismatches": [],
+      "bad_predictive_row_count": 0,
+      "bad_predictive_rows": [],
+      "rows_by_code_counts": {
+        "BI6527": 66,
+        "BI6538": 66,
+        "CG9999": 66,
+        "EX1000": 66,
+        "RS0001": 67,
+        "RS1000": 66,
+        "RS1001": 66,
+        "RS1003": 66,
+        "RS1006": 66
+      }
+    },
+    {
+      "path": "processed_data/draw_reality_engine_predictive_v2.csv",
+      "missing_codes": [],
+      "quota_mismatch_count": 0,
+      "quota_mismatches": [],
+      "bad_predictive_row_count": 0,
+      "bad_predictive_rows": [],
+      "rows_by_code_counts": {
+        "BI6527": 1,
+        "BI6538": 1,
+        "CG9999": 1,
+        "EX1000": 1,
+        "RS0001": 1,
+        "RS1000": 1,
+        "RS1001": 1,
+        "RS1003": 1,
+        "RS1006": 1
+      }
+    }
+  ],
+  "blocker_count": 0,
+  "blockers": []
+}

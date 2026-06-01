@@ -1,0 +1,35 @@
+permit_group,weapon,hunt_code,residency,permits_2025_truth,permits_2026_truth,permit_delta,significance,repo_public_permits_2026,repo_match_2026,source_document,source_note
+Beaver,Any Legal Weapon,GO6800,Resident,7,7,0,UNCHANGED,7,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+Beaver,Any Legal Weapon,GO6800,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+Beaver,Any Legal Weapon,GO6801,Resident,9,9,0,UNCHANGED,9,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+Beaver,Any Legal Weapon,GO6801,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+Beaver,Archery,GO6822,Resident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+Beaver,Archery,GO6822,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+High Uintas Central,Any Legal Weapon,GO6805,Resident,5,5,0,UNCHANGED,5,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+High Uintas Central,Any Legal Weapon,GO6805,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+High Uintas East,Any Legal Weapon,GO6806,Resident,2,3,1,MINOR,3,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+High Uintas East,Any Legal Weapon,GO6806,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+High Uintas Kamas,Any Legal Weapon,GO6804,Resident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+High Uintas Kamas,Any Legal Weapon,GO6804,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+High Uintas Leidy Peak,Any Legal Weapon,GO6807,Resident,1,2,1,MINOR,2,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+High Uintas Leidy Peak,Any Legal Weapon,GO6807,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+High Uintas West,Any Legal Weapon,GO6808,Resident,9,9,0,UNCHANGED,9,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+High Uintas West,Any Legal Weapon,GO6808,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+La Sal Mtns,Any Legal Weapon,GO6817,Resident,9,10,1,MINOR,10,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+La Sal Mtns,Any Legal Weapon,GO6817,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+Mt Dutton,Any Legal Weapon,GO6814,Resident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+Mt Dutton,Any Legal Weapon,GO6814,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+Nebo,Any Legal Weapon,GO6803,Resident,16,21,5,SIGNIFICANT,21,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+Nebo,Any Legal Weapon,GO6803,Nonresident,2,3,1,MINOR,3,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+Nebo,Archery,GO6821,Resident,12,12,0,UNCHANGED,12,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+Nebo,Archery,GO6821,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+"Ogden, Willard Peak",Any Legal Weapon,GO6810,Resident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+"Ogden, Willard Peak",Any Legal Weapon,GO6810,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+"Wasatch Mtns, Box Elder Peak",Any Legal Weapon,GO6818,Resident,3,3,0,UNCHANGED,3,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+"Wasatch Mtns, Box Elder Peak",Any Legal Weapon,GO6818,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+"Wasatch Mtns, Lone Peak",Any Legal Weapon,GO6819,Resident,1,1,0,UNCHANGED,1,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+"Wasatch Mtns, Lone Peak",Any Legal Weapon,GO6819,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+"Wasatch Mtns, Provo Peak",Any Legal Weapon,GO6813,Resident,5,5,0,UNCHANGED,5,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+"Wasatch Mtns, Provo Peak",Any Legal Weapon,GO6813,Nonresident,0,0,0,UNCHANGED,0,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+"Wasatch Mtns, Timpanogos",Any Legal Weapon,GO6820,Resident,8,8,0,UNCHANGED,8,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.
+"Wasatch Mtns, Timpanogos",Any Legal Weapon,GO6820,Nonresident,2,2,0,UNCHANGED,2,True,2026-05-user-verified-table,User-provided OIAL mountain goat comparison table for 2025 to 2026.

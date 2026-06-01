@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "failures": [],
+  "row_count": 13,
+  "total_only_row_count": 5,
+  "no_quota_published_row_count": 8,
+  "duplicate_code_count": 0,
+  "stale_quota_leak_count": 0,
+  "total_only_codes": [
+    "EB1000",
+    "EB1007",
+    "EB1012",
+    "EB3128",
+    "EB3209"
+  ],
+  "no_quota_published_codes": [
+    "EB1001",
+    "EB1002",
+    "EB1003",
+    "EB1004",
+    "EB1005",
+    "EB1009",
+    "EB1010",
+    "EB1011"
+  ],
+  "required_quota_columns": [
+    "Non Res",
+    "Res",
+    "Total"
+  ],
+  "source_authority": "Utah DWR Hunt Planner",
+  "output_csv": "processed_data\\elk_bull_reference_hunt_planner_reference.csv",
+  "output_xlsx": "processed_data\\elk_bull_reference_hunt_planner_reference.xlsx"
+}
