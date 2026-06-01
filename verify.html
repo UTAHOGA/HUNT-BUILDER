@@ -780,11 +780,11 @@
       const gridEl = document.getElementById('verifiedOutfitterGrid');
       if (!statusEl || !gridEl) return;
 
-      const sources = [
-        './processed_data/public_contracts/outfitters-public.json?v=20260530-verify-directory-2',
-        './data/outfitters-public.json?v=20260530-verify-directory-1',
-        './data/outfitters.json?v=20260530-verify-directory-1'
-      ];
+      const sources = (
+        Array.isArray(window.UOGA_CONFIG?.OUTFITTERS_DATA_SOURCES)
+          ? window.UOGA_CONFIG.OUTFITTERS_DATA_SOURCES
+          : []
+      ).filter(Boolean);
 
       function safe(value) {
         return String(value == null ? '' : value).trim();
@@ -943,38 +943,29 @@
         try {
           let records = [];
           let mode = 'contract';
-          try {
-            const contractFeed = await loadJson(sources[0]);
-            if (Array.isArray(contractFeed) && contractFeed.length) {
-              records = contractFeed;
-              mode = 'contract';
-            }
-          } catch (error) {
-            console.warn('Contract outfitter feed not available:', error);
-          }
 
-          if (!records.length) {
+          for (let i = 0; i < sources.length && !records.length; i += 1) {
+            const source = safe(sources[i]);
+            if (!source) continue;
             try {
-              const published = await loadJson(sources[1]);
-              if (Array.isArray(published) && published.length) {
-                records = published;
-                mode = 'public';
-              }
+              const payload = await loadJson(source);
+              const isFallback = /\/data\/outfitters(?:-public)?\.json/i.test(source);
+              const candidateRows = Array.isArray(payload) ? payload : [];
+              records = isFallback
+                ? candidateRows.filter((row) => {
+                  const status = safe(row.verificationStatus).toLowerCase();
+                  const cert = safe(row.certLevel).toLowerCase();
+                  return status.includes('vetted') || status.includes('verified') || cert.includes('cpo');
+                })
+                : candidateRows;
+              mode = isFallback ? 'fallback' : (i === 0 ? 'contract' : 'public');
             } catch (error) {
-              console.warn('Public outfitter feed not available:', error);
+              console.warn(`Outfitter feed not available: ${source}`, error);
             }
           }
 
           if (!records.length) {
-            const fallback = await loadJson(sources[2]);
-            records = Array.isArray(fallback)
-              ? fallback.filter((row) => {
-                const status = safe(row.verificationStatus).toLowerCase();
-                const cert = safe(row.certLevel).toLowerCase();
-                return status.includes('vetted') || status.includes('verified') || cert.includes('cpo');
-              })
-              : [];
-            mode = 'fallback';
+            throw new Error('No outfitter feed sources returned data.');
           }
 
           const normalized = records.map(normalizeOutfitter).filter((row) => safe(row.name));

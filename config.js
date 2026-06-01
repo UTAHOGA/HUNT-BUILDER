@@ -123,10 +123,17 @@ window.UOGA_CONFIG = (() => {
     const remote = relativePath ? withVersion(fromR2(relativePath), version) : '';
     const local = relativePath ? `./${relativePath}?v=${version}` : '';
     const skipLocal = runtimeAssetIsLfsPointer(key);
+    if (isDevLikeHost()) {
+      return uniqueUrls([
+        (includeLocalFallback && !skipLocal) ? local : '',
+        canonical,
+        remote,
+      ]);
+    }
+    // Production should resolve to one canonical source chain:
+    // manifest canonical URL first, then object-storage URL only if manifest is unavailable.
     return uniqueUrls([
-      canonical,
-      remote,
-      (includeLocalFallback && !skipLocal) ? local : '',
+      canonical || remote,
     ]);
   };
 
@@ -134,10 +141,10 @@ window.UOGA_CONFIG = (() => {
     const local = `./${relativePath}?v=${version}`;
     const remoteBase = fromR2(relativePath);
     const remote = remoteBase ? withVersion(remoteBase, version) : '';
-    // Production should prefer CDN/object-hosted runtime assets over repo-served processed_data.
+    // Production should use canonical object-hosted runtime assets only.
     return isDevLikeHost()
       ? [local, remote].filter(Boolean)
-      : [remote, local].filter(Boolean);
+      : [remote].filter(Boolean);
   };
 
   /*
@@ -187,27 +194,27 @@ window.UOGA_CONFIG = (() => {
     ============================================================================
   */
   const HUNT_BOUNDARY_SOURCES = [
-    // Live runtime-safe sources first. These files are served as plain GeoJSON
-    // in production, while some processed_data variants may be LFS pointers.
-    `./data/hunt_boundaries.geojson?v=${HUNT_DATA_VERSION}`,
-    `./data/hunt-boundaries-lite.geojson?v=${HUNT_DATA_VERSION}`,
     manifestCanonical('builder_composite_boundaries_2026_geojson', HUNT_DATA_VERSION),
     ...orderedProcessedRuntimeCandidates('processed_data/statewide_composite_boundaries_2026.geojson', HUNT_DATA_VERSION),
+    ...(isDevLikeHost() ? [
+      `./data/hunt_boundaries.geojson?v=${HUNT_DATA_VERSION}`,
+      `./data/hunt-boundaries-lite.geojson?v=${HUNT_DATA_VERSION}`,
+    ] : []),
   ].filter(Boolean);
   const BOUNDARY_MANIFEST_SOURCES = [];
   const DISPLAY_BOUNDARY_INDEX_SOURCES = [
     manifestCanonical('builder_display_boundary_index_2026_json', HUNT_DATA_VERSION),
     ...orderedProcessedRuntimeCandidates('processed_data/display-boundary-index-2026.json', HUNT_DATA_VERSION),
-    `./processed_data/display-boundary-index-2026.csv?v=${HUNT_DATA_VERSION}`,
+    ...(isDevLikeHost() ? [`./processed_data/display-boundary-index-2026.csv?v=${HUNT_DATA_VERSION}`] : []),
   ].filter(Boolean);
   const FINALIZED_BOUNDARY_SOURCES = [
     `./data/hunt_boundaries.geojson?v=${HUNT_DATA_VERSION}`,
     `./data/hunt-boundaries-lite.geojson?v=${HUNT_DATA_VERSION}`,
   ].filter(Boolean);
   const COMPOSITE_BOUNDARY_SOURCES = [
-    `./data/statewide-composite-members-2026-lite.geojson?v=${HUNT_DATA_VERSION}`,
     manifestCanonical('builder_composite_boundaries_2026_geojson', HUNT_DATA_VERSION),
     ...orderedProcessedRuntimeCandidates('processed_data/statewide_composite_boundaries_2026.geojson', HUNT_DATA_VERSION),
+    ...(isDevLikeHost() ? [`./data/statewide-composite-members-2026-lite.geojson?v=${HUNT_DATA_VERSION}`] : []),
   ].filter(Boolean);
 
   const HUNT_DATA_SOURCES = [
@@ -245,9 +252,17 @@ window.UOGA_CONFIG = (() => {
     ============================================================================
   */
   const OUTFITTERS_DATA_SOURCES = [
-    `./data/outfitters-public.json?v=${OUTFITTERS_DATA_VERSION}`,
-    `./data/outfitters.json?v=${OUTFITTERS_DATA_VERSION}`,
-  ];
+    ...runtimeSourceCandidates({
+      key: 'verify_outfitters_public_contract_json',
+      relativePath: 'processed_data/public_contracts/outfitters-public.json',
+      version: OUTFITTERS_DATA_VERSION,
+      includeLocalFallback: false,
+    }),
+    ...(isDevLikeHost() ? [
+      `./data/outfitters-public.json?v=${OUTFITTERS_DATA_VERSION}`,
+      `./data/outfitters.json?v=${OUTFITTERS_DATA_VERSION}`,
+    ] : []),
+  ].filter(Boolean);
 
   const OUTFITTER_FEDERAL_COVERAGE_SOURCES = [];
 

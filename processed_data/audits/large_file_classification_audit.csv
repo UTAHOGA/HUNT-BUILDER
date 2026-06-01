@@ -3,7 +3,7 @@ processed_data/display-boundary-index-2026.json,869897,GIT_BLOB,R2_PUBLIC,yes,ye
 processed_data/statewide_composite_boundaries_2026.geojson,87146863,GIT_LFS_OBJECT,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Primary composite boundaries runtime source for Builder.; large_file>5242880
 processed_data/composite_hunt_unit_mapping_2026.geojson,54914353,GIT_LFS_OBJECT,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Direct unit boundary fallback map used by Builder.; large_file>5242880
 processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson,87146863,GIT_LFS_OBJECT,R2_PUBLIC,no,no,CLOUDFLARE_R2_PUBLIC,Canonical locked reference; publish only when intentionally pinned.; large_file>5242880; not_public_even_though_r2_classification
-processed_data/hunt_research_2026.json,28329606,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research summary contract feed.; large_file>5242880
+processed_data/hunt_research_2026.json,305947990,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research summary contract feed.; large_file>5242880
 processed_data/draw_reality_engine.csv,20594722,GIT_LFS_OBJECT,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Observed draw runtime engine feed.; large_file>5242880
 processed_data/draw_reality_engine_v2.csv,44863034,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Observed draw engine fallback feed.; large_file>5242880
 processed_data/draw_reality_engine_predictive_v2.csv,133,GIT_LFS_POINTER,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Predictive mode feed; currently LFS pointer in repo and requires migration.; git_lfs_pointer_payload_detected; manual_review_required

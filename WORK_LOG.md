@@ -1,3 +1,72 @@
+## 2026-06-01T11:55:00-06:00 - LFS Runtime Canonicalization Pass (Website Universe Redirect)
+
+- Assigned action:
+  - Audit all LFS-tracked files.
+  - Determine which are in the live website/runtime universe.
+  - Redirect active runtime/page dependencies to canonical sources (R2 for large runtime assets).
+
+- Runtime canonicalization changes:
+  - Updated:
+    - `config.js`
+      - production runtime source selection now canonical-only for large `processed_data` assets:
+        - uses runtime manifest canonical URL (preferred)
+        - falls back to object-hosted URL only if manifest entry is missing
+      - local `./processed_data/*` runtime fallbacks are now dev-only.
+      - boundary source arrays are production-canonicalized:
+        - `HUNT_BOUNDARY_SOURCES`
+        - `DISPLAY_BOUNDARY_INDEX_SOURCES`
+        - `COMPOSITE_BOUNDARY_SOURCES`
+      - outfitter directory source chain now canonicalized through config:
+        - `OUTFITTERS_DATA_SOURCES` now targets canonical contract path first.
+    - `verify.html`
+      - removed hardcoded multi-path source list.
+      - now consumes `window.UOGA_CONFIG.OUTFITTERS_DATA_SOURCES` and iterates available sources.
+      - preserves fallback behavior only when canonical source is unavailable.
+
+- Manifest + audit refresh:
+  - Ran:
+    - `node scripts/publish-runtime-assets-r2.js --dry-run`
+  - Regenerated:
+    - `public/data/runtime-manifest.json`
+    - `data/runtime-manifest.json`
+    - `processed_data/audits/large_file_classification_audit.csv`
+
+- New LFS runtime audit tooling + outputs:
+  - Added:
+    - `scripts/audit-lfs-runtime-canonicalization.py`
+  - Generated:
+    - `processed_data/audits/lfs_runtime_canonicalization_audit.csv`
+    - `docs/lfs_runtime_canonicalization_report.md`
+
+- LFS universe result summary:
+  - LFS-tracked files audited: `20`
+  - LIVE_RUNTIME_REQUIRED: `4`
+    - `processed_data/draw_reality_engine.csv`
+    - `processed_data/draw_reality_engine_predictive_v2.csv`
+    - `processed_data/hunt_master_enriched.csv`
+    - `processed_data/statewide_composite_boundaries_2026.geojson`
+  - Canonical source for all 4 live LFS runtime assets: `CLOUDFLARE_R2_PUBLIC`
+  - Recommended action for all 4 live LFS runtime assets: `SERVE_FROM_R2`
+
+- Validation:
+  - Production source selection smoke-test:
+    - evaluated `config.js` in production host context (`huntbuilder.uoga.org`)
+    - verified live runtime arrays do not include local `./processed_data/*` paths in production mode.
+  - Live pages:
+    - `https://huntbuilder.uoga.org/` -> `200`
+    - `https://huntbuilder.uoga.org/research.html` -> `200`
+    - `https://huntbuilder.uoga.org/verify.html` -> `200`
+    - `https://huntbuilder.uoga.org/hard-copy.html` -> `200`
+  - Runtime manifest:
+    - `https://huntbuilder.uoga.org/public/data/runtime-manifest.json` -> `200`
+  - Canonical runtime asset URLs (`json.uoga.workers.dev`):
+    - live frontend-used canonical URLs checked -> `200` (HEAD)
+  - LFS-pointer risk spot-check:
+    - canonical R2 URLs for:
+      - `draw_reality_engine_predictive_v2.csv`
+      - `hunt_master_enriched.csv`
+    - prefix check confirms not serving Git LFS pointer payload text.
+
 ## 2026-06-01T11:40:00-06:00 - Hunt Research Remaining Gap Closure (Contract Verification)
 
 - Assigned action:
