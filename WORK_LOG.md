@@ -1,3 +1,80 @@
+## 2026-06-01T15:20:00-06:00 - 2025 Draw Feed Audit vs Legacy 2026 Permit Overlay + Contract Precedence Repair
+
+- Assigned action:
+  - Audit whether 2025 draw-result feeder files are the source of the observed "legacy 2026 permits" behavior in Hunt Research outputs.
+
+- Findings:
+  - The listed files are valid 2025 draw-result feeder evidence and are present in the repo (`pipeline/RAW/hunt_unit_database/2026/csv|pdf/Draw Odds`).
+  - In active runtime feeder surfaces:
+    - `processed_data/draw_reality_engine.csv` rows with `permits_2026_total` are primarily historical draw rows with source files like:
+      - `22_bg-odds.pdf`
+      - `2021 Big game limited-entry once-in-a-lifetime draw results.pdf`
+      - `21_bg-odds.pdf`
+    - For those rows, `permits_2026_source` is overwhelmingly:
+      - `DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS`
+  - Conclusion:
+    - The "legacy 2026 permits" effect is not direct 2026-permit truth coming from old draw PDFs.
+    - It is a **2026 permit overlay attached onto historical draw rows** (legacy draw history rows carrying current-year permit context).
+
+- Corrective implementation:
+  - Updated `scripts/build-hunt-research-2026-contract.py` permit precedence to ensure 2026 permit fields are sourced from canonical DATABASE/DWR first, then legacy row fields as fallback:
+    - `permits_2026_res`
+    - `permits_2026_nr`
+    - `permits_2026_total`
+    - `total_permits`
+    - `quota_source_status`
+  - This prevents historical row-level permit artifacts from outranking canonical 2026 permit truth.
+
+- Rebuild + validation:
+  - Ran: `python scripts/build-hunt-research-2026-contract.py`
+    - rows: `91712`
+    - contract_codes: `1449`
+    - database_codes: `1449`
+    - missing_codes_vs_database: `0`
+  - Ran: `python -m py_compile scripts/build-hunt-research-2026-contract.py` -> PASS
+  - Ran: `git diff --check` -> PASS
+
+## 2026-06-01T14:45:00-06:00 - Hunt Research Harvest Source Promotion (2025 Preliminary Report for 2026 Interpretation)
+
+- Assigned action:
+  - Ensure Hunt Research reads the 2025 harvest report for 2026 interpretation using user-provided file:
+    - `D:\DOWNLOADS\2025-preliminary-bg-harvest.pdf`
+
+- Source verification:
+  - Existing canonical source file and user-provided file were **not** byte-identical.
+  - Promoted user-provided file into canonical project source path:
+    - `pipeline/RAW/hunt_unit_database/2026/pdf/harvest_report/2026-03-06-2025-preliminary-bg-harvest.pdf`
+  - Synced public source copy:
+    - `processed_data/hard_data_exports/source_pdfs/harvest_report/2025/2025-preliminary-big-game-harvest-report.pdf`
+  - New canonical SHA-256:
+    - `cbcade8db21d6eb7f2b0fac3ab92aebb4fec366757c6842fba8dd5bd204f1c40`
+
+- Pipeline/runtime integration change:
+  - Updated `scripts/build-hunt-research-2026-contract.py` to prioritize canonical 2025-for-2026 harvest truth inputs:
+    1. `data_truth/harvest_results_truth/normalized/harvest_results_2025_for_2026_long.csv`
+    2. `pipeline/RAW/hunt_unit_database/2025/csv/harvest data/harvest_results_2025_for_2026_hunt_code_keyed.csv`
+    3. existing all-years harvest feature candidates
+  - Expanded harvest field parsing compatibility so build step consistently reads:
+    - success: `percent_success | harvest_success_percent | success_percent`
+    - days: `avg_days | average_days | avg_days_hunted | average_days_hunted`
+
+- Source lineage consistency update:
+  - Updated `data_truth/harvest_results_truth/normalized/harvest_results_2025_for_2026_long.csv`:
+    - `source_sha256` refreshed to new canonical PDF hash for all rows sourced from:
+      - `pipeline/RAW/hunt_unit_database/2026/pdf/harvest_report/2026-03-06-2025-preliminary-bg-harvest.pdf`
+
+- Rebuild + validation:
+  - Ran: `python scripts/build-hunt-research-2026-contract.py`
+    - rows: `91712`
+    - contract_codes: `1449`
+    - database_codes: `1449`
+    - missing_codes_vs_database: `0`
+    - status: `PARTIAL` (unchanged structural status class)
+  - Hunt Research source-file profile now shows primary use of promoted harvest PDF path:
+    - `pipeline/RAW/hunt_unit_database/2026/pdf/harvest_report/2026-03-06-2025-preliminary-bg-harvest.pdf` on `33088` rows.
+  - Ran: `python -m py_compile scripts/build-hunt-research-2026-contract.py` -> PASS
+  - Ran: `git diff --check` -> PASS
+
 ## 2026-06-01T13:05:00-06:00 - Hunt Research Ladder Odds Publish Fix (2025 Draw Results Precedence)
 
 - Assigned action:
@@ -10373,3 +10450,331 @@ o_table=0).
     - `https://huntbuilder.uoga.org/verify.html`
     - `https://huntbuilder.uoga.org/hard-copy.html`
   - `git diff --check`
+## 2026-06-01T15:20:00-06:00 - Legacy-vs-DWR Permit Mismatch Recommendation CSV
+
+- Assigned action:
+  - Generate a clean mismatch CSV with:
+    - `hunt_code`
+    - `hunt_name`
+    - `legacy_res/nr/total`
+    - `dwr_res/nr/total`
+    - `source_support_count`
+    - `recommended_winner_flag`
+
+- Inputs used:
+  - DWR recent pull truth:
+    - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+  - Legacy chain (Cloudfare copies):
+    - `C:/Users/tyler/Desktop/GitHub/Cloudfare/draw_reality_engine.csv`
+    - `C:/Users/tyler/Desktop/GitHub/Cloudfare/draw_reality_engine_v2.csv`
+    - `C:/Users/tyler/Desktop/GitHub/Cloudfare/draw_reality_engine_predictive_v2.csv`
+    - `C:/Users/tyler/Desktop/GitHub/Cloudfare/point_ladder_view.csv`
+    - `C:/Users/tyler/Desktop/GitHub/Cloudfare/hunt_unit_reference_linked.csv`
+    - `C:/Users/tyler/Desktop/GitHub/Cloudfare/hunt_master_enriched.csv`
+    - `C:/Users/tyler/Desktop/GitHub/Cloudfare/ml_draw_predictions_v1.csv`
+
+- Output created:
+  - `processed_data/audits/legacy_vs_dwr_permit_mismatch_recommendations.csv`
+
+- Result summary:
+  - Mismatch rows written: `74`
+  - Recommendation logic:
+    - `RECOMMEND_DWR_TRUTH_SOURCE` when DWR 2026 allotment split is complete.
+    - `RECOMMEND_LEGACY_TEMP_FILL_REVIEW` only if DWR split is incomplete and legacy split is complete with strong multi-source support.
+    - `REVIEW_REQUIRED` for unresolved partial/ambiguous cases.
+## 2026-06-01T15:55:00-06:00 - Active-2026 Mismatch Filter (EA1126/EA1176 retired, EA1180 conservation truth)
+
+- User confirmation applied:
+  - `EA1126` no longer exists as active 2026 hunt.
+  - `EA1176` no longer exists as active 2026 hunt.
+  - `EA1180` should follow conservation permit table totals.
+
+- Verification against `DATABASE.csv`:
+  - `EA1126`, `EA1176` carry `permit_allotment_2026_status=HISTORICAL_2025_ONLY_NOT_ACTIVE_2026`.
+  - `EA1180` has:
+    - `permit_allotment_2026_total=8`
+    - `conservation_permits_2026_total=8`
+    - conservation source lineage to `2026 CONSERVATION  PERMITS.pdf`.
+
+- Audit outputs:
+  - Original mismatch file was locked by spreadsheet process, so active-2026 filtered copies were written:
+    - `processed_data/audits/legacy_vs_dwr_permit_mismatch_recommendations_active2026.csv`
+    - `processed_data/audits/legacy_vs_dwr_permit_mismatch_recommendations_with_database_active2026.csv`
+
+- Applied output rules:
+  - Removed rows: `EA1126`, `EA1176`
+  - Set `EA1180` -> `recommended_winner_flag=RECOMMEND_CONSERVATION_TABLE_TRUTH`
+## 2026-06-01T16:20:00-06:00 - Historical-status filter applied to active mismatch audits
+
+- User correction applied:
+  - `BR7208` and related `REVIEW_REQUIRED` rows should not remain in active 2026 mismatch audits when `DATABASE.csv` marks them historical-only.
+  - `BR7324` must be treated as conservation-table sourced.
+
+- Validation findings:
+  - `BR7208`, `DB1276`, `DB1338`, `EB3616`, `PB5313`, `PB5341`, `PD1032`, `PD1046` and additional similar rows are flagged in `DATABASE.csv` with:
+    - `permit_allotment_2026_status = HISTORICAL_2025_ONLY_NOT_ACTIVE_2026`.
+  - `BR7324` is `Conservation` with:
+    - `permit_allotment_2026_total = 1`
+    - `conservation_permits_2026_total = 1`
+    - conservation-table lineage.
+
+- Outputs updated:
+  - `processed_data/audits/legacy_vs_dwr_permit_mismatch_recommendations_active2026.csv`
+    - rows `72 -> 54`
+  - `processed_data/audits/legacy_vs_dwr_permit_mismatch_recommendations_with_database_active2026_v2.csv`
+    - rows `72 -> 54`
+    - created because the prior `_with_database_active2026.csv` file was locked by spreadsheet process.
+
+- Rule updates in output:
+  - removed rows where `DATABASE.csv` status is `HISTORICAL_2025_ONLY_NOT_ACTIVE_2026`
+  - set:
+    - `BR7324` -> `RECOMMEND_CONSERVATION_TABLE_TRUTH`
+    - `EA1180` -> `RECOMMEND_CONSERVATION_TABLE_TRUTH`
+## 2026-06-01T16:45:00-06:00 - Canonical Hunt Research Permit Patch (DB precedence for Monroe elk set)
+
+- Assigned action:
+  - Apply DB-precedence permit values into canonical contract JSON for:
+    - `EB3010`
+    - `EB3047`
+    - `EB3185`
+    - `EB3112`
+    - `EB3088`
+
+- Source of truth used:
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+  - `permit_allotment_2026_res/nr/total` values:
+    - `EB3010` -> `10 / 1 / 11`
+    - `EB3047` -> `3 / 1 / 4`
+    - `EB3185` -> `18 / 3 / 21`
+    - `EB3112` -> `2 / 0 / 2`
+    - `EB3088` -> `10 / 1 / 11`
+
+- Output updated:
+  - `processed_data/hunt_research_2026.json`
+
+- Patch behavior:
+  - Updated all rows for those hunt codes across contract point/residency rows.
+  - Wrote both field families per row:
+    - `permits_2026_res/nr/total`
+    - `permit_allotment_2026_res/nr/total`
+
+- Validation:
+  - JSON parse check: PASS (`91712` rows).
+  - Post-patch hunt-code checks confirm one permit tuple per code:
+    - `EB3010`: `10/1/11`
+    - `EB3047`: `3/1/4`
+    - `EB3185`: `18/3/21`
+    - `EB3112`: `2/0/2`
+    - `EB3088`: `10/1/11`
+  - `git diff --check`: PASS
+
+## 2026-06-01T17:25:00-06:00 - Ladder 2025 Draw Display + Permit Mirror Columns
+
+- Requested behavior:
+  - Ladder `2025 Draw Results` must display printed style (`1 in X or Y%`) instead of raw percent-only values.
+  - Add mirrored permit columns as requested:
+    - `permits_2025_res`
+    - `permits_2025_nr`
+    - `permits_2025_total`
+  - Mirror source used: canonical 2026 permit truth chain (`DATABASE permit_allotment -> DWR -> ladder row fallback`).
+
+- Files changed:
+  - `scripts/build-hunt-research-2026-contract.py`
+  - `hunt-research.js`
+  - regenerated `processed_data/hunt_research_2026.json`
+
+- Contract logic updates:
+  - Added normalized draw-result formatter so `display_2025_draw_results` and `dwr_result_display` resolve to `1 in X or Y%` style.
+  - Preserved `odds_2025_actual` as numeric percent field for calculations.
+  - Added permit mirror fields per row:
+    - `permits_2025_res/nr/total` = canonical 2026 permit values.
+
+- Ladder runtime update:
+  - Hardened row fallback path so if draw display text is missing, runtime formats `odds_2025_actual` into `1 in X or Y%` before render.
+
+- Validation:
+  - `python -m py_compile scripts/build-hunt-research-2026-contract.py`: PASS
+  - `python scripts/build-hunt-research-2026-contract.py`: PASS
+    - rows: `91712`
+    - contract codes: `1449`
+    - missing codes vs DB: `0`
+  - `node --check hunt-research.js`: PASS
+  - `git diff --check`: PASS
+  - Output spot check:
+    - `display_2025_draw_results` nonblank rows: `6095`
+    - formatted `1 in X or Y%` pattern rows: `6095`
+    - sample `EB3038` resident point `0`: `~1 in 238.5 or 0.4%`
+
+## 2026-06-01T17:42:00-06:00 - Permit Source Hard-Lock (No Legacy Row Fallback)
+
+- Concern addressed:
+  - Prevent any permit value synthesis from ladder/runtime row fallback.
+  - Keep 2026 permit contract fields sourced only from canonical DB allotment + DWR pull.
+
+- File changed:
+  - `scripts/build-hunt-research-2026-contract.py`
+
+- Logic change:
+  - `permits_2026_res/nr/total` now resolve strictly from:
+    1. `DATABASE.csv` `permit_allotment_2026_*`
+    2. `processed_data/dwr_huntplanner_hanumber_2026.csv` `permits_2026_*`
+  - Removed ladder-row fallback from permit population path.
+  - `permits_2025_res/nr/total` remain mirrored compatibility fields and are now assigned directly from the resolved `permits_2026_*` values.
+
+- Validation:
+  - `python -m py_compile scripts/build-hunt-research-2026-contract.py`: PASS
+  - `python scripts/build-hunt-research-2026-contract.py`: PASS
+    - rows: `91712`
+    - contract codes: `1449`
+    - missing codes vs DB: `0`
+  - mirror equality:
+    - `permits_2025_res == permits_2026_res`: `91712/91712`
+    - `permits_2025_nr == permits_2026_nr`: `91712/91712`
+    - `permits_2025_total == permits_2026_total`: `91712/91712`
+  - `git diff --check`: PASS
+
+## 2026-06-01T17:55:00-06:00 - Correction: 2025 Permit Fields Restored To True 2025 Source
+
+- Clarification:
+  - For prediction interpretation, `permits_2025_*` must represent true 2025 source values, not mirrored 2026 values.
+
+- Update made:
+  - `scripts/build-hunt-research-2026-contract.py` now sets:
+    - `permits_2025_res` from `DATABASE.csv permits_2025_res`
+    - `permits_2025_nr` from `DATABASE.csv permits_2025_nr`
+    - `permits_2025_total` from `DATABASE.csv permits_2025_total` (fallback `permits_2025`)
+  - `permits_2026_*` remain hard-locked to:
+    - `permit_allotment_2026_*` then DWR 2026 pull.
+
+- Validation:
+  - Rebuild PASS (`91712` rows, `1449` codes, `0` missing codes vs DB).
+  - `permits_2025_*` vs `permits_2026_*` are now intentionally different on many rows:
+    - `res`: `59108` row diffs
+    - `nr`: `43488` row diffs
+    - `total`: `58312` row diffs
+  - Spot checks confirm expected code-level differences (e.g., `DB1011`, `EB3002`, `BR7224`).
+
+## 2026-06-01T18:25:00-06:00 - 2025 Draw Permit Regeneration + LFS/Gzip Repair Pass
+
+- Requested action:
+  - Regenerate 2025 draw-result permit context for 2026 modeling.
+  - Repair LFS-pointer runtime file and normalize compressed source availability.
+  - Crosscheck 2025 draw permit lineage against source-linked PDF fields.
+
+- Runtime file repairs:
+  - Replaced LFS-pointer file with real content:
+    - `processed_data/draw_reality_engine_predictive_v2.csv`
+    - source used: `C:/Users/tyler/Desktop/GitHub/Cloudfare/draw_reality_engine_predictive_v2.csv`
+  - Replaced gzipped ladder file with plain CSV runtime copy:
+    - `processed_data/point_ladder_view.csv`
+    - source used: `C:/Users/tyler/Desktop/GitHub/Cloudfare/point_ladder_view.csv`
+
+- Contract generation logic update:
+  - `scripts/build-hunt-research-2026-contract.py`
+  - `permits_2025_res/nr/total` now prefer 2025 draw-result families:
+    - `permits_2025_draw_res/nr/total`
+    - fallback `permits_2025_res/nr/total`
+    - then DB `permits_2025_*`
+  - `permits_2026_*` remain sourced from DB allotment + DWR.
+
+- Validation:
+  - `python -m py_compile scripts/build-hunt-research-2026-contract.py`: PASS
+  - `python scripts/build-hunt-research-2026-contract.py`: PASS
+    - rows: `91712`
+    - contract codes: `1449`
+    - missing codes vs DB: `0`
+  - `git diff --check`: PASS
+
+- Crosscheck outputs created:
+  - `processed_data/audits/permits_2025_draw_crosscheck_vs_truth_and_pdf.csv`
+  - `processed_data/audits/permits_2025_draw_pdf_source_presence_summary.json`
+  - PDF linkage summary:
+    - rows with `permits_2025_draw_total`: `37862`
+    - rows with any `draw_2025` PDF linkage fields: `37862`
+
+## 2026-06-01T18:55:00-06:00 - 2025 Draw Permit Supplement Integration From Draw-Odds CSV Sources
+
+- Requested direction:
+  - Regenerate 2025 draw-result permit fields from draw source data (not full 2026 universe mirroring).
+  - Use provided Draw Odds CSV files and crosscheck against 2025 draw PDFs.
+
+- Source files integrated:
+  - `pipeline/RAW/hunt_unit_database/2026/csv/Draw Odds/draw_breakdown_2025.csv`
+  - `pipeline/RAW/hunt_unit_database/2026/csv/Draw Odds/2025_big_game_private_lands_points.csv`
+  - `pipeline/RAW/hunt_unit_database/2026/csv/Draw Odds/2025_big_game_private_lands_totals.csv`
+  - `data_truth/draw_results_truth/normalized/draw_results_long.csv` (year = 2025 slice)
+  - Note: `25_antlerless_drawing_odds_report.csv` is a report-layout CSV and requires custom parser; not directly row-normalized for hunt-code joins in this pass.
+
+- Script update:
+  - `scripts/build-hunt-research-2026-contract.py`
+  - Added `build_draw_2025_supplement_lookup()` with:
+    - point-level `(hunt_code, points)` lookup
+    - code-level fallback lookup
+    - multi-source merge with deterministic precedence
+  - `permits_2025_res/nr/total` now prefer:
+    1. `permits_2025_draw_*` in ladder row
+    2. supplemental 2025 draw lookup (breakdown/private-lands/truth-long)
+    3. blank when unavailable
+  - `permits_2026_*` remain sourced from 2026 allotment + DWR chain.
+
+- Validation:
+  - `python -m py_compile scripts/build-hunt-research-2026-contract.py`: PASS
+  - `python scripts/build-hunt-research-2026-contract.py`: PASS (`91712` rows / `1449` codes / `0` missing vs DB)
+  - `git diff --check`: PASS
+
+- Coverage outputs:
+  - Contract unique hunt codes with `permits_2025_total`: `1085`
+  - PDF-derived 2025 unique hunt codes (regex extracted): `1063`
+  - Coverage audit generated:
+    - `processed_data/audits/permits_2025_contract_vs_pdf_code_coverage.csv`
+    - counts: `BOTH=1052`, `CONTRACT_ONLY=31`, `PDF_ONLY=11`
+
+## 2026-06-01T19:25:00-06:00 - Numeric Defect Audit + Repair (hunt_research_2026.json)
+
+- Assigned task:
+  - Audit numeric correctness defects in `processed_data/hunt_research_2026.json` for priority fields.
+  - Trace to feeder/canonical source rows and repair true defects only.
+
+- Priority fields audited:
+  - `odds_2025_actual`
+  - `display_odds_pct`
+  - `p_draw_mean`
+  - `p_draw_p10`
+  - `p_draw_p90`
+  - `guaranteed_at_2026`
+  - `permits_2026_total`
+  - `average_harvest_age`
+  - `current_age_3yr_average`
+
+- True numeric defects identified and repaired:
+  - Field family affected: `odds_2025_actual`
+  - Affected rows: `61387`
+  - Affected hunt codes: `1052`
+  - Root causes:
+    1. Wrong feeder source selection risk:
+       - historical lookup used legacy draw file path that did not carry 2025 rows.
+    2. Derivation/scaling risk:
+       - generic numeric parsing of `success_ratio` text (`1 in X`) can mis-convert if not explicitly parsed.
+
+- Code fixes applied:
+  - `scripts/build-hunt-research-2026-contract.py`
+    - Added draw-history candidate chain:
+      - `data_truth/draw_results_truth/normalized/draw_results_long.csv`
+      - fallback `processed_data/draw_reality_engine_v2.csv`
+      - fallback `processed_data/draw_reality_engine.csv`
+    - Added explicit `pct_from_success_ratio()` parser for `1 in X` text.
+    - Updated history lookup to use `p_draw_pct/p_draw_percent` first, then parsed success-ratio percent.
+    - Updated `current_age_3yr_average` precedence to planner source first (`dwr_huntplanner_hanumber_2026.csv`).
+
+- Outputs created:
+  - `docs/hunt_research_numeric_defect_audit.md`
+  - `processed_data/audits/hunt_research_numeric_defect_audit.csv`
+  - rebuilt `processed_data/hunt_research_2026.json`
+
+- Validation:
+  - `python -m py_compile scripts/build-hunt-research-2026-contract.py`: PASS
+  - `python scripts/build-hunt-research-2026-contract.py`: PASS
+    - rows: `91712`
+    - contract codes: `1449`
+    - missing vs DB codes: `0`
+  - `git diff --check`: PASS

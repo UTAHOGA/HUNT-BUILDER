@@ -19,8 +19,14 @@ MASTER_CANDIDATES = [
     ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "hunt_master_canonical_2026_built.csv",
 ]
 LADDER_PATH = ROOT / "processed_data" / "point_ladder_view.csv"
-DRAW_HISTORY_PATH = ROOT / "processed_data" / "draw_reality_engine.csv"
+DRAW_HISTORY_CANDIDATES = [
+    ROOT / "data_truth" / "draw_results_truth" / "normalized" / "draw_results_long.csv",
+    ROOT / "processed_data" / "draw_reality_engine_v2.csv",
+    ROOT / "processed_data" / "draw_reality_engine.csv",
+]
 HARVEST_CANDIDATES = [
+    ROOT / "data_truth" / "harvest_results_truth" / "normalized" / "harvest_results_2025_for_2026_long.csv",
+    ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2025" / "csv" / "harvest data" / "harvest_results_2025_for_2026_hunt_code_keyed.csv",
     ROOT / "processed_data" / "harvest_quality_features_all_years_by_hunt_code.csv",
     ROOT / "data_model" / "harvest_quality" / "harvest_quality_features_all_years_by_hunt_code.csv",
     ROOT / "data_truth" / "harvest_results_truth" / "normalized" / "harvest_quality_features_all_years_by_hunt_code.csv",
@@ -28,6 +34,10 @@ HARVEST_CANDIDATES = [
 AGE_PATH = ROOT / "data_model" / "harvest_quality" / "harvest_average_age_global_merge_database.csv"
 MANAGEMENT_PATH = ROOT / "processed_data" / "management_context" / "hunt_management_objective_context.json"
 DWR_HANUMBER_PATH = ROOT / "processed_data" / "dwr_huntplanner_hanumber_2026.csv"
+DRAW_2025_BREAKDOWN_PATH = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "Draw Odds" / "draw_breakdown_2025.csv"
+DRAW_2025_PRIVATE_POINTS_PATH = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "Draw Odds" / "2025_big_game_private_lands_points.csv"
+DRAW_2025_PRIVATE_TOTALS_PATH = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "Draw Odds" / "2025_big_game_private_lands_totals.csv"
+DRAW_2025_TRUTH_PATH = ROOT / "data_truth" / "draw_results_truth" / "normalized" / "draw_results_long.csv"
 
 
 def clean(value):
@@ -70,12 +80,80 @@ def pct_text(value):
     return f"{round(pct, 2)}".rstrip("0").rstrip(".")
 
 
+def pct_from_draw_display(value):
+    text = clean(value)
+    if not text:
+        return ""
+    # Supports strings like "~1 in 6.5 or 15.4%" and "33.3%".
+    m = re.search(r"([0-9]+(?:\.[0-9]+)?)\s*%", text)
+    if m:
+        return number_text(m.group(1))
+    return ""
+
+
+def pct_from_success_ratio(value):
+    text = clean(value)
+    if not text:
+        return ""
+    # Common source format: "1 in X" -> percent = 100 / X
+    m = re.search(r"1\s*in\s*([0-9]+(?:\.[0-9]+)?)", text, re.IGNORECASE)
+    if m:
+        denom = to_number(m.group(1))
+        if denom and denom > 0:
+            return pct_text(100.0 / denom)
+    return ""
+
+
+def format_draw_result_display(value):
+    pct = to_number(value)
+    if pct is None or pct <= 0:
+        return ""
+    if 0 <= pct <= 1:
+        pct *= 100
+    if pct <= 0:
+        return ""
+    one_in = 100.0 / pct
+    return f"1 in {round(one_in, 1)} or {pct_text(pct)}%"
+
+
+def normalize_draw_result_display(display_value, odds_value):
+    display = clean(display_value)
+    if display:
+        if re.search(r"[0-9]\s*in\s*[0-9]", display, re.IGNORECASE):
+            cleaned = re.sub(r"^[~=]+\s*", "", display).strip()
+            return cleaned
+        pct = pct_from_draw_display(display)
+        if pct:
+            return format_draw_result_display(pct)
+    return format_draw_result_display(odds_value)
+
+
 def first_text(*values):
     for value in values:
         t = clean(value)
         if t:
             return t
     return ""
+
+
+def normalize_points(value):
+    n = to_number(value)
+    if n is None:
+        return ""
+    if abs(n - round(n)) < 1e-9:
+        return str(int(round(n)))
+    return f"{n}".rstrip("0").rstrip(".")
+
+
+def normalize_residency(value):
+    t = clean(value).lower()
+    if not t:
+        return ""
+    if t.startswith("res"):
+        return "Resident"
+    if t.startswith("non"):
+        return "Nonresident"
+    return clean(value)
 
 
 def detect_lfs_pointer(path: Path):
@@ -130,15 +208,28 @@ def build_draw_history_lookup(rows):
         if not code:
             continue
         year = int(to_number(row.get("year") or row.get("reported_hunt_year") or 0) or 0)
+        # 2026 interpretation must use 2025 draw results only for historical ladder display.
+        if year != 2025:
+            continue
         residency = clean(row.get("residency"))
         points = clean(row.get("points"))
-        odds = first_text(row.get("p_draw_pct"), row.get("p_draw_percent"), row.get("success_ratio"))
+        odds = first_text(row.get("p_draw_pct"), row.get("p_draw_percent"))
+        if not odds:
+            odds = pct_from_success_ratio(row.get("success_ratio"))
+        display = first_text(
+            row.get("dwr_result_display"),
+            row.get("display_2025_draw_results"),
+            row.get("draw_result_display"),
+            row.get("draw_result"),
+            row.get("odds_display"),
+        )
         key = (code, residency, points)
         current = by_key.get(key)
         if odds and (current is None or year > current["year"]):
             by_key[key] = {
                 "year": year,
                 "odds_2025_actual": pct_text(odds),
+                "draw_result_display": normalize_draw_result_display(display, odds),
                 "source_file": clean(row.get("source_file")),
                 "source_page": clean(row.get("page_number")),
                 "availability_status": first_text(row.get("availability_status"), row.get("allocation_status"), row.get("status"), row.get("draw_outlook")),
@@ -149,11 +240,112 @@ def build_draw_history_lookup(rows):
             by_code_res[res_key] = {
                 "year": year,
                 "odds_2025_actual": pct_text(odds),
+                "draw_result_display": normalize_draw_result_display(display, odds),
                 "source_file": clean(row.get("source_file")),
                 "source_page": clean(row.get("page_number")),
                 "availability_status": first_text(row.get("availability_status"), row.get("allocation_status"), row.get("status"), row.get("draw_outlook")),
             }
     return by_key, by_code_res
+
+
+def build_draw_2025_supplement_lookup():
+    by_code_point = {}
+    by_code = {}
+
+    def ensure_slot(code, points):
+        key = (code, points)
+        slot = by_code_point.get(key)
+        if slot is None:
+            slot = {
+                "res": "",
+                "nr": "",
+                "total": "",
+                "sources": set(),
+            }
+            by_code_point[key] = slot
+        return slot
+
+    def set_values(code, points, res="", nr="", total="", source=""):
+        code = upper(code)
+        points = normalize_points(points)
+        if not code:
+            return
+        slot = ensure_slot(code, points)
+        if res != "":
+            slot["res"] = number_text(res)
+        if nr != "":
+            slot["nr"] = number_text(nr)
+        if total != "":
+            slot["total"] = number_text(total)
+        if source:
+            slot["sources"].add(source)
+        if slot["total"] == "":
+            res_n = to_number(slot["res"])
+            nr_n = to_number(slot["nr"])
+            if res_n is not None and nr_n is not None:
+                slot["total"] = number_text(res_n + nr_n)
+
+    # 1) point-level breakdown (code + residency + points)
+    for row in read_csv(DRAW_2025_BREAKDOWN_PATH):
+        code = row.get("hunt_code")
+        points = row.get("point_level")
+        residency = normalize_residency(row.get("residency"))
+        total = row.get("total_permits")
+        if residency == "Resident":
+            set_values(code, points, res=total, source="draw_breakdown_2025")
+        elif residency == "Nonresident":
+            set_values(code, points, nr=total, source="draw_breakdown_2025")
+
+    # 2) private lands point-level rows with both resident/nonresident in same row
+    for row in read_csv(DRAW_2025_PRIVATE_POINTS_PATH):
+        set_values(
+            row.get("hunt_code"),
+            row.get("Resident Applicants Points"),
+            res=row.get("Resident Applicants Total # Permits"),
+            nr=row.get("Nonresident Applicants Total # Permits"),
+            source="private_lands_points_2025",
+        )
+
+    # 3) private lands totals (code-level fallback)
+    for row in read_csv(DRAW_2025_PRIVATE_TOTALS_PATH):
+        set_values(
+            row.get("hunt_code"),
+            "",
+            res=row.get("Resident Applicants Total # Permits"),
+            nr=row.get("Nonresident Applicants Total # Permits"),
+            total=row.get("Combined Total # Permits"),
+            source="private_lands_totals_2025",
+        )
+
+    # 4) normalized truth long (year 2025) as additional point-level support
+    for row in read_csv(DRAW_2025_TRUTH_PATH):
+        if clean(row.get("year")) != "2025":
+            continue
+        code = row.get("hunt_code")
+        points = row.get("points")
+        residency = normalize_residency(row.get("residency"))
+        total = row.get("total_permits")
+        if residency == "Resident":
+            set_values(code, points, res=total, source="draw_results_long_2025")
+        elif residency == "Nonresident":
+            set_values(code, points, nr=total, source="draw_results_long_2025")
+
+    for (code, points), slot in by_code_point.items():
+        base = by_code.get(code)
+        if base is None:
+            base = {
+                "res": "",
+                "nr": "",
+                "total": "",
+                "sources": set(),
+            }
+            by_code[code] = base
+        for k in ("res", "nr", "total"):
+            if base[k] == "" and slot[k] != "":
+                base[k] = slot[k]
+        base["sources"].update(slot["sources"])
+
+    return by_code_point, by_code
 
 
 def build_dwr_lookup(rows):
@@ -183,8 +375,8 @@ def build_harvest_lookup(rows):
             continue
         lookup[code] = {
             "year": year,
-            "harvest_success_pct": pct_text(row.get("percent_success")),
-            "average_days_hunted": number_text(row.get("average_days")),
+            "harvest_success_pct": pct_text(first_text(row.get("percent_success"), row.get("harvest_success_percent"), row.get("success_percent"))),
+            "average_days_hunted": number_text(first_text(row.get("avg_days"), row.get("average_days"), row.get("avg_days_hunted"), row.get("average_days_hunted"))),
             "average_age": number_text(first_text(row.get("average_age"), row.get("average_harvest_age"))),
             "harvest_source_file": clean(row.get("source_file")),
             "harvest_source_page": clean(row.get("source_page")),
@@ -224,7 +416,8 @@ def main():
     master_path = choose_existing(MASTER_CANDIDATES)
     master_rows = read_csv(master_path)
     ladder_rows = read_csv(LADDER_PATH)
-    draw_rows = read_csv(DRAW_HISTORY_PATH)
+    draw_history_path = choose_existing(DRAW_HISTORY_CANDIDATES)
+    draw_rows = read_csv(draw_history_path)
     harvest_path = choose_existing(HARVEST_CANDIDATES)
     harvest_rows = read_csv(harvest_path)
     age_rows = read_csv(AGE_PATH)
@@ -235,6 +428,7 @@ def main():
     master_map = {upper(r.get("hunt_code")): r for r in master_rows if upper(r.get("hunt_code"))}
     management_map = {upper(r.get("hunt_code")): r for r in management_rows if upper(r.get("hunt_code"))}
     draw_by_key, draw_by_code_res = build_draw_history_lookup(draw_rows)
+    draw2025_by_code_point, draw2025_by_code = build_draw_2025_supplement_lookup()
     dwr_map = build_dwr_lookup(dwr_rows)
     harvest_map = build_harvest_lookup(harvest_rows)
     age_map = build_age_lookup(age_rows)
@@ -250,7 +444,8 @@ def main():
         "objective_status", "objective_status_rule", "objective_unit", "odds_2025_actual",
         "p_bonus_pool_pct", "p_draw", "p_draw_mean", "p_draw_p10", "p_draw_p90", "p_draw_pct",
         "p_max_pool_mean", "p_max_pool_mean_pct", "p_max_pool_pct", "p_random_pool", "p_random_pool_pct",
-        "permit_direction_watch", "point_pool_zone", "points", "preference_model_note",
+        "permit_direction_watch", "point_pool_zone", "points", "preference_model_note", "permits_2025_res",
+        "permits_2025_nr", "permits_2025_total",
         "projected_2026_max_cutoff_point", "push", "quota_source_status", "random_permits_2026", "reason",
         "residency", "some", "total_permits", "trend", "year", "hunt_code", "hunt_name", "species", "weapon",
         "availability_status", "current_age_3yr_average",
@@ -272,6 +467,7 @@ def main():
         points = clean(row.get("points"))
 
         hist = draw_by_key.get((code, residency, points)) or draw_by_code_res.get((code, residency), {})
+        draw2025 = draw2025_by_code_point.get((code, normalize_points(points))) or draw2025_by_code.get(code, {})
         harvest = harvest_map.get(code, {})
         age = age_map.get(code, {})
 
@@ -298,6 +494,45 @@ def main():
         mgmt_range = first_text(
             mgmt.get("management_objective_range"),
             f"{mgmt_min} to {mgmt_max} {first_text(mgmt.get('objective_unit'))}".strip() if mgmt_min or mgmt_max else "",
+        )
+
+        permit_2026_res = number_text(
+            first_text(
+                db.get("permit_allotment_2026_res"),
+                dwr.get("permits_2026_res"),
+            )
+        )
+        permit_2026_nr = number_text(
+            first_text(
+                db.get("permit_allotment_2026_nr"),
+                dwr.get("permits_2026_nr"),
+            )
+        )
+        permit_2026_total = number_text(
+            first_text(
+                db.get("permit_allotment_2026_total"),
+                dwr.get("permits_2026_total"),
+            )
+        )
+        # 2025 draw-results permit context for 2026 modeling:
+        # Prefer explicit 2025 draw fields from ladder/runtime sources.
+        permit_2025_res = number_text(
+            first_text(
+                row.get("permits_2025_draw_res"),
+                draw2025.get("res"),
+            )
+        )
+        permit_2025_nr = number_text(
+            first_text(
+                row.get("permits_2025_draw_nr"),
+                draw2025.get("nr"),
+            )
+        )
+        permit_2025_total = number_text(
+            first_text(
+                row.get("permits_2025_draw_total"),
+                draw2025.get("total"),
+            )
         )
 
         out = {
@@ -330,12 +565,20 @@ def main():
             "algorithm_status": first_text(row.get("algorithm_status"), row.get("draw_model_class"), row.get("probability_model"), row.get("draw_system_type")),
             "eligible_applicants": number_text(first_text(row.get("eligible_applicants"), row.get("forecast_applicants_at_level"), row.get("applicants_at_level"))),
             "applicants": number_text(first_text(row.get("forecast_applicants_at_level"), row.get("applicants_at_level"), row.get("applicants"))),
-            "total_permits": number_text(first_text(row.get("total_permits"), row.get("permits_2026_total"))),
+            "total_permits": number_text(
+                first_text(
+                    db.get("permit_allotment_2026_total"),
+                    dwr.get("permits_2026_total"),
+                )
+            ),
             "max_point_permits_2026": number_text(row.get("max_point_permits_2026")),
             "random_permits_2026": number_text(row.get("random_permits_2026")),
-            "permits_2026_res": number_text(first_text(row.get("permits_2026_res"), row.get("permit_allotment_2026_res"), db.get("permit_allotment_2026_res"))),
-            "permits_2026_nr": number_text(first_text(row.get("permits_2026_nr"), row.get("permit_allotment_2026_nr"), db.get("permit_allotment_2026_nr"))),
-            "permits_2026_total": number_text(first_text(row.get("permits_2026_total"), row.get("permit_allotment_2026_total"), db.get("permit_allotment_2026_total"), dwr.get("permits_2026_total"))),
+            "permits_2026_res": permit_2026_res,
+            "permits_2026_nr": permit_2026_nr,
+            "permits_2026_total": permit_2026_total,
+            "permits_2025_res": permit_2025_res,
+            "permits_2025_nr": permit_2025_nr,
+            "permits_2025_total": permit_2025_total,
             "p_draw": p_draw,
             "p_draw_mean": number_text(p_draw_mean, digits=6),
             "p_draw_pct": pct_text(p_draw_pct),
@@ -355,11 +598,20 @@ def main():
                 "1" if clean(points) and clean(points) == clean(first_text(row.get("guaranteed_at_2026"), row.get("projected_2026_max_cutoff_point"))) else "",
             ),
             "guaranteed_marker": "TRUE" if clean(points) and clean(points) == clean(first_text(row.get("guaranteed_at_2026"), row.get("projected_2026_max_cutoff_point"))) else "",
-            "odds_2025_actual": first_text(hist.get("odds_2025_actual")),
+            "odds_2025_actual": first_text(
+                pct_from_draw_display(row.get("display_2025_draw_results")),
+                pct_from_draw_display(row.get("dwr_result_display")),
+                hist.get("odds_2025_actual"),
+            ),
             "delta_gap": number_text(row.get("guaranteed_delta_2025_to_2026")),
             "gap": number_text(row.get("guaranteed_delta_2025_to_2026")),
             "point_pool_zone": first_text(row.get("point_pool_zone")),
-            "quota_source_status": first_text(row.get("quota_source_status"), row.get("permit_allotment_2026_status"), row.get("permit_status")),
+            "quota_source_status": first_text(
+                db.get("permit_allotment_2026_status"),
+                row.get("quota_source_status"),
+                row.get("permit_allotment_2026_status"),
+                row.get("permit_status"),
+            ),
             "preference_model_note": first_text(row.get("probability_model"), row.get("draw_model_class")),
             "data_quality_flags": first_text(row.get("reason_codes"), row.get("data_quality_grade")),
             "reason": first_text(row.get("status"), row.get("draw_outlook")),
@@ -375,9 +627,9 @@ def main():
             "management_direction": first_text(mgmt.get("management_direction")),
             "average_harvest_age": first_text(age.get("average_harvest_age"), harvest.get("average_age"), db.get("average_harvest_age")),
             "current_age_3yr_average": first_text(
+                dwr.get("current_age_3yr_average"),
                 number_text(row.get("current_age_3yr_average")),
                 number_text(db.get("current_age_3yr_average")),
-                dwr.get("current_age_3yr_average"),
             ),
             "harvest_success_pct": first_text(harvest.get("harvest_success_pct")),
             "average_days_hunted": first_text(harvest.get("average_days_hunted")),
@@ -392,8 +644,18 @@ def main():
             "generated_at": generated_at,
             "data_as_of": data_as_of,
             "runtime_contract_version": "hunt_research_2026.v2",
-            "dwr_result_display": first_text(row.get("dwr_result_display"), hist.get("odds_2025_actual")),
-            "display_2025_draw_results": first_text(hist.get("odds_2025_actual")),
+            "dwr_result_display": first_text(
+                row.get("dwr_result_display"),
+                row.get("display_2025_draw_results"),
+                hist.get("draw_result_display"),
+                format_draw_result_display(hist.get("odds_2025_actual")),
+            ),
+            "display_2025_draw_results": first_text(
+                row.get("display_2025_draw_results"),
+                row.get("dwr_result_display"),
+                hist.get("draw_result_display"),
+                format_draw_result_display(hist.get("odds_2025_actual")),
+            ),
             "display_2026_max_point_pool": number_text(row.get("max_point_permits_2026")),
             "display_2026_random_draw": number_text(row.get("random_permits_2026")),
             "notes": first_text(mgmt.get("notes")),
@@ -420,6 +682,7 @@ def main():
         dwr = dwr_map.get(code, {})
         harvest = harvest_map.get(code, {})
         age = age_map.get(code, {})
+        draw2025 = draw2025_by_code.get(code, {})
         rows.append({
             "hunt_code": code,
             "hunt_name": first_text(master.get("hunt_name"), db.get("hunt_name")),
@@ -450,6 +713,9 @@ def main():
             "permits_2026_res": number_text(db.get("permit_allotment_2026_res")),
             "permits_2026_nr": number_text(db.get("permit_allotment_2026_nr")),
             "permits_2026_total": number_text(first_text(db.get("permit_allotment_2026_total"), dwr.get("permits_2026_total"))),
+            "permits_2025_res": number_text(first_text(draw2025.get("res"))),
+            "permits_2025_nr": number_text(first_text(draw2025.get("nr"))),
+            "permits_2025_total": number_text(first_text(draw2025.get("total"))),
             "p_draw": "",
             "p_draw_mean": "",
             "p_draw_pct": "",
@@ -486,8 +752,8 @@ def main():
             "management_direction": first_text(mgmt.get("management_direction")),
             "average_harvest_age": first_text(age.get("average_harvest_age"), harvest.get("average_age"), db.get("average_harvest_age")),
             "current_age_3yr_average": first_text(
-                number_text(db.get("current_age_3yr_average")),
                 dwr.get("current_age_3yr_average"),
+                number_text(db.get("current_age_3yr_average")),
             ),
             "harvest_success_pct": first_text(harvest.get("harvest_success_pct")),
             "average_days_hunted": first_text(harvest.get("average_days_hunted")),
@@ -582,7 +848,7 @@ Generated: {generated_at}
 - DATABASE truth: `{DB_PATH.relative_to(ROOT).as_posix()}`
 - Master reference resolved: `{master_path.relative_to(ROOT).as_posix()}`
 - Point ladder: `{LADDER_PATH.relative_to(ROOT).as_posix()}`
-- Draw history: `{DRAW_HISTORY_PATH.relative_to(ROOT).as_posix()}`
+- Draw history: `{draw_history_path.relative_to(ROOT).as_posix()}`
 - Harvest features: `{harvest_path.relative_to(ROOT).as_posix()}`
 - Age features: `{AGE_PATH.relative_to(ROOT).as_posix()}`
 - Management context: `{MANAGEMENT_PATH.relative_to(ROOT).as_posix()}`
