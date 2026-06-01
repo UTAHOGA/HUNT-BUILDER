@@ -1,3 +1,28 @@
+## 2026-06-01T08:05:00-06:00 - Builder Map UX Pass (DWR Panel Hide + Earth Intro Flight + Top Direction Controls)
+
+- Assigned action:
+  - Remove the ownership panel from DWR iframe mode.
+  - Make Earth mode start from globe-scale view and animate into a low-angle hunt-unit view.
+  - Add top directional controls (N/E/S/W) in Earth mode.
+  - Keep Earth bottom controls auto-open behavior active.
+
+- Files changed:
+  - `index.html`
+  - `app.js`
+
+- Work completed:
+  - Added hard hide CSS so `#ownershipDock` cannot remain visible when `hidden`/`aria-hidden=true` in DWR mode.
+  - Added Earth-only top direction control bar with N/E/S/W buttons.
+  - Wired direction buttons to rotate Earth heading while preserving center/range/tilt.
+  - Added Earth intro-flight state to run globe-to-unit animation when Earth mode is selected.
+  - Increased navigation-control open passes to improve auto-expanded bottom controls behavior.
+  - Added Earth intro timer cleanup when leaving Earth mode or on 3D-unavailable states.
+
+- Validation:
+  - `node --check app.js` PASS
+  - `npm run build` PASS
+  - Build regenerated existing derived manifests/exports as part of project build pipeline.
+
 ## 2026-06-01T02:52:34-06:00 - Reconciled Missing Split Hunt Codes (+319 Detail JSON Files)
 
 - Assigned action:
