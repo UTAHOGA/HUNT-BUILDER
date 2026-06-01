@@ -16,7 +16,7 @@ const paths = {
   elkPlan: 'elk_statewide_plan_foundational_reference_codex_expanded.md',
   deerPlanExpanded: 'mule_deer_statewide_plan_foundational_reference_codex_expanded.md',
   deerPlan: 'mule_deer_statewide_plan_foundational_reference.md',
-  age: 'processed_data/harvest_age_features_by_hunt_code_latest.csv',
+  age: 'data_model/harvest_quality/harvest_average_age_global_merge_database.csv',
   harvest: 'processed_data/harvest_quality_features_all_years_by_hunt_code.csv',
   master: 'processed_data/hunt_master_enriched.csv',
   ladder: 'processed_data/point_ladder_view.csv',
@@ -60,7 +60,7 @@ const pathCandidates = {
   ],
   age: [
     paths.age,
-    'data_model/harvest_quality/harvest_average_age_global_merge_database.csv',
+    'processed_data/harvest_age_features_by_hunt_code_latest.csv',
   ],
   yearChange: [
     paths.yearChange,

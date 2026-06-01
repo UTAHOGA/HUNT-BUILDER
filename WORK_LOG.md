@@ -9502,3 +9502,86 @@ o_table=0).
   - `node scripts/build-public-data-contracts.js`
   - Python consistency checks for pre/post nonblank delta and blank classification
   - final `git diff --check`
+
+## 2026-06-01T17:41:00-06:00 - average_harvest_age Audit Continuation (Stale Path Bottleneck Test)
+
+- Scope:
+  - Continued exactly on `average_harvest_age` completeness audit.
+  - Quantified whether missing primary age source path is the actual bottleneck.
+  - Produced required blank-cause breakdown including `STALE_SOURCE_PATH`.
+  - Repaired only the stale primary-source pipeline defect.
+
+- Stale-path bottleneck result:
+  - Expected primary path: `processed_data/harvest_age_features_by_hunt_code_latest.csv` (missing)
+  - Resolved runtime age source path used by builder: `data_model/harvest_quality/harvest_average_age_global_merge_database.csv`
+  - Coverage delta after path repair: `0` populated rows (1268 -> 1268)
+  - Conclusion:
+    - Missing primary path is a real configuration defect.
+    - It is not the current completeness bottleneck because fallback source resolution already preserved age coverage.
+
+- Required cause breakdown (blank age rows):
+  - `SOURCE_MISSING = 1616`
+  - `STALE_SOURCE_PATH = 0`
+  - `JOIN_FAILURE = 0`
+  - `MAPPING_FAILURE = 0`
+  - `VALIDATION_BLOCK = 0`
+  - `INTENTIONAL_BLANK = 14`
+
+- Coverage comparison vs harvest-success/day metrics:
+  - Total rows: `2898`
+  - Age populated: `1268`
+  - Age blank: `1630`
+  - Blank rows with `harvest_success` and/or `avg_days_hunted` populated: `1430`
+
+- Pipeline defect repaired (only):
+  - File: `scripts/build-hunt-research-classification-layer.js`
+  - `paths.age` updated to existing canonical source:
+    - from `processed_data/harvest_age_features_by_hunt_code_latest.csv`
+    - to `data_model/harvest_quality/harvest_average_age_global_merge_database.csv`
+  - Old stale path retained as fallback candidate.
+
+- Regeneration:
+  - Sample export regenerated:
+    - `processed_data/research_page/hunt_application_outlook.json`
+
+- Outputs updated:
+  - `docs/average_harvest_age_population_audit.md`
+  - `processed_data/audits/average_harvest_age_population_audit.csv`
+
+## 2026-06-01T17:55:00-06:00 - Rebuild Complete `hunt_research_2026.json` Contract
+
+- Scope:
+  - Rebuilt `processed_data/hunt_research_2026.json` from canonical sources to replace incomplete partial feed.
+  - Preserved DATABASE truth and avoided invented values.
+  - Added explicit missing classification metadata per row.
+
+- Implementation:
+  - Added script: `scripts/build-hunt-research-2026-contract.py`
+  - Inputs used:
+    - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv` (truth)
+    - `pipeline/RAW/hunt_unit_database/2026/csv/hunt_master_canonical_2026_built.csv` (master fallback; LFS-safe)
+    - `processed_data/point_ladder_view.csv`
+    - `processed_data/draw_reality_engine.csv`
+    - `processed_data/harvest_quality_features_all_years_by_hunt_code.csv`
+    - `data_model/harvest_quality/harvest_average_age_global_merge_database.csv`
+    - `processed_data/management_context/hunt_management_objective_context.json`
+
+- Required outputs created:
+  - `processed_data/hunt_research_2026.json`
+  - `docs/hunt_research_2026_rebuild_notes.md`
+  - `processed_data/audits/hunt_research_2026_rebuild_coverage.csv`
+
+- Rebuild results:
+  - Contract rows: `91712`
+  - Unique contract hunt codes: `1449`
+  - DATABASE hunt codes: `1449`
+  - Missing hunt codes vs DATABASE: `0`
+  - Runtime expected field set size used for validation: `63`
+  - Runtime fields with zero populated values: `4` (`length`, `p_bonus_pool_pct`, `push`, `some`)
+  - Contract status: `PARTIAL` (coverage complete; a small set of runtime artifact fields remain unpopulated)
+
+- Validation run:
+  - `python scripts/build-hunt-research-2026-contract.py`
+  - JSON parse + row count checks on rebuilt contract
+  - coverage audit rows generated and reviewed
+  - final `git diff --check`
