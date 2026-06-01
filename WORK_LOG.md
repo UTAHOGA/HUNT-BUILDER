@@ -1,3 +1,47 @@
+## 2026-06-01T01:24:00-06:00 - Focused Runtime-Contract Cleanup Pass (Fallback Prune + Composite Source Fix + Alternate Domain Retirement)
+
+- Assigned action:
+  - Remove dead runtime fallbacks.
+  - Fix/replace broken composite GeoJSON source path.
+  - Configure or formally retire alternate domain.
+
+- Runtime-contract changes:
+  - `config.js`
+    - Removed broken composite source from active Builder composite list:
+      - removed `./processed_data/composite_hunt_unit_mapping_2026.geojson?...`
+    - Pruned dead/legacy research fallback candidates to a tighter contract:
+      - removed legacy `draw_reality_engine.csv` URL variants from observed/predictive source arrays
+      - removed runtime draft/model draft fallback files (`data_model/runtime_drafts/*`, harvest-quality draft CSV fallback entries)
+      - removed ladder-as-master/reference fallbacks (`point_ladder_view.csv` from master/reference source groups)
+      - retained Cloudflare primary + local processed fallback entries only.
+  - `assets/js/hard-copy-public-library.js`
+    - Removed dead manifest URLs causing known 404 noise:
+      - removed `public_library_allowlist.json` fallback
+      - removed `./hard-copy/documents.json` fallback
+      - removed `./public/hard-copy/DISPLAY DATA/data/documents.json` fallback
+    - Kept canonical runtime document feed contract:
+      - `./hard-copy/data/documents.json`
+      - `./public/hard-copy/data/documents.json`
+
+- Alternate-domain decision:
+  - `AGENTS.md` domain policy updated:
+    - `https://hunt-builder.uoga.org/` is formally retired until DNS is explicitly restored.
+    - parity auditing should resume only after DNS restoration.
+  - `docs/site_map_and_runtime_audit.md` updated to record retirement decision.
+
+- Validation:
+  - `npm run guard:public-manifests` PASS
+  - DNS check:
+    - `huntbuilder.uoga.org` resolves.
+    - `hunt-builder.uoga.org` remains NXDOMAIN.
+  - Source-contract verification by code scan:
+    - broken composite file no longer present in `COMPOSITE_BOUNDARY_SOURCES`
+    - hard-copy dead fallback manifest URLs removed from `MANIFEST_URLS`
+    - research source arrays now use reduced Cloudflare-first + local fallback contract.
+
+- Notes:
+  - Live production error logs will continue to show old fallback/composite behavior until a new deployment is triggered from this commit.
+
 ## 2026-06-01T00:58:00-06:00 - Public Surface Hardening: Internal Instruction/Planning File Exposure Guardrails
 
 - Assigned action:

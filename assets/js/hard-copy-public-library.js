@@ -1,11 +1,8 @@
 (() => {
   const CURRENT_YEAR = "2026";
   const MANIFEST_URLS = [
-    "./processed_data/hard_data_exports/library/public_library_allowlist.json",
-    "./public/hard-copy/data/documents.json",
     "./hard-copy/data/documents.json",
-    "./hard-copy/documents.json",
-    "./public/hard-copy/DISPLAY DATA/data/documents.json",
+    "./public/hard-copy/data/documents.json",
   ];
 
   const FOLDERS = [

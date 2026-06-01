@@ -105,7 +105,6 @@ window.UOGA_CONFIG = (() => {
     `./data/hunt-boundaries-lite.geojson?v=${HUNT_DATA_VERSION}`,
   ].filter(Boolean);
   const COMPOSITE_BOUNDARY_SOURCES = [
-    `./processed_data/composite_hunt_unit_mapping_2026.geojson?v=${HUNT_DATA_VERSION}`,
     `./data/statewide-composite-members-2026-lite.geojson?v=${HUNT_DATA_VERSION}`,
     `./processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson?v=${HUNT_DATA_VERSION}`,
     `./processed_data/statewide_composite_boundaries_2026.geojson?v=${HUNT_DATA_VERSION}`,
@@ -172,30 +171,18 @@ window.UOGA_CONFIG = (() => {
     ============================================================================
   */
   const HUNT_RESEARCH_DATA_SOURCES = [
-    `./processed_data/hunt_research_2026.json?v=${HUNT_RESEARCH_DATA_VERSION}`,
     `${CLOUDFLARE_BASE}/hunt_research_2026.json?v=${HUNT_RESEARCH_DATA_VERSION}`,
+    `./processed_data/hunt_research_2026.json?v=${HUNT_RESEARCH_DATA_VERSION}`,
   ];
 
   const HUNT_RESEARCH_OBSERVED_ENGINE_SOURCES = [
     `${CLOUDFLARE_BASE}/processed_data/draw_reality_engine_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `${CLOUDFLARE_BASE}/draw_reality_engine_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `${CLOUDFLARE_BASE}/processed_data/draw_reality_engine.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `${CLOUDFLARE_BASE}/draw_reality_engine.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
     `./processed_data/draw_reality_engine_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `./processed_data/draw_reality_engine.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `./data_model/runtime_drafts/draw_reality_engine_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `./data_model/harvest_quality/draw_reality_engine_predictive_with_harvest_features.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
   ];
 
   const HUNT_RESEARCH_PREDICTIVE_ENGINE_SOURCES = [
     `${CLOUDFLARE_BASE}/processed_data/draw_reality_engine_predictive_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `${CLOUDFLARE_BASE}/draw_reality_engine_predictive_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `${CLOUDFLARE_BASE}/processed_data/draw_reality_engine_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `${CLOUDFLARE_BASE}/draw_reality_engine_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
     `./processed_data/draw_reality_engine_predictive_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `./processed_data/draw_reality_engine_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `./data_model/harvest_quality/draw_reality_engine_predictive_with_harvest_features.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `./data_model/runtime_drafts/draw_reality_engine_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
   ];
 
   const HUNT_RESEARCH_ENGINE_MODE = USE_PREDICTIVE_DRAW_ENGINE ? 'predictive' : 'observed';
@@ -205,23 +192,17 @@ window.UOGA_CONFIG = (() => {
 
   const HUNT_RESEARCH_LADDER_SOURCES = [
     `${CLOUDFLARE_BASE}/processed_data/point_ladder_view.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `${CLOUDFLARE_BASE}/point_ladder_view.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
     `./processed_data/point_ladder_view.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
   ];
 
   const HUNT_RESEARCH_MASTER_SOURCES = [
     `${CLOUDFLARE_BASE}/processed_data/hunt_master_enriched.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `${CLOUDFLARE_BASE}/hunt_master_enriched.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
     `./processed_data/hunt_master_enriched.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `./processed_data/point_ladder_view.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
   ];
 
   const HUNT_RESEARCH_REFERENCE_SOURCES = [
     `${CLOUDFLARE_BASE}/processed_data/hunt_unit_reference_linked.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `${CLOUDFLARE_BASE}/hunt_unit_reference_linked.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
     `./processed_data/hunt_unit_reference_linked.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `./processed_data/point_ladder_view.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
-    `./data_model/runtime_drafts/draw_reality_engine_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
   ];
 
   /*

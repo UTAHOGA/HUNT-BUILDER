@@ -23,6 +23,8 @@ Audit scope: `https://huntbuilder.uoga.org` live deployment + repo runtime contr
 - DNS/runtime result:
   - `huntbuilder.uoga.org` resolves and serves live pages.
   - `hunt-builder.uoga.org` currently returns **NXDOMAIN** (does not resolve).
+- Runtime-contract decision (2026-06-01):
+  - `https://hunt-builder.uoga.org/` is formally retired until DNS is restored.
 - Parity implication:
   - Redirect parity: not testable (alternate domain does not resolve).
   - Page content parity: not testable.

@@ -88,11 +88,12 @@ Codex must apply this exact domain policy:
 - Primary production site:
   - `https://huntbuilder.uoga.org/`
 - Secondary/alternate domain for parity checks:
-  - `https://hunt-builder.uoga.org/`
+  - `https://hunt-builder.uoga.org/` (retired until DNS is explicitly restored)
 
 Codex must treat `https://huntbuilder.uoga.org/` as the primary live production render.
 
-Codex must treat `https://hunt-builder.uoga.org/` as a secondary/alternate domain and explicitly report any mismatch in:
+Codex must treat `https://hunt-builder.uoga.org/` as formally retired while unresolved in DNS.
+If this domain is restored later, Codex must re-enable parity auditing and explicitly report any mismatch in:
 - redirects
 - page content
 - runtime asset paths
