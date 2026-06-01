@@ -1,3 +1,31 @@
+## 2026-05-31T13:35:00-06:00 - Hard-Copy Deployment Path Repair (Path Mapping + Deploy-Critical Library Assets)
+
+- Assigned action:
+  - Verify and repair hard-copy deployment-path mismatches only.
+- Root findings:
+  - `hard-copy.html` and `assets/js/hard-copy-public-library.js` load correctly in production.
+  - Runtime data path `/public/hard-copy/data/documents.json` resolves, but `/hard-copy/data/documents.json` does not.
+  - Library document files referenced by `public/hard-copy/data/documents.json` were present locally but not tracked, so production returned 404 for linked PDFs/XLSX.
+- Fixes applied:
+  - `vercel.json`: added rewrite rule mapping `/hard-copy/:path*` -> `/public/hard-copy/:path*`.
+  - Added deploy-critical hard-copy assets referenced by `documents.json` into source control:
+    - `public/hard-copy/DISPLAY DATA/regulations/2026.biggame.app.pdf`
+    - `public/hard-copy/DISPLAY DATA/regulations/2026.regs.cougar.bear.pdf`
+    - `public/hard-copy/DISPLAY DATA/regulations/2026.regs.turkey.pdf`
+    - `public/hard-copy/DISPLAY DATA/regulations/2026.regs.fishing.pdf`
+    - `public/hard-copy/DISPLAY DATA/expo permits/2026 EXPO DRAW RESULTS.pdf`
+    - `public/hard-copy/DISPLAY DATA/data/2025_harvest_summary_public.xlsx`
+    - `public/hard-copy/DISPLAY DATA/data/2025_draw_results_summary_public.xlsx`
+    - `public/hard-copy/DISPLAY DATA/data/2026_hunt_units_permit_numbers.xlsx`
+    - `public/hard-copy/DISPLAY DATA/data/utah_outfitters_by_hunt_code_hunt_name.xlsx`
+    - `public/hard-copy/DISPLAY DATA/harvest results/unit_specific_conservation_expo_bundles.xlsx`
+- Validation:
+  - `npm run build` PASS.
+  - Verified local pages-dist now contains all 10 referenced document assets and hard-copy runtime files.
+- Scope control:
+  - No Hunt Builder map logic changed.
+  - No hard-copy styling redesign performed.
+
 ## 2026-05-30T11:47:24-06:00 - Runtime 404 Restore From Desktop Public Contracts + Boundary Fallback Paths
 
 - Assigned action:
