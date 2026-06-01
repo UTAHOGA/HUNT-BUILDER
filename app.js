@@ -178,7 +178,7 @@ const FORCE_GOOGLE_ONLY_DEBUG = false;
 // Google 3D map components require the beta channel.
 const GOOGLE_MAPS_SCRIPT_CHANNEL = 'beta';
 const GOOGLE_MAPS_SCRIPT_LIBRARIES = 'maps3d';
-const USE_GOOGLE_EARTH_IFRAME_MODE = true;
+const USE_GOOGLE_EARTH_IFRAME_MODE = false;
 const GOOGLE_EARTH_IFRAME_URL = './hunt-builder-google-earth.html?v=20260601-earth-3d-bridge-1';
 const GOOGLE_EARTH_OUTLINE_ONLY_RANGE = 120000;
 const GOOGLE_EARTH_TRANSPARENT_FILL = 'rgba(0,0,0,0)';
@@ -834,6 +834,11 @@ async function applySelectedHuntBoundaryResolution(hunt) {
   clearSelectedBoundaryFallbackLayer();
   if (!hunt || !googleBaselineMap) return;
   const resolved = resolveBoundaryForHuntRuntime(hunt);
+  const fallbackCollection = getFallbackFeatureCollectionForResolvedBoundary(hunt, resolved);
+  if (fallbackCollection?.features?.length) {
+    drawSelectedBoundaryFallbackFeatureCollection(fallbackCollection);
+    return;
+  }
   const directPath = normalizeRelativeGeoPath(resolved?.boundary_geojson_path);
   if (directPath) {
     try {
@@ -843,11 +848,6 @@ async function applySelectedHuntBoundaryResolution(hunt) {
     } catch (error) {
       console.warn(`Direct boundary GeoJSON load failed for ${safe(getHuntCode(hunt))}: ${directPath}`, error);
     }
-  }
-  const fallbackCollection = getFallbackFeatureCollectionForResolvedBoundary(hunt, resolved);
-  if (fallbackCollection?.features?.length) {
-    drawSelectedBoundaryFallbackFeatureCollection(fallbackCollection);
-    return;
   }
   if (resolved?.feature_collection?.features?.length) {
     drawSelectedBoundaryFallbackFeatureCollection(resolved.feature_collection);
@@ -2074,7 +2074,7 @@ function resetAllFilters() {
   closeSelectionInfoWindow();
   refreshSelectionMatrix();
   styleBoundaryLayer();
-  refreshGoogleEarth3dBoundaryOverlay();
+  refreshGoogleEarth3dBoundaryOverlaySoon();
   renderMatchingHunts();
   renderSelectedHunt();
   updateStatus('Filters cleared. Select a species or click a hunt unit.');
@@ -2101,7 +2101,7 @@ function handleFilterChange(event) {
   }
   refreshSelectionMatrix();
   styleBoundaryLayer();
-  refreshGoogleEarth3dBoundaryOverlay();
+  refreshGoogleEarth3dBoundaryOverlaySoon();
   renderMatchingHunts();
   renderSelectedHunt();
   renderOutfitters();
@@ -2346,7 +2346,7 @@ function openSelectedUnitsChooser() {
       if (unitFilter) unitFilter.value = unitValue;
       refreshSelectionMatrix();
       styleBoundaryLayer();
-      refreshGoogleEarth3dBoundaryOverlay();
+      refreshGoogleEarth3dBoundaryOverlaySoon();
       renderMatchingHunts();
       renderSelectedHunt();
       renderOutfitters();
@@ -4910,7 +4910,9 @@ function applyMapMode() {
           scheduleGoogleEarthControlsOpenPass(el);
           applyGoogleEarthAtmosphereProfile(el);
           applyGoogleEarthTopographyBoost(el);
-          refreshGoogleEarth3dBoundaryOverlay();
+          refreshGoogleEarth3dBoundaryOverlay().catch((error) => {
+            console.warn('Google Earth 3D boundary overlay refresh failed (non-fatal).', error);
+          });
           return;
         }
         handleGoogleEarth3dUnavailable('Google Earth 3D unavailable.');
@@ -5173,7 +5175,7 @@ function runApplyFiltersFlow(trigger = 'manual') {
   }
   refreshSelectionMatrix();
   styleBoundaryLayer();
-  refreshGoogleEarth3dBoundaryOverlay();
+  refreshGoogleEarth3dBoundaryOverlaySoon();
   renderMatchingHunts();
   renderSelectedHunt();
   renderOutfitters();

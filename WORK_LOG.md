@@ -8908,3 +8908,39 @@ o_table=0).
 
 - Validation:
   - `node -e "new Function(fs.readFileSync('app.js','utf8'))"` => syntax OK
+
+## 2026-06-01T12:32:00-06:00 - Google Maps 3D Runtime Repair (Native 3D Path + Boundary Overlay Hardening)
+
+- Trigger:
+  - Entry-page Earth selector still ran iframe mode in production and did not activate native `<gmp-map-3d>` runtime.
+  - Prior boundary-load failures needed to remain non-fatal for Earth mode.
+
+- Files changed:
+  - `app.js`
+  - `index.html`
+  - `processed_data/audits/google_earth_3d_boundary_runtime_audit_20260601.json` (added)
+
+- Changes applied:
+  - Kept native 3D mode active by default:
+    - `USE_GOOGLE_EARTH_IFRAME_MODE = false`
+  - Replaced direct async Earth overlay refresh calls in UI flows with debounced safe wrapper:
+    - `refreshGoogleEarth3dBoundaryOverlaySoon()` in reset/filter/apply and unit chooser flows.
+  - Preserved non-fatal overlay handling:
+    - Earth overlay refresh remains wrapped in `.catch(...)` for mode activation and timer refresh.
+  - Updated Builder app cache-bust token in `index.html`:
+    - `app.js?v=20260601-earth3d-runtime-repair-2`
+
+- Boundary runtime audit:
+  - Source index: `processed_data/display-boundary-index-2026.json`
+  - Distinct boundary paths audited: `1394`
+  - Valid: `1394`
+  - Missing: `0`
+  - Invalid JSON: `0`
+  - Git LFS pointers: `0`
+
+- Validation:
+  - `node --check app.js` => syntax OK
+  - `rg -n "defaultUIDisabled|default-ui-disabled" app.js` => no matches
+  - `rg -n "app.js\\?v=" index.html` => updated token present
+  - Live pre-deploy check (2026-06-01):
+    - `https://huntbuilder.uoga.org/` still served prior app token and remained in iframe mode until new deployment is published.
