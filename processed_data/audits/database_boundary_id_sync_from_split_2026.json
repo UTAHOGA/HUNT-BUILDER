@@ -1,0 +1,253 @@
+{
+  "database_path": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "split_index_path": "processed_data/hunt_research_2026_split/hunt_research_2026.index.json",
+  "split_mapping_count": 1607,
+  "database_rows": 1449,
+  "filled_missing_boundary_id": 0,
+  "already_matching_nonblank": 1385,
+  "nonblank_mismatches": 40,
+  "database_hunt_codes_without_split_mapping": 24,
+  "mismatch_samples": [
+    {
+      "line": 1174,
+      "hunt_code": "DB1208",
+      "database_boundary_id": "808",
+      "split_boundary_id": "874"
+    },
+    {
+      "line": 1175,
+      "hunt_code": "EA1261",
+      "database_boundary_id": "808",
+      "split_boundary_id": "874"
+    },
+    {
+      "line": 1176,
+      "hunt_code": "EB3504",
+      "database_boundary_id": "808",
+      "split_boundary_id": "874"
+    },
+    {
+      "line": 1193,
+      "hunt_code": "PB5326",
+      "database_boundary_id": "830",
+      "split_boundary_id": "9999"
+    },
+    {
+      "line": 1246,
+      "hunt_code": "EA1260",
+      "database_boundary_id": "874",
+      "split_boundary_id": "808"
+    },
+    {
+      "line": 1276,
+      "hunt_code": "TK1020",
+      "database_boundary_id": "898",
+      "split_boundary_id": "SW_TURKEY_MGMT_2026"
+    },
+    {
+      "line": 1343,
+      "hunt_code": "EB1012",
+      "database_boundary_id": "931",
+      "split_boundary_id": "SW_ELK_ANYBULL_2026"
+    },
+    {
+      "line": 1354,
+      "hunt_code": "BI1000",
+      "database_boundary_id": "5000",
+      "split_boundary_id": "SW_BISON_2026"
+    },
+    {
+      "line": 1355,
+      "hunt_code": "BR1000",
+      "database_boundary_id": "5001",
+      "split_boundary_id": "SW_BLACK_BEAR_2026"
+    },
+    {
+      "line": 1357,
+      "hunt_code": "BR1007",
+      "database_boundary_id": "5003",
+      "split_boundary_id": "SW_BLACK_BEAR_2026"
+    },
+    {
+      "line": 1362,
+      "hunt_code": "CG9999",
+      "database_boundary_id": "5107",
+      "split_boundary_id": "SW_COUGAR_2026"
+    },
+    {
+      "line": 1363,
+      "hunt_code": "DB0007",
+      "database_boundary_id": "5108",
+      "split_boundary_id": "SW_DEER_2026"
+    },
+    {
+      "line": 1364,
+      "hunt_code": "DB0008",
+      "database_boundary_id": "5109",
+      "split_boundary_id": "DB0008_EXT_ARCH_2026"
+    },
+    {
+      "line": 1367,
+      "hunt_code": "EA1220",
+      "database_boundary_id": "5112",
+      "split_boundary_id": "51"
+    },
+    {
+      "line": 1368,
+      "hunt_code": "EA1258",
+      "database_boundary_id": "5113",
+      "split_boundary_id": "617"
+    },
+    {
+      "line": 1369,
+      "hunt_code": "EA1270",
+      "database_boundary_id": "175",
+      "split_boundary_id": "51"
+    },
+    {
+      "line": 1370,
+      "hunt_code": "EA1271",
+      "database_boundary_id": "51",
+      "split_boundary_id": "633"
+    },
+    {
+      "line": 1371,
+      "hunt_code": "EA2000",
+      "database_boundary_id": "5116",
+      "split_boundary_id": "EA2000_CONTROL_2026"
+    },
+    {
+      "line": 1373,
+      "hunt_code": "EA2045",
+      "database_boundary_id": "5118",
+      "split_boundary_id": "222"
+    },
+    {
+      "line": 1374,
+      "hunt_code": "EB1000",
+      "database_boundary_id": "5119",
+      "split_boundary_id": "SW_ELK_2026"
+    },
+    {
+      "line": 1375,
+      "hunt_code": "EB1001",
+      "database_boundary_id": "5120",
+      "split_boundary_id": "SW_ELK_ANYBULL_2026"
+    },
+    {
+      "line": 1376,
+      "hunt_code": "EB1002",
+      "database_boundary_id": "5121",
+      "split_boundary_id": "SW_ELK_ANYBULL_2026"
+    },
+    {
+      "line": 1377,
+      "hunt_code": "EB1003",
+      "database_boundary_id": "5122",
+      "split_boundary_id": "SW_ELK_SPIKE_2026"
+    },
+    {
+      "line": 1378,
+      "hunt_code": "EB1004",
+      "database_boundary_id": "5123",
+      "split_boundary_id": "SW_ELK_SPIKE_2026"
+    },
+    {
+      "line": 1379,
+      "hunt_code": "EB1005",
+      "database_boundary_id": "5124",
+      "split_boundary_id": "EB1005_SPECIAL_2026"
+    },
+    {
+      "line": 1380,
+      "hunt_code": "EB1007",
+      "database_boundary_id": "5125",
+      "split_boundary_id": "SW_ELK_ANYBULL_2026"
+    },
+    {
+      "line": 1381,
+      "hunt_code": "EB1009",
+      "database_boundary_id": "5126",
+      "split_boundary_id": "SW_ELK_SPIKE_2026"
+    },
+    {
+      "line": 1382,
+      "hunt_code": "EB1010",
+      "database_boundary_id": "5127",
+      "split_boundary_id": "SW_ELK_ANYBULL_2026"
+    },
+    {
+      "line": 1383,
+      "hunt_code": "EB1011",
+      "database_boundary_id": "5128",
+      "split_boundary_id": "EB1011_SPECIAL_2026"
+    },
+    {
+      "line": 1384,
+      "hunt_code": "EB3209",
+      "database_boundary_id": "683",
+      "split_boundary_id": "682"
+    },
+    {
+      "line": 1385,
+      "hunt_code": "EX1000",
+      "database_boundary_id": "5130",
+      "split_boundary_id": "EX1000_EXT_ARCH_2026"
+    },
+    {
+      "line": 1386,
+      "hunt_code": "GO1000",
+      "database_boundary_id": "5131",
+      "split_boundary_id": "SW_MOUNTAIN_GOAT_2026"
+    },
+    {
+      "line": 1387,
+      "hunt_code": "MB1000",
+      "database_boundary_id": "5133",
+      "split_boundary_id": "SW_MOOSE_2026"
+    },
+    {
+      "line": 1388,
+      "hunt_code": "PB1000",
+      "database_boundary_id": "5134",
+      "split_boundary_id": "SW_PRONGHORN_2026"
+    },
+    {
+      "line": 1389,
+      "hunt_code": "RS0001",
+      "database_boundary_id": "5135",
+      "split_boundary_id": "SW_RM_BIGHORN_2026"
+    },
+    {
+      "line": 1390,
+      "hunt_code": "TK1001",
+      "database_boundary_id": "5136",
+      "split_boundary_id": "SW_TURKEY_MGMT_2026"
+    },
+    {
+      "line": 1391,
+      "hunt_code": "TK1019",
+      "database_boundary_id": "5137",
+      "split_boundary_id": "SW_TURKEY_MGMT_2026"
+    },
+    {
+      "line": 1392,
+      "hunt_code": "TK1022",
+      "database_boundary_id": "5138",
+      "split_boundary_id": "SW_TURKEY_MGMT_2026"
+    },
+    {
+      "line": 1393,
+      "hunt_code": "DS1003",
+      "database_boundary_id": "5141",
+      "split_boundary_id": "99"
+    },
+    {
+      "line": 1394,
+      "hunt_code": "EA1221",
+      "database_boundary_id": "5145",
+      "split_boundary_id": "175"
+    }
+  ],
+  "policy": "Filled only blank boundary_id cells; preserved nonblank DATABASE boundary_id values."
+}

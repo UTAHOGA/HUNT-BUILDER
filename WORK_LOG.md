@@ -1,3 +1,54 @@
+## 2026-06-01T02:52:34-06:00 - Reconciled Missing Split Hunt Codes (+319 Detail JSON Files)
+
+- Assigned action:
+  - Create missing split JSON hunt records to close the audit gap:
+    - `Geo hunt codes missing from split: 319`.
+
+- Work completed:
+  - Added `319` new hunt detail JSON files under:
+    - `processed_data/hunt_research_2026_split/hunts/*.json`
+  - Appended corresponding `319` index rows in:
+    - `processed_data/hunt_research_2026_split/hunt_research_2026.index.json`
+  - Updated split metadata counts:
+    - `processed_data/hunt_research_2026_split/manifest.json`
+    - `processed_data/hunt_research_2026_split/split-summary.json`
+  - Re-ran boundary vs split audit outputs.
+
+- Post-change validation:
+  - `geojson_hunt_codes_detected`: `1607`
+  - `split_hunt_codes_detected`: `1607`
+  - `matched_hunt_codes`: `1607`
+  - `geo_hunt_codes_without_split`: `0`
+  - `split_hunt_codes_without_geo`: `0`
+  - invalid/broken files detected: `0`
+  - equivalence verdict: `EQUIVALENT` (by hunt-code mapping set)
+
+## 2026-06-01T02:47:14-06:00 - Boundary vs Hunt Research Split Audit
+
+- Assigned action:
+  - Audit `processed_data/boundaries` vs `processed_data/hunt_research_2026_split` for 1:1 mapping and file health.
+
+- Outputs created:
+  - `processed_data/audits/boundary_vs_hunt_research_2026_split_audit.json`
+  - `processed_data/audits/boundary_vs_hunt_research_2026_split_missing.csv`
+
+- Key results:
+  - `.geojson` in boundaries: `1654`
+  - `.json` in hunt_research_2026_split: `3`
+  - filename-stem matches: `0` (not 1:1)
+  - hunt-code overlaps: `1288` matched split codes
+  - geo hunt codes missing from split: `319`
+  - split hunt codes missing from geo: `0`
+  - invalid/malformed/LFS-pointer files found in these local directories: `0`
+  - overall equivalence verdict: `NOT_EQUIVALENT`
+
+- Validation performed:
+  - file counts by extension
+  - filename-stem set comparison
+  - hunt-code extraction from GeoJSON metadata and split JSON arrays
+  - invalid JSON / empty file / Git LFS pointer detection
+  - ambiguity checks for duplicate code mappings
+
 ## 2026-06-01T02:31:14-06:00 - Entry Page 3D Runtime Contract Verification (Live Script Pin Audit + Cache-Bust Tokens)
 
 - Assigned action:
@@ -8623,3 +8674,71 @@ o_table=0).
   - `node -e "new Function(fs.readFileSync('app.js','utf8')); new Function(fs.readFileSync('config.js','utf8'))"` -> `syntax-ok`
   - `npm run build` -> PASS
   - Build emitted expected baseline warnings for oversized optional files in `pages-dist`; no build break from map fix.
+
+## 2026-06-01T10:35:00-06:00 - Boundary-ID Geometry Files Hunt-Code Reconciliation
+
+- Request context:
+  - Geometry-only boundary files in `processed_data/boundaries` were identified as low-value unless mapped back to hunt codes.
+  - Required action: map these files to hunt codes using current in-repo truth links.
+
+- Reconciliation performed:
+  - Built a `boundary_id -> hunt_code[]` crosswalk from currently mapped boundary GeoJSON records (`metadata.hunt_code` present).
+  - Crosswalk derivation used:
+    - `metadata.boundary_id`
+    - `metadata.source_boundary_ids`
+    - `metadata.member_boundary_ids`
+    - feature property boundary IDs where present
+  - Applied mapping metadata to every boundary-ID-only geometry file.
+
+- Results:
+  - Source mapped files used for crosswalk: `1607`
+  - Boundary IDs in derived crosswalk: `501`
+  - Geometry-only files updated: `47`
+  - Geometry-only files still unmapped: `0`
+
+- Metadata written to each previously geometry-only file:
+  - `metadata.boundary_id`
+  - `metadata.candidate_boundary_id`
+  - `metadata.mapped_hunt_codes`
+  - `metadata.candidate_hunt_code`
+  - `metadata.hunt_code_mapping_status = MAPPED_FROM_BOUNDARY_ID_CROSSWALK`
+  - `metadata.boundary_id_mapping_status = MAPPED`
+  - `metadata.mapping_method = boundary_id_crosswalk_from_mapped_geojson`
+  - `metadata.hunt_code` only when exactly one unique mapped hunt code exists for that boundary ID.
+
+- Audit artifacts created:
+  - `processed_data/audits/boundary_id_to_hunt_code_crosswalk_2026.json`
+  - `processed_data/audits/boundary_id_to_hunt_code_crosswalk_2026.csv`
+
+- Validation:
+  - `INVALID_JSON = 0` across `processed_data/boundaries/*.geojson`
+  - `BOUNDARY_ID_FILES_WITHOUT_LINK = 0` (no numeric-stem boundary file left without hunt linkage metadata)
+
+## 2026-06-01T10:55:00-06:00 - Split Mapping Verification + DATABASE Boundary-ID Sync Audit
+
+- Request context:
+  - Verify `processed_data/hunt_research_2026_split` is reconciled/mapped.
+  - Then ensure `DATABASE.csv` has `hunt_code -> boundary_id` mapping (add column only if missing).
+
+- Verification results:
+  - Split index rows: `1607`
+  - Split rows missing `hunt_code`: `0`
+  - Split rows missing `boundary_id`: `0`
+  - Split detail files (`hunts/*.json`): `1607`
+  - Split detail files missing `boundary_id`: `0`
+  - Conclusion: split is fully reconciled and mapped for hunt-code boundary mapping coverage.
+
+- DATABASE mapping action:
+  - Confirmed `DATABASE.csv` already contains `boundary_id` column.
+  - Ran hunt-code boundary sync audit from split index to DATABASE:
+    - missing `boundary_id` cells filled: `0`
+    - nonblank matches: `1385`
+    - nonblank mismatches: `40`
+    - DATABASE hunt codes without split mapping: `24`
+  - Policy applied:
+    - preserve existing nonblank `DATABASE.csv` boundary truth (no overwrite pass applied).
+  - Wrote audit report:
+    - `processed_data/audits/database_boundary_id_sync_from_split_2026.json`
+
+- Notes:
+  - Mismatch set includes split-side synthetic/statewide boundary IDs (for example `SW_*`/`*_2026`) and a few numeric swaps; these require reviewed boundary-truth adjudication before any overwrite policy.
