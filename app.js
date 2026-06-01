@@ -3972,7 +3972,8 @@ function ensureGoogleEarth3dElement() {
     el.id = 'googleEarth3dMap';
     el.className = 'google-earth-3d-map';
     el.setAttribute('aria-label', 'Google Earth 3D map');
-    el.setAttribute('mode', 'hybrid');
+    // 2025 Maps JS 3D requirement: mode must be explicitly HYBRID or SATELLITE.
+    el.setAttribute('mode', 'HYBRID');
     el.setAttribute('center', `${GOOGLE_BASELINE_DEFAULT_CENTER.lat},${GOOGLE_BASELINE_DEFAULT_CENTER.lng},1800`);
     el.setAttribute('range', '420000');
     el.setAttribute('tilt', '64');
@@ -3994,6 +3995,10 @@ function ensureGoogleEarth3dElement() {
   return el;
 }
 
+function getGoogleEarth3dTroubleshootingHint() {
+  return 'Check browser hardware acceleration and ensure 3D mode is enabled (HYBRID/SATELLITE runtime).';
+}
+
 function handleGoogleEarth3dUnavailable(reason = 'Google Earth 3D unavailable.') {
   const map3d = document.getElementById('googleEarth3dMap');
   if (map3d) {
@@ -4001,14 +4006,14 @@ function handleGoogleEarth3dUnavailable(reason = 'Google Earth 3D unavailable.')
   }
   clearGoogleEarth3dBoundaryOverlays();
 
-  const currentMode = safe(mapTypeSelect?.value).toLowerCase();
-  if (currentMode === 'earth' && mapTypeSelect) {
-    mapTypeSelect.value = 'google';
-    applyMapMode();
-    updateStatus(`${reason} Switched to Google Maps.`);
-  } else {
-    updateStatus(reason);
+  // Keep the user in Earth mode; do not auto-fallback to another map mode.
+  if (safe(mapTypeSelect?.value).toLowerCase() === 'earth') {
+    const mapWrap = document.querySelector('.map-wrap');
+    if (mapWrap) {
+      mapWrap.classList.add('is-earth-mode');
+    }
   }
+  updateStatus(`${reason} ${getGoogleEarth3dTroubleshootingHint()}`.trim());
 
   renderDevDebugPanel();
 }
@@ -4095,7 +4100,9 @@ async function ensureGoogleEarth3dMap() {
   }
 
   googleEarth3dMap = el;
-  el.mode = maps3d?.MapMode?.HYBRID || 'hybrid';
+  const hybridMode = maps3d?.MapMode?.HYBRID || 'HYBRID';
+  el.mode = hybridMode;
+  try { el.setAttribute('mode', String(hybridMode)); } catch (_) {}
   // Keep Google Earth native controls enabled.
   el.removeAttribute('default-ui-hidden');
   if ('defaultUiHidden' in el) {
@@ -4722,7 +4729,7 @@ function applyMapMode() {
           refreshGoogleEarth3dBoundaryOverlay();
           return;
         }
-        handleGoogleEarth3dUnavailable('Google Earth 3D unavailable. Switch to Google Maps or DWR map.');
+        handleGoogleEarth3dUnavailable('Google Earth 3D unavailable.');
       })
       .catch((err) => {
         console.error('Google Earth 3D failed to load.', err);

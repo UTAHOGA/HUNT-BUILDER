@@ -8789,3 +8789,25 @@ o_table=0).
   - `BOUNDARY_METADATA_MISMATCH = 0`
   - `SPLIT_DETAIL_INVALID_JSON = 0`
   - `BOUNDARY_INVALID_JSON = 0`
+
+## 2026-06-01T11:24:00-06:00 - Google Maps 3D Runtime Compliance Patch (Post-2025 Init Rule)
+
+- Trigger:
+  - 3D map behavior aligned to updated Maps JS 3D requirements:
+    - explicit `Map3DElement.mode` required (`HYBRID` or `SATELLITE`)
+    - remove auto-fallback behavior from Earth mode when 3D init fails
+
+- File changed:
+  - `app.js`
+
+- Changes applied:
+  - Set initial 3D element mode attribute to explicit uppercase `HYBRID`.
+  - In runtime init, force `el.mode` to `MapMode.HYBRID` (fallback string `HYBRID`) and mirror that on attribute.
+  - Replaced Earth-mode failure behavior:
+    - removed automatic mode switch to Google map on 3D failure.
+    - keep user in Earth mode and surface troubleshooting guidance.
+  - Updated unavailable message text to avoid fallback instructions.
+
+- Validation:
+  - `node -e "new Function(fs.readFileSync('app.js','utf8'))"` => syntax OK
+  - `npm run build` => PASS
