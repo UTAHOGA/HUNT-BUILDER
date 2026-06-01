@@ -31,6 +31,7 @@
 
   var localConfig = {
     GOOGLE_MAPS_API_KEY: '',
+    GOOGLE_MAPS_3D_MAP_ID: '',
     CLOUDFLARE_R2_BASE: '',
     POSTHOG_PROJECT_KEY: '',
     POSTHOG_CONFIG: {

@@ -8810,6 +8810,26 @@ o_table=0).
 
 - Validation:
   - `node -e "new Function(fs.readFileSync('app.js','utf8'))"` => syntax OK
+
+## 2026-06-01T12:05:00-06:00 - Restore Prior Google Earth Iframe Mode (Known Working Behavior)
+
+- Trigger:
+  - User requested return to the previously working Earth experience instead of forcing Maps JS 3D runtime.
+
+- Files changed:
+  - `app.js`
+  - `index.html`
+
+- Changes applied:
+  - Restored Earth mode to iframe path (`https://www.uoga.org/hunt-builder-google-earth`) via `USE_GOOGLE_EARTH_IFRAME_MODE = true`.
+  - Added/ensured `googleEarthFrame` wiring and startup event binding.
+  - Ensured mode switching hides Earth iframe when leaving Earth mode.
+  - Added static `#googleEarthFrame` element in map stage for deterministic runtime availability.
+  - Kept Google and DWR map behavior unchanged.
+
+- Validation:
+  - `node --check app.js` => syntax OK
+  - `rg` checks confirm Earth iframe startup binding and DOM element presence.
   - `npm run build` => PASS
 
 ## 2026-06-01T11:42:00-06:00 - Google Earth 3D Failure Diagnostics + SATELLITE Retry

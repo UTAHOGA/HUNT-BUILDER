@@ -38,6 +38,8 @@ window.UOGA_CONFIG = (() => {
     : {};
   const USE_PREDICTIVE_DRAW_ENGINE = UOGA_LOCAL_CONFIG.USE_PREDICTIVE_DRAW_ENGINE === true
     || String(UOGA_LOCAL_CONFIG.USE_PREDICTIVE_DRAW_ENGINE || '').trim().toLowerCase() === 'true';
+  // Optional: strongly recommended for Maps JS 3D runtime stability.
+  const GOOGLE_MAPS_3D_MAP_ID = String(UOGA_LOCAL_CONFIG.GOOGLE_MAPS_3D_MAP_ID || '').trim();
   const CLOUDFLARE_BASE = 'https://json.uoga.workers.dev';
   const CLOUDFLARE_R2_BASE = String(UOGA_LOCAL_CONFIG.CLOUDFLARE_R2_BASE || '').trim().replace(/\/+$/, '');
   // Single object runtime source for large mapping assets:
@@ -440,6 +442,7 @@ window.UOGA_CONFIG = (() => {
 
   return {
     GOOGLE_MAPS_API_KEY,
+    GOOGLE_MAPS_3D_MAP_ID,
     GOOGLE_BASELINE_DEFAULT_CENTER,
     GOOGLE_BASELINE_DEFAULT_ZOOM,
     UTAH_LOCATION_BOUNDS,
