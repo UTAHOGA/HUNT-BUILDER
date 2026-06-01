@@ -10,12 +10,14 @@ REPO = Path(__file__).resolve().parents[1]
 HARVEST_FEATURES = REPO / "processed_data" / "harvest_quality_features_all_years_by_hunt_code.csv"
 HARVEST_MASTER = REPO / "processed_data" / "harvest_master.csv"
 HISTORICAL_CROSSWALK = REPO / "processed_data" / "current_to_historical_hunt_code_crosswalk_2026.csv"
+DATABASE_CSV = REPO / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "DATABASE.csv"
 TARGET_MODEL_YEAR = 2026
 
 TARGET_DIRS = [
     REPO / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "formatted_tables",
     REPO / "processed_data" / "hard_data_exports" / "hunt_tables" / "2026",
     REPO / "processed_data" / "hard_data_exports" / "hunt_tables" / "2026" / "XLXS",
+    REPO / "processed_data" / "hard_data_exports" / "hunt_tables" / "2026" / "CLEAN_XLXS_STAGED",
 ]
 
 HUNT_CODE_HEADERS = {
@@ -33,13 +35,15 @@ WEAPON_HEADERS = {"weapon", "weapon type", "weapon_type", "method", "method of t
 
 COL_PRIOR_YEAR = "Harvest Prior Year"
 COL_SUCCESS = "Percent Harvest Success (previous hunting season)"
-COL_AVG_AGE = "Average Age Harvested (previous hunting season)"
+COL_AVG_AGE = "Average Harvest Age"
+COL_CURRENT_AGE_3YR = "Current Age (3-Yr Avg)"
 COL_AVG_DAYS = "Avg Days Hunted (previous hunting season)"
-OUTPUT_HEADERS = [COL_PRIOR_YEAR, COL_SUCCESS, COL_AVG_AGE, COL_AVG_DAYS]
+OUTPUT_HEADERS = [COL_PRIOR_YEAR, COL_SUCCESS, COL_AVG_AGE, COL_CURRENT_AGE_3YR, COL_AVG_DAYS]
 HEADER_ALIASES = {
     COL_PRIOR_YEAR: {"harvest prior year"},
     COL_SUCCESS: {"harvest success (prior year %)", "percent harvest success (previous hunting season)"},
-    COL_AVG_AGE: {"average harvest age (prior year)", "average age harvested (previous hunting season)"},
+    COL_AVG_AGE: {"average harvest age (prior year)", "average age harvested (previous hunting season)", "average harvest age prior year"},
+    COL_CURRENT_AGE_3YR: {"current age (3-yr avg)", "current age 3-yr avg", "current_age_3yr_average"},
     COL_AVG_DAYS: {"average days hunted (prior year)", "avg days hunted (previous hunting season)"},
 }
 
@@ -221,6 +225,23 @@ def load_crosswalk_candidates():
     return mapping
 
 
+def load_current_age_lookup():
+    lookup = {}
+    if not DATABASE_CSV.exists():
+        return lookup
+    with DATABASE_CSV.open("r", encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        for row in reader:
+            code = normalize_code(row.get("hunt_code"))
+            if not code:
+                continue
+            value = to_float(row.get("current_age_3yr_average"))
+            if value is None or value <= 0:
+                continue
+            lookup[code] = value
+    return lookup
+
+
 def load_harvest_lookup():
     lookup = {}
     feature_lookup = {}
@@ -399,7 +420,7 @@ def ensure_output_cols(ws, header_row):
     return mapping, added_any
 
 
-def update_sheet(ws, harvest_lookup, triplet_lookup):
+def update_sheet(ws, harvest_lookup, triplet_lookup, current_age_lookup):
     header_row = find_header_row(ws)
     if not header_row:
         return {"updated_rows": 0, "header_added": False}
@@ -439,19 +460,20 @@ def update_sheet(ws, harvest_lookup, triplet_lookup):
         ws.cell(row=row_idx, column=out_cols[COL_PRIOR_YEAR]).value = payload.get("reported_year") or ""
         ws.cell(row=row_idx, column=out_cols[COL_SUCCESS]).value = format_number(payload.get("success_pct"))
         ws.cell(row=row_idx, column=out_cols[COL_AVG_AGE]).value = format_number(payload.get("avg_age"))
+        ws.cell(row=row_idx, column=out_cols[COL_CURRENT_AGE_3YR]).value = format_number(current_age_lookup.get(code))
         ws.cell(row=row_idx, column=out_cols[COL_AVG_DAYS]).value = format_number(payload.get("avg_days"))
         updated += 1
 
     return {"updated_rows": updated, "header_added": header_added}
 
 
-def process_workbook(file_path: Path, harvest_lookup, triplet_lookup):
+def process_workbook(file_path: Path, harvest_lookup, triplet_lookup, current_age_lookup):
     wb = load_workbook(file_path)
     updated_rows = 0
     touched_sheets = 0
     header_changes = 0
     for ws in wb.worksheets:
-        result = update_sheet(ws, harvest_lookup, triplet_lookup)
+        result = update_sheet(ws, harvest_lookup, triplet_lookup, current_age_lookup)
         sheet_updates = result["updated_rows"]
         if result["header_added"]:
             header_changes += 1
@@ -472,6 +494,7 @@ def process_workbook(file_path: Path, harvest_lookup, triplet_lookup):
 
 def main():
     harvest_lookup, triplet_lookup = load_harvest_lookup()
+    current_age_lookup = load_current_age_lookup()
     reports = []
     seen = set()
 
@@ -483,13 +506,14 @@ def main():
             if key in seen:
                 continue
             seen.add(key)
-            reports.append(process_workbook(workbook, harvest_lookup, triplet_lookup))
+            reports.append(process_workbook(workbook, harvest_lookup, triplet_lookup, current_age_lookup))
 
     touched = [r for r in reports if r["updated_rows"] > 0 or r.get("header_changes", 0) > 0]
     print(json.dumps({
         "ok": True,
         "harvest_lookup_codes": len(harvest_lookup),
         "triplet_lookup_keys": len(triplet_lookup),
+        "current_age_3yr_codes": len(current_age_lookup),
         "workbooks_scanned": len(reports),
         "workbooks_updated": len(touched),
         "updates": touched,

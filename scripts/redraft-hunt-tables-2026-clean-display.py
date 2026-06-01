@@ -29,6 +29,7 @@ PDF_MANIFEST = ROOT / "processed_data" / "hard_data_exports" / "hard_copy_pdf_ma
 HARVEST_QUALITY = ROOT / "processed_data" / "harvest_quality_features_all_years_by_hunt_code.csv"
 HARVEST_MASTER = ROOT / "processed_data" / "harvest_master.csv"
 HARVEST_AGE_LATEST = ROOT / "processed_data" / "harvest_age_features_by_hunt_code_latest.csv"
+DATABASE_CSV = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "DATABASE.csv"
 
 HEADERS = [
     "hunt_name",
@@ -44,7 +45,8 @@ HEADERS = [
     "NOTES",
     "Harvest Prior Year",
     "Percent Harvest Success (previous hunting season)",
-    "Average Age Harvested (previous hunting season)",
+    "Average Harvest Age",
+    "Current Age (3-Yr Avg)",
     "Avg Days Hunted (previous hunting season)",
 ]
 
@@ -62,7 +64,8 @@ COLUMN_WIDTHS = {
     "NOTES": 24,
     "Harvest Prior Year": 10,
     "Percent Harvest Success (previous hunting season)": 16,
-    "Average Age Harvested (previous hunting season)": 16,
+    "Average Harvest Age": 14,
+    "Current Age (3-Yr Avg)": 14,
     "Avg Days Hunted (previous hunting season)": 16,
 }
 
@@ -262,7 +265,7 @@ def load_harvest_lookup() -> dict[str, dict[str, str]]:
             age_lookup[code] = {
                 "_year": str(year),
                 "Harvest Prior Year": str(year) if year else "",
-                "Average Age Harvested (previous hunting season)": display,
+                "Average Harvest Age": display,
             }
 
     if HARVEST_QUALITY.exists():
@@ -279,7 +282,7 @@ def load_harvest_lookup() -> dict[str, dict[str, str]]:
                 item = {
                     "Harvest Prior Year": str(year) if year else "",
                     "Percent Harvest Success (previous hunting season)": clean_text(row.get("percent_success")),
-                    "Average Age Harvested (previous hunting season)": clean_text(row.get("average_age")),
+                    "Average Harvest Age": clean_text(row.get("average_age")),
                     "Avg Days Hunted (previous hunting season)": clean_text(row.get("average_days")),
                 }
                 if any(item.values()):
@@ -301,8 +304,8 @@ def load_harvest_lookup() -> dict[str, dict[str, str]]:
                     "Harvest Prior Year": str(year) if year else current.get("Harvest Prior Year", ""),
                     "Percent Harvest Success (previous hunting season)": clean_text(row.get("percent_success"))
                     or current.get("Percent Harvest Success (previous hunting season)", ""),
-                    "Average Age Harvested (previous hunting season)": current.get(
-                        "Average Age Harvested (previous hunting season)", ""
+                    "Average Harvest Age": current.get(
+                        "Average Harvest Age", ""
                     ),
                     "Avg Days Hunted (previous hunting season)": clean_text(row.get("avg_days"))
                     or current.get("Avg Days Hunted (previous hunting season)", ""),
@@ -325,11 +328,25 @@ def load_harvest_lookup() -> dict[str, dict[str, str]]:
 
     for code, age_item in age_lookup.items():
         current = lookup.setdefault(code, {})
-        current["Average Age Harvested (previous hunting season)"] = age_item[
-            "Average Age Harvested (previous hunting season)"
-        ]
+        current["Average Harvest Age"] = age_item["Average Harvest Age"]
         if not current.get("Harvest Prior Year"):
             current["Harvest Prior Year"] = age_item.get("Harvest Prior Year", "")
+
+    if DATABASE_CSV.exists():
+        with DATABASE_CSV.open(newline="", encoding="utf-8-sig") as fh:
+            for row in csv.DictReader(fh):
+                code = norm_code(row.get("hunt_code"))
+                if not code:
+                    continue
+                value = clean_text(row.get("current_age_3yr_average"))
+                try:
+                    number = float(value)
+                except (TypeError, ValueError):
+                    continue
+                if number <= 0:
+                    continue
+                display = f"{number:.1f}".rstrip("0").rstrip(".")
+                lookup.setdefault(code, {})["Current Age (3-Yr Avg)"] = display
 
     for item in lookup.values():
         item.pop("_year", None)
@@ -364,14 +381,23 @@ def extract_rows(path: Path, harvest_lookup: dict[str, dict[str, str]]) -> tuple
                 index,
                 ["Percent Harvest Success (previous hunting season)", "Percent Harvest Success"],
             ),
-            "Average Age Harvested (previous hunting season)": get_value(
+            "Average Harvest Age": get_value(
                 source_row,
                 index,
                 [
+                    "Average Harvest Age",
                     "Average Age Harvested (previous hunting season)",
                     "Average Age Harvested",
-                    "Average Harvest Age",
+                    "Average Harvest Age Prior Year",
                     "Avg Age Harvested",
+                ],
+            ),
+            "Current Age (3-Yr Avg)": get_value(
+                source_row,
+                index,
+                [
+                    "Current Age (3-Yr Avg)",
+                    "current_age_3yr_average",
                 ],
             ),
             "Avg Days Hunted (previous hunting season)": get_value(
@@ -384,7 +410,8 @@ def extract_rows(path: Path, harvest_lookup: dict[str, dict[str, str]]) -> tuple
         for field in [
             "Harvest Prior Year",
             "Percent Harvest Success (previous hunting season)",
-            "Average Age Harvested (previous hunting season)",
+            "Average Harvest Age",
+            "Current Age (3-Yr Avg)",
             "Avg Days Hunted (previous hunting season)",
         ]:
             if not record[field] and harvest.get(field):
@@ -419,7 +446,7 @@ def style_workbook(ws, row_count: int) -> None:
             cell.fill = fill
             cell.border = border
             cell.font = Font(name="Calibri", size=8, color="000000")
-            if col in {8, 9, 10, 12, 13, 14, 15}:
+            if col in {8, 9, 10, 12, 13, 14, 15, 16}:
                 cell.alignment = Alignment(horizontal="right", vertical="center", wrap_text=True)
             else:
                 cell.alignment = Alignment(horizontal="left", vertical="center", wrap_text=True)
@@ -491,7 +518,7 @@ def draw_pdf(path: Path, title: str, rows: list[list[str]]) -> None:
     margin_y = 0.22 * inch
     usable_w = page_w - (2 * margin_x)
     y_start = page_h - margin_y
-    col_weights = [2.15, 0.9, 0.9, 1.05, 1.55, 1.55, 2.45, 0.75, 0.75, 0.8, 1.65, 0.75, 1.18, 1.18, 1.18]
+    col_weights = [2.15, 0.9, 0.9, 1.05, 1.55, 1.55, 2.45, 0.75, 0.75, 0.8, 1.65, 0.75, 1.08, 1.08, 1.08, 1.08]
     total_weight = sum(col_weights)
     col_widths = [usable_w * (w / total_weight) for w in col_weights]
     header_h = 0.42 * inch

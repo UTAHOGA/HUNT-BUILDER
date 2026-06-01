@@ -1,3 +1,60 @@
+## 2026-06-01T10:45:00-06:00 - Two-Column Public Age Repair (Average Harvest Age + Current Age 3-Yr Avg)
+
+- Assigned action:
+  - Repair and split public age columns into:
+    - `Average Harvest Age`
+    - `Current Age (3-Yr Avg)`
+  - Keep strict source-family separation and regenerate sample public outputs.
+
+- Pipeline/template updates:
+  - Updated hunt-table redraft pipeline template:
+    - `scripts/redraft-hunt-tables-2026-clean-display.py`
+    - replaced old age header with `Average Harvest Age`
+    - added `Current Age (3-Yr Avg)` as a separate output column
+    - wired current 3-year age from canonical `DATABASE.csv`
+  - Updated workbook augmentation pipeline:
+    - `scripts/augment_hunt_tables_prior_year_harvest.py`
+    - added `Current Age (3-Yr Avg)` output column
+    - normalized age header aliases to new two-column scheme
+    - added canonical current-age lookup from `DATABASE.csv`
+
+- New task script and outputs:
+  - Added:
+    - `scripts/repair-two-column-public-age-exports-2026.py`
+  - Generated:
+    - `docs/average_harvest_age_two_column_policy.md`
+    - `processed_data/audits/average_harvest_age_two_column_audit.csv`
+    - sample repaired public outputs in:
+      - `processed_data/hard_data_exports/hunt_tables/2026/SAMPLES_TWO_COLUMN_AGE/`
+
+- Sample output regeneration results:
+  - `2026_BLACK_BEAR.xlsx` -> `UPDATED` (rows=106, average age filled=96, current 3-yr filled=0)
+  - `2026_ELK_BULL_ALL.xlsx` -> `UPDATED` (rows=353, average age filled=274, current 3-yr filled=143)
+  - `2026_DEER_BUCK_LIMITED_ENTRY.xlsx` -> `UPDATED` (rows=67, average age filled=0, current 3-yr filled=0)
+
+- Two-column audit summary:
+  - rows audited: `2898`
+  - unique hunt codes: `1449`
+  - public `Average Harvest Age` populated rows: `1268`
+  - public `Current Age (3-Yr Avg)` populated rows: `440`
+  - canonical average-age populated codes: `634`
+  - canonical current-age populated codes: `219`
+  - average-age blank causes:
+    - `SOURCE_MISSING`: `1624`
+    - `MAPPING_FAILURE`: `6`
+  - current-age blank causes:
+    - `NOT_SUPPORTED_FOR_SPECIES`: `1260`
+    - `SOURCE_MISSING`: `878`
+    - `MAPPING_FAILURE`: `320`
+
+- Validation:
+  - `python -m py_compile scripts/redraft-hunt-tables-2026-clean-display.py scripts/augment_hunt_tables_prior_year_harvest.py scripts/repair-two-column-public-age-exports-2026.py` -> PASS
+  - `python scripts/repair-two-column-public-age-exports-2026.py` -> PASS
+  - zero-value guardrail check on both age columns in audit output -> PASS (`0` zero values written)
+  - sample workbook header validation confirms:
+    - `Average Harvest Age`
+    - `Current Age (3-Yr Avg)`
+
 ## 2026-06-01T09:44:00-06:00 - Domain Canonicalization (Single Production Domain Policy)
 
 - Assigned action:
