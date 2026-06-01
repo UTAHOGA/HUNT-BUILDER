@@ -34,7 +34,7 @@
   "dwr_unit_name": "Elk Extended Archery",
   "recommended_permits": null,
   "detail_path": "hunts/EX1000.json",
-  "boundary_id": "EX1000_EXT_ARCH_2026",
+  "boundary_id": "5130",
   "hunt_class": "Extended Archery",
   "data_status": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED",
   "permit_status": "NO_QUOTA_PUBLISHED",

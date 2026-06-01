@@ -49,7 +49,7 @@
     "permit_note": "2026 resident/nonresident permit split from Utah DWR Hunt Planner export 2026_FALL_TURKEY_EITHER_SEX.xlsx."
   },
   "detail_path": "hunts/TK1001.json",
-  "boundary_id": "SW_TURKEY_MGMT_2026",
+  "boundary_id": "5136",
   "hunt_class": "Private Land Only",
   "data_status": "COMPLETE",
   "permit_status": "FULL_SPLIT",

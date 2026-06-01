@@ -1,0 +1,96 @@
+surface,key,hunt_code,before_boundary_id,after_boundary_id,note
+split_index,BI1000,BI1000,SW_BISON_2026,5000,aligned to DATABASE boundary_id
+split_index,BR1000,BR1000,SW_BLACK_BEAR_2026,5001,aligned to DATABASE boundary_id
+split_index,BR1007,BR1007,SW_BLACK_BEAR_2026,5003,aligned to DATABASE boundary_id
+split_index,CG9999,CG9999,SW_COUGAR_2026,5107,aligned to DATABASE boundary_id
+split_index,DB0007,DB0007,SW_DEER_2026,5108,aligned to DATABASE boundary_id
+split_index,DB0008,DB0008,DB0008_EXT_ARCH_2026,5109,aligned to DATABASE boundary_id
+split_index,DB1208,DB1208,874,808,aligned to DATABASE boundary_id
+split_index,DS1003,DS1003,99,5141,aligned to DATABASE boundary_id
+split_index,EA1220,EA1220,51,5112,aligned to DATABASE boundary_id
+split_index,EA1221,EA1221,175,5145,aligned to DATABASE boundary_id
+split_index,EA1258,EA1258,617,5113,aligned to DATABASE boundary_id
+split_index,EA1260,EA1260,808,874,aligned to DATABASE boundary_id
+split_index,EA1261,EA1261,874,808,aligned to DATABASE boundary_id
+split_index,EA1270,EA1270,51,175,aligned to DATABASE boundary_id
+split_index,EA1271,EA1271,633,51,aligned to DATABASE boundary_id
+split_index,EA2000,EA2000,EA2000_CONTROL_2026,5116,aligned to DATABASE boundary_id
+split_index,EA2045,EA2045,222,5118,aligned to DATABASE boundary_id
+split_index,EB1000,EB1000,SW_ELK_2026,5119,aligned to DATABASE boundary_id
+split_index,EB1001,EB1001,SW_ELK_ANYBULL_2026,5120,aligned to DATABASE boundary_id
+split_index,EB1002,EB1002,SW_ELK_ANYBULL_2026,5121,aligned to DATABASE boundary_id
+split_index,EB1003,EB1003,SW_ELK_SPIKE_2026,5122,aligned to DATABASE boundary_id
+split_index,EB1004,EB1004,SW_ELK_SPIKE_2026,5123,aligned to DATABASE boundary_id
+split_index,EB1005,EB1005,EB1005_SPECIAL_2026,5124,aligned to DATABASE boundary_id
+split_index,EB1007,EB1007,SW_ELK_ANYBULL_2026,5125,aligned to DATABASE boundary_id
+split_index,EB1009,EB1009,SW_ELK_SPIKE_2026,5126,aligned to DATABASE boundary_id
+split_index,EB1010,EB1010,SW_ELK_ANYBULL_2026,5127,aligned to DATABASE boundary_id
+split_index,EB1011,EB1011,EB1011_SPECIAL_2026,5128,aligned to DATABASE boundary_id
+split_index,EB1012,EB1012,SW_ELK_ANYBULL_2026,931,aligned to DATABASE boundary_id
+split_index,EB3209,EB3209,682,683,aligned to DATABASE boundary_id
+split_index,EB3504,EB3504,874,808,aligned to DATABASE boundary_id
+split_index,EX1000,EX1000,EX1000_EXT_ARCH_2026,5130,aligned to DATABASE boundary_id
+split_index,GO1000,GO1000,SW_MOUNTAIN_GOAT_2026,5131,aligned to DATABASE boundary_id
+split_index,MB1000,MB1000,SW_MOOSE_2026,5133,aligned to DATABASE boundary_id
+split_index,PB1000,PB1000,SW_PRONGHORN_2026,5134,aligned to DATABASE boundary_id
+split_index,PB5326,PB5326,9999,830,aligned to DATABASE boundary_id
+split_index,RS0001,RS0001,SW_RM_BIGHORN_2026,5135,aligned to DATABASE boundary_id
+split_index,TK1001,TK1001,SW_TURKEY_MGMT_2026,5136,aligned to DATABASE boundary_id
+split_index,TK1019,TK1019,SW_TURKEY_MGMT_2026,5137,aligned to DATABASE boundary_id
+split_index,TK1020,TK1020,SW_TURKEY_MGMT_2026,898,aligned to DATABASE boundary_id
+split_index,TK1022,TK1022,SW_TURKEY_MGMT_2026,5138,aligned to DATABASE boundary_id
+split_detail,DB1208.json,DB1208,874,808,aligned detail boundary_id to DATABASE
+split_detail,EA1261.json,EA1261,874,808,aligned detail boundary_id to DATABASE
+split_detail,EB3504.json,EB3504,874,808,aligned detail boundary_id to DATABASE
+split_detail,PB5326.json,PB5326,9999,830,aligned detail boundary_id to DATABASE
+split_detail,EA1260.json,EA1260,808,874,aligned detail boundary_id to DATABASE
+split_detail,TK1020.json,TK1020,SW_TURKEY_MGMT_2026,898,aligned detail boundary_id to DATABASE
+split_detail,EB1012.json,EB1012,SW_ELK_ANYBULL_2026,931,aligned detail boundary_id to DATABASE
+split_detail,BI1000.json,BI1000,SW_BISON_2026,5000,aligned detail boundary_id to DATABASE
+split_detail,BR1000.json,BR1000,SW_BLACK_BEAR_2026,5001,aligned detail boundary_id to DATABASE
+split_detail,BR1007.json,BR1007,SW_BLACK_BEAR_2026,5003,aligned detail boundary_id to DATABASE
+split_detail,CG9999.json,CG9999,SW_COUGAR_2026,5107,aligned detail boundary_id to DATABASE
+split_detail,DB0007.json,DB0007,SW_DEER_2026,5108,aligned detail boundary_id to DATABASE
+split_detail,DB0008.json,DB0008,DB0008_EXT_ARCH_2026,5109,aligned detail boundary_id to DATABASE
+split_detail,EA1220.json,EA1220,51,5112,aligned detail boundary_id to DATABASE
+split_detail,EA1258.json,EA1258,617,5113,aligned detail boundary_id to DATABASE
+split_detail,EA1270.json,EA1270,51,175,aligned detail boundary_id to DATABASE
+split_detail,EA1271.json,EA1271,633,51,aligned detail boundary_id to DATABASE
+split_detail,EA2000.json,EA2000,EA2000_CONTROL_2026,5116,aligned detail boundary_id to DATABASE
+split_detail,EA2045.json,EA2045,222,5118,aligned detail boundary_id to DATABASE
+split_detail,EB1000.json,EB1000,SW_ELK_2026,5119,aligned detail boundary_id to DATABASE
+split_detail,EB1001.json,EB1001,SW_ELK_ANYBULL_2026,5120,aligned detail boundary_id to DATABASE
+split_detail,EB1002.json,EB1002,SW_ELK_ANYBULL_2026,5121,aligned detail boundary_id to DATABASE
+split_detail,EB1003.json,EB1003,SW_ELK_SPIKE_2026,5122,aligned detail boundary_id to DATABASE
+split_detail,EB1004.json,EB1004,SW_ELK_SPIKE_2026,5123,aligned detail boundary_id to DATABASE
+split_detail,EB1005.json,EB1005,EB1005_SPECIAL_2026,5124,aligned detail boundary_id to DATABASE
+split_detail,EB1007.json,EB1007,SW_ELK_ANYBULL_2026,5125,aligned detail boundary_id to DATABASE
+split_detail,EB1009.json,EB1009,SW_ELK_SPIKE_2026,5126,aligned detail boundary_id to DATABASE
+split_detail,EB1010.json,EB1010,SW_ELK_ANYBULL_2026,5127,aligned detail boundary_id to DATABASE
+split_detail,EB1011.json,EB1011,EB1011_SPECIAL_2026,5128,aligned detail boundary_id to DATABASE
+split_detail,EB3209.json,EB3209,682,683,aligned detail boundary_id to DATABASE
+split_detail,EX1000.json,EX1000,EX1000_EXT_ARCH_2026,5130,aligned detail boundary_id to DATABASE
+split_detail,GO1000.json,GO1000,SW_MOUNTAIN_GOAT_2026,5131,aligned detail boundary_id to DATABASE
+split_detail,MB1000.json,MB1000,SW_MOOSE_2026,5133,aligned detail boundary_id to DATABASE
+split_detail,PB1000.json,PB1000,SW_PRONGHORN_2026,5134,aligned detail boundary_id to DATABASE
+split_detail,RS0001.json,RS0001,SW_RM_BIGHORN_2026,5135,aligned detail boundary_id to DATABASE
+split_detail,TK1001.json,TK1001,SW_TURKEY_MGMT_2026,5136,aligned detail boundary_id to DATABASE
+split_detail,TK1019.json,TK1019,SW_TURKEY_MGMT_2026,5137,aligned detail boundary_id to DATABASE
+split_detail,TK1022.json,TK1022,SW_TURKEY_MGMT_2026,5138,aligned detail boundary_id to DATABASE
+split_detail,DS1003.json,DS1003,99,5141,aligned detail boundary_id to DATABASE
+split_detail,EA1221.json,EA1221,175,5145,aligned detail boundary_id to DATABASE
+boundary_geojson_metadata,5111.geojson,EA1180,5111,684,aligned metadata.boundary_id to DATABASE
+boundary_geojson_metadata,5114.geojson,EA1270,5114,175,aligned metadata.boundary_id to DATABASE
+boundary_geojson_metadata,5115.geojson,EA1271,5115,51,aligned metadata.boundary_id to DATABASE
+boundary_geojson_metadata,5117.geojson,EA2041,5117,29,aligned metadata.boundary_id to DATABASE
+boundary_geojson_metadata,5129.geojson,EB3209,5129,683,aligned metadata.boundary_id to DATABASE
+boundary_geojson_metadata,DB1208.geojson,DB1208,874,808,aligned metadata.boundary_id to DATABASE
+boundary_geojson_metadata,EA1180.geojson,EA1180,5111,684,aligned metadata.boundary_id to DATABASE
+boundary_geojson_metadata,EA1260.geojson,EA1260,808,874,aligned metadata.boundary_id to DATABASE
+boundary_geojson_metadata,EA1261.geojson,EA1261,874,808,aligned metadata.boundary_id to DATABASE
+boundary_geojson_metadata,EA1270.geojson,EA1270,5114,175,aligned metadata.boundary_id to DATABASE
+boundary_geojson_metadata,EA1271.geojson,EA1271,5115,51,aligned metadata.boundary_id to DATABASE
+boundary_geojson_metadata,EA2041.geojson,EA2041,5117,29,aligned metadata.boundary_id to DATABASE
+boundary_geojson_metadata,EB3209.geojson,EB3209,5129,683,aligned metadata.boundary_id to DATABASE
+boundary_geojson_metadata,EB3504.geojson,EB3504,874,808,aligned metadata.boundary_id to DATABASE
+boundary_geojson_metadata,PB5326.geojson,PB5326,9999,830,aligned metadata.boundary_id to DATABASE

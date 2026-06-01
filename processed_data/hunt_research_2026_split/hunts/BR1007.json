@@ -34,7 +34,7 @@
   "dwr_unit_name": "Black Bear Pursuit - Resident",
   "recommended_permits": null,
   "detail_path": "hunts/BR1007.json",
-  "boundary_id": "SW_BLACK_BEAR_2026",
+  "boundary_id": "5003",
   "hunt_class": "Pursuit",
   "data_status": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED",
   "permit_status": "NO_QUOTA_PUBLISHED",

@@ -49,7 +49,7 @@
     "permit_note": "Total count applied from Utah DWR 2025-2027 Multi-Year Conservation Permit working list. Resident/nonresident split is not published for these conservation permits."
   },
   "detail_path": "hunts/BR1000.json",
-  "boundary_id": "SW_BLACK_BEAR_2026",
+  "boundary_id": "5001",
   "hunt_class": "Statewide Permit",
   "data_status": "COMPLETE_TOTAL_ONLY",
   "permit_status": "TOTAL_ONLY",

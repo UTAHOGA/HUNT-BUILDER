@@ -8742,3 +8742,50 @@ o_table=0).
 
 - Notes:
   - Mismatch set includes split-side synthetic/statewide boundary IDs (for example `SW_*`/`*_2026`) and a few numeric swaps; these require reviewed boundary-truth adjudication before any overwrite policy.
+
+## 2026-06-01T11:10:00-06:00 - Total File Reconciliation + Validation (DATABASE Boundary Truth)
+
+- Assigned step:
+  - Perform total reconciliation and validation across:
+    - `DATABASE.csv` (truth source)
+    - `processed_data/hunt_research_2026_split/*`
+    - `processed_data/boundaries/*.geojson` metadata mapping fields
+
+- Reconciliation implementation:
+  - Added executable reconciler:
+    - `scripts/reconcile_total_boundary_mapping_2026.py`
+  - Truth policy:
+    - `DATABASE.csv` `hunt_code -> boundary_id` is authoritative.
+    - Only boundary mapping fields were updated.
+    - Permit/allotment fields were not touched.
+  - Outputs:
+    - `processed_data/audits/total_boundary_reconciliation_validation_2026.json`
+    - `processed_data/audits/total_boundary_reconciliation_changes_2026.csv`
+
+- Reconciliation results:
+  - Split index:
+    - overlap with DATABASE: `1425`
+    - mismatches before: `40`
+    - updated: `40`
+    - mismatches after: `0`
+  - Split detail files:
+    - files for DATABASE hunt codes: `1425`
+    - mismatches before: `40`
+    - updated: `40`
+    - mismatches after: `0`
+    - invalid JSON: `0`
+    - DATABASE hunt codes missing split detail file: `24`
+  - Boundaries metadata:
+    - files with hunt_code overlap to DATABASE: `1467`
+    - mismatches before: `15`
+    - updated: `15`
+    - mismatches after: `0`
+    - invalid JSON: `0`
+  - Total boundary-mapping changes applied: `95`
+
+- Post-reconciliation validation sweep:
+  - `SPLIT_INDEX_MISMATCH = 0`
+  - `SPLIT_DETAIL_MISMATCH = 0`
+  - `BOUNDARY_METADATA_MISMATCH = 0`
+  - `SPLIT_DETAIL_INVALID_JSON = 0`
+  - `BOUNDARY_INVALID_JSON = 0`

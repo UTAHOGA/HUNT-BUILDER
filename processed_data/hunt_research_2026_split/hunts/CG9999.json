@@ -49,7 +49,7 @@
     "permit_note": "2026 resident/nonresident permit split from Utah DWR Hunt Planner export 2026_COUGAR_STATEWIDE.xlsx."
   },
   "detail_path": "hunts/CG9999.json",
-  "boundary_id": "SW_COUGAR_2026",
+  "boundary_id": "5107",
   "hunt_class": "Statewide Permit",
   "data_status": "COMPLETE",
   "permit_status": "FULL_SPLIT",
