@@ -1,0 +1,21 @@
+path,size_bytes,current_storage_mode,classification,served_live,used_by_frontend,recommended_target,notes
+processed_data/display-boundary-index-2026.json,869897,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Builder/map boundary manifest JSON.
+processed_data/statewide_composite_boundaries_2026.geojson,87146863,GIT_LFS_OBJECT,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Primary composite boundaries runtime source for Builder.; large_file>5242880
+processed_data/composite_hunt_unit_mapping_2026.geojson,54914353,GIT_LFS_OBJECT,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Direct unit boundary fallback map used by Builder.; large_file>5242880
+processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson,87146863,GIT_LFS_OBJECT,R2_PUBLIC,no,no,CLOUDFLARE_R2_PUBLIC,Canonical locked reference; publish only when intentionally pinned.; large_file>5242880; not_public_even_though_r2_classification
+processed_data/hunt_research_2026.json,28329606,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research summary contract feed.; large_file>5242880
+processed_data/draw_reality_engine.csv,20594722,GIT_LFS_OBJECT,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Observed draw runtime engine feed.; large_file>5242880
+processed_data/draw_reality_engine_v2.csv,44863034,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Observed draw engine fallback feed.; large_file>5242880
+processed_data/draw_reality_engine_predictive_v2.csv,133,GIT_LFS_POINTER,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Predictive mode feed; currently LFS pointer in repo and requires migration.; git_lfs_pointer_payload_detected; manual_review_required
+processed_data/point_ladder_view.csv,2837401,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research ladder runtime feed.
+processed_data/hunt_master_enriched.csv,133,GIT_LFS_POINTER,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research enriched hunt reference runtime feed.; git_lfs_pointer_payload_detected
+processed_data/hunt_unit_reference_linked.csv,2223630,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research unit reference runtime feed.
+processed_data/public_contracts/outfitters-public.json,7913,GIT_BLOB,REPO_SMALL,yes,yes,GITHUB_REPO,Verify directory contract feed (small).
+processed_data/public_contracts/hunt_odds_history.json,113951774,GIT_LFS_OBJECT,R2_PUBLIC,no,no,CLOUDFLARE_R2_PUBLIC,Large public contract artifact; not direct page dependency today.; large_file>5242880
+processed_data/ml_draw_predictions_v1.csv,47072089,GIT_LFS_OBJECT,LFS_REFERENCE_ONLY,no,no,GIT_LFS_REFERENCE,Large model output; keep as reference unless explicitly promoted to runtime.; large_file>5242880; manual_review_required
+processed_data/hunt_master_enriched_2026_draw_subset.csv,,MISSING,REVIEW_REQUIRED,no,no,REVIEW_REQUIRED,Missing in repo; requires lineage review before use.; missing_file; manual_review_required; review_required
+data_truth/draw_results_truth/normalized/draw_results_long.csv,77791622,GIT_LFS_OBJECT,LFS_REFERENCE_ONLY,no,no,GIT_LFS_REFERENCE,Truth-source long-form draw rows; not a direct browser runtime feed.; large_file>5242880
+processed_data/hunt_truth_from_json.sqlite,85475328,GIT_LFS_OBJECT,INTERNAL_ONLY,no,no,LOCAL_INTERNAL_ONLY,Internal SQLite build/reference artifact.; large_file>5242880
+processed_data/draw_system_coverage_report.csv,78555708,GIT_LFS_OBJECT,INTERNAL_ONLY,no,no,LOCAL_INTERNAL_ONLY,Internal QA/audit report artifact.; large_file>5242880
+processed_data/draw_reality_engine_backup_before_2024_import.csv,52620090,GIT_LFS_OBJECT,LFS_REFERENCE_ONLY,no,no,GIT_LFS_REFERENCE,Historical backup/reference dataset.; large_file>5242880
+processed_data/backups/**/point_ladder_view.csv,,GLOB_PATTERN,INTERNAL_ONLY,no,no,LOCAL_INTERNAL_ONLY,Backup copies only; never publish directly.

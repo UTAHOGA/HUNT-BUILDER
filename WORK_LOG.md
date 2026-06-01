@@ -1,3 +1,50 @@
+## 2026-06-01T08:12:00-06:00 - Large-File Delivery Architecture Pass (R2 + Runtime Manifest)
+
+- Assigned action:
+  - Implement safest large-file delivery architecture with Cloudflare R2 + tracked runtime manifest.
+
+- Files changed:
+  - `.gitattributes`
+  - `config.js`
+  - `package.json`
+  - `scripts/build-pages-dist.js`
+  - `scripts/publish-runtime-assets-r2.js` (new)
+  - `docs/large_file_delivery_architecture.md` (new)
+  - `public/data/runtime-manifest.json` (generated)
+  - `data/runtime-manifest.json` (generated mirror)
+  - `processed_data/audits/large_file_classification_audit.csv` (generated)
+
+- Outputs created:
+  - `processed_data/audits/large_file_classification_audit.csv`
+  - `public/data/runtime-manifest.json`
+  - `data/runtime-manifest.json`
+  - `docs/large_file_delivery_architecture.md`
+
+- Work completed:
+  - Added a single audited publish script that:
+    - classifies runtime/large-file targets
+    - writes audit CSV
+    - writes canonical runtime manifest
+    - supports optional R2 upload via S3-compatible endpoint (AWS CLI).
+  - Implemented manifest-driven runtime URL preference in `config.js` for Builder and Research large runtime feeds while preserving existing fallback chains.
+  - Added build-path support for runtime manifest files in `pages-dist`.
+  - Fixed suspicious `.gitattributes` pattern:
+    - `Git[[:space:]]LFS/*.exe` -> `Git\ LFS/*.exe`.
+
+- Validation:
+  - `node scripts/publish-runtime-assets-r2.js --dry-run --verbose` PASS
+  - `node --check config.js` PASS
+  - `node --check scripts/publish-runtime-assets-r2.js` PASS
+  - `node --check scripts/build-pages-dist.js` PASS
+  - `git diff --check` PASS
+
+- Classification counts (audit run):
+  - `REPO_SMALL`: 1
+  - `LFS_REFERENCE_ONLY`: 3
+  - `R2_PUBLIC`: 12
+  - `INTERNAL_ONLY`: 3
+  - `REVIEW_REQUIRED`: 1
+
 ## 2026-06-01T07:48:00-06:00 - Google Earth 3D Chrome Runtime Reliability Patch (Dual-Mode Retry + Structured Diagnostics)
 
 - Assigned action:

@@ -47,6 +47,52 @@ window.UOGA_CONFIG = (() => {
   const CLOUDFLARE_OBJECT_BASE = CLOUDFLARE_R2_BASE || CLOUDFLARE_BASE;
   const fromR2 = (relPath) => CLOUDFLARE_OBJECT_BASE ? `${CLOUDFLARE_OBJECT_BASE}/${relPath}` : '';
   const withVersion = (url, version) => `${url}?v=${version}`;
+  const appendVersion = (url, version) => {
+    if (!url) return '';
+    const clean = String(url).trim();
+    if (!clean) return '';
+    return clean.includes('?') ? `${clean}&v=${version}` : `${clean}?v=${version}`;
+  };
+
+  const RUNTIME_MANIFEST_CANDIDATES = [
+    './public/data/runtime-manifest.json',
+    './data/runtime-manifest.json',
+  ];
+
+  function loadRuntimeManifestSync() {
+    if (typeof window === 'undefined' || typeof XMLHttpRequest === 'undefined') return null;
+    for (const candidate of RUNTIME_MANIFEST_CANDIDATES) {
+      try {
+        const req = new XMLHttpRequest();
+        req.open('GET', `${candidate}?v=20260601-runtime-manifest-1`, false);
+        req.send(null);
+        if (req.status < 200 || req.status >= 300) continue;
+        const parsed = JSON.parse(String(req.responseText || '{}'));
+        const assets = Array.isArray(parsed?.assets) ? parsed.assets : [];
+        const byKey = {};
+        assets.forEach((asset) => {
+          const key = String(asset?.key || '').trim();
+          if (!key) return;
+          byKey[key] = asset;
+        });
+        return { ...parsed, byKey };
+      } catch (_err) {
+        // Continue through candidates/fallback.
+      }
+    }
+    return null;
+  }
+
+  const RUNTIME_MANIFEST = loadRuntimeManifestSync();
+  const runtimeManifestAsset = (key) => {
+    const k = String(key || '').trim();
+    return k ? (RUNTIME_MANIFEST?.byKey?.[k] || null) : null;
+  };
+  const manifestCanonical = (key, version) => {
+    const url = String(runtimeManifestAsset(key)?.canonical_url || '').trim();
+    return url ? appendVersion(url, version) : '';
+  };
+
   const orderedProcessedRuntimeCandidates = (relativePath, version) => {
     const local = `./${relativePath}?v=${version}`;
     const remoteBase = fromR2(relativePath);
@@ -108,10 +154,12 @@ window.UOGA_CONFIG = (() => {
     // in production, while some processed_data variants may be LFS pointers.
     `./data/hunt_boundaries.geojson?v=${HUNT_DATA_VERSION}`,
     `./data/hunt-boundaries-lite.geojson?v=${HUNT_DATA_VERSION}`,
+    manifestCanonical('builder_composite_boundaries_2026_geojson', HUNT_DATA_VERSION),
     ...orderedProcessedRuntimeCandidates('processed_data/statewide_composite_boundaries_2026.geojson', HUNT_DATA_VERSION),
   ].filter(Boolean);
   const BOUNDARY_MANIFEST_SOURCES = [];
   const DISPLAY_BOUNDARY_INDEX_SOURCES = [
+    manifestCanonical('builder_display_boundary_index_2026_json', HUNT_DATA_VERSION),
     ...orderedProcessedRuntimeCandidates('processed_data/display-boundary-index-2026.json', HUNT_DATA_VERSION),
     `./processed_data/display-boundary-index-2026.csv?v=${HUNT_DATA_VERSION}`,
   ].filter(Boolean);
@@ -121,6 +169,7 @@ window.UOGA_CONFIG = (() => {
   ].filter(Boolean);
   const COMPOSITE_BOUNDARY_SOURCES = [
     `./data/statewide-composite-members-2026-lite.geojson?v=${HUNT_DATA_VERSION}`,
+    manifestCanonical('builder_composite_boundaries_2026_geojson', HUNT_DATA_VERSION),
     ...orderedProcessedRuntimeCandidates('processed_data/statewide_composite_boundaries_2026.geojson', HUNT_DATA_VERSION),
   ].filter(Boolean);
 
@@ -184,11 +233,14 @@ window.UOGA_CONFIG = (() => {
     ============================================================================
   */
   const HUNT_RESEARCH_DATA_SOURCES = [
+    manifestCanonical('research_hunt_research_2026_json', HUNT_RESEARCH_DATA_VERSION),
     `${CLOUDFLARE_BASE}/processed_data/hunt_research_2026.json?v=${HUNT_RESEARCH_DATA_VERSION}`,
     `./processed_data/hunt_research_2026.json?v=${HUNT_RESEARCH_DATA_VERSION}`,
   ];
 
   const HUNT_RESEARCH_OBSERVED_ENGINE_SOURCES = [
+    manifestCanonical('research_draw_reality_engine_csv', HUNT_RESEARCH_DATA_VERSION),
+    manifestCanonical('research_draw_reality_engine_v2_csv', HUNT_RESEARCH_DATA_VERSION),
     `${CLOUDFLARE_BASE}/processed_data/draw_reality_engine.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
     `./processed_data/draw_reality_engine.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
     `${CLOUDFLARE_BASE}/processed_data/draw_reality_engine_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
@@ -196,6 +248,7 @@ window.UOGA_CONFIG = (() => {
   ];
 
   const HUNT_RESEARCH_PREDICTIVE_ENGINE_SOURCES = [
+    manifestCanonical('research_draw_reality_engine_predictive_v2_csv', HUNT_RESEARCH_DATA_VERSION),
     `${CLOUDFLARE_BASE}/processed_data/draw_reality_engine_predictive_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
     `./processed_data/draw_reality_engine_predictive_v2.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
   ];
@@ -206,16 +259,19 @@ window.UOGA_CONFIG = (() => {
     : HUNT_RESEARCH_OBSERVED_ENGINE_SOURCES;
 
   const HUNT_RESEARCH_LADDER_SOURCES = [
+    manifestCanonical('research_point_ladder_view_csv', HUNT_RESEARCH_DATA_VERSION),
     `${CLOUDFLARE_BASE}/processed_data/point_ladder_view.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
     `./processed_data/point_ladder_view.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
   ];
 
   const HUNT_RESEARCH_MASTER_SOURCES = [
+    manifestCanonical('research_hunt_master_enriched_csv', HUNT_RESEARCH_DATA_VERSION),
     `${CLOUDFLARE_BASE}/processed_data/hunt_master_enriched.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
     `./processed_data/hunt_master_enriched.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
   ];
 
   const HUNT_RESEARCH_REFERENCE_SOURCES = [
+    manifestCanonical('research_hunt_unit_reference_linked_csv', HUNT_RESEARCH_DATA_VERSION),
     `${CLOUDFLARE_BASE}/processed_data/hunt_unit_reference_linked.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
     `./processed_data/hunt_unit_reference_linked.csv?v=${HUNT_RESEARCH_DATA_VERSION}`,
   ];
@@ -456,6 +512,8 @@ window.UOGA_CONFIG = (() => {
 
     CLOUDFLARE_BASE,
     CLOUDFLARE_R2_BASE,
+    RUNTIME_MANIFEST_CANDIDATES,
+    RUNTIME_MANIFEST,
 
     HUNT_DATA_VERSION,
     OUTFITTERS_DATA_VERSION,

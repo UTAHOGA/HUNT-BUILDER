@@ -42,6 +42,7 @@ const rootFiles = [
 const dataFiles = [
   'data/hunt-master-canonical-2026-foundation.json',
   'data/hunt-master-canonical-2026-source-of-truth.json',
+  'data/runtime-manifest.json',
   'data/hunt_predictions.json',
   'data/hunt_application_outlook.json',
   'data/hunt_odds_history.json',
@@ -116,6 +117,7 @@ const dirsToCopy = [
   'processed_data/production',
   'processed_data/public_contracts',
   'processed_data/research_page',
+  'public/data',
   'public/hard-copy',
 ];
 

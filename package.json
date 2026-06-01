@@ -31,6 +31,8 @@
         "sync:draw-reality-runtime-trim": "node scripts/trim-and-normalize-draw-reality-runtime.js",
         "verify:boundaries-2026": "node scripts/verify-boundary-id-render-map-2026.js",
         "guard:public-manifests": "node scripts/guard-public-manifest-exposure.js",
+        "audit:large-file-delivery": "node scripts/publish-runtime-assets-r2.js --dry-run --verbose",
+        "publish:runtime-r2": "node scripts/publish-runtime-assets-r2.js --upload --verbose",
         "hunt-tables:2026:clean-xlsx": "py scripts/regenerate-hunt-tables-2026-clean-xlsx.py",
         "hunt-tables:2026:clean-xlsx:publish": "py scripts/regenerate-hunt-tables-2026-clean-xlsx.py --publish",
         "hunt-tables:2026:pdf": "py scripts/convert-hunt-tables-2026-xlxs-to-pdfs.py",
