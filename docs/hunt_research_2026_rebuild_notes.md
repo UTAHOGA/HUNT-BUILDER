@@ -1,6 +1,6 @@
 # hunt_research_2026 Rebuild Notes
 
-Generated: 2026-06-01T11:30:13.295533
+Generated: 2026-06-01T12:03:38.198104
 
 ## Contract rebuild goal
 - Rebuilt `processed_data/hunt_research_2026.json` from canonical sources with full 2026 hunt-code coverage and runtime-aligned field set.

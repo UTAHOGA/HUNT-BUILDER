@@ -68,13 +68,12 @@ processed_data/permit_allocation_2026_last_sync.json
 
 point_ladder_view1.csv
 
+# /scripts*
 
-
-
-
-
-
+# /processed_data/hunt_research_2026
 
 
 point_ladder_view1.csv
 *.md
+processed_data/hunt_research_2026.json
+

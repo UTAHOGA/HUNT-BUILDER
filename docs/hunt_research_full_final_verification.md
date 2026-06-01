@@ -1,6 +1,6 @@
 # Hunt Research Full Final Verification
 
-Generated: 2026-06-01T11:49:49.075227
+Generated: 2026-06-01T11:56:53.085518
 
 ## Scope
 - Full-field feeder-to-contract reconciliation rerun across all mapped Hunt Research fields.
