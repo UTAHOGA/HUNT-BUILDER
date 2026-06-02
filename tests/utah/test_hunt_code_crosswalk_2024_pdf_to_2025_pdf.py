@@ -44,7 +44,8 @@ def test_crosswalk_counts_and_guardrail_are_stable() -> None:
     assert summary["status_counts"] == {
         "DROPPED_NO_CURRENT_ACTIVE_MATCH_NO_NEXT_YEAR_PDF_FAMILY": 7,
         "DROPPED_NO_NEXT_YEAR_PDF_OR_CURRENT_ACTIVE_MATCH": 6,
-        "REPLACED_BY_NEXT_YEAR_OR_CURRENT_CANDIDATE": 24,
+        "MAPPED_BY_TRUSTED_CURRENT_HISTORICAL_CROSSWALK_TO_CURRENT_ACTIVE": 3,
+        "REPLACED_BY_NEXT_YEAR_OR_CURRENT_CANDIDATE": 21,
         "SAME_CODE_CURRENT_ACTIVE_NO_NEXT_YEAR_PDF_MATCH": 564,
         "SAME_CODE_IN_2025_PDF_AND_CURRENT_ACTIVE": 273,
     }
@@ -62,6 +63,9 @@ def test_crosswalk_identifies_dropped_replacements_and_same_code_reviews() -> No
     assert rows["MB6200"]["crosswalk_status"] == "SAME_CODE_IN_2025_PDF_AND_CURRENT_ACTIVE"
     assert rows["DB1089"]["crosswalk_status"] == "DROPPED_NO_NEXT_YEAR_PDF_OR_CURRENT_ACTIVE_MATCH"
     assert rows["PB5313"]["crosswalk_status"] == "DROPPED_NO_CURRENT_ACTIVE_MATCH_NO_NEXT_YEAR_PDF_FAMILY"
+    assert rows["DB1036"]["crosswalk_status"] == "MAPPED_BY_TRUSTED_CURRENT_HISTORICAL_CROSSWALK_TO_CURRENT_ACTIVE"
+    assert rows["DB1036"]["mapped_hunt_code"] == "LD1108"
+    assert rows["DB1036"]["mapped_source"] == "TRUSTED_CURRENT_TO_HISTORICAL_CROSSWALK_ACTIVE_DB"
 
     assert "DB1320" not in dropped_rows
     assert "DB1089" in dropped_rows

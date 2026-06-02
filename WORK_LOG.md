@@ -1,3 +1,325 @@
+## 2026-06-01T18:25:00-06:00 - 2024 Draw Results -> 2025 Modeling Reconciliation Applied to DATABASE 2025 Permit Fields
+
+- Assigned action:
+  - Run the same permit reconciliation pass using:
+    - `rebuilt_2024_draw_results_for_2025_modeling.csv`
+  - Apply values to the DATABASE 2025 permit columns.
+
+- Source:
+  - `C:\Users\tyler\Desktop\GitHub\HUNTS\pipeline\RAW\hunt_unit_database\2025\csv\Draw Odds\rebuilt_2024_draw_results_for_2025_modeling.csv`
+
+- Implementation:
+  - Aggregated point-level rows to hunt-code level:
+    - `permits_2025_res`: max `total_permits` for `Resident`
+    - `permits_2025_nr`: max `total_permits` for `Nonresident`
+    - `permits_2025_total = permits_2025_res + permits_2025_nr`
+  - Updated matching codes in:
+    - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+  - Updated `permits_2025_source` on matched rows to:
+    - `REBUIlT_2024_DRAW_RESULTS_FOR_2025_MODELING`
+  - Non-covered DB codes were left unchanged (no destructive clearing in this pass).
+  - Created backup:
+    - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.pre_2024_for_2025_reconcile_backup.csv`
+
+- Validation summary:
+  - DB unique hunt codes: `1449`
+  - Source unique hunt codes: `978`
+  - Updated rows from source overlap: `959`
+  - Rows changed in any 2025 permit field: `601`
+  - DB codes not in source: `490`
+  - Source codes not in DB: `19`
+  - Totals check on updated rows (`res + nr == total`): PASS (`0` mismatches)
+
+## 2026-06-01T21:07:00-06:00 - Implement Trusted Current/Historical Crosswalk in 2024→2025 PDF Hunt-Code Mapping
+
+- Assigned action:
+  - Use trusted crosswalk `data_truth/crosswalk_truth/normalized/current_to_historical_hunt_code_crosswalk_2026.csv`
+    as first-class source when mapping historical 2024 PDF draws to current 2026 active hunt codes in
+    `scripts/build-2024-to-2025-pdf-hunt-code-crosswalk.py`.
+
+- Implementation:
+  - Added `TRUSTED_CROSSWALK` index build and inverse lookup for historical→current candidate resolution.
+  - Added `mapped_from_crosswalk(...)` resolution path that prefers active `DATABASE.csv` rows before fallback rows.
+  - Added crosswalk-driven status values:
+    - `MAPPED_BY_TRUSTED_CURRENT_HISTORICAL_CROSSWALK_TO_CURRENT_ACTIVE`
+    - `MAPPED_BY_TRUSTED_CURRENT_HISTORICAL_CROSSWALK_DB_ONLY`
+  - Preserved existing candidate fallback behavior; crosswalk paths are attempted before candidate heuristics.
+  - Updated test assertion coverage for `DB1036` (`DB1107` legacy source remapped to `LD1108`) and status accounting.
+
+- Validation summary:
+  - `python scripts\build-2024-to-2025-pdf-hunt-code-crosswalk.py` executed and emitted updated crosswalk summary output.
+  - `python -m py_compile scripts\build-2024-to-2025-pdf-hunt-code-crosswalk.py tests\utah\test_hunt_code_crosswalk_2024_pdf_to_2025_pdf.py` passed.
+  - `python -m pytest tests\utah\test_hunt_code_crosswalk_2024_pdf_to_2025_pdf.py -q` passed (`2` tests).
+  - Status shift observed in output summary:
+    - `MAPPED_BY_TRUSTED_CURRENT_HISTORICAL_CROSSWALK_TO_CURRENT_ACTIVE: 3`
+    - `REPLACED_BY_NEXT_YEAR_OR_CURRENT_CANDIDATE: 21`
+
+## 2026-06-01T18:40:00-06:00 - Strict Cleanup Pass for Non-Covered 2024->2025 Codes
+
+- Assigned action:
+  - Perform strict cleanup for the `490` hunt codes not covered by the rebuilt 2024->2025 source.
+
+- Rule applied:
+  - For all hunt codes **not present** in:
+    - `rebuilt_2024_draw_results_for_2025_modeling.csv`
+  - Cleared:
+    - `permits_2025_res`
+    - `permits_2025_nr`
+    - `permits_2025_total`
+    - `permits_2025_source`
+
+- Artifacts:
+  - Cleanup audit rows written:
+    - `processed_data/audits/strict_cleanup_noncovered_2024for2025_permits.csv`
+  - Safety backup:
+    - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.pre_strict_cleanup_noncovered_2024for2025_backup.csv`
+
+- Validation summary:
+  - Non-covered codes total: `490`
+  - Non-covered rows with any 2025 permit data before cleanup: `490`
+  - Non-covered rows with any 2025 permit data after cleanup: `0`
+  - Global populated row count after strict cleanup:
+    - `permits_2025_res`: `959`
+    - `permits_2025_nr`: `959`
+    - `permits_2025_total`: `959`
+
+## 2026-06-01T19:05:00-06:00 - 24_bg-odds.pdf Resolution Attempt for Remaining Non-Covered Codes
+
+- Assigned action:
+  - Use `24_bg-odds.pdf` to resolve missing hunt-code data after strict non-covered cleanup.
+
+- Source used:
+  - `C:\Users\tyler\Desktop\GitHub\HUNTS\pipeline\RAW\hunt_unit_database\2025\pdf\draw_odds\24_bg-odds.pdf`
+
+- Method:
+  - Scanned all PDF pages for hunt-code patterns (`[A-Z]{2}[0-9]{4}`).
+  - Compared extracted PDF hunt-code set against the current `490` non-covered DATABASE hunt codes.
+
+- Result:
+  - PDF pages scanned: `587`
+  - Unique hunt codes detected in PDF text: `580`
+  - Non-covered DATABASE codes checked: `490`
+  - Non-covered codes present in `24_bg-odds.pdf`: `0`
+  - Non-covered codes absent from `24_bg-odds.pdf`: `490`
+
+- Conclusion:
+  - No additional missing codes can be resolved from `24_bg-odds.pdf`.
+  - DATABASE remains unchanged by this step.
+
+- Outputs:
+  - `processed_data/audits/noncovered_2024for2025_pdf24bgodds_resolution_audit.csv`
+  - `processed_data/audits/noncovered_2024for2025_pdf24bgodds_resolution_summary.json`
+
+## 2026-06-01T19:25:00-06:00 - Non-Covered Retry Using Rebuilt 2024->2025 Files with Deterministic Crosswalk
+
+- Assigned action:
+  - Retry missing-code resolution using:
+    - `rebuilt_2024_draw_results_for_2025_modeling.csv`
+    - `rebuilt_2024_draw_results_for_2025_modeling_report.md`
+
+- Context from report:
+  - Rebuild scope excludes some categories (e.g., Dedicated Hunter / Turkey / Expo / Sportsman when not in uploaded source bundle), so full 1:1 code coverage is not expected.
+
+- Retry method (strict):
+  - Start from non-covered DATABASE codes (not present in rebuilt source).
+  - Apply deterministic family crosswalk candidates only:
+    - `EL -> EB`
+    - `LO -> DB`
+    - `LD -> DB`
+    - `LP -> PB`
+  - Require high-confidence checks before promotion:
+    - species match
+    - weapon match
+    - strong normalized hunt-name similarity
+  - Promote only `HIGH` confidence rows.
+
+- Results:
+  - Non-covered codes evaluated: `490`
+  - Crosswalk candidates found: `219`
+  - High-confidence promoted rows: `61`
+  - Remaining non-covered rows still blank: `429`
+  - Totals integrity on promoted rows (`res + nr == total`): PASS (`0` mismatches)
+
+- Artifacts:
+  - Audit file:
+    - `processed_data/audits/noncovered_2024for2025_crosswalk_retry_audit.csv`
+  - Backup:
+    - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.pre_noncovered_2024for2025_crosswalk_retry_backup.csv`
+
+- Source label written for promoted rows:
+  - `REBUIlT_2024_DRAW_RESULTS_FOR_2025_MODELING_CROSSWALK_RETRY`
+
+## 2026-06-01T19:40:00-06:00 - Audit-Only Medium-Threshold Candidate Pass (No Writes)
+
+- Assigned action:
+  - Run one additional pass on the remaining non-covered/blank set with a lower threshold (`MEDIUM`) but keep results audit-only for approval before any write.
+
+- Method:
+  - Remaining set definition:
+    - non-covered by rebuilt source
+    - still blank in `permits_2025_res|nr|total`
+  - Deterministic family candidate map:
+    - `EL -> EB`
+    - `LO -> DB`
+    - `LD -> DB`
+    - `LP -> PB`
+  - Medium threshold criteria:
+    - species match
+    - weapon match
+    - normalized name similarity >= `0.45` (Jaccard token match)
+  - No `DATABASE.csv` mutations in this pass.
+
+- Output:
+  - Candidate audit CSV:
+    - `processed_data/audits/noncovered_2024for2025_medium_threshold_candidates.csv`
+  - Candidate summary JSON:
+    - `processed_data/audits/noncovered_2024for2025_medium_threshold_candidates_summary.json`
+
+- Summary counts:
+  - Remaining non-covered blank codes evaluated: `429`
+  - Medium-or-higher candidates found: `36`
+  - Candidate unique target codes: `36`
+  - Confidence split:
+    - `MEDIUM`: `36`
+    - `HIGH`: `0`
+  - Guardrail:
+    - **Audit-only**; approval required before any promotion write.
+
+## 2026-06-01T20:25:00-06:00 - Added Separate Ladder JSON Files (Preference vs Bonus/Max-Random)
+
+- Assigned action:
+  - Create separate ladder JSON outputs for:
+    - preference-point draw hunts
+    - bonus/max-random draw hunts
+
+- Implementation:
+  - Updated `scripts/build-hunt-research-2026-contract.py` to emit:
+    - `processed_data/hunt_research_2026_ladder_preference.json`
+    - `processed_data/hunt_research_2026_ladder_bonus_max_random.json`
+  - Classification rule used:
+    - preference file: rows where draw system contains `PREFERENCE`
+    - bonus/max-random file: rows where draw system contains `BONUS`
+  - Full ladder remains unchanged as canonical superset:
+    - `processed_data/hunt_research_2026_ladder.json`
+
+- Rebuild + validation:
+  - Full ladder rows: `91,712`
+  - Preference ladder rows (after business-rule update): `3,432`
+  - Bonus/max-random ladder rows: `43,164`
+  - Classified rows total: `46,596`
+  - Unclassified rows (not preference/bonus; retained in full ladder): `45,116`
+  - Family integrity checks:
+    - non-preference rows in preference file: `0`
+    - non-bonus rows in bonus/max-random file: `0`
+  - Preference family breakdown:
+    - `PRIVATE_LANDS_ONLY_ANTLERLESS_ELK`: `1,782`
+    - `PREFERENCE_DEDICATED_HUNTER_DEER`: `1,518`
+    - `PREFERENCE_GENERAL_SEASON_BUCK_DEER`: `132`
+  - `python -m py_compile scripts/build-hunt-research-2026-contract.py` -> PASS
+
+## 2026-06-01T20:05:00-06:00 - Approved Medium-Threshold Promotion + Hunt Research Contract Regeneration
+
+- Assigned action:
+  - Promote approved medium-threshold candidate rows into `DATABASE.csv`.
+  - Rebuild Hunt Research JSON contracts (full + split) after promotion.
+
+- Promotion input:
+  - `processed_data/audits/noncovered_2024for2025_medium_threshold_candidates.csv`
+
+- Database write results:
+  - Candidate rows in file: `36`
+  - DATABASE rows updated: `36`
+  - Totals integrity on promoted rows (`res + nr == total`): PASS (`0` mismatches)
+  - Source label applied:
+    - `REBUIlT_2024_DRAW_RESULTS_FOR_2025_MODELING_MEDIUM_APPROVED`
+
+- Promotion artifacts:
+  - Promotion audit:
+    - `processed_data/audits/noncovered_2024for2025_medium_threshold_promoted.csv`
+  - Safety backup:
+    - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.pre_noncovered_2024for2025_medium_promote_backup.csv`
+
+- Post-promotion DATABASE field population:
+  - `permits_2025_res` non-null rows: `1056`
+  - `permits_2025_nr` non-null rows: `1056`
+  - `permits_2025_total` non-null rows: `1056`
+
+- Hunt Research rebuild:
+  - Ran `scripts/build-hunt-research-2026-contract.py`
+  - Full contract:
+    - `processed_data/hunt_research_2026.json` rows: `91,712`
+  - Split contracts:
+    - `processed_data/hunt_research_2026_summary.json` rows: `2,987`
+    - `processed_data/hunt_research_2026_ladder.json` rows: `91,712`
+  - Group-key parity check:
+    - full vs summary missing groups: `0`
+    - full vs ladder missing groups: `0`
+
+## 2026-06-01T18:05:00-06:00 - Hunt Research Contract Split (Summary + Ladder) with Backward Compatibility
+
+- Assigned action:
+  - Decide and implement the safest structure so Hunt Research data can remain renderable while reducing contract weight and preserving clean join behavior.
+
+- Implementation completed:
+  - Updated contract build script to emit three files:
+    - `processed_data/hunt_research_2026.json` (full/backward-compatible contract)
+    - `processed_data/hunt_research_2026_ladder.json` (point-level ladder rows)
+    - `processed_data/hunt_research_2026_summary.json` (group-level summary rows keyed by `hunt_code + residency + draw_pool`)
+  - Updated `hunt-research.js` runtime load order:
+    1. Prefer split canonical contracts (`summary + ladder`)
+    2. Fall back to full canonical contract
+    3. Fall back to legacy parallel feeds only if enabled
+
+- Validation:
+  - Rebuilt contract successfully:
+    - full rows: `91,712`
+    - summary rows: `2,987`
+    - unique hunt codes: `1,449`
+    - missing hunt codes vs DATABASE: `0`
+  - Join integrity checks:
+    - group keys in full contract: `2,987`
+    - group keys in summary: `2,987`
+    - summary missing groups: `0`
+    - summary extra groups: `0`
+  - Syntax/consistency:
+    - `python -m py_compile scripts/build-hunt-research-2026-contract.py` -> PASS
+    - `git diff --check` -> PASS
+
+## 2026-06-01T17:25:00-06:00 - DATABASE.csv 2025 Draw-Result Permit Backfill (for 2026 Modeling Columns)
+
+- Assigned action:
+  - Populate `DATABASE.csv` 2025 draw-result permit columns from rebuilt draw-results source:
+    - `permits_2025_res`
+    - `permits_2025_nr`
+    - `permits_2025_total`
+
+- Source used:
+  - `C:\Users\tyler\Desktop\GitHub\HUNTS\pipeline\RAW\hunt_unit_database\2026\csv\Draw Odds\rebuilt_2025_draw_results_for_2026_modeling.csv`
+
+- Implementation:
+  - Aggregated point-level source rows to one value per `hunt_code`:
+    - `permits_2025_res`: max observed `total_permits` where `residency=Resident`
+    - `permits_2025_nr`: max observed `total_permits` where `residency=Nonresident`
+    - `permits_2025_total = permits_2025_res + permits_2025_nr`
+  - Wrote results into:
+    - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+
+- Validation summary:
+  - `DATABASE.csv` rows: `1449`
+  - Unique DB hunt codes: `1449`
+  - Unique source hunt codes: `1053`
+  - Updated DB rows with mapped source values: `1052`
+  - DB codes missing from source: `397`
+  - Source codes missing from DB: `1` (`PB5343`)
+  - Source ambiguity note (multiple point-level permit values within same hunt/residency):
+    - resident ambiguous codes: `1048`
+    - nonresident ambiguous codes: `576`
+  - Field-level changed counts vs pre-backfill:
+    - `permits_2025_res`: `878`
+    - `permits_2025_nr`: `376`
+    - `permits_2025_total`: `880`
+    - rows changed in any of 3 fields: `881`
+
 ## 2026-06-01T15:20:00-06:00 - 2025 Draw Feed Audit vs Legacy 2026 Permit Overlay + Contract Precedence Repair
 
 - Assigned action:
@@ -10778,3 +11100,199 @@ o_table=0).
     - contract codes: `1449`
     - missing vs DB codes: `0`
   - `git diff --check`: PASS
+
+## 2026-06-01T20:05:00-06:00 - Rebuilt 2025 Draw Results Source Integration
+
+- User-provided source reviewed:
+  - `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2026/csv/Draw Odds/rebuilt_2025_draw_results_for_2026_modeling.csv`
+  - profile: `75,194` rows, `1,053` unique hunt codes, `reported_hunt_year=2025`.
+
+- Script integration updates:
+  - `scripts/build-hunt-research-2026-contract.py`
+  - Added primary source candidates for 2025 draw history and 2025 supplement lookup:
+    - local HUNT-BUILDER rebuilt file path
+    - external HUNTS rebuilt file path fallback
+    - normalized draw truth fallback
+
+- Runtime validation:
+  - Rebuild executed successfully.
+  - Current contract still full-universe (`1,449` codes), with 2025 field population based on 2025-source coverage.
+  - Verified `2025 LE Elk Draw Results.pdf` detail pages begin on page 2 and carry `EB####` hunt identifiers (`210` unique EB codes extracted from pages 2+).
+## 2026-06-01T20:45:00-06:00 - Preference Classification Expansion (Buck Deer General Season + Private Antlerless Elk)
+
+- Assigned rule clarification:
+  - All Buck Deer General Season hunts are preference-point hunts.
+  - Private Lands Only Antlerless Elk hunts are preference-point hunts.
+
+- Implementation:
+  - Updated `classify_ladder_row(...)` in:
+    - `scripts/build-hunt-research-2026-contract.py`
+  - Added preference classification rule:
+    - `species == DEER`
+    - `hunt_type` contains `GENERAL SEASON`
+    - `sex_type` contains `BUCK` or hunt name contains `BUCK DEER`
+  - Existing private antlerless elk preference rule retained.
+
+- Rebuild + validation:
+  - Full ladder rows: `91,712`
+  - Preference ladder rows: `17,820`
+  - Bonus/max-random ladder rows: `43,164`
+  - Unclassified rows: `30,728`
+  - Preference subset checks:
+    - `PRIVATE_LANDS_ONLY_ANTLERLESS_ELK`: `1,782` rows
+    - Buck Deer General Season rows in preference file: `15,906`
+
+## 2026-06-01T21:05:00-06:00 - 2023 Draw Results -> 2024 Modeling Backfill Applied to DATABASE 2024 Permit Fields
+
+- Assigned action:
+  - Ingest rebuilt 2023 draw-results source for 2024 modeling and write the corresponding 2024 permit columns in canonical `DATABASE.csv`.
+
+- Source:
+  - `C:\Users\tyler\Desktop\GitHub\HUNTS\pipeline\RAW\hunt_unit_database\2024\csv\rebuilt_2023_draw_results_for_2024_modeling.csv`
+
+- Implementation:
+  - Added/used `DATABASE.csv` columns:
+    - `permits_2024_res`
+    - `permits_2024_nr`
+    - `permits_2024_total`
+    - `permits_2024_source`
+  - Aggregated point-level rows by `hunt_code`:
+    - `permits_2024_res` = max `total_permits` where residency=`Resident`
+    - `permits_2024_nr` = max `total_permits` where residency=`Nonresident`
+    - `permits_2024_total = permits_2024_res + permits_2024_nr`
+  - Wrote source lineage on mapped rows:
+    - `REBUIlT_2023_DRAW_RESULTS_FOR_2024_MODELING`
+  - Created safety backup:
+    - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.pre_2023_for_2024_backfill_backup.csv`
+  - Wrote audit output:
+    - `processed_data/audits/permits_2024_backfill_from_rebuilt_2023_for_2024.csv`
+
+- Validation summary:
+  - DB rows / unique hunt codes: `1449 / 1449`
+  - Source rows / unique hunt codes: `70,196 / 1,032`
+  - Mapped DB rows updated from source overlap: `963`
+  - DB codes not present in source: `486`
+  - Source codes not present in DB: `69`
+  - Totals consistency on mapped rows (`res + nr == total`): PASS (`0` mismatches)
+
+## 2026-06-01T21:18:00-06:00 - Repeat Strict Cleanup Attempt for Non-Covered 2024 Permits
+
+- Assigned action:
+  - Re-run strict cleanup for hunt codes in DB not present in `rebuilt_2023_draw_results_for_2024_modeling.csv` and document cleanup reason.
+
+- Source:
+  - `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2024/csv/rebuilt_2023_draw_results_for_2024_modeling.csv`
+
+- Method:
+  - Re-scanned previous 2024/2025 reconciliation audits for discontinued/inactive notes.
+  - No explicit discontinued/inactive code flags were detected via audit note fields.
+  - Identified non-covered DB codes: `486`.
+  - Cleared `permits_2024_res`, `permits_2024_nr`, `permits_2024_total`, `permits_2024_source` for non-covered codes that had values.
+
+- Files:
+  - Safety backup:
+    - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.pre_2023to2024_noncovered_cleanup_backup.csv`
+  - Cleanup audit:
+    - `processed_data/audits/strict_cleanup_noncovered_2023to2024_permits.csv`
+  - Cleanup summary:
+    - `processed_data/audits/strict_cleanup_noncovered_2023to2024_permits_summary.json`
+
+- Result:
+  - Non-covered DB codes total: `486`
+  - Non-covered rows with any `permits_2024_*` data before cleanup: `0`
+  - Rows cleared in this attempt: `0`
+
+## 2026-06-01T21:28:00-06:00 - Hunt-Code Matching Supplement of 2024 Permits from 2023 Draw Long Files
+
+- Assigned action:
+  - Match hunt-code between `DATABASE.csv` and new 2023 draw source files and supplement missing `permits_2024_*` values.
+
+- Source files:
+  - `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2024/csv/draw_results_2023_for_2024_long.csv`
+  - `C:/Users/tyler/Desktop/GIT/HUNTS/pipeline/RAW/hunt_unit_database/2024/csv/draw_results_2023_for_2024_UPLOADED_COMBINED_long.csv`
+
+- Method:
+  - Aggregated each source to hunt code:
+    - `permits_2024_res` from max `total_permits` where `residency=Resident`
+    - `permits_2024_nr` from max `total_permits` where `residency=Nonresident`
+    - `permits_2024_total = res + nr`
+  - Combined source rows by hunt code and wrote only to rows where `permits_2024_*` fields were blank.
+  - Existing non-blank `permits_2024_*` values were preserved.
+  - Added provenance tags `SUPPLEMENT:<source_file>` only when the field was empty before and newly populated.
+
+- Outputs:
+  - Backup:
+    - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.pre_supplement_2023_to_2024_from_long_backup.csv`
+  - Supplemental audit:
+    - `processed_data/audits/permits_2024_supplement_from_draw_results_2023_long.csv`
+  - Summary:
+    - `processed_data/audits/permits_2024_supplement_from_draw_results_2023_long_summary.json`
+
+- Validation summary:
+  - Rows updated by supplement pass: `929`
+
+## 2026-06-01T19:15:00-06:00 - Strict Match-Only Supplement Pass from rebuilt_2023_draw_results_for_2024_modeling3.csv
+
+- Assigned action:
+  - Run strict hunt-code-only permit supplement for blank `permits_2024_*` fields using:
+    - `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2024/csv/Draw Odds/rebuilt_2023_draw_results_for_2024_modeling3.csv`
+
+- Method:
+  - Matched only exact `hunt_code`.
+  - Used rows with `model_target_year=2024` and `status=OK`.
+  - Summed `total_permits` by residency (`Resident`, `Nonresident`) to derive:
+    - `permits_2024_res`
+    - `permits_2024_nr`
+    - `permits_2024_total = res + nr`
+  - Wrote only where all three existing DB fields were blank.
+  - Appended source tag to `permits_2024_source` only when values were newly written.
+
+- Outputs:
+  - Backup:
+    - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.pre_supplement_2023_to_2024_from_rebuilt3_backup.csv`
+  - Supplement audit:
+    - `processed_data/audits/permits_2024_supplement_from_rebuilt_2023_for_2024_modeling3.csv`
+  - Summary:
+    - `processed_data/audits/permits_2024_supplement_from_rebuilt_2023_for_2024_modeling3_summary.json`
+
+- Validation summary:
+  - Source file unique target-2024 hunt codes: `1032`
+  - Blank `permits_2024_*` rows in `DATABASE.csv` before pass: `486`
+  - Matched blank rows: `0`
+  - Rows filled: `0`
+  - Remaining blank rows: `486`
+  - Root cause:
+    - These 486 blank codes do not exist in this rebuilt source (strict code overlap is zero).
+
+## 2026-06-01T21:55:00-06:00 - Strict Match-Only Supplement Pass from rebuilt_2023_draw_results_for_2024_modeling_v2.csv
+
+- Assigned action:
+  - Run strict hunt-code-only supplement for blank `permits_2024_*` fields using:
+    - `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2024/csv/Draw Odds/rebuilt_2023_draw_results_for_2024_modeling_v2.csv`
+
+- Method:
+  - Matched only exact `hunt_code`.
+  - Matched against rows with `model_target_year=2024` and `status=OK`.
+  - Aggregated `total_permits` by residency:
+    - `permits_2024_res` from `Resident` rows
+    - `permits_2024_nr` from `Nonresident` rows
+    - `permits_2024_total = res + nr`
+  - Wrote only when all three DB fields were originally blank.
+  - Preserved all prior non-blank permit values.
+
+- Outputs:
+  - Backup:
+    - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.pre_supplement_2023_to_2024_from_rebuilt_v2_backup.csv`
+  - Supplement audit:
+    - `processed_data/audits/permits_2024_supplement_from_rebuilt_2023_for_2024_modeling_v2.csv`
+  - Summary:
+    - `processed_data/audits/permits_2024_supplement_from_rebuilt_2023_for_2024_modeling_v2_summary.json`
+
+- Validation summary:
+  - Missing `permits_2024_*` before this pass: `486`
+  - Matched blank rows from source: `10`
+  - Rows filled: `10`
+  - Remaining blank rows after pass: `476`
+  - Total rows with any `permits_2024_*` now: `973`
+  - Filled `hunt_code` examples:
+    - `BI1000`, `BR1000`, `DB0007`, `DS1000`, `EB1000`, `GO1000`, `MB1000`, `PB1000`, `RS0001`, `TK0001`

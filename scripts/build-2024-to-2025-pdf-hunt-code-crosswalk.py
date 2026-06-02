@@ -16,6 +16,9 @@ NEXT_YEAR_SOURCES = [
     ROOT / "data_truth/draw_results_truth/normalized/oil_2025_draw_results_model_target_2026_permit_totals.csv",
 ]
 DATABASE = ROOT / "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+TRUSTED_CROSSWALK = (
+    ROOT / "data_truth/crosswalk_truth/normalized/current_to_historical_hunt_code_crosswalk_2026.csv"
+)
 
 OUT_CSV = ROOT / "data_truth/crosswalk_truth/validation/hunt_code_crosswalk_2024_pdf_to_2025_pdf_model_years.csv"
 DROPPED_CSV = ROOT / "data_truth/crosswalk_truth/validation/hunt_code_crosswalk_2024_pdf_to_2025_pdf_dropped_review.csv"
@@ -149,6 +152,121 @@ def name_tokens(value: str) -> set[str]:
     return {token for token in normalize_name(value).split() if len(token) >= 4 and token not in stop}
 
 
+def parse_historical_code_list(value: str) -> list[str]:
+    return [part.strip().upper() for part in (value or "").split("|") if part.strip()]
+
+
+def split_crosswalk_codes(row: dict[str, str]) -> list[str]:
+    codes: list[str] = []
+    codes.extend(parse_historical_code_list(row.get("historical_hunt_code", "")))
+    for code in parse_historical_code_list(row.get("candidate_historical_codes", "")):
+        if code not in codes:
+            codes.append(code)
+    return codes
+
+
+def crosswalk_rank(confidence: str) -> int:
+    confidence = (confidence or "").upper().strip()
+    if confidence == "HIGH":
+        return 3
+    if confidence == "MEDIUM":
+        return 2
+    if confidence == "LOW":
+        return 1
+    return 0
+
+
+def build_trusted_crosswalk_index(database_by_code: dict[str, dict[str, str]]) -> dict[str, list[dict[str, str]]]:
+    if not TRUSTED_CROSSWALK.exists():
+        return {}
+
+    index: dict[str, list[dict[str, str]]] = {}
+    for row in read_csv(TRUSTED_CROSSWALK):
+        source_codes = split_crosswalk_codes(row)
+        current_code = (row.get("current_hunt_code") or "").strip().upper()
+        if not source_codes or not current_code:
+            continue
+
+        db_row = database_by_code.get(current_code, {})
+        if not db_row:
+            continue
+
+        payload = {
+            "current_hunt_code": current_code,
+            "current_hunt_name": row.get("current_hunt_name", ""),
+            "current_boundary_id": (db_row.get("boundary_id") or "").strip(),
+            "mapping_confidence": row.get("mapping_confidence", ""),
+            "mapping_method": row.get("mapping_method", ""),
+            "crosswalk_status": row.get("crosswalk_status", ""),
+            "data_quality_grade": row.get("data_quality_grade", ""),
+            "historical_hunt_code": row.get("historical_hunt_code", ""),
+        }
+
+        for source_code in source_codes:
+            index.setdefault(source_code, []).append(payload)
+
+    for rows in index.values():
+        rows.sort(
+            key=lambda payload: (
+                crosswalk_rank(payload.get("mapping_confidence", "")),
+                1 if payload.get("current_hunt_code") else 0,
+            ),
+            reverse=True,
+        )
+    return index
+
+
+def mapped_from_crosswalk(
+    source_code: str,
+    crosswalk_index: dict[str, list[dict[str, str]]],
+    active_db_by_code: dict[str, dict[str, str]],
+    db_by_code: dict[str, dict[str, str]],
+) -> tuple[dict[str, str] | None, str]:
+    source_code = (source_code or "").upper().strip()
+    if not source_code:
+        return None, ""
+
+    rows = crosswalk_index.get(source_code, [])
+    if not rows:
+        return None, ""
+
+    active_rows: list[dict[str, str]] = []
+    inactive_rows: list[dict[str, str]] = []
+    for row in rows:
+        target_code = row["current_hunt_code"]
+        if target_code in active_db_by_code:
+            active_rows.append(row)
+        elif target_code in db_by_code:
+            inactive_rows.append(row)
+
+    preferred_rows = active_rows if active_rows else inactive_rows
+    if not preferred_rows:
+        return None, ""
+
+    mapped_row = preferred_rows[0]
+    target_code = mapped_row["current_hunt_code"]
+    target_db = db_by_code.get(target_code, {})
+    source = (
+        "TRUSTED_CURRENT_TO_HISTORICAL_CROSSWALK_ACTIVE_DB"
+        if active_rows
+        else "TRUSTED_CURRENT_TO_HISTORICAL_CROSSWALK_DB"
+    )
+    return (
+        {
+            "mapped_hunt_code": target_code,
+            "mapped_hunt_name": target_db.get("hunt_name", mapped_row.get("current_hunt_name", "")),
+            "mapped_boundary_id": target_db.get("boundary_id", mapped_row.get("current_boundary_id", "")),
+            "mapped_source": source,
+            "mapped_confidence": mapped_row.get("mapping_confidence", "HIGH"),
+            "candidate_reason": (
+                f"trusted current-to-historical mapping via {source} "
+                f"(historical source: {mapped_row.get('historical_hunt_code','')})"
+            ),
+        },
+        source,
+    )
+
+
 def candidate_payload(row: dict[str, str], source: str, confidence: str, reason: str) -> dict[str, str]:
     return {
         "mapped_hunt_code": row.get("hunt_code", ""),
@@ -201,6 +319,7 @@ def build() -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]
     db_by_code = {row["hunt_code"]: row for row in database_rows if row.get("hunt_code")}
     active_db_rows = [row for row in database_rows if row.get("hunt_code") and not is_historical_only(row)]
     active_db_by_code = {row["hunt_code"]: row for row in active_db_rows}
+    crosswalk_index = build_trusted_crosswalk_index(db_by_code)
 
     next_rows: list[dict[str, str]] = []
     for path in NEXT_YEAR_SOURCES:
@@ -226,6 +345,12 @@ def build() -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]
         coverage = "NEXT_YEAR_PDF_FAMILY_AVAILABLE" if prefix(code) in NEXT_YEAR_PDF_PREFIXES else "NO_NEXT_YEAR_PDF_FAMILY_AVAILABLE"
         same_next = next_by_code.get(code)
         active_same = active_db_by_code.get(code)
+        mapped_crosswalk, mapped_crosswalk_source = mapped_from_crosswalk(
+            code,
+            crosswalk_index,
+            active_db_by_code,
+            db_by_code,
+        )
         database_presence = "CURRENT_ACTIVE" if active_same else ("HISTORICAL_ONLY" if db else "NOT_IN_DATABASE")
         candidates = find_candidates(row_for_match, [("2025_PDF_MODEL_TARGET_2026", next_rows), ("CURRENT_ACTIVE_DATABASE_2026", active_db_rows)])
 
@@ -238,6 +363,12 @@ def build() -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]
         elif active_same:
             status = "SAME_CODE_CURRENT_ACTIVE_NO_NEXT_YEAR_PDF_MATCH"
             mapped = candidate_payload(active_same, "CURRENT_ACTIVE_DATABASE_2026", "HIGH", "same hunt code remains current active")
+        elif mapped_crosswalk:
+            mapped = mapped_crosswalk
+            if mapped_crosswalk_source.endswith("_ACTIVE_DB"):
+                status = "MAPPED_BY_TRUSTED_CURRENT_HISTORICAL_CROSSWALK_TO_CURRENT_ACTIVE"
+            else:
+                status = "MAPPED_BY_TRUSTED_CURRENT_HISTORICAL_CROSSWALK_DB_ONLY"
         elif candidates:
             mapped = candidates[0]
             status = "REPLACED_BY_NEXT_YEAR_OR_CURRENT_CANDIDATE"
@@ -249,6 +380,11 @@ def build() -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]
             mapped = {"mapped_hunt_code": "", "mapped_hunt_name": "", "mapped_boundary_id": "", "mapped_source": "", "mapped_confidence": "MEDIUM", "candidate_reason": "no current active match; no next-year PDF family available for direct confirmation"}
 
         candidate_codes = [candidate["mapped_hunt_code"] for candidate in candidates]
+        candidate_boundaries = [candidate["mapped_boundary_id"] for candidate in candidates]
+        if mapped_crosswalk and mapped.get("mapped_hunt_code"):
+            if mapped["mapped_hunt_code"] not in candidate_codes:
+                candidate_codes.insert(0, mapped["mapped_hunt_code"])
+                candidate_boundaries.insert(0, mapped.get("mapped_boundary_id", ""))
         out = {
             "source_hunt_code": code,
             "source_model_target_year": source.get("model_target_year", "2025"),
@@ -265,7 +401,7 @@ def build() -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]
             "crosswalk_status": status,
             **mapped,
             "candidate_hunt_codes": ";".join(candidate_codes),
-            "candidate_boundary_ids": ";".join(candidate["mapped_boundary_id"] for candidate in candidates),
+            "candidate_boundary_ids": ";".join(candidate_boundaries),
         }
         output.append(out)
         if status.startswith("DROPPED_") or status.endswith("_REVIEW"):
