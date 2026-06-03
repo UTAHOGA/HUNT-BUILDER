@@ -12930,7 +12930,7 @@ o_table=0).
   - `git diff --check -- AGENTS.MD WORK_LOG.md docs/bible_hunt_codes_source_control.md`: `PASS`
 
 - Commit:
-  - `e8e5111e` - `Close 2021 to 2022 antlerless crosswalk drops`
+  - `e4e1d0f0` - `Integrate Bible hunt code source control rules`
 
 ## 2026-06-03T19:09:52Z - Rerun Bull Elk Permit Workbook Normalizer
 
