@@ -102,6 +102,7 @@ REVIEWED_2021_TO_2022_ANTLERLESS_DISCONTINUED = {
 REVIEWED_2022_TO_2023_SPORTSMAN_SOURCE_GAPS = {
     "BI1000": "2023 sportsman draw-results PDF confirms BI1000 Sportsman Bison on p1; comprehensive presence matrix missed the 2023 sportsman source.",
     "BR1000": "2023 bear guide p19 confirms sportsman bear permits are available, and the 2023 sportsman draw-results PDF confirms BR1000 Sportsman Black Bear on p1; comprehensive presence matrix missed the 2023 sportsman source.",
+    "CG1000": "2023 clean sportsman source confirms CG1000 Sportsman Cougar for the 2022_PERMITS=2023_MODEL sportsman row set; do not treat the Sportsman Cougar permit as discontinued in the 2022->2023 comparison. Cougar regulations document the later statewide/no-additional-permit structure separately from this sportsman draw-results row.",
     "DB0007": "2023 sportsman draw-results PDF confirms DB0007 Sportsman Deer on p1; comprehensive presence matrix missed the 2023 sportsman source.",
     "DS1000": "2023 sportsman draw-results PDF confirms DS1000 Sportsman Desert Bighorn Sheep on p1; comprehensive presence matrix missed the 2023 sportsman source.",
     "EB1000": "2023 sportsman draw-results PDF confirms EB1000 Sportsman Elk on p1; comprehensive presence matrix missed the 2023 sportsman source.",
@@ -110,6 +111,10 @@ REVIEWED_2022_TO_2023_SPORTSMAN_SOURCE_GAPS = {
     "PB1000": "2023 sportsman draw-results PDF confirms PB1000 Sportsman Pronghorn on p1; comprehensive presence matrix missed the 2023 sportsman source.",
     "RS0001": "2023 sportsman draw-results PDF confirms RS0001 Sportsman Rocky Mtn Bighorn Sheep on p1; comprehensive presence matrix missed the 2023 sportsman source.",
     "TK0001": "2023 sportsman draw-results PDF confirms TK0001 Sportsman Bearded Turkey on p1; comprehensive presence matrix missed the 2023 sportsman source.",
+}
+
+REVIEWED_2022_TO_2023_SPORTSMAN_SOURCE_FILES = {
+    "CG1000": "C:/Users/tyler/Desktop/BIBLE HUNT CODES/2023/2023_sportsman_hunt_codes_clean.csv|C:/Users/tyler/Desktop/BIBLE HUNT CODES/2023/2023_sportsman_hunt_codes_clean_notes.md|C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2022/pdf/regulations/guidebook_2022-23_cougar.pdf|C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2023/pdf/regulations/2023-24_cougar.pdf|C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2024/pdf/regulation/2024_cougar.pdf",
 }
 
 
@@ -587,6 +592,10 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
             elif reviewed_2022_2023_sportsman_source_gap_note:
                 right = dict(left)
                 right["identity_source"] = "REVIEWED_2023_SPORTSMAN_DRAW_RESULTS"
+                source_files = REVIEWED_2022_TO_2023_SPORTSMAN_SOURCE_FILES.get(
+                    code,
+                    "C:/Users/tyler/Desktop/BIBLE HUNT CODES/2023/.pdf/2023_PERMITS=2024_MODEL__SPORTSMAN DRAW RESULTS.pdf",
+                )
                 crosswalk_rows.append(
                     base_row(
                         from_year,
@@ -601,7 +610,7 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                         right,
                         hit_from,
                         {
-                            "source_files": "C:/Users/tyler/Desktop/BIBLE HUNT CODES/2023/.pdf/2023_PERMITS=2024_MODEL__SPORTSMAN DRAW RESULTS.pdf",
+                            "source_files": source_files,
                             "source_pages": "1",
                             "source_kinds": "draw_results",
                         },
@@ -848,7 +857,7 @@ def summarize(crosswalk_rows: list[dict[str, object]], candidate_rows: list[dict
             "Known A-prefixed Sportsman/OCR artifacts are excluded from this crosswalk; normalized real hunt codes remain eligible.",
             "Reviewed 2020-to-2021 discontinuation decisions are recorded separately and are not successor mappings.",
             "Reviewed 2021-to-2022 antlerless decisions use the official 2021, 2022, and 2023 antlerless draw-results PDFs to separate true successors from discontinued rows.",
-            "Reviewed 2022-to-2023 sportsman source-gap decisions use the official 2023 sportsman draw-results PDF; they are exact-code continuity rows, not successor mappings.",
+            "Reviewed 2022-to-2023 sportsman source-gap decisions use the official 2023 sportsman draw-results PDF or clean sportsman extract where noted; they are exact-code continuity rows, not successor mappings.",
         ],
     }
 

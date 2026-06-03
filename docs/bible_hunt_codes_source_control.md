@@ -224,6 +224,7 @@ Therefore:
 - `COUGAR DRAW RESULTS` is expected only through `2022_PERMITS=2023_MODEL`.
 - After that, do not flag missing local cougar draw-results files.
 - Map forward to the statewide successor structure.
+- Sportsman Cougar rows are part of the `SPORTSMAN` report family, not the local cougar draw-results family. If a clean sportsman source provides `CG1000` or another Sportsman Cougar row, preserve that row with sportsman provenance and do not treat it as discontinued merely because the current cougar structure is statewide.
 
 ## Sportsman Rule
 
