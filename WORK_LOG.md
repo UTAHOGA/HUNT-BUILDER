@@ -11965,3 +11965,51 @@ o_table=0).
   - Output files exist and row counts verified: `PASS`
   - `DATABASE.csv` unchanged by this interpretation pass: `PASS`
   - `git diff --check`: `PASS` with pre-existing line-ending warnings only
+
+## 2026-06-03T14:49:51Z - 2020 Hunt-Code Year Identity Alignment Starter Ledger
+
+- Assigned action:
+  - Start the year-by-year hunt-code identity alignment work with report year `2020`.
+  - Create a document that ties each 2020 hunt code to source file/page, hunt title/name evidence, report family, inferred species/unit/weapon columns, permit total columns where parseable, current `DATABASE.csv` exact-code comparison, and lifecycle interpretation.
+  - Keep the work audit-only and do not modify `DATABASE.csv`.
+
+- Inputs:
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\COMPREHENSIVE 2020-2025.zip`
+  - `processed_data/audits/hunt_code_presence_matrix_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_interpreted_lifecycle_summary_comprehensive_2020_2026.csv`
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+
+- Outputs created:
+  - `processed_data/audits/hunt_code_year_identity_ledger_2020.csv`
+  - `processed_data/audits/hunt_code_year_identity_crosscheck_2020.csv`
+  - `processed_data/audits/hunt_code_year_identity_issues_2020.csv`
+  - `processed_data/audits/hunt_code_year_identity_scan_errors_2020.csv`
+  - `processed_data/audits/hunt_code_year_identity_2020_summary.json`
+  - `docs/hunt_code_year_identity_alignment_2020.md`
+
+- Key results:
+  - 2020 source PDFs processed from clean ZIP package: `23`
+  - Ledger rows: `2032`
+  - Unique 2020 hunt codes anchored to identity rows: `1028`
+  - Sportsman table rows added by separate parser: `11`
+  - PDF scan errors: `0`
+  - Coverage against 2020 lifecycle presence matrix: `1028/1028`
+  - Missing from identity ledger: `0`
+  - Extra in identity ledger: `0`
+
+- Crosscheck status counts:
+  - `REVIEW_CURRENT_DATABASE_NAME_DIFFERENCE`: `457`
+  - `REVIEW_TOTALS_PARSE`: `138`
+  - `HISTORICAL_CODE_NOT_IN_CURRENT_DATABASE`: `106`
+  - `REVIEW_CONFLICTING_TOTAL_PERMITS`: `327`
+
+- Source parsing notes:
+  - Most source pages use `Hunt:` sections.
+  - Sportsman 2020 uses a one-page multi-code table with no `Hunt:` sections; those `11` codes are parsed separately.
+  - `REVIEW_*` statuses are expected at this stage because the crosscheck is intentionally strict and does not promote historical identity into current truth.
+
+- Validation:
+  - Output files exist and are non-empty: `PASS`
+  - 2020 ledger covers every code in the 2020 presence matrix: `PASS`
+  - `DATABASE.csv` unchanged: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only

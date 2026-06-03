@@ -1,0 +1,81 @@
+{
+  "scope": "2020 hunt-code/year identity alignment from clean comprehensive PDF package.",
+  "source_zip": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\COMPREHENSIVE 2020-2025.zip",
+  "report_year": 2020,
+  "model_year": 2021,
+  "source_pdf_count_2020": 23,
+  "ledger_rows": 2032,
+  "unique_hunt_codes": 1028,
+  "sportsman_rows_added": 11,
+  "scan_error_count": 0,
+  "crosscheck_status_counts": {
+    "REVIEW_CURRENT_DATABASE_NAME_DIFFERENCE": 457,
+    "REVIEW_TOTALS_PARSE": 138,
+    "HISTORICAL_CODE_NOT_IN_CURRENT_DATABASE": 106,
+    "REVIEW_CONFLICTING_TOTAL_PERMITS": 327
+  },
+  "unique_code_prefix_counts": {
+    "BI": 17,
+    "BR": 101,
+    "CG": 15,
+    "DA": 28,
+    "DB": 307,
+    "DS": 18,
+    "EA": 159,
+    "EB": 192,
+    "GO": 18,
+    "MA": 5,
+    "MB": 29,
+    "PB": 82,
+    "PD": 34,
+    "RE": 1,
+    "RS": 15,
+    "TK": 7
+  },
+  "ledger_prefix_counts": {
+    "DA": 55,
+    "EA": 311,
+    "PD": 68,
+    "MA": 5,
+    "RE": 1,
+    "BR": 101,
+    "CG": 15,
+    "DB": 701,
+    "EB": 382,
+    "PB": 163,
+    "MB": 85,
+    "BI": 33,
+    "DS": 35,
+    "RS": 29,
+    "GO": 35,
+    "TK": 13
+  },
+  "totals_parse_status_counts": {
+    "OK": 1854,
+    "REVIEW_TOTALS_PARSE": 167,
+    "OK_SPORTSMAN_TABLE": 11
+  },
+  "current_database_match_status_counts": {
+    "NOT_IN_CURRENT_DATABASE": 445,
+    "EXACT_CODE_IN_DATABASE": 1587
+  },
+  "lifecycle_class_counts": {
+    "TERMINAL_DROPOFF_CANDIDATE": 767,
+    "HISTORICAL_REAPPEARANCE_GAP_CODE": 49,
+    "ACTIVE_IN_2026": 1216
+  },
+  "outputs": {
+    "ledger": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_year_identity_ledger_2020.csv",
+    "crosscheck": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_year_identity_crosscheck_2020.csv",
+    "issues": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_year_identity_issues_2020.csv",
+    "scan_errors": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_year_identity_scan_errors_2020.csv",
+    "summary_json": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_year_identity_2020_summary.json",
+    "report_md": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\docs\\hunt_code_year_identity_alignment_2020.md"
+  },
+  "notes": [
+    "One ledger row represents one hunt-code appearance on one source PDF page.",
+    "Sportsman rows are parsed from the one-page sportsman table because that source does not use Hunt: page sections.",
+    "The crosscheck file collapses appearances to one row per hunt_code and flags duplicate files, conflicting names, conflicting total permits, current DATABASE exact-code match, and lifecycle class.",
+    "This audit does not modify DATABASE.csv."
+  ]
+}
