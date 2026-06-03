@@ -71,6 +71,33 @@ REVIEWED_2021_TO_2022_ARTIFACTS = {
     "DS6612": "Source file is labeled 2021_PERMITS=2021_MODEL inside the 2021 folder; 2022 big-game app guide confirms Zion as DS6611, so DS6612 is treated as a source-year artifact rather than a true 2021 drop.",
 }
 
+REVIEWED_2021_TO_2022_ANTLERLESS_SUCCESSORS = {
+    "DA1017": (
+        "DA1009",
+        "6",
+        "2021 antlerless PDF confirms DA1017; 2022 antlerless draw-results PDF confirms reviewed successor DA1009 with exact same title/unit/weapon: Pine Valley, Enterprise any legal weapon. 2023 antlerless PDF confirms DA1009 persists.",
+    ),
+    "DA1029": (
+        "DA1041",
+        "19",
+        "2021 antlerless PDF confirms DA1029; 2022 antlerless draw-results PDF confirms reviewed successor DA1041 for the same unit: Nine Mile, Green River Valley, with weapon structure changed from archery to any legal weapon. 2023 antlerless PDF confirms DA1041 persists.",
+    ),
+    "PD1027": (
+        "PD1034|PD1035",
+        "208|209",
+        "2021 antlerless PDF confirms PD1027; 2022 antlerless draw-results PDF confirms reviewed split successor PD1034|PD1035 with exact same title/unit/weapon: Fillmore, Oak Creek South. 2023 antlerless PDF confirms both rows persist.",
+    ),
+}
+
+REVIEWED_2021_TO_2022_ANTLERLESS_DISCONTINUED = {
+    "DA1000": "2021 antlerless PDF confirms DA1000; 2022 and 2023 antlerless draw-results PDFs have no exact code and no same-unit successor for Beaver, Circleville North.",
+    "DA1004": "2021 antlerless PDF confirms DA1004; 2022 and 2023 antlerless draw-results PDFs have no exact code and no same-unit successor for Mt Dutton, Circleville South.",
+    "PD1013": "2021 antlerless PDF confirms PD1013; 2022 and 2023 antlerless draw-results PDFs have no exact code and no same-unit successor for CWMU Rabbit Creek doe pronghorn.",
+    "PD1018": "2021 antlerless PDF confirms PD1018; 2022 and 2023 antlerless draw-results PDFs have no exact code and no same-unit successor for Mt Dutton/Paunsaugunt doe pronghorn.",
+    "PD1023": "2021 antlerless PDF confirms PD1023; 2022 and 2023 antlerless draw-results PDFs have no exact code and no same-unit successor for CWMU George Creek doe pronghorn.",
+    "PD1039": "2021 antlerless PDF confirms PD1039; 2022 and 2023 antlerless draw-results PDFs have no exact code and no same-unit successor for Panguitch Lake/Zion, North doe pronghorn.",
+}
+
 
 def clean(value: object) -> str:
     return re.sub(r"\s+", " ", str(value or "").replace("\xa0", " ")).strip()
@@ -363,6 +390,16 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                 if from_year == 2021 and to_year == 2022
                 else None
             )
+            reviewed_2021_2022_antlerless_successor = (
+                REVIEWED_2021_TO_2022_ANTLERLESS_SUCCESSORS.get(code)
+                if from_year == 2021 and to_year == 2022
+                else None
+            )
+            reviewed_2021_2022_antlerless_discontinued_note = (
+                REVIEWED_2021_TO_2022_ANTLERLESS_DISCONTINUED.get(code)
+                if from_year == 2021 and to_year == 2022
+                else None
+            )
             if reviewed_discontinued_note:
                 crosswalk_rows.append(
                     base_row(
@@ -402,6 +439,40 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                             "source_files": "C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2022/pdf/regulations/2022_bear.pdf",
                             "source_pages": "20",
                             "source_kinds": "regulations",
+                        },
+                        note,
+                    )
+                )
+            elif reviewed_2021_2022_antlerless_successor:
+                to_code, pages, note = reviewed_2021_2022_antlerless_successor
+                to_codes = to_code.split("|")
+                for matched_code in to_codes:
+                    matched_added.add(matched_code)
+                right = identities.get(to_year, {}).get(
+                    to_codes[0],
+                    {"hunt_code": to_codes[0], "prefix": prefix_of(to_codes[0])},
+                )
+                right = dict(right)
+                right["hunt_code"] = to_code
+                if "|" in to_code:
+                    right["identity_source"] = "REVIEWED_2022_ANTLERLESS_DRAW_RESULTS_SPLIT_SUCCESSOR"
+                crosswalk_rows.append(
+                    base_row(
+                        from_year,
+                        to_year,
+                        code,
+                        to_code,
+                        "REVIEWED_SUCCESSOR_BY_2022_ANTLERLESS_DRAW_RESULTS",
+                        "REVIEWED_SUCCESSOR",
+                        1.0,
+                        "SAME_UNIT_SOURCE_GUIDE_MATCH",
+                        left,
+                        right,
+                        hit_from,
+                        {
+                            "source_files": "C:/Users/tyler/Desktop/BIBLE HUNT CODES/2022/.pdf/2022_PERMITS=2023_MODEL__ANTLERLESS DRAW RESULTS.pdf",
+                            "source_pages": pages,
+                            "source_kinds": "draw_results",
                         },
                         note,
                     )
@@ -470,6 +541,28 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                         hit_from,
                         {},
                         reviewed_2021_2022_artifact_note,
+                    )
+                )
+            elif reviewed_2021_2022_antlerless_discontinued_note:
+                crosswalk_rows.append(
+                    base_row(
+                        from_year,
+                        to_year,
+                        code,
+                        "",
+                        "REVIEWED_DISCONTINUED_AFTER_2021_NO_2022_ANTLERLESS_SUCCESSOR",
+                        "REVIEWED_DISCONTINUED",
+                        "",
+                        "NO_SAFE_MATCH_REVIEWED",
+                        left,
+                        {},
+                        hit_from,
+                        {
+                            "source_files": "C:/Users/tyler/Desktop/BIBLE HUNT CODES/2022/.pdf/2022_PERMITS=2023_MODEL__ANTLERLESS DRAW RESULTS.pdf|C:/Users/tyler/Desktop/BIBLE HUNT CODES/2023/.pdf/2023_PERMITS=2024_MODEL__ANTLERLESS DRAW RESULTS.pdf",
+                            "source_pages": "",
+                            "source_kinds": "draw_results",
+                        },
+                        reviewed_2021_2022_antlerless_discontinued_note,
                     )
                 )
             elif candidates:
@@ -667,6 +760,16 @@ def summarize(crosswalk_rows: list[dict[str, object]], candidate_rows: list[dict
                 for row in crosswalk_rows
                 if row["crosswalk_status"] == "REVIEWED_SUCCESSOR_BY_2022_BEAR_GUIDE"
             ),
+            "reviewed_2021_to_2022_antlerless_successor_rows": sum(
+                1
+                for row in crosswalk_rows
+                if row["crosswalk_status"] == "REVIEWED_SUCCESSOR_BY_2022_ANTLERLESS_DRAW_RESULTS"
+            ),
+            "reviewed_2021_to_2022_antlerless_discontinued_rows": sum(
+                1
+                for row in crosswalk_rows
+                if row["crosswalk_status"] == "REVIEWED_DISCONTINUED_AFTER_2021_NO_2022_ANTLERLESS_SUCCESSOR"
+            ),
             "reviewed_2021_to_2022_source_gap_rows": sum(
                 1
                 for row in crosswalk_rows
@@ -695,6 +798,7 @@ def summarize(crosswalk_rows: list[dict[str, object]], candidate_rows: list[dict
             "2026 identity fields use current DATABASE rows only for codes already observed in 2026 comprehensive source hits.",
             "Known A-prefixed Sportsman/OCR artifacts are excluded from this crosswalk; normalized real hunt codes remain eligible.",
             "Reviewed 2020-to-2021 discontinuation decisions are recorded separately and are not successor mappings.",
+            "Reviewed 2021-to-2022 antlerless decisions use the official 2021, 2022, and 2023 antlerless draw-results PDFs to separate true successors from discontinued rows.",
         ],
     }
 
@@ -718,7 +822,9 @@ def write_report(summary: dict[str, object]) -> None:
         f"- Candidate rows: `{summary['row_counts']['candidate_rows']}`",
         f"- Reviewed 2020->2021 discontinued/no-successor rows: `{summary['row_counts']['reviewed_2020_to_2021_discontinuation_rows']}`",
         f"- Reviewed 2020->2021 source-gap continuity rows: `{summary['row_counts']['reviewed_2020_to_2021_source_gap_rows']}`",
-        f"- Reviewed 2021->2022 successor rows: `{summary['row_counts']['reviewed_2021_to_2022_successor_rows']}`",
+        f"- Reviewed 2021->2022 bear successor rows: `{summary['row_counts']['reviewed_2021_to_2022_successor_rows']}`",
+        f"- Reviewed 2021->2022 antlerless successor rows: `{summary['row_counts']['reviewed_2021_to_2022_antlerless_successor_rows']}`",
+        f"- Reviewed 2021->2022 antlerless discontinued/no-successor rows: `{summary['row_counts']['reviewed_2021_to_2022_antlerless_discontinued_rows']}`",
         f"- Reviewed 2021->2022 source-gap continuity rows: `{summary['row_counts']['reviewed_2021_to_2022_source_gap_rows']}`",
         f"- Reviewed 2021->2022 source-artifact rows: `{summary['row_counts']['reviewed_2021_to_2022_artifact_rows']}`",
         "- Candidate rows list up to five same-prefix successor candidates per dropped code; they are not promoted one-to-one links.",

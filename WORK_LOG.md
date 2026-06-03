@@ -12930,7 +12930,7 @@ o_table=0).
   - `git diff --check -- AGENTS.MD WORK_LOG.md docs/bible_hunt_codes_source_control.md`: `PASS`
 
 - Commit:
-  - `c9e542db` - `Apply 2022 regulation evidence to hunt code crosswalk`
+  - Pending at log-write time.
 
 ## 2026-06-03T19:09:52Z - Rerun Bull Elk Permit Workbook Normalizer
 
@@ -13440,6 +13440,51 @@ o_table=0).
   - `python -m py_compile scripts\build-hunt-code-year-to-year-crosswalk.py`: `PASS`
   - Verified `2021->2022` status counts: `971` exact retained, `32` candidate successors, `8` reviewed bear successors, `1` reviewed cougar source-gap continuity, `2` reviewed artifacts, `9` generic dropped/no successor, `30` added/no predecessor.
   - Verified reviewed decision CSV row count for `2021->2022`: `11`
+  - `git diff --check -- <changed files>`: `PASS` with line-ending warning only for the changed script
+
+- Commit:
+  - `c9e542db` - `Apply 2022 regulation evidence to hunt code crosswalk`
+
+## 2026-06-03T22:44:30Z - Close 2021 To 2022 Antlerless Hunt Code Crosswalk Drops
+
+- Assigned step:
+  - Use the 2021, 2022, and 2023 antlerless draw-results PDFs to close the remaining generic 2021->2022 DA/PD dropped hunt-code rows.
+
+- Source files reviewed:
+  - `C:/Users/tyler/Desktop/BIBLE HUNT CODES/2021/.pdf/2021_PERMITS=2022_MODEL__ANTLERLESS DRAW RESULTS.pdf`
+  - `C:/Users/tyler/Desktop/BIBLE HUNT CODES/2022/.pdf/2022_PERMITS=2023_MODEL__ANTLERLESS DRAW RESULTS.pdf`
+  - `C:/Users/tyler/Desktop/BIBLE HUNT CODES/2023/.pdf/2023_PERMITS=2024_MODEL__ANTLERLESS DRAW RESULTS.pdf`
+
+- Files changed:
+  - `scripts/build-hunt-code-year-to-year-crosswalk.py`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026.csv`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026_summary.json`
+  - `processed_data/audits/hunt_code_year_to_year_reviewed_decisions_2021_to_2022.csv`
+  - `docs/hunt_code_year_to_year_crosswalk_2020_2026.md`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Reviewed 2021->2022 antlerless successor rows recorded: `3`
+  - Reviewed 2021->2022 antlerless discontinued/no-successor rows recorded: `6`
+  - Generic `DROPPED_NO_SUCCESSOR_CANDIDATE` rows remaining for `2021->2022`: `0`
+  - Reviewed successors:
+    - `DA1017 -> DA1009`
+    - `DA1029 -> DA1041`
+    - `PD1027 -> PD1034|PD1035`
+  - Reviewed discontinued/no-successor:
+    - `DA1000`, `DA1004`, `PD1013`, `PD1018`, `PD1023`, `PD1039`
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values were promoted.
+  - The 2023 antlerless PDF was used only as corroborating continuity/absence evidence after the 2021->2022 transition, not as a replacement source for 2022.
+
+- Validation:
+  - `python scripts\build-hunt-code-year-to-year-crosswalk.py`: `PASS`
+  - `python -m py_compile scripts\build-hunt-code-year-to-year-crosswalk.py`: `PASS`
+  - Verified `2021->2022` status counts include `971` exact retained, `32` candidate successors, `8` reviewed bear successors, `3` reviewed antlerless successors, `6` reviewed antlerless discontinued, `1` reviewed cougar source-gap continuity, `2` reviewed artifacts, `30` added/no predecessor, and `0` generic dropped/no successor.
+  - Verified reviewed decision CSV row count for `2021->2022`: `20`
+  - Verified expected successor/discontinued code sets exactly match the reviewed antlerless closure set.
   - `git diff --check -- <changed files>`: `PASS` with line-ending warning only for the changed script
 
 - Commit:
