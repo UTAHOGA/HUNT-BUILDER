@@ -12233,3 +12233,50 @@ o_table=0).
   - Workbook sheet/row verification: `PASS`
   - Source-audit status counts all `OK`: `PASS`
   - `git diff --check`: `PASS` with pre-existing line-ending warnings only
+
+## 2026-06-03T15:49:08Z - BIBLE HUNT CODES Filename Normalization
+
+- Assigned step:
+  - Normalize file naming across `C:\Users\tyler\Desktop\BIBLE HUNT CODES` year folders to match the provided 2021 normalized ZIP convention.
+  - Target naming pattern: `{draw_results_year}_PERMITS={model_year}_MODEL__{DOCUMENT FAMILY}.ext`.
+
+- Files changed in repo:
+  - `scripts/normalize_bible_hunt_code_file_names.py`
+  - `processed_data/audits/bible_hunt_code_file_name_normalization_plan.csv`
+  - `processed_data/audits/bible_hunt_code_file_name_normalization_applied.csv`
+  - `processed_data/audits/bible_hunt_code_file_name_normalization_summary.json`
+  - `WORK_LOG.md`
+
+- External files renamed:
+  - Root: `C:\Users\tyler\Desktop\BIBLE HUNT CODES`
+  - Applied safe renames: `46`
+  - Applied rename years: `2018`, `2019`, `2021`, `2022`, `2023`, `2024`, `2025`
+  - Rename details are recorded in `processed_data/audits/bible_hunt_code_file_name_normalization_applied.csv`.
+
+- Key results after final dry validation:
+  - Total files reviewed: `157`
+  - Already normalized: `154`
+  - Ready-to-rename remaining: `0`
+  - Review holds: `2`
+  - Target-exists holds: `1`
+
+- Review holds intentionally not renamed:
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2020\2020_PERMITS=2021_MODEL__O.I.L. DESERT BIGHORN SHEEP.pdf`
+    - Held because target exists: `2020_PERMITS=2021_MODEL__O.I.L. DESERT BIGHORN SHEEP DRAW RESULTS.pdf`.
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2022\2022_truth_source_sections_and_comprehensive.zip`
+    - Held because it is an archive outside the PDF naming-normalization scope.
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2025\2025.zip`
+    - Held because it is a plain year archive and needs review before any rename.
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values, draw values, extracted row values, prediction values, or website runtime files were changed.
+  - This task renamed external source files only and created repo-tracked audit artifacts documenting the rename pass.
+
+- Validation:
+  - `python scripts\normalize_bible_hunt_code_file_names.py`: `PASS`
+  - `python scripts\normalize_bible_hunt_code_file_names.py --apply`: `PASS`
+  - Final dry validation showed `0` remaining `READY_TO_RENAME`: `PASS`
+  - `python -m py_compile scripts\normalize_bible_hunt_code_file_names.py`: `PASS`
+  - Applied rename audit row count verified as `46`: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only
