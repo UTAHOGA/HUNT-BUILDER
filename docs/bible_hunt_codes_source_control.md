@@ -125,6 +125,12 @@ Structured year documents and adjacent-year comparisons must follow:
 docs/year_to_year_hunt_code_tracking_directive.md
 ```
 
+Master JSON integration of those year documents must follow:
+
+```text
+docs/master_json_integration_directive.md
+```
+
 Preferred engine feed units:
 
 - one normalized family file per draw family/year

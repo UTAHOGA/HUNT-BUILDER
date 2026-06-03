@@ -13488,7 +13488,7 @@ o_table=0).
   - `git diff --check -- <changed files>`: `PASS` with line-ending warning only for the changed script
 
 - Commit:
-  - Pending at log-write time.
+  - `e8e5111e` - `Close 2021 to 2022 antlerless crosswalk drops`
 
 ## 2026-06-03T22:51:30Z - Integrate Year-To-Year Hunt Code Tracking Directive
 
@@ -13519,3 +13519,34 @@ o_table=0).
 
 - Commit:
   - `0eb0e30e` - `Add year-to-year hunt code tracking directive`
+
+## 2026-06-03T23:05:30Z - Integrate Master JSON Integration Directive
+
+- Assigned step:
+  - Read and act on the pasted master JSON integration directive.
+
+- Files changed:
+  - `AGENTS.MD`
+  - `docs/bible_hunt_codes_source_control.md`
+  - `docs/year_to_year_hunt_code_tracking_directive.md`
+  - `docs/master_json_integration_directive.md`
+  - `WORK_LOG.md`
+
+- Outputs created:
+  - `docs/master_json_integration_directive.md`
+
+- Key results:
+  - Added the master JSON record identity, required fields, source hierarchy, insertion rules, permit normalization rules, grouped-master handling, cougar successor rule, sportsman integration rule, validation checks, and validation-log requirements as a tracked directive.
+  - Linked the directive from `AGENTS.MD`, `docs/bible_hunt_codes_source_control.md`, and `docs/year_to_year_hunt_code_tracking_directive.md`.
+
+- Data-change note:
+  - No hunt-code data files were modified.
+  - `DATABASE.csv` was not modified.
+  - No permit values were promoted.
+  - The provided 2023 regulation PDFs were not used for value extraction in this policy-only directive step.
+
+- Validation:
+  - `git diff --check -- AGENTS.MD docs/bible_hunt_codes_source_control.md docs/year_to_year_hunt_code_tracking_directive.md docs/master_json_integration_directive.md WORK_LOG.md`: `PASS` with line-ending warnings only for existing markdown files
+
+- Commit:
+  - Pending at log-write time.

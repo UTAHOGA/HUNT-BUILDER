@@ -190,6 +190,7 @@ Codex must also read relevant project documents when present and relevant to the
 - `LOCKED_CANONICAL_2026.md`
 - `docs/bible_hunt_codes_source_control.md`
 - `docs/year_to_year_hunt_code_tracking_directive.md`
+- `docs/master_json_integration_directive.md`
 - `docs/utah_draw_routing_and_algorithm_v1.md`
 - `docs/utah_draw_system_scope.md`
 - `docs/utah_rules_sources.md`

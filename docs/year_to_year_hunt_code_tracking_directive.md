@@ -8,6 +8,12 @@ Do not guess. Do not silently rename, merge, or drop hunt codes. Track each hunt
 
 Build and maintain one structured year document for every draw year so hunt codes can be followed forward and backward across years and reconciled against current truth sources.
 
+When these year documents are integrated into a master JSON layer, follow:
+
+```text
+docs/master_json_integration_directive.md
+```
+
 ## Required Core Fields
 
 Every structured year document must include at minimum:
