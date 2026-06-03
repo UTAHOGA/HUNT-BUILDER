@@ -12774,3 +12774,94 @@ o_table=0).
 
 - Commit:
   - Pending at log-write time.
+
+## 2026-06-03T18:19:14Z - Split Current 2026 Permit Unresolved Review Buckets
+
+- Assigned step:
+  - Split `processed_data/audits/current_2026_hunt_code_permit_unresolved.csv` into four focused review files:
+    - `strong_3_source_current_matches.csv`
+    - `true_source_conflicts.csv`
+    - `database_only_external_missing.csv`
+    - `true_no_permit_value.csv`
+
+- Source input:
+  - `processed_data/audits/current_2026_hunt_code_permit_unresolved.csv`
+
+- Files changed:
+  - `scripts/split-current-2026-permit-unresolved.py`
+  - `processed_data/audits/current_2026_permit_unresolved_split/strong_3_source_current_matches.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/true_source_conflicts.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/database_only_external_missing.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/true_no_permit_value.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/current_2026_permit_unresolved_split_summary.json`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Source unresolved rows: `596`
+  - Split total rows: `596`
+  - Bucket counts:
+    - `strong_3_source_current_matches`: `158`
+    - `true_source_conflicts`: `125`
+    - `database_only_external_missing`: `56`
+    - `true_no_permit_value`: `257`
+  - All `strong_3_source_current_matches` rows are `DB` deer rows where at least three non-database current sources match and another source conflicts.
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values were promoted.
+  - No source data was changed.
+
+- Validation:
+  - `python scripts\split-current-2026-permit-unresolved.py`: `PASS`
+  - `python -m py_compile scripts\split-current-2026-permit-unresolved.py`: `PASS`
+  - Four output CSVs exist and have expected row counts: `PASS`
+  - Split row total equals source unresolved row count `596`: `PASS`
+  - Summary JSON written and parsed: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only
+
+- Commit:
+  - Pending at log-write time.
+
+## 2026-06-03T18:20:55Z - Move Strong Three-Source Current Permit Matches To Resolved
+
+- Assigned step:
+  - Move the `158` strong three-source current matches out of unresolved review and into resolved audit status.
+
+- Source inputs:
+  - `processed_data/audits/current_2026_permit_unresolved_split/strong_3_source_current_matches.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/true_source_conflicts.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/database_only_external_missing.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/true_no_permit_value.csv`
+
+- Files changed:
+  - `scripts/resolve-current-2026-strong-3-source-matches.py`
+  - `processed_data/audits/current_2026_permit_unresolved_split/resolved_3_source_current_matches.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/remaining_unresolved_after_3_source_rule.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/current_2026_permit_strong_match_resolution_summary.json`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Resolved by three-source current-match rule: `158`
+  - Remaining unresolved after rule: `438`
+  - Remaining unresolved bucket counts:
+    - `true_source_conflicts`: `125`
+    - `database_only_external_missing`: `56`
+    - `true_no_permit_value`: `257`
+  - All resolved rows are `DB` deer rows.
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values were promoted.
+  - Conflicting UtahDraws/BIBLE values remain visible in the resolved CSV for audit traceability.
+
+- Validation:
+  - `python scripts\resolve-current-2026-strong-3-source-matches.py`: `PASS`
+  - `python -m py_compile scripts\split-current-2026-permit-unresolved.py scripts\resolve-current-2026-strong-3-source-matches.py`: `PASS`
+  - Resolved row count verified as `158`: `PASS`
+  - Remaining unresolved row count verified as `438`: `PASS`
+  - Resolved plus remaining equals original unresolved row count `596`: `PASS`
+  - Summary JSON written and parsed: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only
+
+- Commit:
+  - Pending at log-write time.
