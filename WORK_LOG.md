@@ -12432,4 +12432,60 @@ o_table=0).
   - `git diff --check`: `PASS` with pre-existing line-ending warnings only
 
 - Commit:
+  - `1a287695`
+
+## 2026-06-03T16:25:48Z - 2025 Draw Results Hunt-Code Identity Truth Source Pass
+
+- Assigned step:
+  - Continue the year-to-year hunt-code identity sequence using the provided 2025 truth-source ZIP.
+  - Keep the pass scoped to code identity/lifecycle evidence and do not promote permit values or change `DATABASE.csv`.
+
+- Source input:
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2025.zip`
+
+- Files changed:
+  - `docs/hunt_code_year_identity_alignment_2025.md`
+  - `processed_data/audits/hunt_code_year_identity_ledger_2025.csv`
+  - `processed_data/audits/hunt_code_year_identity_crosscheck_2025.csv`
+  - `processed_data/audits/hunt_code_year_identity_issues_2025.csv`
+  - `processed_data/audits/hunt_code_year_identity_scan_errors_2025.csv`
+  - `processed_data/audits/hunt_code_year_identity_sportsman_normalization_2025.csv`
+  - `processed_data/audits/hunt_code_year_identity_2025_summary.json`
+  - `WORK_LOG.md`
+
+- Key results:
+  - 2025 ZIP members inspected: `24`
+  - 2025 PDF source-model labels found: `2026`
+  - 2025 identity ledger rows: `2184`
+  - 2025 unique hunt codes: `1053`
+  - 2025 scan errors: `0`
+  - 2025 missing/extra after correction: `0` / `0`
+  - Lifecycle source-hit backfills added: `0`
+  - Crosscheck statuses:
+    - `OK`: `40`
+    - `REVIEW_CURRENT_DATABASE_NAME_DIFFERENCE`: `668`
+    - `REVIEW_CONFLICTING_TOTAL_PERMITS`: `322`
+    - `REVIEW_TOTALS_PARSE`: `16`
+    - `REVIEW_CONFLICTING_SOURCE_NAMES`: `6`
+    - `HISTORICAL_CODE_NOT_IN_CURRENT_DATABASE`: `1`
+  - Historical code not in current `DATABASE.csv`: `PB5343`
+  - `PB5343` source evidence:
+    - `2025/2025_PERMITS=2026_MODEL__L.E. BIG GAME DRAW RESULTS.pdf`, page `494`
+    - `2025/2025_PERMITS=2026_MODEL__L.E. PRONGHORN DRAW RESULTS.pdf`, page `87`
+    - Source title: `Cwmu Buck Pronghorn - Prohibition Springs - Any Legal Weapon`
+  - No standalone Cougar draw-results PDF was present in the 2025 top-level package or nested 2025 package.
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values, draw values, prediction values, master JSON files, or website runtime files were changed.
+
+- Validation:
+  - `python scripts\build_hunt_code_year_identity_ledger.py --zip "C:\Users\tyler\Desktop\BIBLE HUNT CODES\2025.zip" --year 2025`: `PASS`
+  - 2025 summary unique-code count verified as `1053`: `PASS`
+  - 2025 missing/extra code lists verified as empty: `PASS`
+  - `PB5343` verified as the only `HISTORICAL_CODE_NOT_IN_CURRENT_DATABASE` row: `PASS`
+  - `python -m py_compile scripts\build_hunt_code_year_identity_ledger.py`: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only
+
+- Commit:
   - Pending at log-write time.
