@@ -12930,7 +12930,7 @@ o_table=0).
   - `git diff --check -- AGENTS.MD WORK_LOG.md docs/bible_hunt_codes_source_control.md`: `PASS`
 
 - Commit:
-  - Pending at log-write time.
+  - `c9e542db` - `Apply 2022 regulation evidence to hunt code crosswalk`
 
 ## 2026-06-03T19:09:52Z - Rerun Bull Elk Permit Workbook Normalizer
 
