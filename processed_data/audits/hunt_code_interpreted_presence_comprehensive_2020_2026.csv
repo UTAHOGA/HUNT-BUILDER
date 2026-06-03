@@ -1,7 +1,7 @@
 hunt_code,prefix,report_year,model_year,raw_observed_in_source,interpreted_status,continuity_status,first_seen_report_year,last_seen_report_year,notes
 BI1000,BI,2020,2021,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 BI1000,BI,2021,2022,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
-BI1000,BI,2022,2023,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
+BI1000,BI,2022,2023,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 BI1000,BI,2023,2024,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 BI1000,BI,2024,2025,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 BI1000,BI,2025,2026,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
@@ -204,7 +204,7 @@ BI6539,BI,2025,2026,NO,NOT_YET_OBSERVED,BEFORE_FIRST_OBSERVED_YEAR,2026,2026,No 
 BI6539,BI,2026,2027,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2026,2026,Source PDF contains the hunt code in this report year.
 BR1000,BR,2020,2021,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 BR1000,BR,2021,2022,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
-BR1000,BR,2022,2023,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
+BR1000,BR,2022,2023,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 BR1000,BR,2023,2024,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 BR1000,BR,2024,2025,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 BR1000,BR,2025,2026,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
@@ -1014,13 +1014,13 @@ BR7326,BR,2023,2024,NO,NOT_YET_OBSERVED,BEFORE_FIRST_OBSERVED_YEAR,2026,2026,No 
 BR7326,BR,2024,2025,NO,NOT_YET_OBSERVED,BEFORE_FIRST_OBSERVED_YEAR,2026,2026,No source evidence before first observed year in this audit window.
 BR7326,BR,2025,2026,NO,NOT_YET_OBSERVED,BEFORE_FIRST_OBSERVED_YEAR,2026,2026,No source evidence before first observed year in this audit window.
 BR7326,BR,2026,2027,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2026,2026,Source PDF contains the hunt code in this report year.
-CG1000,CG,2020,2021,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2021,Source PDF contains the hunt code in this report year.
-CG1000,CG,2021,2022,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2021,Source PDF contains the hunt code in this report year.
-CG1000,CG,2022,2023,NO,TERMINAL_ABSENT_AFTER_LAST_OBSERVED,NO_LATER_REAPPEARANCE_IN_AUDIT_WINDOW,2020,2021,The code has not reappeared in later scanned source years through 2026.
-CG1000,CG,2023,2024,NO,TERMINAL_ABSENT_AFTER_LAST_OBSERVED,NO_LATER_REAPPEARANCE_IN_AUDIT_WINDOW,2020,2021,The code has not reappeared in later scanned source years through 2026.
-CG1000,CG,2024,2025,NO,TERMINAL_ABSENT_AFTER_LAST_OBSERVED,NO_LATER_REAPPEARANCE_IN_AUDIT_WINDOW,2020,2021,The code has not reappeared in later scanned source years through 2026.
-CG1000,CG,2025,2026,NO,TERMINAL_ABSENT_AFTER_LAST_OBSERVED,NO_LATER_REAPPEARANCE_IN_AUDIT_WINDOW,2020,2021,The code has not reappeared in later scanned source years through 2026.
-CG1000,CG,2026,2027,NO,TERMINAL_ABSENT_AFTER_LAST_OBSERVED,NO_LATER_REAPPEARANCE_IN_AUDIT_WINDOW,2020,2021,The code has not reappeared in later scanned source years through 2026.
+CG1000,CG,2020,2021,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2022,Source PDF contains the hunt code in this report year.
+CG1000,CG,2021,2022,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2022,Source PDF contains the hunt code in this report year.
+CG1000,CG,2022,2023,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2022,Source PDF contains the hunt code in this report year.
+CG1000,CG,2023,2024,NO,TERMINAL_ABSENT_AFTER_LAST_OBSERVED,NO_LATER_REAPPEARANCE_IN_AUDIT_WINDOW,2020,2022,The code has not reappeared in later scanned source years through 2026.
+CG1000,CG,2024,2025,NO,TERMINAL_ABSENT_AFTER_LAST_OBSERVED,NO_LATER_REAPPEARANCE_IN_AUDIT_WINDOW,2020,2022,The code has not reappeared in later scanned source years through 2026.
+CG1000,CG,2025,2026,NO,TERMINAL_ABSENT_AFTER_LAST_OBSERVED,NO_LATER_REAPPEARANCE_IN_AUDIT_WINDOW,2020,2022,The code has not reappeared in later scanned source years through 2026.
+CG1000,CG,2026,2027,NO,TERMINAL_ABSENT_AFTER_LAST_OBSERVED,NO_LATER_REAPPEARANCE_IN_AUDIT_WINDOW,2020,2022,The code has not reappeared in later scanned source years through 2026.
 CG1029,CG,2020,2021,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2022,Source PDF contains the hunt code in this report year.
 CG1029,CG,2021,2022,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2022,Source PDF contains the hunt code in this report year.
 CG1029,CG,2022,2023,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2022,Source PDF contains the hunt code in this report year.
@@ -1366,7 +1366,7 @@ DA1050,DA,2025,2026,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2024,2025,Source PD
 DA1050,DA,2026,2027,NO,TERMINAL_ABSENT_AFTER_LAST_OBSERVED,NO_LATER_REAPPEARANCE_IN_AUDIT_WINDOW,2024,2025,The code has not reappeared in later scanned source years through 2026.
 DB0007,DB,2020,2021,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 DB0007,DB,2021,2022,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
-DB0007,DB,2022,2023,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
+DB0007,DB,2022,2023,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 DB0007,DB,2023,2024,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 DB0007,DB,2024,2025,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 DB0007,DB,2025,2026,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
@@ -4110,7 +4110,7 @@ DB1806,DB,2025,2026,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2025,2026,Source PD
 DB1806,DB,2026,2027,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2025,2026,Source PDF contains the hunt code in this report year.
 DS1000,DS,2020,2021,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 DS1000,DS,2021,2022,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
-DS1000,DS,2022,2023,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
+DS1000,DS,2022,2023,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 DS1000,DS,2023,2024,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 DS1000,DS,2024,2025,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 DS1000,DS,2025,2026,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
@@ -5776,7 +5776,7 @@ EA2038,EA,2025,2026,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2023,2025,Source PD
 EA2038,EA,2026,2027,NO,TERMINAL_ABSENT_AFTER_LAST_OBSERVED,NO_LATER_REAPPEARANCE_IN_AUDIT_WINDOW,2023,2025,The code has not reappeared in later scanned source years through 2026.
 EB1000,EB,2020,2021,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 EB1000,EB,2021,2022,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
-EB1000,EB,2022,2023,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
+EB1000,EB,2022,2023,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 EB1000,EB,2023,2024,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 EB1000,EB,2024,2025,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 EB1000,EB,2025,2026,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
@@ -7715,7 +7715,7 @@ EB3620,EB,2025,2026,NO,NOT_YET_OBSERVED,BEFORE_FIRST_OBSERVED_YEAR,2026,2026,No 
 EB3620,EB,2026,2027,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2026,2026,Source PDF contains the hunt code in this report year.
 GO1000,GO,2020,2021,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 GO1000,GO,2021,2022,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
-GO1000,GO,2022,2023,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
+GO1000,GO,2022,2023,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 GO1000,GO,2023,2024,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 GO1000,GO,2024,2025,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 GO1000,GO,2025,2026,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
@@ -7918,7 +7918,7 @@ MA1010,MA,2025,2026,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2025,2025,Source PD
 MA1010,MA,2026,2027,NO,TERMINAL_ABSENT_AFTER_LAST_OBSERVED,NO_LATER_REAPPEARANCE_IN_AUDIT_WINDOW,2025,2025,The code has not reappeared in later scanned source years through 2026.
 MB1000,MB,2020,2021,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 MB1000,MB,2021,2022,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
-MB1000,MB,2022,2023,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
+MB1000,MB,2022,2023,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 MB1000,MB,2023,2024,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 MB1000,MB,2024,2025,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 MB1000,MB,2025,2026,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
@@ -8240,7 +8240,7 @@ MB6266,MB,2025,2026,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2024,2026,Source PD
 MB6266,MB,2026,2027,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2024,2026,Source PDF contains the hunt code in this report year.
 PB1000,PB,2020,2021,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 PB1000,PB,2021,2022,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
-PB1000,PB,2022,2023,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
+PB1000,PB,2022,2023,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 PB1000,PB,2023,2024,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 PB1000,PB,2024,2025,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 PB1000,PB,2025,2026,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
@@ -9339,7 +9339,7 @@ RE1000,RE,2025,2026,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2025,Source PD
 RE1000,RE,2026,2027,NO,TERMINAL_ABSENT_AFTER_LAST_OBSERVED,NO_LATER_REAPPEARANCE_IN_AUDIT_WINDOW,2020,2025,The code has not reappeared in later scanned source years through 2026.
 RS0001,RS,2020,2021,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 RS0001,RS,2021,2022,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
-RS0001,RS,2022,2023,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
+RS0001,RS,2022,2023,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 RS0001,RS,2023,2024,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 RS0001,RS,2024,2025,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 RS0001,RS,2025,2026,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
@@ -9458,7 +9458,7 @@ RS6727,RS,2025,2026,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2021,2026,Source PD
 RS6727,RS,2026,2027,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2021,2026,Source PDF contains the hunt code in this report year.
 TK0001,TK,2020,2021,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 TK0001,TK,2021,2022,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
-TK0001,TK,2022,2023,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
+TK0001,TK,2022,2023,YES,OBSERVED_IN_SOURCE,CONFIRMED_PRESENT,2020,2026,Source PDF contains the hunt code in this report year.
 TK0001,TK,2023,2024,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 TK0001,TK,2024,2025,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."
 TK0001,TK,2025,2026,NO,LIKELY_CONTINUED_NOT_OBSERVED,TEMPORARY_SOURCE_GAP_BEFORE_REAPPEARANCE,2020,2026,"The code is absent this year but reappears later, so do not treat this as termination."

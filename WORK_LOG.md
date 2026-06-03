@@ -12106,3 +12106,73 @@ o_table=0).
   - JSON summaries parsed successfully: `PASS`
   - Year-semantics audit CSV parsed successfully: `PASS`
   - `git diff --check`: `PASS` with pre-existing line-ending warnings only
+
+## 2026-06-03T15:24:23Z - 2022 Draw Results Hunt-Code Identity Truth Source Pass
+
+- Assigned step:
+  - Build the 2022 hunt-code identity ledger from the provided `2022.zip` truth-source package.
+  - Apply the global year rule: `draw_results_year = 2022`, `permit_draw_year = 2022`, `model_year = 2023`.
+  - Correct the 2022 Sportsman table text-extraction artifacts where `N/A` joined to hunt codes, such as `ABI1000`.
+
+- Source inputs:
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2022.zip`
+  - `processed_data/audits/hunt_code_lifecycle_comprehensive_2020_2026.csv`
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+
+- Files changed:
+  - `scripts/build_hunt_code_year_identity_ledger.py`
+  - `processed_data/audits/hunt_code_source_hits_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_lifecycle_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_presence_matrix_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_year_to_year_transitions_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_dropoffs_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_dropped_2025_to_2026_comprehensive.csv`
+  - `processed_data/audits/hunt_code_additions_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_prefix_summary_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_interpreted_presence_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_historical_reappearance_gaps_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_terminal_dropoffs_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_interpreted_lifecycle_summary_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_lifecycle_prefix_artifact_filter_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_lifecycle_comprehensive_2020_2026_summary.json`
+  - `processed_data/audits/hunt_code_interpreted_lifecycle_comprehensive_2020_2026_summary.json`
+  - `WORK_LOG.md`
+
+- Outputs created:
+  - `processed_data/audits/hunt_code_year_identity_ledger_2022.csv`
+  - `processed_data/audits/hunt_code_year_identity_crosscheck_2022.csv`
+  - `processed_data/audits/hunt_code_year_identity_issues_2022.csv`
+  - `processed_data/audits/hunt_code_year_identity_scan_errors_2022.csv`
+  - `processed_data/audits/hunt_code_year_identity_sportsman_normalization_2022.csv`
+  - `processed_data/audits/hunt_code_year_identity_2022_summary.json`
+  - `docs/hunt_code_year_identity_alignment_2022.md`
+
+- Key results:
+  - 2022 source PDFs processed from provided ZIP package: `23`
+  - Ledger rows: `1998`
+  - Unique 2022 hunt codes anchored to identity rows: `1020`
+  - Sportsman rows normalized from user-confirmed copied text: `11`
+  - PDF scan errors: `0`
+  - Coverage against corrected 2022 lifecycle presence matrix: `1020/1020`
+  - Missing from identity ledger: `0`
+  - Extra in identity ledger: `0`
+
+- Sportsman normalization:
+  - The extracted PDF text joined the prior `N/A` cell into real hunt codes, producing artifacts such as `ABI1000`, `ABR1000`, and `ADBX0007`.
+  - Normalized confirmed codes: `BI1000`, `BR1000`, `CG1000`, `DB0007`, `DS1000`, `EB1000`, `GO1000`, `MB1000`, `PB1000`, `RS0001`, `TK0001`.
+  - `BI1000` is the real Sportsman Bison code; `ABI1000` is not a valid hunt code.
+
+- Lifecycle correction:
+  - 2022 lifecycle source-hit count corrected from `1009` to `1020` after replacing Sportsman extraction artifacts with confirmed real codes.
+  - Updated comprehensive lifecycle, presence, transition, dropoff, addition, prefix, interpreted presence, and reappearance-gap summaries.
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values, draw values, or hunt-code rows were changed.
+
+- Validation:
+  - `python -m py_compile scripts\build_hunt_code_year_identity_ledger.py`: `PASS`
+  - 2022 summary JSON parsed successfully: `PASS`
+  - 2022 ledger/crosscheck/issues/sportsman-normalization CSV row counts verified: `PASS`
+  - Corrected 2022 identity coverage has no missing or extra hunt codes: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only

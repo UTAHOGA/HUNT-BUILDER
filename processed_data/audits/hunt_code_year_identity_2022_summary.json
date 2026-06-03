@@ -1,0 +1,61 @@
+{
+  "scope": "2022 hunt-code/year identity alignment from provided truth-source ZIP package.",
+  "source_zip": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2022.zip",
+  "draw_results_year": 2022,
+  "permit_draw_year": 2022,
+  "report_year": 2022,
+  "model_year": 2023,
+  "ledger_rows": 1998,
+  "unique_hunt_codes": 1020,
+  "sportsman_rows_added": 11,
+  "sportsman_code_normalizations": 11,
+  "lifecycle_source_hits_added": 11,
+  "scan_error_count": 0,
+  "expected_code_count_after_correction": 1020,
+  "missing_from_identity_ledger": [],
+  "extra_in_identity_ledger": [],
+  "source_model_year_label_counts": {
+    "2023": 23
+  },
+  "corrected_lifecycle_codes_by_report_year": {
+    "2020": 1028,
+    "2021": 1023,
+    "2022": 1020,
+    "2023": 1022,
+    "2024": 1016,
+    "2025": 1053,
+    "2026": 834
+  },
+  "corrected_lifecycle_unique_hunt_codes": 1359,
+  "crosscheck_status_counts": {
+    "REVIEW_CURRENT_DATABASE_NAME_DIFFERENCE": 27,
+    "REVIEW_TOTALS_PARSE": 671,
+    "HISTORICAL_CODE_NOT_IN_CURRENT_DATABASE": 6,
+    "REVIEW_CONFLICTING_TOTAL_PERMITS": 316
+  },
+  "totals_parse_status_counts": {
+    "OK": 750,
+    "REVIEW_TOTALS_PARSE": 119,
+    "TOTALS_NOT_FOUND": 1118,
+    "OK_SPORTSMAN_TABLE": 11
+  },
+  "current_database_match_status_counts": {
+    "EXACT_CODE_IN_DATABASE": 1736,
+    "NOT_IN_CURRENT_DATABASE": 262
+  },
+  "outputs": {
+    "ledger": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_year_identity_ledger_2022.csv",
+    "crosscheck": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_year_identity_crosscheck_2022.csv",
+    "issues": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_year_identity_issues_2022.csv",
+    "scan_errors": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_year_identity_scan_errors_2022.csv",
+    "normalization": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_year_identity_sportsman_normalization_2022.csv",
+    "summary": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_year_identity_2022_summary.json",
+    "report": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\docs\\hunt_code_year_identity_alignment_2022.md"
+  },
+  "notes": [
+    "Year semantics: draw_results_year = permit_draw_year for BIBLE HUNT CODES source packages.",
+    "Model year is the predictive modeling year and equals draw_results_year + 1.",
+    "2022 Sportsman rows are normalized from PDF text-extraction artifacts using user-confirmed copied text.",
+    "This audit does not modify DATABASE.csv."
+  ]
+}
