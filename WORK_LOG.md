@@ -12488,4 +12488,59 @@ o_table=0).
   - `git diff --check`: `PASS` with pre-existing line-ending warnings only
 
 - Commit:
+  - `578f429b`
+
+## 2026-06-03T16:36:51Z - Provisional 2026 DWR Draw Results Pull vs DATABASE Allotment Audit
+
+- Assigned step:
+  - Inspect the 2026 files pulled from the DWR/UtahDraws website.
+  - Treat the files as provisional draw-results evidence, not confirmed truth.
+  - Compare source permit quota fields against `DATABASE.csv` current allotment columns.
+
+- Source inputs:
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2026\`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/csv/`
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+
+- Files changed:
+  - `scripts/audit-2026-dwr-draw-results-vs-database-allotments.py`
+  - `docs/dwr_2026_draw_results_vs_database_allotments.md`
+  - `processed_data/audits/dwr_2026_draw_results_vs_database_allotments.csv`
+  - `processed_data/audits/dwr_2026_draw_results_vs_database_allotments_summary.json`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Compared source fields `QuotaQuantity`, `ResidentQuotaQuantity`, and `NonResidentQuotaQuantity`.
+  - Compared against `DATABASE.csv` fields `permit_allotment_2026_total`, `permit_allotment_2026_res`, and `permit_allotment_2026_nr`.
+  - Source CSV files compared: `15`
+  - Source hunt codes: `834`
+  - DATABASE hunt codes: `1449`
+  - Union hunt codes compared: `1449`
+  - Source-only hunt codes: `0`
+  - Source and DATABASE overlap: `834`
+  - DATABASE-only/not in source pull: `615`
+  - Overlap rows matching all comparable allotment values: `580`
+  - Numeric mismatch rows: `245`
+  - Source has value where DATABASE allotment is blank: `7`
+  - DATABASE has value where source quota is blank: `2`
+
+- Interpretation:
+  - The 2026 DWR/UtahDraws pull covers a narrower draw-results universe than the full `DATABASE.csv` 2026 hunt-code universe.
+  - The pull should remain `PROVISIONAL_SOURCE_EVIDENCE_ONLY_NOT_PROMOTED`.
+  - `DATABASE.csv` remains authoritative for current 2026 allotment values unless a later reviewed promotion step changes that rule.
+  - Mismatches are concentrated in Buck Deer, Bull Elk, Buck Pronghorn, and smaller OIL families; they need source-definition review before any promotion.
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values, draw values, prediction values, master JSON files, or website runtime files were changed.
+
+- Validation:
+  - `python scripts\audit-2026-dwr-draw-results-vs-database-allotments.py`: `PASS`
+  - `python -m py_compile scripts\audit-2026-dwr-draw-results-vs-database-allotments.py`: `PASS`
+  - Audit row count verified as `1449`: `PASS`
+  - Source-only row count verified as `0`: `PASS`
+  - Mismatch row count verified as `245`: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only
+
+- Commit:
   - Pending at log-write time.
