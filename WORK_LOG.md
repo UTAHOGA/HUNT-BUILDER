@@ -12930,7 +12930,7 @@ o_table=0).
   - `git diff --check -- AGENTS.MD WORK_LOG.md docs/bible_hunt_codes_source_control.md`: `PASS`
 
 - Commit:
-  - Pending at log-write time.
+  - `e8e5111e` - `Close 2021 to 2022 antlerless crosswalk drops`
 
 ## 2026-06-03T19:09:52Z - Rerun Bull Elk Permit Workbook Normalizer
 
@@ -13486,6 +13486,36 @@ o_table=0).
   - Verified reviewed decision CSV row count for `2021->2022`: `20`
   - Verified expected successor/discontinued code sets exactly match the reviewed antlerless closure set.
   - `git diff --check -- <changed files>`: `PASS` with line-ending warning only for the changed script
+
+- Commit:
+  - Pending at log-write time.
+
+## 2026-06-03T22:51:30Z - Integrate Year-To-Year Hunt Code Tracking Directive
+
+- Assigned step:
+  - Read and act on the pasted year-to-year hunt-code tracking directive.
+
+- Files changed:
+  - `AGENTS.MD`
+  - `docs/bible_hunt_codes_source_control.md`
+  - `docs/year_to_year_hunt_code_tracking_directive.md`
+  - `WORK_LOG.md`
+
+- Outputs created:
+  - `docs/year_to_year_hunt_code_tracking_directive.md`
+
+- Key results:
+  - Added the required year-document headers, provenance fields, source hierarchy, comparison rules, permit rules, special cases, and validation checklist as a tracked directive.
+  - Linked the directive from `AGENTS.MD` so it is read for relevant future tasks.
+  - Linked the directive from `docs/bible_hunt_codes_source_control.md` so BIBLE HUNT CODES year documents and cross-year comparisons use the same standard.
+
+- Data-change note:
+  - No hunt-code data files were modified.
+  - `DATABASE.csv` was not modified.
+  - No permit values were promoted.
+
+- Validation:
+  - `git diff --check -- AGENTS.MD docs/bible_hunt_codes_source_control.md docs/year_to_year_hunt_code_tracking_directive.md WORK_LOG.md`: `PASS` with line-ending warnings only for existing markdown files
 
 - Commit:
   - Pending at log-write time.

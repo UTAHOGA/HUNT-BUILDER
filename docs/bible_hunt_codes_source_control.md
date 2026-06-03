@@ -119,6 +119,12 @@ If sources disagree, the official published PDF wins and the derived file must b
 
 The hunt engine must not blindly ingest every PDF in `BIBLE HUNT CODES`.
 
+Structured year documents and adjacent-year comparisons must follow:
+
+```text
+docs/year_to_year_hunt_code_tracking_directive.md
+```
+
 Preferred engine feed units:
 
 - one normalized family file per draw family/year
