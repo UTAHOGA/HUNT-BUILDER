@@ -3,8 +3,8 @@
   "purpose": "Historical reappearances are mapped as likely continued through non-observed years instead of terminated.",
   "year_semantics": "For BIBLE HUNT CODES packages, report_year means draw_results_year and permit_draw_year. Model year is the predictive modeling year and equals draw_results_year + 1 unless reviewed source evidence proves otherwise.",
   "unique_hunt_codes_observed": 1359,
-  "likely_continued_not_observed_cells": 78,
-  "codes_with_historical_reappearance_gaps": 42,
+  "likely_continued_not_observed_cells": 77,
+  "codes_with_historical_reappearance_gaps": 41,
   "terminal_dropoff_candidate_codes": 525,
   "active_2026_codes": 834
 }

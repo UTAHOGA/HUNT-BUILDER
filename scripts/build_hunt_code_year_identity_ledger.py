@@ -298,7 +298,11 @@ def build_identity_outputs(repo, zip_path, year):
     hunt_line_re = re.compile(r"\bHunt:\s*([A-Z]{2,3}\d{3,4})(?:\s+(.*?))?(?:\s+Page\s+\d+\s*)?$", re.I)
     code_re = re.compile(r"\b[A-Z]{2,3}\d{3,4}\b")
     with zipfile.ZipFile(zip_path) as archive:
-        members = sorted([m for m in archive.namelist() if m.startswith(f"{year}/") and m.lower().endswith(".pdf")])
+        members = sorted([
+            m for m in archive.namelist()
+            if m.lower().endswith(".pdf")
+            and (m.startswith(f"{year}/") or Path(m).name.startswith(f"{year}_"))
+        ])
         for member in members:
             label = report_label(member)
             family = report_family(label)

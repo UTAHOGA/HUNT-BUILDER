@@ -12343,3 +12343,48 @@ o_table=0).
   - 2023 missing/extra code coverage check: `PASS`
   - EB-family distribution check against `DATABASE.csv`: `PASS`
   - `git diff --check`: `PASS` with line-ending warnings only
+
+## 2026-06-03T16:10:36Z - EB1007 2024 Youth Elk Gap Correction
+
+- Assigned step:
+  - Verify the user-supplied 2024 Youth Elk draw-results PDF evidence for `EB1007`.
+  - Correct the year-to-year lifecycle audit if the prior 2024 gap was an extraction/indexing miss.
+
+- Source input:
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2024\2024_PERMITS=2025_MODEL__YOUTH ELK DRAW RESULTS.pdf`
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2024\2024_PERMITS=2025_MODEL__NORMALIZED_TO_2025_STYLE.zip`
+
+- Files changed:
+  - `scripts/build_hunt_code_year_identity_ledger.py`
+  - `docs/hunt_code_year_identity_alignment_2024.md`
+  - 2024 identity audit outputs under `processed_data/audits/`
+  - comprehensive lifecycle/presence/source-hit/dropoff/addition/interpreted audit outputs under `processed_data/audits/`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Confirmed the 2024 Youth Elk PDF contains `Hunt: EB1007 Draw-only Youth Elk - Draw-only Youth Any Bull/hunter's Choice Elk - Any Legal Weapon`.
+  - Fixed the year-identity ZIP parser to scan normalized ZIPs that store PDFs at the ZIP root as well as ZIPs with a `YYYY/` folder prefix.
+  - Regenerated the 2024 identity audit from the normalized 2024 package.
+  - 2024 identity ledger rows: `2020`
+  - 2024 unique hunt codes: `1017`
+  - 2024 scan errors: `0`
+  - 2024 missing/extra after correction: `0` / `0`
+  - Added one reviewed lifecycle source-hit backfill for `EB1007` in report year `2024`.
+  - Corrected `EB1007` observed years to `2020|2021|2022|2023|2024|2025|2026`.
+  - Removed `EB1007` from the historical reappearance-gap audit.
+  - `EB1007` lifecycle interpretation is now `ACTIVE_2026`, not `ACTIVE_2026_WITH_REAPPEARANCE_GAPS_LIKELY_CONTINUED`.
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values, draw values, prediction values, or website runtime files were changed.
+
+- Validation:
+  - Direct PDF text extraction for `EB1007`: `PASS`
+  - `python scripts\build_hunt_code_year_identity_ledger.py --zip "C:\Users\tyler\Desktop\BIBLE HUNT CODES\2024\2024_PERMITS=2025_MODEL__NORMALIZED_TO_2025_STYLE.zip" --year 2024`: `PASS`
+  - `EB1007` presence matrix shows `YES` for every report year `2020` through `2026`: `PASS`
+  - `EB1007` absent from `hunt_code_historical_reappearance_gaps_comprehensive_2020_2026.csv`: `PASS`
+  - `python -m py_compile scripts\build_hunt_code_year_identity_ledger.py`: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only
+
+- Commit:
+  - Pending at log-write time.
