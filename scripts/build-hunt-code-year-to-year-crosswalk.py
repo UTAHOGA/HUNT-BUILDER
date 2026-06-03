@@ -22,6 +22,7 @@ OUT_CANDIDATES = AUDITS / "hunt_code_year_to_year_crosswalk_candidates_2020_2026
 OUT_SUMMARY = AUDITS / "hunt_code_year_to_year_crosswalk_2020_2026_summary.json"
 OUT_REVIEWED_DECISIONS = AUDITS / "hunt_code_year_to_year_reviewed_decisions_2020_to_2021.csv"
 OUT_REVIEWED_DECISIONS_2021_2022 = AUDITS / "hunt_code_year_to_year_reviewed_decisions_2021_to_2022.csv"
+OUT_REVIEWED_DECISIONS_2022_2023 = AUDITS / "hunt_code_year_to_year_reviewed_decisions_2022_to_2023.csv"
 OUT_REPORT = ROOT / "docs" / "hunt_code_year_to_year_crosswalk_2020_2026.md"
 
 REVIEWED_DISCONTINUED_AFTER_2020 = {
@@ -96,6 +97,19 @@ REVIEWED_2021_TO_2022_ANTLERLESS_DISCONTINUED = {
     "PD1018": "2021 antlerless PDF confirms PD1018; 2022 and 2023 antlerless draw-results PDFs have no exact code and no same-unit successor for Mt Dutton/Paunsaugunt doe pronghorn.",
     "PD1023": "2021 antlerless PDF confirms PD1023; 2022 and 2023 antlerless draw-results PDFs have no exact code and no same-unit successor for CWMU George Creek doe pronghorn.",
     "PD1039": "2021 antlerless PDF confirms PD1039; 2022 and 2023 antlerless draw-results PDFs have no exact code and no same-unit successor for Panguitch Lake/Zion, North doe pronghorn.",
+}
+
+REVIEWED_2022_TO_2023_SPORTSMAN_SOURCE_GAPS = {
+    "BI1000": "2023 sportsman draw-results PDF confirms BI1000 Sportsman Bison on p1; comprehensive presence matrix missed the 2023 sportsman source.",
+    "BR1000": "2023 bear guide p19 confirms sportsman bear permits are available, and the 2023 sportsman draw-results PDF confirms BR1000 Sportsman Black Bear on p1; comprehensive presence matrix missed the 2023 sportsman source.",
+    "DB0007": "2023 sportsman draw-results PDF confirms DB0007 Sportsman Deer on p1; comprehensive presence matrix missed the 2023 sportsman source.",
+    "DS1000": "2023 sportsman draw-results PDF confirms DS1000 Sportsman Desert Bighorn Sheep on p1; comprehensive presence matrix missed the 2023 sportsman source.",
+    "EB1000": "2023 sportsman draw-results PDF confirms EB1000 Sportsman Elk on p1; comprehensive presence matrix missed the 2023 sportsman source.",
+    "GO1000": "2023 sportsman draw-results PDF confirms GO1000 Sportsman Mountain Goat on p1; comprehensive presence matrix missed the 2023 sportsman source.",
+    "MB1000": "2023 sportsman draw-results PDF confirms MB1000 Sportsman Moose on p1; comprehensive presence matrix missed the 2023 sportsman source.",
+    "PB1000": "2023 sportsman draw-results PDF confirms PB1000 Sportsman Pronghorn on p1; comprehensive presence matrix missed the 2023 sportsman source.",
+    "RS0001": "2023 sportsman draw-results PDF confirms RS0001 Sportsman Rocky Mtn Bighorn Sheep on p1; comprehensive presence matrix missed the 2023 sportsman source.",
+    "TK0001": "2023 sportsman draw-results PDF confirms TK0001 Sportsman Bearded Turkey on p1; comprehensive presence matrix missed the 2023 sportsman source.",
 }
 
 
@@ -400,6 +414,11 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                 if from_year == 2021 and to_year == 2022
                 else None
             )
+            reviewed_2022_2023_sportsman_source_gap_note = (
+                REVIEWED_2022_TO_2023_SPORTSMAN_SOURCE_GAPS.get(code)
+                if from_year == 2022 and to_year == 2023
+                else None
+            )
             if reviewed_discontinued_note:
                 crosswalk_rows.append(
                     base_row(
@@ -563,6 +582,30 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                             "source_kinds": "draw_results",
                         },
                         reviewed_2021_2022_antlerless_discontinued_note,
+                    )
+                )
+            elif reviewed_2022_2023_sportsman_source_gap_note:
+                right = dict(left)
+                right["identity_source"] = "REVIEWED_2023_SPORTSMAN_DRAW_RESULTS"
+                crosswalk_rows.append(
+                    base_row(
+                        from_year,
+                        to_year,
+                        code,
+                        code,
+                        "REVIEWED_PRESENT_IN_2023_SPORTSMAN_SOURCE_GAP",
+                        "OFFICIAL_SPORTSMAN_DRAW_RESULTS_PRESENT",
+                        1.0,
+                        "EXACT_CODE_EXTERNAL_SOURCE",
+                        left,
+                        right,
+                        hit_from,
+                        {
+                            "source_files": "C:/Users/tyler/Desktop/BIBLE HUNT CODES/2023/.pdf/2023_PERMITS=2024_MODEL__SPORTSMAN DRAW RESULTS.pdf",
+                            "source_pages": "1",
+                            "source_kinds": "draw_results",
+                        },
+                        reviewed_2022_2023_sportsman_source_gap_note,
                     )
                 )
             elif candidates:
@@ -780,6 +823,11 @@ def summarize(crosswalk_rows: list[dict[str, object]], candidate_rows: list[dict
                 for row in crosswalk_rows
                 if row["crosswalk_status"] == "REVIEWED_SOURCE_YEAR_ARTIFACT_NOT_TRUE_DROP"
             ),
+            "reviewed_2022_to_2023_sportsman_source_gap_rows": sum(
+                1
+                for row in crosswalk_rows
+                if row["crosswalk_status"] == "REVIEWED_PRESENT_IN_2023_SPORTSMAN_SOURCE_GAP"
+            ),
         },
         "crosswalk_status_counts": dict(status_counts),
         "transition_status_counts": {key: dict(value) for key, value in transition_counts.items()},
@@ -788,6 +836,7 @@ def summarize(crosswalk_rows: list[dict[str, object]], candidate_rows: list[dict
             "candidate_csv": OUT_CANDIDATES.relative_to(ROOT).as_posix(),
             "reviewed_decisions_csv": OUT_REVIEWED_DECISIONS.relative_to(ROOT).as_posix(),
             "reviewed_decisions_2021_2022_csv": OUT_REVIEWED_DECISIONS_2021_2022.relative_to(ROOT).as_posix(),
+            "reviewed_decisions_2022_2023_csv": OUT_REVIEWED_DECISIONS_2022_2023.relative_to(ROOT).as_posix(),
             "summary_json": OUT_SUMMARY.relative_to(ROOT).as_posix(),
             "report_md": OUT_REPORT.relative_to(ROOT).as_posix(),
         },
@@ -799,6 +848,7 @@ def summarize(crosswalk_rows: list[dict[str, object]], candidate_rows: list[dict
             "Known A-prefixed Sportsman/OCR artifacts are excluded from this crosswalk; normalized real hunt codes remain eligible.",
             "Reviewed 2020-to-2021 discontinuation decisions are recorded separately and are not successor mappings.",
             "Reviewed 2021-to-2022 antlerless decisions use the official 2021, 2022, and 2023 antlerless draw-results PDFs to separate true successors from discontinued rows.",
+            "Reviewed 2022-to-2023 sportsman source-gap decisions use the official 2023 sportsman draw-results PDF; they are exact-code continuity rows, not successor mappings.",
         ],
     }
 
@@ -827,6 +877,7 @@ def write_report(summary: dict[str, object]) -> None:
         f"- Reviewed 2021->2022 antlerless discontinued/no-successor rows: `{summary['row_counts']['reviewed_2021_to_2022_antlerless_discontinued_rows']}`",
         f"- Reviewed 2021->2022 source-gap continuity rows: `{summary['row_counts']['reviewed_2021_to_2022_source_gap_rows']}`",
         f"- Reviewed 2021->2022 source-artifact rows: `{summary['row_counts']['reviewed_2021_to_2022_artifact_rows']}`",
+        f"- Reviewed 2022->2023 sportsman source-gap continuity rows: `{summary['row_counts']['reviewed_2022_to_2023_sportsman_source_gap_rows']}`",
         "- Candidate rows list up to five same-prefix successor candidates per dropped code; they are not promoted one-to-one links.",
         "",
         "## Codes By Report Year",
@@ -866,6 +917,7 @@ def main() -> int:
     crosswalk_rows, candidate_rows, summary = build_crosswalk()
     decision_rows = reviewed_decision_rows(crosswalk_rows, 2020, 2021)
     decision_rows_2021_2022 = reviewed_decision_rows(crosswalk_rows, 2021, 2022)
+    decision_rows_2022_2023 = reviewed_decision_rows(crosswalk_rows, 2022, 2023)
     fields = list(base_row(2020, 2021, "", "", "", "", "", "", {}, {}, {}, {}, "").keys())
     candidate_fields = [
         "from_report_year",
@@ -907,6 +959,26 @@ def main() -> int:
     write_csv(
         OUT_REVIEWED_DECISIONS_2021_2022,
         decision_rows_2021_2022,
+        [
+            "from_report_year",
+            "to_report_year",
+            "from_model_year",
+            "to_model_year",
+            "hunt_code",
+            "species",
+            "unit",
+            "weapon",
+            "reviewed_status",
+            "source_evidence",
+            "source_pages",
+            "target_source_evidence",
+            "target_source_pages",
+            "decision_basis",
+        ],
+    )
+    write_csv(
+        OUT_REVIEWED_DECISIONS_2022_2023,
+        decision_rows_2022_2023,
         [
             "from_report_year",
             "to_report_year",
