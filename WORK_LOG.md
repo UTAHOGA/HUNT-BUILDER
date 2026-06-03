@@ -12603,3 +12603,55 @@ o_table=0).
 
 - Commit:
   - Pending at log-write time.
+
+## 2026-06-03T17:07:27Z - Buck Deer Pasted Permit Source Parse And External Source Crosscheck
+
+- Assigned step:
+  - Parse the pasted Buck Deer current permit source where resident and nonresident values are split across adjacent lines.
+  - Produce a clean CSV in the current permit-audit format and compare it against external source pulls without using `DATABASE.csv` as the winner.
+
+- Source input:
+  - `C:\Users\tyler\.codex\attachments\9d5d717a-a40c-4dc6-8c2b-94070eebffce\pasted-text.txt`
+  - Source SHA256: `d35e14ac6c77b8ca15094086faffedadd327c56a70cd30f2a98f4ee281a8a898`
+
+- Files changed:
+  - `scripts/audit-buck-deer-pasted-permits-2026.py`
+  - `processed_data/audits/buck_deer_pasted_permit_source_2026.csv`
+  - `processed_data/audits/buck_deer_pasted_permit_source_2026_summary.json`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Parsed rows: `458`
+  - Unique hunt codes: `458`
+  - Code family counts:
+    - `DB`: `344`
+    - `LD`: `6`
+    - `LO`: `108`
+  - Permit shape counts:
+    - `RES_NR_SPLIT_TOTAL_COMPUTED`: `192`
+    - `TOTAL_ONLY_PRINTED`: `136`
+    - `NO_PERMIT_NUMBER_IN_PASTE`: `130`
+  - Agreement counts:
+    - `PASTED_MATCHES_ALL_3_EXACT`: `59`
+    - `PASTED_MATCHES_HANUMBER_AND_HUNTTABLE_EXACT`: `23`
+    - `PASTED_MATCHES_HANUMBER_AND_UTAHDRAWS_EXACT`: `110`
+    - `PASTED_MATCHES_HUNTTABLE_EXACT`: `136`
+    - `NO_PASTED_PERMIT_NUMBER`: `130`
+  - Recommended action counts:
+    - `RESOLVES_OR_CONFIRMS_CURRENT_PERMITS`: `328`
+    - `NO_PERMIT_VALUE_TO_PROMOTE`: `130`
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No current permit values were promoted.
+  - The audit computes total as resident plus nonresident only when the pasted source provides a resident/nonresident split and no printed total.
+
+- Validation:
+  - `python scripts\audit-buck-deer-pasted-permits-2026.py`: `PASS`
+  - `python -m py_compile scripts\audit-buck-deer-pasted-permits-2026.py`: `PASS`
+  - Output CSV row count verified as `458`: `PASS`
+  - Summary JSON written and parsed: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only
+
+- Commit:
+  - Pending at log-write time.
