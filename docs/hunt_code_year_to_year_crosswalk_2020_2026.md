@@ -11,8 +11,10 @@ This audit creates an adjacent year-to-year hunt-code crosswalk from the BIBLE H
 
 ## Key Counts
 
-- Crosswalk rows: `6403`
-- Candidate rows: `819`
+- Crosswalk rows: `6406`
+- Candidate rows: `816`
+- Reviewed 2020->2021 discontinued/no-successor rows: `17`
+- Reviewed 2020->2021 source-gap continuity rows: `4`
 - Candidate rows list up to five same-prefix successor candidates per dropped code; they are not promoted one-to-one links.
 
 ## Codes By Report Year
@@ -27,14 +29,16 @@ This audit creates an adjacent year-to-year hunt-code crosswalk from the BIBLE H
 
 ## Status Counts
 
-- `ADDED_NO_PREDECESSOR_CANDIDATE`: `239`
-- `CANDIDATE_SUCCESSOR_BY_IDENTITY`: `213`
-- `DROPPED_NO_SUCCESSOR_CANDIDATE`: `356`
+- `ADDED_NO_PREDECESSOR_CANDIDATE`: `242`
+- `CANDIDATE_SUCCESSOR_BY_IDENTITY`: `210`
+- `DROPPED_NO_SUCCESSOR_CANDIDATE`: `338`
 - `EXACT_CODE_RETAINED`: `5595`
+- `REVIEWED_DISCONTINUED_AFTER_2020_NO_SUCCESSOR`: `17`
+- `REVIEWED_PRESENT_IN_2021_COUGAR_GUIDE_SOURCE_GAP`: `4`
 
 ## Transition Counts
 
-- `2020->2021`: ADDED_NO_PREDECESSOR_CANDIDATE=43, CANDIDATE_SUCCESSOR_BY_IDENTITY=66, DROPPED_NO_SUCCESSOR_CANDIDATE=18, EXACT_CODE_RETAINED=944
+- `2020->2021`: ADDED_NO_PREDECESSOR_CANDIDATE=46, CANDIDATE_SUCCESSOR_BY_IDENTITY=63, EXACT_CODE_RETAINED=944, REVIEWED_DISCONTINUED_AFTER_2020_NO_SUCCESSOR=17, REVIEWED_PRESENT_IN_2021_COUGAR_GUIDE_SOURCE_GAP=4
 - `2021->2022`: ADDED_NO_PREDECESSOR_CANDIDATE=30, CANDIDATE_SUCCESSOR_BY_IDENTITY=32, DROPPED_NO_SUCCESSOR_CANDIDATE=20, EXACT_CODE_RETAINED=971
 - `2022->2023`: ADDED_NO_PREDECESSOR_CANDIDATE=58, CANDIDATE_SUCCESSOR_BY_IDENTITY=47, DROPPED_NO_SUCCESSOR_CANDIDATE=42, EXACT_CODE_RETAINED=931
 - `2023->2024`: ADDED_NO_PREDECESSOR_CANDIDATE=23, CANDIDATE_SUCCESSOR_BY_IDENTITY=22, DROPPED_NO_SUCCESSOR_CANDIDATE=21, EXACT_CODE_RETAINED=980
@@ -45,6 +49,7 @@ This audit creates an adjacent year-to-year hunt-code crosswalk from the BIBLE H
 
 - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026.csv`
 - `processed_data/audits/hunt_code_year_to_year_crosswalk_candidates_2020_2026.csv`
+- `processed_data/audits/hunt_code_year_to_year_reviewed_decisions_2020_to_2021.csv`
 - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026_summary.json`
 - `docs/hunt_code_year_to_year_crosswalk_2020_2026.md`
 
@@ -56,3 +61,5 @@ This audit creates an adjacent year-to-year hunt-code crosswalk from the BIBLE H
 ## Caution
 
 Candidate successor rows are review evidence only. They are not promoted crosswalk truth until reviewed against official PDFs and family context.
+
+Reviewed discontinuation rows are closure decisions, not successor mappings.

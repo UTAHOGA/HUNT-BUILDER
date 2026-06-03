@@ -10,12 +10,14 @@
     "2025": 1053,
     "2026": 834
   },
-  "created_at_utc": "2026-06-03T19:22:43+00:00",
+  "created_at_utc": "2026-06-03T22:16:32+00:00",
   "crosswalk_status_counts": {
-    "ADDED_NO_PREDECESSOR_CANDIDATE": 239,
-    "CANDIDATE_SUCCESSOR_BY_IDENTITY": 213,
-    "DROPPED_NO_SUCCESSOR_CANDIDATE": 356,
-    "EXACT_CODE_RETAINED": 5595
+    "ADDED_NO_PREDECESSOR_CANDIDATE": 242,
+    "CANDIDATE_SUCCESSOR_BY_IDENTITY": 210,
+    "DROPPED_NO_SUCCESSOR_CANDIDATE": 338,
+    "EXACT_CODE_RETAINED": 5595,
+    "REVIEWED_DISCONTINUED_AFTER_2020_NO_SUCCESSOR": 17,
+    "REVIEWED_PRESENT_IN_2021_COUGAR_GUIDE_SOURCE_GAP": 4
   },
   "input_presence_matrix": "processed_data/audits/hunt_code_presence_matrix_comprehensive_2020_2026.csv",
   "notes": [
@@ -23,12 +25,14 @@
     "Candidate successor rows are review evidence only and must not be treated as promoted crosswalk truth until reviewed.",
     "Historical reappearance gaps are already handled in the interpreted lifecycle layer; this file focuses on adjacent year links.",
     "2026 identity fields use current DATABASE rows only for codes already observed in 2026 comprehensive source hits.",
-    "Known A-prefixed Sportsman/OCR artifacts are excluded from this crosswalk; normalized real hunt codes remain eligible."
+    "Known A-prefixed Sportsman/OCR artifacts are excluded from this crosswalk; normalized real hunt codes remain eligible.",
+    "Reviewed 2020-to-2021 discontinuation decisions are recorded separately and are not successor mappings."
   ],
   "outputs": {
     "candidate_csv": "processed_data/audits/hunt_code_year_to_year_crosswalk_candidates_2020_2026.csv",
     "crosswalk_csv": "processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026.csv",
     "report_md": "docs/hunt_code_year_to_year_crosswalk_2020_2026.md",
+    "reviewed_decisions_csv": "processed_data/audits/hunt_code_year_to_year_reviewed_decisions_2020_to_2021.csv",
     "summary_json": "processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026_summary.json"
   },
   "report_years": [
@@ -41,16 +45,19 @@
     2026
   ],
   "row_counts": {
-    "candidate_rows": 819,
-    "crosswalk_rows": 6403
+    "candidate_rows": 816,
+    "crosswalk_rows": 6406,
+    "reviewed_2020_to_2021_discontinuation_rows": 17,
+    "reviewed_2020_to_2021_source_gap_rows": 4
   },
   "scope": "Adjacent year-to-year hunt-code crosswalk for BIBLE HUNT CODES comprehensive 2020-2026 evidence.",
   "transition_status_counts": {
     "2020->2021": {
-      "ADDED_NO_PREDECESSOR_CANDIDATE": 43,
-      "CANDIDATE_SUCCESSOR_BY_IDENTITY": 66,
-      "DROPPED_NO_SUCCESSOR_CANDIDATE": 18,
-      "EXACT_CODE_RETAINED": 944
+      "ADDED_NO_PREDECESSOR_CANDIDATE": 46,
+      "CANDIDATE_SUCCESSOR_BY_IDENTITY": 63,
+      "EXACT_CODE_RETAINED": 944,
+      "REVIEWED_DISCONTINUED_AFTER_2020_NO_SUCCESSOR": 17,
+      "REVIEWED_PRESENT_IN_2021_COUGAR_GUIDE_SOURCE_GAP": 4
     },
     "2021->2022": {
       "ADDED_NO_PREDECESSOR_CANDIDATE": 30,

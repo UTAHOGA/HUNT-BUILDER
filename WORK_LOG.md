@@ -13359,3 +13359,41 @@ o_table=0).
 
 - Commit:
   - Pending at log-write time.
+
+## 2026-06-03T22:17:11Z - Close Reviewed 2020 To 2021 Dropped Hunt Code Decisions
+
+- Assigned step:
+  - Close the reviewed 2020->2021 dropped-code audit outcomes after checking the 2020/2021 regulation PDFs and the 2020-21 cougar guide.
+
+- Files changed:
+  - `scripts/build-hunt-code-year-to-year-crosswalk.py`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026.csv`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_candidates_2020_2026.csv`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026_summary.json`
+  - `processed_data/audits/hunt_code_year_to_year_reviewed_decisions_2020_to_2021.csv`
+  - `docs/hunt_code_year_to_year_crosswalk_2020_2026.md`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Reviewed 2020->2021 discontinuation rows recorded: `17`
+  - Reviewed 2020->2021 cougar source-gap continuity rows recorded: `4`
+  - Generic `DROPPED_NO_SUCCESSOR_CANDIDATE` rows remaining for `2020->2021`: `0`
+  - The reviewed decision codes are:
+    - `BI6515`, `BI6522`, `DA1005`, `DA1036`, `DB1009`, `DB1051`, `DB1052`, `DS6619`, `MA1004`, `PB5333`, `PB5334`, `PB5335`, `PD1001`, `PD1028`, `PD1029`, `PD1040`, `RS6702`
+    - Cougar source-gap continuity: `CG1030`, `CG7613`, `CG7615`, `CG7619`
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values were promoted.
+  - Reviewed discontinuation rows are closure decisions, not successor mappings.
+  - Cougar rows are marked as source-gap continuity because the official `2020-21_cougar.pdf` confirms the codes remained active and `CG9999` does not apply to this transition.
+
+- Validation:
+  - `python scripts\build-hunt-code-year-to-year-crosswalk.py`: `PASS`
+  - `python -m py_compile scripts\build-hunt-code-year-to-year-crosswalk.py`: `PASS`
+  - Verified `2020->2021` status counts: `944` exact retained, `63` candidate successors, `17` reviewed discontinued, `4` reviewed cougar source-gap continuity, `46` added/no predecessor, `0` generic dropped/no successor.
+  - Verified reviewed decision CSV row count: `21`
+  - `git diff --check -- <changed files>`: `PASS` with line-ending warning only for the changed script
+
+- Commit:
+  - Pending at log-write time.
