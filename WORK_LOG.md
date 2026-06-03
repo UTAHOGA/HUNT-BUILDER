@@ -12653,6 +12653,66 @@ o_table=0).
 - Commit:
   - Pending at log-write time.
 
+## 2026-06-03T19:23:20Z - Build Year-To-Year Hunt-Code Crosswalk
+
+- Assigned step:
+  - Build an audit-only year-to-year hunt-code crosswalk showing where hunt codes persist exactly and where candidate successor/predecessor links may exist.
+
+- Source inputs:
+  - `processed_data/audits/hunt_code_presence_matrix_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_source_hits_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_year_identity_ledger_2020.csv`
+  - `processed_data/audits/hunt_code_year_identity_ledger_2021.csv`
+  - `processed_data/audits/hunt_code_year_identity_ledger_2022.csv`
+  - `processed_data/audits/hunt_code_year_identity_ledger_2023.csv`
+  - `processed_data/audits/hunt_code_year_identity_ledger_2024.csv`
+  - `processed_data/audits/hunt_code_year_identity_ledger_2025.csv`
+  - `processed_data/audits/hunt_code_lifecycle_prefix_artifact_filter_comprehensive_2020_2026.csv`
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv` for 2026 identity metadata only.
+
+- Files changed:
+  - `scripts/build-hunt-code-year-to-year-crosswalk.py`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026.csv`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_candidates_2020_2026.csv`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026_summary.json`
+  - `docs/hunt_code_year_to_year_crosswalk_2020_2026.md`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Crosswalk rows: `6403`
+  - Exact adjacent-year code-retained rows: `5595`
+  - Candidate successor rows in the selected crosswalk: `213`
+  - Dropped without safe successor candidate: `356`
+  - Added without safe predecessor candidate: `239`
+  - Candidate detail rows: `819`
+  - Known A-prefixed Sportsman/OCR artifact codes excluded: `10`
+  - A-prefixed rows in final crosswalk output: `0`
+  - Codes by report year:
+    - `2020`: `1028`
+    - `2021`: `1023`
+    - `2022`: `1020`
+    - `2023`: `1023`
+    - `2024`: `1017`
+    - `2025`: `1053`
+    - `2026`: `834`
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values were changed or promoted.
+  - Candidate successor rows are review evidence only and are not promoted crosswalk truth.
+
+- Validation:
+  - `python scripts\build-hunt-code-year-to-year-crosswalk.py`: `PASS`
+  - `python -m py_compile scripts\build-hunt-code-year-to-year-crosswalk.py`: `PASS`
+  - Output existence and nonzero size check: `PASS`
+  - Required CSV column check: `PASS`
+  - Summary JSON parse/count reconciliation: `PASS`
+  - A-prefixed artifact exclusion check: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only on unrelated dirty files
+
+- Commit:
+  - Pending at log-write time.
+
 ## 2026-06-03T19:13:20Z - Integrate BIBLE HUNT CODES Source-Control Directive
 
 - Assigned step:

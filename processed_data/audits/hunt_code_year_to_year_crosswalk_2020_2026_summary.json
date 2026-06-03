@@ -1,0 +1,87 @@
+{
+  "artifact_codes_excluded_from_crosswalk": 10,
+  "artifact_filter": "processed_data/audits/hunt_code_lifecycle_prefix_artifact_filter_comprehensive_2020_2026.csv",
+  "codes_by_report_year": {
+    "2020": 1028,
+    "2021": 1023,
+    "2022": 1020,
+    "2023": 1023,
+    "2024": 1017,
+    "2025": 1053,
+    "2026": 834
+  },
+  "created_at_utc": "2026-06-03T19:22:43+00:00",
+  "crosswalk_status_counts": {
+    "ADDED_NO_PREDECESSOR_CANDIDATE": 239,
+    "CANDIDATE_SUCCESSOR_BY_IDENTITY": 213,
+    "DROPPED_NO_SUCCESSOR_CANDIDATE": 356,
+    "EXACT_CODE_RETAINED": 5595
+  },
+  "input_presence_matrix": "processed_data/audits/hunt_code_presence_matrix_comprehensive_2020_2026.csv",
+  "notes": [
+    "Exact retained rows are evidence of code continuity by exact hunt_code.",
+    "Candidate successor rows are review evidence only and must not be treated as promoted crosswalk truth until reviewed.",
+    "Historical reappearance gaps are already handled in the interpreted lifecycle layer; this file focuses on adjacent year links.",
+    "2026 identity fields use current DATABASE rows only for codes already observed in 2026 comprehensive source hits.",
+    "Known A-prefixed Sportsman/OCR artifacts are excluded from this crosswalk; normalized real hunt codes remain eligible."
+  ],
+  "outputs": {
+    "candidate_csv": "processed_data/audits/hunt_code_year_to_year_crosswalk_candidates_2020_2026.csv",
+    "crosswalk_csv": "processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026.csv",
+    "report_md": "docs/hunt_code_year_to_year_crosswalk_2020_2026.md",
+    "summary_json": "processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026_summary.json"
+  },
+  "report_years": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "row_counts": {
+    "candidate_rows": 819,
+    "crosswalk_rows": 6403
+  },
+  "scope": "Adjacent year-to-year hunt-code crosswalk for BIBLE HUNT CODES comprehensive 2020-2026 evidence.",
+  "transition_status_counts": {
+    "2020->2021": {
+      "ADDED_NO_PREDECESSOR_CANDIDATE": 43,
+      "CANDIDATE_SUCCESSOR_BY_IDENTITY": 66,
+      "DROPPED_NO_SUCCESSOR_CANDIDATE": 18,
+      "EXACT_CODE_RETAINED": 944
+    },
+    "2021->2022": {
+      "ADDED_NO_PREDECESSOR_CANDIDATE": 30,
+      "CANDIDATE_SUCCESSOR_BY_IDENTITY": 32,
+      "DROPPED_NO_SUCCESSOR_CANDIDATE": 20,
+      "EXACT_CODE_RETAINED": 971
+    },
+    "2022->2023": {
+      "ADDED_NO_PREDECESSOR_CANDIDATE": 58,
+      "CANDIDATE_SUCCESSOR_BY_IDENTITY": 47,
+      "DROPPED_NO_SUCCESSOR_CANDIDATE": 42,
+      "EXACT_CODE_RETAINED": 931
+    },
+    "2023->2024": {
+      "ADDED_NO_PREDECESSOR_CANDIDATE": 23,
+      "CANDIDATE_SUCCESSOR_BY_IDENTITY": 22,
+      "DROPPED_NO_SUCCESSOR_CANDIDATE": 21,
+      "EXACT_CODE_RETAINED": 980
+    },
+    "2024->2025": {
+      "ADDED_NO_PREDECESSOR_CANDIDATE": 60,
+      "CANDIDATE_SUCCESSOR_BY_IDENTITY": 46,
+      "DROPPED_NO_SUCCESSOR_CANDIDATE": 11,
+      "EXACT_CODE_RETAINED": 960
+    },
+    "2025->2026": {
+      "ADDED_NO_PREDECESSOR_CANDIDATE": 25,
+      "DROPPED_NO_SUCCESSOR_CANDIDATE": 244,
+      "EXACT_CODE_RETAINED": 809
+    }
+  },
+  "uses_database_for_2026_identity_only": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "year_semantics": "report_year/draw_year = permit draw year; model_year = report_year + 1."
+}
