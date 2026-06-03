@@ -373,21 +373,45 @@ Promotion rules remain in force:
 For draw odds, draw results, and harvest report files:
 
 ```text
+draw_results_year = the year the draw results were reported and the permits were drawn
 reported_hunt_year = the year the hunt, draw, or harvest actually occurred
-model_target_year = reported_hunt_year + 1
+model_target_year = the predictive modeling year that uses those historical results
 ```
 
-Folder year is storage/provenance only.
+For draw-result / permit-result documents:
+
+```text
+model_target_year = draw_results_year + 1
+```
+
+For files under `C:\Users\tyler\Desktop\BIBLE HUNT CODES\YYYY`, the folder year `YYYY` is authoritative for:
+- `draw_results_year`
+- `permit_draw_year`
+- the actual year the draw results were reported for
+- the year the permits in that source were drawn
+
+The `BIBLE HUNT CODES` folder year is not merely storage/provenance.
+
+Filename fragments such as `PERMITS=2026_MODEL` or `2021_MODEL` are source labels only. They must be preserved as `source_model_year_label` or filename evidence, but they must not override the reviewed year rule unless a task explicitly proves the filename label is correct.
+
+For generic pipeline folders outside `BIBLE HUNT CODES`, folder year may still be storage/provenance only unless a reviewed source-year rule or source inventory promotes it.
 
 Codex must store:
 - `publish_year`
+- `draw_results_year` where applicable
+- `permit_draw_year` where applicable
 - `reported_hunt_year_inferred`
 - `model_target_year`
+- `source_model_year_label` where a filename contains a model-year label
 - `source_file`
 - `source_page` where applicable
 - `source_table_title` where applicable
 
-Codex must not confuse legacy historical input files with predictive outputs merely because they contain labels like `draw_odds`.
+Codex must not confuse:
+- historical draw-result files with predictive model outputs merely because they contain labels like `draw_odds`
+- `draw_results_year` with `model_target_year`
+- source filename model labels with reviewed model-year logic
+- `BIBLE HUNT CODES` folder year with generic storage-only folder year
 
 ---
 

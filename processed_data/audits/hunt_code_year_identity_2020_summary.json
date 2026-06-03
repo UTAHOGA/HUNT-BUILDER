@@ -2,6 +2,8 @@
   "scope": "2020 hunt-code/year identity alignment from clean comprehensive PDF package.",
   "source_zip": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\COMPREHENSIVE 2020-2025.zip",
   "report_year": 2020,
+  "draw_results_year": 2020,
+  "permit_draw_year": 2020,
   "model_year": 2021,
   "source_pdf_count_2020": 23,
   "ledger_rows": 2032,
@@ -73,6 +75,8 @@
     "report_md": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\docs\\hunt_code_year_identity_alignment_2020.md"
   },
   "notes": [
+    "Year semantics: report_year = draw_results_year = permit_draw_year for BIBLE HUNT CODES source packages.",
+    "Model year is the predictive modeling year and equals draw_results_year + 1 for this ledger.",
     "One ledger row represents one hunt-code appearance on one source PDF page.",
     "Sportsman rows are parsed from the one-page sportsman table because that source does not use Hunt: page sections.",
     "The crosscheck file collapses appearances to one row per hunt_code and flags duplicate files, conflicting names, conflicting total permits, current DATABASE exact-code match, and lifecycle class.",

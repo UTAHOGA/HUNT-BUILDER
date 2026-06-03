@@ -12067,3 +12067,42 @@ o_table=0).
   - 2021 ledger covers every code in the 2021 presence matrix: `PASS`
   - `DATABASE.csv` unchanged: `PASS`
   - `git diff --check`: `PASS` with pre-existing line-ending warnings only
+
+## 2026-06-03T15:08:01Z - Global Draw Results Year / Model Year Semantics Clarification
+
+- Assigned clarification:
+  - Clarify that files generated under `BIBLE HUNT CODES` are placed in the year the permits were drawn.
+  - Clarify that `model_year` is the predictive modeling year.
+  - Clarify that `draw_results_year` is the actual year the draw results were reported for.
+  - Apply the rule across current policy and active hunt-code identity audit reports.
+
+- Rule established:
+  - `BIBLE HUNT CODES\YYYY` means `draw_results_year = YYYY`.
+  - `permit_draw_year = draw_results_year`.
+  - `model_year = draw_results_year + 1`.
+  - `report_year` in existing hunt-code lifecycle ledgers is a legacy/short audit name for `draw_results_year`.
+  - Filename fragments such as `PERMITS=2022_MODEL` are preserved as `source_model_year_label` evidence only and do not override the reviewed rule.
+
+- Files changed:
+  - `AGENTS.md`
+  - `docs/draw_results_year_semantics.md`
+  - `docs/hunt_code_year_identity_alignment_2020.md`
+  - `docs/hunt_code_year_identity_alignment_2021.md`
+  - `processed_data/audits/hunt_code_year_identity_2020_summary.json`
+  - `processed_data/audits/hunt_code_year_identity_2021_summary.json`
+  - `processed_data/audits/hunt_code_lifecycle_comprehensive_2020_2026_summary.json`
+  - `processed_data/audits/hunt_code_interpreted_lifecycle_comprehensive_2020_2026_summary.json`
+  - `processed_data/audits/year_semantics_clarification_audit.csv`
+
+- Outputs created:
+  - `docs/draw_results_year_semantics.md`
+  - `processed_data/audits/year_semantics_clarification_audit.csv`
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values, draw values, or hunt-code rows were changed.
+
+- Validation:
+  - JSON summaries parsed successfully: `PASS`
+  - Year-semantics audit CSV parsed successfully: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only

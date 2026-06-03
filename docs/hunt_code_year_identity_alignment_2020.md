@@ -9,6 +9,13 @@ Create the first year-specific identity ledger so a historical hunt code can be 
 - Model year: `2021`
 - Current comparison database: `C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\pipeline\RAW\hunt_unit_database\2026\csv\DATABASE.csv`
 
+## Year Semantics
+- `report_year` in this audit means `draw_results_year`.
+- `draw_results_year = 2020` because the source package is under `BIBLE HUNT CODES\2020`.
+- `permit_draw_year = 2020` because the source files represent the year the permits were drawn.
+- `model_year = 2021` because 2020 draw results feed 2021 predictive modeling.
+- Source filename model labels are preserved as source evidence only and do not override the reviewed rule.
+
 ## Outputs
 - `C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\processed_data\audits\hunt_code_year_identity_ledger_2020.csv`
 - `C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\processed_data\audits\hunt_code_year_identity_crosscheck_2020.csv`

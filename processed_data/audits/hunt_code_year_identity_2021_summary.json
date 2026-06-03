@@ -2,6 +2,8 @@
   "scope": "2021 hunt-code/year identity alignment from provided year ZIP package.",
   "source_zip": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2021.zip",
   "report_year": 2021,
+  "draw_results_year": 2021,
+  "permit_draw_year": 2021,
   "model_year": 2022,
   "source_pdf_count": 22,
   "ledger_rows": 1990,
@@ -81,6 +83,8 @@
     "report_md": "docs\\hunt_code_year_identity_alignment_2021.md"
   },
   "notes": [
+    "Year semantics: report_year = draw_results_year = permit_draw_year for BIBLE HUNT CODES source packages.",
+    "Model year is the predictive modeling year and equals draw_results_year + 1 for this ledger.",
     "One ledger row represents one hunt-code appearance on one source PDF page.",
     "Sportsman rows are parsed from the one-page sportsman table format because the source does not use Hunt: page sections.",
     "The 2021 L.E. BIG GAME file is labeled PERMITS=2021_MODEL in the source filename, while the project ledger uses model_year=2022 per report_year + 1 rule.",
