@@ -12787,7 +12787,7 @@ o_table=0).
   - `git diff --check`: `PASS` with pre-existing line-ending warnings only on unrelated dirty files
 
 - Commit:
-  - Pending at log-write time.
+  - Main 2020-2026 narrowing package committed as `9684d1a3`.
 
 ## 2026-06-03T19:23:20Z - Build Year-To-Year Hunt-Code Crosswalk
 
