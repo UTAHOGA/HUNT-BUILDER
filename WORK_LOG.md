@@ -12728,6 +12728,67 @@ o_table=0).
 - Commit:
   - Main year-document package committed as `64b0861a`.
 
+## 2026-06-03T20:25:20Z - Narrow BIBLE Year Documents To 2020-2026
+
+- Assigned step:
+  - Remove `2018` and `2019` from the BIBLE hunt-code year-document package because those years were deleted from the local `BIBLE HUNT CODES` folder and are no longer needed for this comparison scope.
+
+- Source inputs:
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2020`
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2021`
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2022`
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2023`
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2024`
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2025`
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2026`
+
+- Files changed:
+  - `scripts/build-bible-hunt-code-year-documents.py`
+  - `docs/bible_hunt_code_year_documents_2020_2026.md`
+  - removed `docs/bible_hunt_code_year_documents_2018_2026.md`
+  - regenerated `processed_data/audits/bible_hunt_code_year_documents/*2020_2026*`
+  - removed stale `2018`, `2019`, and `2018_2026` BIBLE year-document artifacts
+  - `WORK_LOG.md`
+
+- Key results:
+  - Scope is now `2020-2026`.
+  - Total raw source hits: `45013`
+  - Total unique year-document rows: `7018`
+  - Total downstream compare rows: `6422`
+  - Unique comparison hunt codes by year:
+    - `2020`: `1028`
+    - `2021`: `1023`
+    - `2022`: `1020`
+    - `2023`: `1033`
+    - `2024`: `1027`
+    - `2025`: `1053`
+    - `2026`: `834`
+  - Adjacent-year compare counts:
+    - `2020->2021`: exact `944`, candidate `63`, dropped `21`, added `45`
+    - `2021->2022`: exact `971`, candidate `42`, dropped `10`, added `25`
+    - `2022->2023`: exact `941`, candidate `47`, dropped `32`, added `59`
+    - `2023->2024`: exact `990`, candidate `41`, dropped `2`, added `17`
+    - `2024->2025`: exact `960`, candidate `38`, dropped `29`, added `67`
+    - `2025->2026`: exact `809`, candidate `0`, dropped `244`, added `25`
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values were changed or promoted.
+  - Candidate compare/crosswalk rows remain review evidence only.
+
+- Validation:
+  - `python scripts\build-bible-hunt-code-year-documents.py`: `PASS`
+  - `python -m py_compile scripts\build-bible-hunt-code-year-documents.py`: `PASS`
+  - 2020-2026 per-year CSV/XLSX existence and nonzero size checks: `PASS`
+  - 2018/2019 artifact removal checks: `PASS`
+  - 2020-2026 adjacent-year compare CSV existence checks: `PASS`
+  - Summary JSON parse and count checks: `PASS`
+  - Combined XLSX workbook ZIP/package check: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only on unrelated dirty files
+
+- Commit:
+  - Pending at log-write time.
+
 ## 2026-06-03T19:23:20Z - Build Year-To-Year Hunt-Code Crosswalk
 
 - Assigned step:

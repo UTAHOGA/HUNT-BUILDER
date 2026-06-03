@@ -1,6 +1,4 @@
 from_report_year,to_report_year,exact_retained,candidate_successor,dropped_no_successor,added_no_predecessor,total_rows,output_csv
-2018,2019,11,0,0,1037,1048,processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_2018_to_2019.csv
-2019,2020,969,7,72,53,1101,processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_2019_to_2020.csv
 2020,2021,944,63,21,45,1073,processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_2020_to_2021.csv
 2021,2022,971,42,10,25,1048,processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_2021_to_2022.csv
 2022,2023,941,47,32,59,1079,processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_2022_to_2023.csv

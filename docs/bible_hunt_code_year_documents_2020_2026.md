@@ -1,4 +1,4 @@
-# BIBLE Hunt Code Year Documents 2018-2026
+# BIBLE Hunt Code Year Documents 2020-2026
 
 ## Purpose
 
@@ -6,8 +6,6 @@ These documents are generated independently from each `BIBLE HUNT CODES` year fo
 
 ## Year Documents
 
-- `2018`: `11` unique comparison hunt codes, `11` raw source hits
-- `2019`: `1048` unique comparison hunt codes, `1491` raw source hits
 - `2020`: `1028` unique comparison hunt codes, `2566` raw source hits
 - `2021`: `1023` unique comparison hunt codes, `2540` raw source hits
 - `2022`: `1020` unique comparison hunt codes, `2645` raw source hits
@@ -18,8 +16,6 @@ These documents are generated independently from each `BIBLE HUNT CODES` year fo
 
 ## Year-To-Year Compare
 
-- `2018->2019`: exact `11`, candidate `0`, dropped `0`, added `1037`
-- `2019->2020`: exact `969`, candidate `7`, dropped `72`, added `53`
 - `2020->2021`: exact `944`, candidate `63`, dropped `21`, added `45`
 - `2021->2022`: exact `971`, candidate `42`, dropped `10`, added `25`
 - `2022->2023`: exact `941`, candidate `47`, dropped `32`, added `59`
@@ -29,14 +25,12 @@ These documents are generated independently from each `BIBLE HUNT CODES` year fo
 
 ## Outputs
 
-- `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_summary_2018_2026.csv`
-- `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_summary_2018_2026.csv`
-- `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_all_2018_2026.csv`
-- `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_documents_and_compare_2018_2026.xlsx`
-- `docs/bible_hunt_code_year_documents_2018_2026.md`
+- `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_summary_2020_2026.csv`
+- `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_summary_2020_2026.csv`
+- `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_all_2020_2026.csv`
+- `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_documents_and_compare_2020_2026.xlsx`
+- `docs/bible_hunt_code_year_documents_2020_2026.md`
 - `per_year_csv_xlsx`:
-- `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2018.csv/.xlsx`
-- `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2019.csv/.xlsx`
 - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2020.csv/.xlsx`
 - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2021.csv/.xlsx`
 - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2022.csv/.xlsx`

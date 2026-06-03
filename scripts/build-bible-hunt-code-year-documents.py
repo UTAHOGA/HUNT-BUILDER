@@ -17,9 +17,11 @@ from pypdf import PdfReader
 ROOT = Path(__file__).resolve().parents[1]
 BIBLE = Path(r"C:\Users\tyler\Desktop\BIBLE HUNT CODES")
 OUT_DIR = ROOT / "processed_data" / "audits" / "bible_hunt_code_year_documents"
-DOC_INDEX = ROOT / "docs" / "bible_hunt_code_year_documents_2018_2026.md"
 
-YEARS = list(range(2018, 2027))
+YEARS = list(range(2020, 2027))
+YEAR_SCOPE = f"{YEARS[0]}_{YEARS[-1]}"
+YEAR_SCOPE_LABEL = f"{YEARS[0]}-{YEARS[-1]}"
+DOC_INDEX = ROOT / "docs" / f"bible_hunt_code_year_documents_{YEAR_SCOPE}.md"
 CODE_RE = re.compile(r"\b[A-Z]{2,3}\d{3,4}\b")
 MODEL_RE = re.compile(r"PERMITS=(\d{4})_MODEL", re.I)
 
@@ -537,7 +539,7 @@ def write_workbook(path: Path, sheets: dict[str, tuple[list[str], list[dict[str,
 
 def write_index(summary: dict[str, object], year_summaries: list[dict[str, object]], pair_summaries: list[dict[str, object]]) -> None:
     lines = [
-        "# BIBLE Hunt Code Year Documents 2018-2026",
+        f"# BIBLE Hunt Code Year Documents {YEAR_SCOPE_LABEL}",
         "",
         "## Purpose",
         "",
@@ -629,14 +631,14 @@ def main() -> int:
             }
         )
 
-    write_csv(OUT_DIR / "bible_hunt_code_year_document_summary_2018_2026.csv", year_summaries, list(year_summaries[0].keys()))
-    write_csv(OUT_DIR / "bible_hunt_code_year_compare_summary_2018_2026.csv", pair_summaries, list(pair_summaries[0].keys()))
-    write_csv(OUT_DIR / "bible_hunt_code_year_compare_all_2018_2026.csv", all_compare, COMPARE_FIELDS)
-    write_workbook(OUT_DIR / "bible_hunt_code_year_documents_and_compare_2018_2026.xlsx", workbook_sheets)
+    write_csv(OUT_DIR / f"bible_hunt_code_year_document_summary_{YEAR_SCOPE}.csv", year_summaries, list(year_summaries[0].keys()))
+    write_csv(OUT_DIR / f"bible_hunt_code_year_compare_summary_{YEAR_SCOPE}.csv", pair_summaries, list(pair_summaries[0].keys()))
+    write_csv(OUT_DIR / f"bible_hunt_code_year_compare_all_{YEAR_SCOPE}.csv", all_compare, COMPARE_FIELDS)
+    write_workbook(OUT_DIR / f"bible_hunt_code_year_documents_and_compare_{YEAR_SCOPE}.xlsx", workbook_sheets)
 
     summary = {
         "created_at_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
-        "scope": "Independent BIBLE HUNT CODES year documents followed by downstream adjacent-year compare/crosswalk.",
+        "scope": f"Independent BIBLE HUNT CODES year documents {YEAR_SCOPE_LABEL} followed by downstream adjacent-year compare/crosswalk.",
         "bible_root": str(BIBLE),
         "years": YEARS,
         "total_unique_year_document_rows": sum(int(row["unique_hunt_codes"]) for row in year_summaries),
@@ -645,11 +647,11 @@ def main() -> int:
         "year_summaries": year_summaries,
         "pair_summaries": pair_summaries,
         "outputs": {
-            "year_summary_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_summary_2018_2026.csv",
-            "compare_summary_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_summary_2018_2026.csv",
-            "all_compare_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_all_2018_2026.csv",
-            "combined_workbook": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_documents_and_compare_2018_2026.xlsx",
-            "index_doc": "docs/bible_hunt_code_year_documents_2018_2026.md",
+            "year_summary_csv": f"processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_summary_{YEAR_SCOPE}.csv",
+            "compare_summary_csv": f"processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_summary_{YEAR_SCOPE}.csv",
+            "all_compare_csv": f"processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_all_{YEAR_SCOPE}.csv",
+            "combined_workbook": f"processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_documents_and_compare_{YEAR_SCOPE}.xlsx",
+            "index_doc": f"docs/bible_hunt_code_year_documents_{YEAR_SCOPE}.md",
             "per_year_csv_xlsx": [
                 f"processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_{year}.csv/.xlsx"
                 for year in YEARS
@@ -657,7 +659,7 @@ def main() -> int:
         },
         "guardrail": "No DATABASE.csv changes; year docs are source evidence and candidate compare rows remain review evidence.",
     }
-    (OUT_DIR / "bible_hunt_code_year_documents_2018_2026_summary.json").write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (OUT_DIR / f"bible_hunt_code_year_documents_{YEAR_SCOPE}_summary.json").write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     write_index(summary, year_summaries, pair_summaries)
     print(json.dumps(summary, indent=2, sort_keys=True))
     return 0
