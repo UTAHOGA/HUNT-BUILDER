@@ -12653,6 +12653,44 @@ o_table=0).
 - Commit:
   - Pending at log-write time.
 
+## 2026-06-03T19:08:05Z - Normalize Buck Deer Permit Workbook Continuation Rows
+
+- Assigned step:
+  - Run the reusable workbook continuation-row normalizer against `C:\Users\tyler\Desktop\BIBLE HUNT CODES\buck deer.xlsx`.
+
+- Files changed:
+  - `processed_data/audits/manual_workbook_normalization/buck_deer_xlsx_normalization_summary.json`
+  - `WORK_LOG.md`
+
+- External workbook changed:
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\buck deer.xlsx`
+
+- Backup created:
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\buck deer.before_normalize_permits.xlsx`
+
+- Key results:
+  - Source rows: `651`
+  - Final rows: `459`
+  - Final data rows: `458`
+  - Nonresident continuation rows collapsed: `192`
+  - Rows with permit values after normalization: `328`
+  - Total-only rows retained: `136`
+  - Blank identity rows with permit values after normalization: `0`
+  - Resident plus nonresident total validation failures: `0`
+  - Crosscheck against remaining unresolved rows found `0` hits.
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values were promoted into repo truth files.
+
+- Validation:
+  - `python scripts\normalize-permit-workbook-continuation-rows.py "C:\Users\tyler\Desktop\BIBLE HUNT CODES\buck deer.xlsx" --summary-out processed_data\audits\manual_workbook_normalization\buck_deer_xlsx_normalization_summary.json`: `PASS`
+  - Spot check of normalized workbook rows: `PASS`
+  - Crosscheck against remaining unresolved rows: `PASS`
+
+- Commit:
+  - Pending at log-write time.
+
 ## 2026-06-03T19:02:37Z - Normalize Elk Antlerless Permit Workbook Continuation Rows
 
 - Assigned step:
