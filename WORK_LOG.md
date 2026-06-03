@@ -12789,6 +12789,60 @@ o_table=0).
 - Commit:
   - Main 2020-2026 narrowing package committed as `9684d1a3`.
 
+## 2026-06-03T21:00:52Z - Compare 2020 BIBLE Hunt Codes To Harvest Reports
+
+- Assigned step:
+  - Compare the 2020 BIBLE hunt-code year document against selected 2020 harvest reports for hunt-code confirmation evidence.
+
+- Source inputs:
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2020.csv`
+  - `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/2020_le_oial_all.pdf`
+  - `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/2020_antlerless_hr.pdf`
+  - `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/General-season buck deer.pdf`
+
+- Files changed:
+  - `scripts/compare-2020-bible-hunt-codes-to-harvest-reports.py`
+  - `processed_data/audits/bible_hunt_code_year_documents/harvest_report_2020_hunt_code_source_hits.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/harvest_report_2020_hunt_code_confirmation.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/harvest_report_2020_hunt_code_confirmation_summary.json`
+  - `docs/harvest_report_2020_hunt_code_confirmation.md`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Raw harvest code hits: `976`
+  - Unique harvest-report codes: `939`
+  - Unique BIBLE 2020 codes: `1028`
+  - Unique codes compared: `1065`
+  - Confirmed by selected 2020 harvest reports: `902`
+  - BIBLE-only within selected harvest reports: `126`
+  - Harvest-only vs BIBLE 2020: `37`
+  - Harvest-only prefix counts:
+    - `EA`: `24`
+    - `MB`: `10`
+    - `DB`: `2`
+    - `EB`: `1`
+  - BIBLE-only prefix counts are mostly source-family scope gaps:
+    - `BR`: `101`
+    - `CG`: `15`
+    - `TK`: `7`
+    - plus `EB`, `MB`, and `RE` one each.
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No draw, permit, harvest-value, or prediction inputs were changed.
+  - Harvest reports were used only as hunt-code existence confirmation evidence.
+
+- Validation:
+  - `python scripts\compare-2020-bible-hunt-codes-to-harvest-reports.py`: `PASS`
+  - `python -m py_compile scripts\compare-2020-bible-hunt-codes-to-harvest-reports.py`: `PASS`
+  - Output existence and nonzero size checks: `PASS`
+  - Required CSV column checks: `PASS`
+  - Summary JSON parse and count reconciliation: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only on unrelated dirty files
+
+- Commit:
+  - Pending at log-write time.
+
 ## 2026-06-03T19:23:20Z - Build Year-To-Year Hunt-Code Crosswalk
 
 - Assigned step:
