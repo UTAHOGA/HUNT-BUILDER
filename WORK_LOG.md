@@ -12865,3 +12865,50 @@ o_table=0).
 
 - Commit:
   - Pending at log-write time.
+
+## 2026-06-03T18:28:19Z - Move HaNumber HuntTable DATABASE Matches To Resolved
+
+- Assigned step:
+  - From the remaining unresolved current-permit review set, move rows to resolved only where `HaNumber`, `HuntTable`, and `DATABASE` match exactly with a nonblank permit value.
+
+- Source input:
+  - `processed_data/audits/current_2026_permit_unresolved_split/remaining_unresolved_after_3_source_rule.csv`
+
+- Files changed:
+  - `scripts/resolve-current-2026-hanumber-database-matches.py`
+  - `processed_data/audits/current_2026_permit_unresolved_split/resolved_hanumber_hunttable_database_matches.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/remaining_unresolved_after_hanumber_hunttable_database_rule.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/current_2026_permit_hanumber_hunttable_database_resolution_summary.json`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Source rows after prior three-source rule: `438`
+  - Resolved by exact `HaNumber + HuntTable + DATABASE` match: `84`
+  - Remaining unresolved after this rule: `354`
+  - Resolved prefix counts:
+    - `EB`: `55`
+    - `PB`: `19`
+    - `BI`: `2`
+    - `DS`: `2`
+    - `GO`: `2`
+    - `RS`: `2`
+    - `DB`: `1`
+    - `MB`: `1`
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values were promoted.
+  - Conflicting source values remain visible in the resolved CSV for audit traceability.
+
+- Validation:
+  - `python scripts\resolve-current-2026-hanumber-database-matches.py`: `PASS`
+  - `python -m py_compile scripts\resolve-current-2026-hanumber-database-matches.py`: `PASS`
+  - Resolved row count verified as `84`: `PASS`
+  - Remaining unresolved row count verified as `354`: `PASS`
+  - Resolved plus remaining equals source row count `438`: `PASS`
+  - Every resolved row verified as exact nonblank `HaNumber == HuntTable == DATABASE`: `PASS`
+  - Summary JSON written and parsed: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only
+
+- Commit:
+  - Pending at log-write time.

@@ -1,0 +1,67 @@
+{
+  "created_at_utc": "2026-06-03T18:27:53+00:00",
+  "notes": [
+    "No source data or DATABASE.csv values are modified.",
+    "Resolved rows require exact HaNumber, HuntTable, and DATABASE match with a nonblank permit value.",
+    "Conflicting source values remain visible in the resolved CSV for audit traceability."
+  ],
+  "outputs": {
+    "remaining_unresolved_csv": "processed_data/audits/current_2026_permit_unresolved_split/remaining_unresolved_after_hanumber_hunttable_database_rule.csv",
+    "resolved_csv": "processed_data/audits/current_2026_permit_unresolved_split/resolved_hanumber_hunttable_database_matches.csv",
+    "summary_json": "processed_data/audits/current_2026_permit_unresolved_split/current_2026_permit_hanumber_hunttable_database_resolution_summary.json"
+  },
+  "remaining_bucket_counts": {
+    "database_only_external_missing": 56,
+    "true_no_permit_value": 257,
+    "true_source_conflicts": 41
+  },
+  "remaining_prefix_counts": {
+    "BI": 4,
+    "BR": 6,
+    "CG": 1,
+    "DA": 3,
+    "DB": 15,
+    "DS": 6,
+    "EA": 33,
+    "EB": 10,
+    "EL": 126,
+    "EX": 1,
+    "LD": 6,
+    "LO": 113,
+    "LP": 6,
+    "MA": 3,
+    "MB": 2,
+    "PD": 9,
+    "RS": 4,
+    "TK": 6
+  },
+  "resolved_bucket_counts": {
+    "true_source_conflicts": 84
+  },
+  "resolved_prefix_counts": {
+    "BI": 2,
+    "DB": 1,
+    "DS": 2,
+    "EB": 55,
+    "GO": 2,
+    "MB": 1,
+    "PB": 19,
+    "RS": 2
+  },
+  "resolved_species_counts": {
+    "Bison": 2,
+    "Deer": 1,
+    "Desert Bighorn Sheep": 2,
+    "Elk": 55,
+    "Moose": 1,
+    "Mountain Goat": 2,
+    "Pronghorn": 19,
+    "Rocky Mountain Bighorn Sheep": 2
+  },
+  "row_counts": {
+    "remaining_unresolved_after_hanumber_hunttable_database_rule": 354,
+    "resolved_hanumber_hunttable_database_matches": 84,
+    "source_remaining_after_3_source_rule": 438
+  },
+  "source_remaining_csv": "processed_data/audits/current_2026_permit_unresolved_split/remaining_unresolved_after_3_source_rule.csv"
+}
