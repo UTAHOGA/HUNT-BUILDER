@@ -12655,3 +12655,55 @@ o_table=0).
 
 - Commit:
   - Pending at log-write time.
+
+## 2026-06-03T17:15:37Z - Buck Deer Workbook Permit Row Repair And Pasted Source Reconciliation
+
+- Assigned step:
+  - Compare `C:\Users\tyler\Desktop\BIBLE HUNT CODES\buck deer.xlsx` to the pasted Buck Deer source again and repair the split permit rows into a clean one-row-per-hunt-code output.
+
+- Source inputs:
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\buck deer.xlsx`
+  - `processed_data/audits/buck_deer_pasted_permit_source_2026.csv`
+  - `processed_data/dwr_huntplanner_hanumber_2026.csv`
+  - `data_truth/crosswalk_truth/validation/live_dwr_permit_numbers_comprehensive_vs_DATABASE_2026.csv`
+  - `processed_data/audits/dwr_2026_draw_results_vs_database_allotments.csv`
+
+- Files changed:
+  - `scripts/reconcile-buck-deer-xlsx-vs-pasted-permits-2026.py`
+  - `processed_data/audits/buck_deer_current_permit_source_2026_corrected.csv`
+  - `processed_data/audits/buck_deer_xlsx_pasted_permit_reconciliation_2026.csv`
+  - `processed_data/audits/buck_deer_xlsx_pasted_permit_reconciliation_2026_summary.json`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Workbook rows including header: `651`
+  - Hunt-code rows repaired: `458`
+  - Unique hunt codes: `458`
+  - `NonRes` continuation rows collapsed into preceding hunt-code row: `192`
+  - Workbook-vs-pasted comparison: `458` exact matches, `0` mismatches
+  - Permit shape counts:
+    - `RES_NR_SPLIT_TOTAL_COMPUTED`: `192`
+    - `TOTAL_ONLY_PRINTED`: `136`
+    - `NO_PERMIT_NUMBER_IN_XLSX`: `130`
+  - External agreement counts:
+    - `MATCHES_ALL_EXTERNAL_SOURCES_EXACT`: `59`
+    - `MATCHES_HANUMBER_AND_HUNTTABLE_EXACT`: `23`
+    - `MATCHES_HANUMBER_AND_UTAHDRAWS_EXACT`: `110`
+    - `MATCHES_HUNTTABLE_EXACT`: `136`
+    - `NO_PERMIT_VALUE`: `130`
+
+- Data-change note:
+  - The source workbook was not modified.
+  - `DATABASE.csv` was not modified and was not used as a winner source.
+  - Totals are computed as resident plus nonresident only where the workbook/pasted source provides a split permit row and no printed total.
+
+- Validation:
+  - `python scripts\reconcile-buck-deer-xlsx-vs-pasted-permits-2026.py`: `PASS`
+  - `python -m py_compile scripts\reconcile-buck-deer-xlsx-vs-pasted-permits-2026.py`: `PASS`
+  - Corrected CSV row count verified as `458`: `PASS`
+  - Corrected unique hunt-code count verified as `458`: `PASS`
+  - Summary JSON written and parsed: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only
+
+- Commit:
+  - Pending at log-write time.

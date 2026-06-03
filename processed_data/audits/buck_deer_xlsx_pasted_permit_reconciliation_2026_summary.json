@@ -1,0 +1,44 @@
+{
+  "corrected_rows": 458,
+  "created_at_utc": "2026-06-03T17:15:03+00:00",
+  "external_agreement_status_counts": {
+    "MATCHES_ALL_EXTERNAL_SOURCES_EXACT": 59,
+    "MATCHES_HANUMBER_AND_HUNTTABLE_EXACT": 23,
+    "MATCHES_HANUMBER_AND_UTAHDRAWS_EXACT": 110,
+    "MATCHES_HUNTTABLE_EXACT": 136,
+    "NO_PERMIT_VALUE": 130
+  },
+  "notes": [
+    "The workbook source has NonRes continuation rows; this script collapses those rows into the preceding hunt-code row.",
+    "Totals are computed as resident plus nonresident only when the source has a split row and no printed total.",
+    "DATABASE.csv is not used as a winner source in this reconciliation."
+  ],
+  "outputs": {
+    "corrected_csv": "processed_data/audits/buck_deer_current_permit_source_2026_corrected.csv",
+    "reconciliation_csv": "processed_data/audits/buck_deer_xlsx_pasted_permit_reconciliation_2026.csv",
+    "summary_json": "processed_data/audits/buck_deer_xlsx_pasted_permit_reconciliation_2026_summary.json"
+  },
+  "pasted_audit_file": "processed_data/audits/buck_deer_pasted_permit_source_2026.csv",
+  "permit_shape_counts": {
+    "NO_PERMIT_NUMBER_IN_XLSX": 130,
+    "RES_NR_SPLIT_TOTAL_COMPUTED": 192,
+    "TOTAL_ONLY_PRINTED": 136
+  },
+  "recommended_action_counts": {
+    "XLSX_PERMIT_ROWS_REPAIRED_AND_EXTERNALLY_CONFIRMED": 328,
+    "XLSX_PERMIT_ROWS_REPAIRED_MATCH_PASTED_SOURCE": 130
+  },
+  "unique_hunt_codes": 458,
+  "workbook_stats": {
+    "code_rows": 458,
+    "continuation_rows_collapsed": 192,
+    "ignored_blank_rows": 0,
+    "worksheet_columns": 10,
+    "worksheet_rows_including_header": 651
+  },
+  "xlsx_source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\buck deer.xlsx",
+  "xlsx_source_sha256": "f15ce5b1537513333c721de327687fdf7c1ef96959bfd4334608a4ab28bc8b26",
+  "xlsx_vs_pasted_status_counts": {
+    "MATCH_EXACT": 458
+  }
+}
