@@ -12543,4 +12543,63 @@ o_table=0).
   - `git diff --check`: `PASS` with pre-existing line-ending warnings only
 
 - Commit:
+  - `3c98c6fe`
+
+## 2026-06-03T16:45:15Z - Live DWR HuntBoundary 2026 Permit Number Cross Audit
+
+- Assigned step:
+  - Pull the live website/HuntBoundary data source from `https://dwrapps.utah.gov/huntboundary/` and cross-audit 2026 hunt codes and permit numbers against the current local `DATABASE.csv`.
+  - Use existing local DWR pull tooling where appropriate and do not promote or overwrite database truth.
+
+- Source inputs:
+  - `https://dwrapps.utah.gov/huntboundary/`
+  - `https://dwrapps.utah.gov/huntboundary/HuntTableData?...`
+  - `https://huntbuilder.uoga.org/#dwr`
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+
+- Files changed:
+  - `scripts/pull-live-dwr-permit-numbers-comprehensive-2026.py`
+  - `docs/live_dwr_huntboundary_2026_cross_audit.md`
+  - `data_truth/crosswalk_truth/raw_inventory/live_dwr_hunt_planner_permit_numbers_comprehensive_2026.csv`
+  - `data_truth/crosswalk_truth/validation/live_dwr_permit_numbers_comprehensive_vs_DATABASE_2026.csv`
+  - `data_truth/crosswalk_truth/validation/live_dwr_permit_numbers_comprehensive_vs_DATABASE_2026_summary.json`
+  - `processed_data/live_dwr_permit_numbers_comprehensive_vs_DATABASE_2026.md`
+  - `processed_data/audits/live_dwr_huntboundary_2026_cross_audit.csv`
+  - `WORK_LOG.md`
+
+- Key results:
+  - DWR endpoints queried: `19`
+  - Live rows extracted: `1414`
+  - Live unique hunt codes: `1412`
+  - Current database rows compared: `1449`
+  - Union comparison rows: `1470`
+  - Exact matches: `754`
+  - Total matches with split differences: `277`
+  - Remaining numeric mismatches: `40`
+  - Live-only DWR hunt codes: `21`
+  - Database-only hunt codes not exposed by queried DWR endpoints: `58`
+  - Rows where DWR published no quota and database values were preserved by guardrail: `61`
+  - Current local `DATABASE.csv` does not contain old duplicate `permits_2026_*` headers, so the comparison used `permit_allotment_2026_*`.
+
+- Audit repair:
+  - Fixed the live DWR audit normalizer so rows with resident/nonresident quotas and raw DWR `QUOTA = 0` calculate live total as resident plus nonresident.
+  - This removed false mismatches and reduced the mismatch count from `128` to `40`.
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values were promoted.
+  - No prediction, research contract, or website UI/runtime files were changed.
+
+- Validation:
+  - `python scripts\pull-live-dwr-permit-numbers-comprehensive-2026.py`: `PASS`
+  - `https://dwrapps.utah.gov/huntboundary/` returned HTTP `200`: `PASS`
+  - `https://dwrapps.utah.gov/huntboundary/HuntTableData?species=Elk&gender=Antlerless` returned HTTP `200` JSON: `PASS`
+  - `https://huntbuilder.uoga.org/` returned HTTP `200`: `PASS`
+  - `https://huntbuilder.uoga.org/#dwr` returned HTTP `200`: `PASS`
+  - Clean audit CSV row count verified as `1470`: `PASS`
+  - Numeric mismatch count verified as `40`: `PASS`
+  - `python -m py_compile scripts\pull-live-dwr-permit-numbers-comprehensive-2026.py`: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only
+
+- Commit:
   - Pending at log-write time.

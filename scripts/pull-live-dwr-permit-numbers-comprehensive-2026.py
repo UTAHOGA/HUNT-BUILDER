@@ -177,6 +177,8 @@ def live_shape(row: dict[str, object]) -> tuple[str, str, str, str]:
         return "", "", total, "LIVE_DWR_TOTAL_ONLY"
     if live_total in {"", "0"} and live_res in {"", "0"} and live_nr in {"", "0"}:
         return "", "", "", "LIVE_DWR_NO_QUOTA_PUBLISHED"
+    if live_total in {"", "0"} and (live_res not in {"", "0"} or live_nr not in {"", "0"}):
+        live_total = str(int(live_res or 0) + int(live_nr or 0))
     if live_total not in {"", "0"} and live_res in {"", "0"} and live_nr in {"", "0"}:
         return "", "", live_total, "LIVE_DWR_TOTAL_ONLY"
     if live_res not in {"", "0"} and live_total and live_nr in {"", "0"} and int(live_total) > int(live_res):
