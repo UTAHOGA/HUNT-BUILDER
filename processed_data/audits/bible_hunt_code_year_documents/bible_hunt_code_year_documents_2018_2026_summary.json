@@ -1,0 +1,221 @@
+{
+  "bible_root": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES",
+  "created_at_utc": "2026-06-03T19:45:54+00:00",
+  "guardrail": "No DATABASE.csv changes; year docs are source evidence and candidate compare rows remain review evidence.",
+  "outputs": {
+    "all_compare_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_all_2018_2026.csv",
+    "combined_workbook": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_documents_and_compare_2018_2026.xlsx",
+    "compare_summary_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_summary_2018_2026.csv",
+    "index_doc": "docs/bible_hunt_code_year_documents_2018_2026.md",
+    "per_year_csv_xlsx": [
+      "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2018.csv/.xlsx",
+      "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2019.csv/.xlsx",
+      "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2020.csv/.xlsx",
+      "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2021.csv/.xlsx",
+      "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2022.csv/.xlsx",
+      "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2023.csv/.xlsx",
+      "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2024.csv/.xlsx",
+      "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2025.csv/.xlsx",
+      "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2026.csv/.xlsx"
+    ],
+    "year_summary_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_summary_2018_2026.csv"
+  },
+  "pair_summaries": [
+    {
+      "added_no_predecessor": 1037,
+      "candidate_successor": 0,
+      "dropped_no_successor": 0,
+      "exact_retained": 11,
+      "from_report_year": 2018,
+      "output_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_2018_to_2019.csv",
+      "to_report_year": 2019,
+      "total_rows": 1048
+    },
+    {
+      "added_no_predecessor": 53,
+      "candidate_successor": 7,
+      "dropped_no_successor": 72,
+      "exact_retained": 969,
+      "from_report_year": 2019,
+      "output_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_2019_to_2020.csv",
+      "to_report_year": 2020,
+      "total_rows": 1101
+    },
+    {
+      "added_no_predecessor": 45,
+      "candidate_successor": 63,
+      "dropped_no_successor": 21,
+      "exact_retained": 944,
+      "from_report_year": 2020,
+      "output_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_2020_to_2021.csv",
+      "to_report_year": 2021,
+      "total_rows": 1073
+    },
+    {
+      "added_no_predecessor": 25,
+      "candidate_successor": 42,
+      "dropped_no_successor": 10,
+      "exact_retained": 971,
+      "from_report_year": 2021,
+      "output_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_2021_to_2022.csv",
+      "to_report_year": 2022,
+      "total_rows": 1048
+    },
+    {
+      "added_no_predecessor": 59,
+      "candidate_successor": 47,
+      "dropped_no_successor": 32,
+      "exact_retained": 941,
+      "from_report_year": 2022,
+      "output_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_2022_to_2023.csv",
+      "to_report_year": 2023,
+      "total_rows": 1079
+    },
+    {
+      "added_no_predecessor": 17,
+      "candidate_successor": 41,
+      "dropped_no_successor": 2,
+      "exact_retained": 990,
+      "from_report_year": 2023,
+      "output_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_2023_to_2024.csv",
+      "to_report_year": 2024,
+      "total_rows": 1050
+    },
+    {
+      "added_no_predecessor": 67,
+      "candidate_successor": 38,
+      "dropped_no_successor": 29,
+      "exact_retained": 960,
+      "from_report_year": 2024,
+      "output_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_2024_to_2025.csv",
+      "to_report_year": 2025,
+      "total_rows": 1094
+    },
+    {
+      "added_no_predecessor": 25,
+      "candidate_successor": 0,
+      "dropped_no_successor": 244,
+      "exact_retained": 809,
+      "from_report_year": 2025,
+      "output_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_2025_to_2026.csv",
+      "to_report_year": 2026,
+      "total_rows": 1078
+    }
+  ],
+  "scope": "Independent BIBLE HUNT CODES year documents followed by downstream adjacent-year compare/crosswalk.",
+  "total_compare_rows": 8571,
+  "total_raw_source_hits": 46515,
+  "total_unique_year_document_rows": 8077,
+  "year_summaries": [
+    {
+      "draw_year": 2018,
+      "model_year": 2019,
+      "output_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2018.csv",
+      "output_xlsx": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2018.xlsx",
+      "raw_source_hits": 11,
+      "report_year": 2018,
+      "review_status_counts": "{\"OK\": 11}",
+      "source_files_scanned": 1,
+      "unique_hunt_codes": 11
+    },
+    {
+      "draw_year": 2019,
+      "model_year": 2020,
+      "output_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2019.csv",
+      "output_xlsx": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2019.xlsx",
+      "raw_source_hits": 1491,
+      "report_year": 2019,
+      "review_status_counts": "{\"OK\": 1048}",
+      "source_files_scanned": 12,
+      "unique_hunt_codes": 1048
+    },
+    {
+      "draw_year": 2020,
+      "model_year": 2021,
+      "output_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2020.csv",
+      "output_xlsx": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2020.xlsx",
+      "raw_source_hits": 2566,
+      "report_year": 2020,
+      "review_status_counts": "{\"OK\": 1028}",
+      "source_files_scanned": 25,
+      "unique_hunt_codes": 1028
+    },
+    {
+      "draw_year": 2021,
+      "model_year": 2022,
+      "output_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2021.csv",
+      "output_xlsx": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2021.xlsx",
+      "raw_source_hits": 2540,
+      "report_year": 2021,
+      "review_status_counts": "{\"OK\": 1023}",
+      "source_files_scanned": 24,
+      "unique_hunt_codes": 1023
+    },
+    {
+      "draw_year": 2022,
+      "model_year": 2023,
+      "output_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2022.csv",
+      "output_xlsx": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2022.xlsx",
+      "raw_source_hits": 2645,
+      "report_year": 2022,
+      "review_status_counts": "{\"NORMALIZED_FOR_COMPARISON_REVIEW\": 11, \"OK\": 1009}",
+      "source_files_scanned": 26,
+      "unique_hunt_codes": 1020
+    },
+    {
+      "draw_year": 2023,
+      "model_year": 2024,
+      "output_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2023.csv",
+      "output_xlsx": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2023.xlsx",
+      "raw_source_hits": 2038,
+      "report_year": 2023,
+      "review_status_counts": "{\"NORMALIZED_FOR_COMPARISON_REVIEW\": 10, \"OK\": 1023}",
+      "source_files_scanned": 21,
+      "unique_hunt_codes": 1033
+    },
+    {
+      "draw_year": 2024,
+      "model_year": 2025,
+      "output_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2024.csv",
+      "output_xlsx": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2024.xlsx",
+      "raw_source_hits": 2060,
+      "report_year": 2024,
+      "review_status_counts": "{\"NORMALIZED_FOR_COMPARISON_REVIEW\": 10, \"OK\": 1017}",
+      "source_files_scanned": 24,
+      "unique_hunt_codes": 1027
+    },
+    {
+      "draw_year": 2025,
+      "model_year": 2026,
+      "output_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2025.csv",
+      "output_xlsx": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2025.xlsx",
+      "raw_source_hits": 2285,
+      "report_year": 2025,
+      "review_status_counts": "{\"OK\": 1053}",
+      "source_files_scanned": 23,
+      "unique_hunt_codes": 1053
+    },
+    {
+      "draw_year": 2026,
+      "model_year": 2027,
+      "output_csv": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2026.csv",
+      "output_xlsx": "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2026.xlsx",
+      "raw_source_hits": 30879,
+      "report_year": 2026,
+      "review_status_counts": "{\"OK\": 834}",
+      "source_files_scanned": 18,
+      "unique_hunt_codes": 834
+    }
+  ],
+  "years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ]
+}

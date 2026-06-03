@@ -12653,6 +12653,81 @@ o_table=0).
 - Commit:
   - Main crosswalk package committed as `07d62a10`.
 
+## 2026-06-03T19:46:34Z - Build Independent BIBLE Year Documents And Downstream Compare
+
+- Assigned step:
+  - Generate independent hunt-code documents from each `C:\Users\tyler\Desktop\BIBLE HUNT CODES\YYYY` folder first, then build the year-to-year compare/crosswalk from those year documents.
+
+- Source inputs:
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2018`
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2019`
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2020`
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2021`
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2022`
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2023`
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2024`
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2025`
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2026`
+
+- Files changed:
+  - `scripts/build-bible-hunt-code-year-documents.py`
+  - `docs/bible_hunt_code_year_documents_2018_2026.md`
+  - `processed_data/audits/bible_hunt_code_year_documents/*`
+  - `WORK_LOG.md`
+
+- Outputs created:
+  - One independent year CSV and XLSX for each year `2018` through `2026`.
+  - One raw source-hit CSV for each year `2018` through `2026`.
+  - One adjacent-year compare CSV for each pair `2018->2019` through `2025->2026`.
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_documents_and_compare_2018_2026.xlsx`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_all_2018_2026.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_summary_2018_2026.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_summary_2018_2026.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_documents_2018_2026_summary.json`
+  - `docs/bible_hunt_code_year_documents_2018_2026.md`
+
+- Key results:
+  - Total raw source hits: `46515`
+  - Total unique year-document rows: `8077`
+  - Total downstream compare rows: `8571`
+  - Unique comparison hunt codes by year:
+    - `2018`: `11`
+    - `2019`: `1048`
+    - `2020`: `1028`
+    - `2021`: `1023`
+    - `2022`: `1020`
+    - `2023`: `1033`
+    - `2024`: `1027`
+    - `2025`: `1053`
+    - `2026`: `834`
+  - Adjacent-year compare counts:
+    - `2018->2019`: exact `11`, candidate `0`, dropped `0`, added `1037`
+    - `2019->2020`: exact `969`, candidate `7`, dropped `72`, added `53`
+    - `2020->2021`: exact `944`, candidate `63`, dropped `21`, added `45`
+    - `2021->2022`: exact `971`, candidate `42`, dropped `10`, added `25`
+    - `2022->2023`: exact `941`, candidate `47`, dropped `32`, added `59`
+    - `2023->2024`: exact `990`, candidate `41`, dropped `2`, added `17`
+    - `2024->2025`: exact `960`, candidate `38`, dropped `29`, added `67`
+    - `2025->2026`: exact `809`, candidate `0`, dropped `244`, added `25`
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values were changed or promoted.
+  - Candidate compare/crosswalk rows remain review evidence only.
+  - The largest generated raw source-hit CSV is about `14 MB`, acceptable for tracked audit output and below large-file thresholds.
+
+- Validation:
+  - `python scripts\build-bible-hunt-code-year-documents.py`: `PASS`
+  - `python -m py_compile scripts\build-bible-hunt-code-year-documents.py`: `PASS`
+  - Per-year CSV/XLSX existence and nonzero size checks: `PASS`
+  - Adjacent-year compare CSV existence and required-column checks: `PASS`
+  - Summary JSON parse and count checks: `PASS`
+  - Combined XLSX workbook ZIP/package check: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only on unrelated dirty files
+
+- Commit:
+  - Pending at log-write time.
+
 ## 2026-06-03T19:23:20Z - Build Year-To-Year Hunt-Code Crosswalk
 
 - Assigned step:
