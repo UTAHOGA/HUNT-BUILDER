@@ -12176,3 +12176,60 @@ o_table=0).
   - 2022 ledger/crosscheck/issues/sportsman-normalization CSV row counts verified: `PASS`
   - Corrected 2022 identity coverage has no missing or extra hunt codes: `PASS`
   - `git diff --check`: `PASS` with pre-existing line-ending warnings only
+
+## 2026-06-03T15:37:15Z - Sportsman PDF Clean Extraction Workbook
+
+- Assigned step:
+  - Create a cleaner `.xlsx` extraction/conversion path for Sportsman PDF files so script extraction does not misread `N/A`-glued hunt codes such as `ABI1000`.
+
+- Files changed:
+  - `scripts/extract_sportsman_pdf_clean_tables.py`
+  - `docs/sportsman_pdf_clean_extraction.md`
+  - `WORK_LOG.md`
+
+- Outputs created:
+  - `processed_data/audits/sportsman_pdf_clean_extract.csv`
+  - `processed_data/audits/sportsman_pdf_clean_script_feed.csv`
+  - `processed_data/audits/sportsman_pdf_clean_extract.xlsx`
+  - `processed_data/audits/sportsman_pdf_clean_extract_audit.csv`
+  - `processed_data/audits/sportsman_pdf_clean_extract_summary.json`
+
+- Source inputs:
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\**\*sportsman*.pdf`
+  - repo pipeline Sportsman PDFs under `pipeline/RAW/hunt_unit_database/**`
+
+- Key results:
+  - Source PDFs scanned: `16`
+  - Full extracted rows: `172`
+  - Preferred script-feed rows: `96`
+  - Unique normalized hunt codes: `12`
+  - Source-audit failures: `0`
+  - `N/A`-glued artifact rows normalized: `52`
+
+- Preferred script-feed year counts:
+  - `2018`: `11`
+  - `2019`: `11`
+  - `2020`: `11`
+  - `2021`: `12`
+  - `2022`: `11`
+  - `2023`: `10`
+  - `2024`: `10`
+  - `2025`: `10`
+  - `2026`: `10`
+
+- Extraction behavior:
+  - Preserves raw extraction artifacts such as `ABI1000`, `ABR1000`, and `ADB0007`.
+  - Provides normalized script-facing hunt codes such as `BI1000`, `BR1000`, and `DB0007`.
+  - Supports normal inline Sportsman tables, stacked-column tables, `N/A`-glued code tables, one-hunt-per-page generated PDFs, and UtahDraws summary export PDFs.
+  - `processed_data/audits/sportsman_pdf_clean_script_feed.csv` is the recommended downstream script input.
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values, draw values, prediction values, or hunt research runtime contracts were changed.
+
+- Validation:
+  - `python scripts\extract_sportsman_pdf_clean_tables.py --include-pipeline`: `PASS`
+  - `python -m py_compile scripts\extract_sportsman_pdf_clean_tables.py`: `PASS`
+  - Workbook sheet/row verification: `PASS`
+  - Source-audit status counts all `OK`: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only
