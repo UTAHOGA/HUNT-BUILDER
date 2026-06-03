@@ -12653,6 +12653,35 @@ o_table=0).
 - Commit:
   - Pending at log-write time.
 
+## 2026-06-03T19:13:20Z - Integrate BIBLE HUNT CODES Source-Control Directive
+
+- Assigned step:
+  - Preserve and integrate the pasted `BIBLE HUNT CODES / HUNT ENGINE SOURCE CONTROL` directive while holding the permit-normalization work for later continuation.
+
+- Files changed:
+  - `docs/bible_hunt_codes_source_control.md`
+  - `AGENTS.MD`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Added a tracked directive locking draw-year/model-year handling for `C:\Users\tyler\Desktop\BIBLE HUNT CODES`.
+  - Locked canonical filename format: `DRAWYEAR_PERMITS=MODELYEAR_MODEL__DOCUMENT NAME.pdf`.
+  - Documented that BIBLE HUNT CODES is a historical/reference library, not automatic active runtime truth.
+  - Documented L.E. and O.I.L. family structure, truth-source hierarchy, required engine-feed metadata, dependent database separation, cougar successor logic, sportsman handling, known special cases, required year-cleaning outputs, and validation checklist.
+  - Added `docs/bible_hunt_codes_source_control.md` to the required relevant-documents list in `AGENTS.MD`.
+  - Added a BIBLE HUNT CODES source-control rule summary to `AGENTS.MD`.
+
+- Data-change note:
+  - No data files were modified.
+  - No BIBLE HUNT CODES files were renamed or moved.
+  - No `DATABASE.csv` changes were made.
+
+- Validation:
+  - `git diff --check -- AGENTS.MD WORK_LOG.md docs/bible_hunt_codes_source_control.md`: `PASS`
+
+- Commit:
+  - Pending at log-write time.
+
 ## 2026-06-03T19:09:52Z - Rerun Bull Elk Permit Workbook Normalizer
 
 - Assigned step:

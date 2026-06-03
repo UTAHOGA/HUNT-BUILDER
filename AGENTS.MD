@@ -188,6 +188,7 @@ Codex must also read relevant project documents when present and relevant to the
 - `HYBRID_ML_V1.md`
 - `HYBRID_ML_V1_ROLLOUT.md`
 - `LOCKED_CANONICAL_2026.md`
+- `docs/bible_hunt_codes_source_control.md`
 - `docs/utah_draw_routing_and_algorithm_v1.md`
 - `docs/utah_draw_system_scope.md`
 - `docs/utah_rules_sources.md`
@@ -412,6 +413,24 @@ Codex must not confuse:
 - `draw_results_year` with `model_target_year`
 - source filename model labels with reviewed model-year logic
 - `BIBLE HUNT CODES` folder year with generic storage-only folder year
+
+### BIBLE HUNT CODES source-control rule
+
+When a task touches `C:\Users\tyler\Desktop\BIBLE HUNT CODES`, Codex must also follow:
+
+```text
+docs/bible_hunt_codes_source_control.md
+```
+
+Locked rules from that document:
+- canonical filename pattern is `DRAWYEAR_PERMITS=MODELYEAR_MODEL__DOCUMENT NAME.pdf`
+- files live in the folder for `draw_year`
+- `model_year` is the next-year prediction/forward-use year
+- official family/year PDFs outrank derived CSV/XLSX helper files
+- normalized library copies are reference sources, not automatic current runtime truth
+- cougar local draw-results files are expected only through `2022_PERMITS=2023_MODEL`; later cougar maps to statewide `CG9999`
+- sportsman one-page reports require clean structured XLSX/CSV extraction and must not rely on broken OCR line wraps
+- cleaning a year requires inventory, family table, truth-vs-derived manifest, missing/extra report, crosswalk report when applicable, and clean structured odd-format extracts
 
 ---
 
