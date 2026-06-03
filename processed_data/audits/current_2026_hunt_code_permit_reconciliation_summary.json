@@ -1,0 +1,150 @@
+{
+  "confidence_counts": {
+    "HIGH_CONFIRMED_2PLUS": 722,
+    "MEDIUM_SINGLE_SOURCE": 82,
+    "MEDIUM_TOTAL_CONFIRMED": 70,
+    "NO_PERMIT_VALUE": 257,
+    "REVIEW_REQUIRED": 56,
+    "REVIEW_SOURCE_CONFLICT": 283
+  },
+  "created_at_utc": "2026-06-03T17:37:40+00:00",
+  "database_alignment_counts": {
+    "DATABASE_BLANK_RECOMMENDATION_HAS_VALUE": 26,
+    "DATABASE_DIFFERS_FROM_RECOMMENDED": 2,
+    "DATABASE_HAS_VALUE_NO_RECOMMENDATION": 56,
+    "DATABASE_MATCHES_RECOMMENDED": 1120,
+    "DATABASE_TOTAL_MATCHES_RECOMMENDED": 9,
+    "NOT_COMPARED": 257
+  },
+  "notes": [
+    "DATABASE.csv is used only as a comparison/reference field in this pass, not as a winner source.",
+    "HaNumber is the first preferred current DWR source when it has a permit value.",
+    "Rows with only database reference values remain unresolved until an external source is found."
+  ],
+  "outputs": {
+    "reconciliation_csv": "processed_data/audits/current_2026_hunt_code_permit_reconciliation.csv",
+    "report_md": "docs/current_2026_hunt_code_permit_reconciliation.md",
+    "summary_json": "processed_data/audits/current_2026_hunt_code_permit_reconciliation_summary.json",
+    "unresolved_csv": "processed_data/audits/current_2026_hunt_code_permit_unresolved.csv"
+  },
+  "prefix_counts": {
+    "BI": 20,
+    "BR": 110,
+    "CG": 1,
+    "DA": 21,
+    "DB": 359,
+    "DS": 26,
+    "EA": 227,
+    "EB": 226,
+    "EL": 126,
+    "EX": 1,
+    "GO": 18,
+    "LD": 6,
+    "LO": 113,
+    "LP": 6,
+    "MA": 7,
+    "MB": 41,
+    "PB": 90,
+    "PD": 33,
+    "RE": 1,
+    "RS": 20,
+    "TK": 18
+  },
+  "recommended_action_counts": {
+    "FIND_EXTERNAL_SOURCE_BEFORE_PROMOTION": 56,
+    "NO_CURRENT_PERMIT_VALUE_FOUND": 257,
+    "PROMOTE_CANDIDATE_AFTER_REVIEW": 804,
+    "PROMOTE_TOTAL_AFTER_SPLIT_REVIEW": 70,
+    "REVIEW_BEFORE_PROMOTION": 283
+  },
+  "row_counts": {
+    "candidate_hunt_codes": 1470,
+    "database_reference_only_not_winner": 56,
+    "recommended_with_permit_value": 1157,
+    "unresolved_rows": 596
+  },
+  "source_code_counts": {
+    "buck_deer": {
+      "present_codes": 458,
+      "value_codes": 328
+    },
+    "database": {
+      "present_codes": 1449,
+      "value_codes": 1187
+    },
+    "hanumber": {
+      "present_codes": 1449,
+      "value_codes": 1125
+    },
+    "hunttable": {
+      "present_codes": 1412,
+      "value_codes": 1092
+    },
+    "utahdraws": {
+      "present_codes": 834,
+      "value_codes": 834
+    }
+  },
+  "source_files": {
+    "buck_deer": "processed_data/audits/buck_deer_current_permit_source_2026_corrected.csv",
+    "database_reference_only": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+    "hanumber": "processed_data/dwr_huntplanner_hanumber_2026.csv",
+    "hunttable": "data_truth/crosswalk_truth/validation/live_dwr_permit_numbers_comprehensive_vs_DATABASE_2026.csv",
+    "utahdraws": "processed_data/audits/dwr_2026_draw_results_vs_database_allotments.csv"
+  },
+  "species_counts": {
+    "Bison": 20,
+    "Black Bear": 110,
+    "Cougar": 1,
+    "Deer": 494,
+    "Desert Bighorn Sheep": 26,
+    "Elk": 585,
+    "Moose": 48,
+    "Mountain Goat": 18,
+    "Pronghorn": 129,
+    "Rocky Mountain Bighorn Sheep": 21,
+    "Turkey": 18
+  },
+  "unresolved_prefix_counts": {
+    "BI": 6,
+    "BR": 6,
+    "CG": 1,
+    "DA": 3,
+    "DB": 174,
+    "DS": 8,
+    "EA": 33,
+    "EB": 65,
+    "EL": 126,
+    "EX": 1,
+    "GO": 2,
+    "LD": 6,
+    "LO": 113,
+    "LP": 6,
+    "MA": 3,
+    "MB": 3,
+    "PB": 19,
+    "PD": 9,
+    "RS": 6,
+    "TK": 6
+  },
+  "unresolved_species_counts": {
+    "Bison": 6,
+    "Black Bear": 6,
+    "Cougar": 1,
+    "Deer": 291,
+    "Desert Bighorn Sheep": 8,
+    "Elk": 230,
+    "Moose": 6,
+    "Mountain Goat": 2,
+    "Pronghorn": 34,
+    "Rocky Mountain Bighorn Sheep": 6,
+    "Turkey": 6
+  },
+  "winner_source_counts": {
+    "HANUMBER": 1125,
+    "HUNTTABLE": 22,
+    "NONE": 257,
+    "NONE_EXTERNAL_DATABASE_REFERENCE_ONLY": 56,
+    "UTAHDRAWS": 10
+  }
+}

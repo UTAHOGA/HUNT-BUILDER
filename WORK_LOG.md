@@ -12707,3 +12707,70 @@ o_table=0).
 
 - Commit:
   - Pending at log-write time.
+
+## 2026-06-03T17:38:09Z - Current 2026 Hunt Code And Permit Reconciliation Audit
+
+- Assigned step:
+  - Run the next audit-only reconciliation pass for current 2026 hunt codes and permit/allotment numbers.
+  - Use external current sources first and keep `DATABASE.csv` as comparison/reference only, not as a winner source.
+
+- Source inputs:
+  - `processed_data/dwr_huntplanner_hanumber_2026.csv`
+  - `data_truth/crosswalk_truth/validation/live_dwr_permit_numbers_comprehensive_vs_DATABASE_2026.csv`
+  - `processed_data/audits/dwr_2026_draw_results_vs_database_allotments.csv`
+  - `processed_data/audits/buck_deer_current_permit_source_2026_corrected.csv`
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+
+- Files changed:
+  - `scripts/reconcile-current-2026-hunt-code-permits.py`
+  - `processed_data/audits/current_2026_hunt_code_permit_reconciliation.csv`
+  - `processed_data/audits/current_2026_hunt_code_permit_unresolved.csv`
+  - `processed_data/audits/current_2026_hunt_code_permit_reconciliation_summary.json`
+  - `docs/current_2026_hunt_code_permit_reconciliation.md`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Candidate hunt-code universe: `1470`
+  - Recommended external permit values: `1157`
+  - Ready candidate rows after review:
+    - `PROMOTE_CANDIDATE_AFTER_REVIEW`: `804`
+    - `PROMOTE_TOTAL_AFTER_SPLIT_REVIEW`: `70`
+  - Review rows:
+    - `REVIEW_BEFORE_PROMOTION`: `283`
+    - `FIND_EXTERNAL_SOURCE_BEFORE_PROMOTION`: `56`
+    - `NO_CURRENT_PERMIT_VALUE_FOUND`: `257`
+  - Winner source counts:
+    - `HANUMBER`: `1125`
+    - `HUNTTABLE`: `22`
+    - `UTAHDRAWS`: `10`
+    - `NONE_EXTERNAL_DATABASE_REFERENCE_ONLY`: `56`
+    - `NONE`: `257`
+  - Source coverage counts:
+    - HaNumber: `1449` present codes, `1125` value codes
+    - HuntTableData: `1412` present codes, `1092` value codes
+    - UtahDraws/BIBLE: `834` present codes, `834` value codes
+    - Repaired Buck Deer: `458` present codes, `328` value codes
+    - DATABASE reference: `1449` present codes, `1187` value codes
+  - Primary unresolved prefix families:
+    - `DB`: `174`
+    - `EL`: `126`
+    - `LO`: `113`
+    - `EB`: `65`
+    - `EA`: `33`
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values were promoted.
+  - The output is a recommendation/review contract for the next promotion pass.
+
+- Validation:
+  - `python scripts\reconcile-current-2026-hunt-code-permits.py`: `PASS`
+  - `python -m py_compile scripts\reconcile-current-2026-hunt-code-permits.py`: `PASS`
+  - Reconciliation CSV row count verified as `1470`: `PASS`
+  - Reconciliation unique hunt-code count verified as `1470`: `PASS`
+  - Unresolved CSV row count verified as `596`: `PASS`
+  - Summary JSON written and parsed: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only
+
+- Commit:
+  - Pending at log-write time.
