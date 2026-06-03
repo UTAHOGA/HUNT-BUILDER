@@ -1,15 +1,4 @@
 hunt_code,prefix,present_report_year_2020,source_count_report_year_2020,present_report_year_2021,source_count_report_year_2021,present_report_year_2022,source_count_report_year_2022,present_report_year_2023,source_count_report_year_2023,present_report_year_2024,source_count_report_year_2024,present_report_year_2025,source_count_report_year_2025,present_report_year_2026,source_count_report_year_2026
-ABI1000,ABI,NO,0,NO,0,YES,1,YES,1,YES,1,NO,0,NO,0
-ABR1000,ABR,NO,0,NO,0,YES,1,YES,1,YES,1,NO,0,NO,0
-ACG1000,ACG,NO,0,NO,0,YES,1,NO,0,NO,0,NO,0,NO,0
-ADB0007,ADB,NO,0,NO,0,YES,1,YES,1,YES,1,NO,0,NO,0
-ADS1000,ADS,NO,0,NO,0,YES,1,YES,1,YES,1,NO,0,NO,0
-AEB1000,AEB,NO,0,NO,0,YES,1,YES,1,YES,1,NO,0,NO,0
-AGO1000,AGO,NO,0,NO,0,YES,1,YES,1,YES,1,NO,0,NO,0
-AMB1000,AMB,NO,0,NO,0,YES,1,YES,1,YES,1,NO,0,NO,0
-APB1000,APB,NO,0,NO,0,YES,1,YES,1,YES,1,NO,0,NO,0
-ARS0001,ARS,NO,0,NO,0,YES,1,YES,1,YES,1,NO,0,NO,0
-ATK0001,ATK,NO,0,NO,0,YES,1,YES,1,YES,1,NO,0,NO,0
 BI1000,BI,YES,1,YES,1,NO,0,NO,0,NO,0,NO,0,YES,1
 BI6500,BI,YES,2,YES,2,YES,2,YES,2,YES,2,YES,3,YES,1
 BI6503,BI,YES,2,YES,2,YES,2,YES,2,YES,2,YES,3,YES,1

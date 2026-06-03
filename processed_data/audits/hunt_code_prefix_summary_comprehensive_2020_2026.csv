@@ -1,15 +1,4 @@
 prefix,total_codes_observed,active_2026_codes,dropped_before_2026_codes,new_in_2026_codes,earliest_first_seen_report_year,latest_last_seen_report_year
-ABI,1,0,1,0,2022,2024
-ABR,1,0,1,0,2022,2024
-ACG,1,0,1,0,2022,2022
-ADB,1,0,1,0,2022,2024
-ADS,1,0,1,0,2022,2024
-AEB,1,0,1,0,2022,2024
-AGO,1,0,1,0,2022,2024
-AMB,1,0,1,0,2022,2024
-APB,1,0,1,0,2022,2024
-ARS,1,0,1,0,2022,2024
-ATK,1,0,1,0,2022,2024
 BI,29,17,12,1,2020,2026
 BR,116,100,16,7,2020,2026
 CG,16,0,16,0,2020,2022

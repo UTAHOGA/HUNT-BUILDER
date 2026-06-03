@@ -11914,3 +11914,54 @@ o_table=0).
   - Comprehensive ZIP PDF inventory verified: `131` PDFs across 2020-2025
   - Generated 2026 PDF layer verified: `15` PDFs
   - `DATABASE.csv` unchanged by this audit step: `PASS`
+
+## 2026-06-03T14:33:47Z - Hunt Code Lifecycle Reappearance Interpretation Pass
+
+- Assigned correction:
+  - Historical reappearances of hunt codes must not be treated as terminated in the missing intermediate years.
+  - If a code disappears from a source year but later reappears, classify the missing year as likely continued but not observed.
+  - Only classify a terminal drop-off after the final observed year when there is no later reappearance through the audit window.
+
+- Outputs created:
+  - `processed_data/audits/hunt_code_interpreted_presence_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_historical_reappearance_gaps_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_terminal_dropoffs_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_interpreted_lifecycle_summary_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_interpreted_lifecycle_comprehensive_2020_2026_summary.json`
+  - `processed_data/audits/hunt_code_lifecycle_prefix_artifact_filter_comprehensive_2020_2026.csv`
+
+- Existing outputs updated:
+  - `processed_data/audits/hunt_code_lifecycle_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_presence_matrix_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_year_to_year_transitions_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_dropoffs_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_dropped_2025_to_2026_comprehensive.csv`
+  - `processed_data/audits/hunt_code_additions_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_source_hits_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_prefix_summary_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_lifecycle_comprehensive_2020_2026_summary.json`
+
+- Interpretation rules:
+  - `OBSERVED_IN_SOURCE`: source PDF contains the hunt code in that report year.
+  - `LIKELY_CONTINUED_NOT_OBSERVED`: the code is absent in an intermediate year but reappears later.
+  - `TERMINAL_ABSENT_AFTER_LAST_OBSERVED`: the code is absent after its final observed year with no later reappearance through 2026.
+
+- Key results:
+  - Strict-prefix hunt codes observed: `1359`
+  - Historical reappearance-gap codes: `42`
+  - Reappearance-gap code/year cells now marked likely continued: `89`
+  - Terminal drop-off candidate codes through 2026: `525`
+  - Active 2026 codes: `834`
+  - Codes present in 2025 but absent in 2026: `244`
+  - First-seen 2026 codes: `12`
+  - Prefix/text-join artifact rows excluded: `30`
+
+- Artifact cleanup:
+  - Removed non-DATABASE prefix artifacts from strict lifecycle outputs.
+  - Excluded prefixes: `ABI`, `ABR`, `ADB`, `ADS`, `AEB`, `AGO`, `AMB`, `APB`, `ARS`, `ATK`
+  - These appear to be source text/OCR joins such as an `A` prefix attached to a valid code family.
+
+- Validation:
+  - Output files exist and row counts verified: `PASS`
+  - `DATABASE.csv` unchanged by this interpretation pass: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only
