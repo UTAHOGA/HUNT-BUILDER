@@ -10,7 +10,7 @@
 - Ledger rows: `2020`
 - Unique hunt codes: `1017`
 - Sportsman rows added: `0`
-- Lifecycle source-hit rows added: `1`
+- Lifecycle source-hit rows added: `0`
 - Lifecycle source-hit backfills present for year: `1`
 - Scan errors: `0`
 - Missing from identity ledger after correction: `0`

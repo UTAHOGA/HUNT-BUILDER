@@ -1,6 +1,6 @@
 {
   "scope": "2024 hunt-code/year identity alignment from provided truth-source ZIP package.",
-  "source_zip": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2024\\2024_PERMITS=2025_MODEL__NORMALIZED_TO_2025_STYLE.zip",
+  "source_zip": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2024.zip",
   "draw_results_year": 2024,
   "permit_draw_year": 2024,
   "report_year": 2024,
@@ -9,7 +9,7 @@
   "unique_hunt_codes": 1017,
   "sportsman_rows_added": 0,
   "sportsman_code_normalizations": 0,
-  "lifecycle_source_hits_added": 1,
+  "lifecycle_source_hits_added": 0,
   "lifecycle_source_hit_backfills_present_for_year": 1,
   "lifecycle_source_hit_backfill_codes_for_year": [
     "EB1007"
@@ -55,7 +55,6 @@
     "Year semantics: draw_results_year = permit_draw_year for BIBLE HUNT CODES source packages.",
     "Model year is the predictive modeling year and equals draw_results_year + 1.",
     "This audit does not modify DATABASE.csv.",
-    "No Sportsman code normalization rows were required for this year.",
-    "Lifecycle source-hit backfills were added only for real identity-ledger code/year rows not already present in the comprehensive lifecycle source-hit table."
+    "No Sportsman code normalization rows were required for this year."
   ]
 }
