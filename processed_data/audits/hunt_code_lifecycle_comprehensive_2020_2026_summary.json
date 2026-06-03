@@ -1,0 +1,105 @@
+{
+  "scope": "Year-to-year hunt code lifecycle using COMPREHENSIVE 2020-2025.zip plus generated 2026 UtahDraws display PDFs.",
+  "source_zip": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\COMPREHENSIVE 2020-2025.zip",
+  "generated_2026_pdf_folder": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2026\\exports\\utahdraws_draw_odds_20260603\\official_style\\pdf_2025_naming_convention",
+  "report_years": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "model_year_rule": "model_year = report_year + 1 for 2020-2025 PDF names; generated 2026 UtahDraws PDFs treated as report_year 2026 / model_year 2027 comparison layer.",
+  "source_pdf_count": 146,
+  "scan_error_count": 0,
+  "unique_hunt_codes_observed": 1370,
+  "codes_by_report_year": {
+    "2020": 1028,
+    "2021": 1023,
+    "2022": 1020,
+    "2023": 1032,
+    "2024": 1026,
+    "2025": 1053,
+    "2026": 834
+  },
+  "active_2026_codes": 834,
+  "codes_observed_2020_2025_absent_in_2026": 536,
+  "new_in_2026_codes": 12,
+  "dropped_2025_to_2026_count": 244,
+  "transition_counts": [
+    {
+      "from_report_year": 2020,
+      "to_report_year": 2021,
+      "from_year_code_count": 1028,
+      "to_year_code_count": 1023,
+      "retained_count": 944,
+      "dropped_count": 84,
+      "added_count": 79
+    },
+    {
+      "from_report_year": 2021,
+      "to_report_year": 2022,
+      "from_year_code_count": 1023,
+      "to_year_code_count": 1020,
+      "retained_count": 960,
+      "dropped_count": 63,
+      "added_count": 60
+    },
+    {
+      "from_report_year": 2022,
+      "to_report_year": 2023,
+      "from_year_code_count": 1020,
+      "to_year_code_count": 1032,
+      "retained_count": 940,
+      "dropped_count": 80,
+      "added_count": 92
+    },
+    {
+      "from_report_year": 2023,
+      "to_report_year": 2024,
+      "from_year_code_count": 1032,
+      "to_year_code_count": 1026,
+      "retained_count": 989,
+      "dropped_count": 43,
+      "added_count": 37
+    },
+    {
+      "from_report_year": 2024,
+      "to_report_year": 2025,
+      "from_year_code_count": 1026,
+      "to_year_code_count": 1053,
+      "retained_count": 959,
+      "dropped_count": 67,
+      "added_count": 94
+    },
+    {
+      "from_report_year": 2025,
+      "to_report_year": 2026,
+      "from_year_code_count": 1053,
+      "to_year_code_count": 834,
+      "retained_count": 809,
+      "dropped_count": 244,
+      "added_count": 25
+    }
+  ],
+  "outputs": {
+    "lifecycle": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_lifecycle_comprehensive_2020_2026.csv",
+    "presence": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_presence_matrix_comprehensive_2020_2026.csv",
+    "transitions": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_year_to_year_transitions_comprehensive_2020_2026.csv",
+    "dropoffs": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_dropoffs_comprehensive_2020_2026.csv",
+    "dropped_2025_to_2026": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_dropped_2025_to_2026_comprehensive.csv",
+    "additions": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_additions_comprehensive_2020_2026.csv",
+    "source_hits": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_source_hits_comprehensive_2020_2026.csv",
+    "prefix_summary": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_prefix_summary_comprehensive_2020_2026.csv",
+    "file_stats": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_source_file_stats_comprehensive_2020_2026.csv",
+    "summary": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\hunt_code_lifecycle_comprehensive_2020_2026_summary.json"
+  },
+  "notes": [
+    "Code extraction uses alpha+digit Utah hunt-code pattern: two or three letters followed by three or four digits.",
+    "Drop-off means present in one report year and absent in the next compared report year.",
+    "Permanent_through_2026 means the code does not reappear in any later scanned report year through the generated 2026 comparison layer.",
+    "This audit is source-evidence only and does not modify DATABASE.csv or promote permit values."
+  ]
+}

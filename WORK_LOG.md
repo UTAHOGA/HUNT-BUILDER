@@ -11296,3 +11296,621 @@ o_table=0).
   - Total rows with any `permits_2024_*` now: `973`
   - Filled `hunt_code` examples:
     - `BI1000`, `BR1000`, `DB0007`, `DS1000`, `EB1000`, `GO1000`, `MB1000`, `PB1000`, `RS0001`, `TK0001`
+
+## 2026-06-01T22:20:00-06:00 - Minute-Pass: 69 2024 Codes Missing From 2026 DATABASE
+
+- Assigned action:
+  - Process the 69 hunt codes from `2024_source_codes_new_not_in_2026_database.txt`.
+  - Fill crosswalk notes from `data_truth/crosswalk_truth/normalized/current_to_historical_hunt_code_crosswalk_2026.csv`.
+  - Triage retired-code status from `data_truth/crosswalk_truth/normalized/retired_current_hunt_codes_2026.csv`.
+  - Produce a "ready to address" artifact grouped by species family.
+
+- Inputs:
+  - Source universe: `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2024/csv/Draw Odds/rebuilt_2023_draw_results_for_2024_modeling3.csv`
+  - Candidate list: `processed_data/audits/2024_for_2026_cleanups/2024_source_codes_new_not_in_2026_database.txt`
+  - Crosswalk: `data_truth/crosswalk_truth/normalized/current_to_historical_hunt_code_crosswalk_2026.csv`
+  - Retired ledger: `data_truth/crosswalk_truth/normalized/retired_current_hunt_codes_2026.csv`
+
+- Outputs written:
+  - `processed_data/audits/2024_for_2026_cleanups/minute_pass_69_ready_to_address.csv`
+  - `processed_data/audits/2024_for_2026_cleanups/minute_pass_69_ready_to_address_by_species.md`
+  - `processed_data/audits/2024_for_2026_cleanups/minute_pass_69_ready_to_address_by_species_counts.json`
+
+- Validation:
+  - Total candidate rows written: `69`
+  - Crosswalk matches found: `4` (`DB1520`, `DB1550`, `DB1580`, `DB1789` mapped via `current_to_historical` linkage to `LD1108` lineage)
+  - Retired rows in this set: `0`
+  - Codes requiring manual crosswalk review: `65`
+
+- Result:
+  - "Ready-to-address" set now carries crosswalk source notes and retired/code-triage fields for direct downstream action by species family.
+
+## 2026-06-03T03:35:00-06:00 - UtahDraws 2026 Draw Odds JSON Source Capture
+
+- Assigned action:
+  - Pull all currently available UtahDraws 2026 draw-odds JSON endpoint files for all species/draw packages exposed by:
+    - `https://www.utahdraws.com/internetsales/Home/DrawOdds`
+
+- Source endpoints:
+  - Supplement/filter manifest:
+    - `https://www.utahdraws.com/internetsales/Home/DrawOddsSupplementData`
+  - Per-species/per-draw JSON:
+    - `https://www.utahdraws.com/internetsales/Home/DrawOddsData?drawName={drawName}&licenseYear={licenseYear}&masterHuntTypeID={masterHuntTypeID}`
+
+- Outputs:
+  - Output directory:
+    - `pipeline/RAW/hunt_unit_database/2026/json/utahdraws_draw_odds_20260603/`
+  - Supplement JSON:
+    - `pipeline/RAW/hunt_unit_database/2026/json/utahdraws_draw_odds_20260603/draw_odds_supplement_data.json`
+  - Download manifest:
+    - `pipeline/RAW/hunt_unit_database/2026/json/utahdraws_draw_odds_20260603/manifest.csv`
+  - Summary:
+    - `pipeline/RAW/hunt_unit_database/2026/json/utahdraws_draw_odds_20260603/summary.json`
+
+- Validation:
+  - Available endpoint count: `24`
+  - Downloaded endpoint count: `24`
+  - Failed endpoint count: `0`
+  - Total hunt records returned: `847`
+  - Total odds/ladder rows returned: `19053`
+  - Saved JSON files parsed successfully: `26`
+  - Parse errors: `0`
+
+- Notes:
+  - UtahDraws no longer exposes static PDF draw-odds files from this page; the active source is JSON-backed interactive draw odds with browser print support.
+
+## 2026-06-03T03:45:00-06:00 - UtahDraws 2026 Draw Odds CSV/XLSX/PDF Export Set
+
+- Assigned action:
+  - Create separate `.csv`, `.xlsx`, and `.pdf` files from the UtahDraws 2026 draw-odds JSON capture.
+  - Join all Sportsman source JSON files into one combined Sportsman export set.
+
+- Inputs:
+  - `pipeline/RAW/hunt_unit_database/2026/json/utahdraws_draw_odds_20260603/`
+
+- Outputs:
+  - Export root:
+    - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/`
+  - CSV exports:
+    - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/csv/`
+  - XLSX exports:
+    - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/xlsx/`
+  - PDF exports:
+    - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/pdf/`
+  - Export manifest:
+    - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/export_manifest.csv`
+  - Export summary:
+    - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/export_summary.json`
+
+- Export structure:
+  - Generated dataset count: `15`
+  - CSV files: `15`
+  - XLSX files: `15`
+  - PDF files: `15`
+  - Source JSON files represented: `24`
+  - Sportsman source JSON files joined into one export: `10`
+  - Total hunt records represented: `847`
+  - Total odds/ladder rows represented: `19053`
+
+- Validation:
+  - Manifest rows: `15`
+  - CSV row counts matched manifest odds-row counts: `PASS`
+  - XLSX files opened successfully with `Odds Rows`, `Hunt Summary`, and `Source Notes` sheets: `PASS`
+  - XLSX odds-row counts matched manifest odds-row counts: `PASS`
+  - PDF files created and non-empty: `PASS`
+
+## 2026-06-03T04:05:00-06:00 - Official-Style Bull Moose Draw Odds Export
+
+- Assigned action:
+  - Reformat the UtahDraws Bull Moose JSON export into a report layout similar to historical official draw-result PDFs.
+
+- Input:
+  - `pipeline/RAW/hunt_unit_database/2026/json/utahdraws_draw_odds_20260603/2026_big_game_11_bull_moose.json`
+
+- Outputs:
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/csv/2026_big_game_11_bull_moose_official_style.csv`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx/2026_big_game_11_bull_moose_official_style.xlsx`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/pdf/2026_big_game_11_bull_moose_official_style.pdf`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/official_style_bull_moose_summary.json`
+
+- Field mapping:
+  - Eligible applicants: `ParticipantCount`
+  - Bonus/max-point permits: `SuccessfulByMaxPointRoundCount`
+  - Regular permits: `SuccessfulByRegularRoundCount`
+  - Total permits: `SuccessfulCount`
+  - Success ratio: `1 in ParticipantCount / SuccessfulCount`; `N/A` when `SuccessfulCount` is `0`
+
+- Validation:
+  - Hunt sections: `27`
+  - Official-style point rows: `777`
+  - CSV rows: `777`
+  - XLSX sheets: `Official Style`, `Source Notes`
+  - PDF pages: `27`
+
+## 2026-06-03T04:15:00-06:00 - Official-Style XLSX Exports for All UtahDraws 2026 Species
+
+- Assigned action:
+  - Generate official-style `.xlsx` files for each downloaded UtahDraws 2026 draw/species JSON file.
+  - Keep Sportsman species separate instead of using the previously joined Sportsman export.
+
+- Inputs:
+  - `pipeline/RAW/hunt_unit_database/2026/json/utahdraws_draw_odds_20260603/*.json`
+
+- Outputs:
+  - Output directory:
+    - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/`
+  - Manifest:
+    - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_manifest.csv`
+  - Summary:
+    - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_summary.json`
+
+- Export structure:
+  - Source JSON files represented: `24`
+  - XLSX files generated: `24`
+  - Sportsman XLSX files generated separately: `10`
+  - Non-Sportsman XLSX files generated: `14`
+  - Total hunt records represented: `847`
+  - Total raw odds rows represented: `19053`
+  - Total official-style rows represented: `13577`
+
+- Workbook sheets:
+  - `Official Style`
+  - `Flat Official Rows`
+  - `Source Notes`
+
+- Validation:
+  - Manifest rows: `24`
+  - XLSX files present: `24`
+  - All workbooks opened successfully: `PASS`
+  - Required sheets present in all workbooks: `PASS`
+  - `Flat Official Rows` counts matched manifest: `PASS`
+
+## 2026-06-03T04:20:00-06:00 - Official-Style XLSX Print Layout Optimization
+
+- Assigned action:
+  - Reformat all official-style UtahDraws XLSX exports for print readability:
+    - minimal margins
+    - landscape layout
+    - wrapped cell text
+    - one hunt code per printed page
+    - optimized widths/heights for each hunt-code report page
+
+- Outputs updated:
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/*.xlsx`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_manifest.csv`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_summary.json`
+
+- Print settings applied:
+  - Orientation: `landscape`
+  - Paper size: `legal`
+  - Left/right margins: `0.15`
+  - Top/bottom margins: `0.20`
+  - Fit to width: `1`
+  - Manual page breaks: one break after each hunt-code section
+
+- Validation:
+  - XLSX files checked: `24`
+  - Required sheets present: `PASS`
+  - Landscape orientation present on every `Official Style` sheet: `PASS`
+  - Fit-to-width present on every `Official Style` sheet: `PASS`
+  - Margins verified on every `Official Style` sheet: `PASS`
+  - Manual page breaks verified against manifest: `823`
+  - `Flat Official Rows` counts matched manifest: `PASS`
+
+## 2026-06-03T04:30:00-06:00 - Official-Style XLSX Missing Point-Level Expansion
+
+- Assigned action:
+  - Repair skipped/intermediate point rows in official-style XLSX exports.
+  - Match historical printed report behavior more closely by showing the full integer point ladder for each hunt/audience section.
+
+- Rule applied:
+  - For integer point ladders, each hunt/audience section now expands from the maximum source point down to `0`.
+  - Missing intermediate point levels are rendered as zero rows.
+  - Added `synthesized_zero_point_row` to `Flat Official Rows` so generated zero rows are auditable.
+
+- Outputs updated:
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/*.xlsx`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_manifest.csv`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_summary.json`
+
+- Validation:
+  - XLSX files checked: `24`
+  - Total official-style rows after expansion: `15149`
+  - Synthesized zero point rows added: `1572`
+  - Landscape/page-break print settings still valid: `PASS`
+  - `Flat Official Rows` counts matched manifest: `PASS`
+  - `synthesized_zero_point_row` column present in all workbooks: `PASS`
+
+## 2026-06-03T04:45:00-06:00 - Official-Style XLSX Public Report Header Cleanup
+
+- Assigned action:
+  - Replace raw dataset-name page headers such as `2026 Draw Odds - 2026_big_game_11_bull_moose` with public report-style titles across every official-style UtahDraws XLSX workbook.
+
+- Header rule applied:
+  - Repeated page header format:
+    - `2026 DRAW RESULTS - {public species/report title}`
+  - Example:
+    - `2026 DRAW RESULTS - 2026 O.I.L. BULL MOOSE`
+
+- Outputs updated:
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/*.xlsx`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_manifest.csv`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_summary.json`
+
+- Validation:
+  - XLSX files checked: `24`
+  - Repeated page headers verified: `847`
+  - Old raw filename-style headers remaining: `0`
+  - Manual page breaks preserved: `823`
+  - `Flat Official Rows` total preserved: `15149`
+  - Required sheets present in all workbooks: `PASS`
+  - Landscape/page-break print settings still valid: `PASS`
+  - `git diff --check`: `PASS`
+
+## 2026-06-03T05:25:00-06:00 - DWR-Style Official XLSX Layout Rebuild
+
+- Assigned action:
+  - Rebuild the UtahDraws official-style XLSX exports to more closely match the DWR printed draw-result format shown in the reference screenshot/PDF.
+  - Add bottom `Totals` rows.
+  - Keep one hunt code per printed page.
+  - Remove the repeated raw/species section header pattern from the top of every hunt-code page.
+  - Combine the separate Sportsman permit workbooks back into one continuous Sportsman workbook.
+
+- Layout rule applied:
+  - Each hunt-code page now uses:
+    - left `UTAH DWR` logo text block
+    - centered draw-results report title
+    - date and page number at top right
+    - hunt-code/hunt-name line
+    - side-by-side Resident and Nonresident applicant panels
+    - bottom `Totals` row for each panel
+  - The repeated page header is now generic report context, while the hunt line carries the hunt-specific code/name.
+
+- Outputs updated:
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/*.xlsx`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_manifest.csv`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_summary.json`
+
+- Sportsman consolidation:
+  - Source Sportsman JSON files combined: `10`
+  - Combined workbook created:
+    - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/2026_sportsman_combined_official_style.xlsx`
+  - Separate Sportsman XLSX files removed from the output directory: `10`
+
+- Validation:
+  - XLSX report files generated/checked: `15`
+  - Source JSON files represented: `24`
+  - Hunt pages verified: `847`
+  - Hunt-code lines verified: `847`
+  - Totals cells verified: `1978`
+  - Manual page breaks verified: `832`
+  - Sportsman workbook present: `2026_sportsman_combined_official_style.xlsx`
+  - Separate Sportsman workbooks remaining: `0`
+  - Required sheets present in all workbooks: `PASS`
+  - `Flat Official Rows` counts matched manifest: `PASS`
+  - `git diff --check`: `PASS`
+
+## 2026-06-03T05:45:00-06:00 - DWR-Style Official XLSX Design Polish
+
+- Assigned action:
+  - Increase column-header row height.
+  - Restore restrained color bands.
+  - Tune borders and Totals-row emphasis.
+  - Embed the provided wildlife/DWR logo into the report header cell.
+
+- Logo source:
+  - `C:\Users\tyler\Desktop\GitHub\HUNTS\assets\logos\WILDLIFE-LOGO.png`
+
+- Design changes:
+  - Column header rows increased to `37` points for wrapped labels.
+  - Resident panels use restrained blue bands.
+  - Nonresident panels use restrained green bands.
+  - Hunt-code line uses a light gray band.
+  - Totals rows use soft gold fill with heavier top border.
+  - Wildlife/DWR logo embedded into the left header block of each hunt-code page.
+  - `Flat Official Rows` and `Source Notes` header rows lightly styled for readability.
+
+- Outputs updated:
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/*.xlsx`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/wildlife-logo-print-72px.png`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_manifest.csv`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_summary.json`
+
+- Validation:
+  - XLSX report files checked: `15`
+  - Embedded logos verified: `847`
+  - Header rows styled/verified: `989`
+  - Totals rows styled/verified: `989`
+  - Largest workbook after logo embedding: `2026_big_game_09_limited_entry_bull_elk_official_style.xlsx` at `2882305` bytes
+  - Sportsman combined workbook still present: `PASS`
+  - XLSX file count remains: `15`
+  - `git diff --check`: `PASS`
+
+## 2026-06-03T05:55:00-06:00 - Official XLSX Minor Public Display Tuning
+
+- Assigned action:
+  - Make minor public-display refinements based on the latest screenshot review.
+
+- Changes applied where workbook was writable:
+  - Removed visible border from the DWR logo header cell.
+  - Extended the gray hunt-code band through the page-number cell.
+  - Cleaned blank spacer rows below Totals blocks.
+  - Hid visible worksheet gridlines on `Official Style`.
+  - Set print area to populated columns `A:M`.
+  - Softened resident/nonresident color bands for cleaner public display and PDF printing.
+
+- Outputs updated:
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/*.xlsx`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_manifest.csv`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_summary.json`
+
+- Validation:
+  - XLSX report files checked: `15`
+  - Workbooks updated successfully: `14`
+  - Workbooks locked by Excel: `1`
+  - Locked workbook:
+    - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/2026_big_game_11_bull_moose_official_style.xlsx`
+  - Gridlines hidden/verified: `14`
+  - Print areas set/verified: `14`
+  - Logo header cells unbordered/verified: `820`
+  - Hunt gray bands extended through page cell/verified: `820`
+  - Header color rows still valid: `989`
+
+## 2026-06-03T06:20:00-06:00 - Official XLSX Border Fragment and Public Polish Pass
+
+- Assigned action:
+  - Resolve visible border fragments and incomplete hunt-band closure shown in the latest screenshot.
+  - Identify and fix additional public-display polish issues where safe.
+
+- Changes applied:
+  - Removed center divider border fragments outside the actual Resident/Nonresident table rows.
+  - Closed the gray hunt-code band as a full rectangle through the page-number cell.
+  - Reinforced Totals rows while clearing blank spacer rows below them.
+  - Converted numeric point labels from text to numeric cells to suppress Excel warning triangles.
+  - Re-finalized `Official Style` print display settings with gridlines hidden and print area set to `A:M`.
+
+- Outputs updated:
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/*.xlsx`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_manifest.csv`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_summary.json`
+
+- Validation:
+  - XLSX report files checked: `15`
+  - Workbooks updated successfully: `15`
+  - Workbooks locked by Excel: `0`
+  - Center divider fragments remaining: `0`
+  - Hunt gray bands closed/verified: `847`
+  - Point cells numeric/verified: `30298`
+  - Totals rows verified: `989`
+  - Gridlines hidden/verified: `15`
+  - Print areas set/verified: `15`
+  - Embedded logos verified: `847`
+  - `git diff --check`: `PASS`
+
+## 2026-06-03T06:35:00-06:00 - Official XLSX Final Page-Header Audit
+
+- Assigned action:
+  - Cross-check all official-style XLSX files for one hunt code per printed page.
+  - Remove the remaining upper-right date/page boxed styling artifact where writable.
+
+- Changes applied where workbook was writable:
+  - Date and page-number cells changed to clean text-only styling with no border/fill.
+  - Hunt gray band kept closed across the hunt-name area without boxing the page-number cell.
+
+- Outputs updated:
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/*.xlsx`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_manifest.csv`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_summary.json`
+
+- Validation:
+  - XLSX report files checked: `15`
+  - One-hunt-per-page workbooks verified: `15`
+  - Page segments verified: `847`
+  - Hunt-code lines verified: `847`
+  - Date cells clean/text-only verified: `847`
+  - Workbooks updated successfully for date/page styling: `14`
+  - Workbooks locked by Excel: `1`
+  - Locked workbook:
+    - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/2026_big_game_09_limited_entry_bull_elk_official_style.xlsx`
+
+## 2026-06-03T06:45:00-06:00 - Official XLSX Hunt Header Merge Standardization
+
+- Assigned action:
+  - Fix the remaining extra gray boxed segment in some hunt-code header rows.
+
+- Root cause:
+  - Some hunt rows were still merged only across `B:K`, leaving column `L` as a separate gray/bordered cell before the clean page-number cell in `M`.
+
+- Changes applied:
+  - Standardized every hunt-code header row to one merged gray band across `B:L`.
+  - Kept page-number cell `M` as clean text-only.
+  - Preserved one hunt code per printed page.
+
+- Outputs updated:
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/*.xlsx`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_manifest.csv`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_by_species/official_style_xlsx_summary.json`
+
+- Validation:
+  - XLSX report files checked: `15`
+  - Workbooks updated successfully: `15`
+  - Workbooks locked by Excel: `0`
+  - Hunt rows standardized: `847`
+  - Valid `B:L` hunt-row merges verified: `847`
+  - Old `B:K` hunt-row merges remaining: `0`
+  - Page cells clean/text-only verified: `847`
+  - Page segments verified: `847`
+  - One-hunt-per-page workbooks verified: `15`
+  - `git diff --check`: `PASS`
+
+## 2026-06-03T07:05:00-06:00 - 2026 UtahDraws XLSX Rename Copies Using 2025 Bible Naming Convention
+
+- Assigned action:
+  - Compare the current 2026 UtahDraws official-style XLSX export set against the `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2025` folder naming pattern.
+  - Create comparison-ready renamed XLSX copies using the same naming convention advanced one year.
+
+- Naming rule applied:
+  - Source convention:
+    - `2025_PERMITS=2026_MODEL__{REPORT LABEL}.pdf`
+  - New comparison-copy convention:
+    - `2026_PERMITS=2027_MODEL__{REPORT LABEL}.xlsx`
+
+- Outputs created:
+  - Output folder:
+    - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_2025_naming_convention/`
+  - Crosswalk:
+    - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_2025_naming_convention/2026_to_2025_naming_convention_crosswalk.csv`
+  - Unmatched 2025 references:
+    - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_2025_naming_convention/2025_reference_files_without_current_2026_export_match.csv`
+  - Summary:
+    - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/xlsx_2025_naming_convention/2026_to_2025_naming_convention_summary.json`
+
+- Key results:
+  - Renamed XLSX copies created: `15`
+  - 2025 Bible folder files seen: `23`
+  - Exact or label-pattern 2025 matches: `13`
+  - Current 2026 exports without direct 2025 label match: `2`
+  - 2025 reference files without current 2026 JSON export match: `10`
+
+- Source-status note:
+  - The current 2026 data was pulled from UtahDraws `DrawOddsData` JSON endpoints with `licenseYear=2026`.
+  - The payload contains actual result-style fields including `ParticipantCount`, `SuccessfulCount`, `SuccessfulByMaxPointRoundCount`, `SuccessfulByRegularRoundCount`, and quota fields.
+  - Treat as current published UtahDraws 2026 draw-result/odds data unless Utah later publishes superseding formal PDFs.
+
+- Validation:
+  - Renamed XLSX package files checked: `15`
+  - Required XLSX package parts present: `PASS`
+  - ZIP/package integrity check: `PASS`
+  - `git diff --check`: `PASS`
+
+## 2026-06-03T07:25:00-06:00 - 2026 UtahDraws Display PDF Generation
+
+- Assigned action:
+  - Create display PDF files from the current UtahDraws/DWR pull.
+  - Use the same 2025-style naming convention as the comparison XLSX set.
+  - Keep the table centered on the page with all columns visible.
+  - Match the polished XLSX formatting style as closely as practical in PDF.
+
+- Outputs created:
+  - Output folder:
+    - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/pdf_2025_naming_convention/`
+  - PDF manifest:
+    - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/pdf_2025_naming_convention/pdf_2025_naming_convention_manifest.csv`
+  - PDF summary:
+    - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/pdf_2025_naming_convention/pdf_2025_naming_convention_summary.json`
+
+- Layout rule:
+  - Landscape display PDF pages.
+  - One hunt code per page.
+  - Resident and nonresident tables centered side-by-side.
+  - Six columns per table visible on every page.
+  - Soft resident/nonresident color bands and Totals-row emphasis carried forward from the XLSX style.
+
+- Validation:
+  - PDF files created: `15`
+  - Total PDF pages created: `847`
+  - Page count equals hunt count for every PDF: `PASS`
+  - Invalid/empty PDFs: `0`
+  - Largest PDF:
+    - `2026_PERMITS=2027_MODEL__L.E. ELK.pdf` at `1116693` bytes and `210` pages
+  - `git diff --check`: `PASS`
+
+## 2026-06-03T07:55:00-06:00 - 2020 Bible Hunt Codes Comparison and Unresolved Code Scan
+
+- Assigned action:
+  - Compare the `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2020` folder against the 2025 Bible folder and current generated 2026 UtahDraws PDFs.
+  - Scan the 2020 PDFs for the current unresolved hunt-code list.
+
+- Inputs:
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2020`
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2025`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/pdf_2025_naming_convention/`
+
+- Outputs created:
+  - `processed_data/audits/bible_hunt_codes_2020_2025_2026_file_comparison.csv`
+  - `processed_data/audits/bible_hunt_codes_2020_unresolved_code_hits.csv`
+  - `processed_data/audits/bible_hunt_codes_2020_unresolved_code_summary.csv`
+  - `processed_data/audits/bible_hunt_codes_2020_comparison_summary.json`
+
+- Key results:
+  - 2020 files compared: `23`
+  - 2025 files compared: `23`
+  - Current generated 2026 PDFs compared: `15`
+  - Report-family comparison rows: `28`
+  - Labels present in all three sets: `12`
+  - Labels present in 2020 and 2025 only: `7`
+  - Labels present in 2025 and current generated 2026 PDFs only: `1`
+  - Unresolved hunt codes scanned: `65`
+  - Unresolved hunt codes found in 2020 PDFs: `56`
+  - 2020 code/page hit rows: `117`
+  - Unresolved hunt codes not found in 2020 PDFs: `9`
+
+- Source-use note:
+  - 2020 PDF hits are historical source evidence only.
+  - Do not promote 2020 values into current 2026 truth fields without a reviewed current-code crosswalk and year/model-context rule.
+
+- Validation:
+  - Output files exist and are non-empty: `PASS`
+  - CSV row counts verified: `PASS`
+  - PDF scan errors: `0`
+  - `git diff --check`: `PASS`
+
+## 2026-06-03T14:25:38Z - Comprehensive Year-To-Year Hunt Code Lifecycle Audit
+
+- Assigned action:
+  - Build a year-to-year hunt-code match ledger to identify where hunt codes drop off.
+  - Use `C:\Users\tyler\Desktop\BIBLE HUNT CODES\COMPREHENSIVE 2020-2025.zip` as the clean historical PDF package.
+  - Use the generated 2026 UtahDraws display PDFs as the 2026 comparison layer.
+  - Do not modify `DATABASE.csv`.
+
+- Inputs:
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\COMPREHENSIVE 2020-2025.zip`
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/official_style/pdf_2025_naming_convention/`
+
+- Outputs created:
+  - `processed_data/audits/hunt_code_lifecycle_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_presence_matrix_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_year_to_year_transitions_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_dropoffs_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_dropped_2025_to_2026_comprehensive.csv`
+  - `processed_data/audits/hunt_code_additions_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_source_hits_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_prefix_summary_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_source_file_stats_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_lifecycle_comprehensive_2020_2026_summary.json`
+
+- Key results:
+  - Source PDFs scanned: `146`
+  - PDF scan errors: `0`
+  - Unique alpha+digit hunt codes observed across 2020-2026: `1370`
+  - Codes by report year:
+    - `2020`: `1028`
+    - `2021`: `1023`
+    - `2022`: `1020`
+    - `2023`: `1032`
+    - `2024`: `1026`
+    - `2025`: `1053`
+    - `2026`: `834`
+  - Codes observed during 2020-2025 but absent in the generated 2026 comparison layer: `536`
+  - Codes present in 2025 but absent in 2026: `244`
+  - Codes added from 2025 to 2026: `25`
+  - Codes first seen in 2026, not merely returning from an older year: `12`
+
+- 2025-to-2026 drop-off concentration:
+  - `EA`: `168`
+  - `PD`: `23`
+  - `DA`: `20`
+  - `MB`: `12`
+  - `DB`: `6`
+  - `BR`: `5`
+  - `MA`: `5`
+  - `EB`: `3`
+  - `PB`: `1`
+  - `RE`: `1`
+
+- Validation:
+  - Output files exist and are non-empty: `PASS`
+  - CSV row counts verified: `PASS`
+  - Comprehensive ZIP PDF inventory verified: `131` PDFs across 2020-2025
+  - Generated 2026 PDF layer verified: `15` PDFs
+  - `DATABASE.csv` unchanged by this audit step: `PASS`
