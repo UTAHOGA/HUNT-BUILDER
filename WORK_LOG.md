@@ -12653,6 +12653,49 @@ o_table=0).
 - Commit:
   - Pending at log-write time.
 
+## 2026-06-03T19:02:37Z - Normalize Elk Antlerless Permit Workbook Continuation Rows
+
+- Assigned step:
+  - Normalize `C:\Users\tyler\Desktop\BIBLE HUNT CODES\elk antlerless.xlsx` so `NonRes` continuation rows are moved onto the hunt-code row and totals are calculated as resident plus nonresident.
+
+- Files changed:
+  - `scripts/normalize-permit-workbook-continuation-rows.py`
+  - `processed_data/audits/manual_workbook_normalization/elk_antlerless_xlsx_normalization_summary.json`
+  - `WORK_LOG.md`
+
+- External workbook changed:
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\elk antlerless.xlsx`
+
+- Backup created:
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\elk antlerless.before_normalize_permits.xlsx`
+
+- Key results:
+  - Source rows: `411`
+  - Final rows: `224`
+  - Final data rows: `223`
+  - Nonresident continuation rows collapsed: `187`
+  - Rows with permit values after normalization: `214`
+  - Total-only rows retained: `27`
+  - Blank identity rows with permit values after normalization: `0`
+  - Resident plus nonresident total validation failures: `0`
+  - Crosscheck against remaining unresolved rows found `24` `EA` hits.
+  - All `24` matched the `HuntTable` side and conflicted with `HaNumber + DATABASE + reviewed`.
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values were promoted into repo truth files.
+  - This task normalized the external workbook and added a reusable workbook-normalization script.
+
+- Validation:
+  - `python scripts\normalize-permit-workbook-continuation-rows.py "C:\Users\tyler\Desktop\BIBLE HUNT CODES\elk antlerless.xlsx" --summary-out processed_data\audits\manual_workbook_normalization\elk_antlerless_xlsx_normalization_summary.json`: `PASS`
+  - `python -m py_compile scripts\normalize-permit-workbook-continuation-rows.py`: `PASS`
+  - Spot check of normalized workbook rows: `PASS`
+  - Crosscheck against remaining unresolved rows: `PASS`
+  - `git diff --check`: `PASS`
+
+- Commit:
+  - Pending at log-write time.
+
 ## 2026-06-03T17:07:27Z - Buck Deer Pasted Permit Source Parse And External Source Crosscheck
 
 - Assigned step:
