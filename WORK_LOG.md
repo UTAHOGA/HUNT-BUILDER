@@ -12013,3 +12013,57 @@ o_table=0).
   - 2020 ledger covers every code in the 2020 presence matrix: `PASS`
   - `DATABASE.csv` unchanged: `PASS`
   - `git diff --check`: `PASS` with pre-existing line-ending warnings only
+
+## 2026-06-03T14:57:21Z - 2021 Hunt-Code Year Identity Alignment Ledger
+
+- Assigned action:
+  - Repeat the year-specific hunt-code identity alignment work for report year `2021`.
+  - Use the provided `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2021.zip`.
+  - Keep the work audit-only and do not modify `DATABASE.csv`.
+
+- Inputs:
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2021.zip`
+  - `processed_data/audits/hunt_code_presence_matrix_comprehensive_2020_2026.csv`
+  - `processed_data/audits/hunt_code_interpreted_lifecycle_summary_comprehensive_2020_2026.csv`
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+
+- Outputs created:
+  - `processed_data/audits/hunt_code_year_identity_ledger_2021.csv`
+  - `processed_data/audits/hunt_code_year_identity_crosscheck_2021.csv`
+  - `processed_data/audits/hunt_code_year_identity_issues_2021.csv`
+  - `processed_data/audits/hunt_code_year_identity_scan_errors_2021.csv`
+  - `processed_data/audits/hunt_code_year_identity_2021_summary.json`
+  - `docs/hunt_code_year_identity_alignment_2021.md`
+
+- Key results:
+  - 2021 source PDFs processed from provided ZIP package: `22`
+  - Ledger rows: `1990`
+  - Unique 2021 hunt codes anchored to identity rows: `1023`
+  - Sportsman table rows added by separate parser: `12`
+  - PDF scan errors: `0`
+  - Coverage against 2021 lifecycle presence matrix: `1023/1023`
+  - Missing from identity ledger: `0`
+  - Extra in identity ledger: `0`
+
+- Source model-year labels:
+  - Source filenames labeled `2022`: `1987` ledger rows
+  - Source filenames labeled `2021`: `3` ledger rows
+  - Note: the `2021_PERMITS=2021_MODEL__L.E. BIG GAME DRAW RESULTS.pdf` source label is preserved in source fields, while the ledger uses `model_year = 2022` under the project `report_year + 1` rule.
+
+- Crosscheck status counts:
+  - `REVIEW_CURRENT_DATABASE_NAME_DIFFERENCE`: `498`
+  - `REVIEW_TOTALS_PARSE`: `136`
+  - `HISTORICAL_CODE_NOT_IN_CURRENT_DATABASE`: `70`
+  - `REVIEW_CONFLICTING_TOTAL_PERMITS`: `318`
+  - `OK`: `1`
+
+- Source parsing notes:
+  - Most source pages use `Hunt:` sections.
+  - Sportsman 2021 uses a one-page multi-code table with no `Hunt:` sections; those `12` codes are parsed separately.
+  - The 2021 Sportsman table includes both `CG1000` and one-time `CG9999`.
+
+- Validation:
+  - Output files exist and are non-empty: `PASS`
+  - 2021 ledger covers every code in the 2021 presence matrix: `PASS`
+  - `DATABASE.csv` unchanged: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only
