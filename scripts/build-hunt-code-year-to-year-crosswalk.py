@@ -21,6 +21,7 @@ OUT_CROSSWALK = AUDITS / "hunt_code_year_to_year_crosswalk_2020_2026.csv"
 OUT_CANDIDATES = AUDITS / "hunt_code_year_to_year_crosswalk_candidates_2020_2026.csv"
 OUT_SUMMARY = AUDITS / "hunt_code_year_to_year_crosswalk_2020_2026_summary.json"
 OUT_REVIEWED_DECISIONS = AUDITS / "hunt_code_year_to_year_reviewed_decisions_2020_to_2021.csv"
+OUT_REVIEWED_DECISIONS_2021_2022 = AUDITS / "hunt_code_year_to_year_reviewed_decisions_2021_to_2022.csv"
 OUT_REPORT = ROOT / "docs" / "hunt_code_year_to_year_crosswalk_2020_2026.md"
 
 REVIEWED_DISCONTINUED_AFTER_2020 = {
@@ -48,6 +49,26 @@ REVIEWED_2020_TO_2021_SOURCE_GAPS = {
     "CG7613": "Official 2020-21 cougar guide confirms this code remained active; Bible year-document comparison missed the cougar guide.",
     "CG7615": "Official 2020-21 cougar guide confirms this code remained active; Bible year-document comparison missed the cougar guide.",
     "CG7619": "Official 2020-21 cougar guide confirms this code remained active; Bible year-document comparison missed the cougar guide.",
+}
+
+REVIEWED_2021_TO_2022_SUCCESSORS = {
+    "BR7226": ("BR7208", "2022 bear guide p20 confirms La Sal fall limited-entry replacement row."),
+    "BR7227": ("BR7217", "2022 bear guide p20 confirms San Juan fall limited-entry replacement row."),
+    "BR7230": ("BR7228", "2022 bear guide p20 confirms Cache/Ogden fall limited-entry replacement row."),
+    "BR7231": ("BR7203", "2022 bear guide p20 confirms Central Mtns, Manti-North fall limited-entry replacement row."),
+    "BR7232": ("BR7204", "2022 bear guide p20 confirms Central Mtns, Manti-South/San Rafael, North fall limited-entry replacement row."),
+    "BR7233": ("BR7205", "2022 bear guide p20 confirms Central Mtns, Nebo fall limited-entry replacement row."),
+    "BR7235": ("BR7229", "2022 bear guide p20 confirms Kamas/North Slope, Summit fall limited-entry replacement row."),
+    "BR7236": ("BR7215", "2022 bear guide p20 confirms Plateau, Boulder/Kaiparowits fall limited-entry replacement row."),
+}
+
+REVIEWED_2021_TO_2022_SOURCE_GAPS = {
+    "CG7503": "Official 2021-22 cougar guide confirms Morgan-South Rich remained active; Bible year-document comparison missed the cougar guide.",
+}
+
+REVIEWED_2021_TO_2022_ARTIFACTS = {
+    "CG9999": "Sportsman Cougar 2023* row appears in the 2021 BIBLE source set but statewide CG9999 is not the 2021->2022 cougar successor; rule says statewide cougar enters later.",
+    "DS6612": "Source file is labeled 2021_PERMITS=2021_MODEL inside the 2021 folder; 2022 big-game app guide confirms Zion as DS6611, so DS6612 is treated as a source-year artifact rather than a true 2021 drop.",
 }
 
 
@@ -327,6 +348,21 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                 if from_year == 2020 and to_year == 2021
                 else None
             )
+            reviewed_2021_2022_successor = (
+                REVIEWED_2021_TO_2022_SUCCESSORS.get(code)
+                if from_year == 2021 and to_year == 2022
+                else None
+            )
+            reviewed_2021_2022_source_gap_note = (
+                REVIEWED_2021_TO_2022_SOURCE_GAPS.get(code)
+                if from_year == 2021 and to_year == 2022
+                else None
+            )
+            reviewed_2021_2022_artifact_note = (
+                REVIEWED_2021_TO_2022_ARTIFACTS.get(code)
+                if from_year == 2021 and to_year == 2022
+                else None
+            )
             if reviewed_discontinued_note:
                 crosswalk_rows.append(
                     base_row(
@@ -343,6 +379,31 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                         hit_from,
                         {},
                         reviewed_discontinued_note,
+                    )
+                )
+            elif reviewed_2021_2022_successor:
+                to_code, note = reviewed_2021_2022_successor
+                matched_added.add(to_code)
+                right = identities.get(to_year, {}).get(to_code, {"hunt_code": to_code, "prefix": prefix_of(to_code)})
+                crosswalk_rows.append(
+                    base_row(
+                        from_year,
+                        to_year,
+                        code,
+                        to_code,
+                        "REVIEWED_SUCCESSOR_BY_2022_BEAR_GUIDE",
+                        "REVIEWED_SUCCESSOR",
+                        1.0,
+                        "SAME_UNIT_SOURCE_GUIDE_MATCH",
+                        left,
+                        right,
+                        hit_from,
+                        {
+                            "source_files": "C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2022/pdf/regulations/2022_bear.pdf",
+                            "source_pages": "20",
+                            "source_kinds": "regulations",
+                        },
+                        note,
                     )
                 )
             elif reviewed_source_gap_note:
@@ -367,6 +428,48 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                             "source_kinds": "regulations",
                         },
                         reviewed_source_gap_note,
+                    )
+                )
+            elif reviewed_2021_2022_source_gap_note:
+                right = dict(left)
+                right["identity_source"] = "REVIEWED_2021_22_COUGAR_GUIDE"
+                crosswalk_rows.append(
+                    base_row(
+                        from_year,
+                        to_year,
+                        code,
+                        code,
+                        "REVIEWED_PRESENT_IN_2022_COUGAR_GUIDE_SOURCE_GAP",
+                        "OFFICIAL_COUGAR_GUIDE_PRESENT",
+                        1.0,
+                        "EXACT_CODE_EXTERNAL_SOURCE",
+                        left,
+                        right,
+                        hit_from,
+                        {
+                            "source_files": "C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2022/pdf/regulations/2021-22_cougar.pdf",
+                            "source_pages": "19|20",
+                            "source_kinds": "regulations",
+                        },
+                        reviewed_2021_2022_source_gap_note,
+                    )
+                )
+            elif reviewed_2021_2022_artifact_note:
+                crosswalk_rows.append(
+                    base_row(
+                        from_year,
+                        to_year,
+                        code,
+                        "",
+                        "REVIEWED_SOURCE_YEAR_ARTIFACT_NOT_TRUE_DROP",
+                        "REVIEWED_ARTIFACT",
+                        "",
+                        "SOURCE_YEAR_ARTIFACT",
+                        left,
+                        {},
+                        hit_from,
+                        {},
+                        reviewed_2021_2022_artifact_note,
                     )
                 )
             elif candidates:
@@ -453,10 +556,12 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
     return crosswalk_rows, candidate_rows, summary
 
 
-def reviewed_decision_rows(crosswalk_rows: list[dict[str, object]]) -> list[dict[str, object]]:
+def reviewed_decision_rows(crosswalk_rows: list[dict[str, object]], from_year: int, to_year: int) -> list[dict[str, object]]:
     rows = []
     for row in crosswalk_rows:
         if not str(row.get("crosswalk_status", "")).startswith("REVIEWED_"):
+            continue
+        if row.get("from_report_year") != from_year or row.get("to_report_year") != to_year:
             continue
         rows.append(
             {
@@ -557,6 +662,21 @@ def summarize(crosswalk_rows: list[dict[str, object]], candidate_rows: list[dict
                 for row in crosswalk_rows
                 if row["crosswalk_status"] == "REVIEWED_PRESENT_IN_2021_COUGAR_GUIDE_SOURCE_GAP"
             ),
+            "reviewed_2021_to_2022_successor_rows": sum(
+                1
+                for row in crosswalk_rows
+                if row["crosswalk_status"] == "REVIEWED_SUCCESSOR_BY_2022_BEAR_GUIDE"
+            ),
+            "reviewed_2021_to_2022_source_gap_rows": sum(
+                1
+                for row in crosswalk_rows
+                if row["crosswalk_status"] == "REVIEWED_PRESENT_IN_2022_COUGAR_GUIDE_SOURCE_GAP"
+            ),
+            "reviewed_2021_to_2022_artifact_rows": sum(
+                1
+                for row in crosswalk_rows
+                if row["crosswalk_status"] == "REVIEWED_SOURCE_YEAR_ARTIFACT_NOT_TRUE_DROP"
+            ),
         },
         "crosswalk_status_counts": dict(status_counts),
         "transition_status_counts": {key: dict(value) for key, value in transition_counts.items()},
@@ -564,6 +684,7 @@ def summarize(crosswalk_rows: list[dict[str, object]], candidate_rows: list[dict
             "crosswalk_csv": OUT_CROSSWALK.relative_to(ROOT).as_posix(),
             "candidate_csv": OUT_CANDIDATES.relative_to(ROOT).as_posix(),
             "reviewed_decisions_csv": OUT_REVIEWED_DECISIONS.relative_to(ROOT).as_posix(),
+            "reviewed_decisions_2021_2022_csv": OUT_REVIEWED_DECISIONS_2021_2022.relative_to(ROOT).as_posix(),
             "summary_json": OUT_SUMMARY.relative_to(ROOT).as_posix(),
             "report_md": OUT_REPORT.relative_to(ROOT).as_posix(),
         },
@@ -597,6 +718,9 @@ def write_report(summary: dict[str, object]) -> None:
         f"- Candidate rows: `{summary['row_counts']['candidate_rows']}`",
         f"- Reviewed 2020->2021 discontinued/no-successor rows: `{summary['row_counts']['reviewed_2020_to_2021_discontinuation_rows']}`",
         f"- Reviewed 2020->2021 source-gap continuity rows: `{summary['row_counts']['reviewed_2020_to_2021_source_gap_rows']}`",
+        f"- Reviewed 2021->2022 successor rows: `{summary['row_counts']['reviewed_2021_to_2022_successor_rows']}`",
+        f"- Reviewed 2021->2022 source-gap continuity rows: `{summary['row_counts']['reviewed_2021_to_2022_source_gap_rows']}`",
+        f"- Reviewed 2021->2022 source-artifact rows: `{summary['row_counts']['reviewed_2021_to_2022_artifact_rows']}`",
         "- Candidate rows list up to five same-prefix successor candidates per dropped code; they are not promoted one-to-one links.",
         "",
         "## Codes By Report Year",
@@ -634,7 +758,8 @@ def write_report(summary: dict[str, object]) -> None:
 
 def main() -> int:
     crosswalk_rows, candidate_rows, summary = build_crosswalk()
-    decision_rows = reviewed_decision_rows(crosswalk_rows)
+    decision_rows = reviewed_decision_rows(crosswalk_rows, 2020, 2021)
+    decision_rows_2021_2022 = reviewed_decision_rows(crosswalk_rows, 2021, 2022)
     fields = list(base_row(2020, 2021, "", "", "", "", "", "", {}, {}, {}, {}, "").keys())
     candidate_fields = [
         "from_report_year",
@@ -656,6 +781,26 @@ def main() -> int:
     write_csv(
         OUT_REVIEWED_DECISIONS,
         decision_rows,
+        [
+            "from_report_year",
+            "to_report_year",
+            "from_model_year",
+            "to_model_year",
+            "hunt_code",
+            "species",
+            "unit",
+            "weapon",
+            "reviewed_status",
+            "source_evidence",
+            "source_pages",
+            "target_source_evidence",
+            "target_source_pages",
+            "decision_basis",
+        ],
+    )
+    write_csv(
+        OUT_REVIEWED_DECISIONS_2021_2022,
+        decision_rows_2021_2022,
         [
             "from_report_year",
             "to_report_year",

@@ -15,6 +15,9 @@ This audit creates an adjacent year-to-year hunt-code crosswalk from the BIBLE H
 - Candidate rows: `816`
 - Reviewed 2020->2021 discontinued/no-successor rows: `17`
 - Reviewed 2020->2021 source-gap continuity rows: `4`
+- Reviewed 2021->2022 successor rows: `8`
+- Reviewed 2021->2022 source-gap continuity rows: `1`
+- Reviewed 2021->2022 source-artifact rows: `2`
 - Candidate rows list up to five same-prefix successor candidates per dropped code; they are not promoted one-to-one links.
 
 ## Codes By Report Year
@@ -31,15 +34,18 @@ This audit creates an adjacent year-to-year hunt-code crosswalk from the BIBLE H
 
 - `ADDED_NO_PREDECESSOR_CANDIDATE`: `242`
 - `CANDIDATE_SUCCESSOR_BY_IDENTITY`: `210`
-- `DROPPED_NO_SUCCESSOR_CANDIDATE`: `338`
+- `DROPPED_NO_SUCCESSOR_CANDIDATE`: `327`
 - `EXACT_CODE_RETAINED`: `5595`
 - `REVIEWED_DISCONTINUED_AFTER_2020_NO_SUCCESSOR`: `17`
 - `REVIEWED_PRESENT_IN_2021_COUGAR_GUIDE_SOURCE_GAP`: `4`
+- `REVIEWED_PRESENT_IN_2022_COUGAR_GUIDE_SOURCE_GAP`: `1`
+- `REVIEWED_SOURCE_YEAR_ARTIFACT_NOT_TRUE_DROP`: `2`
+- `REVIEWED_SUCCESSOR_BY_2022_BEAR_GUIDE`: `8`
 
 ## Transition Counts
 
 - `2020->2021`: ADDED_NO_PREDECESSOR_CANDIDATE=46, CANDIDATE_SUCCESSOR_BY_IDENTITY=63, EXACT_CODE_RETAINED=944, REVIEWED_DISCONTINUED_AFTER_2020_NO_SUCCESSOR=17, REVIEWED_PRESENT_IN_2021_COUGAR_GUIDE_SOURCE_GAP=4
-- `2021->2022`: ADDED_NO_PREDECESSOR_CANDIDATE=30, CANDIDATE_SUCCESSOR_BY_IDENTITY=32, DROPPED_NO_SUCCESSOR_CANDIDATE=20, EXACT_CODE_RETAINED=971
+- `2021->2022`: ADDED_NO_PREDECESSOR_CANDIDATE=30, CANDIDATE_SUCCESSOR_BY_IDENTITY=32, DROPPED_NO_SUCCESSOR_CANDIDATE=9, EXACT_CODE_RETAINED=971, REVIEWED_PRESENT_IN_2022_COUGAR_GUIDE_SOURCE_GAP=1, REVIEWED_SOURCE_YEAR_ARTIFACT_NOT_TRUE_DROP=2, REVIEWED_SUCCESSOR_BY_2022_BEAR_GUIDE=8
 - `2022->2023`: ADDED_NO_PREDECESSOR_CANDIDATE=58, CANDIDATE_SUCCESSOR_BY_IDENTITY=47, DROPPED_NO_SUCCESSOR_CANDIDATE=42, EXACT_CODE_RETAINED=931
 - `2023->2024`: ADDED_NO_PREDECESSOR_CANDIDATE=23, CANDIDATE_SUCCESSOR_BY_IDENTITY=22, DROPPED_NO_SUCCESSOR_CANDIDATE=21, EXACT_CODE_RETAINED=980
 - `2024->2025`: ADDED_NO_PREDECESSOR_CANDIDATE=60, CANDIDATE_SUCCESSOR_BY_IDENTITY=46, DROPPED_NO_SUCCESSOR_CANDIDATE=11, EXACT_CODE_RETAINED=960
@@ -50,6 +56,7 @@ This audit creates an adjacent year-to-year hunt-code crosswalk from the BIBLE H
 - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026.csv`
 - `processed_data/audits/hunt_code_year_to_year_crosswalk_candidates_2020_2026.csv`
 - `processed_data/audits/hunt_code_year_to_year_reviewed_decisions_2020_to_2021.csv`
+- `processed_data/audits/hunt_code_year_to_year_reviewed_decisions_2021_to_2022.csv`
 - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026_summary.json`
 - `docs/hunt_code_year_to_year_crosswalk_2020_2026.md`
 

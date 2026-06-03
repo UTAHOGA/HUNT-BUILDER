@@ -13396,4 +13396,51 @@ o_table=0).
   - `git diff --check -- <changed files>`: `PASS` with line-ending warning only for the changed script
 
 - Commit:
+  - `54f2bdda` - `Close reviewed 2020 to 2021 hunt code drops`
+
+## 2026-06-03T22:30:44Z - Apply 2022 Regulation Evidence To 2021 To 2022 Hunt Code Crosswalk
+
+- Assigned step:
+  - Check the 2022 regulation/species-guide set against generic 2021->2022 dropped hunt-code rows and close only rows supported by the provided source family.
+
+- Source files reviewed:
+  - `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2022/pdf/regulations/2022_bear.pdf`
+  - `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2022/pdf/regulations/2021-22_cougar.pdf`
+  - `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2022/pdf/regulations/2022_biggameapp.pdf`
+  - `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2022/pdf/regulations/2022_field_regs.pdf`
+  - `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2022/pdf/regulations/2021-22_upland_turkey.pdf`
+
+- Files changed:
+  - `scripts/build-hunt-code-year-to-year-crosswalk.py`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026.csv`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_candidates_2020_2026.csv`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026_summary.json`
+  - `processed_data/audits/hunt_code_year_to_year_reviewed_decisions_2020_to_2021.csv`
+  - `processed_data/audits/hunt_code_year_to_year_reviewed_decisions_2021_to_2022.csv`
+  - `docs/hunt_code_year_to_year_crosswalk_2020_2026.md`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Reviewed 2021->2022 bear successor rows recorded: `8`
+  - Reviewed 2021->2022 cougar source-gap continuity rows recorded: `1`
+  - Reviewed 2021->2022 source-year artifact rows recorded: `2`
+  - Generic `DROPPED_NO_SUCCESSOR_CANDIDATE` rows remaining for `2021->2022`: `9`
+  - Remaining generic rows are antlerless-family rows requiring the 2022 antlerless-specific source:
+    - `DA1000`, `DA1004`, `DA1017`, `DA1029`
+    - `PD1013`, `PD1018`, `PD1023`, `PD1027`, `PD1039`
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values were promoted.
+  - Bear successor rows are reviewed source-guide mappings from the 2022 bear PDF.
+  - DA/PD rows were intentionally left unresolved because the provided 2022 big-game/field guides do not contain the antlerless draw hunt-number tables needed for a defensible closure.
+
+- Validation:
+  - `python scripts\build-hunt-code-year-to-year-crosswalk.py`: `PASS`
+  - `python -m py_compile scripts\build-hunt-code-year-to-year-crosswalk.py`: `PASS`
+  - Verified `2021->2022` status counts: `971` exact retained, `32` candidate successors, `8` reviewed bear successors, `1` reviewed cougar source-gap continuity, `2` reviewed artifacts, `9` generic dropped/no successor, `30` added/no predecessor.
+  - Verified reviewed decision CSV row count for `2021->2022`: `11`
+  - `git diff --check -- <changed files>`: `PASS` with line-ending warning only for the changed script
+
+- Commit:
   - Pending at log-write time.
