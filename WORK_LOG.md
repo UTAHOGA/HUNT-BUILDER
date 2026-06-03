@@ -12604,6 +12604,55 @@ o_table=0).
 - Commit:
   - Pending at log-write time.
 
+## 2026-06-03T18:38:12Z - Crosscheck Reviewed 2026 Permit Files Against Remaining Unresolved Rows
+
+- Assigned step:
+  - Normalize the reviewed 2026 permit CSV files into one table and cross-compare them against the `354` rows still unresolved after the HaNumber/HuntTable/DATABASE exact-match pass.
+
+- Source inputs:
+  - `pipeline/RAW/hunt_unit_database/2026/csv/2026 Permits/*.csv`
+  - `pipeline/RAW/hunt_unit_database/2026/csv/2026 Permits/2026 superseded permit fragments manifest.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/remaining_unresolved_after_hanumber_hunttable_database_rule.csv`
+
+- Files changed:
+  - `scripts/crosscheck-reviewed-2026-permit-files.py`
+  - `processed_data/audits/current_2026_reviewed_permit_file_crosscheck/reviewed_2026_permit_sources_normalized.csv`
+  - `processed_data/audits/current_2026_reviewed_permit_file_crosscheck/reviewed_2026_permit_sources_by_hunt_code.csv`
+  - `processed_data/audits/current_2026_reviewed_permit_file_crosscheck/reviewed_2026_permit_remaining_unresolved_crosscheck.csv`
+  - `processed_data/audits/current_2026_reviewed_permit_file_crosscheck/supported_by_reviewed_2026_permit_files.csv`
+  - `processed_data/audits/current_2026_reviewed_permit_file_crosscheck/strictly_resolved_by_reviewed_2026_permit_files.csv`
+  - `processed_data/audits/current_2026_reviewed_permit_file_crosscheck/still_unresolved_after_reviewed_2026_permit_files.csv`
+  - `processed_data/audits/current_2026_reviewed_permit_file_crosscheck/reviewed_2026_permit_file_crosscheck_summary.json`
+  - `processed_data/audits/current_2026_reviewed_permit_file_crosscheck/reviewed_2026_permit_file_crosscheck.md`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Normalized source rows: `3294`
+  - Unique hunt codes in reviewed permit source table: `1393`
+  - Remaining unresolved rows crosschecked: `354`
+  - Strictly resolved by reviewed permit files: `0`
+  - Supported by reviewed permit files but still requiring precedence review: `39`
+  - Still unresolved after strict reviewed-file crosscheck: `354`
+  - The `39` supported rows all match the `HaNumber + DATABASE` side while conflicting with `HuntTable` or another compared source.
+  - Superseded fragments were included for audit visibility but excluded from reviewed consensus.
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values were promoted.
+  - This pass produced audit tables only.
+
+- Validation:
+  - `python scripts\crosscheck-reviewed-2026-permit-files.py`: `PASS`
+  - `python -m py_compile scripts\crosscheck-reviewed-2026-permit-files.py`: `PASS`
+  - Output existence and row-count validation: `PASS`
+  - Crosscheck row count verified as `354`: `PASS`
+  - Strict resolution count verified as `0`: `PASS`
+  - Supported candidate count verified as `39`: `PASS`
+  - `git diff --check`: `PASS` with pre-existing line-ending warnings only
+
+- Commit:
+  - Pending at log-write time.
+
 ## 2026-06-03T17:07:27Z - Buck Deer Pasted Permit Source Parse And External Source Crosscheck
 
 - Assigned step:
