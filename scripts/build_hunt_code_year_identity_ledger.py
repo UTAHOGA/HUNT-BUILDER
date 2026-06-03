@@ -421,11 +421,12 @@ def build_identity_outputs(repo, zip_path, year):
     return outputs, ledger, crosscheck, errors, normalizations, model_label_counts
 
 
-def update_lifecycle(repo, year, model_year, normalizations, identity_codes):
+def update_lifecycle(repo, year, model_year, normalizations, ledger):
     audits = repo / "processed_data" / "audits"
     source_hits_path = audits / "hunt_code_source_hits_comprehensive_2020_2026.csv"
     hits = read_csv(source_hits_path)
     existing = {(r["hunt_code"], r["report_year"], r["source_file"], r["source_page"]) for r in hits}
+    existing_code_years = {(r["hunt_code"], r["report_year"]) for r in hits}
     added = []
     for row in normalizations:
         hit = {
@@ -441,6 +442,26 @@ def update_lifecycle(repo, year, model_year, normalizations, identity_codes):
             hits.append(hit)
             added.append(hit)
             existing.add(key)
+            existing_code_years.add((hit["hunt_code"], hit["report_year"]))
+    for row in ledger:
+        code = row["hunt_code"]
+        report_year = str(year)
+        if (code, report_year) in existing_code_years:
+            continue
+        hit = {
+            "hunt_code": code,
+            "report_year": report_year,
+            "model_year": str(model_year),
+            "source_kind": "IDENTITY_LEDGER_BACKFILL",
+            "source_file": row["source_file"],
+            "source_page": str(row["source_pdf_page_index"]),
+        }
+        key = (hit["hunt_code"], hit["report_year"], hit["source_file"], hit["source_page"])
+        if key not in existing:
+            hits.append(hit)
+            added.append(hit)
+            existing.add(key)
+            existing_code_years.add((hit["hunt_code"], hit["report_year"]))
     hits = sorted(hits, key=lambda r: (int(r["report_year"]), r["hunt_code"], r["source_file"], int(r["source_page"]) if str(r["source_page"]).isdigit() else 99999))
     write_csv(source_hits_path, hits, ["hunt_code", "report_year", "model_year", "source_kind", "source_file", "source_page"])
     return added
@@ -673,7 +694,7 @@ def recompute_lifecycle(repo):
     write_csv(audits / "hunt_code_terminal_dropoffs_comprehensive_2020_2026.csv", terminal_dropoffs)
     write_csv(audits / "hunt_code_interpreted_lifecycle_summary_comprehensive_2020_2026.csv", interpreted_summary)
     lifecycle_summary = {
-        "scope": "Year-to-year hunt code lifecycle using COMPREHENSIVE 2020-2025.zip plus generated 2026 UtahDraws display PDFs. Strict prefix version with 2022 Sportsman normalization.",
+        "scope": "Year-to-year hunt code lifecycle using COMPREHENSIVE 2020-2025.zip plus generated 2026 UtahDraws display PDFs. Strict prefix version with reviewed identity-ledger backfills.",
         "year_semantics": "For BIBLE HUNT CODES packages, report_year means draw_results_year and permit_draw_year. Model year is the predictive modeling year and equals draw_results_year + 1 unless reviewed source evidence proves otherwise.",
         "report_years": years,
         "unique_hunt_codes_observed": len(all_codes),
@@ -682,11 +703,14 @@ def recompute_lifecycle(repo):
         "codes_observed_2020_2025_absent_in_2026": sum(1 for row in lifecycle if row["absent_in_2026"] == "YES"),
         "new_in_2026_codes": sum(1 for row in lifecycle if row["status"] == "NEW_IN_2026"),
         "dropped_2025_to_2026_count": sum(1 for row in dropoffs if row["present_report_year"] == 2025 and row["first_missing_report_year"] == 2026),
-        "notes": ["2022 Sportsman source rows were normalized from A-prefixed extraction artifacts to real Sportsman hunt codes."],
+        "notes": [
+            "2022 Sportsman source rows were normalized from A-prefixed extraction artifacts to real Sportsman hunt codes.",
+            "Year-specific identity-ledger passes may add reviewed source-hit backfills when a provided truth-source ZIP proves code/year presence missed by the comprehensive source-hit scan.",
+        ],
     }
     (audits / "hunt_code_lifecycle_comprehensive_2020_2026_summary.json").write_text(json.dumps(lifecycle_summary, indent=2), encoding="utf-8")
     interpreted_json = {
-        "scope": "Interpreted lifecycle layer for strict-prefix comprehensive 2020-2026 hunt-code audit with 2022 Sportsman normalization.",
+        "scope": "Interpreted lifecycle layer for strict-prefix comprehensive 2020-2026 hunt-code audit with reviewed identity-ledger backfills.",
         "purpose": "Historical reappearances are mapped as likely continued through non-observed years instead of terminated.",
         "year_semantics": lifecycle_summary["year_semantics"],
         "unique_hunt_codes_observed": len(interpreted_summary),
@@ -707,11 +731,28 @@ def main():
     args = parser.parse_args()
     repo = Path(args.repo)
     outputs, ledger, crosscheck, errors, normalizations, model_labels = build_identity_outputs(repo, Path(args.zip), args.year)
-    added_hits = update_lifecycle(repo, args.year, args.year + 1, normalizations, {r["hunt_code"] for r in ledger})
+    added_hits = update_lifecycle(repo, args.year, args.year + 1, normalizations, ledger)
     lifecycle_result = recompute_lifecycle(repo)
     presence_rows = read_csv(repo / "processed_data" / "audits" / "hunt_code_presence_matrix_comprehensive_2020_2026.csv")
+    source_hits = read_csv(repo / "processed_data" / "audits" / "hunt_code_source_hits_comprehensive_2020_2026.csv")
+    year_backfills = [
+        row for row in source_hits
+        if row.get("report_year") == str(args.year)
+        and row.get("source_kind") == "IDENTITY_LEDGER_BACKFILL"
+    ]
     expected = {r["hunt_code"] for r in presence_rows if r.get(f"present_report_year_{args.year}") == "YES"} | {r["normalized_hunt_code"] for r in normalizations}
     actual = {r["hunt_code"] for r in ledger}
+    notes = [
+        "Year semantics: draw_results_year = permit_draw_year for BIBLE HUNT CODES source packages.",
+        "Model year is the predictive modeling year and equals draw_results_year + 1.",
+        "This audit does not modify DATABASE.csv.",
+    ]
+    if normalizations:
+        notes.append("Sportsman rows were normalized from PDF text-extraction artifacts when source evidence confirmed the real hunt code.")
+    else:
+        notes.append("No Sportsman code normalization rows were required for this year.")
+    if added_hits:
+        notes.append("Lifecycle source-hit backfills were added only for real identity-ledger code/year rows not already present in the comprehensive lifecycle source-hit table.")
     summary = {
         "scope": f"{args.year} hunt-code/year identity alignment from provided truth-source ZIP package.",
         "source_zip": str(Path(args.zip)),
@@ -724,6 +765,8 @@ def main():
         "sportsman_rows_added": len(normalizations),
         "sportsman_code_normalizations": len(normalizations),
         "lifecycle_source_hits_added": len(added_hits),
+        "lifecycle_source_hit_backfills_present_for_year": len(year_backfills),
+        "lifecycle_source_hit_backfill_codes_for_year": sorted({row["hunt_code"] for row in year_backfills}),
         "scan_error_count": len(errors),
         "expected_code_count_after_correction": len(expected),
         "missing_from_identity_ledger": sorted(expected - actual),
@@ -735,12 +778,7 @@ def main():
         "totals_parse_status_counts": dict(Counter(r["totals_parse_status"] for r in ledger)),
         "current_database_match_status_counts": dict(Counter(r["current_database_match_status"] for r in ledger)),
         "outputs": {key: str(path) for key, path in outputs.items()},
-        "notes": [
-            "Year semantics: draw_results_year = permit_draw_year for BIBLE HUNT CODES source packages.",
-            "Model year is the predictive modeling year and equals draw_results_year + 1.",
-            "2022 Sportsman rows are normalized from PDF text-extraction artifacts using user-confirmed copied text.",
-            "This audit does not modify DATABASE.csv.",
-        ],
+        "notes": notes,
     }
     outputs["summary"].write_text(json.dumps(summary, indent=2), encoding="utf-8")
     report_lines = [
@@ -757,12 +795,17 @@ def main():
         f"- Unique hunt codes: `{len(crosscheck)}`",
         f"- Sportsman rows added: `{len(normalizations)}`",
         f"- Lifecycle source-hit rows added: `{len(added_hits)}`",
+        f"- Lifecycle source-hit backfills present for year: `{len(year_backfills)}`",
         f"- Scan errors: `{len(errors)}`",
         f"- Missing from identity ledger after correction: `{len(expected - actual)}`",
         f"- Extra in identity ledger after correction: `{len(actual - expected)}`",
         "",
         "## Sportsman Normalization",
-        "The 2022 Sportsman PDF text extraction joins `N/A` text onto hunt codes, producing artifacts such as `ABI1000`. The ledger normalizes those rows to the user-confirmed copied-text codes.",
+        "No Sportsman normalization rows were required for this year." if not normalizations else "Sportsman source rows were normalized from PDF text-extraction artifacts where reviewed source evidence confirmed the real hunt code.",
+        "",
+        "## Lifecycle Backfills",
+        "No lifecycle source-hit backfills are present for this year." if not year_backfills else f"`{len(year_backfills)}` lifecycle source-hit backfill row(s) are present for this year from identity-ledger evidence.",
+        "" if not year_backfills else f"- Backfilled codes: `{', '.join(sorted({row['hunt_code'] for row in year_backfills}))}`",
         "",
         "## Outputs",
     ]

@@ -14,7 +14,7 @@ DS1000,DS,2020,2026,2020|2021|2022|2026,2023|2024|2025,3,HISTORICAL_REAPPEARANCE
 EA1037,EA,2020,2025,2020|2022|2023|2024|2025,2021,1,HISTORICAL_REAPPEARANCE_GAP_LIKELY_CONTINUED,"Absent year(s) occur between observed years; treat as not observed in source, not terminated."
 EA1257,EA,2022,2025,2022|2023|2025,2024,1,HISTORICAL_REAPPEARANCE_GAP_LIKELY_CONTINUED,"Absent year(s) occur between observed years; treat as not observed in source, not terminated."
 EB1000,EB,2020,2026,2020|2021|2022|2026,2023|2024|2025,3,HISTORICAL_REAPPEARANCE_GAP_LIKELY_CONTINUED,"Absent year(s) occur between observed years; treat as not observed in source, not terminated."
-EB1007,EB,2020,2026,2020|2021|2022|2025|2026,2023|2024,2,HISTORICAL_REAPPEARANCE_GAP_LIKELY_CONTINUED,"Absent year(s) occur between observed years; treat as not observed in source, not terminated."
+EB1007,EB,2020,2026,2020|2021|2022|2023|2025|2026,2024,1,HISTORICAL_REAPPEARANCE_GAP_LIKELY_CONTINUED,"Absent year(s) occur between observed years; treat as not observed in source, not terminated."
 EB3168,EB,2023,2026,2023|2024|2026,2025,1,HISTORICAL_REAPPEARANCE_GAP_LIKELY_CONTINUED,"Absent year(s) occur between observed years; treat as not observed in source, not terminated."
 EB3528,EB,2020,2026,2020|2021|2023|2024|2025|2026,2022,1,HISTORICAL_REAPPEARANCE_GAP_LIKELY_CONTINUED,"Absent year(s) occur between observed years; treat as not observed in source, not terminated."
 EB3538,EB,2020,2026,2020|2021|2023|2024|2025|2026,2022,1,HISTORICAL_REAPPEARANCE_GAP_LIKELY_CONTINUED,"Absent year(s) occur between observed years; treat as not observed in source, not terminated."

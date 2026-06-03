@@ -12280,3 +12280,66 @@ o_table=0).
   - `python -m py_compile scripts\normalize_bible_hunt_code_file_names.py`: `PASS`
   - Applied rename audit row count verified as `46`: `PASS`
   - `git diff --check`: `PASS` with pre-existing line-ending warnings only
+
+## 2026-06-03T16:01:42Z - 2023 Draw Results Hunt-Code Identity Truth Source Pass
+
+- Assigned step:
+  - Build the 2023 hunt-code identity ledger from the provided `2023.zip` truth-source package.
+  - Continue the year-by-year code truth-file sequence using the reviewed naming rule: `draw_results_year = 2023`, `permit_draw_year = 2023`, `model_year = 2024`.
+
+- Source input:
+  - `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2023.zip`
+
+- Files changed:
+  - `scripts/build_hunt_code_year_identity_ledger.py`
+  - `processed_data/audits/hunt_code_year_identity_ledger_2023.csv`
+  - `processed_data/audits/hunt_code_year_identity_crosscheck_2023.csv`
+  - `processed_data/audits/hunt_code_year_identity_issues_2023.csv`
+  - `processed_data/audits/hunt_code_year_identity_scan_errors_2023.csv`
+  - `processed_data/audits/hunt_code_year_identity_sportsman_normalization_2023.csv`
+  - `processed_data/audits/hunt_code_year_identity_2023_summary.json`
+  - `docs/hunt_code_year_identity_alignment_2023.md`
+  - comprehensive lifecycle/presence/transition/dropoff/addition/interpreted audit outputs under `processed_data/audits/`
+  - `WORK_LOG.md`
+
+- Key results:
+  - 2023 ZIP files processed: `22`
+  - Ledger rows: `2028`
+  - Unique 2023 hunt codes: `1023`
+  - Scan errors: `0`
+  - Sportsman normalization rows: `0`
+  - Missing from identity ledger after correction: `0`
+  - Extra in identity ledger after correction: `0`
+
+- Lifecycle update:
+  - Backfill rows present for 2023: `1`
+  - Backfilled code: `EB1007`
+  - Evidence: `2023/2023_PERMITS=2024_MODEL__YOUTH ELK DRAW RESULTS.pdf`, page `1`
+  - Source text: `Hunt: EB1007 Draw-only Youth Elk - Draw-only Youth Any Bull/hunter's Choice Elk - Any Legal Weapon`
+  - Current `DATABASE.csv` has exact code match for `EB1007`: `Draw-only Youth Any Bull/Hunters Choice Elk`
+
+- EB-family clarification:
+  - Current `DATABASE.csv` contains `EB10xx` rows, but these are general/statewide/youth/private-land style elk rows.
+  - Limited-entry bull elk rows are the `EB30xx` family.
+  - `EB1007` must not be treated as a limited-entry `EB30xx` bull elk hunt. It is retained as a real youth/general elk code.
+
+- Corrected lifecycle year counts:
+  - `2020`: `1028`
+  - `2021`: `1023`
+  - `2022`: `1020`
+  - `2023`: `1023`
+  - `2024`: `1016`
+  - `2025`: `1053`
+  - `2026`: `834`
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values, draw values, prediction values, or website runtime files were changed.
+
+- Validation:
+  - `python -m py_compile scripts\build_hunt_code_year_identity_ledger.py`: `PASS`
+  - `python scripts\build_hunt_code_year_identity_ledger.py --zip "C:\Users\tyler\Desktop\BIBLE HUNT CODES\2023.zip" --year 2023`: `PASS`
+  - 2023 ledger/crosscheck/issues/scan-errors/sportsman-normalization row counts verified: `PASS`
+  - 2023 missing/extra code coverage check: `PASS`
+  - EB-family distribution check against `DATABASE.csv`: `PASS`
+  - `git diff --check`: `PASS` with line-ending warnings only

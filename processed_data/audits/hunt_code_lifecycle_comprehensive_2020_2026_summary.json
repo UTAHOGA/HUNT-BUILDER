@@ -1,5 +1,5 @@
 {
-  "scope": "Year-to-year hunt code lifecycle using COMPREHENSIVE 2020-2025.zip plus generated 2026 UtahDraws display PDFs. Strict prefix version with 2022 Sportsman normalization.",
+  "scope": "Year-to-year hunt code lifecycle using COMPREHENSIVE 2020-2025.zip plus generated 2026 UtahDraws display PDFs. Strict prefix version with reviewed identity-ledger backfills.",
   "year_semantics": "For BIBLE HUNT CODES packages, report_year means draw_results_year and permit_draw_year. Model year is the predictive modeling year and equals draw_results_year + 1 unless reviewed source evidence proves otherwise.",
   "report_years": [
     2020,
@@ -15,7 +15,7 @@
     "2020": 1028,
     "2021": 1023,
     "2022": 1020,
-    "2023": 1022,
+    "2023": 1023,
     "2024": 1016,
     "2025": 1053,
     "2026": 834
@@ -25,6 +25,7 @@
   "new_in_2026_codes": 12,
   "dropped_2025_to_2026_count": 244,
   "notes": [
-    "2022 Sportsman source rows were normalized from A-prefixed extraction artifacts to real Sportsman hunt codes."
+    "2022 Sportsman source rows were normalized from A-prefixed extraction artifacts to real Sportsman hunt codes.",
+    "Year-specific identity-ledger passes may add reviewed source-hit backfills when a provided truth-source ZIP proves code/year presence missed by the comprehensive source-hit scan."
   ]
 }
