@@ -15613,6 +15613,48 @@ Validation commands run:
 Commit:
 - Not committed.
 
+## 2026-06-04T08:10:00Z - Cloudflare R2 upload for oversized Research audit payloads
+
+Scope:
+- Uploaded oversized generated Research audit artifacts to Cloudflare R2 so they do not need to be committed to GitHub.
+- Preserved local real copies and confirmed Git ignore coverage.
+
+Files changed:
+- WORK_LOG.md
+
+R2 uploads:
+- processed_data/audits/research_feeder_database_permit_sync_audit.csv
+  - Local size: 218.428 MB
+  - Public URL: https://json.uoga.workers.dev/processed_data/audits/research_feeder_database_permit_sync_audit.csv
+  - Verification: HTTP 200
+- processed_data/audits/hunt_research_2026_before_numeric_fix_snapshot.json.gz
+  - Source local file: processed_data/audits/hunt_research_2026_before_numeric_fix_snapshot.json
+  - Source local size: 305.064 MB
+  - Compressed upload size: 3.424 MB
+  - Public URL: https://json.uoga.workers.dev/processed_data/audits/hunt_research_2026_before_numeric_fix_snapshot.json.gz
+  - Verification: HTTP 200
+
+Important note:
+- Wrangler refused the raw 305.064 MB JSON because Wrangler R2 object upload supports only files up to 300 MiB.
+- The raw public URL remains intentionally absent: https://json.uoga.workers.dev/processed_data/audits/hunt_research_2026_before_numeric_fix_snapshot.json returned HTTP 404.
+- If the raw uncompressed JSON must be public later, install/configure an S3-compatible R2 uploader with multipart support.
+
+Git ignore confirmation:
+- processed_data/audits/hunt_research_2026_before_numeric_fix_snapshot.json is ignored by .gitignore.
+- processed_data/audits/hunt_research_2026_before_numeric_fix_snapshot.json.gz is ignored by the global *.gz rule.
+- processed_data/audits/research_feeder_database_permit_sync_audit.csv is ignored by .gitignore.
+
+Validation commands run:
+- npx wrangler --version
+- npx wrangler whoami
+- npx wrangler r2 object put uoga-data/processed_data/audits/research_feeder_database_permit_sync_audit.csv --file processed_data/audits/research_feeder_database_permit_sync_audit.csv --content-type text/csv --remote
+- npx wrangler r2 object put uoga-data/processed_data/audits/hunt_research_2026_before_numeric_fix_snapshot.json.gz --file processed_data/audits/hunt_research_2026_before_numeric_fix_snapshot.json.gz --content-type application/gzip --remote
+- Invoke-WebRequest HEAD checks for uploaded public URLs
+- git check-ignore -v for oversized audit files
+
+Commit:
+- Pending targeted WORK_LOG.md commit.
+
 ## 2026-06-04T07:59:13Z - Ignore oversized Research audit payloads blocking GitHub Desktop
 
 Scope:
