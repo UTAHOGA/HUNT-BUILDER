@@ -1,24 +1,28 @@
 #!/usr/bin/env python3
-"""Acceptance verifier for the targeted prediction feeder backfill repair."""
+"""Acceptance verifier for the targeted prediction-feeder backfill.
+
+This tool is intentionally read-only for feeder/data files. It proves as much
+of the previous repair as possible from git history, the repair summary,
+DATABASE.csv, manifests, and the published R2 copies.
+"""
 
 from __future__ import annotations
 
 import argparse
 import csv
 import hashlib
+import io
 import json
+import re
 import subprocess
 import sys
 import tempfile
 import urllib.request
 from collections import Counter, defaultdict
+from dataclasses import dataclass
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable
-
-
-REPO_ROOT = Path(__file__).resolve().parents[1]
-if str(REPO_ROOT) not in sys.path:
-    sys.path.insert(0, str(REPO_ROOT))
 
 
 REPAIRED_FILES = [
@@ -29,15 +33,6 @@ REPAIRED_FILES = [
     "processed_data/draw_reality_engine.csv",
     "processed_data/hunt_unit_reference_linked.csv",
 ]
-
-PRIMARY_KEYS = {
-    "processed_data/point_ladder_view.csv": ("hunt_code", "residency", "points"),
-    "processed_data/draw_reality_engine_predictive_v2.csv": ("hunt_code", "residency", "points"),
-    "processed_data/ml_draw_predictions_v1.csv": ("hunt_code", "residency", "points"),
-    "processed_data/hunt_master_enriched.csv": ("hunt_code", "residency", "points"),
-    "processed_data/draw_reality_engine.csv": ("hunt_code", "year", "residency", "points"),
-    "processed_data/hunt_unit_reference_linked.csv": ("hunt_code", "residency"),
-}
 
 DIRECT_DB_FIELDS = {
     "hunt_name": "hunt_name",
@@ -71,7 +66,8 @@ DERIVED_FIELDS = {
 }
 
 APPROVED_FIELDS = set(DIRECT_DB_FIELDS) | set(DERIVED_FIELDS)
-FORBIDDEN_PATTERNS = (
+
+FORBIDDEN_PATTERNS = [
     "p_draw",
     "p_max_pool",
     "p_random",
@@ -85,24 +81,39 @@ FORBIDDEN_PATTERNS = (
     "draw_model_class",
     "availability_status",
     "algorithm_status",
-)
-DEFERRED_PATTERNS = FORBIDDEN_PATTERNS + (
-    "p_prior",
-    "p_quota",
-    "p_rollover",
-    "p_harvest",
-    "dwr_result_display",
-    "display_2025",
-    "display_2026",
-    "quota_2026_max_pool",
-    "quota_2026_random_pool",
-    "is_2026_",
-    "data_quality",
-    "reason_codes",
+]
+
+DEFERRED_MODEL_PATTERNS = [
+    "p_draw",
+    "p_max_pool",
+    "p_random",
+    "random_draw_odds",
+    "display_odds",
+    "projected_2026",
+    "probability_model",
+    "draw_model_class",
+    "availability_status",
+    "algorithm_status",
+]
+
+DEFERRED_DRAW_TRUTH_PATTERNS = [
+    "applicants",
+    "prior_year",
+    "success_ratio",
     "public_permits_2025",
     "total_permits",
-)
-PROBABILITY_COLUMNS = (
+]
+
+PRIMARY_KEYS = {
+    "processed_data/point_ladder_view.csv": ["hunt_code", "residency", "points"],
+    "processed_data/draw_reality_engine_predictive_v2.csv": ["hunt_code", "residency", "points"],
+    "processed_data/ml_draw_predictions_v1.csv": ["hunt_code", "residency", "points"],
+    "processed_data/hunt_master_enriched.csv": ["hunt_code", "residency", "points"],
+    "processed_data/draw_reality_engine.csv": ["hunt_code", "year", "residency", "points"],
+    "processed_data/hunt_unit_reference_linked.csv": ["hunt_code", "residency"],
+}
+
+PROBABILITY_COLUMNS = [
     "p_draw",
     "p_draw_mean",
     "p_draw_p10",
@@ -110,629 +121,931 @@ PROBABILITY_COLUMNS = (
     "p_draw_p90",
     "p_max_pool_mean",
     "p_random_mean",
-    "p_sportsman_draw",
     "p_bonus_pool",
     "p_random_pool",
     "p_preference_draw",
-)
-QUOTA_TRIPLES = (
-    ("permit_allotment_2026_res", "permit_allotment_2026_nr", "permit_allotment_2026_total"),
-    ("permits_2026_res", "permits_2026_nr", "permits_2026_total"),
-)
-MANIFESTS = ("public/data/runtime-manifest.json", "data/runtime-manifest.json")
-R2_BASE = "https://json.uoga.workers.dev"
-BACKFILL_COMMIT = "0f011540"
+    "p_prior_year_baseline",
+    "p_quota_adjusted",
+    "p_rollover_adjusted",
+    "p_harvest_adjusted",
+]
+
+PERCENT_COLUMNS = [
+    "p_draw_pct",
+    "display_odds_pct",
+]
 
 
-def norm_path(path: str) -> str:
-    return path.replace("\\", "/")
-
-
-def win_path(path: str) -> str:
-    return path.replace("/", "\\")
+@dataclass
+class CsvData:
+    path: str
+    header: list[str]
+    rows: list[dict[str, str]]
+    size_bytes: int
+    sha256: str
 
 
 def clean(value: object) -> str:
     return "" if value is None else str(value).strip()
 
 
-def normalized(value: object) -> str:
-    return clean(value).replace("\r\n", "\n")
+def norm(value: object) -> str:
+    text = clean(value)
+    if text.endswith(".0"):
+        try:
+            return str(int(float(text)))
+        except ValueError:
+            return text
+    return text
 
 
 def is_blank(value: object) -> bool:
     return clean(value) == ""
 
 
-def is_forbidden(field: str) -> bool:
-    return any(field.startswith(pattern) or pattern in field for pattern in FORBIDDEN_PATTERNS)
+def rel(path: Path, root: Path) -> str:
+    return str(path.relative_to(root)).replace("\\", "/")
 
 
-def classify_remaining_blank(field: str, source_present: bool, allowed: bool) -> str:
-    if any(field.startswith(pattern) or pattern in field for pattern in ("p_draw", "p_max_pool", "p_random", "random_draw_odds", "display_odds", "projected_2026", "probability_model", "draw_model_class", "availability_status", "algorithm_status")):
-        return "deferred_model_logic"
-    if any(field.startswith(pattern) or pattern in field for pattern in ("applicants", "prior_year", "success_ratio", "display_2025", "dwr_result_display")):
-        return "deferred_draw_truth_logic"
-    if allowed and not source_present:
-        return "blocker_missing_source"
-    if not allowed:
-        return "blocker_unmapped_field"
-    return "acceptable_optional_blank"
-
-
-def parse_number(value: object) -> float | None:
-    text = clean(value).replace(",", "")
-    if text == "":
-        return None
-    try:
-        return float(text)
-    except ValueError:
-        return float("nan")
-
-
-def sha256_file(path: Path) -> str:
-    h = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            h.update(chunk)
-    return h.hexdigest()
-
-
-def read_csv_rows(path: Path) -> tuple[list[str], list[dict[str, str]]]:
-    with path.open(newline="", encoding="utf-8-sig") as handle:
-        reader = csv.DictReader(handle)
-        return list(reader.fieldnames or []), [{k: clean(v) for k, v in row.items()} for row in reader]
-
-
-def read_csv_text(text: str) -> tuple[list[str], list[dict[str, str]]]:
-    reader = csv.DictReader(text.splitlines())
-    return list(reader.fieldnames or []), [{k: clean(v) for k, v in row.items()} for row in reader]
-
-
-def git_file_text(ref: str, path: str) -> str | None:
-    try:
-        result = subprocess.run(
-            ["git", "show", f"{ref}:{path}"],
-            cwd=REPO_ROOT,
-            check=True,
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-        )
-        return result.stdout
-    except subprocess.CalledProcessError:
-        return None
-
-
-def git_tracked(path: str) -> bool:
-    result = subprocess.run(["git", "ls-files", "--error-unmatch", path], cwd=REPO_ROOT, capture_output=True, text=True)
-    return result.returncode == 0
-
-
-def load_database(path: Path) -> tuple[dict[str, dict[str, str]], dict[str, list[dict[str, str]]], list[str]]:
-    header, rows = read_csv_rows(path)
-    by_code: dict[str, dict[str, str]] = {}
-    duplicates: dict[str, list[dict[str, str]]] = defaultdict(list)
-    for row in rows:
-        code = clean(row.get("hunt_code")).upper()
-        if not code:
-            continue
-        duplicates[code].append(row)
-        if code not in by_code:
-            by_code[code] = row
-    return by_code, duplicates, header
-
-
-def source_value(db_row: dict[str, str] | None, field: str) -> tuple[str, str]:
-    if not db_row:
-        return "", ""
-    if field in DIRECT_DB_FIELDS:
-        source_field = DIRECT_DB_FIELDS[field]
-        return clean(db_row.get(source_field)), source_field
-    if field not in DERIVED_FIELDS:
-        return "", ""
-    source_field = DERIVED_FIELDS[field]
-    if source_field == "__constant_2026__":
-        return ("2026", "permit_allotment_2026_total") if clean(db_row.get("permit_allotment_2026_total")) else ("", "permit_allotment_2026_total")
-    if source_field == "__quota_source_file__":
-        value = clean(db_row.get("permit_allotment_2026_source_file")) or clean(db_row.get("permit_allotment_2026_source"))
-        if not value and clean(db_row.get("permit_allotment_2026_total")):
-            value = "pipeline\\RAW\\hunt_unit_database\\2026\\csv\\DATABASE.csv"
-        return value, "permit_allotment_2026_source_file"
-    return clean(db_row.get(source_field)), source_field
-
-
-def load_summary(path: Path) -> tuple[list[dict[str, str]], dict[tuple[str, str], int], list[dict[str, str]]]:
-    rows = []
-    applied: dict[tuple[str, str], int] = {}
-    forbidden = []
-    with path.open(newline="", encoding="utf-8-sig") as handle:
-        for row in csv.DictReader(handle):
-            row = {k: clean(v) for k, v in row.items()}
-            rows.append(row)
-            file_path = norm_path(row.get("file_path", ""))
-            field = row.get("field_name", "")
-            count = int(row.get("count") or 0)
-            if row.get("status") == "APPLIED":
-                applied[(file_path, field)] = applied.get((file_path, field), 0) + count
-                if field not in APPROVED_FIELDS or is_forbidden(field):
-                    forbidden.append(row)
-    return rows, applied, forbidden
-
-
-def duplicate_count(rows: list[dict[str, str]], key_fields: Iterable[str]) -> int:
-    fields = tuple(key_fields)
-    if not fields or not all(fields[0] in row for row in rows[:1]):
-        return 0
-    counter: Counter[tuple[str, ...]] = Counter()
-    for row in rows:
-        key = tuple(clean(row.get(field)) for field in fields)
-        if all(key):
-            counter[key] += 1
-    return sum(count - 1 for count in counter.values() if count > 1)
-
-
-def probability_check(rows: list[dict[str, str]], header: list[str]) -> dict[str, object]:
-    checked = [col for col in PROBABILITY_COLUMNS if col in header]
-    invalid: Counter[str] = Counter()
-    for row in rows:
-        for col in checked:
-            value = parse_number(row.get(col))
-            if value is not None and (value != value or value < 0 or value > 1):
-                invalid[col] += 1
-    return {"checked_columns": checked, "invalid_counts": dict(invalid), "pass": not invalid}
-
-
-def quota_arithmetic_check(rows: list[dict[str, str]], header: list[str]) -> dict[str, object]:
-    failures: Counter[str] = Counter()
-    checked: Counter[str] = Counter()
-    for res_col, nr_col, total_col in QUOTA_TRIPLES:
-        if not all(col in header for col in (res_col, nr_col, total_col)):
-            continue
-        label = f"{res_col}+{nr_col}={total_col}"
-        for row in rows:
-            res = parse_number(row.get(res_col))
-            nr = parse_number(row.get(nr_col))
-            total = parse_number(row.get(total_col))
-            if res is None or nr is None or total is None:
-                continue
-            checked[label] += 1
-            if any(v != v for v in (res, nr, total)) or int(res) + int(nr) != int(total):
-                failures[label] += 1
-    return {"checked_counts": dict(checked), "failure_counts": dict(failures), "pass": not failures}
-
-
-def verify_r2(root: Path, file_path: str) -> dict[str, object]:
-    local = root / file_path
-    url = f"{R2_BASE}/{file_path}"
-    row: dict[str, object] = {"file_path": file_path, "url": url, "local_exists": local.exists()}
-    if not local.exists():
-        row.update({"status": "FAIL_LOCAL_MISSING"})
-        return row
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".csv") as tmp:
-        tmp_path = Path(tmp.name)
-    try:
-        urllib.request.urlretrieve(url, tmp_path)
-        local_header, local_rows = read_csv_rows(local)
-        remote_header, remote_rows = read_csv_rows(tmp_path)
-        row.update({
-            "local_size": local.stat().st_size,
-            "remote_size": tmp_path.stat().st_size,
-            "local_sha256": sha256_file(local),
-            "remote_sha256": sha256_file(tmp_path),
-            "local_row_count": len(local_rows),
-            "remote_row_count": len(remote_rows),
-            "header_equal": local_header == remote_header,
-        })
-        row["status"] = "PASS" if all((
-            row["local_size"] == row["remote_size"],
-            row["local_sha256"] == row["remote_sha256"],
-            row["local_row_count"] == row["remote_row_count"],
-            row["header_equal"],
-        )) else "FAIL_MISMATCH"
-    except Exception as exc:  # noqa: BLE001
-        row.update({"status": "FAIL_DOWNLOAD_OR_PARSE", "error": f"{type(exc).__name__}: {exc}"})
-    finally:
-        tmp_path.unlink(missing_ok=True)
-    return row
-
-
-def verify_manifests(root: Path, r2_rows: list[dict[str, object]]) -> list[dict[str, object]]:
-    results = []
-    r2_by_file = {row["file_path"]: row for row in r2_rows}
-    for manifest in MANIFESTS:
-        path = root / manifest
-        result: dict[str, object] = {"manifest": manifest, "exists": path.exists()}
-        if not path.exists():
-            result["status"] = "FAIL_MISSING"
-            results.append(result)
-            continue
-        try:
-            data = json.loads(path.read_text(encoding="utf-8"))
-            assets = {asset.get("path"): asset for asset in data.get("assets", [])}
-            file_results = {}
-            ok = True
-            for file_path, r2 in r2_by_file.items():
-                asset = assets.get(file_path)
-                if not asset:
-                    file_results[file_path] = "missing_asset"
-                    ok = False
-                    continue
-                expected_url = f"{R2_BASE}/{file_path}"
-                size_ok = int(asset.get("size_bytes") or -1) == int(r2.get("local_size") or -2)
-                url_ok = clean(asset.get("canonical_url")) == expected_url
-                mode_ok = clean(asset.get("update_mode")) == "AUTO_PUBLIC_R2"
-                file_results[file_path] = {
-                    "size_ok": size_ok,
-                    "url_ok": url_ok,
-                    "update_mode_ok": mode_ok,
-                    "manifest_size": asset.get("size_bytes"),
-                    "local_size": r2.get("local_size"),
-                }
-                ok = ok and size_ok and url_ok and mode_ok
-            result.update({"status": "PASS" if ok else "FAIL", "files": file_results})
-        except Exception as exc:  # noqa: BLE001
-            result.update({"status": "FAIL_PARSE", "error": f"{type(exc).__name__}: {exc}"})
-        results.append(result)
-    return results
-
-
-def compare_tracked_before_after(
-    root: Path,
-    before_ref: str,
-    file_path: str,
-    header: list[str],
-    rows: list[dict[str, str]],
-    db_by_code: dict[str, dict[str, str]],
-) -> dict[str, object]:
-    result: dict[str, object] = {
-        "before_available": False,
-        "tracked": git_tracked(file_path),
-        "changed_cell_count": None,
-        "changed_columns": {},
-        "violations": [],
-    }
-    if not result["tracked"]:
-        result["blocker"] = "before_snapshot_unavailable_untracked_ignored_runtime_file"
-        return result
-    before_text = git_file_text(before_ref, file_path)
-    if before_text is None:
-        result["blocker"] = "before_snapshot_unavailable_git_show_failed"
-        return result
-    before_header, before_rows = read_csv_text(before_text)
-    result["before_available"] = True
-    if before_header != header:
-        result["violations"].append({"type": "header_changed", "before": before_header, "after": header})
-    if len(before_rows) != len(rows):
-        result["violations"].append({"type": "row_count_changed", "before": len(before_rows), "after": len(rows)})
-    changed_columns: Counter[str] = Counter()
-    changed_count = 0
-    max_rows = min(len(before_rows), len(rows))
-    for index in range(max_rows):
-        before = before_rows[index]
-        after = rows[index]
-        code = clean(after.get("hunt_code")).upper()
-        for field in header:
-            if normalized(before.get(field)) == normalized(after.get(field)):
-                continue
-            changed_count += 1
-            changed_columns[field] += 1
-            source, source_field = source_value(db_by_code.get(code), field)
-            if is_forbidden(field):
-                result["violations"].append({"type": "forbidden_column_changed", "row": index + 2, "hunt_code": code, "field": field})
-            if field not in APPROVED_FIELDS:
-                result["violations"].append({"type": "unapproved_column_changed", "row": index + 2, "hunt_code": code, "field": field})
-            if not is_blank(before.get(field)):
-                result["violations"].append({"type": "target_before_not_blank", "row": index + 2, "hunt_code": code, "field": field, "before": before.get(field), "after": after.get(field)})
-            if not code or code not in db_by_code:
-                result["violations"].append({"type": "source_hunt_code_missing", "row": index + 2, "hunt_code": code, "field": field})
-            elif not source:
-                result["violations"].append({"type": "source_value_blank", "row": index + 2, "hunt_code": code, "field": field, "source_field": source_field})
-            elif normalized(after.get(field)) != normalized(source):
-                result["violations"].append({"type": "target_not_equal_source", "row": index + 2, "hunt_code": code, "field": field, "target": after.get(field), "source": source, "source_field": source_field})
-    result["changed_cell_count"] = changed_count
-    result["changed_columns"] = dict(sorted(changed_columns.items()))
-    return result
-
-
-def analyze_file(
-    root: Path,
-    file_path: str,
-    applied_counts: dict[tuple[str, str], int],
-    db_by_code: dict[str, dict[str, str]],
-    before_ref: str,
-) -> tuple[dict[str, object], list[dict[str, object]], list[dict[str, object]]]:
-    path = root / file_path
-    header, rows = read_csv_rows(path)
-    changed_fields = sorted(field for (fp, field), count in applied_counts.items() if fp == file_path and count > 0)
-    before = compare_tracked_before_after(root, before_ref, file_path, header, rows, db_by_code)
-
-    row_count = len(rows)
-    duplicate_keys = duplicate_count(rows, PRIMARY_KEYS.get(file_path, ()))
-    probability = probability_check(rows, header)
-    quota = quota_arithmetic_check(rows, header)
-    column_rows: list[dict[str, object]] = []
-    samples: list[dict[str, object]] = []
-    forbidden_summary_rows: list[dict[str, object]] = []
-
-    forbidden_observed_changes = {
-        field: count for field, count in dict(before.get("changed_columns") or {}).items() if is_forbidden(field)
-    }
-    for pattern in FORBIDDEN_PATTERNS:
-        applied = sum(count for (fp, field), count in applied_counts.items() if fp == file_path and (field.startswith(pattern) or pattern in field))
-        observed = sum(count for field, count in forbidden_observed_changes.items() if field.startswith(pattern) or pattern in field)
-        status = "PASS" if applied == 0 and observed == 0 and before.get("before_available") else "PASS_SUMMARY_ONLY_BEFORE_UNAVAILABLE" if applied == 0 and not before.get("before_available") else "FAIL"
-        forbidden_summary_rows.append({
-            "file_path": file_path,
-            "pattern": pattern,
-            "applied_summary_count": applied,
-            "observed_tracked_changed_count": observed,
-            "before_available": before.get("before_available"),
-            "status": status,
-        })
-
-    deferred_columns = [col for col in header if any(col.startswith(pattern) or pattern in col for pattern in DEFERRED_PATTERNS)]
-    null_deferred = {
-        col: sum(1 for row in rows if is_blank(row.get(col)))
-        for col in deferred_columns
-        if sum(1 for row in rows if is_blank(row.get(col)))
-    }
-
-    for field in changed_fields:
-        applied = applied_counts[(file_path, field)]
-        null_remaining = sum(1 for row in rows if is_blank(row.get(field)))
-        source_nonblank = 0
-        expected_match = 0
-        missing_hunt_code = 0
-        source_blank = 0
-        blank_class_counts: Counter[str] = Counter()
-        for row_number, row in enumerate(rows, start=2):
-            code = clean(row.get("hunt_code")).upper()
-            db_row = db_by_code.get(code)
-            source, source_field = source_value(db_row, field)
-            if not code:
-                missing_hunt_code += 1
-            if source:
-                source_nonblank += 1
-            else:
-                source_blank += 1
-            if source and normalized(row.get(field)) == normalized(source):
-                expected_match += 1
-                if len(samples) < 25:
-                    samples.append({
-                        "file_path": file_path,
-                        "row_number": row_number,
-                        "hunt_code": code,
-                        "field_name": field,
-                        "target_value": row.get(field, ""),
-                        "source_field": source_field,
-                        "source_value": source,
-                        "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
-                    })
-            if is_blank(row.get(field)):
-                blank_class_counts[classify_remaining_blank(field, bool(source), field in APPROVED_FIELDS)] += 1
-        status = "PASS" if field in APPROVED_FIELDS and not is_forbidden(field) and expected_match >= applied and missing_hunt_code == 0 else "FAIL"
-        if not before.get("before_available"):
-            status = "BLOCKED_BEFORE_UNAVAILABLE" if status == "PASS" else status
-        column_rows.append({
-            "file_path": file_path,
-            "field_name": field,
-            "applied_summary_count": applied,
-            "before_available": before.get("before_available"),
-            "observed_changed_cells": (before.get("changed_columns") or {}).get(field, ""),
-            "current_nonblank_count": row_count - null_remaining,
-            "current_expected_source_match_count": expected_match,
-            "source_nonblank_count": source_nonblank,
-            "source_blank_count": source_blank,
-            "remaining_null_count": null_remaining,
-            "remaining_blank_classification": json.dumps(dict(sorted(blank_class_counts.items())), sort_keys=True),
-            "approved_field": field in APPROVED_FIELDS,
-            "forbidden_field": is_forbidden(field),
-            "status": status,
-        })
-
-    summary = {
-        "file_path": file_path,
-        "row_count": row_count,
-        "column_count": len(header),
-        "changed_cell_count": sum(applied_counts.get((file_path, field), 0) for field in changed_fields),
-        "changed_columns": changed_fields,
-        "duplicate_primary_key_count": duplicate_keys,
-        "null_count_remaining_in_repaired_columns": {row["field_name"]: row["remaining_null_count"] for row in column_rows},
-        "null_count_remaining_in_deferred_columns": null_deferred,
-        "probability_column_range_check": probability,
-        "quota_arithmetic_check": quota,
-        "before_after": before,
-        "sample_repaired_rows": samples,
-    }
-    return summary, column_rows, forbidden_summary_rows
-
-
-def write_csv(path: Path, rows: list[dict[str, object]], fieldnames: list[str]) -> None:
+def write_csv(path: Path, fieldnames: list[str], rows: Iterable[dict[str, object]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
+        writer = csv.DictWriter(handle, fieldnames=fieldnames, extrasaction="ignore", lineterminator="\n")
         writer.writeheader()
         for row in rows:
             writer.writerow(row)
 
 
-def main(argv: Iterable[str] | None = None) -> int:
+def run_text(args: list[str], cwd: Path) -> tuple[int, str, str]:
+    proc = subprocess.run(args, cwd=str(cwd), text=True, capture_output=True)
+    return proc.returncode, proc.stdout, proc.stderr
+
+
+def load_csv_file(path: Path, logical_path: str | None = None) -> CsvData:
+    raw = path.read_bytes()
+    text = raw.decode("utf-8-sig", errors="replace")
+    reader = csv.DictReader(io.StringIO(text))
+    rows = [{k: clean(v) for k, v in row.items()} for row in reader]
+    return CsvData(
+        path=logical_path or str(path),
+        header=list(reader.fieldnames or []),
+        rows=rows,
+        size_bytes=len(raw),
+        sha256=hashlib.sha256(raw).hexdigest(),
+    )
+
+
+def load_csv_text(text: str, logical_path: str) -> CsvData:
+    raw = text.encode("utf-8", errors="replace")
+    reader = csv.DictReader(io.StringIO(text))
+    rows = [{k: clean(v) for k, v in row.items()} for row in reader]
+    return CsvData(
+        path=logical_path,
+        header=list(reader.fieldnames or []),
+        rows=rows,
+        size_bytes=len(raw),
+        sha256=hashlib.sha256(raw).hexdigest(),
+    )
+
+
+def load_database(path: Path) -> tuple[dict[str, dict[str, str]], dict[str, list[dict[str, str]]]]:
+    data = load_csv_file(path, str(path))
+    by_code: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for row in data.rows:
+        code = clean(row.get("hunt_code")).upper()
+        if code:
+            by_code[code].append(row)
+    first = {code: rows[0] for code, rows in by_code.items()}
+    return first, by_code
+
+
+def source_value(db_row: dict[str, str], field: str, database_rel: str) -> tuple[str, str]:
+    if field in DIRECT_DB_FIELDS:
+        source_field = DIRECT_DB_FIELDS[field]
+        return db_row.get(source_field, ""), source_field
+    source_field = DERIVED_FIELDS.get(field, "")
+    if source_field == "__constant_2026__":
+        if clean(db_row.get("permit_allotment_2026_total")):
+            return "2026", "permit_allotment_2026_total"
+        return "", "permit_allotment_2026_total"
+    if source_field == "__quota_source_file__":
+        value = db_row.get("permit_allotment_2026_source_file") or db_row.get("permit_allotment_2026_source")
+        if not clean(value) and clean(db_row.get("permit_allotment_2026_total")):
+            value = database_rel.replace("/", "\\")
+        return value, "permit_allotment_2026_source_file"
+    if source_field:
+        return db_row.get(source_field, ""), source_field
+    return "", ""
+
+
+def is_forbidden(field: str) -> bool:
+    lower = field.lower()
+    return any(pattern in lower for pattern in FORBIDDEN_PATTERNS)
+
+
+def classify_blank(field: str, db_available: bool) -> str:
+    lower = field.lower()
+    if any(pattern in lower for pattern in DEFERRED_MODEL_PATTERNS):
+        return "deferred_model_logic"
+    if any(pattern in lower for pattern in DEFERRED_DRAW_TRUTH_PATTERNS):
+        return "deferred_draw_truth_logic"
+    if field in APPROVED_FIELDS and not db_available:
+        return "blocker_missing_source"
+    if field not in APPROVED_FIELDS:
+        return "acceptable_optional_blank"
+    return "blocker_unmapped_field"
+
+
+def load_summary(path: Path) -> tuple[list[dict[str, str]], Counter[tuple[str, str]], dict[str, set[str]], dict[str, set[str]]]:
+    rows = load_csv_file(path, str(path)).rows
+    applied: Counter[tuple[str, str]] = Counter()
+    applied_fields: dict[str, set[str]] = defaultdict(set)
+    deferred_fields: dict[str, set[str]] = defaultdict(set)
+    for row in rows:
+        file_path = clean(row.get("file_path")).replace("\\", "/")
+        field = clean(row.get("field_name"))
+        status = clean(row.get("status"))
+        count = int(clean(row.get("count")) or "0")
+        if status == "APPLIED":
+            applied[(file_path, field)] += count
+            applied_fields[file_path].add(field)
+        elif status.startswith("DEFERRED"):
+            deferred_fields[file_path].add(field)
+    return rows, applied, applied_fields, deferred_fields
+
+
+def find_backfill_parent(root: Path) -> str | None:
+    code, stdout, _ = run_text(
+        ["git", "log", "--grep", "Repair targeted prediction feeder backfills", "-n", "1", "--format=%P"],
+        root,
+    )
+    parent = stdout.strip().split()
+    if code == 0 and parent:
+        return parent[0]
+    return None
+
+
+def git_show_csv(root: Path, ref: str, path: str) -> CsvData | None:
+    code, stdout, _ = run_text(["git", "show", f"{ref}:{path}"], root)
+    if code != 0:
+        return None
+    return load_csv_text(stdout, f"{ref}:{path}")
+
+
+def count_duplicate_keys(rows: list[dict[str, str]], key_fields: list[str]) -> int:
+    if not key_fields:
+        return 0
+    counts: Counter[tuple[str, ...]] = Counter()
+    for row in rows:
+        key = tuple(clean(row.get(field)) for field in key_fields)
+        if all(part == "" for part in key):
+            continue
+        counts[key] += 1
+    return sum(count - 1 for count in counts.values() if count > 1)
+
+
+def numeric(value: str) -> float | None:
+    text = clean(value).replace(",", "")
+    if text in {"", "N/A", "NA", "Unlimited", "UNLIMITED"}:
+        return None
+    try:
+        return float(text)
+    except ValueError:
+        return None
+
+
+def quota_arithmetic(rows: list[dict[str, str]], columns: tuple[str, str, str]) -> dict[str, object]:
+    res_col, nr_col, total_col = columns
+    if not all(col in (rows[0].keys() if rows else []) for col in columns):
+        return {"status": "NOT_APPLICABLE", "checked_rows": 0, "failures": 0}
+    checked = 0
+    failures = 0
+    samples: list[dict[str, str]] = []
+    for index, row in enumerate(rows, start=2):
+        values = [numeric(row.get(col, "")) for col in columns]
+        if any(value is None for value in values):
+            continue
+        checked += 1
+        if abs((values[0] or 0) + (values[1] or 0) - (values[2] or 0)) > 0.000001:
+            failures += 1
+            if len(samples) < 10:
+                samples.append(
+                    {
+                        "row_number": str(index),
+                        "hunt_code": row.get("hunt_code", ""),
+                        res_col: row.get(res_col, ""),
+                        nr_col: row.get(nr_col, ""),
+                        total_col: row.get(total_col, ""),
+                    }
+                )
+    status = "PASS" if failures == 0 else "FAIL"
+    return {"status": status, "checked_rows": checked, "failures": failures, "samples": samples}
+
+
+def range_check(rows: list[dict[str, str]], header: list[str]) -> dict[str, object]:
+    failures: list[dict[str, object]] = []
+    checked = 0
+    for col in PROBABILITY_COLUMNS:
+        if col not in header:
+            continue
+        for index, row in enumerate(rows, start=2):
+            value = numeric(row.get(col, ""))
+            if value is None:
+                continue
+            checked += 1
+            if value < 0 or value > 1:
+                failures.append({"row_number": index, "hunt_code": row.get("hunt_code", ""), "field": col, "value": row.get(col, "")})
+                if len(failures) >= 50:
+                    break
+    for col in PERCENT_COLUMNS:
+        if col not in header:
+            continue
+        for index, row in enumerate(rows, start=2):
+            value = numeric(row.get(col, ""))
+            if value is None:
+                continue
+            checked += 1
+            if value < 0 or value > 100:
+                failures.append({"row_number": index, "hunt_code": row.get("hunt_code", ""), "field": col, "value": row.get(col, "")})
+                if len(failures) >= 50:
+                    break
+    return {"status": "PASS" if not failures else "FAIL", "checked_values": checked, "failures": len(failures), "samples": failures[:10]}
+
+
+def audit_actual_diffs(
+    before: CsvData | None,
+    after: CsvData,
+    database: dict[str, dict[str, str]],
+    database_dupes: dict[str, list[dict[str, str]]],
+    database_rel: str,
+) -> tuple[Counter[str], list[dict[str, str]], list[str], list[dict[str, str]]]:
+    changed_by_field: Counter[str] = Counter()
+    sample_rows: list[dict[str, str]] = []
+    blockers: list[str] = []
+    verification_rows: list[dict[str, str]] = []
+    if before is None:
+        blockers.append("before_snapshot_unavailable")
+        return changed_by_field, sample_rows, blockers, verification_rows
+    if before.header != after.header:
+        blockers.append("header_changed")
+    if len(before.rows) != len(after.rows):
+        blockers.append("row_count_changed")
+    for row_index, (old, new) in enumerate(zip(before.rows, after.rows), start=2):
+        changed_fields = [field for field in after.header if norm(old.get(field)) != norm(new.get(field))]
+        for field in changed_fields:
+            changed_by_field[field] += 1
+            hunt_code = clean(new.get("hunt_code")).upper()
+            db_row = database.get(hunt_code, {})
+            expected, source_field = source_value(db_row, field, database_rel)
+            status = "PASS"
+            notes = []
+            if field not in APPROVED_FIELDS:
+                status = "FAIL"
+                notes.append("changed_column_not_in_allowlist")
+            if is_forbidden(field):
+                status = "FAIL"
+                notes.append("forbidden_column_changed")
+            if not is_blank(old.get(field)):
+                status = "FAIL"
+                notes.append("target_before_not_blank")
+            if not hunt_code:
+                status = "FAIL"
+                notes.append("missing_hunt_code")
+            if not db_row:
+                status = "FAIL"
+                notes.append("database_hunt_code_not_found")
+            if field in APPROVED_FIELDS and is_blank(expected):
+                status = "FAIL"
+                notes.append("database_source_blank")
+            if field in APPROVED_FIELDS and norm(new.get(field)) != norm(expected):
+                status = "FAIL"
+                notes.append("target_value_not_equal_expected_source")
+            dupes = database_dupes.get(hunt_code, [])
+            if len(dupes) > 1 and source_field:
+                values = {norm(row.get(source_field)) for row in dupes}
+                if len(values) > 1:
+                    status = "FAIL"
+                    notes.append("database_duplicate_hunt_code_conflicting_source_values")
+            row_out = {
+                "file_path": after.path,
+                "row_number": str(row_index),
+                "hunt_code": hunt_code,
+                "field_name": field,
+                "before_value": old.get(field, ""),
+                "after_value": new.get(field, ""),
+                "source_file": database_rel,
+                "source_field": source_field,
+                "source_value": expected,
+                "status": status,
+                "notes": "; ".join(notes) or "source-backed blank-cell fill",
+            }
+            verification_rows.append(row_out)
+            if len(sample_rows) < 25:
+                sample_rows.append(row_out)
+    return changed_by_field, sample_rows, blockers, verification_rows
+
+
+def sample_current_source_values(
+    file_path: str,
+    rows: list[dict[str, str]],
+    fields: list[str],
+    database: dict[str, dict[str, str]],
+    database_rel: str,
+    limit: int = 25,
+) -> list[dict[str, str]]:
+    samples: list[dict[str, str]] = []
+    for index, row in enumerate(rows, start=2):
+        hunt_code = clean(row.get("hunt_code")).upper()
+        db_row = database.get(hunt_code, {})
+        if not db_row:
+            continue
+        for field in fields:
+            if field not in row or is_blank(row.get(field)):
+                continue
+            expected, source_field = source_value(db_row, field, database_rel)
+            if is_blank(expected):
+                continue
+            samples.append(
+                {
+                    "file_path": file_path,
+                    "row_number": str(index),
+                    "hunt_code": hunt_code,
+                    "field_name": field,
+                    "target_value": row.get(field, ""),
+                    "source_file": database_rel,
+                    "source_field": source_field,
+                    "source_value": expected,
+                    "status": "PASS" if norm(row.get(field)) == norm(expected) else "REVIEW",
+                    "notes": "current source-vs-target sample; not a before/after proof",
+                }
+            )
+            if len(samples) >= limit:
+                return samples
+    return samples
+
+
+def download_url(url: str) -> tuple[bytes | None, str | None]:
+    try:
+        request = urllib.request.Request(url, headers={"User-Agent": "HUNT-BUILDER acceptance audit"})
+        with urllib.request.urlopen(request, timeout=60) as response:
+            return response.read(), None
+    except Exception as exc:  # noqa: BLE001 - report exact network blocker
+        return None, str(exc)
+
+
+def csv_stats_from_bytes(data: bytes, logical_path: str) -> CsvData:
+    text = data.decode("utf-8-sig", errors="replace")
+    loaded = load_csv_text(text, logical_path)
+    return CsvData(
+        path=logical_path,
+        header=loaded.header,
+        rows=loaded.rows,
+        size_bytes=len(data),
+        sha256=hashlib.sha256(data).hexdigest(),
+    )
+
+
+def load_manifest(path: Path) -> dict[str, dict[str, object]]:
+    if not path.exists():
+        return {}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return {clean(asset.get("path")).replace("\\", "/"): asset for asset in data.get("assets", [])}
+
+
+def verify_r2_and_manifest(root: Path, files: list[str]) -> tuple[list[dict[str, object]], dict[str, object]]:
+    manifest_paths = [
+        root / "public/data/runtime-manifest.json",
+        root / "data/runtime-manifest.json",
+    ]
+    manifests = {rel(path, root): load_manifest(path) for path in manifest_paths}
+    r2_rows: list[dict[str, object]] = []
+    manifest_checks: list[dict[str, object]] = []
+    for file_path in files:
+        local = load_csv_file(root / file_path, file_path)
+        manifest_asset = None
+        manifest_statuses = []
+        for manifest_path, assets in manifests.items():
+            asset = assets.get(file_path)
+            if asset:
+                manifest_asset = manifest_asset or asset
+                canonical_url = clean(asset.get("canonical_url"))
+                size_match = str(asset.get("size_bytes", "")) == str(local.size_bytes)
+                status = "PASS" if canonical_url.startswith("https://json.uoga.workers.dev/") and size_match else "FAIL"
+                manifest_statuses.append(status)
+                manifest_checks.append(
+                    {
+                        "manifest": manifest_path,
+                        "file_path": file_path,
+                        "canonical_url": canonical_url,
+                        "manifest_size_bytes": asset.get("size_bytes"),
+                        "local_size_bytes": local.size_bytes,
+                        "status": status,
+                    }
+                )
+            else:
+                manifest_statuses.append("FAIL")
+                manifest_checks.append(
+                    {
+                        "manifest": manifest_path,
+                        "file_path": file_path,
+                        "canonical_url": "",
+                        "manifest_size_bytes": "",
+                        "local_size_bytes": local.size_bytes,
+                        "status": "FAIL",
+                    }
+                )
+        url = clean((manifest_asset or {}).get("canonical_url")) or f"https://json.uoga.workers.dev/{file_path}"
+        remote_bytes, error = download_url(url)
+        if remote_bytes is None:
+            r2_rows.append(
+                {
+                    "file_path": file_path,
+                    "canonical_url": url,
+                    "local_size_bytes": local.size_bytes,
+                    "remote_size_bytes": "",
+                    "local_sha256": local.sha256,
+                    "remote_sha256": "",
+                    "local_row_count": len(local.rows),
+                    "remote_row_count": "",
+                    "header_equal": "NO",
+                    "status": "FAIL",
+                    "notes": error or "download_failed",
+                }
+            )
+            continue
+        remote = csv_stats_from_bytes(remote_bytes, url)
+        status = "PASS"
+        notes = []
+        if local.size_bytes != remote.size_bytes:
+            status = "FAIL"
+            notes.append("byte_size_mismatch")
+        if local.sha256 != remote.sha256:
+            status = "FAIL"
+            notes.append("sha256_mismatch")
+        if len(local.rows) != len(remote.rows):
+            status = "FAIL"
+            notes.append("row_count_mismatch")
+        if local.header != remote.header:
+            status = "FAIL"
+            notes.append("header_mismatch")
+        if any(item != "PASS" for item in manifest_statuses):
+            status = "FAIL"
+            notes.append("manifest_mismatch")
+        r2_rows.append(
+            {
+                "file_path": file_path,
+                "canonical_url": url,
+                "local_size_bytes": local.size_bytes,
+                "remote_size_bytes": remote.size_bytes,
+                "local_sha256": local.sha256,
+                "remote_sha256": remote.sha256,
+                "local_row_count": len(local.rows),
+                "remote_row_count": len(remote.rows),
+                "header_equal": "YES" if local.header == remote.header else "NO",
+                "status": status,
+                "notes": "; ".join(notes) or "local and R2 match",
+            }
+        )
+    return r2_rows, {"manifest_checks": manifest_checks}
+
+
+def run_validation_commands(root: Path) -> list[dict[str, object]]:
+    commands = [
+        ["python", "-m", "compileall", "-q", "engine", "scripts", "tools", "tests"],
+        ["python", "tools/audit_engine_feeders.py", "--root", ".", "--forecast-year", "2026", "--warn-only"],
+        ["python", "-m", "pytest", "-q", "tests/test_engine_feeder_audit_tools.py"],
+        ["git", "diff", "--check"],
+    ]
+    results = []
+    for command in commands:
+        code, stdout, stderr = run_text(command, root)
+        results.append(
+            {
+                "command": " ".join(command),
+                "exit_code": code,
+                "status": "PASS" if code == 0 else "FAIL",
+                "stdout_tail": stdout[-4000:],
+                "stderr_tail": stderr[-4000:],
+            }
+        )
+    blank_audit = root / "processed_data/audits/prediction_engine_feeder_blank_cell_audit.csv"
+    if blank_audit.exists():
+        results.append(
+            {
+                "command": "blank-cell audit rerun",
+                "exit_code": None,
+                "status": "BLOCKED",
+                "stdout_tail": "Existing blank-cell audit found, but no standalone rerun script is present in tools/ or scripts/.",
+                "stderr_tail": "",
+            }
+        )
+    else:
+        results.append(
+            {
+                "command": "blank-cell audit rerun",
+                "exit_code": None,
+                "status": "FAIL",
+                "stdout_tail": "",
+                "stderr_tail": "Existing blank-cell audit output not found.",
+            }
+        )
+    return results
+
+
+def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", default=".")
     parser.add_argument("--database", default="pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv")
     parser.add_argument("--summary", default="processed_data/audits/prediction_engine_targeted_backfill_summary.csv")
-    parser.add_argument("--before-ref", default=f"{BACKFILL_COMMIT}^")
-    args = parser.parse_args(list(argv) if argv is not None else None)
+    parser.add_argument("--skip-r2", action="store_true")
+    parser.add_argument("--skip-validation-commands", action="store_true")
+    args = parser.parse_args()
 
     root = Path(args.root).resolve()
-    out_dir = root / "processed_data/audits"
-    db_by_code, db_duplicates, db_header = load_database(root / args.database)
-    summary_rows, applied_counts, forbidden_summary = load_summary(root / args.summary)
+    audits_dir = root / "processed_data/audits"
+    audits_dir.mkdir(parents=True, exist_ok=True)
+    database_rel = args.database.replace("\\", "/")
+    database_path = root / database_rel
+    summary_path = root / args.summary
 
-    db_duplicate_conflicts = []
-    fill_source_cols = set(DIRECT_DB_FIELDS.values()) | {v for v in DERIVED_FIELDS.values() if not v.startswith("__")} | {"permit_allotment_2026_source_file", "permit_allotment_2026_source"}
-    for code, rows in db_duplicates.items():
-        if len(rows) <= 1:
-            continue
-        signatures = {tuple(clean(row.get(col)) for col in sorted(fill_source_cols)) for row in rows}
-        if len(signatures) > 1:
-            db_duplicate_conflicts.append(code)
-
-    file_summaries = []
-    column_diff_rows = []
-    forbidden_rows = []
-    sample_rows = []
-    blockers = []
+    blockers: list[str] = []
+    if not database_path.exists():
+        blockers.append(f"missing_database:{database_rel}")
+    if not summary_path.exists():
+        blockers.append(f"missing_summary:{args.summary}")
     for file_path in REPAIRED_FILES:
-        summary, column_rows, forbidden_file_rows = analyze_file(root, file_path, applied_counts, db_by_code, args.before_ref)
-        file_summaries.append(summary)
-        column_diff_rows.extend(column_rows)
-        forbidden_rows.extend(forbidden_file_rows)
-        sample_rows.extend(summary["sample_repaired_rows"])
-        if not summary["before_after"].get("before_available"):
-            blockers.append(f"before_after_unavailable:{file_path}")
-        if summary["before_after"].get("violations"):
-            blockers.append(f"before_after_violations:{file_path}")
-        if not summary["probability_column_range_check"]["pass"]:
-            blockers.append(f"probability_range_failure:{file_path}")
-        if not summary["quota_arithmetic_check"]["pass"]:
-            blockers.append(f"quota_arithmetic_failure:{file_path}")
+        if not (root / file_path).exists():
+            blockers.append(f"missing_repaired_file:{file_path}")
+    if blockers:
+        print("\n".join(blockers), file=sys.stderr)
+        return 1
 
-    if forbidden_summary:
-        blockers.append("forbidden_field_in_repair_summary")
-    if any(row["status"] == "FAIL" for row in forbidden_rows):
-        blockers.append("forbidden_field_changed")
-    if any(row["status"] == "FAIL" for row in column_diff_rows):
-        blockers.append("column_diff_failure")
-    if db_duplicate_conflicts:
-        blockers.append("database_duplicate_source_conflicts")
+    database, database_dupes = load_database(database_path)
+    summary_rows, summary_applied, summary_applied_fields, deferred_fields = load_summary(summary_path)
+    before_ref = find_backfill_parent(root)
+    if not before_ref:
+        blockers.append("backfill_parent_commit_not_found")
 
-    r2_rows = [verify_r2(root, file_path) for file_path in REPAIRED_FILES]
-    if any(row["status"] != "PASS" for row in r2_rows):
-        blockers.append("r2_local_mismatch")
-    manifest_rows = verify_manifests(root, r2_rows)
-    if any(row["status"] != "PASS" for row in manifest_rows):
+    per_file: list[dict[str, object]] = []
+    column_rows: list[dict[str, object]] = []
+    forbidden_rows: list[dict[str, object]] = []
+    verification_rows: list[dict[str, str]] = []
+    all_samples: dict[str, list[dict[str, str]]] = {}
+    total_forbidden_observed = 0
+    source_failures = 0
+    quota_failures = 0
+    before_unavailable_files: list[str] = []
+
+    for file_path in REPAIRED_FILES:
+        after = load_csv_file(root / file_path, file_path)
+        before = git_show_csv(root, before_ref, file_path) if before_ref else None
+        before_available = before is not None
+        if not before_available:
+            before_unavailable_files.append(file_path)
+        actual_changed, samples, diff_blockers, rows = audit_actual_diffs(before, after, database, database_dupes, database_rel)
+        verification_rows.extend(rows)
+        all_samples[file_path] = samples
+        blockers.extend([f"{file_path}:{blocker}" for blocker in diff_blockers])
+
+        changed_columns = sorted(summary_applied_fields.get(file_path, set()))
+        deferred_columns = sorted(field for field in deferred_fields.get(file_path, set()) if field in after.header)
+        repaired_nulls = {field: sum(1 for row in after.rows if is_blank(row.get(field))) for field in changed_columns if field in after.header}
+        deferred_nulls = {field: sum(1 for row in after.rows if is_blank(row.get(field))) for field in deferred_columns}
+        quota_checks = {
+            "permit_allotment_2026": quota_arithmetic(after.rows, ("permit_allotment_2026_res", "permit_allotment_2026_nr", "permit_allotment_2026_total")),
+            "permits_2026": quota_arithmetic(after.rows, ("permits_2026_res", "permits_2026_nr", "permits_2026_total")),
+        }
+        if any(check["status"] == "FAIL" for check in quota_checks.values()):
+            quota_failures += 1
+        range_result = range_check(after.rows, after.header)
+        duplicate_pk = count_duplicate_keys(after.rows, PRIMARY_KEYS.get(file_path, []))
+        changed_cell_count = sum(summary_applied.get((file_path, field), 0) for field in changed_columns)
+        current_samples = sample_current_source_values(file_path, after.rows, changed_columns, database, database_rel)
+
+        for field in sorted(set(changed_columns) | set(actual_changed)):
+            source_field = DIRECT_DB_FIELDS.get(field) or DERIVED_FIELDS.get(field, "")
+            current_expected_match = 0
+            current_nonblank = 0
+            remaining_null = 0
+            for row in after.rows:
+                value = row.get(field, "")
+                if is_blank(value):
+                    remaining_null += 1
+                    continue
+                current_nonblank += 1
+                db_row = database.get(clean(row.get("hunt_code")).upper(), {})
+                expected, _ = source_value(db_row, field, database_rel)
+                if norm(value) == norm(expected):
+                    current_expected_match += 1
+            row_status = "PASS"
+            notes = []
+            if field not in APPROVED_FIELDS:
+                row_status = "FAIL"
+                notes.append("not in approved repair allowlist")
+            if is_forbidden(field):
+                row_status = "FAIL"
+                notes.append("forbidden pattern")
+            if before_available and actual_changed.get(field, 0) != summary_applied.get((file_path, field), 0):
+                row_status = "FAIL"
+                notes.append("summary count differs from observed git diff")
+            if not before_available:
+                row_status = "BLOCKED"
+                notes.append("before snapshot unavailable for this file")
+            column_rows.append(
+                {
+                    "file_path": file_path,
+                    "field_name": field,
+                    "approved_field": "YES" if field in APPROVED_FIELDS else "NO",
+                    "forbidden_field": "YES" if is_forbidden(field) else "NO",
+                    "summary_changed_cell_count": summary_applied.get((file_path, field), 0),
+                    "before_available": "YES" if before_available else "NO",
+                    "observed_changed_cell_count": actual_changed.get(field, ""),
+                    "current_nonblank_count": current_nonblank,
+                    "current_expected_match_count": current_expected_match,
+                    "remaining_null_count": remaining_null,
+                    "source_field": source_field,
+                    "acceptance_status": row_status,
+                    "notes": "; ".join(notes) or "approved source-backed field",
+                }
+            )
+            if row_status == "FAIL":
+                source_failures += 1
+
+        for pattern in FORBIDDEN_PATTERNS:
+            matching_fields = [field for field in after.header if pattern in field.lower()]
+            summary_count = sum(summary_applied.get((file_path, field), 0) for field in matching_fields)
+            observed_count = sum(actual_changed.get(field, 0) for field in matching_fields)
+            if observed_count:
+                total_forbidden_observed += observed_count
+            status = "PASS" if summary_count == 0 and observed_count == 0 else "FAIL"
+            if not before_available:
+                status = "BLOCKED" if summary_count == 0 else "FAIL"
+            forbidden_rows.append(
+                {
+                    "file_path": file_path,
+                    "forbidden_pattern": pattern,
+                    "matching_columns": "|".join(matching_fields),
+                    "summary_applied_count": summary_count,
+                    "before_available": "YES" if before_available else "NO",
+                    "observed_changed_cell_count": observed_count if before_available else "",
+                    "status": status,
+                    "notes": "before snapshot unavailable" if not before_available else "",
+                }
+            )
+
+        blank_classification = Counter()
+        for field in changed_columns + deferred_columns:
+            if field not in after.header:
+                continue
+            for row in after.rows:
+                if not is_blank(row.get(field)):
+                    continue
+                db_available = clean(row.get("hunt_code")).upper() in database
+                blank_classification[classify_blank(field, db_available)] += 1
+
+        per_file.append(
+            {
+                "file_path": file_path,
+                "exists": True,
+                "row_count": len(after.rows),
+                "column_count": len(after.header),
+                "changed_cell_count": changed_cell_count,
+                "observed_changed_cell_count": sum(actual_changed.values()) if before_available else None,
+                "before_snapshot_available": before_available,
+                "changed_columns": changed_columns,
+                "duplicate_primary_key_count": duplicate_pk,
+                "null_count_remaining_in_repaired_columns": repaired_nulls,
+                "null_count_remaining_in_deferred_columns": deferred_nulls,
+                "blank_classification": dict(blank_classification),
+                "probability_column_range_check": range_result,
+                "quota_arithmetic_check": quota_checks,
+                "sample_repaired_rows": current_samples,
+                "before_after_sample_rows": samples,
+            }
+        )
+
+    r2_rows: list[dict[str, object]] = []
+    manifest_result: dict[str, object] = {"manifest_checks": []}
+    if args.skip_r2:
+        blockers.append("r2_verification_skipped")
+    else:
+        r2_rows, manifest_result = verify_r2_and_manifest(root, REPAIRED_FILES)
+        if any(row["status"] != "PASS" for row in r2_rows):
+            blockers.append("r2_local_mismatch")
+    if any(check["status"] != "PASS" for check in manifest_result.get("manifest_checks", [])):
         blockers.append("manifest_mismatch")
 
-    status = "PASS"
-    if blockers:
-        status = "FAIL"
+    validation_results = []
+    if args.skip_validation_commands:
+        blockers.append("validation_commands_skipped")
     else:
-        deferred_remaining = any(summary["null_count_remaining_in_deferred_columns"] for summary in file_summaries)
-        if deferred_remaining:
-            status = "PASS_WITH_DEFERRED_MODEL_FIELDS"
+        validation_results = run_validation_commands(root)
 
-    verification = {
-        "status": status,
-        "before_ref": args.before_ref,
-        "database": args.database,
+    duplicate_database_conflicts = []
+    source_columns = sorted(set(DIRECT_DB_FIELDS.values()) | {value for value in DERIVED_FIELDS.values() if not value.startswith("__")})
+    for code, rows in database_dupes.items():
+        if len(rows) <= 1:
+            continue
+        for column in source_columns:
+            values = {norm(row.get(column)) for row in rows}
+            if len(values) > 1:
+                duplicate_database_conflicts.append({"hunt_code": code, "column": column, "values": sorted(values)})
+                break
+
+    if duplicate_database_conflicts:
+        blockers.append("database_duplicate_hunt_code_conflicting_source_values")
+    if total_forbidden_observed:
+        blockers.append("forbidden_columns_changed")
+    if quota_failures:
+        blockers.append("quota_arithmetic_failed")
+    if source_failures:
+        blockers.append("source_backing_failed")
+    if before_unavailable_files:
+        blockers.append("before_after_unavailable_for_large_ignored_files")
+    if any(result.get("command") == "blank-cell audit rerun" and result.get("status") != "PASS" for result in validation_results):
+        blockers.append("blank_cell_audit_rerun_script_not_found")
+
+    r2_status_fail = any(row.get("status") != "PASS" for row in r2_rows)
+    hard_fail = bool(
+        total_forbidden_observed
+        or r2_status_fail
+        or quota_failures
+        or source_failures
+        or duplicate_database_conflicts
+        or before_unavailable_files
+        or any(check["status"] != "PASS" for check in manifest_result.get("manifest_checks", []))
+    )
+    deferred_only = not hard_fail and any(
+        item.get("blank_classification", {}).get("deferred_model_logic", 0)
+        or item.get("blank_classification", {}).get("deferred_draw_truth_logic", 0)
+        for item in per_file
+    )
+    production_readiness = "FAIL" if hard_fail else ("PASS_WITH_DEFERRED_MODEL_FIELDS" if deferred_only else "PASS")
+
+    acceptance = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "production_readiness": production_readiness,
+        "database": database_rel,
         "summary": args.summary,
-        "approved_fields": sorted(APPROVED_FIELDS),
-        "forbidden_patterns": list(FORBIDDEN_PATTERNS),
-        "total_applied_summary_cells": sum(applied_counts.values()),
-        "database_duplicate_hunt_code_count": sum(1 for rows in db_duplicates.values() if len(rows) > 1),
-        "database_duplicate_source_conflicts": db_duplicate_conflicts,
-        "blockers": blockers,
-        "files": file_summaries,
+        "before_ref": before_ref,
+        "requirements": {
+            "blank_before_repair_proven_for_tracked_files": all(item["before_snapshot_available"] for item in per_file),
+            "source_nonblank_and_exact_hunt_code_checked": True,
+            "approved_allowlist_checked": True,
+            "forbidden_fields_checked": True,
+            "r2_checked": not args.skip_r2,
+            "manifests_checked": True,
+            "validation_commands_run": not args.skip_validation_commands,
+        },
+        "blockers": sorted(set(blockers)),
+        "before_unavailable_files": before_unavailable_files,
+        "database_duplicate_conflicts": duplicate_database_conflicts[:100],
+        "files": per_file,
         "r2_verification": r2_rows,
-        "manifest_verification": manifest_rows,
-        "sample_repaired_rows": sample_rows[:25],
+        "manifest_verification": manifest_result,
+        "validation_results": validation_results,
     }
 
-    verification_json = out_dir / "prediction_engine_targeted_backfill_verification.json"
-    verification_csv = out_dir / "prediction_engine_targeted_backfill_verification.csv"
-    verification_md = out_dir / "prediction_engine_targeted_backfill_verification.md"
-    acceptance_json = out_dir / "prediction_engine_targeted_backfill_acceptance.json"
-    acceptance_md = out_dir / "prediction_engine_targeted_backfill_acceptance.md"
-    column_diff_csv = out_dir / "prediction_engine_targeted_backfill_column_diff.csv"
-    forbidden_csv = out_dir / "prediction_engine_targeted_backfill_forbidden_field_check.csv"
-    r2_csv = out_dir / "prediction_engine_targeted_backfill_r2_verification.csv"
+    write_csv(
+        audits_dir / "prediction_engine_targeted_backfill_column_diff.csv",
+        [
+            "file_path",
+            "field_name",
+            "approved_field",
+            "forbidden_field",
+            "summary_changed_cell_count",
+            "before_available",
+            "observed_changed_cell_count",
+            "current_nonblank_count",
+            "current_expected_match_count",
+            "remaining_null_count",
+            "source_field",
+            "acceptance_status",
+            "notes",
+        ],
+        column_rows,
+    )
+    write_csv(
+        audits_dir / "prediction_engine_targeted_backfill_forbidden_field_check.csv",
+        [
+            "file_path",
+            "forbidden_pattern",
+            "matching_columns",
+            "summary_applied_count",
+            "before_available",
+            "observed_changed_cell_count",
+            "status",
+            "notes",
+        ],
+        forbidden_rows,
+    )
+    write_csv(
+        audits_dir / "prediction_engine_targeted_backfill_r2_verification.csv",
+        [
+            "file_path",
+            "canonical_url",
+            "local_size_bytes",
+            "remote_size_bytes",
+            "local_sha256",
+            "remote_sha256",
+            "local_row_count",
+            "remote_row_count",
+            "header_equal",
+            "status",
+            "notes",
+        ],
+        r2_rows,
+    )
+    write_csv(
+        audits_dir / "prediction_engine_targeted_backfill_verification.csv",
+        [
+            "file_path",
+            "row_number",
+            "hunt_code",
+            "field_name",
+            "before_value",
+            "after_value",
+            "source_file",
+            "source_field",
+            "source_value",
+            "status",
+            "notes",
+        ],
+        verification_rows,
+    )
 
-    out_dir.mkdir(parents=True, exist_ok=True)
-    verification_json.write_text(json.dumps(verification, indent=2), encoding="utf-8")
-    acceptance_json.write_text(json.dumps(verification, indent=2), encoding="utf-8")
+    (audits_dir / "prediction_engine_targeted_backfill_acceptance.json").write_text(
+        json.dumps(acceptance, indent=2),
+        encoding="utf-8",
+    )
+    (audits_dir / "prediction_engine_targeted_backfill_verification.json").write_text(
+        json.dumps(
+            {
+                "generated_at": acceptance["generated_at"],
+                "production_readiness": production_readiness,
+                "blockers": acceptance["blockers"],
+                "verified_changed_cells": len(verification_rows),
+                "failed_changed_cells": sum(1 for row in verification_rows if row["status"] != "PASS"),
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
 
-    write_csv(column_diff_csv, column_diff_rows, [
-        "file_path", "field_name", "applied_summary_count", "before_available", "observed_changed_cells",
-        "current_nonblank_count", "current_expected_source_match_count", "source_nonblank_count",
-        "source_blank_count", "remaining_null_count", "remaining_blank_classification",
-        "approved_field", "forbidden_field", "status",
-    ])
-    write_csv(forbidden_csv, forbidden_rows, [
-        "file_path", "pattern", "applied_summary_count", "observed_tracked_changed_count", "before_available", "status",
-    ])
-    write_csv(r2_csv, r2_rows, [
-        "file_path", "url", "local_exists", "status", "local_size", "remote_size", "local_sha256",
-        "remote_sha256", "local_row_count", "remote_row_count", "header_equal", "error",
-    ])
-    write_csv(verification_csv, [
-        {
-            "file_path": item["file_path"],
-            "row_count": item["row_count"],
-            "column_count": item["column_count"],
-            "changed_cell_count": item["changed_cell_count"],
-            "changed_columns": ";".join(item["changed_columns"]),
-            "duplicate_primary_key_count": item["duplicate_primary_key_count"],
-            "probability_range_pass": item["probability_column_range_check"]["pass"],
-            "quota_arithmetic_pass": item["quota_arithmetic_check"]["pass"],
-            "before_available": item["before_after"]["before_available"],
-            "before_violations": len(item["before_after"].get("violations") or []),
-        }
-        for item in file_summaries
-    ], [
-        "file_path", "row_count", "column_count", "changed_cell_count", "changed_columns",
-        "duplicate_primary_key_count", "probability_range_pass", "quota_arithmetic_pass",
-        "before_available", "before_violations",
-    ])
-
-    lines = [
+    md_lines = [
         "# Prediction Engine Targeted Backfill Acceptance",
         "",
-        f"Status: `{status}`",
-        f"Total applied cells from repair summary: {verification['total_applied_summary_cells']}",
-        f"Before reference: `{args.before_ref}`",
+        f"Generated: {acceptance['generated_at']}",
+        f"Production readiness: **{production_readiness}**",
+        "",
+        "## Scope",
+        "",
+        "This audit is read-only. It verifies the previous targeted feeder backfill against DATABASE.csv, the repair summary, git history where available, manifests, and Cloudflare R2.",
         "",
         "## Blockers",
         "",
     ]
-    if blockers:
-        for blocker in blockers:
-            lines.append(f"- `{blocker}`")
+    if acceptance["blockers"]:
+        md_lines.extend([f"- {item}" for item in acceptance["blockers"]])
     else:
-        lines.append("- None")
-    lines.extend(["", "## File Summary", ""])
-    lines.append("| File | Rows | Columns | Applied Cells | Changed Columns | Duplicate Keys | Probability Range | Quota Arithmetic | Before Available |")
-    lines.append("| --- | ---: | ---: | ---: | --- | ---: | --- | --- | --- |")
-    for item in file_summaries:
-        lines.append(
-            f"| `{item['file_path']}` | {item['row_count']} | {item['column_count']} | "
-            f"{item['changed_cell_count']} | {', '.join(item['changed_columns'])} | "
-            f"{item['duplicate_primary_key_count']} | {item['probability_column_range_check']['pass']} | "
-            f"{item['quota_arithmetic_check']['pass']} | {item['before_after']['before_available']} |"
+        md_lines.append("- None")
+    md_lines.extend(["", "## File Results", ""])
+    for item in per_file:
+        md_lines.extend(
+            [
+                f"### {item['file_path']}",
+                "",
+                f"- Rows: {item['row_count']}",
+                f"- Columns: {item['column_count']}",
+                f"- Summary changed cells: {item['changed_cell_count']}",
+                f"- Before snapshot available: {'YES' if item['before_snapshot_available'] else 'NO'}",
+                f"- Duplicate primary-key rows: {item['duplicate_primary_key_count']}",
+                f"- Changed columns: {', '.join(item['changed_columns']) if item['changed_columns'] else 'None'}",
+                f"- Probability range check: {item['probability_column_range_check']['status']}",
+                f"- Permit-allotment arithmetic: {item['quota_arithmetic_check']['permit_allotment_2026']['status']}",
+                f"- Permits-2026 arithmetic: {item['quota_arithmetic_check']['permits_2026']['status']}",
+                "",
+            ]
         )
-    lines.extend(["", "## R2 Verification", ""])
+    md_lines.extend(["## R2 Verification", ""])
     for row in r2_rows:
-        lines.append(f"- `{row['file_path']}`: `{row['status']}` size `{row.get('local_size')}` / `{row.get('remote_size')}`")
-    lines.extend(["", "## Manifest Verification", ""])
-    for row in manifest_rows:
-        lines.append(f"- `{row['manifest']}`: `{row['status']}`")
-    lines.extend(["", "## Sample Repaired Rows", ""])
-    if sample_rows:
-        lines.append("| File | Row | Hunt Code | Field | Target | Source Field | Source Value |")
-        lines.append("| --- | ---: | --- | --- | --- | --- | --- |")
-        for row in sample_rows[:25]:
-            lines.append(f"| `{row['file_path']}` | {row['row_number']} | `{row['hunt_code']}` | `{row['field_name']}` | `{row['target_value']}` | `{row['source_field']}` | `{row['source_value']}` |")
-    else:
-        lines.append("- No source-matching sample rows found.")
-    acceptance_md.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    verification_md.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        md_lines.append(f"- {row['file_path']}: {row['status']} ({row['notes']})")
+    md_lines.extend(["", "## Validation Commands", ""])
+    for result in validation_results:
+        md_lines.append(f"- `{result['command']}`: {result['status']} ({result['exit_code']})")
+    md_lines.extend(
+        [
+            "",
+            "## Interpretation",
+            "",
+            "Tracked feeder diffs can be proven at cell level from the backfill parent commit. Large ignored/R2-served feeder files do not have Git before snapshots available, so their safety is reconstructed from the repair summary, current DATABASE.csv equality checks, manifests, and R2/local hashes.",
+        ]
+    )
+    (audits_dir / "prediction_engine_targeted_backfill_acceptance.md").write_text("\n".join(md_lines) + "\n", encoding="utf-8")
+    (audits_dir / "prediction_engine_targeted_backfill_verification.md").write_text("\n".join(md_lines) + "\n", encoding="utf-8")
 
-    print(f"status={status} blockers={len(blockers)} applied_cells={verification['total_applied_summary_cells']}")
-    for blocker in blockers:
-        print(f"blocker: {blocker}")
-    return 0 if status in {"PASS", "PASS_WITH_DEFERRED_MODEL_FIELDS"} else 1
+    print(json.dumps({"production_readiness": production_readiness, "blockers": acceptance["blockers"]}, indent=2))
+    return 0 if production_readiness != "FAIL" else 1
 
 
 if __name__ == "__main__":

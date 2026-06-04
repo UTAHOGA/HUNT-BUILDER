@@ -15809,6 +15809,53 @@ Validation commands run:
 Commit:
 - Pending validation and commit.
 
+# 2026-06-04T09:50:08Z - Targeted prediction feeder backfill acceptance audit
+
+Scope:
+- Reviewed the targeted prediction-feeder backfill performed in commit `0f011540053b799ae8aae5227f1227da674a88ba`.
+- Created a read-only acceptance verifier and audit outputs.
+- Did not make new feeder repairs.
+- Did not modify `DATABASE.csv`, prediction feeder CSVs, model logic, runtime manifests, or R2 objects.
+
+Files changed:
+- tools/verify_prediction_engine_targeted_backfill.py
+- processed_data/audits/prediction_engine_targeted_backfill_acceptance.md
+- processed_data/audits/prediction_engine_targeted_backfill_acceptance.json
+- processed_data/audits/prediction_engine_targeted_backfill_column_diff.csv
+- processed_data/audits/prediction_engine_targeted_backfill_forbidden_field_check.csv
+- processed_data/audits/prediction_engine_targeted_backfill_r2_verification.csv
+- processed_data/audits/prediction_engine_targeted_backfill_verification.csv
+- processed_data/audits/prediction_engine_targeted_backfill_verification.json
+- processed_data/audits/prediction_engine_targeted_backfill_verification.md
+- WORK_LOG.md
+
+Key results:
+- Production readiness result: FAIL.
+- R2/local verification passed for all six repaired feeder files: byte size, sha256, row count, and headers matched.
+- Both runtime manifests accurately described the six published files and matched local sizes.
+- Forbidden-field check found no summary-applied changes to probability/model/draw-truth columns.
+- Git before/after proof is unavailable for four large ignored/R2-served feeder files: `processed_data/point_ladder_view.csv`, `processed_data/draw_reality_engine_predictive_v2.csv`, `processed_data/hunt_master_enriched.csv`, and `processed_data/draw_reality_engine.csv`.
+- Tracked-file before/after proof found two non-summary changed field families caused by full CSV rewrite/encoding normalization: `hunt_name` in `processed_data/ml_draw_predictions_v1.csv` and `bg_odds_hunt_title` in `processed_data/hunt_unit_reference_linked.csv`.
+- Quota arithmetic failed in `processed_data/ml_draw_predictions_v1.csv` for existing `permit_allotment_2026_*` rows, so the acceptance audit cannot certify the repaired feeder set as production-safe.
+- No standalone blank-cell audit rerun script was found; existing blank-cell audit output exists, but rerun was marked blocked.
+
+Validation commands run:
+- PYTHONPATH=. python tools/verify_prediction_engine_targeted_backfill.py --root .
+- python -m compileall -q engine scripts tools tests
+- python tools/audit_engine_feeders.py --root . --forecast-year 2026 --warn-only
+- python -m pytest -q tests/test_engine_feeder_audit_tools.py
+- python -m pytest -q tests
+- git diff --check
+
+Validation notes:
+- The acceptance verifier exited with code 1 as expected for FAIL.
+- Targeted feeder-audit tests passed: 4 passed.
+- Full test suite failed during collection because `tests/test_extract_permits.py` imports missing module `extract_permits`.
+- `git diff --check` passed.
+
+Commit:
+- Pending validation and commit.
+
 ## 2026-06-04T07:59:13Z - Ignore oversized Research audit payloads blocking GitHub Desktop
 
 Scope:
