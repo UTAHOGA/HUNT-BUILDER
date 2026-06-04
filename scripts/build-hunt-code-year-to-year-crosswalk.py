@@ -45,11 +45,11 @@ REVIEWED_DISCONTINUED_AFTER_2020 = {
     "RS6702": "2020 application-guide and harvest-confirmed Rocky Mountain bighorn Box Elder Pilot Mtn row; absent from 2021 checks; no safe successor.",
 }
 
-REVIEWED_2020_TO_2021_SOURCE_GAPS = {
-    "CG1030": "Official 2020-21 cougar guide confirms this code remained active; Bible year-document comparison missed the cougar guide.",
-    "CG7613": "Official 2020-21 cougar guide confirms this code remained active; Bible year-document comparison missed the cougar guide.",
-    "CG7615": "Official 2020-21 cougar guide confirms this code remained active; Bible year-document comparison missed the cougar guide.",
-    "CG7619": "Official 2020-21 cougar guide confirms this code remained active; Bible year-document comparison missed the cougar guide.",
+REVIEWED_2020_TO_2021_COUGAR_ACTIVE_CONTINUITY = {
+    "CG1030": "Official 2020-21 cougar guide confirms exact-code active continuity.",
+    "CG7613": "Official 2020-21 cougar guide confirms exact-code active continuity.",
+    "CG7615": "Official 2020-21 cougar guide confirms exact-code active continuity.",
+    "CG7619": "Official 2020-21 cougar guide confirms exact-code active continuity.",
 }
 
 REVIEWED_2021_TO_2022_SUCCESSORS = {
@@ -63,8 +63,8 @@ REVIEWED_2021_TO_2022_SUCCESSORS = {
     "BR7236": ("BR7215", "2022 bear guide p20 confirms Plateau, Boulder/Kaiparowits fall limited-entry replacement row."),
 }
 
-REVIEWED_2021_TO_2022_SOURCE_GAPS = {
-    "CG7503": "Official 2021-22 cougar guide confirms Morgan-South Rich remained active; Bible year-document comparison missed the cougar guide.",
+REVIEWED_2021_TO_2022_COUGAR_ACTIVE_CONTINUITY = {
+    "CG7503": "Official 2021-22 cougar guide confirms Morgan-South Rich exact-code active continuity.",
 }
 
 REVIEWED_2021_TO_2022_ARTIFACTS = {
@@ -99,18 +99,18 @@ REVIEWED_2021_TO_2022_ANTLERLESS_DISCONTINUED = {
     "PD1039": "2021 antlerless PDF confirms PD1039; 2022 and 2023 antlerless draw-results PDFs have no exact code and no same-unit successor for Panguitch Lake/Zion, North doe pronghorn.",
 }
 
-REVIEWED_2022_TO_2023_SPORTSMAN_SOURCE_GAPS = {
-    "BI1000": "2023 sportsman draw-results PDF confirms BI1000 Sportsman Bison on p1; comprehensive presence matrix missed the 2023 sportsman source.",
-    "BR1000": "2023 bear guide p19 confirms sportsman bear permits are available, and the 2023 sportsman draw-results PDF confirms BR1000 Sportsman Black Bear on p1; comprehensive presence matrix missed the 2023 sportsman source.",
-    "CG1000": "2023 clean sportsman source confirms CG1000 Sportsman Cougar for the 2022_PERMITS=2023_MODEL sportsman row set; do not treat the Sportsman Cougar permit as discontinued in the 2022->2023 comparison. Cougar regulations document the later statewide/no-additional-permit structure separately from this sportsman draw-results row.",
-    "DB0007": "2023 sportsman draw-results PDF confirms DB0007 Sportsman Deer on p1; comprehensive presence matrix missed the 2023 sportsman source.",
-    "DS1000": "2023 sportsman draw-results PDF confirms DS1000 Sportsman Desert Bighorn Sheep on p1; comprehensive presence matrix missed the 2023 sportsman source.",
-    "EB1000": "2023 sportsman draw-results PDF confirms EB1000 Sportsman Elk on p1; comprehensive presence matrix missed the 2023 sportsman source.",
-    "GO1000": "2023 sportsman draw-results PDF confirms GO1000 Sportsman Mountain Goat on p1; comprehensive presence matrix missed the 2023 sportsman source.",
-    "MB1000": "2023 sportsman draw-results PDF confirms MB1000 Sportsman Moose on p1; comprehensive presence matrix missed the 2023 sportsman source.",
-    "PB1000": "2023 sportsman draw-results PDF confirms PB1000 Sportsman Pronghorn on p1; comprehensive presence matrix missed the 2023 sportsman source.",
-    "RS0001": "2023 sportsman draw-results PDF confirms RS0001 Sportsman Rocky Mtn Bighorn Sheep on p1; comprehensive presence matrix missed the 2023 sportsman source.",
-    "TK0001": "2023 sportsman draw-results PDF confirms TK0001 Sportsman Bearded Turkey on p1; comprehensive presence matrix missed the 2023 sportsman source.",
+REVIEWED_2022_TO_2023_SPORTSMAN_ACTIVE_CONTINUITY = {
+    "BI1000": "Sportsman Bison is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
+    "BR1000": "Sportsman Black Bear is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
+    "CG1000": "Sportsman Cougar is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; do not collapse it into CG9999 in the sportsman row set. Cougar regulations document the later general statewide/no-additional-permit structure separately from this sportsman draw-results row.",
+    "DB0007": "Sportsman Deer is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
+    "DS1000": "Sportsman Desert Bighorn Sheep is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
+    "EB1000": "Sportsman Elk is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
+    "GO1000": "Sportsman Mountain Goat is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
+    "MB1000": "Sportsman Moose is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
+    "PB1000": "Sportsman Pronghorn is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
+    "RS0001": "Sportsman Rocky Mtn Bighorn Sheep is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
+    "TK0001": "Sportsman Bearded Turkey is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
 }
 
 REVIEWED_2022_TO_2023_SPORTSMAN_SOURCE_FILES = {
@@ -389,8 +389,8 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                 if from_year == 2020 and to_year == 2021
                 else None
             )
-            reviewed_source_gap_note = (
-                REVIEWED_2020_TO_2021_SOURCE_GAPS.get(code)
+            reviewed_2020_2021_cougar_active_continuity_note = (
+                REVIEWED_2020_TO_2021_COUGAR_ACTIVE_CONTINUITY.get(code)
                 if from_year == 2020 and to_year == 2021
                 else None
             )
@@ -399,8 +399,8 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                 if from_year == 2021 and to_year == 2022
                 else None
             )
-            reviewed_2021_2022_source_gap_note = (
-                REVIEWED_2021_TO_2022_SOURCE_GAPS.get(code)
+            reviewed_2021_2022_cougar_active_continuity_note = (
+                REVIEWED_2021_TO_2022_COUGAR_ACTIVE_CONTINUITY.get(code)
                 if from_year == 2021 and to_year == 2022
                 else None
             )
@@ -419,8 +419,8 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                 if from_year == 2021 and to_year == 2022
                 else None
             )
-            reviewed_2022_2023_sportsman_source_gap_note = (
-                REVIEWED_2022_TO_2023_SPORTSMAN_SOURCE_GAPS.get(code)
+            reviewed_2022_2023_sportsman_active_continuity_note = (
+                REVIEWED_2022_TO_2023_SPORTSMAN_ACTIVE_CONTINUITY.get(code)
                 if from_year == 2022 and to_year == 2023
                 else None
             )
@@ -501,7 +501,7 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                         note,
                     )
                 )
-            elif reviewed_source_gap_note:
+            elif reviewed_2020_2021_cougar_active_continuity_note:
                 right = dict(left)
                 right["identity_source"] = "REVIEWED_2020_21_COUGAR_GUIDE"
                 crosswalk_rows.append(
@@ -510,8 +510,8 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                         to_year,
                         code,
                         code,
-                        "REVIEWED_PRESENT_IN_2021_COUGAR_GUIDE_SOURCE_GAP",
-                        "OFFICIAL_COUGAR_GUIDE_PRESENT",
+                        "REVIEWED_2021_COUGAR_ACTIVE_CONTINUITY",
+                        "REVIEWED_ACTIVE_COUGAR_GUIDE",
                         1.0,
                         "EXACT_CODE_EXTERNAL_SOURCE",
                         left,
@@ -522,10 +522,10 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                             "source_pages": "18",
                             "source_kinds": "regulations",
                         },
-                        reviewed_source_gap_note,
+                        reviewed_2020_2021_cougar_active_continuity_note,
                     )
                 )
-            elif reviewed_2021_2022_source_gap_note:
+            elif reviewed_2021_2022_cougar_active_continuity_note:
                 right = dict(left)
                 right["identity_source"] = "REVIEWED_2021_22_COUGAR_GUIDE"
                 crosswalk_rows.append(
@@ -534,8 +534,8 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                         to_year,
                         code,
                         code,
-                        "REVIEWED_PRESENT_IN_2022_COUGAR_GUIDE_SOURCE_GAP",
-                        "OFFICIAL_COUGAR_GUIDE_PRESENT",
+                        "REVIEWED_2022_COUGAR_ACTIVE_CONTINUITY",
+                        "REVIEWED_ACTIVE_COUGAR_GUIDE",
                         1.0,
                         "EXACT_CODE_EXTERNAL_SOURCE",
                         left,
@@ -546,7 +546,7 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                             "source_pages": "19|20",
                             "source_kinds": "regulations",
                         },
-                        reviewed_2021_2022_source_gap_note,
+                        reviewed_2021_2022_cougar_active_continuity_note,
                     )
                 )
             elif reviewed_2021_2022_artifact_note:
@@ -589,9 +589,9 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                         reviewed_2021_2022_antlerless_discontinued_note,
                     )
                 )
-            elif reviewed_2022_2023_sportsman_source_gap_note:
+            elif reviewed_2022_2023_sportsman_active_continuity_note:
                 right = dict(left)
-                right["identity_source"] = "REVIEWED_2023_SPORTSMAN_DRAW_RESULTS"
+                right["identity_source"] = "REVIEWED_SPORTSMAN_ACTIVE_CONTINUITY"
                 source_files = REVIEWED_2022_TO_2023_SPORTSMAN_SOURCE_FILES.get(
                     code,
                     "C:/Users/tyler/Desktop/BIBLE HUNT CODES/2023/.pdf/2023_PERMITS=2024_MODEL__SPORTSMAN DRAW RESULTS.pdf",
@@ -602,8 +602,8 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                         to_year,
                         code,
                         code,
-                        "REVIEWED_PRESENT_IN_2023_SPORTSMAN_SOURCE_GAP",
-                        "OFFICIAL_SPORTSMAN_DRAW_RESULTS_PRESENT",
+                        "REVIEWED_SPORTSMAN_ACTIVE_CONTINUITY",
+                        "REVIEWED_ACTIVE_SPORTSMAN_PERMIT_HUNT",
                         1.0,
                         "EXACT_CODE_EXTERNAL_SOURCE",
                         left,
@@ -614,7 +614,7 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                             "source_pages": "1",
                             "source_kinds": "draw_results",
                         },
-                        reviewed_2022_2023_sportsman_source_gap_note,
+                        reviewed_2022_2023_sportsman_active_continuity_note,
                     )
                 )
             elif candidates:
@@ -802,10 +802,10 @@ def summarize(crosswalk_rows: list[dict[str, object]], candidate_rows: list[dict
                 for row in crosswalk_rows
                 if row["crosswalk_status"] == "REVIEWED_DISCONTINUED_AFTER_2020_NO_SUCCESSOR"
             ),
-            "reviewed_2020_to_2021_source_gap_rows": sum(
+            "reviewed_2020_to_2021_cougar_active_continuity_rows": sum(
                 1
                 for row in crosswalk_rows
-                if row["crosswalk_status"] == "REVIEWED_PRESENT_IN_2021_COUGAR_GUIDE_SOURCE_GAP"
+                if row["crosswalk_status"] == "REVIEWED_2021_COUGAR_ACTIVE_CONTINUITY"
             ),
             "reviewed_2021_to_2022_successor_rows": sum(
                 1
@@ -822,20 +822,20 @@ def summarize(crosswalk_rows: list[dict[str, object]], candidate_rows: list[dict
                 for row in crosswalk_rows
                 if row["crosswalk_status"] == "REVIEWED_DISCONTINUED_AFTER_2021_NO_2022_ANTLERLESS_SUCCESSOR"
             ),
-            "reviewed_2021_to_2022_source_gap_rows": sum(
+            "reviewed_2021_to_2022_cougar_active_continuity_rows": sum(
                 1
                 for row in crosswalk_rows
-                if row["crosswalk_status"] == "REVIEWED_PRESENT_IN_2022_COUGAR_GUIDE_SOURCE_GAP"
+                if row["crosswalk_status"] == "REVIEWED_2022_COUGAR_ACTIVE_CONTINUITY"
             ),
             "reviewed_2021_to_2022_artifact_rows": sum(
                 1
                 for row in crosswalk_rows
                 if row["crosswalk_status"] == "REVIEWED_SOURCE_YEAR_ARTIFACT_NOT_TRUE_DROP"
             ),
-            "reviewed_2022_to_2023_sportsman_source_gap_rows": sum(
+            "reviewed_2022_to_2023_sportsman_active_continuity_rows": sum(
                 1
                 for row in crosswalk_rows
-                if row["crosswalk_status"] == "REVIEWED_PRESENT_IN_2023_SPORTSMAN_SOURCE_GAP"
+                if row["crosswalk_status"] == "REVIEWED_SPORTSMAN_ACTIVE_CONTINUITY"
             ),
         },
         "crosswalk_status_counts": dict(status_counts),
@@ -857,7 +857,7 @@ def summarize(crosswalk_rows: list[dict[str, object]], candidate_rows: list[dict
             "Known A-prefixed Sportsman/OCR artifacts are excluded from this crosswalk; normalized real hunt codes remain eligible.",
             "Reviewed 2020-to-2021 discontinuation decisions are recorded separately and are not successor mappings.",
             "Reviewed 2021-to-2022 antlerless decisions use the official 2021, 2022, and 2023 antlerless draw-results PDFs to separate true successors from discontinued rows.",
-            "Reviewed 2022-to-2023 sportsman source-gap decisions use the official 2023 sportsman draw-results PDF or clean sportsman extract where noted; they are exact-code continuity rows, not successor mappings.",
+            "Reviewed 2022-to-2023 sportsman decisions are active sportsman permit-hunt continuity rows across the analyzed source years; they are not discontinuations or successor mappings.",
         ],
     }
 
@@ -880,13 +880,13 @@ def write_report(summary: dict[str, object]) -> None:
         f"- Crosswalk rows: `{summary['row_counts']['crosswalk_rows']}`",
         f"- Candidate rows: `{summary['row_counts']['candidate_rows']}`",
         f"- Reviewed 2020->2021 discontinued/no-successor rows: `{summary['row_counts']['reviewed_2020_to_2021_discontinuation_rows']}`",
-        f"- Reviewed 2020->2021 source-gap continuity rows: `{summary['row_counts']['reviewed_2020_to_2021_source_gap_rows']}`",
+        f"- Reviewed 2020->2021 cougar active-continuity rows: `{summary['row_counts']['reviewed_2020_to_2021_cougar_active_continuity_rows']}`",
         f"- Reviewed 2021->2022 bear successor rows: `{summary['row_counts']['reviewed_2021_to_2022_successor_rows']}`",
         f"- Reviewed 2021->2022 antlerless successor rows: `{summary['row_counts']['reviewed_2021_to_2022_antlerless_successor_rows']}`",
         f"- Reviewed 2021->2022 antlerless discontinued/no-successor rows: `{summary['row_counts']['reviewed_2021_to_2022_antlerless_discontinued_rows']}`",
-        f"- Reviewed 2021->2022 source-gap continuity rows: `{summary['row_counts']['reviewed_2021_to_2022_source_gap_rows']}`",
+        f"- Reviewed 2021->2022 cougar active-continuity rows: `{summary['row_counts']['reviewed_2021_to_2022_cougar_active_continuity_rows']}`",
         f"- Reviewed 2021->2022 source-artifact rows: `{summary['row_counts']['reviewed_2021_to_2022_artifact_rows']}`",
-        f"- Reviewed 2022->2023 sportsman source-gap continuity rows: `{summary['row_counts']['reviewed_2022_to_2023_sportsman_source_gap_rows']}`",
+        f"- Reviewed 2022->2023 sportsman active-continuity rows: `{summary['row_counts']['reviewed_2022_to_2023_sportsman_active_continuity_rows']}`",
         "- Candidate rows list up to five same-prefix successor candidates per dropped code; they are not promoted one-to-one links.",
         "",
         "## Codes By Report Year",

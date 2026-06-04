@@ -13554,7 +13554,7 @@ o_table=0).
 ## 2026-06-03T23:11:30Z - Apply 2023 Sportsman Evidence To 2022 To 2023 Hunt Code Crosswalk
 
 - Assigned step:
-  - Use the provided 2023 bear source and 2023 sportsman source evidence to resolve applicable `2022->2023` bear/sportsman source-gap rows.
+  - Use the provided 2023 bear source and 2023 sportsman source evidence to resolve applicable `2022->2023` bear/sportsman reviewed continuity rows.
 
 - Source files reviewed:
   - `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2023/pdf/regulations/2023_bear.pdf`
@@ -13574,9 +13574,9 @@ o_table=0).
   - `processed_data/audits/hunt_code_year_to_year_reviewed_decisions_2022_to_2023.csv`
 
 - Key results:
-  - Reviewed `2022->2023` sportsman source-gap continuity rows recorded: `10`
+  - Reviewed `2022->2023` sportsman active-continuity rows recorded: `10`
   - Generic `DROPPED_NO_SUCCESSOR_CANDIDATE` rows remaining for `2022->2023`: `32`
-  - Reviewed source-gap continuity codes:
+  - Reviewed active-continuity codes:
     - `BI1000`, `BR1000`, `DB0007`, `DS1000`, `EB1000`, `GO1000`, `MB1000`, `PB1000`, `RS0001`, `TK0001`
 
 - Source-disambiguation note:
@@ -13587,18 +13587,18 @@ o_table=0).
 - Data-change note:
   - `DATABASE.csv` was not modified.
   - No permit values were promoted.
-  - Reviewed rows are exact-code source-gap continuity rows, not successor mappings.
+  - Reviewed rows are exact-code active-continuity rows, not successor mappings.
 
 - Validation:
   - `python scripts\build-hunt-code-year-to-year-crosswalk.py`: `PASS`
   - `python -m py_compile scripts\build-hunt-code-year-to-year-crosswalk.py`: `PASS`
-  - Verified `2022->2023` status counts include `931` exact retained, `47` candidate successors, `10` reviewed sportsman source-gap continuity, `32` generic dropped/no successor, and `58` added/no predecessor.
+  - Verified `2022->2023` status counts include `931` exact retained, `47` candidate successors, `10` reviewed sportsman active-continuity rows, `32` generic dropped/no successor, and `58` added/no predecessor.
   - Verified reviewed decision CSV row count for `2022->2023`: `10`
   - Verified expected reviewed sportsman code set exactly matches the 10-row closure set.
   - `git diff --check -- <changed files>`: `PASS` with line-ending warning only for the changed script
 
 - Commit:
-  - `56590c40` - `Close 2022 to 2023 sportsman source gaps`
+  - `56590c40` - `Close 2022 to 2023 sportsman continuity rows`
 
 ## 2026-06-03T23:17:12Z - Correct Sportsman Cougar CG1000 2022 To 2023 Crosswalk Decision
 
@@ -13623,9 +13623,9 @@ o_table=0).
   - `WORK_LOG.md`
 
 - Key results:
-  - `CG1000` is now recorded as `REVIEWED_PRESENT_IN_2023_SPORTSMAN_SOURCE_GAP` for the `2022->2023` comparison.
+  - `CG1000` is now recorded as reviewed sportsman active continuity for the `2022->2023` comparison.
   - The row remains `CG1000 -> CG1000`; it is not mapped to `CG9999` in the sportsman row set.
-  - Reviewed `2022->2023` sportsman source-gap continuity rows increased from `10` to `11`.
+  - Reviewed `2022->2023` sportsman active-continuity rows increased from `10` to `11`.
   - Generic `DROPPED_NO_SUCCESSOR_CANDIDATE` rows for `2022->2023` decreased from `32` to `31`.
   - Cougar regulation evidence is documented as the later statewide/no-additional-permit structure, separate from the Sportsman Cougar draw-results row.
 
@@ -13637,9 +13637,46 @@ o_table=0).
 - Validation:
   - `python scripts\build-hunt-code-year-to-year-crosswalk.py`: `PASS`
   - `python -m py_compile scripts\build-hunt-code-year-to-year-crosswalk.py`: `PASS`
-  - Verified `CG1000` row in `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026.csv`: `CG1000 -> CG1000`, reviewed sportsman source-gap continuity.
+  - Verified `CG1000` row in `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026.csv`: `CG1000 -> CG1000`, reviewed sportsman active continuity.
   - Verified reviewed decision CSV row count for `2022->2023`: `11`
   - Verified `2022->2023` generic dropped/no-successor count: `31`
 
 - Commit:
   - `ff978d3b` - `Correct sportsman cougar crosswalk decision`
+
+## 2026-06-04T00:09:41Z - Replace Reviewed Continuity Wording In Active Crosswalk Outputs
+
+- Assigned step:
+  - Replace misleading gap wording in active year-to-year crosswalk classifications after user clarified the reviewed sportsman permit hunts have continuity in application, drawing, delivery, and active hunt status.
+
+- Files changed:
+  - `scripts/build-hunt-code-year-to-year-crosswalk.py`
+  - `docs/hunt_code_year_to_year_crosswalk_2020_2026.md`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026.csv`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026_summary.json`
+  - `processed_data/audits/hunt_code_year_to_year_reviewed_decisions_2020_to_2021.csv`
+  - `processed_data/audits/hunt_code_year_to_year_reviewed_decisions_2021_to_2022.csv`
+  - `processed_data/audits/hunt_code_year_to_year_reviewed_decisions_2022_to_2023.csv`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Sportsman permit rows now use `REVIEWED_SPORTSMAN_ACTIVE_CONTINUITY`.
+  - Cougar guide-reviewed continuity rows now use `REVIEWED_2021_COUGAR_ACTIVE_CONTINUITY` and `REVIEWED_2022_COUGAR_ACTIVE_CONTINUITY`.
+  - Reviewed `2022->2023` sportsman active-continuity rows remain `11`.
+  - `CG1000` remains `CG1000 -> CG1000`.
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values were promoted.
+  - This was a classification/wording correction in active crosswalk outputs.
+
+- Validation:
+  - `python scripts\build-hunt-code-year-to-year-crosswalk.py`: `PASS`
+  - `python -m py_compile scripts\build-hunt-code-year-to-year-crosswalk.py`: `PASS`
+  - Reviewed active-continuity assertion checks: `PASS`
+  - Active crosswalk output search for replaced wording: `PASS`
+  - Recent work-log tail search for replaced wording: `PASS`
+  - `git diff --check -- <changed files>`: `PASS` with line-ending warning only for the changed script
+
+- Commit:
+  - Pending at log-write time.
