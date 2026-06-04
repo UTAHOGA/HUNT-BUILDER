@@ -1,14 +1,16 @@
 {
-  "generated_at": "2026-06-04T09:49:15.152434+00:00",
+  "generated_at": "2026-06-04T10:13:03.446439+00:00",
   "production_readiness": "FAIL",
   "blockers": [
     "before_after_unavailable_for_large_ignored_files",
     "blank_cell_audit_rerun_script_not_found",
+    "manifest_mismatch",
     "processed_data/draw_reality_engine.csv:before_snapshot_unavailable",
     "processed_data/draw_reality_engine_predictive_v2.csv:before_snapshot_unavailable",
     "processed_data/hunt_master_enriched.csv:before_snapshot_unavailable",
     "processed_data/point_ladder_view.csv:before_snapshot_unavailable",
     "quota_arithmetic_failed",
+    "r2_local_mismatch",
     "source_backing_failed"
   ],
   "verified_changed_cells": 119263,

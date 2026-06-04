@@ -1,6 +1,6 @@
 # Prediction Engine Targeted Backfill Acceptance
 
-Generated: 2026-06-04T09:49:15.152434+00:00
+Generated: 2026-06-04T10:13:03.446439+00:00
 Production readiness: **FAIL**
 
 ## Scope
@@ -11,11 +11,13 @@ This audit is read-only. It verifies the previous targeted feeder backfill again
 
 - before_after_unavailable_for_large_ignored_files
 - blank_cell_audit_rerun_script_not_found
+- manifest_mismatch
 - processed_data/draw_reality_engine.csv:before_snapshot_unavailable
 - processed_data/draw_reality_engine_predictive_v2.csv:before_snapshot_unavailable
 - processed_data/hunt_master_enriched.csv:before_snapshot_unavailable
 - processed_data/point_ladder_view.csv:before_snapshot_unavailable
 - quota_arithmetic_failed
+- r2_local_mismatch
 - source_backing_failed
 
 ## File Results
@@ -94,10 +96,10 @@ This audit is read-only. It verifies the previous targeted feeder backfill again
 
 ## R2 Verification
 
-- processed_data/point_ladder_view.csv: PASS (local and R2 match)
+- processed_data/point_ladder_view.csv: FAIL (byte_size_mismatch; sha256_mismatch; manifest_mismatch)
 - processed_data/draw_reality_engine_predictive_v2.csv: PASS (local and R2 match)
 - processed_data/ml_draw_predictions_v1.csv: PASS (local and R2 match)
-- processed_data/hunt_master_enriched.csv: PASS (local and R2 match)
+- processed_data/hunt_master_enriched.csv: FAIL (byte_size_mismatch; sha256_mismatch; manifest_mismatch)
 - processed_data/draw_reality_engine.csv: PASS (local and R2 match)
 - processed_data/hunt_unit_reference_linked.csv: PASS (local and R2 match)
 

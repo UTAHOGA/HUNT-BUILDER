@@ -536,7 +536,7 @@
         "truth_source_status"
       ],
       "exists": true,
-      "size_bytes": 150953154,
+      "size_bytes": 149455159,
       "row_count": 91712,
       "column_count": 159,
       "columns": [
@@ -965,7 +965,7 @@
         "truth_source_status"
       ],
       "exists": true,
-      "size_bytes": 56519749,
+      "size_bytes": 56572843,
       "row_count": 53225,
       "column_count": 81,
       "columns": [
@@ -2426,7 +2426,7 @@
         "truth_source_status"
       ],
       "exists": true,
-      "size_bytes": 56519749,
+      "size_bytes": 56572843,
       "row_count": 53225,
       "column_count": 81,
       "columns": [
@@ -3923,7 +3923,7 @@
         "truth_source_status"
       ],
       "exists": true,
-      "size_bytes": 150953154,
+      "size_bytes": 149455159,
       "row_count": 91712,
       "column_count": 159,
       "columns": [

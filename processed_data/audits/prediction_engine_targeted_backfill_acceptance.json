@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-04T09:49:15.152434+00:00",
+  "generated_at": "2026-06-04T10:13:03.446439+00:00",
   "production_readiness": "FAIL",
   "database": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
   "summary": "processed_data/audits/prediction_engine_targeted_backfill_summary.csv",
@@ -10,17 +10,20 @@
     "approved_allowlist_checked": true,
     "forbidden_fields_checked": true,
     "r2_checked": true,
+    "remote_base": "https://json.uoga.workers.dev/",
     "manifests_checked": true,
     "validation_commands_run": true
   },
   "blockers": [
     "before_after_unavailable_for_large_ignored_files",
     "blank_cell_audit_rerun_script_not_found",
+    "manifest_mismatch",
     "processed_data/draw_reality_engine.csv:before_snapshot_unavailable",
     "processed_data/draw_reality_engine_predictive_v2.csv:before_snapshot_unavailable",
     "processed_data/hunt_master_enriched.csv:before_snapshot_unavailable",
     "processed_data/point_ladder_view.csv:before_snapshot_unavailable",
     "quota_arithmetic_failed",
+    "r2_local_mismatch",
     "source_backing_failed"
   ],
   "before_unavailable_files": [
@@ -3014,15 +3017,15 @@
     {
       "file_path": "processed_data/point_ladder_view.csv",
       "canonical_url": "https://json.uoga.workers.dev/processed_data/point_ladder_view.csv",
-      "local_size_bytes": 150953154,
+      "local_size_bytes": 149455159,
       "remote_size_bytes": 150953154,
-      "local_sha256": "f768a4a0cbaf24a6a4dc869f19f36064ae2cb458debec2ca4a018b5a198069f9",
+      "local_sha256": "d3dc56a47a17e3c553370bae3ffef484f2f82f27866f608fd365ac12d12db855",
       "remote_sha256": "f768a4a0cbaf24a6a4dc869f19f36064ae2cb458debec2ca4a018b5a198069f9",
       "local_row_count": 91712,
       "remote_row_count": 91712,
       "header_equal": "YES",
-      "status": "PASS",
-      "notes": "local and R2 match"
+      "status": "FAIL",
+      "notes": "byte_size_mismatch; sha256_mismatch; manifest_mismatch"
     },
     {
       "file_path": "processed_data/draw_reality_engine_predictive_v2.csv",
@@ -3053,15 +3056,15 @@
     {
       "file_path": "processed_data/hunt_master_enriched.csv",
       "canonical_url": "https://json.uoga.workers.dev/processed_data/hunt_master_enriched.csv",
-      "local_size_bytes": 56519749,
+      "local_size_bytes": 56572843,
       "remote_size_bytes": 56519749,
-      "local_sha256": "6b5667d1b64dde70f42cbbcfef39c31e51ca45ba57d9496c0ec1dc287c3bc18b",
+      "local_sha256": "480e518c7e2648239860a76cf2abd3679cefd2e0cab2f2994cb7e2cd4740dadd",
       "remote_sha256": "6b5667d1b64dde70f42cbbcfef39c31e51ca45ba57d9496c0ec1dc287c3bc18b",
       "local_row_count": 53225,
       "remote_row_count": 53225,
       "header_equal": "YES",
-      "status": "PASS",
-      "notes": "local and R2 match"
+      "status": "FAIL",
+      "notes": "byte_size_mismatch; sha256_mismatch; manifest_mismatch"
     },
     {
       "file_path": "processed_data/draw_reality_engine.csv",
@@ -3097,16 +3100,16 @@
         "file_path": "processed_data/point_ladder_view.csv",
         "canonical_url": "https://json.uoga.workers.dev/processed_data/point_ladder_view.csv",
         "manifest_size_bytes": 150953154,
-        "local_size_bytes": 150953154,
-        "status": "PASS"
+        "local_size_bytes": 149455159,
+        "status": "FAIL"
       },
       {
         "manifest": "data/runtime-manifest.json",
         "file_path": "processed_data/point_ladder_view.csv",
         "canonical_url": "https://json.uoga.workers.dev/processed_data/point_ladder_view.csv",
         "manifest_size_bytes": 150953154,
-        "local_size_bytes": 150953154,
-        "status": "PASS"
+        "local_size_bytes": 149455159,
+        "status": "FAIL"
       },
       {
         "manifest": "public/data/runtime-manifest.json",
@@ -3145,16 +3148,16 @@
         "file_path": "processed_data/hunt_master_enriched.csv",
         "canonical_url": "https://json.uoga.workers.dev/processed_data/hunt_master_enriched.csv",
         "manifest_size_bytes": 56519749,
-        "local_size_bytes": 56519749,
-        "status": "PASS"
+        "local_size_bytes": 56572843,
+        "status": "FAIL"
       },
       {
         "manifest": "data/runtime-manifest.json",
         "file_path": "processed_data/hunt_master_enriched.csv",
         "canonical_url": "https://json.uoga.workers.dev/processed_data/hunt_master_enriched.csv",
         "manifest_size_bytes": 56519749,
-        "local_size_bytes": 56519749,
-        "status": "PASS"
+        "local_size_bytes": 56572843,
+        "status": "FAIL"
       },
       {
         "manifest": "public/data/runtime-manifest.json",
@@ -3217,7 +3220,7 @@
       "exit_code": 0,
       "status": "PASS",
       "stdout_tail": "",
-      "stderr_tail": "warning: in the working copy of 'audits/engine_feeders/engine_feeder_audit.csv', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'tools/verify_prediction_engine_targeted_backfill.py', LF will be replaced by CRLF the next time Git touches it\n"
+      "stderr_tail": "warning: in the working copy of 'audits/engine_feeders/engine_feeder_audit.csv', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'tools/audit_engine_feeders.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'tools/verify_prediction_engine_targeted_backfill.py', LF will be replaced by CRLF the next time Git touches it\n"
     },
     {
       "command": "blank-cell audit rerun",

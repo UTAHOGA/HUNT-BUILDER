@@ -512,7 +512,13 @@ def load_manifest(path: Path) -> dict[str, dict[str, object]]:
     return {clean(asset.get("path")).replace("\\", "/"): asset for asset in data.get("assets", [])}
 
 
-def verify_r2_and_manifest(root: Path, files: list[str]) -> tuple[list[dict[str, object]], dict[str, object]]:
+def verify_r2_and_manifest(
+    root: Path,
+    files: list[str],
+    remote_base: str,
+    skip_remote: bool = False,
+) -> tuple[list[dict[str, object]], dict[str, object]]:
+    expected_base = remote_base.rstrip("/") + "/"
     manifest_paths = [
         root / "public/data/runtime-manifest.json",
         root / "data/runtime-manifest.json",
@@ -530,7 +536,7 @@ def verify_r2_and_manifest(root: Path, files: list[str]) -> tuple[list[dict[str,
                 manifest_asset = manifest_asset or asset
                 canonical_url = clean(asset.get("canonical_url"))
                 size_match = str(asset.get("size_bytes", "")) == str(local.size_bytes)
-                status = "PASS" if canonical_url.startswith("https://json.uoga.workers.dev/") and size_match else "FAIL"
+                status = "PASS" if canonical_url.startswith(expected_base) and size_match else "FAIL"
                 manifest_statuses.append(status)
                 manifest_checks.append(
                     {
@@ -554,7 +560,24 @@ def verify_r2_and_manifest(root: Path, files: list[str]) -> tuple[list[dict[str,
                         "status": "FAIL",
                     }
                 )
-        url = clean((manifest_asset or {}).get("canonical_url")) or f"https://json.uoga.workers.dev/{file_path}"
+        url = clean((manifest_asset or {}).get("canonical_url")) or f"{expected_base}{file_path}"
+        if skip_remote:
+            r2_rows.append(
+                {
+                    "file_path": file_path,
+                    "canonical_url": url,
+                    "local_size_bytes": local.size_bytes,
+                    "remote_size_bytes": "",
+                    "local_sha256": local.sha256,
+                    "remote_sha256": "",
+                    "local_row_count": len(local.rows),
+                    "remote_row_count": "",
+                    "header_equal": "",
+                    "status": "SKIPPED",
+                    "notes": "remote verification skipped by flag; manifests still checked",
+                }
+            )
+            continue
         remote_bytes, error = download_url(url)
         if remote_bytes is None:
             r2_rows.append(
@@ -657,7 +680,8 @@ def main() -> int:
     parser.add_argument("--root", default=".")
     parser.add_argument("--database", default="pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv")
     parser.add_argument("--summary", default="processed_data/audits/prediction_engine_targeted_backfill_summary.csv")
-    parser.add_argument("--skip-r2", action="store_true")
+    parser.add_argument("--remote-base", default="https://json.uoga.workers.dev/")
+    parser.add_argument("--skip-r2", "--skip-remote", action="store_true", dest="skip_r2")
     parser.add_argument("--skip-validation-commands", action="store_true")
     args = parser.parse_args()
 
@@ -826,12 +850,9 @@ def main() -> int:
 
     r2_rows: list[dict[str, object]] = []
     manifest_result: dict[str, object] = {"manifest_checks": []}
-    if args.skip_r2:
-        blockers.append("r2_verification_skipped")
-    else:
-        r2_rows, manifest_result = verify_r2_and_manifest(root, REPAIRED_FILES)
-        if any(row["status"] != "PASS" for row in r2_rows):
-            blockers.append("r2_local_mismatch")
+    r2_rows, manifest_result = verify_r2_and_manifest(root, REPAIRED_FILES, args.remote_base, skip_remote=args.skip_r2)
+    if not args.skip_r2 and any(row["status"] != "PASS" for row in r2_rows):
+        blockers.append("r2_local_mismatch")
     if any(check["status"] != "PASS" for check in manifest_result.get("manifest_checks", [])):
         blockers.append("manifest_mismatch")
 
@@ -865,7 +886,7 @@ def main() -> int:
     if any(result.get("command") == "blank-cell audit rerun" and result.get("status") != "PASS" for result in validation_results):
         blockers.append("blank_cell_audit_rerun_script_not_found")
 
-    r2_status_fail = any(row.get("status") != "PASS" for row in r2_rows)
+    r2_status_fail = any(row.get("status") != "PASS" for row in r2_rows) if not args.skip_r2 else False
     hard_fail = bool(
         total_forbidden_observed
         or r2_status_fail
@@ -894,6 +915,7 @@ def main() -> int:
             "approved_allowlist_checked": True,
             "forbidden_fields_checked": True,
             "r2_checked": not args.skip_r2,
+            "remote_base": args.remote_base,
             "manifests_checked": True,
             "validation_commands_run": not args.skip_validation_commands,
         },

@@ -26,6 +26,14 @@ from tools.engine_feeder_contract import FeederContract, feeders_for_group, grou
 
 AUDIT_DIR = Path("audits/engine_feeders")
 
+_FIELD_SIZE_LIMIT = sys.maxsize
+while True:
+    try:
+        csv.field_size_limit(_FIELD_SIZE_LIMIT)
+        break
+    except OverflowError:
+        _FIELD_SIZE_LIMIT = int(_FIELD_SIZE_LIMIT / 10)
+
 
 def _clean(value: object) -> str:
     return "" if value is None else str(value).strip()
