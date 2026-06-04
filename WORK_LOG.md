@@ -1,3 +1,48 @@
+## 2026-06-04T01:25:13Z - 2026 BIBLE Year Document Process Impact Check
+
+- Assigned action:
+  - Process 2026 BIBLE hunt-code source documents and test whether they resolve current unresolved 2026 permit rows.
+
+- Source:
+  - `scripts/build-bible-hunt-code-year-documents.py --only-year 2026`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2026.csv`
+  - `processed_data/audits/current_2026_hunt_code_permit_unresolved.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/`
+
+- Implementation:
+  - Re-ran the 2026 year-document rebuild from `C:/Users/tyler/Desktop/BIBLE HUNT CODES/2026/.pdf`.
+  - Compared `bible_hunt_code_year_document_2026.csv` against the unresolved code set.
+  - Wrote non-zero-permit overlap candidates to:
+    - `processed_data/audits/current_2026_permit_unresolved_split/bible_2026_overlap_summary.csv`.
+
+- Files updated:
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2026.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2026.xlsx`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_source_hits_2026.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/bible_2026_overlap_summary.csv`
+  - `WORK_LOG.md`
+
+- Key results:
+  - 2026 rebuild summary:
+    - raw source hits: `461`
+    - source files scanned: `18`
+    - unique hunt codes in 2026 doc output: `31` (all in dedicated-hunter deer source family).
+  - Overlap against unresolved set:
+    - unresolved-to-2026 overlap: `31` codes.
+    - non-zero permit overlap: `6` codes.
+    - overlap codes (all): `DB1770, DB1771, DB1772, DB1773, DB1775, DB1777, DB1778, DB1779, DB1780, DB1781, DB1782, DB1783, DB1785, DB1786, DB1787, DB1788, DB1790, DB1791, DB1792, DB1793, DB1794, DB1795, DB1798, DB1799, DB1800, DB1801, DB1802, DB1803, DB1804, DB1805, DB1806`.
+  - Non-zero overlap rows with permit values:
+    - `DB1773 (513/1/514)`, `DB1780 (32/0/32)`, `DB1783 (68/1/69)`, `DB1787 (138/19/157)`, `DB1791 (44/11/55)`, `DB1798 (137/2/139)`.
+
+- Decision:
+  - 2026 processing produced useful candidates, but no direct database truth-file edits were made in this pass.
+  - Next step is to route these 6 rows into the unresolved-resolution workflow and compare conflicts before promotion.
+
+- Validation:
+  - `python scripts/build-bible-hunt-code-year-documents.py --only-year 2026`: PASS
+  - Overlap count checks with unresolved CSV and `strong_3_source_current_matches.csv`: PASS (`31` overlap).
+  - Permit-sum candidate extraction from overlap set: PASS (`6` rows with non-zero totals).
+
 ## 2026-06-03T00:00:00Z - 2025-to-2026 CWMU/Tradeland Resolution Pass
 
 - Assigned action:
@@ -13931,3 +13976,1667 @@ o_table=0).
 
 - Commit:
   - `d2098cd5` - `Add 2021 and 2024 permit columns to BIBLE year docs`
+## 2026-06-04T02:25:00Z - Skip PDF path for 2026 permit ingestion and add crosswalk-assisted unresolved review
+
+- Assigned step:
+  - Complete permit ingestion from cleaned XLSX sources instead of PDFs and apply the provided 2026 crosswalk candidate file to unresolved permit rows.
+
+- Files changed:
+  - `scripts/export-clean-xlsx-to-csv-2026.py` (new)
+  - `processed_data/hard_data_exports/hunt_tables/2026/GENERATED_CSV/` (44 generated CSVs)
+  - `processed_data/audits/hunt_tables_2026_clean_xlsx_to_csv_audit.json`
+  - `processed_data/audits/current_2026_permit_unresolved_split/current_hunt_code_crosswalk_review_preview.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/current_hunt_code_crosswalk_exact_history_preview.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/current_hunt_code_crosswalk_review_summary.json`
+
+- Key results:
+  - Exported permit evidence from 168 cleaned XLSX sources into 44 per-table CSVs.
+  - Total exported permit rows: `2226`.
+  - Crosswalk review against `C:/Users/tyler/Desktop/GitHub/HUNTS/pages-dist/processed_data/current_to_historical_hunt_code_crosswalk_2026.csv`:
+    - unresolved rows reviewed: `438`
+    - crosswalk-matched rows: `167`
+    - unmatched unresolved rows: `271`
+    - exact-history promoted matches: `15`
+    - prefix-swap candidates: `138`
+    - parallel/public-reference candidates: `10`
+
+- Validation:
+  - `python -m py_compile scripts\export-clean-xlsx-to-csv-2026.py scripts\extract-2026-current-year-permit-pdfs.py`: `PASS`
+  - `python scripts\export-clean-xlsx-to-csv-2026.py`: `PASS`
+  - Verified generated CSV count: `44`
+  - Verified total data rows across generated CSVs: `2226`
+  - Verified crosswalk review summary counts written to JSON.
+
+- Data-change note:
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv` and other canonical truth tables were not modified in this pass.
+  - This step is extraction/review-only (no canonical truth overwrites).
+
+## 2026-06-04T02:19:00Z - Apply exact-code-history crosswalk matches to unresolved permit bucket
+
+- Assigned step:
+  - Move rows promoted as `PROMOTED_EXACT_HISTORY` from unresolved permit repair scope into a resolved bucket and refresh remaining-unresolved output.
+
+- Files changed:
+  - `scripts/resolve-current-2026-crosswalk-exact-history-matches.py` (new)
+
+- Files created:
+  - `processed_data/audits/current_2026_permit_unresolved_split/resolved_crosswalk_exact_history_matches.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/remaining_unresolved_after_crosswalk_exact_history_rule.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/current_2026_permit_crosswalk_exact_history_resolution_summary.json`
+
+- Key results:
+  - Exact-history crosswalk candidates applied: `15`.
+  - Unresolved source rows before this rule: `354`.
+  - Unresolved rows after this rule: `339`.
+  - Newly resolved rows: `15`.
+
+- Validation:
+  - `python -m py_compile scripts\\resolve-current-2026-crosswalk-exact-history-matches.py`: `PASS`
+  - `python scripts\\resolve-current-2026-crosswalk-exact-history-matches.py`: `PASS`
+  - Resolved rows count check:
+    - resolved file row count with header: `16` (15 rows)
+    - remaining file row count with header: `340` (339 rows)
+
+- Data-change note:
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv` and canonical source files were not modified.
+  - No source values were modified; only queue classification outputs were updated.
+
+## 2026-06-04T02:25:51Z - Apply deterministic crosswalk-review matches to unresolved permit bucket
+
+- Assigned step:
+  - Move rows with deterministic `REVIEWED_CURRENT_REFERENCE` and `PROMOTED_PARALLEL_PUBLIC_UNIT_REFERENCE` crosswalk statuses out of unresolved permit repair scope.
+  - Preserve full source provenance for unresolved rows and keep the remaining queue auditable.
+
+- Files changed:
+  - `scripts/resolve-current-2026-crosswalk-review-matches.py` (new)
+
+- Files created:
+  - `processed_data/audits/current_2026_permit_unresolved_split/resolved_crosswalk_review_matches.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/remaining_unresolved_after_crosswalk_review_rule.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/current_2026_permit_crosswalk_review_resolution_summary.json`
+
+- Key results:
+  - Source unresolved rows before this rule: `339`.
+  - Resolved in this pass: `14` (`10` parallel public-unit-reference + `4` reviewed current-reference).
+  - Unresolved rows after this pass: `325`.
+  - Remaining unresolved split composition in scope:
+    - `PROMOTED_PREFIX_SWAP_CANDIDATE`: `138`
+    - `<missing>`: `187`
+
+- Validation:
+  - `python -m py_compile scripts/resolve-current-2026-crosswalk-review-matches.py` - `PASS`
+  - `python scripts/resolve-current-2026-crosswalk-review-matches.py` - `PASS`
+  - Resolved row count check:
+    - resolved file row count with header: `15` (14 rows)
+    - remaining file row count with header: `326` (325 rows)
+    - source file count check: `339`
+
+- Data-change note:
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv` and canonical source tables were not modified.
+  - Source values were not edited; only control queues and audit outputs were updated.
+## 2026-06-04T02:31:00Z - Apply uploaded HUNTS current-to-historical crosswalk to remaining unresolved 2026 permit rows
+
+- Assigned step:
+  - Validate whether the user-loaded `HUNTS/pages-dist/processed_data/current_to_historical_hunt_code_crosswalk_2026.csv` resolves additional rows from the current unresolved permit repair queue.
+
+- Files changed:
+  - `scripts/resolve-current-2026-crosswalk-hunts-upload.py` (new)
+
+- Files created/updated:
+  - `processed_data/audits/current_2026_permit_unresolved_split/resolved_crosswalk_hunts_upload_matches.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/remaining_unresolved_after_crosswalk_hunts_upload_rule.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/current_2026_permit_crosswalk_hunts_upload_resolution_summary.json`
+
+- Key results:
+  - Source unresolved rows: `325`
+  - Deterministic resolves from HUNTS crosswalk: `0`
+  - Rows still unresolved after this pass: `325`
+  - Crosswalk status composition for remaining input: `138` `PROMOTED_PREFIX_SWAP_CANDIDATE`, `187` `<missing>`
+  - Remaining split buckets unchanged: `41` true source conflicts, `40` database-only external-missing, `244` true no permit value.
+
+- Validation:
+  - `python -m py_compile scripts\resolve-current-2026-crosswalk-hunts-upload.py` � `PASS`
+  - `python scripts\resolve-current-2026-crosswalk-hunts-upload.py` � `PASS`
+  - Verified `resolved_crosswalk_hunts_upload_matches.csv` row count: `0`
+  - Verified `remaining_unresolved_after_crosswalk_hunts_upload_rule.csv` row count: `325`
+
+- Data-change note:
+  - No permit values were modified.
+  - No `DATABASE.csv` values were modified.
+  - This pass is deterministic classification only; no source truth edits.
+
+## 2026-06-04T02:47:00Z - 2026 regulation PDF presence audit and expanded crosswalk-source audit
+
+- Assigned step:
+  - Use the supplied 2026 regulation PDFs and additional crosswalk files to continue resolving the remaining `325` current 2026 unresolved permit rows.
+  - Apply the crosswalk directive: evidence-first matching by code, boundary, family meaning, and source evidence; no name-only promotion.
+
+- Files changed:
+  - `scripts/audit-2026-regulation-pdfs-against-unresolved-permits.py` (new)
+  - `scripts/audit-2026-additional-crosswalk-sources.py` (new)
+
+- Files created/updated:
+  - `processed_data/audits/current_2026_permit_unresolved_split/regulation_2026_unresolved_code_presence_audit.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/regulation_2026_unresolved_code_presence_summary.json`
+  - `processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_additional_source_candidates.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_code_resolution_rollup.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_manual_remap_required.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_merge_split_structure_changes.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_statewide_unlimited_successors.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_permit_or_boundary_discrepancies.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_additional_sources_summary.json`
+
+- Source files reviewed:
+  - `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2026/pdf/regulations/2026 Big Game Application.pdf`
+  - `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2026/pdf/regulations/antlerless_guidebook.pdf`
+  - `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2026/pdf/regulations/2026 Bear Cougar Furbearer Guidebook.pdf`
+  - `C:/Users/tyler/Desktop/GitHub/HUNTS/data_truth/crosswalk_truth/normalized/retired_current_hunt_codes_2026.csv`
+  - `C:/Users/tyler/Desktop/GitHub/HUNTS/data_truth/crosswalk_truth/normalized/black_bear_BR_2024_2025_2026_crosswalk.csv`
+  - `C:/Users/tyler/Desktop/GitHub/HUNTS/data_truth/crosswalk_truth/normalized/current_to_historical_hunt_code_crosswalk_2026.csv`
+  - `D:/DOCUMENTS/GitHub/HUNTS/HUNTS/processed_data/historical_le_to_eb_crosswalk_2024.csv`
+  - `D:/DOCUMENTS/GitHub/HUNTS/HUNTS/processed_data/hunt_boundary_crosswalk_2026_unit_fill_sources.csv`
+  - `D:/DOCUMENTS/GitHub/HUNTS/HUNTS/processed_data/hunt_boundary_crosswalk_historical_retired_codes.csv`
+  - `D:/DOCUMENTS/GitHub/HUNTS/HUNTS/processed_data/hunt_boundary_crosswalk_2026.xlsx`
+  - `D:/DOCUMENTS/GitHub/HUNTS/HUNTS/processed_data/audits/boundary_id_to_hunt_code_crosswalk_2026.csv`
+  - `D:/DOCUMENTS/GitHub/HUNTS/HUNTS/data_truth/crosswalk_truth/validation/same_code_2025_pdf_crosswalk_active_promotions.csv`
+  - `D:/DOCUMENTS/GitHub/HUNTS/HUNTS/data_truth/crosswalk_truth/validation/hunt_code_crosswalk_2024_pdf_to_2025_pdf_model_years.csv`
+  - `D:/DOCUMENTS/GitHub/HUNTS/HUNTS/data_truth/crosswalk_truth/validation/hunt_code_crosswalk_2024_pdf_to_2025_pdf_dropped_review.csv`
+  - `D:/DOCUMENTS/GitHub/HUNTS/HUNTS/data_truth/comparison_outputs/validation/remaining_2025_history_crosswalk_boundary_closeout.csv`
+  - `D:/DOCUMENTS/GitHub/HUNTS/HUNTS/data_model/runtime_drafts/hunt_boundary_crosswalk_v2.csv`
+  - `D:/DOCUMENTS/GitHub/HUNTS/HUNTS/processed_data/conservation_area_crosswalk_2026.csv`
+  - `D:/DOCUMENTS/GitHub/HUNTS/HUNTS/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_location_hunt_code_crosswalk_2023_bighorn_sheep.csv`
+  - `D:/DOCUMENTS/GitHub/HUNTS/HUNTS/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_bighorn_sheep_measurements_crosswalked.csv`
+
+- Key results:
+  - 2026 regulation PDF code-presence audit:
+    - input unresolved rows: `325`
+    - code-present rows: `41`
+    - not-found rows: `284`
+    - all `41` code-present rows are in the `true_source_conflicts` bucket.
+  - Expanded crosswalk-source audit:
+    - input unresolved rows: `325`
+    - evidence rows generated: `2034`
+    - unique codes touched by at least one supplied source: `325`
+    - rollup buckets:
+      - `BOUNDARY_CONFIRMED_IDENTITY_READY`: `281`
+      - `ACTIVE_CODE_CONFIRMED_BUT_PERMIT_CONFLICT_REMAINS`: `39`
+      - `MANUAL_REMAP_REQUIRED`: `5`
+    - manual-remap codes: `PD1016`, `PD1026`, `BR7019`, `MB6263`, `MB6264`
+    - permit/boundary discrepancy rows: `41`
+    - merge/split or structure-change rows: `6`
+    - statewide/unlimited successor rows: `2`
+
+- Validation:
+  - `python -m py_compile scripts\audit-2026-regulation-pdfs-against-unresolved-permits.py` - `PASS`
+  - `python scripts\audit-2026-regulation-pdfs-against-unresolved-permits.py` - `PASS`
+  - `python -m py_compile scripts\audit-2026-additional-crosswalk-sources.py` - `PASS`
+  - `python scripts\audit-2026-additional-crosswalk-sources.py` - `PASS`
+  - `git diff --check -- scripts\audit-2026-regulation-pdfs-against-unresolved-permits.py scripts\audit-2026-additional-crosswalk-sources.py` - `PASS`
+  - Verified output row counts:
+    - `crosswalk_2026_additional_source_candidates.csv`: `2034`
+    - `crosswalk_2026_code_resolution_rollup.csv`: `325`
+    - `crosswalk_2026_manual_remap_required.csv`: `5`
+    - `crosswalk_2026_merge_split_structure_changes.csv`: `6`
+    - `crosswalk_2026_statewide_unlimited_successors.csv`: `2`
+    - `crosswalk_2026_permit_or_boundary_discrepancies.csv`: `41`
+
+- Data-change note:
+  - No permit values were modified.
+  - No `DATABASE.csv` values were modified.
+  - This pass produced audit and resolution-bucket artifacts only.
+
+## 2026-06-04T02:57:30Z - Check current 2026 crosswalk rollup against DATABASE.csv
+
+- Assigned step:
+  - Quickly compare the current `325` unresolved/crosswalk rollup rows against `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv` before continuing permit conflict work.
+
+- Files changed:
+  - `scripts/check-2026-crosswalk-status-against-database.py` (new)
+
+- Files created/updated:
+  - `processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_database_status_check.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_database_status_check_summary.json`
+
+- Key results:
+  - `DATABASE.csv` rows: `1449`
+  - crosswalk rollup rows checked: `325`
+  - database-present rows: `325`
+  - database-missing rows: `0`
+  - current allotment total populated in DATABASE: `81`
+  - current allotment total blank in DATABASE: `244`
+  - next-status buckets:
+    - `DATABASE_IDENTITY_READY`: `281`
+    - `PERMIT_CONFLICT_REVIEW_REQUIRED`: `39`
+    - `MANUAL_REMAP_REQUIRED`: `5`
+  - family-field comparison against DATABASE:
+    - `YES`: `258`
+    - `NO:hunt_name`: `62`
+    - `NO:hunt_type`: `3`
+    - `NO:sex_type`: `2`
+  - manual-remap codes remain: `PD1016`, `PD1026`, `BR7019`, `MB6263`, `MB6264`
+
+- Validation:
+  - `python -m py_compile scripts\check-2026-crosswalk-status-against-database.py` - `PASS`
+  - `python scripts\check-2026-crosswalk-status-against-database.py` - `PASS`
+  - `git diff --check -- scripts\check-2026-crosswalk-status-against-database.py processed_data\audits\current_2026_permit_unresolved_split\crosswalk_2026_database_status_check.csv processed_data\audits\current_2026_permit_unresolved_split\crosswalk_2026_database_status_check_summary.json` - `PASS`
+
+- Data-change note:
+  - No `DATABASE.csv` values were modified.
+  - This was a status check only and uses `permit_allotment_2026_*` as the current DATABASE permit/allotment field family.
+
+## 2026-06-04T03:05:00Z - Reconcile current boundary identity and yearly BIBLE hunt-code boundary maps
+
+- Assigned step:
+  - Resolve the files that can be closed on hunt-code/boundary identity.
+  - Use runtime boundary products (`display-boundary-index`, `hunt_boundary_crosswalk`, boundary-id crosswalks, split JSON index, and direct GeoJSON filenames) to map hunt codes to boundary IDs.
+  - Apply the same boundary mapping pass to the yearly BIBLE hunt-code documents.
+
+- Files changed:
+  - `scripts/reconcile-2026-crosswalk-boundary-map.py` (new/updated)
+  - `scripts/reconcile-2026-boundaries-and-yearly-docs.py` (new)
+
+- Files created/updated:
+  - `processed_data/audits/current_2026_permit_unresolved_split/current_2026_hunt_code_boundary_reconciliation.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/resolved_current_2026_boundary_identity_ready.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/resolved_current_2026_permit_conflicts_database_matched.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/remaining_current_2026_permit_conflicts_with_boundaries.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/remaining_current_2026_manual_remap_with_boundaries.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/current_2026_hunt_code_boundary_reconciliation_summary.json`
+  - `processed_data/audits/current_2026_permit_unresolved_split/current_2026_boundary_source_reconciliation.csv`
+  - `processed_data/audits/current_2026_permit_unresolved_split/boundary_and_yearly_reconciliation_summary.json`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_boundary_reconciliation_2020_2026.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_boundary_unresolved_2020_2026.csv`
+
+- Boundary sources used:
+  - `processed_data/display-boundary-index-2026.csv`
+  - `processed_data/hunt_boundary_crosswalk_2026.csv`
+  - `processed_data/audits/boundary_id_to_hunt_code_crosswalk_2026.csv`
+  - `processed_data/hunt_research_2026_split/hunt_research_2026.index.json`
+  - `processed_data/boundaries/*.geojson`
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+
+- Key results:
+  - Current 325-row reconciliation:
+    - all reconciled rows: `325`
+    - boundary status counts:
+      - `BOUNDARY_ID_CONFIRMED`: `314`
+      - `DATABASE_BOUNDARY_ID_WITH_ADDITIONAL_CANDIDATES`: `11`
+    - closed on identity/boundary: `281`
+    - former permit-conflict rows resolved by DATABASE truth match: `39`
+    - remaining permit-conflict rows: `0`
+    - remaining manual-remap rows: `5`
+    - remaining manual-remap codes: `PD1016`, `PD1026`, `BR7019`, `MB6263`, `MB6264`
+  - Yearly BIBLE document boundary reconciliation:
+    - total yearly rows mapped/reviewed: `6215`
+    - rows with current database presence: `5613`
+    - unresolved/current-missing rows: `602`
+    - unresolved rows by report year:
+      - `2020`: `226`
+      - `2021`: `164`
+      - `2022`: `127`
+      - `2023`: `60`
+      - `2024`: `24`
+      - `2025`: `1`
+      - `2026`: `0`
+
+- Validation:
+  - `python -m py_compile scripts\reconcile-2026-crosswalk-boundary-map.py scripts\reconcile-2026-boundaries-and-yearly-docs.py` - `PASS`
+  - `python scripts\reconcile-2026-crosswalk-boundary-map.py` - `PASS`
+  - `python scripts\reconcile-2026-boundaries-and-yearly-docs.py` - `PASS`
+  - `git diff --check -- scripts\reconcile-2026-crosswalk-boundary-map.py scripts\reconcile-2026-boundaries-and-yearly-docs.py ...` - `PASS`
+  - Verified row counts:
+    - `current_2026_hunt_code_boundary_reconciliation.csv`: `325`
+    - `resolved_current_2026_boundary_identity_ready.csv`: `281`
+    - `resolved_current_2026_permit_conflicts_database_matched.csv`: `39`
+    - `remaining_current_2026_permit_conflicts_with_boundaries.csv`: `0`
+    - `remaining_current_2026_manual_remap_with_boundaries.csv`: `5`
+    - `bible_hunt_code_year_boundary_reconciliation_2020_2026.csv`: `6215`
+    - `bible_hunt_code_year_boundary_unresolved_2020_2026.csv`: `602`
+
+- Data-change note:
+  - No `DATABASE.csv` values were modified.
+  - This pass reconciled audit/control files only.
+  - `RESOLVED_HUNT_CODE_BOUNDARY_IDENTITY` means hunt-code/boundary identity is closed; it does not imply blank permit allotment fields were filled.
+
+## 2026-06-04T03:10:00Z - Apply boundary columns into yearly BIBLE CSV/XLSX files
+
+- Assigned step:
+  - Complete the boundary ID columns directly in the yearly BIBLE files now that hunt-code-to-boundary matches are accepted as solid where present.
+
+- Files changed:
+  - `scripts/apply-boundary-columns-to-bible-year-documents.py` (new)
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2020.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2020.xlsx`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2021.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2021.xlsx`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2022.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2022.xlsx`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2023.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2023.xlsx`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2024.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2024.xlsx`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2025.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2025.xlsx`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2026.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2026.xlsx`
+
+- Files created/updated:
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_boundary_columns_applied_summary.json`
+
+- Boundary columns applied:
+  - `resolved_boundary_id`
+  - `boundary_resolution_status`
+  - `current_database_presence`
+  - `current_database_boundary_id`
+  - `display_boundary_id`
+  - `hunt_boundary_crosswalk_id`
+  - `split_index_boundary_id`
+  - `direct_hunt_code_geojson`
+  - `direct_boundary_id_geojson`
+
+- Key results:
+  - yearly CSV rows matched to reconciliation: `6215/6215`
+  - yearly XLSX rows matched to reconciliation: `6215/6215`
+  - CSV rows with populated `resolved_boundary_id`: `5797`
+  - XLSX rows with populated `resolved_boundary_id`: `5797`
+  - populated boundary rows by year:
+    - `2020`: `877/1028`
+    - `2021`: `923/1023`
+    - `2022`: `925/1020`
+    - `2023`: `985/1033`
+    - `2024`: `1003/1027`
+    - `2025`: `1053/1053`
+    - `2026`: `31/31`
+
+- Validation:
+  - `python -m py_compile scripts\apply-boundary-columns-to-bible-year-documents.py` - `PASS`
+  - `python scripts\apply-boundary-columns-to-bible-year-documents.py` - `PASS`
+  - CSV header/populated-count validation for all yearly files - `PASS`
+  - XLSX header/populated-count validation for all yearly files - `PASS`
+  - `git diff --check -- scripts\apply-boundary-columns-to-bible-year-documents.py processed_data\audits\bible_hunt_code_year_documents\bible_hunt_code_year_boundary_columns_applied_summary.json` - `PASS`
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - Original yearly extraction fields were preserved; boundary columns were appended/filled from the audited reconciliation output.
+
+## 2026-06-04T03:42:00Z - Fresh 2026 DWR Hunt Planner / Popup / UtahDraws Source Pull
+
+- Assigned action:
+  - Refresh current 2026 source evidence from DWR Hunt Planner table endpoints, Hunt Planner popup/HaNumber JSON, and UtahDraws 2026 draw-results endpoints.
+  - Produce a conservative solid-code bucket for 2026 permit/hunt-code resolution.
+
+- Files changed/created:
+  - `scripts/pull-utahdraws-draw-odds-2026.py` (new repeatable UtahDraws source pull script)
+  - `scripts/build-2026-current-source-evidence-rollup.py` (new bucket split script)
+  - `data_truth/crosswalk_truth/raw_inventory/live_dwr_hunt_planner_permit_numbers_comprehensive_2026.csv`
+  - `data_truth/crosswalk_truth/validation/live_dwr_permit_numbers_comprehensive_vs_DATABASE_2026.csv`
+  - `data_truth/crosswalk_truth/validation/live_dwr_permit_numbers_comprehensive_vs_DATABASE_2026_summary.json`
+  - `processed_data/live_dwr_permit_numbers_comprehensive_vs_DATABASE_2026.md`
+  - `processed_data/dwr_huntplanner_hanumber_2026.csv`
+  - `processed_data/dwr_huntplanner_hanumber_2026.json`
+  - `processed_data/dwr_huntplanner_hanumber_2026_raw_payloads.json`
+  - `processed_data/audits/dwr_huntplanner_hanumber_2026_audit.csv`
+  - `processed_data/audits/dwr_huntplanner_hanumber_2026_audit.json`
+  - `pipeline/RAW/hunt_unit_database/2026/json/utahdraws_draw_odds_20260603/*` (refreshed JSON source snapshot/manifest/summary)
+  - `pipeline/RAW/hunt_unit_database/2026/exports/utahdraws_draw_odds_20260603/csv/*` (regenerated CSV extracts)
+  - `processed_data/audits/dwr_2026_draw_results_vs_database_allotments.csv`
+  - `processed_data/audits/dwr_2026_draw_results_vs_database_allotments_summary.json`
+  - `docs/dwr_2026_draw_results_vs_database_allotments.md`
+  - `processed_data/audits/current_2026_hunt_code_permit_reconciliation.csv`
+  - `processed_data/audits/current_2026_hunt_code_permit_unresolved.csv`
+  - `processed_data/audits/current_2026_hunt_code_permit_reconciliation_summary.json`
+  - `docs/current_2026_hunt_code_permit_reconciliation.md`
+  - `processed_data/audits/current_2026_live_source_solid_codes.csv`
+  - `processed_data/audits/current_2026_live_source_single_source_candidates.csv`
+  - `processed_data/audits/current_2026_live_source_review_required.csv`
+  - `processed_data/audits/current_2026_live_source_no_permit_value.csv`
+  - `processed_data/audits/current_2026_live_source_evidence_rollup_summary.json`
+
+- Key results:
+  - Fresh DWR Hunt Planner table pull:
+    - endpoints queried: `19`
+    - live rows: `1415`
+    - live unique hunt codes: `1413`
+    - live/database rows compared: `1471`
+    - live-only codes: `22` (`DA1051` appeared as new live-only evidence compared with the prior pull)
+    - database-only rows not exposed by queried table endpoints: `58`
+  - Fresh Hunt Planner popup/HaNumber pull:
+    - database codes fetched: `1449/1449`
+    - fetch errors: `0`
+    - management stats rows: `970`
+    - current age 3-year rows: `220`
+  - Fresh UtahDraws 2026 pull:
+    - supplement endpoint status: `200`
+    - available/downloaded endpoints: `24/24`
+    - endpoint failures: `0`
+    - hunt records returned: `847`
+    - odds rows returned: `19053`
+    - unique source hunt codes in generated CSV comparison: `834`
+  - Current 2026 permit reconciliation after all refreshed sources:
+    - candidate hunt-code rows: `1471`
+    - recommended rows with permit values: `1159`
+    - conservative solid-code rows: `832`
+    - single-source candidate rows: `83`
+    - review-required/conflict rows: `300`
+    - no-current-permit-value rows: `256`
+  - Solid bucket definition:
+    - `HIGH_CONFIRMED_2PLUS` or `MEDIUM_TOTAL_CONFIRMED` with `recommended_total` populated.
+
+- Data-change note:
+  - `DATABASE.csv` was not modified by this source-pull pass.
+  - Existing dirty worktree changes, including a pre-existing modified `DATABASE.csv`, were left untouched.
+
+- Validation:
+  - `python scripts/pull-live-dwr-permit-numbers-comprehensive-2026.py`: PASS
+  - `node scripts/fetch-dwr-huntplanner-hanumber-2026.js`: PASS
+  - `python scripts/pull-utahdraws-draw-odds-2026.py`: PASS
+  - `python scripts/audit-2026-dwr-draw-results-vs-database-allotments.py`: PASS
+  - `python scripts/reconcile-current-2026-hunt-code-permits.py`: PASS
+  - `python scripts/build-2026-current-source-evidence-rollup.py`: PASS
+  - `python -m py_compile` on changed Python scripts: PASS
+  - Output row/count validation: PASS
+  - Targeted `git diff --check` on pull-pass scripts/outputs: PASS
+  - Global `git diff --check`: FAIL due pre-existing `WORK_LOG.md` trailing-whitespace diff noise across prior log history; not resolved in this data-pull task.
+
+- Commit:
+  - Not committed. User previously instructed to stop worrying about GitHub commits for these large/source-output passes.
+
+## 2026-06-04T03:48:00Z - Current 2026 Live Universe Vs BIBLE Hunt-Code Count Audit
+
+- Assigned action:
+  - Challenge and explain the apparent `1413` live Hunt Planner code count versus the `1053` 2025 BIBLE year-document count.
+  - Determine whether `HaNumber` returning `1449` rows should be treated as active-code proof.
+
+- Files changed/created:
+  - `scripts/audit-2026-live-vs-bible-hunt-code-universe.py`
+  - `processed_data/audits/current_2026_live_vs_bible_hunt_code_universe.csv`
+  - `processed_data/audits/current_2026_live_vs_bible_hunt_code_universe_summary.json`
+  - `docs/current_2026_live_vs_bible_hunt_code_universe.md`
+  - `WORK_LOG.md`
+
+- Key results:
+  - BIBLE year-document unique code counts:
+    - `2020`: `1028`
+    - `2021`: `1023`
+    - `2022`: `1020`
+    - `2023`: `1033`
+    - `2024`: `1027`
+    - `2025`: `1053`
+    - `2026`: `31` currently structured rows only; not a complete current-year universe.
+  - Fresh DWR Hunt Planner table unique codes: `1413`.
+  - `HaNumber` popup rows fetched: `1449`, but this is not active-code proof; it only proves popup resolution for the submitted DATABASE hunt-code list.
+  - Fresh DWR live table vs 2025 BIBLE:
+    - live 2026 and present in 2025 BIBLE: `1024`
+    - live 2026 not in 2025 BIBLE: `389`
+    - 2025 BIBLE not in live 2026 table: `29`
+  - The `389` live-not-2025-BIBLE rows are concentrated in current-planner families:
+    - `PRIVATE_LAND_OR_LANDOWNER_CURRENT_PLANNER`: `282`
+    - `CONSERVATION_CURRENT_PLANNER`: `28`
+    - `STATEWIDE_OR_UNLIMITED_CURRENT_PLANNER`: `12`
+    - `TRIBAL_CURRENT_PLANNER`: `10`
+    - `CWMU_CURRENT_PLANNER`: `9`
+    - `SPORTSMAN_CURRENT_PLANNER`: `1`
+    - `OTHER_CURRENT_PLANNER_NOT_IN_2025_BIBLE`: `47`
+
+- Interpretation:
+  - The year-to-year BIBLE draw-results universe remains stable around ~1020-1053 codes.
+  - The DWR Hunt Planner table universe is broader because it includes current planner categories such as private land/landowner, conservation, tribal, statewide/unlimited, and other current map/planner rows that do not map one-to-one with the BIBLE draw-results library.
+  - Do not treat `1449` DATABASE rows or `1449` HaNumber returns as the active 2026 truth count without additional active/current classification.
+
+- Validation:
+  - `python scripts/audit-2026-live-vs-bible-hunt-code-universe.py`: PASS
+  - `python -m py_compile scripts/audit-2026-live-vs-bible-hunt-code-universe.py`: PASS
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+
+## 2026-06-04T03:56:00Z - User-Supplied 2026 Species Truth Permit Source Audit
+
+- Assigned action:
+  - Normalize and compare user-supplied 2026 permit evidence files from `C:/Users/tyler/Desktop/species truth data`.
+  - Treat the files as comparison/source evidence only; do not overwrite `DATABASE.csv`.
+
+- Source files inspected:
+  - `C:/Users/tyler/Desktop/species truth data/2026 EXPO DRAW RESULTS.csv`
+  - `C:/Users/tyler/Desktop/species truth data/2026 EXPO DRAW RESULTS.xlsx`
+  - `C:/Users/tyler/Desktop/species truth data/2026 EXPO DRAW RESULTS.pdf`
+  - `C:/Users/tyler/Desktop/species truth data/2026 EXPO PERMIT DRAW.csv`
+  - `C:/Users/tyler/Desktop/species truth data/2026 EXPO PERMIT DRAW.xlsx`
+  - `C:/Users/tyler/Desktop/species truth data/2026 CONSERVATION  PERMITS.xlsx`
+  - `C:/Users/tyler/Desktop/species truth data/2026 deer buck db.csv`
+  - `C:/Users/tyler/Desktop/species truth data/2026 deer buck db.xlsx`
+  - `C:/Users/tyler/Desktop/species truth data/2026 deer doe.csv`
+  - `C:/Users/tyler/Desktop/species truth data/2026 deer doe.xlsx`
+
+- Files changed/created:
+  - `scripts/audit-2026-species-truth-permit-sources.py`
+  - `processed_data/audits/permit_2026_species_truth_sources_normalized.csv`
+  - `processed_data/audits/permit_2026_species_truth_sources_vs_current_reconciliation.csv`
+  - `processed_data/audits/permit_2026_species_truth_sources_summary.json`
+  - `docs/permit_2026_species_truth_sources_audit.md`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Normalized source rows: `844`
+  - Direct hunt-code rows: `598`
+  - Name-only expo rows: `246`
+  - Rows with permit values: `715`
+  - Source family counts:
+    - `DEER_BUCK_DB_DIRECT`: `458` rows; `329` with permit values
+    - `DEER_DOE_DIRECT`: `20` rows; `20` with permit values
+    - `CONSERVATION_PERMITS_DIRECT`: `120` rows; `120` with permit values
+    - `EXPO_DRAW_RESULTS_NAME_ONLY`: `123` rows; `123` with permit values
+    - `EXPO_PERMIT_DRAW_NAME_ONLY`: `123` rows; `123` with permit values
+  - Comparison status counts:
+    - `SOURCE_MATCHES_RECOMMENDED`: `226`
+    - `SOURCE_TOTAL_MATCHES_RECOMMENDED`: `127`
+    - `SOURCE_MATCHES_DATABASE`: `21`
+    - `SOURCE_TOTAL_MATCHES_DATABASE`: `7`
+    - `SOURCE_DIFFERS_FROM_CURRENT_RECONCILIATION`: `87`
+    - `SOURCE_HAS_VALUE_NO_CURRENT_COMPARISON_VALUE`: `1`
+    - `SOURCE_NO_PERMIT_VALUE`: `129`
+    - `UNMAPPED_NAME_ONLY_SOURCE`: `246`
+
+- Interpretation:
+  - Deer buck and deer doe direct-code files are strong comparison evidence and mostly align with the current recommendation/database layers.
+  - Conservation workbook rows are direct-code evidence but represent conservation permit counts, not broad/current general quota totals; they should feed a separate conservation-permit layer rather than overwrite general allotment totals.
+  - Expo files do not carry hunt codes; they were preserved as name-only evidence and should not be promoted until a reviewed expo hunt-code mapping exists.
+
+- Validation:
+  - `python scripts/audit-2026-species-truth-permit-sources.py`: PASS
+  - `python -m py_compile scripts/audit-2026-species-truth-permit-sources.py`: PASS
+  - Targeted `git diff --check` on touched files: PASS
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+
+## 2026-06-04T04:26:00Z - Conservative 2026 Core Hunt-Code Universe Reconciliation
+
+- Assigned action:
+  - Reconcile what can be safely classified from the inflated 2026 live Hunt Planner universe without accepting `1413` or `1449` as the core active truth count.
+  - Split rows into core continuing, separate current-planner layers, historical-only, and review buckets.
+
+- Files changed/created:
+  - `scripts/reconcile-2026-core-hunt-code-universe.py`
+  - `processed_data/audits/current_2026_core_universe_reconciliation.csv`
+  - `processed_data/audits/current_2026_core_universe_reconciliation_closed.csv`
+  - `processed_data/audits/current_2026_core_universe_reconciliation_review.csv`
+  - `processed_data/audits/current_2026_core_universe_reconciliation_summary.json`
+  - `docs/current_2026_core_universe_reconciliation.md`
+  - `WORK_LOG.md`
+
+- Inputs used:
+  - `processed_data/audits/current_2026_live_vs_bible_hunt_code_universe.csv`
+  - `processed_data/audits/permit_2026_species_truth_sources_vs_current_reconciliation.csv`
+  - `processed_data/audits/current_2026_hunt_code_permit_reconciliation.csv`
+
+- Key results:
+  - Total audit rows: `1718`
+  - Closed/classified rows: `1600`
+  - Review rows: `118`
+  - Closed core comparable 2026 rows: `1024`
+  - Maybe-core review rows: `86`
+  - Separate/excluded rows: `608`
+  - Resolution status counts:
+    - `CLOSED_CORE`: `1024`
+    - `CLOSED_SEPARATE_LAYER`: `330`
+    - `CLOSED_HISTORICAL`: `246`
+    - `REVIEW`: `118`
+  - Reconciled bucket counts:
+    - `CORE_DRAW_RESULTS_CONTINUING`: `1024`
+    - `SEPARATE_PRIVATE_LAND_LANDOWNER_LAYER`: `282`
+    - `HISTORICAL_LIBRARY_ONLY`: `246`
+    - `SEPARATE_CONSERVATION_LAYER`: `28`
+    - `SEPARATE_STATEWIDE_UNLIMITED_LAYER`: `12`
+    - `SEPARATE_TRIBAL_LAYER`: `10`
+    - `POSSIBLE_DROPPED_OR_NOT_EXPOSED_FROM_2025`: `29`
+    - `DATABASE_REFERENCE_NOT_LIVE_TABLE`: `30`
+    - `CURRENT_PLANNER_EXTRA_REVIEW`: `35`
+    - `CURRENT_PLANNER_EXTRA_WITH_MULTI_SOURCE_PERMIT_SUPPORT`: `10`
+    - `CONFIRMED_2026_NEW_OR_OMITTED_DIRECT_SOURCE`: `2`
+    - `SEPARATE_CWMU_CURRENT_PLANNER_LAYER`: `9`
+    - `SPORTSMAN_CONTINUITY_LAYER_REVIEW`: `1`
+
+- Interpretation:
+  - The defensible closed core count is currently `1024` continuing rows.
+  - The credible final core universe should be built from the `86` maybe-core review rows, not from all `1413` live table rows.
+  - The raw live Hunt Planner extras mostly become separate current-planner layers, not core-count additions.
+
+- Validation:
+  - `python scripts/reconcile-2026-core-hunt-code-universe.py`: PASS
+  - `python -m py_compile scripts/reconcile-2026-core-hunt-code-universe.py`: PASS
+  - CSV row/count validation: PASS
+  - Targeted `git diff --check` on touched files: PASS
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+
+## 2026-06-04T04:36:00Z - Specific Sportsman / EX1000 / DB1109 / DB1121 Source Comparison
+
+- Assigned action:
+  - Correct the incorrect `EX1000` sportsman assumption.
+  - Compare the user-confirmed sportsman code list plus `EX1000`, `DB1109`, and `DB1121` against DATABASE and available source evidence.
+
+- Files changed/created:
+  - `scripts/audit-2026-live-vs-bible-hunt-code-universe.py` (sportsman classifier corrected to exact code set; `EX1000` now extended archery)
+  - `scripts/reconcile-2026-core-hunt-code-universe.py` (extended archery separate-layer bucket added)
+  - `scripts/audit-specific-2026-sportsman-db1109-db1121.py`
+  - `processed_data/audits/specific_2026_sportsman_db1109_db1121_source_comparison.csv`
+  - `processed_data/audits/specific_2026_sportsman_db1109_db1121_source_comparison_summary.json`
+  - `docs/specific_2026_sportsman_db1109_db1121_source_comparison.md`
+  - `WORK_LOG.md`
+
+- Key findings:
+  - `EX1000` is not a sportsman permit code in the current data. DATABASE/DWR identify it as `Elk Extended Archery` with no quota published.
+  - Valid sportsman code set for this pass was limited to:
+    - `BI1000`, `BR1000`, `CG1000`, `DB0007`, `DS1000`, `EB1000`, `GO1000`, `MB1000`, `PB1000`, `RS0001`, `TK0001`
+  - `CG1000` is not present in the current DATABASE/source layers; current cougar row present locally is `CG9999 Cougar - Statewide` with no quota value. This needs a reviewed alias/crosswalk decision if `CG1000` remains the intended sportsman code.
+  - `DB1109 Thousand Lakes` is active and supported by:
+    - DATABASE total `2`
+    - DWR HuntTable match total `2`
+    - HaNumber match total `2`
+    - UtahDraws match total `2`
+    - user-supplied deer buck direct source total `2`
+  - `DB1121 Antelope Island Management` is active and supported by:
+    - DATABASE total `2`
+    - DWR HuntTable match total `2`
+    - HaNumber match total `2`
+    - UtahDraws match total `2`
+    - user-supplied deer buck direct source total `2`
+
+- Validation:
+  - `python scripts/audit-specific-2026-sportsman-db1109-db1121.py`: PASS
+  - `python -m py_compile scripts/audit-2026-live-vs-bible-hunt-code-universe.py scripts/reconcile-2026-core-hunt-code-universe.py scripts/audit-specific-2026-sportsman-db1109-db1121.py`: PASS
+  - Targeted `git diff --check` on touched files: PASS
+  - Full core reconciliation rerun could not overwrite `processed_data/audits/current_2026_core_universe_reconciliation_review.csv` because the file was locked/open, likely by Excel. The main all-row core file and focused comparison were produced.
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+
+## 2026-06-04T04:41:00Z - Cougar Sportsman End / Current CG9999 Unlimited / Conservation Table Split
+
+- Assigned action:
+  - Apply the reviewed cougar rule: `CG1000` is historical-ended and current cougar rolls into `CG9999`.
+  - Confirm `CG9999` has unlimited permits, not a numbered sportsman quota.
+  - Keep sportsman permit evidence separate from conservation permit table evidence.
+  - Rerun the previously locked core reconciliation after the file was closed.
+
+- Files changed/created:
+  - `scripts/audit-specific-2026-sportsman-db1109-db1121.py`
+  - `scripts/reconcile-2026-core-hunt-code-universe.py`
+  - `scripts/build-hunt-code-year-to-year-crosswalk.py`
+  - `processed_data/audits/specific_2026_sportsman_db1109_db1121_source_comparison.csv`
+  - `processed_data/audits/specific_2026_sportsman_db1109_db1121_source_comparison_summary.json`
+  - `docs/specific_2026_sportsman_db1109_db1121_source_comparison.md`
+  - `processed_data/audits/current_2026_live_vs_bible_hunt_code_universe.csv`
+  - `processed_data/audits/current_2026_live_vs_bible_hunt_code_universe_summary.json`
+  - `docs/current_2026_live_vs_bible_hunt_code_universe.md`
+  - `processed_data/audits/current_2026_core_universe_reconciliation.csv`
+  - `processed_data/audits/current_2026_core_universe_reconciliation_closed.csv`
+  - `processed_data/audits/current_2026_core_universe_reconciliation_review.csv`
+  - `processed_data/audits/current_2026_core_universe_reconciliation_summary.json`
+  - `docs/current_2026_core_universe_reconciliation.md`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026.csv`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026_summary.json`
+  - `docs/hunt_code_year_to_year_crosswalk_2020_2026.md`
+  - `processed_data/audits/cougar_hunt_code_dropoff_2020_2026.csv`
+  - `docs/cougar_hunt_code_dropoff_2020_2026.md`
+  - `WORK_LOG.md`
+
+- Key results:
+  - `CG1000` is now classified as `COUGAR_HISTORICAL_SPORTSMAN_ENDED`.
+  - `CG9999` is now classified as `COUGAR_CURRENT_STATEWIDE_UNLIMITED_LAYER`.
+  - `CG9999` is treated as unlimited/no numbered quota, not a sportsman-permit count.
+  - Current numbered sportsman review set is now 10 codes, excluding `CG1000`.
+  - The conservation permit table source is identified as `C:/Users/tyler/Desktop/species truth data/2026 CONSERVATION  PERMITS.xlsx`.
+  - Conservation permit table rows are preserved as a separate conservation layer and are not counted as sportsman source support when hunt codes overlap.
+  - `DB1109` and `DB1121` remain source-aligned active deer buck rows with total `2`.
+
+- Current core reconciliation counts:
+  - Total rows: `1718`
+  - Closed core comparable rows: `1024`
+  - Review rows: `127`
+  - `COUGAR_HISTORICAL_SPORTSMAN_ENDED`: `1`
+  - `COUGAR_CURRENT_STATEWIDE_UNLIMITED_LAYER`: `1`
+  - `SPORTSMAN_CONTINUITY_LAYER_REVIEW`: `10`
+
+- Validation:
+  - `python scripts/audit-specific-2026-sportsman-db1109-db1121.py`: PASS
+  - `python scripts/audit-2026-live-vs-bible-hunt-code-universe.py`: PASS
+  - `python scripts/reconcile-2026-core-hunt-code-universe.py`: PASS
+  - `python scripts/build-hunt-code-year-to-year-crosswalk.py`: PASS
+  - `python -m py_compile scripts/audit-2026-live-vs-bible-hunt-code-universe.py scripts/reconcile-2026-core-hunt-code-universe.py scripts/audit-specific-2026-sportsman-db1109-db1121.py scripts/build-hunt-code-year-to-year-crosswalk.py`: PASS
+  - Targeted `git diff --check`: PASS
+
+- Data-change note:
+  - `DATABASE.csv` was not modified by this pass.
+
+## 2026-06-04T04:52:00Z - Unresolved 2026 Codes Vs DATABASE / Conservation Audit
+
+- Assigned action:
+  - Compare all current unresolved 2026 hunt codes against DATABASE.csv.
+  - Keep conservation permit table evidence separate from sportsman/current permit evidence.
+
+- Files changed/created:
+  - `scripts/audit-unresolved-2026-vs-database-conservation.py`
+  - `processed_data/audits/unresolved_2026_vs_database_conservation_audit.csv`
+  - `processed_data/audits/unresolved_2026_vs_database_conservation_audit_summary.json`
+  - `docs/unresolved_2026_vs_database_conservation_audit.md`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Unique unresolved codes audited: `698`
+  - Present in DATABASE: `675`
+  - Missing from DATABASE: `23`
+  - Conservation-table evidence present: `63`
+  - Conservation table matches DATABASE conservation field: `56`
+  - Conservation table/database conflicts: `0`
+  - Sportsman/conservation overlap-review codes: `7` (`BI1000`, `DS1000`, `EB1000`, `GO1000`, `MB1000`, `PB1000`, `RS0001`)
+  - The seven overlap-review rows should stay separated by field/source family, not collapsed into a single permit total.
+
+- Validation:
+  - `python scripts/audit-unresolved-2026-vs-database-conservation.py`: PASS
+  - `python -m py_compile scripts/audit-unresolved-2026-vs-database-conservation.py`: PASS
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+## 2026-06-04T05:08:00Z - Lock Synthetic Conservation Display Code Policy
+
+- Assigned action:
+  - Lock the synthetic conservation display-code convention.
+  - Keep conservation permits separate from Sportsman permits.
+  - Preserve sportsman/current statewide hunt codes only as geometry-source codes when a conservation row has no official DWR conservation hunt code.
+
+- Files changed/created:
+  - `docs/conservation_synthetic_display_code_policy.md`
+  - `scripts/audit-unresolved-2026-vs-database-conservation.py`
+  - `processed_data/audits/conservation_synthetic_display_code_policy.csv`
+  - `processed_data/audits/unresolved_2026_vs_database_conservation_audit_synthetic_policy_update.csv`
+  - `processed_data/audits/unresolved_2026_vs_database_conservation_audit_summary.json`
+  - `docs/unresolved_2026_vs_database_conservation_audit.md`
+  - `WORK_LOG.md`
+
+- Locked synthetic conservation display codes:
+  - `CBI1000`: Conservation Bison
+  - `CBB1000`: Conservation Black Bear
+  - `CD1000`: Conservation Deer
+  - `CDS1000`: Conservation Desert Bighorn Sheep
+  - `CE1000`: Conservation Elk
+  - `CMG1000`: Conservation Mountain Goat
+  - `CM1000`: Conservation Moose
+  - `CP1000`: Conservation Pronghorn
+  - `CRS1000`: Conservation Rocky Mountain Bighorn Sheep
+  - `CTK1000`: Conservation Turkey
+
+- Key results:
+  - Current numbered Sportsman codes remain exactly 10 and do not include `CG1000`.
+  - `CG9999` remains current statewide/unlimited cougar, not a numbered Sportsman quota.
+  - Seven conservation rows that were using Sportsman/current geometry are now classified as `CONSERVATION_SYNTHETIC_DISPLAY_CODE_REQUIRED`.
+  - Those seven rows preserve the original code only as `conservation_geometry_source_hunt_code`.
+  - `official_hunt_code` stays blank for those synthetic conservation display rows unless DWR later assigns an official conservation hunt code.
+  - The original unresolved audit CSV was open/locked, so the updated run wrote `unresolved_2026_vs_database_conservation_audit_synthetic_policy_update.csv` and updated the summary/report to point there.
+
+- Validation:
+  - `python scripts/audit-unresolved-2026-vs-database-conservation.py`: PASS
+  - `python -m py_compile scripts/audit-unresolved-2026-vs-database-conservation.py`: PASS
+  - Targeted `git diff --check`: PASS
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+## 2026-06-04T05:10:00Z - DATABASE Allotment-Aligned 2026 Permit Number Extract
+
+- Assigned action:
+  - Extract hunt codes where current permit evidence aligns with `DATABASE.csv` under `permit_allotment_2026_*` fields.
+  - Include `DATABASE.csv` hunt code, hunt name, and aligned resident/nonresident/total permit numbers.
+
+- Files created:
+  - `processed_data/audits/database_allotment_aligned_2026_permit_numbers.csv`
+  - `processed_data/audits/database_allotment_aligned_2026_unresolved_subset.csv`
+  - `processed_data/audits/database_allotment_aligned_2026_permit_numbers_summary.json`
+  - `WORK_LOG.md`
+
+- Key results:
+  - All allotment-aligned rows: `1088`
+  - Exact res/nr/total matches: `1075`
+  - Total-only matches: `13`
+  - Unresolved-subset allotment-aligned rows: `218`
+  - Species counts in all aligned output:
+    - Bison: `17`
+    - Black Bear: `103`
+    - Deer: `362`
+    - Desert Bighorn Sheep: `20`
+    - Elk: `390`
+    - Moose: `41`
+    - Mountain Goat: `18`
+    - Pronghorn: `109`
+    - Rocky Mountain Bighorn Sheep: `17`
+    - Turkey: `11`
+
+- Validation:
+  - CSV generation: PASS
+  - Targeted `git diff --check`: PASS
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+## 2026-06-04T05:17:00Z - Reconcile DATABASE Allotment Matches And Split Disagreements
+
+- Assigned action:
+  - Treat rows where `DATABASE.csv` `permit_allotment_2026_*` values agree with recommended permit values as reconciled.
+  - Produce a separate list where DATABASE disagrees with the recommendation.
+  - Do not edit `DATABASE.csv`.
+
+- Files changed/created:
+  - `scripts/reconcile-database-allotment-matches-2026.py`
+  - `processed_data/audits/database_allotment_reconciled_2026.csv`
+  - `processed_data/audits/database_allotment_reconciled_2026_unresolved_subset.csv`
+  - `processed_data/audits/database_allotment_disagreements_2026.csv`
+  - `processed_data/audits/database_allotment_no_recommendation_or_not_compared_2026.csv`
+  - `processed_data/audits/database_allotment_reconciliation_2026_summary.json`
+  - `docs/database_allotment_reconciliation_2026.md`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Reconciled allotment matches: `1088`
+  - Exact resident/nonresident/total matches: `1075`
+  - Total-only matches: `13`
+  - Reconciled rows from unresolved subset: `315`
+  - DATABASE disagreement rows: `71`
+    - `DATABASE_DIFFERS_FROM_RECOMMENDED`: `43`
+    - `DATABASE_BLANK_RECOMMENDATION_HAS_VALUE`: `28`
+  - Review/no recommendation/not compared rows: `312`
+
+- Disagreement species counts:
+  - Bison: `1`
+  - Black Bear: `1`
+  - Deer: `4`
+  - Elk: `44`
+  - Moose: `6`
+  - Pronghorn: `14`
+  - Turkey: `1`
+
+- Validation:
+  - `python scripts/reconcile-database-allotment-matches-2026.py`: PASS
+  - `python -m py_compile scripts/reconcile-database-allotment-matches-2026.py`: PASS
+  - Targeted `git diff --check`: PASS
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+## 2026-06-04T05:28:00Z - Apply Approved DATABASE Allotment Reconciliation
+
+- Assigned action:
+  - Explain allotment vs recommended permit-number lineage.
+  - Reconcile exact DATABASE/recommended matches.
+  - Reconcile total-only matches conservatively.
+  - Populate DATABASE where DATABASE was blank but the recommendation had a value.
+  - Leave true nonblank DATABASE-vs-recommendation disagreements untouched.
+
+- Source lineage clarified:
+  - Allotment numbers are `DATABASE.csv` `permit_allotment_2026_*` fields, previously populated from current DWR Hunt Planner / HuntTable live pulls where available.
+  - Recommended numbers are the selected current-source winner from `HaNumber`, `HuntTable`, Buck Deer repaired source, or UtahDraws, with `DATABASE.csv` used only as comparison/reference in winner selection.
+
+- Files changed/created:
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+  - `scripts/apply-database-allotment-reconciliation-2026.py`
+  - `scripts/reconcile-database-allotment-matches-2026.py`
+  - `processed_data/audits/database_allotment_database_patch_2026.csv`
+  - `processed_data/audits/database_allotment_database_patch_2026_summary.json`
+  - `processed_data/audits/database_allotment_true_disagreements_after_patch_2026.csv`
+  - `processed_data/audits/current_2026_hunt_code_permit_reconciliation.csv`
+  - `processed_data/audits/current_2026_hunt_code_permit_reconciliation_summary.json`
+  - `processed_data/audits/database_allotment_reconciled_2026.csv`
+  - `processed_data/audits/database_allotment_disagreements_2026.csv`
+  - `processed_data/audits/database_allotment_reconciliation_2026_summary.json`
+  - `processed_data/backups/DATABASE_before_allotment_reconciliation_20260604T052630Z.csv`
+  - `docs/database_allotment_database_patch_2026.md`
+  - `docs/database_allotment_reconciliation_2026.md`
+  - `docs/current_2026_hunt_code_permit_reconciliation.md`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Exact matches reconciled/no numeric change needed: `1075`
+  - Total-only matches reconciled: `13`
+  - Existing blank DATABASE rows filled: `6`
+  - Missing DATABASE hunt-code rows added from approved blank-DATABASE recommendations: `22`
+  - Numeric/add rows changed: `34`
+  - DATABASE rows after patch: `1471`
+  - DATABASE unique hunt codes after patch: `1471`
+  - Duplicate hunt codes after patch: `0`
+  - Re-run comparison after patch: `1109` exact matches, `7` total-only matches, `43` true disagreements remaining.
+
+- Guardrails:
+  - `DATABASE_DIFFERS_FROM_RECOMMENDED` rows were not modified.
+  - Missing split cells were filled only when a recommended split existed.
+  - No prediction logic or website UI was changed.
+
+- Validation:
+  - `python scripts/apply-database-allotment-reconciliation-2026.py`: PASS
+  - `python scripts/reconcile-current-2026-hunt-code-permits.py`: PASS
+  - `python scripts/reconcile-database-allotment-matches-2026.py`: PASS
+  - `python -m py_compile scripts/apply-database-allotment-reconciliation-2026.py scripts/reconcile-current-2026-hunt-code-permits.py scripts/reconcile-database-allotment-matches-2026.py`: PASS
+  - Targeted `git diff --check`: PASS
+
+- Commit:
+  - Not committed per current instruction to avoid GitHub commit churn while large/data file handling is being sorted.
+## 2026-06-04T05:35:00Z - Audit 2026 Permit Values Against Same-Code 2025 Permits
+
+- Assigned action:
+  - Check whether current 2026 DATABASE allotment values or current recommended values match same-code 2025 permit numbers.
+  - Determine whether any match looks like possible 2025 carryover contamination.
+  - Do not modify `DATABASE.csv`.
+
+- Files changed/created:
+  - `scripts/audit-2026-permits-vs-2025-carryover.py`
+  - `processed_data/audits/permit_2026_vs_2025_same_code_carryover_audit.csv`
+  - `processed_data/audits/permit_2026_vs_2025_same_code_carryover_review.csv`
+  - `processed_data/audits/permit_2026_vs_2025_same_code_carryover_summary.json`
+  - `docs/permit_2026_vs_2025_same_code_carryover_audit.md`
+  - `WORK_LOG.md`
+
+- Key results:
+  - DATABASE rows audited: `1471`
+  - Rows where either 2026 allotment or 2026 recommended values matched same-code 2025 permit values: `164`
+  - `MATCHES_2025_WITH_CURRENT_SOURCE_SUPPORT`: `164`
+  - `NO_2025_NUMERIC_MATCH`: `1307`
+  - All 164 review rows had recommended winner source `HANUMBER`.
+  - No unsupported same-code 2025 carryover rows were identified by this audit.
+
+- Detailed counts:
+  - Allotment vs 2025 exact match: `156`
+  - Allotment vs 2025 total-only match: `6`
+  - Recommended vs 2025 exact match: `158`
+  - Recommended vs 2025 total-only match: `6`
+
+- Validation:
+  - `python scripts/audit-2026-permits-vs-2025-carryover.py`: PASS
+  - `python -m py_compile scripts/audit-2026-permits-vs-2025-carryover.py`: PASS
+  - Targeted `git diff --check`: PASS
+
+- Data-change note:
+  - `DATABASE.csv` was not modified in this audit pass.
+
+- Commit:
+  - Not committed per current instruction to avoid GitHub commit churn while large/data file handling is being sorted.
+## 2026-06-04T05:57:00Z - Elk Antlerless Pasted Values vs Recommended Audit
+
+- Assigned action:
+  - Parse the pasted Elk Antlerless permit table from the Codex attachment.
+  - Compare pasted resident/nonresident/total values against current recommended values and DATABASE allotment values.
+  - Do not modify `DATABASE.csv`.
+
+- Files changed/created:
+  - `scripts/audit-elk-antlerless-pasted-vs-recommended-2026.py`
+  - `processed_data/audits/elk_antlerless_pasted_vs_recommended_2026.csv`
+  - `processed_data/audits/elk_antlerless_pasted_vs_recommended_2026_summary.json`
+  - `docs/elk_antlerless_pasted_vs_recommended_2026.md`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Pasted rows parsed: `223`
+  - Unique pasted hunt codes: `221`
+  - Pasted vs recommended exact matches: `214`
+  - Pasted vs recommended both blank: `9`
+  - Pasted vs recommended numeric differences: `0`
+  - Pasted vs DATABASE exact matches: `187`
+  - Pasted vs DATABASE differences: `27`
+  - The 27 pasted-vs-DATABASE differences all match the current recommended values.
+  - Two duplicate pasted codes were observed: `EA1222` and `EA1284`, both with identical pasted permit values.
+
+- Interpretation:
+  - Pasted Elk Antlerless evidence strongly supports the current recommended values.
+  - Conservation/expo/control rows with pasted blanks were left as review/context rows and were not treated as evidence against DATABASE conservation/expo values.
+
+- Validation:
+  - `python scripts/audit-elk-antlerless-pasted-vs-recommended-2026.py`: PASS
+  - `python -m py_compile scripts/audit-elk-antlerless-pasted-vs-recommended-2026.py`: PASS
+  - Targeted `git diff --check`: PASS
+
+- Data-change note:
+  - `DATABASE.csv` was not modified in this audit pass.
+
+- Commit:
+  - Not committed per current instruction to avoid GitHub commit churn while large/data file handling is being sorted.
+## 2026-06-04T06:00:00Z - Apply Confirmed Elk Antlerless Recommended Values To DATABASE
+
+- Assigned action:
+  - Plug in recommended values for Elk Antlerless rows where pasted DWR-table evidence confirmed the recommendation.
+  - Update only rows where pasted values exactly matched recommended values and differed from DATABASE allotment.
+  - Leave conservation/expo/control blank rows and unrelated species/families untouched.
+
+- Files changed/created:
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+  - `scripts/apply-elk-antlerless-recommended-2026.py`
+  - `processed_data/audits/elk_antlerless_recommended_database_patch_2026.csv`
+  - `processed_data/audits/elk_antlerless_recommended_database_patch_2026_summary.json`
+  - `processed_data/backups/DATABASE_before_elk_antlerless_recommended_patch_20260604T055934Z.csv`
+  - `docs/elk_antlerless_recommended_database_patch_2026.md`
+  - Refreshed `processed_data/audits/current_2026_hunt_code_permit_reconciliation.csv`
+  - Refreshed `processed_data/audits/current_2026_hunt_code_permit_reconciliation_summary.json`
+  - Refreshed `processed_data/audits/database_allotment_reconciled_2026.csv`
+  - Refreshed `processed_data/audits/database_allotment_disagreements_2026.csv`
+  - Refreshed `processed_data/audits/database_allotment_reconciliation_2026_summary.json`
+  - Refreshed `processed_data/audits/elk_antlerless_pasted_vs_recommended_2026.csv`
+  - Refreshed `processed_data/audits/elk_antlerless_pasted_vs_recommended_2026_summary.json`
+  - `WORK_LOG.md`
+
+- Key results:
+  - DATABASE Elk Antlerless rows updated: `25`
+  - Pasted audit had `27` differing rows because `EA1222` and `EA1284` appeared twice with identical values.
+  - Updated rows all used recommended winner source `HANUMBER`.
+  - Elk Antlerless pasted-vs-DATABASE numeric differences after patch: `0`
+  - Overall 2026 DATABASE-vs-recommended disagreements after patch: `18`
+  - Remaining disagreement species: Deer `3`, Elk `2`, Moose `3`, Pronghorn `10`
+  - DATABASE rows after patch: `1471`
+  - DATABASE unique hunt codes after patch: `1471`
+  - Duplicate hunt codes after patch: `0`
+
+- Remaining disagreements:
+  - Deer: `DA1009`, `DA1018`, `DA1033`
+  - Elk: `EA1176`, `EB1000`
+  - Moose: `MA1005`, `MA1007`, `MA1008`
+  - Pronghorn: `PD1000`, `PD1012`, `PD1016`, `PD1017`, `PD1025`, `PD1026`, `PD1044`, `PD1056`, `PD1057`, `PD1059`
+
+- Validation:
+  - `python scripts/apply-elk-antlerless-recommended-2026.py`: PASS
+  - `python scripts/reconcile-current-2026-hunt-code-permits.py`: PASS
+  - `python scripts/reconcile-database-allotment-matches-2026.py`: PASS
+  - `python scripts/audit-elk-antlerless-pasted-vs-recommended-2026.py`: PASS
+  - `python -m py_compile scripts/apply-elk-antlerless-recommended-2026.py scripts/audit-elk-antlerless-pasted-vs-recommended-2026.py scripts/reconcile-current-2026-hunt-code-permits.py scripts/reconcile-database-allotment-matches-2026.py`: PASS
+  - Targeted `git diff --check`: PASS
+
+- Commit:
+  - Not committed per current instruction to avoid GitHub commit churn while large/data file handling is being sorted.
+## 2026-06-04T06:13:00Z - Apply Confirmed DA / Pronghorn Doe / EA1176 / EB1000 Permit Values
+
+- Assigned action:
+  - Plug in recommended values where user confirmed DA codes matched recommended.
+  - Parse `C:\Users\tyler\Desktop\BIBLE HUNT CODES\PRONGHORN DOE.csv` and plug values where the file matched current recommended values.
+  - Apply explicit user corrections: `EA1176 = 45 / 5 / 50` and `EB1000 = total 1`.
+
+- Files changed/created:
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+  - `scripts/apply-confirmed-remaining-permit-values-2026.py`
+  - `scripts/reconcile-database-allotment-matches-2026.py`
+  - `processed_data/audits/confirmed_remaining_permit_values_database_patch_2026.csv`
+  - `processed_data/audits/confirmed_remaining_permit_values_database_patch_2026_summary.json`
+  - `processed_data/audits/pronghorn_doe_csv_vs_recommended_2026.csv`
+  - `processed_data/audits/database_allotment_disagreements_2026_locked_fallback.csv`
+  - `processed_data/backups/DATABASE_before_confirmed_remaining_permit_patch_20260604T061123Z.csv`
+  - `docs/confirmed_remaining_permit_values_database_patch_2026.md`
+  - Refreshed `processed_data/audits/current_2026_hunt_code_permit_reconciliation.csv`
+  - Refreshed `processed_data/audits/current_2026_hunt_code_permit_reconciliation_summary.json`
+  - Refreshed `processed_data/audits/database_allotment_reconciled_2026.csv`
+  - Refreshed `processed_data/audits/database_allotment_reconciliation_2026_summary.json`
+  - `WORK_LOG.md`
+
+- Key results:
+  - DATABASE rows updated: `14`
+  - Updated species counts: Deer `3`, Elk `2`, Pronghorn `9`
+  - Updated DA rows: `DA1009`, `DA1018`, `DA1033`
+  - Updated explicit rows: `EA1176`, `EB1000`
+  - Updated Pronghorn rows: `PD1000`, `PD1012`, `PD1016`, `PD1017`, `PD1026`, `PD1044`, `PD1056`, `PD1057`, `PD1059`
+  - `PD1025` was not updated because the provided Pronghorn Doe CSV has Cottonwood Ridge CWMU as `PD1050`, not `PD1025`.
+  - Remaining DATABASE-vs-recommended disagreements after patch: `5`
+  - Remaining disagreement rows: `EA1176`, `MA1005`, `MA1007`, `MA1008`, `PD1025`
+  - `EA1176` remains a disagreement against the old recommended/HANUMBER value because user-confirmed DATABASE value is now `45 / 5 / 50` while recommended remains `35 / 0 / 35`.
+  - DATABASE rows after patch: `1471`
+  - DATABASE unique hunt codes after patch: `1471`
+  - Duplicate hunt codes after patch: `0`
+
+- Locked file note:
+  - `processed_data/audits/database_allotment_disagreements_2026.csv` was open in Excel, so the refreshed disagreement output was written to `processed_data/audits/database_allotment_disagreements_2026_locked_fallback.csv`.
+
+- Validation:
+  - `python scripts/apply-confirmed-remaining-permit-values-2026.py`: PASS
+  - `python scripts/reconcile-current-2026-hunt-code-permits.py`: PASS
+  - `python scripts/reconcile-database-allotment-matches-2026.py`: PASS using locked fallback for disagreement CSV
+  - `python -m py_compile scripts/apply-confirmed-remaining-permit-values-2026.py scripts/reconcile-current-2026-hunt-code-permits.py scripts/reconcile-database-allotment-matches-2026.py`: PASS
+  - Targeted `git diff --check`: PASS
+
+- Commit:
+  - Not committed per current instruction to avoid GitHub commit churn while large/data file handling is being sorted.
+## 2026-06-04T06:15:00Z - Apply Confirmed Moose Permit Values
+
+- Assigned action:
+  - Plug in user-confirmed Moose recommended values for `MA1005`, `MA1007`, and `MA1008`.
+  - Refresh current 2026 permit reconciliation outputs.
+
+- Files changed/created:
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+  - `scripts/apply-confirmed-moose-permit-values-2026.py`
+  - `processed_data/audits/confirmed_moose_permit_values_database_patch_2026.csv`
+  - `processed_data/audits/confirmed_moose_permit_values_database_patch_2026_summary.json`
+  - `processed_data/backups/DATABASE_before_confirmed_moose_permit_patch_20260604T061441Z.csv`
+  - `docs/confirmed_moose_permit_values_database_patch_2026.md`
+  - Refreshed `processed_data/audits/current_2026_hunt_code_permit_reconciliation.csv`
+  - Refreshed `processed_data/audits/current_2026_hunt_code_permit_reconciliation_summary.json`
+  - Refreshed `processed_data/audits/database_allotment_reconciled_2026.csv`
+  - Refreshed `processed_data/audits/database_allotment_reconciled_2026_unresolved_subset.csv`
+  - Refreshed `processed_data/audits/database_allotment_disagreements_2026.csv`
+  - Refreshed `processed_data/audits/database_allotment_reconciliation_2026_summary.json`
+  - `WORK_LOG.md`
+
+- Key results:
+  - DATABASE Moose rows updated: `3`
+  - Updated `MA1005` to `2 / 1 / 3`
+  - Updated `MA1007` to `2 / 0 / 2`
+  - Updated `MA1008` to `2 / 0 / 2`
+  - Remaining DATABASE-vs-recommended disagreements after patch: `2`
+  - Remaining disagreement rows: `EA1176`, `PD1025`
+  - DATABASE rows after patch: `1471`
+  - DATABASE unique hunt codes after patch: `1471`
+  - Duplicate hunt codes after patch: `0`
+
+- Validation:
+  - `python scripts/apply-confirmed-moose-permit-values-2026.py`: PASS
+  - `python scripts/reconcile-current-2026-hunt-code-permits.py`: PASS
+  - `python scripts/reconcile-database-allotment-matches-2026.py`: PASS
+  - `python -m py_compile scripts/apply-confirmed-moose-permit-values-2026.py scripts/reconcile-current-2026-hunt-code-permits.py scripts/reconcile-database-allotment-matches-2026.py`: PASS
+  - Targeted `git diff --check`: PASS
+
+- Commit:
+  - Not committed per current instruction to avoid GitHub commit churn while large/data file handling is being sorted.
+## 2026-06-04T06:21:00Z - Apply Final Reviewed Permit Overrides For EA1176 And PD1025
+
+- Assigned action:
+  - Lock `EA1176` as `45 / 5 / 50`.
+  - Set `PD1025` equal to the reviewed `PD1050` Pronghorn Doe source value: `6 / 0 / 6`.
+  - Make the current reconciliation layer recognize these as reviewed overrides so they no longer appear as DATABASE-vs-recommended disagreements.
+
+- Files changed/created:
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+  - `processed_data/audits/reviewed_permit_value_overrides_2026.csv`
+  - `scripts/apply-final-reviewed-permit-overrides-2026.py`
+  - `scripts/reconcile-current-2026-hunt-code-permits.py`
+  - `processed_data/audits/final_reviewed_permit_overrides_database_patch_2026.csv`
+  - `processed_data/audits/final_reviewed_permit_overrides_database_patch_2026_summary.json`
+  - `processed_data/backups/DATABASE_before_final_reviewed_permit_overrides_20260604T062018Z.csv`
+  - `docs/final_reviewed_permit_overrides_database_patch_2026.md`
+  - Refreshed `processed_data/audits/current_2026_hunt_code_permit_reconciliation.csv`
+  - Refreshed `processed_data/audits/current_2026_hunt_code_permit_reconciliation_summary.json`
+  - Refreshed `processed_data/audits/database_allotment_reconciled_2026.csv`
+  - Refreshed `processed_data/audits/database_allotment_reconciled_2026_unresolved_subset.csv`
+  - Refreshed `processed_data/audits/database_allotment_disagreements_2026.csv`
+  - Refreshed `processed_data/audits/database_allotment_reconciliation_2026_summary.json`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Reviewed overrides added: `2`
+  - `EA1176`: `45 / 5 / 50`, winner source `REVIEWED_OVERRIDE`, confidence `REVIEWED_OVERRIDE_CONFIRMED`
+  - `PD1025`: `6 / 0 / 6`, winner source `REVIEWED_OVERRIDE`, confidence `REVIEWED_OVERRIDE_CONFIRMED`
+  - Remaining DATABASE-vs-recommended disagreements after patch: `0`
+  - Reconciled rows after patch: `1159`
+  - Exact DATABASE/recommended matches after patch: `1152`
+  - Total-only matches after patch: `7`
+  - DATABASE rows after patch: `1471`
+  - DATABASE unique hunt codes after patch: `1471`
+  - Duplicate hunt codes after patch: `0`
+
+- Validation:
+  - `python scripts/apply-final-reviewed-permit-overrides-2026.py`: PASS
+  - `python scripts/reconcile-current-2026-hunt-code-permits.py`: PASS
+  - `python scripts/reconcile-database-allotment-matches-2026.py`: PASS
+  - `python -m py_compile scripts/apply-final-reviewed-permit-overrides-2026.py scripts/reconcile-current-2026-hunt-code-permits.py scripts/reconcile-database-allotment-matches-2026.py`: PASS
+  - Targeted `git diff --check`: PASS
+
+- Commit:
+  - Not committed per current instruction to avoid GitHub commit churn while large/data file handling is being sorted.
+## 2026-06-04T06:24:00Z - Retire PD1025 And Keep PD1050 Active
+
+- Assigned action:
+  - Mark `PD1025` retired for 2026.
+  - Preserve `PD1050` as the active Cottonwood Ridge CWMU row with `6 / 0 / 6`.
+  - Remove `PD1025` from the reviewed override feed and active current recommendation union.
+
+- Files changed/created:
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+  - `processed_data/audits/reviewed_retired_hunt_codes_2026.csv`
+  - `processed_data/audits/reviewed_permit_value_overrides_2026.csv`
+  - `scripts/retire-pd1025-2026.py`
+  - `scripts/reconcile-current-2026-hunt-code-permits.py`
+  - `processed_data/audits/pd1025_retirement_database_patch_2026.csv`
+  - `processed_data/audits/pd1025_retirement_database_patch_2026_summary.json`
+  - `processed_data/backups/DATABASE_before_pd1025_retirement_20260604T062301Z.csv`
+  - `docs/pd1025_retirement_database_patch_2026.md`
+  - Refreshed `processed_data/audits/current_2026_hunt_code_permit_reconciliation.csv`
+  - Refreshed `processed_data/audits/current_2026_hunt_code_permit_reconciliation_summary.json`
+  - Refreshed `processed_data/audits/database_allotment_reconciled_2026.csv`
+  - Refreshed `processed_data/audits/database_allotment_reconciled_2026_unresolved_subset.csv`
+  - Refreshed `processed_data/audits/database_allotment_disagreements_2026.csv`
+  - Refreshed `processed_data/audits/database_allotment_reconciliation_2026_summary.json`
+  - `WORK_LOG.md`
+
+- Key results:
+  - `PD1025` is now marked `RETIRED_2026_SUCCESSOR_PD1050` in `DATABASE.csv`.
+  - `PD1025` active 2026 allotment values were cleared.
+  - `PD1025` notes now point to active successor `PD1050`.
+  - `PD1050` remains active with `6 / 0 / 6`.
+  - `PD1025` is excluded from the active current recommendation union.
+  - Active reconciliation rows after retirement: `1470`
+  - `PD1025` in active reconciliation: `false`
+  - `PD1050` in active reconciliation: `true`
+  - DATABASE-vs-recommended disagreements after retirement: `0`
+  - DATABASE rows remain: `1471`
+  - DATABASE unique hunt codes remain: `1471`
+  - Duplicate hunt codes: `0`
+
+- Validation:
+  - `python scripts/retire-pd1025-2026.py`: PASS
+  - `python scripts/reconcile-current-2026-hunt-code-permits.py`: PASS
+  - `python scripts/reconcile-database-allotment-matches-2026.py`: PASS
+  - `python -m py_compile scripts/retire-pd1025-2026.py scripts/reconcile-current-2026-hunt-code-permits.py scripts/reconcile-database-allotment-matches-2026.py`: PASS
+  - Targeted `git diff --check`: PASS
+
+- Commit:
+  - Not committed per current instruction to avoid GitHub commit churn while large/data file handling is being sorted.
+## 2026-06-04T06:27:00Z - Audit DATABASE 2026 Universe Counts And Delete Candidates
+
+- Assigned action:
+  - Explain current `1471` unique hunt-code count versus earlier `1600+` figures.
+  - Determine whether rows should be deleted.
+  - Do not delete rows without an approved candidate list.
+
+- Files changed/created:
+  - `scripts/audit-database-universe-counts-2026.py`
+  - `processed_data/audits/database_2026_universe_count_and_delete_review.csv`
+  - `processed_data/audits/database_2026_universe_count_and_delete_review_summary.json`
+  - `docs/database_2026_universe_count_and_delete_review.md`
+  - `WORK_LOG.md`
+
+- Key results:
+  - Current `DATABASE.csv`: `1471` rows / `1471` unique hunt codes.
+  - Active current reconciliation universe: `1470` rows / `1470` unique hunt codes.
+  - Retired/reference rows: `1` (`PD1025`, successor `PD1050`).
+  - Delete recommendations: `KEEP` = `1470`; `KEEP_REFERENCE_DO_NOT_DELETE` = `1`; `REVIEW_BEFORE_DELETE` = `0`.
+  - Recent DATABASE backups before the current permit-row additions were `1449` rows / `1449` unique hunt codes.
+  - The earlier `1600+` count came from historical draw/alignment working files, not the active `DATABASE.csv` current universe.
+  - Example source counts: `draw_database_alignment_changes_by_hunt_code_V2.csv` = `1615`; `draw_database_alignment_changes_by_hunt_code_V3.csv` = `1615`; long cumulative draw file = `112056` rows / `1615` unique codes.
+
+- Recommendation:
+  - Do not bulk-delete from `DATABASE.csv`.
+  - Keep retired/reference rows clearly marked for crosswalk/history.
+  - If a current-only output is needed, generate a derived export excluding `RETIRED_REFERENCE_ROW` instead of deleting source/reference rows.
+
+- Validation:
+  - `python scripts/audit-database-universe-counts-2026.py`: PASS
+  - `python -m py_compile scripts/audit-database-universe-counts-2026.py`: PASS
+  - Targeted `git diff --check`: PASS
+
+- Data-change note:
+  - `DATABASE.csv` was not modified in this audit pass.
+
+- Commit:
+  - Not committed per current instruction to avoid GitHub commit churn while large/data file handling is being sorted.## 2026-06-04T06:33:30Z - Audit Hunt Master Runtime Universe Against DATABASE
+
+- Assigned action:
+  - Check the hunt master/runtime files because online loading appeared to show more hunt codes than expected.
+  - Audit only; do not modify `DATABASE.csv`, runtime JS, public manifests, or deployed data.
+
+- Files changed/created:
+  - `scripts/audit-hunt-master-runtime-vs-database-universe.py`
+  - `processed_data/audits/hunt_master_runtime_vs_database_universe_audit.csv`
+  - `processed_data/audits/hunt_master_runtime_vs_database_universe_summary.json`
+  - `docs/hunt_master_runtime_vs_database_universe_audit.md`
+  - `WORK_LOG.md`
+
+- Key results:
+  - `DATABASE.csv` unique hunt codes: `1471`.
+  - Active current reconciliation unique hunt codes: `1470`.
+  - Active Builder first-load hunt master `data/hunt-master-canonical-2026-foundation.json`: `1394` unique hunt codes.
+  - Builder fallback/source-of-truth candidate `data/hunt-master-canonical-2026-source-of-truth.json`: `1411` unique hunt codes.
+  - The Builder first-load foundation is missing `76` active current reconciliation codes, mostly `EA`, `DB`, `MB`, and `PD` families.
+  - `processed_data/hunt_research_2026_split/hunt_research_2026.index.json` has `1607` unique codes, including `179` not in `DATABASE.csv`; these appear to be split-index/historical-placeholder style rows rather than current Builder hunt-master truth.
+  - The comprehensive live HuntTable comparison aligns to `DATABASE.csv` at `1471` codes, including the retired reference row `PD1025`.
+  - The likely runtime issue is an under-current Builder first-load master, not a need to delete current `DATABASE.csv` rows.
+
+- Validation:
+  - `python scripts/audit-hunt-master-runtime-vs-database-universe.py`: PASS
+  - `python -m py_compile scripts/audit-hunt-master-runtime-vs-database-universe.py`: PASS
+  - Targeted `git diff --check`: PASS
+  - Output existence checks: PASS
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No runtime source path was changed in this audit pass.
+
+- Commit:
+  - Not committed per current instruction to avoid GitHub commit churn while large/data file handling is being sorted.## 2026-06-04T06:48:30Z - Database Permit Model Cleanup, Bible Truth Promotion, Research Feeder Sync
+
+- Assigned action:
+  - Clean and verify `DATABASE.csv` before rebuilding downstream Research/runtime data.
+  - Clarify permit year/model-year headers for 2024, 2025, and 2026.
+  - Promote Bible Hunt Codes year documents into the pipeline source area.
+  - Sync the four Hunt Research feeder files from cleaned `DATABASE.csv` permit fields.
+  - Rebuild `hunt_research_2026.json` and report remaining website-universe reconciliation work.
+
+- Files changed/created:
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+  - `scripts/audit-and-clean-database-permit-model-fields.py`
+  - `scripts/promote-bible-truth-year-documents.py`
+  - `scripts/sync-database-permit-model-fields-to-research-feeders.py`
+  - `scripts/build-hunt-research-2026-contract.py`
+  - `processed_data/hunt_master_enriched.csv`
+  - `processed_data/hunt_unit_reference_linked.csv`
+  - `processed_data/draw_reality_engine.csv`
+  - `processed_data/point_ladder_view.csv`
+  - `processed_data/hunt_research_2026.json`
+  - `processed_data/hunt_research_2026_summary.json`
+  - `processed_data/hunt_research_2026_ladder.json`
+  - `processed_data/hunt_research_2026_ladder_preference.json`
+  - `processed_data/hunt_research_2026_ladder_bonus_max_random.json`
+  - `processed_data/audits/database_permit_model_year_header_map.csv`
+  - `processed_data/audits/database_permit_field_cleanliness_audit.csv`
+  - `processed_data/audits/DATABASE_permit_model_year_display_headers.csv`
+  - `processed_data/audits/database_permit_model_field_cleanliness_summary.json`
+  - `processed_data/audits/research_feeder_database_permit_sync_audit.csv`
+  - `processed_data/audits/research_feeder_database_permit_sync_summary.json`
+  - `data_truth/draw_results_truth/raw_inventory/bible_truth_year_documents_manifest.csv`
+  - `data_truth/draw_results_truth/raw_inventory/bible_truth_year_documents_summary.json`
+  - `docs/database_permit_model_year_header_policy.md`
+  - `docs/research_feeder_database_permit_sync.md`
+  - Refreshed `docs/hunt_research_2026_rebuild_notes.md`
+  - Refreshed `processed_data/audits/hunt_research_2026_rebuild_coverage.csv`
+  - Refreshed `processed_data/audits/hunt_master_runtime_vs_database_universe_audit.csv`
+  - Refreshed `processed_data/audits/hunt_master_runtime_vs_database_universe_summary.json`
+  - Refreshed `docs/hunt_master_runtime_vs_database_universe_audit.md`
+  - `WORK_LOG.md`
+
+- Key results:
+  - `DATABASE.csv` remains `1471` rows / `1471` unique hunt codes with no duplicates.
+  - Normalized `4961` decimal-looking permit cells to clean integer text.
+  - Permit total math validation found `0` errors where resident and nonresident splits exist.
+  - Canonical machine headers were preserved for compatibility, and display/model-year headers were generated:
+    - `RES_PERMITS_2024=2025_MODEL`, `N.R_PERMITS_2024=2025_MODEL`, `TOTAL_PERMITS_2024=2025_MODEL`
+    - `RES_PERMITS_2025=2026_MODEL`, `N.R_PERMITS_2025=2026_MODEL`, `TOTAL_PERMITS_2025=2026_MODEL`
+    - `RES_PERMITS_2026=2027_MODEL`, `N.R_PERMITS_2026=2027_MODEL`, `TOTAL_PERMITS_2026=2027_MODEL`
+  - Bible Truth promotion copied `180` files into `pipeline/RAW/hunt_unit_database/<year>/bible_truth/` with SHA-256 manifest rows.
+  - Bible Truth promoted file counts by draw year: 2020=`25`, 2021=`24`, 2022=`27`, 2023=`23`, 2024=`24`, 2025=`23`, 2026=`34`.
+  - `processed_data/hunt_master_enriched.csv` was replaced from `C:\Users\tyler\Desktop\GitHub\Cloudfare\hunt_master_enriched.csv` because the repo copy was a Git LFS pointer.
+  - Feeder sync changed only permit/source/public-permit fields, not draw odds math.
+  - Feeder sync changed rows/cells:
+    - `hunt_master_enriched`: `52911` rows / `498551` cells
+    - `hunt_unit_reference_linked`: `2751` rows / `22264` cells
+    - `draw_reality_engine`: `32662` rows / `339000` cells
+    - `point_ladder_view`: `81414` rows / `690886` cells
+  - Rebuilt Hunt Research contract status: `COMPLETE`.
+  - Rebuilt Research contract rows: `91734`; summary rows: `3009`; unique contract hunt codes: `1471`; missing vs DATABASE: `0`; extra vs DATABASE: `0`; missing runtime fields: `0`.
+  - Fresh website-universe audit now shows Research summary clean at `1471` codes, but Builder first-load master remains stale at `1394` codes and split index remains stale/oversized at `1607` codes with `179` extras.
+
+- Validation:
+  - `python scripts/audit-and-clean-database-permit-model-fields.py`: PASS
+  - `python scripts/promote-bible-truth-year-documents.py`: PASS
+  - `python scripts/sync-database-permit-model-fields-to-research-feeders.py`: PASS
+  - `python scripts/build-hunt-research-2026-contract.py`: PASS
+  - `python scripts/audit-hunt-master-runtime-vs-database-universe.py`: PASS
+  - `python -m py_compile` on changed Python scripts: PASS
+  - DATABASE row/column/duplicate/permit-total validation: PASS
+  - Targeted `git diff --check`: PASS (line-ending warning only)
+
+- Remaining website-universe work:
+  - Rebuild/promote the Builder first-load hunt master from the cleaned `DATABASE.csv`/Research summary universe.
+  - Replace or demote `data/hunt-master-canonical-2026-foundation.json` as active first-load source because it has only `1394` codes.
+  - Retire or rebuild stale `processed_data/hunt_research_2026_split/hunt_research_2026.index.json` because it still has `179` codes not in `DATABASE.csv`.
+  - Publish large rebuilt runtime files to Cloudflare R2 and update runtime manifest after local validation.
+
+- Commit:
+  - Not committed per current instruction to avoid GitHub commit churn while large/data file handling is being sorted.
+## 2026-06-04T07:12:30Z - Runtime Website Universe Alignment And R2 Promotion
+
+- Assigned action:
+  - Identify which runtime/feed files still needed alignment after the Research contract rebuild.
+  - Rebuild/promote the Builder first-load hunt master because `data/hunt-master-canonical-2026-foundation.json` still had only `1394` codes.
+  - Replace/demote stale `data/hunt-master-canonical-2026-source-of-truth.json` behavior by aligning it to the same canonical DATABASE universe.
+  - Rebuild stale `processed_data/hunt_research_2026_split/hunt_research_2026.index.json`, which previously had `179` extra codes outside `DATABASE.csv`.
+  - Publish large rebuilt runtime files to Cloudflare R2 and update runtime manifests.
+
+- Files changed/created:
+  - `config.js`
+  - `scripts/rebuild-runtime-hunt-master-and-split.py`
+  - `scripts/minify-large-runtime-json.py`
+  - `scripts/publish-runtime-assets-r2.js`
+  - `docs/runtime_website_universe_alignment.md`
+  - `data/hunt-master-canonical-2026-foundation.json`
+  - `data/hunt-master-canonical-2026-foundation.csv`
+  - `data/hunt-master-canonical-2026-source-of-truth.json`
+  - `data/hunt-master-canonical-2026-source-of-truth.csv`
+  - `data/hunt-master-canonical-2026-database-candidate.json`
+  - `data/hunt-master-canonical-2026-database-candidate.csv`
+  - `processed_data/hunt-master-canonical-2026-source-of-truth.json`
+  - `processed_data/hunt-master-canonical-2026-source-of-truth.csv`
+  - `processed_data/hunt_research_2026_split/hunt_research_2026.index.json`
+  - `processed_data/hunt_research_2026_split/hunts/*.json`
+  - `processed_data/hunt_research_2026_split/manifest.json`
+  - `processed_data/hunt_research_2026_split/split-summary.json`
+  - `processed_data/hunt_research_2026.json`
+  - `processed_data/hunt_research_2026_ladder.json`
+  - `processed_data/hunt_research_2026_ladder_preference.json`
+  - `processed_data/hunt_research_2026_ladder_bonus_max_random.json`
+  - `public/data/runtime-manifest.json`
+  - `data/runtime-manifest.json`
+  - `processed_data/audits/runtime_website_universe_update_matrix.csv`
+  - `processed_data/audits/runtime_website_universe_update_summary.json`
+  - `processed_data/audits/large_file_classification_audit.csv`
+  - Refreshed `processed_data/audits/hunt_master_runtime_vs_database_universe_audit.csv`
+  - Refreshed `processed_data/audits/hunt_master_runtime_vs_database_universe_summary.json`
+  - Refreshed `docs/hunt_master_runtime_vs_database_universe_audit.md`
+
+- Key results:
+  - Builder first-load hunt master now has `1471` rows / `1471` unique hunt codes.
+  - Builder fallback/source-of-truth hunt master now has `1471` rows / `1471` unique hunt codes.
+  - Processed hunt-master JSON/CSV mirrors now have `1471` unique hunt codes.
+  - Research split index now has `1471` rows / `1471` unique hunt codes.
+  - Removed `179` stale split detail files outside `DATABASE.csv`.
+  - Runtime update matrix has `19` rows and `0` non-OK active/runtime candidates.
+  - Minified large Research runtime JSON files without changing values so Wrangler could upload them under the 300 MiB limit:
+    - `processed_data/hunt_research_2026.json`: `319788394` -> `261257548` bytes
+    - `processed_data/hunt_research_2026_ladder.json`: `319788394` -> `261257548` bytes
+    - `processed_data/hunt_research_2026_ladder_preference.json`: `65400649` -> `54031489` bytes
+    - `processed_data/hunt_research_2026_ladder_bonus_max_random.json`: `152067127` -> `124523941` bytes
+  - `config.js` cache tokens bumped to `20260604-runtime-canonical-1`.
+  - Removed stale hardcoded LFS-pointer assumptions for `research_draw_reality_engine_predictive_v2_csv` and `research_hunt_master_enriched_csv` because local files are now real content.
+
+- Cloudflare R2 publication:
+  - Confirmed Wrangler auth with `wrangler whoami` for `tyler@uoga.org`.
+  - Uploaded `18` public runtime assets to R2 bucket `uoga-data` under their repo-relative keys.
+  - Verified every public R2 URL returned `200` with matching byte length, including:
+    - `https://json.uoga.workers.dev/processed_data/hunt_research_2026.json`
+    - `https://json.uoga.workers.dev/processed_data/hunt_research_2026_summary.json`
+    - `https://json.uoga.workers.dev/processed_data/hunt_research_2026_ladder.json`
+    - `https://json.uoga.workers.dev/processed_data/hunt_research_2026_ladder_preference.json`
+    - `https://json.uoga.workers.dev/processed_data/hunt_research_2026_ladder_bonus_max_random.json`
+    - `https://json.uoga.workers.dev/processed_data/hunt_research_2026_split/hunt_research_2026.index.json`
+    - `https://json.uoga.workers.dev/processed_data/draw_reality_engine.csv`
+    - `https://json.uoga.workers.dev/processed_data/draw_reality_engine_v2.csv`
+    - `https://json.uoga.workers.dev/processed_data/draw_reality_engine_predictive_v2.csv`
+    - `https://json.uoga.workers.dev/processed_data/draw_reality_view.csv`
+    - `https://json.uoga.workers.dev/processed_data/ml_draw_predictions_v1.csv`
+    - `https://json.uoga.workers.dev/processed_data/hunt_master_enriched.csv`
+    - `https://json.uoga.workers.dev/processed_data/hunt_unit_reference_linked.csv`
+    - `https://json.uoga.workers.dev/processed_data/point_ladder_view.csv`
+
+- Remaining deployment note:
+  - Cloudflare objects are live now.
+  - `data/*.json`, `config.js`, and runtime manifest changes still require the normal Vercel/GitHub deployment path before `https://huntbuilder.uoga.org` uses the rebuilt Builder first-load master.
+  - `processed_data/hunt_master_enriched_2026_draw_subset.csv` remains missing/review-required and is not active runtime.
+
+- Validation:
+  - `wrangler whoami`: PASS
+  - `python scripts/rebuild-runtime-hunt-master-and-split.py`: PASS
+  - `python scripts/minify-large-runtime-json.py`: PASS
+  - `node scripts/publish-runtime-assets-r2.js --dry-run`: PASS
+  - Wrangler R2 upload loop for `18` public runtime assets: PASS
+  - R2 public `HEAD` verification for all `18` uploaded assets: PASS
+  - `python scripts/audit-hunt-master-runtime-vs-database-universe.py`: PASS
+  - `python -m py_compile scripts/rebuild-runtime-hunt-master-and-split.py scripts/minify-large-runtime-json.py`: PASS
+  - `node --check config.js`: PASS
+  - `node --check scripts/publish-runtime-assets-r2.js`: PASS
+  - JSON parse checks for rebuilt hunt-master files, split index, and runtime manifests: PASS
+  - Runtime update matrix status check: PASS (`19` rows, `0` bad)
+  - Live route HEAD checks: `/`, `/research.html`, `/verify.html`, `/hard-copy.html` all returned `200`
+  - Targeted `git diff --check`: PASS (line-ending warnings only)
+  - Mobile QA: no UI/layout files changed; live route availability verified, but full visual mobile QA should be rerun after Vercel deploy.
+
+- Commit:
+  - Not committed per current instruction to avoid GitHub commit churn while large/data file handling is being sorted.
+- Follow-up note 2026-06-04T07:18:00Z:
+  - Refreshed `processed_data/audits/runtime_website_universe_update_matrix.csv` after JSON minification so byte sizes match the R2-published files.
+  - The refreshed summary reports `stale_split_detail_files_removed=0` because the initial rebuild in this same pass had already removed the `179` stale split detail files.
+  - Current matrix remains `19` rows / `0` non-OK active/runtime candidates.
+## 2026-06-04T07:29:30Z - Repo storage placement audit
+
+Scope:
+- Reviewed active HUNT-BUILDER repo storage placement for GitHub, Vercel, Cloudflare R2, and local/reference-only handling.
+- Classified 20,201 repo files by recommended storage home and deploy target.
+
+Files changed:
+- scripts/audit-repo-storage-placement.py
+- docs/repo_storage_placement_decision_report.md
+- processed_data/audits/repo_storage_placement_audit.csv
+- processed_data/audits/repo_storage_placement_summary.json
+- WORK_LOG.md
+
+Outputs created:
+- processed_data/audits/repo_storage_placement_audit.csv
+- processed_data/audits/repo_storage_placement_summary.json
+- docs/repo_storage_placement_decision_report.md
+
+Key results:
+- Total files reviewed: 20,201.
+- Total size reviewed: 14,270,394,926 bytes.
+- Large files over 5 MB: 402.
+- Recommended Cloudflare R2 public/runtime files: 44.
+- Recommended GitHub + Vercel app/static/runtime files: 635 deployable static/runtime candidates.
+- Recommended GitHub truth/source files: 514.
+- Local-only/reference/archive files identified: 10,772 local-only plus 1,678 local-or-R2 reference.
+- Confirmed root/nested cleanup pressure: nested HUNT-BUILDER archive copy, .tmp_r2_test.csv, point_ladder_view1.csv, old backups, and broad .gitignore markdown ignore issue should be handled in a separate cleanup pass.
+
+Validation commands run:
+- python scripts/audit-repo-storage-placement.py
+- python -m py_compile scripts/audit-repo-storage-placement.py
+- git diff --check -- scripts/audit-repo-storage-placement.py processed_data/audits/repo_storage_placement_audit.csv processed_data/audits/repo_storage_placement_summary.json docs/repo_storage_placement_decision_report.md
+
+Commit:
+- Not committed per current instruction to stop worrying about GitHub commits while large-file placement is being sorted out.
+## 2026-06-04T08:05:00Z - Remove Git LFS from website runtime path
+
+Scope:
+- Removed Git LFS as a website-runtime delivery mechanism and redirected large runtime fallback behavior to Cloudflare R2 manifests/URLs.
+- Verified public R2 feeder URLs before relying on them.
+
+Files changed:
+- .gitattributes
+- .gitignore
+- config.js
+- hunt-research.js
+- processed_data/audits/r2_live_feeder_url_check.csv
+- processed_data/audits/r2_live_feeder_payload_check.csv
+- WORK_LOG.md
+
+Git index changes:
+- Removed LFS pointer-tracked runtime/reference files from the Git index without deleting local files:
+  - processed_data/ml_draw_predictions_v1.csv
+  - processed_data/backups/current_year_allotment_overlay_20260523_071315/point_ladder_view.csv
+  - processed_data/backups/permit_allocations_2026_20260510_160357/processed_data/point_ladder_view.csv
+
+Key results:
+- .gitattributes now contains no filter=lfs rules; only PDF/XLS/XLSX binary handling remains.
+- .gitignore now explicitly ignores large local runtime/R2 copies while leaving docs and active JS trackable.
+- Removed stale broad ignore rules for *.md and hunt-research.js.
+- config.js now exports R2/manifest-backed Research summary and canonical ladder source arrays.
+- hunt-research.js bare fallback paths now use https://json.uoga.workers.dev instead of local processed_data paths.
+- Verified 18 R2 public/runtime feeder URLs returned HTTP 200.
+- Verified 18 R2 public/runtime feeder payload prefixes were real data and not Git LFS pointer text.
+- Live route HEAD checks for /, /research.html, /verify.html, and /hard-copy.html returned 200.
+
+Validation commands run:
+- node --check config.js
+- node --check hunt-research.js
+- node --check assets/js/research-outlook-dashboard.js
+- node --check assets/js/hard-copy-public-library.js
+- git check-attr filter -- former LFS runtime paths
+- git ls-files --stage -- removed LFS pointer paths
+- git diff --check -- .gitattributes .gitignore config.js hunt-research.js processed_data/audits/r2_live_feeder_url_check.csv processed_data/audits/r2_live_feeder_payload_check.csv
+- R2 HEAD verification for 18 manifest R2 public assets
+- R2 payload-prefix verification for 18 manifest R2 public assets
+- Live route HEAD checks for https://huntbuilder.uoga.org/, /research.html, /verify.html, /hard-copy.html
+
+Commit:
+- Not committed per current instruction to avoid GitHub commit churn while large-file placement is being sorted out.
+## 2026-06-04T08:24:00Z - Branch cleanup and GitHub Desktop staging clear
+
+Scope:
+- Deleted stale local branches identified by the branch audit.
+- Removed stale GitHub Pages temp worktree metadata and deleted CNAME cleanup branches.
+- Cleared the Git index so GitHub Desktop has no staged big-file entries.
+
+Branches deleted locally:
+- copilot/evaluate-code-and-website
+- copilot/improve-mirrir-site-features
+- copilot/refactor-to-single-page-app
+- data
+- processed_data
+- codex/fix-google-maps-local-config
+- codex/guaranteed-line-fix
+- codex/hunt-database-wireup
+- codex/hunt-research-odds-fix
+- codex/live-sync-fix
+- codex/planner-live-fix
+- codex/repo-home-sync
+- codex/selection-matrix-fix
+- codex/split-from-origin
+- backup-before-point-ladder-cleanup
+- backup/push-fail-20260601
+- gh-pages
+- gh-pages-cname
+- gh-pages-utahoga-cname
+
+Remote/tracking cleanup:
+- Removed local remote-tracking ref origin/gh-pages.
+- Did not delete remote GitHub branches by push because this working copy currently has no configured remote URL.
+
+Staging result:
+- git diff --cached --name-status is empty.
+- The former LFS large files remain as unstaged modified working-tree files because HEAD still tracks pointer versions while local working copies are real content.
+
+Remaining branches intentionally kept:
+- main
+- UTAHOGA/modeling-scaffold
+- feature/mobile-patches
+- harvest-2024-database-integration
+
+Validation commands run:
+- git branch --format=%(refname:short)
+- git branch -r --format=%(refname:short)
+- git worktree list
+- git diff --cached --name-status
+- git status --short -- targeted LFS/runtime paths
+
+Commit:
+- Not committed.
+
+## 2026-06-04T07:59:13Z - Ignore oversized Research audit payloads blocking GitHub Desktop
+
+Scope:
+- Added explicit local-only ignore rules for the two oversized generated Research audit payloads identified during GitHub Desktop push cleanup.
+- Verified the files are untracked local artifacts, not committed runtime assets.
+- Confirmed the already staged large runtime files are staged as deletions from Git tracking, not as big file uploads.
+
+Files changed:
+- .gitignore
+- WORK_LOG.md
+
+Oversized local-only files ignored:
+- processed_data/audits/hunt_research_2026_before_numeric_fix_snapshot.json (305.064 MB)
+- processed_data/audits/research_feeder_database_permit_sync_audit.csv (218.428 MB)
+
+Key results:
+- The two oversized Research audit files no longer appear as GitHub Desktop commit candidates after refresh.
+- The tiny research_feeder_database_permit_sync_summary.json remains untracked and small; it was not the push blocker.
+- No local data files were deleted.
+
+Validation commands run:
+- git status --short -- targeted oversized Research audit files
+- staged large-file check for files over 20 MB
+- ahead-of-origin object check for files over 100 MB
+
+Commit:
+- Not committed.

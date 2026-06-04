@@ -1,12 +1,50 @@
+# Dependencies and package caches
 node_modules/
 .npm-cache/
+
+# Local build/cache output
 _exports/
 _local_untracked_backup/
-*.log
-*.psd
+local_only/
+pages-dist/
+dist/
+build/
+tmp/
+.cache/
+.wrangler*
 
-# Pipeline heavy/raw/generated data (local only)
-pipeline/RAW/
+# Logs, backups, and temporary files
+*.log
+*.bak
+*.bak-*
+*.patch
+*.psd
+.tmp_r2_test.csv
+point_ladder_view1.csv
+large-files.txt
+HUNT-BUILDER/
+
+# Python generated files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local-only agent/environment files
+.codex/
+
+# Local PDF ingest inbox / generated review artifacts
+_pdf_inbox/
+processed_data/pdf_ingest/
+
+# Pipeline heavy/raw/generated data stays local unless explicitly promoted.
+pipeline/RAW/*
+!pipeline/RAW/hunt_unit_database/
+pipeline/RAW/hunt_unit_database/*
+!pipeline/RAW/hunt_unit_database/2026/
+pipeline/RAW/hunt_unit_database/2026/*
+!pipeline/RAW/hunt_unit_database/2026/csv/
+pipeline/RAW/hunt_unit_database/2026/csv/*
+!pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv
 pipeline/normalized/
 pipeline/processed/
 pipeline/**/*.html
@@ -23,204 +61,71 @@ pipeline/**/*.cpg
 pipeline/**/*.xlsx
 pipeline/**/*.xls
 
-# .wrangler/
+# Large archives/geospatial/database files
+*.zip
+*.7z
+*.tar
+*.gz
+*.gpkg
+*.mbtiles
+*.tif
+*.tiff
+*.parquet
+*.feather
+*.sqlite
+*.db
+*.shp
+*.dbf
+*.shx
+*.prj
 
-# Python generated files
-__pycache__/
-*.py[cod]
-.pytest_cache/
+# Local raw/cache/export folders
+data/raw/
+data/cache/
+exports/
 
-# Local-only agent/environment files
-.codex/
+# Cloudflare R2 public/runtime feeds: keep local real copies, but do not put
+# them in GitHub/Vercel. GitHub should track manifests/config, not these files.
+data/big_game_draw_point_level.csv
+data/hunt_boundaries_arcgis.json
+data/hunt_odds_history.csv
+data/hunt_odds_history.json
+data/hunt_predictions.json
+data/utah-elk-habitat.geojson
+data/utah-mule-deer-habitat.geojson
+data/boundaries/kml/*.kml
+data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.geojson
+data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.kml
+data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.kmz
+data/utah/foundation_bundle_2026/utah_hunt_foundation_2026.sqlite
+data/utah/official_downloads_2026/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson
 
-# Local-only archives and generated outputs
-local_only/
+processed_data/hunt_research_2026*.json
+processed_data/hunt_research_2026_split/
+processed_data/point_ladder_view.csv
+processed_data/hunt_master_enriched.csv
+processed_data/hunt_unit_reference_linked.csv
+processed_data/draw_reality_engine.csv
+processed_data/draw_reality_engine_v2.csv
+processed_data/draw_reality_engine_predictive_v2.csv
+processed_data/draw_reality_view.csv
+processed_data/ml_draw_predictions_v1.csv
+processed_data/statewide_composite_boundaries_2026.geojson
+processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson
+processed_data/composite_hunt_unit_mapping_2026.geojson
+processed_data/public_contracts/hunt_odds_history.csv
+processed_data/public_contracts/hunt_odds_history.json
 
-# Backup/temporary files
-*.bak
-*.bak-*
-*.patch
-
-# Local PDF ingest inbox / generated review artifacts
-_pdf_inbox/
-
-# Generated PDF ingest review packages
-processed_data/pdf_ingest/
-
-# Local/generated build artifacts not used by main/root runtime
-pages-dist/
-engine.zip
-processed_data/permit_allocation_2026_last_sync.json
-
-# /processed_data/point_ladder_view1
-
-# /processed_data/hunt_master_enriched1
-
-# /processed_data/draw_reality_engine1
-
-# /processed_data/draw_reality_engine_v21
-
-# /processed_data/hunt_master_enriched1
-
-# /processed_data/hunt_master_enriched_2026_draw_subset1
-
-# /processed_data/draw_system_coverage_report1
-
-point_ladder_view1.csv
-
-# /scripts*
-
-# /processed_data/hunt_research_2026
-
-# /.wrangler*
-
-.wrangler*
-
-
-point_ladder_view1.csv
-*.md
-processed_data/hunt_research_2026.json
-
-hunt-research.js
-
-# Large local artifacts (prevent accidental GitHub Desktop staging)
-.tmp_r2_test.csv
+# Large/internal generated processed artifacts
 processed_data/backups/
+processed_data/audits/hunt_research_2026_before_numeric_fix_snapshot.json
+processed_data/audits/research_feeder_database_permit_sync_audit.csv
 processed_data/*backup*.csv
 processed_data/*coverage_report*.csv
 processed_data/*.sqlite
+processed_data/*.db
 processed_data/public_contracts/*.with_permits*.pdf
-processed_data/hunt_research_2026.json
-processed_data/public_contracts/hunt_odds_history.json
-processed_data/hunt_research_2026.json
-processed_data/statewide_composite_boundaries_2026.geojson
-processed_data/statewide_composite_boundaries_2026_final_locked.geojson
-processed_data/composite_hunt_unit_mapping_2026.geojson
-processed_data/draw_reality_engine_predictive_v2.csv
-processed_data/draw_reality_engine.csv
-processed_data/hunt_master_enriched.csv
-processed_data/hunt_master_enriched_2026_draw_subset.csv
-processed_data/hunt_truth_from_json.sqlite
-data_truth/draw_results_truth/normalized/draw_results_long.csv
-data_model/runtime_drafts/mixed_predictive_engine_2026.predictions.csv
-data_model/runtime_drafts/mixed_predictive_engine_2026.materialized.csv
-data_model/runtime_drafts/mixed_predictive_engine_2026.audit.csv
-processed_data/draw_system_coverage_report.csv
-processed_data/draw_reality_engine_backup_before_2024_import.csv
 
-# Large generated/runtime artifacts — serve from Cloudflare R2, not GitHub
-processed_data/public_contracts/*.json
-processed_data/*.geojson
-processed_data/*.sqlite
-processed_data/*predictive*.csv
-processed_data/*reality_engine*.csv
-processed_data/*coverage_report*.csv
-processed_data/*master_enriched*.csv
-
-# Runtime draft outputs
+# Runtime draft outputs and large truth exports
 data_model/runtime_drafts/*.csv
-
-# Large truth exports
 data_truth/draw_results_truth/normalized/*.csv
-
-# Backup artifacts
-processed_data/backups/**/point_ladder_view.csv
-
-processed_data/hunt_research_2026.json
-HUNT-BUILDER/
-data/hunt_boundaries_arcgis.json
-data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.geojson
-data/utah/foundation_bundle_2026/utah_hunt_foundation_2026.sqlite
-data/utah/official_downloads_2026/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson
-data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.csv
-processed_data/backups/permit_allocations_2026_20260523_082859/processed_data/point_ladder_view.csv
-
-# Large local/generated files moved to Cloudflare R2
-*.zip
-*.7z
-*.tar
-*.gz
-*.gpkg
-*.mbtiles
-*.tif
-*.tiff
-*.parquet
-*.feather
-*.sqlite
-*.db
-*.shp
-*.dbf
-*.shx
-*.prj
-data/raw/
-data/cache/
-exports/
-dist/
-build/
-tmp/
-
-# Large files moved to Cloudflare R2 bucket: uoga-data
-processed_data/audits/hunt_research_2026_before_numeric_fix_snapshot.json
-processed_data/hunt_research_2026_ladder.json
-processed_data/hunt_research_2026_ladder_bonus_max_random.json
-processed_data/point_ladder_view.csv
-data/hunt_boundaries_arcgis.json
-data/utah/official_downloads_2026/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson
-processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson
-data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.geojson
-data/utah/foundation_bundle_2026/utah_hunt_foundation_2026.sqlite
-data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.csv
-processed_data/hunt_research_2026_ladder_preference.json
-processed_data/backups/permit_allocations_2026_20260523_082859/processed_data/point_ladder_view.csv
-
-# Local/generated large data
-*.zip
-*.7z
-*.tar
-*.gz
-*.gpkg
-*.mbtiles
-*.tif
-*.tiff
-*.parquet
-*.feather
-*.sqlite
-*.db
-*.shp
-*.dbf
-*.shx
-*.prj
-data/raw/
-data/cache/
-exports/
-dist/
-build/
-tmp/
-.cache/
-
-# Large files moved to Cloudflare R2 bucket: uoga-data
-
-# Local/generated large data
-*.zip
-*.7z
-*.tar
-*.gz
-*.gpkg
-*.mbtiles
-*.tif
-*.tiff
-*.parquet
-*.feather
-*.sqlite
-*.db
-*.shp
-*.dbf
-*.shx
-*.prj
-data/raw/
-data/cache/
-exports/
-dist/
-build/
-tmp/
-.cache/
