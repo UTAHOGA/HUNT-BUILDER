@@ -197,3 +197,30 @@ dist/
 build/
 tmp/
 .cache/
+
+# Large files moved to Cloudflare R2 bucket: uoga-data
+
+# Local/generated large data
+*.zip
+*.7z
+*.tar
+*.gz
+*.gpkg
+*.mbtiles
+*.tif
+*.tiff
+*.parquet
+*.feather
+*.sqlite
+*.db
+*.shp
+*.dbf
+*.shx
+*.prj
+data/raw/
+data/cache/
+exports/
+dist/
+build/
+tmp/
+.cache/
