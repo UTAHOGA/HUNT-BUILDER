@@ -15893,3 +15893,55 @@ Validation commands run:
 
 Commit:
 - Pending validation and commit.
+# 2026-06-04T09:55:00Z - Engine feeder contract audit tooling
+
+Scope:
+- Added read-only feeder contract tooling for prediction engines under `engine/`.
+- Mapped feeder files consumed from `processed_data/`, `data_truth/`, `data_model/`, `pipeline/RAW/`, `data/utah/fixtures/`, `data/utah/sportsman/`, and supporting scripts/config files.
+- Ran feeder audits before attempting engine execution.
+- Did not generate synthetic official 2026 quota, RAC, DATABASE, permit, harvest, or draw source files.
+- Did not change model logic under `engine/`.
+
+Files changed:
+- tools/engine_feeder_contract.py
+- tools/audit_engine_feeders.py
+- tests/test_engine_feeder_audit_tools.py
+- audits/engine_feeders/engine_feeder_audit.json
+- audits/engine_feeders/engine_feeder_audit.csv
+- audits/engine_feeders/engine_feeder_audit.md
+- WORK_LOG.md
+
+Key results:
+- Engine packages found: `engine.utah`, `engine.utah_bonus_predictive`, `engine.utah_draw_predictive`, `engine.utah_predictive_mixed`.
+- Engine compile passed.
+- Contract entries audited: 53.
+- Status counts: 18 PASS, 35 BLOCKER.
+- All production engine group gates failed in `--check-only`, so no engine outputs were regenerated.
+- Missing official/required fixture feeders:
+  - data/utah/fixtures/applications_raw.csv
+  - data/utah/fixtures/applicants_raw.csv
+  - data/utah/fixtures/groups_raw.csv
+  - data/utah/fixtures/points_raw.csv
+  - data/utah/fixtures/quotas_raw.csv
+  - data/utah/fixtures/draw_results_raw.csv
+  - data/utah/fixtures/hunt_metadata_raw.csv
+  - data/utah/fixtures/harvest_quality_raw.csv
+- Legacy `processed_data/hunt-master-canonical.json` is absent but satisfied by the explicit alternate `processed_data/hunt-master-canonical-2026-source-of-truth.json`.
+- No probability range failures were found.
+
+Validation commands run:
+- python -m compileall -q engine tools tests
+- python -m pytest tests/test_engine_feeder_audit_tools.py -q
+- python tools/audit_engine_feeders.py --root . --forecast-year 2026 --warn-only
+- python tools/audit_engine_feeders.py --root . --forecast-year 2026 --group utah_rebuild_fixtures --check-only
+- python tools/audit_engine_feeders.py --root . --forecast-year 2026 --group utah_materialize_engine --check-only
+- python tools/audit_engine_feeders.py --root . --forecast-year 2026 --group utah_bonus_predictive --check-only
+- python tools/audit_engine_feeders.py --root . --forecast-year 2026 --group utah_draw_predictive --check-only
+- python tools/audit_engine_feeders.py --root . --forecast-year 2026 --group harvest_quality --check-only
+- python tools/audit_engine_feeders.py --root . --forecast-year 2026 --group utah_predictive_mixed --check-only
+
+Production readiness:
+- PASS_WITH_BLOCKERS.
+
+Commit:
+- Pending validation and commit.
