@@ -99,6 +99,8 @@ REVIEWED_2021_TO_2022_ANTLERLESS_DISCONTINUED = {
     "PD1039": "2021 antlerless PDF confirms PD1039; 2022 and 2023 antlerless draw-results PDFs have no exact code and no same-unit successor for Panguitch Lake/Zion, North doe pronghorn.",
 }
 
+SPORTSMAN_ONE_PERMIT_RULE = "Each Sportsman permit hunt carries 1 permit per species/hunt_code per draw year."
+
 REVIEWED_2022_TO_2023_SPORTSMAN_ACTIVE_CONTINUITY = {
     "BI1000": "Sportsman Bison is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
     "BR1000": "Sportsman Black Bear is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
@@ -614,7 +616,7 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                             "source_pages": "1",
                             "source_kinds": "draw_results",
                         },
-                        reviewed_2022_2023_sportsman_active_continuity_note,
+                        f"{reviewed_2022_2023_sportsman_active_continuity_note} {SPORTSMAN_ONE_PERMIT_RULE}",
                     )
                 )
             elif candidates:
@@ -858,6 +860,7 @@ def summarize(crosswalk_rows: list[dict[str, object]], candidate_rows: list[dict
             "Reviewed 2020-to-2021 discontinuation decisions are recorded separately and are not successor mappings.",
             "Reviewed 2021-to-2022 antlerless decisions use the official 2021, 2022, and 2023 antlerless draw-results PDFs to separate true successors from discontinued rows.",
             "Reviewed 2022-to-2023 sportsman decisions are active sportsman permit-hunt continuity rows across the analyzed source years; they are not discontinuations or successor mappings.",
+            SPORTSMAN_ONE_PERMIT_RULE,
         ],
     }
 

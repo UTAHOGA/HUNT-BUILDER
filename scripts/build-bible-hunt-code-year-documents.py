@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import argparse
 import difflib
 import json
 import re
@@ -59,12 +60,19 @@ RAW_FIELDS = [
     "hunt_title_or_row_text",
     "unit_or_area_inferred",
     "weapon_or_last_segment_inferred",
+    "sex_type",
+    "hunt_type",
+    "weapon",
+    "resident_permits_drawn",
+    "nonresident_permits_drawn",
+    "total_permits_drawn",
+    "permit_parse_status",
     "hunt_code_review_status",
     "candidate_normalized_hunt_code",
     "source_priority",
 ]
 
-YEAR_FIELDS = [
+BASE_YEAR_FIELDS = [
     "report_year",
     "draw_year",
     "model_year",
@@ -72,6 +80,9 @@ YEAR_FIELDS = [
     "prefix",
     "species_from_prefix",
     "best_hunt_title_or_row_text",
+    "SEX_TYPE",
+    "HUNT_TYPE",
+    "WEAPON",
     "unit_or_area_inferred",
     "weapon_or_last_segment_inferred",
     "source_family_values",
@@ -162,6 +173,111 @@ def report_family(label: str) -> str:
     return "REVIEW"
 
 
+def year_permit_fields(year: int) -> list[str]:
+    return [
+        f"{year} RES PERMITS DRAWN",
+        f"{year} NR PERMITS DRAWN",
+        f"{year} TOTAL PERMITS DRAWN",
+    ]
+
+
+def year_fields(year: int) -> list[str]:
+    fields = list(BASE_YEAR_FIELDS)
+    insert_at = fields.index("unit_or_area_inferred")
+    fields[insert_at:insert_at] = year_permit_fields(year)
+    return fields
+
+
+def display_hunt_type(source_family: str, title: str) -> str:
+    text = norm_text(title)
+    if "cwmu" in text:
+        return "CWMU"
+    labels = {
+        "SPORTSMAN": "Sportsman",
+        "COUGAR": "Cougar",
+        "BEAR": "Black Bear",
+        "TURKEY": "Turkey",
+        "YOUTH": "Youth",
+        "DEDICATED_HUNTER_DEER": "Dedicated Hunter Deer",
+        "GENERAL_SEASON": "General Season",
+        "ANTLERLESS": "Antlerless",
+        "ONCE_IN_A_LIFETIME": "Once-in-a-Lifetime",
+        "LIMITED_ENTRY": "Limited Entry",
+    }
+    return labels.get(source_family, source_family.replace("_", " ").title() if source_family else "")
+
+
+def infer_sex_type(title: str, species: str) -> str:
+    text = norm_text(title)
+    if "bearded turkey" in text:
+        return "Bearded"
+    if "either sex" in text:
+        return "Either Sex"
+    if "hunter s choice" in text or "hunter choice" in text:
+        return "Hunter's Choice"
+    if "cow only" in text:
+        return "Cow Only"
+    if "antlerless" in text:
+        return "Antlerless"
+    if "doe" in text:
+        return "Doe"
+    if "ewe" in text:
+        return "Ewe"
+    if "bull" in text:
+        return "Bull"
+    if "buck" in text:
+        return "Buck"
+    if "tom" in text:
+        return "Tom"
+    if "sportsman" in text:
+        return "Sportsman"
+    return ""
+
+
+def to_int_text(value: object) -> str:
+    text = clean(value).replace(",", "")
+    if re.fullmatch(r"-?\d+", text):
+        return str(int(text))
+    return ""
+
+
+def parse_totals_permits(page_text: str) -> dict[str, str]:
+    compact = re.sub(r"\s+", " ", page_text)
+    match = re.search(
+        r"Totals\s+([\d,]+)\s+(\d+)\s+(\d+)\s+(\d+)\s+.*?"
+        r"Totals\s+([\d,]+)\s+(\d+)\s+(\d+)\s+(\d+)",
+        compact,
+        flags=re.I,
+    )
+    if not match:
+        return {
+            "resident_permits_drawn": "",
+            "nonresident_permits_drawn": "",
+            "total_permits_drawn": "",
+            "permit_parse_status": "PERMIT_TOTALS_NOT_PARSED",
+        }
+    res_total = to_int_text(match.group(4))
+    nr_total = to_int_text(match.group(8))
+    total = str(int(res_total or 0) + int(nr_total or 0)) if res_total or nr_total else ""
+    return {
+        "resident_permits_drawn": res_total,
+        "nonresident_permits_drawn": nr_total,
+        "total_permits_drawn": total,
+        "permit_parse_status": "PARSED_FROM_PAGE_TOTALS",
+    }
+
+
+def sportsman_permit_values(code: str, title: str) -> dict[str, str]:
+    if "sportsman" not in norm_text(title):
+        return {}
+    return {
+        "resident_permits_drawn": "1",
+        "nonresident_permits_drawn": "0",
+        "total_permits_drawn": "1",
+        "permit_parse_status": "SPORTSMAN_ONE_PERMIT_RULE",
+    }
+
+
 def model_year_for(path: Path, year: int) -> str:
     match = MODEL_RE.search(path.name)
     return match.group(1) if match else str(year + 1)
@@ -200,11 +316,17 @@ def infer_identity(context: str, code: str) -> tuple[str, str]:
     return "", ""
 
 
-def raw_row(year: int, path: Path, location: str, code: str, context: str) -> dict[str, str]:
+def raw_row(year: int, path: Path, location: str, code: str, context: str, permits: dict[str, str] | None = None) -> dict[str, str]:
     comparison_code, review_status, candidate = normalize_code_for_compare(code)
     prefix = prefix_of(comparison_code)
     label = report_label(path)
     unit, weapon = infer_identity(context, code)
+    source_family = report_family(label)
+    species = PREFIX_SPECIES.get(prefix, "")
+    permit_values = permits or {}
+    sportsman_values = sportsman_permit_values(comparison_code, context)
+    if sportsman_values:
+        permit_values = sportsman_values
     return {
         "report_year": str(year),
         "draw_year": str(year),
@@ -213,14 +335,21 @@ def raw_row(year: int, path: Path, location: str, code: str, context: str) -> di
         "source_extension": path.suffix.lower(),
         "source_location": location,
         "source_label": label,
-        "source_family": report_family(label),
+        "source_family": source_family,
         "hunt_code_raw": code,
         "comparison_hunt_code": comparison_code,
         "prefix": prefix,
-        "species_from_prefix": PREFIX_SPECIES.get(prefix, ""),
+        "species_from_prefix": species,
         "hunt_title_or_row_text": clean(context),
         "unit_or_area_inferred": unit,
         "weapon_or_last_segment_inferred": weapon,
+        "sex_type": infer_sex_type(context, species),
+        "hunt_type": display_hunt_type(source_family, context),
+        "weapon": weapon,
+        "resident_permits_drawn": permit_values.get("resident_permits_drawn", ""),
+        "nonresident_permits_drawn": permit_values.get("nonresident_permits_drawn", ""),
+        "total_permits_drawn": permit_values.get("total_permits_drawn", ""),
+        "permit_parse_status": permit_values.get("permit_parse_status", ""),
         "hunt_code_review_status": review_status,
         "candidate_normalized_hunt_code": candidate,
         "source_priority": source_priority(path),
@@ -242,6 +371,8 @@ def extract_pdf(year: int, path: Path) -> list[dict[str, str]]:
         lines = [clean(line) for line in text.splitlines() if clean(line)]
         if not lines:
             continue
+        page_codes = sorted(set(CODE_RE.findall(text.upper())))
+        page_permits = parse_totals_permits(text) if len(page_codes) == 1 else {}
         for idx, line in enumerate(lines):
             codes = CODE_RE.findall(line.upper())
             if not codes:
@@ -252,7 +383,7 @@ def extract_pdf(year: int, path: Path) -> list[dict[str, str]]:
             else:
                 context = clean(" ".join(lines[max(0, idx - 1) : min(len(lines), idx + 2)]))
             for code in sorted(set(codes)):
-                rows.append(raw_row(year, path, f"pdf_page_{page_num}", code, context))
+                rows.append(raw_row(year, path, f"pdf_page_{page_num}", code, context, page_permits))
     return rows
 
 
@@ -267,10 +398,10 @@ def extract_xlsx(year: int, path: Path) -> list[dict[str, str]]:
             values = [clean(value) for value in cells if clean(value)]
             if not values:
                 continue
-            text = " | ".join(values)
-            codes = CODE_RE.findall(text.upper())
-            for code in sorted(set(codes)):
-                rows.append(raw_row(year, path, f"{ws.title}!row_{row_num}", code, text))
+                text = " | ".join(values)
+                codes = CODE_RE.findall(text.upper())
+                for code in sorted(set(codes)):
+                    rows.append(raw_row(year, path, f"{ws.title}!row_{row_num}", code, text))
     return rows
 
 
@@ -306,6 +437,13 @@ def raw_error(year: int, path: Path, message: str) -> dict[str, str]:
         "hunt_title_or_row_text": "",
         "unit_or_area_inferred": "",
         "weapon_or_last_segment_inferred": "",
+        "sex_type": "",
+        "hunt_type": "",
+        "weapon": "",
+        "resident_permits_drawn": "",
+        "nonresident_permits_drawn": "",
+        "total_permits_drawn": "",
+        "permit_parse_status": "",
         "hunt_code_review_status": "SOURCE_READ_ERROR",
         "candidate_normalized_hunt_code": "",
         "source_priority": source_priority(path),
@@ -370,12 +508,19 @@ def year_document(year: int, raw_rows: list[dict[str, str]]) -> list[dict[str, o
         raw_codes = sorted({row["hunt_code_raw"] for row in rows})
         candidates = sorted({row["candidate_normalized_hunt_code"] for row in rows if row["candidate_normalized_hunt_code"]})
         families = sorted({row["source_family"] for row in rows if row["source_family"]})
+        res_permits = first_nonblank(rows, "resident_permits_drawn")
+        nr_permits = first_nonblank(rows, "nonresident_permits_drawn")
+        total_permits = first_nonblank(rows, "total_permits_drawn")
+        permit_status = sorted({row["permit_parse_status"] for row in rows if row.get("permit_parse_status")})
         if "SOURCE_READ_ERROR" in statuses:
             doc_status = "SOURCE_READ_REVIEW"
         elif "POSSIBLE_A_PREFIX_OCR_ARTIFACT" in statuses:
             doc_status = "NORMALIZED_FOR_COMPARISON_REVIEW"
         else:
             doc_status = "OK"
+        notes = "Independent BIBLE year-folder extraction; compare/crosswalk is downstream."
+        if permit_status:
+            notes = f"{notes} Permit parse status: {'|'.join(permit_status)}."
         out.append(
             {
                 "report_year": year,
@@ -385,6 +530,12 @@ def year_document(year: int, raw_rows: list[dict[str, str]]) -> list[dict[str, o
                 "prefix": best["prefix"],
                 "species_from_prefix": best["species_from_prefix"],
                 "best_hunt_title_or_row_text": best["hunt_title_or_row_text"],
+                "SEX_TYPE": first_nonblank(rows, "sex_type"),
+                "HUNT_TYPE": first_nonblank(rows, "hunt_type"),
+                "WEAPON": first_nonblank(rows, "weapon"),
+                f"{year} RES PERMITS DRAWN": res_permits,
+                f"{year} NR PERMITS DRAWN": nr_permits,
+                f"{year} TOTAL PERMITS DRAWN": total_permits,
                 "unit_or_area_inferred": best["unit_or_area_inferred"],
                 "weapon_or_last_segment_inferred": best["weapon_or_last_segment_inferred"],
                 "source_family_values": "|".join(families),
@@ -395,10 +546,18 @@ def year_document(year: int, raw_rows: list[dict[str, str]]) -> list[dict[str, o
                 "hunt_code_review_statuses": "|".join(statuses),
                 "candidate_normalized_hunt_codes": "|".join(candidates),
                 "year_document_status": doc_status,
-                "notes": "Independent BIBLE year-folder extraction; compare/crosswalk is downstream.",
+                "notes": notes,
             }
         )
     return out
+
+
+def first_nonblank(rows: list[dict[str, str]], field: str) -> str:
+    for row in rows:
+        value = clean(row.get(field, ""))
+        if value:
+            return value
+    return ""
 
 
 def identity_key(row: dict[str, object]) -> str:
@@ -489,7 +648,7 @@ def compare_row(from_year: int, to_year: int, left: dict[str, object], right: di
 def write_csv(path: Path, rows: list[dict[str, object]], fields: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="ignore")
+        writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="ignore", lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -499,6 +658,18 @@ def load_existing_csv(path: Path) -> list[dict[str, str]]:
         return []
     with path.open(encoding="utf-8-sig", newline="") as handle:
         return [{key: clean(value) for key, value in row.items()} for row in csv.DictReader(handle)]
+
+
+def csv_has_fields(path: Path, fields: list[str]) -> bool:
+    if not path.exists():
+        return False
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        reader = csv.reader(handle)
+        try:
+            header = next(reader)
+        except StopIteration:
+            return False
+    return all(field in header for field in fields)
 
 
 def style_sheet(ws) -> None:
@@ -575,7 +746,60 @@ def write_index(summary: dict[str, object], year_summaries: list[dict[str, objec
     DOC_INDEX.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def rebuild_selected_years(selected_years: list[int]) -> dict[str, object]:
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    year_summaries: list[dict[str, object]] = []
+    for year in selected_years:
+        raw_rows = extract_year(year)
+        doc_rows = year_document(year, raw_rows)
+        current_year_fields = year_fields(year)
+        raw_path = OUT_DIR / f"bible_hunt_code_source_hits_{year}.csv"
+        doc_path = OUT_DIR / f"bible_hunt_code_year_document_{year}.csv"
+        write_csv(raw_path, raw_rows, RAW_FIELDS)
+        write_csv(doc_path, doc_rows, current_year_fields)
+        write_workbook(OUT_DIR / f"bible_hunt_code_year_document_{year}.xlsx", {str(year): (current_year_fields, doc_rows)})
+        year_summaries.append(
+            {
+                "report_year": year,
+                "draw_year": year,
+                "model_year": year + 1,
+                "source_files_scanned": len(source_files_for_year(year)),
+                "raw_source_hits": len(raw_rows),
+                "unique_hunt_codes": len(doc_rows),
+                "review_status_counts": json.dumps(dict(Counter(row["year_document_status"] for row in doc_rows)), sort_keys=True),
+                "output_csv": f"processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_{year}.csv",
+                "output_xlsx": f"processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_{year}.xlsx",
+            }
+        )
+    return {
+        "created_at_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        "scope": "Targeted independent BIBLE HUNT CODES year document rebuild.",
+        "bible_root": str(BIBLE),
+        "years": selected_years,
+        "year_summaries": year_summaries,
+        "guardrail": "No DATABASE.csv changes; year docs are source evidence and candidate compare rows remain review evidence.",
+    }
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Build BIBLE HUNT CODES year documents and adjacent-year compare outputs.")
+    parser.add_argument(
+        "--only-year",
+        action="append",
+        type=int,
+        choices=YEARS,
+        help="Rebuild only the selected year document(s) and skip adjacent-year compare outputs.",
+    )
+    return parser.parse_args()
+
+
 def main() -> int:
+    args = parse_args()
+    if args.only_year:
+        summary = rebuild_selected_years(sorted(set(args.only_year)))
+        print(json.dumps(summary, indent=2, sort_keys=True))
+        return 0
+
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     raw_by_year: dict[int, list[dict[str, str]]] = {}
     docs_by_year: dict[int, list[dict[str, object]]] = {}
@@ -585,18 +809,19 @@ def main() -> int:
     for year in YEARS:
         raw_path = OUT_DIR / f"bible_hunt_code_source_hits_{year}.csv"
         doc_path = OUT_DIR / f"bible_hunt_code_year_document_{year}.csv"
-        if raw_path.exists() and doc_path.exists():
+        current_year_fields = year_fields(year)
+        if csv_has_fields(raw_path, RAW_FIELDS) and csv_has_fields(doc_path, current_year_fields):
             raw_rows = load_existing_csv(raw_path)
             doc_rows = load_existing_csv(doc_path)
         else:
             raw_rows = extract_year(year)
             doc_rows = year_document(year, raw_rows)
             write_csv(raw_path, raw_rows, RAW_FIELDS)
-            write_csv(doc_path, doc_rows, YEAR_FIELDS)
+            write_csv(doc_path, doc_rows, current_year_fields)
         raw_by_year[year] = raw_rows
         docs_by_year[year] = doc_rows
-        write_workbook(OUT_DIR / f"bible_hunt_code_year_document_{year}.xlsx", {str(year): (YEAR_FIELDS, doc_rows)})
-        workbook_sheets[str(year)] = (YEAR_FIELDS, doc_rows)
+        write_workbook(OUT_DIR / f"bible_hunt_code_year_document_{year}.xlsx", {str(year): (current_year_fields, doc_rows)})
+        workbook_sheets[str(year)] = (current_year_fields, doc_rows)
         year_summaries.append(
             {
                 "report_year": year,

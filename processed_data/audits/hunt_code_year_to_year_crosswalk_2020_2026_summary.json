@@ -10,7 +10,7 @@
     "2025": 1053,
     "2026": 834
   },
-  "created_at_utc": "2026-06-04T00:09:28+00:00",
+  "created_at_utc": "2026-06-04T00:14:39+00:00",
   "crosswalk_status_counts": {
     "ADDED_NO_PREDECESSOR_CANDIDATE": 242,
     "CANDIDATE_SUCCESSOR_BY_IDENTITY": 210,
@@ -34,7 +34,8 @@
     "Known A-prefixed Sportsman/OCR artifacts are excluded from this crosswalk; normalized real hunt codes remain eligible.",
     "Reviewed 2020-to-2021 discontinuation decisions are recorded separately and are not successor mappings.",
     "Reviewed 2021-to-2022 antlerless decisions use the official 2021, 2022, and 2023 antlerless draw-results PDFs to separate true successors from discontinued rows.",
-    "Reviewed 2022-to-2023 sportsman decisions are active sportsman permit-hunt continuity rows across the analyzed source years; they are not discontinuations or successor mappings."
+    "Reviewed 2022-to-2023 sportsman decisions are active sportsman permit-hunt continuity rows across the analyzed source years; they are not discontinuations or successor mappings.",
+    "Each Sportsman permit hunt carries 1 permit per species/hunt_code per draw year."
   ],
   "outputs": {
     "candidate_csv": "processed_data/audits/hunt_code_year_to_year_crosswalk_candidates_2020_2026.csv",

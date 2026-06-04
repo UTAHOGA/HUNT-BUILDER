@@ -13679,4 +13679,89 @@ o_table=0).
   - `git diff --check -- <changed files>`: `PASS` with line-ending warning only for the changed script
 
 - Commit:
+  - `c0f14194` - `Rename reviewed continuity classifications`
+
+## 2026-06-04T00:15:09Z - Add Sportsman One-Permit Rule To Reviewed Continuity Outputs
+
+- Assigned step:
+  - Add the clarified rule that each Sportsman permit hunt carries exactly `1` permit per species/hunt_code per draw year.
+
+- Files changed:
+  - `scripts/build-hunt-code-year-to-year-crosswalk.py`
+  - `docs/hunt_code_year_to_year_crosswalk_2020_2026.md`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026_summary.json`
+  - `processed_data/audits/hunt_code_year_to_year_reviewed_decisions_2022_to_2023.csv`
+  - `WORK_LOG.md`
+
+- Key results:
+  - All `11` reviewed Sportsman active-continuity rows carry the one-permit rule in `decision_basis`.
+  - Summary notes now state: `Each Sportsman permit hunt carries 1 permit per species/hunt_code per draw year.`
+  - `CG1000` remains `CG1000 -> CG1000`.
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values were promoted.
+  - This was a reviewed crosswalk documentation/classification update.
+
+- Validation:
+  - `python scripts\build-hunt-code-year-to-year-crosswalk.py`: `PASS`
+  - `python -m py_compile scripts\build-hunt-code-year-to-year-crosswalk.py`: `PASS`
+  - Sportsman one-permit rule assertion checks: `PASS`
+  - Active crosswalk output search for replaced wording: `PASS`
+
+- Commit:
+  - Pending at log-write time.
+
+## 2026-06-04T00:44:22Z - Add Year-Specific Permit Columns To 2021 And 2024 BIBLE Year Documents
+
+- Assigned step:
+  - Add explicit display columns for `SEX_TYPE`, `HUNT_TYPE`, `WEAPON`, and year-specific resident/nonresident/total permits drawn, then proceed with the next BIBLE year document for `2024`.
+
+- Files changed:
+  - `scripts/build-bible-hunt-code-year-documents.py`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_source_hits_2021.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2021.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2021.xlsx`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_source_hits_2024.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2024.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2024.xlsx`
+  - `WORK_LOG.md`
+
+- Outputs updated:
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2021.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2021.xlsx`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2024.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2024.xlsx`
+
+- Key results:
+  - `2021` year document rows: `1023`
+  - `2021` permit-total-populated rows: `907`
+  - `2024` year document rows: `1027`
+  - `2024` permit-total-populated rows: `10`
+  - Added exact header families:
+    - `SEX_TYPE`
+    - `HUNT_TYPE`
+    - `WEAPON`
+    - `{year} RES PERMITS DRAWN`
+    - `{year} NR PERMITS DRAWN`
+    - `{year} TOTAL PERMITS DRAWN`
+  - Added targeted generator mode: `python scripts\build-bible-hunt-code-year-documents.py --only-year <year>` so one year can be rebuilt without rewriting all compare outputs.
+  - `2021` Sportsman rows carry the one-permit rule where parsed from Sportsman evidence.
+  - `2024` BIBLE Sportsman draw-results evidence contains `10` rows and `Grand Totals ... 10`; `CG1000` was not present in the scanned 2024 BIBLE Sportsman files or text search of the provided 2024 cougar/big-game regulation PDFs.
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No permit values were promoted into canonical database truth.
+  - Year documents remain source evidence for comparison/crosswalk work.
+
+- Validation:
+  - `python -m py_compile scripts\build-bible-hunt-code-year-documents.py scripts\build-hunt-code-year-to-year-crosswalk.py`: `PASS`
+  - `python scripts\build-bible-hunt-code-year-documents.py --only-year 2021`: `PASS`
+  - `python scripts\build-bible-hunt-code-year-documents.py --only-year 2024`: `PASS`
+  - Verified `2021` CSV/XLSX contain required columns: `PASS`
+  - Verified `2024` CSV/XLSX contain required columns: `PASS`
+  - Verified `2021` sample Sportsman rows show `1/0/1`: `PASS`
+  - Verified `2024` parsed Sportsman rows show `1/0/1`: `PASS`
+
+- Commit:
   - Pending at log-write time.
