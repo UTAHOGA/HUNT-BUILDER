@@ -127,6 +127,27 @@ def format_draw_result_display(value):
     return f"1 in {round(one_in, 1)} or {pct_text(pct)}%"
 
 
+def format_projected_odds_display(value):
+    display = format_draw_result_display(value)
+    return f"~{display}" if display else ""
+
+
+def format_2026_max_point_display(row, p_max_value=""):
+    zone = clean(row.get("point_pool_zone"))
+    if zone in {"max_point_pool", "max_pool_guaranteed"}:
+        return "~1 in 1 or 99%"
+    if zone == "max_pool_cutoff_mixed":
+        return format_projected_odds_display(first_text(row.get("p_max_pool_mean_pct"), pct_text(p_max_value)))
+    return ""
+
+
+def format_2026_random_draw_display(row, p_random_value=""):
+    zone = clean(row.get("point_pool_zone"))
+    if zone not in {"random_pool", "max_pool_cutoff_mixed"}:
+        return ""
+    return format_projected_odds_display(first_text(row.get("p_random_pool_pct"), pct_text(p_random_value)))
+
+
 def normalize_draw_result_display(display_value, odds_value):
     display = clean(display_value)
     if display:
@@ -137,6 +158,10 @@ def normalize_draw_result_display(display_value, odds_value):
         if pct:
             return format_draw_result_display(pct)
     return format_draw_result_display(odds_value)
+
+
+def write_runtime_json(path, payload):
+    path.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
 
 
 def first_text(*values):
@@ -740,8 +765,8 @@ def main():
                 hist.get("draw_result_display"),
                 format_draw_result_display(hist.get("odds_2025_actual")),
             ),
-            "display_2026_max_point_pool": number_text(row.get("max_point_permits_2026")),
-            "display_2026_random_draw": number_text(row.get("random_permits_2026")),
+            "display_2026_max_point_pool": format_2026_max_point_display(row, p_max),
+            "display_2026_random_draw": format_2026_random_draw_display(row, p_random),
             "notes": first_text(mgmt.get("notes")),
             "some": "",
             "push": "",
@@ -878,12 +903,12 @@ def main():
 
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     # Backward-compatible full contract.
-    OUT_JSON.write_text(json.dumps(rows, indent=2), encoding="utf-8")
+    write_runtime_json(OUT_JSON, rows)
     # Split contracts for runtime use.
-    OUT_LADDER_JSON.write_text(json.dumps(rows, indent=2), encoding="utf-8")
-    OUT_SUMMARY_JSON.write_text(json.dumps(summary_rows, indent=2), encoding="utf-8")
-    OUT_LADDER_PREFERENCE_JSON.write_text(json.dumps(preference_ladder_rows, indent=2), encoding="utf-8")
-    OUT_LADDER_BONUS_MAX_RANDOM_JSON.write_text(json.dumps(bonus_max_random_ladder_rows, indent=2), encoding="utf-8")
+    write_runtime_json(OUT_LADDER_JSON, rows)
+    write_runtime_json(OUT_SUMMARY_JSON, summary_rows)
+    write_runtime_json(OUT_LADDER_PREFERENCE_JSON, preference_ladder_rows)
+    write_runtime_json(OUT_LADDER_BONUS_MAX_RANDOM_JSON, bonus_max_random_ladder_rows)
 
     # Coverage/audit table
     db_codes = set(db_map.keys())

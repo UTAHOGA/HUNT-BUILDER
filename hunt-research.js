@@ -262,7 +262,14 @@
     return formatOddsAsOneInOrPercent(pct).replace(/~/g, DOCUMENTED_DRAW_RESULT_PREFIX);
   }
 
+  function hasDataQualityFlag(row, flag) {
+    const flags = String(row?.data_quality_flags || '').toUpperCase().split('|').map((value) => value.trim());
+    return flags.includes(String(flag || '').toUpperCase());
+  }
+
   function formatHistoricalDrawResult(row) {
+    if (hasDataQualityFlag(row, 'PRIOR_YEAR_ZERO_SUCCESS')) return '';
+
     const dwrDisplay = normalizeHistoricalOddsDisplay(row?.dwr_result_display);
     if (dwrDisplay) return dwrDisplay;
 
@@ -280,6 +287,12 @@
     return `${DOCUMENTED_DRAW_RESULT_PREFIX}1 in ${denominator.toFixed(1)} or ${percent.toFixed(1)}%`;
   }
 
+  function isOddsDisplayText(value) {
+    const text = String(value || '').trim();
+    if (!text) return false;
+    return /(^|[^a-z])1\s*in\s*[0-9]/i.test(text) || /%/.test(text);
+  }
+
   function getMaxPointPoolDisplay(row) {
     const zone = String(row?.point_pool_zone || '').trim();
     if (!['max_point_pool', 'max_pool_guaranteed', 'max_pool_cutoff_mixed'].includes(zone)) return '';
@@ -288,26 +301,26 @@
     }
 
     const display = String(row?.display_2026_max_point_pool || '').trim();
-    if (display) return display;
+    if (isOddsDisplayText(display)) return display;
 
-    const pMaxPool = num(row?.p_max_pool_mean);
-    if (pMaxPool !== null) return formatOddsAsOneInOrPercent(toProbabilityPercent(pMaxPool));
     const pMaxPoolPct = num(row?.p_max_pool_mean_pct ?? row?.p_max_pool_pct);
     if (pMaxPoolPct !== null) return formatOddsAsOneInOrPercent(pMaxPoolPct);
+    const pMaxPool = num(row?.p_max_pool_mean);
+    if (pMaxPool !== null) return formatOddsAsOneInOrPercent(toProbabilityPercent(pMaxPool));
     const maxPoolProjection = firstAvailable(row, ['max_pool_projection_2026', 'odds_2026_projected']);
     return maxPoolProjection ? formatOddsAsOneInOrPercent(maxPoolProjection) : '';
   }
 
   function getRandomDrawDisplay(row) {
     const display = String(row?.display_2026_random_draw || '').trim();
-    if (display) return display;
+    if (isOddsDisplayText(display)) return display;
 
     const zone = String(row?.point_pool_zone || '').trim();
     if (!['random_pool', 'max_pool_cutoff_mixed'].includes(zone)) return '';
-    const pRandomPool = num(row?.p_random_pool);
-    if (pRandomPool !== null) return formatOddsAsOneInOrPercent(toProbabilityPercent(pRandomPool));
     const pRandomPoolPct = num(row?.p_random_pool_pct);
     if (pRandomPoolPct !== null) return formatOddsAsOneInOrPercent(pRandomPoolPct);
+    const pRandomPool = num(row?.p_random_pool);
+    if (pRandomPool !== null) return formatOddsAsOneInOrPercent(toProbabilityPercent(pRandomPool));
     const randomDraw = firstAvailable(row, ['random_draw_projection_2026', 'random_draw_odds_2026']);
     return randomDraw ? formatOddsAsOneInOrPercent(randomDraw) : '';
   }

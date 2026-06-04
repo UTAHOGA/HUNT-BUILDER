@@ -15655,6 +15655,61 @@ Validation commands run:
 Commit:
 - Pending targeted WORK_LOG.md commit.
 
+## 2026-06-04T08:28:01Z - Correct Hunt Research 2026 draw-display contract values
+
+Scope:
+- Fixed the Hunt Research contract generator so 2026 ladder display fields no longer write permit counts into odds-display columns.
+- Preserved the preferred above-line max-point display style: `~1 in 1 or 99%`.
+- Rebuilt and republished the corrected Research runtime contracts to Cloudflare R2.
+
+Files changed:
+- scripts/build-hunt-research-2026-contract.py
+- hunt-research.js
+- docs/hunt_research_2026_rebuild_notes.md
+- processed_data/audits/hunt_research_2026_rebuild_coverage.csv
+- processed_data/audits/hunt_research_2026_draw_display_contract_fix.csv
+- WORK_LOG.md
+
+Large local runtime files regenerated but not committed:
+- processed_data/hunt_research_2026.json
+- processed_data/hunt_research_2026_summary.json
+- processed_data/hunt_research_2026_ladder.json
+- processed_data/hunt_research_2026_ladder_preference.json
+- processed_data/hunt_research_2026_ladder_bonus_max_random.json
+
+Key results:
+- Contract rows: 91,734.
+- Summary rows: 3,009.
+- DATABASE hunt-code coverage: 1,471/1,471.
+- Missing runtime fields: 0.
+- Contract status: COMPLETE.
+- `display_2026_random_draw` bare-number count after rebuild: 0 across all regenerated Research contract files.
+- `display_2026_max_point_pool` bare-number count after rebuild: 0 across all regenerated Research contract files.
+- EB3039 Resident example:
+  - points 14 and 13 max-point rows display `~1 in 1 or 99%`.
+  - point 12 mixed-cutoff random display is `~1 in 10.3 or 9.71%`.
+  - point 11 random-pool display is `~1 in 11.1 or 9%`.
+  - point 10 random-pool display is `~1 in 12.1 or 8.28%`.
+
+R2 uploads verified:
+- https://json.uoga.workers.dev/processed_data/hunt_research_2026.json -> HTTP 200
+- https://json.uoga.workers.dev/processed_data/hunt_research_2026_summary.json -> HTTP 200
+- https://json.uoga.workers.dev/processed_data/hunt_research_2026_ladder.json -> HTTP 200
+- https://json.uoga.workers.dev/processed_data/hunt_research_2026_ladder_preference.json -> HTTP 200
+- https://json.uoga.workers.dev/processed_data/hunt_research_2026_ladder_bonus_max_random.json -> HTTP 200
+
+Validation commands run:
+- python -m py_compile scripts/build-hunt-research-2026-contract.py
+- python scripts/build-hunt-research-2026-contract.py
+- node --check hunt-research.js
+- Node audit for bare numeric 2026 draw-display fields
+- Wrangler R2 upload for all five Research runtime JSON contracts
+- Public R2 HEAD checks for all five Research runtime JSON contracts
+- Remote summary JSON parse and bare-number display audit
+
+Commit:
+- Pending validation and commit.
+
 ## 2026-06-04T07:59:13Z - Ignore oversized Research audit payloads blocking GitHub Desktop
 
 Scope:
