@@ -1,0 +1,220 @@
+target_hunt_code,candidate_source_hunt_code,target_hunt_name,source_hunt_name,target_species,source_species,target_weapon,source_weapon,name_similarity_jaccard,species_ok,weapon_ok,confidence,source_res,source_nr,source_total,source_file,action,reason
+EL3002,EB3002,Book Cliffs Little Creek Roadless,"Book Cliffs, Little Creek Roadless",ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,1,0,1,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3028,EB3028,Book Cliffs Little Creek Roadless,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,1,0,1,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3079,EB3079,Book Cliffs Little Creek Roadless,"Book Cliffs, Little Creek Roadless",ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,1,0,1,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3167,EB3167,Book Cliffs Little Creek Roadless,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,1,1,2,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+LO1502,DB1502,Cache,Cache - Archery,DEER,DEER,ARCHERY,ARCHERY,0.5,True,True,MEDIUM,383,27,410,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+EL3003,EB3003,Cache Meadowville,"Cache, Meadowville",ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,6,1,7,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3032,EB3032,Cache Meadowville,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,2,1,3,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3033,EB3033,Cache Meadowville,Late,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,2,1,3,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3081,EB3081,Cache Meadowville,"Cache, Meadowville",ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,2,1,3,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3168,EB3168,Cache Meadowville,Late,ELK,ELK,ARCHERY,ARCHERY,0.0,True,True,LOW,1,1,2,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3169,EB3169,Cache Meadowville,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,4,1,5,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3132,EB3132,Cache North,"Cache, North",ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,6,2,8,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3139,EB3139,Cache North,"Cache, North",ELK,ELK,"HAMSS (HANDGUN, ARCHERY, MUZZLELOADER, SHOTGUN OR STRAIGHT-WALLED RIFLE)",H.A.M.S.S.,1.0,True,False,LOW,6,2,8,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3005,EB3005,Cache South,"Cache, South",ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,3,1,4,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3036,EB3036,Cache South,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,1,1,2,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3037,EB3037,Cache South,Late,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,2,1,3,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3083,EB3083,Cache South,"Cache, South",ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,1,1,2,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3170,EB3170,Cache South,Late,ELK,ELK,ARCHERY,ARCHERY,0.0,True,True,LOW,1,1,2,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3171,EB3171,Cache South,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,2,1,3,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3006,EB3006,Manti,Manti,ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,44,6,50,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3038,EB3038,Manti,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,20,2,22,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3039,EB3039,Manti,Late,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,31,2,33,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3084,EB3084,Manti,Manti,ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,22,3,25,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3126,EB3126,Manti,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,22,5,27,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3172,EB3172,Manti,Late,ELK,ELK,ARCHERY,ARCHERY,0.0,True,True,LOW,2,1,3,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+LO1599,DB1599,Chalk Creek,Chalk Creek - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.4,True,False,LOW,472,4,476,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1600,DB1600,Chalk Creek,Chalk Creek - Archery,DEER,DEER,ARCHERY,ARCHERY,0.6667,True,True,MEDIUM,235,9,244,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1601,DB1601,Chalk Creek,Chalk Creek - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (EARLY),ANY LEGAL WEAPON,0.4,True,False,LOW,203,8,211,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1602,DB1602,Chalk Creek,Chalk Creek - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.5,True,True,MEDIUM,134,1,135,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LP5033,PB5033,"Fillmore, Oak Creek South - Private Land Only","Fillmore, Oak Creek South",PRONGHORN,PRONGHORN,ANY LEGAL WEAPON,ANY LEGAL WEAPON,1.0,True,True,HIGH,8,2,10,24_le_pronghorn.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+LD1019,DB1019,"Fillmore, Oak Creek LE - Private Land Only","Fillmore, Oak Creek Le",DEER,DEER,ANY LEGAL WEAPON,ANY LEGAL WEAPON,1.0,True,True,HIGH,7,2,9,24_le_deer.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3008,EB3008,Fillmore Pahvant,"Fillmore, Pahvant",ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,3,1,4,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3042,EB3042,Fillmore Pahvant,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,4,1,5,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3043,EB3043,Fillmore Pahvant,Late,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,2,1,3,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3086,EB3086,Fillmore Pahvant,"Fillmore, Pahvant",ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,3,1,4,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3180,EB3180,Fillmore Pahvant,Late,ELK,ELK,ARCHERY,ARCHERY,0.0,True,True,LOW,3,1,4,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3181,EB3181,Fillmore Pahvant,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,4,1,5,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3044,EB3044,La Sal Dolores Triangle,Late,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,1,1,2,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+LO1607,DB1607,Morgan-South Rich,Morgan-south Rich - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.5,True,False,LOW,248,15,263,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1608,DB1608,Morgan-South Rich,Morgan-south Rich - Archery,DEER,DEER,ARCHERY,ARCHERY,0.75,True,True,HIGH,142,3,145,24_deer_odds.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+LO1609,DB1609,Morgan-South Rich,Morgan-south Rich - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (EARLY),ANY LEGAL WEAPON,0.5,True,False,LOW,134,2,136,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1610,DB1610,Morgan-South Rich,Morgan-south Rich - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.6,True,True,MEDIUM,78,1,79,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+EL3013,EB3013,North Slope Three Corners,"North Slope, Three Corners",ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,2,1,3,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3053,EB3053,North Slope Three Corners,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,2,1,3,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3091,EB3091,North Slope Three Corners,"North Slope, Three Corners",ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,2,0,2,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+LD1001,DB1001,Paunsaugunt - Private Land Only,Paunsaugunt,DEER,DEER,ARCHERY,ARCHERY,1.0,True,True,HIGH,6,1,7,24_le_deer.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+LD1004,DB1004,Paunsaugunt - Private Land Only,Paunsaugunt,DEER,DEER,ANY LEGAL WEAPON,ANY LEGAL WEAPON,1.0,True,True,HIGH,13,3,16,24_le_deer.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+LD1006,DB1006,Paunsaugunt - Private Land Only,Paunsaugunt,DEER,DEER,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,9,2,11,24_le_deer.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3145,EB3145,Boulder,Boulder,ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,7,1,8,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3148,EB3148,Boulder,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,5,1,6,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3151,EB3151,Boulder,Late,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,3,1,4,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3154,EB3154,Boulder,Boulder,ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,7,1,8,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3190,EB3190,Boulder,Late,ELK,ELK,ARCHERY,ARCHERY,0.0,True,True,LOW,1,1,2,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3191,EB3191,Boulder,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,7,1,8,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3018,EB3018,Fishlake/Thousand Lakes,Fishlake/thousand Lakes,ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,17,3,20,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3063,EB3063,Fishlake/Thousand Lakes,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,8,1,9,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3064,EB3064,Fishlake/Thousand Lakes,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,11,3,14,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3065,EB3065,Fishlake/Thousand Lakes,Late,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,10,1,11,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3096,EB3096,Fishlake/Thousand Lakes,Fishlake/thousand Lakes,ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,10,2,12,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3192,EB3192,Fishlake/Thousand Lakes,Late,ELK,ELK,ARCHERY,ARCHERY,0.0,True,True,LOW,1,1,2,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3019,EB3019,San Juan Bull Elk,San Juan Bull Elk,ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,5,1,6,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3066,EB3066,San Juan Bull Elk,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,5,1,6,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3067,EB3067,San Juan Bull Elk,Late,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,3,1,4,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3097,EB3097,San Juan Bull Elk,San Juan Bull Elk,ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,5,1,6,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3193,EB3193,San Juan Bull Elk,Late,ELK,ELK,ARCHERY,ARCHERY,0.0,True,True,LOW,1,1,2,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3194,EB3194,San Juan Bull Elk,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,5,1,6,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+LP5046,PB5046,"San Rafael, North - Private Land Only","San Rafael, North",PRONGHORN,PRONGHORN,ANY LEGAL WEAPON,ANY LEGAL WEAPON,1.0,True,True,HIGH,10,2,12,24_le_pronghorn.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3020,EB3020,Diamond Mtn,Diamond Mtn,ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,5,1,6,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3068,EB3068,Diamond Mtn,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,3,1,4,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3069,EB3069,Diamond Mtn,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,6,2,8,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3098,EB3098,Diamond Mtn,Diamond Mtn,ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,4,1,5,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3195,EB3195,Diamond Mtn,Late,ELK,ELK,ARCHERY,ARCHERY,0.0,True,True,LOW,1,1,2,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3196,EB3196,Diamond Mtn,Late,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,4,1,5,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+LD1023,DB1023,Diamond Mtn - Private Land Only,Diamond Mtn,DEER,DEER,ANY LEGAL WEAPON,ANY LEGAL WEAPON,1.0,True,True,HIGH,16,2,18,24_le_deer.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3022,EB3022,Wasatch Mtns,Wasatch Mtns,ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,38,6,44,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3072,EB3072,Wasatch Mtns,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,16,3,19,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3073,EB3073,Wasatch Mtns,Late,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,23,3,26,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3100,EB3100,Wasatch Mtns,Wasatch Mtns,ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,23,3,26,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3127,EB3127,Wasatch Mtns,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,42,5,47,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3199,EB3199,Wasatch Mtns,Late,ELK,ELK,ARCHERY,ARCHERY,0.0,True,True,LOW,3,1,4,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3137,EB3137,West Desert Deep Creek,"West Desert, Deep Creek",ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,3,1,4,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3144,EB3144,West Desert Deep Creek,"West Desert, Deep Creek",ELK,ELK,"HAMSS (HANDGUN, ARCHERY, MUZZLELOADER, SHOTGUN OR STRAIGHT-WALLED RIFLE)",H.A.M.S.S.,1.0,True,False,LOW,5,1,6,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+LP5051,PB5051,"West Desert, Rush Valley - Private Land Only","West Desert, Rush Valley",PRONGHORN,PRONGHORN,ANY LEGAL WEAPON,ANY LEGAL WEAPON,1.0,True,True,HIGH,5,2,7,24_le_pronghorn.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+LO1603,DB1603,East Canyon,East Canyon - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.4,True,False,LOW,267,9,276,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1604,DB1604,East Canyon,East Canyon - Archery,DEER,DEER,ARCHERY,ARCHERY,0.6667,True,True,MEDIUM,163,4,167,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1605,DB1605,East Canyon,East Canyon - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (EARLY),ANY LEGAL WEAPON,0.4,True,False,LOW,126,7,133,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1606,DB1606,East Canyon,East Canyon - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.5,True,True,MEDIUM,82,4,86,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1518,DB1518,Boulder/Kaiparowits,Boulder/kaiparowits - Archery,DEER,DEER,ARCHERY,ARCHERY,0.6667,True,True,MEDIUM,136,14,150,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1501,DB1501,Box Elder,Box Elder - Archery,DEER,DEER,ARCHERY,ARCHERY,0.6667,True,True,MEDIUM,338,34,372,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1531,DB1531,Box Elder,Box Elder - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.4,True,False,LOW,1348,167,1515,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1561,DB1561,Box Elder,Box Elder - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.5,True,True,MEDIUM,377,11,388,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1514,DB1514,Ogden,Ogden - Archery,DEER,DEER,ARCHERY,ARCHERY,0.5,True,True,MEDIUM,146,13,159,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1544,DB1544,Ogden,Ogden - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.25,True,False,LOW,419,31,450,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1574,DB1574,Ogden,Ogden - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.3333,True,True,LOW,180,3,183,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1508,DB1508,Kamas,Kamas - Archery,DEER,DEER,ARCHERY,ARCHERY,0.5,True,True,MEDIUM,103,4,107,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1538,DB1538,Kamas,Kamas - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.25,True,False,LOW,141,27,168,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1568,DB1568,Kamas,Kamas - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.3333,True,True,LOW,117,3,120,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1592,DB1592,Kamas,Kamas - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (EARLY),ANY LEGAL WEAPON,0.25,True,False,LOW,118,16,134,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1513,DB1513,North Slope,North Slope - Archery,DEER,DEER,ARCHERY,ARCHERY,0.6667,True,True,MEDIUM,209,30,239,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1543,DB1543,North Slope,North Slope - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.4,True,False,LOW,452,30,482,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1573,DB1573,North Slope,North Slope - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.5,True,True,MEDIUM,210,12,222,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1598,DB1598,North Slope,North Slope - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (EARLY),ANY LEGAL WEAPON,0.4,True,False,LOW,213,25,238,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1523,DB1523,Yellowstone,Yellowstone - Archery,DEER,DEER,ARCHERY,ARCHERY,0.5,True,True,MEDIUM,100,7,107,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1553,DB1553,Yellowstone,Yellowstone - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.25,True,False,LOW,211,32,243,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1583,DB1583,Yellowstone,Yellowstone - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.3333,True,True,LOW,70,9,79,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1522,DB1522,Vernal/Bonanza,Vernal/bonanza - Archery,DEER,DEER,ARCHERY,ARCHERY,0.6667,True,True,MEDIUM,136,12,148,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1552,DB1552,Vernal/Bonanza,Vernal/bonanza - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.4,True,False,LOW,165,24,189,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1582,DB1582,Vernal/Bonanza,Vernal/bonanza - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.5,True,True,MEDIUM,59,5,64,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1512,DB1512,Nine Mile,Nine Mile - Archery,DEER,DEER,ARCHERY,ARCHERY,0.6667,True,True,MEDIUM,132,12,144,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1542,DB1542,Nine Mile,Nine Mile - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.4,True,False,LOW,190,33,223,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1572,DB1572,Nine Mile,Nine Mile - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.5,True,True,MEDIUM,98,6,104,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1593,DB1593,Nine Mile,Nine Mile - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (EARLY),ANY LEGAL WEAPON,0.4,True,False,LOW,112,17,129,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1504,DB1504,Nebo,Nebo - Archery,DEER,DEER,ARCHERY,ARCHERY,0.5,True,True,MEDIUM,534,22,556,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1534,DB1534,Nebo,Nebo - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.25,True,False,LOW,1132,98,1230,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1564,DB1564,Nebo,Nebo - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.3333,True,True,LOW,384,8,392,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+EL3009,EB3009,La Sal La Sal Mtns,"La Sal, La Sal Mtns",ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,12,2,14,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3045,EB3045,La Sal La Sal Mtns,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,4,1,5,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3046,EB3046,La Sal La Sal Mtns,Late,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,4,1,5,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3087,EB3087,La Sal La Sal Mtns,"La Sal, La Sal Mtns",ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,4,1,5,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3182,EB3182,La Sal La Sal Mtns,Late,ELK,ELK,ARCHERY,ARCHERY,0.0,True,True,LOW,2,1,3,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3183,EB3183,La Sal La Sal Mtns,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,11,3,14,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+LO1509,DB1509,"La Sal, La Sal Mtns","La Sal, La Sal Mtns - Archery",DEER,DEER,ARCHERY,ARCHERY,0.75,True,True,HIGH,156,15,171,24_deer_odds.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+LO1539,DB1539,"La Sal, La Sal Mtns","La Sal, La Sal Mtns - Any Legal Weapon",DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.5,True,False,LOW,325,40,365,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1569,DB1569,"La Sal, La Sal Mtns","La Sal, La Sal Mtns - Muzzleloader",DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.6,True,True,MEDIUM,132,8,140,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1521,DB1521,"San Juan, Abajo Mtns","San Juan, Abajo Mtns - Archery",DEER,DEER,ARCHERY,ARCHERY,0.8,True,True,HIGH,180,27,207,24_deer_odds.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+LO1551,DB1551,"San Juan, Abajo Mtns","San Juan, Abajo Mtns - Any Legal Weapon",DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.5714,True,False,LOW,411,82,493,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1581,DB1581,"San Juan, Abajo Mtns","San Juan, Abajo Mtns - Muzzleloader",DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.6667,True,True,MEDIUM,156,25,181,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1503,DB1503,Manti/San Rafael,Manti/san Rafael - Archery,DEER,DEER,ARCHERY,ARCHERY,0.75,True,True,HIGH,918,69,987,24_deer_odds.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+LO1533,DB1533,Manti/San Rafael,Manti/san Rafael - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.5,True,False,LOW,1267,233,1500,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1563,DB1563,Manti/San Rafael,Manti/san Rafael - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.6,True,True,MEDIUM,690,73,763,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1526,DB1526,"Wasatch Mtns, West","Wasatch Mtns, West - Archery",DEER,DEER,ARCHERY,ARCHERY,0.75,True,True,HIGH,507,51,558,24_deer_odds.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+LO1556,DB1556,"Wasatch Mtns, West","Wasatch Mtns, West - Any Legal Weapon",DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.5,True,False,LOW,1445,67,1512,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1586,DB1586,"Wasatch Mtns, West","Wasatch Mtns, West - Muzzleloader",DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.6,True,True,MEDIUM,448,15,463,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1525,DB1525,"Wasatch Mtns, East","Wasatch Mtns, East - Archery",DEER,DEER,ARCHERY,ARCHERY,0.75,True,True,HIGH,488,67,555,24_deer_odds.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+LO1555,DB1555,"Wasatch Mtns, East","Wasatch Mtns, East - Any Legal Weapon",DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.5,True,False,LOW,1047,157,1204,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1585,DB1585,"Wasatch Mtns, East","Wasatch Mtns, East - Muzzleloader",DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.6,True,True,MEDIUM,411,28,439,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1524,DB1524,Southwest Desert,Southwest Desert - Archery,DEER,DEER,ARCHERY,ARCHERY,0.6667,True,True,MEDIUM,31,6,37,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1554,DB1554,Southwest Desert,Southwest Desert - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.4,True,False,LOW,93,9,102,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1584,DB1584,Southwest Desert,Southwest Desert - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.5,True,True,MEDIUM,37,4,41,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LP5049,PB5049,Southwest Desert - Private Land Only,Southwest Desert,PRONGHORN,PRONGHORN,ANY LEGAL WEAPON,ANY LEGAL WEAPON,1.0,True,True,HIGH,31,6,37,24_le_pronghorn.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+LP5025,PB5025,Beaver - Private Land Only,Beaver,PRONGHORN,PRONGHORN,ANY LEGAL WEAPON,ANY LEGAL WEAPON,1.0,True,True,HIGH,15,1,16,24_le_pronghorn.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3010,EB3010,Monroe,Monroe,ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,4,1,5,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3047,EB3047,Monroe,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,3,1,4,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3048,EB3048,Monroe,Late,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,5,1,6,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3088,EB3088,Monroe,Monroe,ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,4,1,5,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3184,EB3184,Monroe,Late,ELK,ELK,ARCHERY,ARCHERY,0.0,True,True,LOW,2,1,3,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3185,EB3185,Monroe,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,7,1,8,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+LO1510,DB1510,Monroe,Monroe - Archery,DEER,DEER,ARCHERY,ARCHERY,0.5,True,True,MEDIUM,76,10,86,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1540,DB1540,Monroe,Monroe - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.25,True,False,LOW,221,15,236,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1570,DB1570,Monroe,Monroe - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.3333,True,True,LOW,46,5,51,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+EL3011,EB3011,Mt Dutton,Mt Dutton,ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,5,1,6,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3049,EB3049,Mt Dutton,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,2,1,3,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3050,EB3050,Mt Dutton,Late,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,2,1,3,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3089,EB3089,Mt Dutton,Mt Dutton,ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,2,1,3,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3186,EB3186,Mt Dutton,Late,ELK,ELK,ARCHERY,ARCHERY,0.0,True,True,LOW,2,1,3,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3187,EB3187,Mt Dutton,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,5,1,6,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+LO1511,DB1511,Mt Dutton,Mt Dutton - Archery,DEER,DEER,ARCHERY,ARCHERY,0.6667,True,True,MEDIUM,23,2,25,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1541,DB1541,Mt Dutton,Mt Dutton - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.4,True,False,LOW,80,10,90,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1571,DB1571,Mt Dutton,Mt Dutton - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.5,True,True,MEDIUM,26,3,29,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1519,DB1519,Fishlake,Fishlake - Archery,DEER,DEER,ARCHERY,ARCHERY,0.5,True,True,MEDIUM,89,8,97,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1549,DB1549,Fishlake,Fishlake - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.25,True,False,LOW,166,21,187,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1579,DB1579,Fishlake,Fishlake - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.3333,True,True,LOW,61,14,75,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1596,DB1596,Fishlake,Fishlake - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (EARLY),ANY LEGAL WEAPON,0.25,True,False,LOW,76,13,89,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+EL3015,EB3015,Panguitch Lake,Panguitch Lake,ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,4,1,5,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3056,EB3056,Panguitch Lake,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,3,0,3,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3057,EB3057,Panguitch Lake,Late,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,2,1,3,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3093,EB3093,Panguitch Lake,Panguitch Lake,ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,3,1,4,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3188,EB3188,Panguitch Lake,Late,ELK,ELK,ARCHERY,ARCHERY,0.0,True,True,LOW,1,1,2,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3189,EB3189,Panguitch Lake,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,6,1,7,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+LO1516,DB1516,Panguitch Lake,Panguitch Lake - Archery,DEER,DEER,ARCHERY,ARCHERY,0.6667,True,True,MEDIUM,167,14,181,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1546,DB1546,Panguitch Lake,Panguitch Lake - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.4,True,False,LOW,260,28,288,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1576,DB1576,Panguitch Lake,Panguitch Lake - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.5,True,True,MEDIUM,104,18,122,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1594,DB1594,Panguitch Lake,Panguitch Lake - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (EARLY),ANY LEGAL WEAPON,0.4,True,False,LOW,132,11,143,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1529,DB1529,Zion,Zion - Archery,DEER,DEER,ARCHERY,ARCHERY,0.5,True,True,MEDIUM,253,25,278,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1559,DB1559,Zion,Zion - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.25,True,False,LOW,415,42,457,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1589,DB1589,Zion,Zion - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.3333,True,True,LOW,171,23,194,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1597,DB1597,Zion,Zion - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (EARLY),ANY LEGAL WEAPON,0.25,True,False,LOW,170,14,184,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1517,DB1517,Pine Valley,Pine Valley - Archery,DEER,DEER,ARCHERY,ARCHERY,0.6667,True,True,MEDIUM,198,22,220,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1547,DB1547,Pine Valley,Pine Valley - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.4,True,False,LOW,402,34,436,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1577,DB1577,Pine Valley,Pine Valley - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.5,True,True,MEDIUM,179,16,195,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1595,DB1595,Pine Valley,Pine Valley - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (EARLY),ANY LEGAL WEAPON,0.4,True,False,LOW,275,25,300,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+EL3031,EB3031,Box Elder Pilot Mtn,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,3,1,4,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3130,EB3130,Box Elder Pilot Mtn,"Box Elder, Pilot Mtn",ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,2,0,2,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3000,EB3000,Beaver East,"Beaver, East",ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,5,1,6,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3024,EB3024,Beaver East,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,3,1,4,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3025,EB3025,Beaver East,Late,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,5,1,6,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3077,EB3077,Beaver East,"Beaver, East",ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,4,1,5,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3158,EB3158,Beaver East,Late,ELK,ELK,ARCHERY,ARCHERY,0.0,True,True,LOW,3,1,4,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3159,EB3159,Beaver East,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,4,1,5,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+LP5031,PB5031,"Box Elder, West - Private Land Only","Box Elder, West",PRONGHORN,PRONGHORN,ANY LEGAL WEAPON,ANY LEGAL WEAPON,1.0,True,True,HIGH,10,2,12,24_le_pronghorn.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+LO1506,DB1506,Fillmore,Fillmore - Archery,DEER,DEER,ARCHERY,ARCHERY,0.5,True,True,MEDIUM,188,13,201,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1536,DB1536,Fillmore,Fillmore - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (LATE),ANY LEGAL WEAPON,0.25,True,False,LOW,312,35,347,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1566,DB1566,Fillmore,Fillmore - Muzzleloader,DEER,DEER,MUZZLELOADER,MUZZLELOADER,0.3333,True,True,LOW,124,12,136,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+LO1591,DB1591,Fillmore,Fillmore - Any Legal Weapon,DEER,DEER,ANY LEGAL WEAPON (EARLY),ANY LEGAL WEAPON,0.25,True,False,LOW,141,23,164,24_deer_odds.pdf,SKIP,Confidence below HIGH threshold.
+EL3147,EB3147,Box Elder Grouse Creek,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,2,1,3,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3150,EB3150,Box Elder Grouse Creek,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,3,1,4,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3153,EB3153,Box Elder Grouse Creek,"Box Elder, Grouse Creek",ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,1,1,2,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3135,EB3135,Barney Top/Kaiparowits,Barney Top/kaiparowits,ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,2,1,3,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3142,EB3142,Barney Top/Kaiparowits,Barney Top/kaiparowits,ELK,ELK,"HAMSS (HANDGUN, ARCHERY, MUZZLELOADER, SHOTGUN OR STRAIGHT-WALLED RIFLE)",H.A.M.S.S.,1.0,True,False,LOW,2,1,3,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3136,EB3136,Southwest Desert North,"Southwest Desert, North",ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,2,1,3,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3143,EB3143,Southwest Desert North,"Southwest Desert, North",ELK,ELK,"HAMSS (HANDGUN, ARCHERY, MUZZLELOADER, SHOTGUN OR STRAIGHT-WALLED RIFLE)",H.A.M.S.S.,1.0,True,False,LOW,2,1,3,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3146,EB3146,Southwest Desert South,"Southwest Desert, South",ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,5,1,6,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3149,EB3149,Southwest Desert South,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,3,1,4,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3152,EB3152,Southwest Desert South,Late,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,4,1,5,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3155,EB3155,Southwest Desert South,"Southwest Desert, South",ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,5,1,6,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3197,EB3197,Southwest Desert South,Late,ELK,ELK,ARCHERY,ARCHERY,0.0,True,True,LOW,1,1,2,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3198,EB3198,Southwest Desert South,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,6,1,7,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3160,EB3160,Book Cliffs Bitter Creek/East,"Book Cliffs, Bitter Creek/east",ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,4,1,5,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3161,EB3161,Book Cliffs Bitter Creek/East,Late,ELK,ELK,ARCHERY,ARCHERY,0.0,True,True,LOW,1,0,1,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3162,EB3162,Book Cliffs Bitter Creek/East,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,3,1,4,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3163,EB3163,Book Cliffs Bitter Creek/East,Late,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,5,1,6,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3164,EB3164,Book Cliffs Bitter Creek/East,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,3,1,4,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3166,EB3166,Book Cliffs Bitter Creek/East,"Book Cliffs, Bitter Creek/east",ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,4,1,5,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3173,EB3173,Nebo/San Pitch Mtns,Nebo/san Pitch Mtns,ELK,ELK,ARCHERY,ARCHERY,1.0,True,True,HIGH,3,1,4,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.
+EL3174,EB3174,Nebo/San Pitch Mtns,Late,ELK,ELK,ARCHERY,ARCHERY,0.0,True,True,LOW,1,1,2,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3175,EB3175,Nebo/San Pitch Mtns,Early,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,2,1,3,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3176,EB3176,Nebo/San Pitch Mtns,Late,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,4,1,5,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3177,EB3177,Nebo/San Pitch Mtns,Mid,ELK,ELK,ANY LEGAL WEAPON,ANY LEGAL WEAPON,0.0,True,True,LOW,6,1,7,24_le_bull_elk.pdf,SKIP,Confidence below HIGH threshold.
+EL3179,EB3179,Nebo/San Pitch Mtns,Nebo/san Pitch Mtns,ELK,ELK,MUZZLELOADER,MUZZLELOADER,1.0,True,True,HIGH,2,1,3,24_le_bull_elk.pdf,POPULATE,Deterministic prefix crosswalk + species/weapon match + strong name similarity.

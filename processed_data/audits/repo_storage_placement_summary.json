@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-06-04T07:27:57Z",
+  "total_files_reviewed": 20201,
+  "total_size_bytes": 14270394926,
+  "tracked_files_reviewed": 6675,
+  "ignored_files_reviewed": 4646,
+  "lfs_tracked_files_reviewed": 3,
+  "lfs_pointer_payloads_found": 4,
+  "large_files_over_5mb": 402,
+  "recommended_home_counts": {
+    "CLOUDFLARE_R2_PUBLIC": 44,
+    "GITHUB_AND_VERCEL_APP": 80,
+    "GITHUB_AND_VERCEL_PUBLIC": 73,
+    "GITHUB_AND_VERCEL_RUNTIME": 482,
+    "GITHUB_CODE": 606,
+    "GITHUB_DOCS": 108,
+    "GITHUB_REFERENCE_IF_PROMOTED": 1243,
+    "GITHUB_REVIEW": 190,
+    "GITHUB_SMALL_PROCESSED": 4401,
+    "GITHUB_TRUTH_SOURCE": 514,
+    "GIT_LFS_OR_LOCAL_REFERENCE": 10,
+    "LOCAL_ONLY_IGNORE": 10772,
+    "LOCAL_OR_R2_REFERENCE": 1678
+  },
+  "deploy_target_counts": {
+    "R2_PUBLIC_URL": 36,
+    "R2_PUBLIC_URL_IF_VISITOR_FACING": 27,
+    "VERCEL_STATIC": 635,
+    "NONE": 12808,
+    "NO_DIRECT_VERCEL_ROUTE": 986,
+    "VERCEL_IF_REFERENCED": 4050,
+    "NONE_UNLESS_PUBLIC_LIBRARY": 1659
+  },
+  "outputs": {
+    "csv": "processed_data/audits/repo_storage_placement_audit.csv",
+    "markdown": "docs/repo_storage_placement_decision_report.md"
+  }
+}

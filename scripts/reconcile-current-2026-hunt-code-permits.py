@@ -13,6 +13,8 @@ HANUMBER = ROOT / "processed_data/dwr_huntplanner_hanumber_2026.csv"
 HUNTTABLE = ROOT / "data_truth/crosswalk_truth/validation/live_dwr_permit_numbers_comprehensive_vs_DATABASE_2026.csv"
 UTAHDRAWS = ROOT / "processed_data/audits/dwr_2026_draw_results_vs_database_allotments.csv"
 BUCK_DEER = ROOT / "processed_data/audits/buck_deer_current_permit_source_2026_corrected.csv"
+REVIEWED_OVERRIDES = ROOT / "processed_data/audits/reviewed_permit_value_overrides_2026.csv"
+RETIRED_CODES = ROOT / "processed_data/audits/reviewed_retired_hunt_codes_2026.csv"
 DATABASE = ROOT / "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
 
 OUT_RECON = ROOT / "processed_data/audits/current_2026_hunt_code_permit_reconciliation.csv"
@@ -71,6 +73,10 @@ def read_csv(path: Path) -> list[dict[str, str]]:
         return [{key: clean(value) for key, value in row.items()} for row in csv.DictReader(handle)]
 
 
+def retired_codes() -> set[str]:
+    return {clean(row.get("hunt_code")).upper() for row in read_csv(RETIRED_CODES) if clean(row.get("hunt_code"))}
+
+
 def source_record(
     present: bool = False,
     values: tuple[str, str, str] = ("", "", ""),
@@ -99,12 +105,29 @@ def source_record(
 
 def build_sources() -> dict[str, dict[str, dict[str, str | bool | tuple[str, str, str]]]]:
     sources: dict[str, dict[str, dict[str, str | bool | tuple[str, str, str]]]] = {
+        "reviewed_override": {},
         "hanumber": {},
         "hunttable": {},
         "utahdraws": {},
         "buck_deer": {},
         "database": {},
     }
+    for row in read_csv(REVIEWED_OVERRIDES):
+        code = clean(row.get("hunt_code")).upper()
+        if not code:
+            continue
+        sources["reviewed_override"][code] = source_record(
+            present=True,
+            values=normalized_triple(row.get("reviewed_res"), row.get("reviewed_nr"), row.get("reviewed_total")),
+            name=row.get("hunt_name") or "",
+            species=row.get("species") or "",
+            sex_type=row.get("sex_type") or "",
+            weapon=row.get("weapon") or "",
+            hunt_type=row.get("hunt_type") or "",
+            season=row.get("season") or "",
+            status=row.get("reviewed_status") or "",
+            source_note=row.get("reviewed_source") or "",
+        )
     for row in read_csv(HANUMBER):
         code = clean(row.get("hunt_code")).upper()
         if not code:
@@ -189,7 +212,7 @@ def build_sources() -> dict[str, dict[str, dict[str, str | bool | tuple[str, str
 
 
 def first_metadata(code: str, sources: dict[str, dict[str, dict[str, str | bool | tuple[str, str, str]]]]) -> dict[str, str]:
-    for source_name in ["hanumber", "hunttable", "buck_deer", "utahdraws", "database"]:
+    for source_name in ["reviewed_override", "hanumber", "hunttable", "buck_deer", "utahdraws", "database"]:
         row = sources[source_name].get(code)
         if row and (row.get("name") or row.get("species")):
             return {
@@ -228,9 +251,19 @@ def choose_winner(code: str, rows: dict[str, dict[str, str | bool | tuple[str, s
             "decision_reason": "No source in this pass has current permit values.",
         }
 
-    priority = ["hanumber", "hunttable", "buck_deer", "utahdraws"]
+    priority = ["reviewed_override", "hanumber", "hunttable", "buck_deer", "utahdraws"]
     winner = next(name for name in priority if name in valued)
     winner_values = valued[winner]
+    if winner == "reviewed_override":
+        return {
+            "winner_source": "REVIEWED_OVERRIDE",
+            "recommended_res": winner_values[0],
+            "recommended_nr": winner_values[1],
+            "recommended_total": winner_values[2],
+            "confidence": "REVIEWED_OVERRIDE_CONFIRMED",
+            "recommended_action": "PROMOTE_REVIEWED_OVERRIDE",
+            "decision_reason": "Reviewed override selected from explicit user-confirmed correction.",
+        }
     exact_support = [name for name, val in valued.items() if val == winner_values]
     total_support = [name for name, val in valued.items() if name not in exact_support and total_match(val, winner_values)]
     conflicts = [name for name, val in valued.items() if name not in exact_support and not total_match(val, winner_values)]
@@ -263,7 +296,8 @@ def choose_winner(code: str, rows: dict[str, dict[str, str | bool | tuple[str, s
 
 def main() -> int:
     sources = build_sources()
-    all_codes = sorted(set().union(*(source.keys() for source in sources.values())))
+    retired = retired_codes()
+    all_codes = sorted(set().union(*(source.keys() for source in sources.values())) - retired)
     out_rows: list[dict[str, str]] = []
     unresolved_rows: list[dict[str, str]] = []
     for code in all_codes:
@@ -272,12 +306,12 @@ def main() -> int:
         decision = choose_winner(code, rows)
         source_presence = [
             name.upper()
-            for name in ["hanumber", "hunttable", "utahdraws", "buck_deer", "database"]
+            for name in ["reviewed_override", "hanumber", "hunttable", "utahdraws", "buck_deer", "database"]
             if rows[name].get("present")
         ]
         non_db_values = {
             name: rows[name].get("values", ("", "", ""))
-            for name in ["hanumber", "hunttable", "utahdraws", "buck_deer"]
+            for name in ["reviewed_override", "hanumber", "hunttable", "utahdraws", "buck_deer"]
         }
         recommended = (
             decision["recommended_res"],
@@ -309,6 +343,9 @@ def main() -> int:
             "hunt_code": code,
             **meta,
             "source_presence": "|".join(source_presence),
+            "reviewed_override_res": rows["reviewed_override"].get("values", ("", "", ""))[0],
+            "reviewed_override_nr": rows["reviewed_override"].get("values", ("", "", ""))[1],
+            "reviewed_override_total": rows["reviewed_override"].get("values", ("", "", ""))[2],
             "hanumber_res": rows["hanumber"].get("values", ("", "", ""))[0],
             "hanumber_nr": rows["hanumber"].get("values", ("", "", ""))[1],
             "hanumber_total": rows["hanumber"].get("values", ("", "", ""))[2],
@@ -334,6 +371,7 @@ def main() -> int:
             "database_alignment": database_alignment,
             "recommended_action": decision["recommended_action"],
             "decision_reason": decision["decision_reason"],
+            "reviewed_override_status": str(rows["reviewed_override"].get("status") or ""),
             "hanumber_status": str(rows["hanumber"].get("status") or ""),
             "hunttable_status": str(rows["hunttable"].get("status") or ""),
             "utahdraws_status": str(rows["utahdraws"].get("status") or ""),
@@ -374,6 +412,8 @@ def main() -> int:
             "hunttable": HUNTTABLE.relative_to(ROOT).as_posix(),
             "utahdraws": UTAHDRAWS.relative_to(ROOT).as_posix(),
             "buck_deer": BUCK_DEER.relative_to(ROOT).as_posix(),
+            "reviewed_overrides": REVIEWED_OVERRIDES.relative_to(ROOT).as_posix(),
+            "retired_codes": RETIRED_CODES.relative_to(ROOT).as_posix(),
             "database_reference_only": DATABASE.relative_to(ROOT).as_posix(),
         },
         "row_counts": {
@@ -399,6 +439,8 @@ def main() -> int:
         },
         "notes": [
             "DATABASE.csv is used only as a comparison/reference field in this pass, not as a winner source.",
+            "Reviewed override rows are user-reviewed corrections and are first in precedence for the listed hunt codes only.",
+            "Reviewed retired-code rows are excluded from the active current recommendation union.",
             "HaNumber is the first preferred current DWR source when it has a permit value.",
             "Rows with only database reference values remain unresolved until an external source is found.",
         ],
@@ -434,10 +476,12 @@ def write_report(summary: dict[str, object]) -> None:
         "## Source Precedence",
         "",
         "1. DWR Hunt Planner `HaNumber` pull when it has a current permit value.",
-        "2. Live DWR HuntBoundary `HuntTableData` table values.",
-        "3. Repaired Buck Deer workbook/pasted source rows for Buck Deer-specific support.",
-        "4. UtahDraws/BIBLE 2026 draw-results evidence where DWR current sources are blank or where it supports the same value.",
-        "5. `DATABASE.csv` is comparison/reference only in this pass, not a winner source.",
+        "1. Reviewed override rows for explicitly user-confirmed extraction/crosswalk corrections.",
+        "2. DWR Hunt Planner `HaNumber` pull when it has a current permit value.",
+        "3. Live DWR HuntBoundary `HuntTableData` table values.",
+        "4. Repaired Buck Deer workbook/pasted source rows for Buck Deer-specific support.",
+        "5. UtahDraws/BIBLE 2026 draw-results evidence where DWR current sources are blank or where it supports the same value.",
+        "6. `DATABASE.csv` is comparison/reference only in this pass, not a winner source.",
         "",
         "## Key Counts",
         "",

@@ -1,0 +1,44 @@
+{
+  "backup_path": "processed_data/backups/DATABASE_before_confirmed_remaining_permit_patch_20260604T061123Z.csv",
+  "created_at_utc": "2026-06-04T06:11:23+00:00",
+  "database_path": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "guardrail": "Applied only user-confirmed DA, EA1176, EB1000 and PRONGHORN DOE.csv-confirmed values.",
+  "outputs": {
+    "patch_csv": "processed_data/audits/confirmed_remaining_permit_values_database_patch_2026.csv",
+    "pronghorn_audit_csv": "processed_data/audits/pronghorn_doe_csv_vs_recommended_2026.csv",
+    "report_md": "docs/confirmed_remaining_permit_values_database_patch_2026.md",
+    "summary_json": "processed_data/audits/confirmed_remaining_permit_values_database_patch_2026_summary.json"
+  },
+  "pronghorn_source_rows": 28,
+  "pronghorn_source_vs_database_counts": {
+    "DIFFERS": 9,
+    "EXACT_MATCH": 17,
+    "TOTAL_MATCH_ONLY": 2
+  },
+  "pronghorn_source_vs_recommended_counts": {
+    "EXACT_MATCH": 26,
+    "TOTAL_MATCH_ONLY": 2
+  },
+  "updated_codes": [
+    "DA1009",
+    "DA1018",
+    "DA1033",
+    "EA1176",
+    "EB1000",
+    "PD1000",
+    "PD1012",
+    "PD1016",
+    "PD1017",
+    "PD1026",
+    "PD1044",
+    "PD1056",
+    "PD1057",
+    "PD1059"
+  ],
+  "updated_database_rows": 14,
+  "updated_species_counts": {
+    "Deer": 3,
+    "Elk": 2,
+    "Pronghorn": 9
+  }
+}

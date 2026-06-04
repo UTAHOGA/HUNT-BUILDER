@@ -1,0 +1,51 @@
+{
+  "created_at_utc": "2026-06-04T03:04:11+00:00",
+  "current_allotment_total_blank_counts": {
+    "manual_rows_blank_total": 3,
+    "permit_conflict_rows_blank_total": 0,
+    "resolved_identity_rows_blank_total": 241,
+    "resolved_permit_conflict_database_matched_rows_blank_total": 0
+  },
+  "family_match_counts": {
+    "NO": 67,
+    "YES": 258
+  },
+  "inputs": {
+    "candidates": "processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_additional_source_candidates.csv",
+    "database": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+    "database_status": "processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_database_status_check.csv",
+    "rollup": "processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_code_resolution_rollup.csv"
+  },
+  "manual_remap_codes": [
+    "PD1016",
+    "PD1026",
+    "BR7019",
+    "MB6263",
+    "MB6264"
+  ],
+  "notes": [
+    "No DATABASE.csv values were modified.",
+    "Resolved identity rows mean hunt_code and boundary identity are reconciled; they do not imply permit totals were populated."
+  ],
+  "outputs": {
+    "all_reconciliation_csv": "processed_data/audits/current_2026_permit_unresolved_split/current_2026_hunt_code_boundary_reconciliation.csv",
+    "remaining_manual_remap_csv": "processed_data/audits/current_2026_permit_unresolved_split/remaining_current_2026_manual_remap_with_boundaries.csv",
+    "remaining_permit_conflicts_csv": "processed_data/audits/current_2026_permit_unresolved_split/remaining_current_2026_permit_conflicts_with_boundaries.csv",
+    "resolved_identity_csv": "processed_data/audits/current_2026_permit_unresolved_split/resolved_current_2026_boundary_identity_ready.csv",
+    "resolved_permit_conflicts_database_matched_csv": "processed_data/audits/current_2026_permit_unresolved_split/resolved_current_2026_permit_conflicts_database_matched.csv",
+    "summary_json": "processed_data/audits/current_2026_permit_unresolved_split/current_2026_hunt_code_boundary_reconciliation_summary.json"
+  },
+  "permit_conflict_codes": [],
+  "resolution_status_counts": {
+    "REMAINS_MANUAL_REMAP": 5,
+    "RESOLVED_HUNT_CODE_BOUNDARY_IDENTITY": 281,
+    "RESOLVED_PERMIT_CONFLICT_BY_DATABASE_TRUTH": 39
+  },
+  "row_counts": {
+    "all_reconciled_rows": 325,
+    "remaining_manual_remap_rows": 5,
+    "remaining_permit_conflict_rows": 0,
+    "resolved_identity_rows": 281,
+    "resolved_permit_conflict_database_matched_rows": 39
+  }
+}

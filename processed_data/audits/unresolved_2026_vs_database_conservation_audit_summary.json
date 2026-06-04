@@ -1,0 +1,53 @@
+{
+  "classification_counts": {
+    "CLOSED_CURRENT_STATEWIDE_UNLIMITED": 1,
+    "CONSERVATION_SYNTHETIC_DISPLAY_CODE_REQUIRED": 7,
+    "CONSERVATION_TABLE_DB_MATCH": 56,
+    "DATABASE_HAS_VALUE_NO_RECOMMENDED_VALUE": 136,
+    "DATABASE_MATCHES_RECOMMENDED": 218,
+    "DATABASE_MISSING": 23,
+    "DATABASE_REFERENCE_NOT_LIVE": 3,
+    "REMAINING_UNRESOLVED_REVIEW": 252,
+    "UNRESOLVED_DATABASE_PRESENT_REVIEW": 2
+  },
+  "conservation_synthetic_display_code_required_codes": [
+    "BI1000",
+    "DS1000",
+    "EB1000",
+    "GO1000",
+    "MB1000",
+    "PB1000",
+    "RS0001"
+  ],
+  "conservation_table_database_conflict_codes": [],
+  "conservation_table_present_count": 63,
+  "conservation_table_value_db_blank_codes": [],
+  "created_at_utc": "2026-06-04T05:07:39+00:00",
+  "database_missing_count": 23,
+  "database_present_count": 675,
+  "guardrail": "Audit only. DATABASE.csv was not modified.",
+  "outputs": {
+    "csv": "processed_data/audits/unresolved_2026_vs_database_conservation_audit_synthetic_policy_update.csv",
+    "policy_csv": "processed_data/audits/conservation_synthetic_display_code_policy.csv",
+    "report_md": "docs/unresolved_2026_vs_database_conservation_audit.md",
+    "summary_json": "processed_data/audits/unresolved_2026_vs_database_conservation_audit_summary.json"
+  },
+  "synthetic_conservation_codes": {
+    "Bison": "CBI1000",
+    "Black Bear": "CBB1000",
+    "Deer": "CD1000",
+    "Desert Bighorn Sheep": "CDS1000",
+    "Elk": "CE1000",
+    "Moose": "CM1000",
+    "Mountain Goat": "CMG1000",
+    "Pronghorn": "CP1000",
+    "Rocky Mountain Bighorn Sheep": "CRS1000",
+    "Turkey": "CTK1000"
+  },
+  "total_unresolved_unique_codes": 698,
+  "unresolved_source_counts": {
+    "CORE_REVIEW": 127,
+    "PERMIT_UNRESOLVED": 556,
+    "REMAINING_AFTER_3_SOURCE_RULE": 438
+  }
+}

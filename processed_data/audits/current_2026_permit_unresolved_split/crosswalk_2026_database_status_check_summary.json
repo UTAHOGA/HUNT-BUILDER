@@ -1,0 +1,89 @@
+{
+  "created_at_utc": "2026-06-04T02:56:52+00:00",
+  "database_csv": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "database_total_matches_recommended_total_counts": {
+    "<not_compared>": 244,
+    "false": 40,
+    "true": 41
+  },
+  "family_match_counts": {
+    "NO": 67,
+    "YES": 258
+  },
+  "manual_remap_codes": [
+    "PD1016",
+    "PD1026",
+    "BR7019",
+    "MB6263",
+    "MB6264"
+  ],
+  "next_status_counts": {
+    "DATABASE_IDENTITY_READY": 281,
+    "MANUAL_REMAP_REQUIRED": 5,
+    "PERMIT_CONFLICT_REVIEW_REQUIRED": 39
+  },
+  "notes": [
+    "No DATABASE.csv values were modified.",
+    "This check uses permit_allotment_2026_* as the current DATABASE numeric field family."
+  ],
+  "outputs": {
+    "csv": "processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_database_status_check.csv",
+    "summary_json": "processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_database_status_check_summary.json"
+  },
+  "permit_conflict_codes": [
+    "BI6505",
+    "BI6536",
+    "DA1009",
+    "DA1018",
+    "DA1033",
+    "EA1010",
+    "EA1011",
+    "EA1021",
+    "EA1033",
+    "EA1035",
+    "EA1054",
+    "EA1063",
+    "EA1069",
+    "EA1129",
+    "EA1134",
+    "EA1139",
+    "EA1149",
+    "EA1193",
+    "EA1208",
+    "EA1222",
+    "EA1223",
+    "EA1251",
+    "EA1266",
+    "EA1267",
+    "EA1269",
+    "EA1284",
+    "EA1285",
+    "EA2033",
+    "EA2036",
+    "MA1005",
+    "MA1007",
+    "MA1008",
+    "PD1000",
+    "PD1012",
+    "PD1017",
+    "PD1044",
+    "PD1056",
+    "PD1057",
+    "PD1059"
+  ],
+  "rollup_bucket_counts": {
+    "ACTIVE_CODE_CONFIRMED_BUT_PERMIT_CONFLICT_REMAINS": 39,
+    "BOUNDARY_CONFIRMED_IDENTITY_READY": 281,
+    "MANUAL_REMAP_REQUIRED": 5
+  },
+  "rollup_csv": "processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_code_resolution_rollup.csv",
+  "row_counts": {
+    "database_blank_current_allotment_total": 244,
+    "database_has_current_allotment_total": 81,
+    "database_missing": 0,
+    "database_present": 325,
+    "database_rows": 1449,
+    "rollup_rows": 325,
+    "status_check_rows": 325
+  }
+}

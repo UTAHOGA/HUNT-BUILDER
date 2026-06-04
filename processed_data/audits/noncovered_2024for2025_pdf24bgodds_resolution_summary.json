@@ -1,0 +1,9 @@
+{
+  "artifact": "noncovered_2024for2025_pdf24bgodds_resolution",
+  "pdf_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\pipeline\\RAW\\hunt_unit_database\\2025\\pdf\\draw_odds\\24_bg-odds.pdf",
+  "pdf_pages": 587,
+  "pdf_unique_hunt_codes_regex": 580,
+  "noncovered_codes_total": 490,
+  "noncovered_codes_present_in_pdf": 0,
+  "noncovered_codes_absent_in_pdf": 490
+}

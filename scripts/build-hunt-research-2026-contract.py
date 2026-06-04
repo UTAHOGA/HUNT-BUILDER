@@ -10,6 +10,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 OUT_JSON = ROOT / "processed_data" / "hunt_research_2026.json"
+OUT_SUMMARY_JSON = ROOT / "processed_data" / "hunt_research_2026_summary.json"
+OUT_LADDER_JSON = ROOT / "processed_data" / "hunt_research_2026_ladder.json"
+OUT_LADDER_PREFERENCE_JSON = ROOT / "processed_data" / "hunt_research_2026_ladder_preference.json"
+OUT_LADDER_BONUS_MAX_RANDOM_JSON = ROOT / "processed_data" / "hunt_research_2026_ladder_bonus_max_random.json"
 OUT_AUDIT_CSV = ROOT / "processed_data" / "audits" / "hunt_research_2026_rebuild_coverage.csv"
 OUT_NOTES_MD = ROOT / "docs" / "hunt_research_2026_rebuild_notes.md"
 
@@ -20,6 +24,8 @@ MASTER_CANDIDATES = [
 ]
 LADDER_PATH = ROOT / "processed_data" / "point_ladder_view.csv"
 DRAW_HISTORY_CANDIDATES = [
+    ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "Draw Odds" / "rebuilt_2025_draw_results_for_2026_modeling.csv",
+    Path(r"C:\Users\tyler\Desktop\GitHub\HUNTS\pipeline\RAW\hunt_unit_database\2026\csv\Draw Odds\rebuilt_2025_draw_results_for_2026_modeling.csv"),
     ROOT / "data_truth" / "draw_results_truth" / "normalized" / "draw_results_long.csv",
     ROOT / "processed_data" / "draw_reality_engine_v2.csv",
     ROOT / "processed_data" / "draw_reality_engine.csv",
@@ -38,6 +44,11 @@ DRAW_2025_BREAKDOWN_PATH = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2
 DRAW_2025_PRIVATE_POINTS_PATH = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "Draw Odds" / "2025_big_game_private_lands_points.csv"
 DRAW_2025_PRIVATE_TOTALS_PATH = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "Draw Odds" / "2025_big_game_private_lands_totals.csv"
 DRAW_2025_TRUTH_PATH = ROOT / "data_truth" / "draw_results_truth" / "normalized" / "draw_results_long.csv"
+DRAW_2025_REBUILT_CANDIDATES = [
+    ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "Draw Odds" / "rebuilt_2025_draw_results_for_2026_modeling.csv",
+    Path(r"C:\Users\tyler\Desktop\GitHub\HUNTS\pipeline\RAW\hunt_unit_database\2026\csv\Draw Odds\rebuilt_2025_draw_results_for_2026_modeling.csv"),
+    DRAW_2025_TRUTH_PATH,
+]
 
 
 def clean(value):
@@ -200,6 +211,13 @@ def choose_existing(candidates):
     return candidates[0]
 
 
+def display_path(path: Path):
+    try:
+        return path.relative_to(ROOT).as_posix()
+    except Exception:
+        return str(path)
+
+
 def build_draw_history_lookup(rows):
     by_key = {}
     by_code_res = {}
@@ -317,18 +335,20 @@ def build_draw_2025_supplement_lookup():
             source="private_lands_totals_2025",
         )
 
-    # 4) normalized truth long (year 2025) as additional point-level support
-    for row in read_csv(DRAW_2025_TRUTH_PATH):
+    draw_2025_source = choose_existing(DRAW_2025_REBUILT_CANDIDATES)
+    # 4) primary 2025 modeling truth (rebuilt_2025...) with fallback to normalized truth
+    for row in read_csv(draw_2025_source):
         if clean(row.get("year")) != "2025":
-            continue
+            if clean(row.get("reported_hunt_year")) != "2025":
+                continue
         code = row.get("hunt_code")
         points = row.get("points")
         residency = normalize_residency(row.get("residency"))
         total = row.get("total_permits")
         if residency == "Resident":
-            set_values(code, points, res=total, source="draw_results_long_2025")
+            set_values(code, points, res=total, source=f"{draw_2025_source.name}:resident")
         elif residency == "Nonresident":
-            set_values(code, points, nr=total, source="draw_results_long_2025")
+            set_values(code, points, nr=total, source=f"{draw_2025_source.name}:nonresident")
 
     for (code, points), slot in by_code_point.items():
         base = by_code.get(code)
@@ -408,6 +428,70 @@ def build_age_lookup(rows):
     return lookup
 
 
+def build_summary_rows(rows):
+    """
+    Build a compact canonical summary surface that still joins back to ladder rows.
+    One summary row per (hunt_code, residency, draw_pool) group.
+    """
+    summary = []
+    seen_groups = set()
+    for row in rows:
+        code = upper(row.get("hunt_code"))
+        if not code:
+            continue
+        residency = clean(row.get("residency")) or "Resident"
+        draw_pool = clean(row.get("draw_pool")) or "standard"
+        group = (code, upper(residency), upper(draw_pool))
+        if group in seen_groups:
+            continue
+        seen_groups.add(group)
+        summary.append(dict(row))
+    return summary
+
+
+def classify_ladder_row(row):
+    """
+    Split ladder rows by draw system family for runtime convenience:
+    - preference point draw hunts
+    - bonus/max-random draw hunts
+    Returns: 'preference' | 'bonus_max_random' | ''
+    """
+    draw_system = upper(
+        first_text(
+            row.get("draw_system_type"),
+            row.get("draw_system"),
+            row.get("draw_2026_system_type"),
+        )
+    )
+    if "PREFERENCE" in draw_system:
+        return "preference"
+    # Business rule: private-lands-only antlerless elk is preference-style.
+    if "PRIVATE_LANDS_ONLY_ANTLERLESS_ELK" in draw_system:
+        return "preference"
+    # Business rule: Buck Deer General Season hunts are preference-style.
+    species = upper(row.get("species"))
+    hunt_type = upper(row.get("hunt_type"))
+    sex_type = upper(row.get("sex_type"))
+    hunt_name = upper(row.get("hunt_name"))
+    if species == "DEER" and "GENERAL SEASON" in hunt_type and ("BUCK" in sex_type or "BUCK DEER" in hunt_name):
+        return "preference"
+    if "BONUS" in draw_system:
+        return "bonus_max_random"
+    return ""
+
+
+def build_ladder_family_rows(rows):
+    preference_rows = []
+    bonus_max_random_rows = []
+    for row in rows:
+        family = classify_ladder_row(row)
+        if family == "preference":
+            preference_rows.append(dict(row))
+        elif family == "bonus_max_random":
+            bonus_max_random_rows.append(dict(row))
+    return preference_rows, bonus_max_random_rows
+
+
 def main():
     generated_at = datetime.now().isoformat()
     data_as_of = datetime.now().strftime("%Y-%m-%d")
@@ -438,7 +522,7 @@ def main():
         "display_2025_draw_results", "display_2026_max_point_pool", "display_2026_random_draw",
         "display_odds_pct", "draw_2026_system_type", "draw_outlook", "draw_pool", "draw_system",
         "draw_system_type", "dwr_result_display", "eligible_applicants", "gap", "guaranteed_at_2026",
-        "guaranteed_marker", "guaranteed_probability", "hunt_class", "length", "management_direction",
+        "guaranteed_marker", "guaranteed_probability", "hunt_class", "management_direction",
         "management_objective_max", "management_objective_min", "management_objective_note",
         "management_objective_range", "management_objective_type", "max_point_permits_2026", "notes",
         "objective_status", "objective_status_rule", "objective_unit", "odds_2025_actual",
@@ -446,8 +530,8 @@ def main():
         "p_max_pool_mean", "p_max_pool_mean_pct", "p_max_pool_pct", "p_random_pool", "p_random_pool_pct",
         "permit_direction_watch", "point_pool_zone", "points", "preference_model_note", "permits_2025_res",
         "permits_2025_nr", "permits_2025_total",
-        "projected_2026_max_cutoff_point", "push", "quota_source_status", "random_permits_2026", "reason",
-        "residency", "some", "total_permits", "trend", "year", "hunt_code", "hunt_name", "species", "weapon",
+        "projected_2026_max_cutoff_point", "quota_source_status", "random_permits_2026", "reason",
+        "residency", "total_permits", "trend", "year", "hunt_code", "hunt_name", "species", "weapon",
         "availability_status", "current_age_3yr_average",
     ]
 
@@ -590,7 +674,7 @@ def main():
             "p_max_pool_pct": pct_text(first_text(row.get("p_max_pool_pct"), p_max)),
             "p_random_pool": number_text(p_random),
             "p_random_pool_pct": pct_text(first_text(row.get("p_random_pool_pct"), p_random)),
-            "p_bonus_pool_pct": pct_text(row.get("p_bonus_pool_pct")),
+            "p_bonus_pool_pct": pct_text(first_text(row.get("p_bonus_pool_pct"), p_draw_pct)),
             "guaranteed_at_2026": number_text(first_text(row.get("guaranteed_at_2026"), row.get("projected_2026_max_cutoff_point"))),
             "projected_2026_max_cutoff_point": number_text(row.get("projected_2026_max_cutoff_point")),
             "guaranteed_probability": first_text(
@@ -787,8 +871,19 @@ def main():
     # Sort for stable output.
     rows.sort(key=lambda r: (upper(r.get("hunt_code")), upper(r.get("residency")), to_number(r.get("points")) if to_number(r.get("points")) is not None else -1))
 
+    summary_rows = build_summary_rows(rows)
+    preference_ladder_rows, bonus_max_random_ladder_rows = build_ladder_family_rows(rows)
+    classified_ladder_rows = len(preference_ladder_rows) + len(bonus_max_random_ladder_rows)
+    unclassified_ladder_rows = len(rows) - classified_ladder_rows
+
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
+    # Backward-compatible full contract.
     OUT_JSON.write_text(json.dumps(rows, indent=2), encoding="utf-8")
+    # Split contracts for runtime use.
+    OUT_LADDER_JSON.write_text(json.dumps(rows, indent=2), encoding="utf-8")
+    OUT_SUMMARY_JSON.write_text(json.dumps(summary_rows, indent=2), encoding="utf-8")
+    OUT_LADDER_PREFERENCE_JSON.write_text(json.dumps(preference_ladder_rows, indent=2), encoding="utf-8")
+    OUT_LADDER_BONUS_MAX_RANDOM_JSON.write_text(json.dumps(bonus_max_random_ladder_rows, indent=2), encoding="utf-8")
 
     # Coverage/audit table
     db_codes = set(db_map.keys())
@@ -808,6 +903,10 @@ def main():
 
     coverage_rows = []
     coverage_rows.append({"section": "summary", "metric": "rows", "value": str(len(rows)), "pct": "", "notes": ""})
+    coverage_rows.append({"section": "summary", "metric": "summary_rows", "value": str(len(summary_rows)), "pct": "", "notes": "One row per hunt_code/residency/draw_pool group."})
+    coverage_rows.append({"section": "summary", "metric": "ladder_preference_rows", "value": str(len(preference_ladder_rows)), "pct": "", "notes": "Rows where draw_system family is preference."})
+    coverage_rows.append({"section": "summary", "metric": "ladder_bonus_max_random_rows", "value": str(len(bonus_max_random_ladder_rows)), "pct": "", "notes": "Rows where draw_system family is bonus/max-random."})
+    coverage_rows.append({"section": "summary", "metric": "ladder_unclassified_rows", "value": str(unclassified_ladder_rows), "pct": "", "notes": "Rows outside preference/bonus split (kept in full ladder)."})
     coverage_rows.append({"section": "summary", "metric": "database_codes", "value": str(len(db_codes)), "pct": "", "notes": ""})
     coverage_rows.append({"section": "summary", "metric": "contract_codes", "value": str(len(contract_codes)), "pct": "", "notes": ""})
     coverage_rows.append({"section": "summary", "metric": "missing_codes_vs_database", "value": str(len(missing_codes)), "pct": "", "notes": ";".join(missing_codes[:100])})
@@ -842,19 +941,28 @@ def main():
 Generated: {generated_at}
 
 ## Contract rebuild goal
-- Rebuilt `processed_data/hunt_research_2026.json` from canonical sources with full 2026 hunt-code coverage and runtime-aligned field set.
+- Rebuilt canonical Hunt Research contracts from canonical sources with full 2026 hunt-code coverage and runtime-aligned field set:
+  - `processed_data/hunt_research_2026.json` (full/backward-compatible)
+  - `processed_data/hunt_research_2026_summary.json` (group-level summary)
+  - `processed_data/hunt_research_2026_ladder.json` (point-level ladder)
+  - `processed_data/hunt_research_2026_ladder_preference.json` (preference ladder rows)
+  - `processed_data/hunt_research_2026_ladder_bonus_max_random.json` (bonus/max-random ladder rows)
 
 ## Sources used
-- DATABASE truth: `{DB_PATH.relative_to(ROOT).as_posix()}`
-- Master reference resolved: `{master_path.relative_to(ROOT).as_posix()}`
-- Point ladder: `{LADDER_PATH.relative_to(ROOT).as_posix()}`
-- Draw history: `{draw_history_path.relative_to(ROOT).as_posix()}`
-- Harvest features: `{harvest_path.relative_to(ROOT).as_posix()}`
-- Age features: `{AGE_PATH.relative_to(ROOT).as_posix()}`
-- Management context: `{MANAGEMENT_PATH.relative_to(ROOT).as_posix()}`
+- DATABASE truth: `{display_path(DB_PATH)}`
+- Master reference resolved: `{display_path(master_path)}`
+- Point ladder: `{display_path(LADDER_PATH)}`
+- Draw history: `{display_path(draw_history_path)}`
+- Harvest features: `{display_path(harvest_path)}`
+- Age features: `{display_path(AGE_PATH)}`
+- Management context: `{display_path(MANAGEMENT_PATH)}`
 
 ## Coverage summary
 - Contract rows: {len(rows)}
+- Summary rows: {len(summary_rows)}
+- Preference ladder rows: {len(preference_ladder_rows)}
+- Bonus/max-random ladder rows: {len(bonus_max_random_ladder_rows)}
+- Unclassified ladder rows (kept in full ladder): {unclassified_ladder_rows}
 - Unique contract hunt codes: {len(contract_codes)}
 - DATABASE hunt codes: {len(db_codes)}
 - Missing hunt codes vs DATABASE: {len(missing_codes)}
@@ -873,6 +981,10 @@ Generated: {generated_at}
 
     print(json.dumps({
         "rows": len(rows),
+        "summary_rows": len(summary_rows),
+        "ladder_preference_rows": len(preference_ladder_rows),
+        "ladder_bonus_max_random_rows": len(bonus_max_random_ladder_rows),
+        "ladder_unclassified_rows": unclassified_ladder_rows,
         "contract_codes": len(contract_codes),
         "database_codes": len(db_codes),
         "missing_codes_vs_database": len(missing_codes),

@@ -1,0 +1,3587 @@
+{
+  "generated_at": "2026-05-23T08:30:37.391Z",
+  "mode": "sync",
+  "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "source_label": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+  "database_rows": 1411,
+  "database_unique_hunt_codes": 1411,
+  "database_duplicate_hunt_codes": [],
+  "allocation_fields": [
+    "permits_2026_res",
+    "permits_2026_nr",
+    "permits_2026_total",
+    "permits_2026_conservation",
+    "permits_2026_expo",
+    "permits_2026_sportsman",
+    "permit_status",
+    "permit_allocation_type",
+    "special_permit_area_id",
+    "special_permit_category",
+    "special_permit_note",
+    "special_permit_overlay_source",
+    "permit_source_authority",
+    "permit_note",
+    "permit_overlay_source",
+    "data_status"
+  ],
+  "forbidden_historical_draw_fields": [
+    "permits_2025_draw_res",
+    "permits_2025_draw_nr",
+    "permits_2025_draw_total",
+    "permits_2025_res",
+    "permits_2025_nr",
+    "permits_2025_total"
+  ],
+  "forbidden_harvest_performance_fields": [
+    "hunters_2025",
+    "harvest_2025",
+    "success_percent_2025",
+    "avg_days_2025",
+    "satisfaction_2025"
+  ],
+  "status_counts": {
+    "FULL_SPLIT": 898,
+    "TOTAL_ONLY": 351,
+    "NO_QUOTA_PUBLISHED": 162,
+    "PARTIAL_SPLIT": 0
+  },
+  "backup_dir": "processed_data/backups/permit_allocations_2026_20260523_083028",
+  "files": [
+    {
+      "file": "processed_data/hunt_master_enriched.csv",
+      "type": "csv",
+      "rows_checked": 54357,
+      "matched_rows": 54237,
+      "hunt_codes_checked": 1411,
+      "fields_added": [],
+      "fields_updated": [
+        "permit_overlay_source",
+        "permit_source_authority",
+        "permits_2026_source",
+        "public_permits_2026",
+        "public_permits_2026_source"
+      ],
+      "changed_rows": 52,
+      "changed_cells": 260,
+      "blank_values_preserved": 436601,
+      "mismatches_before_sync": 156,
+      "mismatches_after_sync": 0,
+      "target_only_hunt_codes": [
+        "CG0001",
+        "CG0002",
+        "CG0006",
+        "CG0009",
+        "CG0015",
+        "CG0016",
+        "CG1001",
+        "CG1002",
+        "CG1003",
+        "CG1004",
+        "CG1005",
+        "CG1006",
+        "CG1007",
+        "CG1008",
+        "CG1009",
+        "CG1010",
+        "CG1011",
+        "CG1012",
+        "CG1013",
+        "CG1014",
+        "CG1015",
+        "CG1016",
+        "CG1017",
+        "CG1018",
+        "CG1019",
+        "CG1020",
+        "CG1021",
+        "CG1022",
+        "CG1023",
+        "CG1024",
+        "CG1025",
+        "CG1026",
+        "CG1027",
+        "CG1028",
+        "CG1029",
+        "CG1030",
+        "CG1031",
+        "CG1032",
+        "CG1033",
+        "CG1034",
+        "CG1035",
+        "CG7501",
+        "CG7502",
+        "CG7504",
+        "CG7600",
+        "CG7601",
+        "CG7602",
+        "CG7603",
+        "CG7605",
+        "CG7606",
+        "CG7607",
+        "CG7609",
+        "CG7610",
+        "CG7611",
+        "CG7612",
+        "CG7613",
+        "CG7615",
+        "CG7618",
+        "CG7619",
+        "CG7620"
+      ],
+      "database_only_hunt_codes": [],
+      "sample_changes": [
+        {
+          "row_number": 28227,
+          "hunt_code": "EA2002",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "600"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28228,
+          "hunt_code": "EA2002",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "600"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28229,
+          "hunt_code": "EA2003",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "500"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28230,
+          "hunt_code": "EA2003",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "500"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28231,
+          "hunt_code": "EA2004",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "600"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28232,
+          "hunt_code": "EA2004",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "600"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28233,
+          "hunt_code": "EA2005",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "100"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28234,
+          "hunt_code": "EA2005",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "100"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28235,
+          "hunt_code": "EA2006",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "2000"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28236,
+          "hunt_code": "EA2006",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "2000"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28237,
+          "hunt_code": "EA2008",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "250"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28238,
+          "hunt_code": "EA2008",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "250"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28239,
+          "hunt_code": "EA2009",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "70"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28240,
+          "hunt_code": "EA2009",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "70"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28241,
+          "hunt_code": "EA2010",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "50"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28242,
+          "hunt_code": "EA2010",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "50"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28243,
+          "hunt_code": "EA2011",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "300"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28244,
+          "hunt_code": "EA2011",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "300"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28245,
+          "hunt_code": "EA2012",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "500"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28246,
+          "hunt_code": "EA2012",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "500"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28247,
+          "hunt_code": "EA2013",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "2000"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28248,
+          "hunt_code": "EA2013",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "2000"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28249,
+          "hunt_code": "EA2014",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "400"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28250,
+          "hunt_code": "EA2014",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "400"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 28251,
+          "hunt_code": "EA2015",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "75"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        }
+      ],
+      "sample_mismatches_before_sync": [
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2002",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2002",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2002",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2002",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2002",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2002",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2003",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2003",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2003",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2003",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2003",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2003",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2004",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2004",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2004",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2004",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2004",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2004",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2005",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2005",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2005",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2005",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2005",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2005",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/hunt_master_enriched.csv",
+          "hunt_code": "EA2006",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        }
+      ],
+      "sample_mismatches_after_sync": []
+    },
+    {
+      "file": "processed_data/hunt_unit_reference_linked.csv",
+      "type": "csv",
+      "rows_checked": 2997,
+      "matched_rows": 2877,
+      "hunt_codes_checked": 1411,
+      "fields_added": [],
+      "fields_updated": [
+        "permit_overlay_source",
+        "permit_source_authority",
+        "permits_2026_source",
+        "public_permits_2026",
+        "public_permits_2026_source"
+      ],
+      "changed_rows": 52,
+      "changed_cells": 260,
+      "blank_values_preserved": 25465,
+      "mismatches_before_sync": 156,
+      "mismatches_after_sync": 0,
+      "target_only_hunt_codes": [
+        "CG0001",
+        "CG0002",
+        "CG0006",
+        "CG0009",
+        "CG0015",
+        "CG0016",
+        "CG1001",
+        "CG1002",
+        "CG1003",
+        "CG1004",
+        "CG1005",
+        "CG1006",
+        "CG1007",
+        "CG1008",
+        "CG1009",
+        "CG1010",
+        "CG1011",
+        "CG1012",
+        "CG1013",
+        "CG1014",
+        "CG1015",
+        "CG1016",
+        "CG1017",
+        "CG1018",
+        "CG1019",
+        "CG1020",
+        "CG1021",
+        "CG1022",
+        "CG1023",
+        "CG1024",
+        "CG1025",
+        "CG1026",
+        "CG1027",
+        "CG1028",
+        "CG1029",
+        "CG1030",
+        "CG1031",
+        "CG1032",
+        "CG1033",
+        "CG1034",
+        "CG1035",
+        "CG7501",
+        "CG7502",
+        "CG7504",
+        "CG7600",
+        "CG7601",
+        "CG7602",
+        "CG7603",
+        "CG7605",
+        "CG7606",
+        "CG7607",
+        "CG7609",
+        "CG7610",
+        "CG7611",
+        "CG7612",
+        "CG7613",
+        "CG7615",
+        "CG7618",
+        "CG7619",
+        "CG7620"
+      ],
+      "database_only_hunt_codes": [],
+      "sample_changes": [
+        {
+          "row_number": 1571,
+          "hunt_code": "EA2002",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "600"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1572,
+          "hunt_code": "EA2002",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "600"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1573,
+          "hunt_code": "EA2003",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "500"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1574,
+          "hunt_code": "EA2003",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "500"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1575,
+          "hunt_code": "EA2004",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "600"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1576,
+          "hunt_code": "EA2004",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "600"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1577,
+          "hunt_code": "EA2005",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "100"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1578,
+          "hunt_code": "EA2005",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "100"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1579,
+          "hunt_code": "EA2006",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "2000"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1580,
+          "hunt_code": "EA2006",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "2000"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1581,
+          "hunt_code": "EA2008",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "250"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1582,
+          "hunt_code": "EA2008",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "250"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1583,
+          "hunt_code": "EA2009",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "70"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1584,
+          "hunt_code": "EA2009",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "70"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1585,
+          "hunt_code": "EA2010",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "50"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1586,
+          "hunt_code": "EA2010",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "50"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1587,
+          "hunt_code": "EA2011",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "300"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1588,
+          "hunt_code": "EA2011",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "300"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1589,
+          "hunt_code": "EA2012",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "500"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1590,
+          "hunt_code": "EA2012",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "500"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1591,
+          "hunt_code": "EA2013",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "2000"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1592,
+          "hunt_code": "EA2013",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "2000"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1593,
+          "hunt_code": "EA2014",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "400"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1594,
+          "hunt_code": "EA2014",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "400"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 1595,
+          "hunt_code": "EA2015",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "75"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        }
+      ],
+      "sample_mismatches_before_sync": [
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2002",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2002",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2002",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2002",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2002",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2002",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2003",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2003",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2003",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2003",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2003",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2003",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2004",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2004",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2004",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2004",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2004",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2004",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2005",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2005",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2005",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2005",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2005",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2005",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/hunt_unit_reference_linked.csv",
+          "hunt_code": "EA2006",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        }
+      ],
+      "sample_mismatches_after_sync": []
+    },
+    {
+      "file": "processed_data/draw_reality_engine.csv",
+      "type": "csv",
+      "rows_checked": 36892,
+      "matched_rows": 31347,
+      "hunt_codes_checked": 1411,
+      "fields_added": [],
+      "fields_updated": [
+        "permit_overlay_source",
+        "permit_source_authority",
+        "permits_2026_source",
+        "public_permits_2026",
+        "public_permits_2026_source"
+      ],
+      "changed_rows": 52,
+      "changed_cells": 260,
+      "blank_values_preserved": 257322,
+      "mismatches_before_sync": 156,
+      "mismatches_after_sync": 0,
+      "target_only_hunt_codes": [
+        "BI6517",
+        "BI6519",
+        "BI6520",
+        "BI6521",
+        "BI6523",
+        "BI6524",
+        "BI6526",
+        "BI6530",
+        "BI6533",
+        "BR7008",
+        "BR7019",
+        "BR7108",
+        "BR7208",
+        "BR7209",
+        "BR7226",
+        "BR7227",
+        "BR7230",
+        "BR7231",
+        "BR7232",
+        "BR7233",
+        "BR7234",
+        "BR7235",
+        "BR7236",
+        "CG1029",
+        "CG1034",
+        "CG7502",
+        "CG7503",
+        "CG7506",
+        "CG7602",
+        "CG7603",
+        "CG7605",
+        "CG7610",
+        "CG7612",
+        "DA1000",
+        "DA1004",
+        "DA1007",
+        "DA1017",
+        "DA1026",
+        "DA1028",
+        "DA1029",
+        "DA1039",
+        "DA1040",
+        "DA1043",
+        "DA1044",
+        "DB1027",
+        "DB1036",
+        "DB1059",
+        "DB1082",
+        "DB1088",
+        "DB1089",
+        "DB1092",
+        "DB1094",
+        "DB1210",
+        "DB1223",
+        "DB1257",
+        "DB1267",
+        "DB1276",
+        "DB1278",
+        "DB1297",
+        "DB1302",
+        "DB1307",
+        "DB1320",
+        "DB1321",
+        "DB1324",
+        "DB1329",
+        "DB1338",
+        "DB1339",
+        "DB1340",
+        "DB1500",
+        "DB1505",
+        "DB1515",
+        "DB1520",
+        "DB1527",
+        "DB1528",
+        "DB1530",
+        "DB1532",
+        "DB1535",
+        "DB1545",
+        "DB1548",
+        "DB1550",
+        "DB1557",
+        "DB1558",
+        "DB1560",
+        "DB1562",
+        "DB1565",
+        "DB1575",
+        "DB1578",
+        "DB1580",
+        "DB1587",
+        "DB1588",
+        "DB1590",
+        "DB1769",
+        "DB1774",
+        "DB1784",
+        "DB1789",
+        "DB1796",
+        "DB1797",
+        "DS6602",
+        "DS6612",
+        "EA1004",
+        "EA1008",
+        "EA1009",
+        "EA1034",
+        "EA1040",
+        "EA1052",
+        "EA1055",
+        "EA1066",
+        "EA1067",
+        "EA1068",
+        "EA1074",
+        "EA1091",
+        "EA1098",
+        "EA1099",
+        "EA1100",
+        "EA1116",
+        "EA1126",
+        "EA1155",
+        "EA1176",
+        "EA1186",
+        "EA1190",
+        "EA1194",
+        "EA1205",
+        "EA1227",
+        "EA1238",
+        "EA1241",
+        "EA1252",
+        "EA1253",
+        "EA1255",
+        "EB3001",
+        "EB3007",
+        "EB3016",
+        "EB3026",
+        "EB3027",
+        "EB3040",
+        "EB3041",
+        "EB3058",
+        "EB3059",
+        "EB3060",
+        "EB3078",
+        "EB3085",
+        "EB3094",
+        "EB3103",
+        "EB3109",
+        "EB3118",
+        "EB3131",
+        "EB3133",
+        "EB3134",
+        "EB3138",
+        "EB3140",
+        "EB3141",
+        "EB3510",
+        "EB3535",
+        "EB3542",
+        "EB3561",
+        "EB3563",
+        "EB3609",
+        "EB3612",
+        "GO6815",
+        "MA1000",
+        "MA1001",
+        "MA1003",
+        "MA1006",
+        "MB6200",
+        "MB6207",
+        "MB6209",
+        "MB6210",
+        "MB6216",
+        "MB6217",
+        "MB6220",
+        "MB6223",
+        "MB6224",
+        "MB6225",
+        "MB6226",
+        "MB6240",
+        "MB6252",
+        "MB6254",
+        "MB6257",
+        "MB6263",
+        "MB6264",
+        "PB5007",
+        "PB5022",
+        "PB5032",
+        "PB5058",
+        "PB5063",
+        "PB5064",
+        "PB5067",
+        "PB5303",
+        "PB5307",
+        "PB5313",
+        "PB5341",
+        "PD1002",
+        "PD1003",
+        "PD1005",
+        "PD1007",
+        "PD1008",
+        "PD1013",
+        "PD1014",
+        "PD1016",
+        "PD1018",
+        "PD1022",
+        "PD1023",
+        "PD1024",
+        "PD1025",
+        "PD1026",
+        "PD1027",
+        "PD1030",
+        "PD1032",
+        "PD1036",
+        "PD1037",
+        "PD1038",
+        "PD1041",
+        "PD1042"
+      ],
+      "database_only_hunt_codes": [],
+      "sample_changes": [
+        {
+          "row_number": 18095,
+          "hunt_code": "EA2002",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "600"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18096,
+          "hunt_code": "EA2002",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "600"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18097,
+          "hunt_code": "EA2003",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "500"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18098,
+          "hunt_code": "EA2003",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "500"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18099,
+          "hunt_code": "EA2004",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "600"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18100,
+          "hunt_code": "EA2004",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "600"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18101,
+          "hunt_code": "EA2005",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "100"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18102,
+          "hunt_code": "EA2005",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "100"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18103,
+          "hunt_code": "EA2006",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "2000"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18104,
+          "hunt_code": "EA2006",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "2000"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18105,
+          "hunt_code": "EA2008",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "250"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18106,
+          "hunt_code": "EA2008",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "250"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18107,
+          "hunt_code": "EA2009",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "70"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18108,
+          "hunt_code": "EA2009",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "70"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18109,
+          "hunt_code": "EA2010",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "50"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18110,
+          "hunt_code": "EA2010",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "50"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18111,
+          "hunt_code": "EA2011",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "300"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18112,
+          "hunt_code": "EA2011",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "300"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18113,
+          "hunt_code": "EA2012",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "500"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18114,
+          "hunt_code": "EA2012",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "500"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18115,
+          "hunt_code": "EA2013",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "2000"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18116,
+          "hunt_code": "EA2013",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "2000"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18117,
+          "hunt_code": "EA2014",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "400"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18118,
+          "hunt_code": "EA2014",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "400"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        },
+        {
+          "row_number": 18119,
+          "hunt_code": "EA2015",
+          "changes": [
+            {
+              "field": "permit_source_authority",
+              "before": "2026 RAC truth-source permit table",
+              "after": "Utah DWR published 2026 permit allocation"
+            },
+            {
+              "field": "permit_overlay_source",
+              "before": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv",
+              "after": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            },
+            {
+              "field": "permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            },
+            {
+              "field": "public_permits_2026",
+              "before": "",
+              "after": "75"
+            },
+            {
+              "field": "public_permits_2026_source",
+              "before": "2026_RAC_TRUTH_SOURCE",
+              "after": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS"
+            }
+          ]
+        }
+      ],
+      "sample_mismatches_before_sync": [
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2002",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2002",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2002",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2002",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2002",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2002",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2003",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2003",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2003",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2003",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2003",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2003",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2004",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2004",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2004",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2004",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2004",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2004",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2005",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2005",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2005",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2005",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2005",
+          "field": "permit_overlay_source",
+          "expected": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+          "actual": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_private_lands_only_antlerless_elk_permits.csv"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2005",
+          "field": "permits_2026_source",
+          "expected": "DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS",
+          "actual": "2026_RAC_TRUTH_SOURCE"
+        },
+        {
+          "file": "processed_data/draw_reality_engine.csv",
+          "hunt_code": "EA2006",
+          "field": "permit_source_authority",
+          "expected": "Utah DWR published 2026 permit allocation",
+          "actual": "2026 RAC truth-source permit table"
+        }
+      ],
+      "sample_mismatches_after_sync": []
+    },
+    {
+      "file": "processed_data/point_ladder_view.csv",
+      "type": "csv",
+      "rows_checked": 92844,
+      "matched_rows": 92724,
+      "hunt_codes_checked": 1411,
+      "fields_added": [],
+      "fields_updated": [],
+      "changed_rows": 0,
+      "changed_cells": 0,
+      "blank_values_preserved": 817951,
+      "mismatches_before_sync": 0,
+      "mismatches_after_sync": 0,
+      "target_only_hunt_codes": [
+        "CG0001",
+        "CG0002",
+        "CG0006",
+        "CG0009",
+        "CG0015",
+        "CG0016",
+        "CG1001",
+        "CG1002",
+        "CG1003",
+        "CG1004",
+        "CG1005",
+        "CG1006",
+        "CG1007",
+        "CG1008",
+        "CG1009",
+        "CG1010",
+        "CG1011",
+        "CG1012",
+        "CG1013",
+        "CG1014",
+        "CG1015",
+        "CG1016",
+        "CG1017",
+        "CG1018",
+        "CG1019",
+        "CG1020",
+        "CG1021",
+        "CG1022",
+        "CG1023",
+        "CG1024",
+        "CG1025",
+        "CG1026",
+        "CG1027",
+        "CG1028",
+        "CG1029",
+        "CG1030",
+        "CG1031",
+        "CG1032",
+        "CG1033",
+        "CG1034",
+        "CG1035",
+        "CG7501",
+        "CG7502",
+        "CG7504",
+        "CG7600",
+        "CG7601",
+        "CG7602",
+        "CG7603",
+        "CG7605",
+        "CG7606",
+        "CG7607",
+        "CG7609",
+        "CG7610",
+        "CG7611",
+        "CG7612",
+        "CG7613",
+        "CG7615",
+        "CG7618",
+        "CG7619",
+        "CG7620"
+      ],
+      "database_only_hunt_codes": [],
+      "sample_changes": [],
+      "sample_mismatches_before_sync": [],
+      "sample_mismatches_after_sync": []
+    },
+    {
+      "file": "data/hunt-master-canonical-2026-database-candidate.json",
+      "type": "json_rows",
+      "rows_checked": 1411,
+      "matched_rows": 1411,
+      "hunt_codes_checked": 1411,
+      "fields_added": [],
+      "fields_updated": [],
+      "changed_rows": 0,
+      "changed_cells": 0,
+      "blank_values_preserved": 12454,
+      "mismatches_before_sync": 0,
+      "mismatches_after_sync": 0,
+      "target_only_hunt_codes": [],
+      "database_only_hunt_codes": [],
+      "sample_changes": [],
+      "sample_mismatches_before_sync": [],
+      "sample_mismatches_after_sync": []
+    },
+    {
+      "file": "data/hunt-master-canonical-2026-foundation.json",
+      "type": "json_rows",
+      "rows_checked": 1394,
+      "matched_rows": 1394,
+      "hunt_codes_checked": 1394,
+      "fields_added": [],
+      "fields_updated": [],
+      "changed_rows": 0,
+      "changed_cells": 0,
+      "blank_values_preserved": 12335,
+      "mismatches_before_sync": 0,
+      "mismatches_after_sync": 0,
+      "target_only_hunt_codes": [],
+      "database_only_hunt_codes": [
+        "EA1007",
+        "EA1053",
+        "EA1287",
+        "EA1288",
+        "EA1289",
+        "EA1290",
+        "EA1291",
+        "EA1292",
+        "EA1293",
+        "EA1294",
+        "EA1295",
+        "EA1296",
+        "EA1297",
+        "EA1298",
+        "EA1299",
+        "EA1300",
+        "PD1039"
+      ],
+      "sample_changes": [],
+      "sample_mismatches_before_sync": [],
+      "sample_mismatches_after_sync": []
+    },
+    {
+      "file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "type": "json_rows",
+      "rows_checked": 1411,
+      "matched_rows": 1411,
+      "hunt_codes_checked": 1411,
+      "fields_added": [],
+      "fields_updated": [],
+      "changed_rows": 0,
+      "changed_cells": 0,
+      "blank_values_preserved": 12454,
+      "mismatches_before_sync": 0,
+      "mismatches_after_sync": 0,
+      "target_only_hunt_codes": [],
+      "database_only_hunt_codes": [],
+      "sample_changes": [],
+      "sample_mismatches_before_sync": [],
+      "sample_mismatches_after_sync": []
+    },
+    {
+      "file": "processed_data/hunt-master-canonical-2026-source-of-truth.json",
+      "type": "json_rows",
+      "rows_checked": 1411,
+      "matched_rows": 1411,
+      "hunt_codes_checked": 1411,
+      "fields_added": [],
+      "fields_updated": [],
+      "changed_rows": 0,
+      "changed_cells": 0,
+      "blank_values_preserved": 12454,
+      "mismatches_before_sync": 0,
+      "mismatches_after_sync": 0,
+      "target_only_hunt_codes": [],
+      "database_only_hunt_codes": [],
+      "sample_changes": [],
+      "sample_mismatches_before_sync": [],
+      "sample_mismatches_after_sync": []
+    },
+    {
+      "file": "canonical/hunt-planner-2026.json",
+      "type": "json_rows",
+      "rows_checked": 1411,
+      "matched_rows": 1411,
+      "hunt_codes_checked": 1411,
+      "fields_added": [],
+      "fields_updated": [],
+      "changed_rows": 0,
+      "changed_cells": 0,
+      "blank_values_preserved": 12454,
+      "mismatches_before_sync": 0,
+      "mismatches_after_sync": 0,
+      "target_only_hunt_codes": [],
+      "database_only_hunt_codes": [],
+      "sample_changes": [],
+      "sample_mismatches_before_sync": [],
+      "sample_mismatches_after_sync": []
+    },
+    {
+      "file": "generated/pages/hunt-planner.json",
+      "type": "json_rows",
+      "rows_checked": 1394,
+      "matched_rows": 1394,
+      "hunt_codes_checked": 1394,
+      "fields_added": [],
+      "fields_updated": [],
+      "changed_rows": 0,
+      "changed_cells": 0,
+      "blank_values_preserved": 12335,
+      "mismatches_before_sync": 0,
+      "mismatches_after_sync": 0,
+      "target_only_hunt_codes": [],
+      "database_only_hunt_codes": [
+        "EA1007",
+        "EA1053",
+        "EA1287",
+        "EA1288",
+        "EA1289",
+        "EA1290",
+        "EA1291",
+        "EA1292",
+        "EA1293",
+        "EA1294",
+        "EA1295",
+        "EA1296",
+        "EA1297",
+        "EA1298",
+        "EA1299",
+        "EA1300",
+        "PD1039"
+      ],
+      "sample_changes": [],
+      "sample_mismatches_before_sync": [],
+      "sample_mismatches_after_sync": []
+    },
+    {
+      "file": "generated/pages/hunt-research.json",
+      "type": "json_metadata",
+      "rows_checked": 0,
+      "matched_rows": 0,
+      "hunt_codes_checked": 0,
+      "fields_added": [],
+      "fields_updated": [],
+      "changed_rows": 0,
+      "changed_cells": 0,
+      "blank_values_preserved": 0,
+      "mismatches_before_sync": 0,
+      "mismatches_after_sync": 0,
+      "target_only_hunt_codes": [],
+      "database_only_hunt_codes": [],
+      "sample_changes": [],
+      "sample_mismatches_before_sync": [],
+      "sample_mismatches_after_sync": []
+    }
+  ],
+  "files_changed": [
+    "processed_data/hunt_master_enriched.csv",
+    "processed_data/hunt_unit_reference_linked.csv",
+    "processed_data/draw_reality_engine.csv"
+  ],
+  "totals": {
+    "rows_updated": 156,
+    "fields_added": [],
+    "fields_updated": [
+      "permit_overlay_source",
+      "permit_source_authority",
+      "permits_2026_source",
+      "public_permits_2026",
+      "public_permits_2026_source"
+    ],
+    "mismatches_before_sync": 468,
+    "mismatches_after_sync": 0,
+    "blank_values_preserved": 1611825
+  },
+  "promotion_blocker_count": 0,
+  "promotion_blockers": []
+}

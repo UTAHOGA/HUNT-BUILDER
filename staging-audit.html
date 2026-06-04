@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="./assets/logos/favicon.ico.png" />
+  <title>U.O.G.A. Staging Audit</title>
+  <script src="./embed-mode.js?v=20260422-embed-1"></script>
+  <link rel="stylesheet" href="./style.css?v=20260423-planner-header-refine-1" />
+</head>
+<body>
+  <section class="page-nav-strip" aria-label="Site navigation">
+    <div class="page-nav-case">
+      <nav class="utility-nav">
+        <a class="utility-link" href="./builder.html#google-maps"><span>BUILDER</span></a>
+        <a class="utility-link" href="./research.html"><span>RESEARCH</span></a>
+        <a class="utility-link" href="./verify.html"><span>VERIFY</span></a>
+        <a class="utility-link active" href="./hard-copy.html"><span>HARD COPY</span></a>
+      </nav>
+    </div>
+  </section>
+
+  <header class="topbar">
+    <div class="controls">
+      <div class="controls-center"></div>
+    </div>
+  </header>
+
+  <main class="shell" style="padding: 16px 0 40px;">
+    <section class="panel">
+      <h2>Normalized Staging Audit</h2>
+      <div class="panel-body">
+        <p class="helper">
+          This is a quick truth-check of the files in “NORMALIZED STAGING”. It answers:
+          do these CSVs actually have structured point/applicant/permit rows, or are they still blob-style exports?
+        </p>
+
+        <div class="hard-data-grid" role="list" aria-label="Audit downloads" style="margin-bottom: 14px;">
+          <a class="hard-data-card" role="listitem" href="./processed_data/normalized-staging-audit.csv" target="_blank" rel="noopener noreferrer">
+            <span class="hard-data-ico" aria-hidden="true">≋</span>
+            <span class="hard-data-title">Audit (CSV)</span>
+            <span class="hard-data-sub">File-by-file readiness + canonical match sample</span>
+          </a>
+          <a class="hard-data-card" role="listitem" href="./processed_data/normalized-staging-audit.json" target="_blank" rel="noopener noreferrer">
+            <span class="hard-data-ico" aria-hidden="true">▦</span>
+            <span class="hard-data-title">Audit (JSON)</span>
+            <span class="hard-data-sub">Machine-readable detail for automation</span>
+          </a>
+        </div>
+
+        <div id="auditSummary" class="status-box" style="margin: 10px 0 14px;">Loading audit…</div>
+        <div class="table-wrap">
+          <table class="ladder-table" aria-label="Staging audit table">
+            <thead>
+              <tr>
+                <th>File</th>
+                <th>Structured</th>
+                <th>Blob</th>
+                <th>Points Values</th>
+                <th>Applicants Values</th>
+                <th>Permits Values</th>
+                <th>Canon Match</th>
+              </tr>
+            </thead>
+            <tbody id="auditTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./staging-audit.js?v=20260422-staging-audit-1"></script>
+</body>
+</html>

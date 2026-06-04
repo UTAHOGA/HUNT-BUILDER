@@ -1,0 +1,14 @@
+{
+  "allotment_aligned_row_count": 1088,
+  "allotment_exact_match_count": 1075,
+  "allotment_total_match_count": 13,
+  "created_at_utc": "2026-06-04T05:09:20+00:00",
+  "guardrail": "Audit/output only. DATABASE.csv was not modified.",
+  "outputs": {
+    "all_aligned_csv": "processed_data/audits/database_allotment_aligned_2026_permit_numbers.csv",
+    "summary_json": "processed_data/audits/database_allotment_aligned_2026_permit_numbers_summary.json",
+    "unresolved_subset_csv": "processed_data/audits/database_allotment_aligned_2026_unresolved_subset.csv"
+  },
+  "source_reconciliation_csv": "processed_data/audits/current_2026_hunt_code_permit_reconciliation.csv",
+  "unresolved_subset_aligned_row_count": 218
+}

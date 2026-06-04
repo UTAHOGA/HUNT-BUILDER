@@ -1,0 +1,22 @@
+{
+  "created_at_utc": "2026-06-03T13:54:04.240762+00:00",
+  "folder_2020": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2020",
+  "folder_2025": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2025",
+  "folder_2026_generated_pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2026\\exports\\utahdraws_draw_odds_20260603\\official_style\\pdf_2025_naming_convention",
+  "files_2020": 23,
+  "files_2025": 23,
+  "files_2026_generated_pdf": 15,
+  "comparison_labels": 28,
+  "labels_present_all_three": 12,
+  "labels_present_2020_2025_only": 7,
+  "labels_present_2025_2026_only": 1,
+  "unresolved_codes_scanned": 65,
+  "unresolved_codes_hit_in_2020": 56,
+  "unresolved_code_hit_rows": 117,
+  "pdf_scan_errors": [],
+  "outputs": {
+    "file_comparison_csv": "processed_data\\audits\\bible_hunt_codes_2020_2025_2026_file_comparison.csv",
+    "code_hits_csv": "processed_data\\audits\\bible_hunt_codes_2020_unresolved_code_hits.csv",
+    "code_summary_csv": "processed_data\\audits\\bible_hunt_codes_2020_unresolved_code_summary.csv"
+  }
+}

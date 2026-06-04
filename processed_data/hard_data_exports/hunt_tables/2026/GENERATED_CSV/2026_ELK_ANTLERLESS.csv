@@ -1,0 +1,205 @@
+source_file,source_sheet,hunt_name,hunt_code,sex_type,species,weapon,hunt_type,season,permits_2026_res,permits_2026_nr,permits_2026_total,hunt_class,harvest_success_prior_year_pct,average_harvest_age,current_age_3yr_avg,avg_days_hunted_prior_year
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Cache, Rich",EA1010,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 26 2025,18,2,20,PREFERENCE DRAW,13.3,,,3.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Cache, Richards Hollow",EA1011,Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Dec 31 2025,9,1,10,PREFERENCE DRAW,16.7,,,3.8
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Cache, Richmond Hyde Park",EA1012,Antlerless,Elk,Any Legal Weapon,General Season,Aug 01 2025 - Dec 01 2025,4,1,5,PREFERENCE DRAW,66.7,,,15
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Manti, Central",EA1013,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,63,7,70,PREFERENCE DRAW,49.2,6.5,,4.1
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Manti, Ferron Canyon",EA1015,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,63,7,70,PREFERENCE DRAW,45.6,,,4.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Manti, Gordon Creek-Price Canyon",EA1017,Antlerless,Elk,Any Legal Weapon,General Season,Nov 27 2025 - Jan 31 2026,90,10,100,PREFERENCE DRAW,33.3,,,9.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Manti, Horn Mtn",EA1018,Antlerless,Elk,Any Legal Weapon,General Season,Nov 19 2025 - Dec 31 2025,54,6,60,PREFERENCE DRAW,69.8,,,5.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Manti, Mohrland-Stump Flat",EA1020,Antlerless,Elk,Any Legal Weapon,General Season,Nov 27 2025 - Jan 31 2026,108,12,120,PREFERENCE DRAW,37.2,,,10.8
+2026_ELK_ANTLERLESS.xlsx,Sheet,Nebo,EA1021,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,207,23,230,PREFERENCE DRAW,44.5,7.2,,4.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Manti, North",EA1022,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,270,30,300,PREFERENCE DRAW,34.9,6.5,,4.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Manti, South",EA1023,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,90,10,100,PREFERENCE DRAW,35.5,6.5,,4.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Manti, South",EA1024,Antlerless,Elk,Any Legal Weapon,General Season,Nov 19 2025 - Jan 31 2026,90,10,100,PREFERENCE DRAW,62.8,6.5,,7.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Manti, West",EA1025,Antlerless,Elk,Any Legal Weapon,General Season,Nov 19 2025 - Jan 31 2026,108,12,120,PREFERENCE DRAW,38.5,6.5,,6.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,Chalk Creek,EA1026,Antlerless,Elk,Any Legal Weapon,General Season,Nov 08 2025 - Jan 31 2026,315,35,350,PREFERENCE DRAW,17.5,,,7.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Fillmore, Pahvant",EA1030,Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Dec 06 2025,45,5,50,PREFERENCE DRAW,31.7,7.7,,5.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Fillmore, Pahvant",EA1031,Antlerless,Elk,Any Legal Weapon,General Season,Dec 13 2025 - Jan 30 2026,45,5,50,PREFERENCE DRAW,48.9,7.7,,5.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,Kamas,EA1033,Antlerless,Elk,Any Legal Weapon,General Season,Nov 08 2025 - Jan 18 2026,112,13,125,PREFERENCE DRAW,12.1,,,7.6
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Kamas, Oakley",EA1035,Antlerless,Elk,Any Legal Weapon,General Season,Nov 08 2025 - Dec 31 2025,112,13,125,PREFERENCE DRAW,7,,,6.1
+2026_ELK_ANTLERLESS.xlsx,Sheet,"La Sal, Dolores Triangle",EA1037,Antlerless,Elk,Any Legal Weapon,General Season,Dec 12 2025 - Jan 31 2026,45,5,50,PREFERENCE DRAW,25,5.7,,5.9
+2026_ELK_ANTLERLESS.xlsx,Sheet,"La Sal, La Sal Mtns",EA1038,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,180,20,200,PREFERENCE DRAW,28.9,5.7,,5.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,"La Sal, La Sal Mtns",EA1039,Antlerless,Elk,Any Legal Weapon,General Season,Nov 17 2025 - Dec 31 2025,135,15,150,PREFERENCE DRAW,35.2,5.7,,6.1
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Morgan-South Rich, South Rich",EA1044,Antlerless,Elk,Any Legal Weapon,General Season,Dec 01 2025 - Jan 31 2026,31,4,35,PREFERENCE DRAW,50,,,4
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Mt Dutton, Deep Creek",EA1049,Antlerless,Elk,Any Legal Weapon,General Season,Nov 22 2025 - Dec 07 2025,67,8,75,PREFERENCE DRAW,38.1,7.5,,3.8
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Nine Mile, West Anthro",EA1054,Antlerless,Elk,Any Legal Weapon,General Season,Dec 13 2025 - Dec 30 2025,45,5,50,PREFERENCE DRAW,71.1,5.2,,3.8
+2026_ELK_ANTLERLESS.xlsx,Sheet,"North Slope, Greendale",EA1056,Antlerless,Elk,Any Legal Weapon,General Season,Nov 17 2025 - Nov 30 2025,4,1,5,PREFERENCE DRAW,50,5.7,,3.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,"North Slope, Henry's Fork-Burnt Fork",EA1058,Antlerless,Elk,Any Legal Weapon,General Season,Nov 08 2025 - Jan 31 2026,90,10,100,PREFERENCE DRAW,32.5,5.7,,5.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,"North Slope, West Daggett",EA1060,Antlerless,Elk,Muzzleloader,General Season,Oct 29 2025 - Nov 06 2025,18,2,20,PREFERENCE DRAW,16.7,5.7,,6.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,"North Slope, West Daggett",EA1061,Antlerless,Elk,Muzzleloader,General Season,Sep 24 2025 - Oct 02 2025,18,2,20,PREFERENCE DRAW,28.6,5.7,,5.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,Ogden,EA1063,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 26 2025,67,8,75,PREFERENCE DRAW,8.1,,,5.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,Ogden,EA1064,Antlerless,Elk,Any Legal Weapon,General Season,Nov 08 2025 - Nov 30 2025,67,8,75,PREFERENCE DRAW,3.6,,,5.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,Panguitch Lake,EA1069,Antlerless,Elk,Any Legal Weapon,General Season,Nov 22 2025 - Nov 30 2025,31,4,35,PREFERENCE DRAW,63.6,7.6,,2.8
+2026_ELK_ANTLERLESS.xlsx,Sheet,Paunsaugunt,EA1073,Antlerless,Elk,Any Legal Weapon,General Season,Nov 22 2025 - Dec 30 2025,18,2,20,PREFERENCE DRAW,7.7,5.5,,10.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,Boulder East,EA1075,Antlerless,Elk,Any Legal Weapon,General Season,Nov 21 2025 - Dec 31 2025,45,5,50,PREFERENCE DRAW,51.3,,,5.9
+2026_ELK_ANTLERLESS.xlsx,Sheet,Boulder West,EA1076,Antlerless,Elk,Any Legal Weapon,General Season,Nov 21 2025 - Dec 31 2025,45,5,50,PREFERENCE DRAW,80.9,,,3.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,Boulder-Circle Cliffs,EA1077,Antlerless,Elk,Any Legal Weapon,General Season,Oct 07 2025 - Jan 10 2026,27,3,30,PREFERENCE DRAW,63.6,,,5.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,Fishlake/Thousand Lakes,EA1078,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,243,27,270,PREFERENCE DRAW,36.8,6.9,,5.1
+2026_ELK_ANTLERLESS.xlsx,Sheet,Fishlake/Thousand Lakes East,EA1079,Antlerless,Elk,Any Legal Weapon,General Season,Nov 22 2025 - Dec 31 2025,58,7,65,PREFERENCE DRAW,93.3,6.9,,2.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,Fishlake/Thousand Lakes West,EA1080,Antlerless,Elk,Any Legal Weapon,General Season,Nov 22 2025 - Dec 31 2025,54,6,60,PREFERENCE DRAW,77.6,6.9,,4.1
+2026_ELK_ANTLERLESS.xlsx,Sheet,San Juan,EA1081,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,112,13,125,PREFERENCE DRAW,39.1,7.7,,5
+2026_ELK_ANTLERLESS.xlsx,Sheet,San Juan,EA1082,Antlerless,Elk,Any Legal Weapon,General Season,Nov 19 2025 - Dec 31 2025,112,13,125,PREFERENCE DRAW,51.4,7.7,,5.6
+2026_ELK_ANTLERLESS.xlsx,Sheet,"San Rafael, North",EA1084,Antlerless,Elk,Any Legal Weapon,General Season,Nov 08 2025 - Jan 31 2026,4,1,5,PREFERENCE DRAW,0,6.4,,2
+2026_ELK_ANTLERLESS.xlsx,Sheet,Vernal/Bonanza,EA1085,Antlerless,Elk,Archery,General Season,Aug 16 2025 - Sep 17 2025,90,10,100,PREFERENCE DRAW,13.2,7,,9
+2026_ELK_ANTLERLESS.xlsx,Sheet,Bonanza/Vernal,EA1087,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 17 2025,90,10,100,PREFERENCE DRAW,28.9,7,,5.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,Diamond Mtn,EA1089,Antlerless,Elk,Any Legal Weapon,General Season,Nov 01 2025 - Nov 09 2025,45,5,50,PREFERENCE DRAW,21.7,7,,4.2
+2026_ELK_ANTLERLESS.xlsx,Sheet,Diamond Mtn,EA1090,Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Nov 23 2025,45,5,50,PREFERENCE DRAW,24.4,7,,4.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Vernal, Mosby Mtn",EA1094,Antlerless,Elk,Any Legal Weapon,General Season,Nov 08 2025 - Jan 04 2026,90,10,100,PREFERENCE DRAW,47.1,7,,6.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,Southwest Desert,EA1101,Antlerless,Elk,Any Legal Weapon,General Season,Nov 20 2025 - Jan 11 2026,90,10,100,PREFERENCE DRAW,69.1,8.1,,5
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Wasatch Mtns, Avintaquin",EA1106,Antlerless,Elk,Any Legal Weapon,General Season,Jan 03 2026 - Jan 18 2026,180,20,200,PREFERENCE DRAW,22,,,4
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Wasatch Mtns, Salt Lake",EA1110,Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Jan 31 2026,40,5,45,PREFERENCE DRAW,31.6,5,,8.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Wasatch Mtns, Wallsburg",EA1111,Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Dec 14 2025,31,4,35,PREFERENCE DRAW,6.3,5,,5.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Wasatch Mtns, Wallsburg",EA1112,Antlerless,Elk,Any Legal Weapon,General Season,Dec 20 2025 - Jan 31 2026,49,6,55,PREFERENCE DRAW,25.6,5,,4.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Wasatch Mtns, West Heber",EA1113,Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Jan 31 2026,27,3,30,PREFERENCE DRAW,38.1,5,,7.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Wasatch Mtns, West Timpanogos",EA1114,Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Jan 31 2026,22,3,25,PREFERENCE DRAW,47.4,5,,4.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,Zion,EA1117,Antlerless,Elk,Any Legal Weapon,General Season,Nov 11 2025 - Jan 11 2026,198,22,220,PREFERENCE DRAW,15.9,,,9
+2026_ELK_ANTLERLESS.xlsx,Sheet,Alton CWMU,EA1118,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,6,0,6,PREFERENCE DRAW,20,,,7.2
+2026_ELK_ANTLERLESS.xlsx,Sheet,Bar J Ranch CWMU,EA1119,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,12,0,12,PREFERENCE DRAW,75,,,2.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,Bear Mountain CWMU,EA1120,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,20,0,20,PREFERENCE DRAW,47.4,,,3
+2026_ELK_ANTLERLESS.xlsx,Sheet,Boobe Hole CWMU,EA1121,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,10,0,10,PREFERENCE DRAW,70,,,1.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,Causey Spring CWMU,EA1122,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,5,0,5,PREFERENCE DRAW,20,,,6.2
+2026_ELK_ANTLERLESS.xlsx,Sheet,Chimney Rock CWMU,EA1124,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,12,0,12,PREFERENCE DRAW,93.3,,,3.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,Coldwater Ranch CWMU,EA1125,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,25,0,25,PREFERENCE DRAW,100,,,1.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,Deseret CWMU,EA1129,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,425,0,425,PREFERENCE DRAW,57.2,,,2.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,Double Cone CWMU,EA1130,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,7,0,7,PREFERENCE DRAW,66.7,,,2.2
+2026_ELK_ANTLERLESS.xlsx,Sheet,Durst Mountain CWMU,EA1131,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,30,0,30,PREFERENCE DRAW,72.7,,,1.8
+2026_ELK_ANTLERLESS.xlsx,Sheet,East Fork Chalk Creek CWMU,EA1132,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,30,0,30,PREFERENCE DRAW,26.2,,,3.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,Ensign Ranches CWMU,EA1134,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,60,0,60,PREFERENCE DRAW,65.5,,,2
+2026_ELK_ANTLERLESS.xlsx,Sheet,Folley Ridge CWMU,EA1135,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,20,0,20,PREFERENCE DRAW,63.2,,,1.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,Grass Valley/Clark Canyon CWMU,EA1136,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,50,0,50,PREFERENCE DRAW,46.3,,,3.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,Grazing Pasture CWMU,EA1137,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,9,0,9,PREFERENCE DRAW,86.7,,,2.6
+2026_ELK_ANTLERLESS.xlsx,Sheet,Guildersleeve CWMU,EA1138,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,20,0,20,PREFERENCE DRAW,60,,,2.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,Hardscrabble CWMU,EA1139,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,10,0,10,PREFERENCE DRAW,22.2,,,4.1
+2026_ELK_ANTLERLESS.xlsx,Sheet,Heaston East CWMU,EA1140,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,24,0,24,PREFERENCE DRAW,100,,,1.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,Hiawatha CWMU,EA1141,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,12,0,12,PREFERENCE DRAW,58.3,,,3
+2026_ELK_ANTLERLESS.xlsx,Sheet,Indian Head CWMU,EA1142,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,12,0,12,PREFERENCE DRAW,83.3,,,3.2
+2026_ELK_ANTLERLESS.xlsx,Sheet,Circle E Ranch CWMU,EA1143,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,21,0,21,PREFERENCE DRAW,97.1,,,2
+2026_ELK_ANTLERLESS.xlsx,Sheet,Johnson Mountain Ranch CWMU,EA1145,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,20,0,20,PREFERENCE DRAW,81,,,1.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,Jump Creek CWMU,EA1146,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,9,0,9,PREFERENCE DRAW,92.3,,,2.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,Little Red Creek CWMU,EA1147,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,15,0,15,PREFERENCE DRAW,66.7,,,2.1
+2026_ELK_ANTLERLESS.xlsx,Sheet,Minnie Maud Ridge CWMU,EA1149,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,15,0,15,PREFERENCE DRAW,28.6,,,3.1
+2026_ELK_ANTLERLESS.xlsx,Sheet,Moon Ranch CWMU,EA1151,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,6,0,6,PREFERENCE DRAW,33.3,,,3
+2026_ELK_ANTLERLESS.xlsx,Sheet,Old Woman Plateau CWMU,EA1153,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,4,0,4,PREFERENCE DRAW,100,,,3
+2026_ELK_ANTLERLESS.xlsx,Sheet,Preston Nutter Ranch CWMU,EA1156,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,21,0,21,PREFERENCE DRAW,80,,,2.1
+2026_ELK_ANTLERLESS.xlsx,Sheet,Redd Ranches CWMU,EA1157,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,35,0,35,PREFERENCE DRAW,61.3,,,2.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,Cactus Ranch LLC CWMU,EA1158,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,7,0,7,PREFERENCE DRAW,25,,,4.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,Roan Cliffs CWMU,EA1159,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,6,0,6,PREFERENCE DRAW,100,,,1.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,Sand Creek CWMU,EA1160,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,5,0,5,PREFERENCE DRAW,75,,,1.8
+2026_ELK_ANTLERLESS.xlsx,Sheet,Scofield Canyons CWMU,EA1161,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,9,0,9,PREFERENCE DRAW,100,,,2
+2026_ELK_ANTLERLESS.xlsx,Sheet,Scofield East CWMU,EA1162,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,14,0,14,PREFERENCE DRAW,69.2,,,1.9
+2026_ELK_ANTLERLESS.xlsx,Sheet,Scofield West CWMU,EA1163,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,19,0,19,PREFERENCE DRAW,74.2,,,3
+2026_ELK_ANTLERLESS.xlsx,Sheet,SJ Ranch CWMU,EA1164,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,6,0,6,PREFERENCE DRAW,83.3,,,3.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,Skull Crack CWMU,EA1165,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,15,0,15,PREFERENCE DRAW,92.9,,,1.1
+2026_ELK_ANTLERLESS.xlsx,Sheet,Soldier Summit CWMU,EA1166,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,16,0,16,PREFERENCE DRAW,46.7,,,2.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,South Canyon CWMU,EA1167,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,12,0,12,PREFERENCE DRAW,80,,,1.9
+2026_ELK_ANTLERLESS.xlsx,Sheet,Spring Creek/Dodge CWMU,EA1168,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,15,0,15,PREFERENCE DRAW,63.2,,,3.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,Strawberry Ridge CWMU,EA1170,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,10,0,10,PREFERENCE DRAW,90,,,2
+2026_ELK_ANTLERLESS.xlsx,Sheet,Summit Point CWMU,EA1171,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,5,0,5,PREFERENCE DRAW,66.7,,,3.8
+2026_ELK_ANTLERLESS.xlsx,Sheet,Three C CWMU,EA1172,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,9,0,9,PREFERENCE DRAW,61.5,,,11.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,Two Bear CWMU,EA1174,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,60,0,60,PREFERENCE DRAW,71.4,,,1.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,Wallsburg CWMU,EA1175,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,10,0,10,PREFERENCE DRAW,28.6,,,2.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,Woodruff Creek South CWMU,EA1177,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,8,0,8,PREFERENCE DRAW,37.5,,,1.9
+2026_ELK_ANTLERLESS.xlsx,Sheet,La Sal (Conservation),EA1180,Antlerless,Elk,Any Legal Weapon,Conservation,"Oct 4 - Oct 16, 2025 & Nov 17 - Dec 31, 2025",,,,PREFERENCE DRAW,100,,,1
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Paunsaugunt, Hatch Bench",EA1187,Antlerless,Elk,Any Legal Weapon,General Season,Nov 22 2025 - Dec 30 2025,13,2,15,PREFERENCE DRAW,8.3,5.5,,8.2
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Wasatch Mtns, West-Central",EA1189,Antlerless,Elk,Muzzleloader,General Season,Nov 01 2025 - Nov 09 2025,382,43,425,PREFERENCE DRAW,13.8,5,,4
+2026_ELK_ANTLERLESS.xlsx,Sheet,Pahvant Ensign CWMU,EA1192,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,6,0,6,PREFERENCE DRAW,16.7,,,2
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Cache, Rich",EA1193,Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Jan 10 2026,18,2,20,PREFERENCE DRAW,60,,,4.1
+2026_ELK_ANTLERLESS.xlsx,Sheet,"North Slope, Summit",EA1196,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 26 2025,67,8,75,PREFERENCE DRAW,24.7,5.7,,4.2
+2026_ELK_ANTLERLESS.xlsx,Sheet,Bear Springs CWMU,EA1198,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,2,0,2,PREFERENCE DRAW,100,,,2
+2026_ELK_ANTLERLESS.xlsx,Sheet,Double R Ranch CWMU,EA1200,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,10,0,10,PREFERENCE DRAW,100,,,2.1
+2026_ELK_ANTLERLESS.xlsx,Sheet,Mountain Sky Ranch CWMU,EA1201,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,10,0,10,PREFERENCE DRAW,90,,,3.2
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Box Elder, Pilot Mtn",EA1203,Antlerless,Elk,Any Legal Weapon,General Season,Aug 01 2025 - Aug 15 2025,4,1,5,PREFERENCE DRAW,40,5.7,,3.2
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Box Elder, Pilot Mtn",EA1204,Antlerless,Elk,Any Legal Weapon,General Season,Oct 11 2025 - Nov 01 2025,4,1,5,PREFERENCE DRAW,40,5.7,,1.8
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Cache, Richmond Hyde Park",EA1206,Antlerless,Elk,Any Legal Weapon,General Season,Dec 02 2025 - Jan 15 2026,9,1,10,PREFERENCE DRAW,25,,,6.2
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Nebo, Moroni Hills",EA1207,Antlerless,Elk,Any Legal Weapon,General Season,Aug 01 2025 - Aug 19 2025,9,1,10,PREFERENCE DRAW,0,,,4.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,Nebo,EA1208,Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Jan 18 2026,247,28,275,PREFERENCE DRAW,45.9,7.2,,6.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Fillmore, Oak Creek LE",EA1209,Antlerless,Elk,Any Legal Weapon,General Season,Nov 15 2025 - Jan 30 2026,45,5,50,PREFERENCE DRAW,25.6,7.7,,14.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Wasatch Mtns, Avintaquin",EA1217,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,135,15,150,PREFERENCE DRAW,26,5,,4.9
+2026_ELK_ANTLERLESS.xlsx,Sheet,Manti (Expo),EA1220,Antlerless,Elk,Any Legal Weapon,General Season,"Oct 4 - Oct 16, 2025",,,,PREFERENCE DRAW,,6.5,,
+2026_ELK_ANTLERLESS.xlsx,Sheet,Fishlake/Thousand Lake (Expo),EA1221,Antlerless,Elk,Any Legal Weapon,General Season,"Oct 4 - Oct 16, 2025",,,,PREFERENCE DRAW,0,,,3
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Beaver, East",EA1222,Antlerless,Elk,Any Legal Weapon,General Season,Nov 22 2025 - Dec 12 2025,27,3,30,PREFERENCE DRAW,42.3,9.1,,5.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Beaver, East",EA1223,Antlerless,Elk,Any Legal Weapon,General Season,Dec 13 2025 - Dec 27 2025,27,3,30,PREFERENCE DRAW,37.9,9.1,,3.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Book Cliffs, Bitter Creek/South",EA1224,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,117,13,130,PREFERENCE DRAW,57.6,5.2,,4
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Book Cliffs, Bitter Creek/South",EA1225,Antlerless,Elk,Any Legal Weapon,General Season,Nov 17 2025 - Dec 14 2025,147,16,163,PREFERENCE DRAW,78.1,5.2,,2.9
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Nebo, Moroni Hills",EA1226,Antlerless,Elk,Any Legal Weapon,General Season,Sep 13 2025 - Oct 03 2025,9,1,10,PREFERENCE DRAW,0,,,3.6
+2026_ELK_ANTLERLESS.xlsx,Sheet,Morgan-South Rich,EA1228,Antlerless,Elk,Any Legal Weapon,General Season,Dec 01 2025 - Dec 21 2025,67,8,75,PREFERENCE DRAW,30.6,,,2.9
+2026_ELK_ANTLERLESS.xlsx,Sheet,Morgan-South Rich,EA1229,Antlerless,Elk,Any Legal Weapon,General Season,Dec 22 2025 - Jan 31 2026,144,16,160,PREFERENCE DRAW,30,,,4.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,"West Desert, Tintic Valley",EA1231,Antlerless,Elk,Any Legal Weapon,General Season,Nov 08 2025 - Jan 31 2026,45,5,50,PREFERENCE DRAW,32.5,7.4,,10.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,Avintaquin Canyon CWMU,EA1233,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,4,0,4,PREFERENCE DRAW,0,,,4.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,Royal Ivory Outfitters CWMU,EA1234,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,15,0,15,PREFERENCE DRAW,43.8,,,1.9
+2026_ELK_ANTLERLESS.xlsx,Sheet,Sharp Mountain CWMU,EA1235,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,10,0,10,PREFERENCE DRAW,30,,,3.6
+2026_ELK_ANTLERLESS.xlsx,Sheet,East Canyon,EA1236,Antlerless,Elk,Any Legal Weapon,General Season,Dec 01 2025 - Jan 11 2026,135,15,150,PREFERENCE DRAW,6,,,6.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,"La Sal, La Sal Mtns-North",EA1237,Antlerless,Elk,Any Legal Weapon,General Season,Nov 17 2025 - Dec 07 2025,157,18,175,PREFERENCE DRAW,8.5,6.2,,6.2
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Nine Mile, Range Creek",EA1239,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 26 2025,45,5,50,PREFERENCE DRAW,34.9,5.2,,5.1
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Nine Mile, Range Creek",EA1240,Antlerless,Elk,Any Legal Weapon,General Season,Nov 27 2025 - Jan 31 2026,135,15,150,PREFERENCE DRAW,47.7,5.2,,7.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Vernal, Buckskin Hills-Jensen",EA1242,Antlerless,Elk,Any Legal Weapon,General Season,Dec 01 2025 - Dec 31 2025,90,10,100,PREFERENCE DRAW,25.6,7,,5.9
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Vernal, Buckskin Hills-Jensen",EA1243,Antlerless,Elk,Any Legal Weapon,General Season,Jan 01 2026 - Jan 31 2026,90,10,100,PREFERENCE DRAW,40,7,,6.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,Yellowstone,EA1244,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 17 2025,90,10,100,PREFERENCE DRAW,17.4,7,,4.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,Yellowstone,EA1245,Antlerless,Elk,Muzzleloader,General Season,Oct 29 2025 - Nov 06 2025,45,5,50,PREFERENCE DRAW,28.9,7,,4.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,"North Slope, West Daggett",EA1250,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 26 2025,27,3,30,PREFERENCE DRAW,28.6,5.7,,6.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Southwest Desert, Burbank/Garrison",EA1251,Antlerless,Elk,Any Legal Weapon,General Season,Aug 01 2025 - Aug 15 2025,13,2,15,PREFERENCE DRAW,25,8.1,,4.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,Pine Valley,EA1254,Antlerless,Elk,Any Legal Weapon,General Season,Nov 11 2025 - Jan 11 2026,27,3,30,PREFERENCE DRAW,3.8,,,7.8
+2026_ELK_ANTLERLESS.xlsx,Sheet,Little Pole Canyon CWMU,EA1256,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,9,0,9,PREFERENCE DRAW,33.3,,,2.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,Tunnel Hollow CWMU,EA1257,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,5,0,5,PREFERENCE DRAW,60,,,2.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,La Sal (Expo),EA1258,Antlerless,Elk,Any Legal Weapon,General Season,"Oct 4 - Oct 16, 2025",,,,PREFERENCE DRAW,,5.7,,
+2026_ELK_ANTLERLESS.xlsx,Sheet,Diamond Mountain CWMU,EA1259,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,2,0,2,PREFERENCE DRAW,50,7.1,,2.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,West Ridge CWMU,EA1260,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,5,0,5,PREFERENCE DRAW,20,,,4
+2026_ELK_ANTLERLESS.xlsx,Sheet,Blackhawk CWMU,EA1261,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,5,0,5,PREFERENCE DRAW,33.3,,,1.6
+2026_ELK_ANTLERLESS.xlsx,Sheet,Weber Florence Creek/Stillman Creek CWMU,EA1263,Antlerless,Elk,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,35,0,35,PREFERENCE DRAW,55.3,,,4
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Wasatch Mtns, Rabbit Gulch",EA1264,Antlerless,Elk,Any Legal Weapon,General Season,Jan 17 2026 - Jan 25 2026,45,5,50,PREFERENCE DRAW,40.5,,,2.8
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Wasatch Mtns, Tabby Mtn",EA1265,Antlerless,Elk,Any Legal Weapon,General Season,Dec 20 2025 - Dec 30 2025,90,10,100,PREFERENCE DRAW,69,,,2.9
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Box Elder, Hansel Mtn",EA1266,Antlerless,Elk,Any Legal Weapon,General Season,Aug 01 2025 - Jan 31 2026,18,2,20,PREFERENCE DRAW,52.6,,,11.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,Cache,EA1267,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 26 2025,81,9,90,PREFERENCE DRAW,29.6,,,6
+2026_ELK_ANTLERLESS.xlsx,Sheet,"North Slope, Summit",EA1268,Antlerless,Elk,Archery,General Season,Aug 16 2025 - Sep 17 2025,180,20,200,PREFERENCE DRAW,8.5,,,8.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,Ogden (Excludes Hyrum),EA1269,Antlerless,Elk,Any Legal Weapon,General Season,Dec 01 2025 - Dec 31 2025,180,20,200,PREFERENCE DRAW,30.1,,,5.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,Fishlake (Conservation),EA1270,Antlerless,Elk,Any Legal Weapon,Conservation,"Oct 4 - Oct 16, 2025 & Nov 22 - Dec 31, 2025",,,,PREFERENCE DRAW,75,,,1.8
+2026_ELK_ANTLERLESS.xlsx,Sheet,Manti (Conservation),EA1271,Antlerless,Elk,Any Legal Weapon,Conservation,"Oct 4 - Oct 16, 2025 & Nov 19, 2025 - Jan 31, 2026",,,,PREFERENCE DRAW,100,,,2.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,"East Canyon, East",EA1272,Antlerless,Elk,Any Legal Weapon,General Season,Dec 01 2025 - Jan 31 2026,135,15,150,PREFERENCE DRAW,5.1,,,6.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,"North Slope, Three Corners",EA1273,Antlerless,Elk,Any Legal Weapon,General Season,Dec 20 2025 - Jan 04 2026,22,3,25,PREFERENCE DRAW,82.6,4.8,,3.1
+2026_ELK_ANTLERLESS.xlsx,Sheet,"North Slope, Three Corners",EA1274,Antlerless,Elk,Archery,General Season,Aug 16 2025 - Sep 05 2025,22,3,25,PREFERENCE DRAW,5.3,4.8,,5.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Wasatch Mtns, Box Elder Peak",EA1276,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Oct 16 2025,40,5,45,PREFERENCE DRAW,36.7,,,3.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,"North Slope, Three Corners",EA1277,Antlerless,Elk,Any Legal Weapon,General Season,Nov 22 2025 - Nov 30 2025,22,3,25,PREFERENCE DRAW,62.5,4.8,,2.1
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Manti, Ferron-Nelson Mtn",EA1278,Antlerless,Elk,Any Legal Weapon,General Season,Oct 04 2025 - Nov 30 2025,45,5,50,PREFERENCE DRAW,48.7,,,5.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Manti, Ferron-Nelson Mtn",EA1279,Antlerless,Elk,Any Legal Weapon,General Season,Dec 01 2025 - Jan 31 2026,45,5,50,PREFERENCE DRAW,33.3,,,7.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,"La Sal, La Sal Mtns-North",EA1280,Antlerless,Elk,Any Legal Weapon,General Season,Dec 08 2025 - Dec 31 2025,157,18,175,PREFERENCE DRAW,30.6,,,5
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Mt Dutton, Deep Creek",EA1281,Antlerless,Elk,Any Legal Weapon,General Season,Dec 20 2025 - Jan 11 2026,67,8,75,PREFERENCE DRAW,37.5,,,4.2
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Ogden, North",EA1282,Antlerless,Elk,Archery,General Season,Dec 16 2025 - Jan 31 2026,180,20,200,PREFERENCE DRAW,,,,
+2026_ELK_ANTLERLESS.xlsx,Sheet,Panguitch Lake,EA1283,Antlerless,Elk,Archery,General Season,Aug 16 2025 - Aug 31 2025,31,4,35,PREFERENCE DRAW,10,7.9,,5.1
+2026_ELK_ANTLERLESS.xlsx,Sheet,Panguitch Lake,EA1284,Antlerless,Elk,Muzzleloader,General Season,Oct 29 2025 - Nov 06 2025,31,4,35,PREFERENCE DRAW,14.8,7.9,,4.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,Panguitch Lake,EA1285,Antlerless,Elk,Any Legal Weapon,General Season,Dec 13 2025 - Dec 21 2025,31,4,35,PREFERENCE DRAW,61.3,7.9,,2.2
+2026_ELK_ANTLERLESS.xlsx,Sheet,Monroe,EA1286,Antlerless,Elk,Any Legal Weapon,General Season,2026 Season Dates Pending,,,,PREFERENCE DRAW,60,8.3,,3.8
+2026_ELK_ANTLERLESS.xlsx,Sheet,Antlerless Elk Control,EA2000,Antlerless,Elk,Any Legal Weapon,Antlerless Elk Control,"Valid for the season/weapon listed on your qualifying permit on the Chalk Creek, East Canyon, Kamas, Henry Mtns, Morgan-S. Rich, Ogden, Pine Valley & Zion Units",,,,PREFERENCE DRAW,6.7,,,5.8
+2026_ELK_ANTLERLESS.xlsx,Sheet,Morgan-South Rich,EA2002,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,600,PREFERENCE DRAW,24.8,,,5.8
+2026_ELK_ANTLERLESS.xlsx,Sheet,East Canyon,EA2003,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,500,PREFERENCE DRAW,39,,,9.2
+2026_ELK_ANTLERLESS.xlsx,Sheet,Chalk Creek,EA2004,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,600,PREFERENCE DRAW,35.4,,,7.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,"North Slope, West Daggett",EA2005,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,100,PREFERENCE DRAW,53.5,5.4,,3.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,Yellowstone,EA2006,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,2000,PREFERENCE DRAW,46.7,7.7,,10.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Nine Mile, Anthro-Myton Bench",EA2008,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,250,PREFERENCE DRAW,55.6,5.2,,11.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,"La Sal, La Sal Mtns",EA2009,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,70,PREFERENCE DRAW,27.8,6.5,,7
+2026_ELK_ANTLERLESS.xlsx,Sheet,San Juan,EA2010,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,50,PREFERENCE DRAW,26.2,7.7,,15.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,Manti,EA2011,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,300,PREFERENCE DRAW,41.6,6.5,,9.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Wasatch Mtns, West",EA2012,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,400,PREFERENCE DRAW,53.1,5.7,,5.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Wasatch Mtns, Currant Creek",EA2013,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,2000,PREFERENCE DRAW,37.8,5.7,,6.6
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Wasatch Mtns, Avintaquin - White River",EA2014,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,400,PREFERENCE DRAW,40.9,5.7,,3.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,Paunsaugunt,EA2015,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,100,PREFERENCE DRAW,25,5,,9.8
+2026_ELK_ANTLERLESS.xlsx,Sheet,Nebo,EA2016,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,275,PREFERENCE DRAW,36.7,7.2,,11.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,Mt Dutton,EA2017,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,75,PREFERENCE DRAW,60,7.7,,6
+2026_ELK_ANTLERLESS.xlsx,Sheet,Panguitch Lake,EA2018,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,75,PREFERENCE DRAW,48.1,7.6,,10.1
+2026_ELK_ANTLERLESS.xlsx,Sheet,"West Desert, Tintic Valley",EA2019,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,60,PREFERENCE DRAW,30,6.4,,13.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,Zion,EA2020,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,320,PREFERENCE DRAW,27.3,,,13.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Beaver, East",EA2021,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,30,PREFERENCE DRAW,21.4,8.6,,5.8
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Box Elder, Hansel Mtn",EA2026,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,200,PREFERENCE DRAW,38.9,,,6.1
+2026_ELK_ANTLERLESS.xlsx,Sheet,Cache,EA2027,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,300,PREFERENCE DRAW,26.2,,,8.1
+2026_ELK_ANTLERLESS.xlsx,Sheet,Vernal/Bonanza,EA2028,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,450,PREFERENCE DRAW,42.4,7.7,,5.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Nine Mile, Range Creek",EA2029,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,150,PREFERENCE DRAW,34.7,5.2,,7.2
+2026_ELK_ANTLERLESS.xlsx,Sheet,Diamond Mtn,EA2030,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,200,PREFERENCE DRAW,53.7,7.7,,4.8
+2026_ELK_ANTLERLESS.xlsx,Sheet,Kamas,EA2033,Antlerless,Elk,Archery,General Season,Aug 16 2025 - Sep 17 2025,225,25,250,PREFERENCE DRAW,2.1,,,6.2
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Nine Mile, Anthro",EA2034,Antlerless,Elk,Archery,General Season,Aug 16 2025 - Sep 17 2025,180,20,200,PREFERENCE DRAW,0,,,7.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Oquirrh-Stansbury, East",EA2036,Antlerless,Elk,Any Legal Weapon,General Season,Nov 08 2025 - Jan 31 2026,54,6,60,PREFERENCE DRAW,91.4,9.1,,4.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,Yellowstone,EA2037,Antlerless,Elk,Archery,General Season,Aug 16 2025 - Sep 17 2025,180,20,200,PREFERENCE DRAW,17.8,7,,7.3
+2026_ELK_ANTLERLESS.xlsx,Sheet,Wasatch Mtns,EA2038,Antlerless,Elk,Archery,General Season,Aug 16 2025 - Sep 05 2025,1080,120,1200,PREFERENCE DRAW,13.4,5,,5.8
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Fillmore, Pahvant",EA2039,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,150,PREFERENCE DRAW,25.6,8,,11.7
+2026_ELK_ANTLERLESS.xlsx,Sheet,Kamas,EA2040,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,150,PREFERENCE DRAW,54.7,,,7.4
+2026_ELK_ANTLERLESS.xlsx,Sheet,Cache (Conservation),EA2041,Antlerless,Elk,Any Legal Weapon,Conservation,"Oct 4 - Oct 26, 2025",,,,PREFERENCE DRAW,,,,
+2026_ELK_ANTLERLESS.xlsx,Sheet,Wasatch Mtns (Conservation),EA2045,Antlerless,Elk,Any Legal Weapon,Conservation,"Oct 4 - Oct 16, 2025 & Nov 15, 2025 - Jan 31, 2026",,,,PREFERENCE DRAW,75,,,2.5
+2026_ELK_ANTLERLESS.xlsx,Sheet,"Box Elder, Sawtooth",EA2046,Antlerless,Elk,Any Legal Weapon,Private Lands Only,Aug 01 2025 - Jan 31 2026,,,25,PREFERENCE DRAW,0,,,3

@@ -1,8 +1,9 @@
 {
-  "count": 1607,
+  "count": 1471,
   "index_file": "hunt_research_2026.index.json",
   "detail_dir": "hunts",
-  "canonical_source": "hunt_master_canonical_2026_SOURCE_OF_TRUTH_FINAL_COMPLETE_NO_PARTIALS.csv",
-  "status": "LOCKED_CANONICAL_DERIVED",
-  "notes": "Regenerated from locked 2026 canonical. Existing research detail sections preserved where prior split detail files existed; missing canonical hunt codes receive locked-canonical stub details."
+  "canonical_source": "DATABASE.csv + processed_data/hunt_research_2026_summary.json",
+  "status": "REBUILT_CURRENT_DATABASE_CANONICAL",
+  "generated_at": "2026-06-04T07:07:35Z",
+  "notes": "Split index/detail files now align to the 2026 DATABASE.csv hunt-code universe. Legacy extra codes were removed from the split detail directory."
 }

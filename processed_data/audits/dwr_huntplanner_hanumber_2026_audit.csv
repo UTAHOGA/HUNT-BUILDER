@@ -1,5 +1,5 @@
 metric,value
-created_at,2026-06-01T16:35:53.873Z
+created_at,2026-06-04T03:36:06.425Z
 source,https://dwrapps.utah.gov/huntboundary/HaNumber?hn={hunt_code}&roles=
 input_database_csv,pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv
 current_hunt_codes_from_database,1449
@@ -18,6 +18,6 @@ rows_with_waiting_period_years,1449
 rows_with_special_provisions,1059
 rows_with_notes,1215
 rows_with_harvest_reporting_text,1426
-rows_with_surrender_info,1361
+rows_with_surrender_info,1363
 rows_with_draw_odds_note,0
 rows_with_permit_total,1449

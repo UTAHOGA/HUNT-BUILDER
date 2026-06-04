@@ -1,0 +1,44 @@
+hunt_code,hunt_name,species,database_allotment_2026_res,database_allotment_2026_nr,database_allotment_2026_total,recommended_res,recommended_nr,recommended_total,winner_source,confidence,source_support_count,notes
+DA1009,"Pine Valley, Enterprise",Deer,,,25,,,20,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+DA1018,"Pine Valley, New Harmony",Deer,,,20,,,15,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+DA1033,"San Juan, Monticello",Deer,,,5,,,10,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1010,"Cache, Rich",Elk,18,2,20,31,4,35,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1011,"Cache, Richards Hollow",Elk,9,1,10,18,2,20,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1021,Nebo,Elk,207,23,230,252,28,280,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1033,Kamas,Elk,112,13,125,90,10,100,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1035,"Kamas, Oakley",Elk,112,13,125,90,10,100,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1054,"Nine Mile, West Anthro",Elk,45,5,50,90,10,100,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1063,Ogden,Elk,67,8,75,90,10,100,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1069,Panguitch Lake,Elk,31,4,35,22,3,25,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1129,Deseret CWMU,Elk,425,0,425,360,0,360,HANUMBER,MEDIUM_TOTAL_CONFIRMED,1,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1134,Ensign Ranches CWMU,Elk,60,0,60,48,0,48,HANUMBER,MEDIUM_TOTAL_CONFIRMED,1,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1139,Hardscrabble CWMU,Elk,10,0,10,5,0,5,HANUMBER,MEDIUM_TOTAL_CONFIRMED,1,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1149,Minnie Maud Ridge CWMU,Elk,15,0,15,16,0,16,HANUMBER,MEDIUM_TOTAL_CONFIRMED,1,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1176,Weber Florence Creek CWMU,Elk,65,,65,35,0,35,HANUMBER,MEDIUM_SINGLE_SOURCE,1,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1193,"Cache, Rich",Elk,18,2,20,31,4,35,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1208,Nebo,Elk,247,28,275,292,33,325,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1222,"Beaver, East",Elk,27,3,30,36,4,40,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1223,"Beaver, East",Elk,27,3,30,36,4,40,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1251,"Southwest Desert, Burbank/Garrison",Elk,13,2,15,11,1,12,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1266,"Box Elder, Hansel Mtn",Elk,18,2,20,27,3,30,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1267,Cache,Elk,81,9,90,180,20,200,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1269,Ogden (excludes Hyrum),Elk,180,20,200,270,30,300,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1284,Panguitch Lake,Elk,31,4,35,49,6,55,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1285,Panguitch Lake,Elk,31,4,35,22,3,25,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA1286,Monroe,Elk,36,4,40,46,4,50,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA2033,Kamas,Elk,225,25,250,180,20,200,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EA2036,"Oquirrh-Stansbury, East",Elk,54,6,60,63,7,70,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+EB1000,Elk - Statewide Permit,Elk,,,1,,,1,UTAHDRAWS,MEDIUM_SINGLE_SOURCE,1,DATABASE has a nonblank value that differs from the recommended source; left for review.
+MA1005,Morgan-South Rich,Moose,6,1,7,2,1,3,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+MA1007,Morgan-South Rich,Moose,3,0,3,2,0,2,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+MA1008,"Wasatch Mtns, Salt Lake-Timpanogos",Moose,4,1,5,2,0,2,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+PD1000,"Box Elder, Snowville",Pronghorn,72,8,80,36,4,40,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+PD1012,"Box Elder, Promontory",Pronghorn,22,3,25,18,2,20,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+PD1016,Zane CWMU,Pronghorn,4,0,4,6,0,6,HANUMBER,MEDIUM_TOTAL_CONFIRMED,1,DATABASE has a nonblank value that differs from the recommended source; left for review.
+PD1017,"Box Elder, West",Pronghorn,49,6,55,31,4,35,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+PD1025,Cottonwood Ridge CWMU,Pronghorn,4,0,4,6,0,6,HANUMBER,MEDIUM_SINGLE_SOURCE,1,DATABASE has a nonblank value that differs from the recommended source; left for review.
+PD1026,Pahvant Ensign CWMU,Pronghorn,4,0,4,6,0,6,HANUMBER,MEDIUM_TOTAL_CONFIRMED,1,DATABASE has a nonblank value that differs from the recommended source; left for review.
+PD1044,Vernal-Ouray Valley,Pronghorn,9,1,10,4,1,5,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+PD1056,Parker Mtn,Pronghorn,36,4,40,63,4,67,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+PD1057,"Parker Mtn, Highlands",Pronghorn,31,4,35,27,3,30,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.
+PD1059,"Parker Mtn, Plains",Pronghorn,27,3,30,31,4,35,HANUMBER,HIGH_CONFIRMED_2PLUS,2,DATABASE has a nonblank value that differs from the recommended source; left for review.

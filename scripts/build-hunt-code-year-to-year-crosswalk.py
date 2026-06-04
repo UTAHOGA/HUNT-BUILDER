@@ -104,7 +104,6 @@ SPORTSMAN_ONE_PERMIT_RULE = "Each Sportsman permit hunt carries 1 permit per spe
 REVIEWED_2022_TO_2023_SPORTSMAN_ACTIVE_CONTINUITY = {
     "BI1000": "Sportsman Bison is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
     "BR1000": "Sportsman Black Bear is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
-    "CG1000": "Sportsman Cougar is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; do not collapse it into CG9999 in the sportsman row set. Cougar regulations document the later general statewide/no-additional-permit structure separately from this sportsman draw-results row.",
     "DB0007": "Sportsman Deer is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
     "DS1000": "Sportsman Desert Bighorn Sheep is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
     "EB1000": "Sportsman Elk is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
@@ -113,6 +112,10 @@ REVIEWED_2022_TO_2023_SPORTSMAN_ACTIVE_CONTINUITY = {
     "PB1000": "Sportsman Pronghorn is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
     "RS0001": "Sportsman Rocky Mtn Bighorn Sheep is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
     "TK0001": "Sportsman Bearded Turkey is a reviewed continuous sportsman permit hunt across analyzed years and remains an active sportsman permit family; preserve exact-code continuity.",
+}
+
+REVIEWED_2022_TO_2023_SPORTSMAN_ENDED_OR_ROLLED = {
+    "CG1000": "Historical Sportsman Cougar code. User review says CG1000 ends by 2025 and current cougar now rolls into CG9999; CG9999 is statewide/unlimited and does not carry a numbered sportsman quota.",
 }
 
 REVIEWED_2022_TO_2023_SPORTSMAN_SOURCE_FILES = {
@@ -426,6 +429,11 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                 if from_year == 2022 and to_year == 2023
                 else None
             )
+            reviewed_2022_2023_sportsman_ended_or_rolled_note = (
+                REVIEWED_2022_TO_2023_SPORTSMAN_ENDED_OR_ROLLED.get(code)
+                if from_year == 2022 and to_year == 2023
+                else None
+            )
             if reviewed_discontinued_note:
                 crosswalk_rows.append(
                     base_row(
@@ -589,6 +597,25 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                             "source_kinds": "draw_results",
                         },
                         reviewed_2021_2022_antlerless_discontinued_note,
+                    )
+                )
+            elif reviewed_2022_2023_sportsman_ended_or_rolled_note:
+                right = identities.get(to_year, {}).get("CG9999", {"hunt_code": "CG9999", "prefix": "CG"})
+                crosswalk_rows.append(
+                    base_row(
+                        from_year,
+                        to_year,
+                        code,
+                        "CG9999",
+                        "REVIEWED_COUGAR_ROLLS_TO_STATEWIDE_UNLIMITED",
+                        "REVIEWED_STATEWIDE_UNLIMITED_SUCCESSOR",
+                        1.0,
+                        "USER_REVIEWED_COUGAR_RULE",
+                        left,
+                        right,
+                        hit_from,
+                        source_hits.get(("CG9999", to_year), {}),
+                        reviewed_2022_2023_sportsman_ended_or_rolled_note,
                     )
                 )
             elif reviewed_2022_2023_sportsman_active_continuity_note:
@@ -839,6 +866,11 @@ def summarize(crosswalk_rows: list[dict[str, object]], candidate_rows: list[dict
                 for row in crosswalk_rows
                 if row["crosswalk_status"] == "REVIEWED_SPORTSMAN_ACTIVE_CONTINUITY"
             ),
+            "reviewed_2022_to_2023_cougar_statewide_unlimited_rows": sum(
+                1
+                for row in crosswalk_rows
+                if row["crosswalk_status"] == "REVIEWED_COUGAR_ROLLS_TO_STATEWIDE_UNLIMITED"
+            ),
         },
         "crosswalk_status_counts": dict(status_counts),
         "transition_status_counts": {key: dict(value) for key, value in transition_counts.items()},
@@ -859,7 +891,7 @@ def summarize(crosswalk_rows: list[dict[str, object]], candidate_rows: list[dict
             "Known A-prefixed Sportsman/OCR artifacts are excluded from this crosswalk; normalized real hunt codes remain eligible.",
             "Reviewed 2020-to-2021 discontinuation decisions are recorded separately and are not successor mappings.",
             "Reviewed 2021-to-2022 antlerless decisions use the official 2021, 2022, and 2023 antlerless draw-results PDFs to separate true successors from discontinued rows.",
-            "Reviewed 2022-to-2023 sportsman decisions are active sportsman permit-hunt continuity rows across the analyzed source years; they are not discontinuations or successor mappings.",
+            "Reviewed 2022-to-2023 sportsman decisions are active sportsman permit-hunt continuity rows across the analyzed source years; CG1000 is excluded from that continuity set because user review says current cougar rolls into CG9999 statewide/unlimited.",
             SPORTSMAN_ONE_PERMIT_RULE,
         ],
     }
@@ -890,6 +922,7 @@ def write_report(summary: dict[str, object]) -> None:
         f"- Reviewed 2021->2022 cougar active-continuity rows: `{summary['row_counts']['reviewed_2021_to_2022_cougar_active_continuity_rows']}`",
         f"- Reviewed 2021->2022 source-artifact rows: `{summary['row_counts']['reviewed_2021_to_2022_artifact_rows']}`",
         f"- Reviewed 2022->2023 sportsman active-continuity rows: `{summary['row_counts']['reviewed_2022_to_2023_sportsman_active_continuity_rows']}`",
+        f"- Reviewed 2022->2023 cougar statewide/unlimited rows: `{summary['row_counts']['reviewed_2022_to_2023_cougar_statewide_unlimited_rows']}`",
         "- Candidate rows list up to five same-prefix successor candidates per dropped code; they are not promoted one-to-one links.",
         "",
         "## Codes By Report Year",

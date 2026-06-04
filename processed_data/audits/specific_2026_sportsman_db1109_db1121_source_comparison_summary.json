@@ -1,0 +1,56 @@
+{
+  "core_bucket_counts": {
+    "CONFIRMED_2026_NEW_OR_OMITTED_DIRECT_SOURCE": 2,
+    "HISTORICAL_LIBRARY_ONLY": 1,
+    "SEPARATE_EXTENDED_ARCHERY_NO_QUOTA_LAYER": 1,
+    "SEPARATE_STATEWIDE_UNLIMITED_LAYER": 1,
+    "SPORTSMAN_CONTINUITY_LAYER_REVIEW": 10
+  },
+  "created_at_utc": "2026-06-04T04:40:46+00:00",
+  "current_numbered_sportsman_codes": [
+    "BI1000",
+    "BR1000",
+    "DB0007",
+    "DS1000",
+    "EB1000",
+    "GO1000",
+    "MB1000",
+    "PB1000",
+    "RS0001",
+    "TK0001"
+  ],
+  "current_statewide_unlimited_codes": [
+    "CG9999"
+  ],
+  "database_present_count": 14,
+  "dwr_hunttable_match_or_value_count": 2,
+  "guardrail": "Audit only. DATABASE.csv was not modified.",
+  "historical_sportsman_codes_ended": [
+    "CG1000"
+  ],
+  "outputs": {
+    "csv": "processed_data/audits/specific_2026_sportsman_db1109_db1121_source_comparison.csv",
+    "report_md": "docs/specific_2026_sportsman_db1109_db1121_source_comparison.md",
+    "summary_json": "processed_data/audits/specific_2026_sportsman_db1109_db1121_source_comparison_summary.json"
+  },
+  "row_count": 15,
+  "species_truth_match_or_value_count": 3,
+  "target_codes": [
+    "BI1000",
+    "BR1000",
+    "CG1000",
+    "CG9999",
+    "DB0007",
+    "DS1000",
+    "EB1000",
+    "GO1000",
+    "MB1000",
+    "PB1000",
+    "RS0001",
+    "TK0001",
+    "EX1000",
+    "DB1109",
+    "DB1121"
+  ],
+  "utahdraws_match_or_value_count": 12
+}

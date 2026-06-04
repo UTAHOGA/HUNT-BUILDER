@@ -3,16 +3,26 @@ processed_data/display-boundary-index-2026.json,869897,GIT_BLOB,R2_PUBLIC,yes,ye
 processed_data/statewide_composite_boundaries_2026.geojson,87146863,GIT_LFS_OBJECT,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Primary composite boundaries runtime source for Builder.; large_file>5242880
 processed_data/composite_hunt_unit_mapping_2026.geojson,54914353,GIT_LFS_OBJECT,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Direct unit boundary fallback map used by Builder.; large_file>5242880
 processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson,87146863,GIT_LFS_OBJECT,R2_PUBLIC,no,no,CLOUDFLARE_R2_PUBLIC,Canonical locked reference; publish only when intentionally pinned.; large_file>5242880; not_public_even_though_r2_classification
-processed_data/hunt_research_2026.json,306035223,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research summary contract feed.; large_file>5242880
-processed_data/draw_reality_engine.csv,20594722,GIT_LFS_OBJECT,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Observed draw runtime engine feed.; large_file>5242880
+data/hunt-master-canonical-2026-foundation.json,4180581,GIT_BLOB,REPO_SMALL,yes,yes,GITHUB_REPO,Builder first-load canonical hunt master; rebuilt from DATABASE.csv.
+data/hunt-master-canonical-2026-source-of-truth.json,4180581,GIT_BLOB,REPO_SMALL,yes,yes,GITHUB_REPO,Builder fallback hunt master; kept aligned with first-load master.
+processed_data/hunt-master-canonical-2026-source-of-truth.json,4180581,GIT_BLOB,REPO_SMALL,yes,yes,GITHUB_REPO,Processed mirror of current hunt master for public/reference consumers.
+processed_data/hunt-master-canonical-2026-source-of-truth.csv,1315638,GIT_BLOB,REPO_SMALL,yes,no,GITHUB_REPO,Processed CSV mirror of current hunt master for public/reference consumers.
+processed_data/hunt_research_2026.json,261257548,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research summary contract feed.; large_file>5242880
+processed_data/hunt_research_2026_summary.json,10526532,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Compact Research summary contract feed.; large_file>5242880
+processed_data/hunt_research_2026_ladder.json,261257548,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Full Research ladder JSON contract.; large_file>5242880
+processed_data/hunt_research_2026_ladder_preference.json,54031489,GIT_BLOB,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Preference-point Research ladder JSON contract.; large_file>5242880
+processed_data/hunt_research_2026_ladder_bonus_max_random.json,124523941,GIT_BLOB,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Bonus/max-random Research ladder JSON contract.; large_file>5242880
+processed_data/hunt_research_2026_split/hunt_research_2026.index.json,998272,GIT_BLOB,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Split Research index aligned to DATABASE.csv for legacy/detail consumers.
+processed_data/draw_reality_engine.csv,24489639,GIT_LFS_OBJECT,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Observed draw runtime engine feed.; large_file>5242880
 processed_data/draw_reality_engine_v2.csv,44863034,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Observed draw engine fallback feed.; large_file>5242880
-processed_data/draw_reality_engine_predictive_v2.csv,133,GIT_LFS_POINTER,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Predictive mode feed; currently LFS pointer in repo and requires migration.; git_lfs_pointer_payload_detected; manual_review_required
-processed_data/point_ladder_view.csv,2837401,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research ladder runtime feed.
-processed_data/hunt_master_enriched.csv,133,GIT_LFS_POINTER,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research enriched hunt reference runtime feed.; git_lfs_pointer_payload_detected
-processed_data/hunt_unit_reference_linked.csv,2223630,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research unit reference runtime feed.
+processed_data/draw_reality_engine_predictive_v2.csv,24507137,GIT_LFS_OBJECT,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Predictive mode feed; published to R2 for browser/runtime compatibility.; large_file>5242880
+processed_data/point_ladder_view.csv,140384382,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research ladder runtime feed.; large_file>5242880
+processed_data/hunt_master_enriched.csv,51769837,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research enriched hunt reference runtime feed.; large_file>5242880
+processed_data/hunt_unit_reference_linked.csv,2468703,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research unit reference runtime feed.
 processed_data/public_contracts/outfitters-public.json,7913,GIT_BLOB,REPO_SMALL,yes,yes,GITHUB_REPO,Verify directory contract feed (small).
 processed_data/public_contracts/hunt_odds_history.json,113951774,GIT_LFS_OBJECT,R2_PUBLIC,no,no,CLOUDFLARE_R2_PUBLIC,Large public contract artifact; not direct page dependency today.; large_file>5242880
-processed_data/ml_draw_predictions_v1.csv,47072089,GIT_LFS_OBJECT,LFS_REFERENCE_ONLY,no,no,GIT_LFS_REFERENCE,Large model output; keep as reference unless explicitly promoted to runtime.; large_file>5242880; manual_review_required
+processed_data/ml_draw_predictions_v1.csv,47072089,GIT_LFS_OBJECT,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Large ML model output; public/download runtime artifact served from R2.; large_file>5242880
+processed_data/draw_reality_view.csv,14072342,GIT_BLOB,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Display-only draw reality view; public/download artifact served from R2.; large_file>5242880
 processed_data/hunt_master_enriched_2026_draw_subset.csv,,MISSING,REVIEW_REQUIRED,no,no,REVIEW_REQUIRED,Missing in repo; requires lineage review before use.; missing_file; manual_review_required; review_required
 data_truth/draw_results_truth/normalized/draw_results_long.csv,77791622,GIT_LFS_OBJECT,LFS_REFERENCE_ONLY,no,no,GIT_LFS_REFERENCE,Truth-source long-form draw rows; not a direct browser runtime feed.; large_file>5242880
 processed_data/hunt_truth_from_json.sqlite,85475328,GIT_LFS_OBJECT,INTERNAL_ONLY,no,no,LOCAL_INTERNAL_ONLY,Internal SQLite build/reference artifact.; large_file>5242880

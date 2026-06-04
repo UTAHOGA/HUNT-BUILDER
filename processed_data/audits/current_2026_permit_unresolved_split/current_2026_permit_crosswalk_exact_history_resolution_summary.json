@@ -1,0 +1,33 @@
+{
+  "created_at_utc": "2026-06-04T02:19:03+00:00",
+  "notes": [
+    "No source values were edited. This operation only moves exact-history crosswalk rows out of unresolved current-permit repair scope.",
+    "Resolved entries remain fully auditable with all original source columns preserved plus resolution provenance."
+  ],
+  "outputs": {
+    "remaining_unresolved_csv": "processed_data/audits/current_2026_permit_unresolved_split/remaining_unresolved_after_crosswalk_exact_history_rule.csv",
+    "resolved_csv": "processed_data/audits/current_2026_permit_unresolved_split/resolved_crosswalk_exact_history_matches.csv",
+    "summary_json": "processed_data/audits/current_2026_permit_unresolved_split/current_2026_permit_crosswalk_exact_history_resolution_summary.json"
+  },
+  "remaining_bucket_counts": {
+    "database_only_external_missing": 49,
+    "true_no_permit_value": 249,
+    "true_source_conflicts": 41
+  },
+  "resolved_bucket_counts": {
+    "database_only_external_missing": 7,
+    "true_no_permit_value": 8
+  },
+  "resolved_prefix_counts": {
+    "BI": 2,
+    "EA": 5,
+    "EB": 2,
+    "LO": 6
+  },
+  "row_counts": {
+    "remaining_after_crosswalk_exact_history_rule": 339,
+    "resolved_crosswalk_exact_history_rows": 15,
+    "source_rows_after_hanumber": 354
+  },
+  "source_remaining_after_hanumber": "processed_data/audits/current_2026_permit_unresolved_split/remaining_unresolved_after_hanumber_hunttable_database_rule.csv"
+}

@@ -1,0 +1,17 @@
+{
+  "backup_path": "processed_data/backups/DATABASE_before_confirmed_moose_permit_patch_20260604T061441Z.csv",
+  "created_at_utc": "2026-06-04T06:14:41+00:00",
+  "database_path": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "guardrail": "Applied only user-confirmed Moose recommended values.",
+  "outputs": {
+    "patch_csv": "processed_data/audits/confirmed_moose_permit_values_database_patch_2026.csv",
+    "report_md": "docs/confirmed_moose_permit_values_database_patch_2026.md",
+    "summary_json": "processed_data/audits/confirmed_moose_permit_values_database_patch_2026_summary.json"
+  },
+  "updated_codes": [
+    "MA1005",
+    "MA1007",
+    "MA1008"
+  ],
+  "updated_database_rows": 3
+}

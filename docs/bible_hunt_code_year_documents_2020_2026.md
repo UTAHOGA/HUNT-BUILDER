@@ -8,20 +8,20 @@ These documents are generated independently from each `BIBLE HUNT CODES` year fo
 
 - `2020`: `1028` unique comparison hunt codes, `2566` raw source hits
 - `2021`: `1023` unique comparison hunt codes, `2540` raw source hits
-- `2022`: `1020` unique comparison hunt codes, `2645` raw source hits
-- `2023`: `1033` unique comparison hunt codes, `2038` raw source hits
-- `2024`: `1027` unique comparison hunt codes, `2060` raw source hits
+- `2022`: `1020` unique comparison hunt codes, `2634` raw source hits
+- `2023`: `1034` unique comparison hunt codes, `2049` raw source hits
+- `2024`: `1027` unique comparison hunt codes, `2050` raw source hits
 - `2025`: `1053` unique comparison hunt codes, `2285` raw source hits
-- `2026`: `834` unique comparison hunt codes, `30879` raw source hits
+- `2026`: `31` unique comparison hunt codes, `461` raw source hits
 
 ## Year-To-Year Compare
 
 - `2020->2021`: exact `944`, candidate `63`, dropped `21`, added `45`
 - `2021->2022`: exact `971`, candidate `42`, dropped `10`, added `25`
-- `2022->2023`: exact `941`, candidate `47`, dropped `32`, added `59`
-- `2023->2024`: exact `990`, candidate `41`, dropped `2`, added `17`
+- `2022->2023`: exact `942`, candidate `47`, dropped `31`, added `59`
+- `2023->2024`: exact `990`, candidate `41`, dropped `3`, added `17`
 - `2024->2025`: exact `960`, candidate `38`, dropped `29`, added `67`
-- `2025->2026`: exact `809`, candidate `0`, dropped `244`, added `25`
+- `2025->2026`: exact `31`, candidate `0`, dropped `1022`, added `0`
 
 ## Outputs
 

@@ -1,0 +1,65 @@
+{
+  "confidence_counts": {
+    "HIGH_CONFIRMED_2PLUS": 760,
+    "MEDIUM_SINGLE_SOURCE": 83,
+    "MEDIUM_TOTAL_CONFIRMED": 72,
+    "NO_PERMIT_VALUE": 256,
+    "REVIEW_REQUIRED": 56,
+    "REVIEW_SOURCE_CONFLICT": 244
+  },
+  "created_at_utc": "2026-06-04T03:39:55+00:00",
+  "guardrail": "Read-only split. No DATABASE.csv values are modified.",
+  "no_permit_value_rows": 256,
+  "outputs": {
+    "no_permit_value_csv": "processed_data/audits/current_2026_live_source_no_permit_value.csv",
+    "review_required_csv": "processed_data/audits/current_2026_live_source_review_required.csv",
+    "single_source_candidates_csv": "processed_data/audits/current_2026_live_source_single_source_candidates.csv",
+    "solid_csv": "processed_data/audits/current_2026_live_source_solid_codes.csv",
+    "summary_json": "processed_data/audits/current_2026_live_source_evidence_rollup_summary.json"
+  },
+  "review_prefix_counts": {
+    "BI": 4,
+    "BR": 2,
+    "DB": 163,
+    "DS": 8,
+    "EA": 8,
+    "EB": 63,
+    "GO": 2,
+    "LO": 20,
+    "MB": 1,
+    "PB": 19,
+    "RS": 5,
+    "TK": 5
+  },
+  "review_required_rows": 300,
+  "single_source_candidate_rows": 83,
+  "single_source_winner_counts": {
+    "HANUMBER": 51,
+    "HUNTTABLE": 22,
+    "UTAHDRAWS": 10
+  },
+  "solid_definition": "HIGH_CONFIRMED_2PLUS or MEDIUM_TOTAL_CONFIRMED with recommended_total populated.",
+  "solid_prefix_counts": {
+    "BI": 12,
+    "BR": 100,
+    "DA": 20,
+    "DB": 170,
+    "DS": 16,
+    "EA": 195,
+    "EB": 156,
+    "GO": 15,
+    "MA": 5,
+    "MB": 25,
+    "PB": 68,
+    "PD": 25,
+    "RE": 1,
+    "RS": 13,
+    "TK": 11
+  },
+  "solid_rows": 832,
+  "solid_winner_source_counts": {
+    "HANUMBER": 832
+  },
+  "source": "processed_data/audits/current_2026_hunt_code_permit_reconciliation.csv",
+  "total_rows": 1471
+}

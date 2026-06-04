@@ -1,0 +1,460 @@
+source_file,source_sheet,hunt_name,hunt_code,sex_type,species,weapon,hunt_type,season,permits_2026_res,permits_2026_nr,permits_2026_total,hunt_class,harvest_success_prior_year_pct,average_harvest_age,current_age_3yr_avg,avg_days_hunted_prior_year
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Southeastern Navajo Buck Deer,DB0001,Buck,Deer,Any Legal Weapon,Tribal,"Oct 18, 2025 - Oct 26, 2025",,,,MAX / RANDOM DRAW,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Southeastern Navajo Buck Deer,DB0002,Buck,Deer,Archery,Tribal,"Aug 16, 2025 - Sept 12, 2025",,,,MAX / RANDOM DRAW,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Southeastern Navajo Buck Deer,DB0003,Buck,Deer,Muzzleloader,Tribal,"Sept 24 - Oct 2, 2025",,,,MAX / RANDOM DRAW,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Southern Navajo Buck Deer,DB0004,Buck,Deer,Any Legal Weapon,Tribal,"Oct 18, 2025 - Oct 26, 2025",,,,MAX / RANDOM DRAW,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Southern Navajo Buck Deer,DB0005,Buck,Deer,Archery,Tribal,"Aug 16, 2025 - Sept 12, 2025",,,,MAX / RANDOM DRAW,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Southern Navajo Buck Deer,DB0006,Buck,Deer,Muzzleloader,Tribal,"Sept 24 - Oct 2, 2025",,,,MAX / RANDOM DRAW,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Buck Deer - Statewide Permit,DB0007,Buck,Deer,Any Legal Weapon,Statewide,"Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027",,,,O.T.C.,100,,,8.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Antelope Island - Conservation/Expo,DB0009,Buck,Deer,Any Legal Weapon,Premium Limited Entry,"Nov 9, 2026 - Nov 16, 2026",,,,MAX / RANDOM DRAW,100,,,2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Southern Paiute Buck Deer (early),DB0010,Buck,Deer,Any Legal Weapon,Tribal,"Oct 18, 2025 - Oct 26, 2025",,,,MAX / RANDOM DRAW,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Southern Paiute Buck Deer,DB0011,Buck,Deer,Archery,Tribal,"Aug 16, 2025 - Sept 12, 2025",,,,MAX / RANDOM DRAW,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Southern Paiute Buck Deer,DB0012,Buck,Deer,Muzzleloader,Tribal,"Sept 24 - Oct 2, 2025",,,,MAX / RANDOM DRAW,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Southern Paiute Buck Deer (late),DB0013,Buck,Deer,Any Legal Weapon,Tribal,"Oct 18, 2025 - Oct 26, 2025",,,,MAX / RANDOM DRAW,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Henry Mtns,DB1000,Buck,Deer,Archery,Premium Limited Entry,Aug 15 2026 - Sept 11 2026,8,1,9,MAX / RANDOM DRAW,100,5.1,,10.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Paunsaugunt,DB1001,Buck,Deer,Archery,Premium Limited Entry,Aug 15 2026 - Sept 11 2026,26,3,29,MAX / RANDOM DRAW,67.6,5.3,,12.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Antelope Island,DB1002,Buck,Deer,Any Legal Weapon,Premium Limited Entry,Nov 11 2026 - Nov 18 2026,1,0,1,MAX / RANDOM DRAW,100,,,1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Henry Mtns,DB1003,Buck,Deer,Any Legal Weapon,Premium Limited Entry,Oct 17 2026 - Oct 25 2026,24,3,27,MAX / RANDOM DRAW,100,5.1,,3.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Paunsaugunt,DB1004,Buck,Deer,Any Legal Weapon,Premium Limited Entry,Oct 17 2026 - Oct 31 2026,75,8,83,MAX / RANDOM DRAW,93.2,5.3,,6.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Henry Mtns,DB1005,Buck,Deer,Muzzleloader,Premium Limited Entry,Sept 23 2026 - Oct 01 2026,8,1,9,MAX / RANDOM DRAW,90,5.1,,5.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Paunsaugunt,DB1006,Buck,Deer,Muzzleloader,Premium Limited Entry,Sept 23 2026 - Oct 01 2026,26,3,29,MAX / RANDOM DRAW,70,5.3,,5.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Henry Mtns,DB1007,Buck,Deer,Multiseason,Premium Limited Entry,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026",1,0,1,MAX / RANDOM DRAW,100,5.1,,11
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Paunsaugunt,DB1008,Buck,Deer,Multiseason,Premium Limited Entry,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 31, 2026",3,1,4,MAX / RANDOM DRAW,100,5.3,,22
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Henry Mtns (Management Buck Deer),DB1009,Buck,Deer,Any Legal Weapon,Management Buck Deer,Oct 26 2026 - Oct 30 2026,10,1,11,MAX / RANDOM DRAW,100,,,2.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Paunsaugunt,DB1010,Buck,Deer,Any Legal Weapon,Management Buck Deer,Nov 02 2026 - Nov 20 2026,30,3,33,MAX / RANDOM DRAW,92.9,5.3,,4.9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Book Cliffs,DB1011,Buck,Deer,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,55,6,61,MAX / RANDOM DRAW,88,,,6.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Fillmore, Oak Creek LE",DB1012,Buck,Deer,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,12,1,13,MAX / RANDOM DRAW,84.6,,,9.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Dolores Triangle,DB1013,Buck,Deer,Archery,Limited Entry,Oct 31 2026 - Nov 13 2026,5,0,5,MAX / RANDOM DRAW,50,,,7.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"San Juan, Elk Ridge",DB1014,Buck,Deer,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,15,2,17,MAX / RANDOM DRAW,100,,,5.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Diamond Mtn,DB1015,Buck,Deer,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,22,2,24,MAX / RANDOM DRAW,86.4,,,7.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"West Desert, Vernon",DB1016,Buck,Deer,Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,46,5,51,MAX / RANDOM DRAW,56.9,,,8.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Book Cliffs, North",DB1017,Buck,Deer,Any Legal Weapon,Limited Entry,Oct 17 2026 - Oct 25 2026,137,15,152,MAX / RANDOM DRAW,93.6,,,3.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Book Cliffs, South",DB1018,Buck,Deer,Any Legal Weapon,Limited Entry,Oct 17 2026 - Oct 25 2026,34,4,38,MAX / RANDOM DRAW,100,,,3.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Fillmore, Oak Creek LE",DB1019,Buck,Deer,Any Legal Weapon,Limited Entry,Oct 17 2026 - Oct 25 2026,33,4,37,MAX / RANDOM DRAW,95,,,4.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Dolores Triangle,DB1020,Buck,Deer,Any Legal Weapon,Limited Entry,Nov 14 2026 - Nov 22 2026,13,2,15,MAX / RANDOM DRAW,100,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"San Juan, Elk Ridge",DB1022,Buck,Deer,Any Legal Weapon,Limited Entry,Oct 17 2026 - Oct 25 2026,42,5,47,MAX / RANDOM DRAW,88.9,,,4.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Diamond Mtn,DB1023,Buck,Deer,Any Legal Weapon,Limited Entry,Oct 17 2026 - Oct 25 2026,61,7,68,MAX / RANDOM DRAW,96.9,,,3.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"West Desert, Vernon",DB1024,Buck,Deer,Any Legal Weapon,Limited Entry,Oct 17 2026 - Oct 25 2026,130,14,144,MAX / RANDOM DRAW,85.4,,,4.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Book Cliffs,DB1025,Buck,Deer,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,55,6,61,MAX / RANDOM DRAW,86,,,3.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Cache, Crawford Mtn",DB1026,Buck,Deer,Muzzleloader,Limited Entry,Nov 07 2026 - Nov 22 2026,8,1,9,MAX / RANDOM DRAW,100,,,4.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fillmore,DB1028,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,11,1,12,MAX / RANDOM DRAW,70,,,7.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Fillmore, Oak Creek LE",DB1029,Buck,Deer,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,12,1,13,MAX / RANDOM DRAW,80,,,6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Kamas,DB1030,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,4,1,5,MAX / RANDOM DRAW,100,,,5.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Dolores Triangle,DB1031,Buck,Deer,Muzzleloader,Limited Entry,Nov 23 2026 - Dec 01 2026,5,0,5,MAX / RANDOM DRAW,100,,,6.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Monroe,DB1032,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,5,1,6,MAX / RANDOM DRAW,66.7,,,6.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Nine Mile,DB1033,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,6,1,7,MAX / RANDOM DRAW,100,,,4.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Pine Valley,DB1034,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,13,2,15,MAX / RANDOM DRAW,53.3,,,6.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"San Juan, Elk Ridge",DB1037,Buck,Deer,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,15,2,17,MAX / RANDOM DRAW,87.5,,,4.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Diamond Mtn,DB1038,Buck,Deer,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,22,2,24,MAX / RANDOM DRAW,91.3,,,3.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Yellowstone,DB1039,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,6,1,7,MAX / RANDOM DRAW,100,,,5.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Southwest Desert,DB1040,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,4,1,5,MAX / RANDOM DRAW,60,,,7.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Wasatch Mtns, East",DB1041,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,30,3,33,MAX / RANDOM DRAW,63.3,,,5.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"West Desert, Vernon",DB1042,Buck,Deer,Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,46,5,51,MAX / RANDOM DRAW,88,,,4.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Zion,DB1043,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,15,2,17,MAX / RANDOM DRAW,46.7,,,6.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Book Cliffs,DB1044,Buck,Deer,Multiseason,Limited Entry,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-25, 2026",8,1,9,MAX / RANDOM DRAW,100,,,15.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Fillmore, Oak Creek LE",DB1045,Buck,Deer,Multiseason,Limited Entry,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026",2,0,2,MAX / RANDOM DRAW,100,,,30.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"San Juan, Elk Ridge",DB1046,Buck,Deer,Multiseason,Limited Entry,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026",2,0,2,MAX / RANDOM DRAW,66.7,,,20
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Diamond Mtn,DB1047,Buck,Deer,Multiseason,Limited Entry,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026",4,0,4,MAX / RANDOM DRAW,100,,,7.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"West Desert, Vernon",DB1048,Buck,Deer,Multiseason,Limited Entry,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026",7,1,8,MAX / RANDOM DRAW,77.8,,,11
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Mt Dutton,DB1053,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,4,1,5,MAX / RANDOM DRAW,80,,,6.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Ogden,DB1054,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,13,1,14,MAX / RANDOM DRAW,54.5,,,6.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fishlake,DB1055,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,6,1,7,MAX / RANDOM DRAW,66.7,,,5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Book Cliffs (North & South),DB1056,Buck,Deer,Any Legal Weapon,Conservation,"Oct 17, 2026 - Oct 25, 2026",,,,MAX / RANDOM DRAW,50,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Paunsaugunt,DB1058,Buck,Deer,Any Legal Weapon,Cactus Buck,Nov 02 2026 - Nov 20 2026,18,2,20,MAX / RANDOM DRAW,37,5.3,,8.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,North Slope,DB1065,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,14,2,16,MAX / RANDOM DRAW,80,,,5.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Paunsaugunt,DB1073,Buck,Deer,Archery,Management Buck Deer,Aug 15 2026 - Sept 11 2026,10,1,11,MAX / RANDOM DRAW,88.9,5.3,,7.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Paunsaugunt,DB1074,Buck,Deer,Muzzleloader,Management Buck Deer,Sept 23 2026 - Oct 01 2026,10,1,11,MAX / RANDOM DRAW,55.6,5.3,,6.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Book Cliffs (North & South),DB1075,Buck,Deer,Archery,Conservation,Aug 16 2025 - Sept 12 2025,,,,MAX / RANDOM DRAW,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Book Cliffs (North & South),DB1076,Buck,Deer,Muzzleloader,Conservation,Sept 24 2025 - Oct 02 2025,,,,MAX / RANDOM DRAW,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Box Elder,DB1077,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,23,3,26,MAX / RANDOM DRAW,56.5,,,4.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Cache,DB1078,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,11,1,12,MAX / RANDOM DRAW,80,,,5.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Manti/San Rafael,DB1079,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,40,5,45,MAX / RANDOM DRAW,82.5,,,5.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Nebo,DB1080,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,23,3,26,MAX / RANDOM DRAW,77.8,,,4.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,La Sal Mtns,DB1081,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,8,1,9,MAX / RANDOM DRAW,55.6,,,5.9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Panguitch Lake,DB1083,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,12,1,13,MAX / RANDOM DRAW,45.5,,,6.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Boulder/Kaiparowits,DB1084,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,12,1,13,MAX / RANDOM DRAW,66.7,,,5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"San Juan, Abajo Mtns",DB1085,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,13,1,14,MAX / RANDOM DRAW,66.7,,,6.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Vernal/Bonanza,DB1086,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,6,1,7,MAX / RANDOM DRAW,80,,,3.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Wasatch Mtns, West",DB1087,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,36,4,40,MAX / RANDOM DRAW,66.7,,,5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Book Cliffs, Floy Canyon",DB1090,Buck,Deer,"HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",Limited Entry,Nov 07 2026 - Nov 30 2026,6,1,7,MAX / RANDOM DRAW,100,,,6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Kaiparowits HAMSS,DB1091,Buck,Deer,"HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",Limited Entry,Nov 07 2026 - Nov 30 2026,4,1,5,MAX / RANDOM DRAW,60,,,10
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Chalk Creek,DB1100,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,10,1,11,MAX / RANDOM DRAW,81.8,,,3.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,East Canyon,DB1101,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,9,1,10,MAX / RANDOM DRAW,60,,,5.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Morgan-South Rich,DB1103,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,7,1,8,MAX / RANDOM DRAW,37.5,,,4.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,East Canyon,DB1105,Buck,Deer,"HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",Limited Entry,Nov 07 2026 - Nov 30 2026,6,1,7,MAX / RANDOM DRAW,83.3,,,6.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Thousand Lakes,DB1106,Buck,Deer,Restricted Archery,Limited Entry,Aug 15 2026 - Sept 11 2026,20,2,22,MAX / RANDOM DRAW,16.7,,,5.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Thousand Lakes,DB1107,Buck,Deer,Restricted Muzzleloader,Limited Entry,Sept 23 2026 - Oct 01 2026,20,2,22,MAX / RANDOM DRAW,27.8,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Thousand Lakes,DB1108,Buck,Deer,Restricted Rifle,Limited Entry,Oct 17 2026 - Oct 25 2026,27,3,30,MAX / RANDOM DRAW,54.5,,,3.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Thousand Lakes,DB1109,Buck,Deer,Restricted Multiseason,Limited Entry,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026",2,0,2,MAX / RANDOM DRAW,100,,,3.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Beaver, East",DB1110,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,10,1,11,MAX / RANDOM DRAW,40,,,8.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Beaver, West",DB1111,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,4,1,5,MAX / RANDOM DRAW,100,,,6.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"West Desert, Swasey",DB1112,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,4,1,5,MAX / RANDOM DRAW,25,,,7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Oquirrh/Tintic,DB1113,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,10,1,11,MAX / RANDOM DRAW,100,,,4.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Cedar/Stansbury,DB1114,Buck,Deer,Muzzleloader,Limited Entry,Oct 28 2026 - Nov 05 2026,5,1,6,MAX / RANDOM DRAW,33.3,,,6.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Little Rockies,DB1115,Buck,Deer,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 30 2026,4,1,5,MAX / RANDOM DRAW,40,,,11.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"San Juan, Mancos Mesa",DB1116,Buck,Deer,"HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",Limited Entry,Nov 07 2026 - Nov 30 2026,4,1,5,MAX / RANDOM DRAW,50,,,13.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Dolores Triangle,DB1118,Buck,Deer,Multiseason,Conservation,"Arch: Oct 31-Nov 13, 2026 | Any Legal Weapon: Nov 14-22, 2026 | Muzz: Nov 23-Dec 1, 2026",,,,MAX / RANDOM DRAW,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Moab Valley,DB1119,Buck,Deer,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 22 2026,9,1,10,MAX / RANDOM DRAW,44.4,,,6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Castle Valley,DB1120,Buck,Deer,Any Legal Weapon,Limited Entry,Nov 07 2026 - Nov 22 2026,13,2,15,MAX / RANDOM DRAW,80,,,5.9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Antelope Island,DB1121,Buck,Deer,Any Legal Weapon,Management Buck Deer,"Nov 16 2026 - Nov 20, 2026",2,0,2,MAX / RANDOM DRAW,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Alton - Premium Buck CWMU,DB1200,Buck,Deer,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,3,0,3,MAX / RANDOM DRAW,90,,,5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Alton - Management Buck CWMU,DB1201,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,2.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Antelope Creek CWMU,DB1202,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,50,,,7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Avintaquin Canyon CWMU,DB1203,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Bally Watts CWMU,DB1204,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,77.8,,,1.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Bar J Ranch CWMU,DB1205,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,50,,,3.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Bear Mountain CWMU,DB1206,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,3.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Bear Springs CWMU,DB1207,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,66.7,,,3.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Blackhawk CWMU,DB1208,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,100,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Blind Springs CWMU,DB1209,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,80,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Blue Spring Hills CWMU,DB1211,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,4.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Bluebell CWMU,DB1212,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,3.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Boobe Hole CWMU,DB1213,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,44.4,,,4.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Buckhorn Ranch CWMU,DB1215,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,60,,,2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Castle Valley Outdoors CWMU,DB1216,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,2.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Causey Spring CWMU,DB1217,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,92.3,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Chimney Rock CWMU,DB1219,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,86.7,,,3.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Coldwater Ranch CWMU,DB1222,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,100,,,2.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Cotton Thomas CWMU,DB1224,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,90,,,4.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Deer Haven CWMU,DB1227,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,100,,,5.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Deseret CWMU,DB1228,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,13,0,13,MAX / RANDOM DRAW,84.3,,,3.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Dilly Ranch CWMU,DB1229,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,90,,,3.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Double R Ranch CWMU,DB1230,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,87.5,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Dove Creek CWMU,DB1231,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,90,,,4.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Durst Mountain CWMU,DB1232,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,71.4,,,3.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,East Fork Chalk Creek CWMU,DB1233,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,4,0,4,MAX / RANDOM DRAW,77.5,,,6.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,East Zion CWMU,DB1234,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,80,,,7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Engineer Springs CWMU,DB1236,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Ensign Ranches CWMU,DB1237,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,3,0,3,MAX / RANDOM DRAW,90.3,,,3.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Folley Ridge CWMU,DB1238,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,3,0,3,MAX / RANDOM DRAW,76.9,,,3.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fort Ranch CWMU,DB1239,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,George Creek CWMU,DB1240,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,50,,,6.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Golden Spike CWMU,DB1241,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,3.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Grass Valley/Clark Canyon CWMU,DB1242,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,14,0,14,MAX / RANDOM DRAW,91.2,,,3.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Grazing Pasture CWMU,DB1243,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,70,,,5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Green Canyon CWMU,DB1244,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,71.4,,,7.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Guildersleeve CWMU,DB1245,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,80,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Hardscrabble CWMU,DB1246,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,61.5,,,4.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Heaston East CWMU,DB1248,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,90,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Hiawatha CWMU,DB1249,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,85.7,,,3.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Indian Creek CWMU,DB1250,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,66.7,,,1.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Indian Head CWMU,DB1251,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,85.7,,,3.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Ingham Peak CWMU,DB1252,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,3,0,3,MAX / RANDOM DRAW,100,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Circle E Ranch CWMU,DB1253,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,1.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Johnson Mountain Ranch CWMU,DB1255,Buck,Deer,Any Legal Weapon,CWMU,Contact operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,0,,,9.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Junction Valley CWMU,DB1256,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,5,0,5,MAX / RANDOM DRAW,72.3,,,3.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Little Red Creek CWMU,DB1258,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,77.8,,,3.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Tunnel Hollow CWMU,DB1259,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,87.5,,,3.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Middle Ridge CWMU,DB1260,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,66.7,,,4.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Minnie Maud Ridge CWMU,DB1261,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,5,0,5,MAX / RANDOM DRAW,60,,,5.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Moon Ranch CWMU,DB1263,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,5.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Mountain Meadow CWMU,DB1264,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,3.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Mountain Top CWMU,DB1265,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,50,,,3.9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Mt Carmel CWMU,DB1266,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,3,0,3,MAX / RANDOM DRAW,66.7,,,4.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,North Promontory CWMU,DB1269,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,2.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Nucor West CWMU,DB1270,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,2.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Oak Ranch CWMU,DB1271,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,3,0,3,MAX / RANDOM DRAW,75,,,4.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Old Woman Plateau CWMU,DB1272,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,3,0,3,MAX / RANDOM DRAW,66.7,,,4.9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Park Valley Hereford CWMU,DB1273,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,6,0,6,MAX / RANDOM DRAW,73.9,,,3.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Patmos Ridge CWMU,DB1274,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,85.7,,,5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Pine Canyon CWMU,DB1275,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,65,,,4.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Pocatello Valley CWMU,DB1277,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Preston Nutter Ranch CWMU,DB1279,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Promontory Point CWMU,DB1280,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,90,,,2.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Rattlesnake Pass CWMU,DB1281,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,100,,,4.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Redd Ranches CWMU,DB1282,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,93.3,,,3.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Roan Cliffs CWMU,DB1283,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,72.7,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Sand Creek CWMU,DB1285,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,50,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Pisgah Mountain CWMU,DB1286,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,75,,,5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Scofield Canyons CWMU,DB1287,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,2.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Scofield West CWMU,DB1288,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,100,,,3.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Sharp Mountain CWMU,DB1289,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,87.5,,,3.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Skull Crack CWMU,DB1290,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,2.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Skull Valley South CWMU,DB1291,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,50,,,3.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Soldier Summit CWMU,DB1292,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,100,,,3.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,South Canyon CWMU,DB1293,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,2.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Spring Creek Acres CWMU,DB1294,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,75,,,2.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Spring Creek/Dodge CWMU,DB1295,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,6,0,6,MAX / RANDOM DRAW,89.3,,,3.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Strawberry Ridge CWMU,DB1298,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,80,,,4.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Summit Point CWMU,DB1299,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,3,0,3,MAX / RANDOM DRAW,95.7,,,4.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Thatcher Mountain CWMU,DB1300,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,50,,,3.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Three C CWMU,DB1301,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,80,,,6.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,North Peaks CWMU,DB1303,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,80,,,3.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Two Bear CWMU,DB1304,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Wallsburg CWMU,DB1305,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,60,,,5.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Washakie CWMU,DB1306,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,2.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,West Hills CWMU,DB1308,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,92.9,,,3.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,West Willow Creek Ranch CWMU,DB1309,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,5,0,5,MAX / RANDOM DRAW,95.7,,,2.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,White's Valley CWMU,DB1310,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,90,,,5.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Woodruff Creek South CWMU,DB1312,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,2.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Jacob's Creek CWMU,DB1317,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,70,,,3.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Pahvant Ensign CWMU,DB1322,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,80,,,3.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Rock House CWMU,DB1323,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Double Cone CWMU,DB1325,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,57.1,,,3.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Rosette CWMU,DB1326,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,75,,,2.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Mountain Sky Ranch CWMU,DB1327,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,71.4,,,5.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Clear Creek CWMU,DB1328,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,20,,,5.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Iron Spring CWMU,DB1330,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Raft River CWMU,DB1331,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,90,,,4.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,West Ridge CWMU,DB1332,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,5,0,5,MAX / RANDOM DRAW,60,,,5.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,5S CWMU,DB1333,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,31.3,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Alton - Cactus Buck CWMU,DB1334,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Big Piney Ranch CWMU,DB1335,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,First Light CWMU,DB1336,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,75,,,3.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Little Pole Canyon CWMU,DB1337,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,0,,,6.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Dry Creek CWMU,DB1341,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,80,,,2.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Faust Valley CWMU,DB1342,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,1,0,1,MAX / RANDOM DRAW,100,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,The Rose of Snowville CWMU,DB1347,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,66.7,,,4.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Weber Florence Creek/Stillman Creek CWMU,DB1349,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,9,0,9,MAX / RANDOM DRAW,76,,,3.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,The Dirty Dozen,DB1351,Buck,Deer,Any Legal Weapon,CWMU,Contact Operator for 2026 season dates,2,0,2,MAX / RANDOM DRAW,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Box Elder,DB1501,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,1040,O.T.C.,23.1,,,9.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Cache,DB1502,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,1160,O.T.C.,15.8,,,8.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Manti/San Rafael,DB1503,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,1800,O.T.C.,21.4,,,7.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Nebo,DB1504,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,1060,O.T.C.,19.2,,,8.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fillmore,DB1506,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,460,O.T.C.,32,,,7.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Kamas,DB1508,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,200,O.T.C.,16.5,,,7.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,La Sal Mtns,DB1509,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,360,O.T.C.,48.3,,,6.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Monroe,DB1510,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,220,O.T.C.,38,,,8.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Mt Dutton,DB1511,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,80,O.T.C.,19.6,,,7.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Nine Mile,DB1512,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,280,O.T.C.,29.9,,,9.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,North Slope,DB1513,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,620,O.T.C.,13.3,,,8.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Ogden,DB1514,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,540,O.T.C.,19.9,,,9.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Panguitch Lake,DB1516,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,500,O.T.C.,36.7,,,8.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Pine Valley,DB1517,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,600,O.T.C.,26.5,,,8.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Boulder/Kaiparowits,DB1518,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,720,O.T.C.,32,,,7.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fishlake,DB1519,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,260,O.T.C.,25.6,,,7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"San Juan, Abajo Mtns",DB1521,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,560,O.T.C.,37.6,,,6.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Vernal/Bonanza,DB1522,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,420,O.T.C.,39.4,,,10.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Yellowstone,DB1523,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,280,O.T.C.,30.2,,,10.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Southwest Desert,DB1524,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,100,O.T.C.,17.2,,,8.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Wasatch Mtns, East",DB1525,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,1300,O.T.C.,20.3,,,8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Wasatch Mtns, West",DB1526,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,1580,O.T.C.,18.1,,,8.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Zion,DB1529,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,675,O.T.C.,38.8,,,7.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Box Elder,DB1531,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,2080,O.T.C.,33.8,,,4.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Manti/San Rafael,DB1533,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,5400,O.T.C.,47.3,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Nebo,DB1534,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,3180,O.T.C.,45.3,,,4.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fillmore,DB1536,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,920,O.T.C.,58.8,,,4.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Kamas,DB1538,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,400,O.T.C.,25.5,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,La Sal Mtns,DB1539,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,1080,O.T.C.,53.8,,,3.9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Monroe,DB1540,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,660,O.T.C.,76,,,3.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Mt Dutton,DB1541,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,240,O.T.C.,55.3,,,3.9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Nine Mile,DB1542,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,560,O.T.C.,53.5,,,4.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,North Slope,DB1543,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,1240,O.T.C.,40.9,,,4.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Ogden,DB1544,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,1620,O.T.C.,37.5,,,3.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Panguitch Lake,DB1546,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,1000,O.T.C.,60.3,,,4.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Pine Valley,DB1547,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,1200,O.T.C.,38.9,,,5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fishlake,DB1549,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,520,O.T.C.,52.6,,,4.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"San Juan, Abajo Mtns",DB1551,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,1680,O.T.C.,51.4,,,3.9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Vernal/Bonanza,DB1552,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,700,O.T.C.,78.3,,,3.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Yellowstone,DB1553,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,840,O.T.C.,63.1,,,3.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Southwest Desert,DB1554,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,300,O.T.C.,43.3,,,4.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Wasatch Mtns, East",DB1555,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,3900,O.T.C.,42.8,,,3.9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Wasatch Mtns, West",DB1556,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,4740,O.T.C.,28.2,,,3.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Zion,DB1559,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,1350,O.T.C.,62.2,,,4.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Box Elder,DB1561,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,1040,O.T.C.,24.1,,,4.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Manti/San Rafael,DB1563,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,1800,O.T.C.,29.1,,,4.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Nebo,DB1564,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,1060,O.T.C.,21.7,,,4.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fillmore,DB1566,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,460,O.T.C.,38.2,,,4.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Kamas,DB1568,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,200,O.T.C.,21.9,,,4.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,La Sal Mtns,DB1569,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,360,O.T.C.,53.7,,,4.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Monroe,DB1570,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,220,O.T.C.,62,,,4.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Mt Dutton,DB1571,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,80,O.T.C.,28.6,,,4.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Nine Mile,DB1572,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,280,O.T.C.,24.9,,,4.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,North Slope,DB1573,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,620,O.T.C.,23.2,,,4.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Ogden,DB1574,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,540,O.T.C.,21.2,,,4.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Panguitch Lake,DB1576,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,500,O.T.C.,40.8,,,4.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Pine Valley,DB1577,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,600,O.T.C.,32.6,,,4.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fishlake,DB1579,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,260,O.T.C.,42.5,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"San Juan, Abajo Mtns",DB1581,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,560,O.T.C.,44.5,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Vernal/Bonanza,DB1582,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,280,O.T.C.,62.5,,,3.9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Yellowstone,DB1583,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,280,O.T.C.,43.6,,,4.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Southwest Desert,DB1584,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,100,O.T.C.,27.4,,,5.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Wasatch Mtns, East",DB1585,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,1300,O.T.C.,27.5,,,4.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Wasatch Mtns, West",DB1586,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,1580,O.T.C.,19.7,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Zion,DB1589,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,675,O.T.C.,43.7,,,3.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fillmore,DB1591,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,460,O.T.C.,48.6,,,3.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Kamas,DB1592,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,200,O.T.C.,19.6,,,3.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Nine Mile,DB1593,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,280,O.T.C.,36.5,,,3.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Panguitch Lake,DB1594,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,500,O.T.C.,53.4,,,3.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Pine Valley,DB1595,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,600,O.T.C.,35.4,,,3.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fishlake,DB1596,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,260,O.T.C.,49.7,,,3.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Zion,DB1597,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,675,O.T.C.,49.3,,,3.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,North Slope,DB1598,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,620,O.T.C.,31,,,3.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Chalk Creek,DB1599,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,880,O.T.C.,43,,,3.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Chalk Creek,DB1600,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,440,O.T.C.,18.8,,,8.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Chalk Creek,DB1601,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,440,O.T.C.,32,,,2.9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Chalk Creek,DB1602,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,440,O.T.C.,25.3,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,East Canyon,DB1603,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,760,O.T.C.,32.7,,,3.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,East Canyon,DB1604,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,380,O.T.C.,15.5,,,8.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,East Canyon,DB1605,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,380,O.T.C.,23.7,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,East Canyon,DB1606,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,380,O.T.C.,7.4,,,3.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Morgan-South Rich,DB1607,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,640,O.T.C.,30,,,3.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Morgan-South Rich,DB1608,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,320,O.T.C.,13.9,,,8.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Morgan-South Rich,DB1609,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,320,O.T.C.,20.8,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Morgan-South Rich,DB1610,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,320,O.T.C.,12.1,,,4.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Beaver, East",DB1611,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,440,O.T.C.,29.5,,,7.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Beaver, East",DB1612,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,440,O.T.C.,33.8,,,4.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Beaver, East",DB1613,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,1320,O.T.C.,49.9,,,4.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Beaver, West",DB1614,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,130,O.T.C.,28.2,,,9.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Beaver, West",DB1615,Buck,Deer,Restricted Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,130,O.T.C.,39.2,,,4.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Beaver, West",DB1616,Buck,Deer,Restricted Rifle,General Season,Oct 17 2026 - Oct 25 2026,,,390,O.T.C.,51.8,,,4.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"West Desert, Swasey",DB1617,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,80,O.T.C.,38.2,,,9.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"West Desert, Swasey",DB1618,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,80,O.T.C.,22.2,,,4.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"West Desert, Swasey",DB1619,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,240,O.T.C.,23.2,,,4.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Oquirrh/Tintic,DB1620,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,450,O.T.C.,27.1,,,8.9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Oquirrh/Tintic,DB1621,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,450,O.T.C.,33.4,,,4.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Oquirrh/Tintic,DB1622,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,1350,O.T.C.,47.1,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Cedar/Stansbury,DB1623,Buck,Deer,Archery,General Season,Aug 15 2026 - Sept 11 2026,,,250,O.T.C.,25.8,,,7.9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Cedar/Stansbury,DB1624,Buck,Deer,Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,250,O.T.C.,22.5,,,4.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Cedar/Stansbury,DB1625,Buck,Deer,Any Legal Weapon (Late),General Season,Oct 17 2026 - Oct 25 2026,,,750,O.T.C.,37,,,4.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Cache,DB1627,Buck,Deer,Restricted Rifle,General Season,Oct 17 2026 - Oct 25 2026,,,3480,O.T.C.,27.7,,,4.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Cache,DB1628,Buck,Deer,Restricted Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,1160,O.T.C.,25.9,,,4.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Boulder/Kaiparowits,DB1629,Buck,Deer,Restricted Rifle,General Season,Oct 17 2026 - Oct 25 2026,,,960,O.T.C.,40.9,,,4.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Boulder/Kaiparowits,DB1630,Buck,Deer,Restricted Muzzleloader,General Season,Sept 23 2026 - Oct 01 2026,,,720,O.T.C.,32.4,,,4.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Box Elder,DB1631,Buck,Deer,Any Legal Weapon (Early),General Season,Oct 07 2026 - Oct 11 2026,,,1040,O.T.C.,28.3,,,3.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Box Elder,DB1770,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,688,O.T.C.,37.2,,,9.9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Cache,DB1771,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Restricted Muzz: Sept 23 2026 - Oct 01 2026 | Restricted Rifle: Oct 17 2026 - Oct 25 2026,,,588,O.T.C.,23.1,,,9.9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Manti/San Rafael,DB1772,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,573,O.T.C.,39.2,,,9.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Nebo,DB1773,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,349,O.T.C.,39.6,,,10.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fillmore,DB1775,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,42,O.T.C.,43.3,,,10.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Kamas,DB1777,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,55,O.T.C.,33.3,,,9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,La Sal Mtns,DB1778,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,67,O.T.C.,47.7,,,9.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Monroe,DB1779,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,45,O.T.C.,56.4,,,8.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Mt Dutton,DB1780,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,26,O.T.C.,57.4,,,7.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Nine Mile,DB1781,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,62,O.T.C.,40.4,,,11.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,North Slope,DB1782,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,340,O.T.C.,31.5,,,8.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Ogden,DB1783,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,297,O.T.C.,30,,,11.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Panguitch Lake,DB1785,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,112,O.T.C.,40.4,,,11.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Pine Valley,DB1786,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,228,O.T.C.,45.1,,,10.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Boulder/Kaiparowits,DB1787,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Restricted Muzz: Sept 23 2026 - Oct 01 2026 | Restricted Rifle: Oct 17 2026 - Oct 25 2026,,,70,O.T.C.,23.5,,,9.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fishlake,DB1788,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,49,O.T.C.,39.6,,,8.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"San Juan, Abajo Mtns",DB1790,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,261,O.T.C.,32.1,,,8.9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Vernal/Bonanza,DB1791,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,45,O.T.C.,47.9,,,11
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Yellowstone,DB1792,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,63,O.T.C.,37.1,,,8.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Southwest Desert,DB1793,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,46,O.T.C.,31.4,,,12
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Wasatch Mtns, East",DB1794,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,271,O.T.C.,32.6,,,9.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Wasatch Mtns, West",DB1795,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,701,O.T.C.,33.3,,,9.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Zion,DB1798,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,256,O.T.C.,46.9,,,8.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Chalk Creek,DB1799,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,292,O.T.C.,28.3,,,10.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,East Canyon,DB1800,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,186,O.T.C.,34,,,10.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Morgan-South Rich,DB1801,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | Early ALW: Oct 07 2026 - Oct 11 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,211,O.T.C.,13.6,,,8.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Beaver, East",DB1802,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,61,O.T.C.,32.8,,,8.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Beaver, West",DB1803,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Restricted Muzz: Sept 23 2026 - Oct 01 2026 | Restricted Rifle: Oct 17 2026 - Oct 25 2026,,,44,O.T.C.,27.8,,,11.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Cedar/Stansbury,DB1804,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,42,O.T.C.,30.7,,,8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Oquirrh/Tintic,DB1805,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,65,O.T.C.,37.2,,,9.1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"West Desert, Swasey",DB1806,Buck,Deer,Dedicated Hunter,General Season,Archery: Aug 15 2026 - Sept 11 2026 | Muzz: Sept 23 2026 - Oct 01 2026 | ALW: Oct 17 2026 - Oct 25 2026,,,36,O.T.C.,20.6,,,9.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Paunsaugunt - Private Land Only,LD1001,Buck,Deer,Archery,Limited Entry - Private Land Only,Aug 16 2025 - Sept 12 2025 - Private Land Only,,,,O.T.C.,0,5.6,,5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Paunsaugunt - Private Land Only,LD1004,Buck,Deer,Any Legal Weapon,Limited Entry - Private Land Only,Oct 18 2025 - Oct 31 2025 - Private Land Only,,,,O.T.C.,100,5.6,,5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Paunsaugunt - Private Land Only,LD1006,Buck,Deer,Muzzleloader,Limited Entry - Private Land Only,Sept 24 2025 - Oct 02 2025 - Private Land Only,,,,O.T.C.,0,5.6,,6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Fillmore, Oak Creek LE - Private Land Only",LD1019,Buck,Deer,Any Legal Weapon,Limited Entry - Private Land Only,Oct 18 2025 - Oct 26 2025 - Private Land Only,,,,O.T.C.,0,,,9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Diamond Mtn - Private Land Only,LD1023,Buck,Deer,Any Legal Weapon,Limited Entry - Private Land Only,Oct 18 2025 - Oct 26 2025 - Private Land Only,,,,O.T.C.,100,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Thousand Lakes - Private Land Only,LD1108,Buck,Deer,Restricted Rifle,Limited Entry - Private Land Only,Oct 18 2025 - Oct 26 2025 - Private Land Only,,,,O.T.C.,0,,,5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Diamond Mtn Landowner Association,LO0008,Buck,Deer,Archery,Limited Entry - Private Land Only,Aug 15 2026 - Sept 11 2026 - Valid only on property enrolled in the Diamond Mtn LOA,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Diamond Mtn Landowner Association,LO0009,Buck,Deer,Any Legal Weapon,Limited Entry - Private Land Only,Oct 17 2026 - Oct 25 2026 - Valid only on property enrolled in the Diamond Mtn LOA,,,,O.T.C.,100,,,2.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Diamond Mtn Landowner Association,LO0010,Buck,Deer,Muzzleloader,Limited Entry - Private Land Only,Sept 23 2026 - Oct 01 2026 - Valid only on property enrolled in the Diamond Mtn LOA,,,,O.T.C.,100,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Box Elder,LO1501,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Cache,LO1502,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,100,,,5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Manti/San Rafael,LO1503,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Nebo,LO1504,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fillmore,LO1506,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,0,,,7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Kamas,LO1508,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"La Sal, La Sal Mtns",LO1509,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Monroe,LO1510,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Mt Dutton,LO1511,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,0,,,15
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Nine Mile,LO1512,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,33.3,,,7.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,North Slope,LO1513,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Ogden,LO1514,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,100,,,3.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Panguitch Lake,LO1516,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,100,,,10
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Pine Valley,LO1517,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,0,,,2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Boulder/Kaiparowits,LO1518,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fishlake,LO1519,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"San Juan, Abajo Mtns",LO1521,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Vernal/Bonanza,LO1522,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Yellowstone,LO1523,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Southwest Desert,LO1524,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,0,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Wasatch Mtns, East",LO1525,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Wasatch Mtns, West",LO1526,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Zion,LO1529,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,0,,,6.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Box Elder,LO1531,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,66.7,,,4.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Manti/San Rafael,LO1533,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,63.6,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Nebo,LO1534,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,80,,,5.2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fillmore,LO1536,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,59.4,,,3.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Kamas,LO1538,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"La Sal, La Sal Mtns",LO1539,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Monroe,LO1540,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,0,,,1
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Mt Dutton,LO1541,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,100,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Nine Mile,LO1542,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,53.8,,,4.9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,North Slope,LO1543,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Ogden,LO1544,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,100,,,2.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Panguitch Lake,LO1546,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,40,,,4.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Pine Valley,LO1547,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,100,,,7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fishlake,LO1549,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"San Juan, Abajo Mtns",LO1551,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,87.5,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Vernal/Bonanza,LO1552,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,75,,,1.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Yellowstone,LO1553,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,61.5,,,3.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Southwest Desert,LO1554,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,44.4,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Wasatch Mtns, East",LO1555,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,66.7,,,3.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Wasatch Mtns, West",LO1556,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,100,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Zion,LO1559,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,34.6,,,3.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Box Elder,LO1561,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Manti/San Rafael,LO1563,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Nebo,LO1564,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fillmore,LO1566,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Kamas,LO1568,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"La Sal, La Sal Mtns",LO1569,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Monroe,LO1570,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Mt Dutton,LO1571,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Nine Mile,LO1572,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,100,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,North Slope,LO1573,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Ogden,LO1574,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Panguitch Lake,LO1576,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,50,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Pine Valley,LO1577,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fishlake,LO1579,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"San Juan, Abajo Mtns",LO1581,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,0,,,5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Vernal/Bonanza,LO1582,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Yellowstone,LO1583,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Southwest Desert,LO1584,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Wasatch Mtns, East",LO1585,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Wasatch Mtns, West",LO1586,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Zion,LO1589,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,50,,,5.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fillmore,LO1591,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,100,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Kamas,LO1592,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Nine Mile,LO1593,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,100,,,1.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Panguitch Lake,LO1594,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,100,,,5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Pine Valley,LO1595,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Fishlake,LO1596,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Zion,LO1597,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,58.3,,,3.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,North Slope,LO1598,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,0,,,2
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Chalk Creek,LO1599,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,30,,,2.3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Chalk Creek,LO1600,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Chalk Creek,LO1601,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,0,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Chalk Creek,LO1602,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,East Canyon,LO1603,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,77.8,,,3.9
+2026_DEER_BUCK_DRAW.xlsx,Sheet,East Canyon,LO1604,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,0,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,East Canyon,LO1605,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,East Canyon,LO1606,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Morgan-South Rich,LO1607,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,0,,,3
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Morgan-South Rich,LO1608,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,100,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Morgan-South Rich,LO1609,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Morgan-South Rich,LO1610,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Beaver, East",LO1611,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Beaver, East",LO1612,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Beaver, East",LO1613,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,0,,,4.8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Beaver, West",LO1614,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,100,,,7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Beaver, West",LO1615,Buck,Deer,Restricted Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"Beaver, West",LO1616,Buck,Deer,Restricted Rifle,General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,33.3,,,3.7
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"West Desert, Swasey",LO1617,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"West Desert, Swasey",LO1618,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,"West Desert, Swasey",LO1619,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,100,,,4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Oquirrh/Tintic,LO1620,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Oquirrh/Tintic,LO1621,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Oquirrh/Tintic,LO1622,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,100,,,2.6
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Cedar/Stansbury,LO1623,Buck,Deer,Archery,General Season - Private Land Only,Aug 16 2025 - Sept 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Cedar/Stansbury,LO1624,Buck,Deer,Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Cedar/Stansbury,LO1625,Buck,Deer,Any Legal Weapon (Late),General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,0,,,8
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Cache,LO1627,Buck,Deer,Restricted Rifle,General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,75,,,4.4
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Cache,LO1628,Buck,Deer,Restricted Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Boulder/Kaiparowits,LO1629,Buck,Deer,Restricted Rifle,General Season - Private Land Only,Oct 18 2025 - Oct 26 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Boulder/Kaiparowits,LO1630,Buck,Deer,Restricted Muzzleloader,General Season - Private Land Only,Sept 24 2025 - Oct 02 2025 - PRIVATE LAND ONLY,,,,O.T.C.,,,,
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Box Elder,LO1631,Buck,Deer,Any Legal Weapon (Early),General Season - Private Land Only,Oct 08 2025 - Oct 12 2025 - PRIVATE LAND ONLY,,,,O.T.C.,0,,,3.5
+2026_DEER_BUCK_DRAW.xlsx,Sheet,Extended Archery Deer,DB0008,Hunters Choice,Deer,Archery,Extended Archery,"Sept 12-Oct 15, 2026 -OR- Sept 12-Nov 30, 2026 | See guidebook for units & dates",,,2000,O.T.C.,21.3,,,9.5

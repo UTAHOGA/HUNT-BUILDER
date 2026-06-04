@@ -1,0 +1,93 @@
+{
+  "bible_2025_not_live_2026_table_codes": [
+    "BI6505",
+    "BI6506",
+    "BI6529",
+    "BI6536",
+    "BR7008",
+    "BR7108",
+    "BR7208",
+    "DB1320",
+    "DB1324",
+    "DB1343",
+    "DB1344",
+    "DB1345",
+    "DB1348",
+    "EB3561",
+    "EB3609",
+    "EB3617",
+    "MB6200",
+    "MB6207",
+    "MB6209",
+    "MB6217",
+    "MB6220",
+    "MB6223",
+    "MB6224",
+    "MB6225",
+    "MB6240",
+    "MB6254",
+    "MB6257",
+    "MB6259",
+    "PB5343"
+  ],
+  "bible_2025_not_live_2026_table_count": 29,
+  "bible_year_counts": {
+    "2020": {
+      "row_count": 1028,
+      "unique_hunt_codes": 1028
+    },
+    "2021": {
+      "row_count": 1023,
+      "unique_hunt_codes": 1023
+    },
+    "2022": {
+      "row_count": 1020,
+      "unique_hunt_codes": 1020
+    },
+    "2023": {
+      "row_count": 1033,
+      "unique_hunt_codes": 1033
+    },
+    "2024": {
+      "row_count": 1027,
+      "unique_hunt_codes": 1027
+    },
+    "2025": {
+      "row_count": 1053,
+      "unique_hunt_codes": 1053
+    },
+    "2026": {
+      "row_count": 31,
+      "unique_hunt_codes": 31
+    }
+  },
+  "created_at_utc": "2026-06-04T04:40:46+00:00",
+  "database_unique_codes": 1449,
+  "guardrail": "Audit only. DATABASE.csv was not modified.",
+  "hanumber_codes_fetched_from_database_list": 1449,
+  "important_interpretation": "HaNumber success is not active-code proof; it is popup resolution for the submitted database hunt-code list.",
+  "live_2026_hunttable_unique_codes": 1413,
+  "live_2026_not_2025_bible_count": 389,
+  "live_2026_not_2025_bible_likely_cause_counts": {
+    "CONSERVATION_CURRENT_PLANNER": 28,
+    "CWMU_CURRENT_PLANNER": 9,
+    "EXTENDED_ARCHERY_CURRENT_PLANNER": 1,
+    "OTHER_CURRENT_PLANNER_NOT_IN_2025_BIBLE": 47,
+    "PRIVATE_LAND_OR_LANDOWNER_CURRENT_PLANNER": 282,
+    "SPORTSMAN_CURRENT_PLANNER": 10,
+    "STATEWIDE_OR_UNLIMITED_CURRENT_PLANNER": 2,
+    "TRIBAL_CURRENT_PLANNER": 10
+  },
+  "outputs": {
+    "csv": "processed_data/audits/current_2026_live_vs_bible_hunt_code_universe.csv",
+    "report_md": "docs/current_2026_live_vs_bible_hunt_code_universe.md",
+    "summary_json": "processed_data/audits/current_2026_live_vs_bible_hunt_code_universe_summary.json"
+  },
+  "universe_status_counts": {
+    "BIBLE_2025_NOT_IN_LIVE_2026_TABLE": 29,
+    "BIBLE_HISTORICAL_ONLY": 246,
+    "DATABASE_NOT_IN_LIVE_TABLE": 30,
+    "LIVE_2026_AND_2025_BIBLE": 1024,
+    "LIVE_2026_NOT_IN_2025_BIBLE": 389
+  }
+}

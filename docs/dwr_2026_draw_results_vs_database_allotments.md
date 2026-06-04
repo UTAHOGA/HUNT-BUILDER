@@ -7,7 +7,7 @@
 - This audit does not promote the 2026 draw-results pull as truth and does not modify `DATABASE.csv`.
 
 ## Key Counts
-- Input source CSV files: `15`
+- Input source CSV files: `25`
 - Source hunt codes: `834`
 - DATABASE hunt codes: `1449`
 - Union hunt codes compared: `1449`

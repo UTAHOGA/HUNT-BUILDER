@@ -1,0 +1,26 @@
+source_file,source_sheet,hunt_name,hunt_code,sex_type,species,weapon,hunt_type,season,permits_2026_res,permits_2026_nr,permits_2026_total,hunt_class,harvest_success_prior_year_pct,average_harvest_age,current_age_3yr_avg,avg_days_hunted_prior_year
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,Desert Bighorn Sheep - Statewide Permit,DS1000,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Statewide,"Sept 1 - Dec 31, 2026",0,0,0,O.T.C.,100,,,6.5
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"Kaiparowits, East",DS1002,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Conservation,"Sept 13, 2025 - Dec 31, 2025",0,0,0,MAX / RANDOM DRAW,100,,,1
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"Kaiparowits, Escalante East/West",DS1003,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Conservation,"Sept 12 - Nov 10, 2026",0,0,0,MAX / RANDOM DRAW,100,,,4
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"San Rafael, Dirty Devil",DS1004,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Conservation,"Sept 13 - Dec 31, 2025",0,0,0,MAX / RANDOM DRAW,100,,,6
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"Kaiparowits, West",DS1006,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Conservation,"Sept 13, 2025 - Dec 31, 2025",0,0,0,MAX / RANDOM DRAW,100,,,1
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"San Rafael, South",DS1007,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Conservation,"Sept 13, 2025 - Dec 31, 2025",0,0,0,MAX / RANDOM DRAW,100,,,1
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,Henry Mtns,DS6600,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,3,0,3,MAX / RANDOM DRAW,66.7,,,22.7
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"Kaiparowits, East",DS6601,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,10,3,13,MAX / RANDOM DRAW,100,,,5.3
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"Kaiparowits, West",DS6603,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,3,1,4,MAX / RANDOM DRAW,100,,,6
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"La Sal, Potash/South Cisco",DS6604,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,8,0,8,MAX / RANDOM DRAW,100,,,7.7
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"Pine Valley, Beaver Dam",DS6605,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Conservation,"Sept 13, 2025 - Dec 31, 2025",0,0,0,MAX / RANDOM DRAW,100,,,8
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"San Juan, Lockhart",DS6606,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,2,0,2,MAX / RANDOM DRAW,50,7,,12
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"San Juan, South",DS6607,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,2,0,2,MAX / RANDOM DRAW,100,,,6.5
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"San Rafael, Dirty Devil",DS6608,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,3,1,4,MAX / RANDOM DRAW,85.7,,,11.1
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"San Rafael, North",DS6609,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,8,0,8,MAX / RANDOM DRAW,100,,,10.1
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"San Rafael, South",DS6610,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,10,2,12,MAX / RANDOM DRAW,91.7,,,11.2
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,Zion,DS6611,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,3,0,3,MAX / RANDOM DRAW,100,,,20.7
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"Pine Valley, Virgin River",DS6620,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Oct 24 2026 - Dec 25 2026,3,0,3,MAX / RANDOM DRAW,66.7,,,15
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"Pine Valley, Beaver Dam",DS6621,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Oct 24 2026 - Dec 25 2026,2,0,2,MAX / RANDOM DRAW,60,,,11.7
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"San Juan, North",DS6622,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,3,0,3,MAX / RANDOM DRAW,33.3,,,16
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"San Juan, San Juan River",DS6623,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,2,0,2,MAX / RANDOM DRAW,100,6,,14
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"San Rafael, Dirty Devil",DS6624,Male Only,Desert Bighorn Sheep,Archery,Once-in-a-lifetime,Nov 11 2026 - Dec 17 2026,2,0,2,MAX / RANDOM DRAW,66.7,,,9.5
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,Mineral Mtns,DS6625,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,4,0,4,MAX / RANDOM DRAW,100,,,3
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"Escalante, East",DS6626,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,5,2,7,MAX / RANDOM DRAW,71.4,,,13.4
+2026_DESERT_BIGHORN_RAM.xlsx,Sheet,"Escalante, West",DS6627,Male Only,Desert Bighorn Sheep,Any Legal Weapon,Once-in-a-lifetime,Sept 12 2026 - Nov 10 2026,3,0,3,MAX / RANDOM DRAW,100,,,5.7

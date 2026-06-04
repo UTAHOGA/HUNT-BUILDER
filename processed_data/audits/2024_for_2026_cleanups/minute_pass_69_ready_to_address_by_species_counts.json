@@ -1,0 +1,47 @@
+{
+  "total_rows": 69,
+  "crosswalk_found": 4,
+  "retired": 0,
+  "needs_manual": 65,
+  "by_species": {
+    "Bison": 1,
+    "Cougar": 9,
+    "Deer": 30,
+    "Antlerless Elk": 14,
+    "Elk": 4,
+    "Antlerless Moose": 1,
+    "Moose": 3,
+    "Pronghorn": 2,
+    "UNKNOWN": 5
+  },
+  "by_species_and_triage": {
+    "Bison": {
+      "MANUAL_REVIEW": 1
+    },
+    "Cougar": {
+      "MANUAL_REVIEW": 9
+    },
+    "Deer": {
+      "MANUAL_REVIEW": 26,
+      "CROSSWALK_MATCH": 4
+    },
+    "Antlerless Elk": {
+      "MANUAL_REVIEW": 14
+    },
+    "Elk": {
+      "MANUAL_REVIEW": 4
+    },
+    "Antlerless Moose": {
+      "MANUAL_REVIEW": 1
+    },
+    "Moose": {
+      "MANUAL_REVIEW": 3
+    },
+    "Pronghorn": {
+      "MANUAL_REVIEW": 2
+    },
+    "UNKNOWN": {
+      "MANUAL_REVIEW": 5
+    }
+  }
+}

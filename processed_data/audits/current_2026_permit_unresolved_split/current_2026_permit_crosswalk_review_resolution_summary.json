@@ -1,0 +1,27 @@
+{
+  "created_at_utc": "2026-06-04T02:25:51+00:00",
+  "crosswalk_status_counts_remaining": {
+    "<missing>": 187,
+    "PROMOTED_PREFIX_SWAP_CANDIDATE": 138
+  },
+  "notes": [
+    "No source values or DATABASE.csv values were modified.",
+    "Rows with deterministic crosswalk review statuses were moved out of unresolved repair scope.",
+    "Remaining rows retain complete source columns for manual review continuation."
+  ],
+  "outputs": {
+    "remaining_unresolved_csv": "processed_data/audits/current_2026_permit_unresolved_split/remaining_unresolved_after_crosswalk_review_rule.csv",
+    "resolved_csv": "processed_data/audits/current_2026_permit_unresolved_split/resolved_crosswalk_review_matches.csv",
+    "summary_json": "processed_data/audits/current_2026_permit_unresolved_split/current_2026_permit_crosswalk_review_resolution_summary.json"
+  },
+  "resolved_status_counts": {
+    "RESOLVED_BY_PARALLEL_PUBLIC_UNIT_REFERENCE": 10,
+    "RESOLVED_BY_REVIEWED_CURRENT_REFERENCE": 4
+  },
+  "row_counts": {
+    "remaining_after_crosswalk_review_rule": 325,
+    "resolved_crosswalk_review_rows": 14,
+    "source_rows": 339
+  },
+  "source_remaining_after_crosswalk_exact_history": "processed_data/audits/current_2026_permit_unresolved_split/remaining_unresolved_after_crosswalk_exact_history_rule.csv"
+}

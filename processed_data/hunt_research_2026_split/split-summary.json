@@ -1,8 +1,8 @@
 {
-  "count": 1607,
-  "index_bytes": 7944959,
-  "detail_files": 1607,
-  "preserved_existing_detail_files": 1088,
-  "new_stub_detail_files": 519,
-  "stale_old_detail_files_excluded": 32
+  "count": 1471,
+  "index_bytes": 998272,
+  "detail_files": 1471,
+  "stale_old_detail_files_removed": 0,
+  "stale_removed_examples": [],
+  "generated_at": "2026-06-04T07:07:35Z"
 }

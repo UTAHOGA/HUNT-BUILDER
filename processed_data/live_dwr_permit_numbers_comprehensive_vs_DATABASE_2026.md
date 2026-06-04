@@ -1,22 +1,22 @@
 # Comprehensive Live DWR Permit Numbers Vs DATABASE 2026
 
-- Snapshot UTC: `2026-06-03T16:43:30+00:00`
+- Snapshot UTC: `2026-06-04T03:35:32+00:00`
 - DWR endpoints queried: `19`
-- Live rows extracted: `1414`
-- Live unique hunt codes: `1412`
+- Live rows extracted: `1415`
+- Live unique hunt codes: `1413`
 - DATABASE rows compared: `1449`
 - Numeric mismatches: `40`
 - Live numeric / database blank: `0`
 - Database numeric / live blank: `0`
 - Database-only rows not exposed by queried DWR endpoints: `58`
-- Live-only rows not in DATABASE: `21`
+- Live-only rows not in DATABASE: `22`
 
 ## Comparison Status Counts
 
 - `BOTH_BLANK`: `259`
 - `DATABASE_ONLY`: `58`
 - `LIVE_NO_QUOTA_DATABASE_PRESERVED`: `61`
-- `LIVE_ONLY`: `21`
+- `LIVE_ONLY`: `22`
 - `MATCH`: `754`
 - `NUMERIC_MISMATCH`: `40`
 - `TOTAL_MATCH_SPLIT_DIFFERS`: `277`
@@ -26,7 +26,7 @@
 - `Bison|Hunters Choice`: `14`
 - `Black Bear|Either Sex`: `106`
 - `Cougar|Either Sex`: `1`
-- `Deer|Antlerless`: `20`
+- `Deer|Antlerless`: `21`
 - `Deer|Buck`: `458`
 - `Deer|Hunters Choice`: `1`
 - `Desert Bighorn Sheep|Male Only`: `25`

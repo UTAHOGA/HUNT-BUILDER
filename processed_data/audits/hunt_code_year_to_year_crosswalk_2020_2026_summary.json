@@ -10,7 +10,7 @@
     "2025": 1053,
     "2026": 834
   },
-  "created_at_utc": "2026-06-04T00:14:39+00:00",
+  "created_at_utc": "2026-06-04T04:40:58+00:00",
   "crosswalk_status_counts": {
     "ADDED_NO_PREDECESSOR_CANDIDATE": 242,
     "CANDIDATE_SUCCESSOR_BY_IDENTITY": 210,
@@ -18,10 +18,11 @@
     "EXACT_CODE_RETAINED": 5595,
     "REVIEWED_2021_COUGAR_ACTIVE_CONTINUITY": 4,
     "REVIEWED_2022_COUGAR_ACTIVE_CONTINUITY": 1,
+    "REVIEWED_COUGAR_ROLLS_TO_STATEWIDE_UNLIMITED": 1,
     "REVIEWED_DISCONTINUED_AFTER_2020_NO_SUCCESSOR": 17,
     "REVIEWED_DISCONTINUED_AFTER_2021_NO_2022_ANTLERLESS_SUCCESSOR": 6,
     "REVIEWED_SOURCE_YEAR_ARTIFACT_NOT_TRUE_DROP": 2,
-    "REVIEWED_SPORTSMAN_ACTIVE_CONTINUITY": 11,
+    "REVIEWED_SPORTSMAN_ACTIVE_CONTINUITY": 10,
     "REVIEWED_SUCCESSOR_BY_2022_ANTLERLESS_DRAW_RESULTS": 3,
     "REVIEWED_SUCCESSOR_BY_2022_BEAR_GUIDE": 8
   },
@@ -34,7 +35,7 @@
     "Known A-prefixed Sportsman/OCR artifacts are excluded from this crosswalk; normalized real hunt codes remain eligible.",
     "Reviewed 2020-to-2021 discontinuation decisions are recorded separately and are not successor mappings.",
     "Reviewed 2021-to-2022 antlerless decisions use the official 2021, 2022, and 2023 antlerless draw-results PDFs to separate true successors from discontinued rows.",
-    "Reviewed 2022-to-2023 sportsman decisions are active sportsman permit-hunt continuity rows across the analyzed source years; they are not discontinuations or successor mappings.",
+    "Reviewed 2022-to-2023 sportsman decisions are active sportsman permit-hunt continuity rows across the analyzed source years; CG1000 is excluded from that continuity set because user review says current cougar rolls into CG9999 statewide/unlimited.",
     "Each Sportsman permit hunt carries 1 permit per species/hunt_code per draw year."
   ],
   "outputs": {
@@ -65,7 +66,8 @@
     "reviewed_2021_to_2022_artifact_rows": 2,
     "reviewed_2021_to_2022_cougar_active_continuity_rows": 1,
     "reviewed_2021_to_2022_successor_rows": 8,
-    "reviewed_2022_to_2023_sportsman_active_continuity_rows": 11
+    "reviewed_2022_to_2023_cougar_statewide_unlimited_rows": 1,
+    "reviewed_2022_to_2023_sportsman_active_continuity_rows": 10
   },
   "scope": "Adjacent year-to-year hunt-code crosswalk for BIBLE HUNT CODES comprehensive 2020-2026 evidence.",
   "transition_status_counts": {
@@ -91,7 +93,8 @@
       "CANDIDATE_SUCCESSOR_BY_IDENTITY": 47,
       "DROPPED_NO_SUCCESSOR_CANDIDATE": 31,
       "EXACT_CODE_RETAINED": 931,
-      "REVIEWED_SPORTSMAN_ACTIVE_CONTINUITY": 11
+      "REVIEWED_COUGAR_ROLLS_TO_STATEWIDE_UNLIMITED": 1,
+      "REVIEWED_SPORTSMAN_ACTIVE_CONTINUITY": 10
     },
     "2023->2024": {
       "ADDED_NO_PREDECESSOR_CANDIDATE": 23,

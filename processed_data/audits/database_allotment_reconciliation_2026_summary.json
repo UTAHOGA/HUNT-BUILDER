@@ -1,0 +1,26 @@
+{
+  "created_at_utc": "2026-06-04T06:23:01+00:00",
+  "database_alignment_counts": {
+    "DATABASE_HAS_VALUE_NO_RECOMMENDATION": 56,
+    "DATABASE_MATCHES_RECOMMENDED": 1151,
+    "DATABASE_TOTAL_MATCHES_RECOMMENDED": 7,
+    "NOT_COMPARED": 256
+  },
+  "database_disagreement_count": 0,
+  "disagreement_counts": {},
+  "guardrail": "This split/reporting script does not modify DATABASE.csv; it reflects current DATABASE state at run time.",
+  "outputs": {
+    "database_disagreements_csv": "processed_data/audits/database_allotment_disagreements_2026.csv",
+    "reconciled_csv": "processed_data/audits/database_allotment_reconciled_2026.csv",
+    "reconciled_unresolved_subset_csv": "processed_data/audits/database_allotment_reconciled_2026_unresolved_subset.csv",
+    "report_md": "docs/database_allotment_reconciliation_2026.md",
+    "review_csv": "processed_data/audits/database_allotment_no_recommendation_or_not_compared_2026.csv",
+    "summary_json": "processed_data/audits/database_allotment_reconciliation_2026_summary.json"
+  },
+  "reconciled_count": 1158,
+  "reconciled_exact_match_count": 1151,
+  "reconciled_total_match_count": 7,
+  "reconciled_unresolved_subset_count": 384,
+  "review_not_reconciled_count": 312,
+  "source_reconciliation_csv": "processed_data/audits/current_2026_hunt_code_permit_reconciliation.csv"
+}

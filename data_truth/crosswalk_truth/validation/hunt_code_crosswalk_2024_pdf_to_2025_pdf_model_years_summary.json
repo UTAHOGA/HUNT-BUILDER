@@ -12,7 +12,7 @@
     "DROPPED_NO_CURRENT_ACTIVE_MATCH_NO_NEXT_YEAR_PDF_FAMILY": 7,
     "DROPPED_NO_NEXT_YEAR_PDF_OR_CURRENT_ACTIVE_MATCH": 6
   },
-  "generated_at_utc": "2026-06-02T03:08:52+00:00",
+  "generated_at_utc": "2026-06-02T03:10:10+00:00",
   "guardrail": "Read-only crosswalk. Dropped/replaced statuses are review evidence and do not modify DATABASE.csv or website feeds.",
   "next_year_pdf_model_target_2026_rows": 296,
   "outputs": {

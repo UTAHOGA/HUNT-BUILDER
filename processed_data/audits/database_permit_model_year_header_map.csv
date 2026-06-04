@@ -1,0 +1,10 @@
+canonical_machine_header,display_header,draw_results_year,model_target_year,permit_component,rule,notes
+permits_2024_res,RES_PERMITS_2024=2025_MODEL,2024,2025,res,folder/draw-results year feeds next model year,Keep canonical machine header in DATABASE.csv; use display_header for human-facing exports.
+permits_2024_nr,N.R_PERMITS_2024=2025_MODEL,2024,2025,nr,folder/draw-results year feeds next model year,Keep canonical machine header in DATABASE.csv; use display_header for human-facing exports.
+permits_2024_total,TOTAL_PERMITS_2024=2025_MODEL,2024,2025,total,folder/draw-results year feeds next model year,Keep canonical machine header in DATABASE.csv; use display_header for human-facing exports.
+permits_2025_res,RES_PERMITS_2025=2026_MODEL,2025,2026,res,folder/draw-results year feeds next model year,Keep canonical machine header in DATABASE.csv; use display_header for human-facing exports.
+permits_2025_nr,N.R_PERMITS_2025=2026_MODEL,2025,2026,nr,folder/draw-results year feeds next model year,Keep canonical machine header in DATABASE.csv; use display_header for human-facing exports.
+permits_2025_total,TOTAL_PERMITS_2025=2026_MODEL,2025,2026,total,folder/draw-results year feeds next model year,Keep canonical machine header in DATABASE.csv; use display_header for human-facing exports.
+permit_allotment_2026_res,RES_PERMITS_2026=2027_MODEL,2026,2027,res,folder/draw-results year feeds next model year,Keep canonical machine header in DATABASE.csv; use display_header for human-facing exports.
+permit_allotment_2026_nr,N.R_PERMITS_2026=2027_MODEL,2026,2027,nr,folder/draw-results year feeds next model year,Keep canonical machine header in DATABASE.csv; use display_header for human-facing exports.
+permit_allotment_2026_total,TOTAL_PERMITS_2026=2027_MODEL,2026,2027,total,folder/draw-results year feeds next model year,Keep canonical machine header in DATABASE.csv; use display_header for human-facing exports.

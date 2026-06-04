@@ -1,0 +1,100 @@
+{
+  "generated_at_utc": "2026-06-04T06:38:34+00:00",
+  "database_path": "pipeline\\RAW\\hunt_unit_database\\2026\\csv\\DATABASE.csv",
+  "backup_path": "processed_data\\backups\\DATABASE_before_permit_model_field_clean_20260604T063500Z.csv",
+  "rows": 1471,
+  "columns": 41,
+  "unique_hunt_codes": 1471,
+  "duplicate_hunt_codes": [],
+  "numeric_cells_normalized": 4961,
+  "field_summary": {
+    "permits_2024_res": {
+      "populated": 973,
+      "blank": 498,
+      "zero": 3
+    },
+    "permits_2024_nr": {
+      "populated": 973,
+      "blank": 498,
+      "zero": 444
+    },
+    "permits_2024_total": {
+      "populated": 973,
+      "blank": 498,
+      "zero": 0
+    },
+    "permits_2025_res": {
+      "populated": 1056,
+      "blank": 415,
+      "zero": 3
+    },
+    "permits_2025_nr": {
+      "populated": 1056,
+      "blank": 415,
+      "zero": 450
+    },
+    "permits_2025_total": {
+      "populated": 1056,
+      "blank": 415,
+      "zero": 0
+    },
+    "permit_allotment_2026_res": {
+      "populated": 957,
+      "blank": 514,
+      "zero": 3
+    },
+    "permit_allotment_2026_nr": {
+      "populated": 957,
+      "blank": 514,
+      "zero": 482
+    },
+    "permit_allotment_2026_total": {
+      "populated": 1215,
+      "blank": 256,
+      "zero": 0
+    }
+  },
+  "permit_row_status_counts": {
+    "BLANK_TOTAL": 1169,
+    "CLEAN": 2986,
+    "TOTAL_ONLY": 258
+  },
+  "missing_by_draw_year_species": {
+    "2024": {
+      "Elk": 228,
+      "Deer": 180,
+      "Pronghorn": 31,
+      "Moose": 18,
+      "Black Bear": 13,
+      "Turkey": 10,
+      "Desert Bighorn Sheep": 9,
+      "Rocky Mountain Bighorn Sheep": 5,
+      "Bison": 3,
+      "Cougar": 1
+    },
+    "2025": {
+      "Elk": 174,
+      "Deer": 155,
+      "Pronghorn": 22,
+      "Turkey": 18,
+      "Black Bear": 14,
+      "Moose": 11,
+      "Desert Bighorn Sheep": 9,
+      "Rocky Mountain Bighorn Sheep": 6,
+      "Bison": 4,
+      "Cougar": 1,
+      "Mountain Goat": 1
+    },
+    "2026": {
+      "Elk": 135,
+      "Deer": 105,
+      "Pronghorn": 7,
+      "Black Bear": 4,
+      "Bison": 2,
+      "Rocky Mountain Bighorn Sheep": 1,
+      "Turkey": 1,
+      "Moose": 1
+    }
+  },
+  "decision": "Canonical DATABASE.csv machine headers were preserved; display/model-year headers were generated as an export and mapping to avoid breaking active scripts/runtime."
+}

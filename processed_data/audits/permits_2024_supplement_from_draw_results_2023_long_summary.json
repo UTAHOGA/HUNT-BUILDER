@@ -1,0 +1,15 @@
+{
+  "source_files": [
+    "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\pipeline\\RAW\\hunt_unit_database\\2024\\csv\\draw_results_2023_for_2024_long.csv",
+    "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\pipeline\\RAW\\hunt_unit_database\\2024\\csv\\draw_results_2023_for_2024_UPLOADED_COMBINED_long.csv"
+  ],
+  "source_unique_code_counts": {
+    "draw_results_2023_for_2024_long.csv": 580,
+    "draw_results_2023_for_2024_UPLOADED_COMBINED_long.csv": 593
+  },
+  "noncovered_match_candidates": 984,
+  "rows_updated": 929,
+  "backup_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2026\\csv\\DATABASE.pre_supplement_2023_to_2024_from_long_backup.csv",
+  "audit_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\permits_2024_supplement_from_draw_results_2023_long.csv",
+  "summary_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\permits_2024_supplement_from_draw_results_2023_long_summary.json"
+}

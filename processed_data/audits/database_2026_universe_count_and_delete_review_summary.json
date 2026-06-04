@@ -1,0 +1,60 @@
+{
+  "active_reconciliation_rows": 1470,
+  "active_reconciliation_unique_hunt_codes": 1470,
+  "created_at_utc": "2026-06-04T06:26:10+00:00",
+  "current_database_duplicate_hunt_codes": 0,
+  "current_database_rows": 1471,
+  "current_database_unique_hunt_codes": 1471,
+  "database_path": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "delete_recommendation_counts": {
+    "KEEP": 1470,
+    "KEEP_REFERENCE_DO_NOT_DELETE": 1
+  },
+  "interpretation": {
+    "delete_guidance": "Do not bulk-delete from DATABASE.csv. Keep retired/reference rows for crosswalk/history; generate current-active-only exports from the active reconciliation universe.",
+    "previous_active_database_baseline": "Recent DATABASE backups before current permit-row additions were 1449 rows / 1449 unique hunt codes.",
+    "why_1600_appeared": "The 1600/1615 figures came from historical draw/alignment working files, not the active DATABASE.csv current universe."
+  },
+  "outputs": {
+    "audit_csv": "processed_data/audits/database_2026_universe_count_and_delete_review.csv",
+    "report_md": "docs/database_2026_universe_count_and_delete_review.md",
+    "summary_json": "processed_data/audits/database_2026_universe_count_and_delete_review_summary.json"
+  },
+  "reference_file_counts": [
+    {
+      "duplicate_hunt_codes": 0,
+      "path": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.pre_2025_permit_backfill_backup.csv",
+      "rows": 1449,
+      "unique_hunt_codes": 1449
+    },
+    {
+      "duplicate_hunt_codes": 0,
+      "path": "processed_data/backups/DATABASE_before_allotment_reconciliation_20260604T052630Z.csv",
+      "rows": 1449,
+      "unique_hunt_codes": 1449
+    },
+    {
+      "duplicate_hunt_codes": 0,
+      "path": "pipeline/RAW/hunt_unit_database/2026/csv/draw_database_alignment_changes_by_hunt_code_V2.csv",
+      "rows": 1615,
+      "unique_hunt_codes": 1615
+    },
+    {
+      "duplicate_hunt_codes": 0,
+      "path": "pipeline/RAW/hunt_unit_database/2026/csv/draw_results_database_alignment_outputs_V3/draw_database_alignment_changes_by_hunt_code_V3.csv",
+      "rows": 1615,
+      "unique_hunt_codes": 1615
+    },
+    {
+      "duplicate_hunt_codes": 1615,
+      "path": "pipeline/RAW/hunt_unit_database/2026/csv/draw_results_database_alignment_outputs_V3/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
+      "rows": 112056,
+      "unique_hunt_codes": 1615
+    }
+  ],
+  "retired_reference_rows": 1,
+  "universe_status_counts": {
+    "ACTIVE_RECONCILIATION_ROW": 1470,
+    "RETIRED_REFERENCE_ROW": 1
+  }
+}

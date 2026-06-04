@@ -1,25 +1,34 @@
 (function () {
+  const FALLBACK_R2_BASE = String(window.UOGA_CONFIG?.CLOUDFLARE_BASE || 'https://json.uoga.workers.dev').replace(/\/+$/, '');
+  const fallbackR2 = (path) => `${FALLBACK_R2_BASE}/${path}`;
   const ENGINE_MODE = (window.UOGA_CONFIG && window.UOGA_CONFIG.HUNT_RESEARCH_ENGINE_MODE)
     ? String(window.UOGA_CONFIG.HUNT_RESEARCH_ENGINE_MODE).trim().toLowerCase()
     : 'observed';
   const DATA_SOURCES = (window.UOGA_CONFIG && Array.isArray(window.UOGA_CONFIG.HUNT_RESEARCH_DATA_SOURCES) && window.UOGA_CONFIG.HUNT_RESEARCH_DATA_SOURCES.length)
     ? window.UOGA_CONFIG.HUNT_RESEARCH_DATA_SOURCES
-    : ['./processed_data/hunt_research_2026.json'];
+    : [fallbackR2('processed_data/hunt_research_2026.json')];
+  const CANONICAL_SUMMARY_SOURCES = (window.UOGA_CONFIG && Array.isArray(window.UOGA_CONFIG.HUNT_RESEARCH_SUMMARY_SOURCES) && window.UOGA_CONFIG.HUNT_RESEARCH_SUMMARY_SOURCES.length)
+    ? window.UOGA_CONFIG.HUNT_RESEARCH_SUMMARY_SOURCES
+    : [fallbackR2('processed_data/hunt_research_2026_summary.json')];
+  const CANONICAL_LADDER_SOURCES = (window.UOGA_CONFIG && Array.isArray(window.UOGA_CONFIG.HUNT_RESEARCH_CANONICAL_LADDER_SOURCES) && window.UOGA_CONFIG.HUNT_RESEARCH_CANONICAL_LADDER_SOURCES.length)
+    ? window.UOGA_CONFIG.HUNT_RESEARCH_CANONICAL_LADDER_SOURCES
+    : [fallbackR2('processed_data/hunt_research_2026_ladder.json')];
+  const USE_SPLIT_CANONICAL_CONTRACT = window.UOGA_CONFIG?.HUNT_RESEARCH_USE_SPLIT_CONTRACT !== false;
   const ENGINE_SOURCES = (window.UOGA_CONFIG && Array.isArray(window.UOGA_CONFIG.HUNT_RESEARCH_ENGINE_SOURCES) && window.UOGA_CONFIG.HUNT_RESEARCH_ENGINE_SOURCES.length)
     ? window.UOGA_CONFIG.HUNT_RESEARCH_ENGINE_SOURCES
-    : ['./processed_data/draw_reality_engine.csv'];
+    : [fallbackR2('processed_data/draw_reality_engine.csv')];
 
   const LADDER_SOURCES = (window.UOGA_CONFIG && Array.isArray(window.UOGA_CONFIG.HUNT_RESEARCH_LADDER_SOURCES) && window.UOGA_CONFIG.HUNT_RESEARCH_LADDER_SOURCES.length)
     ? window.UOGA_CONFIG.HUNT_RESEARCH_LADDER_SOURCES
-    : ['./processed_data/point_ladder_view.csv'];
+    : [fallbackR2('processed_data/point_ladder_view.csv')];
 
   const MASTER_SOURCES = (window.UOGA_CONFIG && Array.isArray(window.UOGA_CONFIG.HUNT_RESEARCH_MASTER_SOURCES) && window.UOGA_CONFIG.HUNT_RESEARCH_MASTER_SOURCES.length)
     ? window.UOGA_CONFIG.HUNT_RESEARCH_MASTER_SOURCES
-    : ['./processed_data/hunt_master_enriched.csv'];
+    : [fallbackR2('processed_data/hunt_master_enriched.csv')];
 
   const REFERENCE_SOURCES = (window.UOGA_CONFIG && Array.isArray(window.UOGA_CONFIG.HUNT_RESEARCH_REFERENCE_SOURCES) && window.UOGA_CONFIG.HUNT_RESEARCH_REFERENCE_SOURCES.length)
     ? window.UOGA_CONFIG.HUNT_RESEARCH_REFERENCE_SOURCES
-    : ['./processed_data/hunt_unit_reference_linked.csv'];
+    : [fallbackR2('processed_data/hunt_unit_reference_linked.csv')];
   const ALLOW_LEGACY_FALLBACK = Boolean(window.UOGA_CONFIG?.HUNT_RESEARCH_ALLOW_LEGACY_FALLBACK);
 
   const SELECTED_HUNT_KEY = 'selected_hunt_code';
@@ -1756,6 +1765,11 @@
     function getRowCells(row, markers, historicalPointRow) {
       const actual2025Display = formatHistoricalDrawResult(row)
         || formatHistoricalDrawResult(historicalPointRow)
+        || (Number.isFinite(num(row?.odds_2025_actual))
+          ? formatOddsAsOneInOrPercent(row?.odds_2025_actual)
+          : (Number.isFinite(num(historicalPointRow?.odds_2025_actual))
+            ? formatOddsAsOneInOrPercent(historicalPointRow?.odds_2025_actual)
+            : ''))
         || '';
       const odds = (mode === DRAW_MODE.PREFERENCE || mode === DRAW_MODE.YOUTH_RESERVE)
         ? selectPreferenceOddsPercent(row)
@@ -2104,6 +2118,41 @@
 
     state.loadingPromise = (async () => {
       try {
+        if (USE_SPLIT_CANONICAL_CONTRACT) {
+          try {
+            const [summary, ladder] = await Promise.all([
+              loadFirstAvailable(CANONICAL_SUMMARY_SOURCES),
+              loadFirstAvailable(CANONICAL_LADDER_SOURCES),
+            ]);
+            const summaryRows = parseJsonRows(summary.text);
+            const ladderRows = parseJsonRows(ladder.text);
+            indexData(
+              ladderRows,
+              ladderRows,
+              summaryRows,
+              summaryRows
+            );
+
+            state.loadedSources = {
+              engineMode: ENGINE_MODE,
+              canonicalSummary: summary.source,
+              canonicalLadder: ladder.source,
+              canonicalRows: ladderRows.length,
+              summaryRows: summaryRows.length,
+              engine: 'canonical_split_contract',
+              ladder: 'canonical_split_contract',
+              master: 'canonical_split_contract',
+              reference: 'canonical_split_contract',
+              legacyFallbackUsed: false,
+              legacyFallbackAllowed: ALLOW_LEGACY_FALLBACK,
+            };
+            state.loaded = true;
+            return state.loadedSources;
+          } catch (splitError) {
+            console.warn('Split canonical Hunt Research contract load failed. Falling back to full canonical contract.', splitError);
+          }
+        }
+
         const canonical = await loadFirstAvailable(DATA_SOURCES);
         const contractRows = parseJsonRows(canonical.text);
         const derived = deriveCanonicalRuntimeTables(contractRows);

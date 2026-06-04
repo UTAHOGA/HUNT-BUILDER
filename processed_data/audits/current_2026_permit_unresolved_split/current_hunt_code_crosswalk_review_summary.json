@@ -1,0 +1,32 @@
+{
+  "resolved_total": 438,
+  "crosswalk_matched": 167,
+  "crosswalk_bucket_counts": {
+    "UNMATCHED": 271,
+    "PREFIX_SWAP": 138,
+    "PROMOTED_EXACT_HISTORY": 15,
+    "PARALLEL_REFERENCE": 10,
+    "REVIEWED_CURRENT_REFERENCE": 4
+  },
+  "relationship_counts": {
+    "NONE": 271,
+    "PREFIX_SWAP_EL_TO_EB": 126,
+    "EXACT_CODE_HISTORY": 15,
+    "PARALLEL_CONSERVATION_TO_PUBLIC_OIAL_2026": 10,
+    "PREFIX_SWAP_LD_TO_DB": 6,
+    "PREFIX_SWAP_LP_TO_PB": 6,
+    "REVIEWED_CURRENT_REFERENCE_ONLY": 4
+  },
+  "crosswalk_status_counts": {
+    "NONE": 271,
+    "PROMOTED_PREFIX_SWAP_CANDIDATE": 138,
+    "PROMOTED_EXACT_HISTORY": 15,
+    "PROMOTED_PARALLEL_PUBLIC_UNIT_REFERENCE": 10,
+    "REVIEWED_CURRENT_REFERENCE": 4
+  },
+  "mapping_confidence_counts": {
+    "NONE": 271,
+    "HIGH": 165,
+    "MEDIUM": 2
+  }
+}

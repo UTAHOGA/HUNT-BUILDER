@@ -1,0 +1,5 @@
+source_file,source_sheet,hunt_name,hunt_code,sex_type,species,weapon,hunt_type,season,permits_2026_res,permits_2026_nr,permits_2026_total,hunt_class,harvest_success_prior_year_pct,average_harvest_age,current_age_3yr_avg,avg_days_hunted_prior_year
+2026_DEER_ANTLERLESS_CWMU.xlsx,Sheet,George Creek CWMU,DA1011,Antlerless,Deer,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,5,0,5,PREFERENCE DRAW,80,,,1.4
+2026_DEER_ANTLERLESS_CWMU.xlsx,Sheet,Junction Valley CWMU,DA1012,Antlerless,Deer,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,15,0,15,PREFERENCE DRAW,100,,,1.8
+2026_DEER_ANTLERLESS_CWMU.xlsx,Sheet,Mt Carmel CWMU,DA1013,Antlerless,Deer,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,5,0,5,PREFERENCE DRAW,75,,,2
+2026_DEER_ANTLERLESS_CWMU.xlsx,Sheet,The Rose of Snowville CWMU,DA1050,Antlerless,Deer,Any Legal Weapon,CWMU,Contact operator for 2025 season dates,8,0,8,PREFERENCE DRAW,75,,,1

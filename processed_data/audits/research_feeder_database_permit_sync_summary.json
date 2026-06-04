@@ -1,0 +1,76 @@
+{
+  "generated_at_utc": "2026-06-04T06:43:39+00:00",
+  "database_rows": 1471,
+  "source_label_2026": "DATABASE_2026_CURRENT_PERMIT_ALLOTMENT__2027_MODEL",
+  "audit_csv": "processed_data\\audits\\research_feeder_database_permit_sync_audit.csv",
+  "targets": [
+    {
+      "label": "hunt_master_enriched",
+      "path": "processed_data\\hunt_master_enriched.csv",
+      "status": "REPLACED_LFS_POINTER_FROM::C:\\Users\\tyler\\Desktop\\GitHub\\Cloudfare\\hunt_master_enriched.csv",
+      "rows": 53225,
+      "matched_rows": 53225,
+      "changed_rows": 52911,
+      "changed_cells": 498551,
+      "added_columns": [
+        "permits_2024_res",
+        "permits_2024_nr",
+        "permits_2024_total",
+        "permits_2024_source"
+      ],
+      "extra_codes_not_in_database": 0,
+      "backup": "processed_data\\backups\\research_feeder_sync_20260604T064259Z\\processed_data\\hunt_master_enriched.csv"
+    },
+    {
+      "label": "hunt_unit_reference_linked",
+      "path": "processed_data\\hunt_unit_reference_linked.csv",
+      "status": "REAL_LOCAL_FILE",
+      "rows": 2997,
+      "matched_rows": 2875,
+      "changed_rows": 2751,
+      "changed_cells": 22264,
+      "added_columns": [
+        "permits_2024_res",
+        "permits_2024_nr",
+        "permits_2024_total",
+        "permits_2024_source"
+      ],
+      "extra_codes_not_in_database": 61,
+      "backup": "processed_data\\backups\\research_feeder_sync_20260604T064259Z\\processed_data\\hunt_unit_reference_linked.csv"
+    },
+    {
+      "label": "draw_reality_engine",
+      "path": "processed_data\\draw_reality_engine.csv",
+      "status": "REAL_LOCAL_FILE",
+      "rows": 36892,
+      "matched_rows": 32800,
+      "changed_rows": 32662,
+      "changed_cells": 339000,
+      "added_columns": [
+        "permits_2024_res",
+        "permits_2024_nr",
+        "permits_2024_total",
+        "permits_2024_source"
+      ],
+      "extra_codes_not_in_database": 167,
+      "backup": "processed_data\\backups\\research_feeder_sync_20260604T064259Z\\processed_data\\draw_reality_engine.csv"
+    },
+    {
+      "label": "point_ladder_view",
+      "path": "processed_data\\point_ladder_view.csv",
+      "status": "REAL_LOCAL_FILE",
+      "rows": 91712,
+      "matched_rows": 91712,
+      "changed_rows": 81414,
+      "changed_cells": 690886,
+      "added_columns": [
+        "permits_2024_res",
+        "permits_2024_nr",
+        "permits_2024_total",
+        "permits_2024_source"
+      ],
+      "extra_codes_not_in_database": 0,
+      "backup": "processed_data\\backups\\research_feeder_sync_20260604T064259Z\\processed_data\\point_ladder_view.csv"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "allotment_vs_2025_counts": {
+    "BOTH_BLANK": 157,
+    "DIFFERS": 795,
+    "EXACT_MATCH": 156,
+    "LEFT_BLANK": 99,
+    "RIGHT_BLANK": 258,
+    "TOTAL_MATCH_ONLY": 6
+  },
+  "created_at_utc": "2026-06-04T05:34:47+00:00",
+  "database_path": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "guardrail": "Diagnostic only. DATABASE.csv was not modified.",
+  "outputs": {
+    "audit_csv": "processed_data/audits/permit_2026_vs_2025_same_code_carryover_audit.csv",
+    "report_md": "docs/permit_2026_vs_2025_same_code_carryover_audit.md",
+    "review_csv": "processed_data/audits/permit_2026_vs_2025_same_code_carryover_review.csv",
+    "summary_json": "processed_data/audits/permit_2026_vs_2025_same_code_carryover_summary.json"
+  },
+  "recommended_vs_2025_counts": {
+    "BOTH_BLANK": 212,
+    "DIFFERS": 792,
+    "EXACT_MATCH": 158,
+    "LEFT_BLANK": 100,
+    "RIGHT_BLANK": 203,
+    "TOTAL_MATCH_ONLY": 6
+  },
+  "reconciliation_path": "processed_data/audits/current_2026_hunt_code_permit_reconciliation.csv",
+  "risk_classification_counts": {
+    "MATCHES_2025_WITH_CURRENT_SOURCE_SUPPORT": 164,
+    "NO_2025_NUMERIC_MATCH": 1307
+  },
+  "rows_with_any_2025_match": 164,
+  "species_rows_with_any_2025_match": {
+    "Black Bear": 10,
+    "Deer": 74,
+    "Desert Bighorn Sheep": 1,
+    "Elk": 44,
+    "Moose": 19,
+    "Mountain Goat": 3,
+    "Pronghorn": 11,
+    "Rocky Mountain Bighorn Sheep": 2
+  },
+  "total_database_rows": 1471
+}

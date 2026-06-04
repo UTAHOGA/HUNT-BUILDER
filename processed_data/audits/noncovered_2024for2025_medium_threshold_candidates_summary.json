@@ -1,0 +1,10 @@
+{
+  "artifact": "noncovered_2024for2025_medium_threshold_candidates",
+  "remaining_noncovered_blank_codes": 429,
+  "candidate_rows_medium_or_higher": 36,
+  "candidate_unique_target_codes": 36,
+  "confidence_counts": {
+    "MEDIUM": 36
+  },
+  "note": "Audit-only output. No DATABASE writes were made in this pass."
+}

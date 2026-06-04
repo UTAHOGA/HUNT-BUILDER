@@ -64,7 +64,7 @@ window.UOGA_CONFIG = (() => {
     for (const candidate of RUNTIME_MANIFEST_CANDIDATES) {
       try {
         const req = new XMLHttpRequest();
-        req.open('GET', `${candidate}?v=20260601-runtime-manifest-1`, false);
+        req.open('GET', `${candidate}?v=20260604-runtime-canonical-1`, false);
         req.send(null);
         if (req.status < 200 || req.status >= 300) continue;
         const parsed = JSON.parse(String(req.responseText || '{}'));
@@ -84,10 +84,7 @@ window.UOGA_CONFIG = (() => {
   }
 
   const RUNTIME_MANIFEST = loadRuntimeManifestSync();
-  const KNOWN_RUNTIME_POINTER_KEYS = new Set([
-    'research_draw_reality_engine_predictive_v2_csv',
-    'research_hunt_master_enriched_csv',
-  ]);
+  const KNOWN_RUNTIME_POINTER_KEYS = new Set([]);
   const runtimeManifestAsset = (key) => {
     const k = String(key || '').trim();
     return k ? (RUNTIME_MANIFEST?.byKey?.[k] || null) : null;
@@ -170,10 +167,10 @@ window.UOGA_CONFIG = (() => {
     Keep them scoped by feature family.
     ============================================================================
   */
-  const HUNT_DATA_VERSION = '20260508-boundary-zero-unmapped-1';
+  const HUNT_DATA_VERSION = '20260604-runtime-canonical-1';
   const OUTFITTERS_DATA_VERSION = '20260327-city-logo-refresh-1';
   const OUTFITTER_COVERAGE_VERSION = '20260327-federal-coverage-demo-1';
-  const HUNT_RESEARCH_DATA_VERSION = '20260529-cloudflare-runtime-first-1';
+  const HUNT_RESEARCH_DATA_VERSION = '20260604-runtime-canonical-1';
 
   /*
     ============================================================================
@@ -287,6 +284,20 @@ window.UOGA_CONFIG = (() => {
   const HUNT_RESEARCH_DATA_SOURCES = runtimeSourceCandidates({
     key: 'research_hunt_research_2026_json',
     relativePath: 'processed_data/hunt_research_2026.json',
+    version: HUNT_RESEARCH_DATA_VERSION,
+    includeLocalFallback: true,
+  });
+
+  const HUNT_RESEARCH_SUMMARY_SOURCES = runtimeSourceCandidates({
+    key: 'research_hunt_research_2026_summary_json',
+    relativePath: 'processed_data/hunt_research_2026_summary.json',
+    version: HUNT_RESEARCH_DATA_VERSION,
+    includeLocalFallback: true,
+  });
+
+  const HUNT_RESEARCH_CANONICAL_LADDER_SOURCES = runtimeSourceCandidates({
+    key: 'research_hunt_research_2026_ladder_json',
+    relativePath: 'processed_data/hunt_research_2026_ladder.json',
     version: HUNT_RESEARCH_DATA_VERSION,
     includeLocalFallback: true,
   });
@@ -601,6 +612,8 @@ window.UOGA_CONFIG = (() => {
     CONSERVATION_PERMIT_HUNT_TABLE_SOURCES,
 
     HUNT_RESEARCH_DATA_SOURCES,
+    HUNT_RESEARCH_SUMMARY_SOURCES,
+    HUNT_RESEARCH_CANONICAL_LADDER_SOURCES,
     USE_PREDICTIVE_DRAW_ENGINE,
     HUNT_RESEARCH_ENGINE_MODE,
     HUNT_RESEARCH_ALLOW_LEGACY_FALLBACK,

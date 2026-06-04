@@ -1,0 +1,89 @@
+{
+  "created_at_utc": "2026-06-04T02:46:06+00:00",
+  "directive": "Evidence-first crosswalk: code + boundary + family meaning + source evidence; no name-only promotion.",
+  "discrepancy_rows": 41,
+  "input_rows": 325,
+  "manual_by_species": {
+    "Black Bear": 1,
+    "Moose": 2,
+    "Pronghorn": 2
+  },
+  "manual_rows": 5,
+  "manual_unique_codes": 5,
+  "match_confidence_counts": {
+    "HIGH": 1198,
+    "LOW": 531,
+    "MANUAL_REVIEW": 276,
+    "MEDIUM": 29
+  },
+  "match_evidence_rows": 2034,
+  "match_source_counts": {
+    "black_bear_primary": 8,
+    "black_bear_secondary": 8,
+    "boundary_id_to_hunt_code": 49,
+    "boundary_unit_fill": 525,
+    "boundary_xlsx": 320,
+    "conservation_area": 6,
+    "current_historical_primary": 138,
+    "current_historical_processed": 138,
+    "historical_le_to_eb": 34,
+    "model_year_crosswalk": 484,
+    "model_year_dropped_review": 2,
+    "remaining_boundary_closeout": 2,
+    "runtime_boundary_draft": 320
+  },
+  "match_status_counts": {
+    "CODE_MATCH_BOUNDARY_CONFIRMED": 773,
+    "CURRENT_ONLY": 6,
+    "EXACT_MATCH": 552,
+    "HISTORICAL_ONLY": 4,
+    "MERGED_UNITS": 4,
+    "NEEDS_MANUAL_REMAP": 659,
+    "RENAMED_MATCH": 34,
+    "STRUCTURE_CHANGED": 2
+  },
+  "matched_unique_codes": 325,
+  "merge_split_rows": 6,
+  "no_source_manual_rows": 0,
+  "outputs": {
+    "code_resolution_rollup": "processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_code_resolution_rollup.csv",
+    "crosswalk_table": "processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_additional_source_candidates.csv",
+    "discrepancy_table": "processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_permit_or_boundary_discrepancies.csv",
+    "merge_split_table": "processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_merge_split_structure_changes.csv",
+    "statewide_unlimited_table": "processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_statewide_unlimited_successors.csv",
+    "unresolved_manual_remap_table": "processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_manual_remap_required.csv",
+    "validation_summary": "processed_data/audits/current_2026_permit_unresolved_split/crosswalk_2026_additional_sources_summary.json"
+  },
+  "rollup_bucket_counts": {
+    "ACTIVE_CODE_CONFIRMED_BUT_PERMIT_CONFLICT_REMAINS": 39,
+    "BOUNDARY_CONFIRMED_IDENTITY_READY": 281,
+    "MANUAL_REMAP_REQUIRED": 5
+  },
+  "source_files": {
+    "bighorn_location_crosswalk": "D:\\DOCUMENTS\\GitHub\\HUNTS\\HUNTS\\data_truth\\harvest_results_truth\\raw_packages\\2023_for_2024_harvest_results_2023_all_species_database\\harvest_location_hunt_code_crosswalk_2023_bighorn_sheep.csv",
+    "bighorn_measurements_crosswalked": "D:\\DOCUMENTS\\GitHub\\HUNTS\\HUNTS\\data_truth\\harvest_results_truth\\raw_packages\\2023_for_2024_harvest_results_2023_all_species_database\\harvest_results_2023_bighorn_sheep_measurements_crosswalked.csv",
+    "black_bear_primary": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\data_truth\\crosswalk_truth\\normalized\\black_bear_BR_2024_2025_2026_crosswalk.csv",
+    "black_bear_secondary": "D:\\DOCUMENTS\\GitHub\\HUNTS\\HUNTS\\data_truth\\crosswalk_truth\\normalized\\black_bear_BR_2024_2025_2026_crosswalk.csv",
+    "boundary_id_to_hunt_code": "D:\\DOCUMENTS\\GitHub\\HUNTS\\HUNTS\\processed_data\\audits\\boundary_id_to_hunt_code_crosswalk_2026.csv",
+    "boundary_unit_fill": "D:\\DOCUMENTS\\GitHub\\HUNTS\\HUNTS\\processed_data\\hunt_boundary_crosswalk_2026_unit_fill_sources.csv",
+    "boundary_xlsx": "D:\\DOCUMENTS\\GitHub\\HUNTS\\HUNTS\\processed_data\\hunt_boundary_crosswalk_2026.xlsx",
+    "conservation_area": "D:\\DOCUMENTS\\GitHub\\HUNTS\\HUNTS\\processed_data\\conservation_area_crosswalk_2026.csv",
+    "current_historical_primary": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\data_truth\\crosswalk_truth\\normalized\\current_to_historical_hunt_code_crosswalk_2026.csv",
+    "current_historical_processed": "D:\\DOCUMENTS\\GitHub\\HUNTS\\HUNTS\\processed_data\\current_to_historical_hunt_code_crosswalk_2026.csv",
+    "historical_le_to_eb": "D:\\DOCUMENTS\\GitHub\\HUNTS\\HUNTS\\processed_data\\historical_le_to_eb_crosswalk_2024.csv",
+    "historical_retired": "D:\\DOCUMENTS\\GitHub\\HUNTS\\HUNTS\\processed_data\\hunt_boundary_crosswalk_historical_retired_codes.csv",
+    "model_year_crosswalk": "D:\\DOCUMENTS\\GitHub\\HUNTS\\HUNTS\\data_truth\\crosswalk_truth\\validation\\hunt_code_crosswalk_2024_pdf_to_2025_pdf_model_years.csv",
+    "model_year_dropped_review": "D:\\DOCUMENTS\\GitHub\\HUNTS\\HUNTS\\data_truth\\crosswalk_truth\\validation\\hunt_code_crosswalk_2024_pdf_to_2025_pdf_dropped_review.csv",
+    "remaining_boundary_closeout": "D:\\DOCUMENTS\\GitHub\\HUNTS\\HUNTS\\data_truth\\comparison_outputs\\validation\\remaining_2025_history_crosswalk_boundary_closeout.csv",
+    "retired_current": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\data_truth\\crosswalk_truth\\normalized\\retired_current_hunt_codes_2026.csv",
+    "runtime_boundary_draft": "D:\\DOCUMENTS\\GitHub\\HUNTS\\HUNTS\\data_model\\runtime_drafts\\hunt_boundary_crosswalk_v2.csv",
+    "same_code_promotions": "D:\\DOCUMENTS\\GitHub\\HUNTS\\HUNTS\\data_truth\\crosswalk_truth\\validation\\same_code_2025_pdf_crosswalk_active_promotions.csv"
+  },
+  "statewide_unlimited_rows": 2,
+  "unique_input_codes": 325,
+  "validation": {
+    "boundary_rule_note": "HIGH confidence is only assigned where source confidence was high or current boundary workbook confirmed the current code boundary.",
+    "no_database_values_modified": true,
+    "row_preserving_note": "Candidate table may contain multiple evidence rows per hunt code; manual table contains codes whose rollup still requires manual remap."
+  }
+}

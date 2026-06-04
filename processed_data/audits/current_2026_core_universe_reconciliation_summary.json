@@ -1,0 +1,56 @@
+{
+  "closed_rows": 1591,
+  "core_comparable_closed_count": 1024,
+  "created_at_utc": "2026-06-04T04:40:53+00:00",
+  "guardrail": "Audit only. DATABASE.csv was not modified.",
+  "include_in_core_comparable_2026_counts": {
+    "maybe": 95,
+    "no": 599,
+    "yes": 1024
+  },
+  "maybe_core_review_count": 95,
+  "outputs": {
+    "all_csv": "processed_data/audits/current_2026_core_universe_reconciliation.csv",
+    "closed_csv": "processed_data/audits/current_2026_core_universe_reconciliation_closed.csv",
+    "report_md": "docs/current_2026_core_universe_reconciliation.md",
+    "review_csv": "processed_data/audits/current_2026_core_universe_reconciliation_review.csv",
+    "summary_json": "processed_data/audits/current_2026_core_universe_reconciliation_summary.json"
+  },
+  "reconciled_bucket_counts": {
+    "CONFIRMED_2026_NEW_OR_OMITTED_DIRECT_SOURCE": 2,
+    "CORE_DRAW_RESULTS_CONTINUING": 1024,
+    "COUGAR_CURRENT_STATEWIDE_UNLIMITED_LAYER": 1,
+    "COUGAR_HISTORICAL_SPORTSMAN_ENDED": 1,
+    "CURRENT_PLANNER_EXTRA_REVIEW": 35,
+    "CURRENT_PLANNER_EXTRA_WITH_MULTI_SOURCE_PERMIT_SUPPORT": 10,
+    "DATABASE_REFERENCE_NOT_LIVE_TABLE": 30,
+    "HISTORICAL_LIBRARY_ONLY": 245,
+    "POSSIBLE_DROPPED_OR_NOT_EXPOSED_FROM_2025": 29,
+    "SEPARATE_CONSERVATION_LAYER": 28,
+    "SEPARATE_CWMU_CURRENT_PLANNER_LAYER": 9,
+    "SEPARATE_EXTENDED_ARCHERY_NO_QUOTA_LAYER": 1,
+    "SEPARATE_PRIVATE_LAND_LANDOWNER_LAYER": 282,
+    "SEPARATE_STATEWIDE_UNLIMITED_LAYER": 1,
+    "SEPARATE_TRIBAL_LAYER": 10,
+    "SPORTSMAN_CONTINUITY_LAYER_REVIEW": 10
+  },
+  "resolution_status_counts": {
+    "CLOSED_CORE": 1024,
+    "CLOSED_HISTORICAL": 246,
+    "CLOSED_SEPARATE_LAYER": 321,
+    "REVIEW": 127
+  },
+  "review_bucket_counts": {
+    "CONFIRMED_2026_NEW_OR_OMITTED_DIRECT_SOURCE": 2,
+    "CURRENT_PLANNER_EXTRA_REVIEW": 35,
+    "CURRENT_PLANNER_EXTRA_WITH_MULTI_SOURCE_PERMIT_SUPPORT": 10,
+    "DATABASE_REFERENCE_NOT_LIVE_TABLE": 30,
+    "POSSIBLE_DROPPED_OR_NOT_EXPOSED_FROM_2025": 29,
+    "SEPARATE_CONSERVATION_LAYER": 2,
+    "SEPARATE_CWMU_CURRENT_PLANNER_LAYER": 9,
+    "SPORTSMAN_CONTINUITY_LAYER_REVIEW": 10
+  },
+  "review_rows": 127,
+  "separate_or_excluded_count": 599,
+  "total_rows": 1718
+}

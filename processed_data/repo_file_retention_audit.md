@@ -1,0 +1,1341 @@
+# Repository File Retention Audit
+
+- Generated: `2026-05-23T15:34:06.365040+00:00`
+- Total repo file count: `7106`
+- Total repo size: `3997.983 MB`
+- Git metadata available: `True`
+
+## Action Counts
+
+- `CLOUDFLARE_R2_ARCHIVE_DATA`: `306`
+- `CLOUDFLARE_R2_RUNTIME_DATA`: `2989`
+- `DELETE_AFTER_BACKUP`: `394`
+- `KEEP_IN_GITHUB`: `1255`
+- `KEEP_IN_GITHUB_DOC_OR_SCHEMA`: `42`
+- `KEEP_IN_GITHUB_REBUILD_SCRIPT_OR_TEST`: `309`
+- `KEEP_IN_GITHUB_SMALL_CANONICAL_DATA`: `102`
+- `LOCAL_ARCHIVE_ONLY`: `914`
+- `ONLINE_STATIC_SITE`: `63`
+- `REVIEW_REQUIRED`: `732`
+
+## Size By Top-Level Directory
+
+- `processed_data`: `3391` files, `1630.993 MB`
+- `pipeline`: `1850` files, `1148.578 MB`
+- `data`: `491` files, `523.190 MB`
+- `data_model`: `268` files, `502.795 MB`
+- `data_truth`: `230` files, `137.021 MB`
+- `assets`: `30` files, `15.795 MB`
+- `canonical`: `18` files, `8.462 MB`
+- `hunt-master-canonical-2026.json`: `1` files, `6.666 MB`
+- `generated`: `4` files, `6.380 MB`
+- `point_ladder_view.csv`: `1` files, `2.740 MB`
+- `scripts`: `175` files, `1.904 MB`
+- `tests`: `381` files, `1.682 MB`
+- `hunt_prediction_sync_bundle.zip`: `1` files, `1.631 MB`
+- `engine`: `140` files, `1.595 MB`
+- `elk_hunts_grouped.json`: `1` files, `1.377 MB`
+- `elk_hunts_clean.json`: `1` files, `1.344 MB`
+- `hunt-master-canonical-2026.coverage.json`: `1` files, `1.004 MB`
+- `utah-hunt-planner-master-all.md.txt`: `1` files, `0.726 MB`
+- `hunt_master_canonical_2026_built.sqlite`: `1` files, `0.688 MB`
+- `hunt_database_foundation_dwr_aligned.sqlite`: `1` files, `0.676 MB`
+- `docs`: `24` files, `0.429 MB`
+- `hunt_history_2025_2026_dwr_aligned.csv`: `1` files, `0.378 MB`
+- `hunt_master_canonical_2026_built.csv`: `1` files, `0.350 MB`
+- `app.js`: `1` files, `0.213 MB`
+- `hunt_database_gaps.csv`: `1` files, `0.205 MB`
+- `favicon.ico`: `1` files, `0.144 MB`
+- `WORK_LOG.md`: `1` files, `0.132 MB`
+- `package-lock.json`: `1` files, `0.060 MB`
+- `hunt-research.js`: `1` files, `0.059 MB`
+- `hunt-research.js.bak`: `1` files, `0.058 MB`
+- `processed_data_hunt_database_2026_completeness_report.json`: `1` files, `0.053 MB`
+- `lib`: `8` files, `0.045 MB`
+- `research.html`: `1` files, `0.039 MB`
+- `.pytest_cache`: `5` files, `0.038 MB`
+- `hunt-research.txt`: `1` files, `0.036 MB`
+- `style.css`: `1` files, `0.035 MB`
+- `ui.js`: `1` files, `0.031 MB`
+- `header-layout.js`: `1` files, `0.027 MB`
+- `hard-copy.html`: `1` files, `0.026 MB`
+- `HYBRID_ML_V1.md`: `1` files, `0.025 MB`
+- `index.html`: `1` files, `0.024 MB`
+- `HYBRID_ML_V1_ROLLOUT.md`: `1` files, `0.023 MB`
+- `config.js`: `1` files, `0.021 MB`
+- `data.js`: `1` files, `0.020 MB`
+- `hard-data.html`: `1` files, `0.019 MB`
+- `verify.html`: `1` files, `0.018 MB`
+- `deer_2025_bonus_random_audit.csv`: `1` files, `0.017 MB`
+- `__pycache__`: `1` files, `0.016 MB`
+- `rebuild-engine-from-projection.js`: `1` files, `0.013 MB`
+- `boundary-resolver.js`: `1` files, `0.013 MB`
+- `schemas`: `7` files, `0.012 MB`
+- `map-engine.js`: `1` files, `0.010 MB`
+- `sync-upstream.js`: `1` files, `0.010 MB`
+- `AGENTS.MD`: `1` files, `0.010 MB`
+- `_exports`: `1` files, `0.009 MB`
+- `coverage.html`: `1` files, `0.009 MB`
+- `audit-normalized-staging.js`: `1` files, `0.007 MB`
+- `scrub-workbook.js`: `1` files, `0.007 MB`
+- `sleeper-report.js`: `1` files, `0.007 MB`
+- `google-basemap.js`: `1` files, `0.007 MB`
+- `coverage.js`: `1` files, `0.006 MB`
+- `build-coverage-matrix.js`: `1` files, `0.006 MB`
+- `catalog-raw-backups.js`: `1` files, `0.006 MB`
+- `export-data.js`: `1` files, `0.006 MB`
+- `extract-harvest-metrics.js`: `1` files, `0.005 MB`
+- `ENGINE_RULES_SPEC.md`: `1` files, `0.005 MB`
+- `scrub-pdf.js`: `1` files, `0.005 MB`
+- `audit_2026_completeness.js`: `1` files, `0.004 MB`
+- `engine_payload_manifest.json`: `1` files, `0.004 MB`
+- `apply-2026-supplements.js`: `1` files, `0.004 MB`
+- `event-handlers.js`: `1` files, `0.003 MB`
+- `certs`: `2` files, `0.003 MB`
+- `README_SYNC.md`: `1` files, `0.003 MB`
+- `package.json`: `1` files, `0.003 MB`
+- `server.js`: `1` files, `0.003 MB`
+- `sync_to_github.sh`: `1` files, `0.002 MB`
+- `Git Bash Here.lnk`: `1` files, `0.002 MB`
+- `uoga-analytics.js`: `1` files, `0.002 MB`
+- `config.local.js`: `1` files, `0.002 MB`
+- `HARVEST_AND_REPORT_YEAR_RULES.md`: `1` files, `0.001 MB`
+- `.gitattributes`: `1` files, `0.001 MB`
+- `.gitignore`: `1` files, `0.001 MB`
+- `Canonical JSON rules.md`: `1` files, `0.001 MB`
+- `sentry-browser-init.js`: `1` files, `0.001 MB`
+- `embed-mode.js`: `1` files, `0.001 MB`
+- `hunt-research.html`: `1` files, `0.001 MB`
+- `vetting.html`: `1` files, `0.001 MB`
+- `builder.html`: `1` files, `0.001 MB`
+- `UPLOAD_README.txt`: `1` files, `0.001 MB`
+- `LOCKED_CANONICAL_2026.md`: `1` files, `0.000 MB`
+- `launch-https-python.ps1`: `1` files, `0.000 MB`
+- `ownership-dock.js`: `1` files, `0.000 MB`
+- `manifest.json`: `1` files, `0.000 MB`
+- `launch-https-server.ps1`: `1` files, `0.000 MB`
+- `start-https-server.bat`: `1` files, `0.000 MB`
+- `deer_2025_bonus_random_summary.csv`: `1` files, `0.000 MB`
+- `CNAME`: `1` files, `0.000 MB`
+- `.nojekyll`: `1` files, `0.000 MB`
+
+## Largest 100 Files
+
+- `processed_data/point_ladder_view.csv`: `120.661 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `FRONTEND_FETCHED_DATA`
+- `data/hunt_boundaries_arcgis.json`: `84.029 MB`, `CLOUDFLARE_R2_ARCHIVE_DATA`, `LARGE_ARCHIVE_DATA`
+- `data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.geojson`: `83.110 MB`, `CLOUDFLARE_R2_ARCHIVE_DATA`, `LARGE_ARCHIVE_DATA`
+- `data/utah/official_downloads_2026/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson`: `83.110 MB`, `CLOUDFLARE_R2_ARCHIVE_DATA`, `LARGE_ARCHIVE_DATA`
+- `processed_data/statewide_composite_boundaries_2026.geojson`: `83.110 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `processed_data/hunt_truth_from_json.sqlite`: `81.516 MB`, `CLOUDFLARE_R2_ARCHIVE_DATA`, `SQLITE_ARCHIVE_PRIVATE`
+- `processed_data/draw_system_coverage_report.csv`: `74.917 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `data_truth/draw_results_truth/normalized/draw_results_long.csv`: `74.188 MB`, `CLOUDFLARE_R2_ARCHIVE_DATA`, `LARGE_ARCHIVE_DATA`
+- `data/utah/foundation_bundle_2026/utah_hunt_foundation_2026.sqlite`: `69.984 MB`, `CLOUDFLARE_R2_ARCHIVE_DATA`, `SQLITE_ARCHIVE_PRIVATE`
+- `processed_data/backups/permit_allocations_2026_20260523_082859/processed_data/point_ladder_view.csv`: `58.084 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `pipeline/RAW/hunt_unit_database/2026/csv/draw_results_database_alignment_outputs_V3/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv`: `56.621 MB`, `CLOUDFLARE_R2_ARCHIVE_DATA`, `LARGE_ARCHIVE_DATA`
+- `pipeline/RAW/hunt_unit_database/2026/csv/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED.csv`: `56.621 MB`, `CLOUDFLARE_R2_ARCHIVE_DATA`, `LARGE_ARCHIVE_DATA`
+- `pipeline/RAW/hunt_unit_database/2026/csv/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv`: `56.621 MB`, `CLOUDFLARE_R2_ARCHIVE_DATA`, `LARGE_ARCHIVE_DATA`
+- `pipeline/RAW/hunt_unit_database/2026/csv/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V2.csv`: `55.313 MB`, `CLOUDFLARE_R2_ARCHIVE_DATA`, `LARGE_ARCHIVE_DATA`
+- `processed_data/composite_hunt_unit_mapping_2026.geojson`: `52.370 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `processed_data/draw_reality_engine_backup_before_2024_import.csv`: `50.182 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `data_model/harvest_quality/ml_draw_predictions_with_harvest_features.csv`: `46.576 MB`, `CLOUDFLARE_R2_ARCHIVE_DATA`, `LARGE_ARCHIVE_DATA`
+- `data_model/harvest_quality/draw_reality_engine_predictive_with_harvest_features.csv`: `46.008 MB`, `CLOUDFLARE_R2_ARCHIVE_DATA`, `LARGE_ARCHIVE_DATA`
+- `processed_data/backups/current_year_allotment_overlay_20260523_071315/point_ladder_view.csv`: `45.708 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `data_model/runtime_drafts/mixed_predictive_engine_2026.predictions.csv`: `44.891 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `processed_data/ml_draw_predictions_v1.csv`: `44.891 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `FRONTEND_FETCHED_DATA`
+- `data_model/runtime_drafts/mixed_predictive_engine_2026.materialized.csv`: `44.324 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `processed_data/draw_reality_engine_predictive_v2.csv`: `44.324 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `FRONTEND_FETCHED_DATA`
+- `data_model/runtime_drafts/draw_reality_engine_v2.csv`: `42.785 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `processed_data/draw_reality_engine_v2.csv`: `42.785 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `data_model/runtime_drafts/point_ladder_view_v2.csv`: `41.236 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `processed_data/hunt_master_enriched.csv`: `34.970 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `FRONTEND_FETCHED_DATA`
+- `data_model/runtime_drafts/draw_reality_engine_v2_rows_added.csv`: `32.876 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `processed_data/backups/permit_allocations_2026_20260510_160357/processed_data/point_ladder_view.csv`: `31.540 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `processed_data/draw_reality_engine_WRONG_LADDER_BACKUP.csv`: `31.523 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `processed_data/backups/permit_allocations_2026_20260523_083028/processed_data/hunt_master_enriched.csv`: `30.618 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `processed_data/backups/permit_allocations_2026_20260523_082859/processed_data/hunt_master_enriched.csv`: `30.410 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `processed_data/hunt_research_2026.json`: `27.017 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `processed_data/backups/current_year_allotment_overlay_20260523_075802/ml_draw_predictions_v1.csv`: `24.844 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `processed_data/backups/current_year_allotment_overlay_20260523_080750/ml_draw_predictions_v1.csv`: `24.844 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `processed_data/backups/current_year_allotment_overlay_20260523_072611/ml_draw_predictions_v1.csv`: `24.647 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `processed_data/backups/current_year_allotment_overlay_20260523_075802/draw_reality_engine_predictive_v2.csv`: `24.276 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `processed_data/backups/current_year_allotment_overlay_20260523_080750/draw_reality_engine_predictive_v2.csv`: `24.276 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `processed_data/backups/current_year_allotment_overlay_20260523_072611/draw_reality_engine_predictive_v2.csv`: `24.084 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `data_model/harvest_quality/harvest_results_all_years_long.csv`: `23.729 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `data_truth/harvest_results_truth/normalized/harvest_results_all_years_long.csv`: `23.729 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `processed_data/harvest_results_all_years_long.csv`: `23.729 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `FRONTEND_FETCHED_DATA`
+- `data_model/validation/hunt_type_hunt_class_matrix_audit.csv`: `23.325 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `processed_data/backups/current_year_allotment_overlay_20260523_071315/hunt_master_enriched.csv`: `23.299 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `data_model/runtime_drafts/hunt_master_enriched_v2.csv`: `22.527 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.kml`: `21.478 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `processed_data/backups/current_year_allotment_overlay_20260523_071315/ml_draw_predictions_v1.csv`: `20.464 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `processed_data/backups/permit_allocations_2026_20260510_160357/processed_data/hunt_master_enriched.csv`: `20.333 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `data_model/runtime_drafts/point_ladder_view_v3.csv`: `20.116 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `processed_data/backups/current_year_allotment_overlay_20260523_071315/draw_reality_engine_predictive_v2.csv`: `19.902 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `processed_data/draw_reality_engine.csv`: `19.581 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `data_model/runtime_drafts/predictive_bonus_engine_2026.materialized.csv`: `18.209 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `data_model/runtime_drafts/predictive_bonus_engine_2026.predictions.csv`: `17.824 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `pipeline/RAW/hunt_unit_database/2026/csv/draw_results_long_cumulative_2025_draw_folder_CONTINUED.csv`: `17.631 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `processed_data/projected_bonus_draw_2026_simulated.csv`: `17.268 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `processed_data/backups/permit_allocations_2026_20260523_083028/processed_data/draw_reality_engine.csv`: `16.906 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `processed_data/backups/permit_allocations_2026_20260523_082859/processed_data/draw_reality_engine.csv`: `16.881 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `data_model/runtime_drafts/point_ladder_missing_columns_audit.csv`: `13.447 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `processed_data/draw_reality_view.csv`: `13.420 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `pipeline/RAW/hunt_unit_database/2025/pdf/harvest_report/24_bg_HARVEST_report.pdf`: `13.387 MB`, `LOCAL_ARCHIVE_ONLY`, `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/_quarantine/duplicates/exact_hash/1ACA3B7A__24_bg_report.pdf`: `13.387 MB`, `LOCAL_ARCHIVE_ONLY`, `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/_quarantine/duplicates/exact_hash/59403A95__24_bg_report.pdf`: `13.387 MB`, `LOCAL_ARCHIVE_ONLY`, `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/_quarantine/duplicates/exact_hash/803B2359__24_bg_report.pdf`: `13.387 MB`, `LOCAL_ARCHIVE_ONLY`, `RAW_SOURCE_ARCHIVE`
+- `data_model/runtime_drafts/mixed_predictive_engine_2026.audit.csv`: `12.752 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `processed_data/mixed_predictive_engine_2026_audit.csv`: `12.752 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `processed_data/backups/current_year_allotment_overlay_20260523_071315/draw_reality_engine.csv`: `12.717 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/2025 Big Game Draw Results.pdf`: `12.142 MB`, `LOCAL_ARCHIVE_ONLY`, `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/_quarantine/duplicates/exact_hash/25_bg-draw-results.pdf`: `12.142 MB`, `LOCAL_ARCHIVE_ONLY`, `RAW_SOURCE_ARCHIVE`
+- `processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-big-game-draw-results.pdf`: `12.142 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `pipeline/RAW/hunt_unit_database/2024/csv/draw_results_2023_for_2024_UPLOADED_COMBINED_long.csv`: `11.504 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `processed_data/hunt_decision_output.csv`: `10.887 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `processed_data/truth_downloads_comprehensive.sqlite`: `10.312 MB`, `CLOUDFLARE_R2_ARCHIVE_DATA`, `SQLITE_ARCHIVE_PRIVATE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/615cbcd5__Big game limited-entry &amp; once-in-a-lifetime draw results.pdf`: `10.081 MB`, `LOCAL_ARCHIVE_ONLY`, `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/21_bg-odds.pdf`: `10.081 MB`, `LOCAL_ARCHIVE_ONLY`, `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/22_bg_harvest_report.pdf`: `9.858 MB`, `LOCAL_ARCHIVE_ONLY`, `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2024/pdf/harvest_report/23_bg_report.pdf`: `9.858 MB`, `LOCAL_ARCHIVE_ONLY`, `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/_quarantine/duplicates/exact_hash/3748834F__23_bg_report.pdf`: `9.858 MB`, `LOCAL_ARCHIVE_ONLY`, `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/f4467d08__Big game limited-entry &amp; once-in-a-lifetime draw results.pdf`: `9.688 MB`, `LOCAL_ARCHIVE_ONLY`, `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/20_bg-odds.pdf`: `9.688 MB`, `LOCAL_ARCHIVE_ONLY`, `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2024/csv/draw_results_2023_for_2024_long.csv`: `9.685 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `data/utah-mule-deer-habitat.geojson`: `9.349 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `pipeline/RAW/hunt_unit_mapping/geojson/habitat/Utah_Mule_Deer_Habitat_3917895197660913537.geojson`: `9.349 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `data/utah-elk-habitat.geojson`: `9.044 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `pipeline/RAW/hunt_unit_mapping/geojson/habitat/Utah_Elk_Habitat_4997622948054316130.geojson`: `9.044 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `data_model/runtime_drafts/applicant_pool_2026_from_2025_actual.csv`: `8.763 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `processed_data/boundaries/5107.geojson`: `8.659 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `processed_data/model_outputs/draw_prediction_engine_v1.csv`: `8.475 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `pipeline/RAW/hunt_unit_database/2023/pdf/harvest_report/22_bg_report.pdf`: `8.344 MB`, `LOCAL_ARCHIVE_ONLY`, `RAW_SOURCE_ARCHIVE`
+- `data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.kmz`: `8.086 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `data/big_game_draw_point_level.csv`: `8.071 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `data/boundaries/kml/CG9999.kml`: `8.010 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `processed_data/hunt_research_2026_split/hunt_research_2026.index.json`: `7.805 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `processed_data/boundaries/5128.geojson`: `7.336 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `pipeline/RAW/hunt_unit_mapping/geojson/2026MuleDeerLimitedEntry2.geojson`: `7.271 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `processed_data/boundaries/5124.geojson`: `7.133 MB`, `CLOUDFLARE_R2_RUNTIME_DATA`, `LARGE_RUNTIME_DATA`
+- `pipeline/RAW/hunt_unit_database/2026/geojson/EB1011_from_kmz.geojson`: `7.058 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `pipeline/RAW/hunt_unit_database/2026/geojson/EB1005_from_kmz.geojson`: `6.861 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `data/boundaries/kml/EB1011.kml`: `6.790 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `pipeline/RAW/hunt_unit_database/2026/kmz/eb1011_doc.kml`: `6.790 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+- `hunt-master-canonical-2026.json`: `6.666 MB`, `REVIEW_REQUIRED`, `ROLE_UNCLEAR`
+
+## Tracked Files Over 25 MB
+
+- `data/hunt_boundaries_arcgis.json`: `84.029 MB`
+- `data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.geojson`: `83.110 MB`
+- `data/utah/foundation_bundle_2026/utah_hunt_foundation_2026.sqlite`: `69.984 MB`
+- `data/utah/official_downloads_2026/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson`: `83.110 MB`
+- `data_model/harvest_quality/draw_reality_engine_predictive_with_harvest_features.csv`: `46.008 MB`
+- `data_model/harvest_quality/ml_draw_predictions_with_harvest_features.csv`: `46.576 MB`
+- `data_model/runtime_drafts/draw_reality_engine_v2.csv`: `42.785 MB`
+- `data_model/runtime_drafts/draw_reality_engine_v2_rows_added.csv`: `32.876 MB`
+- `data_model/runtime_drafts/mixed_predictive_engine_2026.materialized.csv`: `44.324 MB`
+- `data_model/runtime_drafts/mixed_predictive_engine_2026.predictions.csv`: `44.891 MB`
+- `data_model/runtime_drafts/point_ladder_view_v2.csv`: `41.236 MB`
+- `data_truth/draw_results_truth/normalized/draw_results_long.csv`: `74.188 MB`
+- `processed_data/backups/current_year_allotment_overlay_20260523_071315/point_ladder_view.csv`: `45.708 MB`
+- `processed_data/backups/permit_allocations_2026_20260510_160357/processed_data/point_ladder_view.csv`: `31.540 MB`
+- `processed_data/backups/permit_allocations_2026_20260523_082859/processed_data/hunt_master_enriched.csv`: `30.410 MB`
+- `processed_data/backups/permit_allocations_2026_20260523_082859/processed_data/point_ladder_view.csv`: `58.084 MB`
+- `processed_data/backups/permit_allocations_2026_20260523_083028/processed_data/hunt_master_enriched.csv`: `30.618 MB`
+- `processed_data/composite_hunt_unit_mapping_2026.geojson`: `52.370 MB`
+- `processed_data/draw_reality_engine_backup_before_2024_import.csv`: `50.182 MB`
+- `processed_data/draw_reality_engine_predictive_v2.csv`: `44.324 MB`
+- `processed_data/draw_reality_engine_v2.csv`: `42.785 MB`
+- `processed_data/draw_reality_engine_WRONG_LADDER_BACKUP.csv`: `31.523 MB`
+- `processed_data/draw_system_coverage_report.csv`: `74.917 MB`
+- `processed_data/hunt_master_enriched.csv`: `34.970 MB`
+- `processed_data/hunt_research_2026.json`: `27.017 MB`
+- `processed_data/hunt_truth_from_json.sqlite`: `81.516 MB`
+- `processed_data/ml_draw_predictions_v1.csv`: `44.891 MB`
+- `processed_data/point_ladder_view.csv`: `120.661 MB`
+- `processed_data/statewide_composite_boundaries_2026.geojson`: `83.110 MB`
+
+## Tracked Files Over 100 MB
+
+- `processed_data/point_ladder_view.csv`: `120.661 MB`
+
+## Files Recommended For Cloudflare R2
+
+- `data/hunt_boundaries_arcgis.json` -> `archive/source/data/hunt_boundaries_arcgis.json`
+- `data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.geojson` -> `archive/source/data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.geojson`
+- `data/utah/foundation_bundle_2026/utah_hunt_foundation_2026.sqlite` -> `archive/source/data/utah/foundation_bundle_2026/utah_hunt_foundation_2026.sqlite`
+- `data/utah/official_downloads_2026/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson` -> `archive/source/data/utah/official_downloads_2026/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson`
+- `data_model/harvest_quality/draw_reality_engine_predictive_with_harvest_features.csv` -> `archive/source/data_model/harvest_quality/draw_reality_engine_predictive_with_harvest_features.csv`
+- `data_model/harvest_quality/ml_draw_predictions_with_harvest_features.csv` -> `archive/source/data_model/harvest_quality/ml_draw_predictions_with_harvest_features.csv`
+- `data_model/harvest_quality/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/utah_harvest_results_2021_for_2022.sqlite` -> `archive/source/data_model/harvest_quality/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/utah_harvest_results_2021_for_2022.sqlite`
+- `data_model/harvest_quality/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/utah_harvest_results_2022_for_2023.sqlite` -> `archive/source/data_model/harvest_quality/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/utah_harvest_results_2022_for_2023.sqlite`
+- `data_model/harvest_quality/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/utah_harvest_results_2023_all_species.sqlite` -> `archive/source/data_model/harvest_quality/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/utah_harvest_results_2023_all_species.sqlite`
+- `data_model/harvest_quality/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/utah_turkey_harvest_2023_24_for_2025.sqlite` -> `archive/source/data_model/harvest_quality/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/utah_turkey_harvest_2023_24_for_2025.sqlite`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/utah_harvest_results_2024_for_2025_black_bear_supplement.sqlite` -> `archive/source/data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/utah_harvest_results_2024_for_2025_black_bear_supplement.sqlite`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/utah_harvest_results_2024_for_2025.sqlite` -> `archive/source/data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/utah_harvest_results_2024_for_2025.sqlite`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_elk_age_supplement/utah_harvest_results_2024_for_2025_elk_age_supplement.sqlite` -> `archive/source/data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_elk_age_supplement/utah_harvest_results_2024_for_2025_elk_age_supplement.sqlite`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/utah_harvest_results_2024_for_2025_extra_oil_supplement.sqlite` -> `archive/source/data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/utah_harvest_results_2024_for_2025_extra_oil_supplement.sqlite`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_turkey_harvest_results_2023_24_for_2025_database/utah_turkey_harvest_2023_24_for_2025.sqlite` -> `archive/source/data_model/harvest_quality/raw_packages/2024_for_2025_turkey_harvest_results_2023_24_for_2025_database/utah_turkey_harvest_2023_24_for_2025.sqlite`
+- `data_model/harvest_quality/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/utah_turkey_harvest_2024_25_for_2026.sqlite` -> `archive/source/data_model/harvest_quality/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/utah_turkey_harvest_2024_25_for_2026.sqlite`
+- `data_model/harvest_quality/raw_packages/2025_for_2026_harvest_results_2025_for_2026_database/utah_harvest_results_2025_for_2026.sqlite` -> `archive/source/data_model/harvest_quality/raw_packages/2025_for_2026_harvest_results_2025_for_2026_database/utah_harvest_results_2025_for_2026.sqlite`
+- `data_model/harvest_quality/raw_packages/2025_for_2026_turkey_harvest_results_2024_25_for_2026_database/utah_turkey_harvest_2024_25_for_2026.sqlite` -> `archive/source/data_model/harvest_quality/raw_packages/2025_for_2026_turkey_harvest_results_2024_25_for_2026_database/utah_turkey_harvest_2024_25_for_2026.sqlite`
+- `data_model/harvest_quality/raw_packages/2026_for_2026_conservation_overlay_truth_2026_species_corrected/conservation_overlay_truth_2026_species_corrected.sqlite` -> `archive/source/data_model/harvest_quality/raw_packages/2026_for_2026_conservation_overlay_truth_2026_species_corrected/conservation_overlay_truth_2026_species_corrected.sqlite`
+- `data_model/harvest_quality/source_package_bundles/HUNTS_harvest_truth_and_overlay_packages_for_codex/conservation_overlay_truth_2026_species_corrected.zip` -> `archive/packages/conservation_overlay_truth_2026_species_corrected.zip`
+- `data_model/harvest_quality/source_package_bundles/HUNTS_harvest_truth_and_overlay_packages_for_codex/expo_hunt_code_reconciliation_user_corrected.zip` -> `archive/packages/expo_hunt_code_reconciliation_user_corrected.zip`
+- `data_model/harvest_quality/source_package_bundles/HUNTS_harvest_truth_and_overlay_packages_for_codex/full_joined_harvest_backcheck_conservation_annual_per_row_corrected.zip` -> `archive/packages/full_joined_harvest_backcheck_conservation_annual_per_row_corrected.zip`
+- `data_model/harvest_quality/source_package_bundles/HUNTS_harvest_truth_and_overlay_packages_for_codex/harvest_results_2021_for_2022_database.zip` -> `archive/packages/harvest_results_2021_for_2022_database.zip`
+- `data_model/harvest_quality/source_package_bundles/HUNTS_harvest_truth_and_overlay_packages_for_codex/harvest_results_2022_for_2023_database.zip` -> `archive/packages/harvest_results_2022_for_2023_database.zip`
+- `data_model/harvest_quality/source_package_bundles/HUNTS_harvest_truth_and_overlay_packages_for_codex/harvest_results_2023_all_species_database.zip` -> `archive/packages/harvest_results_2023_all_species_database.zip`
+- `data_model/harvest_quality/source_package_bundles/HUNTS_harvest_truth_and_overlay_packages_for_codex/harvest_results_2024_for_2025_black_bear_supplement.zip` -> `archive/packages/harvest_results_2024_for_2025_black_bear_supplement.zip`
+- `data_model/harvest_quality/source_package_bundles/HUNTS_harvest_truth_and_overlay_packages_for_codex/harvest_results_2024_for_2025_database.zip` -> `archive/packages/harvest_results_2024_for_2025_database.zip`
+- `data_model/harvest_quality/source_package_bundles/HUNTS_harvest_truth_and_overlay_packages_for_codex/harvest_results_2024_for_2025_elk_age_supplement.zip` -> `archive/packages/harvest_results_2024_for_2025_elk_age_supplement.zip`
+- `data_model/harvest_quality/source_package_bundles/HUNTS_harvest_truth_and_overlay_packages_for_codex/harvest_results_2024_for_2025_extra_oil_supplement.zip` -> `archive/packages/harvest_results_2024_for_2025_extra_oil_supplement.zip`
+- `data_model/harvest_quality/source_package_bundles/HUNTS_harvest_truth_and_overlay_packages_for_codex/harvest_results_2025_for_2026_database.zip` -> `archive/packages/harvest_results_2025_for_2026_database.zip`
+- `data_model/harvest_quality/source_package_bundles/HUNTS_harvest_truth_and_overlay_packages_for_codex/hunt_code_year_backcheck_outputs.zip` -> `archive/packages/hunt_code_year_backcheck_outputs.zip`
+- `data_model/harvest_quality/source_package_bundles/HUNTS_harvest_truth_and_overlay_packages_for_codex/turkey_harvest_results_2023_24_for_2025_database.zip` -> `archive/packages/turkey_harvest_results_2023_24_for_2025_database.zip`
+- `data_model/harvest_quality/source_package_bundles/HUNTS_harvest_truth_and_overlay_packages_for_codex/turkey_harvest_results_2024_25_for_2026_database.zip` -> `archive/packages/turkey_harvest_results_2024_25_for_2026_database.zip`
+- `data_model/runtime_drafts/applicant_pool_2026_from_2025_actual.csv` -> `runtime/2026/applicant_pool_2026_from_2025_actual.csv`
+- `data_model/runtime_drafts/draw_reality_engine_v2.csv` -> `runtime/2026/draw_reality_engine_v2.csv`
+- `data_model/runtime_drafts/draw_reality_engine_v2_manifest.json` -> `runtime/2026/draw_reality_engine_v2_manifest.json`
+- `data_model/runtime_drafts/draw_reality_engine_v2_rows_added.csv` -> `runtime/2026/draw_reality_engine_v2_rows_added.csv`
+- `data_model/runtime_drafts/draw_reality_engine_v2_schema_changes.csv` -> `runtime/2026/draw_reality_engine_v2_schema_changes.csv`
+- `data_model/runtime_drafts/draw_reality_engine_v2_validation_report.json` -> `runtime/2026/draw_reality_engine_v2_validation_report.json`
+- `data_model/runtime_drafts/draw_reality_engine_v2_vs_current_report.json` -> `runtime/2026/draw_reality_engine_v2_vs_current_report.json`
+- `data_model/runtime_drafts/hunt_boundary_crosswalk_v2.csv` -> `runtime/2026/hunt_boundary_crosswalk_v2.csv`
+- `data_model/runtime_drafts/hunt_master_enriched_v2.csv` -> `runtime/2026/hunt_master_enriched_v2.csv`
+- `data_model/runtime_drafts/mixed_predictive_engine_2026.audit.csv` -> `runtime/2026/mixed_predictive_engine_2026.audit.csv`
+- `data_model/runtime_drafts/mixed_predictive_engine_2026.materialized.csv` -> `runtime/2026/mixed_predictive_engine_2026.materialized.csv`
+- `data_model/runtime_drafts/mixed_predictive_engine_2026.predictions.csv` -> `runtime/2026/mixed_predictive_engine_2026.predictions.csv`
+- `data_model/runtime_drafts/mixed_predictive_engine_2026.summary.json` -> `runtime/2026/mixed_predictive_engine_2026.summary.json`
+- `data_model/runtime_drafts/permits_2026_online.csv` -> `runtime/2026/permits_2026_online.csv`
+- `data_model/runtime_drafts/point_ladder_missing_columns_audit.csv` -> `runtime/2026/point_ladder_missing_columns_audit.csv`
+- `data_model/runtime_drafts/point_ladder_view_v2.csv` -> `runtime/2026/point_ladder_view_v2.csv`
+- `data_model/runtime_drafts/point_ladder_view_v3.csv` -> `runtime/2026/point_ladder_view_v3.csv`
+- `data_model/runtime_drafts/point_ladder_view_v3_validation_report.json` -> `runtime/2026/point_ladder_view_v3_validation_report.json`
+- `data_model/runtime_drafts/point_ladder_view_v3_vs_current.csv` -> `runtime/2026/point_ladder_view_v3_vs_current.csv`
+- `data_model/runtime_drafts/predictive_bonus_engine_2026.audit.csv` -> `runtime/2026/predictive_bonus_engine_2026.audit.csv`
+- `data_model/runtime_drafts/predictive_bonus_engine_2026.materialized.csv` -> `runtime/2026/predictive_bonus_engine_2026.materialized.csv`
+- `data_model/runtime_drafts/predictive_bonus_engine_2026.predictions.csv` -> `runtime/2026/predictive_bonus_engine_2026.predictions.csv`
+- `data_model/runtime_drafts/runtime_feed_sync_report.json` -> `runtime/2026/runtime_feed_sync_report.json`
+- `data_model/runtime_drafts/runtime_feed_sync_summary.csv` -> `runtime/2026/runtime_feed_sync_summary.csv`
+- `data_truth/draw_results_truth/normalized/draw_results_long.csv` -> `archive/source/data_truth/draw_results_truth/normalized/draw_results_long.csv`
+- `data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_quality_features_by_hunt_code_2021_for_2022.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_quality_features_by_hunt_code_2021_for_2022.csv`
+- `data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_all_long.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_all_long.csv`
+- `data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_antlerless_deer.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_antlerless_deer.csv`
+- `data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_antlerless_elk.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_antlerless_elk.csv`
+- `data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_bison.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_bison.csv`
+- `data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_black_bear.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_black_bear.csv`
+- `data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_database_report.json` -> `archive/reports/harvest_results_2021_for_2022_database_report.json`
+- `data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_database_report.md` -> `archive/reports/harvest_results_2021_for_2022_database_report.md`
+- `data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_deer.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_deer.csv`
+- `data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_desert_bighorn_sheep.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_desert_bighorn_sheep.csv`
+- `data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_elk.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_elk.csv`
+- `data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_hunt_code_keyed.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_hunt_code_keyed.csv`
+- `data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_moose.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_moose.csv`
+- `data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_mountain_goat.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_mountain_goat.csv`
+- `data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_pronghorn.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_pronghorn.csv`
+- `data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_rocky_mountain_bighorn_sheep.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_rocky_mountain_bighorn_sheep.csv`
+- `data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_summary.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_summary.csv`
+- `data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/utah_harvest_results_2021_for_2022.sqlite` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/utah_harvest_results_2021_for_2022.sqlite`
+- `data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_quality_features_by_hunt_code_2022_for_2023.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_quality_features_by_hunt_code_2022_for_2023.csv`
+- `data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_all_long.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_all_long.csv`
+- `data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_antlerless.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_antlerless.csv`
+- `data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_black_bear.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_black_bear.csv`
+- `data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_cougar.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_cougar.csv`
+- `data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_database_report.json` -> `archive/reports/harvest_results_2022_for_2023_database_report.json`
+- `data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_database_report.md` -> `archive/reports/harvest_results_2022_for_2023_database_report.md`
+- `data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_hunt_code_keyed.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_hunt_code_keyed.csv`
+- `data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_le_oial_all.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_le_oial_all.csv`
+- `data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_summary.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_summary.csv`
+- `data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/utah_harvest_results_2022_for_2023.sqlite` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/utah_harvest_results_2022_for_2023.sqlite`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_location_hunt_code_crosswalk_2023_bighorn_sheep.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_location_hunt_code_crosswalk_2023_bighorn_sheep.csv`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_quality_features_bighorn_by_hunt_code_2023.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_quality_features_bighorn_by_hunt_code_2023.csv`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_quality_features_by_hunt_code_all_species_2023.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_quality_features_by_hunt_code_all_species_2023.csv`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_all_species_database_report.json` -> `archive/reports/harvest_results_2023_all_species_database_report.json`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_all_species_database_report.md` -> `archive/reports/harvest_results_2023_all_species_database_report.md`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_all_species_hunt_success_long.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_all_species_hunt_success_long.csv`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_bighorn_sheep_hunt_success_aggregate.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_bighorn_sheep_hunt_success_aggregate.csv`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_bighorn_sheep_measurements_crosswalked.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_bighorn_sheep_measurements_crosswalked.csv`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_BISON_hunt_success.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_BISON_hunt_success.csv`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_DEER_hunt_success.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_DEER_hunt_success.csv`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_DESERT_BIGHORN_SHEEP_hunt_success.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_DESERT_BIGHORN_SHEEP_hunt_success.csv`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_ELK_hunt_success.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_ELK_hunt_success.csv`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_MOOSE_hunt_success.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_MOOSE_hunt_success.csv`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_MOUNTAIN_GOAT_hunt_success.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_MOUNTAIN_GOAT_hunt_success.csv`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_PRONGHORN_hunt_success.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_PRONGHORN_hunt_success.csv`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_ROCKY_MOUNTAIN_BIGHORN_SHEEP_hunt_success.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_ROCKY_MOUNTAIN_BIGHORN_SHEEP_hunt_success.csv`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_species_summary.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_species_summary.csv`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/utah_harvest_results_2023_all_species.sqlite` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/utah_harvest_results_2023_all_species.sqlite`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/turkey_harvest_results_2023_24_for_2025_all_long.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/turkey_harvest_results_2023_24_for_2025_all_long.csv`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/turkey_harvest_results_2023_24_for_2025_report.json` -> `archive/reports/turkey_harvest_results_2023_24_for_2025_report.json`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/turkey_harvest_results_2023_24_for_2025_report.md` -> `archive/reports/turkey_harvest_results_2023_24_for_2025_report.md`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/turkey_harvest_results_2023_24_for_2025_summary.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/turkey_harvest_results_2023_24_for_2025_summary.csv`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/turkey_hunt_code_keyed_2024_for_2025.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/turkey_hunt_code_keyed_2024_for_2025.csv`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/turkey_quality_features_2023_24_for_2025.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/turkey_quality_features_2023_24_for_2025.csv`
+- `data_truth/harvest_results_truth/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/utah_turkey_harvest_2023_24_for_2025.sqlite` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/utah_turkey_harvest_2023_24_for_2025.sqlite`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_harvest_objective_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_harvest_objective_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_hunt_code_harvest_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_hunt_code_harvest_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_pursuit_by_unit_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_pursuit_by_unit_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_restricted_pursuit_annual.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_restricted_pursuit_annual.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_restricted_pursuit_by_unit_season_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_restricted_pursuit_by_unit_season_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_statewide_harvest_mortality_2001_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_statewide_harvest_mortality_2001_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_statewide_history_1967_2000.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_statewide_history_1967_2000.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_statewide_pursuit_2002_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_statewide_pursuit_2002_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_supplement_report.json` -> `archive/reports/black_bear_supplement_report.json`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_supplement_report.md` -> `archive/reports/black_bear_supplement_report.md`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_supplement_summary.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_supplement_summary.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_unit_harvest_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_unit_harvest_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_unit_mortality_history_1990_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_unit_mortality_history_1990_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/harvest_quality_features_black_bear_2024_for_2025.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/harvest_quality_features_black_bear_2024_for_2025.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/harvest_results_2024_for_2025_all_long_enhanced_v3.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/harvest_results_2024_for_2025_all_long_enhanced_v3.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/harvest_results_2024_for_2025_black_bear_supplement_long.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/harvest_results_2024_for_2025_black_bear_supplement_long.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/utah_harvest_results_2024_for_2025_black_bear_supplement.sqlite` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/utah_harvest_results_2024_for_2025_black_bear_supplement.sqlite`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_quality_features_by_hunt_code_2024_for_2025.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_quality_features_by_hunt_code_2024_for_2025.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_results_2024_for_2025_all_long.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_results_2024_for_2025_all_long.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_results_2024_for_2025_database_report.json` -> `archive/reports/harvest_results_2024_for_2025_database_report.json`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_results_2024_for_2025_database_report.md` -> `archive/reports/harvest_results_2024_for_2025_database_report.md`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_results_2024_for_2025_hunt_code_keyed.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_results_2024_for_2025_hunt_code_keyed.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_results_2024_for_2025_source_inventory.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_results_2024_for_2025_source_inventory.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_results_2024_for_2025_summary.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_results_2024_for_2025_summary.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_unit_trend_rows_2024_for_2025.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_unit_trend_rows_2024_for_2025.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_ANTLERLESS_DEER.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_ANTLERLESS_DEER.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_ANTLERLESS_ELK.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_ANTLERLESS_ELK.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_BISON.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_BISON.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_BLACK_BEAR.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_BLACK_BEAR.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_DESERT_BIGHORN_SHEEP.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_DESERT_BIGHORN_SHEEP.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_ELK.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_ELK.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_MOOSE.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_MOOSE.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_MOUNTAIN_GOAT.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_MOUNTAIN_GOAT.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_MULE_DEER.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_MULE_DEER.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_PRONGHORN.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_PRONGHORN.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_ROCKY_MOUNTAIN_BIGHORN_SHEEP.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_ROCKY_MOUNTAIN_BIGHORN_SHEEP.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/utah_harvest_results_2024_for_2025.sqlite` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/utah_harvest_results_2024_for_2025.sqlite`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_elk_age_supplement/big_game_oil_hunt_number_harvest_supplement_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_elk_age_supplement/big_game_oil_hunt_number_harvest_supplement_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_elk_age_supplement/elk_average_age_limited_entry_units_2015_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_elk_age_supplement/elk_average_age_limited_entry_units_2015_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_elk_age_supplement/elk_general_season_harvest_additional_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_elk_age_supplement/elk_general_season_harvest_additional_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_elk_age_supplement/harvest_quality_features_elk_age_2024_for_2025.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_elk_age_supplement/harvest_quality_features_elk_age_2024_for_2025.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_elk_age_supplement/harvest_results_2024_for_2025_all_long_enhanced.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_elk_age_supplement/harvest_results_2024_for_2025_all_long_enhanced.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_elk_age_supplement/harvest_results_2024_for_2025_elk_age_supplement_report.json` -> `archive/reports/harvest_results_2024_for_2025_elk_age_supplement_report.json`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_elk_age_supplement/harvest_results_2024_for_2025_elk_age_supplement_report.md` -> `archive/reports/harvest_results_2024_for_2025_elk_age_supplement_report.md`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_elk_age_supplement/utah_harvest_results_2024_for_2025_elk_age_supplement.sqlite` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_elk_age_supplement/utah_harvest_results_2024_for_2025_elk_age_supplement.sqlite`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/bison_oial_hunt_harvest_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/bison_oial_hunt_harvest_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/bison_statewide_1950_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/bison_statewide_1950_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/desert_bighorn_hunt_harvest_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/desert_bighorn_hunt_harvest_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/desert_bighorn_ram_harvest_by_unit_2015_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/desert_bighorn_ram_harvest_by_unit_2015_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/desert_bighorn_statewide_1967_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/desert_bighorn_statewide_1967_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/desert_bighorn_trend_count_by_unit_2015_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/desert_bighorn_trend_count_by_unit_2015_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/harvest_quality_features_extra_oil_2024_for_2025.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/harvest_quality_features_extra_oil_2024_for_2025.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/harvest_results_2024_for_2025_all_long_enhanced_v2.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/harvest_results_2024_for_2025_all_long_enhanced_v2.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/harvest_results_2024_for_2025_extra_goat_bison_desert_sheep_long.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/harvest_results_2024_for_2025_extra_goat_bison_desert_sheep_long.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/harvest_results_2024_for_2025_extra_oil_supplement_report.json` -> `archive/reports/harvest_results_2024_for_2025_extra_oil_supplement_report.json`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/harvest_results_2024_for_2025_extra_oil_supplement_report.md` -> `archive/reports/harvest_results_2024_for_2025_extra_oil_supplement_report.md`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/mountain_goat_billy_harvest_by_unit_2015_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/mountain_goat_billy_harvest_by_unit_2015_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/mountain_goat_hunt_harvest_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/mountain_goat_hunt_harvest_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/mountain_goat_nanny_harvest_by_unit_2015_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/mountain_goat_nanny_harvest_by_unit_2015_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/utah_harvest_results_2024_for_2025_extra_oil_supplement.sqlite` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_harvest_results_2024_for_2025_extra_oil_supplement/utah_harvest_results_2024_for_2025_extra_oil_supplement.sqlite`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_results_2023_24_for_2025_all_long.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_results_2023_24_for_2025_all_long.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_results_2023_24_for_2025_report.json` -> `archive/reports/turkey_harvest_results_2023_24_for_2025_report.json`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_results_2023_24_for_2025_report.md` -> `archive/reports/turkey_harvest_results_2023_24_for_2025_report.md`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_results_2023_24_for_2025_summary.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_results_2023_24_for_2025_summary.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_hunt_code_keyed_2024_for_2025.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_hunt_code_keyed_2024_for_2025.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_quality_features_2023_24_for_2025.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_quality_features_2023_24_for_2025.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2025_turkey_harvest_results_2023_24_for_2025_database/utah_turkey_harvest_2023_24_for_2025.sqlite` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2025_turkey_harvest_results_2023_24_for_2025_database/utah_turkey_harvest_2023_24_for_2025.sqlite`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_fall_management_2024_by_region_area.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_fall_management_2024_by_region_area.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_fall_management_statewide_history_2014_2024.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_fall_management_statewide_history_2014_2024.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_general_season_statewide_history_2010_2025.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_general_season_statewide_history_2010_2025.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_all_long.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_all_long.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_report.json` -> `archive/reports/turkey_harvest_results_2024_25_for_2026_report.json`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_report.md` -> `archive/reports/turkey_harvest_results_2024_25_for_2026_report.md`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_summary.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_summary.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_hunt_code_keyed_2025_for_2026.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_hunt_code_keyed_2025_for_2026.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_limited_entry_cwmu_statewide_history_1991_2025.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_limited_entry_cwmu_statewide_history_1991_2025.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_quality_features_2024_25_for_2026.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_quality_features_2024_25_for_2026.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_spring_general_season_2025_by_region_county.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_spring_general_season_2025_by_region_county.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_spring_limited_entry_cwmu_2025_by_hunt.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_spring_limited_entry_cwmu_2025_by_hunt.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_youth_general_season_2025_by_region_county.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/turkey_youth_general_season_2025_by_region_county.csv`
+- `data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/utah_turkey_harvest_2024_25_for_2026.sqlite` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2024_for_2026_turkey_harvest_results_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_database/utah_turkey_harvest_2024_25_for_2026.sqlite`
+- `data_truth/harvest_results_truth/raw_packages/2025_for_2026_harvest_results_2025_for_2026_database/harvest_quality_features_by_hunt_code_2025_for_2026.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2025_for_2026_harvest_results_2025_for_2026_database/harvest_quality_features_by_hunt_code_2025_for_2026.csv`
+- `data_truth/harvest_results_truth/raw_packages/2025_for_2026_harvest_results_2025_for_2026_database/harvest_results_2025_for_2026_all_long.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2025_for_2026_harvest_results_2025_for_2026_database/harvest_results_2025_for_2026_all_long.csv`
+- `data_truth/harvest_results_truth/raw_packages/2025_for_2026_harvest_results_2025_for_2026_database/harvest_results_2025_for_2026_BISON_hunt_success.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2025_for_2026_harvest_results_2025_for_2026_database/harvest_results_2025_for_2026_BISON_hunt_success.csv`
+- `data_truth/harvest_results_truth/raw_packages/2025_for_2026_harvest_results_2025_for_2026_database/harvest_results_2025_for_2026_database_report.json` -> `archive/reports/harvest_results_2025_for_2026_database_report.json`
+- `data_truth/harvest_results_truth/raw_packages/2025_for_2026_harvest_results_2025_for_2026_database/harvest_results_2025_for_2026_database_report.md` -> `archive/reports/harvest_results_2025_for_2026_database_report.md`
+- `data_truth/harvest_results_truth/raw_packages/2025_for_2026_harvest_results_2025_for_2026_database/harvest_results_2025_for_2026_DEER_hunt_success.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2025_for_2026_harvest_results_2025_for_2026_database/harvest_results_2025_for_2026_DEER_hunt_success.csv`
+- `data_truth/harvest_results_truth/raw_packages/2025_for_2026_harvest_results_2025_for_2026_database/harvest_results_2025_for_2026_DESERT_BIGHORN_SHEEP_hunt_success.csv` -> `archive/source/data_truth/harvest_results_truth/raw_packages/2025_for_2026_harvest_results_2025_for_2026_database/harvest_results_2025_for_2026_DESERT_BIGHORN_SHEEP_hunt_success.csv`
+
+## Files Recommended For GitHub
+
+- `.nojekyll`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `_exports/current_year_permit_numbers_patch_candidates_157.csv`: `SMALL_PROJECT_FILE`
+- `AGENTS.MD`: `DOC_OR_SCHEMA`
+- `app.js`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `apply-2026-supplements.js`: `SMALL_PROJECT_FILE`
+- `assets/backgrounds/ELK-LICENSE-PLATE-PAGE.png`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/backgrounds/tan topo.png`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/backgrounds/topo-black-white-line-001.jpg`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/backgrounds/topo-black-white-line.jpg`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/backgrounds/topo-black-with-hills.jpg`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/backgrounds/topo15_edited_edited.jpg`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/backgrounds/White Topo 20.jpg`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/backgrounds/White Topo 21.jpg`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/backgrounds/topo-black-white-line.jpg`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/backgrounds/topo-black-with-hills.jpg`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/backgrounds/White Topo 20.jpg`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/backgrounds/White Topo 21.jpg`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/blm.png`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/DWR-CWMU-LOGO.png`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/DWR-DWR-LOGO.PNG`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/DWR-LOGO-maps.png`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/DWR-LOGO-TEXT.png`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/DWR-LOGO.png`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/DWR-LOGO.SHIELD.png`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/DWR-WMA.LOGO.png`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/ELK-LICENSE-PLATE-PAGE.png`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/favicon.ico.png`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/google-maps-logo.png`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/google_earth_logo.png`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/sitla.png`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/state-parks.png`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/tan-topo.png`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/UOGA-LOGO-CIRCLE.png`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/usfs.png`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `assets/logos/WILDLIFE-LOGO.png`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `audit-normalized-staging.js`: `SMALL_PROJECT_FILE`
+- `audit_2026_completeness.js`: `SMALL_PROJECT_FILE`
+- `boundary-resolver.js`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `build-coverage-matrix.js`: `SMALL_PROJECT_FILE`
+- `builder.html`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `Canonical JSON rules.md`: `DOC_OR_SCHEMA`
+- `canonical/boundary-id-alignment-reconcile-2026-20260508_143652.json`: `SMALL_CANONICAL_JSON`
+- `canonical/boundary-id-alignment-reconcile-2026-20260508_143854.json`: `SMALL_CANONICAL_JSON`
+- `canonical/canonical-field-usage-map.json`: `SMALL_CANONICAL_JSON`
+- `canonical/canonical-rebuild-coverage.json`: `SMALL_CANONICAL_JSON`
+- `canonical/composite-synthetic-boundary-id-assign-2026-20260508_144635.json`: `SMALL_CANONICAL_JSON`
+- `canonical/data-drop-audit-report.json`: `SMALL_CANONICAL_JSON`
+- `canonical/eb3038-ladder-debug-report.json`: `SMALL_CANONICAL_JSON`
+- `canonical/four-page-canonical-coverage.json`: `SMALL_CANONICAL_JSON`
+- `canonical/hard-copies-2026.json`: `SMALL_CANONICAL_JSON`
+- `canonical/hunt-planner-2026.json`: `FRONTEND_CANONICAL_DATA_REFERENCE`
+- `canonical/hunt-research-2026.json`: `SMALL_CANONICAL_JSON`
+- `canonical/outfitter-verification-2026.json`: `SMALL_CANONICAL_JSON`
+- `canonical/permit-allocation-2026-integrity-report.json`: `SMALL_CANONICAL_JSON`
+- `canonical/runtime-preservation-matrix.json`: `SMALL_CANONICAL_JSON`
+- `canonical/shared-2026.json`: `SMALL_CANONICAL_JSON`
+- `canonical/spin-off-cleanup-phase2-final-manifest-20260508.json`: `SMALL_CANONICAL_JSON`
+- `canonical/spin-off-cleanup-promotion-20260508.json`: `SMALL_CANONICAL_JSON`
+- `canonical/spin-off-fragment-assembly-20260508.json`: `SMALL_CANONICAL_JSON`
+- `catalog-raw-backups.js`: `SMALL_PROJECT_FILE`
+- `CNAME`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `config.js`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `config.local.js`: `SMALL_PROJECT_FILE`
+- `coverage.html`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `coverage.js`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `data.js`: `LIVE_WEBSITE_SHELL_OR_ASSET`
+- `data/2026PronghornLimitedEntry_-6120172427821280967.txt`: `SMALL_PROJECT_FILE`
+- `data/annual_report_key_metrics.csv`: `SMALL_PROJECT_FILE`
+- `data/big_game_draw_hunt_totals.csv`: `SMALL_PROJECT_FILE`
+- `data/bighorn_sheep_hunt_table_official.json`: `SMALL_PROJECT_FILE`
+- `data/bison_hunt_table_official.json`: `SMALL_PROJECT_FILE`
+- `data/black_bear_bonus_point_purchases.csv`: `SMALL_PROJECT_FILE`
+- `data/black_bear_hunt_table_official.json`: `SMALL_PROJECT_FILE`
+- `data/conservation-permit-areas.json`: `SMALL_PROJECT_FILE`
+- `data/conservation-permit-hunt-table-2025-27-audit.json`: `SMALL_PROJECT_FILE`
+- `data/conservation-permit-hunt-table-2025-27-summary.json`: `SMALL_PROJECT_FILE`
+- `data/conservation-permit-hunt-table-2025-27.csv`: `SMALL_PROJECT_FILE`
+- `data/conservation-permit-hunt-table-2025-27.html`: `SMALL_PROJECT_FILE`
+- `data/conservation-permit-hunt-table-2025-27.json`: `SMALL_PROJECT_FILE`
+- `data/conservation-permit-workbook-2025-27-raw.csv`: `SMALL_PROJECT_FILE`
+- `data/conservation-permit-workbook-2025-27-raw.json`: `SMALL_PROJECT_FILE`
+- `data/conservation-permit-workbook-2025-27-summary.json`: `SMALL_PROJECT_FILE`
+- `data/cougar_hunt_table_official.json`: `SMALL_PROJECT_FILE`
+- `data/dwr-GetCWMUBoundaries.json`: `SMALL_PROJECT_FILE`
+- `data/elk_antlerless_hunt_table_official.json`: `SMALL_PROJECT_FILE`
+- `data/elk_hunt_table_official.json`: `SMALL_PROJECT_FILE`
+- `data/hunt-master-canonical-2026-database-candidate.csv`: `SMALL_PROJECT_FILE`
+- `data/hunt-master-canonical-2026-database-candidate.json`: `SMALL_PROJECT_FILE`
+- `data/hunt-master-canonical-2026-database-candidate_added_codes.csv`: `SMALL_PROJECT_FILE`
+- `data/hunt-master-canonical-2026-database-candidate_report.json`: `SMALL_PROJECT_FILE`
+- `data/hunt-master-canonical-2026-database-candidate_validation.json`: `SMALL_PROJECT_FILE`
+- `data/hunt-master-canonical-2026-database_duplicate_codes_review.csv`: `SMALL_PROJECT_FILE`
+- `data/hunt-master-canonical-2026-foundation.csv`: `SMALL_PROJECT_FILE`
+- `data/hunt-master-canonical-2026-foundation.json`: `SMALL_PROJECT_FILE`
+- `data/hunt-master-canonical-2026-historical-le-to-eb-crosswalk.csv`: `SMALL_PROJECT_FILE`
+- `data/hunt-master-canonical-2026-historical-le-to-eb-crosswalk.json`: `SMALL_PROJECT_FILE`
+- `data/hunt-master-canonical-2026-historical-retired-codes.csv`: `SMALL_PROJECT_FILE`
+- `data/hunt-master-canonical-2026-historical-retired-codes.json`: `SMALL_PROJECT_FILE`
+- `data/hunt-master-canonical-2026-source-of-truth.csv`: `SMALL_PROJECT_FILE`
+- `data/hunt-master-canonical-2026-source-of-truth.json`: `SMALL_PROJECT_FILE`
+- `data/hunt-unit-authority-review-register-2026-03-28.html`: `SMALL_PROJECT_FILE`
+- `data/hunt-unit-permit-checklist-2026-03-28.html`: `SMALL_PROJECT_FILE`
+- `data/logo-sourcing-approved.json`: `SMALL_PROJECT_FILE`
+- `data/moose_hunt_table_official.json`: `SMALL_PROJECT_FILE`
+- `data/mountain_goat_hunt_table_official.json`: `SMALL_PROJECT_FILE`
+- `data/outfitters-master.json`: `SMALL_PROJECT_FILE`
+- `data/outfitters-public.json`: `SMALL_PROJECT_FILE`
+- `data/outfitters.json`: `SMALL_PROJECT_FILE`
+- `data/pronghorn_hunt_table_official.json`: `SMALL_PROJECT_FILE`
+- `data/turkey_hunt_table_official.json`: `SMALL_PROJECT_FILE`
+- `data/uoga-outfitter-review-checklist-template-2026-03-28.html`: `SMALL_PROJECT_FILE`
+- `data/utah/fixtures/draw_reality_engine.csv`: `SMALL_PROJECT_FILE`
+- `data/utah/foundation_bundle_2026/manifest.json`: `SMALL_PROJECT_FILE`
+- `data/utah/foundation_bundle_2026/utah_hunt_codes_canonical_2026.csv`: `SMALL_PROJECT_FILE`
+- `data/utah/official_downloads_2026/download_manifest.json`: `SMALL_PROJECT_FILE`
+- `data/utah/official_downloads_2026/hunt_master_canonical_2026.csv`: `SMALL_PROJECT_FILE`
+- `data/utah/sportsman/sportsman_odds_2025.csv`: `SMALL_PROJECT_FILE`
+- `data/Utah_Big_Game_Hunt_Boundaries_2025_elk.csv`: `SMALL_PROJECT_FILE`
+- `data/Utah_Big_Game_Hunt_Boundaries_deer.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/harvest_feature_model_by_hunt_code_2026.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/harvest_feature_model_by_species_year.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/harvest_quality_features_all_years_by_hunt_code.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_quality_features_by_hunt_code_2021_for_2022.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_all_long.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_antlerless_deer.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_antlerless_elk.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_bison.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_black_bear.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_database_report.json`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_database_report.md`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_deer.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_desert_bighorn_sheep.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_elk.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_hunt_code_keyed.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_moose.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_mountain_goat.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_pronghorn.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_rocky_mountain_bighorn_sheep.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2021_for_2022_harvest_results_2021_for_2022_database/harvest_results_2021_for_2022_summary.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_quality_features_by_hunt_code_2022_for_2023.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_all_long.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_antlerless.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_black_bear.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_cougar.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_database_report.json`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_database_report.md`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_hunt_code_keyed.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_le_oial_all.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2022_for_2023_harvest_results_2022_for_2023_database/harvest_results_2022_for_2023_summary.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_location_hunt_code_crosswalk_2023_bighorn_sheep.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_quality_features_bighorn_by_hunt_code_2023.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_quality_features_by_hunt_code_all_species_2023.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_all_species_database_report.json`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_all_species_database_report.md`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_all_species_hunt_success_long.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_bighorn_sheep_hunt_success_aggregate.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_bighorn_sheep_measurements_crosswalked.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_BISON_hunt_success.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_DEER_hunt_success.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_DESERT_BIGHORN_SHEEP_hunt_success.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_ELK_hunt_success.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_MOOSE_hunt_success.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_MOUNTAIN_GOAT_hunt_success.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_PRONGHORN_hunt_success.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_ROCKY_MOUNTAIN_BIGHORN_SHEEP_hunt_success.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_species_summary.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/turkey_harvest_results_2023_24_for_2025_all_long.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/turkey_harvest_results_2023_24_for_2025_report.json`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/turkey_harvest_results_2023_24_for_2025_report.md`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/turkey_harvest_results_2023_24_for_2025_summary.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/turkey_hunt_code_keyed_2024_for_2025.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2023_for_2025_turkey_harvest_results_2023_24_for_2025_database/turkey_harvest_reports_2023_24_for_2025_database/turkey_quality_features_2023_24_for_2025.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_harvest_objective_2024.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_hunt_code_harvest_2024.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_pursuit_by_unit_2024.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_restricted_pursuit_annual.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_restricted_pursuit_by_unit_season_2024.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_statewide_harvest_mortality_2001_2024.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_statewide_history_1967_2000.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_statewide_pursuit_2002_2024.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_supplement_report.json`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_supplement_report.md`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_supplement_summary.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_unit_harvest_2024.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/black_bear_unit_mortality_history_1990_2024.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/harvest_quality_features_black_bear_2024_for_2025.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/harvest_results_2024_for_2025_all_long_enhanced_v3.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_black_bear_supplement/harvest_results_2024_for_2025_black_bear_supplement_long.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_quality_features_by_hunt_code_2024_for_2025.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_results_2024_for_2025_all_long.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_results_2024_for_2025_database_report.json`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_results_2024_for_2025_database_report.md`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_results_2024_for_2025_hunt_code_keyed.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_results_2024_for_2025_source_inventory.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_results_2024_for_2025_summary.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/harvest_unit_trend_rows_2024_for_2025.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_ANTLERLESS_DEER.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_ANTLERLESS_ELK.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_BISON.csv`: `SMALL_PROJECT_FILE`
+- `data_model/harvest_quality/raw_packages/2024_for_2025_harvest_results_2024_for_2025_database/species/harvest_results_2024_for_2025_BLACK_BEAR.csv`: `SMALL_PROJECT_FILE`
+
+## Files Recommended For Local Archive
+
+- `pipeline/RAW/hunt_unit_database/2013/pdf/harvest_report/04F508BD__2013_all_species_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2013/pdf/harvest_report/1400385D__2013_moose_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2013/pdf/harvest_report/31B5012A__2013_mg_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2013/pdf/harvest_report/3C5A3350__2013_rmbs_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2013/pdf/harvest_report/58DF2D11__2013_gs_deer_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2013/pdf/harvest_report/8949AE45__2013_le_elk_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2013/pdf/harvest_report/8995B15E__2013_bison_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2013/pdf/harvest_report/BA46974B__2013_le_pronghorn_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2013/pdf/harvest_report/FA55B0D7__2013_le_deer_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2013/pdf/harvest_report/FB91F4A9__2013_dbs_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/0AD0E19F__escalante_bighorn_2014.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/0B284939__baretop_bighorn_2014.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/20175C2A__dirtydevil_bighorn_2014.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/3A23A26F__2014_gs_deer_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/586D15F7__sheepcreek_bighorn_2014.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/5C01A46D__westdaggett_redcanyon_bighorn_2014.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/5DAFBD36__southsanjuan_bighorn_2014.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/5E74FC14__avintaquin_bighorn_2014.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/62B883FF__2014_all_species_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/6A5A0322__northsanjuan_bighorn_2014.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/6AE90682__sanjuanriver_bighorn_2014.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/737D4E27__pinevalley_bighorn_2014.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/94140BEF__pilotmtn_bighorn_2014.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/9DBED702__2014_antlerless_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/A5C79130__lasalpotash_bighorn_2014.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/A72F6F1C__lockhart_bighorn_2014.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/B1FCCFD7__henrys_littlerockies_bighorn_2014.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/B41D81A1__newfoundland_bighorn_2014.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/D04E792F__2014_bhs_data.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2014/pdf/harvest_report/DB693FA5__goslinmtn_bighorn_2014.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2015/pdf/harvest_report/1592232F__NorthSlopeBaretop_bighorn_2015.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2015/pdf/harvest_report/20569E3D__SouthSanRafael_bighorn_2015.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2015/pdf/harvest_report/23C2211D__2015_antlerless_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2015/pdf/harvest_report/251794EF__2015_gs_deer_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2015/pdf/harvest_report/2CB58436__2015_BHS_Data.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2015/pdf/harvest_report/4F8E24C8__OquirrhStansburyBighorn_2015.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2015/pdf/harvest_report/60DAB81C__NorthSlopeSheepCreek_bighorn_2015.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2015/pdf/harvest_report/6744AEA9__NorthSanRafael_bighorn_2015.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2015/pdf/harvest_report/8CD72257__WasatchMtnsWest_bighorn_2015.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2015/pdf/harvest_report/94CBE76A__CentralMtnsNebo_bighorn_2015.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2015/pdf/harvest_report/9D3EBB50__Zion_bighorn_2015.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2015/pdf/harvest_report/9FB2707A__NorthSlopeGoslinMtn_bighorn_2015.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2015/pdf/harvest_report/D8032F87__NorthSlopeRedCanyon_bighorn_2015.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2015/pdf/harvest_report/E8CF3BEA__2015_le_oial_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2015/pdf/harvest_report/EA6B4005__KaiparowitsEastWest_bighorn_2015.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2016/pdf/harvest_report/11D93CAD__2016_n_slope_w_daggett_sheep_creek_bh.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2016/pdf/harvest_report/1414A3B6__2016_san_rafael_dirty_devil_bg.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2016/pdf/harvest_report/25AAAC37__2016_box_elder_newfoundlands_bh.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2016/pdf/harvest_report/2B13F427__2016_pine_valley_bighorn.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2016/pdf/harvest_report/4B2B58E6__Box_Elder_Newfoundland_bighorn_2016.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2016/pdf/harvest_report/4B871A48__2016_le_oial_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2016/pdf/harvest_report/6B279CB4__2016_henrys_little_rockies_rattlesnake_bh.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2016/pdf/harvest_report/82A75C66__2016_gs_deer_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2016/pdf/harvest_report/942386DD__2016_n_slope_three_corners_bh.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2016/pdf/harvest_report/B21D6549__2016_bhs_harvest_data.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2016/pdf/harvest_report/B564C9EC__2016_book_cliffs_rattlesnake_bh.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2016/pdf/harvest_report/CA218DB8__2016_n_slope_w_daggett_red_canyon_bh.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2016/pdf/harvest_report/CBEBFE8C__2016_nine_mile_range_creek_bh.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2016/pdf/harvest_report/F6DB57FB__2016_antlerless_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2016/pdf/harvest_report/FD22B2D9__2016_n_slope_three_corners_goslin_bh.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/043488DC__2017_le_oial_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/0FE6BFCA__2017_gs_deer_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/17E33C4D__2017-LaSalPotash_bighorn.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/50D4A2A1__2017-OakCreek_bighorn.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/6AECF376__2017-bighorn_harvest.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/9C65D960__2017-SanJuanLockhart_bighorn.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/B37EDE43__2017-KaiparowitsEscalante_bighorn.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/DA57FA0D__2017_antlerless_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/E0B518C9__2017-SanJuanNorth_bighorn.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/E58C632D__2017-SanJuanSouth_bighorn.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/E6D3F0AB__2017-SanJuanRiver_bighorn.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2018/pdf/harvest_report/11339B18__2018-kaiparowits.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2018/pdf/harvest_report/17C7BBEA__2018-zion.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2018/pdf/harvest_report/2BBB0C1A__2018-north-slope-red-canyon.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2018/pdf/harvest_report/2DC08B69__2018-north-slope-sheep-creek.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2018/pdf/harvest_report/39C8D045__2018-north-slope-bare-top.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2018/pdf/harvest_report/5362D4A1__2018-san-rafael-south.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2018/pdf/harvest_report/58B665E2__2018-wasatch-west.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2018/pdf/harvest_report/714AD5F1__2018-north-slope-hoop-lake.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2018/pdf/harvest_report/998F5948__2018-harvest-data.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2018/pdf/harvest_report/9AA76DD4__2018-central-mtns-nebo.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2018/pdf/harvest_report/9F5340DF__2018-north-slope-goslin.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2018/pdf/harvest_report/ECDA0F1D__2018_le_oial_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2018/pdf/harvest_report/F157C927__2018-san-rafael-north.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2018/pdf/harvest_report/F3F82840__2018_gs_deer_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2018/pdf/harvest_report/F5CE0D15__2018_antlerless_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2019/pdf/harvest_report/21F05C54__2019-nine-mile-range-creek.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2019/pdf/harvest_report/494E8D81__2019_antlerless_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2019/pdf/harvest_report/4B03444B__2019-book-cliffs-rattlesnake.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2019/pdf/harvest_report/53131416__2019-oquirrh-stansbury.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2019/pdf/harvest_report/9AB7DD4C__2019-san-juan-north.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2019/pdf/harvest_report/AF2F3783__2019-san-rafael-dirty-devil.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2019/pdf/harvest_report/CB027DE6__2019-henry-mountains.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2019/pdf/harvest_report/D0579D88__2019-harvest-data.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2019/pdf/harvest_report/E3B82D73__2019_gs_deer_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2019/pdf/harvest_report/F4D5A08B__2019-box-elder-newfoundland.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2019/pdf/harvest_report/F64065F0__2019-fillmore-oak-creek.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2019/pdf/harvest_report/F9A1C29D__2019_le_oial_all.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2019/pdf/harvest_report/FF6C99FD__2019-pine-valley.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/24b2f6b3__Lifetime general-season deer draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/3f05ae15__Youth draw-only elk bonus point draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/5213601e__turkey_2020_turkey_bonus_points_draw_results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/68991b97__turkey_2020_youth_turkey_draw_results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/a0ccd01f__Dedicated Hunter deer draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/b6518e1c__Youth Dedicated Hunter deer draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/c4a9d67b__Youth antlerless big game draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/d30a80bb__Antlerless big game draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/dff7fc92__cougar_Drawing odds.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/e7b234c1__Youth general-season deer draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/f4467d08__Big game limited-entry &amp; once-in-a-lifetime draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/fd3c3903__Sportsman draw odds report.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/fddbc9d7__General-season buck deer draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/0461C97A__2020_le_oial_all.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/0B112A6A__2020_antlerless_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/0b5ca51c__Limited-entry and once-in-a-lifetime species.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/2020A1B2__conservation_permit_report_2023.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/3D2221CC__2020-central-mtns-nebo.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/4275246d__Antlerless big game.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/4C032162__2020-harvest-data.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/71A9E811__2020-north-slope-red-canyon.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/847a57a8__mixed_2020-21.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/8D421406__2020_gs_buck_deer_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/8EA9424D__2020-la-sal-potash.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/97AF213E__2020-north-slope-goslin-mtn.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/a34306f2__bear_2020.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/a7d1d7ba__cougar_2020.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/ABA2F9C3__2020-san-juan-north.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/AD0B9A6E__2020-kaiparowits-escalante.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/AEF83DEF__2020-wasatch-mtns-west.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/bd5fef65__2020.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/C939DB7B__2020-north-slope-bare-top.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/D4C661D9__2020-san-juan-south.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/DED44DA9__2020-san-juan-river.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/e38eeb18__General-season buck deer.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/EC6B4470__2020-san-juan-lockhart.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/F30B053D__2020-north-slope-sheep-creek.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/20-21_sportsman_odds.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/20_antlerless_drawing_odds_report.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/20_bg-odds.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/20_deer_odds.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/20_dh_odds.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/20_drawing_odds.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/20_lifetime_deer.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/20_youth_antlerless_drawing_odds_report.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/20_youth_bull_elk.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/20_youth_deer.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/20_youth_dh_odds.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/2a192910__Lifetime general-season deer draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/3b691218__Youth Dedicated Hunter deer draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/3deb930b__turkey_2021_youth_turkey_draw_results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/615cbcd5__Big game limited-entry &amp; once-in-a-lifetime draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/80165f60__cougar_Drawing odds.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/85bae871__Dedicated Hunter deer draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/897696d1__Youth antlerless big game draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/97ffae94__black_bear_20_drawing_odds.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/98e761bc__Youth general-season deer draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/9a7a35aa__Youth draw-only elk bonus point draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/b4710a7f__black_bear_21_drawing_odds.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/baa2fb5d__turkey_2021_turkey_bonus_points_draw_results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/c4618029__General-season buck deer draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/ea19f723__Antlerless big game draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/ffa5e57f__Sportsman draw odds report.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/03E16E00__2021-north-slope-red-canyon.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/043E31A3__2021-north-slope-bare-top.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/1AAF42C7__2021-san-rafael-north.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/20_bg_harvest_report.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/20_bg_report.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/20_black_bear_report.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/22_bg_harvest_report.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/22_black_bear_report.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/2795C467__2021_gs_buck_deer_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/2A5894B9__2021_antlerless_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/5a118f11__General-season buck deer.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/5a24be8c__Limited-entry and once-in-a-lifetime species.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/62474ddf__bear_2021.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/670BA679__2021-north-slope-sheep-creek.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/6ACC2AEA__2021_le_oial_all.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/77105EC4__2021-box-elder-newfoundland-mtn.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/7AA56ADB__2021-north-slope-goslin-mtn.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/84EA3C5A__2021_antlerless_hr.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/86C2219B__2021-stansbury.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/8817544e__cougar_2021.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/9F8E4D0B__2021-kaiparowits-east-west.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/a62a6cbd__mixed_2021-22.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/ABB95D60__2021-harvest-data.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/b03e968a__2021.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/B7C6169F__2021-box-elder-pilot-mtn.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/D014E894__2021-san-rafael-south.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/E8ECB6F8__2021-zion.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/e8ee2db2__Antlerless big game.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/2021 Antlerless Draw Results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/2021 Bear Draw Results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/2021 Big game limited-entry once-in-a-lifetime draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/2021 General-season buck deer draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/2021 Lifetime general-season deer draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/2021 Youth Dedicated Hunter deer draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/2021 Youth general-season deer draw results.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/21-22_sportsman_odds.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/21_bg-odds.pdf`: `RAW_SOURCE_ARCHIVE`
+- `pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/21_deer_odds.pdf`: `RAW_SOURCE_ARCHIVE`
+
+## Files Recommended Delete-After-Backup
+
+- `.pytest_cache/.gitignore`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `.pytest_cache/CACHEDIR.TAG`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `.pytest_cache/README.md`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `.pytest_cache/v/cache/lastfailed`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `.pytest_cache/v/cache/nodeids`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `__pycache__/extract_permits.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/__pycache__/__init__.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/__init__.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/backtest.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/calibration.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/constants.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/current_year_allotments.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/decision_score.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/demand.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/features.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/forecast_demand.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/forecast_permits.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/materialize.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/materialize_engine.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/models.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/point_ladder_pool.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/quality_score.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/quota_forecast.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/quotas.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/rebuild.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/rules.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/schema.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/simulate_bonus_draw.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/simulator.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/truth_source_promotion.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/validation.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/__pycache__/validators.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/quality/__pycache__/build_promoted_source_manifests.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/quality/__pycache__/build_promoted_source_year_map.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/quality/__pycache__/harvest_feature_model.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/quality/__pycache__/inventory_raw_pdfs.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah/quality/__pycache__/materialize_harvest_feature_model.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_bonus_predictive/__pycache__/__init__.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_bonus_predictive/__pycache__/backtest.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_bonus_predictive/__pycache__/cohort_forecast.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_bonus_predictive/__pycache__/forecast.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_bonus_predictive/__pycache__/ingest_draw_results.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_bonus_predictive/__pycache__/materialize.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_bonus_predictive/__pycache__/monte_carlo.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_bonus_predictive/__pycache__/normalize.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_bonus_predictive/__pycache__/quota_forecast.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_bonus_predictive/__pycache__/rules.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_bonus_predictive/__pycache__/schemas.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_bonus_predictive/__pycache__/split.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_draw_predictive/__pycache__/__init__.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_draw_predictive/__pycache__/availability_review.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_draw_predictive/__pycache__/bear.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_draw_predictive/__pycache__/bonus.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_draw_predictive/__pycache__/classifier.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_draw_predictive/__pycache__/coverage.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_draw_predictive/__pycache__/database_hunt_code_model_gap.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_draw_predictive/__pycache__/dedicated_hunter.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_draw_predictive/__pycache__/exclusions.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_draw_predictive/__pycache__/mountain_lion.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_draw_predictive/__pycache__/preference_antlerless.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_draw_predictive/__pycache__/preference_general_deer.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_draw_predictive/__pycache__/private_lands_antlerless_elk.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_draw_predictive/__pycache__/random_only.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_draw_predictive/__pycache__/special_bonus.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_draw_predictive/__pycache__/sportsman.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_draw_predictive/__pycache__/turkey.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_draw_predictive/__pycache__/youth.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_predictive_mixed/__pycache__/__init__.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_predictive_mixed/__pycache__/backtest.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_predictive_mixed/__pycache__/harvest_features.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_predictive_mixed/__pycache__/materialize.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_predictive_mixed/__pycache__/mixed_probability.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_predictive_mixed/__pycache__/models.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_predictive_mixed/__pycache__/prior_year.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_predictive_mixed/__pycache__/quota.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `engine/utah_predictive_mixed/__pycache__/rollover.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `hunt-research.js.bak`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/append_elk_general_season_otc_to_2024_permits_fixed.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/apply-current-year-permit-allotments.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/audit-2023-harvest-supplements.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/audit-harvest-results-database-final.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/audit-repo-file-retention.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/backfill_draw_results_2021_2024.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/build-all-rac-permit-database-compare.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/build-all-years-harvest-database.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/build-database-publish-readiness-report.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/build_2024_engine_hard_data_truth_source.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/build_composite_hunt_unit_mapping_geojson.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/build_comprehensive_draw_results_2024.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/build_comprehensive_harvest_results_2024.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/build_formatted_hunt_unit_workbooks.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/build_mapping_artifacts_from_canonical.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/build_mixed_predictive_engine_2026.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/build_predictive_bonus_engine_v1.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/build_runtime_draw_feed_v2.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/build_runtime_support_drafts_v2.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/clean_draw_reality.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/clean_elk.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/compare-antlerless-elk-allotments.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/compare-canonical-hunt-database.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/compare-complete-2023-harvest-to-draw.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/extract-conservation-permits-2026.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/extract_2024_antlerless_draw_odds_and_compare.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/extract_2024_elk_antlerless_by_unit.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/extract_2024_elk_antlerless_general_season.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/extract_2024_elk_average_age_harvest.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/extract_2024_elk_by_unit.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/extract_2024_limited_entry_elk_harvest.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/extract_24_bg_species_master_pages.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/extract_draw_reality.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/extract_elk.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/extract_elk_general_season_2024.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/extract_elk_harvest_bundle_2024.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/extract_pages_from_24_bg_report2_final.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/extract_permits.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/extract_statewide_mule_deer_harvest_history.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/fill_hunt_codes_elk_extracts_2024.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/format_hunt_table_documents.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/group_pages_from_bg_report_2.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/https_server.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/import-harvest-packages-to-truth.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/import_rac_recommended_permits_2026.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/materialize_predictive_outputs.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/normalize-draw-family-labels.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/parse-harvest-pdf-careful.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/process_draw_odds_folder_2024.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/promote-2025-draw-permits-to-runtime.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/promote-2025-draw-results-permits.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/promote-rac-current-year-allotments-to-database.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/python extract_elk.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/reconcile-2025-permits-prior-generation.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/reextract_bg_report_target_tables_strict.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/remap_2024_elk_general_season_codes.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/remove-ambiguous-permits-year-columns.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/remove-empty-database-columns.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/split_management_unit_deer_harvest_2024.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/split_pages_from_bg_report_for_review.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/split_pages_from_bg_report_sections_adobe.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/submit_to_engine.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/sync-catalog-surfaces-to-1411.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/sync_online_runtime_from_predictive.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/update_hunt_boundary_crosswalk_units.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `scripts/__pycache__/validate_ingestion.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/__pycache__/__init__.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/__pycache__/test_bonus_draw_simulator.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/__pycache__/test_engine_schema.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/__pycache__/test_extract_permits.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/__pycache__/test_extract_permits.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/__pycache__/test_utah_rules.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/__init__.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/conftest.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/conftest.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_2025_draw_permit_field_promotion.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_2025_draw_permit_field_promotion.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_all_years_harvest_database.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_all_years_harvest_database.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_backtest_metrics.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_backtest_metrics.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_bonus_draw_simulator.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_bonus_draw_simulator.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_current_year_permit_allotments.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_current_year_permit_allotments.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_demand_baseline.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_demand_baseline.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_draw_family_labels.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_draw_family_labels.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_draw_order.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_draw_order.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_draw_system_classification.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_draw_system_classification.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_frontend_probability_selection.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_frontend_probability_selection.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_group_applications.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_group_applications.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_materialized_csv_contract.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_materialized_csv_contract.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_online_runtime_crosscheck.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_online_runtime_crosscheck.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_point_ladder_pool_display.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_point_ladder_pool_display.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_preference_draw_simulator.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_preference_draw_simulator.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_quota_resolver.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_quota_resolver.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_rebuild_fixture_pipeline.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_rebuild_fixture_pipeline.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_repo_file_retention_audit.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_repo_file_retention_audit.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_residency_crossover.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_residency_crossover.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_truth_source_promotion.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_truth_source_promotion.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_youth_pool.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah/__pycache__/test_youth_pool.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah_bonus_predictive/__pycache__/test_backtest_smoke.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah_bonus_predictive/__pycache__/test_backtest_smoke.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah_bonus_predictive/__pycache__/test_bear_phase12_correction_materialization.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah_bonus_predictive/__pycache__/test_bear_phase12_correction_materialization.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah_bonus_predictive/__pycache__/test_eb3024_fixture.cpython-312-pytest-9.0.3.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+- `tests/utah_bonus_predictive/__pycache__/test_eb3024_fixture.cpython-312.pyc`: `CACHE_TEMP_OR_EMPTY_ARTIFACT`
+
+## Review-Required Files
+
+- `.gitattributes`: `0.001 MB, `ROLE_UNCLEAR`
+- `.gitignore`: `0.001 MB, `ROLE_UNCLEAR`
+- `certs/localhost.crt`: `0.001 MB, `ROLE_UNCLEAR`
+- `certs/localhost.key`: `0.002 MB, `ROLE_UNCLEAR`
+- `data/2026BisonOnce_in_a_Lifetime2_SHAPE/aa7b7a.cpg`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026BisonOnce_in_a_Lifetime2_SHAPE/aa7b7a.dbf`: `0.006 MB, `ROLE_UNCLEAR`
+- `data/2026BisonOnce_in_a_Lifetime2_SHAPE/aa7b7a.prj`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026BisonOnce_in_a_Lifetime2_SHAPE/aa7b7a.shp`: `0.273 MB, `ROLE_UNCLEAR`
+- `data/2026BisonOnce_in_a_Lifetime2_SHAPE/aa7b7a.shx`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime SHAPE/a5a178.cpg`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime SHAPE/a5a178.dbf`: `0.017 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime SHAPE/a5a178.prj`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime SHAPE/a5a178.shp`: `0.571 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime SHAPE/a5a178.shx`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000001.gdbindexes`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000001.gdbtable`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000001.gdbtablx`: `0.005 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000001.TablesByName.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000002.gdbtable`: `0.002 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000002.gdbtablx`: `0.005 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000003.gdbindexes`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000003.gdbtable`: `0.001 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000003.gdbtablx`: `0.005 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000004.CatItemsByPhysicalName.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000004.CatItemsByType.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000004.FDO_UUID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000004.gdbindexes`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000004.gdbtable`: `0.006 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000004.gdbtablx`: `0.005 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000004.horizon`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000004.spx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000005.CatItemTypesByName.atx`: `0.012 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000005.CatItemTypesByParentTypeID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000005.CatItemTypesByUUID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000005.gdbindexes`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000005.gdbtable`: `0.002 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000005.gdbtablx`: `0.005 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000006.CatRelsByDestinationID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000006.CatRelsByOriginID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000006.CatRelsByType.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000006.FDO_UUID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000006.gdbindexes`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000006.gdbtable`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000006.gdbtablx`: `0.005 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000007.CatRelTypesByBackwardLabel.atx`: `0.012 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000007.CatRelTypesByDestItemTypeID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000007.CatRelTypesByForwardLabel.atx`: `0.012 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000007.CatRelTypesByName.atx`: `0.012 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000007.CatRelTypesByOriginItemTypeID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000007.CatRelTypesByUUID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000007.gdbindexes`: `0.001 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000007.gdbtable`: `0.003 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000007.gdbtablx`: `0.005 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000009.EditingTemplatesByDatasetGUID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000009.EditingTemplatesByName.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000009.EditingTemplatesByType.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000009.FDO_GlobalID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000009.gdbindexes`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000009.gdbtable`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a00000009.gdbtablx`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a0000000a.EditingTemplateRelsByDestinationID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a0000000a.EditingTemplateRelsByOriginID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a0000000a.EditingTemplateRelsByType.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a0000000a.gdbindexes`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a0000000a.gdbtable`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a0000000a.gdbtablx`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a0000000b.gdbindexes`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a0000000b.gdbtable`: `0.240 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a0000000b.gdbtablx`: `0.005 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a0000000b.horizon`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a0000000b.spx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a0000000c.gdbindexes`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a0000000c.gdbtable`: `0.009 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/a0000000c.gdbtablx`: `0.005 MB, `ROLE_UNCLEAR`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/gdb`: `0.000 MB, `UNKNOWN_EXTENSION_OR_SHORTCUT`
+- `data/2026MountainGoatOnce_in_a_Lifetime2 GEO DATA/eb8470f3-73a0-4156-bf4d-bf9debb03b2d.gdb/timestamps`: `0.000 MB, `UNKNOWN_EXTENSION_OR_SHORTCUT`
+- `data/2026MountainGoatOnce_in_a_Lifetime2_.KMZ`: `0.543 MB, `ROLE_UNCLEAR`
+- `data/big_game_draw_point_level.csv`: `8.071 MB, `ROLE_UNCLEAR`
+- `data/blm-surface-ownership-shapefile`: `0.000 MB, `UNKNOWN_EXTENSION_OR_SHORTCUT`
+- `data/boundaries/kml/BI1000.kml`: `0.487 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/BR1000.kml`: `5.071 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/BR1007.kml`: `3.976 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/CG9999.kml`: `8.010 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/DB0007.kml`: `3.806 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/DB0008.kml`: `0.726 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/EA2000.kml`: `0.792 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/EB1000.kml`: `3.727 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/EB1002.kml`: `3.380 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/EB1003.kml`: `3.411 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/EB1004.kml`: `3.411 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/EB1005.kml`: `6.602 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/EB1007.kml`: `3.302 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/EB1009.kml`: `3.411 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/EB1010.kml`: `3.380 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/EB1011.kml`: `6.790 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/EB1012.kml`: `0.353 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/EB3128.kml`: `0.026 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/EX1000.kml`: `0.421 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/GO1000.kml`: `1.393 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/MB1000.kml`: `1.865 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/PB1000.kml`: `5.155 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/RS0001.kml`: `1.368 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/TK1001.kml`: `0.222 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/TK1019.kml`: `0.016 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/TK1020.kml`: `0.362 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kml/TK1022.kml`: `0.061 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/BI1000.kmz`: `0.187 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/BR1000.kmz`: `1.939 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/BR1007.kmz`: `1.520 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/CG9999.kmz`: `3.035 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/DB0007.kmz`: `1.445 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/DB0008.kmz`: `0.275 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/EA2000.kmz`: `0.302 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/EB1000.kmz`: `1.424 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/EB1002.kmz`: `1.280 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/EB1003.kmz`: `1.306 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/EB1004.kmz`: `1.306 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/EB1005.kmz`: `2.508 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/EB1007.kmz`: `1.255 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/EB1009.kmz`: `1.306 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/EB1010.kmz`: `1.280 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/EB1011.kmz`: `2.579 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/EB1012.kmz`: `0.133 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/EB3128.kmz`: `0.011 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/EX1000.kmz`: `0.160 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/GO1000.kmz`: `0.530 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/MB1000.kmz`: `0.712 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/PB1000.kmz`: `1.964 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/RS0001.kmz`: `0.525 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/TK1001.kmz`: `0.086 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/TK1019.kmz`: `0.006 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/TK1020.kmz`: `0.139 MB, `ROLE_UNCLEAR`
+- `data/boundaries/kmz/TK1022.kmz`: `0.023 MB, `ROLE_UNCLEAR`
+- `data/cwmu-boundaries-shapefile`: `0.000 MB, `UNKNOWN_EXTENSION_OR_SHORTCUT`
+- `data/cwmu-boundaries.geojson`: `1.713 MB, `ROLE_UNCLEAR`
+- `data/GENERAL BULL ELK SHAPE/ac70c8.cpg`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/GENERAL BULL ELK SHAPE/ac70c8.dbf`: `0.035 MB, `ROLE_UNCLEAR`
+- `data/GENERAL BULL ELK SHAPE/ac70c8.prj`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/GENERAL BULL ELK SHAPE/ac70c8.shp`: `1.388 MB, `ROLE_UNCLEAR`
+- `data/GENERAL BULL ELK SHAPE/ac70c8.shx`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/hunt-boundaries-lite.geojson`: `4.083 MB, `ROLE_UNCLEAR`
+- `data/hunt-boundaries-shapefile`: `0.000 MB, `UNKNOWN_EXTENSION_OR_SHORTCUT`
+- `data/hunt-master-canonical-2026-source-of-truth.xlsx`: `0.344 MB, `ROLE_UNCLEAR`
+- `data/hunt_boundaries.geojson`: `4.083 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_-2965368397397759606.geojson`: `0.496 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_-416225797007074243.kmz`: `0.197 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_-9038420874631206616.xlsx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000001.gdbindexes`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000001.gdbtable`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000001.gdbtablx`: `0.005 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000001.TablesByName.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000002.gdbtable`: `0.002 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000002.gdbtablx`: `0.005 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000003.gdbindexes`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000003.gdbtable`: `0.001 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000003.gdbtablx`: `0.005 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000004.CatItemsByPhysicalName.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000004.CatItemsByType.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000004.FDO_UUID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000004.gdbindexes`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000004.gdbtable`: `0.014 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000004.gdbtablx`: `0.005 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000004.horizon`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000004.spx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000005.CatItemTypesByName.atx`: `0.012 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000005.CatItemTypesByParentTypeID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000005.CatItemTypesByUUID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000005.gdbindexes`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000005.gdbtable`: `0.002 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000005.gdbtablx`: `0.005 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000006.CatRelsByDestinationID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000006.CatRelsByOriginID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000006.CatRelsByType.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000006.FDO_UUID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000006.gdbindexes`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000006.gdbtable`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000006.gdbtablx`: `0.005 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000007.CatRelTypesByBackwardLabel.atx`: `0.012 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000007.CatRelTypesByDestItemTypeID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000007.CatRelTypesByForwardLabel.atx`: `0.012 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000007.CatRelTypesByName.atx`: `0.012 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000007.CatRelTypesByOriginItemTypeID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000007.CatRelTypesByUUID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000007.gdbindexes`: `0.001 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000007.gdbtable`: `0.003 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000007.gdbtablx`: `0.005 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000009.EditingTemplatesByDatasetGUID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000009.EditingTemplatesByName.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000009.EditingTemplatesByType.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000009.FDO_GlobalID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000009.gdbindexes`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000009.gdbtable`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a00000009.gdbtablx`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a0000000a.EditingTemplateRelsByDestinationID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a0000000a.EditingTemplateRelsByOriginID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a0000000a.EditingTemplateRelsByType.atx`: `0.004 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a0000000a.gdbindexes`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a0000000a.gdbtable`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a0000000a.gdbtablx`: `0.000 MB, `ROLE_UNCLEAR`
+- `data/LOA_2024_gdb_5167588172354210479/f5ec2fcd-5db7-4b4a-805b-f1fc1e87ab64.gdb/a0000000b.GDB_4_BoundaryID.atx`: `0.004 MB, `ROLE_UNCLEAR`
+
+## Exact Commands To Create Smaller ZIPs By Category
+
+```powershell
+Compress-Archive -Path processed_data\repo_file_retention_cloudflare_manifest.csv -DestinationPath local_only\cloudflare_manifest_review.zip -Force
+Compress-Archive -Path processed_data\repo_file_retention_github_keep_manifest.csv -DestinationPath local_only\github_keep_manifest_review.zip -Force
+Compress-Archive -Path processed_data\repo_file_retention_delete_after_backup_manifest.csv -DestinationPath local_only\delete_after_backup_manifest_review.zip -Force
+```
+
+## Exact Commands To Upload Cloudflare Manifest Later
+
+```powershell
+wrangler r2 object put <bucket>/runtime/2026/<filename> --file <local-file>
+wrangler r2 object put <bucket>/runtime/harvest/<filename> --file <local-file>
+wrangler r2 object put <bucket>/archive/source/<relative-path> --file <local-file>
+```
+
+## Exact Proposed .gitignore Additions
+
+Do not apply automatically until tracked-file impact is reviewed.
+
+```gitignore
+__pycache__/
+.pytest_cache/
+*.pyc
+*.tmp
+*.bak
+*.sqlite
+*.db
+*.zip
+data_truth/**/raw_packages/
+data_truth/**/sqlite/
+data_model/runtime_drafts/*.csv
+pipeline/RAW/**/*.pdf
+pipeline/RAW/**/*.xlsx
+pages-dist/
+generated/pages/*.json
+```
+
+## Exact Proposed Git LFS Additions
+
+Current `.gitattributes` should be reviewed before applying these. These are recommendations only.
+
+```gitattributes
+processed_data/point_ladder_view.csv filter=lfs diff=lfs merge=lfs -text
+processed_data/boundaries/** filter=lfs diff=lfs merge=lfs -text
+processed_data/hunt_research_2026_split/** filter=lfs diff=lfs merge=lfs -text
+processed_data/ml_draw_predictions_v1.csv filter=lfs diff=lfs merge=lfs -text
+processed_data/draw_reality_engine_predictive_v2.csv filter=lfs diff=lfs merge=lfs -text
+processed_data/draw_reality_engine_v2.csv filter=lfs diff=lfs merge=lfs -text
+processed_data/draw_reality_engine.csv filter=lfs diff=lfs merge=lfs -text
+processed_data/hunt_master_enriched.csv filter=lfs diff=lfs merge=lfs -text
+processed_data/statewide_composite_boundaries_2026.geojson filter=lfs diff=lfs merge=lfs -text
+processed_data/composite_hunt_unit_mapping_2026.geojson filter=lfs diff=lfs merge=lfs -text
+processed_data/hunt_research_2026.json filter=lfs diff=lfs merge=lfs -text
+processed_data/harvest_results_all_years_long.csv filter=lfs diff=lfs merge=lfs -text
+processed_data/draw_system_coverage_report.csv filter=lfs diff=lfs merge=lfs -text
+processed_data/*.sqlite filter=lfs diff=lfs merge=lfs -text
+data_model/runtime_drafts/*.csv filter=lfs diff=lfs merge=lfs -text
+```
+
+## Notes
+
+- No files were deleted by this audit.
+- `pipeline/RAW` source documents are archive inputs, not online static-site files.
+- Runtime CSV/JSON files are retained as valuable data; large ones are recommended for Cloudflare R2 or Git LFS rather than deletion.
+- GitHub Pages skipped oversized prediction/runtime CSVs during `pages-dist` build; those files need Cloudflare R2 or LFS-backed publishing before any cleanup is acted on.

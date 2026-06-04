@@ -1,0 +1,3 @@
+hunt_code,hunt_name,species,before_res,before_nr,before_total,after_res,after_nr,after_total,reviewed_source,reviewed_status,notes
+EA1176,Weber Florence Creek CWMU,Elk,45,5,50,45,5,50,USER_CONFIRMED_EA1176_VALUE,REVIEWED_OVERRIDE_USER_CONFIRMED,User confirmed EA1176 as 45 / 5 / 50 after identifying prior extraction as incorrect.
+PD1025,Cottonwood Ridge CWMU,Pronghorn,4.0,0.0,4,6,0,6,USER_CONFIRMED_PD1025_EQUALS_PD1050,REVIEWED_OVERRIDE_USER_CONFIRMED,User confirmed PD1025 should use PD1050 Pronghorn Doe source value 6 / 0 / 6.

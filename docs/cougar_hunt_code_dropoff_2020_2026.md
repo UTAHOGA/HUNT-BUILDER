@@ -13,8 +13,10 @@
 
 ## Interpretation
 - The broad Cougar permit-code family is present in 2020-2022 source hits and then absent from 2023-2026 source hits.
-- The 2024 package itself contains no standalone Cougar draw-results PDF; the observed terminal dropoff therefore appears to begin before the 2024 package, not inside the 2024 package.
-- `CG1000` is the Sportsman Cougar row and is last observed in 2022 in the current source-hit universe.
+- The 2024 package itself contains no standalone Cougar draw-results PDF; current review treats this as a cougar-code lifecycle change rather than a missing-source gap.
+- `CG1000` is the historical Sportsman Cougar row. User review says it ends by 2025 and does not remain a numbered 2026 sportsman permit.
+- Current cougar rolls into `CG9999 Cougar - Statewide`.
+- `CG9999` is a current statewide/unlimited cougar row, not a numbered sportsman or conservation permit quota.
 
 ## Output
 - `C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\processed_data\audits\cougar_hunt_code_dropoff_2020_2026.csv`

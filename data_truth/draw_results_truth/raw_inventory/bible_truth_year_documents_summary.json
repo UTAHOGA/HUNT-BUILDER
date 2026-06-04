@@ -1,0 +1,39 @@
+{
+  "generated_at_utc": "2026-06-04T06:40:27+00:00",
+  "source_root": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES",
+  "pipeline_root": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database",
+  "total_files": 180,
+  "copied": 180,
+  "unchanged": 0,
+  "by_draw_year": {
+    "2020": 25,
+    "2021": 24,
+    "2022": 27,
+    "2023": 23,
+    "2024": 24,
+    "2025": 23,
+    "2026": 34
+  },
+  "by_suffix": {
+    ".csv": 5,
+    ".json": 1,
+    ".md": 1,
+    ".pdf": 156,
+    ".xlsx": 17
+  },
+  "by_family_group": {
+    "ANTLERLESS": 12,
+    "BEAR": 10,
+    "COUGAR_HISTORICAL": 3,
+    "DEDICATED_HUNTER": 9,
+    "EXPO": 2,
+    "GENERAL_SEASON": 14,
+    "LE": 32,
+    "OIL": 47,
+    "REVIEW_REQUIRED": 3,
+    "SPORTSMAN": 14,
+    "TURKEY": 8,
+    "YOUTH": 26
+  },
+  "manifest": "data_truth\\draw_results_truth\\raw_inventory\\bible_truth_year_documents_manifest.csv"
+}

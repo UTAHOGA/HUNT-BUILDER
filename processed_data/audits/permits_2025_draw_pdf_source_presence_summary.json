@@ -1,0 +1,52 @@
+{
+  "summary": {
+    "rows_total": 91712,
+    "rows_with_2025_draw_total": 37862,
+    "rows_with_2025_draw_source": 37862,
+    "rows_with_bg_pdf_page": 37862,
+    "rows_with_report_page": 37756,
+    "rows_with_any_pdf_linkage": 37862,
+    "source_tokens": {
+      "2025_draw_results_tables": 37752,
+      "2024_draw_results_pdf_model_target_2025_source_only_promotion": 98,
+      "2024_bear_draw_results_pdf_model_target_2025": 8,
+      "2025_oil_draw_results_pdf_hunt_year_2025": 4
+    }
+  },
+  "pipeline_pdf_dir": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2026\\pdf\\draw_odds",
+  "pipeline_pdf_count": 19,
+  "source_pdf_presence": [
+    {
+      "source_token": "2025_draw_results_tables",
+      "row_count": 37752,
+      "expected_pdf_candidates": [
+        "(unmapped-token)"
+      ],
+      "any_candidate_exists": false
+    },
+    {
+      "source_token": "2024_draw_results_pdf_model_target_2025_source_only_promotion",
+      "row_count": 98,
+      "expected_pdf_candidates": [
+        "(unmapped-token)"
+      ],
+      "any_candidate_exists": false
+    },
+    {
+      "source_token": "2024_bear_draw_results_pdf_model_target_2025",
+      "row_count": 8,
+      "expected_pdf_candidates": [
+        "(unmapped-token)"
+      ],
+      "any_candidate_exists": false
+    },
+    {
+      "source_token": "2025_oil_draw_results_pdf_hunt_year_2025",
+      "row_count": 4,
+      "expected_pdf_candidates": [
+        "(unmapped-token)"
+      ],
+      "any_candidate_exists": false
+    }
+  ]
+}

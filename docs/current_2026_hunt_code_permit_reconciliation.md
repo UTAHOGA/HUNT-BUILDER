@@ -7,49 +7,55 @@ This is an audit-only reconciliation for current 2026 hunt codes and permit/allo
 ## Source Precedence
 
 1. DWR Hunt Planner `HaNumber` pull when it has a current permit value.
-2. Live DWR HuntBoundary `HuntTableData` table values.
-3. Repaired Buck Deer workbook/pasted source rows for Buck Deer-specific support.
-4. UtahDraws/BIBLE 2026 draw-results evidence where DWR current sources are blank or where it supports the same value.
-5. `DATABASE.csv` is comparison/reference only in this pass, not a winner source.
+1. Reviewed override rows for explicitly user-confirmed extraction/crosswalk corrections.
+2. DWR Hunt Planner `HaNumber` pull when it has a current permit value.
+3. Live DWR HuntBoundary `HuntTableData` table values.
+4. Repaired Buck Deer workbook/pasted source rows for Buck Deer-specific support.
+5. UtahDraws/BIBLE 2026 draw-results evidence where DWR current sources are blank or where it supports the same value.
+6. `DATABASE.csv` is comparison/reference only in this pass, not a winner source.
 
 ## Key Counts
 
 - Candidate hunt codes in union: `1470`
-- Rows with recommended external permit values: `1157`
-- Unresolved/review rows: `596`
+- Rows with recommended external permit values: `1158`
+- Unresolved/review rows: `556`
 - Rows where only `DATABASE.csv` has a permit reference value: `56`
 
 ## Winner Source Counts
 
 - `HANUMBER`: `1125`
 - `HUNTTABLE`: `22`
-- `NONE`: `257`
+- `NONE`: `256`
 - `NONE_EXTERNAL_DATABASE_REFERENCE_ONLY`: `56`
+- `REVIEWED_OVERRIDE`: `1`
 - `UTAHDRAWS`: `10`
 
 ## Confidence Counts
 
-- `HIGH_CONFIRMED_2PLUS`: `722`
-- `MEDIUM_SINGLE_SOURCE`: `82`
-- `MEDIUM_TOTAL_CONFIRMED`: `70`
-- `NO_PERMIT_VALUE`: `257`
+- `HIGH_CONFIRMED_2PLUS`: `760`
+- `MEDIUM_SINGLE_SOURCE`: `81`
+- `MEDIUM_TOTAL_CONFIRMED`: `72`
+- `NO_PERMIT_VALUE`: `256`
+- `REVIEWED_OVERRIDE_CONFIRMED`: `1`
 - `REVIEW_REQUIRED`: `56`
-- `REVIEW_SOURCE_CONFLICT`: `283`
+- `REVIEW_SOURCE_CONFLICT`: `244`
 
 ## Recommended Action Counts
 
 - `FIND_EXTERNAL_SOURCE_BEFORE_PROMOTION`: `56`
-- `NO_CURRENT_PERMIT_VALUE_FOUND`: `257`
-- `PROMOTE_CANDIDATE_AFTER_REVIEW`: `804`
-- `PROMOTE_TOTAL_AFTER_SPLIT_REVIEW`: `70`
-- `REVIEW_BEFORE_PROMOTION`: `283`
+- `NO_CURRENT_PERMIT_VALUE_FOUND`: `256`
+- `PROMOTE_CANDIDATE_AFTER_REVIEW`: `841`
+- `PROMOTE_REVIEWED_OVERRIDE`: `1`
+- `PROMOTE_TOTAL_AFTER_SPLIT_REVIEW`: `72`
+- `REVIEW_BEFORE_PROMOTION`: `244`
 
 ## Source Coverage Counts
 
 - `buck_deer`: `458` present codes, `328` value codes
-- `database`: `1449` present codes, `1187` value codes
-- `hanumber`: `1449` present codes, `1125` value codes
-- `hunttable`: `1412` present codes, `1092` value codes
+- `database`: `1471` present codes, `1214` value codes
+- `hanumber`: `1449` present codes, `1127` value codes
+- `hunttable`: `1413` present codes, `1093` value codes
+- `reviewed_override`: `1` present codes, `1` value codes
 - `utahdraws`: `834` present codes, `834` value codes
 
 ## Main Unresolved Prefix Families
@@ -58,9 +64,8 @@ This is an audit-only reconciliation for current 2026 hunt codes and permit/allo
 - `EL`: `126`
 - `LO`: `113`
 - `EB`: `65`
-- `EA`: `33`
 - `PB`: `19`
-- `PD`: `9`
+- `EA`: `9`
 - `DS`: `8`
 - `BI`: `6`
 - `BR`: `6`
@@ -68,24 +73,22 @@ This is an audit-only reconciliation for current 2026 hunt codes and permit/allo
 - `LP`: `6`
 - `RS`: `6`
 - `TK`: `6`
-- `DA`: `3`
-- `MA`: `3`
-- `MB`: `3`
 - `GO`: `2`
+- `MB`: `2`
 - `CG`: `1`
 - `EX`: `1`
 
 ## Main Unresolved Species Families
 
-- `Deer`: `291`
-- `Elk`: `230`
-- `Pronghorn`: `34`
+- `Deer`: `288`
+- `Elk`: `206`
+- `Pronghorn`: `25`
 - `Desert Bighorn Sheep`: `8`
 - `Bison`: `6`
 - `Black Bear`: `6`
-- `Moose`: `6`
 - `Rocky Mountain Bighorn Sheep`: `6`
 - `Turkey`: `6`
+- `Moose`: `2`
 - `Mountain Goat`: `2`
 - `Cougar`: `1`
 

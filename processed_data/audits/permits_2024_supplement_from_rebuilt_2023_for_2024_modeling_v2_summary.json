@@ -1,0 +1,14 @@
+﻿{
+    "source_file":  "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\pipeline\\RAW\\hunt_unit_database\\2024\\csv\\Draw Odds\\rebuilt_2023_draw_results_for_2024_modeling_v2.csv",
+    "source_tag":  "REBUILD_2023_DRAW_RESULTS_FOR_2024_MODELING_V2",
+    "backup_file":  "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2026\\csv\\DATABASE.pre_supplement_2023_to_2024_from_rebuilt_v2_backup.csv",
+    "audit_file":  "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\audits\\permits_2024_supplement_from_rebuilt_2023_for_2024_modeling_v2.csv",
+    "source_rows_total":  80912,
+    "source_rows_target2024_ok":  80912,
+    "source_unique_codes_target2024":  1033,
+    "matched_blank_rows":  10,
+    "rows_filled":  10,
+    "rows_with_any_2024_after":  973,
+    "remaining_blank_rows":  476,
+    "notes":  "Recomputed from backup diff after update"
+}
