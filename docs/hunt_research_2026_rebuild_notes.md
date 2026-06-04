@@ -1,6 +1,6 @@
 # hunt_research_2026 Rebuild Notes
 
-Generated: 2026-06-04T02:25:17.158938
+Generated: 2026-06-04T02:41:28.271656
 
 ## Contract rebuild goal
 - Rebuilt canonical Hunt Research contracts from canonical sources with full 2026 hunt-code coverage and runtime-aligned field set:

@@ -134,6 +134,10 @@ def format_projected_odds_display(value):
 
 def format_2026_max_point_display(row, p_max_value=""):
     zone = clean(row.get("point_pool_zone"))
+    points = to_number(row.get("points"))
+    guaranteed_at = to_number(first_text(row.get("guaranteed_at_2026"), row.get("projected_2026_max_cutoff_point")))
+    if points is not None and guaranteed_at is not None and points >= guaranteed_at:
+        return "~1 in 1 or 99%"
     if zone in {"max_point_pool", "max_pool_guaranteed"}:
         return "~1 in 1 or 99%"
     if zone == "max_pool_cutoff_mixed":

@@ -1,3 +1,54 @@
+## 2026-06-04T08:47:05Z - Fix Research max-point above-line display
+
+Scope:
+- Corrected the Hunt Research ladder display so every 2026 max-point row at or above the guaranteed line renders `~1 in 1 or 99%`.
+- Fixed both the generated runtime contract and the browser renderer path, then cache-busted `hunt-research.js` from `research.html`.
+- Rebuilt and republished the Research runtime JSON contracts to Cloudflare R2.
+
+Files changed:
+- scripts/build-hunt-research-2026-contract.py
+- hunt-research.js
+- research.html
+- docs/hunt_research_2026_rebuild_notes.md
+- processed_data/audits/hunt_research_2026_rebuild_coverage.csv
+- processed_data/audits/hunt_research_2026_max_point_above_line_display_audit.csv
+- WORK_LOG.md
+
+Key results:
+- Contract rebuild rows: 91,734.
+- Summary rows: 3,009.
+- DATABASE hunt-code coverage: 1,471/1,471.
+- Missing runtime fields: 0.
+- Full ladder at-or-above guaranteed-line rows audited: 33,418; failures: 0.
+- Bonus/max-random split at-or-above guaranteed-line rows audited locally: 25,049; failures: 0.
+- Remote R2 bonus/max-random split at-or-above guaranteed-line rows audited: 25,049; failures: 0.
+- Bare numeric `display_2026_max_point_pool` values after rebuild: 0.
+- EB3039 Resident points 12-32 now all carry `~1 in 1 or 99%` in the max-point display field.
+
+R2 uploads verified:
+- https://json.uoga.workers.dev/processed_data/hunt_research_2026.json -> HTTP 200
+- https://json.uoga.workers.dev/processed_data/hunt_research_2026_summary.json -> HTTP 200
+- https://json.uoga.workers.dev/processed_data/hunt_research_2026_ladder.json -> HTTP 200
+- https://json.uoga.workers.dev/processed_data/hunt_research_2026_ladder_preference.json -> HTTP 200
+- https://json.uoga.workers.dev/processed_data/hunt_research_2026_ladder_bonus_max_random.json -> HTTP 200
+
+Validation commands run:
+- python -m py_compile scripts/build-hunt-research-2026-contract.py
+- python scripts/build-hunt-research-2026-contract.py
+- node --check hunt-research.js
+- Node audit for local max-point at/above-line display failures
+- Wrangler R2 upload for all five Research runtime JSON contracts
+- Public R2 HEAD checks for all five Research runtime JSON contracts
+- Remote R2 bonus/max-random JSON parse and max-point display audit
+- git diff --check
+
+Mobile/browser QA:
+- In-app browser automation was unavailable in this session (`browser-client is not trusted`), so visual mobile QA was not completed here.
+- Static/runtime validations passed and `research.html` now references a fresh `hunt-research.js` cache version for deployment.
+
+Commit:
+- Pending targeted validation and commit.
+
 ## 2026-06-04T01:25:13Z - 2026 BIBLE Year Document Process Impact Check
 
 - Assigned action:

@@ -293,8 +293,11 @@
     return /(^|[^a-z])1\s*in\s*[0-9]/i.test(text) || /%/.test(text);
   }
 
-  function getMaxPointPoolDisplay(row) {
+  function getMaxPointPoolDisplay(row, rows = [], mode = DRAW_MODE.STATUS_ONLY) {
     const zone = String(row?.point_pool_zone || '').trim();
+    if (mode === DRAW_MODE.BONUS && (isGuaranteedLineRow(row, rows, mode) || isAboveGuaranteedLineRow(row, rows, mode))) {
+      return MAX_POINT_POOL_GUARANTEED_DISPLAY;
+    }
     if (!['max_point_pool', 'max_pool_guaranteed', 'max_pool_cutoff_mixed'].includes(zone)) return '';
     if (zone === 'max_point_pool' || zone === 'max_pool_guaranteed') {
       return MAX_POINT_POOL_GUARANTEED_DISPLAY;
@@ -1801,9 +1804,7 @@
       }
 
       if (mode === DRAW_MODE.BONUS) {
-        const bonusProjection = (isGuaranteedLineRow(row, rows, mode) || isAboveGuaranteedLineRow(row, rows, mode))
-          ? MAX_POINT_POOL_GUARANTEED_DISPLAY
-          : (getMaxPointPoolDisplay(row) || '');
+        const bonusProjection = getMaxPointPoolDisplay(row, rows, mode) || '';
         const randomChance = isAboveGuaranteedLineRow(row, rows, mode) ? '' : (getRandomDrawDisplay(row) || oddsDisplay);
         return [
           formatInteger(row.points),
