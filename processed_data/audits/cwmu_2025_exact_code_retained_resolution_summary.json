@@ -1,0 +1,42 @@
+{
+    "source":  "processed_data/audits/cwmu_2025_compare_strong_2025_to_2026_code_continuity.csv",
+    "bucket":  "exact_code_retained_2025_to_2026",
+    "exact_resolved_count":  28,
+    "updated_unresolved_before":  16,
+    "updated_unresolved_after":  7,
+    "tradelands_unresolved_before":  27,
+    "tradelands_unresolved_after":  8,
+    "combined_unresolved_before":  43,
+    "combined_unresolved_after":  8,
+    "resolved_codes":  [
+                           "DB1200",
+                           "DB1201",
+                           "DB1209",
+                           "DB1238",
+                           "DB1255",
+                           "DB1310",
+                           "DB1330",
+                           "DB1333",
+                           "DB1334",
+                           "DB1335",
+                           "DB1337",
+                           "DB1349",
+                           "EB3520",
+                           "EB3531",
+                           "EB3545",
+                           "EB3613",
+                           "EB3619",
+                           "MB6266",
+                           "PB5339"
+                       ],
+    "remaining_codes":  [
+                            "EA1135",
+                            "EA1145",
+                            "EA1158",
+                            "EA1256",
+                            "EA1259",
+                            "EA1263",
+                            "MB6201",
+                            "MB6265"
+                        ]
+}

@@ -43,6 +43,46 @@
   - The 8 conflict rows are limited to `EA1135`, `EA1145`, `EA1158`, `EA1256`, `EA1259`, `EA1263`, `MB6201`, `MB6265`.
   - `MB6201` and `MB6265` do not appear as `from_hunt_code` in the 2025 year document rows, which is consistent with predecessor/successor gaps.
 
+## 2026-06-03T00:18:00Z - Apply 2025 Exact-Match CWMU/Tradeland Resolutions
+
+- Assigned action:
+  - Move the `EXACT_CODE_RETAINED` rows from the 2025 transition resolution pass into a resolved bucket and remove them from active unresolved lists.
+
+- Source:
+  - `processed_data/audits/cwmu_2025_compare_strong_2025_to_2026_code_continuity.csv`
+  - `processed_data/cwmu_updated_csv_still_unresolved.csv`
+  - `processed_data/cwmu_tradelands_still_unresolved.csv`
+
+- Implementation:
+  - Extracted all `EXACT_CODE_RETAINED` rows (19 unique hunt codes) into:
+    - `processed_data/cwmu_2025_exact_code_retained_resolved.csv`
+  - Removed those 19 hunt codes from:
+    - `processed_data/cwmu_updated_csv_still_unresolved.csv`
+    - `processed_data/cwmu_tradelands_still_unresolved.csv`
+  - Regenerated resolution summary:
+    - `processed_data/audits/cwmu_2025_exact_code_retained_resolution_summary.json`
+
+- Key results:
+  - Exact-match rows moved to resolved bucket: `19`
+  - Updated unresolved remaining rows:
+    - `processed_data/cwmu_updated_csv_still_unresolved.csv`: `7` rows
+    - `processed_data/cwmu_tradelands_still_unresolved.csv`: `8` rows
+  - Remaining unresolved unique hunt codes: `8`
+  - Remaining unique unresolved hunt codes:
+    - `EA1135`
+    - `EA1145`
+    - `EA1158`
+    - `EA1256`
+    - `EA1259`
+    - `EA1263`
+    - `MB6201`
+    - `MB6265`
+
+- Validation:
+  - Resolved file row check: `19` unique hunt codes.
+  - Union unresolved uniqueness check: `8` remaining unique unresolved hunt codes.
+  - `git diff --check`: PASS.
+
 ## 2026-06-01T18:25:00-06:00 - 2024 Draw Results -> 2025 Modeling Reconciliation Applied to DATABASE 2025 Permit Fields
 
 - Assigned action:
