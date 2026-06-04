@@ -1,0 +1,15 @@
+{
+    "year_from":  "2025",
+    "year_to":  "2026",
+    "unresolved_count":  27,
+    "matches_touching_unresolved":  27,
+    "matched_codes":  27,
+    "status_counts":  {
+                          "EXACT_CODE_RETAINED":  19,
+                          "ADDED_NO_YEAR_DOCUMENT_PREDECESSOR":  2,
+                          "DROPPED_NO_YEAR_DOCUMENT_SUCCESSOR":  6
+                      },
+    "candidate_breakdown":  {
+                                "EXACT_CODE_RETAINED":  19
+                            }
+}

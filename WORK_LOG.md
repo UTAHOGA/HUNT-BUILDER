@@ -1,3 +1,48 @@
+## 2026-06-03T00:00:00Z - 2025-to-2026 CWMU/Tradeland Resolution Pass
+
+- Assigned action:
+  - Use the 2025 year BIBLE transition dataset to test whether unresolved CWMU/private-lands/tradeland hunt-code rows can be resolved.
+
+- Source:
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_compare_2025_to_2026.csv`
+  - `processed_data/cwmu_updated_csv_still_unresolved.csv`
+  - `processed_data/cwmu_tradelands_still_unresolved.csv`
+  - `C:/Users/tyler/Desktop/GitHub/HUNTS/data_truth/crosswalk_truth/normalized/current_to_historical_hunt_code_crosswalk_2026.csv`
+
+- Implementation:
+  - Loaded the 27 unresolved hunt codes from:
+    - `cwmu_updated_csv_still_unresolved.csv` (16 rows)
+    - `cwmu_tradelands_still_unresolved.csv` (27 rows -> deduped to 27 unique codes)
+  - Merged each code against `bible_hunt_code_year_compare_2025_to_2026.csv` by code presence in `from_hunt_code` or `to_hunt_code`.
+  - Split matches into 2025 continuity buckets:
+    - exact code retention (`EXACT_CODE_RETAINED`)
+    - no-safe-match/transition anomalies (`ADDED_NO_YEAR_DOCUMENT_PREDECESSOR`, `DROPPED_NO_YEAR_DOCUMENT_SUCCESSOR`)
+  - Checked all 27 unresolved codes against `HUNTS/data_truth/crosswalk_truth/normalized/current_to_historical_hunt_code_crosswalk_2026.csv` for trusted crosswalk matches.
+
+- Files created/updated:
+  - `processed_data/audits/cwmu_2025_compare_resolution_candidates.csv`
+  - `processed_data/audits/cwmu_2025_compare_resolution_summary.json`
+  - `processed_data/audits/cwmu_2025_compare_strong_2025_to_2026_code_continuity.csv`
+  - `processed_data/audits/cwmu_2025_compare_source_conflicts.csv`
+  - `processed_data/audits/cwmu_2025_crosswalk_truth_check.csv`
+
+- Key results:
+  - Total unique unresolved hunt codes tested: `27`
+  - Matched in 2025→2026 compare: `27`
+  - Exact continuity matches (`EXACT_CODE_RETAINED`): `19`
+  - Source-conflict/no-safe-match cases: `8`
+  - Crosswalk hits in `HUNTS/data_truth/crosswalk_truth/normalized/current_to_historical_hunt_code_crosswalk_2026.csv`: `0/27`
+
+- Validation:
+  - `Import-Csv`/merge checks on all unresolved codes: PASS (`27/27` codes found in 2025→2026 compare output).
+  - Status bucket count check: PASS (`19 exact + 8 conflict = 27`).
+  - Crosswalk audit check: PASS (`0` code matches found; no additional promoted source lineage from this crosswalk for unresolved set).
+  - `git diff --check`: pending at end-of-step.
+
+- Notes:
+  - The 8 conflict rows are limited to `EA1135`, `EA1145`, `EA1158`, `EA1256`, `EA1259`, `EA1263`, `MB6201`, `MB6265`.
+  - `MB6201` and `MB6265` do not appear as `from_hunt_code` in the 2025 year document rows, which is consistent with predecessor/successor gaps.
+
 ## 2026-06-01T18:25:00-06:00 - 2024 Draw Results -> 2025 Modeling Reconciliation Applied to DATABASE 2025 Permit Fields
 
 - Assigned action:
@@ -13711,6 +13756,87 @@ o_table=0).
 
 - Commit:
   - `d2098cd5` - `Add 2021 and 2024 permit columns to BIBLE year docs`
+
+## 2026-06-04T00:53:40Z - Split 2023->2024 Pending Transition Into Resolution Buckets
+
+- Assigned step:
+  - Split `processed_data/audits/hunt_code_year_to_year_transition_2023_to_2024_pending.csv` into strong/conflict/missing/no-value buckets for resolver workflow.
+
+- Files changed:
+  - `processed_data/audits/hunt_code_year_to_year_transition_2023_to_2024_strong_matches.csv`
+  - `processed_data/audits/hunt_code_year_to_year_transition_2023_to_2024_conflicts.csv`
+  - `processed_data/audits/hunt_code_year_to_year_transition_2023_to_2024_missing.csv`
+  - `processed_data/audits/hunt_code_year_to_year_transition_2023_to_2024_no_value.csv`
+  - `WORK_LOG.md`
+
+- Bucketing rule used:
+  - `CANDIDATE_SUCCESSOR_BY_IDENTITY` rows with `identity_score >= 0.9` were routed to `strong_matches` (except `LOW_REVIEW_MATCH`).
+  - Remaining candidate rows were routed to `conflicts`.
+  - `ADDED_NO_PREDECESSOR_CANDIDATE` and `DROPPED_NO_SUCCESSOR_CANDIDATE` rows were routed to `missing` unless both from/to metadata fields were blank.
+  - Rows with no usable from/to metadata were routed to `no_value`.
+
+- Outputs created:
+  - `processed_data/audits/hunt_code_year_to_year_transition_2023_to_2024_strong_matches.csv` (4 rows)
+  - `processed_data/audits/hunt_code_year_to_year_transition_2023_to_2024_conflicts.csv` (18 rows)
+  - `processed_data/audits/hunt_code_year_to_year_transition_2023_to_2024_missing.csv` (44 rows)
+  - `processed_data/audits/hunt_code_year_to_year_transition_2023_to_2024_no_value.csv` (0 rows)
+
+- Validation:
+  - Source file row count: 66.
+  - Bucket row count check: `4 + 18 + 44 + 0 = 66`.
+  - `import-csv` based count checks for each split output: `PASS`.
+
+- Data-change note:
+  - No source-of-truth files were modified.
+  - No `DATABASE.csv` edits were made.
+
+## 2026-06-04T00:50:20Z - 2024 Year Document Pass and 2023->2024 Crosswalk Refresh
+
+- Assigned step:
+  - Rebuild the 2024 BIBLE hunt code year document from source files and refresh the adjacent year crosswalk so 2023->2024 continuity can be reviewed.
+
+- Files changed:
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_source_hits_2024.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2024.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2024.xlsx`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026.csv`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_candidates_2020_2026.csv`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026_summary.json`
+  - `processed_data/audits/hunt_code_year_to_year_reviewed_decisions_2020_to_2021.csv`
+  - `processed_data/audits/hunt_code_year_to_year_reviewed_decisions_2021_to_2022.csv`
+  - `processed_data/audits/hunt_code_year_to_year_reviewed_decisions_2022_to_2023.csv`
+  - `docs/hunt_code_year_to_year_crosswalk_2020_2026.md`
+  - `processed_data/audits/hunt_code_year_to_year_transition_2023_to_2024_pending.csv`
+  - `WORK_LOG.md`
+
+- Outputs created/updated:
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2024.csv`
+  - `processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2024.xlsx`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026.csv`
+  - `processed_data/audits/hunt_code_year_to_year_crosswalk_2020_2026_summary.json`
+  - `processed_data/audits/hunt_code_year_to_year_transition_2023_to_2024_pending.csv`
+
+- Key results:
+  - 2024 rebuilt from `C:/Users/tyler/Desktop/BIBLE HUNT CODES/2024` with:
+    - report rows: `1027`
+    - source hits: `2050`
+    - source files scanned: `24`
+  - 2023->2024 crosswalk transition status counts:
+    - `EXACT_CODE_RETAINED`: `980`
+    - `CANDIDATE_SUCCESSOR_BY_IDENTITY`: `22`
+    - `DROPPED_NO_SUCCESSOR_CANDIDATE`: `21`
+    - `ADDED_NO_PREDECESSOR_CANDIDATE`: `23`
+  - Added targeted unresolved transition extract:
+    - `processed_data/audits/hunt_code_year_to_year_transition_2023_to_2024_pending.csv` (66 rows)
+
+- Validation:
+  - `python scripts\build-bible-hunt-code-year-documents.py --only-year 2024`: `PASS`
+  - `python scripts\build-hunt-code-year-to-year-crosswalk.py`: `PASS`
+  - 2023->2024 transition counts derived from `hunt_code_year_to_year_crosswalk_2020_2026.csv`: `PASS`
+
+- Data-change note:
+  - `DATABASE.csv` was not modified.
+  - No hunt-code truth values were promoted in this pass.
 
 ## 2026-06-04T00:44:22Z - Add Year-Specific Permit Columns To 2021 And 2024 BIBLE Year Documents
 
