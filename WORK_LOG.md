@@ -1,3 +1,51 @@
+## 2026-06-04T09:01:13Z - Audit blank cells in prediction-engine feeder files
+
+Scope:
+- Audited active prediction-engine feeder files for blank cell values that may need repair, intentional handling, or source expansion.
+- Covered the current predictive chain used by `engine.utah_bonus_predictive.materialize`, `engine.utah_draw_predictive` family/classifier modules, and `engine.utah_predictive_mixed.materialize`.
+- Read-only audit only; no feeder CSV values, truth data, runtime JSON, or prediction math were changed.
+
+Files changed:
+- docs/prediction_engine_feeder_blank_cell_audit.md
+- processed_data/audits/prediction_engine_feeder_blank_cell_audit.csv
+- WORK_LOG.md
+
+Outputs created:
+- docs/prediction_engine_feeder_blank_cell_audit.md
+- processed_data/audits/prediction_engine_feeder_blank_cell_audit.csv
+
+Files audited:
+- data_truth/draw_results_truth/normalized/draw_results_long.csv
+- pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv
+- data_model/runtime_drafts/draw_reality_engine_v2.csv
+- processed_data/draw_system_coverage_report.csv
+- processed_data/hunt_master_enriched.csv
+- processed_data/hunt_unit_reference_linked.csv
+- processed_data/ml_draw_predictions_v1.csv
+- processed_data/draw_reality_engine_predictive_v2.csv
+- processed_data/point_ladder_view.csv
+- processed_data/draw_reality_engine.csv
+- data_model/harvest_quality/harvest_feature_model_by_hunt_code_2026.csv
+
+Key results:
+- Feeder files audited: 11.
+- Field-level audit rows written: 882.
+- `REPAIR_REQUIRED`: 11 fields.
+- `REVIEW_MODEL_KEY_STRATEGY`: 2 fields.
+- `REVIEW_TARGETED_BACKFILL`: 202 fields.
+- `SOURCE_EXPANSION_NEEDED`: 20 fields.
+- The strongest repair candidates are routing labels, quota/source fields, prior-year result display fields, lineage fields, and boundary IDs where canonical source support exists.
+- Blank point keys in `ml_draw_predictions_v1.csv` and `draw_reality_engine_predictive_v2.csv` are mostly non-point/sportsman/availability rows; they need an intentional model-key strategy rather than loose `0` filling.
+- Special overlay columns and true applicant rollover/new entrant fields should remain blank unless real source support is added.
+
+Validation commands run:
+- Generated field-level CSV and markdown report with Python CSV audit.
+- Verified output files exist and contain nonzero rows.
+- git diff --check.
+
+Commit:
+- Pending targeted validation and commit.
+
 ## 2026-06-04T08:47:05Z - Fix Research max-point above-line display
 
 Scope:
