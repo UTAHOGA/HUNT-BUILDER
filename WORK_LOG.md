@@ -15836,3 +15836,60 @@ Validation commands run:
 
 Commit:
 - Not committed.
+# 2026-06-04T09:20:00Z - Prediction engine REVIEW_TARGETED_BACKFILL repair
+
+Scope:
+- Ran the first targeted repair pass for `REVIEW_TARGETED_BACKFILL` fields from the prediction feeder blank-cell audit.
+- Filled only exact `hunt_code` current-year metadata/quota blanks from `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv` into derived/runtime feeder files.
+- Did not modify `DATABASE.csv`, normalized draw truth, historical runtime drafts, generated coverage reports, probability fields, prior-year draw-result fields, or model pool flags.
+
+Files changed:
+- scripts/repair-prediction-feeder-targeted-backfill.py
+- docs/prediction_engine_targeted_backfill_repair.md
+- processed_data/audits/prediction_engine_targeted_backfill_summary.csv
+- public/data/runtime-manifest.json
+- data/runtime-manifest.json
+- WORK_LOG.md
+- processed_data/hunt_unit_reference_linked.csv
+- processed_data/ml_draw_predictions_v1.csv
+
+Large local runtime files repaired and republished to Cloudflare R2, but not committed because they are ignored/R2-served runtime assets:
+- processed_data/point_ladder_view.csv
+- processed_data/draw_reality_engine_predictive_v2.csv
+- processed_data/hunt_master_enriched.csv
+- processed_data/draw_reality_engine.csv
+
+Key results:
+- Total source-backed cells filled: 763,821.
+- Applied cells by file:
+  - processed_data/point_ladder_view.csv: 376,260
+  - processed_data/draw_reality_engine_predictive_v2.csv: 119,319
+  - processed_data/ml_draw_predictions_v1.csv: 114,452
+  - processed_data/hunt_master_enriched.csv: 88,700
+  - processed_data/draw_reality_engine.csv: 60,566
+  - processed_data/hunt_unit_reference_linked.csv: 4,524
+- No row-sample audit file was retained; this was a comprehensive feeder repair, summarized by complete file/field counts.
+- Deferred fields remain intentionally out of scope where they require model/draw-truth logic: `p_draw*`, `random_draw_odds_2026`, `display_odds*`, prior-year draw fields, pool flags, and projected cutoff fields.
+
+R2 uploads verified:
+- https://json.uoga.workers.dev/processed_data/draw_reality_engine.csv -> HTTP 200
+- https://json.uoga.workers.dev/processed_data/draw_reality_engine_predictive_v2.csv -> HTTP 200
+- https://json.uoga.workers.dev/processed_data/point_ladder_view.csv -> HTTP 200
+- https://json.uoga.workers.dev/processed_data/hunt_master_enriched.csv -> HTTP 200
+- https://json.uoga.workers.dev/processed_data/hunt_unit_reference_linked.csv -> HTTP 200
+- https://json.uoga.workers.dev/processed_data/ml_draw_predictions_v1.csv -> HTTP 200
+
+Validation commands run:
+- python -m py_compile scripts/repair-prediction-feeder-targeted-backfill.py
+- python scripts/repair-prediction-feeder-targeted-backfill.py
+- python scripts/repair-prediction-feeder-targeted-backfill.py --apply
+- npx wrangler --version
+- npx wrangler whoami
+- npx wrangler r2 object put for six repaired runtime CSVs
+- HEAD checks for six public R2 URLs
+- CSV parse/row-count check for six repaired runtime CSVs
+- JSON parse check for both runtime manifests
+- git diff --check
+
+Commit:
+- Pending validation and commit.
