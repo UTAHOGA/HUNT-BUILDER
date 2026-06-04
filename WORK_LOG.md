@@ -13710,7 +13710,7 @@ o_table=0).
   - Active crosswalk output search for replaced wording: `PASS`
 
 - Commit:
-  - Pending at log-write time.
+  - `d2098cd5` - `Add 2021 and 2024 permit columns to BIBLE year docs`
 
 ## 2026-06-04T00:44:22Z - Add Year-Specific Permit Columns To 2021 And 2024 BIBLE Year Documents
 
@@ -13764,4 +13764,4 @@ o_table=0).
   - Verified `2024` parsed Sportsman rows show `1/0/1`: `PASS`
 
 - Commit:
-  - Pending at log-write time.
+  - `d2098cd5` - `Add 2021 and 2024 permit columns to BIBLE year docs`
