@@ -1,69 +1,18 @@
 {
-  "blockers": [
-    {
-      "blocker_id": "FEATURE_CODES_MISSING_FROM_SUMMARY",
-      "message": "Feature codes absent from Hunt Research summary: ['EA1287']",
-      "severity": "WARNING"
-    },
-    {
-      "blocker_id": "FEATURE_CODES_MISSING_FROM_DETAILS",
-      "message": "Feature codes absent from split details: ['EA1287']",
-      "severity": "WARNING"
-    },
-    {
-      "blocker_id": "CURRENT_CODES_WITHOUT_FEATURE_ROW",
-      "message": "Current DATABASE codes without a 2026 harvest feature row: ['BI6530', 'BR7008', 'BR7019', 'BR7108', 'BR7208', 'DA1044', 'DA1051', 'DB1036', 'DB1059', 'DB1082', 'DB1088', 'DB1089', 'DB1094', 'DB1276', 'DB1320', 'DB1324', 'DB1338', 'DB1343', 'DB1344', 'DB1345']",
-      "severity": "WARNING"
-    }
-  ],
+  "blockers": [],
   "summary": {
     "audit_name": "harvest_engine_ingestion",
     "blocker_count": 0,
     "conclusion": "Harvest data is ingested into the correct engine path: quality feature model, mixed predictive engine harvest adjustment fields, and Hunt Research display/runtime harvest fields. Remaining gaps are coverage warnings, not evidence that harvest is being used as quota or draw truth.",
-    "current_codes_missing_feature_row_count": 61,
-    "current_codes_missing_feature_row_sample": [
-      "BI6530",
-      "BR7008",
-      "BR7019",
-      "BR7108",
-      "BR7208",
-      "DA1044",
-      "DA1051",
-      "DB1036",
-      "DB1059",
-      "DB1082",
-      "DB1088",
-      "DB1089",
-      "DB1094",
-      "DB1276",
-      "DB1320",
-      "DB1324",
-      "DB1338",
-      "DB1343",
-      "DB1344",
-      "DB1345",
-      "DB1348",
-      "DS6602",
-      "EA1040",
-      "EA1074",
-      "EA1107",
-      "EA1116",
-      "EA1126",
-      "EA1176",
-      "EA1252",
-      "EA1301"
-    ],
-    "current_codes_with_feature_row": 1410,
+    "current_codes_missing_feature_row_count": 0,
+    "current_codes_missing_feature_row_sample": [],
+    "current_codes_with_feature_row": 1471,
     "current_database_hunt_codes": 1471,
-    "feature_codes_missing_from_details_count": 1,
-    "feature_codes_missing_from_details_sample": [
-      "EA1287"
-    ],
-    "feature_codes_missing_from_summary_count": 1,
-    "feature_codes_missing_from_summary_sample": [
-      "EA1287"
-    ],
-    "generated_at_utc": "2026-06-05T13:52:47.062255+00:00",
+    "feature_codes_missing_from_details_count": 0,
+    "feature_codes_missing_from_details_sample": [],
+    "feature_codes_missing_from_summary_count": 0,
+    "feature_codes_missing_from_summary_sample": [],
+    "generated_at_utc": "2026-06-05T14:01:55.129677+00:00",
     "guardrails": {
       "database_contains_some_protected_fields_for_other_purposes": [
         "permit_allotment_2026_total"
@@ -78,8 +27,8 @@
       ],
       "harvest_quality_engine_policy": "Harvest features are quality/demand/display context. They must not directly overwrite draw truth, 2026 quota, or DATABASE permit/allotment truth."
     },
-    "harvest_all_years_feature_rows": 5563,
-    "harvest_feature_model_rows": 1411,
+    "harvest_all_years_feature_rows": 5570,
+    "harvest_feature_model_rows": 1471,
     "harvest_truth_rows": 68657,
     "mixed_engine_consumes_harvest_features": true,
     "mixed_engine_harvest_probability_component_present": true,
@@ -97,7 +46,7 @@
       "ml_draw_predictions_v1": 1,
       "point_ladder_view": 1
     },
-    "warning_count": 3,
+    "warning_count": 0,
     "website_split_detail_harvest_present": true,
     "website_summary_harvest_display_present": true
   },
@@ -124,16 +73,16 @@
       "duplicate_key_count": 0,
       "exists": true,
       "field_nonblank_counts": {
-        "hunt_code": 5563,
-        "model_target_year": 5563,
-        "percent_success": 4146,
+        "hunt_code": 5570,
+        "model_target_year": 5570,
+        "percent_success": 4153,
         "recommended_use": 6,
-        "reported_hunt_year": 5563
+        "reported_hunt_year": 5570
       },
       "hunt_code_count": 1561,
       "path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_model\\harvest_quality\\harvest_quality_features_all_years_by_hunt_code.csv",
       "required_fields_present": true,
-      "row_count": 5563,
+      "row_count": 5570,
       "surface": "harvest_all_years_features"
     },
     {
@@ -141,27 +90,27 @@
       "duplicate_key_count": 0,
       "exists": true,
       "field_nonblank_counts": {
-        "average_age_3yr_avg": 0,
-        "average_age_recent": 0,
-        "demand_pressure_category": 1411,
-        "demand_pressure_signal": 1404,
-        "harvest_feature_data_quality_grade": 1411,
-        "harvest_feature_match_method": 1411,
-        "harvest_feature_reason_codes": 1411,
-        "harvest_feature_source_years": 1410,
-        "harvest_quality_index": 1384,
-        "harvest_recent": 1405,
-        "harvest_success_3yr_avg": 1404,
-        "harvest_success_recent": 1404,
-        "hunter_effort_days_recent": 1280,
-        "hunter_satisfaction_recent": 1277,
-        "hunters_afield_recent": 1303,
-        "point_creep_quality_adjustment": 1411
+        "average_age_3yr_avg": 528,
+        "average_age_recent": 528,
+        "demand_pressure_category": 1471,
+        "demand_pressure_signal": 1464,
+        "harvest_feature_data_quality_grade": 1471,
+        "harvest_feature_match_method": 1471,
+        "harvest_feature_reason_codes": 1471,
+        "harvest_feature_source_years": 1470,
+        "harvest_quality_index": 1464,
+        "harvest_recent": 1464,
+        "harvest_success_3yr_avg": 1463,
+        "harvest_success_recent": 1463,
+        "hunter_effort_days_recent": 1335,
+        "hunter_satisfaction_recent": 1321,
+        "hunters_afield_recent": 1358,
+        "point_creep_quality_adjustment": 1471
       },
-      "hunt_code_count": 1411,
+      "hunt_code_count": 1471,
       "path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_model\\harvest_quality\\harvest_feature_model_by_hunt_code_2026.csv",
       "required_fields_present": true,
-      "row_count": 1411,
+      "row_count": 1471,
       "surface": "harvest_feature_model_by_hunt_code_2026"
     },
     {

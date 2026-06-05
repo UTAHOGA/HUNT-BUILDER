@@ -16494,6 +16494,82 @@ Validation commands run:
 - local browser selection-flow smoke test for Bear Harvest Objective
 
 Commit:
+- d951f3fb
+
+# 2026-06-05T14:04:00Z - 2024 draw/harvest alignment and harvest-feature ingestion
+
+Scope:
+- Audited the listed 2024 generated harvest CSV sources and confirmed they are aligned into normalized harvest truth and the engine harvest long table.
+- Verified 2024 draw truth is aligned into `processed_data/draw_reality_engine_v2.csv`.
+- Appended only the seven 2024 turkey harvest feature rows that were present in normalized harvest truth but missing from the engine-facing harvest feature history.
+- Regenerated the downstream harvest feature model outputs after the source-backed append.
+- Did not edit raw source files, `DATABASE.csv`, normalized draw truth, normalized harvest truth, engine model code, runtime manifests, website files, or R2 objects.
+
+Files changed:
+- tools/hunt_research_engine/audit_2024_harvest_draw_ingestion.py
+- tools/hunt_research_engine/ingest_2024_harvest_features_to_engine.py
+- tools/hunt_research_engine/audit_harvest_report_publication_dates.py
+- audits/hunt_research_engine/harvest_draw_ingestion_2024.csv
+- audits/hunt_research_engine/harvest_draw_ingestion_2024.json
+- audits/hunt_research_engine/harvest_draw_ingestion_2024.md
+- audits/hunt_research_engine/harvest_draw_ingestion_2024_engine_feature_gaps.csv
+- audits/hunt_research_engine/harvest_feature_2024_engine_ingestion.csv
+- audits/hunt_research_engine/harvest_feature_2024_engine_ingestion.json
+- audits/hunt_research_engine/harvest_feature_2024_engine_ingestion.md
+- audits/hunt_research_engine/harvest_report_publication_date_audit.csv
+- audits/hunt_research_engine/harvest_report_publication_date_audit.json
+- audits/hunt_research_engine/harvest_report_publication_date_audit.md
+- audits/hunt_research_engine/harvest_feature_model_audit.csv
+- audits/hunt_research_engine/harvest_feature_model_audit.json
+- audits/hunt_research_engine/harvest_feature_model_audit.md
+- audits/hunt_research_engine/harvest_engine_ingestion_audit.csv
+- audits/hunt_research_engine/harvest_engine_ingestion_audit.json
+- audits/hunt_research_engine/harvest_engine_ingestion_audit.md
+- audits/hunt_research_engine/harvest_engine_ingestion_audit_blockers.csv
+- data_model/harvest_quality/harvest_quality_features_all_years_by_hunt_code.csv
+- data_model/harvest_quality/harvest_feature_model_by_hunt_code_2026.csv
+- data_model/harvest_quality/harvest_feature_model_by_species_year.csv
+- data_model/harvest_quality/ml_draw_predictions_with_harvest_features.csv
+- data_model/harvest_quality/draw_reality_engine_predictive_with_harvest_features.csv
+- processed_data/harvest_feature_model_audit.csv
+- processed_data/harvest_feature_model_audit.json
+- processed_data/harvest_feature_model_audit.md
+- WORK_LOG.md
+
+Key results:
+- Listed 2024 generated harvest CSVs checked: 15.
+- 2024 harvest truth long rows: 35,707.
+- 2024 harvest truth hunt codes: 1,048.
+- 2024 engine harvest long rows: 35,707.
+- 2024 engine harvest feature rows before repair: 1,041.
+- Source-backed 2024 turkey feature rows appended: 7 (`TK1003`, `TK1004`, `TK1005`, `TK1006`, `TK1007`, `TK1018`, `TK1021`).
+- 2024 engine harvest feature rows after repair: 1,048.
+- 2024 normalized truth feature keys and engine feature keys now match exactly: 1,048 vs 1,048, missing 0.
+- 2024 draw truth rows: 37,128 / 580 hunt codes.
+- `processed_data/draw_reality_engine_v2.csv` 2024 rows: 37,128 / 580 hunt codes, matching normalized draw truth.
+- Legacy `processed_data/draw_reality_engine.csv` has no 2024 rows; `draw_reality_engine_v2.csv` is the aligned draw-results surface for this pass.
+- Regenerated 2026 harvest feature model rows: 1,471.
+- Current `DATABASE.csv` hunt codes with a 2026 harvest feature row: 1,471.
+- General harvest-engine ingestion audit result: PASS, blockers 0, warnings 0.
+- Harvest publication-date audit result: PASS.
+- Observed rows with `reported_hunt_year=2026`: 0.
+- 2026 harvest feature model rows using source year 2026: 0.
+- `2026-03-06-2025-preliminary-bg-harvest.pdf` is treated as 2025 harvest-results data published on 2026-03-06, not observed 2026 harvest-year data.
+- `2026-03-06-2025-preliminary-bg-harvest.pdf` contributes 1,114 reported-2025 engine feature rows; the companion `.xlsx` source contributes 6 reported-2025 engine feature rows.
+- Protected probability/quota fields unchanged during harvest feature materialization: true.
+
+Validation commands run:
+- python -m py_compile tools/hunt_research_engine/audit_2024_harvest_draw_ingestion.py tools/hunt_research_engine/ingest_2024_harvest_features_to_engine.py
+- python tools/hunt_research_engine/audit_2024_harvest_draw_ingestion.py --root . --out-dir audits/hunt_research_engine
+- python tools/hunt_research_engine/ingest_2024_harvest_features_to_engine.py --root . --dry-run --out-dir audits/hunt_research_engine --max-additions 25
+- python tools/hunt_research_engine/ingest_2024_harvest_features_to_engine.py --root . --apply --out-dir audits/hunt_research_engine --max-additions 25
+- python -m engine.utah.quality.materialize_harvest_feature_model --output-dir audits/hunt_research_engine --forecast-year 2026
+- python tools/hunt_research_engine/audit_harvest_engine_ingestion.py --root . --out-dir audits/hunt_research_engine
+- python tools/hunt_research_engine/audit_harvest_report_publication_dates.py --root . --out-dir audits/hunt_research_engine
+- python -m pytest tests/utah_quality/test_harvest_feature_model.py tests/utah_quality/test_harvest_feature_guardrails.py tests/utah_quality/test_harvest_draw_same_year_alignment_2026.py -q
+- git diff --check
+
+Commit:
 - Pending commit.
 
 # 2026-06-05T10:58:00Z - Hunt Research minimal R2 runtime wiring

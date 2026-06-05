@@ -7,8 +7,8 @@ Read-only proof that harvest data is entering the correct downstream engine surf
 - Result: `PASS`.
 - Current `DATABASE.csv` hunt codes: `1471`.
 - Harvest truth rows: `68657`.
-- Harvest feature model rows: `1411`.
-- Current codes with feature row: `1410`.
+- Harvest feature model rows: `1471`.
+- Current codes with feature row: `1471`.
 - Mixed engine consumes harvest features: `True`.
 - Mixed engine harvest probability component present: `True`.
 - Website summary harvest display present: `True`.
@@ -27,8 +27,8 @@ Read-only proof that harvest data is entering the correct downstream engine surf
 | Surface | Rows | Hunt codes | Duplicate key count | Required fields present | Key nonblank counts |
 | --- | ---: | ---: | ---: | --- | --- |
 | harvest_truth_normalized | 68657 | 1424 | 58254 | True | reported_hunt_year=68657, model_target_year=68657, hunt_code=68657, percent_success=58007, source_file=68657 |
-| harvest_all_years_features | 5563 | 1561 | 0 | True | reported_hunt_year=5563, model_target_year=5563, hunt_code=5563, percent_success=4146, recommended_use=6 |
-| harvest_feature_model_by_hunt_code_2026 | 1411 | 1411 | 0 | True | harvest_quality_index=1384, demand_pressure_signal=1404, demand_pressure_category=1411, point_creep_quality_adjustment=1411, harvest_success_recent=1404, harvest_success_3yr_avg=1404, hunter_satisfaction_recent=1277, hunter_effort_days_recent=1280 |
+| harvest_all_years_features | 5570 | 1561 | 0 | True | reported_hunt_year=5570, model_target_year=5570, hunt_code=5570, percent_success=4153, recommended_use=6 |
+| harvest_feature_model_by_hunt_code_2026 | 1471 | 1471 | 0 | True | harvest_quality_index=1464, demand_pressure_signal=1464, demand_pressure_category=1471, point_creep_quality_adjustment=1471, harvest_success_recent=1463, harvest_success_3yr_avg=1463, hunter_satisfaction_recent=1321, hunter_effort_days_recent=1335 |
 | ml_draw_predictions_v1 | 27940 | 1065 | 0 | True | harvest_quality_index=27590, demand_pressure_signal=27818, demand_pressure_category=27820, point_creep_quality_adjustment=27820, harvest_feature_match_method=27820, harvest_feature_source_years=27820, harvest_feature_reason_codes=27820, p_harvest_adjusted=22719 |
 | draw_reality_engine_predictive_v2 | 26389 | 864 | 0 | True | harvest_quality_index=26075, demand_pressure_signal=26303, demand_pressure_category=26307, point_creep_quality_adjustment=26307, harvest_feature_match_method=26307, harvest_feature_source_years=26305, harvest_feature_reason_codes=26307, p_harvest_adjusted=21375 |
 | point_ladder_view | 91712 | 1449 | 0 | True | harvest_quality_index=89820, demand_pressure_signal=91140, demand_pressure_category=91602, point_creep_quality_adjustment=91602, harvest_feature_match_method=91602, harvest_feature_source_years=91536, harvest_feature_reason_codes=91602, p_harvest_adjusted=25719 |
@@ -39,11 +39,7 @@ Read-only proof that harvest data is entering the correct downstream engine surf
 
 ## Blockers And Warnings
 
-| Severity | ID | Message |
-| --- | --- | --- |
-| WARNING | FEATURE_CODES_MISSING_FROM_SUMMARY | Feature codes absent from Hunt Research summary: ['EA1287'] |
-| WARNING | FEATURE_CODES_MISSING_FROM_DETAILS | Feature codes absent from split details: ['EA1287'] |
-| WARNING | CURRENT_CODES_WITHOUT_FEATURE_ROW | Current DATABASE codes without a 2026 harvest feature row: ['BI6530', 'BR7008', 'BR7019', 'BR7108', 'BR7208', 'DA1044', 'DA1051', 'DB1036', 'DB1059', 'DB1082', 'DB1088', 'DB1089', 'DB1094', 'DB1276', 'DB1320', 'DB1324', 'DB1338', 'DB1343', 'DB1344', 'DB1345'] |
+- None.
 
 ## Guardrails
 
