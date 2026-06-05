@@ -6585,6 +6585,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.getElementById('mapModeToggleBtn');
   const menu = picker?.querySelector('.map-mode-menu');
   const current = picker?.querySelector('.map-mode-current');
+  let closePickerTimer = 0;
 
   if (!select || !picker || !toggle || !menu || !current) return;
 
@@ -6611,13 +6612,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function closePicker() {
+    if (closePickerTimer) {
+      window.clearTimeout(closePickerTimer);
+      closePickerTimer = 0;
+    }
     menu.hidden = true;
     toggle.setAttribute('aria-expanded', 'false');
   }
 
   function openPicker() {
+    if (closePickerTimer) {
+      window.clearTimeout(closePickerTimer);
+      closePickerTimer = 0;
+    }
     menu.hidden = false;
     toggle.setAttribute('aria-expanded', 'true');
+  }
+
+  function scheduleClosePicker() {
+    if (isMobileViewport()) return;
+    if (closePickerTimer) window.clearTimeout(closePickerTimer);
+    closePickerTimer = window.setTimeout(() => {
+      if (!picker.matches(':hover') && !picker.contains(document.activeElement)) {
+        closePicker();
+      }
+    }, 420);
   }
 
   toggle.addEventListener('click', event => {
@@ -6639,9 +6658,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isMobileViewport()) openPicker();
   });
 
-  picker.addEventListener('mouseleave', () => {
-    if (!isMobileViewport()) closePicker();
-  });
+  picker.addEventListener('mouseleave', scheduleClosePicker);
+  menu.addEventListener('mouseenter', openPicker);
+  menu.addEventListener('mouseleave', scheduleClosePicker);
 
   menu.querySelectorAll('.map-mode-option').forEach(btn => {
     btn.addEventListener('click', event => {

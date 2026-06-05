@@ -1,3 +1,48 @@
+## 2026-06-05T22:56:00Z - Builder map selector and header control compression
+
+Scope:
+- Fixed the Builder map selector hover behavior so the lower map buttons stay open while moving from the header button into the hanging menu.
+- Changed the map selector into three matching compact oval buttons.
+- Added left/right chain-link decorations above each lower map selector button so the lower buttons visually hang from the header button.
+- Centered the map selector over the page on desktop.
+- Moved the page navigation hamburger to the far right over the outfitter side.
+- Moved Hunt Backpack immediately left of the hamburger.
+- Reduced the Land Ownership button and ownership panel footprint.
+- Did not edit engine code, `DATABASE.csv`, normalized truth files, raw source files, runtime manifests, R2 objects, or production feeder data.
+
+Files changed:
+- app.js
+- header-layout.js
+- index.html
+- style.css
+- WORK_LOG.md
+
+Key results:
+- Desktop map selector header button: `190px x 46px`.
+- Desktop lower map selector buttons: both `190px x 46px`.
+- Desktop map selector center: `705px-895px` on a `1600px` viewport.
+- Map selector remains open when moving from header toward lower buttons: true.
+- Map selector closes after moving away from all selector buttons: true.
+- Desktop page navigation hamburger: `78px x 52px`, right edge `1576px` on a `1600px` viewport.
+- Desktop Hunt Backpack sits left of hamburger: right edge `1484px`.
+- Desktop Land Ownership closed button: about `135px x 38px`.
+- Desktop horizontal overflow: false.
+- Mobile horizontal overflow: false.
+- Mobile tap opens compact `190px x 46px` map selector options.
+
+Validation commands run:
+- node --check app.js
+- node --check header-layout.js
+- git diff --check
+- npm.cmd run build
+- Browser render measurement at `https://127.0.0.1:4173/` for desktop `1600x900`.
+- Browser render measurement at `https://127.0.0.1:4173/` for mobile `390x844`.
+- Browser hover/away behavior check for map selector.
+- Browser mobile tap-open check for map selector.
+
+Commit:
+- Pending commit.
+
 ## 2026-06-05T22:22:00Z - Hard Copy library cabin wallpaper
 
 Scope:
