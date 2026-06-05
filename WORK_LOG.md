@@ -16663,3 +16663,41 @@ Validation commands run:
 
 Commit:
 - Pending commit.
+
+# 2026-06-05T13:09:22Z - 2025 total permit draw/harvest/Expo cross-compare
+
+Scope:
+- Added a focused read-only audit for 2025 total permit comparisons.
+- Compared selected 2025 L.E./O.I.L. draw-result totals from normalized draw truth against the 2025 preliminary big-game harvest permit counts by exact `hunt_code`.
+- Added the structured 2025 Hunt Expo workbook as an overlay test to check whether `draw permits + Expo permits` explains field/harvest permit totals.
+- Checked the listed 2025 bible-truth PDFs and 2025 preliminary harvest PDF for presence.
+- Did not edit `DATABASE.csv`, normalized draw truth, normalized harvest truth, raw PDFs, engine model code, runtime manifests, website files, or R2 objects.
+
+Files changed:
+- tools/hunt_research_engine/audit_2025_total_permit_cross_compare.py
+- audits/hunt_research_engine/total_permit_cross_compare_2025.csv
+- audits/hunt_research_engine/total_permit_cross_compare_2025.json
+- audits/hunt_research_engine/total_permit_cross_compare_2025.md
+- audits/hunt_research_engine/total_permit_cross_compare_2025_expo_match_decisions.csv
+- WORK_LOG.md
+
+Key results:
+- Selected draw hunt codes: 594.
+- Selected harvest hunt codes: 1,120.
+- Compared hunt codes: 1,120.
+- Draw-only exact total permit matches: 160.
+- Draw-only match rate where both sides had totals: 160/594 (26.9%).
+- Expo rows loaded: 122.
+- Expo matched hunt codes: 56.
+- Draw plus Expo exact total permit matches: 186.
+- Draw plus Expo match rate where both sides had totals: 186/594 (31.3%).
+- Harvest-greater-than-draw rows resolved exactly by Expo: 26.
+- EB3038 resolved as: 70 L.E. draw permits + 2 Expo permits = 72 preliminary harvest/field permits.
+- Remaining rows after draw plus Expo: 361 harvest-greater-than-source, 47 source-greater-than-harvest, and 526 harvest-only totals in this selected source scope.
+
+Validation commands run:
+- python -m py_compile tools/hunt_research_engine/audit_2025_total_permit_cross_compare.py
+- python tools/hunt_research_engine/audit_2025_total_permit_cross_compare.py --root . --out-dir audits/hunt_research_engine
+
+Commit:
+- Pending commit.
