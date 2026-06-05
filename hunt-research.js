@@ -10,6 +10,17 @@
   const CANONICAL_SUMMARY_SOURCES = (window.UOGA_CONFIG && Array.isArray(window.UOGA_CONFIG.HUNT_RESEARCH_SUMMARY_SOURCES) && window.UOGA_CONFIG.HUNT_RESEARCH_SUMMARY_SOURCES.length)
     ? window.UOGA_CONFIG.HUNT_RESEARCH_SUMMARY_SOURCES
     : [fallbackR2('processed_data/hunt_research_2026_summary.json')];
+  const SPLIT_INDEX_SOURCES = (window.UOGA_CONFIG && Array.isArray(window.UOGA_CONFIG.HUNT_RESEARCH_SPLIT_INDEX_SOURCES) && window.UOGA_CONFIG.HUNT_RESEARCH_SPLIT_INDEX_SOURCES.length)
+    ? window.UOGA_CONFIG.HUNT_RESEARCH_SPLIT_INDEX_SOURCES
+    : [fallbackR2('processed_data/hunt_research_2026_split/hunt_research_2026.index.json')];
+  const SPLIT_DETAIL_BUNDLE_SOURCES = (window.UOGA_CONFIG && Array.isArray(window.UOGA_CONFIG.HUNT_RESEARCH_SPLIT_DETAIL_BUNDLE_SOURCES) && window.UOGA_CONFIG.HUNT_RESEARCH_SPLIT_DETAIL_BUNDLE_SOURCES.length)
+    ? window.UOGA_CONFIG.HUNT_RESEARCH_SPLIT_DETAIL_BUNDLE_SOURCES
+    : [fallbackR2('processed_data/hunt_research_2026_split/hunt_research_2026.details.json')];
+  const SPLIT_DETAIL_BASES = (window.UOGA_CONFIG && Array.isArray(window.UOGA_CONFIG.HUNT_RESEARCH_SPLIT_DETAIL_BASES) && window.UOGA_CONFIG.HUNT_RESEARCH_SPLIT_DETAIL_BASES.length)
+    ? window.UOGA_CONFIG.HUNT_RESEARCH_SPLIT_DETAIL_BASES
+    : [fallbackR2('processed_data/hunt_research_2026_split')];
+  const USE_SPLIT_DETAIL_DIRECT = window.UOGA_CONFIG?.HUNT_RESEARCH_USE_SPLIT_DETAIL_DIRECT === true;
+  const HUNT_RESEARCH_DATA_VERSION = String(window.UOGA_CONFIG?.HUNT_RESEARCH_DATA_VERSION || '').trim();
   const CANONICAL_LADDER_SOURCES = (window.UOGA_CONFIG && Array.isArray(window.UOGA_CONFIG.HUNT_RESEARCH_CANONICAL_LADDER_SOURCES) && window.UOGA_CONFIG.HUNT_RESEARCH_CANONICAL_LADDER_SOURCES.length)
     ? window.UOGA_CONFIG.HUNT_RESEARCH_CANONICAL_LADDER_SOURCES
     : [fallbackR2('processed_data/hunt_research_2026_ladder.json')];
@@ -69,6 +80,12 @@
     referenceByKey: new Map(),
     referenceByCode: new Map(),
     engineHistoryByPoint: new Map(),
+    splitIndexByCode: new Map(),
+    splitDetailByCode: new Map(),
+    splitDetailBundleLoaded: false,
+    splitDetailLoadingPromise: null,
+    splitDetailDirectUnavailable: false,
+    loadedSplitDetails: new Set(),
     engineMode: ENGINE_MODE,
     loadedSources: null,
   };
@@ -534,6 +551,162 @@
     if (parsed && Array.isArray(parsed.rows)) return parsed.rows;
     if (parsed && Array.isArray(parsed.data)) return parsed.data;
     throw new Error('Canonical contract JSON did not contain a row array.');
+  }
+
+  function parseJsonObject(text) {
+    const parsed = JSON.parse(String(text || '{}'));
+    if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) return parsed;
+    throw new Error('Canonical split detail JSON did not contain an object.');
+  }
+
+  function withRuntimeVersion(url) {
+    const clean = String(url || '').trim();
+    if (!clean || !HUNT_RESEARCH_DATA_VERSION) return clean;
+    return `${clean}${clean.includes('?') ? '&' : '?'}v=${encodeURIComponent(HUNT_RESEARCH_DATA_VERSION)}`;
+  }
+
+  function splitDetailUrl(base, detailPath) {
+    const cleanBase = String(base || '').trim().replace(/\/+$/, '');
+    const cleanPath = String(detailPath || '').trim().replace(/^\/+/, '');
+    if (!cleanBase || !cleanPath) return '';
+    return withRuntimeVersion(`${cleanBase}/${cleanPath}`);
+  }
+
+  function residencyLaneKey(residency) {
+    return String(residency || '').trim().toLowerCase() === 'nonresident' ? 'nonresident' : 'resident';
+  }
+
+  function splitDetailIdentityRow(detail, residency = 'Resident') {
+    const normalizedResidency = normalizeResidencyLabel(residency);
+    return {
+      ...detail,
+      hunt_code: normalizeKey(detail?.hunt_code || detail?.huntCode || detail?.code),
+      hunt_name: detail?.hunt_name || detail?.huntTitle || detail?.title || '',
+      residency: normalizedResidency,
+      draw_pool: normalizeDrawPool(detail?.draw_pool),
+      points: detail?.points ?? '',
+      unit_name: detail?.unit_name || detail?.unitName || detail?.hunt_name || '',
+    };
+  }
+
+  function splitDetailSummaryRows(detail) {
+    const rows = Array.isArray(detail?.research_summary_rows) ? detail.research_summary_rows : [];
+    if (rows.length) {
+      return rows.map((row) => ({
+        ...detail,
+        ...row,
+        hunt_code: normalizeKey(row?.hunt_code || detail?.hunt_code),
+        residency: normalizeResidencyLabel(row?.residency),
+        draw_pool: normalizeDrawPool(row?.draw_pool),
+      }));
+    }
+    return [splitDetailIdentityRow(detail, 'Resident')];
+  }
+
+  function mapRowsByPoint(rows, pointField) {
+    const mapped = new Map();
+    (Array.isArray(rows) ? rows : []).forEach((row) => {
+      const point = num(row?.[pointField]);
+      if (point !== null) mapped.set(point, row);
+    });
+    return mapped;
+  }
+
+  function splitBonusPointZone(projectedRow) {
+    const guaranteed = num(projectedRow?.projected_guaranteed_probability_pct);
+    if (guaranteed !== null && guaranteed >= 0.999) return 'max_pool_guaranteed';
+    if (guaranteed !== null && guaranteed > 0) return 'max_pool_cutoff_mixed';
+    return 'random_pool';
+  }
+
+  function displayFromSplitProbability(value) {
+    const parsed = num(value);
+    if (parsed === null || parsed <= 0) return '';
+    return formatOddsAsOneInOrPercent(parsed * 100);
+  }
+
+  function buildBonusRowsFromSplitDetail(detail) {
+    const out = [];
+    const projected = detail?.projected_bonus_draw || {};
+    const historical = detail?.bonus_draw || {};
+    ['resident', 'nonresident'].forEach((lane) => {
+      const projectedRows = Array.isArray(projected?.[lane]) ? projected[lane] : [];
+      if (!projectedRows.length) return;
+      const histByPoint = mapRowsByPoint(historical?.[lane], 'point_level');
+      const residency = lane === 'nonresident' ? 'Nonresident' : 'Resident';
+      projectedRows.forEach((projectedRow) => {
+        const points = num(projectedRow?.apply_with_points);
+        if (points === null) return;
+        const historicalRow = histByPoint.get(points) || {};
+        const zone = splitBonusPointZone(projectedRow);
+        const guaranteedProbability = num(projectedRow?.projected_guaranteed_probability_pct);
+        const randomProbability = num(projectedRow?.projected_random_probability_pct);
+        const totalProbability = num(projectedRow?.projected_total_probability_pct);
+        const drawSystem = detail?.draw_2026_system_type || detail?.draw_family || 'BONUS_POINT_SPLIT_DRAW';
+        out.push({
+          ...detail,
+          hunt_code: normalizeKey(detail?.hunt_code),
+          hunt_name: detail?.hunt_name || detail?.title || '',
+          species: detail?.species || '',
+          sex_type: detail?.sex_type || detail?.sexType || '',
+          weapon: detail?.weapon || detail?.Weapon || '',
+          hunt_type: detail?.hunt_type || detail?.type || '',
+          hunt_class: detail?.hunt_class || detail?.category || '',
+          boundary_id: detail?.boundary_id || detail?.boundaryId || '',
+          unit_name: detail?.unitName || detail?.dwr_unit_name || detail?.hunt_name || '',
+          residency,
+          points,
+          year: '2026',
+          draw_pool: 'standard',
+          draw_2026_system_type: drawSystem,
+          draw_system_type: drawSystem,
+          draw_system: 'BONUS_POINT_SPLIT_DRAW',
+          algorithm_status: 'MODELED_BONUS',
+          applicants: historicalRow?.applicants ?? projectedRow?.projected_total_applicants_at_point ?? '',
+          eligible_applicants: historicalRow?.applicants ?? projectedRow?.projected_total_applicants_at_point ?? '',
+          bonus_permits: historicalRow?.bonus_permits ?? '',
+          regular_permits: historicalRow?.random_permits ?? '',
+          random_permits: historicalRow?.random_permits ?? '',
+          total_permits: historicalRow?.total_permits ?? projectedRow?.current_recommended_permits ?? detail?.permits_2026_total ?? '',
+          dwr_result_display: historicalRow?.success_ratio_text || '',
+          display_2025_draw_results: historicalRow?.success_ratio_text || '',
+          max_point_permits_2026: projectedRow?.projected_bonus_pool_permits ?? '',
+          random_permits_2026: projectedRow?.projected_random_pool_permits ?? '',
+          permits_2026_total: projectedRow?.current_recommended_permits ?? detail?.permits_2026_total ?? '',
+          point_pool_zone: zone,
+          display_2026_max_point_pool: zone === 'random_pool' ? '' : (guaranteedProbability >= 0.999 ? MAX_POINT_POOL_GUARANTEED_DISPLAY : displayFromSplitProbability(guaranteedProbability)),
+          display_2026_random_draw: zone === 'max_pool_guaranteed' ? '' : displayFromSplitProbability(randomProbability),
+          p_max_pool_mean: guaranteedProbability === null ? '' : guaranteedProbability,
+          p_random_pool: randomProbability === null ? '' : randomProbability,
+          p_random_pool_pct: randomProbability === null ? '' : randomProbability * 100,
+          p_draw_mean: totalProbability === null ? '' : totalProbability,
+          random_draw_odds_2026: randomProbability === null ? '' : randomProbability * 100,
+          max_pool_projection_2026: guaranteedProbability === null ? '' : guaranteedProbability * 100,
+          odds_2026_projected: totalProbability === null ? '' : totalProbability * 100,
+          projected_2026_max_cutoff_point: projectedRow?.projected_bonus_cutoff_point ?? projectedRow?.projected_cutoff_point ?? '',
+          projected_2026_random_pool_start_point: projectedRow?.projected_cutoff_point ?? '',
+          reason_codes: 'SPLIT_DETAIL_BUNDLE_RUNTIME',
+          source_file: detail?.source_file || 'processed_data/hunt_research_2026_split/hunt_research_2026.details.json',
+        });
+      });
+    });
+    return out;
+  }
+
+  function buildRuntimeRowsFromSplitDetail(detail) {
+    const summaryRows = splitDetailSummaryRows(detail);
+    const bonusRows = buildBonusRowsFromSplitDetail(detail);
+    const engineRows = bonusRows.length ? bonusRows : summaryRows;
+    const ladderRows = bonusRows.length ? bonusRows : summaryRows;
+    const residencies = new Set(summaryRows.map((row) => normalizeResidencyLabel(row.residency)));
+    if (!residencies.size) residencies.add('Resident');
+    const identityRows = Array.from(residencies).map((residency) => splitDetailIdentityRow(detail, residency));
+    return {
+      engineRows,
+      ladderRows,
+      masterRows: [...identityRows, ...summaryRows],
+      referenceRows: [...identityRows, ...summaryRows],
+    };
   }
 
   function deriveCanonicalRuntimeTables(contractRows) {
@@ -2126,6 +2299,91 @@
     });
   }
 
+  function indexSplitDetail(detail, source) {
+    const huntCode = normalizeKey(detail?.hunt_code || detail?.huntCode || detail?.code);
+    if (!huntCode || state.loadedSplitDetails.has(huntCode)) return false;
+    const runtimeRows = buildRuntimeRowsFromSplitDetail({
+      ...detail,
+      split_runtime_source: source,
+    });
+    indexData(
+      runtimeRows.engineRows,
+      runtimeRows.ladderRows,
+      runtimeRows.masterRows,
+      runtimeRows.referenceRows
+    );
+    state.loadedSplitDetails.add(huntCode);
+    state.splitDetailByCode.set(huntCode, detail);
+    return true;
+  }
+
+  async function loadSplitDetailBundle() {
+    if (state.splitDetailBundleLoaded) return state.splitDetailByCode;
+    if (state.splitDetailLoadingPromise) return state.splitDetailLoadingPromise;
+
+    state.splitDetailLoadingPromise = (async () => {
+      const bundle = await loadFirstAvailable(SPLIT_DETAIL_BUNDLE_SOURCES);
+      const parsed = parseJsonObject(bundle.text);
+      const details = parsed.details_by_hunt_code || {};
+      Object.keys(details).forEach((huntCode) => {
+        state.splitDetailByCode.set(normalizeKey(huntCode), details[huntCode]);
+      });
+      state.splitDetailBundleLoaded = true;
+      if (state.loadedSources) {
+        state.loadedSources.splitDetailBundle = bundle.source;
+        state.loadedSources.splitDetailBundleRows = state.splitDetailByCode.size;
+      }
+      return state.splitDetailByCode;
+    })().finally(() => {
+      state.splitDetailLoadingPromise = null;
+    });
+
+    return state.splitDetailLoadingPromise;
+  }
+
+  async function loadSplitDetailDirect(indexRow) {
+    if (!indexRow || state.splitDetailDirectUnavailable) return null;
+    const detailPath = String(indexRow.detail_path || '').trim();
+    if (!detailPath) return null;
+    let lastError = null;
+    for (const base of SPLIT_DETAIL_BASES) {
+      const source = splitDetailUrl(base, detailPath);
+      if (!source) continue;
+      try {
+        const text = await tryLoadText(source);
+        return {
+          source,
+          detail: parseJsonObject(text),
+        };
+      } catch (error) {
+        lastError = error;
+        console.warn(`Failed split detail source: ${source}`, error);
+      }
+    }
+    state.splitDetailDirectUnavailable = true;
+    if (lastError) console.warn('Per-hunt split details are unavailable; trying compact detail bundle.', lastError);
+    return null;
+  }
+
+  async function ensureSelectedHuntDetail(huntCode) {
+    const normalizedCode = normalizeKey(huntCode);
+    if (!normalizedCode || state.loadedSplitDetails.has(normalizedCode) || !state.splitIndexByCode.size) return;
+
+    const indexRow = state.splitIndexByCode.get(normalizedCode);
+    if (!indexRow) return;
+
+    if (USE_SPLIT_DETAIL_DIRECT) {
+      const direct = await loadSplitDetailDirect(indexRow);
+      if (direct?.detail && indexSplitDetail(direct.detail, direct.source)) return;
+    }
+
+    const detailMap = await loadSplitDetailBundle();
+    const bundled = detailMap.get(normalizedCode);
+    if (bundled) {
+      indexSplitDetail(bundled, state.loadedSources?.splitDetailBundle || 'split_detail_bundle');
+    }
+  }
+
   async function loadData() {
     if (state.loaded && state.loadedSources) return state.loadedSources;
     if (state.loadingPromise) return state.loadingPromise;
@@ -2134,29 +2392,37 @@
       try {
         if (USE_SPLIT_CANONICAL_CONTRACT) {
           try {
-            const [summary, ladder] = await Promise.all([
+            const [summary, splitIndex] = await Promise.all([
               loadFirstAvailable(CANONICAL_SUMMARY_SOURCES),
-              loadFirstAvailable(CANONICAL_LADDER_SOURCES),
+              loadFirstAvailable(SPLIT_INDEX_SOURCES),
             ]);
             const summaryRows = parseJsonRows(summary.text);
-            const ladderRows = parseJsonRows(ladder.text);
+            const splitIndexRows = parseJsonRows(splitIndex.text);
+            state.splitIndexByCode.clear();
+            splitIndexRows.forEach((row) => {
+              const huntCode = normalizeKey(row?.hunt_code);
+              if (huntCode && !state.splitIndexByCode.has(huntCode)) {
+                state.splitIndexByCode.set(huntCode, row);
+              }
+            });
             indexData(
-              ladderRows,
-              ladderRows,
               summaryRows,
-              summaryRows
+              [],
+              [...splitIndexRows, ...summaryRows],
+              [...splitIndexRows, ...summaryRows]
             );
 
             state.loadedSources = {
               engineMode: ENGINE_MODE,
               canonicalSummary: summary.source,
-              canonicalLadder: ladder.source,
-              canonicalRows: ladderRows.length,
+              splitIndex: splitIndex.source,
+              splitIndexRows: splitIndexRows.length,
+              canonicalRows: summaryRows.length,
               summaryRows: summaryRows.length,
-              engine: 'canonical_split_contract',
-              ladder: 'canonical_split_contract',
-              master: 'canonical_split_contract',
-              reference: 'canonical_split_contract',
+              engine: 'canonical_summary_contract',
+              ladder: 'split_detail_on_demand',
+              master: 'split_index_contract',
+              reference: 'split_index_contract',
               legacyFallbackUsed: false,
               legacyFallbackAllowed: ALLOW_LEGACY_FALLBACK,
             };
@@ -2306,6 +2572,12 @@
         renderEmpty(filters, 'Runtime rows could not be loaded yet.');
         return;
       }
+    }
+
+    try {
+      await ensureSelectedHuntDetail(filters.huntCode);
+    } catch (error) {
+      console.warn('Selected Hunt Research split detail could not be loaded. Rendering available summary rows.', error);
     }
 
     renderDetail(filters);

@@ -293,6 +293,25 @@ window.UOGA_CONFIG = (() => {
     includeLocalFallback: true,
   });
 
+  const HUNT_RESEARCH_SPLIT_INDEX_SOURCES = runtimeSourceCandidates({
+    key: 'research_hunt_research_2026_split_index_json',
+    relativePath: 'processed_data/hunt_research_2026_split/hunt_research_2026.index.json',
+    version: HUNT_RESEARCH_DATA_VERSION,
+    includeLocalFallback: true,
+  });
+
+  const HUNT_RESEARCH_SPLIT_DETAIL_BUNDLE_SOURCES = runtimeSourceCandidates({
+    key: 'research_hunt_research_2026_split_details_json',
+    relativePath: 'processed_data/hunt_research_2026_split/hunt_research_2026.details.json',
+    version: HUNT_RESEARCH_DATA_VERSION,
+    includeLocalFallback: true,
+  });
+
+  const HUNT_RESEARCH_SPLIT_DETAIL_BASES = uniqueUrls([
+    fromR2('processed_data/hunt_research_2026_split'),
+    ...(isDevLikeHost() ? ['./processed_data/hunt_research_2026_split'] : []),
+  ].filter(Boolean));
+
   const HUNT_RESEARCH_CANONICAL_LADDER_SOURCES = runtimeSourceCandidates({
     key: 'research_hunt_research_2026_ladder_json',
     relativePath: 'processed_data/hunt_research_2026_ladder.json',
@@ -638,6 +657,9 @@ window.UOGA_CONFIG = (() => {
 
     HUNT_RESEARCH_DATA_SOURCES,
     HUNT_RESEARCH_SUMMARY_SOURCES,
+    HUNT_RESEARCH_SPLIT_INDEX_SOURCES,
+    HUNT_RESEARCH_SPLIT_DETAIL_BUNDLE_SOURCES,
+    HUNT_RESEARCH_SPLIT_DETAIL_BASES,
     HUNT_RESEARCH_CANONICAL_LADDER_SOURCES,
     USE_PREDICTIVE_DRAW_ENGINE,
     HUNT_RESEARCH_ENGINE_MODE,

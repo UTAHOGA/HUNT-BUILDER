@@ -16495,3 +16495,50 @@ Validation commands run:
 
 Commit:
 - Pending commit.
+
+# 2026-06-05T10:58:00Z - Hunt Research minimal R2 runtime wiring
+
+Scope:
+- Built and published a compact Hunt Research split-detail runtime bundle to Cloudflare R2.
+- Rewired `hunt-research.js` so the default page load uses the compact summary feed plus the 2026 split hunt-code index, then loads selected-hunt detail on demand.
+- Preserved the full `hunt_research_2026.json` canonical contract as fallback; did not change core engine logic, probability formulas, `DATABASE.csv`, raw source files, or normalized draw truth.
+- Added a reproducible bundle builder and a runtime architecture audit.
+
+Files changed:
+- config.js
+- hunt-research.js
+- public/data/runtime-manifest.json
+- data/runtime-manifest.json
+- scripts/build-hunt-research-minimal-runtime.js
+- audits/hunt_research_engine/minimal_runtime_bundle_report.json
+- audits/hunt_research_engine/minimal_runtime_architecture.md
+- WORK_LOG.md
+
+Outputs created:
+- processed_data/hunt_research_2026_split/hunt_research_2026.details.json (local ignored runtime artifact, uploaded to R2)
+- audits/hunt_research_engine/minimal_runtime_bundle_report.json
+- audits/hunt_research_engine/minimal_runtime_architecture.md
+
+Key results:
+- Compact details bundle built from split index/detail files.
+- Indexed current hunt codes: 1,471.
+- Bundled hunt details: 1,471.
+- Missing detail files: 0.
+- Duplicate index hunt codes: 0.
+- R2 verified 200 for summary, split index, compact details bundle, full canonical fallback, bonus ladder fallback, and preference ladder fallback.
+- Local smoke test: DB1004 rendered 33 ladder rows from split runtime; EA1295 rendered selected-hunt detail; mobile viewport 390px had no horizontal overflow.
+
+Validation commands run:
+- node scripts/build-hunt-research-minimal-runtime.js
+- npx wrangler r2 object put uoga-data/processed_data/hunt_research_2026_split/hunt_research_2026.details.json --file processed_data\hunt_research_2026_split\hunt_research_2026.details.json --content-type application/json --cache-control "public, max-age=300" --remote
+- curl.exe -I https://json.uoga.workers.dev/processed_data/hunt_research_2026_split/hunt_research_2026.details.json
+- node --check hunt-research.js
+- node --check config.js
+- node --check scripts/build-hunt-research-minimal-runtime.js
+- local Playwright smoke test for DB1004 and EA1295 at 390px width
+- node JSON parse check for runtime manifests and bundle report
+- git diff --check
+- npm.cmd run build
+
+Commit:
+- Pending commit.
