@@ -540,6 +540,7 @@ function getNormalizedSex(valueOrHunt) {
   if (val.includes('either')) return 'Either Sex';
   if (val.includes('choice')) return 'Either Sex';
   if (val === 'ewe') return 'Ewe';
+  if ((val.includes('female') || val === 'cow' || val.includes('cow only') || val.includes('antlerless')) && species === 'Bison') return 'Cow Only';
   if ((val === 'doe' || val === 'cow' || val.includes('antlerless')) && species === 'Rocky Mountain Bighorn Sheep') return 'Ewe';
   if ((val === 'doe' || val === 'cow' || val.includes('antlerless')) && species === 'Desert Bighorn Sheep') return 'Ram';
   if (val === 'doe' || val === 'cow' || val.includes('antlerless')) return 'Antlerless';

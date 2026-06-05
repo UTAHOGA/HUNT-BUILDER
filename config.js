@@ -544,6 +544,7 @@ window.UOGA_CONFIG = (() => {
     'Bull',
     'Ram',
     'Ewe',
+    'Cow Only',
     'Bearded',
     'Antlerless',
     'Either Sex',

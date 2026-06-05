@@ -15903,6 +15903,33 @@ Validation commands run:
 Commit:
 - Pending validation and commit.
 
+# 2026-06-05T08:54:00Z - Bison cow-only sex-label normalization
+
+Scope:
+- Normalized Bison female-only sex display to `Cow Only`.
+- Preserved Bison `Either Sex` display.
+- Confirmed Moose sex labels were already accurate and left them unchanged.
+- Did not edit source truth, DATABASE, engine code, manifests, or runtime data files.
+
+Files changed:
+- app.js
+- config.js
+- WORK_LOG.md
+
+Key results:
+- Bison sex options render as: All, Cow Only, Either Sex.
+- `Female Only` is no longer introduced into the Builder matrix for Bison.
+- Mobile UI check at 390px wide passed with no horizontal overflow.
+
+Validation commands run:
+- node --check app.js
+- node --check config.js
+- Local HTTPS Playwright matrix verification for Species `Bison`.
+- git diff --check
+
+Commit:
+- Pending validation and commit.
+
 # 2026-06-04T10:14:32Z - Phase 02 targeted backfill acceptance rerun
 
 Scope:
