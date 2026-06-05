@@ -17294,3 +17294,30 @@ Validation commands run:
 
 Commit:
 - Pending commit.
+
+# 2026-06-05T20:34:00Z - Remove generated pages-dist tree from Git tracking
+
+Scope:
+- Removed the generated `pages-dist/` tree from Git tracking without deleting the local folder.
+- Added a hard `.gitignore` rule for `pages-dist/` so GitHub Desktop should stop staging generated build output from that tree.
+- Removed the previous `pages-dist/processed_data/public_contracts` exception because the project should commit source/public contract inputs, not the generated `pages-dist` copy.
+- Did not edit data truth, `DATABASE.csv`, runtime manifests, engine code, R2 objects, or production source files.
+
+Files changed:
+- .gitignore
+- WORK_LOG.md
+- pages-dist/* removed from Git index only
+
+Key results:
+- Previously tracked `pages-dist` files: 19.
+- Tracked `pages-dist` files after untracking: 0.
+- Local `pages-dist` folder still exists on disk.
+
+Validation commands run:
+- git ls-files pages-dist
+- git rm -r --cached -- pages-dist
+- git diff --check
+- python tools/git_size_guard.py --warn-only
+
+Commit:
+- Pending commit.

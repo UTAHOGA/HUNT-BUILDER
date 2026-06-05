@@ -165,14 +165,12 @@ data_truth/harvest_results_truth/normalized/*.csv
 
 # Public contract exception: small JSON contracts may remain repo/Vercel served.
 !processed_data/public_contracts/
-!pages-dist/processed_data/public_contracts/
 processed_data/public_contracts/*.json
 !processed_data/public_contracts/outfitters-public.json
 !processed_data/public_contracts/public_contract_summary.json
 !processed_data/public_contracts/source_snapshots.json
 !processed_data/public_contracts/hunt_application_outlook.json
-pages-dist/processed_data/public_contracts/*.json
-!pages-dist/processed_data/public_contracts/outfitters-public.json
-!pages-dist/processed_data/public_contracts/public_contract_summary.json
-!pages-dist/processed_data/public_contracts/source_snapshots.json
-!pages-dist/processed_data/public_contracts/hunt_application_outlook.json
+
+# Generated Cloudflare/Vercel build output stays local only. Commit source files
+# and public contracts, not the generated pages-dist tree.
+pages-dist/
