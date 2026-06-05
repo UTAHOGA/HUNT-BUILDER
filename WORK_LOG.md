@@ -16572,6 +16572,49 @@ Validation commands run:
 Commit:
 - Pending commit.
 
+# 2026-06-05T14:14:00Z - 2025-for-2026 harvest/draw ingestion proof
+
+Scope:
+- Audited the listed 2025 harvest-results CSV package under `pipeline/RAW/hunt_unit_database/2026/csv/harvest report`.
+- Verified that the 2025 harvest-results package is already ingested into normalized harvest truth and the engine-facing harvest feature surfaces used by the 2026 Hunt Research model.
+- Verified that 2025 draw truth is aligned into `processed_data/draw_reality_engine_v2.csv`.
+- Classified `limited entry elk private lands draw odds 2025.csv` as a non-harvest draw-reference CSV so it is not treated as harvest truth.
+- Confirmed `C:/Users/tyler/Desktop/BIBLE HUNT CODES/2025.zip` exists for the draw/source package.
+- Did not edit raw harvest CSVs, raw PDFs, `DATABASE.csv`, normalized draw truth, normalized harvest truth, engine model code, runtime manifests, website files, or R2 objects.
+- Did not regenerate engine outputs because the audit found zero 2025 source-backed harvest feature feeder gaps.
+
+Files changed:
+- tools/hunt_research_engine/audit_2025_harvest_draw_ingestion.py
+- audits/hunt_research_engine/harvest_draw_ingestion_2025.csv
+- audits/hunt_research_engine/harvest_draw_ingestion_2025.json
+- audits/hunt_research_engine/harvest_draw_ingestion_2025.md
+- audits/hunt_research_engine/harvest_draw_ingestion_2025_engine_feature_gaps.csv
+- WORK_LOG.md
+
+Key results:
+- Audit result: PASS.
+- Raw harvest CSVs checked: 13.
+- Non-harvest reference CSVs checked: 1.
+- `2025.zip` exists: true.
+- 2025 harvest truth rows: 10,122.
+- 2025 harvest truth hunt codes: 1,127.
+- 2025 engine harvest long rows: 10,122.
+- 2025 engine harvest feature rows: 1,127.
+- 2025 normalized truth feature keys and engine feature keys match exactly: 1,127 vs 1,127, missing 0.
+- 2026 feature model rows using 2025 harvest history: 1,306.
+- 2026 feature model rows using 2026 harvest source year: 0.
+- 2025 draw truth rows: 75,194 / 1,053 hunt codes.
+- `processed_data/draw_reality_engine_v2.csv` 2025 rows: 75,194 / 1,053 hunt codes, matching normalized draw truth.
+- Legacy `processed_data/draw_reality_engine.csv` has no 2025 rows; `draw_reality_engine_v2.csv` is the aligned draw-results surface for this pass.
+- Guardrail confirmed: `2026-03-06` is the publication/report date for 2025 harvest results, not observed 2026 harvest-year data.
+
+Validation commands run:
+- python -m py_compile tools/hunt_research_engine/audit_2025_harvest_draw_ingestion.py
+- python tools/hunt_research_engine/audit_2025_harvest_draw_ingestion.py --root . --out-dir audits/hunt_research_engine
+
+Commit:
+- Pending commit.
+
 # 2026-06-05T10:58:00Z - Hunt Research minimal R2 runtime wiring
 
 Scope:
