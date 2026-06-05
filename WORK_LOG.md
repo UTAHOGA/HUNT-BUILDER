@@ -15852,6 +15852,32 @@ Validation commands run:
 Commit:
 - Pending validation and commit.
 
+# 2026-06-05T08:46:00Z - Pronghorn sex-label normalization
+
+Scope:
+- Normalized Hunt Builder Pronghorn female/antlerless sex display to DWR-style `Doe`.
+- Preserved Deer/Elk `Antlerless` naming and `Either Sex` naming for former Hunter's Choice display.
+- Did not edit source truth, DATABASE, engine code, manifests, or runtime data files.
+
+Files changed:
+- app.js
+- config.js
+- WORK_LOG.md
+
+Key results:
+- Pronghorn sex options now render as: All, Buck, Doe.
+- Local source count check found Pronghorn normalized rows: 96 Buck and 33 Doe.
+- Mobile UI check at 390px wide passed with no horizontal overflow.
+
+Validation commands run:
+- node --check app.js
+- node --check config.js
+- Local HTTPS Playwright matrix verification for Species `Pronghorn`.
+- git diff --check
+
+Commit:
+- Pending validation and commit.
+
 # 2026-06-04T10:14:32Z - Phase 02 targeted backfill acceptance rerun
 
 Scope:
