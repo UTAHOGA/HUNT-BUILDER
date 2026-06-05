@@ -1251,6 +1251,13 @@ function getWeapon(h) {
   const raw = firstNonEmpty(h.weapon, h.Weapon);
   if (safe(getHuntTitle(h)).toLowerCase().includes('hamss')) return 'HAMSS';
   if (
+    getSpeciesDisplay(h) === 'Black Bear' &&
+    getNormalizedSex(h) === 'Either Sex' &&
+    normalizeHuntTypeLabel(firstNonEmpty(h.huntType, h.HuntType, h.type)) === 'Limited Entry'
+  ) {
+    return 'Any Legal Weapon';
+  }
+  if (
     getSpeciesDisplay(h) === 'Elk' &&
     getNormalizedSex(h) === 'Bull' &&
     normalizeHuntTypeLabel(firstNonEmpty(h.huntType, h.HuntType, h.type)) === 'Limited Entry' &&
@@ -1419,6 +1426,14 @@ function getElkBullLimitedEntrySeasonClass(h) {
   // Muzzleloader, HAMSS, and Multiseason already resolve at the weapon step.
   return '';
 }
+function getBearLimitedEntryMethodClass(h) {
+  const code = normalizeHuntCode(getHuntCode(h));
+  const rawType = safe(firstNonEmpty(h.huntType, h.HuntType, h.type)).toLowerCase();
+  const rawWeapon = safe(firstNonEmpty(h.weapon, h.Weapon)).toLowerCase();
+  if (code.startsWith('BR72') || rawType.includes('fall')) return 'Bait';
+  if (code.startsWith('BR70') || code.startsWith('BR71') || code.startsWith('BR73') || rawType.includes('spring') || rawType.includes('summer') || rawType.includes('multiseason') || rawWeapon.includes('multiseason')) return 'Hounds';
+  return '';
+}
 function getHuntCategory(h) {
   if (h?.syntheticConservationPermit) {
     const syntheticCategory = normalizeHuntCategoryLabel(firstNonEmpty(h.huntCategory, h.HuntCategory, h.category, 'Conservation'));
@@ -1432,6 +1447,10 @@ function getHuntCategory(h) {
   const haystack = `${safe(raw)} ${getHuntTitle(h)} ${getUnitName(h)}`.toLowerCase();
 
   if (species === 'Cougar') return 'Statewide';
+
+  if (species === 'Black Bear' && sex === 'Either Sex' && huntType === 'Limited Entry') {
+    return getBearLimitedEntryMethodClass(h);
+  }
 
   if (species === 'Deer') {
     if (sex === 'Antlerless') return '';

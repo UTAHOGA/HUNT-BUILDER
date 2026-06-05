@@ -537,6 +537,8 @@ window.UOGA_CONFIG = (() => {
     'Early Archery',
     'Late Archery',
     'Late Muzzy',
+    'Hounds',
+    'Bait',
     'Sportsmen',
     'Limited Entry',
     'Premium Limited Entry',

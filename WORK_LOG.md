@@ -1,3 +1,32 @@
+## 2026-06-05T10:10:11Z - Refine Bear limited-entry matrix routing
+
+Scope:
+- Updated Hunt Builder selection-matrix display logic for Black Bear Limited Entry paths.
+- Kept the control order as Species -> Sex -> Hunt Type -> Weapon Type -> Hunt Class -> DWR Hunt Units.
+- Did not edit `DATABASE.csv`, raw source files, engine model code, runtime manifests, or R2 objects.
+
+Files changed:
+- app.js
+- config.js
+- WORK_LOG.md
+
+Key results:
+- Black Bear -> Either Sex -> Limited Entry now groups source `Limited Entry - Spring/Summer/Fall/Multiseason` rows under display Hunt Type `Limited Entry`.
+- Bear Limited Entry now displays Weapon Type as `Any Legal Weapon`.
+- Bear Limited Entry no longer displays `Multiseason` as a separate weapon option.
+- Bear Limited Entry -> Any Legal Weapon now exposes exactly two Hunt Class options: `Hounds` and `Bait`.
+- `Hounds` and `Bait` both render DWR Hunt Units.
+- Mobile QA at 390px viewport showed no horizontal overflow.
+
+Validation commands run:
+- node --check app.js
+- node --check config.js
+- git diff --check
+- Local Playwright matrix QA against `https://127.0.0.1:4173/` for Black Bear Either Sex Limited Entry Any Legal Weapon, Hounds, Bait, and mobile overflow.
+
+Commit:
+- Pending validation and commit.
+
 ## 2026-06-05T10:04:03Z - Refine Deer muzzleloader and Elk multi-season matrix routing
 
 Scope:
