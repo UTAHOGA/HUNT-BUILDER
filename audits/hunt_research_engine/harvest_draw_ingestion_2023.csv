@@ -1,0 +1,12 @@
+source_file,raw_path,raw_exists,raw_size_bytes,truth_long_rows_2023,truth_long_hunt_codes_2023,truth_feature_rows_2023,truth_feature_hunt_codes_2023,model_long_rows_2023,model_long_hunt_codes_2023,model_feature_rows_2023,model_feature_hunt_codes_2023,ingestion_status
+2023 desert bighorn harvest report unit not number.pdf,pipeline/RAW/hunt_unit_database/2024/pdf/harvest_report/2023 desert bighorn harvest report unit not number.pdf,True,107945,411,46,16,16,411,46,16,16,INGESTED_TRUTH_AND_ENGINE_FEATURE
+2023 Hunt Success.pdf,pipeline/RAW/hunt_unit_database/2024/pdf/harvest_report/2023 Hunt Success.pdf,True,170545,5448,592,592,592,5448,592,592,592,INGESTED_TRUTH_AND_ENGINE_FEATURE
+2023_le_oial_all.pdf,pipeline/RAW/hunt_unit_database/2024/pdf/harvest_report/2023_le_oial_all.pdf,True,416955,0,0,0,0,0,0,0,0,REFERENCE_OR_DUPLICATE_NOT_PROMOTED
+2023-24 turkey.pdf,pipeline/RAW/hunt_unit_database/2024/pdf/harvest_report/2023-24 turkey.pdf,True,1428305,0,0,0,0,0,0,7,7,ENGINE_FEATURE_ONLY
+A96251BE__2023_antlerless_hr.pdf,pipeline/RAW/hunt_unit_database/2024/pdf/harvest_report/A96251BE__2023_antlerless_hr.pdf,True,207839,597,199,199,199,597,199,199,199,INGESTED_TRUTH_AND_ENGINE_FEATURE
+dbd8a659__cougar_2023.pdf,pipeline/RAW/hunt_unit_database/2024/pdf/harvest_report/dbd8a659__cougar_2023.pdf,True,1293478,0,0,0,0,0,0,0,0,REFERENCE_OR_DUPLICATE_NOT_PROMOTED
+dc965eb4__General-season buck deer.pdf,pipeline/RAW/hunt_unit_database/2024/pdf/harvest_report/dc965eb4__General-season buck deer.pdf,True,154279,534,136,136,136,534,136,136,136,INGESTED_TRUTH_AND_ENGINE_FEATURE
+23_bg_report.pdf,pipeline/RAW/hunt_unit_database/2024/pdf/harvest_report/23_bg_report.pdf,True,10336886,0,0,0,0,0,0,94,94,ENGINE_FEATURE_ONLY
+23_black_bear_report.pdf,pipeline/RAW/hunt_unit_database/2024/pdf/harvest_report/23_black_bear_report.pdf,True,2767514,261,87,87,87,261,87,87,87,INGESTED_TRUTH_AND_ENGINE_FEATURE
+BIGHORN SHEEP 2023-harvest-data.pdf,pipeline/RAW/hunt_unit_database/2024/pdf/harvest_report/BIGHORN SHEEP 2023-harvest-data.pdf,True,138130,8,3,0,0,8,3,0,0,TRUTH_ONLY_NOT_ENGINE_FEATURE
+61FC0758__BIGHORN SHEEP 2023-harvest-data.pdf,,,,8,3,0,0,8,3,0,0,TRUTH_ONLY_NOT_ENGINE_FEATURE

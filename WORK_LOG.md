@@ -16700,4 +16700,55 @@ Validation commands run:
 - python tools/hunt_research_engine/audit_2025_total_permit_cross_compare.py --root . --out-dir audits/hunt_research_engine
 
 Commit:
+- ea4b00ab
+
+# 2026-06-05T13:53:09Z - 2023 harvest/draw ingestion proof for Hunt Research engine
+
+Scope:
+- Verified that the listed 2023 harvest sources are already ingested into the harvest truth/feature path used by Hunt Research.
+- Added a general harvest-engine ingestion audit proving the correct downstream path: normalized harvest truth -> harvest feature model -> mixed predictive engine harvest fields -> Hunt Research runtime/display fields.
+- Added a 2023-specific harvest/draw ingestion audit covering listed 2023 harvest PDFs, 2023 draw-result availability, and 2023 harvest feature coverage.
+- Did not edit `DATABASE.csv`, normalized draw truth, normalized harvest truth, raw PDFs, engine model math, runtime manifests, website files, or R2 objects.
+- Did not run engine regeneration because the audits showed the 2023 harvest data is already present in the engine-facing feature path.
+
+Files changed:
+- tools/hunt_research_engine/audit_harvest_engine_ingestion.py
+- tools/hunt_research_engine/audit_2023_harvest_draw_ingestion.py
+- audits/hunt_research_engine/harvest_engine_ingestion_audit.csv
+- audits/hunt_research_engine/harvest_engine_ingestion_audit.json
+- audits/hunt_research_engine/harvest_engine_ingestion_audit.md
+- audits/hunt_research_engine/harvest_engine_ingestion_audit_blockers.csv
+- audits/hunt_research_engine/harvest_draw_ingestion_2023.csv
+- audits/hunt_research_engine/harvest_draw_ingestion_2023.json
+- audits/hunt_research_engine/harvest_draw_ingestion_2023.md
+- WORK_LOG.md
+
+Key results:
+- General harvest-engine ingestion audit result: PASS.
+- General harvest-engine blockers: 0.
+- General harvest-engine warnings: 3 coverage warnings.
+- Current `DATABASE.csv` hunt codes: 1,471.
+- Current codes with a 2026 harvest feature row: 1,410.
+- Current codes missing a 2026 harvest feature row: 61.
+- Mixed engine consumes harvest feature fields: true.
+- Mixed engine `p_harvest_adjusted` component present: true.
+- Hunt Research summary harvest display present: true.
+- Hunt Research split-detail harvest display present: true.
+- 2023 harvest truth rows: 7,492.
+- 2023 harvest truth hunt codes: 1,078.
+- 2023 engine feature rows: 1,179.
+- 2023 engine feature hunt codes: 1,179.
+- 2023 draw truth rows: 17,128.
+- 2023 draw truth hunt codes: 1,010.
+- 2026 harvest feature model rows using 2023 history: 1,111.
+- Broad 2023 all-species harvest package: 592 rows / 592 hunt codes / 8 species from `2023 Hunt Success.pdf`.
+- Guardrail confirmed: harvest rows are quality/history inputs only, not permit quota truth and not direct `p_draw` truth.
+
+Validation commands run:
+- python -m py_compile tools/hunt_research_engine/audit_harvest_engine_ingestion.py tools/hunt_research_engine/audit_2023_harvest_draw_ingestion.py
+- python tools/hunt_research_engine/audit_2023_harvest_draw_ingestion.py --root . --out-dir audits/hunt_research_engine
+- python tools/hunt_research_engine/audit_harvest_engine_ingestion.py --root . --out-dir audits/hunt_research_engine
+- git diff --check
+
+Commit:
 - Pending commit.
