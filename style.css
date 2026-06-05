@@ -758,6 +758,14 @@
         margin-bottom 0.3s ease;
       will-change: max-height, opacity, transform;
     }
+    .matrix-step.is-garaged {
+      max-height: 0;
+      opacity: 0;
+      pointer-events: none;
+      margin-bottom: 0;
+      transform: translateY(-18px) scaleY(.82);
+      transform-origin: top center;
+    }
     .matrix-step.is-collapsed {
       max-height: 0;
       opacity: 0;
@@ -768,12 +776,146 @@
     .matrix-step.is-collapsed .hunt-select {
       visibility: hidden;
     }
+    .matrix-step--search.is-garaged .hunt-input,
+    .matrix-step.is-garaged .hunt-select {
+      visibility: hidden;
+    }
     @media (prefers-reduced-motion: reduce) {
       .matrix-step {
         transition: none;
       }
     }
     .filter-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+
+    .ownership-dock {
+      gap: 8px;
+    }
+    .ownership-toggle-btn {
+      width: 62px;
+      min-height: 58px;
+      display: grid;
+      place-items: center;
+      gap: 4px;
+      padding: 6px;
+      border: 3px solid #4b2a11;
+      border-radius: 8px;
+      background: radial-gradient(circle at 20% 12%, rgba(255,255,255,.88), transparent 36%), linear-gradient(180deg, #fffdf8, #ead8c4);
+      color: #4b2a11;
+      box-shadow: 0 0 0 2px #f4efe4, 0 8px 18px rgba(58,37,18,.28), inset 0 1px 0 rgba(255,255,255,.92);
+      cursor: pointer;
+    }
+    .ownership-toggle-btn:hover,
+    .ownership-toggle-btn:focus-visible,
+    .ownership-toggle-btn[aria-expanded="true"] {
+      outline: none;
+      box-shadow: 0 0 0 3px var(--accent), 0 10px 22px rgba(58,37,18,.34), inset 0 1px 0 rgba(255,255,255,.95);
+    }
+    .ownership-toggle-kicker {
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: .14em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+    .ownership-toggle-lines {
+      display: grid;
+      gap: 4px;
+      width: 24px;
+    }
+    .ownership-toggle-lines span {
+      display: block;
+      height: 3px;
+      border-radius: 999px;
+      background: #4b2a11;
+      box-shadow: 0 1px 0 rgba(255,255,255,.55);
+    }
+    .ownership-case {
+      position: relative;
+    }
+    .ownership-toggle-row[hidden] {
+      display: none !important;
+    }
+    .ownership-dock.is-open .ownership-toggle-row {
+      animation: uogaOwnershipReveal .18s ease-out both;
+    }
+    @keyframes uogaOwnershipReveal {
+      from { opacity: 0; transform: translateX(-10px) scale(.98); }
+      to { opacity: 1; transform: translateX(0) scale(1); }
+    }
+
+    .map-progress-nav {
+      position: absolute;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      z-index: 42;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 8px;
+      padding: 7px;
+      border: 2px solid #f4efe4;
+      border-radius: 999px;
+      background: rgba(10, 6, 3, .82);
+      box-shadow: 0 18px 36px rgba(0,0,0,.36);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .map-progress-nav[hidden] {
+      display: none !important;
+    }
+    .map-progress-pill {
+      min-width: 148px;
+      min-height: 48px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      padding: 7px 16px;
+      border: 1px solid rgba(240,120,0,.72);
+      border-radius: 999px;
+      background: linear-gradient(180deg,#fffdf8,#ecd6bd);
+      color: #2b1c12;
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.92), 0 7px 16px rgba(0,0,0,.25);
+      cursor: pointer;
+    }
+    .map-progress-pill--next {
+      background: linear-gradient(180deg,#f7a142,#d96c00);
+      color: #1a0d04;
+      border-color: #fffdf8;
+    }
+    .map-progress-pill:hover,
+    .map-progress-pill:focus-visible {
+      outline: none;
+      transform: translateY(-2px);
+      box-shadow: 0 0 0 3px rgba(240,120,0,.30), 0 10px 22px rgba(0,0,0,.32);
+    }
+    .map-progress-pill::after {
+      content: attr(data-hover-label);
+      display: none;
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .12em;
+    }
+    .map-progress-pill:hover .map-progress-main,
+    .map-progress-pill:focus-visible .map-progress-main {
+      display: none;
+    }
+    .map-progress-pill:hover::after,
+    .map-progress-pill:focus-visible::after {
+      display: block;
+    }
+    .map-progress-kicker {
+      font-size: 9px;
+      letter-spacing: .18em;
+      opacity: .72;
+    }
 
     @media (max-width: 1180px) {
       html, body { height: auto; min-height: 100%; }

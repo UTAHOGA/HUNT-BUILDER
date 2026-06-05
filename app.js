@@ -227,6 +227,8 @@ const searchInput = document.getElementById('searchInput'),
   toggleBLM = document.getElementById('toggleBLM'),
   toggleBLMDetail = document.getElementById('toggleBLMDetail'),
   federalLayersSummary = document.getElementById('federalLayersSummary'),
+  ownershipToggleBtn = document.getElementById('ownershipToggleBtn'),
+  ownershipLayerPanel = document.getElementById('ownershipLayerPanel'),
   toggleSITLA = document.getElementById('toggleSITLA'),
   toggleStateParks = document.getElementById('toggleStateParks'),
   toggleWma = document.getElementById('toggleWma'),
@@ -241,6 +243,8 @@ const searchInput = document.getElementById('searchInput'),
   selectedHuntFloat = document.getElementById('selectedHuntFloat'),
   dwrMapFrame = document.getElementById('dwrMapFrame'),
   plannerDnrLogoLink = document.getElementById('plannerDnrLogoLink'),
+  mapProgressNav = document.getElementById('mapProgressNav'),
+  mapProgressResearchBtn = document.getElementById('mapProgressResearchBtn'),
   instructionsTab = document.getElementById('instructionsTab'),
   instructionsPanel = document.getElementById('instructionsPanel'),
   instructionsReadBtn = document.getElementById('instructionsReadBtn');
@@ -330,6 +334,26 @@ function setOwnershipControlsExpandedForEarth(expanded = true) {
       group.removeAttribute('open');
     }
   });
+}
+
+function setOwnershipPanelOpen(open) {
+  if (!ownershipToggleBtn || !ownershipLayerPanel) return;
+  const isOpen = !!open;
+  ownershipLayerPanel.hidden = !isOpen;
+  ownershipToggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  document.getElementById('ownershipDock')?.classList.toggle('is-open', isOpen);
+}
+
+function syncMapProgressNav() {
+  if (!mapProgressNav) return;
+  const hasHunt = !!selectedHunt;
+  mapProgressNav.hidden = !hasHunt;
+  mapProgressNav.classList.toggle('is-visible', hasHunt);
+}
+
+function openSelectedHuntResearchFromProgress() {
+  if (!selectedHunt) return;
+  saveHuntAndOpenResearch(selectedHunt, 'Resident', 12);
 }
 
 function normalizeResearchDrawPool(value) {
@@ -1828,6 +1852,28 @@ function setMatrixStepVisibility(controlId, visible) {
   el.disabled = !visible;
 }
 
+function syncMatrixGarageDoorWindow() {
+  const ids = ['searchInput', ...PROGRESSIVE_MATRIX_SEQUENCE];
+  const visibleSteps = ids
+    .map((id) => {
+      const el = document.getElementById(id);
+      const step = el?.closest?.('.matrix-step');
+      if (!el || !step || step.classList.contains('is-collapsed')) return null;
+      return { id, step };
+    })
+    .filter(Boolean);
+
+  const maxVisibleSteps = 3;
+  const garageCount = Math.max(0, visibleSteps.length - maxVisibleSteps);
+  visibleSteps.forEach(({ step }, idx) => {
+    const garaged = idx < garageCount;
+    step.classList.toggle('is-garaged', garaged);
+    step.setAttribute('data-garage-state', garaged ? 'stored' : 'active');
+  });
+  const panel = speciesFilter?.closest?.('.panel');
+  panel?.style.setProperty('--matrix-visible-count', String(Math.min(visibleSteps.length, maxVisibleSteps)));
+}
+
 function syncProgressiveSelectionMatrix() {
   if (!speciesFilter || !sexFilter || !huntTypeFilter || !weaponFilter || !huntCategoryFilter || !unitFilter) return;
   const speciesReady = safe(speciesFilter.value) !== 'All Species';
@@ -1858,6 +1904,7 @@ function syncProgressiveSelectionMatrix() {
   setMatrixStepVisibility('weaponFilter', huntTypeReady);
   setMatrixStepVisibility('huntCategoryFilter', huntClassNeeded);
   setMatrixStepVisibility('unitFilter', weaponReady && huntClassReady);
+  syncMatrixGarageDoorWindow();
 }
 
 // --- FILTERING ENGINE ---
@@ -2301,6 +2348,8 @@ function resetAllFilters() {
   closeSelectedHuntFloat();
   closeSelectionInfoWindow();
   refreshSelectionMatrix();
+  syncMatrixGarageDoorWindow();
+  syncMapProgressNav();
   styleBoundaryLayer();
   refreshGoogleEarth3dBoundaryOverlaySoon();
   renderMatchingHunts();
@@ -2921,6 +2970,7 @@ function renderSelectedHunt() {
   if (!hunt) {
     panel.innerHTML = '<div class="empty-note">Select a hunt to see draw odds, trends, and outfitter matches.</div>';
     closeSelectedHuntFloat();
+    syncMapProgressNav();
     return;
   }
 
@@ -3007,6 +3057,7 @@ function renderSelectedHunt() {
   }
 
   openSelectedHuntFloat();
+  syncMapProgressNav();
 }
 
 function getMatchingOutfittersForHunt(hunt) {
@@ -5789,7 +5840,14 @@ function bindControls() {
   });
   applyFiltersBtn?.addEventListener('click', () => runApplyFiltersFlow('manual'));
   clearFiltersBtn?.addEventListener('click', resetAllFilters);
+  ownershipToggleBtn?.addEventListener('click', () => {
+    const nextOpen = ownershipToggleBtn.getAttribute('aria-expanded') !== 'true';
+    setOwnershipPanelOpen(nextOpen);
+  });
+  mapProgressResearchBtn?.addEventListener('click', openSelectedHuntResearchFromProgress);
   syncApplyFiltersButtonLabel();
+  setOwnershipPanelOpen(false);
+  syncMapProgressNav();
   window.addEventListener('resize', syncApplyFiltersButtonLabel);
   document.getElementById('matchingHunts')?.addEventListener('click', event => {
     const researchBtn = event.target.closest('[data-hunt-research-key]');
@@ -6445,6 +6503,11 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle.setAttribute('aria-expanded', 'false');
   }
 
+  function openPicker() {
+    menu.hidden = false;
+    toggle.setAttribute('aria-expanded', 'true');
+  }
+
   toggle.addEventListener('click', event => {
     event.preventDefault();
     event.stopPropagation();
@@ -6452,6 +6515,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const willOpen = menu.hidden;
     menu.hidden = !willOpen;
     toggle.setAttribute('aria-expanded', String(willOpen));
+  });
+
+  picker.addEventListener('mouseenter', () => {
+    if (!isMobileViewport()) openPicker();
+  });
+
+  picker.addEventListener('mouseleave', () => {
+    if (!isMobileViewport()) closePicker();
   });
 
   menu.querySelectorAll('.map-mode-option').forEach(btn => {

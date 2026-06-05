@@ -296,7 +296,7 @@
       <section class="panel">
         <h2>Build Your Hunt</h2>
         <div class="panel-body">
-          <div class="field">
+          <div class="field matrix-step matrix-step--search">
             <label for="searchInput">Search by hunt number</label>
             <input id="searchInput" class="hunt-input" type="text" placeholder="Search code, name, or unit..." />
           </div>
@@ -361,8 +361,12 @@
 
       <section class="map-wrap">
         <div id="ownershipDock" class="ownership-dock" aria-label="Land ownership controls">
+          <button id="ownershipToggleBtn" class="ownership-toggle-btn" type="button" aria-expanded="false" aria-controls="ownershipLayerPanel">
+            <span class="ownership-toggle-kicker">Land</span>
+            <span class="ownership-toggle-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
           <div class="ownership-case">
-            <div class="toggle-row ownership-toggle-row">
+            <div id="ownershipLayerPanel" class="toggle-row ownership-toggle-row" hidden>
               <label class="toggle-chip ownership-hunt-units-chip"><input id="toggleDwrUnits" type="checkbox" checked><span class="toggle-chip-label">Hunt<br>Units</span></label>
 
               <details class="toggle-menu ownership-group">
@@ -443,6 +447,16 @@
       </div>
 
       <div id="selectedHuntFloat" class="selected-hunt-float" aria-hidden="true"></div>
+      <nav id="mapProgressNav" class="map-progress-nav" aria-label="Next page navigation" hidden>
+        <a class="map-progress-pill map-progress-pill--current" href="./" data-hover-label="Stay Building">
+          <span class="map-progress-kicker">Current</span>
+          <span class="map-progress-main">Hunt Builder</span>
+        </a>
+        <button id="mapProgressResearchBtn" type="button" class="map-progress-pill map-progress-pill--next" data-hover-label="Open Research">
+          <span class="map-progress-kicker">Next</span>
+          <span class="map-progress-main">Hunt Research</span>
+        </button>
+      </nav>
 
       <div id="basemapPopover" class="basemap-pop" aria-hidden="true">
         <button id="basemapToggleBtn" type="button" class="basemap-toggle" aria-expanded="false">

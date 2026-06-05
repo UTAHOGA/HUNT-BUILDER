@@ -577,8 +577,8 @@
        }
        .uoga-backpack-open .map-wrap .ownership-dock { left:14px !important; max-width:260px !important; }
        .map-wrap .ownership-case { display:flex !important; justify-content:flex-start !important; align-items:flex-start !important; width:100% !important; }
-       .map-wrap .ownership-dock .toggle-row {
-         display:grid !important;
+        .map-wrap .ownership-dock .toggle-row {
+      display:grid !important;
          grid-template-columns:1fr !important;
          justify-items:stretch !important;
          align-items:stretch !important;
@@ -591,8 +591,11 @@
          border:1px solid #c9a27f !important;
          backdrop-filter:blur(10px) !important;
          -webkit-backdrop-filter:blur(10px) !important;
-         overflow:visible !important;
-       }
+      overflow:visible !important;
+    }
+    .map-wrap .ownership-dock .ownership-toggle-row[hidden] {
+      display:none !important;
+    }
        .map-wrap .ownership-hunt-units-chip {
          justify-content:flex-start !important;
          padding:8px 10px !important;
