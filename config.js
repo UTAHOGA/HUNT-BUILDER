@@ -191,12 +191,10 @@ window.UOGA_CONFIG = (() => {
     ============================================================================
   */
   const HUNT_BOUNDARY_SOURCES = [
+    `./data/hunt-boundaries-lite.geojson?v=${HUNT_DATA_VERSION}`,
+    `./data/hunt_boundaries.geojson?v=${HUNT_DATA_VERSION}`,
     manifestCanonical('builder_composite_boundaries_2026_geojson', HUNT_DATA_VERSION),
     ...orderedProcessedRuntimeCandidates('processed_data/statewide_composite_boundaries_2026.geojson', HUNT_DATA_VERSION),
-    ...(isDevLikeHost() ? [
-      `./data/hunt_boundaries.geojson?v=${HUNT_DATA_VERSION}`,
-      `./data/hunt-boundaries-lite.geojson?v=${HUNT_DATA_VERSION}`,
-    ] : []),
   ].filter(Boolean);
   const BOUNDARY_MANIFEST_SOURCES = [];
   const DISPLAY_BOUNDARY_INDEX_SOURCES = [
@@ -205,8 +203,8 @@ window.UOGA_CONFIG = (() => {
     ...(isDevLikeHost() ? [`./processed_data/display-boundary-index-2026.csv?v=${HUNT_DATA_VERSION}`] : []),
   ].filter(Boolean);
   const FINALIZED_BOUNDARY_SOURCES = [
-    `./data/hunt_boundaries.geojson?v=${HUNT_DATA_VERSION}`,
     `./data/hunt-boundaries-lite.geojson?v=${HUNT_DATA_VERSION}`,
+    `./data/hunt_boundaries.geojson?v=${HUNT_DATA_VERSION}`,
   ].filter(Boolean);
   const COMPOSITE_BOUNDARY_SOURCES = [
     manifestCanonical('builder_composite_boundaries_2026_geojson', HUNT_DATA_VERSION),

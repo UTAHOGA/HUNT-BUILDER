@@ -1,10 +1,10 @@
 # Boundary ID Render Map Verification 2026
 
-Generated: 2026-05-10T17:19:43.984Z
+Generated: 2026-06-05T08:13:43.786Z
 
-Rows checked: 1394
-Mapped rows: 1394
-Single-boundary rows: 1353
+Rows checked: 1471
+Mapped rows: 1471
+Single-boundary rows: 1430
 5000-range render-boundary rows: 41
 Unavailable rows: 0
 Failures: 0

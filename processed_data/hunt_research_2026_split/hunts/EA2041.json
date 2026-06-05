@@ -37,7 +37,7 @@
   "antlerless_draw": null,
   "projected_bonus_draw": null,
   "detail_path": "hunts/EA2041.json",
-  "boundary_id": "29",
+  "boundary_id": "5117",
   "hunt_class": "Conservation",
   "data_status": "CURRENT_DATABASE_CANONICAL",
   "permit_status": "NO_QUOTA_PUBLISHED",
@@ -87,10 +87,10 @@
   "huntTitle": "Cache (Conservation)",
   "unitName": "Cache (Conservation)",
   "unitCode": "29",
-  "boundaryId": "29",
-  "boundaryID": "29",
-  "BoundaryID": "29",
-  "boundary_id_numeric": "29",
+  "boundaryId": "5117",
+  "boundaryID": "5117",
+  "BoundaryID": "5117",
+  "boundary_id_numeric": "5117",
   "totalPermits": "6",
   "permitsTotal": "6",
   "quota": "6",
@@ -289,5 +289,7 @@
   ],
   "research_summary_row_count": 2,
   "split_source": "DATABASE.csv + processed_data/hunt_research_2026_summary.json",
-  "split_rebuilt_at": "2026-06-04T07:07:35Z"
+  "split_rebuilt_at": "2026-06-04T07:07:35Z",
+  "boundary_geojson_path": "processed_data/boundaries/EA2041.geojson",
+  "boundary_source_file": "unit_specific_conservation_expo_bundles.csv"
 }

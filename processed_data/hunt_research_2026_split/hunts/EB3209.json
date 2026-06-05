@@ -52,7 +52,7 @@
   "antlerless_draw": null,
   "projected_bonus_draw": null,
   "detail_path": "hunts/EB3209.json",
-  "boundary_id": "683",
+  "boundary_id": "5129",
   "hunt_class": "Conservation",
   "data_status": "CURRENT_DATABASE_CANONICAL",
   "permit_status": "TOTAL_ONLY",
@@ -102,10 +102,10 @@
   "huntTitle": "Box Elder, Pilot Mtn",
   "unitName": "Box Elder, Pilot Mtn",
   "unitCode": "683",
-  "boundaryId": "683",
-  "boundaryID": "683",
-  "BoundaryID": "683",
-  "boundary_id_numeric": "683",
+  "boundaryId": "5129",
+  "boundaryID": "5129",
+  "BoundaryID": "5129",
+  "boundary_id_numeric": "5129",
   "totalPermits": "1",
   "permitsTotal": "1",
   "quota": "1",
@@ -304,5 +304,7 @@
   ],
   "research_summary_row_count": 2,
   "split_source": "DATABASE.csv + processed_data/hunt_research_2026_summary.json",
-  "split_rebuilt_at": "2026-06-04T07:07:35Z"
+  "split_rebuilt_at": "2026-06-04T07:07:35Z",
+  "boundary_geojson_path": "processed_data/boundaries/EB3209.geojson",
+  "boundary_source_file": "unit_specific_conservation_expo_bundles.csv"
 }

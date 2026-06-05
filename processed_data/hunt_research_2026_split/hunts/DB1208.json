@@ -2834,7 +2834,7 @@
     ]
   },
   "detail_path": "hunts/DB1208.json",
-  "boundary_id": "808",
+  "boundary_id": "874",
   "hunt_class": "CWMU",
   "data_status": "CURRENT_DATABASE_CANONICAL",
   "permit_status": "TOTAL_ONLY",
@@ -2884,10 +2884,10 @@
   "huntTitle": "Blackhawk CWMU",
   "unitName": "Blackhawk CWMU",
   "unitCode": "808",
-  "boundaryId": "808",
-  "boundaryID": "808",
-  "BoundaryID": "808",
-  "boundary_id_numeric": "808",
+  "boundaryId": "874",
+  "boundaryID": "874",
+  "BoundaryID": "874",
+  "boundary_id_numeric": "874",
   "totalPermits": "2",
   "permitsTotal": "2",
   "quota": "2",
@@ -3086,5 +3086,7 @@
   ],
   "research_summary_row_count": 2,
   "split_source": "DATABASE.csv + processed_data/hunt_research_2026_summary.json",
-  "split_rebuilt_at": "2026-06-04T07:07:35Z"
+  "split_rebuilt_at": "2026-06-04T07:07:35Z",
+  "boundary_geojson_path": "processed_data/boundaries/DB1208.geojson",
+  "boundary_source_file": "hunt_boundaries.geojson"
 }

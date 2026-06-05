@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-06-05T08:10:01+00:00",
+  "applied": true,
+  "database_rows": 1471,
+  "database_unique_hunt_codes": 1471,
+  "boundary_index_rows": 1471,
+  "boundary_index_unique_hunt_codes": 1471,
+  "action_counts": {
+    "ok_existing_match": 1461,
+    "resolve_existing_conflict_to_boundary_index": 10
+  },
+  "resolve_conflicts": true,
+  "audit_csv": "audits\\boundary_runtime\\database_boundary_id_reconciliation.csv"
+}

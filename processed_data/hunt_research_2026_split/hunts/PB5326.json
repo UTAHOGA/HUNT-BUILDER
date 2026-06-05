@@ -52,7 +52,7 @@
   "antlerless_draw": null,
   "projected_bonus_draw": null,
   "detail_path": "hunts/PB5326.json",
-  "boundary_id": "830",
+  "boundary_id": "9999",
   "hunt_class": "CWMU",
   "data_status": "CURRENT_DATABASE_CANONICAL",
   "permit_status": "FULL_SPLIT",
@@ -102,10 +102,10 @@
   "huntTitle": "Cedar Springs CWMU",
   "unitName": "Cedar Springs CWMU",
   "unitCode": "830",
-  "boundaryId": "830",
-  "boundaryID": "830",
-  "BoundaryID": "830",
-  "boundary_id_numeric": "830",
+  "boundaryId": "9999",
+  "boundaryID": "9999",
+  "BoundaryID": "9999",
+  "boundary_id_numeric": "9999",
   "totalPermits": "1",
   "permitsTotal": "1",
   "quota": "1",
@@ -304,5 +304,7 @@
   ],
   "research_summary_row_count": 2,
   "split_source": "DATABASE.csv + processed_data/hunt_research_2026_summary.json",
-  "split_rebuilt_at": "2026-06-04T07:07:35Z"
+  "split_rebuilt_at": "2026-06-04T07:07:35Z",
+  "boundary_geojson_path": "processed_data/boundaries/PB5326.geojson",
+  "boundary_source_file": "pronghorn_hunt_table_official.json"
 }

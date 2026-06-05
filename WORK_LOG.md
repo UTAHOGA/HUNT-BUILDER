@@ -15941,6 +15941,87 @@ Validation commands run:
 
 Commit:
 - Not committed.
+# 2026-06-05T08:11:34Z - Boundary runtime/current hunt-code reconciliation
+
+Scope:
+- Reconciled 2026 current hunt-code boundary mappings against the active website boundary runtime contract.
+- Added reviewed KMZ-derived geometry for DA1051, EA1295, EA1299, and EA1300.
+- Filled all blank `boundary_id` values in `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv` from the reviewed boundary index.
+- Resolved 10 pre-existing DATABASE vs boundary-index disagreements to the reviewed/renderable boundary-index values, rather than treating the prior DATABASE values as absolute truth.
+- Propagated the reviewed boundary IDs into the small runtime/reference files that carry those rows.
+- Did not edit `C:\Users\tyler\Desktop\BIBLE HUNT CODES\database.csv`.
+
+Files changed:
+- config.js
+- pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv
+- data/hunt-master-canonical-2026-source-of-truth.json
+- data/hunt-master-canonical-2026-foundation.json
+- processed_data/display-boundary-index-2026.json
+- processed_data/display-boundary-index-2026.csv
+- processed_data/hunt_unit_reference_linked.csv
+- processed_data/boundaries/DA1051.geojson
+- processed_data/boundaries/EA1295.geojson
+- processed_data/boundaries/EA1299.geojson
+- processed_data/boundaries/EA1300.geojson
+- data/boundaries/kmz/DA1051.kmz
+- data/boundaries/kmz/EA1295.kmz
+- data/boundaries/kmz/EA1299.kmz
+- data/boundaries/kmz/EA1300.kmz
+- tools/cleanup_boundary_index_current_hunt_codes.py
+- tools/apply_boundary_crossmap_to_runtime_files.py
+- tools/reconcile_database_boundary_ids_from_boundary_index.py
+- audits/boundary_runtime/*
+
+Key results:
+- Master current hunt codes: 1471.
+- Boundary index rows after cleanup: 1471.
+- DATABASE rows: 1471.
+- DATABASE unique hunt codes: 1471.
+- DATABASE blank boundary_id count: 0.
+- DATABASE boundary conflicts vs reviewed boundary index: 0.
+- Boundary render-map verification: 1471 rows checked, 1471 mapped, 0 failures, 0 warnings, promotion_safe=true.
+- Added KMZ-derived boundary IDs:
+  - DA1051 -> 955
+  - EA1295 -> 224
+  - EA1299 -> 845
+  - EA1300 -> 845
+- Resolved existing DATABASE/index conflicts:
+  - DB1208 -> 874
+  - EA1261 -> 874
+  - EB3504 -> 874
+  - PB5326 -> 9999
+  - EA1260 -> 808
+  - EA1180 -> 5111
+  - EA1270 -> 5114
+  - EA1271 -> 5115
+  - EA2041 -> 5117
+  - EB3209 -> 5129
+- Reordered runtime boundary source candidates to prefer the small 4 MB repo-served boundary file before the 83 MB composite fallback.
+
+R2 uploads verified:
+- https://json.uoga.workers.dev/processed_data/display-boundary-index-2026.json
+- https://json.uoga.workers.dev/processed_data/hunt_research_2026_summary.json
+- https://json.uoga.workers.dev/processed_data/hunt_unit_reference_linked.csv
+- https://json.uoga.workers.dev/processed_data/boundaries/DA1051.geojson
+- https://json.uoga.workers.dev/processed_data/boundaries/EA1295.geojson
+- https://json.uoga.workers.dev/processed_data/boundaries/EA1299.geojson
+- https://json.uoga.workers.dev/processed_data/boundaries/EA1300.geojson
+
+Validation commands run:
+- python -m py_compile tools/cleanup_boundary_index_current_hunt_codes.py
+- python -m py_compile tools/apply_boundary_crossmap_to_runtime_files.py
+- python -m py_compile tools/reconcile_database_boundary_ids_from_boundary_index.py
+- python tools/cleanup_boundary_index_current_hunt_codes.py --root . --apply
+- python tools/reconcile_database_boundary_ids_from_boundary_index.py --root . --apply --resolve-conflicts
+- python tools/apply_boundary_crossmap_to_runtime_files.py --root . --resolve-conflicts --codes DB1208 EA1261 EB3504 PB5326 EA1260 EA1180 EA1270 EA1271 EA2041 EB3209
+- R2 HEAD/range checks for updated runtime files
+- node --check config.js
+- npm run verify:boundaries-2026
+- git diff --check
+
+Commit:
+- Pending final review and commit.
+
 # 2026-06-04T09:20:00Z - Prediction engine REVIEW_TARGETED_BACKFILL repair
 
 Scope:

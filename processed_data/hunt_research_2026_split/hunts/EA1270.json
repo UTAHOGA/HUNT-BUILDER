@@ -37,7 +37,7 @@
   "antlerless_draw": null,
   "projected_bonus_draw": null,
   "detail_path": "hunts/EA1270.json",
-  "boundary_id": "175",
+  "boundary_id": "5114",
   "hunt_class": "Conservation",
   "data_status": "CURRENT_DATABASE_CANONICAL",
   "permit_status": "NO_QUOTA_PUBLISHED",
@@ -87,10 +87,10 @@
   "huntTitle": "Fishlake (Conservation)",
   "unitName": "Fishlake (Conservation)",
   "unitCode": "175",
-  "boundaryId": "175",
-  "boundaryID": "175",
-  "BoundaryID": "175",
-  "boundary_id_numeric": "175",
+  "boundaryId": "5114",
+  "boundaryID": "5114",
+  "BoundaryID": "5114",
+  "boundary_id_numeric": "5114",
   "totalPermits": "4",
   "permitsTotal": "4",
   "quota": "4",
@@ -289,5 +289,7 @@
   ],
   "research_summary_row_count": 2,
   "split_source": "DATABASE.csv + processed_data/hunt_research_2026_summary.json",
-  "split_rebuilt_at": "2026-06-04T07:07:35Z"
+  "split_rebuilt_at": "2026-06-04T07:07:35Z",
+  "boundary_geojson_path": "processed_data/boundaries/EA1270.geojson",
+  "boundary_source_file": "unit_specific_conservation_expo_bundles.csv"
 }

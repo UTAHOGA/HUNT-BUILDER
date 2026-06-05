@@ -37,7 +37,7 @@
   "antlerless_draw": null,
   "projected_bonus_draw": null,
   "detail_path": "hunts/EA1180.json",
-  "boundary_id": "684",
+  "boundary_id": "5111",
   "hunt_class": "Conservation",
   "data_status": "CURRENT_DATABASE_CANONICAL",
   "permit_status": "NO_QUOTA_PUBLISHED",
@@ -87,10 +87,10 @@
   "huntTitle": "La Sal (Conservation)",
   "unitName": "La Sal (Conservation)",
   "unitCode": "684",
-  "boundaryId": "684",
-  "boundaryID": "684",
-  "BoundaryID": "684",
-  "boundary_id_numeric": "684",
+  "boundaryId": "5111",
+  "boundaryID": "5111",
+  "BoundaryID": "5111",
+  "boundary_id_numeric": "5111",
   "totalPermits": "8",
   "permitsTotal": "8",
   "quota": "8",
@@ -289,5 +289,7 @@
   ],
   "research_summary_row_count": 2,
   "split_source": "DATABASE.csv + processed_data/hunt_research_2026_summary.json",
-  "split_rebuilt_at": "2026-06-04T07:07:35Z"
+  "split_rebuilt_at": "2026-06-04T07:07:35Z",
+  "boundary_geojson_path": "processed_data/boundaries/EA1180.geojson",
+  "boundary_source_file": "unit_specific_conservation_expo_bundles.csv"
 }

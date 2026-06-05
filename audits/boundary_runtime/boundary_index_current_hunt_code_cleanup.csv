@@ -1,0 +1,2 @@
+hunt_code,hunt_name,species,sex_type,weapon,master_boundary_id,per_hunt_geojson_exists,per_hunt_geojson_boundary_id,decision,source,reason,added_boundary_id,added_boundary_geojson_path
+EA1299,"Wasatch Mtns, West-Central",Elk,Antlerless,Any Legal Weapon,,True,845,add_index_row,per_hunt_geojson,Per-hunt GeoJSON exists and contains one boundary id.,845,processed_data/boundaries/EA1299.geojson

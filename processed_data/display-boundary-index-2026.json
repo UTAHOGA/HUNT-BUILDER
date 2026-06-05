@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-08",
+  "generated_at": "2026-06-05T08:03:12+00:00",
   "source": "canonical + boundary-manifest + conservation/expo bundles + dwr-boundary-geojson",
-  "count": 1394,
+  "count": 1471,
   "records": [
     {
       "hunt_code": "BI1000",
@@ -202,6 +202,24 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/BI6529.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "BI6530",
+      "boundary_id": "889",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "889"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/BI6530.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/BI6530.geojson",
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -878,6 +896,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "BR7008",
+      "boundary_id": "684",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "684"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/BR7008.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/BR7008.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "BR7009",
       "boundary_id": "630",
       "member_boundary_ids": [],
@@ -1058,6 +1094,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "BR7019",
+      "boundary_id": "610",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "610"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/BR7019.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/BR7019.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "BR7020",
       "boundary_id": "629",
       "member_boundary_ids": [],
@@ -1214,6 +1268,24 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/BR7106.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "BR7108",
+      "boundary_id": "684",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "684"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/BR7108.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/BR7108.geojson",
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -1668,6 +1740,24 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/BR7207.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "BR7208",
+      "boundary_id": "684",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "684"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/BR7208.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/BR7208.geojson",
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -2832,6 +2922,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "DA1044",
+      "boundary_id": "864",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "864"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/DA1044.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/DA1044.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "DA1045",
       "boundary_id": "474",
       "member_boundary_ids": [],
@@ -2936,6 +3044,24 @@
       "boundary_geojson_path": "processed_data/boundaries/DA1050.geojson",
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "DA1051",
+      "boundary_id": "955",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "955"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/DA1051.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/DA1051.geojson",
+      "boundary_kmz_path": "data/boundaries/kmz/DA1051.kmz",
+      "boundary_kml_path": "data/boundaries/kml/DA1051.kml",
       "dwr_boundary_link": null,
       "member_boundary_count": 0
     },
@@ -3844,6 +3970,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "DB1036",
+      "boundary_id": "632",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "632"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "DB1037",
       "boundary_id": "185",
       "member_boundary_ids": [],
@@ -4150,6 +4294,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "DB1059",
+      "boundary_id": "628",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "628"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "DB1065",
       "boundary_id": "612",
       "member_boundary_ids": [],
@@ -4330,6 +4492,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "DB1082",
+      "boundary_id": "622",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "622"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "DB1083",
       "boundary_id": "634",
       "member_boundary_ids": [],
@@ -4420,6 +4600,42 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "DB1088",
+      "boundary_id": "624",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "624"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "DB1089",
+      "boundary_id": "623",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "623"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "DB1090",
       "boundary_id": "301",
       "member_boundary_ids": [],
@@ -4450,6 +4666,24 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/DB1091.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "DB1094",
+      "boundary_id": "864",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "864"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -5896,6 +6130,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "DB1276",
+      "boundary_id": "737",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "737"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "DB1277",
       "boundary_id": "501",
       "member_boundary_ids": [],
@@ -6436,6 +6688,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "DB1320",
+      "boundary_id": "686",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "686"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "DB1322",
       "boundary_id": "826",
       "member_boundary_ids": [],
@@ -6466,6 +6736,24 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/DB1323.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "DB1324",
+      "boundary_id": "828",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "828"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -6688,6 +6976,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "DB1338",
+      "boundary_id": "891",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "891"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "DB1341",
       "boundary_id": "908",
       "member_boundary_ids": [],
@@ -6724,6 +7030,60 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "DB1343",
+      "boundary_id": "907",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "907"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "DB1344",
+      "boundary_id": "906",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "906"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "DB1345",
+      "boundary_id": "923",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "923"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "DB1347",
       "boundary_id": "509",
       "member_boundary_ids": [],
@@ -6736,6 +7096,24 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/DB1347.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "DB1348",
+      "boundary_id": "922",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "922"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -9398,6 +9776,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "DS6602",
+      "boundary_id": "99",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "99"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/DS6602.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/DS6602.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "DS6603",
       "boundary_id": "100",
       "member_boundary_ids": [],
@@ -9698,6 +10094,24 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/DS6627.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1007",
+      "boundary_id": "867",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "867"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt_boundaries.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id_exact_name_match",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -10082,6 +10496,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "EA1040",
+      "boundary_id": "723",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "723"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "EA1044",
       "boundary_id": "122",
       "member_boundary_ids": [],
@@ -10112,6 +10544,24 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/EA1049.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1053",
+      "boundary_id": "132",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "132"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt_boundaries.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id_exact_name_match",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -10274,6 +10724,24 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/EA1073.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1074",
+      "boundary_id": "636",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "636"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -10568,6 +11036,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "EA1107",
+      "boundary_id": "227",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "227"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt_boundaries.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id_exact_name_match",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "EA1110",
       "boundary_id": "234",
       "member_boundary_ids": [],
@@ -10652,6 +11138,24 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/EA1114.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1116",
+      "boundary_id": "635",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "635"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -10796,6 +11300,24 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/EA1125.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1126",
+      "boundary_id": "640",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "640"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -11480,6 +12002,24 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/EA1175.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1176",
+      "boundary_id": "524",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "524"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -12240,6 +12780,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "EA1252",
+      "boundary_id": "893",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "893"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "EA1254",
       "boundary_id": "636",
       "member_boundary_ids": [],
@@ -12808,6 +13366,258 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/EA1286.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1288",
+      "boundary_id": "952",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "952"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt_boundaries.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id_exact_name_match",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1289",
+      "boundary_id": "952",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "952"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt_boundaries.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id_exact_name_match",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1290",
+      "boundary_id": "952",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "952"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt_boundaries.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id_exact_name_match",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1291",
+      "boundary_id": "950",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "950"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt_boundaries.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id_exact_name_match",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1292",
+      "boundary_id": "950",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "950"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt_boundaries.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id_exact_name_match",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1293",
+      "boundary_id": "140",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "140"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt_boundaries.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id_exact_name_match",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1294",
+      "boundary_id": "951",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "951"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt_boundaries.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id_exact_name_match",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1295",
+      "boundary_id": "224",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "224"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/EA1295.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/EA1295.geojson",
+      "boundary_kmz_path": "data/boundaries/kmz/EA1295.kmz",
+      "boundary_kml_path": "data/boundaries/kml/EA1295.kml",
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1296",
+      "boundary_id": "227",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "227"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt_boundaries.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id_exact_name_match",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1297",
+      "boundary_id": "953",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "953"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt_boundaries.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id_exact_name_match",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1298",
+      "boundary_id": "954",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "954"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt_boundaries.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id_exact_name_match",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1299",
+      "boundary_id": "845",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "845"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/EA1299.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/EA1299.geojson",
+      "boundary_kmz_path": "data/boundaries/kmz/EA1299.kmz",
+      "boundary_kml_path": "data/boundaries/kml/EA1299.kml",
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1300",
+      "boundary_id": "845",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "845"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/EA1300.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/EA1300.geojson",
+      "boundary_kmz_path": "data/boundaries/kmz/EA1300.kmz",
+      "boundary_kml_path": "data/boundaries/kml/EA1300.kml",
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EA1301",
+      "boundary_id": "923",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "923"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt_boundaries.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id_exact_name_match",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -17884,6 +18694,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "EB3561",
+      "boundary_id": "521",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "521"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "EB3562",
       "boundary_id": "586",
       "member_boundary_ids": [],
@@ -18028,6 +18856,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "EB3609",
+      "boundary_id": "828",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "828"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "EB3610",
       "boundary_id": "490",
       "member_boundary_ids": [],
@@ -18094,6 +18940,42 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/EB3614.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EB3616",
+      "boundary_id": "891",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "891"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "EB3617",
+      "boundary_id": "923",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "923"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt-master-canonical-2026-source-of-truth.json",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -23048,6 +23930,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "MA1006",
+      "boundary_id": "620",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "620"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/MA1006.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/MA1006.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "MA1007",
       "boundary_id": "117",
       "member_boundary_ids": [],
@@ -23114,6 +24014,24 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/MA1010.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "MA1011",
+      "boundary_id": "561",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "561"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "data/hunt_boundaries.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_boundary_id_exact_name_match",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": null,
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -23396,6 +24314,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "MB6200",
+      "boundary_id": "575",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "575"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/MB6200.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/MB6200.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "MB6201",
       "boundary_id": "561",
       "member_boundary_ids": [],
@@ -23450,6 +24386,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "MB6207",
+      "boundary_id": "567",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "567"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/MB6207.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/MB6207.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "MB6208",
       "boundary_id": "520",
       "member_boundary_ids": [],
@@ -23462,6 +24416,24 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/MB6208.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "MB6209",
+      "boundary_id": "522",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "522"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/MB6209.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/MB6209.geojson",
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -23486,6 +24458,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "MB6217",
+      "boundary_id": "490",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "490"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/MB6217.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/MB6217.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "MB6219",
       "boundary_id": "578",
       "member_boundary_ids": [],
@@ -23498,6 +24488,24 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/MB6219.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "MB6220",
+      "boundary_id": "491",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "491"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/MB6220.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/MB6220.geojson",
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -23522,6 +24530,78 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "MB6223",
+      "boundary_id": "553",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "553"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/MB6223.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/MB6223.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "MB6224",
+      "boundary_id": "521",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "521"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/MB6224.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/MB6224.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "MB6225",
+      "boundary_id": "586",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "586"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/MB6225.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/MB6225.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "MB6240",
+      "boundary_id": "732",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "732"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/MB6240.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/MB6240.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "MB6251",
       "boundary_id": "577",
       "member_boundary_ids": [],
@@ -23534,6 +24614,24 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/MB6251.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "MB6254",
+      "boundary_id": "576",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "576"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/MB6254.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/MB6254.geojson",
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -23558,6 +24656,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "MB6257",
+      "boundary_id": "493",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "493"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/MB6257.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/MB6257.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "MB6258",
       "boundary_id": "580",
       "member_boundary_ids": [],
@@ -23576,6 +24692,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "MB6259",
+      "boundary_id": "828",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "828"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/MB6259.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/MB6259.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "MB6262",
       "boundary_id": "589",
       "member_boundary_ids": [],
@@ -23588,6 +24722,42 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/MB6262.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "MB6263",
+      "boundary_id": "485",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "485"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/MB6263.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/MB6263.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "MB6264",
+      "boundary_id": "740",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "740"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/MB6264.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/MB6264.geojson",
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -24984,6 +26154,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "PB5313",
+      "boundary_id": "805",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "805"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/PB5313.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/PB5313.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "PB5314",
       "boundary_id": "558",
       "member_boundary_ids": [],
@@ -25218,6 +26406,24 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "PB5341",
+      "boundary_id": "891",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "891"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/PB5341.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/PB5341.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "PB5342",
       "boundary_id": "906",
       "member_boundary_ids": [],
@@ -25290,6 +26496,42 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "PD1006",
+      "boundary_id": "171",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "171"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/PD1006.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/PD1006.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "PD1011",
+      "boundary_id": "568",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "568"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/PD1011.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/PD1011.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "PD1012",
       "boundary_id": "24",
       "member_boundary_ids": [],
@@ -25302,6 +26544,24 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/PD1012.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "PD1016",
+      "boundary_id": "537",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "537"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/PD1016.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/PD1016.geojson",
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -25326,6 +26586,42 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "PD1025",
+      "boundary_id": "824",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "824"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/PD1025.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/PD1025.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "PD1026",
+      "boundary_id": "826",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "826"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/PD1026.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/PD1026.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "PD1031",
       "boundary_id": "558",
       "member_boundary_ids": [],
@@ -25338,6 +26634,24 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/PD1031.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "PD1032",
+      "boundary_id": "581",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "581"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/PD1032.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/PD1032.geojson",
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -25398,6 +26712,42 @@
       "member_boundary_count": 0
     },
     {
+      "hunt_code": "PD1039",
+      "boundary_id": "718",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "718"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/PD1039.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/PD1039.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "PD1041",
+      "boundary_id": "201",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "201"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/PD1041.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/PD1041.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
       "hunt_code": "PD1043",
       "boundary_id": "882",
       "member_boundary_ids": [],
@@ -25428,6 +26778,42 @@
       "boundary_geometry_type": "single_kmz",
       "geometry_status": "mapped",
       "boundary_geojson_path": "processed_data/boundaries/PD1044.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "PD1045",
+      "boundary_id": "509",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "509"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/PD1045.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/PD1045.geojson",
+      "boundary_kmz_path": null,
+      "boundary_kml_path": null,
+      "dwr_boundary_link": null,
+      "member_boundary_count": 0
+    },
+    {
+      "hunt_code": "PD1046",
+      "boundary_id": "918",
+      "member_boundary_ids": [],
+      "source_boundary_ids": [
+        "918"
+      ],
+      "boundary_source_authority": "Utah DWR",
+      "boundary_source_file": "processed_data/boundaries/PD1046.geojson",
+      "merged_boundary_id": null,
+      "boundary_geometry_type": "single_geojson_path",
+      "geometry_status": "mapped",
+      "boundary_geojson_path": "processed_data/boundaries/PD1046.geojson",
       "boundary_kmz_path": null,
       "boundary_kml_path": null,
       "dwr_boundary_link": null,
@@ -26431,5 +27817,6 @@
       "dwr_boundary_link": null,
       "member_boundary_count": 4
     }
-  ]
+  ],
+  "cleanup_note": "Added source-backed current hunt-code boundary rows."
 }

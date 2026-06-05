@@ -37,7 +37,7 @@
   "antlerless_draw": null,
   "projected_bonus_draw": null,
   "detail_path": "hunts/EA1271.json",
-  "boundary_id": "51",
+  "boundary_id": "5115",
   "hunt_class": "Conservation",
   "data_status": "CURRENT_DATABASE_CANONICAL",
   "permit_status": "NO_QUOTA_PUBLISHED",
@@ -87,10 +87,10 @@
   "huntTitle": "Manti (Conservation)",
   "unitName": "Manti (Conservation)",
   "unitCode": "51",
-  "boundaryId": "51",
-  "boundaryID": "51",
-  "BoundaryID": "51",
-  "boundary_id_numeric": "51",
+  "boundaryId": "5115",
+  "boundaryID": "5115",
+  "BoundaryID": "5115",
+  "boundary_id_numeric": "5115",
   "totalPermits": "4",
   "permitsTotal": "4",
   "quota": "4",
@@ -289,5 +289,7 @@
   ],
   "research_summary_row_count": 2,
   "split_source": "DATABASE.csv + processed_data/hunt_research_2026_summary.json",
-  "split_rebuilt_at": "2026-06-04T07:07:35Z"
+  "split_rebuilt_at": "2026-06-04T07:07:35Z",
+  "boundary_geojson_path": "processed_data/boundaries/EA1271.geojson",
+  "boundary_source_file": "unit_specific_conservation_expo_bundles.csv"
 }
