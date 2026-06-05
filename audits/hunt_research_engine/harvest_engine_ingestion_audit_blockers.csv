@@ -1,4 +1,1 @@
 severity,blocker_id,message
-WARNING,FEATURE_CODES_MISSING_FROM_SUMMARY,Feature codes absent from Hunt Research summary: ['EA1287']
-WARNING,FEATURE_CODES_MISSING_FROM_DETAILS,Feature codes absent from split details: ['EA1287']
-WARNING,CURRENT_CODES_WITHOUT_FEATURE_ROW,"Current DATABASE codes without a 2026 harvest feature row: ['BI6530', 'BR7008', 'BR7019', 'BR7108', 'BR7208', 'DA1044', 'DA1051', 'DB1036', 'DB1059', 'DB1082', 'DB1088', 'DB1089', 'DB1094', 'DB1276', 'DB1320', 'DB1324', 'DB1338', 'DB1343', 'DB1344', 'DB1345']"

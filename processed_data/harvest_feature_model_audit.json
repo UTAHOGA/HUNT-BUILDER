@@ -1,21 +1,21 @@
 {
-  "generated_at_utc": "2026-05-23T15:34:43.090370+00:00",
+  "generated_at_utc": "2026-06-05T14:06:42.112020+00:00",
   "forecast_year": 2026,
-  "active_2026_hunt_codes": 1411,
-  "harvest_quality_index_count": 1384,
-  "demand_pressure_signal_count": 1404,
+  "active_2026_hunt_codes": 1471,
+  "harvest_quality_index_count": 1464,
+  "demand_pressure_signal_count": 1464,
   "match_method_counts": {
-    "EXACT_HUNT_CODE_HISTORY": 1188,
+    "EXACT_HUNT_CODE_HISTORY": 1244,
     "NO_HARVEST_HISTORY": 1,
-    "SAME_HUNT_NAME_SPECIES_HISTORY": 174,
-    "SPECIES_FAMILY_HISTORY": 37,
+    "SAME_HUNT_NAME_SPECIES_HISTORY": 175,
+    "SPECIES_FAMILY_HISTORY": 40,
     "UNIT_SPECIES_HISTORY": 11
   },
   "data_quality_grade_counts": {
-    "A": 964,
-    "B": 25,
-    "C": 351,
-    "D": 70,
+    "A": 1018,
+    "B": 24,
+    "C": 353,
+    "D": 75,
     "F": 1
   },
   "protected_probability_and_quota_fields_unchanged": true,

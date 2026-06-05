@@ -1,0 +1,352 @@
+{
+  "missing_rows": [],
+  "raw_rows": [
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 385,
+      "raw_columns": 23,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2025\\csv\\harvest data\\big_game_oil_hunt_number_harvest_supplement_2024.csv",
+      "raw_rows": 385,
+      "raw_size_bytes": 83170,
+      "source_csv": "big_game_oil_hunt_number_harvest_supplement_2024.csv",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 17,
+      "raw_columns": 21,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2025\\csv\\harvest data\\bison_oial_hunt_harvest_2024.csv",
+      "raw_rows": 17,
+      "raw_size_bytes": 4640,
+      "source_csv": "bison_oial_hunt_harvest_2024.csv",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 22,
+      "raw_columns": 20,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2025\\csv\\harvest data\\desert_bighorn_hunt_harvest_2024.csv",
+      "raw_rows": 22,
+      "raw_size_bytes": 5812,
+      "source_csv": "desert_bighorn_hunt_harvest_2024.csv",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": false,
+      "hunt_codes": 0,
+      "raw_columns": 16,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2025\\csv\\harvest data\\elk_general_season_harvest_additional_2024.csv",
+      "raw_rows": 120,
+      "raw_size_bytes": 25477,
+      "source_csv": "elk_general_season_harvest_additional_2024.csv",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 1039,
+      "raw_columns": 21,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2025\\csv\\harvest data\\harvest_quality_features_by_hunt_code_2024_for_2025.csv",
+      "raw_rows": 1039,
+      "raw_size_bytes": 136846,
+      "source_csv": "harvest_quality_features_by_hunt_code_2024_for_2025.csv",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": false,
+      "hunt_codes": 0,
+      "raw_columns": 18,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2025\\csv\\harvest data\\harvest_quality_features_elk_age_2024_for_2025.csv",
+      "raw_rows": 26,
+      "raw_size_bytes": 6614,
+      "source_csv": "harvest_quality_features_elk_age_2024_for_2025.csv",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": false,
+      "hunt_codes": 0,
+      "raw_columns": 18,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2025\\csv\\harvest data\\harvest_quality_features_extra_oil_2024_for_2025.csv",
+      "raw_rows": 32,
+      "raw_size_bytes": 3494,
+      "source_csv": "harvest_quality_features_extra_oil_2024_for_2025.csv",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 1039,
+      "raw_columns": 40,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2025\\csv\\harvest data\\harvest_results_2024_for_2025_all_long.csv",
+      "raw_rows": 2767,
+      "raw_size_bytes": 992253,
+      "source_csv": "harvest_results_2024_for_2025_all_long.csv",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 21,
+      "raw_columns": 40,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2025\\csv\\harvest data\\harvest_results_2024_for_2025_ANTLERLESS_DEER.csv",
+      "raw_rows": 42,
+      "raw_size_bytes": 18094,
+      "source_csv": "harvest_results_2024_for_2025_ANTLERLESS_DEER.csv",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 184,
+      "raw_columns": 40,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2025\\csv\\harvest data\\harvest_results_2024_for_2025_ANTLERLESS_ELK.csv",
+      "raw_rows": 825,
+      "raw_size_bytes": 319604,
+      "source_csv": "harvest_results_2024_for_2025_ANTLERLESS_ELK.csv",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 16,
+      "raw_columns": 40,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2025\\csv\\harvest data\\harvest_results_2024_for_2025_BISON.csv",
+      "raw_rows": 16,
+      "raw_size_bytes": 6431,
+      "source_csv": "harvest_results_2024_for_2025_BISON.csv",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 87,
+      "raw_columns": 40,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2025\\csv\\harvest data\\harvest_results_2024_for_2025_BLACK_BEAR.csv",
+      "raw_rows": 87,
+      "raw_size_bytes": 28924,
+      "source_csv": "harvest_results_2024_for_2025_BLACK_BEAR.csv",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 21,
+      "raw_columns": 40,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2025\\csv\\harvest data\\harvest_results_2024_for_2025_DESERT_BIGHORN_SHEEP.csv",
+      "raw_rows": 21,
+      "raw_size_bytes": 7578,
+      "source_csv": "harvest_results_2024_for_2025_DESERT_BIGHORN_SHEEP.csv",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 215,
+      "raw_columns": 40,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2025\\csv\\harvest data\\harvest_results_2024_for_2025_ELK.csv",
+      "raw_rows": 860,
+      "raw_size_bytes": 302932,
+      "source_csv": "harvest_results_2024_for_2025_ELK.csv",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 56,
+      "raw_columns": 47,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2025\\csv\\harvest data\\harvest_results_2024_for_2025_extra_goat_bison_desert_sheep_long.csv",
+      "raw_rows": 676,
+      "raw_size_bytes": 325622,
+      "source_csv": "harvest_results_2024_for_2025_extra_goat_bison_desert_sheep_long.csv",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    }
+  ],
+  "summary": {
+    "audit_name": "2024_harvest_draw_ingestion",
+    "draw_engine_legacy_has_2024_rows": false,
+    "draw_engine_v2_matches_draw_truth_rows": true,
+    "draw_reality_engine_2024": {
+      "hunt_codes": 0,
+      "rows": 0,
+      "source_counts_top": {},
+      "species_counts": {}
+    },
+    "draw_reality_engine_v2_2024": {
+      "hunt_codes": 580,
+      "rows": 37128,
+      "source_counts_top": {
+        "24_OIL_ALL.pdf": 84,
+        "24_bg-draw-results.pdf": 36930,
+        "24_le_bull_elk.pdf": 92,
+        "24_le_deer.pdf": 22
+      },
+      "species_counts": {}
+    },
+    "draw_truth_2024": {
+      "hunt_codes": 580,
+      "rows": 37128,
+      "source_counts_top": {
+        "24_OIL_ALL.pdf": 84,
+        "24_bg-draw-results.pdf": 36930,
+        "24_le_bull_elk.pdf": 92,
+        "24_le_deer.pdf": 22
+      },
+      "species_counts": {}
+    },
+    "engine_feature_keys_2024": 1048,
+    "feature_model_hunt_codes_using_2024": 1147,
+    "feature_model_rows_using_2024": 1147,
+    "generated_at_utc": "2026-06-05T14:01:52.136244+00:00",
+    "guardrail": "2024 harvest rows are quality/history inputs only. They are not permit quota truth and are not direct p_draw truth.",
+    "harvest_model_features_2024": {
+      "hunt_codes": 1048,
+      "rows": 1048,
+      "source_counts_top": {
+        "2023-24 turkey.pdf": 7,
+        "2024 ELK ANTLERLESS GENERAL SEASON.pdf": 89,
+        "2024 ELK CWMU bull elk harvest.pdf": 68,
+        "2024 ELK LIMITED ANTLERLESS.pdf": 95,
+        "2024 LIMITED ENTRY ELK HARVEST.pdf": 147,
+        "2024 mule deer.pdf": 355,
+        "24_bg_report.pdf": 111,
+        "24_black_bear_report.pdf": 87,
+        "Desert Sheep.pdf": 1,
+        "Pronghorn data.pdf": 87,
+        "bison harvest data.pdf": 1
+      },
+      "species_counts": {
+        "Antlerless Deer": 21,
+        "Antlerless Elk": 184,
+        "Bison": 17,
+        "Black Bear": 87,
+        "Desert Bighorn Sheep": 22,
+        "Elk": 215,
+        "Moose": 37,
+        "Mountain Goat": 17,
+        "Mule Deer": 334,
+        "Pronghorn": 87,
+        "Rocky Mountain Bighorn Sheep": 20,
+        "Turkey": 7
+      }
+    },
+    "harvest_model_long_2024": {
+      "hunt_codes": 1048,
+      "rows": 35707,
+      "source_counts_top": {
+        "2023-24 turkey.pdf": 63,
+        "2024 ELK ANTLERLESS GENERAL SEASON.pdf": 1424,
+        "2024 ELK BY UNIT 2024.pdf": 3990,
+        "2024 ELK CWMU bull elk harvest.pdf": 1088,
+        "2024 ELK LIMITED ANTLERLESS.pdf": 2410,
+        "2024 LIMITED ENTRY ELK HARVEST.pdf": 2352,
+        "2024 mule deer.pdf": 5680,
+        "24_bg_report.pdf": 10186,
+        "24_black_bear_report.pdf": 1914,
+        "24_elk_bg_report.pdf": 3990,
+        "Desert Sheep.pdf": 176,
+        "Pronghorn data.pdf": 1392,
+        "Total mountain goat harvest by hunt, Utah 2024.pdf": 136,
+        "big game OIL mainly.pdf": 770,
+        "bison harvest data.pdf": 136
+      },
+      "species_counts": {
+        "Antlerless Deer": 546,
+        "Antlerless Elk": 9354,
+        "Big Game OIL": 160,
+        "Bison": 392,
+        "Black Bear": 1914,
+        "Desert Bighorn Sheep": 512,
+        "Elk": 10500,
+        "Moose": 592,
+        "Mountain Goat": 408,
+        "Mule Deer": 8684,
+        "Pronghorn": 2262,
+        "Rocky Mountain Bighorn Sheep": 320,
+        "Turkey": 63
+      }
+    },
+    "harvest_truth_2024": {
+      "hunt_codes": 1048,
+      "rows": 35707,
+      "source_counts_top": {
+        "2023-24 turkey.pdf": 63,
+        "2024 ELK ANTLERLESS GENERAL SEASON.pdf": 1424,
+        "2024 ELK BY UNIT 2024.pdf": 3990,
+        "2024 ELK CWMU bull elk harvest.pdf": 1088,
+        "2024 ELK LIMITED ANTLERLESS.pdf": 2410,
+        "2024 LIMITED ENTRY ELK HARVEST.pdf": 2352,
+        "2024 mule deer.pdf": 5680,
+        "24_bg_report.pdf": 10186,
+        "24_black_bear_report.pdf": 1914,
+        "24_elk_bg_report.pdf": 3990,
+        "Desert Sheep.pdf": 176,
+        "Pronghorn data.pdf": 1392,
+        "Total mountain goat harvest by hunt, Utah 2024.pdf": 136,
+        "big game OIL mainly.pdf": 770,
+        "bison harvest data.pdf": 136
+      },
+      "species_counts": {
+        "Antlerless Deer": 546,
+        "Antlerless Elk": 9354,
+        "Big Game OIL": 160,
+        "Bison": 392,
+        "Black Bear": 1914,
+        "Desert Bighorn Sheep": 512,
+        "Elk": 10500,
+        "Moose": 592,
+        "Mountain Goat": 408,
+        "Mule Deer": 8684,
+        "Pronghorn": 2262,
+        "Rocky Mountain Bighorn Sheep": 320,
+        "Turkey": 63
+      }
+    },
+    "harvest_truth_features_2024": {
+      "hunt_codes": 1048,
+      "rows": 1048,
+      "source_counts_top": {
+        "2023-24 turkey.pdf": 7,
+        "2024 ELK ANTLERLESS GENERAL SEASON.pdf": 89,
+        "2024 ELK CWMU bull elk harvest.pdf": 68,
+        "2024 ELK LIMITED ANTLERLESS.pdf": 95,
+        "2024 LIMITED ENTRY ELK HARVEST.pdf": 147,
+        "2024 mule deer.pdf": 355,
+        "24_bg_report.pdf": 111,
+        "24_black_bear_report.pdf": 87,
+        "Desert Sheep.pdf": 1,
+        "Pronghorn data.pdf": 87,
+        "bison harvest data.pdf": 1
+      },
+      "species_counts": {
+        "Antlerless Deer": 21,
+        "Antlerless Elk": 184,
+        "Bison": 17,
+        "Black Bear": 87,
+        "Desert Bighorn Sheep": 22,
+        "Elk": 215,
+        "Moose": 37,
+        "Mountain Goat": 17,
+        "Mule Deer": 334,
+        "Pronghorn": 87,
+        "Rocky Mountain Bighorn Sheep": 20,
+        "Turkey": 7
+      }
+    },
+    "missing_engine_feature_keys_2024": 0,
+    "model_target_year": 2025,
+    "raw_harvest_csvs_checked": 15,
+    "raw_harvest_status_counts": {
+      "RAW_GENERATED_CSV_PRESENT": 15
+    },
+    "recommended_next_step": "No 2024 source-backed harvest feature feeder gaps remain. Continue with downstream engine/runtime regeneration only when the broader production phase calls for it.",
+    "reported_hunt_year": 2024,
+    "result": "PASS",
+    "truth_feature_keys_2024": 1048
+  }
+}
