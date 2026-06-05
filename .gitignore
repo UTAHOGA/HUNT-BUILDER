@@ -129,3 +129,4 @@ processed_data/public_contracts/*.with_permits*.pdf
 # Runtime draft outputs and large truth exports
 data_model/runtime_drafts/*.csv
 data_truth/draw_results_truth/normalized/*.csv
+data_model/runtime_drafts/*.json
