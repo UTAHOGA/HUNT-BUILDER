@@ -42,6 +42,55 @@ Validation commands run:
 Commit:
 - Pending commit.
 
+# 2026-06-05T21:10:00Z - Navigation consolidation and progressive matrix disclosure
+
+Scope:
+- Consolidated map mode selection so the logo buttons stay tucked behind the `Map Selector` control and open on desktop hover or click/tap.
+- Collapsed land ownership controls behind a compact `Land` square button; the full Federal/State/Private layer controls reveal only when the square is clicked.
+- Added garage-door style progressive disclosure to the Build Your Hunt matrix:
+  - Initial visible controls are `Search by hunt number` and `Species`.
+  - As lower filters become available, the oldest/top controls roll into a stored state.
+  - The visible decision window stays capped at three active selector boxes.
+- Added a bottom-center double-bubble page progression control that appears after a hunt is selected:
+  - Current: `Hunt Builder`
+  - Next: `Hunt Research`
+- Preserved the existing filter engine, map routing, hunt data, boundary logic, and page destinations.
+- Did not edit `DATABASE.csv`, normalized truth files, runtime manifests, R2 objects, prediction outputs, or engine model logic.
+
+Design references:
+- Progressive disclosure: reduce cognitive load by revealing next-step controls as users progress.
+- Accordion/collapsible filters: keep dense controls available but hidden behind a clear trigger.
+- Dropdown map selector: preserve logo choices while removing persistent button clutter.
+
+Files changed:
+- app.js
+- header-layout.js
+- index.html
+- style.css
+- audits/website_runtime/navigation_compression_desktop.png
+- audits/website_runtime/navigation_compression_selected_hunt.png
+- WORK_LOG.md
+
+Key results:
+- Desktop: `Map Selector` hover opens 3 logo options.
+- Desktop: land ownership panel starts collapsed and opens from the `Land` square.
+- Desktop: matrix starts with 2 visible controls and rolls to a 3-control active window after deeper selections.
+- Desktop: selected hunt shows bottom progression control.
+- Mobile: no horizontal overflow at 390px viewport.
+- Mobile: initial visible matrix controls are `Search by hunt number` and `Species`.
+- Mobile: after deeper selections, visible matrix controls become `Sex`, `Hunt Type`, and `Weapon Type`; `Search by hunt number` and `Species` are garaged.
+
+Validation commands run:
+- node --check app.js
+- node --check header-layout.js
+- npm.cmd run build
+- git diff --check
+- python tools/git_size_guard.py --warn-only
+- Local browser QA at `https://127.0.0.1:4173/` for desktop and 390px mobile viewports
+
+Commit:
+- Pending commit.
+
 # 2026-06-05T20:18:00Z - Mobile hamburger navigation cleanup
 
 Scope:
