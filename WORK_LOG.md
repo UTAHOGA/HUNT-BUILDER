@@ -1,3 +1,34 @@
+## 2026-06-05T09:40:35Z - Refine Elk Bull matrix hunt-class routing
+
+Scope:
+- Updated the Hunt Builder selection matrix display logic for Elk Bull paths.
+- Kept the control order as Species -> Sex -> Hunt Type -> Weapon Type -> Hunt Class -> DWR Hunt Units.
+- Did not edit `DATABASE.csv`, raw source files, engine model code, runtime manifests, or R2 objects.
+
+Files changed:
+- app.js
+- config.js
+- WORK_LOG.md
+
+Key results:
+- Elk -> Bull -> Limited Entry -> Any Legal Weapon now shows Hunt Class options: Early A.L.W., Mid A.L.W., Late A.L.W., Sportsmen.
+- Elk -> Bull -> Limited Entry -> Archery now shows Hunt Class options: Early Archery and Late Archery.
+- Elk -> Bull -> Limited Entry -> Muzzleloader resolves directly to DWR Hunt Units with no Hunt Class dropdown.
+- Elk -> Bull -> Limited Entry -> HAMSS resolves directly to DWR Hunt Units with no Hunt Class dropdown.
+- Elk -> Bull -> CWMU -> Any Legal Weapon resolves directly to the CWMU unit list with no redundant Hunt Class dropdown.
+- Elk -> Bull -> Conservation -> Weapon now shows organization codes under Hunt Class, including MDF, SFW, RMEF, WCF, SCI, DSC, NWTF, and UWSF.
+- Conservation `ALW` display values normalize to `Any Legal Weapon`.
+- Mobile QA at 390px viewport showed no horizontal overflow.
+
+Validation commands run:
+- node --check app.js
+- node --check config.js
+- git diff --check
+- Local Playwright matrix QA against `https://127.0.0.1:4173/` for Elk Bull Limited Entry, CWMU, Conservation, and mobile overflow.
+
+Commit:
+- Pending validation and commit.
+
 ## 2026-06-04T09:01:13Z - Audit blank cells in prediction-engine feeder files
 
 Scope:

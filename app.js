@@ -1232,6 +1232,7 @@ function normalizeWeaponLabel(raw) {
   const value = safe(raw).trim();
   const lower = value.toLowerCase();
   if (!value) return '';
+  if (lower === 'alw' || lower === 'a.l.w.') return 'Any Legal Weapon';
   if (lower.includes('any legal weapon')) return 'Any Legal Weapon';
   if (lower.includes('extended archery')) return 'Extended Archery';
   if (lower.includes('restricted archery')) return 'Restricted Archery';
@@ -1343,6 +1344,13 @@ function isConservationPermitHunt(h) {
 function getHuntType(h) {
   if (h?.syntheticConservationPermit) return 'Conservation';
   if (getSpeciesDisplay(h) === 'Cougar') return 'O.T.C.';
+  if (
+    getSpeciesDisplay(h) === 'Elk' &&
+    getNormalizedSex(h) === 'Bull' &&
+    safe(firstNonEmpty(h.draw_family, h.drawFamily, h.draw_2026_system_type)).toUpperCase().includes('SPORTSMAN')
+  ) {
+    return 'Limited Entry';
+  }
   const raw = firstNonEmpty(h.huntType, h.HuntType, h.type);
   if (getSpeciesDisplay(h) === 'Elk' && getNormalizedSex(h) === 'Bull' && safe(raw).toLowerCase().includes('youth')) {
     return safe(raw).toLowerCase().includes('general') ? 'General Season' : normalizeHuntTypeLabel(raw);
@@ -1412,6 +1420,10 @@ function getHuntCategory(h) {
   if (species === 'Cougar') return 'Statewide';
 
   if (species === 'Elk' && sex === 'Bull') {
+    if (safe(firstNonEmpty(h.draw_family, h.drawFamily, h.draw_2026_system_type)).toUpperCase().includes('SPORTSMAN')) {
+      return 'Sportsmen';
+    }
+
     if (huntType === 'Limited Entry') {
       return getElkBullLimitedEntrySeasonClass(h);
     }
