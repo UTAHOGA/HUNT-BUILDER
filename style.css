@@ -16,7 +16,7 @@
       --shadow: 0 10px 28px rgba(58, 37, 18, 0.16);
       --font-display: "Aptos Display", "Segoe UI", "Trebuchet MS", Arial, sans-serif;
       --font-ui: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  --bg-image: url('./assets/logos/tan-topo.png');
+      --bg-image: url('./assets/backgrounds/White Topo 20.jpg');
     }
 
     /* --- DARK MODE (U.O.G.A. WEBSITE MATCH) VARIABLES --- */
@@ -36,7 +36,7 @@
       --selected-shadow: 0 12px 28px rgba(0, 0, 0, 0.34);
       --shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
       --font-display: "Aptos Display", "Segoe UI", "Trebuchet MS", Arial, sans-serif;
-  --bg-image: url('./assets/logos/tan-topo.png');
+      --bg-image: url('./assets/backgrounds/White Topo 20.jpg');
     }
 
     * { box-sizing: border-box; }
@@ -51,6 +51,15 @@
       transition: background-color 0.3s, color 0.3s;
     }
     body { display: grid; grid-template-rows: auto 1fr; min-height: 100dvh; }
+
+    body.builder-page {
+      background:
+        radial-gradient(circle at 8% 0%, rgba(46, 88, 64, 0.15), transparent 28rem),
+        radial-gradient(circle at 92% 6%, rgba(178, 94, 31, 0.15), transparent 24rem),
+        linear-gradient(180deg, rgba(246, 240, 231, 0.9), rgba(246, 240, 231, 0.96)),
+        url('./assets/backgrounds/White Topo 20.jpg') center top / 1720px auto repeat,
+        #f6f0e7;
+    }
 
     .planner-body {
       display: flex;

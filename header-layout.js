@@ -254,12 +254,19 @@
         --selected-fill-dark:#ead8c4 !important;
         --selected-text:#2b1c12 !important;
         --selected-outline:#f07800 !important;
-        --bg-image:none !important;
+        --bg-image:url('./assets/backgrounds/White Topo 20.jpg') !important;
       }
       html, body {
         background-color:#f4efe4 !important;
-        background-image:none !important;
         color:#2b1c12 !important;
+      }
+      body.builder-page {
+        background:
+          radial-gradient(circle at 8% 0%, rgba(46, 88, 64, 0.15), transparent 28rem),
+          radial-gradient(circle at 92% 6%, rgba(178, 94, 31, 0.15), transparent 24rem),
+          linear-gradient(180deg, rgba(246, 240, 231, 0.9), rgba(246, 240, 231, 0.96)),
+          url('./assets/backgrounds/White Topo 20.jpg') center top / 1720px auto repeat,
+          #f6f0e7 !important;
       }
       .topbar, .topbar.topbar-planner {
         background:rgba(255,253,249,.94) !important;
@@ -277,9 +284,6 @@
         min-height:70px !important;
         padding:10px clamp(14px, 2.2vw, 30px) !important;
       }
-      .topbar-title { display:none !important; }
-      .topbar-title h1 { margin:0 !important; width:min(720px, 100%) !important; padding:8px 22px 9px !important; border:2px solid rgba(198,42,42,.95) !important; font-family:Georgia, "Times New Roman", serif !important; font-size:clamp(20px,2.15vw,31px) !important; line-height:1.02 !important; font-weight:900 !important; letter-spacing:.04em !important; text-transform:uppercase !important; color:#2b1c12 !important; background:rgba(255,253,248,.78) !important; text-shadow:0 1px 0 rgba(255,255,255,.9), 0 4px 12px rgba(92,55,24,.16) !important; box-shadow:0 8px 20px rgba(58,37,18,.10) !important; }
-      .topbar-title h1::after { content:none !important; }
       .page-nav-strip { display:none !important; visibility:hidden !important; opacity:0 !important; background:transparent !important; border:0 !important; }
       .uoga-primary-nav {
         order:2 !important;

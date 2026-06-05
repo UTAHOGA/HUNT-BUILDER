@@ -42,6 +42,39 @@ Validation commands run:
 Commit:
 - Pending commit.
 
+# 2026-06-05T20:38:02Z - Builder background and title-card cleanup
+
+Scope:
+- Removed the old Builder slogan/title card that displayed `PLAN YOUR UTAH HUNT LIKE THE PROS DO!`.
+- Replaced the Builder page background treatment with the same cream/topographic `White Topo 20.jpg` treatment used by the Hunt Research page.
+- Removed the shared header override that was forcing the Builder background image to `none`.
+- Did not edit engine code, `DATABASE.csv`, normalized truth files, runtime manifests, R2 objects, or production data feeder files.
+
+Files changed:
+- index.html
+- style.css
+- header-layout.js
+- WORK_LOG.md
+
+Key results:
+- `.topbar-title` count on Builder page: 0.
+- Old slogan phrase present on Builder page: false.
+- Builder page class active: `builder-page`.
+- Desktop background uses `assets/backgrounds/White Topo 20.jpg`.
+- Mobile background uses `assets/backgrounds/White Topo 20.jpg`.
+- Desktop horizontal overflow: false.
+- Mobile horizontal overflow at 390px: false.
+
+Validation commands run:
+- node --check header-layout.js
+- git diff --check
+- python tools/git_size_guard.py --warn-only
+- npm.cmd run build
+- Local Playwright render QA against `https://127.0.0.1:4173/`
+
+Commit:
+- Pending commit.
+
 # 2026-06-05T21:10:00Z - Navigation consolidation and progressive matrix disclosure
 
 Scope:
