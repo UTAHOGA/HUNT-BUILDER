@@ -35,7 +35,7 @@
     .map-mode-native { position:absolute !important; width:1px !important; height:1px !important; opacity:0 !important; pointer-events:none !important; }
     .map-mode-sr-label { position:absolute !important; width:1px !important; height:1px !important; overflow:hidden !important; clip:rect(0,0,0,0) !important; white-space:nowrap !important; border:0 !important; }
     .map-mode-control { position:relative !important; padding:0 !important; border:none !important; background:transparent !important; box-shadow:none !important; }
-    .map-mode-picker { position:relative; z-index:10020; }
+    .map-mode-picker { position:relative; z-index:30080; }
     .map-mode-toggle,
     .map-mode-option,
     .ownership-dock .toggle-row,
@@ -59,9 +59,13 @@
     .map-mode-option-logo { max-height:28px; max-width:170px; width:auto; height:auto; display:block; }
     .map-mode-logo--dwr-current { max-height:28px; max-width:190px; width:auto; height:auto; object-fit:contain; }
     .map-mode-text { color:#f07800; font-weight:900; letter-spacing:.10em; white-space:nowrap; }
-    .map-mode-menu { position:absolute; top:calc(100% + 8px); left:50%; transform:translateX(-50%); display:grid; grid-template-columns:1fr; gap:8px; z-index:10030; }
+    .map-mode-menu { position:absolute; top:calc(100% + 8px); left:50%; transform:translateX(-50%); display:grid; grid-template-columns:1fr; gap:8px; z-index:30090; animation:uogaMapModeSlide .32s cubic-bezier(.16,1,.3,1) both; transform-origin:top center; }
     .map-mode-menu[hidden] { display:none !important; }
     .map-mode-option { display:inline-flex; align-items:center; justify-content:center; gap:10px; width:224px; min-height:42px; padding:0 14px; cursor:pointer; }
+    @keyframes uogaMapModeSlide {
+      from { opacity:0; transform:translateX(-50%) translateY(-10px) scaleY(.88); }
+      to { opacity:1; transform:translateX(-50%) translateY(0) scaleY(1); }
+    }
     .map-mode-toggle[aria-expanded="true"], .map-mode-option.is-active, .utility-link.active {
       border-color:#f07800 !important;
       background:linear-gradient(180deg,#fff7ee,#ead8c4) !important;
@@ -230,10 +234,6 @@
           </button>
 
           <div class="map-mode-menu" hidden>
-            <button type="button" class="map-mode-option map-mode-option--icononly" data-map-mode-value="google" aria-label="Google Maps">
-              <img class="map-mode-option-logo" src="./assets/logos/google-maps-logo.png" alt="Google Maps">
-            </button>
-
             <button type="button" class="map-mode-option map-mode-option--icononly" data-map-mode-value="earth" aria-label="Google Earth">
               <img class="map-mode-option-logo" src="./assets/logos/google_earth_logo.png?v=20260430-map-selector-1" alt="Google Earth">
             </button>
@@ -354,12 +354,9 @@
 
       <section class="map-wrap">
         <div id="ownershipDock" class="ownership-dock" aria-label="Land ownership controls">
-          <button id="ownershipToggleBtn" class="ownership-toggle-btn" type="button" aria-expanded="false" aria-controls="ownershipLayerPanel">
-            <span class="ownership-toggle-kicker">Land</span>
-            <span class="ownership-toggle-lines" aria-hidden="true"><span></span><span></span><span></span></span>
-          </button>
           <div class="ownership-case">
-            <div id="ownershipLayerPanel" class="toggle-row ownership-toggle-row" hidden>
+            <div id="ownershipLayerPanel" class="toggle-row ownership-toggle-row">
+              <div class="ownership-panel-title">Land Ownership</div>
               <label class="toggle-chip ownership-hunt-units-chip"><input id="toggleDwrUnits" type="checkbox" checked><span class="toggle-chip-label">Hunt<br>Units</span></label>
 
               <details class="toggle-menu ownership-group">

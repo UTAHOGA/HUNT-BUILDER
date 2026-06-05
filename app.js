@@ -337,7 +337,12 @@ function setOwnershipControlsExpandedForEarth(expanded = true) {
 }
 
 function setOwnershipPanelOpen(open) {
-  if (!ownershipToggleBtn || !ownershipLayerPanel) return;
+  if (!ownershipLayerPanel) return;
+  if (!ownershipToggleBtn) {
+    ownershipLayerPanel.hidden = false;
+    document.getElementById('ownershipDock')?.classList.add('is-open');
+    return;
+  }
   const isOpen = !!open;
   ownershipLayerPanel.hidden = !isOpen;
   ownershipToggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
@@ -1798,6 +1803,7 @@ const PROGRESSIVE_MATRIX_SEQUENCE = [
   'huntCategoryFilter',
   'unitFilter'
 ];
+let matrixGarageAnchorId = '';
 
 function getMatrixResetValue(controlId) {
   if (controlId === 'speciesFilter') return 'All Species';
@@ -1846,6 +1852,12 @@ function setMatrixStepVisibility(controlId, visible) {
   if (!el || !step) return;
   if (!visible) {
     resetMatrixControl(controlId);
+    step.classList.remove('is-garaged');
+    step.removeAttribute('role');
+    step.removeAttribute('tabindex');
+    step.removeAttribute('aria-label');
+    step.removeAttribute('data-garage-state');
+    step.removeAttribute('data-garage-summary');
   }
   step.classList.toggle('is-collapsed', !visible);
   step.setAttribute('aria-hidden', visible ? 'false' : 'true');
@@ -1864,14 +1876,54 @@ function syncMatrixGarageDoorWindow() {
     .filter(Boolean);
 
   const maxVisibleSteps = 3;
-  const garageCount = Math.max(0, visibleSteps.length - maxVisibleSteps);
-  visibleSteps.forEach(({ step }, idx) => {
-    const garaged = idx < garageCount;
+  const anchorIndex = visibleSteps.findIndex(({ id }) => id === matrixGarageAnchorId);
+  const firstUnresolvedIndex = visibleSteps.findIndex(({ id }) => !isMatrixControlResolved(id));
+  const targetIndex = anchorIndex >= 0
+    ? anchorIndex
+    : (firstUnresolvedIndex >= 0 ? firstUnresolvedIndex : Math.max(0, visibleSteps.length - 1));
+  const maxStart = Math.max(0, visibleSteps.length - maxVisibleSteps);
+  const windowStart = Math.min(maxStart, Math.max(0, targetIndex - 1));
+  const windowEnd = windowStart + maxVisibleSteps - 1;
+
+  visibleSteps.forEach(({ id, step }, idx) => {
+    const garaged = idx < windowStart || idx > windowEnd;
     step.classList.toggle('is-garaged', garaged);
     step.setAttribute('data-garage-state', garaged ? 'stored' : 'active');
+    step.setAttribute('data-garage-summary', getMatrixGarageSummary(id));
+    if (garaged) {
+      const label = safe(step.querySelector('label')?.textContent).trim() || 'selector';
+      step.setAttribute('role', 'button');
+      step.setAttribute('tabindex', '0');
+      step.setAttribute('aria-label', `Show ${label} selector`);
+    } else {
+      step.removeAttribute('role');
+      step.removeAttribute('tabindex');
+      step.removeAttribute('aria-label');
+    }
   });
   const panel = speciesFilter?.closest?.('.panel');
   panel?.style.setProperty('--matrix-visible-count', String(Math.min(visibleSteps.length, maxVisibleSteps)));
+}
+
+function activateGaragedMatrixStep(step) {
+  const control = step?.querySelector?.('.hunt-select, .hunt-input');
+  if (!control?.id) return;
+  matrixGarageAnchorId = control.id;
+  syncMatrixGarageDoorWindow();
+  window.setTimeout(() => {
+    scrollSidebarToElement(step, 12, 'smooth');
+    if (typeof control.focus === 'function') {
+      control.focus({ preventScroll: true });
+    }
+  }, 80);
+}
+
+function handleGaragedMatrixStepEvent(event) {
+  const step = event.target?.closest?.('.matrix-step.is-garaged');
+  if (!step) return;
+  if (event.type === 'keydown' && !['Enter', ' '].includes(event.key)) return;
+  event.preventDefault();
+  activateGaragedMatrixStep(step);
 }
 
 function syncProgressiveSelectionMatrix() {
@@ -2334,6 +2386,7 @@ function forceGoogleMapVisible() {
 }
 
 function resetAllFilters() {
+  matrixGarageAnchorId = '';
   if (searchInput) searchInput.value = '';
   if (speciesFilter) speciesFilter.value = 'All Species';
   if (sexFilter) sexFilter.value = 'All';
@@ -2371,6 +2424,7 @@ function handleFilterChange(event) {
   closeSelectedHuntFloat();
   closeSelectionInfoWindow();
   resetDownstreamMatrixControls(changedId);
+  matrixGarageAnchorId = getMatrixTargetAfterChange(changedId);
   if (!googleBaselineMap) {
     refreshSelectionMatrix();
     updateStatus('Google map is still loading. Filter selection saved; boundaries will appear when the map is ready.');
@@ -5838,6 +5892,9 @@ function bindControls() {
   [speciesFilter, sexFilter, huntTypeFilter, weaponFilter, huntCategoryFilter, unitFilter].forEach(el => {
     el?.addEventListener('change', handleFilterChange);
   });
+  const matrixPanelBody = speciesFilter?.closest?.('.panel-body');
+  matrixPanelBody?.addEventListener('click', handleGaragedMatrixStepEvent);
+  matrixPanelBody?.addEventListener('keydown', handleGaragedMatrixStepEvent);
   applyFiltersBtn?.addEventListener('click', () => runApplyFiltersFlow('manual'));
   clearFiltersBtn?.addEventListener('click', resetAllFilters);
   ownershipToggleBtn?.addEventListener('click', () => {
@@ -6114,6 +6171,33 @@ function isAdvancedMatrixSelection(controlId) {
   if (!value) return false;
   if (controlId === 'speciesFilter') return value !== 'All Species';
   return value !== 'All';
+}
+
+function isMatrixControlResolved(controlId) {
+  if (controlId === 'searchInput') return true;
+  return isAdvancedMatrixSelection(controlId);
+}
+
+function getMatrixGarageSummary(controlId) {
+  const el = document.getElementById(controlId);
+  if (!el) return '';
+  if (controlId === 'searchInput') {
+    return safe(el.value).trim() || 'Search';
+  }
+  const optionText = safe(el.options?.[el.selectedIndex]?.text || el.value).trim();
+  if (!optionText || optionText === 'All' || optionText === 'All Species') return 'All';
+  return optionText;
+}
+
+function getMatrixTargetAfterChange(changedId) {
+  if (!changedId) return '';
+  if (changedId === 'searchInput') return safe(searchInput?.value).trim() ? 'speciesFilter' : 'searchInput';
+  const idx = PROGRESSIVE_MATRIX_SEQUENCE.indexOf(changedId);
+  if (idx < 0) return changedId;
+  if (isAdvancedMatrixSelection(changedId)) {
+    return PROGRESSIVE_MATRIX_SEQUENCE[idx + 1] || changedId;
+  }
+  return changedId;
 }
 
 function getNextVisibleMatrixControlId(sequence, idx) {
@@ -6491,7 +6575,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function syncPicker() {
     const value = select.value || 'google';
-    current.innerHTML = (modes[value] || modes.google).html;
+    current.innerHTML = modes.google.html;
+    toggle.classList.toggle('is-google-active', value === 'google');
 
     menu.querySelectorAll('.map-mode-option').forEach(btn => {
       btn.classList.toggle('is-active', btn.dataset.mapModeValue === value);
@@ -6511,6 +6596,12 @@ document.addEventListener('DOMContentLoaded', () => {
   toggle.addEventListener('click', event => {
     event.preventDefault();
     event.stopPropagation();
+
+    if (select.value !== 'google') {
+      select.value = 'google';
+      select.dispatchEvent(new Event('change', { bubbles: true }));
+      syncPicker();
+    }
 
     const willOpen = menu.hidden;
     menu.hidden = !willOpen;

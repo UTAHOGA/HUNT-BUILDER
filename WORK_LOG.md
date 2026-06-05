@@ -42,6 +42,51 @@ Validation commands run:
 Commit:
 - Pending commit.
 
+# 2026-06-05T21:07:39Z - Builder selector garage and map ownership compression
+
+Scope:
+- Converted the Builder selection matrix into a target-aware garage-door flow.
+- Stored selector steps now remain visible as compact clickable selector tabs with selected-value summaries.
+- Clicking or keyboard-activating a stored selector reverses the garage door and reveals that selector again.
+- Removed the standalone square `LAND` ownership box from the map.
+- Rebuilt the land ownership control as one visible `LAND OWNERSHIP` panel with `Hunt Units` at the top and Federal/State/Private groups collapsed underneath.
+- Federal/State/Private ownership groups now reveal on hover/focus and still support click-open through native `<details>`.
+- Reduced the map selector to three surfaces: Google Maps as the visible header button, with Google Earth and DWR Hunt Planner as the two slide-down choices.
+- Kept the old Builder slogan/title card removed and kept the Hunt Research `White Topo 20.jpg` background treatment active.
+- Did not edit engine code, `DATABASE.csv`, normalized truth files, runtime manifests, R2 objects, or production data feeder files.
+
+Files changed:
+- app.js
+- header-layout.js
+- index.html
+- style.css
+- WORK_LOG.md
+
+Key results:
+- Matrix active window after selecting Deer -> Buck -> General Season -> Any Legal Weapon: `huntTypeFilter`, `weaponFilter`, `unitFilter`.
+- Matrix stored selector tabs after that flow: `searchInput:Search`, `speciesFilter:Deer`, `sexFilter:Buck`.
+- Old standalone ownership button present: false.
+- Land ownership panel title: `Land Ownership`.
+- Federal ownership group closed state: `display:none`, height `0`.
+- Federal ownership hover state: `display:grid`, height about `109px`.
+- Map selector dropdown options: `earth`, `dwr`.
+- Google Maps remains the visible map-selector header logo.
+- Clicking the Google Maps header from Earth mode switches back to `google`.
+- Old slogan phrase present: false.
+- Builder background uses `White Topo 20.jpg`.
+- Mobile horizontal overflow at 390px: false.
+
+Validation commands run:
+- node --check app.js
+- node --check header-layout.js
+- git diff --check
+- python tools/git_size_guard.py --warn-only
+- npm.cmd run build
+- Local Playwright mobile render QA against `https://127.0.0.1:4173/`
+
+Commit:
+- Pending commit.
+
 # 2026-06-05T20:38:02Z - Builder background and title-card cleanup
 
 Scope:

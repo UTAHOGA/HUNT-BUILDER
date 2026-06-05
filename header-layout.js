@@ -459,7 +459,7 @@
       }
       #googleEarth3dMap, #dwrMapFrame { background:#fffdf8 !important; z-index:2 !important; }
       .map-mode-native { position:absolute !important; width:1px !important; height:1px !important; opacity:0 !important; pointer-events:none !important; }
-       .topbar-left { position:relative !important; display:flex !important; align-items:center !important; justify-content:flex-start !important; gap:14px !important; flex:0 0 auto !important; width:auto !important; min-width:0 !important; order:1 !important; z-index:10 !important; }
+       .topbar-left { position:relative !important; display:flex !important; align-items:center !important; justify-content:flex-start !important; gap:14px !important; flex:0 0 auto !important; width:auto !important; min-width:0 !important; order:1 !important; z-index:30070 !important; }
        .topbar-right {
          position:relative !important;
          display:flex !important;
@@ -468,10 +468,12 @@
          flex:0 0 auto !important;
          margin-left:auto !important;
          order:3 !important;
-         z-index:10 !important;
+         z-index:20040 !important;
        }
        .uoga-page-nav-control { display:none !important; }
        .map-mode-control { position:relative !important; display:flex !important; align-items:center !important; justify-content:center !important; }
+       .map-mode-picker { position:relative !important; z-index:30080 !important; }
+       .map-mode-menu { z-index:30090 !important; }
        .uoga-page-nav-toggle,
        .map-mode-toggle { display:inline-flex !important; flex-direction:column !important; align-items:center !important; justify-content:center !important; gap:2px !important; width:224px !important; min-height:48px !important; padding:5px 14px !important; cursor:pointer !important; }
        .map-mode-toggle {
@@ -511,7 +513,7 @@
        .uoga-page-nav-current-page { display:block !important; }
        .uoga-page-nav-current-page { color:#f4efe4 !important; font-size:12px !important; letter-spacing:.14em !important; margin-top:2px !important; }
        .uoga-page-nav-menu,
-       .map-mode-menu { position:absolute !important; top:calc(100% + 8px) !important; left:50% !important; transform:translateX(-50%) !important; display:grid !important; grid-template-columns:1fr !important; gap:8px !important; z-index:10030 !important; min-width:224px !important; }
+       .map-mode-menu { position:absolute !important; top:calc(100% + 8px) !important; left:50% !important; transform:translateX(-50%) !important; display:grid !important; grid-template-columns:1fr !important; gap:8px !important; z-index:30090 !important; min-width:224px !important; }
        .uoga-page-nav-menu[hidden] { display:none !important; }
        .map-mode-menu[hidden] { display:none !important; }
        .uoga-page-nav-menu { padding:12px !important; min-width:224px !important; }
@@ -581,7 +583,7 @@
        }
        .uoga-backpack-open .map-wrap .ownership-dock { left:14px !important; max-width:260px !important; }
        .map-wrap .ownership-case { display:flex !important; justify-content:flex-start !important; align-items:flex-start !important; width:100% !important; }
-        .map-wrap .ownership-dock .toggle-row {
+       .map-wrap .ownership-dock .toggle-row {
       display:grid !important;
          grid-template-columns:1fr !important;
          justify-items:stretch !important;
@@ -600,6 +602,21 @@
     .map-wrap .ownership-dock .ownership-toggle-row[hidden] {
       display:none !important;
     }
+      .map-wrap .ownership-panel-title {
+        width:100% !important;
+        display:flex !important;
+        align-items:center !important;
+        justify-content:center !important;
+        min-height:28px !important;
+        padding:4px 10px 6px !important;
+        border-bottom:1px solid rgba(75,42,17,.18) !important;
+        color:#4b2a11 !important;
+        font-size:11px !important;
+        font-weight:950 !important;
+        letter-spacing:.12em !important;
+        line-height:1 !important;
+        text-transform:uppercase !important;
+      }
        .map-wrap .ownership-hunt-units-chip {
          justify-content:flex-start !important;
          padding:8px 10px !important;
@@ -626,6 +643,17 @@
          right:auto !important;
          width:min(280px, calc(100vw - 30px)) !important;
        }
+      .map-wrap .ownership-group:not([open]):not(:hover):not(:focus-within) > .toggle-menu-panel {
+        display:none !important;
+      }
+      .map-wrap .ownership-group:hover > .toggle-menu-panel,
+      .map-wrap .ownership-group:focus-within > .toggle-menu-panel {
+        display:grid !important;
+      }
+      .map-wrap .ownership-group:hover > summary::after,
+      .map-wrap .ownership-group:focus-within > summary::after {
+        content:"^" !important;
+      }
        .basemap-pop { position:absolute !important; top:68px !important; right:14px !important; z-index:31 !important; display:grid !important; justify-items:end !important; gap:8px !important; transition:right 160ms ease !important; }
        .basemap-pop[aria-hidden="true"] { display:none !important; }
        .uoga-backpack-open .basemap-pop { right:min(458px, calc(100% - 320px)) !important; }

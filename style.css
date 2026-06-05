@@ -297,6 +297,21 @@
       flex-wrap: wrap;
       overflow: visible;
     }
+    .ownership-panel-title {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 28px;
+      padding: 4px 10px 6px;
+      border-bottom: 1px solid rgba(75, 42, 17, 0.18);
+      color: #4b2a11;
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: .12em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
     .ownership-hunt-units-chip {
       padding-right: 4px;
       flex: 0 0 auto;
@@ -324,6 +339,17 @@
     .ownership-toggle-panel .toggle-chip {
       padding: 2px 4px;
       font-size: 11px;
+    }
+    .ownership-group:not([open]):not(:hover):not(:focus-within) > .toggle-menu-panel {
+      display: none;
+    }
+    .ownership-group:hover > .toggle-menu-panel,
+    .ownership-group:focus-within > .toggle-menu-panel {
+      display: grid;
+    }
+    .ownership-group:hover > summary::after,
+    .ownership-group:focus-within > summary::after {
+      content: "^";
     }
     .layer-grid { display: grid; gap: 10px; }
     .layer-toggle {
@@ -523,6 +549,10 @@
     .uoga-backpack-shell {
       position: relative;
       z-index: 20040 !important;
+    }
+    .topbar-left {
+      position: relative;
+      z-index: 30070 !important;
     }
     .uoga-page-nav-menu,
     .uoga-backpack-panel {
@@ -756,24 +786,65 @@
     .hunt-select:focus, .hunt-input:focus { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
     .hunt-select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 18px) calc(50% - 2px), calc(100% - 12px) calc(50% - 2px); background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; cursor: pointer; }
     .matrix-step {
+      position: relative;
       max-height: 92px;
       opacity: 1;
       overflow: hidden;
       transform: translateY(0);
       transition:
-        max-height 0.34s cubic-bezier(.22, .61, .36, 1),
-        opacity 0.24s ease,
-        transform 0.3s ease,
-        margin-bottom 0.3s ease;
+        max-height 0.62s cubic-bezier(.16, 1, .3, 1),
+        opacity 0.42s ease,
+        transform 0.58s cubic-bezier(.16, 1, .3, 1),
+        margin-bottom 0.58s cubic-bezier(.16, 1, .3, 1);
       will-change: max-height, opacity, transform;
     }
     .matrix-step.is-garaged {
-      max-height: 0;
-      opacity: 0;
-      pointer-events: none;
-      margin-bottom: 0;
-      transform: translateY(-18px) scaleY(.82);
+      max-height: 38px;
+      opacity: 0.96;
+      pointer-events: auto;
+      margin-bottom: 7px;
+      transform: translateY(-4px) scaleY(.96);
       transform-origin: top center;
+      cursor: pointer;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 18% 10%, rgba(255,255,255,.82), transparent 34%),
+        linear-gradient(180deg, rgba(255,253,248,.96), rgba(234,216,196,.9));
+      border: 1px solid rgba(75,42,17,.5);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.86), 0 4px 10px rgba(58,37,18,.12);
+    }
+    .matrix-step.is-garaged:hover,
+    .matrix-step.is-garaged:focus-visible {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 0 0 2px rgba(240,120,0,.18), 0 6px 14px rgba(58,37,18,.18);
+      transform: translateY(-5px) scaleY(.98);
+    }
+    .matrix-step.is-garaged label {
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      color: #4b2a11;
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .matrix-step.is-garaged::after {
+      content: attr(data-garage-summary);
+      position: absolute;
+      inset: 50% 12px auto auto;
+      max-width: 44%;
+      transform: translateY(-50%);
+      overflow: hidden;
+      color: #f07800;
+      font-size: 11px;
+      font-weight: 950;
+      line-height: 1;
+      text-overflow: ellipsis;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
     .matrix-step.is-collapsed {
       max-height: 0;
@@ -787,6 +858,13 @@
     }
     .matrix-step--search.is-garaged .hunt-input,
     .matrix-step.is-garaged .hunt-select {
+      height: 0;
+      min-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      border-width: 0;
+      opacity: 0;
+      pointer-events: none;
       visibility: hidden;
     }
     @media (prefers-reduced-motion: reduce) {
@@ -798,45 +876,6 @@
 
     .ownership-dock {
       gap: 8px;
-    }
-    .ownership-toggle-btn {
-      width: 62px;
-      min-height: 58px;
-      display: grid;
-      place-items: center;
-      gap: 4px;
-      padding: 6px;
-      border: 3px solid #4b2a11;
-      border-radius: 8px;
-      background: radial-gradient(circle at 20% 12%, rgba(255,255,255,.88), transparent 36%), linear-gradient(180deg, #fffdf8, #ead8c4);
-      color: #4b2a11;
-      box-shadow: 0 0 0 2px #f4efe4, 0 8px 18px rgba(58,37,18,.28), inset 0 1px 0 rgba(255,255,255,.92);
-      cursor: pointer;
-    }
-    .ownership-toggle-btn:hover,
-    .ownership-toggle-btn:focus-visible,
-    .ownership-toggle-btn[aria-expanded="true"] {
-      outline: none;
-      box-shadow: 0 0 0 3px var(--accent), 0 10px 22px rgba(58,37,18,.34), inset 0 1px 0 rgba(255,255,255,.95);
-    }
-    .ownership-toggle-kicker {
-      font-size: 10px;
-      font-weight: 950;
-      letter-spacing: .14em;
-      line-height: 1;
-      text-transform: uppercase;
-    }
-    .ownership-toggle-lines {
-      display: grid;
-      gap: 4px;
-      width: 24px;
-    }
-    .ownership-toggle-lines span {
-      display: block;
-      height: 3px;
-      border-radius: 999px;
-      background: #4b2a11;
-      box-shadow: 0 1px 0 rgba(255,255,255,.55);
     }
     .ownership-case {
       position: relative;
