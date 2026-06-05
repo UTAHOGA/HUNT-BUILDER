@@ -509,6 +509,7 @@ window.UOGA_CONFIG = (() => {
   ];
 
   const HUNT_TYPE_ORDER = [
+    'O.T.C.',
     'General Season',
     'Youth',
     'Limited Entry',
@@ -520,6 +521,7 @@ window.UOGA_CONFIG = (() => {
     'Conservation',
     'Once-in-a-Lifetime',
     'Antlerless',
+    'Statewide',
   ];
 
   const HUNT_CLASS_ORDER = [
@@ -535,6 +537,7 @@ window.UOGA_CONFIG = (() => {
     'CWMU',
     'Private Land Only',
     'Conservation',
+    'Statewide',
     'Statewide Permit',
     'Extended Archery',
   ];

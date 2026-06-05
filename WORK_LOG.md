@@ -15956,6 +15956,36 @@ Validation commands run:
 Commit:
 - Pending validation and commit.
 
+# 2026-06-05T09:08:00Z - Cougar OTC matrix and hunt-class ordering
+
+Scope:
+- Moved the Builder matrix order to Species -> Sex -> Hunt Type -> Hunt Class -> Weapon Type -> DWR Hunt Units.
+- Normalized Cougar display labels without changing source truth: Hunt Type `O.T.C.`, Hunt Class `Statewide`, Unit `Cougar Statewide`.
+- Kept Weapon Type below Hunt Class as the final parent selector before unit selection.
+- Preserved Elk Antlerless and Elk Bull matrix behavior while moving Hunt Class before Weapon.
+- Did not edit source truth, DATABASE, engine code, manifests, or runtime data files.
+
+Files changed:
+- index.html
+- app.js
+- config.js
+- WORK_LOG.md
+
+Key results:
+- Cougar -> Either Sex resolves through `O.T.C.` -> `Statewide` -> `Any Legal Weapon` -> `Cougar Statewide`.
+- Elk -> Bull -> General Season exposes Hunt Class before Weapon with `General Bull` and `Spike Only`.
+- Elk -> Bull -> General Season -> General Bull -> Any Legal Weapon exposes the unit step.
+- Mobile UI check at 390px wide passed with no horizontal overflow.
+
+Validation commands run:
+- node --check app.js
+- node --check config.js
+- Local HTTPS Playwright matrix verification for Cougar Either Sex and Elk Bull General Season.
+- git diff --check
+
+Commit:
+- Pending validation and commit.
+
 # 2026-06-04T10:14:32Z - Phase 02 targeted backfill acceptance rerun
 
 Scope:
