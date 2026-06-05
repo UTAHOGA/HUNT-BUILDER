@@ -42,6 +42,43 @@ Validation commands run:
 Commit:
 - Pending commit.
 
+# 2026-06-05T19:37:00Z - Cloudflare R2 unzipped harvest-quality runtime upload
+
+Scope:
+- Extracted the local harvest-quality archive outside the repo to avoid adding large extracted files to Git.
+- Uploaded the extracted harvest-quality package to Cloudflare R2 as normal individual files, keeping the ZIP archive as a backup/download bundle.
+- Fixed the R2 upload helper so uploads from any incoming directory use paths relative to that directory instead of accidentally carrying local path fragments into object keys.
+- Did not delete local files, did not edit `DATABASE.csv`, did not edit normalized draw truth, did not edit normalized harvest truth, did not edit engine model logic, and did not publish or change runtime manifests.
+
+Files changed:
+- tools/upload_r2_incoming.ps1
+- pipeline/R2_OFFLOAD/manifests/r2_upload_20260605T192919Z.csv
+- WORK_LOG.md
+
+Outputs created:
+- Cloudflare R2 prefix: `pipeline/R2_OFFLOAD/uploaded/harvest_quality_20260605_unzipped/`
+- Cloudflare R2 archive: `pipeline/R2_OFFLOAD/uploaded/harvest_quality_20260605.zip`
+- Local extracted working folder outside repo: `C:\Users\tyler\Desktop\R2_OFFLOAD_TEMP\hq_20260605T192909Z`
+
+Key results:
+- Extracted files uploaded: 230.
+- Uploaded unzipped bytes: 163,460,246.
+- Upload statuses in committed manifest: 230 `UPLOADED`, 0 failed.
+- Sample public URL checks returned HTTP 200:
+  - `https://json.uoga.workers.dev/pipeline/R2_OFFLOAD/uploaded/harvest_quality_20260605_unzipped/draw_reality_engine_predictive_with_harvest_features.csv`
+  - `https://json.uoga.workers.dev/pipeline/R2_OFFLOAD/uploaded/harvest_quality_20260605_unzipped/harvest_feature_model_by_hunt_code_2026.csv`
+  - `https://json.uoga.workers.dev/pipeline/R2_OFFLOAD/uploaded/harvest_quality_20260605_unzipped/harvest_quality_features_all_years_by_hunt_code.csv`
+  - `https://json.uoga.workers.dev/pipeline/R2_OFFLOAD/uploaded/harvest_quality_20260605.zip`
+
+Validation commands run:
+- `Import-Csv pipeline\R2_OFFLOAD\manifests\r2_upload_20260605T192919Z.csv | Group-Object status`
+- `curl.exe -I <sample R2 public URLs>`
+- `python tools/git_size_guard.py --warn-only`
+- `git diff --check`
+
+Commit:
+- Pending commit.
+
 # 2026-06-05T17:08:12Z - Runtime feeder CSV authority and R2 parity audit
 
 Scope:

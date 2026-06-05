@@ -20,12 +20,14 @@ if (!(Test-Path $ManifestDir)) {
 $stamp = (Get-Date).ToUniversalTime().ToString("yyyyMMddTHHmmssZ")
 $manifest = Join-Path $ManifestDir "r2_upload_$stamp.csv"
 $rows = @()
+$incomingRoot = (Resolve-Path -LiteralPath $IncomingDir).Path.TrimEnd("\", "/")
 
 $files = Get-ChildItem -LiteralPath $IncomingDir -File -Recurse
 foreach ($file in $files) {
   $relative = Resolve-Path -LiteralPath $file.FullName -Relative
   $relative = $relative -replace '^\.\\', ''
-  $objectKey = ($relative -replace '^pipeline\\R2_OFFLOAD\\incoming\\?', '') -replace '\\', '/'
+  $relativeToIncoming = $file.FullName.Substring($incomingRoot.Length).TrimStart("\", "/")
+  $objectKey = $relativeToIncoming -replace '\\', '/'
   if ($Prefix) {
     $objectKey = ($Prefix.Trim('/') + '/' + $objectKey).Trim('/')
   }
