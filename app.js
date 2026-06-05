@@ -1430,8 +1430,8 @@ function getBearLimitedEntryMethodClass(h) {
   const code = normalizeHuntCode(getHuntCode(h));
   const rawType = safe(firstNonEmpty(h.huntType, h.HuntType, h.type)).toLowerCase();
   const rawWeapon = safe(firstNonEmpty(h.weapon, h.Weapon)).toLowerCase();
-  if (code.startsWith('BR72') || rawType.includes('fall')) return 'Bait';
-  if (code.startsWith('BR70') || code.startsWith('BR71') || code.startsWith('BR73') || rawType.includes('spring') || rawType.includes('summer') || rawType.includes('multiseason') || rawWeapon.includes('multiseason')) return 'Hounds';
+  if (code.startsWith('BR71') || rawType.includes('summer')) return 'Bait';
+  if (code.startsWith('BR70') || code.startsWith('BR72') || code.startsWith('BR73') || rawType.includes('spring') || rawType.includes('fall') || rawType.includes('multiseason') || rawWeapon.includes('multiseason')) return 'Hounds';
   return '';
 }
 function getHuntCategory(h) {
@@ -1545,6 +1545,100 @@ function buildPublicTwinKeySet(records) {
     keys.add(getPrivateTwinKey(record));
   });
   return keys;
+}
+const BLACK_BEAR_HARVEST_OBJECTIVE_ROWS_2026 = [
+  { unitName: 'Beaver', objective: 5, seasonGroup: 'Fall', seasonLabel: 'Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'Book Cliffs, Bitter Creek/South', objective: 20, seasonGroup: 'Late Summer/Fall', seasonLabel: 'Aug 15 - Oct 1, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'Boulder/Kaiparowits', objective: 22, seasonGroup: 'Summer/Fall', seasonLabel: 'July 6-31, 2026 and Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'Cache/Ogden', objective: 10, seasonGroup: 'Summer/Fall', seasonLabel: 'July 6-31, 2026 and Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'Chalk Creek/East Canyon/Morgan-South Rich', objective: 20, seasonGroup: 'Spring', seasonLabel: 'March 28 - May 25, 2026', methodClass: 'No Bait', methodNote: 'No bait allowed' },
+  { unitName: 'Chalk Creek/East Canyon/Morgan-South Rich', objective: 20, seasonGroup: 'Summer/Fall', seasonLabel: 'Aug 1-31, 2026 and Nov 2-8, 2026', methodClass: 'No Bait', methodNote: 'No bait' },
+  { unitName: 'Chalk Creek/East Canyon/Morgan-South Rich', objective: 20, seasonGroup: 'Summer/Fall', seasonLabel: 'July 6-31, 2026 and Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'Diamond Mtn/Vernal/Bonanza', objective: 9, seasonGroup: 'Fall', seasonLabel: 'Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'Fillmore, Pahvant', objective: 1, seasonGroup: 'Fall', seasonLabel: 'Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'Fishlake/Thousand Lakes', objective: 5, seasonGroup: 'Fall', seasonLabel: 'Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'Kamas/North Slope, Summit', objective: 5, seasonGroup: 'Summer/Fall', seasonLabel: 'July 6-31, 2026 and Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'La Sal Mtns', objective: 12, seasonGroup: 'Fall', seasonLabel: 'Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'Manti, North', objective: 15, seasonGroup: 'Summer/Fall', seasonLabel: 'July 6-31, 2026 and Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'Manti, South/San Rafael, North', objective: 25, seasonGroup: 'Fall', seasonLabel: 'Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'Mt Dutton', objective: 2, seasonGroup: 'Fall', seasonLabel: 'Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'Nebo', objective: 10, seasonGroup: 'Summer/Fall', seasonLabel: 'July 6-31, 2026 and Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'Nine Mile', objective: 25, seasonGroup: 'Spring', seasonLabel: 'March 28 - May 25, 2026', methodClass: 'No Bait', methodNote: 'No bait allowed' },
+  { unitName: 'Nine Mile', objective: 10, seasonGroup: 'Fall', seasonLabel: 'Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'North Slope, Three Corners/West Daggett', objective: 5, seasonGroup: 'Spring', seasonLabel: 'March 28 - May 25, 2026', methodClass: 'No Bait', methodNote: 'No bait allowed' },
+  { unitName: 'North Slope, Three Corners/West Daggett', objective: 3, seasonGroup: 'Fall', seasonLabel: 'Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'Panguitch Lake/Zion', objective: 3, seasonGroup: 'Fall', seasonLabel: 'Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'San Juan', objective: 12, seasonGroup: 'Fall', seasonLabel: 'Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'Wasatch Mtns, Avintaquin/Currant Creek', objective: 15, seasonGroup: 'Spring', seasonLabel: 'March 28 - May 25, 2026', methodClass: 'No Bait', methodNote: 'No bait allowed' },
+  { unitName: 'Wasatch Mtns, Avintaquin/Currant Creek', objective: 10, seasonGroup: 'Fall', seasonLabel: 'Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'Wasatch Mtns, West-Central', objective: 20, seasonGroup: 'Summer/Fall', seasonLabel: 'July 6-31, 2026 and Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+  { unitName: 'Yellowstone', objective: 10, seasonGroup: 'Spring', seasonLabel: 'March 28 - May 25, 2026', methodClass: 'No Bait', methodNote: 'No bait allowed' },
+  { unitName: 'Yellowstone', objective: 10, seasonGroup: 'Fall', seasonLabel: 'Sept 1 - Oct 25, 2026', methodClass: 'No Dogs/No Bait', methodNote: 'No dogs/no bait' },
+];
+function buildBlackBearBoundaryIndex(records) {
+  const byUnitKey = new Map();
+  (Array.isArray(records) ? records : []).forEach(record => {
+    if (getSpeciesDisplay(record) !== 'Black Bear') return;
+    const key = normalizeBoundaryKey(getUnitName(record));
+    if (!key) return;
+    const existing = byUnitKey.get(key) || { boundaryIds: new Set(), boundaryNames: new Set(), links: new Set() };
+    [
+      getBoundaryId(record),
+      record?.boundaryIds,
+      record?.officialBoundaryIds,
+      record?.resolvedBoundaryIds,
+      record?.dwr_member_boundary_ids,
+      record?.member_boundary_ids,
+    ].forEach(value => parseBoundaryIdCandidates(value).forEach(id => {
+      const normalized = safe(id).trim();
+      if (normalized) existing.boundaryIds.add(normalized);
+    }));
+    [getUnitName(record), ...(Array.isArray(record?.boundaryNames) ? record.boundaryNames : [])].forEach(name => {
+      const normalized = safe(name).trim();
+      if (normalized) existing.boundaryNames.add(normalized);
+    });
+    const link = safe(getBoundaryLink(record)).trim();
+    if (link) existing.links.add(link);
+    byUnitKey.set(key, existing);
+  });
+  return byUnitKey;
+}
+function buildSyntheticBlackBearHarvestObjectiveHunts(records) {
+  const boundaryIndex = buildBlackBearBoundaryIndex(records);
+  return BLACK_BEAR_HARVEST_OBJECTIVE_ROWS_2026.map((row, index) => {
+    const match = boundaryIndex.get(normalizeBoundaryKey(row.unitName)) || { boundaryIds: new Set(), boundaryNames: new Set(), links: new Set() };
+    const boundaryIds = [...match.boundaryIds];
+    const boundaryNames = [...match.boundaryNames];
+    const unitLabel = `${row.unitName} - ${row.seasonGroup} (${row.methodClass})`;
+    return {
+      syntheticBearHarvestObjective: true,
+      huntCode: 'BR1001',
+      species: 'Black Bear',
+      sex: 'Either Sex',
+      sex_type: 'Either Sex',
+      huntType: 'Harvest Objective',
+      huntCategory: row.methodClass,
+      weapon: 'Any Legal Weapon',
+      unitCode: `bear-harvest-objective-${index + 1}`,
+      unitName: unitLabel,
+      dwr_unit_name: row.unitName,
+      boundaryId: boundaryIds.length === 1 ? boundaryIds[0] : '',
+      boundaryIds,
+      officialBoundaryIds: boundaryIds,
+      officialBoundaryNames: boundaryNames.length ? boundaryNames : [row.unitName],
+      boundaryNames: boundaryNames.length ? boundaryNames : [row.unitName],
+      resolvedBoundaryIds: boundaryIds,
+      resolved_boundary_ids: boundaryIds,
+      seasonLabel: `${row.seasonLabel} | 2026 objective: ${row.objective} bears | ${row.methodNote}`,
+      dates: row.seasonLabel,
+      quota: row.objective,
+      objective: row.objective,
+      title: `${row.unitName} Harvest Objective`,
+      source: 'Utah DWR bear harvest-objective page and 2026 bear guidebook display extraction',
+      sourceUrl: 'https://wildlife.utah.gov/bear-harvest/',
+      boundaryLink: [...match.links][0] || '',
+    };
+  }).filter(row => Array.isArray(row.boundaryIds) && row.boundaryIds.length);
 }
 function buildSyntheticConservationPermitHunts(records) {
   void records;
@@ -1797,6 +1891,11 @@ function getFilteredHunts(excludeKey = '', options = {}) {
     const huntCategoryOk = excludeKey === 'huntCategory' || ignoredFilters.has('huntCategory') || huntCategory === 'All' || hHuntCategory === huntCategory;
     const unitOk = excludeKey === 'unit' || ignoredFilters.has('unit') || !unit || hUnit === unit;
     const conservationDisplayOk = huntType !== 'Conservation' || !!h?.syntheticConservationPermit;
+    const aggregateBearHarvestObjectiveHidden = (
+      sDisplay === 'Black Bear' &&
+      normalizeHuntCode(getHuntCode(h)) === 'BR1001' &&
+      !h?.syntheticBearHarvestObjective
+    );
     const duplicatedPrivateTwinHidden = !(
       isPrivateLandOnlyRecord(h) &&
       !isLegitPrivateLandException(h) &&
@@ -1804,7 +1903,7 @@ function getFilteredHunts(excludeKey = '', options = {}) {
       publicTwinKeys.has(getPrivateTwinKey(h))
     );
 
-    return searchOk && speciesOk && sexOk && huntTypeOk && weaponOk && huntCategoryOk && unitOk && conservationDisplayOk && duplicatedPrivateTwinHidden;
+    return searchOk && speciesOk && sexOk && huntTypeOk && weaponOk && huntCategoryOk && unitOk && conservationDisplayOk && !aggregateBearHarvestObjectiveHidden && duplicatedPrivateTwinHidden;
   });
 }
 
@@ -2366,8 +2465,9 @@ async function loadHuntData() {
     safe,
     updateStatus
   });
+  const syntheticBearHarvestObjectiveHunts = buildSyntheticBlackBearHarvestObjectiveHunts(huntData);
   const syntheticConservationHunts = buildSyntheticConservationPermitHunts(huntData);
-  huntData = [...huntData, ...syntheticConservationHunts];
+  huntData = [...huntData, ...syntheticBearHarvestObjectiveHunts, ...syntheticConservationHunts];
   applyBoundaryManifestToHunts(huntData);
   refreshSelectionMatrix();
   updateStatus(`Loaded ${huntData.length} hunts.${boundaryManifestByHuntCode.size ? ` Boundary manifest rows: ${boundaryManifestByHuntCode.size}.` : ''}`);

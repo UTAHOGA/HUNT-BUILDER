@@ -23,7 +23,7 @@
     "local_href": "./processed_data/hard_data_exports/library/library_page_data.json",
     "cloudflare_href": "https://json.uoga.workers.dev/processed_data/hard_data_exports/library/library_page_data.json",
     "delivery": "pages-local",
-    "size_mb": 1.36,
+    "size_mb": 1.38,
     "source": "processed_data",
     "scope": "runtime"
   },
