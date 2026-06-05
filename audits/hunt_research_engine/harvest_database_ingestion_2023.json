@@ -1,0 +1,1650 @@
+{
+  "extra_rows": [
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1530 BEAVER",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1531 BOX ELDER",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1532 CACHE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1533 CENTRAL MTNS, MANTI/SAN RAFAEL",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1534 CENTRAL MTNS, NEBO",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1536 FILLMORE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1538 KAMAS",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1539 LA SAL, LA SAL MTNS",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1540 MONROE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1541 MT DUTTON",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1542 NINE MILE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1543 NORTH SLOPE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1544 OGDEN",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1545 OQUIRRH-STANSBURY",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1546 PANGUITCH LAKE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1547 PINE VALLEY",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1548 PLATEAU, BOULDER/KAIPAROWITS",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1549 PLATEAU, FISHLAKE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1550 PLATEAU, THOUSAND LAKES",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1551 SAN JUAN, ABAJO MTNS",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1552 SOUTH SLOPE, BONANZA/VERNAL",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1553 SOUTH SLOPE, YELLOWSTONE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1554 SOUTHWEST DESERT",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1555 WASATCH MTNS, EAST",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1556 WASATCH MTNS, WEST",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1557 WEST DESERT, TINTIC",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1558 WEST DESERT, WEST",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1559 ZION",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1560 BEAVER",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1561 BOX ELDER",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1562 CACHE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1563 CENTRAL MTNS, MANTI/SAN RAFAEL",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1564 CENTRAL MTNS, NEBO",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1566 FILLMORE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1568 KAMAS",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1569 LA SAL, LA SAL MTNS",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1570 MONROE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1571 MT DUTTON",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1572 NINE MILE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1573 NORTH SLOPE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1574 OGDEN",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1575 OQUIRRH-STANSBURY",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1576 PANGUITCH LAKE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1577 PINE VALLEY",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1578 PLATEAU, BOULDER/KAIPAROWITS",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1579 PLATEAU, FISHLAKE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1580 PLATEAU, THOUSAND LAKES",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1581 SAN JUAN, ABAJO MTNS",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1582 SOUTH SLOPE, BONANZA/VERNAL",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1583 SOUTH SLOPE, YELLOWSTONE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1584 SOUTHWEST DESERT",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1585 WASATCH MTNS, EAST",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1586 WASATCH MTNS, WEST",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1587 WEST DESERT, TINTIC",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1588 WEST DESERT, WEST",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1589 ZION",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1599 CHALK CREEK",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1602 CHALK CREEK",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1603 EAST CANYON",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1606 EAST CANYON",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1607 MORGAN-SOUTH RICH",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1610 MORGAN-SOUTH RICH",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1769 BEAVER",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1770 BOX ELDER",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1771 CACHE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1772 CENTRAL MTNS, MANTI/SAN RAFAEL",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1773 CENTRAL MTNS, NEBO",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1774 CHALK CREEK/EAST CANYON/MORGAN-SOUTH RICH",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1775 FILLMORE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1777 KAMAS",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1778 LA SAL, LA SAL MTNS",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1779 MONROE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1780 MT DUTTON",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1781 NINE MILE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1782 NORTH SLOPE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1783 OGDEN",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1784 OQUIRRH-STANSBURY",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1785 PANGUITCH LAKE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1786 PINE VALLEY",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1787 PLATEAU, BOULDER/KAIPAROWITS",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1788 PLATEAU, FISHLAKE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1789 PLATEAU, THOUSAND LAKES",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1790 SAN JUAN, ABAJO MTNS",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1791 SOUTH SLOPE, BONANZA/VERNAL",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1792 SOUTH SLOPE, YELLOWSTONE",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1793 SOUTHWEST DESERT",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1794 WASATCH MTNS, EAST",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1795 WASATCH MTNS, WEST",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1796 WEST DESERT, TINTIC",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1797 WEST DESERT, WEST",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1798 ZION",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1799 CHALK CREEK",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1800 EAST CANYON",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "DB1801 MORGAN-SOUTH RICH",
+      "hunt_name": "",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "23_bg_report.pdf",
+      "species": "Mule Deer"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "TK1003",
+      "hunt_name": "Central region",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "2023-24 turkey.pdf",
+      "species": "Turkey"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "TK1004",
+      "hunt_name": "Northeastern region",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "2023-24 turkey.pdf",
+      "species": "Turkey"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "TK1005",
+      "hunt_name": "Northern region",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "2023-24 turkey.pdf",
+      "species": "Turkey"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "TK1006",
+      "hunt_name": "Southeastern region",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "2023-24 turkey.pdf",
+      "species": "Turkey"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "TK1007",
+      "hunt_name": "Southern region",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "2023-24 turkey.pdf",
+      "species": "Turkey"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "TK1018",
+      "hunt_name": "Pahvant Ensign CWMU",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "2023-24 turkey.pdf",
+      "species": "Turkey"
+    },
+    {
+      "classification": "ENGINE_SUPPLEMENTAL_FEATURE_ROW_NOT_IN_NORMALIZED_TRUTH_FEATURES",
+      "hunt_code": "TK1021",
+      "hunt_name": "East Zion CWMU",
+      "reported_hunt_year": "2023",
+      "review_status": "KEEP_FOR_ENGINE_CONTEXT_UNLESS_LATER_TRUTH_REVIEW_DEMOTES",
+      "source_file": "2023-24 turkey.pdf",
+      "species": "Turkey"
+    }
+  ],
+  "missing_rows": [],
+  "raw_rows": [
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 14,
+      "model_target_years": "2024",
+      "raw_columns": 29,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2023\\harvest_results_2023_all_species_database\\harvest_results_2023_ROCKY_MOUNTAIN_BIGHORN_SHEEP_hunt_success.csv",
+      "raw_rows": 14,
+      "raw_size_bytes": 8608,
+      "reported_hunt_years": "2023",
+      "source_classes": "harvest_results",
+      "source_csv": "harvest_results_2023_ROCKY_MOUNTAIN_BIGHORN_SHEEP_hunt_success.csv",
+      "species_counts": "{\"Rocky Mountain Bighorn Sheep\": 14}",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": false,
+      "hunt_codes": 0,
+      "model_target_years": "2024",
+      "raw_columns": 14,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2023\\harvest_results_2023_all_species_database\\harvest_results_2023_species_summary.csv",
+      "raw_rows": 8,
+      "raw_size_bytes": 1344,
+      "reported_hunt_years": "2023",
+      "source_classes": "",
+      "source_csv": "harvest_results_2023_species_summary.csv",
+      "species_counts": "{\"Bison\": 1, \"Deer\": 1, \"Desert Bighorn Sheep\": 1, \"Elk\": 1, \"Moose\": 1, \"Mountain Goat\": 1, \"Pronghorn\": 1, \"Rocky Mountain Bighorn Sheep\": 1}",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 3,
+      "model_target_years": "",
+      "raw_columns": 14,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2023\\harvest_results_2023_all_species_database\\harvest_location_hunt_code_crosswalk_2023_bighorn_sheep.csv",
+      "raw_rows": 138,
+      "raw_size_bytes": 37311,
+      "reported_hunt_years": "2023",
+      "source_classes": "",
+      "source_csv": "harvest_location_hunt_code_crosswalk_2023_bighorn_sheep.csv",
+      "species_counts": "{\"Bighorn Sheep\": 138}",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 30,
+      "model_target_years": "2024",
+      "raw_columns": 18,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2023\\harvest_results_2023_all_species_database\\harvest_quality_features_bighorn_by_hunt_code_2023.csv",
+      "raw_rows": 30,
+      "raw_size_bytes": 4589,
+      "reported_hunt_years": "2023",
+      "source_classes": "",
+      "source_csv": "harvest_quality_features_bighorn_by_hunt_code_2023.csv",
+      "species_counts": "{\"Desert Bighorn Sheep\": 16, \"Rocky Mountain Bighorn Sheep\": 14}",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 592,
+      "model_target_years": "2024",
+      "raw_columns": 18,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2023\\harvest_results_2023_all_species_database\\harvest_quality_features_by_hunt_code_all_species_2023.csv",
+      "raw_rows": 592,
+      "raw_size_bytes": 142410,
+      "reported_hunt_years": "2023",
+      "source_classes": "",
+      "source_csv": "harvest_quality_features_by_hunt_code_all_species_2023.csv",
+      "species_counts": "{\"Bison\": 18, \"Deer\": 192, \"Desert Bighorn Sheep\": 16, \"Elk\": 211, \"Moose\": 36, \"Mountain Goat\": 17, \"Pronghorn\": 88, \"Rocky Mountain Bighorn Sheep\": 14}",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 592,
+      "model_target_years": "2024",
+      "raw_columns": 29,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2023\\harvest_results_2023_all_species_database\\harvest_results_2023_all_species_hunt_success_long.csv",
+      "raw_rows": 592,
+      "raw_size_bytes": 317592,
+      "reported_hunt_years": "2023",
+      "source_classes": "harvest_results",
+      "source_csv": "harvest_results_2023_all_species_hunt_success_long.csv",
+      "species_counts": "{\"Bison\": 18, \"Deer\": 192, \"Desert Bighorn Sheep\": 16, \"Elk\": 211, \"Moose\": 36, \"Mountain Goat\": 17, \"Pronghorn\": 88, \"Rocky Mountain Bighorn Sheep\": 14}",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 30,
+      "model_target_years": "2024",
+      "raw_columns": 23,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2023\\harvest_results_2023_all_species_database\\harvest_results_2023_bighorn_sheep_hunt_success_aggregate.csv",
+      "raw_rows": 30,
+      "raw_size_bytes": 11281,
+      "reported_hunt_years": "2023",
+      "source_classes": "harvest_results",
+      "source_csv": "harvest_results_2023_bighorn_sheep_hunt_success_aggregate.csv",
+      "species_counts": "{\"Desert Bighorn Sheep\": 16, \"Rocky Mountain Bighorn Sheep\": 14}",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 3,
+      "model_target_years": "2024",
+      "raw_columns": 38,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2023\\harvest_results_2023_all_species_database\\harvest_results_2023_bighorn_sheep_measurements_crosswalked.csv",
+      "raw_rows": 138,
+      "raw_size_bytes": 93909,
+      "reported_hunt_years": "2023",
+      "source_classes": "harvest_measurements",
+      "source_csv": "harvest_results_2023_bighorn_sheep_measurements_crosswalked.csv",
+      "species_counts": "{\"Bighorn Sheep\": 138}",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 18,
+      "model_target_years": "2024",
+      "raw_columns": 29,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2023\\harvest_results_2023_all_species_database\\harvest_results_2023_BISON_hunt_success.csv",
+      "raw_rows": 18,
+      "raw_size_bytes": 9996,
+      "reported_hunt_years": "2023",
+      "source_classes": "harvest_results",
+      "source_csv": "harvest_results_2023_BISON_hunt_success.csv",
+      "species_counts": "{\"Bison\": 18}",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 192,
+      "model_target_years": "2024",
+      "raw_columns": 29,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2023\\harvest_results_2023_all_species_database\\harvest_results_2023_DEER_hunt_success.csv",
+      "raw_rows": 192,
+      "raw_size_bytes": 101776,
+      "reported_hunt_years": "2023",
+      "source_classes": "harvest_results",
+      "source_csv": "harvest_results_2023_DEER_hunt_success.csv",
+      "species_counts": "{\"Deer\": 192}",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 16,
+      "model_target_years": "2024",
+      "raw_columns": 29,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2023\\harvest_results_2023_all_species_database\\harvest_results_2023_DESERT_BIGHORN_SHEEP_hunt_success.csv",
+      "raw_rows": 16,
+      "raw_size_bytes": 9384,
+      "reported_hunt_years": "2023",
+      "source_classes": "harvest_results",
+      "source_csv": "harvest_results_2023_DESERT_BIGHORN_SHEEP_hunt_success.csv",
+      "species_counts": "{\"Desert Bighorn Sheep\": 16}",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 211,
+      "model_target_years": "2024",
+      "raw_columns": 29,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2023\\harvest_results_2023_all_species_database\\harvest_results_2023_ELK_hunt_success.csv",
+      "raw_rows": 211,
+      "raw_size_bytes": 113495,
+      "reported_hunt_years": "2023",
+      "source_classes": "harvest_results",
+      "source_csv": "harvest_results_2023_ELK_hunt_success.csv",
+      "species_counts": "{\"Elk\": 211}",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 36,
+      "model_target_years": "2024",
+      "raw_columns": 29,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2023\\harvest_results_2023_all_species_database\\harvest_results_2023_MOOSE_hunt_success.csv",
+      "raw_rows": 36,
+      "raw_size_bytes": 19180,
+      "reported_hunt_years": "2023",
+      "source_classes": "harvest_results",
+      "source_csv": "harvest_results_2023_MOOSE_hunt_success.csv",
+      "species_counts": "{\"Moose\": 36}",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 17,
+      "model_target_years": "2024",
+      "raw_columns": 29,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2023\\harvest_results_2023_all_species_database\\harvest_results_2023_MOUNTAIN_GOAT_hunt_success.csv",
+      "raw_rows": 17,
+      "raw_size_bytes": 9853,
+      "reported_hunt_years": "2023",
+      "source_classes": "harvest_results",
+      "source_csv": "harvest_results_2023_MOUNTAIN_GOAT_hunt_success.csv",
+      "species_counts": "{\"Mountain Goat\": 17}",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    },
+    {
+      "has_hunt_code": true,
+      "hunt_codes": 88,
+      "model_target_years": "2024",
+      "raw_columns": 29,
+      "raw_exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2023\\harvest_results_2023_all_species_database\\harvest_results_2023_PRONGHORN_hunt_success.csv",
+      "raw_rows": 88,
+      "raw_size_bytes": 48520,
+      "reported_hunt_years": "2023",
+      "source_classes": "harvest_results",
+      "source_csv": "harvest_results_2023_PRONGHORN_hunt_success.csv",
+      "species_counts": "{\"Pronghorn\": 88}",
+      "status": "RAW_GENERATED_CSV_PRESENT"
+    }
+  ],
+  "summary": {
+    "audit_name": "2023_harvest_database_ingestion",
+    "bible_hunt_codes_zip": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2023.zip",
+    "bible_hunt_codes_zip_exists": true,
+    "bible_hunt_codes_zip_size_bytes": 9560973,
+    "draw_engine_legacy_matches_draw_truth_rows": true,
+    "draw_engine_v2_matches_draw_truth_rows": true,
+    "draw_reality_engine_legacy_2023": {
+      "hunt_codes": 1010,
+      "rows": 17128,
+      "source_counts_top": {
+        "2022 Antlerless big game draw results.pdf": 1589,
+        "2022 Dedicated Hunter deer draw results.pdf": 143,
+        "2022 Youth draw-only elk bonus point draw results.pdf": 2,
+        "2022 _Youth antlerless big game draw results.pdf": 231,
+        "2022 _black_bear_22_drawing_odds.pdf": 1294,
+        "2022 cougar_Drawing odds (2).pdf": 123,
+        "2022 cougar_Drawing odds.pdf": 96,
+        "2022 turkey_2022_turkey_bonus_points_draw_results.pdf": 89,
+        "2022 turkey_2022_youth_turkey_draw_results.pdf": 2,
+        "22_bg-odds.pdf": 12520,
+        "22_deer_odds.pdf": 857,
+        "22_lifetime_deer.pdf": 68,
+        "22_youth_deer.pdf": 93,
+        "22_youth_dh_odds.pdf": 21
+      },
+      "species_counts": {}
+    },
+    "draw_reality_engine_v2_2023": {
+      "hunt_codes": 1010,
+      "rows": 17128,
+      "source_counts_top": {
+        "2022 Antlerless big game draw results.pdf": 1589,
+        "2022 Dedicated Hunter deer draw results.pdf": 143,
+        "2022 Youth draw-only elk bonus point draw results.pdf": 2,
+        "2022 _Youth antlerless big game draw results.pdf": 231,
+        "2022 _black_bear_22_drawing_odds.pdf": 1294,
+        "2022 cougar_Drawing odds (2).pdf": 123,
+        "2022 cougar_Drawing odds.pdf": 96,
+        "2022 turkey_2022_turkey_bonus_points_draw_results.pdf": 89,
+        "2022 turkey_2022_youth_turkey_draw_results.pdf": 2,
+        "22_bg-odds.pdf": 12520,
+        "22_deer_odds.pdf": 857,
+        "22_lifetime_deer.pdf": 68,
+        "22_youth_deer.pdf": 93,
+        "22_youth_dh_odds.pdf": 21
+      },
+      "species_counts": {
+        "Bison": 687,
+        "Black Bear": 1294,
+        "Deer": 4556,
+        "Desert Bighorn Sheep": 570,
+        "Elk": 6163,
+        "Moose": 1077,
+        "Mountain Goat": 484,
+        "Pronghorn": 1532,
+        "Rocky Mountain Bighorn Sheep": 455,
+        "Turkey": 91
+      }
+    },
+    "draw_truth_2023": {
+      "hunt_codes": 1010,
+      "rows": 17128,
+      "source_counts_top": {
+        "2022 Antlerless big game draw results.pdf": 1589,
+        "2022 Dedicated Hunter deer draw results.pdf": 143,
+        "2022 Youth draw-only elk bonus point draw results.pdf": 2,
+        "2022 _Youth antlerless big game draw results.pdf": 231,
+        "2022 _black_bear_22_drawing_odds.pdf": 1294,
+        "2022 cougar_Drawing odds (2).pdf": 123,
+        "2022 cougar_Drawing odds.pdf": 96,
+        "2022 turkey_2022_turkey_bonus_points_draw_results.pdf": 89,
+        "2022 turkey_2022_youth_turkey_draw_results.pdf": 2,
+        "22_bg-odds.pdf": 12520,
+        "22_deer_odds.pdf": 857,
+        "22_lifetime_deer.pdf": 68,
+        "22_youth_deer.pdf": 93,
+        "22_youth_dh_odds.pdf": 21
+      },
+      "species_counts": {
+        "Bison": 687,
+        "Black Bear": 1294,
+        "Deer": 4556,
+        "Desert Bighorn Sheep": 570,
+        "Elk": 6163,
+        "Moose": 1077,
+        "Mountain Goat": 484,
+        "Pronghorn": 1532,
+        "Rocky Mountain Bighorn Sheep": 455,
+        "Turkey": 91
+      }
+    },
+    "engine_feature_extra_keys_2023": 101,
+    "engine_feature_keys_2023": 1179,
+    "feature_model_hunt_codes_using_2023": 1181,
+    "feature_model_rows_using_2023": 1181,
+    "generated_at_utc": "2026-06-05T14:19:29.684186+00:00",
+    "guardrail": "2023 harvest rows are quality/history inputs only. They are not permit quota truth and are not direct p_draw truth.",
+    "harvest_model_features_2023": {
+      "hunt_codes": 1179,
+      "rows": 1179,
+      "source_counts_top": {
+        "2023 Hunt Success.pdf": 592,
+        "2023 desert bighorn harvest report unit not number.pdf": 16,
+        "2023-24 turkey.pdf": 7,
+        "2024_antlerless_hr.csv": 48,
+        "23_bg_report.pdf": 94,
+        "23_black_bear_report.pdf": 87,
+        "A96251BE__2023_antlerless_hr.pdf": 199,
+        "dc965eb4__General-season buck deer.pdf": 136
+      },
+      "species_counts": {
+        "Antlerless Deer": 17,
+        "Antlerless Elk": 113,
+        "Antlerless Elk Control": 1,
+        "Antlerless Moose": 3,
+        "Bison": 18,
+        "Black Bear": 87,
+        "CWMU Antlerless": 3,
+        "CWMU Antlerless Deer": 4,
+        "CWMU Antlerless Elk": 60,
+        "CWMU Doe Pronghorn": 8,
+        "Deer": 328,
+        "Desert Bighorn Sheep": 24,
+        "Doe Pronghorn": 12,
+        "Elk": 211,
+        "Moose": 36,
+        "Mountain Goat": 17,
+        "Mule Deer": 94,
+        "Private Lands Only Antlerless Elk": 26,
+        "Pronghorn": 88,
+        "Rocky Mountain Bighorn Sheep": 22,
+        "Turkey": 7
+      }
+    },
+    "harvest_model_long_2023": {
+      "hunt_codes": 1078,
+      "rows": 7492,
+      "source_counts_top": {
+        "2023 Hunt Success.pdf": 5448,
+        "2023 desert bighorn harvest report unit not number.pdf": 411,
+        "2024_antlerless_hr.csv": 225,
+        "23_black_bear_report.pdf": 261,
+        "61FC0758__BIGHORN SHEEP 2023-harvest-data.pdf": 8,
+        "A96251BE__2023_antlerless_hr.pdf": 597,
+        "dc965eb4__General-season buck deer.pdf": 534,
+        "harvest_location_hunt_code_crosswalk_2023_bighorn_sheep.csv": 8
+      },
+      "species_counts": {
+        "Antlerless Deer": 66,
+        "Antlerless Deer Antlerless Deer": 2,
+        "Antlerless Elk": 420,
+        "Antlerless Elk Control": 1,
+        "Antlerless Moose": 11,
+        "Bighorn Sheep": 16,
+        "Bison": 162,
+        "Black Bear": 261,
+        "CWMU Antlerless": 4,
+        "CWMU Antlerless Deer": 13,
+        "CWMU Antlerless Elk": 229,
+        "CWMU Doe Pronghorn": 8,
+        "Deer": 2262,
+        "Desert Bighorn Sheep": 433,
+        "Doe Pronghorn": 42,
+        "Elk": 1899,
+        "Moose": 324,
+        "Mountain Goat": 153,
+        "Private Lands Only Antlerless Elk": 26,
+        "Pronghorn": 792,
+        "Rocky Mountain Bighorn Sheep": 368
+      }
+    },
+    "harvest_truth_2023": {
+      "hunt_codes": 1078,
+      "rows": 7492,
+      "source_counts_top": {
+        "2023 Hunt Success.pdf": 5448,
+        "2023 desert bighorn harvest report unit not number.pdf": 411,
+        "2024_antlerless_hr.csv": 225,
+        "23_black_bear_report.pdf": 261,
+        "61FC0758__BIGHORN SHEEP 2023-harvest-data.pdf": 8,
+        "A96251BE__2023_antlerless_hr.pdf": 597,
+        "dc965eb4__General-season buck deer.pdf": 534,
+        "harvest_location_hunt_code_crosswalk_2023_bighorn_sheep.csv": 8
+      },
+      "species_counts": {
+        "Antlerless Deer": 66,
+        "Antlerless Deer Antlerless Deer": 2,
+        "Antlerless Elk": 420,
+        "Antlerless Elk Control": 1,
+        "Antlerless Moose": 11,
+        "Bighorn Sheep": 16,
+        "Bison": 162,
+        "Black Bear": 261,
+        "CWMU Antlerless": 4,
+        "CWMU Antlerless Deer": 13,
+        "CWMU Antlerless Elk": 229,
+        "CWMU Doe Pronghorn": 8,
+        "Deer": 2262,
+        "Desert Bighorn Sheep": 433,
+        "Doe Pronghorn": 42,
+        "Elk": 1899,
+        "Moose": 324,
+        "Mountain Goat": 153,
+        "Private Lands Only Antlerless Elk": 26,
+        "Pronghorn": 792,
+        "Rocky Mountain Bighorn Sheep": 368
+      }
+    },
+    "harvest_truth_features_2023": {
+      "hunt_codes": 1078,
+      "rows": 1078,
+      "source_counts_top": {
+        "2023 Hunt Success.pdf": 592,
+        "2023 desert bighorn harvest report unit not number.pdf": 16,
+        "2024_antlerless_hr.csv": 48,
+        "23_black_bear_report.pdf": 87,
+        "A96251BE__2023_antlerless_hr.pdf": 199,
+        "dc965eb4__General-season buck deer.pdf": 136
+      },
+      "species_counts": {
+        "Antlerless Deer": 17,
+        "Antlerless Elk": 113,
+        "Antlerless Elk Control": 1,
+        "Antlerless Moose": 3,
+        "Bison": 18,
+        "Black Bear": 87,
+        "CWMU Antlerless": 3,
+        "CWMU Antlerless Deer": 4,
+        "CWMU Antlerless Elk": 60,
+        "CWMU Doe Pronghorn": 8,
+        "Deer": 328,
+        "Desert Bighorn Sheep": 24,
+        "Doe Pronghorn": 12,
+        "Elk": 211,
+        "Moose": 36,
+        "Mountain Goat": 17,
+        "Private Lands Only Antlerless Elk": 26,
+        "Pronghorn": 88,
+        "Rocky Mountain Bighorn Sheep": 22
+      }
+    },
+    "missing_engine_feature_keys_2023": 0,
+    "model_target_year": 2024,
+    "package_report": {
+      "all_species_hunt_success_rows": 592,
+      "generated_at_utc": "2026-05-23T07:38:56.827581+00:00",
+      "model_target_year": 2024,
+      "notes": [
+        "The 2023 Hunt Success PDF is the authoritative hunt-code aggregate harvest success source for these species.",
+        "The 2023 bighorn sheep measurement PDF is individual measurement/location data and is kept as a supplemental crosswalked layer.",
+        "The quality feature tables are trend/demand signal inputs only, not quota or direct draw-probability inputs."
+      ],
+      "outputs": [
+        "harvest_location_hunt_code_crosswalk_2023_bighorn_sheep.csv",
+        "harvest_quality_features_bighorn_by_hunt_code_2023.csv",
+        "harvest_quality_features_by_hunt_code_all_species_2023.csv",
+        "harvest_results_2023_BISON_hunt_success.csv",
+        "harvest_results_2023_DEER_hunt_success.csv",
+        "harvest_results_2023_DESERT_BIGHORN_SHEEP_hunt_success.csv",
+        "harvest_results_2023_ELK_hunt_success.csv",
+        "harvest_results_2023_MOOSE_hunt_success.csv",
+        "harvest_results_2023_MOUNTAIN_GOAT_hunt_success.csv",
+        "harvest_results_2023_PRONGHORN_hunt_success.csv",
+        "harvest_results_2023_ROCKY_MOUNTAIN_BIGHORN_SHEEP_hunt_success.csv",
+        "harvest_results_2023_all_species_hunt_success_long.csv",
+        "harvest_results_2023_bighorn_sheep_hunt_success_aggregate.csv",
+        "harvest_results_2023_bighorn_sheep_measurements_crosswalked.csv",
+        "harvest_results_2023_species_summary.csv",
+        "utah_harvest_results_2023_all_species.sqlite"
+      ],
+      "reported_hunt_year": 2023,
+      "safeguards": {
+        "bighorn_measurement_crosswalk_requires_review_for_questionable_rows": true,
+        "do_not_use_directly_for_p_draw": true,
+        "do_not_use_for_permit_quota": true,
+        "hunt_code_keyed_aggregate_rows": true,
+        "use_for_quality_trend_features": true
+      },
+      "source_files": [
+        "2023 Hunt Success.pdf",
+        "61FC0758__BIGHORN SHEEP 2023-harvest-data.pdf"
+      ],
+      "species_count": 8,
+      "species_files": [
+        {
+          "file": "harvest_results_2023_BISON_hunt_success.csv",
+          "hunt_codes": 18,
+          "rows": 18,
+          "species": "Bison"
+        },
+        {
+          "file": "harvest_results_2023_DEER_hunt_success.csv",
+          "hunt_codes": 192,
+          "rows": 192,
+          "species": "Deer"
+        },
+        {
+          "file": "harvest_results_2023_DESERT_BIGHORN_SHEEP_hunt_success.csv",
+          "hunt_codes": 16,
+          "rows": 16,
+          "species": "Desert Bighorn Sheep"
+        },
+        {
+          "file": "harvest_results_2023_ELK_hunt_success.csv",
+          "hunt_codes": 211,
+          "rows": 211,
+          "species": "Elk"
+        },
+        {
+          "file": "harvest_results_2023_MOOSE_hunt_success.csv",
+          "hunt_codes": 36,
+          "rows": 36,
+          "species": "Moose"
+        },
+        {
+          "file": "harvest_results_2023_MOUNTAIN_GOAT_hunt_success.csv",
+          "hunt_codes": 17,
+          "rows": 17,
+          "species": "Mountain Goat"
+        },
+        {
+          "file": "harvest_results_2023_PRONGHORN_hunt_success.csv",
+          "hunt_codes": 88,
+          "rows": 88,
+          "species": "Pronghorn"
+        },
+        {
+          "file": "harvest_results_2023_ROCKY_MOUNTAIN_BIGHORN_SHEEP_hunt_success.csv",
+          "hunt_codes": 14,
+          "rows": 14,
+          "species": "Rocky Mountain Bighorn Sheep"
+        }
+      ],
+      "species_summary": [
+        {
+          "draw_probability_use_status": "DO_NOT_USE_DIRECTLY_FOR_P_DRAW",
+          "hunt_code_rows": 18,
+          "mean_average_days_unweighted": 5.317,
+          "mean_hunter_satisfaction_unweighted": 3.717,
+          "mean_percent_success_unweighted": 69.439,
+          "model_target_year": 2024,
+          "quota_use_status": "DO_NOT_USE_FOR_PERMIT_QUOTA",
+          "reported_hunt_year": 2023,
+          "species": "Bison",
+          "total_harvest": 123.0,
+          "total_hunters_afield": 174.0,
+          "total_permits": 181.0,
+          "unique_hunt_codes": 18,
+          "weighted_success_percent_by_hunters": 70.69
+        },
+        {
+          "draw_probability_use_status": "DO_NOT_USE_DIRECTLY_FOR_P_DRAW",
+          "hunt_code_rows": 192,
+          "mean_average_days_unweighted": 4.98,
+          "mean_hunter_satisfaction_unweighted": 3.827,
+          "mean_percent_success_unweighted": 68.569,
+          "model_target_year": 2024,
+          "quota_use_status": "DO_NOT_USE_FOR_PERMIT_QUOTA",
+          "reported_hunt_year": 2023,
+          "species": "Deer",
+          "total_harvest": 2143.0,
+          "total_hunters_afield": 2994.0,
+          "total_permits": 3061.0,
+          "unique_hunt_codes": 192,
+          "weighted_success_percent_by_hunters": 71.576
+        },
+        {
+          "draw_probability_use_status": "DO_NOT_USE_DIRECTLY_FOR_P_DRAW",
+          "hunt_code_rows": 16,
+          "mean_average_days_unweighted": 7.5,
+          "mean_hunter_satisfaction_unweighted": 4.475,
+          "mean_percent_success_unweighted": 88.7,
+          "model_target_year": 2024,
+          "quota_use_status": "DO_NOT_USE_FOR_PERMIT_QUOTA",
+          "reported_hunt_year": 2023,
+          "species": "Desert Bighorn Sheep",
+          "total_harvest": 67.0,
+          "total_hunters_afield": 74.0,
+          "total_permits": 74.0,
+          "unique_hunt_codes": 16,
+          "weighted_success_percent_by_hunters": 90.541
+        },
+        {
+          "draw_probability_use_status": "DO_NOT_USE_DIRECTLY_FOR_P_DRAW",
+          "hunt_code_rows": 211,
+          "mean_average_days_unweighted": 6.841,
+          "mean_hunter_satisfaction_unweighted": 3.872,
+          "mean_percent_success_unweighted": 66.492,
+          "model_target_year": 2024,
+          "quota_use_status": "DO_NOT_USE_FOR_PERMIT_QUOTA",
+          "reported_hunt_year": 2023,
+          "species": "Elk",
+          "total_harvest": 2722.0,
+          "total_hunters_afield": 4426.0,
+          "total_permits": 4481.0,
+          "unique_hunt_codes": 211,
+          "weighted_success_percent_by_hunters": 61.5
+        },
+        {
+          "draw_probability_use_status": "DO_NOT_USE_DIRECTLY_FOR_P_DRAW",
+          "hunt_code_rows": 36,
+          "mean_average_days_unweighted": 5.321,
+          "mean_hunter_satisfaction_unweighted": 4.609,
+          "mean_percent_success_unweighted": 96.434,
+          "model_target_year": 2024,
+          "quota_use_status": "DO_NOT_USE_FOR_PERMIT_QUOTA",
+          "reported_hunt_year": 2023,
+          "species": "Moose",
+          "total_harvest": 162.0,
+          "total_hunters_afield": 170.0,
+          "total_permits": 171.0,
+          "unique_hunt_codes": 36,
+          "weighted_success_percent_by_hunters": 95.294
+        },
+        {
+          "draw_probability_use_status": "DO_NOT_USE_DIRECTLY_FOR_P_DRAW",
+          "hunt_code_rows": 17,
+          "mean_average_days_unweighted": 4.294,
+          "mean_hunter_satisfaction_unweighted": 4.229,
+          "mean_percent_success_unweighted": 83.794,
+          "model_target_year": 2024,
+          "quota_use_status": "DO_NOT_USE_FOR_PERMIT_QUOTA",
+          "reported_hunt_year": 2023,
+          "species": "Mountain Goat",
+          "total_harvest": 85.0,
+          "total_hunters_afield": 99.0,
+          "total_permits": 99.0,
+          "unique_hunt_codes": 17,
+          "weighted_success_percent_by_hunters": 85.859
+        },
+        {
+          "draw_probability_use_status": "DO_NOT_USE_DIRECTLY_FOR_P_DRAW",
+          "hunt_code_rows": 88,
+          "mean_average_days_unweighted": 2.98,
+          "mean_hunter_satisfaction_unweighted": 3.921,
+          "mean_percent_success_unweighted": 78.197,
+          "model_target_year": 2024,
+          "quota_use_status": "DO_NOT_USE_FOR_PERMIT_QUOTA",
+          "reported_hunt_year": 2023,
+          "species": "Pronghorn",
+          "total_harvest": 1232.0,
+          "total_hunters_afield": 1478.0,
+          "total_permits": 1538.0,
+          "unique_hunt_codes": 88,
+          "weighted_success_percent_by_hunters": 83.356
+        },
+        {
+          "draw_probability_use_status": "DO_NOT_USE_DIRECTLY_FOR_P_DRAW",
+          "hunt_code_rows": 14,
+          "mean_average_days_unweighted": 6.386,
+          "mean_hunter_satisfaction_unweighted": 4.85,
+          "mean_percent_success_unweighted": 100.0,
+          "model_target_year": 2024,
+          "quota_use_status": "DO_NOT_USE_FOR_PERMIT_QUOTA",
+          "reported_hunt_year": 2023,
+          "species": "Rocky Mountain Bighorn Sheep",
+          "total_harvest": 53.0,
+          "total_hunters_afield": 53.0,
+          "total_permits": 53.0,
+          "unique_hunt_codes": 14,
+          "weighted_success_percent_by_hunters": 100.0
+        }
+      ],
+      "supplemental_bighorn_files": [
+        "harvest_results_2023_bighorn_sheep_measurements_crosswalked.csv",
+        "harvest_location_hunt_code_crosswalk_2023_bighorn_sheep.csv",
+        "harvest_results_2023_bighorn_sheep_hunt_success_aggregate.csv",
+        "harvest_quality_features_bighorn_by_hunt_code_2023.csv"
+      ],
+      "unique_hunt_codes": 592
+    },
+    "package_report_loaded": true,
+    "raw_package_csvs_checked": 15,
+    "raw_status_counts": {
+      "RAW_GENERATED_CSV_PRESENT": 15
+    },
+    "recommended_next_step": "No 2023 source-backed harvest feature feeder gaps remain. Keep supplemental engine feature rows for context unless a later truth review demotes them.",
+    "reported_hunt_year": 2023,
+    "result": "PASS",
+    "support_files_checked": 3,
+    "support_status_counts": {
+      "SUPPORT_FILE_PRESENT": 3
+    },
+    "truth_feature_keys_2023": 1078
+  },
+  "support_rows": [
+    {
+      "exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2023\\harvest_results_2023_all_species_database\\utah_harvest_results_2023_all_species.sqlite",
+      "size_bytes": 1089536,
+      "status": "SUPPORT_FILE_PRESENT",
+      "support_file": "utah_harvest_results_2023_all_species.sqlite"
+    },
+    {
+      "exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2023\\harvest_results_2023_all_species_database\\harvest_results_2023_all_species_database_report.json",
+      "size_bytes": 8274,
+      "status": "SUPPORT_FILE_PRESENT",
+      "support_file": "harvest_results_2023_all_species_database_report.json"
+    },
+    {
+      "exists": true,
+      "raw_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2023\\harvest_results_2023_all_species_database\\harvest_results_2023_all_species_database_report.md",
+      "size_bytes": 2015,
+      "status": "SUPPORT_FILE_PRESENT",
+      "support_file": "harvest_results_2023_all_species_database_report.md"
+    }
+  ]
+}
