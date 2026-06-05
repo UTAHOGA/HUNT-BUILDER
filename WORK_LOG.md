@@ -16591,3 +16591,42 @@ Validation commands run:
 
 Commit:
 - Pending commit.
+
+# 2026-06-05T12:38:00Z - Field permit overlay hypothesis audit
+
+Scope:
+- Tested the hypothesis that harvest-report `permits` can represent fall field permits after public draw permits are combined with overlay permit families such as conservation and expo permits.
+- Searched official Utah/DWR sources for reporting scope and confirmed that harvest reporting applies to big game/antlerless permits including CWMU, conservation, LOA and expo permits.
+- Parsed local structured overlay evidence from conservation permit reports, `library-master.csv`, and Expo permit XLSX headings.
+- Compared overlay counts against harvest/draw permit gaps from the previous reconciliation audit.
+- Did not edit `DATABASE.csv`, normalized harvest truth, normalized draw truth, engine model code, runtime manifests, raw source files, or R2 objects.
+
+Files changed:
+- tools/hunt_research_engine/audit_field_permit_overlay_hypothesis.py
+- audits/hunt_research_engine/field_permit_overlay_hypothesis_audit.csv
+- audits/hunt_research_engine/field_permit_overlay_hypothesis_audit.json
+- audits/hunt_research_engine/field_permit_overlay_hypothesis_audit.md
+- audits/hunt_research_engine/field_permit_overlay_source_index.csv
+- WORK_LOG.md
+
+Key results:
+- Overlay rows loaded: 757.
+- Overlay family counts:
+  - CONSERVATION_2025_2027: 194.
+  - CONSERVATION_LIBRARY_MASTER: 318.
+  - EXPO_2025_NAME_ONLY: 122.
+  - EXPO_2026_NAME_ONLY: 123.
+- Permit conflict rows tested: 3,058.
+- Field permit gap fully explained by overlays: 96.
+- Field permit gap partially explained by overlays: 183.
+- Overlay candidates exceed gap and need review: 230.
+- Draw permit total greater than or equal to harvest permits: 735.
+- No overlay match found: 1,814.
+- Conclusion: hypothesis is supported for some rows and should become a separate reviewed `field_permits_total`/`overlay_permits_total` concept, not an overwrite of draw odds quotas or harvest source permits.
+
+Validation commands run:
+- python -m py_compile tools/hunt_research_engine/audit_field_permit_overlay_hypothesis.py
+- python tools/hunt_research_engine/audit_field_permit_overlay_hypothesis.py --root . --out-dir audits/hunt_research_engine
+
+Commit:
+- Pending commit.
