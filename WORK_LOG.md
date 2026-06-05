@@ -16630,3 +16630,36 @@ Validation commands run:
 
 Commit:
 - Pending commit.
+
+# 2026-06-05T12:45:00Z - Harvest/draw year-alignment hypothesis audit
+
+Scope:
+- Tested whether normalized harvest permit rows align better with same-year draw results or prior-year draw results.
+- This directly tested the theory that harvest PDFs may be published/reported in the spring after the hunt and therefore might need comparison to the previous draw-result year.
+- The audit is read-only and does not edit `DATABASE.csv`, normalized draw truth, normalized harvest truth, runtime files, raw files, R2 objects, or engine model code.
+
+Files changed:
+- tools/hunt_research_engine/audit_harvest_draw_year_alignment.py
+- audits/hunt_research_engine/harvest_draw_year_alignment_audit.csv
+- audits/hunt_research_engine/harvest_draw_year_alignment_audit.json
+- audits/hunt_research_engine/harvest_draw_year_alignment_audit.md
+- WORK_LOG.md
+
+Key results:
+- Harvest hunt/year keys tested: 5,151.
+- Draw hunt/year keys available: 4,765.
+- Same-year exact permit matches: 769.
+- Prior-draw-year exact permit matches: 376.
+- Next-draw-year exact permit matches: 695.
+- Best alignment counts:
+  - same_year: 3,849.
+  - next_draw_year: 796.
+  - prior_draw_year: 506.
+- Conclusion: the normalized `reported_hunt_year` field is behaving primarily like actual hunt season year, not publication/report year. Individual prior-year wins exist and should be flagged for review, but the global contract should remain same-year for the normalized table.
+
+Validation commands run:
+- python -m py_compile tools/hunt_research_engine/audit_harvest_draw_year_alignment.py
+- python tools/hunt_research_engine/audit_harvest_draw_year_alignment.py --root . --out-dir audits/hunt_research_engine
+
+Commit:
+- Pending commit.
