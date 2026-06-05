@@ -1,3 +1,48 @@
+## 2026-06-05T14:40:00Z - 2022 harvest package ingestion audit
+
+Scope:
+- Verified that the generated 2022-for-2023 harvest package is already ingested into the Hunt Research harvest truth and engine feature path.
+- Compared the 2022 package against normalized harvest truth, engine-facing harvest feature history, the 2026 feature model, normalized draw truth, `draw_reality_engine_v2.csv`, and legacy `draw_reality_engine.csv`.
+- Confirmed the listed `C:\Users\tyler\Desktop\BIBLE HUNT CODES\2022.zip` exists as the yearly source bundle evidence.
+- Did not edit `DATABASE.csv`, normalized draw truth, normalized harvest truth, raw source files, engine model code, runtime manifests, website files, or R2 objects.
+
+Files changed:
+- tools/hunt_research_engine/audit_2022_harvest_database_ingestion.py
+- audits/hunt_research_engine/harvest_database_ingestion_2022.csv
+- audits/hunt_research_engine/harvest_database_ingestion_2022.json
+- audits/hunt_research_engine/harvest_database_ingestion_2022.md
+- audits/hunt_research_engine/harvest_database_ingestion_2022_engine_feature_extras.csv
+- audits/hunt_research_engine/harvest_database_ingestion_2022_engine_feature_gaps.csv
+- audits/hunt_research_engine/harvest_database_ingestion_2022_support_files.csv
+- WORK_LOG.md
+
+Key results:
+- Audit result: PASS.
+- Raw package CSVs checked: 8.
+- Support files checked: 3.
+- `2022.zip` exists: true.
+- Harvest truth 2022 rows: 7,392.
+- Harvest truth 2022 hunt codes: 924.
+- Engine harvest long rows for 2022: 7,392.
+- Engine harvest feature rows for 2022: 1,050.
+- Missing engine feature rows sourced from normalized truth: 0.
+- Engine supplemental feature rows not in normalized truth feature table: 126.
+- 2026 feature model rows using 2022 harvest history: 175.
+- Draw truth 2022 rows: 18,688.
+- Draw truth 2022 hunt codes: 1,024.
+- `draw_reality_engine_v2.csv` 2022 rows: 18,688 and matches normalized draw truth.
+- Legacy `draw_reality_engine.csv` 2022 rows: 18,638, which is 50 rows short of normalized draw truth.
+- Guardrail confirmed: 2022 harvest rows are quality/history inputs only, not permit quota truth and not direct `p_draw` truth.
+
+Validation commands run:
+- python -m py_compile tools/hunt_research_engine/audit_2022_harvest_database_ingestion.py
+- python tools/hunt_research_engine/audit_2022_harvest_database_ingestion.py --root . --out-dir audits\hunt_research_engine
+- python -m pytest tests\utah_quality\test_harvest_feature_model.py tests\utah_quality\test_harvest_feature_guardrails.py tests\utah_quality\test_harvest_draw_same_year_alignment_2026.py -q
+- git diff --check
+
+Commit:
+- Pending commit.
+
 ## 2026-06-05T10:10:11Z - Refine Bear limited-entry matrix routing
 
 Scope:

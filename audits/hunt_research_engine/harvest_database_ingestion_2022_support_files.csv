@@ -1,0 +1,4 @@
+support_file,raw_path,exists,size_bytes,status
+utah_harvest_results_2022_for_2023.sqlite,C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\pipeline\RAW\hunt_unit_database\2023\harvest_results_2022_for_2023_database\utah_harvest_results_2022_for_2023.sqlite,True,856064,SUPPORT_FILE_PRESENT
+harvest_results_2022_for_2023_database_report.json,C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\pipeline\RAW\hunt_unit_database\2023\harvest_results_2022_for_2023_database\harvest_results_2022_for_2023_database_report.json,True,2927,SUPPORT_FILE_PRESENT
+harvest_results_2022_for_2023_database_report.md,C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\pipeline\RAW\hunt_unit_database\2023\harvest_results_2022_for_2023_database\harvest_results_2022_for_2023_database_report.md,True,1255,SUPPORT_FILE_PRESENT
