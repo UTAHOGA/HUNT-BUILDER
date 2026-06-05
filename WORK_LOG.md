@@ -15930,6 +15930,32 @@ Validation commands run:
 Commit:
 - Pending validation and commit.
 
+# 2026-06-05T09:00:00Z - Hunt class matrix flow refinement
+
+Scope:
+- Refined the Hunt Builder progressive matrix so Hunt Class behaves as the class/dropdown step under Weapon when it separates real choices.
+- Added single-option auto-selection for downstream Hunt Type, Weapon, and Hunt Class paths to avoid dead clicks.
+- Preserved existing Elk Antlerless Hunt Type behavior.
+- Did not edit source truth, DATABASE, engine code, manifests, or runtime data files.
+
+Files changed:
+- app.js
+- WORK_LOG.md
+
+Key results:
+- Elk -> Either Sex auto-resolves to Hunt Type `Extended Archery` and Weapon `Archery`, with the unit step available.
+- Elk -> Bull -> General Season -> Any Legal Weapon shows Hunt Class under Weapon with `General Bull` and `Spike Only`.
+- Hunt Class stays hidden when it does not further separate choices.
+- Mobile UI check at 390px wide passed with no horizontal overflow.
+
+Validation commands run:
+- node --check app.js
+- Local HTTPS Playwright matrix verification for Elk Either Sex and Elk Bull General Season.
+- git diff --check
+
+Commit:
+- Pending validation and commit.
+
 # 2026-06-04T10:14:32Z - Phase 02 targeted backfill acceptance rerun
 
 Scope:

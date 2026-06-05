@@ -1636,6 +1636,21 @@ function countSpecificOptions(selectEl, defaultValue) {
     .length;
 }
 
+function getSpecificMatrixOptions(selectEl, defaultValue = 'All') {
+  if (!selectEl) return [];
+  return Array.from(selectEl.options || [])
+    .map(option => safe(option.value).trim())
+    .filter(value => value && value !== defaultValue);
+}
+
+function autoSelectSingleSpecificMatrixOption(selectEl, defaultValue = 'All') {
+  if (!selectEl || safe(selectEl.value).trim() !== defaultValue) return false;
+  const specificOptions = getSpecificMatrixOptions(selectEl, defaultValue);
+  if (specificOptions.length !== 1) return false;
+  selectEl.value = specificOptions[0];
+  return true;
+}
+
 function setMatrixStepVisibility(controlId, visible) {
   const el = document.getElementById(controlId);
   const step = el?.closest?.('.matrix-step');
@@ -2196,6 +2211,32 @@ function refreshSelectionMatrix() {
   const prevHuntCategory = huntCategoryFilter.value || 'All';
   huntCategoryFilter.innerHTML = categoryOptions.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
   huntCategoryFilter.value = categoryOptions.includes(prevHuntCategory) ? prevHuntCategory : 'All';
+
+  // Skip dead-end matrix clicks when the reviewed data has only one possible path.
+  let autoSelected = false;
+  autoSelected = autoSelectSingleSpecificMatrixOption(huntTypeFilter, 'All') || autoSelected;
+  if (autoSelected) {
+    const refreshedWeaponData = getFilteredHunts('weapon', {
+      ...matrixOptionFilterOptions,
+      ignoreFilters: ['weapon', 'huntCategory', 'unit'],
+    });
+    const refreshedWeaponOptions = sortWithPreferredOrder(Array.from(new Set(['All', ...refreshedWeaponData.map(getWeapon).filter(Boolean)])), ['All', ...WEAPON_ORDER]);
+    const currentWeapon = weaponFilter.value || 'All';
+    weaponFilter.innerHTML = refreshedWeaponOptions.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
+    weaponFilter.value = refreshedWeaponOptions.includes(currentWeapon) ? currentWeapon : 'All';
+  }
+  autoSelected = autoSelectSingleSpecificMatrixOption(weaponFilter, 'All') || autoSelected;
+  if (autoSelected) {
+    const refreshedCategoryData = getFilteredHunts('huntCategory', {
+      ...matrixOptionFilterOptions,
+      ignoreFilters: ['huntCategory', 'unit'],
+    });
+    const refreshedCategoryOptions = sortWithPreferredOrder(Array.from(new Set(['All', ...refreshedCategoryData.map(getHuntCategory).filter(Boolean)])), ['All', ...HUNT_CLASS_ORDER]);
+    const currentHuntCategory = huntCategoryFilter.value || 'All';
+    huntCategoryFilter.innerHTML = refreshedCategoryOptions.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
+    huntCategoryFilter.value = refreshedCategoryOptions.includes(currentHuntCategory) ? currentHuntCategory : 'All';
+  }
+  autoSelectSingleSpecificMatrixOption(huntCategoryFilter, 'All');
   syncProgressiveSelectionMatrix();
 
   const hasNonUnitSelections = [
