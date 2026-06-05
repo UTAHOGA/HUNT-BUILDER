@@ -1,11 +1,11 @@
-$ErrorActionPreference = "Stop"
-
 param(
   [string]$Bucket = "uoga-data",
   [string]$Prefix = "",
   [string]$IncomingDir = "pipeline/R2_OFFLOAD/incoming",
   [string]$ManifestDir = "pipeline/R2_OFFLOAD/manifests"
 )
+
+$ErrorActionPreference = "Stop"
 
 $repo = Split-Path -Parent $PSScriptRoot
 Set-Location $repo
@@ -32,7 +32,7 @@ foreach ($file in $files) {
 
   $target = "$Bucket/$objectKey"
   Write-Host "Uploading $relative -> r2://$target"
-  $output = & npx.cmd wrangler r2 object put $target --file $file.FullName 2>&1
+  $output = & npx.cmd wrangler r2 object put $target --file $file.FullName --remote 2>&1
   $status = if ($LASTEXITCODE -eq 0) { "UPLOADED" } else { "FAILED" }
   $sha = (Get-FileHash -Algorithm SHA256 -LiteralPath $file.FullName).Hash.ToLowerInvariant()
   $rows += [pscustomobject]@{

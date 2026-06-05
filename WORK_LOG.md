@@ -16990,6 +16990,41 @@ Validation commands run:
 Commit:
 - Pending commit.
 
+# 2026-06-05T19:24:00Z - Cloudflare R2 harvest-quality offload upload
+
+Scope:
+- Connected to Cloudflare R2 with Wrangler and verified the `uoga-data` bucket is available.
+- Uploaded the local incoming file `pipeline/R2_OFFLOAD/incoming/harvest_quality_20260605.zip` to remote Cloudflare R2.
+- Corrected `tools/upload_r2_incoming.ps1` so future uploads force `--remote`; the first attempt used Wrangler local storage and was not treated as the production upload.
+- Did not delete local files after upload.
+- Did not edit `DATABASE.csv`, normalized truth files, raw source files, engine model logic, website runtime feeds, or R2 Worker code.
+
+Files changed:
+- tools/upload_r2_incoming.ps1
+- pipeline/R2_OFFLOAD/manifests/r2_upload_20260605T192125Z.csv
+- WORK_LOG.md
+
+Key results:
+- Bucket verified: `uoga-data`.
+- Uploaded object key: `pipeline/R2_OFFLOAD/uploaded/harvest_quality_20260605.zip`.
+- Public URL verified: `https://json.uoga.workers.dev/pipeline/R2_OFFLOAD/uploaded/harvest_quality_20260605.zip`.
+- Public URL status: `200`.
+- Public content length: `12,103,659` bytes.
+- Public content type: `application/zip`.
+- SHA256: `a43d26ef452af000128f0f39833834fd84c013f8441d76232b9e37bfdecbc8b5`.
+- Local file retained under `pipeline/R2_OFFLOAD/incoming/`.
+
+Validation commands run:
+- npx.cmd wrangler --version
+- npx.cmd wrangler r2 bucket list
+- powershell -NoProfile -ExecutionPolicy Bypass -File tools/upload_r2_incoming.ps1 -Bucket "uoga-data" -Prefix "pipeline/R2_OFFLOAD/uploaded"
+- Invoke-WebRequest -Uri "https://json.uoga.workers.dev/pipeline/R2_OFFLOAD/uploaded/harvest_quality_20260605.zip" -Method Head
+- python tools/git_size_guard.py --warn-only
+- git diff --check
+
+Commit:
+- Pending commit.
+
 # 2026-06-05T20:45:00Z - GitHub Desktop large-file staging guard
 
 Scope:
