@@ -42,6 +42,38 @@ Validation commands run:
 Commit:
 - Pending commit.
 
+# 2026-06-05T20:18:00Z - Mobile hamburger navigation cleanup
+
+Scope:
+- Replaced the mobile page-navigation text pill with a high-contrast hamburger control.
+- Used a cream/tan square, dark brown outline, and dark brown three-line icon to match the U.O.G.A. visual language.
+- Hid the desktop primary nav rail on mobile so the header presents one clean navigation control instead of button overload.
+- Kept the existing menu links and page routing unchanged.
+- Did not edit data sources, `DATABASE.csv`, normalized truth files, R2 objects, engine model logic, runtime manifests, or prediction outputs.
+
+Files changed:
+- header-layout.js
+- index.html
+- style.css
+- WORK_LOG.md
+
+Key results:
+- Mobile hamburger button renders at 64x56 px.
+- Hamburger style verified as cream gradient background, dark brown border, dark brown lines.
+- Mobile primary nav rail is hidden: `display: none`.
+- Dropdown opens with 4 links and remains inside a 390 px mobile viewport.
+- Horizontal overflow check passed: body scroll width 390 / viewport width 390.
+
+Validation commands run:
+- node --check header-layout.js
+- npm.cmd run build
+- git diff --check
+- python tools/git_size_guard.py --warn-only
+- Local mobile browser QA at `https://127.0.0.1:4173/` using a 390x760 viewport
+
+Commit:
+- Pending commit.
+
 # 2026-06-05T19:37:00Z - Cloudflare R2 unzipped harvest-quality runtime upload
 
 Scope:
