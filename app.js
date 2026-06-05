@@ -1233,6 +1233,7 @@ function normalizeWeaponLabel(raw) {
   const lower = value.toLowerCase();
   if (!value) return '';
   if (lower === 'alw' || lower === 'a.l.w.') return 'Any Legal Weapon';
+  if (lower.includes('archery') && lower.includes('muzzleloader') && lower.includes('shotgun')) return 'Muzzy/Archery/Shotgun';
   if (lower.includes('any legal weapon')) return 'Any Legal Weapon';
   if (lower.includes('extended archery')) return 'Extended Archery';
   if (lower.includes('restricted archery')) return 'Restricted Archery';
@@ -1246,7 +1247,11 @@ function normalizeWeaponLabel(raw) {
   if (lower.includes('multiseason')) return 'Multiseason';
   return value;
 }
-function getWeapon(h) { return normalizeWeaponLabel(firstNonEmpty(h.weapon, h.Weapon)); }
+function getWeapon(h) {
+  const raw = firstNonEmpty(h.weapon, h.Weapon);
+  if (safe(getHuntTitle(h)).toLowerCase().includes('hamss')) return 'HAMSS';
+  return normalizeWeaponLabel(raw);
+}
 function weaponMatchesFilter(hunt, selectedWeapon) {
   if (!selectedWeapon || selectedWeapon === 'All') return true;
   const huntWeapon = getWeapon(hunt);
@@ -1418,6 +1423,15 @@ function getHuntCategory(h) {
   const haystack = `${safe(raw)} ${getHuntTitle(h)} ${getUnitName(h)}`.toLowerCase();
 
   if (species === 'Cougar') return 'Statewide';
+
+  if (species === 'Deer') {
+    if (sex === 'Antlerless') return '';
+    if (sex === 'Buck') {
+      if (huntType === 'CWMU') return '';
+      if (huntType === 'Premium Limited Entry' && getWeapon(h) === 'Any Legal Weapon') return '';
+      if (huntType === 'Limited Entry' && getWeapon(h) === 'Archery') return '';
+    }
+  }
 
   if (species === 'Elk' && sex === 'Bull') {
     if (safe(firstNonEmpty(h.draw_family, h.drawFamily, h.draw_2026_system_type)).toUpperCase().includes('SPORTSMAN')) {

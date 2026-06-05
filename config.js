@@ -579,6 +579,7 @@ window.UOGA_CONFIG = (() => {
     'Restricted Muzzleloader',
     'Restricted Rifle',
     'HAMSS',
+    'Muzzy/Archery/Shotgun',
     'Multiseason',
     'Restricted Multiseason',
   ];

@@ -1,3 +1,36 @@
+## 2026-06-05T09:55:50Z - Refine Deer matrix routing
+
+Scope:
+- Updated Hunt Builder selection-matrix display logic for Deer paths.
+- Kept the control order as Species -> Sex -> Hunt Type -> Weapon Type -> Hunt Class -> DWR Hunt Units.
+- Did not edit `DATABASE.csv`, raw source files, engine model code, runtime manifests, or R2 objects.
+
+Files changed:
+- app.js
+- config.js
+- WORK_LOG.md
+
+Key results:
+- Deer -> Either Sex -> Extended Archery -> Archery now resolves straight to DWR Hunt Units with no redundant Hunt Class dropdown.
+- Deer -> Antlerless -> General Season now exposes source-backed weapon choices: Any Legal Weapon, Archery, and Muzzy/Archery/Shotgun.
+- Deer -> Antlerless -> General Season weapon choices resolve straight to DWR Hunt Units with no Hunt Class dropdown.
+- Deer -> Antlerless -> CWMU resolves source-backed Any Legal Weapon rows straight to DWR Hunt Units with no Hunt Class dropdown.
+- Deer -> Buck -> Limited Entry -> Archery resolves straight to DWR Hunt Units with no Hunt Class dropdown.
+- Deer -> Buck -> Premium Limited Entry -> Any Legal Weapon resolves straight to DWR Hunt Units with no Hunt Class dropdown.
+- Deer -> Buck -> CWMU -> Any Legal Weapon resolves straight to DWR Hunt Units with no Hunt Class dropdown.
+- Deer -> Buck -> Conservation -> Weapon now keeps organization codes under Hunt Class.
+- Deer Buck HAMSS records whose source weapon field held a unit name now display under weapon `HAMSS`.
+- Mobile QA at 390px viewport showed no horizontal overflow.
+
+Validation commands run:
+- node --check app.js
+- node --check config.js
+- git diff --check
+- Local Playwright matrix QA against `https://127.0.0.1:4173/` for Deer Either Sex, Antlerless General Season, Antlerless CWMU, Buck Limited Entry, Buck Premium Limited Entry, Buck CWMU, Buck Conservation, and mobile overflow.
+
+Commit:
+- Pending validation and commit.
+
 ## 2026-06-05T09:40:35Z - Refine Elk Bull matrix hunt-class routing
 
 Scope:
