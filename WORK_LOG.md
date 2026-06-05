@@ -16466,3 +16466,32 @@ Validation commands run:
 
 Commit:
 - Pending work-log commit.
+
+# 2026-06-05T10:45:00Z - Bear Harvest Objective class correction
+
+Scope:
+- Corrected Black Bear Harvest Objective visitor-facing Hunt Class labels from restriction wording to hunting method wording.
+- `No dogs/no bait` rows now render as `Spot and Stalk`.
+- `No bait allowed` / `No bait` rows now render as `Hounds`.
+- Preserved original restriction notes and season/objective text in the synthetic display-row data.
+- Did not edit `DATABASE.csv`, raw source files, normalized draw truth, engine files, runtime manifests, or R2 objects.
+
+Files changed:
+- app.js
+- config.js
+- WORK_LOG.md
+
+Key results:
+- Harvest Objective path verified locally: `Black Bear -> Either Sex -> Harvest Objective -> Any Legal Weapon -> Spot and Stalk/Hounds`.
+- Harvest Objective rows verified: 27 units total, 21 `Spot and Stalk`, 6 `Hounds`.
+- Mobile QA: no horizontal overflow at 390px width.
+
+Validation commands run:
+- node --check app.js
+- node --check config.js
+- git diff --check
+- npm.cmd run build
+- local browser selection-flow smoke test for Bear Harvest Objective
+
+Commit:
+- Pending commit.
