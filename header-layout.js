@@ -227,7 +227,7 @@
     const mapControl = host.querySelector('.map-mode-control, [data-uoga-engine-pills], [data-map-mode-picker]');
     const instructions = host.querySelector('.instructions-control');
 
-    // Desired order mirrors the visual header: action button, map selector, hidden mobile nav fallback.
+    // Desired order: instructions, compact map selector, compact hamburger nav.
     if (instructions && instructions.parentElement === host) host.prepend(instructions);
     if (mapControl && mapControl.parentElement === host) {
       if (instructions && instructions.parentElement === host) instructions.insertAdjacentElement('afterend', mapControl);
@@ -295,7 +295,7 @@
         max-width:calc(100vw - 560px) !important;
         flex:0 0 auto !important;
         min-height:54px !important;
-        display:flex !important;
+        display:none !important;
         align-items:center !important;
         justify-content:center !important;
         gap:6px !important;
@@ -470,48 +470,47 @@
          order:3 !important;
          z-index:20040 !important;
        }
-       .uoga-page-nav-control { display:none !important; }
+       .uoga-page-nav-control { display:flex !important; position:relative !important; flex:0 0 auto !important; }
        .map-mode-control { position:relative !important; display:flex !important; align-items:center !important; justify-content:center !important; }
        .map-mode-picker { position:relative !important; z-index:30080 !important; }
        .map-mode-menu { z-index:30090 !important; }
-       .uoga-page-nav-toggle,
        .map-mode-toggle { display:inline-flex !important; flex-direction:column !important; align-items:center !important; justify-content:center !important; gap:2px !important; width:224px !important; min-height:48px !important; padding:5px 14px !important; cursor:pointer !important; }
        .map-mode-toggle {
-         border:2px solid #f07800 !important;
+         border:2px solid #fa820a !important;
          background:linear-gradient(180deg,#fffefb,#f7efe6) !important;
          box-shadow:inset 0 1px 0 rgba(255,255,255,.95), 0 7px 15px rgba(58,37,18,.16) !important;
        }
-       .uoga-page-nav-label,
-       .map-mode-label { font-size:10px !important; line-height:1 !important; color:#f07800 !important; white-space:nowrap !important; }
+       .map-mode-label { display:none !important; }
        .uoga-page-nav-current,
        .map-mode-current { display:inline-flex !important; align-items:center !important; justify-content:center !important; width:100% !important; min-width:0 !important; }
        .map-mode-logo--dwr-current { max-height:28px !important; max-width:190px !important; width:auto !important; height:auto !important; object-fit:contain !important; }
        .map-mode-option--icononly[data-map-mode-value=\"dwr\"] { min-height:42px !important; }
        .map-mode-option-logo--dwr { width:170px !important; height:34px !important; max-width:170px !important; max-height:34px !important; object-fit:contain !important; }
-       .uoga-page-nav-label {
+       .uoga-page-nav-toggle {
+         width:64px !important;
+         height:56px !important;
+         min-width:64px !important;
+         min-height:56px !important;
+         padding:0 !important;
          display:inline-flex !important;
-         flex-direction:column !important;
          align-items:center !important;
          justify-content:center !important;
-         min-width:176px !important;
-         min-height:38px !important;
-         padding:0 18px !important;
-         border-radius:999px !important;
-         border:1px solid color-mix(in srgb, var(--accent) 52%, transparent) !important;
-         background:radial-gradient(circle at top left, rgba(255,255,255,0.22), transparent 34%), linear-gradient(180deg, rgba(57, 44, 34, 0.92), rgba(28, 22, 17, 0.96)) !important;
-         box-shadow:0 8px 18px rgba(0,0,0,0.28) !important;
-         color:var(--accent) !important;
-           font-size:15px !important;
-         font-weight:900 !important;
-         letter-spacing:.10em !important;
-         text-transform:uppercase !important;
-         line-height:1.02 !important;
-         white-space:nowrap !important;
-         text-align:center !important;
+         border:3px solid #2d1900 !important;
+         border-radius:6px !important;
+         background:radial-gradient(circle at 22% 12%, rgba(255,255,255,.88), transparent 36%), linear-gradient(180deg,#fffdf8,#ead8c4) !important;
+         box-shadow:0 0 0 2px #f4efe4, 0 8px 18px rgba(58,37,18,.28), inset 0 1px 0 rgba(255,255,255,.92), inset 0 -3px 5px rgba(84,47,18,.12) !important;
+         cursor:pointer !important;
        }
-       .uoga-page-nav-kicker,
-       .uoga-page-nav-current-page { display:block !important; }
-       .uoga-page-nav-current-page { color:#f4efe4 !important; font-size:12px !important; letter-spacing:.14em !important; margin-top:2px !important; }
+       .uoga-page-nav-toggle:hover,
+       .uoga-page-nav-toggle:focus-visible,
+       .uoga-page-nav-toggle[aria-expanded=\"true\"] {
+         border-color:#fa820a !important;
+         outline:none !important;
+         box-shadow:0 0 0 3px rgba(250,130,10,.26), 0 10px 22px rgba(58,37,18,.36), inset 0 1px 0 rgba(255,255,255,.95), inset 0 -3px 5px rgba(84,47,18,.18) !important;
+       }
+       .uoga-page-nav-hamburger { display:grid !important; gap:7px !important; width:27px !important; }
+       .uoga-page-nav-hamburger span { display:block !important; height:3px !important; width:100% !important; border-radius:999px !important; background:#2d1900 !important; box-shadow:0 1px 0 rgba(255,255,255,.55), 0 0 0 1px rgba(43,28,18,.16) !important; }
+       .uoga-page-nav-label { position:absolute !important; width:1px !important; height:1px !important; overflow:hidden !important; clip:rect(0,0,0,0) !important; clip-path:inset(50%) !important; white-space:nowrap !important; border:0 !important; padding:0 !important; min-width:0 !important; min-height:0 !important; }
        .uoga-page-nav-menu,
        .map-mode-menu { position:absolute !important; top:calc(100% + 8px) !important; left:50% !important; transform:translateX(-50%) !important; display:grid !important; grid-template-columns:1fr !important; gap:8px !important; z-index:30090 !important; min-width:224px !important; }
        .uoga-page-nav-menu[hidden] { display:none !important; }
@@ -714,7 +713,7 @@
           padding:10px 12px !important;
         }
         .topbar-left {
-          display:flex !important;
+          display:none !important;
           flex-wrap:wrap !important;
           justify-content:center !important;
           align-items:center !important;
