@@ -15959,10 +15959,10 @@ Commit:
 # 2026-06-05T09:08:00Z - Cougar OTC matrix and hunt-class ordering
 
 Scope:
-- Moved the Builder matrix order to Species -> Sex -> Hunt Type -> Hunt Class -> Weapon Type -> DWR Hunt Units.
+- Confirmed the Builder matrix order as Species -> Sex -> Hunt Type -> Weapon Type -> Hunt Class -> DWR Hunt Units.
 - Normalized Cougar display labels without changing source truth: Hunt Type `O.T.C.`, Hunt Class `Statewide`, Unit `Cougar Statewide`.
-- Kept Weapon Type below Hunt Class as the final parent selector before unit selection.
-- Preserved Elk Antlerless and Elk Bull matrix behavior while moving Hunt Class before Weapon.
+- Kept Hunt Class below Weapon Type so many hunts can resolve at weapon first, then expose class only when needed.
+- Preserved Elk Antlerless behavior and normalized Elk Bull Youth into Hunt Class instead of Hunt Type.
 - Did not edit source truth, DATABASE, engine code, manifests, or runtime data files.
 
 Files changed:
@@ -15972,15 +15972,16 @@ Files changed:
 - WORK_LOG.md
 
 Key results:
-- Cougar -> Either Sex resolves through `O.T.C.` -> `Statewide` -> `Any Legal Weapon` -> `Cougar Statewide`.
-- Elk -> Bull -> General Season exposes Hunt Class before Weapon with `General Bull` and `Spike Only`.
-- Elk -> Bull -> General Season -> General Bull -> Any Legal Weapon exposes the unit step.
+- Cougar -> Either Sex resolves through `O.T.C.` -> `Any Legal Weapon` -> `Statewide` -> `Cougar Statewide`.
+- Elk -> Bull Hunt Type no longer lists `Youth`; youth bull rows appear under Hunt Class as `Youth Bull`.
+- Elk -> Bull -> General Season -> Any Legal Weapon exposes Hunt Class with `General Bull`, `Spike Only`, and `Youth Bull`.
+- Elk -> Bull -> Limited Entry -> HAMSS exposes Hunt Class `Mature Bull` and then the unit step.
 - Mobile UI check at 390px wide passed with no horizontal overflow.
 
 Validation commands run:
 - node --check app.js
 - node --check config.js
-- Local HTTPS Playwright matrix verification for Cougar Either Sex and Elk Bull General Season.
+- Local HTTPS Playwright matrix verification for Cougar Either Sex, Elk Bull General Season, and Elk Bull Limited Entry HAMSS.
 - git diff --check
 
 Commit:

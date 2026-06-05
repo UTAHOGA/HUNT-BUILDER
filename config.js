@@ -528,6 +528,7 @@ window.UOGA_CONFIG = (() => {
     'General Season',
     'General Bull',
     'Spike Only',
+    'Youth Bull',
     'Mature Bull',
     'Limited Entry',
     'Premium Limited Entry',
