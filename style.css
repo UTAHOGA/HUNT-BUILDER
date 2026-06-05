@@ -4,10 +4,10 @@
       --panel: rgba(255, 251, 244, 0.97);
       --panel2: #fffdf8;
       --line: #c9a27f;
-      --text: #2b1c12;
+      --text: #2d1900;
       --muted: #6b5646;
-      --accent: #ff6600;
-      --accent-dark: #cc5200;
+      --accent: #fa820a;
+      --accent-dark: #fa820a;
       --selected-fill: #e07429;
       --selected-fill-dark: #b75920;
       --selected-text: #2f1d12;
@@ -25,10 +25,10 @@
       --panel: rgba(35, 30, 26, 0.88);
       --panel2: #2b231d;
       --line: #5c412d;
-      --text: #f4efe4;
+      --text: #2d1900;
       --muted: #a89483;
-      --accent: #ff6600;
-      --accent-dark: #cc5200;
+      --accent: #fa820a;
+      --accent-dark: #fa820a;
       --selected-fill: #e07429;
       --selected-fill-dark: #b75920;
       --selected-text: #2b1b12;
@@ -879,6 +879,31 @@
     }
     .ownership-case {
       position: relative;
+    }
+    .ownership-toggle-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 168px;
+      min-height: 46px;
+      padding: 8px 14px;
+      border: 2px solid #2d1900;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #fffdf8, #ead8c4);
+      color: #2d1900;
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: .12em;
+      line-height: 1.05;
+      text-transform: uppercase;
+      box-shadow: 0 0 0 2px #f4efe4, 0 8px 18px rgba(58,37,18,.24), inset 0 1px 0 rgba(255,255,255,.92);
+    }
+    .ownership-toggle-button:hover,
+    .ownership-toggle-button:focus-visible,
+    .ownership-toggle-button[aria-expanded="true"] {
+      border-color: #fa820a;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(250,130,10,.24), 0 10px 22px rgba(58,37,18,.28), inset 0 1px 0 rgba(255,255,255,.95);
     }
     .ownership-toggle-row[hidden] {
       display: none !important;

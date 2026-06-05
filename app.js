@@ -203,6 +203,7 @@ const ENABLE_SELECTED_HUNT_FLOAT = false;
 const GOOGLE_EARTH_TOPOGRAPHY_EXAGGERATION = 1.5;
 const LIVE_FILTER_DESKTOP_DEBOUNCE_MS = 220;
 const ENABLE_LIVE_MATRIX_APPLY = false;
+const ENABLE_SINGLE_OPTION_AUTO_SELECT = false;
 let devDebugPanelEl = null;
 let devDebugPanelTimerId = null;
 let lastTrackedMapMode = '';
@@ -349,6 +350,28 @@ function setOwnershipPanelOpen(open) {
   document.getElementById('ownershipDock')?.classList.toggle('is-open', isOpen);
 }
 
+let ownershipPanelPinnedOpen = false;
+
+function bindOwnershipHoverFlow() {
+  const dock = document.getElementById('ownershipDock');
+  if (!dock || !ownershipToggleBtn || dock.dataset.ownershipHoverBound === 'true') return;
+  dock.dataset.ownershipHoverBound = 'true';
+  dock.addEventListener('mouseenter', () => {
+    if (!isMobileViewport()) setOwnershipPanelOpen(true);
+  });
+  dock.addEventListener('mouseleave', () => {
+    if (!isMobileViewport() && !ownershipPanelPinnedOpen) setOwnershipPanelOpen(false);
+  });
+  ownershipLayerPanel?.querySelectorAll('details.ownership-group').forEach((group) => {
+    group.addEventListener('mouseenter', () => {
+      if (!isMobileViewport()) group.setAttribute('open', '');
+    });
+    group.addEventListener('mouseleave', () => {
+      if (!isMobileViewport()) group.removeAttribute('open');
+    });
+  });
+}
+
 function syncMapProgressNav() {
   if (!mapProgressNav) return;
   const hasHunt = !!selectedHunt;
@@ -491,6 +514,14 @@ function saveHuntToBackpack(hunt, residency = 'Resident', points = 12) {
   return record;
 }
 
+function recordViewedHunt(hunt, residency = 'Resident', points = 12) {
+  const record = buildBackpackHuntRecord(hunt, residency, points);
+  if (!record) return null;
+  window.UOGA_UI?.recordRecentHunt?.(record);
+  window.UOGA_UI?.setSelectedHuntCode?.(record.hunt_code);
+  return record;
+}
+
 function saveHuntAndOpenResearch(hunt, residency = 'Resident', points = 12) {
   const record = saveHuntToBackpack(hunt, residency, points);
   const huntCode = record?.hunt_code || getHuntCode(hunt);
@@ -521,7 +552,7 @@ function openOutfitterMatches(hunt) {
   const huntKey = getHuntRecordKey(hunt);
   const selectedKey = selectedHunt ? getHuntRecordKey(selectedHunt) : '';
   if (!selectedHunt || huntKey !== selectedKey) {
-    updateSelectedHunt(hunt);
+    window.selectHuntByKey?.(huntKey, { focusOnly: true });
   } else {
     renderOutfitters();
   }
@@ -1840,6 +1871,7 @@ function getSpecificMatrixOptions(selectEl, defaultValue = 'All') {
 
 function autoSelectSingleSpecificMatrixOption(selectEl, defaultValue = 'All') {
   if (!selectEl || safe(selectEl.value).trim() !== defaultValue) return false;
+  if (!ENABLE_SINGLE_OPTION_AUTO_SELECT) return false;
   const specificOptions = getSpecificMatrixOptions(selectEl, defaultValue);
   if (specificOptions.length !== 1) return false;
   selectEl.value = specificOptions[0];
@@ -2239,9 +2271,7 @@ function getOwnershipSubtitle(bucket, props) {
   if (bucket === 'sitla') return 'SITLA';
   if (bucket === 'stateParks') return 'State Parks';
   if (bucket === 'private') return 'Private Land';
-  if (bucket === 'wma') {
-    return "UT. DWR W.M.A.'s";
-  }
+  if (bucket === 'wma') return 'Utah DWR Wildlife Management Areas';
   return '';
 }
 function getOwnershipTitle(bucket, props) {
@@ -2264,9 +2294,7 @@ function buildOwnershipDetails(bucket, props) {
   let noticeText = '';
   if (county) detailBits.push(`${county} County`);
   if (acres) detailBits.push(`${acres} acres`);
-  if (bucket === 'wma') {
-    noticeText = "Utah DWR W.M.A.'s do not imply outfitter approval, endorsement, or exclusive access.";
-  }
+  if (bucket === 'wma') noticeText = 'Utah DWR wildlife management areas (WMAs) do not imply outfitter approval, endorsement, or exclusive access.';
   const detailText = detailBits.join(' | ');
   let logo = '';
   if (bucket === 'sitla') logo = LOGO_SITLA;
@@ -2417,8 +2445,6 @@ function handleFilterChange(event) {
     searchInput.value = '';
   }
   selectedHuntFocusOnly = false;
-  selectedHunt = null;
-  selectedBoundaryFeature = null;
   clearSelectedBoundaryFallbackLayer();
   closeSelectedHuntPopup();
   closeSelectedHuntFloat();
@@ -2998,6 +3024,7 @@ window.selectHuntByKey = (key, options = {}) => {
   if (!h) return;
   selectedHuntFocusOnly = !!options.focusOnly;
   selectedHunt = h;
+  recordViewedHunt(h, 'Resident', 12);
   trackAnalytics('hunt_selected', {
     hunt_code: safe(getHuntCode(h)),
     species: safe(getSpeciesDisplay(h)),
@@ -4069,9 +4096,9 @@ async function ensureWmaLayer() {
     openLandInfoWindow(buildLandInfoCard({
       logo: LOGO_DWR_WMA,
       title,
-      subtitle: "UT. DWR W.M.A.'s",
+      subtitle: 'Utah DWR Wildlife Management Areas',
       logoSize: 68,
-      noticeText: "Utah DWR W.M.A.'s do not imply outfitter approval, endorsement, or exclusive access."
+      noticeText: 'Utah DWR wildlife management areas (WMAs) do not imply outfitter approval, endorsement, or exclusive access.'
     }), event.latLng);
   });
   setLayerVisibility(wmaLayer, !!toggleWma?.checked);
@@ -4305,7 +4332,7 @@ function updateDwrMapFrame(hunt = selectedHunt) {
     }
     dwrFrameLoadTimeoutId = setTimeout(() => {
       if (safe(mapTypeSelect?.value).toLowerCase() === 'dwr') {
-        updateStatus('DWR map may be blocked in iframe. Use the DWR logo to open map directly.');
+        updateStatus('The DWR Hunt Planner may be blocked in this frame. Use the DWR logo to open it directly.');
       }
       dwrFrameLoadTimeoutId = null;
     }, 7000);
@@ -4338,7 +4365,7 @@ function initDwrFrameEvents() {
       dwrFrameLoadTimeoutId = null;
     }
     if (safe(mapTypeSelect?.value).toLowerCase() === 'dwr') {
-      updateStatus('Utah DWR map active.');
+      updateStatus('DWR Hunt Planner active.');
     }
   });
   dwrMapFrame.addEventListener('error', () => {
@@ -4347,7 +4374,7 @@ function initDwrFrameEvents() {
       dwrFrameLoadTimeoutId = null;
     }
     if (safe(mapTypeSelect?.value).toLowerCase() === 'dwr') {
-      updateStatus('DWR iframe failed to load. Use the DWR logo to open map directly.');
+      updateStatus('The DWR Hunt Planner failed to load in this frame. Use the DWR logo to open it directly.');
     }
   });
 }
@@ -5438,7 +5465,7 @@ function handleGoogleMapUnavailable(reason = 'Google map unavailable.') {
   if (mapTypeSelect) {
     mapTypeSelect.value = 'dwr';
     applyMapMode();
-    updateStatus(`${reason} Switched to Utah DWR map.`);
+    updateStatus(`${reason} Switched to the DWR Hunt Planner.`);
   } else {
     updateStatus(reason);
   }
@@ -5503,7 +5530,7 @@ function applyMapMode() {
     }
     mapWrap.classList.add('is-dwr-mode');
     if (basemapControl) basemapControl.hidden = true;
-    updateStatus('Utah DWR map active.');
+    updateStatus('DWR Hunt Planner active.');
     return;
   }
 
@@ -5809,8 +5836,6 @@ function runApplyFiltersFlow(trigger = 'manual') {
   closeSelectedHuntPopup();
   closeSelectedHuntFloat();
   closeSelectionInfoWindow();
-  selectedHunt = null;
-  selectedBoundaryFeature = null;
   clearSelectedBoundaryFallbackLayer();
   if (toggleDwrUnits && hasActiveMatrixSelections()) {
     toggleDwrUnits.checked = true;
@@ -5899,8 +5924,10 @@ function bindControls() {
   clearFiltersBtn?.addEventListener('click', resetAllFilters);
   ownershipToggleBtn?.addEventListener('click', () => {
     const nextOpen = ownershipToggleBtn.getAttribute('aria-expanded') !== 'true';
+    ownershipPanelPinnedOpen = nextOpen;
     setOwnershipPanelOpen(nextOpen);
   });
+  bindOwnershipHoverFlow();
   mapProgressResearchBtn?.addEventListener('click', openSelectedHuntResearchFromProgress);
   syncApplyFiltersButtonLabel();
   setOwnershipPanelOpen(false);

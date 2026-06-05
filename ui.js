@@ -3,8 +3,8 @@ window.UOGA_UI = (() => {
   const LEGACY_BASKET_KEY = 'hunt_research_recent_hunts';
   const RECENTS_KEY = 'uoga_hunt_recent_v1';
   const SELECTED_HUNT_KEY = 'selected_hunt_code';
-  const MAX_BASKET_ITEMS = 20;
-  const MAX_RECENT_ITEMS = 8;
+  const MAX_BASKET_ITEMS = 10;
+  const MAX_RECENT_ITEMS = 10;
   const STYLE_ID = 'uoga-backpack-tray-styles';
   const BACKPACK_CHANGED_EVENT = 'uoga:backpack-changed';
 

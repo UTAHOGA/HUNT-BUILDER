@@ -614,8 +614,8 @@ window.UOGA_CONFIG = (() => {
     BRAND COLORS / PATCH OVERRIDES
     ============================================================================
   */
-  const DNR_ORANGE = '#ff6600';
-  const DNR_BROWN = '#4f2b14';
+  const DNR_ORANGE = '#fa820a';
+  const DNR_BROWN = '#2d1900';
 
   // Temporary hardcoded fallback coordinates for known records that must render.
   const KNOWN_OUTFITTER_COORDS = new Map([

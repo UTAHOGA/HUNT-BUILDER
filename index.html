@@ -220,7 +220,7 @@
     <div class="topbar-left">
       <div class="control-group map-mode-control">
         <select id="mapTypeSelect" class="map-mode-native" aria-hidden="true" tabindex="-1">
-          <option value="dwr">DWR Map</option>
+          <option value="dwr">DWR Hunt Planner</option>
           <option value="earth">Google Earth</option>
           <option value="google" selected>Google Maps</option>
         </select>
@@ -238,8 +238,8 @@
               <img class="map-mode-option-logo" src="./assets/logos/google_earth_logo.png?v=20260430-map-selector-1" alt="Google Earth">
             </button>
 
-            <button type="button" class="map-mode-option map-mode-option--icononly" data-map-mode-value="dwr" aria-label="Utah DWR">
-              <img class="map-mode-option-logo map-mode-option-logo--dwr" src="./assets/logos/DWR-LOGO-maps.png?v=20260430-dwr-pill-1" alt="Utah DWR Map">
+            <button type="button" class="map-mode-option map-mode-option--icononly" data-map-mode-value="dwr" aria-label="DWR Hunt Planner">
+              <img class="map-mode-option-logo map-mode-option-logo--dwr" src="./assets/logos/DWR-LOGO-maps.png?v=20260430-dwr-pill-1" alt="DWR Hunt Planner">
             </button>
           </div>
         </div>
@@ -355,7 +355,8 @@
       <section class="map-wrap">
         <div id="ownershipDock" class="ownership-dock" aria-label="Land ownership controls">
           <div class="ownership-case">
-            <div id="ownershipLayerPanel" class="toggle-row ownership-toggle-row">
+            <button id="ownershipToggleBtn" class="ownership-toggle-button" type="button" aria-expanded="false" aria-controls="ownershipLayerPanel">Land Ownership</button>
+            <div id="ownershipLayerPanel" class="toggle-row ownership-toggle-row" hidden>
               <div class="ownership-panel-title">Land Ownership</div>
               <label class="toggle-chip ownership-hunt-units-chip"><input id="toggleDwrUnits" type="checkbox" checked><span class="toggle-chip-label">Hunt<br>Units</span></label>
 
@@ -403,7 +404,7 @@
           <button type="button" class="earth-direction-btn" data-earth-heading="270" aria-label="Face West">W</button>
         </div>
         <div class="map-stage">
-          <div id="map" aria-label="Google DWR mirror map"></div>
+          <div id="map" aria-label="Google hunt boundary map"></div>
           <iframe
             id="dwrMapFrame"
             class="dwr-map-frame"
