@@ -1,3 +1,51 @@
+## 2026-06-05T14:48:00Z - 2024 harvest candidate package audit
+
+Scope:
+- Audited three richer 2024 harvest candidate packages supplied for possible Hunt Research use:
+  - `pipeline/RAW/hunt_unit_database/harvest_results_2024_for_2025_database/harvest_reports_2024_for_2025_database/`
+  - `pipeline/RAW/hunt_unit_database/harvest_results_2024_for_2025_elk_age_supplement/harvest_reports_2024_for_2025_elk_age_supplement/`
+  - `pipeline/RAW/hunt_unit_database/harvest_results_2024_for_2025_extra_oil_supplement/harvest_reports_2024_for_2025_extra_oil_supplement/`
+- Compared candidate hunt-code coverage, age/context columns, guardrail columns, and package reports against the existing 2024 normalized harvest truth and engine-facing harvest feature tables.
+- Did not edit `DATABASE.csv`, normalized draw truth, normalized harvest truth, raw source files, engine model code, runtime manifests, website files, or R2 objects.
+
+Files changed:
+- tools/hunt_research_engine/audit_2024_harvest_candidate_packages.py
+- audits/hunt_research_engine/harvest_candidate_packages_2024.csv
+- audits/hunt_research_engine/harvest_candidate_packages_2024.json
+- audits/hunt_research_engine/harvest_candidate_packages_2024.md
+- audits/hunt_research_engine/harvest_candidate_packages_2024_coverage.csv
+- audits/hunt_research_engine/harvest_candidate_packages_2024_reports.csv
+- WORK_LOG.md
+
+Key results:
+- Audit result: PASS_REVIEW_ONLY.
+- Candidate CSV files checked: 34.
+- Candidate package report files loaded: 3.
+- Current normalized 2024 feature rows: 1,048.
+- Current model 2024 feature rows: 1,048.
+- Current model rows with observed `average_age`: 328.
+- Current truth rows with observed `average_age`: 0.
+- 2026 feature model rows using 2024 harvest history: 1,147.
+- Candidate file classifications:
+  - `REFERENCE_ALREADY_COVERED`: 21.
+  - `CONTEXT_PROMOTE_UNIT_LEVEL_REVIEW`: 7.
+  - `CONTEXT_HOLD_NO_HUNT_CODE`: 6.
+- Package coverage:
+  - database package: 1,039 hunt codes, no new codes vs current truth, 9 current truth codes missing from candidate package.
+  - elk-age supplement: 1,040 hunt codes, no new codes vs current truth, 8 current truth codes missing from candidate package.
+  - extra-OIL supplement: 1,041 hunt codes, no new codes vs current truth, 7 current truth codes missing from candidate package.
+- Recommendation: do not wholesale replace current 2024 harvest feeders. Keep the full database package as stronger source evidence, and treat elk-age/OIL supplements as reviewed context-feature candidates because several rows are unit-level rather than direct hunt-code rows.
+- Guardrail confirmed: candidate 2024 harvest packages may support harvest quality/history and unit-level context only. They must not overwrite permit quota, draw odds, `p_draw`, or `DATABASE.csv`.
+
+Validation commands run:
+- python -m py_compile tools/hunt_research_engine/audit_2024_harvest_candidate_packages.py
+- python tools/hunt_research_engine/audit_2024_harvest_candidate_packages.py --root . --out-dir audits\hunt_research_engine
+- python -m pytest tests\utah_quality\test_harvest_feature_model.py tests\utah_quality\test_harvest_feature_guardrails.py tests\utah_quality\test_harvest_draw_same_year_alignment_2026.py -q
+- git diff --check
+
+Commit:
+- Pending commit.
+
 ## 2026-06-05T14:40:00Z - 2022 harvest package ingestion audit
 
 Scope:

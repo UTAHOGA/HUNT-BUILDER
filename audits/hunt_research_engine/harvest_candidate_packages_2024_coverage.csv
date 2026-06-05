@@ -1,0 +1,4 @@
+package,candidate_hunt_codes,candidate_codes_missing_from_current_truth,current_truth_codes_missing_from_candidate,sample_current_truth_missing_from_candidate,sample_candidate_missing_from_current_truth
+database_package,1039,0,9,DS6623|STATEWIDE_SPORTSMAN_CONSERVATION|TK1003|TK1004|TK1005|TK1006|TK1007|TK1018|TK1021,
+elk_age_supplement,1040,0,8,STATEWIDE_SPORTSMAN_CONSERVATION|TK1003|TK1004|TK1005|TK1006|TK1007|TK1018|TK1021,
+extra_oil_supplement,1041,0,7,TK1003|TK1004|TK1005|TK1006|TK1007|TK1018|TK1021,
