@@ -15878,6 +15878,31 @@ Validation commands run:
 Commit:
 - Pending validation and commit.
 
+# 2026-06-05T08:50:00Z - Pronghorn antlerless label alignment
+
+Scope:
+- Reverted Pronghorn female sex display from `Doe` to `Antlerless` to match the Deer convention in the Builder matrix.
+- Preserved `Either Sex` naming for former Hunter's Choice display.
+- Did not edit source truth, DATABASE, engine code, manifests, or runtime data files.
+
+Files changed:
+- app.js
+- config.js
+- WORK_LOG.md
+
+Key results:
+- Pronghorn sex options render as: All, Buck, Antlerless.
+- This keeps the public matrix convention consistent across Deer and Pronghorn.
+
+Validation commands run:
+- node --check app.js
+- node --check config.js
+- Local HTTPS Playwright matrix verification for Species `Pronghorn`.
+- git diff --check
+
+Commit:
+- Pending validation and commit.
+
 # 2026-06-04T10:14:32Z - Phase 02 targeted backfill acceptance rerun
 
 Scope:
