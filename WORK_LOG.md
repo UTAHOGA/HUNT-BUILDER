@@ -16572,6 +16572,53 @@ Validation commands run:
 Commit:
 - Pending commit.
 
+# 2026-06-05T14:28:00Z - 2021-for-2022 harvest package ingestion proof
+
+Scope:
+- Audited the listed 2021-for-2022 harvest package under `pipeline/RAW/hunt_unit_database/2022/csv`.
+- Verified that the 2021 harvest package is represented in normalized harvest truth and engine-facing harvest feature surfaces used by Hunt Research.
+- Verified 2021 draw truth is aligned into `processed_data/draw_reality_engine_v2.csv`.
+- Checked the 2021 package support files: SQLite database, JSON report, and Markdown report.
+- Confirmed `C:/Users/tyler/Desktop/BIBLE HUNT CODES/2021.zip` exists for the draw/source package.
+- Did not edit raw harvest CSVs, raw PDFs, `DATABASE.csv`, normalized draw truth, normalized harvest truth, engine model code, runtime manifests, website files, or R2 objects.
+- Did not regenerate engine outputs because the audit found zero 2021 source-backed harvest feature feeder gaps.
+
+Files changed:
+- tools/hunt_research_engine/audit_2021_harvest_database_ingestion.py
+- audits/hunt_research_engine/harvest_database_ingestion_2021.csv
+- audits/hunt_research_engine/harvest_database_ingestion_2021.json
+- audits/hunt_research_engine/harvest_database_ingestion_2021.md
+- audits/hunt_research_engine/harvest_database_ingestion_2021_support_files.csv
+- audits/hunt_research_engine/harvest_database_ingestion_2021_engine_feature_gaps.csv
+- audits/hunt_research_engine/harvest_database_ingestion_2021_engine_feature_extras.csv
+- WORK_LOG.md
+
+Key results:
+- Audit result: PASS.
+- Raw package CSVs checked: 15.
+- Support files checked: 3.
+- `2021.zip` exists: true.
+- 2021 harvest truth rows: 7,944.
+- 2021 harvest truth hunt codes: 974.
+- 2021 engine harvest long rows: 7,944.
+- 2021 engine harvest feature rows: 974.
+- 2021 normalized truth feature keys and engine feature keys match exactly: 974 vs 974, missing 0.
+- Engine supplemental 2021 feature rows not in normalized truth feature table: 0.
+- 2026 feature model rows using 2021 harvest history: 56.
+- 2021 draw truth rows: 27,519 / 550 hunt codes.
+- `processed_data/draw_reality_engine_v2.csv` 2021 rows: 27,519 / 550 hunt codes, matching normalized draw truth.
+- Legacy `processed_data/draw_reality_engine.csv` has no 2021 rows.
+- Guardrail confirmed: 2021 harvest rows are quality/history inputs only, not permit quota truth and not direct `p_draw` truth.
+
+Validation commands run:
+- python -m py_compile tools/hunt_research_engine/audit_2021_harvest_database_ingestion.py
+- python tools/hunt_research_engine/audit_2021_harvest_database_ingestion.py --root . --out-dir audits/hunt_research_engine
+- python -m pytest tests/utah_quality/test_harvest_feature_model.py tests/utah_quality/test_harvest_feature_guardrails.py tests/utah_quality/test_harvest_draw_same_year_alignment_2026.py -q
+- git diff --check
+
+Commit:
+- Pending commit.
+
 # 2026-06-05T14:22:00Z - 2023 harvest database package ingestion proof
 
 Scope:
