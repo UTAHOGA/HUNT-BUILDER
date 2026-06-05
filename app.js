@@ -1386,6 +1386,17 @@ function huntClassFurtherDiversifies(huntType, huntClass) {
   if (normalizedClass === normalizedType) return false;
   return true;
 }
+function getElkBullLimitedEntrySeasonClass(h) {
+  const rawWeapon = firstNonEmpty(h.weapon, h.Weapon);
+  const haystack = `${rawWeapon} ${getDates(h)} ${firstNonEmpty(h.hunt_name, h.huntName, h.HuntName)} ${getUnitName(h)}`.toLowerCase();
+  if (haystack.includes('early any legal weapon')) return 'Early A.L.W.';
+  if (haystack.includes('mid any legal weapon')) return 'Mid A.L.W.';
+  if (haystack.includes('late any legal weapon')) return 'Late A.L.W.';
+  if (haystack.includes('late archery')) return 'Late Archery';
+  if (haystack.includes('september archery') || /\barchery\b/.test(haystack)) return 'Early Archery';
+  // Muzzleloader, HAMSS, and Multiseason already resolve at the weapon step.
+  return '';
+}
 function getHuntCategory(h) {
   if (h?.syntheticConservationPermit) {
     const syntheticCategory = normalizeHuntCategoryLabel(firstNonEmpty(h.huntCategory, h.HuntCategory, h.category, 'Conservation'));
@@ -1402,15 +1413,7 @@ function getHuntCategory(h) {
 
   if (species === 'Elk' && sex === 'Bull') {
     if (huntType === 'Limited Entry') {
-      if (
-        haystack.includes('bull elk') ||
-        haystack.includes('mature bull') ||
-        haystack.includes('any bull') ||
-        normalized === 'General Bull' ||
-        normalized === 'General Season'
-      ) {
-        return 'Mature Bull';
-      }
+      return getElkBullLimitedEntrySeasonClass(h);
     }
 
     if (huntType === 'General Season') {
