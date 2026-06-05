@@ -1,0 +1,49 @@
+{
+  "generated_at": "2026-06-05T08:38:48.527Z",
+  "status": "PASS",
+  "result": {
+    "searchAfterSpecies": "",
+    "selectedSpecies": "Deer",
+    "selectedSex": "Antlerless",
+    "sexOptions": [
+      "All",
+      "Buck",
+      "Antlerless",
+      "Either Sex"
+    ],
+    "huntTypeOptions": [
+      "All",
+      "General Season",
+      "CWMU"
+    ],
+    "matchingContainsDA1051": true,
+    "matchingContainsCwmuCode": true,
+    "matchingCardCount": 22,
+    "cards": [
+      "DA1001",
+      "DA1002",
+      "DA1003",
+      "DA1009",
+      "DA1011",
+      "DA1012",
+      "DA1013",
+      "DA1018",
+      "DA1027",
+      "DA1030",
+      "DA1031",
+      "DA1033",
+      "DA1041",
+      "DA1042",
+      "DA1044",
+      "DA1045",
+      "DA1046",
+      "DA1047",
+      "DA1048",
+      "DA1049",
+      "DA1050",
+      "DA1051"
+    ],
+    "bodyWidth": 390,
+    "viewportWidth": 390
+  }
+}

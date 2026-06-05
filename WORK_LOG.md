@@ -15809,6 +15809,49 @@ Validation commands run:
 Commit:
 - Pending validation and commit.
 
+# 2026-06-05T08:34:27Z - Hunt Builder live runtime and matrix verification
+
+Scope:
+- Ran focused live/runtime verification against `https://huntbuilder.uoga.org/` for selected boundary mappings.
+- Verified selected hunt boundary index and direct GeoJSON runtime paths for DA1051, EA1295, EA1299, EA1300, DB1208, EA1261, and EB3504.
+- Repaired the Hunt Builder progressive matrix so hunt-code search does not collapse Species/Sex/Hunt Type option lists.
+- Confirmed Deer -> Antlerless exposes CWMU in the Hunt Type dropdown while DA1051 remains in the hunt-code search box.
+- Repaired stale hunt-code search behavior so changing matrix selections clears search state and Deer -> Antlerless -> All no longer maps only DA1051.
+- Normalized Hunter's Choice sex display to Either Sex in the Hunt Builder matrix.
+- Did not edit `DATABASE.csv`, draw truth, engine model code, manifests, or R2 objects.
+
+Files changed:
+- app.js
+- audits/runtime_verification/huntbuilder_live_boundary_runtime_verification.json
+- audits/runtime_verification/huntbuilder_live_boundary_runtime_verification.csv
+- audits/runtime_verification/huntbuilder_live_boundary_runtime_verification.md
+- audits/runtime_verification/huntbuilder_matrix_ui_runtime_repair.json
+- audits/runtime_verification/huntbuilder_matrix_ui_runtime_repair.md
+- audits/runtime_verification/huntbuilder_matrix_antlerless_deer_repair.json
+- audits/runtime_verification/huntbuilder_matrix_antlerless_deer_repair.md
+- WORK_LOG.md
+
+Key results:
+- Live home, config, app JS, local lite boundary GeoJSON, R2 boundary index, and R2 composite fallback all returned HTTP 200.
+- Boundary index record count: 1471.
+- Selected boundary checks: 7 selected hunts pass or pass with note.
+- DA1051 direct per-hunt GeoJSON returns HTTP 200 with matching boundary ID and geometry; it is not present in the startup lite boundary layer because it is a tiny inter-city boundary.
+- Mobile matrix check at 390px wide passed with no horizontal overflow.
+- Deer sex options now remain available with hunt-code search active: All, Buck, Antlerless, Hunter's Choice.
+- Deer -> Antlerless Hunt Type options now include: All, General Season, CWMU.
+- Deer sex options now render as: All, Buck, Antlerless, Either Sex.
+- Deer -> Antlerless -> All returns 22 matching hunt cards, including CWMU antlerless deer rows, instead of only DA1051.
+
+Validation commands run:
+- node --check app.js
+- Live HTTP checks for `https://huntbuilder.uoga.org/`, `config.js`, `app.js`, `data/hunt-boundaries-lite.geojson`, `data/hunt_boundaries.geojson`, R2 display-boundary index, and R2 composite boundary fallback.
+- Playwright local HTTPS mobile matrix verification at 390 x 844.
+- Playwright local HTTPS antlerless deer matrix verification at 390 x 844.
+- git diff --check
+
+Commit:
+- Pending validation and commit.
+
 # 2026-06-04T10:14:32Z - Phase 02 targeted backfill acceptance rerun
 
 Scope:

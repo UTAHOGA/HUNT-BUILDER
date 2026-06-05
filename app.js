@@ -537,8 +537,8 @@ function getNormalizedSex(valueOrHunt) {
   const hunt = typeof valueOrHunt === 'string' ? null : valueOrHunt;
   const val = raw.toLowerCase();
   const species = hunt ? getSpeciesDisplay(hunt) : '';
-  if (val.includes('choice')) return "Hunter's Choice";
   if (val.includes('either')) return 'Either Sex';
+  if (val.includes('choice')) return 'Either Sex';
   if (val === 'ewe') return 'Ewe';
   if ((val === 'doe' || val === 'cow' || val.includes('antlerless')) && species === 'Rocky Mountain Bighorn Sheep') return 'Ewe';
   if ((val === 'doe' || val === 'cow' || val.includes('antlerless')) && species === 'Desert Bighorn Sheep') return 'Ram';
@@ -1666,8 +1666,9 @@ function syncProgressiveSelectionMatrix() {
 }
 
 // --- FILTERING ENGINE ---
-function getFilteredHunts(excludeKey = '') {
-  const search = safe(searchInput?.value).trim().toLowerCase();
+function getFilteredHunts(excludeKey = '', options = {}) {
+  const ignoredFilters = new Set(Array.isArray(options.ignoreFilters) ? options.ignoreFilters : []);
+  const search = options.ignoreSearch || ignoredFilters.has('search') ? '' : safe(searchInput?.value).trim().toLowerCase();
   const species = safe(speciesFilter?.value || 'All Species');
   const sex = safe(sexFilter?.value || 'All');
   const huntType = safe(huntTypeFilter?.value || 'All');
@@ -1688,12 +1689,12 @@ function getFilteredHunts(excludeKey = '') {
       || getHuntTitle(h).toLowerCase().includes(search)
       || getHuntCode(h).toLowerCase().includes(search)
       || getUnitName(h).toLowerCase().includes(search);
-    const speciesOk = excludeKey === 'species' || species === 'All Species' || sDisplay === species;
-    const sexOk = excludeKey === 'sex' || sex === 'All' || hSex === sex;
-    const huntTypeOk = excludeKey === 'huntType' || huntType === 'All' || hHuntType === huntType;
-    const weaponOk = excludeKey === 'weapon' || weaponMatchesFilter(h, weapon);
-    const huntCategoryOk = excludeKey === 'huntCategory' || huntCategory === 'All' || hHuntCategory === huntCategory;
-    const unitOk = excludeKey === 'unit' || !unit || hUnit === unit;
+    const speciesOk = excludeKey === 'species' || ignoredFilters.has('species') || species === 'All Species' || sDisplay === species;
+    const sexOk = excludeKey === 'sex' || ignoredFilters.has('sex') || sex === 'All' || hSex === sex;
+    const huntTypeOk = excludeKey === 'huntType' || ignoredFilters.has('huntType') || huntType === 'All' || hHuntType === huntType;
+    const weaponOk = excludeKey === 'weapon' || ignoredFilters.has('weapon') || weaponMatchesFilter(h, weapon);
+    const huntCategoryOk = excludeKey === 'huntCategory' || ignoredFilters.has('huntCategory') || huntCategory === 'All' || hHuntCategory === huntCategory;
+    const unitOk = excludeKey === 'unit' || ignoredFilters.has('unit') || !unit || hUnit === unit;
     const conservationDisplayOk = huntType !== 'Conservation' || !!h?.syntheticConservationPermit;
     const duplicatedPrivateTwinHidden = !(
       isPrivateLandOnlyRecord(h) &&
@@ -2109,6 +2110,10 @@ function resetAllFilters() {
 
 function handleFilterChange(event) {
   const activeMode = safe(mapTypeSelect?.value || 'google').toLowerCase();
+  const changedId = safe(event?.target?.id);
+  if (changedId && changedId !== 'searchInput' && searchInput) {
+    searchInput.value = '';
+  }
   selectedHuntFocusOnly = false;
   selectedHunt = null;
   selectedBoundaryFeature = null;
@@ -2116,7 +2121,6 @@ function handleFilterChange(event) {
   closeSelectedHuntPopup();
   closeSelectedHuntFloat();
   closeSelectionInfoWindow();
-  const changedId = safe(event?.target?.id);
   resetDownstreamMatrixControls(changedId);
   if (!googleBaselineMap) {
     refreshSelectionMatrix();
@@ -2157,25 +2161,36 @@ function refreshSelectionMatrix() {
   speciesFilter.innerHTML = `<option value="All Species">All Species</option>` + speciesOptions.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
   speciesFilter.value = speciesOptions.includes(previousSpecies) ? previousSpecies : 'All Species';
 
-  const sexData = getFilteredHunts('sex');
+  const matrixOptionFilterOptions = { ignoreSearch: true };
+
+  const sexData = getFilteredHunts('sex', matrixOptionFilterOptions);
   const sexOptions = sortWithPreferredOrder(Array.from(new Set(['All', ...sexData.map(getNormalizedSex).filter(Boolean)])), ['All', ...SEX_ORDER]);
   const prevSex = sexFilter.value || 'All';
   sexFilter.innerHTML = sexOptions.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
   sexFilter.value = sexOptions.includes(prevSex) ? prevSex : 'All';
 
-  const huntTypeData = getFilteredHunts('huntType');
+  const huntTypeData = getFilteredHunts('huntType', {
+    ...matrixOptionFilterOptions,
+    ignoreFilters: ['huntType', 'weapon', 'huntCategory', 'unit'],
+  });
   const huntTypeOptions = sortWithPreferredOrder(Array.from(new Set(['All', ...huntTypeData.map(getHuntType).filter(Boolean)])), ['All', ...HUNT_TYPE_ORDER]);
   const prevHuntType = huntTypeFilter.value || 'All';
   huntTypeFilter.innerHTML = huntTypeOptions.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
   huntTypeFilter.value = huntTypeOptions.includes(prevHuntType) ? prevHuntType : 'All';
 
-  const weaponData = getFilteredHunts('weapon');
+  const weaponData = getFilteredHunts('weapon', {
+    ...matrixOptionFilterOptions,
+    ignoreFilters: ['weapon', 'huntCategory', 'unit'],
+  });
   const weaponOptions = sortWithPreferredOrder(Array.from(new Set(['All', ...weaponData.map(getWeapon).filter(Boolean)])), ['All', ...WEAPON_ORDER]);
   const prevWeapon = weaponFilter.value || 'All';
   weaponFilter.innerHTML = weaponOptions.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
   weaponFilter.value = weaponOptions.includes(prevWeapon) ? prevWeapon : 'All';
 
-  const categoryData = getFilteredHunts('huntCategory');
+  const categoryData = getFilteredHunts('huntCategory', {
+    ...matrixOptionFilterOptions,
+    ignoreFilters: ['huntCategory', 'unit'],
+  });
   const categoryOptions = sortWithPreferredOrder(Array.from(new Set(['All', ...categoryData.map(getHuntCategory).filter(Boolean)])), ['All', ...HUNT_CLASS_ORDER]);
   const prevHuntCategory = huntCategoryFilter.value || 'All';
   huntCategoryFilter.innerHTML = categoryOptions.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
@@ -2192,7 +2207,7 @@ function refreshSelectionMatrix() {
   ].filter(Boolean).length > 0;
 
   const unitsMap = new Map();
-  const unitSource = hasNonUnitSelections ? getFilteredHunts('unit') : huntData;
+  const unitSource = hasNonUnitSelections ? getFilteredHunts('unit', matrixOptionFilterOptions) : huntData;
   unitSource.forEach(h => {
     const unitValue = getUnitValue(h);
     if (unitValue) unitsMap.set(unitValue, getUnitName(h) || unitValue);
