@@ -16430,3 +16430,39 @@ Production readiness:
 
 Commit:
 - Pending validation and commit.
+
+# 2026-06-05T10:30:00Z - Bear matrix live routing verification
+
+Scope:
+- Verified and documented the Black Bear selection matrix routing now live on `https://huntbuilder.uoga.org/`.
+- Confirmed Bear Limited Entry method routing uses Summer as `Bait` and Spring/Fall/Multiseason as `Hounds`.
+- Confirmed Bear Harvest Objective display rows are available as display-only app rows with method restrictions and inherited Bear unit boundaries.
+- Did not edit `DATABASE.csv`, raw source files, normalized draw truth, engine files, runtime manifests, or R2 objects.
+
+Files changed:
+- WORK_LOG.md
+
+Previously committed source changes verified:
+- app.js
+- config.js
+
+Key results:
+- Live root URL returned HTTP 200 from Vercel.
+- Live `app.js` contains `BLACK_BEAR_HARVEST_OBJECTIVE_ROWS_2026`.
+- Live `config.js` contains `Harvest Objective` and `No Dogs/No Bait` matrix labels.
+- Live Bear Limited Entry path: `Black Bear -> Either Sex -> Limited Entry -> Any Legal Weapon -> Hounds/Bait`.
+- Live Bear Harvest Objective path: `Black Bear -> Either Sex -> Harvest Objective -> Any Legal Weapon -> No Bait/No Dogs/No Bait`.
+- Harvest Objective rows verified: 27 units total, 6 `No Bait`, 21 `No Dogs/No Bait`.
+- Mobile QA: no horizontal overflow at 390px width.
+
+Validation commands run:
+- node --check app.js
+- node --check config.js
+- git diff --check
+- npm.cmd run build
+- npm.cmd run verify:boundaries-2026
+- curl.exe -I https://huntbuilder.uoga.org/
+- live browser selection-flow smoke test for Bear Limited Entry and Harvest Objective
+
+Commit:
+- Pending work-log commit.
