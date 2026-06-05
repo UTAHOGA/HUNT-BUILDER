@@ -16990,6 +16990,46 @@ Validation commands run:
 Commit:
 - Pending commit.
 
+# 2026-06-05T20:45:00Z - GitHub Desktop large-file staging guard
+
+Scope:
+- Added a hard repo hygiene guard to prevent unsafe staged raw/runtime/large data files from being committed or pushed through GitHub Desktop.
+- Installed local Git hooks by setting `core.hooksPath=.githooks`.
+- Added Cloudflare R2 incoming upload helper and repo data hygiene documentation.
+- Ran a read-only tracked-large-file scan to identify remaining tracked files over 10 MB for a later planned offload/retire pass.
+- Did not edit `DATABASE.csv`, normalized truth files, raw source files, engine model logic, runtime data feeds, R2 objects, or website UI.
+
+Files changed:
+- .gitignore
+- .githooks/pre-commit
+- .githooks/pre-push
+- tools/git_size_guard.py
+- tools/check_repo_hygiene.py
+- tools/install_repo_hygiene_hooks.ps1
+- tools/upload_r2_incoming.ps1
+- docs/repo_data_hygiene.md
+- audits/repo_hygiene/tracked_large_files.csv
+- WORK_LOG.md
+
+Key results:
+- GitHub Desktop can still visually stage files because Git has no pre-stage hook, but unsafe commits and pushes are now blocked.
+- Guard blocks staged files over 10 MB, raw/runtime protected paths, and binary/data extensions such as PDF, XLSX, ZIP, GZ, SQLite, DB, KML, KMZ, shapefile pieces, and GeoJSON-like heavy source families where configured.
+- Small runtime manifests and small public contract JSON files remain allowed.
+- Local hook install verified: `core.hooksPath=.githooks`.
+- Current staged-file guard result: PASS.
+- Current tracked-large-file inventory: 57 files >= 10 MB, written to `audits/repo_hygiene/tracked_large_files.csv`.
+
+Validation commands run:
+- python -m py_compile tools/git_size_guard.py tools/check_repo_hygiene.py
+- python tools/git_size_guard.py --warn-only
+- powershell -NoProfile -ExecutionPolicy Bypass -File tools/install_repo_hygiene_hooks.ps1
+- git config core.hooksPath
+- git diff --check
+- python tools/check_repo_hygiene.py
+
+Commit:
+- Pending commit.
+
 # 2026-06-05T12:38:00Z - Field permit overlay hypothesis audit
 
 Scope:
