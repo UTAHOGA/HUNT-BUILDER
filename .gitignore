@@ -130,3 +130,4 @@ processed_data/public_contracts/*.with_permits*.pdf
 data_model/runtime_drafts/*.csv
 data_truth/draw_results_truth/normalized/*.csv
 data_model/runtime_drafts/*.json
+tore --staged .
