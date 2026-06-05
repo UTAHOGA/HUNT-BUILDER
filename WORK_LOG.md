@@ -1,3 +1,35 @@
+## 2026-06-05T22:03:00Z - Builder hamburger and nav pillow sizing polish
+
+Scope:
+- Refined the compressed Builder navigation controls shown over the map.
+- Changed the hamburger/menu toggle from a square-like control to a wider rectangle.
+- Reduced the dropdown page-navigation pills so each button sizes to its own text instead of stretching to the menu width.
+- Kept the old horizontal top navigation hidden.
+- Did not edit engine code, `DATABASE.csv`, normalized truth files, raw source files, runtime manifests, R2 objects, or production feeder data.
+
+Files changed:
+- header-layout.js
+- style.css
+- WORK_LOG.md
+
+Key results:
+- Desktop hamburger render: `78px x 52px`.
+- Desktop dropdown link widths: `146px`, `157px`, `127px`, `151px`.
+- Mobile hamburger render: `78px x 52px`.
+- Mobile dropdown link widths: `156px`, `168px`, `135px`, `162px`.
+- Old top nav display: `none`.
+- Mobile horizontal overflow: false.
+
+Validation commands run:
+- node --check header-layout.js
+- git diff --check
+- npm.cmd run build
+- Browser render measurement at `https://127.0.0.1:4173/` for desktop `1600x900`.
+- Browser render measurement at `https://127.0.0.1:4173/` for mobile `390x844`.
+
+Commit:
+- Pending commit.
+
 ## 2026-06-05T16:08:00Z - 2025 harvest ZIP candidate audit
 
 Scope:

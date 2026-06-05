@@ -487,16 +487,16 @@
        .map-mode-option--icononly[data-map-mode-value=\"dwr\"] { min-height:42px !important; }
        .map-mode-option-logo--dwr { width:170px !important; height:34px !important; max-width:170px !important; max-height:34px !important; object-fit:contain !important; }
        .uoga-page-nav-toggle {
-         width:64px !important;
-         height:56px !important;
-         min-width:64px !important;
-         min-height:56px !important;
+         width:78px !important;
+         height:52px !important;
+         min-width:78px !important;
+         min-height:52px !important;
          padding:0 !important;
          display:inline-flex !important;
          align-items:center !important;
          justify-content:center !important;
          border:3px solid #2d1900 !important;
-         border-radius:6px !important;
+         border-radius:8px !important;
          background:radial-gradient(circle at 22% 12%, rgba(255,255,255,.88), transparent 36%), linear-gradient(180deg,#fffdf8,#ead8c4) !important;
          box-shadow:0 0 0 2px #f4efe4, 0 8px 18px rgba(58,37,18,.28), inset 0 1px 0 rgba(255,255,255,.92), inset 0 -3px 5px rgba(84,47,18,.12) !important;
          cursor:pointer !important;
@@ -508,16 +508,16 @@
          outline:none !important;
          box-shadow:0 0 0 3px rgba(250,130,10,.26), 0 10px 22px rgba(58,37,18,.36), inset 0 1px 0 rgba(255,255,255,.95), inset 0 -3px 5px rgba(84,47,18,.18) !important;
        }
-       .uoga-page-nav-hamburger { display:grid !important; gap:7px !important; width:27px !important; }
+       .uoga-page-nav-hamburger { display:grid !important; gap:6px !important; width:31px !important; }
        .uoga-page-nav-hamburger span { display:block !important; height:3px !important; width:100% !important; border-radius:999px !important; background:#2d1900 !important; box-shadow:0 1px 0 rgba(255,255,255,.55), 0 0 0 1px rgba(43,28,18,.16) !important; }
        .uoga-page-nav-label { position:absolute !important; width:1px !important; height:1px !important; overflow:hidden !important; clip:rect(0,0,0,0) !important; clip-path:inset(50%) !important; white-space:nowrap !important; border:0 !important; padding:0 !important; min-width:0 !important; min-height:0 !important; }
        .uoga-page-nav-menu,
-       .map-mode-menu { position:absolute !important; top:calc(100% + 8px) !important; left:50% !important; transform:translateX(-50%) !important; display:grid !important; grid-template-columns:1fr !important; gap:8px !important; z-index:30090 !important; min-width:224px !important; }
+       .map-mode-menu { position:absolute !important; top:calc(100% + 8px) !important; left:50% !important; transform:translateX(-50%) !important; display:grid !important; grid-template-columns:max-content !important; gap:8px !important; z-index:30090 !important; min-width:0 !important; }
        .uoga-page-nav-menu[hidden] { display:none !important; }
        .map-mode-menu[hidden] { display:none !important; }
-       .uoga-page-nav-menu { padding:12px !important; min-width:224px !important; }
+       .uoga-page-nav-menu { padding:12px !important; width:max-content !important; min-width:0 !important; max-width:calc(100vw - 24px) !important; justify-items:center !important; }
        .uoga-page-nav-menu .utility-link,
-       .uoga-page-nav-menu .uoga-page-nav-link { width:100% !important; min-height:42px !important; justify-content:center !important; }
+       .uoga-page-nav-menu .uoga-page-nav-link { width:auto !important; min-height:42px !important; justify-content:center !important; justify-self:center !important; padding-left:22px !important; padding-right:22px !important; white-space:nowrap !important; }
        .map-mode-option-logo--dwr { width:170px !important; height:34px !important; max-width:170px !important; max-height:34px !important; object-fit:contain !important; }
         .instructions-tab {
           display:inline-flex !important;
@@ -733,16 +733,16 @@
           max-width:none !important;
         }
         .uoga-page-nav-toggle {
-          width:64px !important;
-          height:56px !important;
-          min-width:64px !important;
-          min-height:56px !important;
+          width:78px !important;
+          height:52px !important;
+          min-width:78px !important;
+          min-height:52px !important;
           padding:0 !important;
           display:inline-flex !important;
           align-items:center !important;
           justify-content:center !important;
           border:3px solid #4b2a11 !important;
-          border-radius:4px !important;
+          border-radius:8px !important;
           background:
             radial-gradient(circle at 22% 12%, rgba(255,255,255,.88), transparent 36%),
             linear-gradient(180deg, #fffdf8, #ead8c4) !important;
@@ -769,8 +769,8 @@
         }
         .uoga-page-nav-hamburger {
           display:grid !important;
-          gap:7px !important;
-          width:27px !important;
+          gap:6px !important;
+          width:31px !important;
         }
         .uoga-page-nav-hamburger span {
           display:block !important;
@@ -800,10 +800,12 @@
           right:0 !important;
           transform:none !important;
           display:grid !important;
-          grid-template-columns:1fr !important;
+          grid-template-columns:max-content !important;
           gap:9px !important;
-          width:min(268px, calc(100vw - 24px)) !important;
+          width:max-content !important;
+          max-width:calc(100vw - 24px) !important;
           min-width:0 !important;
+          justify-items:center !important;
           padding:12px !important;
           border:2px solid #f4efe4 !important;
           border-radius:8px !important;
@@ -814,9 +816,10 @@
         .uoga-page-nav-menu[hidden] { display:none !important; }
         .uoga-page-nav-menu .utility-link,
         .uoga-page-nav-menu .uoga-page-nav-link {
-          width:100% !important;
+          width:auto !important;
           min-height:46px !important;
           justify-content:center !important;
+          justify-self:center !important;
           border:1px solid rgba(240,120,0,.72) !important;
           border-radius:999px !important;
           background:linear-gradient(180deg,#fffdf8,#ecd6bd) !important;
@@ -824,6 +827,9 @@
           box-shadow:0 7px 16px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.92) !important;
           font-size:12px !important;
           letter-spacing:.13em !important;
+          padding-left:22px !important;
+          padding-right:22px !important;
+          white-space:nowrap !important;
         }
         .uoga-page-nav-menu .uoga-page-nav-link.active {
           background:linear-gradient(180deg,#f7a142,#d96c00) !important;
@@ -842,7 +848,7 @@
           padding-left:14px !important;
           padding-right:14px !important;
         }
-        .uoga-page-nav-toggle, .map-mode-toggle {
+        .map-mode-toggle {
           width:100% !important;
           max-width:100% !important;
         }
