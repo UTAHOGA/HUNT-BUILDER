@@ -16542,3 +16542,52 @@ Validation commands run:
 
 Commit:
 - Pending commit.
+
+# 2026-06-05T12:25:00Z - Harvest/draw reconciliation audit for Hunt Research
+
+Scope:
+- Added read-only Hunt Research audit tools for harvest feature promotion and harvest-to-draw reconciliation.
+- Compared normalized harvest results against normalized draw results by `hunt_code` and hunt/report year.
+- Corrected the draw-result aggregation grain during audit: draw result permit counts are point-row outcomes, so hunt/year draw totals must be summed across point/residency rows rather than maxed.
+- Audited existing 2026 harvest feature coverage against current `DATABASE.csv` and Hunt Research summary coverage.
+- Did not edit `DATABASE.csv`, normalized draw truth, normalized harvest truth, raw source files, runtime manifests, engine model code, or R2 objects.
+
+Files changed:
+- tools/hunt_research_engine/audit_harvest_feature_promotion.py
+- tools/hunt_research_engine/reconcile_harvest_draw_results.py
+- audits/hunt_research_engine/harvest_feature_promotion_audit.csv
+- audits/hunt_research_engine/harvest_feature_promotion_audit.json
+- audits/hunt_research_engine/harvest_feature_promotion_audit.md
+- audits/hunt_research_engine/harvest_draw_reconciliation.csv
+- audits/hunt_research_engine/harvest_draw_reconciliation.json
+- audits/hunt_research_engine/harvest_draw_reconciliation.md
+- WORK_LOG.md
+
+Key results:
+- Harvest input rows audited: 68,657.
+- Draw input rows audited: 176,753.
+- Current `DATABASE.csv` hunt codes: 1,471.
+- Harvest hunt/year keys: 5,151.
+- Draw hunt/year keys: 4,765.
+- Matched harvest/draw hunt-year keys: 3,827.
+- Draw-only hunt-year keys: 938.
+- Harvest-only hunt-year keys: 1,324.
+- Permit matches after corrected draw aggregation: 769.
+- Harvest permit blank / draw available: 390.
+- Draw permit blank / harvest available: 1,308.
+- Permit conflicts requiring review: 3,058.
+- Source-backed fill candidates: 958.
+- Conflict review rows: 3,807.
+- Harvest feature model rows: 1,411.
+- Current hunt codes ready for Hunt Research harvest context: 1,410.
+- Current hunt codes with raw harvest history but missing 2026 feature row: 56.
+- Current hunt codes with no harvest history found: 5.
+
+Validation commands run:
+- python -m py_compile tools/hunt_research_engine/audit_harvest_feature_promotion.py tools/hunt_research_engine/reconcile_harvest_draw_results.py
+- python tools/hunt_research_engine/reconcile_harvest_draw_results.py --root . --out-dir audits/hunt_research_engine
+- python tools/hunt_research_engine/audit_harvest_feature_promotion.py --root . --out-dir audits/hunt_research_engine
+- git diff --check
+
+Commit:
+- Pending commit.
