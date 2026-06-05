@@ -1,3 +1,47 @@
+## 2026-06-05T16:08:00Z - 2025 harvest ZIP candidate audit
+
+Scope:
+- Audited the external `HUNTS` 2025-for-2026 harvest ZIP supplied for review:
+  - `C:\Users\tyler\Desktop\GitHub\HUNTS\pipeline\RAW\hunt_unit_database\2026\csv\HARVEST REPORT\2025 HARVEST DATA.zip`
+- Compared every ZIP member hash against the active `HUNT-BUILDER` raw 2025 harvest package under `pipeline/RAW/hunt_unit_database/2026/csv/harvest report/`.
+- Confirmed the active 2025 harvest truth/model path remains complete for the 2026 model.
+- Did not copy files from `HUNTS`, edit raw files, edit `DATABASE.csv`, edit normalized draw truth, edit normalized harvest truth, edit engine model code, edit runtime manifests, publish to R2, or run engine regeneration.
+
+Files changed:
+- tools/hunt_research_engine/audit_2025_harvest_zip_candidate.py
+- audits/hunt_research_engine/harvest_zip_candidate_2025.csv
+- audits/hunt_research_engine/harvest_zip_candidate_2025.json
+- audits/hunt_research_engine/harvest_zip_candidate_2025.md
+- WORK_LOG.md
+
+Key results:
+- Audit result: PASS_ARCHIVE_MATCHES_ACTIVE_PACKAGE.
+- External ZIP SHA256: `4ee4ccc904c56fb62159314743d9f5e034c2ea757d81f1924317bf2cf7ee1fc1`.
+- ZIP members checked: 18.
+- ZIP members matching active local raw package byte-for-byte: 16.
+- ZIP extra helper files not promoted: 2.
+- ZIP members requiring review: 0.
+- Extra helper files:
+  - `harvest_results_2025_for_2026_database.xlsx`
+  - `harvest_results_2025_for_2026_rejected_rows_for_review.csv`
+- Promotion decision: NO_COPY_NEEDED.
+- Promotion reason: the ZIP's core harvest CSV/report/SQLite members already match the active HUNT-BUILDER raw package byte-for-byte. The extra workbook/rejected-row helper files are archive evidence only and are not needed by the engine feeder contract.
+- Harvest truth rows for 2025: 10,122.
+- Harvest truth hunt codes for 2025: 1,127.
+- Engine harvest feature rows for 2025: 1,127.
+- 2026 feature model rows using 2025 harvest history: 1,306.
+- 2026 feature model rows using 2026 source year: 0.
+- Guardrail confirmed: this is observed 2025 harvest history for the 2026 model. It must not overwrite `DATABASE.csv`, permit quota, draw odds, or `p_draw`.
+
+Validation commands run:
+- python -m py_compile tools/hunt_research_engine/audit_2025_harvest_zip_candidate.py
+- python tools/hunt_research_engine/audit_2025_harvest_zip_candidate.py --root . --out-dir audits\hunt_research_engine --zip "C:\Users\tyler\Desktop\GitHub\HUNTS\pipeline\RAW\hunt_unit_database\2026\csv\HARVEST REPORT\2025 HARVEST DATA.zip"
+- python -m pytest tests\utah_quality\test_harvest_feature_model.py tests\utah_quality\test_harvest_feature_guardrails.py tests\utah_quality\test_harvest_draw_same_year_alignment_2026.py -q
+- git diff --check
+
+Commit:
+- Pending commit.
+
 ## 2026-06-05T14:48:00Z - 2024 harvest candidate package audit
 
 Scope:
