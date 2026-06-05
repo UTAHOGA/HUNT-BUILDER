@@ -1,3 +1,35 @@
+## 2026-06-05T22:22:00Z - Hard Copy library cabin wallpaper
+
+Scope:
+- Added the supplied cabin/library image as the Hard Copy Resource Library wallpaper.
+- Updated `hard-copy.html` to use `/assets/backgrounds/CABIN.png` for the page-level wallpaper variable.
+- Updated the Hard Copy library stylesheet fallback background to the same cabin image.
+- Bumped the Hard Copy library stylesheet cache key.
+- Did not edit engine code, `DATABASE.csv`, normalized truth files, raw source files, runtime manifests, R2 objects, or production feeder data.
+
+Files changed:
+- assets/backgrounds/CABIN.png
+- assets/css/hard-copy-public-library.css
+- hard-copy.html
+- WORK_LOG.md
+
+Key results:
+- Local asset URL `/assets/backgrounds/CABIN.png` returned `200 OK`.
+- Local asset content type: `image/png`.
+- Desktop `hard-copy.html` background resolved to `CABIN.png`.
+- Mobile `hard-copy.html` background resolved to `CABIN.png`.
+- Desktop horizontal overflow: false.
+- Mobile horizontal overflow: false.
+
+Validation commands run:
+- curl.exe -k -I https://127.0.0.1:4173/assets/backgrounds/CABIN.png
+- npm.cmd run build
+- Browser render check at `https://127.0.0.1:4173/hard-copy.html` for desktop `1600x900`.
+- Browser render check at `https://127.0.0.1:4173/hard-copy.html` for mobile `390x844`.
+
+Commit:
+- Pending commit.
+
 ## 2026-06-05T22:03:00Z - Builder hamburger and nav pillow sizing polish
 
 Scope:

@@ -1,5 +1,5 @@
 :root {
-  --wallpaper: url("/assets/backgrounds/LIBRARY-WALLPAPER.jpg");
+  --wallpaper: url("/assets/backgrounds/CABIN.png");
   --ink: #2d180f;
   --accent: #d48635;
   --accent-dark: #8f4d18;
@@ -24,7 +24,7 @@ body {
   background-color: #110a05;
   background-image:
     linear-gradient(180deg, rgba(13, 7, 4, 0.05), rgba(13, 7, 4, 0.35)),
-    url("/assets/backgrounds/LIBRARY-WALLPAPER.jpg");
+    url("/assets/backgrounds/CABIN.png");
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
