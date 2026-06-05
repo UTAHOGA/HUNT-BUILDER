@@ -17371,6 +17371,37 @@ Validation commands run:
 Commit:
 - ea4b00ab
 
+# 2026-06-05T21:39:19Z - Builder header navigation compression fix
+
+Scope:
+- Removed the large centered desktop navigation bar from the Hunt Builder render path.
+- Kept the hamburger navigation control visible on desktop and mobile as the single page-navigation entry point.
+- Simplified the map selector so the visible header control presents as the Google Maps button, with alternate map engines tucked behind the selector interaction.
+- Restored mobile visibility for the left header controls so Instructions, Google Maps, and hamburger navigation do not collapse behind Hunt Backpack.
+- Did not edit truth data, `DATABASE.csv`, engine model code, runtime manifests, R2 files, or generated `pages-dist` output.
+
+Files changed:
+- header-layout.js
+- style.css
+- WORK_LOG.md
+
+Key results:
+- Desktop render: centered primary nav hidden; hamburger visible; map selector label hidden; Google Maps button visible.
+- Mobile render: hamburger visible; Google Maps button visible; no horizontal overflow.
+- Temporary QA screenshots were generated locally and removed before staging.
+
+Validation commands run:
+- node --check header-layout.js
+- node --check app.js
+- node --check ui.js
+- node --check config.js
+- npm.cmd run build
+- git diff --check
+- Playwright desktop/mobile header smoke test against `https://127.0.0.1:4173/`
+
+Commit:
+- Pending commit.
+
 # 2026-06-05T13:53:09Z - 2023 harvest/draw ingestion proof for Hunt Research engine
 
 Scope:

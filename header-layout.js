@@ -713,7 +713,7 @@
           padding:10px 12px !important;
         }
         .topbar-left {
-          display:none !important;
+          display:flex !important;
           flex-wrap:wrap !important;
           justify-content:center !important;
           align-items:center !important;
