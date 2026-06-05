@@ -1,0 +1,27 @@
+{
+  "generated_at_utc": "2026-06-05T12:34:41.885747+00:00",
+  "hypothesis_result": "SUPPORTED_FOR_SOME_ROWS_REQUIRES_REVIEW",
+  "overlay_family_counts": {
+    "CONSERVATION_2025_2027": 194,
+    "CONSERVATION_LIBRARY_MASTER": 318,
+    "EXPO_2025_NAME_ONLY": 122,
+    "EXPO_2026_NAME_ONLY": 123
+  },
+  "overlay_gap_status_counts": {
+    "FIELD_PERMIT_GAP_EXPLAINED_BY_OVERLAYS": 96,
+    "FIELD_PERMIT_GAP_PARTIALLY_EXPLAINED_BY_OVERLAYS": 183,
+    "NOT_OVERLAY_EXPLAINED_DRAW_GE_HARVEST": 735,
+    "NO_OVERLAY_MATCH_FOUND": 1814,
+    "OVERLAY_CANDIDATES_EXCEED_GAP_REVIEW": 230
+  },
+  "overlay_rows_loaded": 757,
+  "overlay_sources": {
+    "conservation_2022_2024": "pipeline/RAW/hunt_unit_database/library-master.csv",
+    "conservation_2025_2027": "pipeline/RAW/hunt_unit_database/2026/reports/conservation_permits_2025_2027_grouped.csv",
+    "expo_2025": "pipeline/RAW/hunt_unit_database/2026/xlsx/2025  Expo Permits Draw Results.xlsx",
+    "expo_2026": "pipeline/RAW/hunt_unit_database/2026/xlsx/2026 EXPO PERMIT DRAW.xlsx"
+  },
+  "permit_conflict_rows_tested": 3058,
+  "production_rule": "If overlays explain the gap, create a separate field_permits_total layer. Do not overwrite public draw odds quotas or historical harvest-source permits.",
+  "reconciliation_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\hunt_research_engine\\harvest_draw_reconciliation.csv"
+}
