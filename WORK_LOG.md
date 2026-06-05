@@ -42,6 +42,53 @@ Validation commands run:
 Commit:
 - Pending commit.
 
+# 2026-06-05T17:08:12Z - Runtime feeder CSV authority and R2 parity audit
+
+Scope:
+- Added a read-only runtime feeder parity audit to classify local feeder CSVs as local authoritative, R2-canonical local cache, restore-needed local stubs, or retire/review candidates.
+- Compared important engine/runtime feeder CSVs against `public/data/runtime-manifest.json`, `data/runtime-manifest.json`, local file profiles, engine feeder contracts, and live R2 HEAD responses.
+- Did not edit feeder CSVs, runtime manifests, R2 objects, `DATABASE.csv`, normalized truth, raw source files, website code, or engine model code.
+- Left pre-existing unrelated dirty worktree changes untouched.
+
+Files changed:
+- tools/hunt_research_engine/audit_runtime_feeder_parity.py
+- audits/hunt_research_engine/runtime_feeder_parity_audit.csv
+- audits/hunt_research_engine/runtime_feeder_parity_audit.json
+- audits/hunt_research_engine/runtime_feeder_parity_audit.md
+- WORK_LOG.md
+
+Key results:
+- Audit result: PASS_WITH_RESTORE_AND_MANIFEST_RECOMMENDATIONS.
+- Files checked: 32.
+- R2 remote failures: 0.
+- Local authoritative feeder groups:
+  - 9 local engine feeder CSVs.
+  - 3 local harvest model feeder CSVs.
+  - 6 local runtime draft CSVs.
+  - 3 local normalized truth CSVs.
+- R2 canonical local-cache files verified:
+  - processed_data/draw_reality_engine_v2.csv
+  - processed_data/draw_reality_view.csv
+  - processed_data/ml_draw_predictions_v1.csv
+- R2 canonical file with manifest size drift:
+  - processed_data/draw_reality_engine_predictive_v2.csv
+- Local stub files that should be restored from R2 or demoted before local tools rely on them:
+  - processed_data/draw_reality_engine.csv
+  - processed_data/hunt_master_enriched.csv
+  - processed_data/hunt_unit_reference_linked.csv
+  - processed_data/point_ladder_view.csv
+- Retire/review candidates:
+  - processed_data/draw_reality_engine_backup_before_2024_import.csv is reference-only and should not feed runtime.
+  - processed_data/hunt_master_enriched_2026_draw_subset.csv is empty/review-required and should be retired or rebuilt only if a current contract needs it.
+
+Validation commands run:
+- python -m py_compile tools/hunt_research_engine/audit_runtime_feeder_parity.py
+- python tools/hunt_research_engine/audit_runtime_feeder_parity.py --root . --out-dir audits/hunt_research_engine
+- git diff --check
+
+Commit:
+- Pending commit.
+
 ## 2026-06-05T14:48:00Z - 2024 harvest candidate package audit
 
 Scope:
