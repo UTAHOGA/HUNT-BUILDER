@@ -1,3 +1,31 @@
+## 2026-06-05T10:04:03Z - Refine Deer muzzleloader and Elk multi-season matrix routing
+
+Scope:
+- Updated Hunt Builder selection-matrix display logic for one Deer Buck Limited Entry branch and one Elk Bull Limited Entry branch.
+- Kept the control order as Species -> Sex -> Hunt Type -> Weapon Type -> Hunt Class -> DWR Hunt Units.
+- Did not edit `DATABASE.csv`, raw source files, engine model code, runtime manifests, or R2 objects.
+
+Files changed:
+- app.js
+- config.js
+- WORK_LOG.md
+
+Key results:
+- Deer -> Buck -> Limited Entry -> Muzzleloader now exposes Hunt Class `Late Muzzy`, then renders DWR Hunt Units.
+- Deer -> Buck -> Limited Entry -> Archery still skips Hunt Class and renders the six expected archery units: Book Cliffs, Fillmore Oak Creek LE, Dolores Triangle, San Juan Elk Ridge, Diamond Mtn, and West Desert Vernon.
+- Elk -> Bull -> Limited Entry no longer lists `Multiseason` as a weapon option.
+- Elk -> Bull -> Limited Entry -> Any Legal Weapon now includes Hunt Class `Multi-Season` alongside Early A.L.W., Mid A.L.W., Late A.L.W., and Sportsmen.
+- Mobile QA at 390px viewport showed no horizontal overflow.
+
+Validation commands run:
+- node --check app.js
+- node --check config.js
+- git diff --check
+- Local Playwright matrix QA against `https://127.0.0.1:4173/` for Deer Buck L.E. Muzzleloader, Deer Buck L.E. Archery, Elk Bull L.E. Any Legal Weapon, and mobile overflow.
+
+Commit:
+- Pending validation and commit.
+
 ## 2026-06-05T09:55:50Z - Refine Deer matrix routing
 
 Scope:

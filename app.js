@@ -1250,6 +1250,14 @@ function normalizeWeaponLabel(raw) {
 function getWeapon(h) {
   const raw = firstNonEmpty(h.weapon, h.Weapon);
   if (safe(getHuntTitle(h)).toLowerCase().includes('hamss')) return 'HAMSS';
+  if (
+    getSpeciesDisplay(h) === 'Elk' &&
+    getNormalizedSex(h) === 'Bull' &&
+    normalizeHuntTypeLabel(firstNonEmpty(h.huntType, h.HuntType, h.type)) === 'Limited Entry' &&
+    safe(raw).toLowerCase().includes('multiseason')
+  ) {
+    return 'Any Legal Weapon';
+  }
   return normalizeWeaponLabel(raw);
 }
 function weaponMatchesFilter(hunt, selectedWeapon) {
@@ -1405,6 +1413,7 @@ function getElkBullLimitedEntrySeasonClass(h) {
   if (haystack.includes('early any legal weapon')) return 'Early A.L.W.';
   if (haystack.includes('mid any legal weapon')) return 'Mid A.L.W.';
   if (haystack.includes('late any legal weapon')) return 'Late A.L.W.';
+  if (haystack.includes('multiseason')) return 'Multi-Season';
   if (haystack.includes('late archery')) return 'Late Archery';
   if (haystack.includes('september archery') || /\barchery\b/.test(haystack)) return 'Early Archery';
   // Muzzleloader, HAMSS, and Multiseason already resolve at the weapon step.
@@ -1430,6 +1439,7 @@ function getHuntCategory(h) {
       if (huntType === 'CWMU') return '';
       if (huntType === 'Premium Limited Entry' && getWeapon(h) === 'Any Legal Weapon') return '';
       if (huntType === 'Limited Entry' && getWeapon(h) === 'Archery') return '';
+      if (huntType === 'Limited Entry' && getWeapon(h) === 'Muzzleloader') return 'Late Muzzy';
     }
   }
 
@@ -1720,7 +1730,13 @@ function syncProgressiveSelectionMatrix() {
     && safe(sexFilter.value) === 'Bull'
     && ['Limited Entry', 'General Season'].includes(safe(huntTypeFilter.value))
     && huntClassChoiceCount > 0;
-  const huntClassNeeded = weaponReady && (huntClassChoiceCount > 1 || cougarStatewideClassNeeded || elkBullSingleClassNeeded);
+  const deerBuckMuzzyClassNeeded = weaponReady
+    && safe(speciesFilter.value) === 'Deer'
+    && safe(sexFilter.value) === 'Buck'
+    && safe(huntTypeFilter.value) === 'Limited Entry'
+    && safe(weaponFilter.value) === 'Muzzleloader'
+    && getSpecificMatrixOptions(huntCategoryFilter, 'All').includes('Late Muzzy');
+  const huntClassNeeded = weaponReady && (huntClassChoiceCount > 1 || cougarStatewideClassNeeded || elkBullSingleClassNeeded || deerBuckMuzzyClassNeeded);
   const huntClassReady = !huntClassNeeded || safe(huntCategoryFilter.value) !== 'All';
 
   setMatrixStepVisibility('speciesFilter', true);
