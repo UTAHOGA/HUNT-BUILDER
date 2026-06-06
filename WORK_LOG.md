@@ -1,3 +1,54 @@
+## 2026-06-06T20:25:00Z - Correct 2026 prediction verification and add circularity audit
+
+Scope:
+- Updated the prediction-vs-actual verifier so target-year 2026 uses the validated limited 2026 actual draw-result truth file for evaluation instead of holding for unpublished actuals.
+- Added explicit 2026 actual-truth metadata to the pairing and summary outputs.
+- Added circularity/copy warning labels so baseline retrospective reconstruction is not presented as full forecast accuracy.
+- Confirmed the two ladder files are not a clean split-vs-preference separation: the broader 91k ladder carries mixed draw-system lane metadata, while the active 78k point ladder is the compact actual-draw ladder surface.
+- Did not modify production feeders, `DATABASE.csv`, `draw_results_long.csv`, raw source files, website files, runtime manifests, or R2 objects.
+
+Validated 2026 actual truth:
+- data_truth/draw_results_truth/normalized/draw_results_2026_for_2027_candidate_promotion_file_records.csv
+- processed_data/draw_results_2026_for_2027_candidate_promotion.md
+
+Files changed:
+- tools/prediction_accuracy_backtest/verify_prediction_vs_actual_accuracy.py
+- audits/prediction_accuracy_backtest/20_actual_truth_pairing_plan.csv
+- audits/prediction_accuracy_backtest/21_prediction_vs_actual_accuracy_summary.csv
+- audits/prediction_accuracy_backtest/22_prediction_vs_actual_accuracy_by_family.csv
+- audits/prediction_accuracy_backtest/23_prediction_vs_actual_accuracy_by_species.csv
+- audits/prediction_accuracy_backtest/24_prediction_vs_actual_accuracy_by_residency.csv
+- audits/prediction_accuracy_backtest/25_prediction_vs_actual_accuracy_by_point_bucket.csv
+- audits/prediction_accuracy_backtest/27_prediction_actual_circularity_audit.csv
+- audits/prediction_accuracy_backtest/PREDICTION_ENGINE_VERIFICATION_REPORT.md
+- audits/prediction_accuracy_backtest/ROLLING_HISTORICAL_BACKTEST_PLAN.md
+- WORK_LOG.md
+
+Generated ignored row-level outputs:
+- audits/prediction_accuracy_backtest/rowlevel_verification_outputs/
+
+Key results:
+- Evaluated pairs: 14.
+- Held pairs: 0.
+- Leakage failures: 0.
+- Joined rows with scorable probabilities: 299,404.
+- Target 2026 status: `EVALUATED_NO_SCORABLE_ACTUAL_PROBABILITY` for both production prediction files.
+- Target 2026 actual rows: 1,096; hunt-code rollup rows: 548; record kind: `POINT_ROW`; validation status: `PASS`.
+- Target 2026 was not rejected because `model_target_year=2027`; verification uses `actual_draw_year/source_year=2026`.
+- Target 2026 produced no MAE/RMSE because all 1,096 actual rows lack scorable probability/applicant/drawn fields.
+- Circularity audit labels: 12 `BASELINE_RETROSPECTIVE_NOT_FULL_ENGINE_EQUIVALENT`; 2 `INSUFFICIENT_METADATA`.
+- The 2021 zero-error result is retained in the metrics but labeled as baseline retrospective reconstruction, not full engine-equivalent forecast accuracy.
+
+Validation commands run:
+- python tools/prediction_accuracy_backtest/verify_prediction_vs_actual_accuracy.py --root .
+- python -m py_compile tools/prediction_accuracy_backtest/verify_prediction_vs_actual_accuracy.py
+- git check-ignore -v audits/prediction_accuracy_backtest/rowlevel_verification_outputs/prediction_vs_actual_2026_ml_draw_predictions_v1.csv
+- git diff --check
+- python tools/git_size_guard.py --warn-only
+
+Commit:
+- pending
+
 ## 2026-06-06T19:40:00Z - Verify retrospective predictions against actual draw truth
 
 Scope:

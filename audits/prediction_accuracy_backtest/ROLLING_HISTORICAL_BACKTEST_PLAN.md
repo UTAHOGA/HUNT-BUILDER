@@ -59,8 +59,9 @@ For target year N, the model may use draw-result and harvest information only th
 - Training cutoff: 2025
 - Allowed draw result years: 2021;2022;2023;2024;2025
 - Forbidden leakage years: 2026;2027;2028;2029
-- Best actual candidate: HOLD until actual 2026 draw results are published and validated
-- Status: HOLD_UNTIL_ACTUAL_RESULTS_PUBLISHED
+- Best actual candidate: `data_truth/draw_results_truth/normalized/draw_results_2026_for_2027_candidate_promotion_file_records.csv`
+- Status: EVALUATE_WITH_VALIDATED_LIMITED_2026_ACTUAL_TRUTH
+- Note: This file has `year=2026` and `model_target_year=2027`. For verification it is actual 2026 draw-result truth, not a 2026 training source.
 
 ## Engine Capability Check
 
@@ -94,7 +95,7 @@ Run the prediction-vs-actual verifier after retrospective materialization. It co
 - 2023 prediction vs 2022-for-2023 actual truth.
 - 2024 prediction vs 2023-for-2024 actual truth.
 - 2025 prediction vs 2024-for-2025 actual truth.
-- 2026 remains HOLD until actual 2026 draw results are published and validated.
+- 2026 prediction outputs are evaluated against the validated limited 2026 actual truth file when matching 2026 prediction outputs exist.
 
 ## Phase 7 Failure Diagnosis
 
@@ -144,6 +145,7 @@ The verifier writes small committed summary reports to:
 - `audits/prediction_accuracy_backtest/23_prediction_vs_actual_accuracy_by_species.csv`
 - `audits/prediction_accuracy_backtest/24_prediction_vs_actual_accuracy_by_residency.csv`
 - `audits/prediction_accuracy_backtest/25_prediction_vs_actual_accuracy_by_point_bucket.csv`
+- `audits/prediction_accuracy_backtest/27_prediction_actual_circularity_audit.csv`
 - `audits/prediction_accuracy_backtest/PREDICTION_ENGINE_VERIFICATION_REPORT.md`
 
 Ignored row-level joins are written to:
@@ -152,14 +154,15 @@ Ignored row-level joins are written to:
 
 Verification result from the latest run:
 
-- Evaluated pairs: 12.
-- Held pairs: 2 target-year 2026 prediction files.
+- Evaluated pairs: 14.
+- Held pairs: 0.
 - Leakage failures: 0.
 - Joined rows: 299,404 across evaluated pairs.
 - Target-year 2020: evaluated with medium confidence because the older extraction includes sparse summary rows.
 - Target-year 2021: evaluated with high confidence using the validated strict usable plus Sportsman source.
 - Target-years 2022-2025: evaluated against corrected same-target normalized candidate files.
-- Target-year 2026: held until actual 2026 draw results are published and validated.
+- Target-year 2026: evaluated against the validated limited 2026 actual truth file, but no MAE/RMSE score is produced because all 1,096 actual rows currently lack scorable probability/applicant/drawn fields.
+- Circularity audit: 12 retrospective pairs are labeled `BASELINE_RETROSPECTIVE_NOT_FULL_ENGINE_EQUIVALENT`; 2 target-year 2026 pairs are labeled `INSUFFICIENT_METADATA`.
 
 ## No-Leakage Behavior
 

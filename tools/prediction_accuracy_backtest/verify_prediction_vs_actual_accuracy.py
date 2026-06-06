@@ -20,12 +20,26 @@ from typing import Iterable
 
 SUMMARY_FIELDS = [
     "target_year",
+    "verification_target_year",
     "prediction_file",
     "prediction_kind",
     "actual_truth_file",
+    "actual_draw_year",
+    "actual_source_year",
+    "actual_model_target_year",
+    "actual_truth_status",
+    "scope",
+    "record_kind",
+    "validation_status",
     "pairing_status",
     "pairing_confidence",
     "pairing_reason",
+    "prediction_generation_method",
+    "prediction_probability_field",
+    "actual_probability_field",
+    "probability_exact_match_rate",
+    "identical_row_probability_count",
+    "warning_status",
     "prediction_rows",
     "actual_rows",
     "actual_usable_rows",
@@ -49,9 +63,18 @@ SUMMARY_FIELDS = [
 
 PAIRING_FIELDS = [
     "target_year",
+    "verification_target_year",
     "prediction_file",
     "prediction_kind",
     "actual_truth_file",
+    "actual_draw_year",
+    "actual_source_year",
+    "actual_model_target_year",
+    "actual_truth_status",
+    "scope",
+    "record_kind",
+    "validation_status",
+    "hunt_code_rollup_rows",
     "pairing_status",
     "pairing_confidence",
     "source_year_expected",
@@ -74,7 +97,9 @@ ROWLEVEL_FIELDS = [
     "points",
     "draw_pool",
     "prediction_probability",
+    "prediction_probability_field",
     "actual_probability",
+    "actual_probability_field",
     "error",
     "absolute_error",
     "join_tier",
@@ -102,6 +127,21 @@ GROUP_FIELDS = [
     "p90_abs_error",
 ]
 
+CIRCULARITY_FIELDS = [
+    "target_year",
+    "verification_target_year",
+    "prediction_file",
+    "prediction_kind",
+    "actual_truth_file",
+    "prediction_generation_method",
+    "actual_probability_field",
+    "prediction_probability_field",
+    "probability_exact_match_rate",
+    "identical_row_probability_count",
+    "joined_rows",
+    "warning_status",
+]
+
 PREDICTION_CANDIDATE_COLUMNS = [
     "p_draw",
     "p_draw_mean",
@@ -124,9 +164,13 @@ ACTUAL_CANDIDATE_COLUMNS = [
 class PredictionFile:
     kind: str
     relpath_template: str
+    fallback_relpath_template: str | None = None
 
     def path_for(self, root: Path, target_year: int) -> Path:
-        return root / self.relpath_template.format(target_year=target_year)
+        primary = root / self.relpath_template.format(target_year=target_year)
+        if primary.exists() or self.fallback_relpath_template is None:
+            return primary
+        return root / self.fallback_relpath_template.format(target_year=target_year)
 
 
 @dataclass(frozen=True)
@@ -136,9 +180,22 @@ class ActualSource:
     confidence: str
     reason: str
     hold: bool = False
+    source_year_expected_override: int | None = None
+    actual_draw_year: int | None = None
+    actual_source_year: int | None = None
+    actual_model_target_year: int | None = None
+    actual_truth_status: str = ""
+    scope: str = ""
+    actual_rows_expected: int | None = None
+    hunt_code_rollup_rows: int | None = None
+    record_kind: str = ""
+    validation_status: str = ""
+    allow_actual_model_target_after_verification_year: bool = False
 
     @property
     def source_year_expected(self) -> int:
+        if self.source_year_expected_override is not None:
+            return self.source_year_expected_override
         return self.target_year - 1
 
     def path_for(self, root: Path) -> Path:
@@ -154,8 +211,9 @@ class ActualAgg:
     model_target_years: Counter = field(default_factory=Counter)
     families: Counter = field(default_factory=Counter)
     species: Counter = field(default_factory=Counter)
+    probability_fields: Counter = field(default_factory=Counter)
 
-    def add(self, row: dict[str, str], probability: float) -> None:
+    def add(self, row: dict[str, str], probability: float, probability_field: str) -> None:
         self.probability_sum += probability
         self.count += 1
         self.source_files[_first_nonblank(row, ["source_file", "source_dataset"], "UNKNOWN")] += 1
@@ -163,6 +221,7 @@ class ActualAgg:
         self.model_target_years[_first_nonblank(row, ["model_target_year"], "")] += 1
         self.families[_first_nonblank(row, ["source_family", "source_classification", "source_dataset"], "UNKNOWN")] += 1
         self.species[_title(_first_nonblank(row, ["species", "database_species"], "UNKNOWN"))] += 1
+        self.probability_fields[probability_field or "UNKNOWN"] += 1
 
     @property
     def probability(self) -> float:
@@ -383,10 +442,20 @@ def actual_sources() -> dict[int, ActualSource]:
         ),
         2026: ActualSource(
             2026,
-            "data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.csv",
-            "HOLD_PENDING_VALIDATED_ACTUAL_2026",
-            "Held by instruction until actual 2026 draw results are published and validated.",
-            hold=True,
+            "data_truth/draw_results_truth/normalized/draw_results_2026_for_2027_candidate_promotion_file_records.csv",
+            "HIGH_VALIDATED_LIMITED_2026_CANDIDATE",
+            "Validated early 2026 actual draw-result truth. The file later feeds 2027 modeling, but this verifier uses actual draw year 2026 only as held-out truth for 2026 predictions.",
+            source_year_expected_override=2026,
+            actual_draw_year=2026,
+            actual_source_year=2026,
+            actual_model_target_year=2027,
+            actual_truth_status="ACTUAL_2026_RELEASED_EARLY",
+            scope="VALIDATED_LIMITED_CANDIDATE",
+            actual_rows_expected=1096,
+            hunt_code_rollup_rows=548,
+            record_kind="POINT_ROW",
+            validation_status="PASS",
+            allow_actual_model_target_after_verification_year=True,
         ),
     }
 
@@ -396,16 +465,18 @@ def prediction_files() -> list[PredictionFile]:
         PredictionFile(
             "predictive_bonus_engine_materialized",
             "audits/prediction_accuracy_backtest/retrospective_outputs/{target_year}/materialized/predictive_bonus_engine_{target_year}.materialized.csv",
+            "data_model/runtime_drafts/predictive_bonus_engine_{target_year}.materialized.csv",
         ),
         PredictionFile(
             "ml_draw_predictions_v1",
             "audits/prediction_accuracy_backtest/retrospective_outputs/{target_year}/materialized/ml_draw_predictions_v1.csv",
+            "processed_data/ml_draw_predictions_v1.csv",
         ),
     ]
 
 
 def build_actual_indexes(
-    rows: list[dict[str, str]], target_year: int
+    rows: list[dict[str, str]], target_year: int, actual_source: ActualSource
 ) -> tuple[dict[str, dict[tuple[str, ...], ActualAgg]], dict[str, int]]:
     indexes: dict[str, dict[tuple[str, ...], ActualAgg]] = {
         "hunt_residency_points_draw_pool": defaultdict(ActualAgg),
@@ -417,17 +488,21 @@ def build_actual_indexes(
         stats["actual_rows"] += 1
         year_value = row_year(row)
         model_target = model_target_year(row)
-        if year_value is not None and year_value >= target_year:
+        if year_value is not None and year_value > target_year:
             stats["actual_rows_excluded_for_leakage"] += 1
             continue
-        if model_target is not None and model_target > target_year:
+        if (
+            model_target is not None
+            and model_target > target_year
+            and not actual_source.allow_actual_model_target_after_verification_year
+        ):
             stats["actual_rows_excluded_for_leakage"] += 1
             continue
         hunt_code = norm_hunt_code(row.get("hunt_code") or row.get("candidate_hunt_code"))
         if not hunt_code:
             stats["actual_rows_without_hunt_code"] += 1
             continue
-        probability, _column = choose_actual_probability(row)
+        probability, probability_field = choose_actual_probability(row)
         if probability is None:
             stats["actual_rows_without_probability"] += 1
             continue
@@ -442,7 +517,7 @@ def build_actual_indexes(
             "hunt_residency": (hunt_code, residency),
         }
         for tier, key in keys.items():
-            indexes[tier][key].add(row, probability)
+            indexes[tier][key].add(row, probability, probability_field)
         stats["actual_usable_rows"] += 1
     return indexes, dict(stats)
 
@@ -485,6 +560,56 @@ def metric_dict(errors: list[float]) -> dict[str, str]:
         "median_abs_error": f"{median(abs_errors):.6f}",
         "p90_abs_error": f"{abs_errors[p90_index]:.6f}",
     }
+
+
+def source_metadata(actual_source: ActualSource) -> dict[str, object]:
+    return {
+        "verification_target_year": actual_source.target_year,
+        "actual_draw_year": actual_source.actual_draw_year or actual_source.source_year_expected,
+        "actual_source_year": actual_source.actual_source_year or actual_source.source_year_expected,
+        "actual_model_target_year": actual_source.actual_model_target_year or actual_source.target_year,
+        "actual_truth_status": actual_source.actual_truth_status,
+        "scope": actual_source.scope,
+        "record_kind": actual_source.record_kind,
+        "validation_status": actual_source.validation_status,
+        "hunt_code_rollup_rows": actual_source.hunt_code_rollup_rows or "",
+    }
+
+
+def method_summary(rows: list[dict[str, str]]) -> str:
+    counter = Counter()
+    for row in rows:
+        method = _first_nonblank(
+            row,
+            ["prediction_method", "model_strategy", "model_version", "rule_version"],
+            "INSUFFICIENT_METADATA",
+        )
+        counter[method] += 1
+    if not counter:
+        return "INSUFFICIENT_METADATA"
+    return "; ".join(f"{name}:{count}" for name, count in counter.most_common(5))
+
+
+def circular_warning_status(
+    exact_rate: float | None,
+    prediction_generation_method: str,
+    joined_rows: int,
+) -> str:
+    if joined_rows <= 0 or exact_rate is None:
+        return "INSUFFICIENT_METADATA"
+    method_lower = prediction_generation_method.lower()
+    is_baseline = (
+        "baseline" in method_lower
+        or "retrospective" in method_lower
+        or "average" in method_lower
+    )
+    if exact_rate >= 0.999999:
+        return "EXACT_COPY_OR_ACTUAL_DERIVED_OUTPUT"
+    if exact_rate >= 0.95:
+        return "POSSIBLE_CIRCULAR_COMPARISON"
+    if is_baseline:
+        return "BASELINE_RETROSPECTIVE_NOT_FULL_ENGINE_EQUIVALENT"
+    return "OK_TRUE_FORECAST_COMPARISON"
 
 
 def calibration(errors_rows: list[dict[str, str]]) -> tuple[str, str]:
@@ -536,6 +661,7 @@ def verify_pair(
 ) -> tuple[dict[str, object], dict[str, object], list[dict[str, object]]]:
     prediction_path = prediction_file.path_for(root, target_year)
     actual_path = actual_source.path_for(root)
+    metadata = source_metadata(actual_source)
     pairing_base = {
         "target_year": target_year,
         "prediction_file": str(prediction_path.relative_to(root)) if prediction_path.exists() else str(prediction_path),
@@ -544,6 +670,7 @@ def verify_pair(
         "pairing_confidence": actual_source.confidence,
         "source_year_expected": actual_source.source_year_expected,
         "reason": actual_source.reason,
+        **metadata,
     }
     if actual_source.hold:
         pairing = {
@@ -559,7 +686,10 @@ def verify_pair(
     if not prediction_path.exists() or not actual_path.exists():
         missing = []
         if not prediction_path.exists():
-            missing.append("missing_prediction_file")
+            if target_year == 2026:
+                missing.append("NO_2026_PREDICTION_OUTPUT_FOUND")
+            else:
+                missing.append("missing_prediction_file")
         if not actual_path.exists():
             missing.append("missing_actual_truth_file")
         pairing = {
@@ -575,8 +705,9 @@ def verify_pair(
         return pairing, summary, []
 
     _actual_header, actual_rows = csv_rows(actual_path)
-    actual_indexes, actual_stats = build_actual_indexes(actual_rows, target_year)
+    actual_indexes, actual_stats = build_actual_indexes(actual_rows, target_year, actual_source)
     _prediction_header, prediction_rows = csv_rows(prediction_path)
+    prediction_generation_method = method_summary(prediction_rows)
 
     stats = Counter(actual_stats)
     stats["prediction_rows"] = len(prediction_rows)
@@ -584,6 +715,9 @@ def verify_pair(
     errors: list[float] = []
     error_rows: list[dict[str, str]] = []
     join_counts = Counter()
+    prediction_probability_fields = Counter()
+    actual_probability_fields = Counter()
+    identical_probability_count = 0
 
     for row_number, row in enumerate(prediction_rows, start=2):
         hunt_code = norm_hunt_code(row.get("hunt_code") or row.get("candidate_hunt_code"))
@@ -591,6 +725,8 @@ def verify_pair(
         points = norm_points(row.get("points"))
         draw_pool = norm_draw_pool(row.get("draw_pool"))
         predicted, _pred_col = choose_probability(row, PREDICTION_CANDIDATE_COLUMNS)
+        if _pred_col:
+            prediction_probability_fields[_pred_col] += 1
         leaks = prediction_leaks(row, target_year)
         if leaks:
             stats["prediction_rows_with_leakage"] += 1
@@ -604,8 +740,13 @@ def verify_pair(
             continue
         actual_probability = actual.probability
         error = predicted - actual_probability
+        if abs(error) <= 1e-12:
+            identical_probability_count += 1
         errors.append(error)
         join_counts[join_tier] += 1
+        actual_probability_field = actual.top(actual.probability_fields)
+        if actual_probability_field:
+            actual_probability_fields[actual_probability_field] += 1
         rowlevel_row = {
             "target_year": target_year,
             "prediction_kind": prediction_file.kind,
@@ -616,7 +757,9 @@ def verify_pair(
             "points": points,
             "draw_pool": draw_pool,
             "prediction_probability": f"{predicted:.8f}",
+            "prediction_probability_field": _pred_col,
             "actual_probability": f"{actual_probability:.8f}",
+            "actual_probability_field": actual_probability_field,
             "error": f"{error:.8f}",
             "absolute_error": f"{abs(error):.8f}",
             "join_tier": join_tier,
@@ -640,12 +783,21 @@ def verify_pair(
 
     metric_values = metric_dict(errors)
     calibration_counts, calibration_means = calibration(error_rows)
+    exact_rate = (identical_probability_count / len(errors)) if errors else None
+    warning_status = circular_warning_status(exact_rate, prediction_generation_method, len(errors))
+    prediction_probability_field = prediction_probability_fields.most_common(1)[0][0] if prediction_probability_fields else ""
+    actual_probability_field = actual_probability_fields.most_common(1)[0][0] if actual_probability_fields else ""
     no_leakage_status = (
         "PASS"
         if stats.get("actual_rows_excluded_for_leakage", 0) == 0 and stats.get("prediction_rows_with_leakage", 0) == 0
         else "FAIL"
     )
-    pairing_status = "EVALUATED" if errors else "INSUFFICIENT_JOINED_ROWS"
+    if errors:
+        pairing_status = "EVALUATED"
+    elif target_year == 2026 and stats.get("actual_rows", 0) and stats.get("actual_usable_rows", 0) == 0:
+        pairing_status = "EVALUATED_NO_SCORABLE_ACTUAL_PROBABILITY"
+    else:
+        pairing_status = "INSUFFICIENT_JOINED_ROWS"
     pairing = {
         **pairing_base,
         "pairing_status": pairing_status,
@@ -659,6 +811,12 @@ def verify_pair(
     summary = {
         **pairing,
         "pairing_reason": actual_source.reason,
+        "prediction_generation_method": prediction_generation_method,
+        "prediction_probability_field": prediction_probability_field,
+        "actual_probability_field": actual_probability_field,
+        "probability_exact_match_rate": f"{exact_rate:.6f}" if exact_rate is not None else "",
+        "identical_row_probability_count": identical_probability_count,
+        "warning_status": warning_status,
         "actual_rows": stats.get("actual_rows", 0),
         "actual_usable_rows": stats.get("actual_usable_rows", 0),
         "joined_rows": len(errors),
@@ -716,11 +874,12 @@ def markdown_report(
     out_dir: Path,
     pairing_rows: list[dict[str, object]],
     summary_rows: list[dict[str, object]],
+    circularity_rows: list[dict[str, object]],
     family_rows: list[dict[str, object]],
     species_rows: list[dict[str, object]],
     residency_rows: list[dict[str, object]],
 ) -> None:
-    evaluated = [row for row in summary_rows if row.get("pairing_status") == "EVALUATED"]
+    evaluated = [row for row in summary_rows if str(row.get("pairing_status", "")).startswith("EVALUATED")]
     held = [row for row in pairing_rows if row.get("pairing_status") == "HOLD"]
     leakage_failures = [row for row in summary_rows if row.get("no_leakage_status") == "FAIL"]
 
@@ -764,8 +923,23 @@ def markdown_report(
             f"| {row.get('target_year')} | {row.get('prediction_kind')} | HOLD | {row.get('pairing_confidence')} | 0 |  |  |  |"
         )
 
+    warning_counts = Counter(str(row.get("warning_status", "INSUFFICIENT_METADATA")) for row in circularity_rows)
     lines.extend(
         [
+            "",
+            "## Forecast Vs Reconstruction Warning Labels",
+            "",
+            "| Warning status | Pair count |",
+            "| --- | ---: |",
+        ]
+    )
+    for status, count in sorted(warning_counts.items()):
+        lines.append(f"| {status} | {count} |")
+
+    lines.extend(
+        [
+            "",
+            "Zero-error or near-zero-error rows are retained in the metrics, but they are not presented as standalone proof of live forecast accuracy when the generation method indicates a baseline retrospective reconstruction or when probabilities exactly match actual truth.",
             "",
             "## No-Leakage Status",
             "",
@@ -788,9 +962,10 @@ def markdown_report(
             "",
             "## Notes",
             "",
-            "- Target 2026 is intentionally held until actual 2026 draw results are published and validated.",
+            "- Target 2026 is evaluated when production 2026 prediction outputs are present, using the validated limited 2026 actual truth file for evaluation only.",
+            "- The 2026 actual truth file has `model_target_year=2027`; that is not treated as leakage because the verification target uses `actual_draw_year/source_year=2026`.",
             "- Row-level joins are written under an ignored folder and are not intended for GitHub commits.",
-            "- These results verify the retrospective materializer wiring and baseline probability reproduction; they are not a claim that the baseline is full engine-equivalent.",
+            "- Retrospective baseline rows are separated from true forecast comparisons by `27_prediction_actual_circularity_audit.csv`.",
         ]
     )
     (out_dir / "PREDICTION_ENGINE_VERIFICATION_REPORT.md").write_text(
@@ -823,6 +998,10 @@ def main() -> int:
     species_rows = group_metrics(all_rowlevel_rows, "species")
     residency_rows = group_metrics(all_rowlevel_rows, "residency")
     point_bucket_rows = group_metrics(all_rowlevel_rows, "point_bucket")
+    circularity_rows = [
+        {field: row.get(field, "") for field in CIRCULARITY_FIELDS}
+        for row in summary_rows
+    ]
 
     write_csv(out_dir / "20_actual_truth_pairing_plan.csv", PAIRING_FIELDS, pairing_rows)
     write_csv(out_dir / "21_prediction_vs_actual_accuracy_summary.csv", SUMMARY_FIELDS, summary_rows)
@@ -830,10 +1009,11 @@ def main() -> int:
     write_csv(out_dir / "23_prediction_vs_actual_accuracy_by_species.csv", GROUP_FIELDS, species_rows)
     write_csv(out_dir / "24_prediction_vs_actual_accuracy_by_residency.csv", GROUP_FIELDS, residency_rows)
     write_csv(out_dir / "25_prediction_vs_actual_accuracy_by_point_bucket.csv", GROUP_FIELDS, point_bucket_rows)
-    markdown_report(out_dir, pairing_rows, summary_rows, family_rows, species_rows, residency_rows)
+    write_csv(out_dir / "27_prediction_actual_circularity_audit.csv", CIRCULARITY_FIELDS, circularity_rows)
+    markdown_report(out_dir, pairing_rows, summary_rows, circularity_rows, family_rows, species_rows, residency_rows)
 
     leakage_failures = [row for row in summary_rows if row.get("no_leakage_status") == "FAIL"]
-    evaluated = [row for row in summary_rows if row.get("pairing_status") == "EVALUATED"]
+    evaluated = [row for row in summary_rows if str(row.get("pairing_status", "")).startswith("EVALUATED")]
     print(
         json.dumps(
             {
