@@ -32,7 +32,7 @@ Validation commands run:
 - python tools/git_size_guard.py --warn-only
 
 Commit:
-- Pending final validation and commit.
+- d7263da8
 
 ## 2026-06-06T20:19:12+00:00 - Validate source draw years and run controlled 2025/2026 prediction materializations
 
@@ -75,7 +75,7 @@ Validation commands run:
 - python tools/git_size_guard.py --warn-only
 
 Commit:
-- Pending final validation and commit.
+- d7263da8
 
 ## 2026-06-06T20:55:00Z - Audit 2025 truth to 2026 model promotion candidates
 
