@@ -1,3 +1,40 @@
+## 2026-06-06T20:55:00Z - Audit 2025 truth to 2026 model promotion candidates
+
+Scope:
+- Added a read-only promotion-candidate audit for model-run outputs under `audits/prediction_model_runs`.
+- Compared `2026_from_2025_truth_pdf_draw_results` and `2027_from_2026_dwr_released_candidate` against current production/runtime surfaces.
+- Marked the 2027-from-2026 candidate as `LIMITED_CANDIDATE_DO_NOT_PROMOTE_TO_PRODUCTION_ODDS`.
+- Did not promote or modify any production/runtime files.
+- Did not modify `DATABASE.csv`, `draw_results_long.csv`, website files, R2 files, or runtime manifests.
+
+Files changed:
+- tools/prediction_accuracy_backtest/audit_promotion_candidates.py
+- audits/prediction_model_runs/04_promotion_candidate_comparison.csv
+- audits/prediction_model_runs/05_promotion_candidate_summary.json
+- audits/prediction_model_runs/PROMOTION_CANDIDATE_REVIEW.md
+- WORK_LOG.md
+
+Key results:
+- Candidate runs audited: 2.
+- Production files compared per run: 6.
+- Comparable candidate outputs found: 4.
+- Missing candidate outputs: 8.
+- Direct-promotion recommendations: 0.
+- Do-not-promote rows: 12.
+- `2026_from_2025_truth_pdf_draw_results/ml_draw_predictions_v1.csv`: 22,807 rows, 131 columns, 911 hunt codes; production has 27,940 rows, 180 columns, 1,065 hunt codes; missing 49 production columns and 5 production draw families.
+- `2026_from_2025_truth_pdf_draw_results/draw_reality_engine_predictive_v2.csv`: 22,807 rows, 123 columns, 911 hunt codes; production has 26,389 rows, 173 columns, 864 hunt codes; missing 50 production columns and `PREFERENCE_DEDICATED_HUNTER_DEER`.
+- Candidate run did not generate replacements for `predictive_bonus_engine_2026.materialized.csv`, `point_ladder_view.csv`, `hunt_research_2026.json`, or `hunt_research_2026_ladder.json`.
+- `2027_from_2026_dwr_released_candidate` remains do-not-promote for production odds because the 2026 released candidate source has no scorable probability/applicant/drawn fields.
+
+Validation commands run:
+- python tools/prediction_accuracy_backtest/audit_promotion_candidates.py --root .
+- python -m py_compile tools/prediction_accuracy_backtest/audit_promotion_candidates.py
+- git diff --check
+- python tools/git_size_guard.py --warn-only
+
+Commit:
+- pending
+
 ## 2026-06-06T20:25:00Z - Correct 2026 prediction verification and add circularity audit
 
 Scope:
