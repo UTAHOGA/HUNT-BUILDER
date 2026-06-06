@@ -1,3 +1,52 @@
+## 2026-06-06T19:40:00Z - Verify retrospective predictions against actual draw truth
+
+Scope:
+- Added an audit-only prediction-vs-actual verifier for retrospective target years 2020-2026.
+- Corrected the actual truth pairing convention in the rolling backtest plan so each target year compares against the same-target source file rather than the next-year file.
+- Generated small committed pairing, accuracy, and weakness summary reports.
+- Wrote large row-level join evidence under an ignored audit folder.
+- Did not modify production feeders, `DATABASE.csv`, `draw_results_long.csv`, raw source files, website files, runtime manifests, or R2 objects.
+
+Files changed:
+- .gitignore
+- tools/prediction_accuracy_backtest/verify_prediction_vs_actual_accuracy.py
+- audits/prediction_accuracy_backtest/20_actual_truth_pairing_plan.csv
+- audits/prediction_accuracy_backtest/21_prediction_vs_actual_accuracy_summary.csv
+- audits/prediction_accuracy_backtest/22_prediction_vs_actual_accuracy_by_family.csv
+- audits/prediction_accuracy_backtest/23_prediction_vs_actual_accuracy_by_species.csv
+- audits/prediction_accuracy_backtest/24_prediction_vs_actual_accuracy_by_residency.csv
+- audits/prediction_accuracy_backtest/25_prediction_vs_actual_accuracy_by_point_bucket.csv
+- audits/prediction_accuracy_backtest/PREDICTION_ENGINE_VERIFICATION_REPORT.md
+- audits/prediction_accuracy_backtest/ROLLING_HISTORICAL_BACKTEST_PLAN.md
+- WORK_LOG.md
+
+Generated ignored row-level outputs:
+- audits/prediction_accuracy_backtest/rowlevel_verification_outputs/
+
+Key results:
+- Evaluated pairs: 12.
+- Held pairs: 2 target-year 2026 prediction files.
+- Leakage failures: 0.
+- Joined rows: 299,404 across evaluated pairs.
+- Target 2020 evaluated with medium confidence; MAE 0.031203 and RMSE 0.085675 for both materialized prediction files.
+- Target 2021 evaluated with high confidence using the validated strict usable plus Sportsman source; MAE 0.000000 and RMSE 0.000000.
+- Target 2022 evaluated after parsing compact `success_ratio` values and source-backed `total_drawn / eligible_applicants`; MAE 0.000216 and RMSE 0.001704.
+- Target 2023 evaluated; MAE 0.030129 and RMSE 0.103580.
+- Target 2024 evaluated; MAE 0.068271 and RMSE 0.164636.
+- Target 2025 evaluated; MAE 0.070644 and RMSE 0.167379.
+- Target 2026 remains HOLD until actual 2026 draw results are published and validated.
+- Biggest family weaknesses by MAE include 2024 `LIMITED_ENTRY_DEER`, 2024 `BLACK_BEAR`, and 2024 `ANTLERLESS_BIG_GAME`.
+
+Validation commands run:
+- python tools/prediction_accuracy_backtest/verify_prediction_vs_actual_accuracy.py --root .
+- python -m py_compile tools/prediction_accuracy_backtest/verify_prediction_vs_actual_accuracy.py
+- git check-ignore -v audits/prediction_accuracy_backtest/rowlevel_verification_outputs/prediction_vs_actual_2025_ml_draw_predictions_v1.csv
+- git diff --check
+- python tools/git_size_guard.py --warn-only
+
+Commit:
+- pending
+
 ## 2026-06-06T18:20:00Z - Add target-year 2021 retrospective materialized outputs
 
 Scope:

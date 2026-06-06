@@ -1,0 +1,123 @@
+target_year,prediction_kind,group_value,joined_rows,mae,rmse,bias,median_abs_error,p90_abs_error
+2020,ml_draw_predictions_v1,Bison,784,0.000000,0.000000,0.000000,0.000000,0.000000
+2020,ml_draw_predictions_v1,Black Bear,2601,0.000000,0.000000,0.000000,0.000000,0.000000
+2020,ml_draw_predictions_v1,Cougar,1,0.000000,0.000000,-0.000000,0.000000,0.000000
+2020,ml_draw_predictions_v1,Deer,16253,0.028574,0.068757,0.001847,0.000000,0.092641
+2020,ml_draw_predictions_v1,Desert Bighorn Sheep,487,0.000000,0.000000,0.000000,0.000000,0.000000
+2020,ml_draw_predictions_v1,Elk,16648,0.043055,0.105204,0.007281,0.000000,0.137255
+2020,ml_draw_predictions_v1,Moose,1322,0.000000,0.000000,-0.000000,0.000000,0.000000
+2020,ml_draw_predictions_v1,Mountain Goat,757,0.000000,0.000000,0.000000,0.000000,0.000000
+2020,ml_draw_predictions_v1,Pronghorn,5436,0.038955,0.110676,0.009127,0.000000,0.139343
+2020,ml_draw_predictions_v1,Rocky Mountain Bighorn Sheep,352,0.000000,0.000000,-0.000000,0.000000,0.000000
+2020,ml_draw_predictions_v1,Turkey,1,0.000000,0.000000,-0.000000,0.000000,0.000000
+2020,predictive_bonus_engine_materialized,Bison,784,0.000000,0.000000,0.000000,0.000000,0.000000
+2020,predictive_bonus_engine_materialized,Black Bear,2601,0.000000,0.000000,0.000000,0.000000,0.000000
+2020,predictive_bonus_engine_materialized,Cougar,1,0.000000,0.000000,-0.000000,0.000000,0.000000
+2020,predictive_bonus_engine_materialized,Deer,16253,0.028574,0.068757,0.001847,0.000000,0.092641
+2020,predictive_bonus_engine_materialized,Desert Bighorn Sheep,487,0.000000,0.000000,0.000000,0.000000,0.000000
+2020,predictive_bonus_engine_materialized,Elk,16648,0.043055,0.105204,0.007281,0.000000,0.137255
+2020,predictive_bonus_engine_materialized,Moose,1322,0.000000,0.000000,-0.000000,0.000000,0.000000
+2020,predictive_bonus_engine_materialized,Mountain Goat,757,0.000000,0.000000,0.000000,0.000000,0.000000
+2020,predictive_bonus_engine_materialized,Pronghorn,5436,0.038955,0.110676,0.009127,0.000000,0.139343
+2020,predictive_bonus_engine_materialized,Rocky Mountain Bighorn Sheep,352,0.000000,0.000000,-0.000000,0.000000,0.000000
+2020,predictive_bonus_engine_materialized,Turkey,1,0.000000,0.000000,-0.000000,0.000000,0.000000
+2021,ml_draw_predictions_v1,Bison,91,0.000000,0.000000,0.000000,0.000000,0.000000
+2021,ml_draw_predictions_v1,Black Bear,587,0.000000,0.000000,0.000000,0.000000,0.000000
+2021,ml_draw_predictions_v1,Cougar,128,0.000000,0.000000,0.000000,0.000000,0.000000
+2021,ml_draw_predictions_v1,Deer,2331,0.000000,0.000000,0.000000,0.000000,0.000000
+2021,ml_draw_predictions_v1,Desert Bighorn Sheep,60,0.000000,0.000000,0.000000,0.000000,0.000000
+2021,ml_draw_predictions_v1,Elk,2408,0.000000,0.000000,0.000000,0.000000,0.000000
+2021,ml_draw_predictions_v1,Moose,107,0.000000,0.000000,0.000000,0.000000,0.000000
+2021,ml_draw_predictions_v1,Mountain Goat,82,0.000000,0.000000,0.000000,0.000000,0.000000
+2021,ml_draw_predictions_v1,Pronghorn,748,0.000000,0.000000,-0.000000,0.000000,0.000000
+2021,ml_draw_predictions_v1,Rocky Mountain Bighorn Sheep,56,0.000000,0.000000,0.000000,0.000000,0.000000
+2021,ml_draw_predictions_v1,Turkey,61,0.000000,0.000000,-0.000000,0.000000,0.000000
+2021,predictive_bonus_engine_materialized,Bison,91,0.000000,0.000000,0.000000,0.000000,0.000000
+2021,predictive_bonus_engine_materialized,Black Bear,587,0.000000,0.000000,0.000000,0.000000,0.000000
+2021,predictive_bonus_engine_materialized,Cougar,128,0.000000,0.000000,0.000000,0.000000,0.000000
+2021,predictive_bonus_engine_materialized,Deer,2331,0.000000,0.000000,0.000000,0.000000,0.000000
+2021,predictive_bonus_engine_materialized,Desert Bighorn Sheep,60,0.000000,0.000000,0.000000,0.000000,0.000000
+2021,predictive_bonus_engine_materialized,Elk,2408,0.000000,0.000000,0.000000,0.000000,0.000000
+2021,predictive_bonus_engine_materialized,Moose,107,0.000000,0.000000,0.000000,0.000000,0.000000
+2021,predictive_bonus_engine_materialized,Mountain Goat,82,0.000000,0.000000,0.000000,0.000000,0.000000
+2021,predictive_bonus_engine_materialized,Pronghorn,748,0.000000,0.000000,-0.000000,0.000000,0.000000
+2021,predictive_bonus_engine_materialized,Rocky Mountain Bighorn Sheep,56,0.000000,0.000000,0.000000,0.000000,0.000000
+2021,predictive_bonus_engine_materialized,Turkey,61,0.000000,0.000000,-0.000000,0.000000,0.000000
+2022,ml_draw_predictions_v1,Bison,336,0.000170,0.001429,-0.000019,0.000000,0.000000
+2022,ml_draw_predictions_v1,Deer,5557,0.000135,0.001099,0.000030,0.000000,0.000000
+2022,ml_draw_predictions_v1,Desert Bighorn Sheep,542,0.000018,0.000415,0.000018,0.000000,0.000000
+2022,ml_draw_predictions_v1,Elk,6263,0.000125,0.001267,0.000001,0.000000,0.000000
+2022,ml_draw_predictions_v1,Moose,748,0.000002,0.000047,-0.000002,0.000000,0.000000
+2022,ml_draw_predictions_v1,Mountain Goat,605,0.000075,0.000857,-0.000069,0.000000,0.000000
+2022,ml_draw_predictions_v1,Pronghorn,2928,0.000785,0.003540,0.000249,0.000000,0.002353
+2022,ml_draw_predictions_v1,Rocky Mountain Bighorn Sheep,485,0.000046,0.000876,-0.000046,0.000000,0.000000
+2022,ml_draw_predictions_v1,Unknown,3126,0.000151,0.001234,0.000085,0.000000,0.000000
+2022,predictive_bonus_engine_materialized,Bison,336,0.000170,0.001429,-0.000019,0.000000,0.000000
+2022,predictive_bonus_engine_materialized,Deer,5557,0.000135,0.001099,0.000030,0.000000,0.000000
+2022,predictive_bonus_engine_materialized,Desert Bighorn Sheep,542,0.000018,0.000415,0.000018,0.000000,0.000000
+2022,predictive_bonus_engine_materialized,Elk,6263,0.000125,0.001267,0.000001,0.000000,0.000000
+2022,predictive_bonus_engine_materialized,Moose,748,0.000002,0.000047,-0.000002,0.000000,0.000000
+2022,predictive_bonus_engine_materialized,Mountain Goat,605,0.000075,0.000857,-0.000069,0.000000,0.000000
+2022,predictive_bonus_engine_materialized,Pronghorn,2928,0.000785,0.003540,0.000249,0.000000,0.002353
+2022,predictive_bonus_engine_materialized,Rocky Mountain Bighorn Sheep,485,0.000046,0.000876,-0.000046,0.000000,0.000000
+2022,predictive_bonus_engine_materialized,Unknown,3126,0.000151,0.001234,0.000085,0.000000,0.000000
+2023,ml_draw_predictions_v1,Bison,1175,0.026179,0.109528,0.008260,0.000000,0.044024
+2023,ml_draw_predictions_v1,Black Bear,1335,0.000000,0.000000,0.000000,0.000000,0.000000
+2023,ml_draw_predictions_v1,Deer,7480,0.022543,0.089190,0.002826,0.000000,0.050000
+2023,ml_draw_predictions_v1,Desert Bighorn Sheep,643,0.005467,0.038450,0.000316,0.000000,0.000836
+2023,ml_draw_predictions_v1,Elk,8481,0.037742,0.122228,0.008616,0.000000,0.094189
+2023,ml_draw_predictions_v1,Moose,1378,0.003869,0.043186,-0.000640,0.000000,0.000000
+2023,ml_draw_predictions_v1,Mountain Goat,595,0.028797,0.100564,-0.000583,0.000000,0.062500
+2023,ml_draw_predictions_v1,Pronghorn,3798,0.056297,0.124736,0.006435,0.000000,0.175694
+2023,ml_draw_predictions_v1,Rocky Mountain Bighorn Sheep,514,0.011630,0.083326,0.008921,0.000000,0.013514
+2023,predictive_bonus_engine_materialized,Bison,1175,0.026179,0.109528,0.008260,0.000000,0.044024
+2023,predictive_bonus_engine_materialized,Black Bear,1335,0.000000,0.000000,0.000000,0.000000,0.000000
+2023,predictive_bonus_engine_materialized,Deer,7480,0.022543,0.089190,0.002826,0.000000,0.050000
+2023,predictive_bonus_engine_materialized,Desert Bighorn Sheep,643,0.005467,0.038450,0.000316,0.000000,0.000836
+2023,predictive_bonus_engine_materialized,Elk,8481,0.037742,0.122228,0.008616,0.000000,0.094189
+2023,predictive_bonus_engine_materialized,Moose,1378,0.003869,0.043186,-0.000640,0.000000,0.000000
+2023,predictive_bonus_engine_materialized,Mountain Goat,595,0.028797,0.100564,-0.000583,0.000000,0.062500
+2023,predictive_bonus_engine_materialized,Pronghorn,3798,0.056297,0.124736,0.006435,0.000000,0.175694
+2023,predictive_bonus_engine_materialized,Rocky Mountain Bighorn Sheep,514,0.011630,0.083326,0.008921,0.000000,0.013514
+2024,ml_draw_predictions_v1,Bear,42,0.350458,0.552003,-0.318712,0.000000,1.000000
+2024,ml_draw_predictions_v1,Bison,740,0.017100,0.088990,0.012773,0.000000,0.019608
+2024,ml_draw_predictions_v1,Black Bear,1404,0.092976,0.186703,-0.011483,0.010985,0.333333
+2024,ml_draw_predictions_v1,Deer,7426,0.080867,0.177564,-0.009176,0.011120,0.244699
+2024,ml_draw_predictions_v1,Desert Bighorn Sheep,615,0.014731,0.075880,0.012274,0.000000,0.017544
+2024,ml_draw_predictions_v1,Elk,8489,0.070281,0.173549,0.037125,0.000000,0.232318
+2024,ml_draw_predictions_v1,Moose,1189,0.013802,0.075522,0.011857,0.000000,0.011585
+2024,ml_draw_predictions_v1,Mountain Goat,567,0.025422,0.085457,0.015284,0.000000,0.047619
+2024,ml_draw_predictions_v1,Pronghorn,3708,0.079664,0.161700,0.029649,0.032430,0.190476
+2024,ml_draw_predictions_v1,Rocky Mountain Bighorn Sheep,514,0.028406,0.128638,0.027061,0.000000,0.027778
+2024,ml_draw_predictions_v1,Turkey,91,0.023384,0.066028,0.013702,0.000000,0.062500
+2024,ml_draw_predictions_v1,Unknown,219,0.000000,0.000000,0.000000,0.000000,0.000000
+2024,predictive_bonus_engine_materialized,Bear,42,0.350458,0.552003,-0.318712,0.000000,1.000000
+2024,predictive_bonus_engine_materialized,Bison,740,0.017100,0.088990,0.012773,0.000000,0.019608
+2024,predictive_bonus_engine_materialized,Black Bear,1404,0.092976,0.186703,-0.011483,0.010985,0.333333
+2024,predictive_bonus_engine_materialized,Deer,7426,0.080867,0.177564,-0.009176,0.011120,0.244699
+2024,predictive_bonus_engine_materialized,Desert Bighorn Sheep,615,0.014731,0.075880,0.012274,0.000000,0.017544
+2024,predictive_bonus_engine_materialized,Elk,8489,0.070281,0.173549,0.037125,0.000000,0.232318
+2024,predictive_bonus_engine_materialized,Moose,1189,0.013802,0.075522,0.011857,0.000000,0.011585
+2024,predictive_bonus_engine_materialized,Mountain Goat,567,0.025422,0.085457,0.015284,0.000000,0.047619
+2024,predictive_bonus_engine_materialized,Pronghorn,3708,0.079664,0.161700,0.029649,0.032430,0.190476
+2024,predictive_bonus_engine_materialized,Rocky Mountain Bighorn Sheep,514,0.028406,0.128638,0.027061,0.000000,0.027778
+2024,predictive_bonus_engine_materialized,Turkey,91,0.023384,0.066028,0.013702,0.000000,0.062500
+2024,predictive_bonus_engine_materialized,Unknown,219,0.000000,0.000000,0.000000,0.000000,0.000000
+2025,ml_draw_predictions_v1,Bison,929,0.045585,0.151405,0.030293,0.000000,0.086378
+2025,ml_draw_predictions_v1,Deer,7361,0.078293,0.168741,0.021559,0.023810,0.222222
+2025,ml_draw_predictions_v1,Desert Bighorn Sheep,640,0.037971,0.136005,0.008553,0.000000,0.060606
+2025,ml_draw_predictions_v1,Elk,10373,0.063606,0.167974,0.027354,0.001110,0.157229
+2025,ml_draw_predictions_v1,Moose,937,0.029767,0.106890,0.019557,0.000000,0.041667
+2025,ml_draw_predictions_v1,Mountain Goat,768,0.040770,0.120275,0.025806,0.003768,0.075847
+2025,ml_draw_predictions_v1,Pronghorn,4512,0.088156,0.163143,0.002360,0.042328,0.209958
+2025,ml_draw_predictions_v1,Rocky Mountain Bighorn Sheep,576,0.042284,0.141305,0.024071,0.000985,0.051533
+2025,ml_draw_predictions_v1,Unknown,1312,0.115955,0.245458,-0.048138,0.008333,0.500000
+2025,predictive_bonus_engine_materialized,Bison,929,0.045585,0.151405,0.030293,0.000000,0.086378
+2025,predictive_bonus_engine_materialized,Deer,7361,0.078293,0.168741,0.021559,0.023810,0.222222
+2025,predictive_bonus_engine_materialized,Desert Bighorn Sheep,640,0.037971,0.136005,0.008553,0.000000,0.060606
+2025,predictive_bonus_engine_materialized,Elk,10373,0.063606,0.167974,0.027354,0.001110,0.157229
+2025,predictive_bonus_engine_materialized,Moose,937,0.029767,0.106890,0.019557,0.000000,0.041667
+2025,predictive_bonus_engine_materialized,Mountain Goat,768,0.040770,0.120275,0.025806,0.003768,0.075847
+2025,predictive_bonus_engine_materialized,Pronghorn,4512,0.088156,0.163143,0.002360,0.042328,0.209958
+2025,predictive_bonus_engine_materialized,Rocky Mountain Bighorn Sheep,576,0.042284,0.141305,0.024071,0.000985,0.051533
+2025,predictive_bonus_engine_materialized,Unknown,1312,0.115955,0.245458,-0.048138,0.008333,0.500000

@@ -31,35 +31,35 @@ For target year N, the model may use draw-result and harvest information only th
 - Training cutoff: 2021
 - Allowed draw result years: 2021
 - Forbidden leakage years: 2022;2023;2024;2025;2026;2027;2028;2029
-- Best actual candidate: `data_truth/draw_results_truth/normalized/draw_results_2022_for_2023_candidate_promotion_file_records.csv`
+- Best actual candidate: `data_truth/draw_results_truth/normalized/draw_results_2021_for_2022_candidate_promotion_file_records.csv`
 - Status: READY_TO_RUN_RETROSPECTIVE
 
 ### Target 2023
 - Training cutoff: 2022
 - Allowed draw result years: 2021;2022
 - Forbidden leakage years: 2023;2024;2025;2026;2027;2028;2029
-- Best actual candidate: `data_truth/draw_results_truth/normalized/draw_results_2023_for_2024_candidate_promotion_file_records.csv`
+- Best actual candidate: `data_truth/draw_results_truth/normalized/draw_results_2022_for_2023_candidate_promotion_file_records.csv`
 - Status: READY_TO_RUN_RETROSPECTIVE
 
 ### Target 2024
 - Training cutoff: 2023
 - Allowed draw result years: 2021;2022;2023
 - Forbidden leakage years: 2024;2025;2026;2027;2028;2029
-- Best actual candidate: `data_truth/draw_results_truth/normalized/draw_results_2024_for_2025_candidate_promotion_file_records.csv`
+- Best actual candidate: `data_truth/draw_results_truth/normalized/draw_results_2023_for_2024_candidate_promotion_file_records.csv`
 - Status: READY_TO_RUN_RETROSPECTIVE
 
 ### Target 2025
 - Training cutoff: 2024
 - Allowed draw result years: 2021;2022;2023;2024
 - Forbidden leakage years: 2025;2026;2027;2028;2029
-- Best actual candidate: `data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.csv`
+- Best actual candidate: `data_truth/draw_results_truth/normalized/draw_results_2024_for_2025_candidate_promotion_file_records.csv`
 - Status: READY_TO_RUN_RETROSPECTIVE
 
 ### Target 2026
 - Training cutoff: 2025
 - Allowed draw result years: 2021;2022;2023;2024;2025
 - Forbidden leakage years: 2026;2027;2028;2029
-- Best actual candidate: `data_truth/draw_results_truth/normalized/draw_results_long.csv`
+- Best actual candidate: HOLD until actual 2026 draw results are published and validated
 - Status: HOLD_UNTIL_ACTUAL_RESULTS_PUBLISHED
 
 ## Engine Capability Check
@@ -86,7 +86,15 @@ For target year N, the model may use draw-result and harvest information only th
 
 ## Next Step
 
-Create a retrospective runner that calls the engine for target years 2022-2025 using training cutoffs, writes predictions to audits/prediction_accuracy_backtest/retrospective_outputs/, and compares each target year against actual raw draw results for that same target year.
+Run the prediction-vs-actual verifier after retrospective materialization. It compares each target year against the corrected same-target actual source:
+
+- 2020 prediction vs 2019-for-2020 actual truth.
+- 2021 prediction vs validated strict 2020-for-2021 actual truth.
+- 2022 prediction vs 2021-for-2022 actual truth.
+- 2023 prediction vs 2022-for-2023 actual truth.
+- 2024 prediction vs 2023-for-2024 actual truth.
+- 2025 prediction vs 2024-for-2025 actual truth.
+- 2026 remains HOLD until actual 2026 draw results are published and validated.
 
 ## Phase 7 Failure Diagnosis
 
@@ -121,6 +129,37 @@ For each target year, it writes:
 - `ml_draw_predictions_v1.csv`
 - `materialization_audit.json`
 - `materialization_audit.csv`
+
+## Prediction Vs Actual Verification Added
+
+Created:
+
+`tools/prediction_accuracy_backtest/verify_prediction_vs_actual_accuracy.py`
+
+The verifier writes small committed summary reports to:
+
+- `audits/prediction_accuracy_backtest/20_actual_truth_pairing_plan.csv`
+- `audits/prediction_accuracy_backtest/21_prediction_vs_actual_accuracy_summary.csv`
+- `audits/prediction_accuracy_backtest/22_prediction_vs_actual_accuracy_by_family.csv`
+- `audits/prediction_accuracy_backtest/23_prediction_vs_actual_accuracy_by_species.csv`
+- `audits/prediction_accuracy_backtest/24_prediction_vs_actual_accuracy_by_residency.csv`
+- `audits/prediction_accuracy_backtest/25_prediction_vs_actual_accuracy_by_point_bucket.csv`
+- `audits/prediction_accuracy_backtest/PREDICTION_ENGINE_VERIFICATION_REPORT.md`
+
+Ignored row-level joins are written to:
+
+`audits/prediction_accuracy_backtest/rowlevel_verification_outputs/`
+
+Verification result from the latest run:
+
+- Evaluated pairs: 12.
+- Held pairs: 2 target-year 2026 prediction files.
+- Leakage failures: 0.
+- Joined rows: 299,404 across evaluated pairs.
+- Target-year 2020: evaluated with medium confidence because the older extraction includes sparse summary rows.
+- Target-year 2021: evaluated with high confidence using the validated strict usable plus Sportsman source.
+- Target-years 2022-2025: evaluated against corrected same-target normalized candidate files.
+- Target-year 2026: held until actual 2026 draw results are published and validated.
 
 ## No-Leakage Behavior
 

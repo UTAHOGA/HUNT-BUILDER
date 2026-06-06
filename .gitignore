@@ -179,4 +179,5 @@ pages-dist/
 
 # Prediction accuracy backtest row-level outputs
 audits/prediction_accuracy_backtest/rowlevel_*.csv
+audits/prediction_accuracy_backtest/rowlevel_verification_outputs/
 audits/prediction_accuracy_backtest/retrospective_outputs/
