@@ -7,7 +7,7 @@ This audit is read-only against production truth and raw sources. It only report
 | Target year | Needed draw year | Readiness | Main normalized rows | Rebuilt candidate rows | Extra normalized rows | Source files | Blocker |
 | --- | ---: | --- | ---: | ---: | ---: | ---: | --- |
 | 2020 | 2019 | READY_WITH_EXTRA_NORMALIZED_SOURCE | 0 | 57313 | 58155 | 69 |  |
-| 2021 | 2020 | SOURCE_AVAILABLE_NOT_NORMALIZED | 0 | 0 | 0 | 50 | source files/parity evidence exist, but no normalized row-level draw-result source is available to the materializer |
+| 2021 | 2020 | READY_WITH_EXTRA_NORMALIZED_SOURCE | 0 | 0 | 6659 | 50 |  |
 | 2022 | 2021 | READY_IN_MAIN_NORMALIZED_SOURCE | 27519 | 27519 | 27519 | 48 |  |
 
 ## Safe Process Update

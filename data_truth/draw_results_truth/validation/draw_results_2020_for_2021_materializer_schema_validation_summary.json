@@ -1,0 +1,45 @@
+{
+  "source_file": "data_truth/draw_results_truth/normalized/draw_results_2020_for_2021_candidate_promotion_file_records_STRICT_USABLE_PLUS_SPORTSMAN.csv",
+  "rows": 6659,
+  "columns": 33,
+  "required_columns_present": true,
+  "issue_count": 0,
+  "blocker_count": 0,
+  "duplicate_materializer_keys": 0,
+  "year_counts": {
+    "2020": 6659
+  },
+  "model_target_year_counts": {
+    "2021": 6659
+  },
+  "family_counts": {
+    "antlerless": 1002,
+    "black_bear": 586,
+    "cougar": 127,
+    "dh_deer": 118,
+    "gs_buck_deer": 1047,
+    "le_deer": 951,
+    "le_elk": 1263,
+    "le_pronghorn": 547,
+    "oil": 363,
+    "sportsman": 11,
+    "turkey": 60,
+    "youth_antlerless": 582,
+    "youth_elk": 2
+  },
+  "species_counts": {
+    "Bison": 91,
+    "Black Bear": 587,
+    "Cougar": 128,
+    "Deer": 2331,
+    "Desert Bighorn Sheep": 60,
+    "Elk": 2408,
+    "Moose": 107,
+    "Mountain Goat": 82,
+    "Pronghorn": 748,
+    "Rocky Mountain Bighorn Sheep": 56,
+    "Turkey": 61
+  },
+  "ready_for_retrospective_materializer": true,
+  "production_draw_results_long_modified": false
+}

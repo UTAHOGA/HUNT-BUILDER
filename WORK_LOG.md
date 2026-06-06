@@ -1,3 +1,50 @@
+## 2026-06-06T18:20:00Z - Add target-year 2021 retrospective materialized outputs
+
+Scope:
+- Added target-year 2021 to the retrospective prediction materializer run set using the validated strict usable plus Sportsman 2020 source-year history file.
+- Reran the historical draw year availability audit so target 2021 changed from blocked to runnable with an extra normalized source.
+- Generated local ignored target-year 2021 retrospective materialized inputs.
+- Preserved the convention `year = source/draw-results year` and `model_target_year = model year the row feeds`.
+- Did not modify production feeders, `draw_results_long.csv`, `DATABASE.csv`, raw source files, website files, runtime manifests, or R2 objects.
+
+Validated source:
+- data_truth/draw_results_truth/normalized/draw_results_2020_for_2021_candidate_promotion_file_records_STRICT_USABLE_PLUS_SPORTSMAN.csv
+
+Validation evidence:
+- data_truth/draw_results_truth/validation/draw_results_2020_for_2021_materializer_schema_validation_summary.json
+
+Files changed:
+- tools/prediction_accuracy_backtest/audit_historical_draw_year_availability.py
+- audits/prediction_accuracy_backtest/historical_draw_year_availability_audit.csv
+- audits/prediction_accuracy_backtest/historical_draw_year_availability_audit.json
+- audits/prediction_accuracy_backtest/historical_draw_year_availability_audit.md
+- audits/prediction_accuracy_backtest/ROLLING_HISTORICAL_BACKTEST_PLAN.md
+- data_truth/draw_results_truth/validation/draw_results_2020_for_2021_materializer_schema_validation_summary.json
+- WORK_LOG.md
+
+Generated local ignored outputs:
+- audits/prediction_accuracy_backtest/retrospective_outputs/2021/materialized/predictive_bonus_engine_2021.materialized.csv
+- audits/prediction_accuracy_backtest/retrospective_outputs/2021/materialized/ml_draw_predictions_v1.csv
+- audits/prediction_accuracy_backtest/retrospective_outputs/2021/materialized/materialization_audit.json
+- audits/prediction_accuracy_backtest/retrospective_outputs/2021/materialized/materialization_audit.csv
+
+Key results:
+- Target 2021 readiness: READY_WITH_EXTRA_NORMALIZED_SOURCE.
+- Source rows: 6,659; source year counts: 2020=6,659; model target year counts: 2021=6,659.
+- Target 2021 output rows: 6,659; history years used: 2020; leakage rows: 0; duplicate safe keys: 0; rows without probability: 0.
+- Prediction method: 6,659 rows used `hunt_code_residency_points_draw_pool_average`.
+- Model equivalence remains: BASELINE_RETROSPECTIVE_NOT_FULL_ENGINE_EQUIVALENT.
+
+Validation commands run:
+- python -m py_compile tools/prediction_accuracy_backtest/build_retrospective_materialized_predictions.py tools/prediction_accuracy_backtest/audit_historical_draw_year_availability.py
+- python tools/prediction_accuracy_backtest/audit_historical_draw_year_availability.py --root . --out-dir audits/prediction_accuracy_backtest
+- python tools/prediction_accuracy_backtest/build_retrospective_materialized_predictions.py --target-year 2021 --history-years 2020 --extra-source-draw-results data_truth/draw_results_truth/normalized/draw_results_2020_for_2021_candidate_promotion_file_records_STRICT_USABLE_PLUS_SPORTSMAN.csv
+- git diff --check
+- python tools/git_size_guard.py --warn-only
+
+Commit:
+- Pending commit.
+
 ## 2026-06-06T18:08:00Z - Recheck 2020-for-2021 normalization availability
 
 Scope:

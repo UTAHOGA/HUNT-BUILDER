@@ -19,6 +19,7 @@ MAIN_DRAW_RESULTS = Path("data_truth/draw_results_truth/normalized/draw_results_
 REBUILT_DRAW_RESULTS_CANDIDATE = Path("audits/draw_truth_rebuild/draw_results_long_REBUILT_CANDIDATE.csv")
 EARLY_NORMALIZED_CANDIDATES = {
     2020: Path("data_truth/draw_results_truth/normalized/draw_results_2019_for_2020_candidate_promotion_file_records.csv"),
+    2021: Path("data_truth/draw_results_truth/normalized/draw_results_2020_for_2021_candidate_promotion_file_records_STRICT_USABLE_PLUS_SPORTSMAN.csv"),
     2022: Path("data_truth/draw_results_truth/normalized/draw_results_2021_for_2022_candidate_promotion_file_records.csv"),
     2023: Path("data_truth/draw_results_truth/normalized/draw_results_2022_for_2023_candidate_promotion_file_records.csv"),
 }
