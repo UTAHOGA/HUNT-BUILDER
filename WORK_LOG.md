@@ -1,3 +1,57 @@
+## 2026-06-06T15:45:00Z - Retrospective prediction materializer for rolling backtests
+
+Scope:
+- Created a no-leakage retrospective materializer for prediction backtests.
+- Generated year-specific retrospective materialized inputs for target years 2022, 2023, 2024, and 2025 using only draw-history rows earlier than each target year.
+- Updated the rolling historical backtest plan with why Phase 7 failed and how the new baseline materializer resolves the missing input problem.
+- Added `.gitignore` protection for `audits/prediction_accuracy_backtest/retrospective_outputs/**` so large row-level outputs remain local and do not clog GitHub Desktop.
+- Did not modify production feeders, `DATABASE.csv`, normalized truth files, website files, runtime manifests, or R2 objects.
+
+Files changed:
+- .gitignore
+- tools/prediction_accuracy_backtest/build_retrospective_materialized_predictions.py
+- audits/prediction_accuracy_backtest/ROLLING_HISTORICAL_BACKTEST_PLAN.md
+- WORK_LOG.md
+
+Generated local ignored outputs:
+- audits/prediction_accuracy_backtest/retrospective_outputs/2022/materialized/predictive_bonus_engine_2022.materialized.csv
+- audits/prediction_accuracy_backtest/retrospective_outputs/2022/materialized/ml_draw_predictions_v1.csv
+- audits/prediction_accuracy_backtest/retrospective_outputs/2022/materialized/materialization_audit.json
+- audits/prediction_accuracy_backtest/retrospective_outputs/2022/materialized/materialization_audit.csv
+- audits/prediction_accuracy_backtest/retrospective_outputs/2023/materialized/predictive_bonus_engine_2023.materialized.csv
+- audits/prediction_accuracy_backtest/retrospective_outputs/2023/materialized/ml_draw_predictions_v1.csv
+- audits/prediction_accuracy_backtest/retrospective_outputs/2023/materialized/materialization_audit.json
+- audits/prediction_accuracy_backtest/retrospective_outputs/2023/materialized/materialization_audit.csv
+- audits/prediction_accuracy_backtest/retrospective_outputs/2024/materialized/predictive_bonus_engine_2024.materialized.csv
+- audits/prediction_accuracy_backtest/retrospective_outputs/2024/materialized/ml_draw_predictions_v1.csv
+- audits/prediction_accuracy_backtest/retrospective_outputs/2024/materialized/materialization_audit.json
+- audits/prediction_accuracy_backtest/retrospective_outputs/2024/materialized/materialization_audit.csv
+- audits/prediction_accuracy_backtest/retrospective_outputs/2025/materialized/predictive_bonus_engine_2025.materialized.csv
+- audits/prediction_accuracy_backtest/retrospective_outputs/2025/materialized/ml_draw_predictions_v1.csv
+- audits/prediction_accuracy_backtest/retrospective_outputs/2025/materialized/materialization_audit.json
+- audits/prediction_accuracy_backtest/retrospective_outputs/2025/materialized/materialization_audit.csv
+
+Key results:
+- 2022 output rows: 27,519; history years used: 2021; leakage rows: 0; duplicate safe keys: 0.
+- 2023 output rows: 33,554; history years used: 2021, 2022; leakage rows: 0; duplicate safe keys: 0.
+- 2024 output rows: 34,512; history years used: 2021, 2022, 2023; leakage rows: 0; duplicate safe keys: 0.
+- 2025 output rows: 46,142; history years used: 2021, 2022, 2023, 2024; leakage rows: 0; duplicate safe keys: 0.
+- Rows without probability: 0 for all target years.
+- Model equivalence: BASELINE_RETROSPECTIVE_NOT_FULL_ENGINE_EQUIVALENT.
+- Phase 7 failure cause: existing modules were post-processors and expected pre-existing year-specific materialized inputs.
+
+Validation commands run:
+- python -m py_compile tools/prediction_accuracy_backtest/build_retrospective_materialized_predictions.py
+- python tools/prediction_accuracy_backtest/build_retrospective_materialized_predictions.py --target-year 2022 --history-years 2021 --output-dir audits/prediction_accuracy_backtest/retrospective_outputs
+- python tools/prediction_accuracy_backtest/build_retrospective_materialized_predictions.py --target-year 2023 --history-years 2021,2022 --output-dir audits/prediction_accuracy_backtest/retrospective_outputs
+- python tools/prediction_accuracy_backtest/build_retrospective_materialized_predictions.py --target-year 2024 --history-years 2021,2022,2023 --output-dir audits/prediction_accuracy_backtest/retrospective_outputs
+- python tools/prediction_accuracy_backtest/build_retrospective_materialized_predictions.py --target-year 2025 --history-years 2021,2022,2023,2024 --output-dir audits/prediction_accuracy_backtest/retrospective_outputs
+- python tools/prediction_accuracy_backtest/build_retrospective_materialized_predictions.py --target-year 2025 --history-years 2021,2022,2023,2024 --output-dir audits/prediction_accuracy_backtest/retrospective_outputs --dry-run
+- git diff --check
+
+Commit:
+- Pending commit.
+
 ## 2026-06-06T15:33:01Z - Clarify point ladder file roles and promotion path
 
 Scope:

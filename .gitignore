@@ -151,6 +151,7 @@ audits/prediction_engine_full_audit/point_ladder_unified_join_audit.csv
 data_model/harvest_quality/*.csv
 data_model/harvest_quality/*.json
 data_truth/comparison_outputs/**
+audits/prediction_accuracy_backtest/retrospective_outputs/**
 
 # Additional large generated audit/model artifacts discovered during hardening.
 processed_data/audits/*.csv
