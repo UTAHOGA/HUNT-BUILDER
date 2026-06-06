@@ -1,3 +1,82 @@
+## 2026-06-06T20:39:42+00:00 - Diagnose controlled model output production equivalence gaps
+
+Scope:
+- Added a read-only production-equivalence diagnosis for controlled prediction model outputs.
+- Compared `audits/prediction_model_runs/2026_from_2025_truth_pdf_draw_results` and `audits/prediction_model_runs/2027_from_2026_dwr_released_candidate` against active production/runtime prediction, ladder, Hunt Research JSON, and materialized input files.
+- Classified missing production columns/families/runtime merge requirements into the requested model/runtime buckets.
+- Did not promote outputs or modify production feeders, `DATABASE.csv`, normalized truth, website files, runtime manifests, R2 objects, or engine logic.
+
+Files changed:
+- tools/prediction_accuracy_backtest/diagnose_production_equivalence.py
+- audits/prediction_model_runs/production_eligibility/diagnose_missing_production_columns.csv
+- audits/prediction_model_runs/production_eligibility/diagnose_missing_families.csv
+- audits/prediction_model_runs/production_eligibility/diagnose_runtime_merge_requirements.csv
+- audits/prediction_model_runs/production_eligibility/PRODUCTION_EQUIVALENCE_DIAGNOSIS.md
+- audits/prediction_model_runs/production_eligibility/production_equivalence_diagnosis_summary.json
+- WORK_LOG.md
+
+Key results:
+- Direct production equivalence: FAIL.
+- Production promotion attempted: no.
+- Promotion-blocking runtime checks: 12 / 12.
+- Missing production column rows classified: 776.
+- Missing family rows classified: 224.
+- Column classification counts: ALLOCATION_OR_REFERENCE_ONLY 86, BONUS_ENGINE_OUTPUT 118, PREFERENCE_ENGINE_OUTPUT 8, PRODUCTION_COLUMN_DECORATION 102, PUBLIC_RUNTIME_DISPLAY_METADATA 444, TRUE_MISSING_MODEL_OUTPUT 18.
+- Family classification counts: BONUS_ENGINE_OUTPUT 100, PREFERENCE_ENGINE_OUTPUT 52, PUBLIC_RUNTIME_DISPLAY_METADATA 2, SPORTSMAN_RANDOM_ONLY 4, TRUE_MISSING_MODEL_OUTPUT 60, YOUTH_REVIEW_REQUIRED 6.
+- Diagnosis: controlled outputs are not only a pure bonus-engine run, but they are still mostly bonus-engine materializer outputs plus a few special-case appenders; production files are wider merged runtime surfaces with preference/youth/Sportsman/allocation/reference/display/decorated layers.
+
+Validation commands run:
+- python -m py_compile tools\prediction_accuracy_backtest\diagnose_production_equivalence.py
+- python tools\prediction_accuracy_backtest\diagnose_production_equivalence.py --root .
+- git diff --check
+- python tools/git_size_guard.py --warn-only
+
+Commit:
+- Pending final validation and commit.
+
+## 2026-06-06T20:19:12+00:00 - Validate source draw years and run controlled 2025/2026 prediction materializations
+
+Scope:
+- Added an audit-only production-eligibility gate for prediction model source years and controlled materializer runs.
+- Validated 2024 and 2025 normalized draw-result truth rows from `data_truth/draw_results_truth/normalized/draw_results_long.csv`.
+- Ran controlled `engine.utah_bonus_predictive.materialize` outputs for target years 2025 and 2026 under ignored audit folders.
+- Did not promote outputs into production because the 2026 generated candidate remains narrower than the active production schema/family coverage.
+- Did not modify `DATABASE.csv`, normalized truth files, production feeder CSVs, website files, runtime manifests, R2 objects, or engine logic.
+
+Files changed:
+- .gitignore
+- tools/prediction_accuracy_backtest/validate_and_run_prediction_models.py
+- audits/prediction_model_runs/production_eligibility/PRODUCTION_ELIGIBILITY_REVIEW.md
+- audits/prediction_model_runs/production_eligibility/production_eligibility_runs.csv
+- audits/prediction_model_runs/production_eligibility/production_eligibility_output_profiles.csv
+- audits/prediction_model_runs/production_eligibility/production_eligibility_summary.json
+- WORK_LOG.md
+
+Generated local ignored outputs:
+- audits/prediction_model_runs/production_eligibility/engine_outputs/
+- audits/prediction_model_runs/production_eligibility/runtime_inputs/
+
+Key results:
+- Overall readiness: PASS_WITH_PROMOTION_BLOCKERS.
+- Target 2025 source year 2024: PASS, 37,128 source rows, 580 unique hunt codes, 13,394 scorable rows, 0 probability range failures.
+- Target 2025 controlled output: 45,562 `ml_draw_predictions_v1.csv` rows and 45,562 `draw_reality_engine_predictive_v2.csv` rows.
+- Target 2025 status: audit/backtest eligible only; it is not a current live production target.
+- Target 2026 source year 2025: PASS, 75,194 source rows, 1,053 unique hunt codes, 75,194 scorable rows, 0 probability range failures.
+- Target 2026 controlled output: 22,807 `ml_draw_predictions_v1.csv` rows and 22,807 `draw_reality_engine_predictive_v2.csv` rows.
+- Target 2026 direct promotion remains blocked: generated ML output is missing 49 production columns, five production draw families, and 5,133 production rows; generated predictive successor is missing 50 production columns, `PREFERENCE_DEDICATED_HUNTER_DEER`, and 3,582 production rows.
+- Direct production promotions applied: 0.
+
+Validation commands run:
+- python -m py_compile tools\prediction_accuracy_backtest\validate_and_run_prediction_models.py
+- python tools\prediction_accuracy_backtest\validate_and_run_prediction_models.py --root .
+- git check-ignore -v audits/prediction_model_runs/production_eligibility/engine_outputs/2026_from_2025_validated_truth/ml_draw_predictions_v1.csv
+- git check-ignore -v audits/prediction_model_runs/production_eligibility/runtime_inputs/2026/predictive_bonus_engine_2026.materialized.csv
+- git diff --check
+- python tools/git_size_guard.py --warn-only
+
+Commit:
+- Pending final validation and commit.
+
 ## 2026-06-06T20:55:00Z - Audit 2025 truth to 2026 model promotion candidates
 
 Scope:

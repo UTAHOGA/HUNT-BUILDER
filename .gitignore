@@ -181,3 +181,8 @@ pages-dist/
 audits/prediction_accuracy_backtest/rowlevel_*.csv
 audits/prediction_accuracy_backtest/rowlevel_verification_outputs/
 audits/prediction_accuracy_backtest/retrospective_outputs/
+
+# Controlled prediction production-eligibility runs write large row-level engine
+# outputs locally; commit only compact summaries from the parent folder.
+audits/prediction_model_runs/production_eligibility/engine_outputs/
+audits/prediction_model_runs/production_eligibility/runtime_inputs/
