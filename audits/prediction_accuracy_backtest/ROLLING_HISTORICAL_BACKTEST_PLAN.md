@@ -10,6 +10,22 @@ For target year N, the model may use draw-result and harvest information only th
 
 ## Backtest Year Plan
 
+### Target 2020
+- Training cutoff: 2019
+- Allowed draw result years: 2019
+- Forbidden leakage years: 2020;2021;2022;2023;2024;2025;2026;2027;2028;2029
+- Best actual candidate: `data_truth/draw_results_truth/normalized/draw_results_2019_for_2020_candidate_promotion_file_records.csv`
+- Status: READY_TO_RUN_RETROSPECTIVE_WITH_EXTRA_SOURCE
+- Note: This year is not in `draw_results_long.csv`; it is runnable through the materializer's `--extra-source-draw-results` option without merging the file into production truth.
+
+### Target 2021
+- Training cutoff: 2020
+- Allowed draw result years: 2020
+- Forbidden leakage years: 2021;2022;2023;2024;2025;2026;2027;2028;2029
+- Best actual candidate: not yet normalized
+- Status: BLOCKED_SOURCE_AVAILABLE_NOT_NORMALIZED
+- Note: Local 2020 draw-result source PDFs and source-parity audits exist, but no promoted row-level normalized `2020-for-2021` draw-result CSV was found for the materializer.
+
 ### Target 2022
 - Training cutoff: 2021
 - Allowed draw result years: 2021
@@ -58,6 +74,7 @@ For target year N, the model may use draw-result and harvest information only th
 
 - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv` rows=1471 years=2026
 - `data_truth/draw_results_truth/normalized/draw_results_long.csv` rows=176753 years=2021;2022;2023;2024;2025;2026
+- `data_truth/draw_results_truth/normalized/draw_results_2019_for_2020_candidate_promotion_file_records.csv` rows=58155 years=2019 extra retrospective source for target 2020
 - `data_truth/harvest_results_truth/normalized/harvest_results_all_years_long.csv` rows=68657 years=2021;2022;2023;2024;2025
 - `processed_data/draw_reality_engine_v2.csv` rows=176753 years=2021;2022;2023;2024;2025;2026
 - `processed_data/draw_reality_engine_predictive_v2.csv` rows=26389 years=2021;2022;2023;2024;2025;2026
@@ -88,6 +105,12 @@ Created:
 The script builds no-leakage retrospective prediction inputs under:
 
 `audits/prediction_accuracy_backtest/retrospective_outputs/<target_year>/materialized/`
+
+The materializer also supports repeatable extra normalized draw-result inputs:
+
+`--extra-source-draw-results <path>`
+
+This is used for early years such as target 2020, where the normalized 2019-for-2020 extract exists but is not merged into the production `draw_results_long.csv` file.
 
 For each target year, it writes:
 
@@ -126,10 +149,23 @@ Every row records the selected fallback tier in `prediction_method`.
 
 | Target year | History years used | Output rows | Duplicate safe keys | Rows without probability | Leakage rows |
 | --- | --- | ---: | ---: | ---: | ---: |
+| 2020 | 2019 | 57,313 | 0 | 0 | 0 |
 | 2022 | 2021 | 27,519 | 0 | 0 | 0 |
 | 2023 | 2021;2022 | 33,554 | 0 | 0 | 0 |
 | 2024 | 2021;2022;2023 | 34,512 | 0 | 0 | 0 |
 | 2025 | 2021;2022;2023;2024 | 46,142 | 0 | 0 | 0 |
+
+## Early Year Availability Audit
+
+Created:
+
+`audits/prediction_accuracy_backtest/historical_draw_year_availability_audit.md`
+
+Key result:
+
+- Target 2020: runnable with the 2019-for-2020 normalized candidate extract.
+- Target 2021: blocked because 2020 source PDFs/parity evidence exist but no normalized row-level draw-result source is currently available.
+- Target 2022: already covered by `draw_results_long.csv` year 2021 rows.
 
 ## Updated Next Step
 

@@ -1,3 +1,47 @@
+## 2026-06-06T17:45:00Z - Early historical draw year availability for retrospective backtests
+
+Scope:
+- Searched/audited 2020, 2021, and 2022 retrospective target-year availability for the prediction accuracy backtest process.
+- Added a read-only availability audit for early historical draw years.
+- Extended the retrospective materializer so it can union repeatable extra normalized draw-result sources without merging them into production truth.
+- Generated target-year 2020 local retrospective materialized inputs using the existing 2019-for-2020 normalized candidate extract.
+- Left target-year 2021 blocked because 2020 draw-result source PDFs and parity evidence exist, but no row-level normalized 2020-for-2021 draw-result file is available to the materializer.
+- Confirmed target-year 2022 is already covered by `draw_results_long.csv` year 2021 rows.
+- Did not modify production feeders, `DATABASE.csv`, normalized truth files, raw source files, website files, runtime manifests, or R2 objects.
+
+Files changed:
+- tools/prediction_accuracy_backtest/build_retrospective_materialized_predictions.py
+- tools/prediction_accuracy_backtest/audit_historical_draw_year_availability.py
+- audits/prediction_accuracy_backtest/historical_draw_year_availability_audit.csv
+- audits/prediction_accuracy_backtest/historical_draw_year_availability_audit.json
+- audits/prediction_accuracy_backtest/historical_draw_year_availability_audit.md
+- audits/prediction_accuracy_backtest/ROLLING_HISTORICAL_BACKTEST_PLAN.md
+- WORK_LOG.md
+
+Generated local ignored outputs:
+- audits/prediction_accuracy_backtest/retrospective_outputs/2020/materialized/predictive_bonus_engine_2020.materialized.csv
+- audits/prediction_accuracy_backtest/retrospective_outputs/2020/materialized/ml_draw_predictions_v1.csv
+- audits/prediction_accuracy_backtest/retrospective_outputs/2020/materialized/materialization_audit.json
+- audits/prediction_accuracy_backtest/retrospective_outputs/2020/materialized/materialization_audit.csv
+
+Key results:
+- Target 2020 readiness: READY_WITH_EXTRA_NORMALIZED_SOURCE.
+- Target 2020 output rows: 57,313; history years used: 2019; leakage rows: 0; duplicate safe keys: 0; rows without probability: 0.
+- Target 2021 readiness: SOURCE_AVAILABLE_NOT_NORMALIZED / BLOCKED_UNTIL_NORMALIZED.
+- Target 2021 evidence found: 25 repo source files, 25 BIBLE HUNT CODES source files, and 30 passing source-parity rows.
+- Target 2022 readiness: READY_IN_MAIN_NORMALIZED_SOURCE with 27,519 year-2021 rows in `draw_results_long.csv`.
+- Main normalized draw truth remains unchanged: 176,753 rows, years 2021-2026.
+
+Validation commands run:
+- python -m py_compile tools/prediction_accuracy_backtest/build_retrospective_materialized_predictions.py tools/prediction_accuracy_backtest/audit_historical_draw_year_availability.py
+- python tools/prediction_accuracy_backtest/audit_historical_draw_year_availability.py --root . --out-dir audits/prediction_accuracy_backtest
+- python tools/prediction_accuracy_backtest/build_retrospective_materialized_predictions.py --target-year 2020 --history-years 2019 --extra-source-draw-results data_truth/draw_results_truth/normalized/draw_results_2019_for_2020_candidate_promotion_file_records.csv
+- git diff --check
+- python tools/git_size_guard.py --warn-only
+
+Commit:
+- Pending commit.
+
 ## 2026-06-06T15:45:00Z - Retrospective prediction materializer for rolling backtests
 
 Scope:

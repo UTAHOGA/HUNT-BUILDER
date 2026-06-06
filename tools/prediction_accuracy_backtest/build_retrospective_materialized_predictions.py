@@ -19,6 +19,7 @@ REFERENCE_BONUS_SCHEMA = Path("data_model/runtime_drafts/predictive_bonus_engine
 REFERENCE_ML_SCHEMA = Path("processed_data/ml_draw_predictions_v1.csv")
 REFERENCE_PREDICTIVE_SCHEMA = Path("processed_data/draw_reality_engine_predictive_v2.csv")
 DEFAULT_OUTPUT_ROOT = Path("audits/prediction_accuracy_backtest/retrospective_outputs")
+DEFAULT_HISTORY_START_YEAR = 2019
 
 REQUIRED_METADATA_COLUMNS = [
     "target_year",
@@ -36,6 +37,27 @@ def read_csv(path: Path) -> tuple[list[str], list[dict[str, str]]]:
     with path.open("r", encoding="utf-8-sig", newline="") as handle:
         reader = csv.DictReader(handle)
         return list(reader.fieldnames or []), [dict(row) for row in reader]
+
+
+def read_draw_sources(paths: list[Path]) -> tuple[list[dict[str, str]], list[dict[str, object]]]:
+    rows: list[dict[str, str]] = []
+    audits: list[dict[str, object]] = []
+    for path in paths:
+        headers, source_rows = read_csv(path)
+        for row in source_rows:
+            row.setdefault("retrospective_source_draw_results_path", str(path))
+        rows.extend(source_rows)
+        years = sorted({parse_year(row.get("year")) for row in source_rows if parse_year(row.get("year")) is not None})
+        audits.append(
+            {
+                "path": str(path),
+                "row_count": len(source_rows),
+                "column_count": len(headers),
+                "years": years,
+                "exists": path.exists(),
+            }
+        )
+    return rows, audits
 
 
 def write_csv(path: Path, fieldnames: list[str], rows: Iterable[dict[str, str]]) -> None:
@@ -99,7 +121,7 @@ def parse_year(value: object) -> int | None:
 
 
 def parse_probability(row: dict[str, str]) -> float | None:
-    for field in ("p_draw_percent", "success_ratio"):
+    for field in ("p_draw_probability", "p_draw_percent", "success_ratio"):
         text = clean(row.get(field))
         if not text:
             continue
@@ -391,7 +413,7 @@ def parse_year_list(value: str, target_year: int) -> list[int]:
     if value:
         years = [int(part.strip()) for part in value.split(",") if part.strip()]
     else:
-        years = list(range(2021, target_year))
+        years = list(range(DEFAULT_HISTORY_START_YEAR, target_year))
     return [year for year in sorted(set(years)) if year < target_year]
 
 
@@ -401,6 +423,12 @@ def main() -> int:
     parser.add_argument("--history-years", default="")
     parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_ROOT))
     parser.add_argument("--source-draw-results", default="data_truth/draw_results_truth/normalized/draw_results_long.csv")
+    parser.add_argument(
+        "--extra-source-draw-results",
+        action="append",
+        default=[],
+        help="Additional normalized draw-result CSV source to union with --source-draw-results. Repeatable.",
+    )
     parser.add_argument("--source-database", default="pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
@@ -420,7 +448,8 @@ def main() -> int:
     audit_csv = output_root / "materialization_audit.csv"
 
     bonus_headers, ml_headers, predictive_headers = load_headers(root)
-    _, draw_rows = read_csv(source_draw_results)
+    draw_source_paths = [source_draw_results] + [root / source for source in args.extra_source_draw_results]
+    draw_rows, draw_source_audits = read_draw_sources(draw_source_paths)
     _, database_rows = read_csv(source_database)
 
     materialized_rows, ml_rows, audit = build_outputs(
@@ -432,6 +461,8 @@ def main() -> int:
         ml_headers,
     )
     audit["source_draw_results"] = args.source_draw_results
+    audit["extra_source_draw_results"] = args.extra_source_draw_results
+    audit["source_draw_results_files"] = draw_source_audits
     audit["source_database"] = args.source_database
     audit["reference_schemas"] = {
         "predictive_bonus_engine_2026.materialized.csv": str(REFERENCE_BONUS_SCHEMA),

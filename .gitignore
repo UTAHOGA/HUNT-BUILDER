@@ -176,3 +176,7 @@ processed_data/public_contracts/*.json
 # Generated Cloudflare/Vercel build output stays local only. Commit source files
 # and public contracts, not the generated pages-dist tree.
 pages-dist/
+
+# Prediction accuracy backtest row-level outputs
+audits/prediction_accuracy_backtest/rowlevel_*.csv
+audits/prediction_accuracy_backtest/retrospective_outputs/
