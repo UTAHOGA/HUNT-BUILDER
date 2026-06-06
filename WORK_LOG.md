@@ -41,7 +41,7 @@ Validation commands run:
 - git diff --check
 
 Commit:
-- Pending commit.
+- ca7cfef9
 
 ## 2026-06-06T15:13:01Z - Hunt Research ladder runtime and header overlap repair
 
