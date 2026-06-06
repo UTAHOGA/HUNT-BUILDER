@@ -1,3 +1,46 @@
+## 2026-06-06T14:04:47Z - Builder hamburger rope-ladder navigation
+
+Scope:
+- Converted the Builder hamburger navigation into a fixed top-right MENU control with visible label text.
+- Added hover/tap open behavior and mouse-away/outside-click roll-up behavior.
+- Added seven menu links: U.O.G.A. Home, Hunt Builder, Hunt Research, Outfitters, Hunting Bible, Membership, and Join Us.
+- Styled the dropdown as same-size hanging pillow buttons with chain-link connectors and a rope-ladder unroll animation.
+- Aligned the right edge of every menu button to the right edge of the hamburger control.
+- Raised the hamburger/menu layer above the map selector so it remains clickable on mobile.
+- Did not edit engine code, `DATABASE.csv`, normalized truth files, raw source files, runtime manifests, R2 objects, or production feeder data.
+
+Files changed:
+- header-layout.js
+- index.html
+- style.css
+- WORK_LOG.md
+
+Key results:
+- Desktop hamburger: fixed top-right, z-index `30120`.
+- Mobile hamburger: fixed top-right, z-index `30120`.
+- Dropdown link count: `7`.
+- Dropdown button size: `210px x 46px` for every link.
+- Desktop menu link right-edge delta from hamburger: `0px`.
+- Mobile menu link right-edge delta from hamburger: `2px` while hover scale is active.
+- Desktop horizontal overflow: false.
+- Mobile horizontal overflow: false.
+- Mobile tap opens the menu; outside click closes it.
+- Build-generated data/export files were restored after build validation.
+- Existing untracked `audits/prediction_engine_full_audit/` folder was left untouched.
+
+Validation commands run:
+- node --check header-layout.js
+- node --check app.js
+- git diff --check
+- npm.cmd run build
+- Browser render measurement at `https://127.0.0.1:4173/` for desktop `1600x900`.
+- Browser render measurement at `https://127.0.0.1:4173/` for mobile `390x844`.
+- Browser hover-open / mouse-away close check.
+- Browser mobile tap-open / outside-click close check.
+
+Commit:
+- Pending commit.
+
 ## 2026-06-06T13:12:30Z - Builder boundary-click hunt chooser placement
 
 Scope:

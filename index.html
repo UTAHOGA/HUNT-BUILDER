@@ -196,7 +196,7 @@
     .topbar.topbar-planner { position:sticky !important; top:0 !important; min-height:70px !important; }
     .topbar.topbar-planner .map-mode-control { position:fixed !important; left:50% !important; top:12px !important; transform:translateX(-50%) !important; z-index:30080 !important; }
     .topbar.topbar-planner .topbar-right { position:fixed !important; right:116px !important; top:9px !important; transform:none !important; margin-left:0 !important; z-index:30060 !important; }
-    .topbar.topbar-planner .uoga-page-nav-control { position:fixed !important; right:24px !important; top:9px !important; transform:none !important; z-index:30070 !important; }
+    .topbar.topbar-planner .uoga-page-nav-control { position:fixed !important; right:24px !important; top:9px !important; transform:none !important; z-index:30120 !important; }
     .topbar-left { flex:0 0 auto !important; display:flex !important; justify-content:center !important; align-items:center !important; gap:14px !important; }
     .topbar-right { flex:0 0 auto !important; display:flex !important; justify-content:flex-end !important; align-items:center !important; margin-left:auto !important; }
     .topbar-right .uoga-backpack-shell { margin-left:0 !important; }
@@ -204,13 +204,19 @@
     @media (max-width: 900px) {
       .topbar { justify-content:space-between !important; }
       .topbar.topbar-planner .map-mode-control,
-      .topbar.topbar-planner .topbar-right,
-      .topbar.topbar-planner .uoga-page-nav-control {
+      .topbar.topbar-planner .topbar-right {
         position:relative !important;
         left:auto !important;
         right:auto !important;
         top:auto !important;
         transform:none !important;
+      }
+      .topbar.topbar-planner .uoga-page-nav-control {
+        position:fixed !important;
+        right:12px !important;
+        top:8px !important;
+        transform:none !important;
+        z-index:30120 !important;
       }
       .topbar-left { flex:0 0 auto !important; width:auto !important; display:flex !important; justify-content:flex-start !important; }
       .topbar-right { flex:1 1 100% !important; justify-content:stretch !important; margin-left:0 !important; }
@@ -274,6 +280,7 @@
       </div>
       <div class="uoga-page-nav-control" data-uoga-page-nav="true">
         <button id="pageNavToggleBtn" class="uoga-page-nav-toggle" type="button" aria-expanded="false">
+          <span class="uoga-page-nav-menu-text">Menu</span>
           <span class="uoga-page-nav-hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
           <span class="uoga-page-nav-label">
             <span class="uoga-page-nav-kicker">Page Navigation</span>
@@ -281,10 +288,13 @@
           </span>
         </button>
         <div class="uoga-page-nav-menu" hidden>
+          <a class="utility-link uoga-page-nav-link" href="https://www.uoga.org"><span>U.O.G.A. HOME</span></a>
           <a class="utility-link uoga-page-nav-link active" href="./" aria-current="page"><span>HUNT BUILDER</span></a>
           <a class="utility-link uoga-page-nav-link" href="./research.html"><span>HUNT RESEARCH</span></a>
           <a class="utility-link uoga-page-nav-link" href="./verify.html"><span>OUTFITTERS</span></a>
           <a class="utility-link uoga-page-nav-link" href="./hard-copy.html"><span>HUNTING BIBLE</span></a>
+          <a class="utility-link uoga-page-nav-link" href="https://www.uoga.org/membership-sign-up"><span>MEMBERSHIP</span></a>
+          <a class="utility-link uoga-page-nav-link" href="https://www.uoga.org/pricing-plans/member-dues"><span>JOIN US</span></a>
         </div>
       </div>
       <div class="instructions-control">
