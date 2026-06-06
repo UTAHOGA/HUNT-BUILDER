@@ -1,3 +1,36 @@
+## 2026-06-06T14:14:27Z - Builder hamburger menu hover bridge fix
+
+Scope:
+- Fixed the hamburger rope-ladder menu disappearing while moving from the MENU icon down into the selector buttons.
+- Added a forgiving pointer bridge between the hamburger icon and the dropdown menu.
+- Changed the close behavior so the menu closes only after the pointer is truly outside the whole hamburger/menu area.
+- Added a document-level pointer-away fallback so the menu still closes reliably after leaving the menu area.
+- Did not edit engine code, `DATABASE.csv`, normalized truth files, raw source files, runtime manifests, R2 objects, or production feeder data.
+
+Files changed:
+- header-layout.js
+- style.css
+- WORK_LOG.md
+
+Key results:
+- Desktop icon-to-gap-to-menu travel: menu stayed open.
+- Mobile icon-to-gap-to-menu travel: menu stayed open.
+- Desktop mouse-away close: menu closed.
+- Mobile mouse-away close: menu closed.
+- Build-generated data/export files were restored after build validation.
+- Existing untracked `audits/prediction_engine_full_audit/` folder was left untouched.
+
+Validation commands run:
+- node --check header-layout.js
+- node --check app.js
+- git diff --check
+- npm.cmd run build
+- Browser pointer travel check at `https://127.0.0.1:4173/` for desktop `1600x900`.
+- Browser pointer travel check at `https://127.0.0.1:4173/` for mobile `390x844`.
+
+Commit:
+- Pending commit.
+
 ## 2026-06-06T14:04:47Z - Builder hamburger rope-ladder navigation
 
 Scope:

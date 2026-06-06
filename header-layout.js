@@ -22,30 +22,55 @@
     wrapper.__uogaPageNavBound = true;
     let closeTimer = null;
 
-    const setMenuOpen = (isOpen) => {
+    const isPointerWithinMenuSystem = () => (
+      wrapper.matches(':hover')
+      || toggle.matches(':hover')
+      || menu.matches(':hover')
+      || menu.contains(document.activeElement)
+    );
+
+    const cancelMenuClose = () => {
       if (closeTimer) {
         window.clearTimeout(closeTimer);
         closeTimer = null;
       }
+      if (!menu.hidden) {
+        menu.style.display = 'grid';
+        menu.classList.remove('is-rolling-up');
+        menu.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    };
+
+    const setMenuOpen = (isOpen) => {
       if (isOpen) {
+        cancelMenuClose();
         menu.hidden = false;
         menu.style.display = 'grid';
         menu.classList.remove('is-rolling-up');
         menu.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
       } else if (!menu.hidden) {
+        if (closeTimer) window.clearTimeout(closeTimer);
         menu.classList.remove('is-open');
         menu.classList.add('is-rolling-up');
         closeTimer = window.setTimeout(() => {
+          closeTimer = null;
+          if (isPointerWithinMenuSystem()) {
+            cancelMenuClose();
+            return;
+          }
           menu.hidden = true;
           menu.style.display = 'none';
           menu.classList.remove('is-rolling-up');
-        }, 240);
+          toggle.setAttribute('aria-expanded', 'false');
+        }, 620);
       } else {
         menu.hidden = true;
         menu.style.display = 'none';
         menu.classList.remove('is-open', 'is-rolling-up');
+        toggle.setAttribute('aria-expanded', 'false');
       }
-      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     };
 
     setMenuOpen(false);
@@ -56,12 +81,8 @@
       setMenuOpen(true);
     });
     toggle.addEventListener('mouseenter', () => setMenuOpen(true));
-    wrapper.addEventListener('mouseenter', () => {
-      if (closeTimer) {
-        window.clearTimeout(closeTimer);
-        closeTimer = null;
-      }
-    });
+    wrapper.addEventListener('mouseenter', cancelMenuClose);
+    menu.addEventListener('mouseenter', cancelMenuClose);
     wrapper.addEventListener('mouseleave', () => setMenuOpen(false));
 
     menu.querySelectorAll('a').forEach(link => {
@@ -72,6 +93,12 @@
 
     document.addEventListener('click', event => {
       if (!wrapper.contains(event.target)) setMenuOpen(false);
+    });
+
+    document.addEventListener('mousemove', event => {
+      if (menu.hidden) return;
+      if (wrapper.contains(event.target) || menu.contains(event.target) || toggle.contains(event.target)) return;
+      setMenuOpen(false);
     });
 
     document.addEventListener('keydown', event => {
@@ -568,6 +595,7 @@
        .map-mode-menu[hidden] { display:none !important; }
        .uoga-page-nav-menu { top:calc(100% + 10px) !important; left:auto !important; right:12px !important; transform:none !important; grid-template-columns:1fr !important; gap:12px !important; padding:12px !important; width:210px !important; min-width:210px !important; max-width:calc(100vw - 24px) !important; justify-items:end !important; transform-origin:top right !important; animation:uogaNavRopeDrop .34s cubic-bezier(.16,1,.3,1) both !important; }
        .uoga-page-nav-menu.is-rolling-up { animation:uogaNavRopeRoll .22s ease-in both !important; pointer-events:none !important; }
+       .uoga-page-nav-menu::before { content:"" !important; position:absolute !important; left:0 !important; right:0 !important; top:-18px !important; height:20px !important; pointer-events:auto !important; }
        .uoga-page-nav-menu .utility-link,
        .uoga-page-nav-menu .uoga-page-nav-link { position:relative !important; width:210px !important; min-width:210px !important; max-width:210px !important; min-height:46px !important; justify-content:center !important; justify-self:end !important; padding-left:18px !important; padding-right:18px !important; white-space:nowrap !important; }
        .uoga-page-nav-menu .uoga-page-nav-link::before,
@@ -939,6 +967,15 @@
        .uoga-page-nav-menu.is-rolling-up {
          animation:uogaNavRopeRoll .22s ease-in both !important;
          pointer-events:none !important;
+       }
+       .uoga-page-nav-menu::before {
+         content:"" !important;
+         position:absolute !important;
+         left:0 !important;
+         right:0 !important;
+         top:-18px !important;
+         height:20px !important;
+         pointer-events:auto !important;
        }
        .uoga-page-nav-menu[hidden] { display:none !important; }
        .uoga-page-nav-menu .utility-link,

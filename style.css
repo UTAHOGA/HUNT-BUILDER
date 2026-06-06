@@ -691,6 +691,15 @@
       animation: uogaNavRopeRoll .22s ease-in both;
       pointer-events: none;
     }
+    .uoga-page-nav-menu::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -18px;
+      height: 20px;
+      pointer-events: auto;
+    }
     .uoga-page-nav-menu .utility-link,
     .uoga-page-nav-menu .uoga-page-nav-link {
       position: relative;
