@@ -1,0 +1,20 @@
+﻿{
+  "generated_at": "2026-06-06T08:49:33.6134596-06:00",
+  "promotion_reason": "Production processed_data/point_ladder_view.csv had only 2 rows. Phase 6 selected data_model/runtime_drafts/point_ladder_view_v3.csv as best point ladder candidate.",
+  "selected_candidates": {
+    "truth_database": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+    "point_ladder": "processed_data/point_ladder_view.csv",
+    "point_ladder_source": "data_model/runtime_drafts/point_ladder_view_v3.csv",
+    "point_ladder_backup_before_promotion": "processed_data\promotion_backups\point_ladder_view_before_phase7_20260606T084933.csv",
+    "draw_reality_engine": "processed_data/draw_reality_engine_v2.csv",
+    "draw_reality_view": "processed_data/draw_reality_view.csv",
+    "draw_reality_predictive": "processed_data/draw_reality_engine_predictive_v2.csv",
+    "predictions_csv": "processed_data/ml_draw_predictions_v1.csv",
+    "hunt_predictions_json": "processed_data/public_contracts/hunt_predictions.json",
+    "odds_history_csv": "processed_data/public_contracts/hunt_odds_history.csv",
+    "library_page_data": "public/hard-copy/data/library_page_data.json",
+    "library_page_hunts": "public/hard-copy/data/library_page_hunts.csv",
+    "library_page_summary": "public/hard-copy/data/library_page_summary.json",
+    "hard_data_manifest": "public/hard-copy/manifests/hard_data_manifest.json"
+  }
+}

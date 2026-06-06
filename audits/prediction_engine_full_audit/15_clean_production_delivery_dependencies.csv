@@ -1,0 +1,37 @@
+source_ref,consumed_by,consumer_type,output_ref,page_area,score,status
+processed_data/draw_reality_engine_predictive_v2.csv,scripts/build-database-publish-readiness-report.py,engine_or_transform,,,55,TRACE_DETECTED
+pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv,scripts/audit-database-fragment-manifest.js,engine_or_transform,,,45,TRACE_DETECTED
+pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv,scripts/build-database-publish-readiness-report.py,engine_or_transform,,,45,TRACE_DETECTED
+pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv,tools/apply_boundary_crossmap_to_runtime_files.py,engine_or_transform,,,45,TRACE_DETECTED
+processed_data/ml_draw_predictions_v1.csv,scripts/build-database-publish-readiness-report.py,engine_or_transform,,,35,TRACE_DETECTED
+processed_data/point_ladder_view.csv,scripts/build-database-publish-readiness-report.py,engine_or_transform,,,30,TRACE_DETECTED
+processed_data/hunt_research_2026_split/hunts,tools/apply_boundary_crossmap_to_runtime_files.py,engine_or_transform,,research,25,TRACE_DETECTED
+processed_data/hunt_research_2026_summary.json,tools/apply_boundary_crossmap_to_runtime_files.py,engine_or_transform,,research,25,TRACE_DETECTED
+C:/Users/tyler/Desktop/BIBLE HUNT CODES/2021.zip,tools/hunt_research_engine/audit_2021_harvest_database_ingestion.py,engine_or_transform,,research,15,TRACE_DETECTED
+C:/Users/tyler/Desktop/BIBLE HUNT CODES/2022.zip,tools/hunt_research_engine/audit_2022_harvest_database_ingestion.py,engine_or_transform,,research,15,TRACE_DETECTED
+C:/Users/tyler/Desktop/BIBLE HUNT CODES/2023.zip,tools/hunt_research_engine/audit_2023_harvest_database_ingestion.py,engine_or_transform,,research,15,TRACE_DETECTED
+C:/Users/tyler/Desktop/BIBLE HUNT CODES/2025.zip,tools/hunt_research_engine/audit_2025_harvest_draw_ingestion.py,engine_or_transform,,research,15,TRACE_DETECTED
+D:/DOCUMENTS/GitHub/HUNTS/HUNTS/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_location_hunt_code_crosswalk_2023_bighorn_sheep.csv,scripts/audit-2026-additional-crosswalk-sources.py,engine_or_transform,,,10,TRACE_DETECTED
+D:/DOCUMENTS/GitHub/HUNTS/HUNTS/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_bighorn_sheep_measurements_crosswalked.csv,scripts/audit-2026-additional-crosswalk-sources.py,engine_or_transform,,,10,TRACE_DETECTED
+processed_data/draw_system_coverage_report.json,scripts/build-database-publish-readiness-report.py,engine_or_transform,,,10,TRACE_DETECTED
+database,scripts/build-hunt-research-classification-layer.js,engine_or_transform,,research,10,TRACE_DETECTED
+harvest,scripts/build-hunt-research-classification-layer.js,engine_or_transform,,research,10,TRACE_DETECTED
+predictive,scripts/build-hunt-research-classification-layer.js,engine_or_transform,,research,10,TRACE_DETECTED
+C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2026/pdf/regulations/2026 Bear Cougar Furbearer Guidebook.pdf,scripts/audit-2026-regulation-pdfs-against-unresolved-permits.py,engine_or_transform,,,5,TRACE_DETECTED
+C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2026/pdf/regulations/2026 Big Game Application.pdf,scripts/audit-2026-regulation-pdfs-against-unresolved-permits.py,engine_or_transform,,,5,TRACE_DETECTED
+C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2026/pdf/regulations/antlerless_guidebook.pdf,scripts/audit-2026-regulation-pdfs-against-unresolved-permits.py,engine_or_transform,,,5,TRACE_DETECTED
+canonical/permit-allocation-2026-integrity-report.json,scripts/build-database-publish-readiness-report.py,engine_or_transform,,,5,TRACE_DETECTED
+data_truth/crosswalk_truth/normalized/retired_current_hunt_codes_2026.csv,scripts/build-database-publish-readiness-report.py,engine_or_transform,,,5,TRACE_DETECTED
+processed_data/all_rac_2026_permits_vs_DATABASE.json,scripts/build-database-publish-readiness-report.py,engine_or_transform,,,5,TRACE_DETECTED
+processed_data/antlerless_elk_current_rac_allotment_vs_database_runtime.json,scripts/build-database-publish-readiness-report.py,engine_or_transform,,,5,TRACE_DETECTED
+processed_data/gpt_work_review_report.json,scripts/build-database-publish-readiness-report.py,engine_or_transform,,,5,TRACE_DETECTED
+processed_data/hunt_unit_reference_linked.csv,scripts/build-database-publish-readiness-report.py,engine_or_transform,,,5,TRACE_DETECTED
+processed_data/modeled_availability_review_report.json,scripts/build-database-publish-readiness-report.py,engine_or_transform,,,5,TRACE_DETECTED
+processed_data/truth_source_promotion_summary.json,scripts/build-database-publish-readiness-report.py,engine_or_transform,,,5,TRACE_DETECTED
+age,scripts/build-hunt-research-classification-layer.js,engine_or_transform,,research,5,TRACE_DETECTED
+ladder,scripts/build-hunt-research-classification-layer.js,engine_or_transform,,research,5,TRACE_DETECTED
+management,scripts/build-hunt-research-classification-layer.js,engine_or_transform,,research,5,TRACE_DETECTED
+master,scripts/build-hunt-research-classification-layer.js,engine_or_transform,,research,5,TRACE_DETECTED
+readiness,scripts/build-hunt-research-classification-layer.js,engine_or_transform,,research,5,TRACE_DETECTED
+syncMatrix,scripts/build-hunt-research-classification-layer.js,engine_or_transform,,research,5,TRACE_DETECTED
+yearChange,scripts/build-hunt-research-classification-layer.js,engine_or_transform,,research,5,TRACE_DETECTED
