@@ -1,0 +1,17 @@
+lane,input_file,role,exists,required_for_production,mutation_allowed,source_status,notes
+BONUS_ENGINE_OUTPUT,engine/utah_bonus_predictive/materialize.py,active builder: prediction math,yes,yes,no,code_provider,Primary active materializer command: python -m engine.utah_bonus_predictive.materialize. Produces model outputs but not full runtime/display contract.
+BONUS_ENGINE_OUTPUT,data_truth/draw_results_truth/normalized/draw_results_long.csv,historical draw truth,yes,yes,no,validated_normalized_truth,Provides applicant/drawn/permit ladder history for bonus and preference model lanes.
+BONUS_ENGINE_OUTPUT,data_model/runtime_drafts/predictive_bonus_engine_2026.materialized.csv,bonus materialized feeder,yes,yes,no,current_runtime_draft_dirty_in_worktree,Upstream feeder for bonus materializer; do not replace from candidate output.
+BONUS_ENGINE_OUTPUT,pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv,current hunt/permit/allotment truth,yes,yes,no,protected_truth_source,Used for current permit/allocation overlay; no edits in this plan.
+PREFERENCE_ENGINE_OUTPUT,processed_data/point_ladder_view.csv,compact public preference/point ladder,yes,yes,no,current_runtime_reference,Source/reference surface for point-rank display and preference review.
+PREFERENCE_ENGINE_OUTPUT,engine/utah_draw_predictive/preference_general_deer.py,preference model logic,yes,yes,no,code_provider,General-season deer preference lane.
+PREFERENCE_ENGINE_OUTPUT,engine/utah_draw_predictive/preference_antlerless.py,preference model logic,yes,yes,no,code_provider,Antlerless deer/elk and doe pronghorn preference lane.
+PREFERENCE_ENGINE_OUTPUT,engine/utah_draw_predictive/dedicated_hunter.py,preference model logic,yes,yes,no,code_provider,Dedicated hunter preference lane.
+SPORTSMAN_RANDOM_ONLY,data/utah/sportsman/sportsman_odds_2025.csv,Sportsman odds source,yes,yes,no,source_required_if_present,Special random-only lane source.
+SPORTSMAN_RANDOM_ONLY,engine/utah_draw_predictive/sportsman.py,Sportsman model logic,yes,yes,no,code_provider,Keeps Sportsman separated from bonus/preference ladders.
+YOUTH_REVIEW_REQUIRED / YOUTH_CONFIRMED_LANE,engine/utah_draw_predictive/youth.py,youth lane routing logic,yes,yes,no,review_required,Classify from source evidence before promotion.
+ALLOCATION_OR_REFERENCE_ONLY,processed_data/hunt_unit_reference_linked.csv,reference and permit overlay,yes,yes,no,runtime_reference,Reference rows and boundary/allocation support.
+PUBLIC_RUNTIME_DISPLAY_METADATA,scripts/sync_online_runtime_from_predictive.py,runtime decoration merge,yes,yes,no,code_provider,Decorates model rows for website/runtime fields.
+POINT_LADDER_DISPLAY,scripts/build-unified-point-ladder-runtime.py,compact ladder builder,yes,yes,no,code_provider,Builds compact point ladder; preserve compact grain.
+HUNT_RESEARCH_JSON_MERGE,scripts/build-hunt-research-2026-contract.py,Hunt Research JSON contract builder,yes,yes,no,code_provider,Builds large Hunt Research JSON surfaces.
+HUNT_RESEARCH_JSON_MERGE,scripts/rebuild-runtime-hunt-master-and-split.py,R2/runtime split builder,yes,yes,no,code_provider,Builds split/index runtime surfaces after contract validation.

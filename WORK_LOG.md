@@ -1,3 +1,39 @@
+## 2026-06-06T21:32:00+00:00 - Document active production prediction assembly chain without rebuild
+
+Scope:
+- Added a no-promotion production prediction assembly plan based on the production-equivalence diagnosis.
+- Documented the active builder chain the project needs to understand before touching runtime files: `engine.utah_bonus_predictive.materialize`, `scripts/sync_online_runtime_from_predictive.py`, `scripts/build-unified-point-ladder-runtime.py`, `scripts/build-hunt-research-2026-contract.py`, and `scripts/rebuild-runtime-hunt-master-and-split.py`.
+- Mapped lane ownership across model outputs, runtime display fields, allocation/reference rows, compact point ladder display, Hunt Research JSON decoration, and final runtime master/split packaging.
+- Did not execute the rebuild sequence.
+- Did not modify production feeders, `DATABASE.csv`, `draw_results_long.csv`, website files, runtime manifests, R2 objects, or engine logic.
+
+Files changed:
+- tools/prediction_accuracy_backtest/build_production_assembly_plan.py
+- audits/prediction_model_runs/production_eligibility/production_assembly_lane_plan.csv
+- audits/prediction_model_runs/production_eligibility/production_assembly_required_inputs.csv
+- audits/prediction_model_runs/production_eligibility/production_assembly_blockers.csv
+- audits/prediction_model_runs/production_eligibility/PRODUCTION_ASSEMBLY_PLAN.md
+- WORK_LOG.md
+
+Key results:
+- Assembly lanes documented: 8.
+- Active production builders documented: 5.
+- Required inputs documented: 16.
+- Blockers documented: 18.
+- No full controlled folder is safe for direct promotion today.
+- The active chain separates prediction math, runtime sync, point ladder merge, Hunt Research JSON contract creation, and final runtime master/split packaging.
+- The broader 91k Hunt Research surface must not blindly replace compact `processed_data/point_ladder_view.csv`; it belongs in Hunt Research display/research metadata unless grain proof says otherwise.
+
+Validation commands run:
+- python -m py_compile tools\prediction_accuracy_backtest\build_production_assembly_plan.py tools\prediction_accuracy_backtest\diagnose_production_equivalence.py
+- python tools\prediction_accuracy_backtest\diagnose_production_equivalence.py --root .
+- python tools\prediction_accuracy_backtest\build_production_assembly_plan.py --root .
+- git diff --check
+- python tools/git_size_guard.py --warn-only
+
+Commit:
+- Pending final validation and commit.
+
 ## 2026-06-06T20:39:42+00:00 - Diagnose controlled model output production equivalence gaps
 
 Scope:
