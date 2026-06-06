@@ -1,3 +1,48 @@
+## 2026-06-06T15:33:01Z - Clarify point ladder file roles and promotion path
+
+Scope:
+- Clarified that `point_ladder_view_v2.csv` and `point_ladder_view_v3.csv` are different point-ladder products, not simple chronological replacements.
+- Created purpose-named semantic local copies for the V2 allocation/completeness ladder and V3 runtime/display ladder.
+- Added a non-mutating unified point-ladder builder that writes only to `data_model/runtime_drafts/` and audit output unless `--promote` is explicitly supplied.
+- Kept `processed_data/point_ladder_view.csv` on the current V3 production runtime path; no production overwrite, no R2 upload, and no website promotion were performed.
+- Did not edit `DATABASE.csv`, normalized truth files, raw source files, engine model code, or runtime manifests.
+
+Files changed:
+- .gitignore
+- data_model/runtime_drafts/POINT_LADDER_FILE_ROLES.md
+- scripts/build-unified-point-ladder-runtime.py
+- tools/git_size_guard.py
+- audits/prediction_engine_full_audit/POINT_LADDER_ROLE_CLARIFICATION.md
+- WORK_LOG.md
+
+Generated local ignored files:
+- data_model/runtime_drafts/point_ladder_allocation_complete_v2026.csv
+- data_model/runtime_drafts/point_ladder_runtime_actual_draw_v2026.csv
+- data_model/runtime_drafts/point_ladder_unified_runtime_v2026.csv
+- audits/prediction_engine_full_audit/point_ladder_unified_join_audit.csv
+
+Key results:
+- Current production/runtime ladder: 78,162 rows / 28 columns / 1,053 hunt codes / 21,093,626 bytes.
+- V2 allocation/completeness ladder: 91,588 rows / 51 columns / 1,394 hunt codes / 44,800,057 bytes.
+- V3 runtime/display ladder: 78,162 rows / 28 columns / 1,053 hunt codes / 21,093,626 bytes.
+- V2 semantic copy hash matches V2: yes.
+- V3 semantic copy hash matches V3: yes.
+- Unified candidate generated: 153,220 rows / 68 columns / 1,419 hunt codes / 79,639,693 bytes.
+- Unified join status counts: 18,808 joined, 75,058 allocation-only, 59,354 runtime-only.
+- R2 production URL verified with `200 OK` and `Content-Length: 21093626`.
+- Recommendation remains: keep V3 promoted for display until the unified candidate passes local Hunt Research rendering, column validation, R2 upload, and live URL line/header validation.
+
+Validation commands run:
+- python -m py_compile scripts/build-unified-point-ladder-runtime.py
+- python -m py_compile tools/git_size_guard.py
+- python scripts/build-unified-point-ladder-runtime.py --root .
+- curl.exe -I "https://json.uoga.workers.dev/processed_data/point_ladder_view.csv?v=20260606-ladder-runtime-1"
+- python tools/git_size_guard.py --warn-only
+- git diff --check
+
+Commit:
+- Pending commit.
+
 ## 2026-06-06T15:13:01Z - Hunt Research ladder runtime and header overlap repair
 
 Scope:

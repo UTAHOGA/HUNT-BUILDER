@@ -56,6 +56,7 @@ BLOCKED_PREFIXES = (
 ALLOWED_EXACT = {
     "public/data/runtime-manifest.json",
     "data/runtime-manifest.json",
+    "data_model/runtime_drafts/POINT_LADDER_FILE_ROLES.md",
 }
 
 ALLOWED_PREFIX_SUFFIX = (
