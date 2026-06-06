@@ -1,3 +1,44 @@
+## 2026-06-06T14:45:57Z - Hard Copy Library wallpaper rollback and no-bump menu overlay
+
+Scope:
+- Rolled the Hard Copy Library wallpaper back to the original `CABIN.png` after review showed the generated extended image was not acceptable.
+- Removed the generated `assets/backgrounds/CABIN-extended.png` asset.
+- Kept the shared top-right hamburger MENU on the Library page, but changed the hard-copy topbar into a transparent fixed zero-height overlay so it no longer adds a cream header strip or pushes the cabin image down.
+- Hid the duplicate primary nav on the Library topbar so the hamburger remains the only page-navigation entry point there.
+- Did not edit engine code, `DATABASE.csv`, normalized truth files, raw source files, runtime manifests, R2 objects, production feeder data, or `pages-dist`.
+
+Files changed:
+- assets/backgrounds/CABIN-extended.png
+- assets/css/hard-copy-public-library.css
+- hard-copy.html
+- header-layout.js
+- WORK_LOG.md
+
+Key results:
+- `hard-copy.html` returned `200 OK`.
+- `assets/backgrounds/CABIN.png` returned `200 OK`.
+- Library wallpaper uses original `CABIN.png`: true.
+- Library topbar desktop/mobile measured height: `0`.
+- Library page content top measured at viewport top: `0`.
+- Library MENU button remained visible on desktop and mobile.
+- Library dropdown link count: `7`.
+- Desktop horizontal overflow: false.
+- Mobile horizontal overflow: false.
+- Build-generated data/export files were restored after build validation.
+- Existing untracked `audits/prediction_engine_full_audit/` folder was left untouched.
+
+Validation commands run:
+- node --check header-layout.js
+- git diff --check
+- curl.exe -k -I https://127.0.0.1:4173/hard-copy.html
+- curl.exe -k -I https://127.0.0.1:4173/assets/backgrounds/CABIN.png
+- Browser render measurement at `https://127.0.0.1:4173/hard-copy.html` for desktop `1600x900`.
+- Browser render measurement at `https://127.0.0.1:4173/hard-copy.html` for mobile `390x844`.
+- npm.cmd run build
+
+Commit:
+- Pending commit.
+
 ## 2026-06-06T14:21:37Z - Hard Copy Library menu and wallpaper border repair
 
 Scope:

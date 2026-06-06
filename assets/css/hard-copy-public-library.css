@@ -1,5 +1,5 @@
 :root {
-  --wallpaper: url("/assets/backgrounds/CABIN-extended.png");
+  --wallpaper: url("/assets/backgrounds/CABIN.png");
   --ink: #2d180f;
   --accent: #d48635;
   --accent-dark: #8f4d18;
@@ -24,7 +24,7 @@ body {
   background-color: #110a05;
   background-image:
     linear-gradient(180deg, rgba(13, 7, 4, 0.05), rgba(13, 7, 4, 0.35)),
-    url("/assets/backgrounds/CABIN-extended.png");
+    url("/assets/backgrounds/CABIN.png");
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
@@ -40,12 +40,29 @@ body {
 }
 
 .hard-copy-topbar {
+  position: fixed !important;
+  inset: 0 0 auto 0 !important;
+  width: 100% !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: block !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  z-index: 30120 !important;
   pointer-events: none;
 }
 
 .hard-copy-topbar .uoga-page-nav-control,
 .hard-copy-topbar .uoga-primary-nav {
   pointer-events: auto;
+}
+
+.hard-copy-topbar .uoga-primary-nav {
+  display: none !important;
 }
 
 .page-nav-strip {

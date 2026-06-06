@@ -1066,6 +1066,30 @@
         }
         .basemap-pop, .uoga-backpack-open .basemap-pop { top:74px !important; right:12px !important; left:auto !important; }
       }
+      body.hard-copy-page .hard-copy-topbar,
+      body.hard-copy-page .topbar.hard-copy-topbar,
+      body.hard-copy-page .topbar.topbar-planner.hard-copy-topbar {
+        position:fixed !important;
+        inset:0 0 auto 0 !important;
+        width:100% !important;
+        height:0 !important;
+        min-height:0 !important;
+        padding:0 !important;
+        margin:0 !important;
+        display:block !important;
+        background:transparent !important;
+        border:0 !important;
+        box-shadow:none !important;
+        overflow:visible !important;
+        pointer-events:none !important;
+        z-index:30120 !important;
+      }
+      body.hard-copy-page .hard-copy-topbar .uoga-page-nav-control {
+        pointer-events:auto !important;
+      }
+      body.hard-copy-page .hard-copy-topbar .uoga-primary-nav {
+        display:none !important;
+      }
     `;
     document.head.appendChild(style);
   }
