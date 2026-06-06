@@ -50,7 +50,7 @@ Validation commands run:
 - git diff --check
 
 Commit:
-- Pending commit.
+- 6e0e2a6f
 
 ## 2026-06-06T15:33:01Z - Clarify point ladder file roles and promotion path
 
