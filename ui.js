@@ -375,7 +375,7 @@ window.UOGA_UI = (() => {
 
     trayShell.style.setProperty('position', 'fixed', 'important');
     trayShell.style.setProperty('top', '12px', 'important');
-    trayShell.style.setProperty('right', '18px', 'important');
+    trayShell.style.setProperty('right', '122px', 'important');
     trayShell.style.setProperty('left', 'auto', 'important');
     trayShell.style.setProperty('z-index', '2147483646', 'important');
 
@@ -384,7 +384,7 @@ window.UOGA_UI = (() => {
 
     if (window.innerWidth <= 900) {
       trayShell.style.setProperty('top', '10px', 'important');
-      trayShell.style.setProperty('right', '12px', 'important');
+      trayShell.style.setProperty('right', '104px', 'important');
     }
   }
 
@@ -505,7 +505,7 @@ window.UOGA_UI = (() => {
       .uoga-backpack-shell {
         position: fixed !important;
         top: 12px !important;
-        right: 18px !important;
+        right: 122px !important;
         left: auto;
         flex: 0 0 auto;
         margin-left: 0;
@@ -808,7 +808,7 @@ window.UOGA_UI = (() => {
         .uoga-backpack-shell {
           position: fixed !important;
           top: 10px !important;
-          right: 12px !important;
+          right: 104px !important;
           left: auto;
           width: auto;
           margin-left: 0;

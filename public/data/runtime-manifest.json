@@ -283,15 +283,15 @@
       "source_type": "processed_data",
       "path": "processed_data/point_ladder_view.csv",
       "canonical_url": "https://json.uoga.workers.dev/processed_data/point_ladder_view.csv",
-      "generated_at": "2026-06-04T09:20:19.218Z",
-      "size_bytes": 150953154,
+      "generated_at": "2026-06-06T15:00:18.627Z",
+      "size_bytes": 21093626,
       "update_mode": "AUTO_PUBLIC_R2",
       "classification": "R2_PUBLIC",
-      "current_storage_mode": "GIT_BLOB",
+      "current_storage_mode": "R2_OBJECT",
       "public_use": true,
-      "used_by_frontend": false,
+      "used_by_frontend": true,
       "served_live": true,
-      "notes": "Research ladder runtime feed.; large_file>5242880"
+      "notes": "Research ladder runtime feed used by Hunt Research point ladder; refreshed to current production CSV on R2.; large_file>5242880"
     },
     {
       "key": "research_hunt_master_enriched_csv",
@@ -735,15 +735,15 @@
       "source_type": "processed_data",
       "path": "processed_data/point_ladder_view.csv",
       "canonical_url": "https://json.uoga.workers.dev/processed_data/point_ladder_view.csv",
-      "generated_at": "2026-06-04T09:20:19.218Z",
-      "size_bytes": 150953154,
+      "generated_at": "2026-06-06T15:00:18.627Z",
+      "size_bytes": 21093626,
       "update_mode": "AUTO_PUBLIC_R2",
       "classification": "R2_PUBLIC",
-      "current_storage_mode": "GIT_BLOB",
+      "current_storage_mode": "R2_OBJECT",
       "public_use": true,
-      "used_by_frontend": false,
+      "used_by_frontend": true,
       "served_live": true,
-      "notes": "Research ladder runtime feed.; large_file>5242880"
+      "notes": "Research ladder runtime feed used by Hunt Research point ladder; refreshed to current production CSV on R2.; large_file>5242880"
     },
     "research_hunt_master_enriched_csv": {
       "key": "research_hunt_master_enriched_csv",

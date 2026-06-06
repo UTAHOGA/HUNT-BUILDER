@@ -872,11 +872,23 @@
   }
 
   function getEngineRow(huntCode, residency, points, drawPool) {
-    return state.engineByKey.get(rowKey(huntCode, residency, points, drawPool)) || null;
+    const exact = state.engineByKey.get(rowKey(huntCode, residency, points, drawPool));
+    if (exact) return exact;
+    const fallbackRows = getEngineRows(huntCode, residency, drawPool);
+    return fallbackRows.find((row) => Number(row.points) === Number(points)) || null;
+  }
+
+  function findRowsForHuntResidency(groups, huntCode, residency) {
+    const prefix = `${normalizeKey(huntCode)}__${normalizeResidencyLabel(residency)}__`;
+    for (const [key, rows] of groups.entries()) {
+      if (key.startsWith(prefix) && rows.length) return rows;
+    }
+    return [];
   }
 
   function getLadderRows(huntCode, residency, drawPool) {
-    return state.ladderGroups.get(groupKey(huntCode, residency, drawPool)) || [];
+    const exact = state.ladderGroups.get(groupKey(huntCode, residency, drawPool)) || [];
+    return exact.length ? exact : findRowsForHuntResidency(state.ladderGroups, huntCode, residency);
   }
 
   function getReferenceRow(huntCode, residency, drawPool) {
@@ -887,7 +899,8 @@
   }
 
   function getEngineRows(huntCode, residency, drawPool) {
-    return state.engineGroups.get(groupKey(huntCode, residency, drawPool)) || [];
+    const exact = state.engineGroups.get(groupKey(huntCode, residency, drawPool)) || [];
+    return exact.length ? exact : findRowsForHuntResidency(state.engineGroups, huntCode, residency);
   }
 
   function getEngineGroupFallbackRow(huntCode, residency, drawPool) {
@@ -2306,9 +2319,10 @@
       ...detail,
       split_runtime_source: source,
     });
+    const ladderRows = state.ladderRows.length ? state.ladderRows : runtimeRows.ladderRows;
     indexData(
       runtimeRows.engineRows,
-      runtimeRows.ladderRows,
+      ladderRows,
       runtimeRows.masterRows,
       runtimeRows.referenceRows
     );
@@ -2392,12 +2406,14 @@
       try {
         if (USE_SPLIT_CANONICAL_CONTRACT) {
           try {
-            const [summary, splitIndex] = await Promise.all([
+            const [summary, splitIndex, ladder] = await Promise.all([
               loadFirstAvailable(CANONICAL_SUMMARY_SOURCES),
               loadFirstAvailable(SPLIT_INDEX_SOURCES),
+              loadFirstAvailable(LADDER_SOURCES),
             ]);
             const summaryRows = parseJsonRows(summary.text);
             const splitIndexRows = parseJsonRows(splitIndex.text);
+            const ladderRows = parseCsv(ladder.text);
             state.splitIndexByCode.clear();
             splitIndexRows.forEach((row) => {
               const huntCode = normalizeKey(row?.hunt_code);
@@ -2407,7 +2423,7 @@
             });
             indexData(
               summaryRows,
-              [],
+              ladderRows,
               [...splitIndexRows, ...summaryRows],
               [...splitIndexRows, ...summaryRows]
             );
@@ -2420,7 +2436,8 @@
               canonicalRows: summaryRows.length,
               summaryRows: summaryRows.length,
               engine: 'canonical_summary_contract',
-              ladder: 'split_detail_on_demand',
+              ladder: ladder.source,
+              ladderRows: ladderRows.length,
               master: 'split_index_contract',
               reference: 'split_index_contract',
               legacyFallbackUsed: false,

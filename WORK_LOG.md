@@ -1,3 +1,68 @@
+## 2026-06-06T15:13:01Z - Hunt Research ladder runtime and header overlap repair
+
+Scope:
+- Replaced the stale Cloudflare R2 `processed_data/point_ladder_view.csv` object with the current production ladder CSV.
+- Corrected both runtime manifests so `research_point_ladder_view_csv` reports the current R2 object size and is marked as a frontend-used R2 runtime object.
+- Bumped Hunt Research runtime/cache tokens so browsers request the refreshed manifest and ladder feed.
+- Wired Hunt Research canonical startup to load `point_ladder_view.csv` as the point-ladder display source instead of relying on compact split-detail rows.
+- Preserved split-detail summary enrichment while preventing selected-hunt split detail from replacing the full point ladder feed.
+- Added a safe hunt-code + residency fallback when a valid ladder exists under a non-standard internal draw-pool key.
+- Added the shared top light-mask layer to the primary topo-background pages.
+- Moved the shared MENU control to the document body so it stays viewport-fixed on mobile.
+- Moved Hunt Backpack left of the MENU icon on desktop and mobile.
+- Did not edit `DATABASE.csv`, raw source files, normalized truth files, engine model code, production feeder CSV contents, or generated `pages-dist`.
+
+Files changed:
+- config.js
+- coverage.html
+- data/runtime-manifest.json
+- hard-copy.html
+- hard-data.html
+- header-layout.js
+- hunt-research.js
+- index.html
+- public/data/runtime-manifest.json
+- research.html
+- staging-audit.html
+- style.css
+- ui.js
+- verify.html
+
+Runtime object updated:
+- R2 bucket/key: `uoga-data/processed_data/point_ladder_view.csv`
+- Public URL: `https://json.uoga.workers.dev/processed_data/point_ladder_view.csv`
+- Verified public `Content-Length`: `21093626`
+- Local `processed_data/point_ladder_view.csv`: `78162` rows / `28` columns
+
+Key results:
+- TK1007 Resident point ladder now loads from `https://json.uoga.workers.dev/processed_data/point_ladder_view.csv?v=20260606-ladder-runtime-1`.
+- TK1007 Resident rendered ladder result: `Rows: 21 | Points 0-20`.
+- Runtime manifest `research_point_ladder_view_csv` size corrected from stale `150953154` to `21093626`.
+- Desktop MENU/Backpack overlap: false.
+- Mobile MENU/Backpack overlap: false.
+- Mobile MENU remains parented to `BODY` and fixed at the top-right.
+- Top light-mask background present on Builder and Hunt Research; Verify inherits the shared page background through `html`.
+- Desktop horizontal overflow: false.
+- Mobile horizontal overflow: false.
+- Build-generated data/export files were restored after build validation.
+- Existing untracked `audits/prediction_engine_full_audit/` and `processed_data/promotion_backups/` folders were left untouched.
+
+Validation commands run:
+- npx wrangler r2 object put `uoga-data/processed_data/point_ladder_view.csv` --remote --file `processed_data/point_ladder_view.csv` --content-type `text/csv; charset=utf-8` --cache-control `public, max-age=300`
+- curl.exe -I `https://json.uoga.workers.dev/processed_data/point_ladder_view.csv?v=20260606-ladder-runtime-1`
+- node --check config.js
+- node --check header-layout.js
+- node --check ui.js
+- node --check hunt-research.js
+- git diff --check
+- Browser render test for `research.html` at desktop `1628x916`.
+- Browser render test for `research.html` at mobile `390x844`.
+- Browser mobile smoke test for `index.html`, `research.html`, `verify.html`, and `hard-copy.html`.
+- npm.cmd run build
+
+Commit:
+- Pending commit.
+
 ## 2026-06-06T14:45:57Z - Hard Copy Library wallpaper rollback and no-bump menu overlay
 
 Scope:

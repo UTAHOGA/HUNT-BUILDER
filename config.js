@@ -64,7 +64,7 @@ window.UOGA_CONFIG = (() => {
     for (const candidate of RUNTIME_MANIFEST_CANDIDATES) {
       try {
         const req = new XMLHttpRequest();
-        req.open('GET', `${candidate}?v=20260604-runtime-canonical-1`, false);
+        req.open('GET', `${candidate}?v=20260606-runtime-ladder-mask-1`, false);
         req.send(null);
         if (req.status < 200 || req.status >= 300) continue;
         const parsed = JSON.parse(String(req.responseText || '{}'));
@@ -170,7 +170,7 @@ window.UOGA_CONFIG = (() => {
   const HUNT_DATA_VERSION = '20260604-runtime-canonical-1';
   const OUTFITTERS_DATA_VERSION = '20260327-city-logo-refresh-1';
   const OUTFITTER_COVERAGE_VERSION = '20260327-federal-coverage-demo-1';
-  const HUNT_RESEARCH_DATA_VERSION = '20260604-runtime-canonical-1';
+  const HUNT_RESEARCH_DATA_VERSION = '20260606-ladder-runtime-1';
 
   /*
     ============================================================================

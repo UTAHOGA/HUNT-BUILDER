@@ -6,7 +6,7 @@
   <link rel="icon" type="image/png" href="./assets/logos/favicon.ico.png" />
   <title>U.O.G.A. Hunt Research</title>
   <script src="./embed-mode.js?v=20260422-embed-1"></script>
-  <link rel="stylesheet" href="./style.css?v=20260529-mobile-qa-contract-1" />
+  <link rel="stylesheet" href="./style.css?v=20260606-runtime-ladder-mask-1" />
   <style>
     :root {
       /* Light theme alignment (single theme site-wide). */
@@ -32,12 +32,14 @@
       --research-shadow: var(--shadow);
       --research-radius: 22px;
       --research-pill: 999px;
+      --page-top-light-mask: linear-gradient(180deg, rgba(255, 253, 248, 0.96) 0, rgba(255, 253, 248, 0.78) 54px, rgba(255, 253, 248, 0) 132px);
     }
 
     .research-page {
       min-height: 100vh;
       color: var(--research-text);
       background:
+          var(--page-top-light-mask),
           radial-gradient(circle at 8% 0%, rgba(46, 88, 64, 0.15), transparent 28rem),
           radial-gradient(circle at 92% 6%, rgba(178, 94, 31, 0.15), transparent 24rem),
           linear-gradient(180deg, rgba(246, 240, 231, 0.9), rgba(246, 240, 231, 0.96)),
@@ -1818,7 +1820,7 @@
     </div>
   </div>
 
-  <script src="./config.js?v=20260529-cloudflare-runtime-first-1"></script>
+  <script src="./config.js?v=20260606-runtime-ladder-mask-1"></script>
   <script>
     (function () {
       var host = String(window.location && window.location.hostname || '').toLowerCase();
@@ -1839,9 +1841,9 @@
       document.head.appendChild(localScript);
     })();
   </script>
-  <script src="./ui.js?v=20260524-backpack-hunt-data-1"></script>
-  <script src="./hunt-research.js?v=20260604-max-point-above-line-1"></script>
+  <script src="./ui.js?v=20260606-runtime-ladder-mask-1"></script>
+  <script src="./hunt-research.js?v=20260606-runtime-ladder-mask-1"></script>
   <script src="./assets/js/research-outlook-dashboard.js?v=outlook-dashboard-polish-1"></script>
-  <script src="./header-layout.js?v=20260529-mobile-header-1"></script>
+  <script src="./header-layout.js?v=20260606-runtime-ladder-mask-1"></script>
 </body>
 </html>

@@ -17,6 +17,7 @@
       --font-display: "Aptos Display", "Segoe UI", "Trebuchet MS", Arial, sans-serif;
       --font-ui: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
       --bg-image: url('./assets/backgrounds/White Topo 20.jpg');
+      --page-top-light-mask: linear-gradient(180deg, rgba(255, 253, 248, 0.96) 0, rgba(255, 253, 248, 0.78) 54px, rgba(255, 253, 248, 0) 132px);
     }
 
     /* --- DARK MODE (U.O.G.A. WEBSITE MATCH) VARIABLES --- */
@@ -37,15 +38,16 @@
       --shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
       --font-display: "Aptos Display", "Segoe UI", "Trebuchet MS", Arial, sans-serif;
       --bg-image: url('./assets/backgrounds/White Topo 20.jpg');
+      --page-top-light-mask: linear-gradient(180deg, rgba(255, 253, 248, 0.92) 0, rgba(255, 253, 248, 0.66) 54px, rgba(255, 253, 248, 0) 132px);
     }
 
     * { box-sizing: border-box; }
     html, body {
       height: 100%; margin: 0; color: var(--text); font-family: var(--font-ui);
       background-color: var(--bg);
-      background-image: var(--bg-image);
-      background-size: 100% auto;
-      background-repeat: repeat-y;
+      background-image: var(--page-top-light-mask), var(--bg-image);
+      background-size: 100% 132px, 100% auto;
+      background-repeat: no-repeat, repeat-y;
       background-attachment: scroll;
       background-position: center top;
       transition: background-color 0.3s, color 0.3s;
@@ -54,6 +56,7 @@
 
     body.builder-page {
       background:
+        var(--page-top-light-mask),
         radial-gradient(circle at 8% 0%, rgba(46, 88, 64, 0.15), transparent 28rem),
         radial-gradient(circle at 92% 6%, rgba(178, 94, 31, 0.15), transparent 24rem),
         linear-gradient(180deg, rgba(246, 240, 231, 0.9), rgba(246, 240, 231, 0.96)),

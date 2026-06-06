@@ -212,6 +212,9 @@
       const existingLinks = Array.from(existingWrapper.querySelectorAll('a'));
       const stripLinks = strip ? Array.from(strip.querySelectorAll('a.utility-link')) : [];
       ensurePrimaryHeaderNav(header || existingWrapper.closest('header.topbar'), stripLinks.length ? stripLinks : existingLinks);
+      if (document.body && existingWrapper.parentElement !== document.body) {
+        document.body.appendChild(existingWrapper);
+      }
       bindPageNavControl(existingWrapper);
       if (strip) strip.remove();
       return;
@@ -285,6 +288,7 @@
     } else {
       host.insertBefore(wrapper, host.firstChild);
     }
+    document.body.appendChild(wrapper);
     strip.remove();
     bindPageNavControl(wrapper);
   }
@@ -324,6 +328,7 @@
         --selected-text:#2b1c12 !important;
         --selected-outline:#f07800 !important;
         --bg-image:url('./assets/backgrounds/White Topo 20.jpg') !important;
+        --page-top-light-mask:linear-gradient(180deg, rgba(255,253,248,.96) 0, rgba(255,253,248,.78) 54px, rgba(255,253,248,0) 132px) !important;
       }
       html, body {
         background-color:#f4efe4 !important;
@@ -331,6 +336,7 @@
       }
       body.builder-page {
         background:
+          var(--page-top-light-mask),
           radial-gradient(circle at 8% 0%, rgba(46, 88, 64, 0.15), transparent 28rem),
           radial-gradient(circle at 92% 6%, rgba(178, 94, 31, 0.15), transparent 24rem),
           linear-gradient(180deg, rgba(246, 240, 231, 0.9), rgba(246, 240, 231, 0.96)),
@@ -531,7 +537,7 @@
        .topbar-left { position:relative !important; display:flex !important; align-items:center !important; justify-content:flex-start !important; gap:14px !important; flex:0 0 auto !important; width:auto !important; min-width:0 !important; order:1 !important; z-index:30070 !important; }
        .topbar-right {
          position:fixed !important;
-         right:116px !important;
+         right:138px !important;
          top:9px !important;
          transform:none !important;
          display:flex !important;
@@ -860,7 +866,10 @@
         .instructions-control { margin:0 !important; order:0 !important; }
         .uoga-page-nav-control {
           display:flex !important;
-          position:relative !important;
+          position:fixed !important;
+          right:12px !important;
+          top:8px !important;
+          transform:none !important;
           order:0 !important;
           flex:0 0 auto !important;
           width:auto !important;
