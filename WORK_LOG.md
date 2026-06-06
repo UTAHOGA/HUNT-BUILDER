@@ -1,3 +1,46 @@
+## 2026-06-06T14:21:37Z - Hard Copy Library menu and wallpaper border repair
+
+Scope:
+- Added the shared top-right hamburger MENU navigation to `hard-copy.html`.
+- Wired the Library page to `header-layout.js` so the same seven-link rope-ladder dropdown appears on the Library page.
+- Created `assets/backgrounds/CABIN-extended.png` as a non-destructive corrected wallpaper asset.
+- Replaced the baked-in `150px` black bars on both sides of the original cabin image with extended cabin-edge texture without zooming the central image.
+- Updated Library wallpaper references to use `CABIN-extended.png`.
+- Did not edit engine code, `DATABASE.csv`, normalized truth files, raw source files, runtime manifests, R2 objects, or production feeder data.
+
+Files changed:
+- assets/backgrounds/CABIN-extended.png
+- assets/css/hard-copy-public-library.css
+- hard-copy.html
+- WORK_LOG.md
+
+Key results:
+- `hard-copy.html` returned `200 OK`.
+- `assets/backgrounds/CABIN-extended.png` returned `200 OK`.
+- Original `CABIN.png` detected black side borders: `150px` left / `150px` right.
+- New `CABIN-extended.png` detected black side borders: `0px` left / `0px` right.
+- Library desktop MENU button visible: true.
+- Library mobile MENU button visible: true.
+- Library dropdown link count: `7`.
+- Library wallpaper uses `CABIN-extended.png`: true.
+- Desktop horizontal overflow: false.
+- Mobile horizontal overflow: false.
+- Build-generated data/export files were restored after build validation.
+- Existing untracked `audits/prediction_engine_full_audit/` folder was left untouched.
+
+Validation commands run:
+- node --check header-layout.js
+- git diff --check
+- curl.exe -k -I https://127.0.0.1:4173/hard-copy.html
+- curl.exe -k -I https://127.0.0.1:4173/assets/backgrounds/CABIN-extended.png
+- python image border detection for `CABIN.png` and `CABIN-extended.png`
+- Browser render measurement at `https://127.0.0.1:4173/hard-copy.html` for desktop `1600x900`.
+- Browser render measurement at `https://127.0.0.1:4173/hard-copy.html` for mobile `390x844`.
+- npm.cmd run build
+
+Commit:
+- Pending commit.
+
 ## 2026-06-06T14:14:27Z - Builder hamburger menu hover bridge fix
 
 Scope:

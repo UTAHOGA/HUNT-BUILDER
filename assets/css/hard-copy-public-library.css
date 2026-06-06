@@ -1,5 +1,5 @@
 :root {
-  --wallpaper: url("/assets/backgrounds/CABIN.png");
+  --wallpaper: url("/assets/backgrounds/CABIN-extended.png");
   --ink: #2d180f;
   --accent: #d48635;
   --accent-dark: #8f4d18;
@@ -24,7 +24,7 @@ body {
   background-color: #110a05;
   background-image:
     linear-gradient(180deg, rgba(13, 7, 4, 0.05), rgba(13, 7, 4, 0.35)),
-    url("/assets/backgrounds/CABIN.png");
+    url("/assets/backgrounds/CABIN-extended.png");
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
@@ -35,8 +35,17 @@ body {
   font-family: "Trebuchet MS", "Segoe UI", Tahoma, sans-serif;
 }
 
-.topbar {
+.topbar:not(.hard-copy-topbar) {
   display: none !important;
+}
+
+.hard-copy-topbar {
+  pointer-events: none;
+}
+
+.hard-copy-topbar .uoga-page-nav-control,
+.hard-copy-topbar .uoga-primary-nav {
+  pointer-events: auto;
 }
 
 .page-nav-strip {
