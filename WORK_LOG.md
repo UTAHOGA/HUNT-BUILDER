@@ -1,3 +1,34 @@
+## 2026-06-06T13:12:30Z - Builder boundary-click hunt chooser placement
+
+Scope:
+- Changed Builder map boundary clicks so clicking a mapped hunt unit opens the same available-hunts chooser used by Apply instead of silently auto-selecting a single match.
+- Added a map-click placement mode so the chooser appears low near the bottom of the map when opened from a boundary click.
+- Preserved the normal Apply chooser placement.
+- Did not edit engine code, `DATABASE.csv`, normalized truth files, raw source files, runtime manifests, R2 objects, or production feeder data.
+
+Files changed:
+- app.js
+- style.css
+- WORK_LOG.md
+
+Key results:
+- Boundary clicks now open the chooser for zero, one, or many matched hunts.
+- Desktop map-click chooser bottom gap: `18px`.
+- Mobile map-click chooser bottom gap: `12px`.
+- Desktop horizontal overflow: false.
+- Mobile horizontal overflow: false.
+- Closing the chooser clears the map-click placement class before the next open.
+
+Validation commands run:
+- node --check app.js
+- git diff --check
+- npm.cmd run build
+- Browser render measurement at `https://127.0.0.1:4173/` for desktop `1600x900`.
+- Browser render measurement at `https://127.0.0.1:4173/` for mobile `390x844`.
+
+Commit:
+- Pending commit.
+
 ## 2026-06-05T22:56:00Z - Builder map selector and header control compression
 
 Scope:

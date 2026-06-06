@@ -3698,6 +3698,7 @@ function closeSelectedHuntPopup() {
   if (!mapChooser) return;
   mapChooser.classList.remove('is-open');
   mapChooser.classList.remove('is-hunt-results');
+  mapChooser.classList.remove('is-map-click');
   mapChooser.setAttribute('aria-hidden', 'true');
   selectedBoundaryMatches = [];
   if (mapChooserBody) {
@@ -3788,13 +3789,14 @@ function buildPopupListForMatches(matches) {
     </div>`;
 }
 
-function showHuntMatchesChooser(title, matches, kicker = 'Available Hunts') {
+function showHuntMatchesChooser(title, matches, kicker = 'Available Hunts', options = {}) {
   if (!mapChooser || !mapChooserBody || !mapChooserTitle || !mapChooserKicker) return;
   closeSelectedHuntFloat();
   selectedBoundaryMatches = matches.slice();
   mapChooserKicker.textContent = kicker;
   mapChooserTitle.textContent = firstNonEmpty(title, 'Available Hunts');
   mapChooser.classList.add('is-hunt-results');
+  mapChooser.classList.toggle('is-map-click', options.placement === 'map-click');
   mapChooserBody.innerHTML = matches.length ? matches.slice(0, 12).map(h => `
     <div class="map-chooser-card" data-popup-hunt-key="${escapeHtml(getHuntRecordKey(h))}" role="button" tabindex="0">
       <div class="hunt-card-title">${escapeHtml(getHuntCode(h))} | ${escapeHtml(getUnitName(h) || getHuntTitle(h))}</div>
@@ -3818,9 +3820,14 @@ function showHuntMatchesChooser(title, matches, kicker = 'Available Hunts') {
     });
   });
 }
-function openMapChooser(feature, matches) {
+function openMapChooser(feature, matches, options = {}) {
   const boundaryName = firstNonEmpty(feature?.getProperty?.('Boundary_Name'), 'Selected Unit');
-  showHuntMatchesChooser(boundaryName, matches, hasActiveMatrixSelections() || selectedHunt ? 'Available Hunts' : 'Selected Unit');
+  showHuntMatchesChooser(
+    boundaryName,
+    matches,
+    hasActiveMatrixSelections() || selectedHunt ? 'Available Hunts' : 'Selected Unit',
+    options
+  );
 }
 
 function openBoundaryPopup(feature, latLng) {
@@ -3833,20 +3840,12 @@ function openBoundaryPopup(feature, latLng) {
   closeSelectedHuntPopup();
   fitDataFeatureBounds(feature, 11);
   const boundaryName = firstNonEmpty(feature?.getProperty?.('Boundary_Name'), 'Selected Unit');
-  if (matches.length > 1) {
-    openMapChooser(feature, matches);
-    updateStatus(`${matches.length} matching hunts in ${boundaryName}. Choose one to fly in.`);
-    return;
+  openMapChooser(feature, matches, { placement: 'map-click' });
+  if (matches.length) {
+    updateStatus(`${matches.length} matching hunt${matches.length === 1 ? '' : 's'} in ${boundaryName}. Choose one to fly in.`);
+  } else {
+    updateStatus(`No matching hunts found in ${boundaryName} for the current filters.`);
   }
-  if (matches.length === 1) {
-    const key = getHuntRecordKey(matches[0]);
-    if (key) {
-      window.selectHuntByKey(key);
-      updateStatus(`Selected ${getHuntCode(matches[0]) || 'hunt'} in ${boundaryName}.`);
-      return;
-    }
-  }
-  updateStatus(`Zoomed to ${boundaryName}.`);
 }
 
 async function loadOutfitters() {

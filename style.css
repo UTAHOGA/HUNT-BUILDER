@@ -740,6 +740,13 @@
     .map-chooser { position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%); z-index: 3; width: min(740px, calc(100vw - 40px)); max-height: min(68vh, 720px); display: none; flex-direction: column; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); box-shadow: var(--shadow); overflow: hidden; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
     .map-chooser.is-open { display: flex; }
     .map-chooser.is-hunt-results { width: min(1180px, calc(100vw - 48px)); max-height: min(56vh, 640px); }
+    .map-chooser.is-map-click {
+      inset: auto auto 18px 50%;
+      transform: translateX(-50%);
+      width: min(980px, calc(100vw - 48px));
+      max-height: min(44vh, 430px);
+      z-index: 43;
+    }
     .selected-hunt-float {
       position: absolute;
       top: 18px;
@@ -1221,6 +1228,11 @@
         transform: translateX(-50%);
         width: min(96vw, 680px);
         max-height: 74svh;
+      }
+      .map-chooser.is-map-click {
+        inset: auto auto 12px 50%;
+        width: min(96vw, 680px);
+        max-height: 62svh;
       }
       .globe-basemap-panel {
         top: auto;
