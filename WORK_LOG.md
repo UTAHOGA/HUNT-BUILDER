@@ -27,7 +27,7 @@ Validation commands run:
 - python tools/prediction_accuracy_backtest/audit_historical_draw_year_availability.py --root . --out-dir audits/prediction_accuracy_backtest
 
 Commit:
-- Pending commit.
+- 05a5d708
 
 ## 2026-06-06T17:45:00Z - Early historical draw year availability for retrospective backtests
 
