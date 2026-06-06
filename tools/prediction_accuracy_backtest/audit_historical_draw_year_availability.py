@@ -16,6 +16,7 @@ from typing import Iterable
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_OUT_DIR = Path("audits/prediction_accuracy_backtest")
 MAIN_DRAW_RESULTS = Path("data_truth/draw_results_truth/normalized/draw_results_long.csv")
+REBUILT_DRAW_RESULTS_CANDIDATE = Path("audits/draw_truth_rebuild/draw_results_long_REBUILT_CANDIDATE.csv")
 EARLY_NORMALIZED_CANDIDATES = {
     2020: Path("data_truth/draw_results_truth/normalized/draw_results_2019_for_2020_candidate_promotion_file_records.csv"),
     2022: Path("data_truth/draw_results_truth/normalized/draw_results_2021_for_2022_candidate_promotion_file_records.csv"),
@@ -144,13 +145,16 @@ def main() -> int:
     root = (Path(args.root) if args.root else REPO_ROOT).resolve()
     out_dir = root / args.out_dir
     main_profile = profile_csv(root / MAIN_DRAW_RESULTS)
+    rebuilt_profile = profile_csv(root / REBUILT_DRAW_RESULTS_CANDIDATE)
 
     main_year_counts = main_profile.get("year_row_counts", {}) if isinstance(main_profile.get("year_row_counts"), dict) else {}
+    rebuilt_year_counts = rebuilt_profile.get("year_row_counts", {}) if isinstance(rebuilt_profile.get("year_row_counts"), dict) else {}
     rows: list[dict[str, object]] = []
     for target_year in (2020, 2021, 2022):
         draw_year = target_year - 1
         source_profile = find_source_files(root, target_year)
         main_rows = int(main_year_counts.get(str(draw_year), 0))
+        rebuilt_rows = int(rebuilt_year_counts.get(str(draw_year), 0))
         candidate_path = EARLY_NORMALIZED_CANDIDATES.get(target_year)
         candidate_profile = profile_csv(root / candidate_path) if candidate_path else profile_csv(root / "__missing__")
         parity_files = SOURCE_PARITY_FILES.get(target_year, [])
@@ -169,6 +173,10 @@ def main() -> int:
         elif candidate_profile["exists"] and int(candidate_profile["rows_with_hunt_code"]) > 0:
             readiness = "READY_WITH_EXTRA_NORMALIZED_SOURCE"
             materializer_status = "RUNNABLE_WITH_EXTRA_SOURCE"
+            blocker = ""
+        elif rebuilt_rows > 0:
+            readiness = "READY_WITH_REBUILT_AUDIT_CANDIDATE"
+            materializer_status = "RUNNABLE_WITH_REBUILT_AUDIT_CANDIDATE"
             blocker = ""
         elif int(source_profile["repo_source_file_count"]) + int(source_profile["bible_source_file_count"]) > 0 or parity_pass_rows > 0:
             readiness = "SOURCE_AVAILABLE_NOT_NORMALIZED"
@@ -189,6 +197,12 @@ def main() -> int:
                 f"--target-year {target_year} --history-years {draw_year} "
                 f"--extra-source-draw-results {candidate_path.as_posix()}"
             )
+        elif readiness == "READY_WITH_REBUILT_AUDIT_CANDIDATE":
+            command = (
+                "python tools/prediction_accuracy_backtest/build_retrospective_materialized_predictions.py "
+                f"--target-year {target_year} --history-years {draw_year} "
+                f"--source-draw-results {REBUILT_DRAW_RESULTS_CANDIDATE.as_posix()}"
+            )
 
         rows.append(
             {
@@ -196,6 +210,7 @@ def main() -> int:
                 "training_cutoff_year": draw_year,
                 "draw_result_year_needed": draw_year,
                 "main_draw_results_long_rows_for_needed_year": main_rows,
+                "rebuilt_candidate_rows_for_needed_year": rebuilt_rows,
                 "extra_normalized_source": str(candidate_path or ""),
                 "extra_normalized_exists": candidate_profile["exists"],
                 "extra_normalized_rows": candidate_profile["row_count"],
@@ -213,6 +228,7 @@ def main() -> int:
     summary = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "main_draw_results_long": main_profile,
+        "rebuilt_draw_results_candidate": rebuilt_profile,
         "target_years": rows,
         "production_truth_modified": False,
         "raw_sources_modified": False,
@@ -227,6 +243,7 @@ def main() -> int:
         "training_cutoff_year",
         "draw_result_year_needed",
         "main_draw_results_long_rows_for_needed_year",
+        "rebuilt_candidate_rows_for_needed_year",
         "extra_normalized_source",
         "extra_normalized_exists",
         "extra_normalized_rows",
@@ -249,14 +266,15 @@ def main() -> int:
         "",
         "## Results",
         "",
-        "| Target year | Needed draw year | Readiness | Main normalized rows | Extra normalized rows | Source files | Blocker |",
-        "| --- | ---: | --- | ---: | ---: | ---: | --- |",
+        "| Target year | Needed draw year | Readiness | Main normalized rows | Rebuilt candidate rows | Extra normalized rows | Source files | Blocker |",
+        "| --- | ---: | --- | ---: | ---: | ---: | ---: | --- |",
     ]
     for row in rows:
         source_count = int(row["repo_source_file_count"]) + int(row["bible_source_file_count"])
         lines.append(
             f"| {row['target_year']} | {row['draw_result_year_needed']} | {row['readiness']} | "
-            f"{row['main_draw_results_long_rows_for_needed_year']} | {row['extra_normalized_rows']} | {source_count} | {row['blocked_reason']} |"
+            f"{row['main_draw_results_long_rows_for_needed_year']} | {row['rebuilt_candidate_rows_for_needed_year']} | "
+            f"{row['extra_normalized_rows']} | {source_count} | {row['blocked_reason']} |"
         )
     lines.extend(
         [
@@ -266,6 +284,7 @@ def main() -> int:
             "- Target 2020 can run only by passing the 2019-for-2020 normalized candidate file as an extra retrospective source.",
             "- Target 2021 is blocked until 2020-for-2021 draw-result rows are normalized and promoted into a materializer-readable CSV.",
             "- Target 2022 is already covered by `draw_results_long.csv` year 2021 rows.",
+            "- The audit also inspects `audits/draw_truth_rebuild/draw_results_long_REBUILT_CANDIDATE.csv`; target 2021 remains blocked unless that candidate contains `year=2020` rows.",
             "",
             "No production feeder, raw source, website, manifest, R2, or normalized truth file was edited by this audit.",
         ]

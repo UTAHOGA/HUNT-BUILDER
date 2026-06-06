@@ -1,3 +1,34 @@
+## 2026-06-06T18:08:00Z - Recheck 2020-for-2021 normalization availability
+
+Scope:
+- Rechecked the repository after the 2020 draw-truth rebuild/normalization artifacts appeared.
+- Hardened the early-year availability audit so it also inspects `audits/draw_truth_rebuild/draw_results_long_REBUILT_CANDIDATE.csv`.
+- Reran the early-year availability audit and confirmed target-year 2021 remains blocked because the rebuilt candidate has no draw-result `year=2020` rows.
+- Did not generate target-year 2021 retrospective outputs because doing so would require a normalized 2020 source that is not currently present.
+- Did not modify production feeders, `DATABASE.csv`, normalized truth files, raw source files, website files, runtime manifests, or R2 objects.
+
+Files changed:
+- tools/prediction_accuracy_backtest/audit_historical_draw_year_availability.py
+- audits/prediction_accuracy_backtest/historical_draw_year_availability_audit.csv
+- audits/prediction_accuracy_backtest/historical_draw_year_availability_audit.json
+- audits/prediction_accuracy_backtest/historical_draw_year_availability_audit.md
+- audits/prediction_accuracy_backtest/ROLLING_HISTORICAL_BACKTEST_PLAN.md
+- WORK_LOG.md
+
+Key results:
+- `audits/draw_truth_rebuild/draw_results_long_REBUILT_CANDIDATE.csv` exists and has 257,632 rows.
+- Rebuilt candidate years: 2019, 2021, 2022, 2023, 2024, 2025, 2026.
+- Rebuilt candidate rows for needed draw-result year 2020: 0.
+- Target 2021 readiness remains: SOURCE_AVAILABLE_NOT_NORMALIZED / BLOCKED_UNTIL_NORMALIZED.
+- Existing target 2020 and target 2022 statuses remain runnable.
+
+Validation commands run:
+- python -m py_compile tools/prediction_accuracy_backtest/audit_historical_draw_year_availability.py
+- python tools/prediction_accuracy_backtest/audit_historical_draw_year_availability.py --root . --out-dir audits/prediction_accuracy_backtest
+
+Commit:
+- Pending commit.
+
 ## 2026-06-06T17:45:00Z - Early historical draw year availability for retrospective backtests
 
 Scope:

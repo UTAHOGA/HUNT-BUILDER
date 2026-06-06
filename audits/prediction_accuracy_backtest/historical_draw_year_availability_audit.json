@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-06-06T17:43:29.751532+00:00",
+  "generated_at_utc": "2026-06-06T18:04:36.223177+00:00",
   "main_draw_results_long": {
     "column_count": 43,
     "exists": true,
@@ -26,6 +26,32 @@
   },
   "production_truth_modified": false,
   "raw_sources_modified": false,
+  "rebuilt_draw_results_candidate": {
+    "column_count": 43,
+    "exists": true,
+    "path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\draw_truth_rebuild\\draw_results_long_REBUILT_CANDIDATE.csv",
+    "row_count": 257632,
+    "rows_with_hunt_code": 257632,
+    "unique_hunt_codes": 1743,
+    "year_row_counts": {
+      "2019": 57313,
+      "2021": 27519,
+      "2022": 18688,
+      "2023": 40694,
+      "2024": 37128,
+      "2025": 75194,
+      "2026": 1096
+    },
+    "years": [
+      "2019",
+      "2021",
+      "2022",
+      "2023",
+      "2024",
+      "2025",
+      "2026"
+    ]
+  },
   "target_years": [
     {
       "bible_source_file_count": 20,
@@ -38,8 +64,9 @@
       "main_draw_results_long_rows_for_needed_year": 0,
       "materializer_status": "RUNNABLE_WITH_EXTRA_SOURCE",
       "readiness": "READY_WITH_EXTRA_NORMALIZED_SOURCE",
+      "rebuilt_candidate_rows_for_needed_year": 57313,
       "recommended_command": "python tools/prediction_accuracy_backtest/build_retrospective_materialized_predictions.py --target-year 2020 --history-years 2019 --extra-source-draw-results data_truth/draw_results_truth/normalized/draw_results_2019_for_2020_candidate_promotion_file_records.csv",
-      "repo_source_file_count": 29,
+      "repo_source_file_count": 49,
       "source_parity_pass_rows": 0,
       "target_year": 2020,
       "training_cutoff_year": 2019
@@ -55,6 +82,7 @@
       "main_draw_results_long_rows_for_needed_year": 0,
       "materializer_status": "BLOCKED_UNTIL_NORMALIZED",
       "readiness": "SOURCE_AVAILABLE_NOT_NORMALIZED",
+      "rebuilt_candidate_rows_for_needed_year": 0,
       "recommended_command": "",
       "repo_source_file_count": 25,
       "source_parity_pass_rows": 30,
@@ -72,6 +100,7 @@
       "main_draw_results_long_rows_for_needed_year": 27519,
       "materializer_status": "RUNNABLE",
       "readiness": "READY_IN_MAIN_NORMALIZED_SOURCE",
+      "rebuilt_candidate_rows_for_needed_year": 27519,
       "recommended_command": "python tools/prediction_accuracy_backtest/build_retrospective_materialized_predictions.py --target-year 2022 --history-years 2021",
       "repo_source_file_count": 24,
       "source_parity_pass_rows": 0,

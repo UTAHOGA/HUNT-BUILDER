@@ -25,6 +25,7 @@ For target year N, the model may use draw-result and harvest information only th
 - Best actual candidate: not yet normalized
 - Status: BLOCKED_SOURCE_AVAILABLE_NOT_NORMALIZED
 - Note: Local 2020 draw-result source PDFs and source-parity audits exist, but no promoted row-level normalized `2020-for-2021` draw-result CSV was found for the materializer.
+- Recheck note: `audits/draw_truth_rebuild/draw_results_long_REBUILT_CANDIDATE.csv` exists and has 257,632 rows, but it contains `0` rows for draw-result year `2020`; target 2021 therefore remains blocked.
 
 ### Target 2022
 - Training cutoff: 2021
@@ -75,6 +76,7 @@ For target year N, the model may use draw-result and harvest information only th
 - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv` rows=1471 years=2026
 - `data_truth/draw_results_truth/normalized/draw_results_long.csv` rows=176753 years=2021;2022;2023;2024;2025;2026
 - `data_truth/draw_results_truth/normalized/draw_results_2019_for_2020_candidate_promotion_file_records.csv` rows=58155 years=2019 extra retrospective source for target 2020
+- `audits/draw_truth_rebuild/draw_results_long_REBUILT_CANDIDATE.csv` rows=257632 years=2019;2021;2022;2023;2024;2025;2026 and does not currently unlock target 2021 because year 2020 rows are absent
 - `data_truth/harvest_results_truth/normalized/harvest_results_all_years_long.csv` rows=68657 years=2021;2022;2023;2024;2025
 - `processed_data/draw_reality_engine_v2.csv` rows=176753 years=2021;2022;2023;2024;2025;2026
 - `processed_data/draw_reality_engine_predictive_v2.csv` rows=26389 years=2021;2022;2023;2024;2025;2026
