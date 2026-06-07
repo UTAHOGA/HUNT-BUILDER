@@ -536,6 +536,47 @@ Validation commands run:
 Commit:
 - Pending commit.
 
+# 2026-06-07T04:58:00Z - draw_results_long DATABASE identity overhaul
+
+Scope:
+- Rebuilt the identity layer in `draw_results_long.csv` from canonical `DATABASE.csv` identity fields.
+- Canonicalized only `boundary_id`, `hunt_name`, `species`, `sex_type`, `weapon`, and `hunt_type`.
+- Did not edit permits, applicants, drawn counts, odds/probability, success ratios, season dates, draw method/type, or `hunt_class`.
+- Did not edit `DATABASE.csv`, point ladder files, Hunt Research JSON, website files, R2/manifests, or Git staging.
+- Added `.gitignore` protection for the large applied mutation ledger so GitHub Desktop does not pick it up.
+
+Files changed:
+- tools/draw_truth_rebuild/apply_database_identity_overhaul_to_draw_results_long.py
+- data_truth/draw_results_truth/normalized/draw_results_long.csv
+- audits/draw_truth_rebuild/draw_results_long_database_identity_overhaul/
+- .gitignore
+- WORK_LOG.md
+
+Key results:
+- Total identity-cell mutations applied: 362,732.
+- DATABASE matched rows: 190,198.
+- DATABASE unmatched rows left untouched: 7,164.
+- Identity mismatches to DATABASE after overhaul on matched rows: 0.
+- Blank identity fields after overhaul on matched rows: 0.
+- Mutations by field: `boundary_id` 62,555; `hunt_name` 67,523; `species` 60,304; `sex_type` 66,112; `weapon` 71,375; `hunt_type` 34,863.
+- Mutations by year: 2021 = 135,543; 2022 = 5,248; 2023 = 4,792; 2024 = 204,707; 2025 = 12,436; 2026 = 6.
+- Protected field digest before and after matched: `154e12bb9c03affd830b78d3c4155df81a115037e6570f20a6d808cdf64738e5`.
+- Target SHA256 before: `522fdc91a612c94c9f6e179ae4761a5b5788271ba18cebf99a27419319f679d2`.
+- Target SHA256 after: `511ff2703e55fee001384ee1b134d81c9c9e974f8a2b877d3dac8f309fb16179`.
+- Large files intentionally ignored from Git: `draw_results_long.csv`, `planned_mutations.csv`, and `mutation_ledger.csv`.
+
+Validation commands run:
+- python -m py_compile tools/draw_truth_rebuild/apply_database_identity_overhaul_to_draw_results_long.py
+- python tools/draw_truth_rebuild/apply_database_identity_overhaul_to_draw_results_long.py --root .
+- python tools/draw_truth_rebuild/apply_database_identity_overhaul_to_draw_results_long.py --root . --apply
+- inline post-check: matched DATABASE identity mismatches = 0; matched-row blank identity fields = 0; protected digest unchanged
+- git diff --check
+- python tools/git_size_guard.py --warn-only
+- git diff --cached --name-only
+
+Commit:
+- Not committed per current no-staging/no-GitHub-Desktop-jam preference.
+
 ## 2026-06-06T14:45:57Z - Hard Copy Library wallpaper rollback and no-bump menu overlay
 
 Scope:

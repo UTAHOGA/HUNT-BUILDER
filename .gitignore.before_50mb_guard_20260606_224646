@@ -1,0 +1,188 @@
+# Dependencies and package caches
+node_modules/
+.npm-cache/
+
+# Local build/cache output
+_exports/
+_local_untracked_backup/
+local_only/
+pages-dist/
+dist/
+build/
+tmp/
+.cache/
+.wrangler*
+
+# Logs, backups, and temporary files
+*.log
+*.bak
+*.bak-*
+*.patch
+*.psd
+.tmp_r2_test.csv
+point_ladder_view1.csv
+large-files.txt
+HUNT-BUILDER/
+
+# Python generated files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local-only agent/environment files
+.codex/
+
+# Local PDF ingest inbox / generated review artifacts
+_pdf_inbox/
+processed_data/pdf_ingest/
+
+# R2 offload staging area. Manifests are the only Git-tracked offload record.
+pipeline/INGEST/inbox/**
+pipeline/INGEST/archive/**
+pipeline/R2_OFFLOAD/incoming/**
+pipeline/R2_OFFLOAD/uploaded/**
+pipeline/R2_OFFLOAD/manifests/**
+!pipeline/R2_OFFLOAD/manifests/
+!pipeline/R2_OFFLOAD/manifests/**/*.csv
+!pipeline/R2_OFFLOAD/manifests/**/*.json
+!pipeline/R2_OFFLOAD/manifests/**/*.md
+
+# Pipeline heavy/raw/generated data stays local unless explicitly promoted.
+pipeline/RAW/*
+!pipeline/RAW/hunt_unit_database/
+pipeline/RAW/hunt_unit_database/*
+!pipeline/RAW/hunt_unit_database/2026/
+pipeline/RAW/hunt_unit_database/2026/*
+!pipeline/RAW/hunt_unit_database/2026/csv/
+pipeline/RAW/hunt_unit_database/2026/csv/*
+!pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv
+pipeline/normalized/
+pipeline/processed/
+pipeline/**/*.html
+pipeline/**/*_files/
+pipeline/**/*.kmz
+pipeline/**/*.kml
+pipeline/**/*.geodatabase
+pipeline/**/*.gpkg
+pipeline/**/*.shp
+pipeline/**/*.shx
+pipeline/**/*.dbf
+pipeline/**/*.prj
+pipeline/**/*.cpg
+pipeline/**/*.xlsx
+pipeline/**/*.xls
+
+# Large archives/geospatial/database files
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz
+*.pdf
+*.xlsx
+*.xls
+*.gpkg
+*.mbtiles
+*.tif
+*.tiff
+*.parquet
+*.feather
+*.sqlite
+*.db
+*.shp
+*.dbf
+*.shx
+*.prj
+
+# Local raw/cache/export folders
+data/raw/
+data/cache/
+exports/
+
+# Cloudflare R2 public/runtime feeds: keep local real copies, but do not put
+# them in GitHub/Vercel. GitHub should track manifests/config, not these files.
+data/big_game_draw_point_level.csv
+data/hunt_boundaries_arcgis.json
+data/hunt_odds_history.csv
+data/hunt_odds_history.json
+data/hunt_predictions.json
+data/utah-elk-habitat.geojson
+data/utah-mule-deer-habitat.geojson
+data/boundaries/kml/*.kml
+data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.geojson
+data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.kml
+data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.kmz
+data/utah/foundation_bundle_2026/utah_hunt_foundation_2026.sqlite
+data/utah/official_downloads_2026/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson
+
+processed_data/hunt_research_2026*.json
+processed_data/hunt_research_2026_split/
+processed_data/point_ladder_view.csv
+processed_data/hunt_master_enriched.csv
+processed_data/hunt_unit_reference_linked.csv
+processed_data/draw_reality_engine.csv
+processed_data/draw_reality_engine_v2.csv
+processed_data/draw_reality_engine_predictive_v2.csv
+processed_data/draw_reality_view.csv
+processed_data/ml_draw_predictions_v1.csv
+processed_data/statewide_composite_boundaries_2026.geojson
+processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson
+processed_data/composite_hunt_unit_mapping_2026.geojson
+processed_data/public_contracts/hunt_odds_history.csv
+processed_data/public_contracts/hunt_odds_history.json
+
+# Large/internal generated processed artifacts
+processed_data/backups/
+processed_data/audits/hunt_research_2026_before_numeric_fix_snapshot.json
+processed_data/audits/research_feeder_database_permit_sync_audit.csv
+processed_data/*backup*.csv
+processed_data/*coverage_report*.csv
+processed_data/*.sqlite
+processed_data/*.db
+processed_data/public_contracts/*.with_permits*.pdf
+
+# Runtime draft outputs and large truth exports
+data_model/runtime_drafts/*.csv
+data_truth/draw_results_truth/normalized/*.csv
+audits/prediction_engine_full_audit/point_ladder_unified_join_audit.csv
+
+# Large generated model/quality/comparison outputs belong in R2 or local audit
+# storage, not GitHub Desktop commits.
+data_model/harvest_quality/*.csv
+data_model/harvest_quality/*.json
+data_truth/comparison_outputs/**
+audits/prediction_accuracy_backtest/retrospective_outputs/**
+
+# Additional large generated audit/model artifacts discovered during hardening.
+processed_data/audits/*.csv
+processed_data/dwr_huntplanner_hanumber_2026*.json
+processed_data/dwr_huntplanner_hanumber_2026*.csv
+processed_data/harvest_results_all_years_long.csv
+processed_data/harvest_supplemental_metrics_2024_for_2025_long.csv
+processed_data/projected_bonus_draw_2026_simulated.csv
+processed_data/mixed_predictive_engine_2026_audit.csv
+processed_data/hunt_decision_output.csv
+data_model/validation/*.csv
+data_truth/harvest_results_truth/normalized/*.csv
+
+# Public contract exception: small JSON contracts may remain repo/Vercel served.
+!processed_data/public_contracts/
+processed_data/public_contracts/*.json
+!processed_data/public_contracts/outfitters-public.json
+!processed_data/public_contracts/public_contract_summary.json
+!processed_data/public_contracts/source_snapshots.json
+!processed_data/public_contracts/hunt_application_outlook.json
+
+# Generated Cloudflare/Vercel build output stays local only. Commit source files
+# and public contracts, not the generated pages-dist tree.
+pages-dist/
+
+# Prediction accuracy backtest row-level outputs
+audits/prediction_accuracy_backtest/rowlevel_*.csv
+audits/prediction_accuracy_backtest/rowlevel_verification_outputs/
+audits/prediction_accuracy_backtest/retrospective_outputs/
+
+# Controlled prediction production-eligibility runs write large row-level engine
+# outputs locally; commit only compact summaries from the parent folder.
+audits/prediction_model_runs/production_eligibility/engine_outputs/
+audits/prediction_model_runs/production_eligibility/runtime_inputs/
