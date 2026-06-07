@@ -1,3 +1,38 @@
+## 2026-06-07T12:09:24Z - Apply BR/CG permit-allotment lineage blanks
+
+Scope:
+- Filled remaining BR/CG blanks in `permit_allotment_2026_source`, `permit_allotment_2026_source_file`, and `permit_allotment_2026_status` in `processed_data/hunt_unit_reference_linked.csv`.
+- Used only the approved family sources:
+  - `pipeline/RAW/hunt_unit_database/2026/csv/2026 Permits/black bear.csv`
+  - `data/cougar_hunt_table_official.json`
+- Did not patch permit numbers, probability fields, applicant fields, draw-result fields, model fields, `DATABASE.csv`, website files, runtime manifests, or R2 objects.
+
+Files changed:
+- processed_data/hunt_unit_reference_linked.csv
+- audits/hunt_unit_reference_triage/family_lineage_apply_report.json
+- audits/hunt_unit_reference_triage/family_lineage_apply_ledger.csv
+- audits/engine_feeders/engine_feeder_audit.csv
+- audits/engine_feeders/engine_feeder_audit.json
+- audits/engine_feeders/engine_feeder_audit.md
+- WORK_LOG.md
+
+Key results:
+- Applied permit-allotment lineage mutations: 376.
+- `permit_allotment_2026_source`: 128 filled.
+- `permit_allotment_2026_source_file`: 120 filled.
+- `permit_allotment_2026_status`: 128 filled.
+- BR/CG remaining blanks across `permit_allotment_2026_source`, `permit_allotment_2026_source_file`, `permit_allotment_2026_status`, `truth_source_file`, and `truth_source_status`: 0.
+- Protected fields changed: 0.
+- `processed_data/hunt_unit_reference_linked.csv` contract row still has 504 non-BR/CG null lineage fields.
+- Feeder audit currently reports 25 blockers because the synthetic fixture CSVs are missing locally again; that is outside this lineage patch.
+
+Validation commands run:
+- python tools\audit_engine_feeders.py --root . --forecast-year 2026 --warn-only
+- targeted BR/CG lineage null check across five lineage columns
+
+Commit:
+- Not committed in this pass.
+
 ## 2026-06-07T11:51:20Z - Patch BR/CG lineage in hunt_unit_reference_linked
 
 Scope:
