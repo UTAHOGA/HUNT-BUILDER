@@ -18358,3 +18358,34 @@ Validation commands run:
 
 Commit:
 - Pending commit.
+# '+$ts+' - draw_results_long identity cleanup + hunt_class clear dry-run then apply
+
+Scope:
+- Applied `SAFE_2026_DATABASE_IDENTITY_FILL` for `data_truth/draw_results_truth/normalized/draw_results_long.csv` using 2026 `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv` identity fields.
+- Added optional `--clear-hunt-class` behavior to the identity-overhaul script and executed it to clear `hunt_class` across draw-result rows as requested.
+- Generated unresolved non-database code audit artifacts for remaining legacy keys.
+
+Files changed:
+- tools/draw_truth_rebuild/apply_database_identity_overhaul_to_draw_results_long.py
+- data_truth/draw_results_truth/normalized/draw_results_long.csv (ignored file)
+- audits/draw_truth_rebuild/draw_results_long_identity_clear_hunt_class_check_20260607/*
+
+Key results:
+- Database-matched rows: 190,198
+- Database-unmatched rows: 7,164 (all rows remain outside 2026 DATABASE keyspace).
+- Applied `hunt_class` clears: 175,657
+- Remaining `hunt_code` not in DATABASE: 7,164
+- Unmatched unique codes: 167
+- `draw_results_long.csv` hash after apply: 9240b47539366bcc1266effd9d6dae55d406360f9837c0ba23872e69c9e1e65e
+
+Validation commands run:
+- python tools/draw_truth_rebuild/apply_database_identity_overhaul_to_draw_results_long.py --root . --out-dir audits/draw_truth_rebuild/draw_results_long_identity_check_20260607
+- python tools/draw_truth_rebuild/apply_database_identity_overhaul_to_draw_results_long.py --root . --out-dir audits/draw_truth_rebuild/draw_results_long_identity_clear_hunt_class_check_20260607 --clear-hunt-class
+- python tools/draw_truth_rebuild/apply_database_identity_overhaul_to_draw_results_long.py --root . --out-dir audits/draw_truth_rebuild/draw_results_long_identity_clear_hunt_class_check_20260607 --clear-hunt-class --apply
+- python -m py_compile tools/draw_truth_rebuild/apply_database_identity_overhaul_to_draw_results_long.py
+- git status --short
+- git diff --check
+
+Commit:
+- Pending commit.
+
