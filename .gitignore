@@ -397,3 +397,6 @@ pages-dist/data/hunt_odds_history.csv
 
 # Keep pages-dist static shell files if needed, but not huge runtime data
 "@
+AGENTS.before_repo_safety_20260606_232057.md
+AGENTS.MD
+AGENTS.MD
