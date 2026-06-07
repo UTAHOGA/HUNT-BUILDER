@@ -8,7 +8,6 @@ const MAX_PAGES_FILE_BYTES = Math.max(
   1,
   Number(process.env.PAGES_DIST_MAX_BYTES_MB) > 0 ? Number(process.env.PAGES_DIST_MAX_BYTES_MB) * 1024 * 1024 : 100 * 1024 * 1024,
 );
-const IS_VERCEL_BUILD = process.env.VERCEL === '1';
 const LARGE_MANIFEST_PATH = path.join(outDir, 'data', 'large-runtime-assets.json');
 const RUNTIME_MANIFEST_CANDIDATES = [
   path.join(repoRoot, 'data', 'runtime-manifest.json'),
@@ -205,16 +204,22 @@ function loadRuntimeManifestEntries() {
   return new Map();
 }
 
-function addLargeRuntimeRecord(records, relPath, sizeBytes, sourceManifest) {
+function addLargeRuntimeRecord(records, relPath, sizeBytes, sourceManifest, tooLarge) {
   const normalized = toPosix(relPath);
-  const mapped = sourceManifest.get(normalized) || {};
+  const mapped = sourceManifest && typeof sourceManifest.get === 'function'
+    ? sourceManifest.get(normalized) || {}
+    : {};
   records.push({
     source_path: normalized,
+    size_bytes: sizeBytes,
     size_mb: formatSizeMb(sizeBytes),
     r2_key_guess: mapped.r2_key_guess || '',
     public_url_guess: mapped.public_url_guess || '',
     copy_status: 'SKIPPED_LARGE_R2_REQUIRED',
   });
+  if (Array.isArray(tooLarge)) {
+    tooLarge.push(`${normalized} (${formatSizeMb(sizeBytes)} MiB; SKIPPED_LARGE_R2_REQUIRED)`);
+  }
 }
 
 async function writeLargeAssetManifest(records) {
@@ -229,7 +234,7 @@ async function writeLargeAssetManifest(records) {
   await fs.writeFile(LARGE_MANIFEST_PATH, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
 }
 
-function writeOptionalAuditReport(records, skippedPublicPaths, skippedByDirectory) {
+async function writeOptionalAuditReport(records, skippedPublicPaths, skippedByDirectory) {
   const report = {
     generated_at: new Date().toISOString(),
     max_public_file_bytes: MAX_PAGES_FILE_BYTES,
@@ -239,6 +244,7 @@ function writeOptionalAuditReport(records, skippedPublicPaths, skippedByDirector
     skipped_for_100mb_limit: skippedPublicPaths.length,
     skipped_records: records,
   };
+  await ensureParent(AUDIT_REPORT_PATH);
   return fs.writeFile(AUDIT_REPORT_PATH, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
 }
 
@@ -265,7 +271,7 @@ function simplifyRing(points) {
   return out.length >= 4 ? out : null;
 }
 
-async function buildBoundaryArtifacts(missing, tooLarge) {
+async function buildBoundaryArtifacts(missing, tooLarge, skippedLargeRecords, runtimeManifest) {
   const arcgisPath = path.join(repoRoot, 'data', 'hunt_boundaries_arcgis.json');
   const liteFallbackPath = path.join(repoRoot, 'data', 'hunt-boundaries-lite.geojson');
   const outputLite = path.join(outDir, 'data', 'hunt-boundaries-lite.geojson');
@@ -316,7 +322,7 @@ async function buildBoundaryArtifacts(missing, tooLarge) {
     const payload = JSON.stringify(liteGeoJson);
     if (Buffer.byteLength(payload, 'utf8') > MAX_PAGES_FILE_BYTES) {
       const bytes = Buffer.byteLength(payload, 'utf8');
-      tooLarge.push(`generated data/hunt-boundaries-lite.geojson (${(bytes / (1024 * 1024)).toFixed(1)} MiB)`);
+      addLargeRuntimeRecord(skippedLargeRecords, 'data/hunt-boundaries-lite.geojson', bytes, runtimeManifest, tooLarge);
       return;
     }
 
@@ -328,14 +334,14 @@ async function buildBoundaryArtifacts(missing, tooLarge) {
   }
 
   if (await exists(liteFallbackPath)) {
-    await copyFileIfExists('data/hunt-boundaries-lite.geojson', missing, tooLarge);
+    await copyFileIfExists('data/hunt-boundaries-lite.geojson', missing, tooLarge, skippedLargeRecords, runtimeManifest);
     const fallbackText = await fs.readFile(liteFallbackPath, 'utf8');
     const fallbackSizeBytes = Buffer.byteLength(fallbackText, 'utf8');
     if (fallbackSizeBytes <= MAX_PAGES_FILE_BYTES) {
       await ensureParent(outputFullAlias);
       await fs.writeFile(outputFullAlias, fallbackText, 'utf8');
     } else {
-      tooLarge.push(`data/hunt-boundaries-lite.geojson (${(fallbackSizeBytes / (1024 * 1024)).toFixed(1)} MiB)`);
+      addLargeRuntimeRecord(skippedLargeRecords, 'data/hunt-boundaries-lite.geojson', fallbackSizeBytes, runtimeManifest, tooLarge);
     }
     return;
   }
@@ -357,10 +363,23 @@ async function ensureParent(filePath) {
   await fs.mkdir(path.dirname(filePath), { recursive: true });
 }
 
-async function copyFileIfExists(relPath, missing, tooLarge) {
+function hasRuntimeManifestRecord(relPath, runtimeManifest) {
+  if (!runtimeManifest || typeof runtimeManifest.get !== 'function') {
+    return null;
+  }
+  const normalized = toPosix(relPath);
+  const mapped = runtimeManifest.get(normalized);
+  if (!mapped) return null;
+  return {
+    r2_key_guess: mapped.r2_key_guess || '',
+    public_url_guess: mapped.public_url_guess || '',
+  };
+}
+
+async function copyFileIfExists(relPath, missing, tooLarge, skippedLargeRecords, runtimeManifest) {
   if (isBlockedPublicPath(relPath)) return;
   if (isBlockedSourcePath(relPath)) {
-    tooLarge.push(`${relPath} (skipped by source-path guard)`);
+    missing.push(`${relPath} (skipped by source-path guard)`);
     return;
   }
   const src = path.join(repoRoot, relPath);
@@ -371,21 +390,20 @@ async function copyFileIfExists(relPath, missing, tooLarge) {
   }
   const stat = await fs.stat(src);
   if (stat.size > MAX_PAGES_FILE_BYTES) {
-    tooLarge.push(`${relPath} (${(stat.size / (1024 * 1024)).toFixed(1)} MiB)`);
-    return;
-  }
-  if (IS_VERCEL_BUILD && stat.size > MAX_PAGES_FILE_BYTES) {
-    tooLarge.push(`${relPath} (${(stat.size / (1024 * 1024)).toFixed(1)} MiB)`);
+    addLargeRuntimeRecord(skippedLargeRecords, relPath, stat.size, runtimeManifest, tooLarge);
     return;
   }
   await ensureParent(dest);
   await fs.copyFile(src, dest);
 }
 
-async function copyDirIfExists(relPath, missing) {
+async function copyDirIfExists(relPath, missing, tooLarge, skippedLargeRecords, runtimeManifest, skippedByDirectory) {
   const blockedReason = isBlockedSourcePath(relPath) ? 'source path blocked' : null;
   if (blockedReason) {
     missing.push(`${relPath} (${blockedReason})`);
+    if (Array.isArray(skippedByDirectory)) {
+      skippedByDirectory.push(`${relPath} (source-path blocked)`);
+    }
     return;
   }
   const src = path.join(repoRoot, relPath);
@@ -394,9 +412,6 @@ async function copyDirIfExists(relPath, missing) {
     missing.push(relPath);
     return;
   }
-  const runtimeManifest = loadRuntimeManifestEntries();
-  const oversizedFiles = [];
-
   await fs.mkdir(path.dirname(dest), { recursive: true });
   await fs.cp(src, dest, {
     recursive: true,
@@ -406,39 +421,41 @@ async function copyDirIfExists(relPath, missing) {
       if (fsSync.existsSync(sourcePath)) {
         const stats = fsSync.lstatSync(sourcePath);
         if (stats.isFile() && stats.size > MAX_PAGES_FILE_BYTES) {
-          const normalized = toPosix(rel);
-          oversizedFiles.push({
-            source_path: normalized,
+          const mapped = hasRuntimeManifestRecord(rel, runtimeManifest) || {};
+          skippedLargeRecords.push({
+            source_path: toPosix(rel),
             size_bytes: stats.size,
-            r2_key_guess: (runtimeManifest.get(normalized) || {}).r2_key_guess || '',
-            public_url_guess: (runtimeManifest.get(normalized) || {}).public_url_guess || '',
+            size_mb: formatSizeMb(stats.size),
+            r2_key_guess: mapped.r2_key_guess || '',
+            public_url_guess: mapped.public_url_guess || '',
             copy_status: 'SKIPPED_LARGE_R2_REQUIRED',
           });
+          tooLarge.push(`${rel} (${formatSizeMb(stats.size)} MiB; SKIPPED_LARGE_R2_REQUIRED)`);
           return false;
         }
       }
-      return !isBlockedPublicPath(rel);
+      return true;
     },
   });
-  for (const item of oversizedFiles) {
-    missing.push(`${item.source_path} (${(item.size_bytes / (1024 * 1024)).toFixed(1)} MiB; SKIPPED_LARGE_R2_REQUIRED)`);
-  }
 }
 
-async function copyPdfIfExists(srcPath, destPath, relPath, skippedLarge, runtimeManifest) {
+async function copyPdfIfExists(srcPath, destPath, relPath, skippedLargeRecords, tooLarge, runtimeManifest) {
   if (!(await exists(srcPath))) return;
   if (isBlockedPublicPath(relPath) || isBlockedSourcePath(relPath)) {
     return;
   }
   const stat = await fs.stat(srcPath);
   if (stat.size > MAX_PAGES_FILE_BYTES) {
-    skippedLarge.push({
+    const mapped = hasRuntimeManifestRecord(relPath, runtimeManifest) || {};
+    skippedLargeRecords.push({
       source_path: toPosix(relPath),
       size_bytes: stat.size,
-      r2_key_guess: (runtimeManifest.get(toPosix(relPath)) || {}).r2_key_guess || '',
-      public_url_guess: (runtimeManifest.get(toPosix(relPath)) || {}).public_url_guess || '',
+      size_mb: formatSizeMb(stat.size),
+      r2_key_guess: mapped.r2_key_guess || '',
+      public_url_guess: mapped.public_url_guess || '',
       copy_status: 'SKIPPED_LARGE_R2_REQUIRED',
     });
+    tooLarge.push(`${relPath} (${formatSizeMb(stat.size)} MiB; SKIPPED_LARGE_R2_REQUIRED)`);
     return;
   }
   await ensureParent(destPath);
@@ -454,7 +471,7 @@ async function writeConfigLocalStub() {
   await fs.writeFile(target, body, 'utf8');
 }
 
-async function copyPublicRegulationPdfs(missing) {
+async function copyPublicRegulationPdfs(missing, skippedLarge, tooLarge, runtimeManifest) {
   const srcDir = path.join(repoRoot, 'pipeline', 'RAW', 'hunt_unit_database', '2026', 'pdf', 'regulations');
   const destDir = path.join(outDir, 'public', 'hard-copy', 'regulations', '2026');
   if (!(await exists(srcDir))) {
@@ -467,7 +484,9 @@ async function copyPublicRegulationPdfs(missing) {
   for (const entry of entries) {
     if (!entry.isFile()) continue;
     if (!entry.name.toLowerCase().endsWith('.pdf')) continue;
-    await fs.copyFile(path.join(srcDir, entry.name), path.join(destDir, entry.name));
+    const srcPdf = path.join(srcDir, entry.name);
+    const relPath = normalizeRelPath(path.relative(repoRoot, srcPdf));
+    await copyPdfIfExists(srcPdf, path.join(destDir, entry.name), relPath, skippedLarge, tooLarge, runtimeManifest);
   }
 }
 
@@ -504,57 +523,21 @@ async function main() {
   const skippedForPathRules = [];
 
   for (const relPath of rootFiles) {
-    const isLarge = async () => {
-      const src = path.join(repoRoot, relPath);
-      if (!(await exists(src))) return false;
-      const stat = await fs.stat(src);
-      if (stat.size <= MAX_PAGES_FILE_BYTES) return false;
-      addLargeRuntimeRecord(skippedLargeByManifest, relPath, stat.size, runtimeManifest);
-      tooLarge.push(relPath);
-      return true;
-    };
-    if (await isLarge()) {
-      continue;
-    }
-    await copyFileIfExists(relPath, missing, tooLarge);
+    await copyFileIfExists(relPath, missing, tooLarge, skippedLargeByManifest, runtimeManifest);
   }
 
-  await buildBoundaryArtifacts(missing, tooLarge);
+  await buildBoundaryArtifacts(missing, tooLarge, skippedLargeByManifest, runtimeManifest);
   for (const relPath of dataFiles) {
-    const src = path.join(repoRoot, relPath);
-    if (isBlockedSourcePath(relPath) || isBlockedPublicPath(relPath)) continue;
-    if (await exists(src)) {
-      const stat = await fs.stat(src);
-      if (stat.size > MAX_PAGES_FILE_BYTES) {
-        addLargeRuntimeRecord(skippedLargeByManifest, relPath, stat.size, runtimeManifest);
-        tooLarge.push(relPath);
-        continue;
-      }
-    }
-    await copyFileIfExists(relPath, missing, tooLarge);
+    await copyFileIfExists(relPath, missing, tooLarge, skippedLargeByManifest, runtimeManifest);
   }
   for (const relPath of processedFiles) {
-    const src = path.join(repoRoot, relPath);
-    if (isBlockedSourcePath(relPath) || isBlockedPublicPath(relPath)) continue;
-    if (await exists(src)) {
-      const stat = await fs.stat(src);
-      if (stat.size > MAX_PAGES_FILE_BYTES) {
-        addLargeRuntimeRecord(skippedLargeByManifest, relPath, stat.size, runtimeManifest);
-        tooLarge.push(relPath);
-        continue;
-      }
-    }
-    await copyFileIfExists(relPath, missing, tooLarge);
+    await copyFileIfExists(relPath, missing, tooLarge, skippedLargeByManifest, runtimeManifest);
   }
   for (const relPath of dirsToCopy) {
-    if (isBlockedSourcePath(relPath) || isBlockedPublicPath(relPath)) {
-      skippedForPathRules.push(`${relPath} (source-path blocked)`);
-      continue;
-    }
-    await copyDirIfExists(relPath, missing, skippedLargeByManifest, runtimeManifest);
+    await copyDirIfExists(relPath, missing, tooLarge, skippedLargeByManifest, runtimeManifest, skippedForPathRules);
   }
 
-  await copyPublicRegulationPdfs(missing, skippedLargeByManifest, runtimeManifest);
+  await copyPublicRegulationPdfs(missing, skippedLargeByManifest, tooLarge, runtimeManifest);
   await ensureWallpaperAliases(missing);
   await writeLargeAssetManifest(skippedLargeByManifest);
   await writeOptionalAuditReport(skippedLargeByManifest, tooLarge, skippedForPathRules);
@@ -569,7 +552,7 @@ async function main() {
     }
   }
   if (tooLarge.length) {
-    console.log('Skipped oversized paths for Cloudflare Pages (25 MiB limit):');
+    console.log(`Skipped oversized paths for Cloudflare Pages (${(MAX_PAGES_FILE_BYTES / (1024 * 1024)).toFixed(0)} MiB limit):`);
     for (const item of tooLarge) {
       console.log(`- ${item}`);
     }

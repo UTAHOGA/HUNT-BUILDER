@@ -384,3 +384,16 @@ tools/draw_truth_rebuild/apply_database_identity_overhaul_to_draw_results_long.p
 audits*
 tools*
 pipeline*
+
+Add-Content ".gitignore" @"
+
+# Vercel build output large generated data should not be committed
+pages-dist/processed_data/public_contracts/*.json
+pages-dist/processed_data/**/*.geojson
+pages-dist/processed_data/**/*.sqlite
+pages-dist/processed_data/**/*.csv
+pages-dist/data/hunt_odds_history.json
+pages-dist/data/hunt_odds_history.csv
+
+# Keep pages-dist static shell files if needed, but not huge runtime data
+"@
