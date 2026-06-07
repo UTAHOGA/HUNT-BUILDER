@@ -36,7 +36,18 @@ class FeederContract:
 
 ROUTING_COLUMNS = ("hunt_code", "hunt_name", "species", "sex_type", "hunt_type")
 POINT_KEY = ("hunt_code", "residency", "points")
-DRAW_HISTORY_KEY = ("hunt_code", "year", "residency", "points")
+DRAW_HISTORY_KEY = ("hunt_code", "year", "residency", "points", "draw_pool")
+DRAW_TRUTH_LONG_KEY = (
+    "hunt_code",
+    "year",
+    "residency",
+    "points",
+    "draw_pool",
+    "source_file",
+    "page_number",
+    "source_pdf_page",
+    "raw_hunt_name",
+)
 CURRENT_PERMIT_COLUMNS = ("permit_allotment_2026_res", "permit_allotment_2026_nr", "permit_allotment_2026_total")
 DRAW_PROBABILITY_COLUMNS = ("p_draw", "p_draw_mean", "p_draw_p10", "p_draw_p50", "p_draw_p90", "p_random_mean", "p_max_pool_mean")
 SOURCE_LINEAGE_COLUMNS = ("source_file",)
@@ -56,7 +67,7 @@ ENGINE_FEEDERS: tuple[FeederContract, ...] = (
     FeederContract("utah_rebuild_fixtures", "data/utah/fixtures/harvest_quality_raw.csv", "engine.utah.rebuild", primary_key=("hunt_code",), required_columns=("hunt_code",), critical_columns=("hunt_code",), percent_columns=("success_percent",), notes="Synthetic fixture rebuild input; missing fixtures block fixture rebuild only."),
 
     # 2. engine.utah.materialize_engine processed feeders.
-    FeederContract("utah_materialize_engine", "processed_data/draw_reality_engine.csv", "engine.utah.materialize_engine", primary_key=DRAW_HISTORY_KEY, required_columns=("hunt_code", "year", "residency", "points", "success_ratio"), critical_columns=("hunt_code", "year", "residency"), numeric_columns=("success_ratio",), percent_columns=("p_draw_percent",), lineage_columns=("source_file",), generated=True),
+    FeederContract("utah_materialize_engine", "processed_data/draw_reality_engine.csv", "engine.utah.materialize_engine", primary_key=DRAW_HISTORY_KEY, required_columns=("hunt_code", "year", "residency", "points", "success_ratio"), critical_columns=("hunt_code", "year", "residency"), percent_columns=("p_draw_percent",), lineage_columns=("source_file",), generated=True),
     FeederContract("utah_materialize_engine", "processed_data/draw_reality_view.csv", "engine.utah.materialize_engine", primary_key=DRAW_HISTORY_KEY, required_columns=("hunt_code", "year", "residency", "points"), critical_columns=("hunt_code", "year", "residency"), generated=True),
     FeederContract("utah_materialize_engine", "processed_data/point_ladder_view.csv", "engine.utah.materialize_engine", primary_key=POINT_KEY, required_columns=("hunt_code", "residency", "points", "public_permits_2026"), critical_columns=("hunt_code", "residency"), probability_columns=("p_draw_mean", "p_random_mean", "p_max_pool_mean"), nonnegative_integer_columns=("points",), lineage_columns=RUNTIME_LINEAGE_COLUMNS, generated=True),
     FeederContract("utah_materialize_engine", "processed_data/historical_trend_2025.csv", "engine.utah.materialize_engine", primary_key=("hunt_code",), required_columns=("hunt_code",), critical_columns=("hunt_code",), generated=True),
@@ -68,7 +79,44 @@ ENGINE_FEEDERS: tuple[FeederContract, ...] = (
     FeederContract("utah_materialize_engine", "processed_data/hunt-master-canonical.json", "engine.utah.materialize_engine", file_type="json", alternatives=("processed_data/hunt-master-canonical-2026-source-of-truth.json",), notes="Legacy name accepted when present; 2026 source-of-truth JSON is the current alternate."),
 
     # 3. engine.utah_bonus_predictive.materialize production feeders.
-    FeederContract("utah_bonus_predictive", "data_truth/draw_results_truth/normalized/draw_results_long.csv", "engine.utah_bonus_predictive.materialize", primary_key=DRAW_HISTORY_KEY, required_columns=("hunt_code", "year", "residency", "points", "eligible_applicants", "total_permits", "success_ratio", "source_file"), critical_columns=("hunt_code", "year", "residency"), numeric_columns=("success_ratio",), percent_columns=("p_draw_percent",), lineage_columns=SOURCE_LINEAGE_COLUMNS, generated=True),
+   FeederContract(
+    "utah_bonus_predictive",
+    "data_truth/draw_results_truth/normalized/draw_results_long.csv",
+    "engine.utah_bonus_predictive.materialize",
+    primary_key=(
+        "year",
+        "hunt_code",
+        "residency",
+        "points",
+        "draw_pool",
+        "source_file",
+        "page_number",
+        "source_pdf_page",
+        "raw_hunt_name",
+    ),
+    required_columns=(
+        "year",
+        "hunt_code",
+        "residency",
+        "points",
+        "draw_pool",
+        "source_file",
+        "page_number",
+        "source_pdf_page",
+        "raw_hunt_name",
+    ),
+    critical_columns=(
+        "year",
+        "hunt_code",
+        "residency",
+        "points",
+        "draw_pool",
+        "source_file",
+    ),
+    percent_columns=("p_draw_percent",),
+    lineage_columns=SOURCE_LINEAGE_COLUMNS,
+    generated=True,
+),
     FeederContract("utah_bonus_predictive", "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv", "engine.utah_bonus_predictive.materialize", primary_key=("hunt_code",), required_columns=ROUTING_COLUMNS + CURRENT_PERMIT_COLUMNS, critical_columns=("hunt_code", "hunt_name", "species"), nonnegative_integer_columns=CURRENT_PERMIT_COLUMNS, lineage_columns=("permit_allotment_2026_source_file", "permit_allotment_2026_status")),
     FeederContract("utah_bonus_predictive", "scripts/build_runtime_draw_feed_v2.py", "engine.utah_bonus_predictive.materialize", file_type="python", primary_key=(), required_columns=(), critical_columns=(), notes="Code dependency invoked upstream."),
     FeederContract("utah_bonus_predictive", "scripts/build_predictive_bonus_engine_v1.py", "engine.utah_bonus_predictive.materialize", file_type="python", primary_key=(), required_columns=(), critical_columns=(), notes="Code dependency invoked upstream."),
@@ -79,13 +127,13 @@ ENGINE_FEEDERS: tuple[FeederContract, ...] = (
     FeederContract("utah_bonus_predictive_skip_upstream", "data_model/runtime_drafts/predictive_bonus_engine_2026.audit.csv", "engine.utah_bonus_predictive.materialize --skip-upstream", primary_key=("hunt_code", "residency"), required=False, production_blocker=False, required_columns=("hunt_code", "residency", "quota_source_status"), critical_columns=("hunt_code", "residency"), lineage_columns=("quota_source_file",), generated=True),
 
     # 4. engine.utah_draw_predictive feeders.
-    FeederContract("utah_draw_predictive", "processed_data/draw_reality_engine_v2.csv", "engine.utah_draw_predictive.classifier", primary_key=DRAW_HISTORY_KEY, required_columns=("hunt_code", "year", "residency", "points", "eligible_applicants", "source_file"), critical_columns=("hunt_code", "year", "residency"), numeric_columns=("success_ratio",), lineage_columns=SOURCE_LINEAGE_COLUMNS, generated=True),
+    FeederContract("utah_draw_predictive", "processed_data/draw_reality_engine_v2.csv", "engine.utah_draw_predictive.classifier", primary_key=DRAW_HISTORY_KEY, required_columns=("hunt_code", "year", "residency", "points", "eligible_applicants", "source_file"), critical_columns=("hunt_code", "year", "residency"), lineage_columns=SOURCE_LINEAGE_COLUMNS, generated=True),
     FeederContract("utah_draw_predictive", "processed_data/draw_reality_engine_predictive_v2.csv", "engine.utah_draw_predictive.*", primary_key=POINT_KEY, required_columns=("hunt_code", "residency", "points", "draw_system_type"), critical_columns=("hunt_code", "residency"), probability_columns=("p_draw", "p_sportsman_draw"), percent_columns=("p_draw_pct",), lineage_columns=QUOTA_LINEAGE_COLUMNS, generated=True),
     FeederContract("utah_draw_predictive", "processed_data/ml_draw_predictions_v1.csv", "engine.utah_draw_predictive.*", primary_key=POINT_KEY, required_columns=("hunt_code", "residency", "points", "p_draw_mean"), critical_columns=("hunt_code", "residency"), probability_columns=DRAW_PROBABILITY_COLUMNS + ("p_draw",), percent_columns=("p_draw_pct",), lineage_columns=QUOTA_LINEAGE_COLUMNS, generated=True),
     FeederContract("utah_draw_predictive", "processed_data/draw_system_coverage_report.csv", "engine.utah_draw_predictive.*", primary_key=("hunt_code", "year", "residency", "draw_system_type"), required_columns=("hunt_code", "year", "draw_system_type", "algorithm_status"), critical_columns=("hunt_code", "year", "draw_system_type"), probability_columns=("p_draw", "p_bonus_pool", "p_random_pool"), percent_columns=("p_draw_pct",), generated=True),
     FeederContract("utah_draw_predictive", "processed_data/draw_system_coverage_report.json", "engine.utah_draw_predictive.*", file_type="json"),
     FeederContract("utah_draw_predictive", "processed_data/hunt_master_enriched.csv", "engine.utah_draw_predictive.*", primary_key=POINT_KEY, required_columns=ROUTING_COLUMNS + ("residency", "points"), critical_columns=("hunt_code", "residency"), lineage_columns=RUNTIME_LINEAGE_COLUMNS, generated=True),
-    FeederContract("utah_draw_predictive", "processed_data/hunt_unit_reference_linked.csv", "engine.utah_draw_predictive.*", primary_key=("hunt_code", "residency"), required_columns=("hunt_code", "residency", "hunt_name", "species"), critical_columns=("hunt_code", "residency"), lineage_columns=RUNTIME_LINEAGE_COLUMNS, generated=True),
+    FeederContract("utah_draw_predictive", "processed_data/hunt_unit_reference_linked.csv", "engine.utah_draw_predictive.*", primary_key=("hunt_code", "residency", "boundary_id"), required_columns=("hunt_code", "residency", "hunt_name", "species", "boundary_id"), critical_columns=("hunt_code", "residency"), lineage_columns=RUNTIME_LINEAGE_COLUMNS, generated=True),
     FeederContract("utah_draw_predictive", "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv", "engine.utah_draw_predictive.*", primary_key=("hunt_code",), required_columns=ROUTING_COLUMNS + CURRENT_PERMIT_COLUMNS, critical_columns=("hunt_code", "hunt_name", "species"), nonnegative_integer_columns=CURRENT_PERMIT_COLUMNS, lineage_columns=("permit_allotment_2026_source_file", "permit_allotment_2026_status")),
     FeederContract("utah_draw_predictive", "data/utah/sportsman/sportsman_odds_2025.csv", "engine.utah_draw_predictive.sportsman", primary_key=("hunt_code",), required_columns=("year", "hunt_code", "species", "resident_quota", "resident_apps", "odds_text", "odds_denominator"), critical_columns=("year", "hunt_code", "species"), probability_columns=(), nonnegative_integer_columns=("resident_quota", "nonresident_quota", "total_quota", "resident_apps", "nonresident_apps", "total_apps", "odds_denominator"), lineage_columns=()),
     FeederContract("utah_draw_predictive", "data/cougar_hunt_table_official.json", "engine.utah_draw_predictive.mountain_lion", file_type="json"),
@@ -106,7 +154,7 @@ ENGINE_FEEDERS: tuple[FeederContract, ...] = (
     FeederContract("utah_predictive_mixed", "processed_data/ml_draw_predictions_v1.csv", "engine.utah_predictive_mixed.materialize", primary_key=POINT_KEY, required_columns=("hunt_code", "residency", "points", "p_draw_mean"), critical_columns=("hunt_code", "residency"), probability_columns=DRAW_PROBABILITY_COLUMNS + ("p_draw",), percent_columns=("p_draw_pct",), lineage_columns=QUOTA_LINEAGE_COLUMNS, generated=True),
     FeederContract("utah_predictive_mixed", "processed_data/draw_reality_engine_predictive_v2.csv", "engine.utah_predictive_mixed.materialize", primary_key=POINT_KEY, required_columns=("hunt_code", "residency", "points", "draw_system_type"), critical_columns=("hunt_code", "residency"), probability_columns=("p_draw", "p_sportsman_draw"), percent_columns=("p_draw_pct",), lineage_columns=QUOTA_LINEAGE_COLUMNS, generated=True),
     FeederContract("utah_predictive_mixed", "processed_data/point_ladder_view.csv", "engine.utah_predictive_mixed.materialize", primary_key=POINT_KEY, required_columns=("hunt_code", "residency", "points"), critical_columns=("hunt_code", "residency"), probability_columns=("p_draw_mean", "p_random_mean", "p_max_pool_mean"), lineage_columns=RUNTIME_LINEAGE_COLUMNS, generated=True),
-    FeederContract("utah_predictive_mixed", "processed_data/draw_reality_engine.csv", "engine.utah_predictive_mixed.materialize", primary_key=DRAW_HISTORY_KEY, required_columns=("hunt_code", "year", "residency", "points", "source_file"), critical_columns=("hunt_code", "year", "residency"), numeric_columns=("success_ratio",), lineage_columns=SOURCE_LINEAGE_COLUMNS, generated=True),
+    FeederContract("utah_predictive_mixed", "processed_data/draw_reality_engine.csv", "engine.utah_predictive_mixed.materialize", primary_key=DRAW_HISTORY_KEY, required_columns=("hunt_code", "year", "residency", "points", "source_file"), critical_columns=("hunt_code", "year", "residency"), lineage_columns=SOURCE_LINEAGE_COLUMNS, generated=True),
     FeederContract("utah_predictive_mixed", "data_model/harvest_quality/harvest_feature_model_by_hunt_code_2026.csv", "engine.utah_predictive_mixed.materialize", primary_key=("hunt_code",), required_columns=("hunt_code", "harvest_quality_index"), critical_columns=("hunt_code",), numeric_columns=("harvest_quality_index",), lineage_columns=("harvest_feature_source_years", "harvest_feature_data_quality_grade"), generated=True),
     FeederContract("utah_predictive_mixed", "processed_data/harvest_results_database_final_audit.json", "engine.utah_predictive_mixed.materialize", file_type="json"),
 )

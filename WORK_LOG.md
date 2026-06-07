@@ -1,3 +1,265 @@
+## 2026-06-07T11:51:20Z - Patch BR/CG lineage in hunt_unit_reference_linked
+
+Scope:
+- Filled only `truth_source_file` and `truth_source_status` for remaining `BR` and `CG` rows in `processed_data/hunt_unit_reference_linked.csv`.
+- Used only the approved family/current sources:
+  - `pipeline/RAW/hunt_unit_database/2026/csv/2026 Permits/black bear.csv`
+  - `data/cougar_hunt_table_official.json`
+  - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+- Did not patch probability, applicant, permit-result, model, `DATABASE.csv`, engine model code, website files, runtime manifests, or R2 objects.
+
+Files changed:
+- processed_data/hunt_unit_reference_linked.csv
+- audits/engine_feeders/engine_feeder_audit.csv
+- audits/engine_feeders/engine_feeder_audit.json
+- audits/engine_feeders/engine_feeder_audit.md
+- audits/engine_feeders/family_lineage_patch_20260607/family_lineage_mutations.csv
+- audits/engine_feeders/family_lineage_patch_20260607/family_lineage_blocked.csv
+- audits/engine_feeders/family_lineage_patch_20260607/family_lineage_summary.json
+- WORK_LOG.md
+
+Key results:
+- Lineage-only rows repaired: 128.
+- `BR` repairs: 8.
+- `CG` repairs: 120.
+- Blocked BR/CG lineage rows: 0.
+- Non-lineage change guard: PASS.
+- Protected fields changed: 0.
+- `processed_data/hunt_unit_reference_linked.csv` audit row remains BLOCKER only because non-BR/CG lineage nulls remain.
+- `processed_data/hunt_unit_reference_linked.csv` null lineage count changed from 758 to 504.
+
+Validation commands run:
+- python tools\audit_engine_feeders.py --root . --forecast-year 2026 --warn-only
+- git diff --check
+
+Commit:
+- Not committed in this pass.
+
+## 2026-06-07T08:56:00Z - Correct hunt_unit_reference_linked feeder contract grain
+
+Scope:
+- Corrected the `processed_data/hunt_unit_reference_linked.csv` feeder contract to use `hunt_code`, `residency`, and `boundary_id` as the primary key.
+- Required `boundary_id` for that contract as part of the identity grain.
+- Preserved the `draw_reality_engine_v2.csv` contract slot and did not edit feeder CSV values, `DATABASE.csv`, model engine code, website files, runtime manifests, or R2 objects.
+
+Files changed:
+- tools/engine_feeder_contract.py
+- audits/engine_feeders/engine_feeder_audit.csv
+- audits/engine_feeders/engine_feeder_audit.json
+- audits/engine_feeders/engine_feeder_audit.md
+- WORK_LOG.md
+
+Key results:
+- Total feeder contracts: 53.
+- Status counts after audit: 36 PASS, 17 BLOCKER.
+- Blocker count before/after this step: 17 -> 17.
+- `processed_data/hunt_unit_reference_linked.csv` duplicate key count: 0.
+- `processed_data/hunt_unit_reference_linked.csv` still blocks only on `null_lineage_fields` with 758 null lineage fields.
+
+Validation commands run:
+- python -m py_compile tools\engine_feeder_contract.py
+- python tools\audit_engine_feeders.py --root . --forecast-year 2026 --warn-only
+
+Commit:
+- Not committed in this pass.
+
+## 2026-06-07T08:49:00Z - Allow semantic unlimited value in feeder integer audit
+
+Scope:
+- Patched `tools/audit_engine_feeders.py` so the issue key remains `invalid_nonnegative_integer_values`.
+- Added a narrow nonnegative-integer validation exception for the semantic text value `unlimited`.
+- Reran the 2026 engine feeder audit in warn-only mode.
+- Did not modify `DATABASE.csv`, feeder data values, engine model code, website files, runtime manifests, or R2 objects.
+
+Files changed:
+- tools/audit_engine_feeders.py
+- audits/engine_feeders/engine_feeder_audit.csv
+- audits/engine_feeders/engine_feeder_audit.json
+- audits/engine_feeders/engine_feeder_audit.md
+- WORK_LOG.md
+
+Key results:
+- Total feeder contracts: 53.
+- Status counts: 36 PASS, 17 BLOCKER.
+- DATABASE.csv audit rows: 2, both PASS.
+- DATABASE.csv `invalid_nonnegative_integer_count`: 0 for both `utah_bonus_predictive` and `utah_draw_predictive`.
+- `CG9999` / `Cougar - Statewide` / `permit_allotment_2026_total = unlimited` is treated as an allowed semantic value, not a new issue key and not a numeric repair candidate.
+
+Validation commands run:
+- python -m py_compile tools\audit_engine_feeders.py
+- python tools\audit_engine_feeders.py --root . --forecast-year 2026 --warn-only
+- git diff --check
+
+Commit:
+- Not committed in this pass.
+
+## 2026-06-07T08:42:38Z - Triage DATABASE 2026 nonnegative integer fields
+
+Scope:
+- Created and ran a read-only triage script for selected 2024/2026 integer-like permit/allotment columns in `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`.
+- Wrote audit outputs under `audits/database_2026_triage/`.
+- Did not modify `DATABASE.csv`, draw truth files, production runtime data values, website files, runtime manifests, or R2 objects.
+
+Files changed:
+- tools/triage_database_2026_invalid_integers.py (ignored by current repo rules)
+- audits/database_2026_triage/database_2026_invalid_integer_summary.csv (ignored by current repo rules)
+- audits/database_2026_triage/database_2026_invalid_integer_rows_sample.csv (ignored by current repo rules)
+- audits/database_2026_triage/database_2026_invalid_integer_summary.json (ignored by current repo rules)
+- WORK_LOG.md
+
+Key results:
+- DATABASE rows checked: 1,471.
+- DATABASE columns checked: 41 total columns in file; 7 configured integer columns were present and triaged.
+- Total invalid nonblank integer-like values found: 1.
+- The only flagged value is `CG9999` / `Cougar - Statewide` / `permit_allotment_2026_total = unlimited`.
+- This appears to be the expected statewide unlimited cougar permit exception, not a numeric data repair candidate.
+
+Validation commands run:
+- python -m py_compile tools\triage_database_2026_invalid_integers.py
+- python tools\triage_database_2026_invalid_integers.py
+
+Commit:
+- Not committed in this pass.
+
+## 2026-06-07T08:28:14Z - Correct draw_results_long audit grain from duplicate triage
+
+Scope:
+- Used the existing duplicate-grain triage evidence under `audits/draw_results_long_triage/`.
+- Updated the feeder contract for `data_truth/draw_results_truth/normalized/draw_results_long.csv` to use the proven full normalized truth grain: `hunt_code`, `year`, `residency`, `points`, `draw_pool`, `source_file`, `page_number`, `source_pdf_page`, and `raw_hunt_name`.
+- Did not delete exact duplicate rows.
+- Did not modify `draw_results_long.csv`, `DATABASE.csv`, production runtime data values, website files, runtime manifests, or R2 objects.
+
+Files changed:
+- tools/engine_feeder_contract.py
+- audits/engine_feeders/engine_feeder_audit.csv
+- audits/engine_feeders/engine_feeder_audit.json
+- audits/engine_feeders/engine_feeder_audit.md
+- WORK_LOG.md
+
+Key results:
+- Engine feeder audit status changed from 20 blockers / 33 passes to 19 blockers / 34 passes.
+- The `draw_results_long.csv` duplicate-primary-key blocker is cleared by using the reviewed full grain.
+- Remaining blockers are outside the normalized draw-truth grain issue.
+
+Validation commands run:
+- python -m py_compile tools\engine_feeder_contract.py tools\audit_engine_feeders.py
+- python .\tools\audit_engine_feeders.py --root . --forecast-year 2026 --warn-only
+- git diff --check
+- python tools\git_size_guard.py --warn-only
+
+Commit:
+- Not committed in this pass.
+
+## 2026-06-07T08:25:55Z - Correct engine feeder audit draw-history grain
+
+Scope:
+- Updated the engine feeder contract so draw-history primary keys include `draw_pool`.
+- Removed raw numeric validation from `success_ratio` in draw-history feeder contracts because runtime and engine code treat it as odds text such as `1 in 127.0`; numeric probability validation remains on probability/percent fields.
+- Reran the engine feeder audit in warn-only mode.
+- Did not modify `DATABASE.csv`, normalized draw truth, production runtime data values, website files, runtime manifests, or R2 objects.
+
+Files changed:
+- tools/engine_feeder_contract.py
+- audits/engine_feeders/engine_feeder_audit.csv
+- audits/engine_feeders/engine_feeder_audit.json
+- audits/engine_feeders/engine_feeder_audit.md
+- WORK_LOG.md
+
+Key results:
+- Engine feeder audit status changed from 23 blockers / 30 passes to 20 blockers / 33 passes.
+- `processed_data/draw_reality_engine.csv` no longer reports duplicate-primary-key or invalid-numeric blockers.
+- `processed_data/draw_reality_engine_v2.csv` no longer reports duplicate-primary-key or invalid-numeric blockers.
+- `data_truth/draw_results_truth/normalized/draw_results_long.csv` still reports duplicate primary keys after adding `draw_pool`, so that remains a real normalized-truth duplicate repair/audit lane.
+
+Validation commands run:
+- python -m py_compile tools\engine_feeder_contract.py tools\audit_engine_feeders.py
+- python .\tools\audit_engine_feeders.py --root . --forecast-year 2026 --warn-only
+- git diff --check
+- python tools\git_size_guard.py --warn-only
+
+Commit:
+- Not committed in this pass.
+
+## 2026-06-07T08:21:48Z - Repair 2-row runtime feeder fragments from local runtime candidates
+
+Scope:
+- Added a scripted runtime-fragment repair for two processed runtime feeders that had been overwritten with 2-row fixture fragments.
+- Repaired `processed_data/draw_reality_engine.csv` from `processed_data/draw_reality_engine_v2.csv`.
+- Repaired `processed_data/hunt_master_enriched.csv` from `data_model/runtime_drafts/hunt_master_enriched_v2.csv` and added `truth_source_file` / `truth_source_status` lineage columns.
+- Wrote file-level repair ledgers and summary reports.
+- Reran the engine feeder audit in warn-only mode.
+- Did not modify `DATABASE.csv`, normalized draw truth, engine code, website files, runtime manifests, or R2 objects.
+
+Files changed:
+- tools/repair_runtime_fragment_feeders.py
+- processed_data/draw_reality_engine.csv
+- processed_data/hunt_master_enriched.csv
+- audits/engine_feeders/runtime_fragment_repair_dryrun_20260607_0825/
+- audits/engine_feeders/runtime_fragment_repair_apply_20260607_0825/
+- audits/engine_feeders/engine_feeder_audit.csv
+- audits/engine_feeders/engine_feeder_audit.json
+- audits/engine_feeders/engine_feeder_audit.md
+- WORK_LOG.md
+
+Key results:
+- `processed_data/draw_reality_engine.csv` rows changed from 2 to 176,753.
+- `processed_data/hunt_master_enriched.csv` rows changed from 2 to 51,857.
+- Engine feeder audit status changed from 25 blockers / 28 passes to 23 blockers / 30 passes.
+- The `hunt_master_enriched.csv` missing-required-column and missing-lineage blockers are resolved.
+- `draw_reality_engine.csv` is no longer a 2-row fragment, but still has duplicate-key and invalid-numeric blockers that need a separate grain/numeric repair pass.
+
+Validation commands run:
+- python -m py_compile tools\repair_runtime_fragment_feeders.py
+- python tools\repair_runtime_fragment_feeders.py --root . --out-dir audits\engine_feeders\runtime_fragment_repair_dryrun_20260607_0825
+- python tools\repair_runtime_fragment_feeders.py --root . --out-dir audits\engine_feeders\runtime_fragment_repair_apply_20260607_0825 --apply
+- python .\tools\audit_engine_feeders.py --root . --forecast-year 2026 --warn-only
+- python -m pytest tests\utah\test_active_runtime_code_cleanup_2026.py tests\utah\test_current_year_permit_allotments.py -q
+
+Validation result:
+- Fixture/runtime fragment repair completed.
+- Targeted pytest command failed: 8 failed, 3 passed.
+- Failures show remaining active-runtime code-count and current-year allotment overlay issues, including missing allotment columns in `hunt_master_enriched.csv` and stale/allocation mismatches in `DATABASE.csv` / runtime reference files.
+
+Commit:
+- Not committed in this pass.
+
+## 2026-06-07T08:15:19Z - Create synthetic Utah fixture rebuild inputs
+
+Scope:
+- Created the missing `data/utah/fixtures/*_raw.csv` inputs required by the legacy fixture rebuild path.
+- Kept the fixture rows synthetic and aligned to the existing fixture seed predictions in `data/utah/fixtures/draw_reality_engine.csv`.
+- Reran the engine feeder audit in warn-only mode.
+- Did not modify production truth files, `DATABASE.csv`, normalized draw truth, engine code, website files, runtime manifests, or R2 objects.
+
+Files changed:
+- data/utah/fixtures/applicants_raw.csv
+- data/utah/fixtures/applications_raw.csv
+- data/utah/fixtures/draw_results_raw.csv
+- data/utah/fixtures/groups_raw.csv
+- data/utah/fixtures/harvest_quality_raw.csv
+- data/utah/fixtures/hunt_metadata_raw.csv
+- data/utah/fixtures/points_raw.csv
+- data/utah/fixtures/quotas_raw.csv
+- audits/engine_feeders/engine_feeder_audit.csv
+- audits/engine_feeders/engine_feeder_audit.json
+- audits/engine_feeders/engine_feeder_audit.md
+- WORK_LOG.md
+
+Key results:
+- Fixture rebuild tests passed.
+- Engine feeder audit contracts checked: 53.
+- Feeder audit status changed from 33 blockers / 20 passes to 25 blockers / 28 passes.
+- The 8 fixture missing-file blockers are resolved.
+- Remaining blockers are outside the synthetic fixture input lane.
+
+Validation commands run:
+- python -m pytest tests\utah\test_rebuild_fixture_pipeline.py -q
+- python .\tools\audit_engine_feeders.py --root . --forecast-year 2026 --warn-only
+- git diff --check
+
+Commit:
+- Not committed in this pass.
+
 ## 2026-06-06T21:32:00+00:00 - Document active production prediction assembly chain without rebuild
 
 Scope:

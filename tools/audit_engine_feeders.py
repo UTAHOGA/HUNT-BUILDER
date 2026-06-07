@@ -123,6 +123,9 @@ def _read_csv_summary(path: Path, contract: FeederContract) -> dict[str, object]
                         invalid_percent[col] += 1
             for col in contract.nonnegative_integer_columns:
                 if col in fieldset:
+                    raw_text = _clean(row.get(col))
+                    if raw_text.lower() in {"unlimited"}:
+                        continue
                     value = _parse_float(row.get(col))
                     if value is not None and (math.isnan(value) or value < 0 or not float(value).is_integer()):
                         invalid_integer[col] += 1
