@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-06-05T10:20:58.197Z",
+  "generated_at": "2026-06-07T05:15:55.000Z",
   "current_source_used": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
   "cloudflare_fallback_base": "https://json.uoga.workers.dev",
   "pages_file_limit_mb": 25,
   "counts": {
     "total_current_hunts": 1471,
-    "modeled_count": 1465,
-    "excluded_non_predictive_count": 0,
+    "modeled_count": 1451,
+    "excluded_non_predictive_count": 14,
     "manual_review_count": 6,
     "promotion_gate_pass_count": 1465,
     "promotion_gate_block_count": 6,
-    "cloudflare_fallback_file_count": 7
+    "cloudflare_fallback_file_count": 5
   },
   "species_counts": {
     "Bison": 20,
@@ -54,8 +54,9 @@
     "not_OIL_LE_PLE": 14
   },
   "final_state_counts": {
-    "PREDICTION_ELIGIBLE_AND_MODELED": 1465,
-    "MANUAL_REVIEW_REQUIRED": 6
+    "PREDICTION_ELIGIBLE_AND_MODELED": 1451,
+    "MANUAL_REVIEW_REQUIRED": 6,
+    "EXCLUDED_WITH_DOCUMENTED_NON_PREDICTIVE_REASON": 14
   },
   "gate_status_counts": {
     "PASS": 1465,
@@ -120,10 +121,10 @@
       "role": "enriched hunt master",
       "exists": "true",
       "row_count": "not_scanned",
-      "size_bytes": 56676255,
-      "size_mb": 54.05,
-      "delivery": "cloudflare-fallback",
-      "href": "https://json.uoga.workers.dev/processed_data/hunt_master_enriched.csv",
+      "size_bytes": 635,
+      "size_mb": 0,
+      "delivery": "pages-local",
+      "href": "./processed_data/hunt_master_enriched.csv",
       "local_href": "./processed_data/hunt_master_enriched.csv",
       "cloudflare_href": "https://json.uoga.workers.dev/processed_data/hunt_master_enriched.csv"
     },
@@ -146,8 +147,8 @@
       "role": "draw reality engine output",
       "exists": "true",
       "row_count": "not_scanned",
-      "size_bytes": 20594722,
-      "size_mb": 19.64,
+      "size_bytes": 1712,
+      "size_mb": 0,
       "delivery": "pages-local",
       "href": "./processed_data/draw_reality_engine.csv",
       "local_href": "./processed_data/draw_reality_engine.csv",
@@ -198,10 +199,10 @@
       "role": "point ladder output",
       "exists": "true",
       "row_count": "not_scanned",
-      "size_bytes": 152517461,
-      "size_mb": 145.45,
-      "delivery": "cloudflare-fallback",
-      "href": "https://json.uoga.workers.dev/processed_data/point_ladder_view.csv",
+      "size_bytes": 21093626,
+      "size_mb": 20.12,
+      "delivery": "pages-local",
+      "href": "./processed_data/point_ladder_view.csv",
       "local_href": "./processed_data/point_ladder_view.csv",
       "cloudflare_href": "https://json.uoga.workers.dev/processed_data/point_ladder_view.csv"
     },
@@ -298,13 +299,13 @@
     }
   ],
   "scanned_row_counts": {
-    "processed_data/hunt_master_enriched.csv": 53225,
+    "processed_data/hunt_master_enriched.csv": 2,
     "processed_data/hunt_unit_reference_linked.csv": 2997,
     "processed_data/draw_reality_engine_predictive_v2.csv": 26389,
-    "processed_data/draw_reality_engine.csv": 36892,
+    "processed_data/draw_reality_engine.csv": 2,
     "processed_data/draw_reality_engine_v2.csv": 176753,
     "processed_data/ml_draw_predictions_v1.csv": 27940,
-    "processed_data/point_ladder_view.csv": 91712,
+    "processed_data/point_ladder_view.csv": 78162,
     "processed_data/draw_system_coverage_report.csv": 204693,
     "processed_data/predictive_coverage_report.csv": 1683,
     "processed_data/current_to_historical_hunt_code_crosswalk_2026.csv": 169,
