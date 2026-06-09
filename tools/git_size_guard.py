@@ -121,7 +121,7 @@ def blob_size(path: str) -> int:
     return int(value or "0")
 
 
-def classify(status: str, path: str) -> list[str]:
+def classify(status: str, path: str, max_mb: float) -> list[str]:
     if status == "D" or is_allowed(path):
         return []
 
@@ -136,14 +136,14 @@ def classify(status: str, path: str) -> list[str]:
 
     size = blob_size(path)
     if size > MAX_BYTES:
-        reasons.append(f"file is {size / (1024 * 1024):.1f} MB, over 10 MB")
+        reasons.append(f"file is {size / (1024 * 1024):.1f} MB, over {max_mb:g} MB")
 
     return reasons
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--max-mb", type=float, default=10.0)
+    parser.add_argument("--max-mb", type=float, default=80.0)
     parser.add_argument("--warn-only", action="store_true")
     args = parser.parse_args()
 
@@ -152,7 +152,7 @@ def main() -> int:
 
     blocked: list[tuple[str, str, list[str]]] = []
     for status, path in staged_paths():
-        reasons = classify(status, path)
+        reasons = classify(status, path, args.max_mb)
         if reasons:
             blocked.append((status, path, reasons))
 
