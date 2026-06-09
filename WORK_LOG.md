@@ -18715,3 +18715,280 @@ Validation commands run:
 Commit:
 - Pending commit.
 
+## 2026-06-09T17:25:00Z - Normalize hunt_name identity bleed across draw documents
+
+Scope:
+- Added/updated `tools/normalize_hunt_name_columns.py` (ignored by git) to strip embedded identity tokens from `hunt_name` using row-level `species`, `sex_type`, `hunt_type`, `weapon`, and `hunt_class` fields.
+- Applied one-file-at-a-time normalization passes:
+  - `data_truth/draw_results_truth/normalized/draw_results_long.csv`: 4,471 `hunt_name` repairs
+  - `processed_data/ml_draw_predictions_v1.csv`: 9,572 `hunt_name` repairs (tracked file modified)
+  - `processed_data/draw_reality_engine_predictive_v2.csv`: 40 `hunt_name` repairs
+  - `processed_data/point_ladder_view.csv`: 280 `hunt_name` repairs
+- Audit outputs written under:
+  - `audits/hunt_name_cleanup/20260609T1725_dryrun/`
+  - `audits/hunt_name_cleanup/20260609T1725_apply_1/`
+  - `audits/hunt_name_cleanup/20260609T1725_apply_2/`
+  - `audits/hunt_name_cleanup/20260609T1725_apply_3/`
+  - `audits/hunt_name_cleanup/20260609T1725_apply_4/`
+
+Validation:
+- `python -m py_compile tools/normalize_hunt_name_columns.py`
+
+Notes:
+- No protected fields (permit/metric/probability/model fields) were modified.
+- `tools/` and several `processed_data/*` outputs are currently ignored by git patterns in this environment.
+
+## 2026-06-09T05:41:39Z - Backfill 2019 and 2020 draw truth into draw_results_long
+
+Scope:
+- Added 2019 and 2020 draw-result rows to `data_truth/draw_results_truth/normalized/draw_results_long.csv` from canonical year candidate files.
+
+Source files used:
+- `data_truth/draw_results_truth/normalized/draw_results_2019_for_2020_candidate_promotion_file_records.csv`
+- `data_truth/draw_results_truth/normalized/draw_results_2020_for_2021_candidate_promotion_file_records.csv`
+
+Transform and gating:
+- Mapped legacy candidate fields into the 43-column `draw_results_long` schema.
+- Kept only row-level identity and permit/applicant fields; did not synthesize probability/model fields.
+- Avoided duplicate rows by exact-row dedupe against existing `draw_results_long` content.
+- Added rows only for `year` 2019 and 2020 from candidate sources.
+
+Outputs:
+- `audits/draw_results_long_2019_2020_backfill/backfill_summary.json`
+- `audits/draw_results_long_2019_2020_backfill/append_sample.csv`
+- `audits/draw_results_long_2019_2020_backfill/added_columns_fill_report.csv`
+- `audits/draw_results_long_2019_2020_backfill/draw_results_long_2019_2020_backfill_candidate.csv`
+
+Key results:
+- Input base rows before: 197,362
+- Added rows: 58,155 (2019) + 127,465 (2020) = 185,620
+- Total rows after: 382,982
+- Year presence in `draw_results_long.csv` now includes: 2019 (58,155), 2020 (127,465), and existing 2021-2026 rows.
+- No duplicate rows blocked during merge.
+
+Validation run:
+- Post-load year distribution and non-empty audit checks for appended rows were run locally.
+
+## 2026-06-09T12:10:00Z - Candidate parity audit for 2021→2022 and 2022→2023
+
+Scope:
+- Ran a focused parity comparison in one pass for the same truth candidate promotion files:
+  - `data_truth/draw_results_truth/normalized/draw_results_2021_for_2022_candidate_promotion_file_records.csv`
+  - `data_truth/draw_results_truth/normalized/draw_results_2022_for_2023_candidate_promotion_file_records.csv`
+- Compared each candidate against same-year rows in `data_truth/draw_results_truth/normalized/draw_results_long.csv` using deterministic key:
+  `year, hunt_code, residency, points, draw_pool`.
+- Script created:
+  - `scripts/compare_draw_results_candidate_vs_base.py`
+
+Files written:
+- `audits/draw_truth_rebuild/2021_to_2022_truth_vs_base_report.json`
+- `audits/draw_truth_rebuild/2021_to_2022_truth_vs_base_mismatch.csv`
+- `audits/draw_truth_rebuild/2021_to_2022_truth_vs_base_only_rows.csv`
+- `audits/draw_truth_rebuild/2022_to_2023_truth_vs_base_report.json`
+- `audits/draw_truth_rebuild/2022_to_2023_truth_vs_base_mismatch.csv`
+- `audits/draw_truth_rebuild/2022_to_2023_truth_vs_base_only_rows.csv`
+- `audits/draw_truth_rebuild/truth_vs_base_candidate_parity_2021_2022_and_2022_2023_report.json`
+
+Key results:
+- 2021→2022: candidate 27,519, base 25,366, shared keys 25,366, overlap rows 25,366, candidate-only rows 2,153, base-only rows 0.
+- 2022→2023: candidate 18,688, base 17,526, shared keys 17,526, overlap rows 17,526, candidate-only rows 1,162, base-only rows 0.
+- In both pairs, every overlap row had one or more compared field mismatches (`mismatched_value_fields_on_overlaps` = full overlap row count), while candidate files remained a superset of base on the matched key grain.
+
+Validation:
+- `python -m py_compile scripts/compare_draw_results_candidate_vs_base.py`
+- executed the script to generate the above audit outputs.
+
+Commit:
+- Pending commit.
+
+## 2026-06-09T12:26:00Z - Candidate parity audit for 2023→2024 and 2024→2025 (same-pass extension)
+
+Scope:
+- Extended the existing parity compare script for the additional transitions:
+  - `draw_results_2023_for_2024_candidate_promotion_file_records.csv`
+  - `draw_results_2024_for_2025_candidate_promotion_file_records.csv`
+- Compared each candidate against same-year rows in `data_truth/draw_results_truth/normalized/draw_results_long.csv`
+  using the same deterministic key:
+  `year, hunt_code, residency, points, draw_pool`.
+
+Files updated:
+- `scripts/compare_draw_results_candidate_vs_base.py` (extended `PAIR_JOBS` with:
+  `2023_to_2024`, `2024_to_2025`)
+
+Files written/updated:
+- `audits/draw_truth_rebuild/2023_to_2024_truth_vs_base_report.json`
+- `audits/draw_truth_rebuild/2023_to_2024_truth_vs_base_mismatch.csv`
+- `audits/draw_truth_rebuild/2023_to_2024_truth_vs_base_only_rows.csv`
+- `audits/draw_truth_rebuild/2024_to_2025_truth_vs_base_report.json`
+- `audits/draw_truth_rebuild/2024_to_2025_truth_vs_base_mismatch.csv`
+- `audits/draw_truth_rebuild/2024_to_2025_truth_vs_base_only_rows.csv`
+- `audits/draw_truth_rebuild/truth_vs_base_candidate_parity_2021_2022_and_2022_2023_report.json` (re-written by rerun)
+
+Key results:
+- 2023→2024: candidate 41,201, base 16,778, shared keys 16,778, overlap rows 16,778, candidate-only rows 24,423, base-only rows 0.
+- 2024→2025: candidate 37,224, base 37,128, shared keys 37,128, overlap rows 37,128, candidate-only rows 96, base-only rows 0.
+- In both years, overlap rows were not field-parity equal (`mismatched_value_fields_on_overlaps` = overlap row count), while candidate rows remained a superset on the matched key grain.
+
+Validation:
+- `python -m py_compile scripts/compare_draw_results_candidate_vs_base.py`
+- `python scripts/compare_draw_results_candidate_vs_base.py`
+
+Commit:
+- Pending commit.
+
+Important:
+- `draw_results_long.csv` and audit outputs are currently git-ignored by `.gitignore` (patterns for `data_truth/draw_results_truth/normalized/*.csv`, `audits/*`), so this fix is present locally but not shown in `git status`.
+
+## 2026-06-09T12:42:00Z - 2019 truth-source organization and production comparison
+
+Scope:
+- Reviewed and documented 2019 truth-package status for the 2020 model target under `audits/truth_organization_staging/2019_PERMITS=2020_MODEL`.
+- Source package is organized with classified raw and strict scorable candidates.
+- Compared classified raw, backfill candidate, and production `draw_results_long.csv` slices for 2019/2020 filtered rows.
+
+Files updated:
+- `audits/truth_organization_staging/2019_PERMITS=2020_MODEL/2019_TRUTH_SOURCE_STATUS.md` (new)
+- `audits/truth_organization_staging/2019_PERMITS=2020_MODEL/README.md` (new)
+
+Key results:
+- Classified raw candidate: 58,155 rows, 1,017 hunt codes, duplicate point/physical keys = 0.
+- Backfill candidate/production 2019-2020 slice: 156,779 rows, duplicate point keys = 36,043, duplicate physical keys = 1,065.
+- Backfill and production are row-identical in 2019/2020 filtered scope.
+- Strict scorable file is present with 57,313 rows and 842 blank-hunt-code exclusions.
+- Production patch remains on hold until strict scorable acceptance.
+
+Validation:
+- Manifest-level reconciliation files were read directly for counts and overlap.
+- No production data files were modified (documentation/status only).
+- No data edits, deletes, or production file merges were performed.
+
+## 2026-06-09T18:00:00Z - Draw-system design CWMU classification rule added
+
+- Scope:
+- Added CWMU hunt classification before generic species-family logic in draw-design manifest classification:
+  - `program_family = CWMU`
+  - `draw_family = ALLOCATION`
+  - `draw_design = CWMU_ALLOCATION`
+  - `draw_pool_default = cwmu`
+  - `access_type = CWMU`
+  - `scorable_draw_odds = false`
+  - `availability_only = true`
+  - `engine_route = allocation_or_availability`
+  - `source_rule = CWMU_ALLOCATION_RULE`
+- Added explicit DB1259 2026→2027 override to `CWMU_ALLOCATION` in the classifier.
+- Kept Sportsman and 2026+ cougar exceptions in draw-design validation/mismatch logic from overriding sportsman rows as requested.
+- Rebuilt draw-system-design outputs and conflict/mismatch audits.
+- Updated `audits/draw_system_design/KNOWN_HUNT_CODE_OVERRIDES.md` with DB1259 routing note.
+
+Validation:
+- `python -m py_compile tools/audits/build_draw_system_design_manifest.py`
+- `python tools/audits/build_draw_system_design_manifest.py`
+- `YEAR_ROWS_2018_ANY=0`
+- `YEAR_ROWS_2019_TO_2020=86154`
+- `MISMATCH_ROWS=1` (EX1000 unresolved review row)
+
+## 2026-06-09T18:10:00Z - PDF naming/import/duplicate companion normalization (truth staging)
+
+- Scope:
+  - Normalized draw-result PDF filenames across `audits/truth_organization_staging/*_PERMITS=*_/` draw-results archives.
+  - Imported missing PDFs from `C:\Users\tyler\Desktop\BIBLE HUNT CODES` (including nested `.pdf` folders and anti-duplicate split sources).
+  - Created `.csv` and `.xlsx` companion rows for each normalized PDF in `source_archive/pdf/draw_results`.
+  - Wrote audit outputs in `audits/truth_organization_staging/name_normalization_all_years/`.
+
+- Files changed/added:
+  - `audits/truth_organization_staging/name_normalization_all_years/all_years_pdf_name_normalization_audit.csv`
+  - `audits/truth_organization_staging/name_normalization_all_years/all_years_pdf_name_normalization_audit.xlsx`
+
+- Results:
+  - Created/ensured folders and normalized draw-result PDFs for:
+    - `2019_PERMITS=2020_MODEL` (73 PDFs)
+    - `2020_PERMITS=2021_MODEL` (63 PDFs)
+    - `2021_PERMITS=2022_MODEL` (48 PDFs)
+    - `2022_PERMITS=2023_MODEL` (25 PDFs)
+    - `2023_PERMITS=2024_MODEL` (21 PDFs)
+    - `2024_PERMITS=2025_MODEL` (22 PDFs)
+    - `2025_PERMITS=2026_MODEL` (23 PDFs)
+    - `2026_PERMITS=2027_MODEL` (15 PDFs)
+  - Total draw-result PDFs now present in staging draw-results folders: **290**
+  - Total `.csv`/`.xlsx` companion files created: **290 pairs**
+  - No PDF names remain with spaces in draw-results folders.
+  - No missing companion files detected (`total_missing_pairs = 0`).
+
+- Validation:
+  - `python -c` normalization/companion audit script produced row-level audit and summary.
+  - Manual verification confirmed zero missing `.csv`/`.xlsx` companions.
+  - No `.pdf` files with spaces remain under `*_PERMITS=*/source_archive/pdf/draw_results`.
+
+- Notes:
+  - Cleaned up transient scratch script `/_tmp_normalize_pdfs.py` used during execution.
+
+## 2026-06-09T18:28:09Z - Source-Archive Year/Duplicate Audit (truth staging)
+
+Scope:
+- Audited all archive staging roots under `audits/truth_organization_staging` for source PDF presence, year-bucket bleed-through, and duplicate evidence.
+
+Files produced (currently in ignored audit area):
+- audits/truth_organization_staging/archive_audit/source_archive_audit_summary.csv
+- audits/truth_organization_staging/archive_audit/source_archive_pdf_inventory.csv
+- audits/truth_organization_staging/archive_audit/source_archive_bleed_audit.csv
+- audits/truth_organization_staging/archive_audit/source_archive_pdf_name_dupes_within_folder.csv
+- audits/truth_organization_staging/archive_audit/source_archive_pdf_duplicate_hash_within_folder.csv
+- audits/truth_organization_staging/archive_audit/source_archive_pdf_duplicate_hash_cross_folders.csv
+- audits/truth_organization_staging/archive_audit/source_archive_pdf_no_year_in_name.csv
+- audits/truth_organization_staging/archive_audit/source_archive_audit_report.md
+
+Key results:
+- Archive roots scanned: 8
+- Total PDF files: 340
+- Archives with no PDFs: 0
+- Year mismatch/bleed rows: 0
+- No-file-name-year PDFs: 4 (all in `2020_PERMITS=2021_MODEL` harvest_report)
+- Duplicate file names within folders: 0
+- Duplicate PDF hashes within folders: 77
+- Duplicate PDF hashes across folders: 6 (2 hash groups)
+
+Validation:
+- Scripted audit completed without errors.
+- No missing source-archive folder coverage found.
+
+Notes:
+- Cross-folder duplicate hash groups should be reviewed for unnecessary carry-over copies across year folders.
+- Year-mismatch rules were filename-based (path year expectations derived from `YYYY_PERMITS=YYYY+1_MODEL`).
+
+Commit: not committed.
+
+## 2026-06-09T18:36:26Z - Cloudflare R2 runtime sync for large files
+
+Scope:
+- Synced runtime payloads from `pipeline/R2_OFFLOAD/incoming` to Cloudflare R2 bucket `uoga-data` using `tools/upload_r2_incoming.ps1`.
+
+Source list synced:
+- processed_data/composite_hunt_unit_mapping_2026.geojson
+- processed_data/display-boundary-index-2026.json
+- processed_data/draw_reality_engine.csv
+- processed_data/draw_reality_engine_predictive_v2.csv
+- processed_data/draw_reality_engine_v2.csv
+- processed_data/draw_reality_view.csv
+- processed_data/hunt_master_enriched.csv
+- processed_data/hunt_research_2026.json
+- processed_data/hunt_research_2026_ladder.json
+- processed_data/hunt_research_2026_ladder_bonus_max_random.json
+- processed_data/hunt_research_2026_ladder_preference.json
+- processed_data/hunt_research_2026_summary.json
+- processed_data/hunt_unit_reference_linked.csv
+- processed_data/ml_draw_predictions_v1.csv
+- processed_data/point_ladder_view.csv
+- processed_data/statewide_composite_boundaries_2026.geojson
+- processed_data/hunt_research_2026_split/hunt_research_2026.details.json
+- processed_data/hunt_research_2026_split/hunt_research_2026.index.json
+- processed_data/public_contracts/hunt_odds_history.json
+
+Validation outputs:
+- New upload manifest: `pipeline/R2_OFFLOAD/manifests/r2_upload_20260609T183414Z.csv`
+- URL checks: all 19 uploaded objects return HTTP 200 from `https://json.uoga.workers.dev/`.
+
+GitHub Desktop note:
+- GitHub Desktop upload-size caps are a desktop UI setting and cannot be set via repo files; this should be changed in Desktop Settings if needed.
+
+Commit: not committed.
+
