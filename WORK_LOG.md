@@ -1,3 +1,32 @@
+## 2026-06-07T18:59:49Z - Run staged prediction-equivalent rebuild for all target years
+
+Scope:
+- Executed production-equivalent staged prediction rebuild across available years using:
+  `tools/prediction_accuracy_backtest/build_production_equivalent_historical_predictions.py`
+- Produced year-specific runtime and engine outputs under:
+  `audits/prediction_accuracy_backtest/production_equivalent_outputs/20260607T185949Z`
+
+Files changed:
+- audits/prediction_accuracy_backtest/production_equivalent_outputs/20260607T185949Z/*
+
+Key results:
+- 2020: skipped (`SKIPPED_NO_PRE_TARGET_HISTORY`) because no official pre-target truth exists for staged rebuild.
+- 2021: built in staging (`BUILT_STAGING_ONLY`), 15,795 rows, 131 columns, 799 hunt codes.
+- 2022: built in staging, 17,707 rows, 131 columns, 825 hunt codes.
+- 2023: built in staging, 18,107 rows, 131 columns, 835 hunt codes.
+- 2024: built in staging, 18,135 rows, 131 columns, 835 hunt codes.
+- 2025: built in staging, 21,539 rows, 131 columns, 890 hunt codes.
+- 2026: built in staging, 22,822 rows, 131 columns, 911 hunt codes.
+- All builds are staged artifacts only; no production runtime files were overwritten.
+- `draw_system_types` were stable across years and included bonus, sportsman, bear, mountain lion, private-land antlerless, youth, and preference general-season deer buckets.
+
+Validation commands run:
+- `python tools/prediction_accuracy_backtest/build_production_equivalent_historical_predictions.py`
+- Summary file reviewed: `audits/prediction_accuracy_backtest/production_equivalent_outputs/20260607T185949Z/production_equivalent_rebuild_summary.csv`
+
+Commit:
+- Not committed in this pass.
+
 ## 2026-06-07T12:09:24Z - Apply BR/CG permit-allotment lineage blanks
 
 Scope:
