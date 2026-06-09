@@ -18996,3 +18996,18 @@ Commit: not committed.
   - Added ignore rule: /processed_data/ml_draw_predictions_v1.csv
   - Removed from Git index (git rm --cached --sparse -f), keeping local file for runtime use only
   - Validation: python tools/git_size_guard.py --warn-only (PASS)
+## 2026-06-09T22:00:00Z - Remove invalid pre-2023 CG9999 contamination
+
+Scope:
+- Patched `tools\audits\repair_2021_targeted_br_cg_tk_sportsman.py` to remove `CG9999` from sportsman regex extraction.
+- Patched `tools\audits\finalize_2021_candidate_classification.py` with a reusable pre-2023 CG9999 rejection rule:
+  - `hunt_code == CG9999` and `actual_draw_year < 2023` is rejected with `INVALID_PRE_2023_CG9999_FUTURE_COUGAR_TRANSITION_CODE`.
+- Patched `tools\audits\build_draw_system_design_manifest.py` to avoid unconditional pre-2023 CG9999 sportsman branch behavior and to keep Sportsman/Cougar handling constrained.
+- Created cleaned 2021 candidate:
+  - `audits\truth_organization_staging\2021_PERMITS=2022_MODEL\targeted_family_repair\draw_results_2021_for_2022_FINAL_CLASSIFIED_NO_CG9999_CANDIDATE_NOT_APPLIED.csv`
+- Created removal artifacts:
+  - `audits\truth_organization_staging\2021_PERMITS=2022_MODEL\targeted_family_repair\2021_removed_invalid_CG9999_rows.csv`
+  - `audits\truth_organization_staging\2021_PERMITS=2022_MODEL\targeted_family_repair\2021_remove_invalid_CG9999_summary.csv`
+- Added repo-wide pre-2023 audit:
+  - `audits\truth_organization_staging\source_import_inventory\CG9999_pre_2023_audit.csv`
+- Production not modified. draw_results_long.csv not edited. No production patch was applied.
