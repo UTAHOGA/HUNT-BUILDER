@@ -18992,3 +18992,7 @@ GitHub Desktop note:
 
 Commit: not committed.
 
+- 2026-06-09T19:07:29Z | Repository hygiene (permanent) | Set processed_data/ml_draw_predictions_v1.csv to repo-external lifecycle
+  - Added ignore rule: /processed_data/ml_draw_predictions_v1.csv
+  - Removed from Git index (git rm --cached --sparse -f), keeping local file for runtime use only
+  - Validation: python tools/git_size_guard.py --warn-only (PASS)

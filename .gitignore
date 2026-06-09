@@ -400,3 +400,5 @@ pages-dist/data/hunt_odds_history.csv
 AGENTS.before_repo_safety_20260606_232057.md
 AGENTS.MD
 AGENTS.MD
+
+/processed_data/ml_draw_predictions_v1.csv
