@@ -402,3 +402,39 @@ AGENTS.MD
 AGENTS.MD
 
 /processed_data/ml_draw_predictions_v1.csv
+
+# -------------------------------------------------------------------
+# TRUTH / ENGINE REBUILD LARGE LOCAL ARTIFACTS - R2 ONLY
+# -------------------------------------------------------------------
+
+# Generated truth-rebuild workspaces. These are local/R2 artifacts, not Git
+# source. Keep canonical code/scripts outside these folders if they need Git.
+audit/
+data_model/master/
+engine_rebuild_from_truth/
+
+# Unified truth rebuild outputs generated from PDFs.
+data_truth/finalized_draw_truth_ALL.csv
+data_truth/finalized_point_distribution.csv
+data_truth/finalized_hunt_truth.csv
+data_truth/finalized_truth_split_validation.csv
+
+# Truth-first engine rebuild outputs. Keep reports/manifests small if needed,
+# but do not let the generated CSV surfaces enter Git.
+engine_rebuild_from_truth/extracted/*.csv
+engine_rebuild_from_truth/normalized/*.csv
+engine_rebuild_from_truth/engine/*.csv
+engine_rebuild_from_truth/audit/*.csv
+engine_rebuild_from_truth/outputs/*.csv
+
+# Local R2 staging/copy payloads.
+pipeline/R2_OFFLOAD/incoming/**
+pipeline/R2_OFFLOAD/uploaded/**
+
+# Local backups of huge canonical truth files.
+data_truth/draw_results_truth/normalized/*.BACKUP*.csv
+data_truth/draw_results_truth/normalized/engine_ready_by_year/*.csv
+audits/**/draw_results_long*.csv
+audits/**/draw_results_engine_ready*.csv
+audits/**/finalized_draw_truth_ALL*.csv
+audits/**/finalized_point_distribution*.csv
