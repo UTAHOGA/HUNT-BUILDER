@@ -1,0 +1,134 @@
+source_csv,hunt_code,residency,point_level,hunt_name,species,hunt_category,applicants,permits,raw_hunt_code_status
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1003,Nonresident,0,Central Area,LE Bearded Turkey,Limited-Entry,0,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1003,Nonresident,1,Central Area,LE Bearded Turkey,Limited-Entry,2,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1003,Nonresident,2,Central Area,LE Bearded Turkey,Limited-Entry,3,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1003,Nonresident,3,Central Area,LE Bearded Turkey,Limited-Entry,1,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1003,Nonresident,4,Central Area,LE Bearded Turkey,Limited-Entry,0,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1003,Nonresident,5,Central Area,LE Bearded Turkey,Limited-Entry,0,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1003,Nonresident,6,Central Area,LE Bearded Turkey,Limited-Entry,0,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1003,Nonresident,9,Central Area,LE Bearded Turkey,Limited-Entry,1,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1003,Resident,0,Central Area,LE Bearded Turkey,Limited-Entry,233,18,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1003,Resident,1,Central Area,LE Bearded Turkey,Limited-Entry,108,27,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1003,Resident,2,Central Area,LE Bearded Turkey,Limited-Entry,41,9,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1003,Resident,3,Central Area,LE Bearded Turkey,Limited-Entry,342,67,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1003,Resident,4,Central Area,LE Bearded Turkey,Limited-Entry,6,6,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1003,Resident,5,Central Area,LE Bearded Turkey,Limited-Entry,160,125,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1003,Resident,6,Central Area,LE Bearded Turkey,Limited-Entry,112,112,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1003,Resident,7,Central Area,LE Bearded Turkey,Limited-Entry,10,10,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1003,Resident,8,Central Area,LE Bearded Turkey,Limited-Entry,5,5,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1003,Resident,9,Central Area,LE Bearded Turkey,Limited-Entry,2,2,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1004,Nonresident,0,Northeastern Area,LE Bearded Turkey,Limited-Entry,17,3,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1004,Nonresident,1,Northeastern Area,LE Bearded Turkey,Limited-Entry,5,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1004,Nonresident,2,Northeastern Area,LE Bearded Turkey,Limited-Entry,7,3,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1004,Nonresident,4,Northeastern Area,LE Bearded Turkey,Limited-Entry,1,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1004,Nonresident,5,Northeastern Area,LE Bearded Turkey,Limited-Entry,1,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1004,Resident,0,Northeastern Area,LE Bearded Turkey,Limited-Entry,328,38,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1004,Resident,1,Northeastern Area,LE Bearded Turkey,Limited-Entry,28,15,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1004,Resident,2,Northeastern Area,LE Bearded Turkey,Limited-Entry,121,40,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1004,Resident,3,Northeastern Area,LE Bearded Turkey,Limited-Entry,84,84,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1004,Resident,4,Northeastern Area,LE Bearded Turkey,Limited-Entry,40,40,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1004,Resident,5,Northeastern Area,LE Bearded Turkey,Limited-Entry,9,9,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1004,Resident,6,Northeastern Area,LE Bearded Turkey,Limited-Entry,1,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1005,Nonresident,0,Northern Area,LE Bearded Turkey,Limited-Entry,1,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1005,Nonresident,1,Northern Area,LE Bearded Turkey,Limited-Entry,8,3,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1005,Nonresident,10,Northern Area,LE Bearded Turkey,Limited-Entry,1,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1005,Nonresident,2,Northern Area,LE Bearded Turkey,Limited-Entry,3,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1005,Nonresident,4,Northern Area,LE Bearded Turkey,Limited-Entry,1,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1005,Nonresident,5,Northern Area,LE Bearded Turkey,Limited-Entry,1,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1005,Nonresident,6,Northern Area,LE Bearded Turkey,Limited-Entry,1,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1005,Resident,0,Northern Area,LE Bearded Turkey,Limited-Entry,118,33,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1005,Resident,1,Northern Area,LE Bearded Turkey,Limited-Entry,346,86,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1005,Resident,2,Northern Area,LE Bearded Turkey,Limited-Entry,192,60,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1005,Resident,3,Northern Area,LE Bearded Turkey,Limited-Entry,160,150,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1005,Resident,4,Northern Area,LE Bearded Turkey,Limited-Entry,46,46,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1005,Resident,5,Northern Area,LE Bearded Turkey,Limited-Entry,10,10,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1005,Resident,6,Northern Area,LE Bearded Turkey,Limited-Entry,3,3,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1005,Resident,7,Northern Area,LE Bearded Turkey,Limited-Entry,0,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1006,Nonresident,0,Southeastern Area,LE Bearded Turkey,Limited-Entry,19,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1006,Nonresident,1,Southeastern Area,LE Bearded Turkey,Limited-Entry,14,3,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1006,Nonresident,2,Southeastern Area,LE Bearded Turkey,Limited-Entry,10,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1006,Nonresident,3,Southeastern Area,LE Bearded Turkey,Limited-Entry,6,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1006,Nonresident,4,Southeastern Area,LE Bearded Turkey,Limited-Entry,8,8,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1006,Resident,0,Southeastern Area,LE Bearded Turkey,Limited-Entry,61,8,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1006,Resident,1,Southeastern Area,LE Bearded Turkey,Limited-Entry,32,10,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1006,Resident,2,Southeastern Area,LE Bearded Turkey,Limited-Entry,137,30,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1006,Resident,3,Southeastern Area,LE Bearded Turkey,Limited-Entry,127,39,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1006,Resident,4,Southeastern Area,LE Bearded Turkey,Limited-Entry,83,83,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1006,Resident,5,Southeastern Area,LE Bearded Turkey,Limited-Entry,8,8,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1006,Resident,6,Southeastern Area,LE Bearded Turkey,Limited-Entry,1,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1006,Resident,7,Southeastern Area,LE Bearded Turkey,Limited-Entry,0,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1007,Nonresident,0,Southern Area,LE Bearded Turkey,Limited-Entry,87,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1007,Nonresident,1,Southern Area,LE Bearded Turkey,Limited-Entry,4,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1007,Nonresident,2,Southern Area,LE Bearded Turkey,Limited-Entry,30,2,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1007,Nonresident,3,Southern Area,LE Bearded Turkey,Limited-Entry,12,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1007,Nonresident,4,Southern Area,LE Bearded Turkey,Limited-Entry,20,4,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1007,Nonresident,5,Southern Area,LE Bearded Turkey,Limited-Entry,5,5,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1007,Nonresident,6,Southern Area,LE Bearded Turkey,Limited-Entry,1,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1007,Resident,0,Southern Area,LE Bearded Turkey,Limited-Entry,246,20,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1007,Resident,1,Southern Area,LE Bearded Turkey,Limited-Entry,108,20,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1007,Resident,2,Southern Area,LE Bearded Turkey,Limited-Entry,66,24,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1007,Resident,3,Southern Area,LE Bearded Turkey,Limited-Entry,17,17,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1007,Resident,4,Southern Area,LE Bearded Turkey,Limited-Entry,373,141,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1007,Resident,5,Southern Area,LE Bearded Turkey,Limited-Entry,71,71,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1007,Resident,6,Southern Area,LE Bearded Turkey,Limited-Entry,4,4,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1007,Resident,7,Southern Area,LE Bearded Turkey,Limited-Entry,3,3,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1007,Resident,8,Southern Area,LE Bearded Turkey,Limited-Entry,1,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1007,Resident,9,Southern Area,LE Bearded Turkey,Limited-Entry,1,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1018,Nonresident,0,Pahvant Ensign,LE Bearded Turkey,CWMU,0,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1018,Nonresident,1,Pahvant Ensign,LE Bearded Turkey,CWMU,0,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1018,Nonresident,3,Pahvant Ensign,LE Bearded Turkey,CWMU,0,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1018,Resident,0,Pahvant Ensign,LE Bearded Turkey,CWMU,1,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1018,Resident,1,Pahvant Ensign,LE Bearded Turkey,CWMU,13,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1018,Resident,10,Pahvant Ensign,LE Bearded Turkey,CWMU,1,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1018,Resident,11,Pahvant Ensign,LE Bearded Turkey,CWMU,0,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1018,Resident,2,Pahvant Ensign,LE Bearded Turkey,CWMU,2,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1018,Resident,3,Pahvant Ensign,LE Bearded Turkey,CWMU,10,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1018,Resident,4,Pahvant Ensign,LE Bearded Turkey,CWMU,1,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1018,Resident,5,Pahvant Ensign,LE Bearded Turkey,CWMU,2,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1018,Resident,6,Pahvant Ensign,LE Bearded Turkey,CWMU,4,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1018,Resident,7,Pahvant Ensign,LE Bearded Turkey,CWMU,4,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1018,Resident,8,Pahvant Ensign,LE Bearded Turkey,CWMU,3,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1018,Resident,9,Pahvant Ensign,LE Bearded Turkey,CWMU,2,2,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1021,Nonresident,0,East Zion,LE Bearded Turkey,CWMU,2,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1021,Nonresident,1,East Zion,LE Bearded Turkey,CWMU,1,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1021,Nonresident,3,East Zion,LE Bearded Turkey,CWMU,3,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1021,Resident,0,East Zion,LE Bearded Turkey,CWMU,7,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1021,Resident,1,East Zion,LE Bearded Turkey,CWMU,4,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1021,Resident,10,East Zion,LE Bearded Turkey,CWMU,1,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1021,Resident,11,East Zion,LE Bearded Turkey,CWMU,1,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1021,Resident,2,East Zion,LE Bearded Turkey,CWMU,3,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1021,Resident,3,East Zion,LE Bearded Turkey,CWMU,7,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1021,Resident,4,East Zion,LE Bearded Turkey,CWMU,9,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1021,Resident,5,East Zion,LE Bearded Turkey,CWMU,7,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1021,Resident,6,East Zion,LE Bearded Turkey,CWMU,5,1,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1021,Resident,7,East Zion,LE Bearded Turkey,CWMU,2,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1021,Resident,8,East Zion,LE Bearded Turkey,CWMU,1,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TK1021,Resident,9,East Zion,LE Bearded Turkey,CWMU,0,0,VALID_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Nonresident,0,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,24,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Nonresident,1,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,6,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Nonresident,14,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,2,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Nonresident,2,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,20,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Nonresident,3,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,1,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Nonresident,4,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,1,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Nonresident,5,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,8,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Nonresident,6,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,6,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Nonresident,7,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,4,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Nonresident,8,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,1,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Nonresident,9,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,2,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Resident,0,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,268,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Resident,1,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,32,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Resident,10,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,6,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Resident,11,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,7,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Resident,12,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,1,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Resident,13,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,3,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Resident,14,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,3,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Resident,15,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,3,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Resident,16,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,3,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Resident,2,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,18,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Resident,3,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,195,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Resident,4,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,7,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Resident,5,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,81,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Resident,6,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,47,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Resident,7,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,35,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Resident,8,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,19,0,NONSTANDARD_CODE_SHAPE
+pipeline\RAW\hunt_unit_database\2026\exports\utahdraws_draw_odds_20260603\csv\2026_turkey_03_turkey.csv,TKY,Resident,9,Turkey Bonus Point,LE Bearded Turkey,Bonus Point,11,0,NONSTANDARD_CODE_SHAPE

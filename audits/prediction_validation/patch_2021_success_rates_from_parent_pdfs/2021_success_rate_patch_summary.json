@@ -1,0 +1,38 @@
+{
+  "generated_at_utc": "2026-06-19T04:49:40.147273+00:00",
+  "truth_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\finalized_point_distribution.csv",
+  "backup_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\prediction_validation\\patch_2021_success_rates_from_parent_pdfs\\backups\\finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T044654Z.csv",
+  "pdf_sources": [
+    "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2021\\Parent Files\\21_bg-odds.pdf",
+    "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2021\\Parent Files\\2021 Antlerless Draw Results.pdf",
+    "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2021\\Parent Files\\21_youth_antlerless_drawing_odds_report.pdf",
+    "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2021\\Parent Files\\2021 Bear Draw Results.pdf",
+    "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2021\\Parent Files\\2021_cougar_odds_report.pdf",
+    "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2021\\Parent Files\\2021_turkey_bonus_points_draw_results.pdf",
+    "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2021\\Parent Files\\2021_youth_turkey_draw_results.pdf",
+    "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2021\\Parent Files\\21_deer_odds.pdf",
+    "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2021\\Parent Files\\21_dh_odds.pdf",
+    "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2021\\Parent Files\\21_lifetime_deer.pdf",
+    "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2021\\Parent Files\\21_youth_bull_elk.pdf",
+    "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2021\\Parent Files\\21_youth_deer.pdf",
+    "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2021\\Parent Files\\21_youth_dh_odds.pdf"
+  ],
+  "total_truth_rows": 460097,
+  "rows_in_scope": 64698,
+  "rows_patched": 368,
+  "rows_already_filled": 5981,
+  "rows_pdf_na_left_blank": 58349,
+  "rows_no_pdf_match": 0,
+  "rows_applicant_or_permit_mismatch_not_patched": 0,
+  "duplicate_pdf_key_groups": 650,
+  "patch_rows_by_source_file": {
+    "21_youth_antlerless_drawing_odds_report.pdf": 368
+  },
+  "outputs": {
+    "extracted_pdf_rows": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\prediction_validation\\patch_2021_success_rates_from_parent_pdfs\\2021_parent_pdf_success_rate_extracted_rows.csv",
+    "patch_rows": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\prediction_validation\\patch_2021_success_rates_from_parent_pdfs\\2021_success_rate_patch_rows.csv",
+    "mismatches": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\prediction_validation\\patch_2021_success_rates_from_parent_pdfs\\2021_success_rate_patch_mismatches.csv",
+    "unmatched_truth_sample": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\prediction_validation\\patch_2021_success_rates_from_parent_pdfs\\2021_success_rate_patch_unmatched_truth_rows_sample.csv",
+    "summary": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\prediction_validation\\patch_2021_success_rates_from_parent_pdfs\\2021_success_rate_patch_summary.json"
+  }
+}

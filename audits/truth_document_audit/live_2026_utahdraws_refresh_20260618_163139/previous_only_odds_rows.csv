@@ -1,0 +1,4 @@
+slug,hunt_id,hunt_code,hunt_name,hunt_category_name,species_subtype_name,point,participant_count,successful_count,successful_by_regular_round_count,successful_by_max_point_round_count,residency_type_id,is_youth
+2026_big_game_05_general_season_buck_deer,1276,DB1619,"West Desert, Swasey",General-Season,General Buck Deer,1,0,0,0,0,1,True
+2026_big_game_05_general_season_buck_deer,1259,DB1602,Chalk Creek,General-Season,General Buck Deer,0,0,0,0,0,1,True
+2026_big_game_05_general_season_buck_deer,1202,DB1524,Southwest Desert,General-Season,General Buck Deer,1,0,0,0,0,2,True

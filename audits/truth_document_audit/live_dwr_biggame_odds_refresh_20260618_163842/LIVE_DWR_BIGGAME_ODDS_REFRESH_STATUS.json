@@ -1,0 +1,47 @@
+{
+  "generated_at_utc": "2026-06-18T22:39:31.807167+00:00",
+  "page_url": "https://wildlife.utah.gov/biggame/odds",
+  "page_http_status": 200,
+  "official_links_found_2019_2025": 72,
+  "official_pdfs_downloaded": 72,
+  "download_errors": 0,
+  "local_pdfs_inventoried": 2041,
+  "match_status_counts": {
+    "EXACT_HASH_MATCH": 69,
+    "BASENAME_ONLY_DIFFERENT_HASH_OR_UNHASHED": 2,
+    "MISSING_LOCAL_EXACT": 1
+  },
+  "match_status_by_year": {
+    "2019": {
+      "EXACT_HASH_MATCH": 10
+    },
+    "2020": {
+      "EXACT_HASH_MATCH": 10
+    },
+    "2021": {
+      "EXACT_HASH_MATCH": 10
+    },
+    "2022": {
+      "EXACT_HASH_MATCH": 10
+    },
+    "2023": {
+      "EXACT_HASH_MATCH": 11
+    },
+    "2024": {
+      "EXACT_HASH_MATCH": 8,
+      "BASENAME_ONLY_DIFFERENT_HASH_OR_UNHASHED": 2,
+      "MISSING_LOCAL_EXACT": 1
+    },
+    "2025": {
+      "EXACT_HASH_MATCH": 10
+    }
+  },
+  "outputs": {
+    "official_links_csv": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\live_dwr_biggame_odds_refresh_20260618_163842\\official_dwr_biggame_odds_links.csv",
+    "download_manifest_csv": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\live_dwr_biggame_odds_refresh_20260618_163842\\official_dwr_biggame_odds_download_manifest.csv",
+    "local_inventory_csv": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\live_dwr_biggame_odds_refresh_20260618_163842\\local_pdf_inventory.csv",
+    "comparison_csv": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\live_dwr_biggame_odds_refresh_20260618_163842\\official_vs_local_pdf_comparison.csv",
+    "errors_csv": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\live_dwr_biggame_odds_refresh_20260618_163842\\download_errors.csv",
+    "report_md": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\live_dwr_biggame_odds_refresh_20260618_163842\\LIVE_DWR_BIGGAME_ODDS_REFRESH_REPORT.md"
+  }
+}

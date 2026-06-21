@@ -1,0 +1,40 @@
+{
+  "generated_at_local": "2026-06-19",
+  "global_modifiers_rejected": true,
+  "code_changes": [
+    {
+      "file": "engine/utah_draw_predictive/dedicated_hunter.py",
+      "change": "Separate adult Dedicated Hunter and Youth Dedicated Hunter by lane; preserve youth_dedicated_hunter as its own model strategy."
+    },
+    {
+      "file": "tests/utah_draw_predictive/test_dedicated_hunter_preference.py",
+      "change": "Added regression coverage for same hunt_code adult/youth Dedicated Hunter separation."
+    }
+  ],
+  "validation": {
+    "py_compile": "passed",
+    "pytest_dedicated_hunter": "passed",
+    "pytest_broad_predictive_retry": {
+      "passed": 106,
+      "failed": 6,
+      "remaining_failure_summary": [
+        "Missing legacy HUNTS database_hunt_code_model_gap artifacts",
+        "Stale processed_data draw_system coverage artifact does not yet include regenerated DH rows"
+      ]
+    },
+    "audit_materialize_2026_after_dh_alias_fix": {
+      "dedicated_hunter_total_rows": 135,
+      "dedicated_hunter_modeled_preference_rows": 135,
+      "dedicated_hunter_modeled_hunt_codes": 26,
+      "dedicated_hunter_p_draw_non_null_rows": 135
+    }
+  },
+  "lane_decisions": {
+    "DEDICATED_HUNTER_DEER_PREFERENCE": "PATCHED_ROUTING_AND_FEEDER_ALIAS",
+    "YOUTH_DEDICATED_HUNTER_DEER_PREFERENCE": "PATCHED_SEPARATE_LANE_NO_SCALAR",
+    "YOUTH_ANTLERLESS_PREFERENCE": "NEEDS_EXACT_ENGINE_MECHANICS",
+    "BEAR_BONUS": "NEEDS_SPLIT_AND_RETENTION_INSPECTION",
+    "TURKEY_BONUS": "NEEDS_SPLIT_AND_RETENTION_INSPECTION"
+  },
+  "final_decision": "PATCH_ONLY_STABLE_DH_ROUTING_AND_FEEDER_ALIAS_NOW_DO_NOT_PROMOTE_GLOBAL_MODIFIERS"
+}

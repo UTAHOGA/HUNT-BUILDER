@@ -1,0 +1,29 @@
+{
+  "audit_dir": "audits\\truth_document_audit\\live_2026_utahdraws_refresh_20260618_163139",
+  "datasets_compared": 24,
+  "semantic_changed_dataset_count": 10,
+  "previous_total_rows": 19053,
+  "live_total_rows": 19050,
+  "shared_keys": 19050,
+  "only_live_keys": 0,
+  "only_previous_keys": 3,
+  "value_diff_shared_keys": 411,
+  "changed_slugs": [
+    "2026_big_game_05_general_season_buck_deer",
+    "2026_big_game_08_limited_entry_buck_deer",
+    "2026_big_game_09_limited_entry_bull_elk",
+    "2026_big_game_10_limited_entry_buck_pronghorn",
+    "2026_big_game_11_bull_moose",
+    "2026_big_game_12_bison",
+    "2026_big_game_13_desert_bighorn_sheep",
+    "2026_big_game_14_rocky_mtn_bighorn_sheep",
+    "2026_big_game_15_mountain_goat",
+    "2026_big_game_32_dedicated_hunter_buck_deer"
+  ],
+  "outputs": {
+    "semantic_comparison_csv": "audits\\truth_document_audit\\live_2026_utahdraws_refresh_20260618_163139\\live_utahdraws_2026_semantic_comparison.csv",
+    "live_only_rows_csv": "audits\\truth_document_audit\\live_2026_utahdraws_refresh_20260618_163139\\live_only_odds_rows.csv",
+    "previous_only_rows_csv": "audits\\truth_document_audit\\live_2026_utahdraws_refresh_20260618_163139\\previous_only_odds_rows.csv",
+    "value_differences_csv": "audits\\truth_document_audit\\live_2026_utahdraws_refresh_20260618_163139\\live_previous_value_differences.csv"
+  }
+}

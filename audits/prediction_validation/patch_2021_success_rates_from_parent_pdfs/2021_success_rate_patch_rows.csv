@@ -1,0 +1,369 @@
+row_number,year,model_year,hunt_code,hunt_name,residency,point_level,applicants,permits,old_success_rate,new_success_rate,pdf_success_ratio,source_file,pdf_page
+176964,2021,2022,DA1000,"Antlerless Deer - Beaver, Circleville North - Any Legal Weapon",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,1
+176966,2021,2022,DA1000,"Antlerless Deer - Beaver, Circleville North - Any Legal Weapon",resident,1,24,1,,4.16666667,1 in 24.0,21_youth_antlerless_drawing_odds_report.pdf,1
+176998,2021,2022,DA1001,"Antlerless Deer - Box Elder, West Bear River - Archery, Mzldr, Shotgn Only",resident,1,3,3,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,2
+177000,2021,2022,DA1001,"Antlerless Deer - Box Elder, West Bear River - Archery, Mzldr, Shotgn Only",resident,0,6,3,,50,1 in 2.0,21_youth_antlerless_drawing_odds_report.pdf,2
+177026,2021,2022,DA1002,"Antlerless Deer - Box Elder, West Bear River - Archery, Mzldr, Shotgn Only",resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,3
+177030,2021,2022,DA1002,"Antlerless Deer - Box Elder, West Bear River - Archery, Mzldr, Shotgn Only",resident,1,12,5,,41.66666667,1 in 2.4,21_youth_antlerless_drawing_odds_report.pdf,3
+177060,2021,2022,DA1003,"Antlerless Deer - Monroe/plateau, Sevier Valley - Archery, Mzldr, Shotgn Only",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,4
+177062,2021,2022,DA1003,"Antlerless Deer - Monroe/plateau, Sevier Valley - Archery, Mzldr, Shotgn Only",resident,1,15,9,,58.82352941,1 in 1.7,21_youth_antlerless_drawing_odds_report.pdf,4
+177092,2021,2022,DA1004,"Antlerless Deer - Mt Dutton, Circleville South - Any Legal Weapon",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,5
+177094,2021,2022,DA1004,"Antlerless Deer - Mt Dutton, Circleville South - Any Legal Weapon",resident,1,2,1,,50,1 in 2.0,21_youth_antlerless_drawing_odds_report.pdf,5
+177123,2021,2022,DA1007,"Antlerless Deer - Panguitch Lake, Panguitch Valley - Any Legal Weapon",nonresident,3,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,6
+177156,2021,2022,DA1009,"Antlerless Deer - Pine Valley, Enterprise - Any Legal Weapon",resident,2,8,7,,90.90909091,1 in 1.1,21_youth_antlerless_drawing_odds_report.pdf,7
+177180,2021,2022,DA1011,Cwmu Antlerless Deer - George Creek - Any Legal Weapon,resident,6,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,8
+177214,2021,2022,DA1012,Cwmu Two Doe Antlerless Deer - Junction Valley - Any Legal Weapon,resident,5,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,9
+177218,2021,2022,DA1012,Cwmu Two Doe Antlerless Deer - Junction Valley - Any Legal Weapon,resident,3,3,2,,66.66666667,1 in 1.5,21_youth_antlerless_drawing_odds_report.pdf,9
+177252,2021,2022,DA1013,Cwmu Antlerless Deer - Mt Carmel - Any Legal Weapon,resident,2,3,1,,33.33333333,1 in 3.0,21_youth_antlerless_drawing_odds_report.pdf,10
+177282,2021,2022,DA1017,"Antlerless Deer - Pine Valley, Enterprise - Any Legal Weapon",resident,3,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,11
+177284,2021,2022,DA1017,"Antlerless Deer - Pine Valley, Enterprise - Any Legal Weapon",resident,2,8,3,,37.03703704,1 in 2.7,21_youth_antlerless_drawing_odds_report.pdf,11
+177316,2021,2022,DA1018,"Two Doe Antlerless Deer - Pine Valley, New Harmony - Archery, Mzldr, Shotgn Only",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,12
+177318,2021,2022,DA1018,"Two Doe Antlerless Deer - Pine Valley, New Harmony - Archery, Mzldr, Shotgn Only",resident,1,3,3,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,12
+177320,2021,2022,DA1018,"Two Doe Antlerless Deer - Pine Valley, New Harmony - Archery, Mzldr, Shotgn Only",resident,0,8,3,,37.03703704,1 in 2.7,21_youth_antlerless_drawing_odds_report.pdf,12
+177352,2021,2022,DA1026,Antlerless Deer - Chalk Creek - Any Legal Weapon,resident,0,22,10,,45.45454545,1 in 2.2,21_youth_antlerless_drawing_odds_report.pdf,13
+177378,2021,2022,DA1027,"Antlerless Deer - East Canyon, Davis-north Salt Lake - Any Legal Weapon",resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,14
+177380,2021,2022,DA1027,"Antlerless Deer - East Canyon, Davis-north Salt Lake - Any Legal Weapon",resident,2,12,12,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,14
+177382,2021,2022,DA1027,"Antlerless Deer - East Canyon, Davis-north Salt Lake - Any Legal Weapon",resident,1,35,7,,20,1 in 5.0,21_youth_antlerless_drawing_odds_report.pdf,14
+177410,2021,2022,DA1028,"Antlerless Deer - East Canyon, Davis-north Salt Lake - Any Legal Weapon",resident,3,3,3,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,15
+177412,2021,2022,DA1028,"Antlerless Deer - East Canyon, Davis-north Salt Lake - Any Legal Weapon",resident,2,9,9,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,15
+177414,2021,2022,DA1028,"Antlerless Deer - East Canyon, Davis-north Salt Lake - Any Legal Weapon",resident,1,23,8,,34.48275862,1 in 2.9,21_youth_antlerless_drawing_odds_report.pdf,15
+177448,2021,2022,DA1029,"Antlerless Deer - Nine Mile, Green River Valley - Archery",resident,0,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,16
+177478,2021,2022,DA1030,"Antlerless Deer - Nine Mile, Price River Valley - Archery",resident,1,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,17
+177480,2021,2022,DA1030,"Antlerless Deer - Nine Mile, Price River Valley - Archery",resident,0,4,2,,50,1 in 2.0,21_youth_antlerless_drawing_odds_report.pdf,17
+177504,2021,2022,DA1031,"Antlerless Deer - Oquirrh-stansbury, Settlement Cyn - Archery",resident,4,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,18
+177506,2021,2022,DA1031,"Antlerless Deer - Oquirrh-stansbury, Settlement Cyn - Archery",resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,18
+177508,2021,2022,DA1031,"Antlerless Deer - Oquirrh-stansbury, Settlement Cyn - Archery",resident,2,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,18
+177510,2021,2022,DA1031,"Antlerless Deer - Oquirrh-stansbury, Settlement Cyn - Archery",resident,1,13,1,,7.69230769,1 in 13.0,21_youth_antlerless_drawing_odds_report.pdf,18
+177542,2021,2022,DA1033,"Antlerless Deer - San Juan, Monticello - Archery",resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,19
+177574,2021,2022,DA1039,Antlerless Deer - East Canyon - Any Legal Weapon,resident,1,3,3,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,20
+177576,2021,2022,DA1039,Antlerless Deer - East Canyon - Any Legal Weapon,resident,0,13,7,,52.63157895,1 in 1.9,21_youth_antlerless_drawing_odds_report.pdf,20
+177604,2021,2022,DA1041,"Antlerless Deer - Nine Mile, Green River Valley - Any Legal Weapon",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,21
+177608,2021,2022,DA1041,"Antlerless Deer - Nine Mile, Green River Valley - Any Legal Weapon",resident,0,6,4,,66.66666667,1 in 1.5,21_youth_antlerless_drawing_odds_report.pdf,21
+177638,2021,2022,DA1042,"Antlerless Deer - San Juan, Monticello - Archery",resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,22
+177668,2021,2022,DA1043,"Antlerless Deer - Southwest Desert, Cedar Valley - Archery, Mzldr, Shotgn Only",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,23
+177670,2021,2022,DA1043,"Antlerless Deer - Southwest Desert, Cedar Valley - Archery, Mzldr, Shotgn Only",resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,23
+177671,2021,2022,DA1043,"Antlerless Deer - Southwest Desert, Cedar Valley - Archery, Mzldr, Shotgn Only",nonresident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,23
+177698,2021,2022,DA1044,"Two Doe Antlerless Deer - South Slope, Myton - Any Legal Weapon",resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,24
+177700,2021,2022,DA1044,"Two Doe Antlerless Deer - South Slope, Myton - Any Legal Weapon",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,24
+177702,2021,2022,DA1044,"Two Doe Antlerless Deer - South Slope, Myton - Any Legal Weapon",resident,1,8,8,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,24
+177704,2021,2022,DA1044,"Two Doe Antlerless Deer - South Slope, Myton - Any Legal Weapon",resident,0,32,30,,90.90909091,1 in 1.1,21_youth_antlerless_drawing_odds_report.pdf,24
+177736,2021,2022,DA1045,"Antlerless Deer - Fillmore, Oak City - Archery",resident,0,6,3,,50,1 in 2.0,21_youth_antlerless_drawing_odds_report.pdf,25
+177766,2021,2022,DA1046,"Antlerless Deer - Nine Mile, Price River Valley - Archery, Mzldr, Shotgn Only",resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,26
+177768,2021,2022,DA1046,"Antlerless Deer - Nine Mile, Price River Valley - Archery, Mzldr, Shotgn Only",resident,0,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,26
+177796,2021,2022,EA1004,"Antlerless Elk - Book Cliffs, Little Creek Roadless - Any Legal Weapon",resident,2,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,28
+177798,2021,2022,EA1004,"Antlerless Elk - Book Cliffs, Little Creek Roadless - Any Legal Weapon",resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,28
+177800,2021,2022,EA1004,"Antlerless Elk - Book Cliffs, Little Creek Roadless - Any Legal Weapon",resident,0,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,28
+177801,2021,2022,EA1004,"Antlerless Elk - Book Cliffs, Little Creek Roadless - Any Legal Weapon",nonresident,0,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,28
+177892,2021,2022,EA1009,"Antlerless Elk - Cache, East - Any Legal Weapon",resident,2,3,3,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,31
+177894,2021,2022,EA1009,"Antlerless Elk - Cache, East - Any Legal Weapon",resident,1,31,31,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,31
+177896,2021,2022,EA1009,"Antlerless Elk - Cache, East - Any Legal Weapon",resident,0,80,62,,76.92307692,1 in 1.3,21_youth_antlerless_drawing_odds_report.pdf,31
+177922,2021,2022,EA1010,"Antlerless Elk - Cache, Rich - Any Legal Weapon",resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,32
+177926,2021,2022,EA1010,"Antlerless Elk - Cache, Rich - Any Legal Weapon",resident,1,7,7,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,32
+177928,2021,2022,EA1010,"Antlerless Elk - Cache, Rich - Any Legal Weapon",resident,0,14,5,,35.71428571,1 in 2.8,21_youth_antlerless_drawing_odds_report.pdf,32
+177958,2021,2022,EA1011,"Antlerless Elk - Cache, Richards Hollow - Any Legal Weapon",resident,1,6,6,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,33
+177960,2021,2022,EA1011,"Antlerless Elk - Cache, Richards Hollow - Any Legal Weapon",resident,0,9,3,,33.33333333,1 in 3.0,21_youth_antlerless_drawing_odds_report.pdf,33
+177992,2021,2022,EA1012,"Antlerless Elk - Cache, Richmond Hyde Park - Any Legal Weapon",resident,0,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,34
+178014,2021,2022,EA1013,"Antlerless Elk - Central Mtns, Central Manti - Any Legal Weapon",resident,5,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,35
+178050,2021,2022,EA1015,"Antlerless Elk - Central Mtns, Ferron Canyon - Any Legal Weapon",resident,3,3,1,,33.33333333,1 in 3.0,21_youth_antlerless_drawing_odds_report.pdf,36
+178082,2021,2022,EA1017,"Antlerless Elk - Central Mtns, Gordon Creek-price Canyon - Any Legal Weapon",resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,37
+178146,2021,2022,EA1020,"Antlerless Elk - Central Mtns, Mohrland-stump Flat - Any Legal Weapon",resident,3,2,1,,50,1 in 2.0,21_youth_antlerless_drawing_odds_report.pdf,39
+178178,2021,2022,EA1021,"Antlerless Elk - Central Mtns, Nebo - Any Legal Weapon",resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,40
+178180,2021,2022,EA1021,"Antlerless Elk - Central Mtns, Nebo - Any Legal Weapon",resident,2,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,40
+178182,2021,2022,EA1021,"Antlerless Elk - Central Mtns, Nebo - Any Legal Weapon",resident,1,11,10,,90.90909091,1 in 1.1,21_youth_antlerless_drawing_odds_report.pdf,40
+178184,2021,2022,EA1021,"Antlerless Elk - Central Mtns, Nebo - Any Legal Weapon",resident,0,39,1,,2.56410256,1 in 39.0,21_youth_antlerless_drawing_odds_report.pdf,40
+178208,2021,2022,EA1022,"Antlerless Elk - Central Mtns, North Manti - Any Legal Weapon",resident,4,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,41
+178210,2021,2022,EA1022,"Antlerless Elk - Central Mtns, North Manti - Any Legal Weapon",resident,3,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,41
+178212,2021,2022,EA1022,"Antlerless Elk - Central Mtns, North Manti - Any Legal Weapon",resident,2,10,10,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,41
+178214,2021,2022,EA1022,"Antlerless Elk - Central Mtns, North Manti - Any Legal Weapon",resident,1,32,15,,47.61904762,1 in 2.1,21_youth_antlerless_drawing_odds_report.pdf,41
+178244,2021,2022,EA1023,"Antlerless Elk - Central Mtns, South Manti - Any Legal Weapon",resident,2,10,7,,71.42857143,1 in 1.4,21_youth_antlerless_drawing_odds_report.pdf,42
+178274,2021,2022,EA1024,"Antlerless Elk - Central Mtns, South Manti - Any Legal Weapon",resident,3,2,1,,50,1 in 2.0,21_youth_antlerless_drawing_odds_report.pdf,43
+178308,2021,2022,EA1025,"Antlerless Elk - Central Mtns, West Manti - Any Legal Weapon",resident,2,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,44
+178310,2021,2022,EA1025,"Antlerless Elk - Central Mtns, West Manti - Any Legal Weapon",resident,1,15,10,,66.66666667,1 in 1.5,21_youth_antlerless_drawing_odds_report.pdf,44
+178313,2021,2022,EA1025,"Antlerless Elk - Central Mtns, West Manti - Any Legal Weapon",nonresident,0,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,44
+178342,2021,2022,EA1026,Antlerless Elk - Chalk Creek - Any Legal Weapon,resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,45
+178344,2021,2022,EA1026,Antlerless Elk - Chalk Creek - Any Legal Weapon,resident,0,10,10,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,45
+178370,2021,2022,EA1030,"Antlerless Elk - Fillmore, Pahvant - Any Legal Weapon",resident,3,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,46
+178372,2021,2022,EA1030,"Antlerless Elk - Fillmore, Pahvant - Any Legal Weapon",resident,2,3,2,,66.66666667,1 in 1.5,21_youth_antlerless_drawing_odds_report.pdf,46
+178402,2021,2022,EA1031,"Antlerless Elk - Fillmore, Pahvant - Any Legal Weapon",resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,47
+178404,2021,2022,EA1031,"Antlerless Elk - Fillmore, Pahvant - Any Legal Weapon",resident,2,4,3,,76.92307692,1 in 1.3,21_youth_antlerless_drawing_odds_report.pdf,47
+178436,2021,2022,EA1033,Antlerless Elk - Kamas - Any Legal Weapon,resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,48
+178438,2021,2022,EA1033,Antlerless Elk - Kamas - Any Legal Weapon,resident,1,6,6,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,48
+178440,2021,2022,EA1033,Antlerless Elk - Kamas - Any Legal Weapon,resident,0,25,12,,47.61904762,1 in 2.1,21_youth_antlerless_drawing_odds_report.pdf,48
+178468,2021,2022,EA1035,"Antlerless Elk - Kamas, Oakley - Any Legal Weapon",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,49
+178470,2021,2022,EA1035,"Antlerless Elk - Kamas, Oakley - Any Legal Weapon",resident,1,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,49
+178472,2021,2022,EA1035,"Antlerless Elk - Kamas, Oakley - Any Legal Weapon",resident,0,3,3,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,49
+178502,2021,2022,EA1038,"Antlerless Elk - La Sal, La Sal Mtns - Any Legal Weapon",resident,1,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,50
+178504,2021,2022,EA1038,"Antlerless Elk - La Sal, La Sal Mtns - Any Legal Weapon",resident,0,24,24,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,50
+178528,2021,2022,EA1039,"Antlerless Elk - La Sal, La Sal Mtns - Any Legal Weapon",resident,4,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,51
+178530,2021,2022,EA1039,"Antlerless Elk - La Sal, La Sal Mtns - Any Legal Weapon",resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,51
+178532,2021,2022,EA1039,"Antlerless Elk - La Sal, La Sal Mtns - Any Legal Weapon",resident,2,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,51
+178534,2021,2022,EA1039,"Antlerless Elk - La Sal, La Sal Mtns - Any Legal Weapon",resident,1,11,11,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,51
+178536,2021,2022,EA1039,"Antlerless Elk - La Sal, La Sal Mtns - Any Legal Weapon",resident,0,32,31,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,51
+178537,2021,2022,EA1039,"Antlerless Elk - La Sal, La Sal Mtns - Any Legal Weapon",nonresident,0,4,4,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,51
+178566,2021,2022,EA1040,"Antlerless Elk - Monroe, Koosharem Valley - Any Legal Weapon",resident,1,6,1,,16.66666667,1 in 6.0,21_youth_antlerless_drawing_odds_report.pdf,52
+178598,2021,2022,EA1044,"Antlerless Elk - Morgan-south Rich, South Rich - Any Legal Weapon",resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,53
+178600,2021,2022,EA1044,"Antlerless Elk - Morgan-south Rich, South Rich - Any Legal Weapon",resident,0,5,5,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,53
+178630,2021,2022,EA1049,"Antlerless Elk - Mt Dutton, Deep Creek -An y Legal Weapon",resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,54
+178632,2021,2022,EA1049,"Antlerless Elk - Mt Dutton, Deep Creek -An y Legal Weapon",resident,0,11,4,,35.71428571,1 in 2.8,21_youth_antlerless_drawing_odds_report.pdf,54
+178662,2021,2022,EA1052,"Antlerless Elk - Nine Mile, Avintaquin-west Anthro - Any Legal Weapon",resident,1,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,55
+178664,2021,2022,EA1052,"Antlerless Elk - Nine Mile, Avintaquin-west Anthro - Any Legal Weapon",resident,0,18,18,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,55
+178665,2021,2022,EA1052,"Antlerless Elk - Nine Mile, Avintaquin-west Anthro - Any Legal Weapon",nonresident,0,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,55
+178696,2021,2022,EA1054,"Antlerless Elk - Nine Mile, West Anthro - Any Legal Weapon",resident,0,14,14,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,56
+178786,2021,2022,EA1058,"Antlerless Elk - North Slope, Henry's Fork-burnt Fork - Any Legal Weapon",resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,59
+178790,2021,2022,EA1058,"Antlerless Elk - North Slope, Henry's Fork-burnt Fork - Any Legal Weapon",resident,1,11,9,,83.33333333,1 in 1.2,21_youth_antlerless_drawing_odds_report.pdf,59
+178824,2021,2022,EA1060,"Antlerless Elk - North Slope, West Daggett - Muzzleloader",resident,0,2,1,,50,1 in 2.0,21_youth_antlerless_drawing_odds_report.pdf,60
+178856,2021,2022,EA1061,"Antlerless Elk - North Slope, West Daggett - Muzzleloader",resident,0,5,3,,58.82352941,1 in 1.7,21_youth_antlerless_drawing_odds_report.pdf,61
+178886,2021,2022,EA1063,Antlerless Elk - Ogden - Any Legal Weapon,resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,62
+178888,2021,2022,EA1063,Antlerless Elk - Ogden - Any Legal Weapon,resident,0,4,2,,50,1 in 2.0,21_youth_antlerless_drawing_odds_report.pdf,62
+178918,2021,2022,EA1064,Antlerless Elk - Ogden - Any Legal Weapon,resident,1,8,3,,37.03703704,1 in 2.7,21_youth_antlerless_drawing_odds_report.pdf,63
+178948,2021,2022,EA1066,Antlerless Elk - Panguitch Lake - Any Legal Weapon,resident,2,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,64
+178950,2021,2022,EA1066,Antlerless Elk - Panguitch Lake - Any Legal Weapon,resident,1,3,3,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,64
+178952,2021,2022,EA1066,Antlerless Elk - Panguitch Lake - Any Legal Weapon,resident,0,7,7,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,64
+178953,2021,2022,EA1066,Antlerless Elk - Panguitch Lake - Any Legal Weapon,nonresident,0,2,1,,50,1 in 2.0,21_youth_antlerless_drawing_odds_report.pdf,64
+178980,2021,2022,EA1067,Antlerless Elk - Panguitch Lake - Any Legal Weapon,resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,65
+178982,2021,2022,EA1067,Antlerless Elk - Panguitch Lake - Any Legal Weapon,resident,1,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,65
+178984,2021,2022,EA1067,Antlerless Elk - Panguitch Lake - Any Legal Weapon,resident,0,15,10,,66.66666667,1 in 1.5,21_youth_antlerless_drawing_odds_report.pdf,65
+178985,2021,2022,EA1067,Antlerless Elk - Panguitch Lake - Any Legal Weapon,nonresident,0,2,1,,50,1 in 2.0,21_youth_antlerless_drawing_odds_report.pdf,65
+179013,2021,2022,EA1068,Antlerless Elk - Panguitch Lake - Any Legal Weapon,nonresident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,66
+179014,2021,2022,EA1068,Antlerless Elk - Panguitch Lake - Any Legal Weapon,resident,1,5,5,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,66
+179016,2021,2022,EA1068,Antlerless Elk - Panguitch Lake - Any Legal Weapon,resident,0,21,13,,62.5,1 in 1.6,21_youth_antlerless_drawing_odds_report.pdf,66
+179044,2021,2022,EA1069,Antlerless Elk - Panguitch Lake - Any Legal Weapon,resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,67
+179046,2021,2022,EA1069,Antlerless Elk - Panguitch Lake - Any Legal Weapon,resident,1,3,3,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,67
+179048,2021,2022,EA1069,Antlerless Elk - Panguitch Lake - Any Legal Weapon,resident,0,18,9,,50,1 in 2.0,21_youth_antlerless_drawing_odds_report.pdf,67
+179078,2021,2022,EA1073,Antlerless Elk - Paunsaugunt - Any Legal Weapon,resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,68
+179080,2021,2022,EA1073,Antlerless Elk - Paunsaugunt - Any Legal Weapon,resident,0,12,8,,66.66666667,1 in 1.5,21_youth_antlerless_drawing_odds_report.pdf,68
+179106,2021,2022,EA1074,Antlerless Elk - Pine Valley - Any Legal Weapon,resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,69
+179110,2021,2022,EA1074,Antlerless Elk - Pine Valley - Any Legal Weapon,resident,1,3,2,,66.66666667,1 in 1.5,21_youth_antlerless_drawing_odds_report.pdf,69
+179140,2021,2022,EA1075,"Antlerless Elk - Plateau, Boulder East - Any Legal Weapon",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,70
+179172,2021,2022,EA1076,"Antlerless Elk - Plateau, Boulder West - Any Legal Weapon",resident,2,5,1,,20,1 in 5.0,21_youth_antlerless_drawing_odds_report.pdf,71
+179208,2021,2022,EA1077,"Antlerless Elk - Plateau, Boulder-circle Cliffs -An y Legal Weapon",resident,0,3,3,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,72
+179236,2021,2022,EA1078,"Antlerless Elk - Plateau, Fishlake/thousand Lakes - Any Legal Weapon",resident,2,15,15,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,73
+179238,2021,2022,EA1078,"Antlerless Elk - Plateau, Fishlake/thousand Lakes - Any Legal Weapon",resident,1,24,24,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,73
+179240,2021,2022,EA1078,"Antlerless Elk - Plateau, Fishlake/thousand Lakes - Any Legal Weapon",resident,0,45,6,,13.33333333,1 in 7.5,21_youth_antlerless_drawing_odds_report.pdf,73
+179241,2021,2022,EA1078,"Antlerless Elk - Plateau, Fishlake/thousand Lakes - Any Legal Weapon",nonresident,0,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,73
+179266,2021,2022,EA1079,"Antlerless Elk - Plateau, Fishlake/thousand Lakes East - Any Legal Weapon",resident,3,6,6,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,74
+179268,2021,2022,EA1079,"Antlerless Elk - Plateau, Fishlake/thousand Lakes East - Any Legal Weapon",resident,2,13,8,,62.5,1 in 1.6,21_youth_antlerless_drawing_odds_report.pdf,74
+179271,2021,2022,EA1079,"Antlerless Elk - Plateau, Fishlake/thousand Lakes East - Any Legal Weapon",nonresident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,74
+179298,2021,2022,EA1080,"Antlerless Elk - Plateau, Fishlake/thousand Lakes West - Any Legal Weapon",resident,3,3,3,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,75
+179300,2021,2022,EA1080,"Antlerless Elk - Plateau, Fishlake/thousand Lakes West - Any Legal Weapon",resident,2,16,12,,76.92307692,1 in 1.3,21_youth_antlerless_drawing_odds_report.pdf,75
+179334,2021,2022,EA1081,Antlerless Elk - San Juan - Any Legal Weapon,resident,1,10,10,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,76
+179336,2021,2022,EA1081,Antlerless Elk - San Juan - Any Legal Weapon,resident,0,16,12,,76.92307692,1 in 1.3,21_youth_antlerless_drawing_odds_report.pdf,76
+179337,2021,2022,EA1081,Antlerless Elk - San Juan - Any Legal Weapon,nonresident,0,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,76
+179362,2021,2022,EA1082,Antlerless Elk - San Juan - Any Legal Weapon,resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,77
+179364,2021,2022,EA1082,Antlerless Elk - San Juan - Any Legal Weapon,resident,2,8,8,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,77
+179366,2021,2022,EA1082,Antlerless Elk - San Juan - Any Legal Weapon,resident,1,9,9,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,77
+179368,2021,2022,EA1082,Antlerless Elk - San Juan - Any Legal Weapon,resident,0,30,5,,16.66666667,1 in 6.0,21_youth_antlerless_drawing_odds_report.pdf,77
+179369,2021,2022,EA1082,Antlerless Elk - San Juan - Any Legal Weapon,nonresident,0,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,77
+179398,2021,2022,EA1085,"Antlerless Elk - South Slope, Bonanza/vernal - Archery",resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,78
+179400,2021,2022,EA1085,"Antlerless Elk - South Slope, Bonanza/vernal - Archery",resident,0,9,9,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,78
+179428,2021,2022,EA1087,"Antlerless Elk - South Slope, Bonanza/vernal - Any Legal Weapon",resident,2,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,79
+179430,2021,2022,EA1087,"Antlerless Elk - South Slope, Bonanza/vernal - Any Legal Weapon",resident,1,14,14,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,79
+179432,2021,2022,EA1087,"Antlerless Elk - South Slope, Bonanza/vernal - Any Legal Weapon",resident,0,28,4,,14.28571429,1 in 7.0,21_youth_antlerless_drawing_odds_report.pdf,79
+179460,2021,2022,EA1089,"Antlerless Elk - South Slope, Diamond Mtn - Any Legal Weapon",resident,2,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,80
+179462,2021,2022,EA1089,"Antlerless Elk - South Slope, Diamond Mtn - Any Legal Weapon",resident,1,6,6,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,80
+179464,2021,2022,EA1089,"Antlerless Elk - South Slope, Diamond Mtn - Any Legal Weapon",resident,0,22,2,,9.09090909,1 in 11.0,21_youth_antlerless_drawing_odds_report.pdf,80
+179494,2021,2022,EA1090,"Antlerless Elk - South Slope, Diamond Mtn - Any Legal Weapon",resident,1,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,81
+179496,2021,2022,EA1090,"Antlerless Elk - South Slope, Diamond Mtn - Any Legal Weapon",resident,0,8,8,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,81
+179526,2021,2022,EA1091,"Antlerless Elk - South Slope, Diamond Mtn - Any Legal Weapon",resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,82
+179528,2021,2022,EA1091,"Antlerless Elk - South Slope, Diamond Mtn - Any Legal Weapon",resident,0,11,9,,83.33333333,1 in 1.2,21_youth_antlerless_drawing_odds_report.pdf,82
+179560,2021,2022,EA1094,"Antlerless Elk - South Slope, Mosby Mtn - Any Legal Weapon",resident,0,20,15,,76.92307692,1 in 1.3,21_youth_antlerless_drawing_odds_report.pdf,83
+179590,2021,2022,EA1098,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",resident,1,3,3,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,84
+179592,2021,2022,EA1098,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",resident,0,10,10,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,84
+179620,2021,2022,EA1099,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,85
+179622,2021,2022,EA1099,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,85
+179624,2021,2022,EA1099,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",resident,0,11,11,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,85
+179654,2021,2022,EA1100,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",resident,1,4,4,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,86
+179656,2021,2022,EA1100,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",resident,0,7,7,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,86
+179682,2021,2022,EA1101,Antlerless Elk - Southwest Desert - Any Legal Weapon,resident,3,4,4,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,87
+179683,2021,2022,EA1101,Antlerless Elk - Southwest Desert - Any Legal Weapon,nonresident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,87
+179684,2021,2022,EA1101,Antlerless Elk - Southwest Desert - Any Legal Weapon,resident,2,5,5,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,87
+179685,2021,2022,EA1101,Antlerless Elk - Southwest Desert - Any Legal Weapon,nonresident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,87
+179686,2021,2022,EA1101,Antlerless Elk - Southwest Desert - Any Legal Weapon,resident,1,43,9,,20.83333333,1 in 4.8,21_youth_antlerless_drawing_odds_report.pdf,87
+179716,2021,2022,EA1110,"Antlerless Elk - Wasatch Mtns, Salt Lake - Any Legal Weapon",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,88
+179718,2021,2022,EA1110,"Antlerless Elk - Wasatch Mtns, Salt Lake - Any Legal Weapon",resident,1,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,88
+179720,2021,2022,EA1110,"Antlerless Elk - Wasatch Mtns, Salt Lake - Any Legal Weapon",resident,0,10,4,,40,1 in 2.5,21_youth_antlerless_drawing_odds_report.pdf,88
+179748,2021,2022,EA1111,"Antlerless Elk - Wasatch Mtns, Wallsburg - Any Legal Weapon",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,89
+179750,2021,2022,EA1111,"Antlerless Elk - Wasatch Mtns, Wallsburg - Any Legal Weapon",resident,1,5,4,,76.92307692,1 in 1.3,21_youth_antlerless_drawing_odds_report.pdf,89
+179782,2021,2022,EA1112,"Antlerless Elk - Wasatch Mtns, Wallsburg - Any Legal Weapon",resident,1,5,5,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,90
+179784,2021,2022,EA1112,"Antlerless Elk - Wasatch Mtns, Wallsburg - Any Legal Weapon",resident,0,10,4,,40,1 in 2.5,21_youth_antlerless_drawing_odds_report.pdf,90
+179812,2021,2022,EA1113,"Antlerless Elk - Wasatch Mtns, West Heber - Any Legal Weapon",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,91
+179814,2021,2022,EA1113,"Antlerless Elk - Wasatch Mtns, West Heber - Any Legal Weapon",resident,1,4,3,,76.92307692,1 in 1.3,21_youth_antlerless_drawing_odds_report.pdf,91
+179842,2021,2022,EA1114,"Antlerless Elk - Wasatch Mtns, West Timpanogos - Any Legal Weapon",resident,3,3,3,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,92
+179844,2021,2022,EA1114,"Antlerless Elk - Wasatch Mtns, West Timpanogos - Any Legal Weapon",resident,2,3,2,,66.66666667,1 in 1.5,21_youth_antlerless_drawing_odds_report.pdf,92
+179878,2021,2022,EA1116,Antlerless Elk - Zion - Any Legal Weapon,resident,1,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,93
+179880,2021,2022,EA1116,Antlerless Elk - Zion - Any Legal Weapon,resident,0,9,9,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,93
+179908,2021,2022,EA1117,Antlerless Elk - Zion - Any Legal Weapon,resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,94
+179910,2021,2022,EA1117,Antlerless Elk - Zion - Any Legal Weapon,resident,1,3,3,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,94
+179912,2021,2022,EA1117,Antlerless Elk - Zion - Any Legal Weapon,resident,0,8,8,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,94
+179942,2021,2022,EA1118,Cwmu Antlerless Elk - Alton - Any Legal Weapon,resident,1,2,1,,50,1 in 2.0,21_youth_antlerless_drawing_odds_report.pdf,95
+179972,2021,2022,EA1119,Cwmu Antlerless Elk - Bar J Ranch - Any Legal Weapon,resident,2,3,2,,66.66666667,1 in 1.5,21_youth_antlerless_drawing_odds_report.pdf,96
+180006,2021,2022,EA1120,Cwmu Antlerless Elk - Bear Mountain - Any Legal Weapon,resident,1,3,3,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,97
+180036,2021,2022,EA1121,Cwmu Antlerless Elk - Boobe Hole - Any Legal Weapon,resident,2,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,98
+180070,2021,2022,EA1122,Cwmu Antlerless Elk - Causey Spring - Any Legal Weapon,resident,1,2,1,,50,1 in 2.0,21_youth_antlerless_drawing_odds_report.pdf,99
+180100,2021,2022,EA1124,Cwmu Antlerless Elk - Chimney Rock - Any Legal Weapon,resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,100
+180102,2021,2022,EA1124,Cwmu Antlerless Elk - Chimney Rock - Any Legal Weapon,resident,1,2,1,,50,1 in 2.0,21_youth_antlerless_drawing_odds_report.pdf,100
+180130,2021,2022,EA1125,Cwmu Antlerless Elk - Coldwater Ranch - Any Legal Weapon,resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,101
+180132,2021,2022,EA1125,Cwmu Antlerless Elk - Coldwater Ranch - Any Legal Weapon,resident,2,7,3,,43.47826087,1 in 2.3,21_youth_antlerless_drawing_odds_report.pdf,101
+180160,2021,2022,EA1129,Cwmu Antlerless Elk - Deseret - Any Legal Weapon,resident,4,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,102
+180162,2021,2022,EA1129,Cwmu Antlerless Elk - Deseret - Any Legal Weapon,resident,3,7,7,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,102
+180164,2021,2022,EA1129,Cwmu Antlerless Elk - Deseret - Any Legal Weapon,resident,2,19,19,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,102
+180166,2021,2022,EA1129,Cwmu Antlerless Elk - Deseret - Any Legal Weapon,resident,1,69,35,,50,1 in 2.0,21_youth_antlerless_drawing_odds_report.pdf,102
+180196,2021,2022,EA1130,Cwmu Antlerless Elk - Double Cone - Any Legal Weapon,resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,103
+180224,2021,2022,EA1131,Cwmu Antlerless Elk - Durst Mountain - Any Legal Weapon,resident,4,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,104
+180228,2021,2022,EA1131,Cwmu Antlerless Elk - Durst Mountain - Any Legal Weapon,resident,2,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,104
+180230,2021,2022,EA1131,Cwmu Antlerless Elk - Durst Mountain - Any Legal Weapon,resident,1,5,2,,40,1 in 2.5,21_youth_antlerless_drawing_odds_report.pdf,104
+180260,2021,2022,EA1132,Cwmu Antlerless Elk - East Fork Chalk Creek - Any Legal Weapon,resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,105
+180262,2021,2022,EA1132,Cwmu Antlerless Elk - East Fork Chalk Creek - Any Legal Weapon,resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,105
+180264,2021,2022,EA1132,Cwmu Antlerless Elk - East Fork Chalk Creek - Any Legal Weapon,resident,0,5,4,,76.92307692,1 in 1.3,21_youth_antlerless_drawing_odds_report.pdf,105
+180292,2021,2022,EA1134,Cwmu Antlerless Elk - Ensign Ranches - Any Legal Weapon,resident,2,3,3,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,106
+180294,2021,2022,EA1134,Cwmu Antlerless Elk - Ensign Ranches - Any Legal Weapon,resident,1,10,9,,90.90909091,1 in 1.1,21_youth_antlerless_drawing_odds_report.pdf,106
+180322,2021,2022,EA1135,Cwmu Antlerless Elk - Folley Ridge - Any Legal Weapon,resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,107
+180352,2021,2022,EA1136,Cwmu Antlerless Elk - Grass Valley/clark Canyon - Any Legal Weapon,resident,4,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,108
+180356,2021,2022,EA1136,Cwmu Antlerless Elk - Grass Valley/clark Canyon - Any Legal Weapon,resident,2,5,5,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,108
+180358,2021,2022,EA1136,Cwmu Antlerless Elk - Grass Valley/clark Canyon - Any Legal Weapon,resident,1,5,4,,76.92307692,1 in 1.3,21_youth_antlerless_drawing_odds_report.pdf,108
+180384,2021,2022,EA1137,Cwmu Antlerless Elk - Grazing Pasture - Any Legal Weapon,resident,4,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,109
+180422,2021,2022,EA1138,Cwmu Antlerless Elk - Guildersleeve - Any Legal Weapon,resident,1,2,1,,50,1 in 2.0,21_youth_antlerless_drawing_odds_report.pdf,110
+180456,2021,2022,EA1139,Cwmu Antlerless Elk - Hardscrabble - Any Legal Weapon,resident,0,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,111
+180480,2021,2022,EA1140,Cwmu Antlerless Elk - Heaston East - Any Legal Weapon,resident,4,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,112
+180514,2021,2022,EA1141,Cwmu Antlerless Elk - Hiawatha - Any Legal Weapon,resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,113
+180516,2021,2022,EA1141,Cwmu Antlerless Elk - Hiawatha - Any Legal Weapon,resident,2,4,1,,25,1 in 4.0,21_youth_antlerless_drawing_odds_report.pdf,113
+180550,2021,2022,EA1142,Cwmu Antlerless Elk - Indian Head - Any Legal Weapon,resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,114
+180580,2021,2022,EA1143,Cwmu Antlerless Elk - J.b. Ranch - Any Legal Weapon,resident,2,3,3,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,115
+180582,2021,2022,EA1143,Cwmu Antlerless Elk - J.b. Ranch - Any Legal Weapon,resident,1,10,1,,10,1 in 10.0,21_youth_antlerless_drawing_odds_report.pdf,115
+180608,2021,2022,EA1145,Cwmu Antlerless Elk - Johnson Mountain Ranch - Any Legal Weapon,resident,4,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,116
+180610,2021,2022,EA1145,Cwmu Antlerless Elk - Johnson Mountain Ranch - Any Legal Weapon,resident,3,4,3,,76.92307692,1 in 1.3,21_youth_antlerless_drawing_odds_report.pdf,116
+180640,2021,2022,EA1146,Cwmu Antlerless Elk - Jump Creek - Any Legal Weapon,resident,4,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,117
+180676,2021,2022,EA1147,Cwmu Antlerless Elk - Little Red Creek - Any Legal Weapon,resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,118
+180678,2021,2022,EA1147,Cwmu Antlerless Elk - Little Red Creek - Any Legal Weapon,resident,1,4,2,,50,1 in 2.0,21_youth_antlerless_drawing_odds_report.pdf,118
+180710,2021,2022,EA1149,Cwmu Antlerless Elk - Minnie Maud Ridge - Any Legal Weapon,resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,119
+180742,2021,2022,EA1151,Cwmu Antlerless Elk - Moon Ranch - Any Legal Weapon,resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,120
+180804,2021,2022,EA1156,Cwmu Antlerless Elk - Preston Nutter Ranch - Any Legal Weapon,resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,122
+180838,2021,2022,EA1157,Cwmu Antlerless Elk - Redd Ranches - Any Legal Weapon,resident,1,4,4,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,123
+180840,2021,2022,EA1157,Cwmu Antlerless Elk - Redd Ranches - Any Legal Weapon,resident,0,6,2,,33.33333333,1 in 3.0,21_youth_antlerless_drawing_odds_report.pdf,123
+180872,2021,2022,EA1158,Cwmu Antlerless Elk - Riverview Ranch Llc - Any Legal Weapon,resident,0,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,124
+180934,2021,2022,EA1160,Cwmu Antlerless Elk - Sand Creek - Any Legal Weapon,resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,126
+180960,2021,2022,EA1161,Cwmu Antlerless Elk - Scofield Canyons - Any Legal Weapon,resident,4,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,127
+180996,2021,2022,EA1162,Cwmu Antlerless Elk - Scofield East - Any Legal Weapon,resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,128
+181032,2021,2022,EA1163,Cwmu Antlerless Elk - Scofield West - Any Legal Weapon,resident,0,6,6,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,129
+181058,2021,2022,EA1164,Cwmu Antlerless Elk - Sj Ranch - Any Legal Weapon,resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,130
+181090,2021,2022,EA1165,Cwmu Antlerless Elk - Skull Crack - Any Legal Weapon,resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,131
+181092,2021,2022,EA1165,Cwmu Antlerless Elk - Skull Crack - Any Legal Weapon,resident,2,6,2,,33.33333333,1 in 3.0,21_youth_antlerless_drawing_odds_report.pdf,131
+181122,2021,2022,EA1166,Cwmu Antlerless Elk - Soldier Summit - Any Legal Weapon,resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,132
+181156,2021,2022,EA1167,Cwmu Antlerless Elk - South Canyon - Any Legal Weapon,resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,133
+181158,2021,2022,EA1167,Cwmu Antlerless Elk - South Canyon - Any Legal Weapon,resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,133
+181192,2021,2022,EA1168,Cwmu Antlerless Elk - Spring Creek/dodge - Any Legal Weapon,resident,0,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,134
+181222,2021,2022,EA1170,Cwmu Antlerless Elk - Strawberry Ridge - Any Legal Weapon,resident,1,3,2,,66.66666667,1 in 1.5,21_youth_antlerless_drawing_odds_report.pdf,135
+181250,2021,2022,EA1172,Cwmu Antlerless Elk - Three C - Any Legal Weapon,resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,136
+181252,2021,2022,EA1172,Cwmu Antlerless Elk - Three C - Any Legal Weapon,resident,2,4,1,,25,1 in 4.0,21_youth_antlerless_drawing_odds_report.pdf,136
+181284,2021,2022,EA1174,Cwmu Antlerless Elk - Two Bear - Any Legal Weapon,resident,2,6,6,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,137
+181286,2021,2022,EA1174,Cwmu Antlerless Elk - Two Bear - Any Legal Weapon,resident,1,4,2,,50,1 in 2.0,21_youth_antlerless_drawing_odds_report.pdf,137
+181318,2021,2022,EA1175,Cwmu Antlerless Elk - Wallsburg - Any Legal Weapon,resident,1,4,1,,25,1 in 4.0,21_youth_antlerless_drawing_odds_report.pdf,138
+181348,2021,2022,EA1176,Cwmu Antlerless Elk - Weber Florence Creek - Any Legal Weapon,resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,139
+181352,2021,2022,EA1176,Cwmu Antlerless Elk - Weber Florence Creek - Any Legal Weapon,resident,0,9,9,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,139
+181378,2021,2022,EA1186,Antlerless Elk - Mt Dutton/plateau - Any Legal Weapon,resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,140
+181380,2021,2022,EA1186,Antlerless Elk - Mt Dutton/plateau - Any Legal Weapon,resident,2,12,4,,33.33333333,1 in 3.0,21_youth_antlerless_drawing_odds_report.pdf,140
+181414,2021,2022,EA1187,"Antlerless Elk - Paunsaugunt, Hatch Bench - Any Legal Weapon",resident,1,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,141
+181444,2021,2022,EA1189,"Antlerless Elk - Wasatch Mtns, West-central - Muzzleloader",resident,2,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,142
+181446,2021,2022,EA1189,"Antlerless Elk - Wasatch Mtns, West-central - Muzzleloader",resident,1,11,11,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,142
+181448,2021,2022,EA1189,"Antlerless Elk - Wasatch Mtns, West-central - Muzzleloader",resident,0,47,47,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,142
+181478,2021,2022,EA1190,"Antlerless Elk - Beaver, North - Any Legal Weapon",resident,1,6,6,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,143
+181480,2021,2022,EA1190,"Antlerless Elk - Beaver, North - Any Legal Weapon",resident,0,20,15,,76.92307692,1 in 1.3,21_youth_antlerless_drawing_odds_report.pdf,143
+181481,2021,2022,EA1190,"Antlerless Elk - Beaver, North - Any Legal Weapon",nonresident,0,3,2,,66.66666667,1 in 1.5,21_youth_antlerless_drawing_odds_report.pdf,143
+181512,2021,2022,EA1192,Cwmu Antlerless Elk - Pahvant Ensign - Any Legal Weapon,resident,0,5,4,,76.92307692,1 in 1.3,21_youth_antlerless_drawing_odds_report.pdf,144
+181538,2021,2022,EA1193,"Antlerless Elk - Cache, Rich - Any Legal Weapon",resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,145
+181540,2021,2022,EA1193,"Antlerless Elk - Cache, Rich - Any Legal Weapon",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,145
+181542,2021,2022,EA1193,"Antlerless Elk - Cache, Rich - Any Legal Weapon",resident,1,7,7,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,145
+181544,2021,2022,EA1193,"Antlerless Elk - Cache, Rich - Any Legal Weapon",resident,0,11,3,,27.02702703,1 in 3.7,21_youth_antlerless_drawing_odds_report.pdf,145
+181576,2021,2022,EA1194,"Antlerless Elk - Cache, Richmond Hyde Park - Any Legal Weapon",resident,0,3,2,,66.66666667,1 in 1.5,21_youth_antlerless_drawing_odds_report.pdf,146
+181604,2021,2022,EA1196,"Antlerless Elk - North Slope, Summit - Any Legal Weapon",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,147
+181606,2021,2022,EA1196,"Antlerless Elk - North Slope, Summit - Any Legal Weapon",resident,1,10,8,,76.92307692,1 in 1.3,21_youth_antlerless_drawing_odds_report.pdf,147
+181609,2021,2022,EA1196,"Antlerless Elk - North Slope, Summit - Any Legal Weapon",nonresident,0,2,1,,50,1 in 2.0,21_youth_antlerless_drawing_odds_report.pdf,147
+181766,2021,2022,EA1206,"Antlerless Elk - Cache, Richmond Hyde Park - Any Legal Weapon",resident,1,3,2,,66.66666667,1 in 1.5,21_youth_antlerless_drawing_odds_report.pdf,152
+181798,2021,2022,EA1207,"Antlerless Elk - Central Mtns, Moroni Hills - Any Legal Weapon",resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,153
+181800,2021,2022,EA1207,"Antlerless Elk - Central Mtns, Moroni Hills - Any Legal Weapon",resident,0,4,4,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,153
+181828,2021,2022,EA1208,"Antlerless Elk - Central Mtns, Nebo - Any Legal Weapon",resident,2,11,11,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,154
+181830,2021,2022,EA1208,"Antlerless Elk - Central Mtns, Nebo - Any Legal Weapon",resident,1,43,2,,4.65116279,1 in 21.5,21_youth_antlerless_drawing_odds_report.pdf,154
+181833,2021,2022,EA1208,"Antlerless Elk - Central Mtns, Nebo - Any Legal Weapon",nonresident,0,3,1,,33.33333333,1 in 3.0,21_youth_antlerless_drawing_odds_report.pdf,154
+181860,2021,2022,EA1209,"Antlerless Elk - Fillmore, Oak Creek Le - Any Legal Weapon",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,155
+181862,2021,2022,EA1209,"Antlerless Elk - Fillmore, Oak Creek Le - Any Legal Weapon",resident,1,7,7,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,155
+181864,2021,2022,EA1209,"Antlerless Elk - Fillmore, Oak Creek Le - Any Legal Weapon",resident,0,23,1,,4.34782609,1 in 23.0,21_youth_antlerless_drawing_odds_report.pdf,155
+181892,2021,2022,EA1217,"Antlerless Elk - Wasatch Mtns, Avintaquin - Any Legal Weapon",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,156
+181894,2021,2022,EA1217,"Antlerless Elk - Wasatch Mtns, Avintaquin - Any Legal Weapon",resident,1,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,156
+181896,2021,2022,EA1217,"Antlerless Elk - Wasatch Mtns, Avintaquin - Any Legal Weapon",resident,0,9,9,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,156
+181924,2021,2022,EA1222,"Antlerless Elk - Beaver, East - Any Legal Weapon",resident,2,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,157
+181926,2021,2022,EA1222,"Antlerless Elk - Beaver, East - Any Legal Weapon",resident,1,23,23,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,157
+181927,2021,2022,EA1222,"Antlerless Elk - Beaver, East - Any Legal Weapon",nonresident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,157
+181928,2021,2022,EA1222,"Antlerless Elk - Beaver, East - Any Legal Weapon",resident,0,41,2,,4.87804878,1 in 20.5,21_youth_antlerless_drawing_odds_report.pdf,157
+181929,2021,2022,EA1222,"Antlerless Elk - Beaver, East - Any Legal Weapon",nonresident,0,3,2,,66.66666667,1 in 1.5,21_youth_antlerless_drawing_odds_report.pdf,157
+181956,2021,2022,EA1223,"Antlerless Elk - Beaver, East - Any Legal Weapon",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,158
+181958,2021,2022,EA1223,"Antlerless Elk - Beaver, East - Any Legal Weapon",resident,1,7,7,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,158
+181959,2021,2022,EA1223,"Antlerless Elk - Beaver, East - Any Legal Weapon",nonresident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,158
+181960,2021,2022,EA1223,"Antlerless Elk - Beaver, East - Any Legal Weapon",resident,0,22,10,,45.45454545,1 in 2.2,21_youth_antlerless_drawing_odds_report.pdf,158
+181988,2021,2022,EA1224,"Antlerless Elk - Book Cliffs, Bitter Creek/south - Any Legal Weapon",resident,2,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,159
+181990,2021,2022,EA1224,"Antlerless Elk - Book Cliffs, Bitter Creek/south - Any Legal Weapon",resident,1,16,16,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,159
+181993,2021,2022,EA1224,"Antlerless Elk - Book Cliffs, Bitter Creek/south - Any Legal Weapon",nonresident,0,3,2,,66.66666667,1 in 1.5,21_youth_antlerless_drawing_odds_report.pdf,159
+182020,2021,2022,EA1225,"Antlerless Elk - Book Cliffs, Bitter Creek/south - Muzzleloader",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,160
+182023,2021,2022,EA1225,"Antlerless Elk - Book Cliffs, Bitter Creek/south - Muzzleloader",nonresident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,160
+182024,2021,2022,EA1225,"Antlerless Elk - Book Cliffs, Bitter Creek/south - Muzzleloader",resident,0,13,13,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,160
+182054,2021,2022,EA1226,"Antlerless Elk - Central Mtns, Moroni Hills - Any Legal Weapon",resident,1,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,161
+182086,2021,2022,EA1227,"Antlerless Elk - Fillmore, Kanosh Valley - Any Legal Weapon",resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,162
+182120,2021,2022,EA1228,Antlerless Elk - Morgan-south Rich - Any Legal Weapon,resident,0,7,7,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,163
+182121,2021,2022,EA1228,Antlerless Elk - Morgan-south Rich - Any Legal Weapon,nonresident,0,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,163
+182152,2021,2022,EA1229,Antlerless Elk - Morgan-south Rich - Any Legal Weapon,resident,0,13,13,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,164
+182180,2021,2022,EA1231,"Antlerless Elk - West Desert, Tintic Valley - Any Legal Weapon",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,165
+182182,2021,2022,EA1231,"Antlerless Elk - West Desert, Tintic Valley - Any Legal Weapon",resident,1,10,8,,76.92307692,1 in 1.3,21_youth_antlerless_drawing_odds_report.pdf,165
+182183,2021,2022,EA1231,"Antlerless Elk - West Desert, Tintic Valley - Any Legal Weapon",nonresident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,165
+182216,2021,2022,EA1234,Cwmu Antlerless Elk - Royal Ivory Outfitters - Any Legal Weapon,resident,0,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,166
+182238,2021,2022,EA1236,Antlerless Elk - East Canyon - Any Legal Weapon,resident,5,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,167
+182242,2021,2022,EA1236,Antlerless Elk - East Canyon - Any Legal Weapon,resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,167
+182244,2021,2022,EA1236,Antlerless Elk - East Canyon - Any Legal Weapon,resident,2,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,167
+182246,2021,2022,EA1236,Antlerless Elk - East Canyon - Any Legal Weapon,resident,1,6,6,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,167
+182248,2021,2022,EA1236,Antlerless Elk - East Canyon - Any Legal Weapon,resident,0,43,43,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,167
+182280,2021,2022,EA1237,"Antlerless Elk - La Sal, La Sal Mtns, North - Any Legal Weapon",resident,0,7,7,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,168
+182306,2021,2022,EA1238,"Antlerless Elk - Monroe, Rock Springs - Any Legal Weapon",resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,169
+182308,2021,2022,EA1238,"Antlerless Elk - Monroe, Rock Springs - Any Legal Weapon",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,169
+182310,2021,2022,EA1238,"Antlerless Elk - Monroe, Rock Springs - Any Legal Weapon",resident,1,6,1,,16.66666667,1 in 6.0,21_youth_antlerless_drawing_odds_report.pdf,169
+182342,2021,2022,EA1240,"Antlerless Elk - Nine Mile, Range Creek - Any Legal Weapon",resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,170
+182344,2021,2022,EA1240,"Antlerless Elk - Nine Mile, Range Creek - Any Legal Weapon",resident,0,5,5,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,170
+182370,2021,2022,EA1241,Antlerless Elk - Panguitch Lake - Any Legal Weapon,resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,171
+182374,2021,2022,EA1241,Antlerless Elk - Panguitch Lake - Any Legal Weapon,resident,1,12,12,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,171
+182377,2021,2022,EA1241,Antlerless Elk - Panguitch Lake - Any Legal Weapon,nonresident,0,3,1,,33.33333333,1 in 3.0,21_youth_antlerless_drawing_odds_report.pdf,171
+182408,2021,2022,EA1242,"Antlerless Elk - South Slope, Buckskin Hills-jensen - Any Legal Weapon",resident,0,4,4,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,172
+182440,2021,2022,EA1243,"Antlerless Elk - South Slope, Buckskin Hills-jensen - Any Legal Weapon",resident,0,4,4,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,173
+182472,2021,2022,EA1244,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",resident,0,15,15,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,174
+182502,2021,2022,EA1245,"Antlerless Elk - South Slope, Yellowstone - Muzzleloader",resident,1,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,175
+182504,2021,2022,EA1245,"Antlerless Elk - South Slope, Yellowstone - Muzzleloader",resident,0,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,175
+182530,2021,2022,PD1000,"Doe Pronghorn - Box Elder, Snowville - Any Legal Weapon",resident,3,9,7,,76.92307692,1 in 1.3,21_youth_antlerless_drawing_odds_report.pdf,177
+182692,2021,2022,PD1008,"Doe Pronghorn - Southwest Desert, Milford Flat -An y Legal Weapon",resident,2,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,182
+182694,2021,2022,PD1008,"Doe Pronghorn - Southwest Desert, Milford Flat -An y Legal Weapon",resident,1,6,2,,33.33333333,1 in 3.0,21_youth_antlerless_drawing_odds_report.pdf,182
+182724,2021,2022,PD1012,"Doe Pronghorn - Box Elder, Promontory - Any Legal Weapon",resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,183
+182726,2021,2022,PD1012,"Doe Pronghorn - Box Elder, Promontory - Any Legal Weapon",resident,1,3,2,,66.66666667,1 in 1.5,21_youth_antlerless_drawing_odds_report.pdf,183
+182818,2021,2022,PD1017,"Doe Pronghorn - Box Elder, West - Any Legal Weapon",resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,186
+182820,2021,2022,PD1017,"Doe Pronghorn - Box Elder, West - Any Legal Weapon",resident,2,4,4,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,186
+182822,2021,2022,PD1017,"Doe Pronghorn - Box Elder, West - Any Legal Weapon",resident,1,14,1,,7.14285714,1 in 14.0,21_youth_antlerless_drawing_odds_report.pdf,186
+182850,2021,2022,PD1018,Doe Pronghorn - Mt Dutton/paunsaugunt - Any Legal Weapon,resident,3,5,1,,20,1 in 5.0,21_youth_antlerless_drawing_odds_report.pdf,187
+182982,2021,2022,PD1025,Cwmu Doe Pronghorn - Cottonwood Ridge - Any Legal Weapon,resident,1,6,1,,16.66666667,1 in 6.0,21_youth_antlerless_drawing_odds_report.pdf,191
+183010,2021,2022,PD1026,Cwmu Doe Pronghorn - Pahvant Ensign - Any Legal Weapon,resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,192
+183042,2021,2022,PD1027,"Doe Pronghorn - Fillmore, Oak Creek South - Any Legal Weapon",resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,193
+183044,2021,2022,PD1027,"Doe Pronghorn - Fillmore, Oak Creek South - Any Legal Weapon",resident,2,5,3,,58.82352941,1 in 1.7,21_youth_antlerless_drawing_odds_report.pdf,193
+183104,2021,2022,PD1031,Cwmu Two Doe Pronghorn - Westlake - Any Legal Weapon,resident,4,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,195
+183138,2021,2022,PD1032,Cwmu Doe Pronghorn - Antelope Creek - Any Legal Weapon,resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,196
+183170,2021,2022,PD1033,"Doe Pronghorn - Central Mtns, Poison Springs Bench - Any Legal Weapon",resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,197
+183172,2021,2022,PD1033,"Doe Pronghorn - Central Mtns, Poison Springs Bench - Any Legal Weapon",resident,2,3,2,,66.66666667,1 in 1.5,21_youth_antlerless_drawing_odds_report.pdf,197
+183200,2021,2022,PD1034,"Doe Pronghorn - Fillmore, Oak Creek South - Any Legal Weapon",resident,4,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,198
+183202,2021,2022,PD1034,"Doe Pronghorn - Fillmore, Oak Creek South - Any Legal Weapon",resident,3,3,3,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,198
+183204,2021,2022,PD1034,"Doe Pronghorn - Fillmore, Oak Creek South - Any Legal Weapon",resident,2,8,1,,12.5,1 in 8.0,21_youth_antlerless_drawing_odds_report.pdf,198
+183232,2021,2022,PD1035,"Doe Pronghorn - Fillmore, Oak Creek South - Any Legal Weapon",resident,4,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,199
+183234,2021,2022,PD1035,"Doe Pronghorn - Fillmore, Oak Creek South - Any Legal Weapon",resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,199
+183236,2021,2022,PD1035,"Doe Pronghorn - Fillmore, Oak Creek South - Any Legal Weapon",resident,2,12,2,,16.66666667,1 in 6.0,21_youth_antlerless_drawing_odds_report.pdf,199
+183268,2021,2022,PD1036,Doe Pronghorn - Beaver - Any Legal Weapon,resident,2,4,4,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,200
+183270,2021,2022,PD1036,Doe Pronghorn - Beaver - Any Legal Weapon,resident,1,17,1,,5.88235294,1 in 17.0,21_youth_antlerless_drawing_odds_report.pdf,200
+183362,2021,2022,PD1039,"Doe Pronghorn - Panguitch Lake/zion, North - Any Legal Weapon",resident,3,7,1,,14.28571429,1 in 7.0,21_youth_antlerless_drawing_odds_report.pdf,203
+183396,2021,2022,PD1041,Cwmu Doe Pronghorn - Heist -An y Legal Weapon,resident,2,3,1,,33.33333333,1 in 3.0,21_youth_antlerless_drawing_odds_report.pdf,204
+183424,2021,2022,PD1042,Doe Pronghorn - Pine Valley - Any Legal Weapon,resident,4,3,3,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,205
+183426,2021,2022,PD1042,Doe Pronghorn - Pine Valley - Any Legal Weapon,resident,3,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,205
+183428,2021,2022,PD1042,Doe Pronghorn - Pine Valley - Any Legal Weapon,resident,2,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,205
+183458,2021,2022,PD1043,"Doe Pronghorn - Nine Mile, Anthro-pleasant Valley - Any Legal Weapon",resident,3,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,206
+183460,2021,2022,PD1043,"Doe Pronghorn - Nine Mile, Anthro-pleasant Valley - Any Legal Weapon",resident,2,2,2,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,206
+183462,2021,2022,PD1043,"Doe Pronghorn - Nine Mile, Anthro-pleasant Valley - Any Legal Weapon",resident,1,12,8,,66.66666667,1 in 1.5,21_youth_antlerless_drawing_odds_report.pdf,206
+183465,2021,2022,PD1043,"Doe Pronghorn - Nine Mile, Anthro-pleasant Valley - Any Legal Weapon",nonresident,0,1,1,,100,1 in 1.0,21_youth_antlerless_drawing_odds_report.pdf,206

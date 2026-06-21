@@ -1,0 +1,1216 @@
+hunt_code,hunt_name,residency,point_level,actual_success_rate_percent,actual_probability,actual_source_file
+BI6500,Bison - Antelope Island - Any Legal Weapon,Resident,26,16.66666667,0.16666666670000002,21_bg-odds.pdf
+BI6503,Bison (hunter’s Choice) - Henry Mtns (hunter's Choice) - Any Legal Weapon,Resident,26,100.0,1.0,21_bg-odds.pdf
+BI6504,Bison (hunter’s Choice) - Henry Mtns (hunter's Choice) - Any Legal Weapon,Nonresident,24,50.0,0.5,21_bg-odds.pdf
+BI6506,Bison (cow Only) - Henry Mtns (cow Only) - Any Legal Weapon,Resident,16,100.0,1.0,21_bg-odds.pdf
+BI6506,Bison (cow Only) - Henry Mtns (cow Only) - Any Legal Weapon,Resident,17,100.0,1.0,21_bg-odds.pdf
+BI6506,Bison (cow Only) - Henry Mtns (cow Only) - Any Legal Weapon,Resident,18,100.0,1.0,21_bg-odds.pdf
+BI6506,Bison (cow Only) - Henry Mtns (cow Only) - Any Legal Weapon,Resident,20,100.0,1.0,21_bg-odds.pdf
+BI6516,Bison (hunter’s Choice) - Henry Mtns (hunter's Choice) - Any Legal Weapon,Resident,23,100.0,1.0,21_bg-odds.pdf
+BI6517,Bison (hunter’s Choice) - Book Cliffs (hunter's Choice) - Any Legal Weapon,Nonresident,13,20.0,0.2,21_bg-odds.pdf
+BI6517,Bison (hunter’s Choice) - Book Cliffs (hunter's Choice) - Any Legal Weapon,Resident,25,100.0,1.0,21_bg-odds.pdf
+BI6517,Bison (hunter’s Choice) - Book Cliffs (hunter's Choice) - Any Legal Weapon,Resident,26,100.0,1.0,21_bg-odds.pdf
+BI6519,"Bison (hunter’s Choice) - Book Cliffs, Little Creek Roadless (hunter's Choice) - Any Legal Weapon",Nonresident,24,50.0,0.5,21_bg-odds.pdf
+BI6519,"Bison (hunter’s Choice) - Book Cliffs, Little Creek Roadless (hunter's Choice) - Any Legal Weapon",Nonresident,25,100.0,1.0,21_bg-odds.pdf
+BI6519,"Bison (hunter’s Choice) - Book Cliffs, Little Creek Roadless (hunter's Choice) - Any Legal Weapon",Resident,22,76.92307692,0.7692307692,21_bg-odds.pdf
+BI6519,"Bison (hunter’s Choice) - Book Cliffs, Little Creek Roadless (hunter's Choice) - Any Legal Weapon",Resident,23,100.0,1.0,21_bg-odds.pdf
+BI6519,"Bison (hunter’s Choice) - Book Cliffs, Little Creek Roadless (hunter's Choice) - Any Legal Weapon",Resident,26,100.0,1.0,21_bg-odds.pdf
+BI6520,Bison (cow Only) - Book Cliffs (cow Only) - Any Legal Weapon,Nonresident,1,5.55555556,0.0555555556,21_bg-odds.pdf
+BI6520,Bison (cow Only) - Book Cliffs (cow Only) - Any Legal Weapon,Resident,19,100.0,1.0,21_bg-odds.pdf
+BI6521,Bison Archery (hunter’s Choice) - Book Cliffs (hunter's Choice) - Archery,Nonresident,8,2.22222222,0.0222222222,21_bg-odds.pdf
+BI6521,Bison Archery (hunter’s Choice) - Book Cliffs (hunter's Choice) - Archery,Resident,23,100.0,1.0,21_bg-odds.pdf
+BI6521,Bison Archery (hunter’s Choice) - Book Cliffs (hunter's Choice) - Archery,Resident,24,100.0,1.0,21_bg-odds.pdf
+BI6523,"Bison (hunter’s Choice) - Book Cliffs, Bitter Creek/south (hunter's Choice) - Any Legal Weapon",Nonresident,4,2.0,0.02,21_bg-odds.pdf
+BI6524,"Bison (cow Only) - Book Cliffs, Little Creek Roadless (cow Only) - Any Legal Weapon",Nonresident,22,100.0,1.0,21_bg-odds.pdf
+BI6524,"Bison (cow Only) - Book Cliffs, Little Creek Roadless (cow Only) - Any Legal Weapon",Resident,9,100.0,1.0,21_bg-odds.pdf
+DA1000,"Antlerless Deer - Beaver, Circleville North - Any Legal Weapon",Nonresident,4,50.0,0.5,2021 Antlerless Draw Results.pdf
+DA1000,"Antlerless Deer - Beaver, Circleville North - Any Legal Weapon",Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1001,"Antlerless Deer - Box Elder, West Bear River - Archery, Mzldr, Shotgn Only",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1002,"Antlerless Deer - Box Elder, West Bear River - Archery, Mzldr, Shotgn Only",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1003,"Antlerless Deer - Monroe/plateau, Sevier Valley - Archery, Mzldr, Shotgn Only",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1003,"Antlerless Deer - Monroe/plateau, Sevier Valley - Archery, Mzldr, Shotgn Only",Nonresident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1003,"Antlerless Deer - Monroe/plateau, Sevier Valley - Archery, Mzldr, Shotgn Only",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1004,"Antlerless Deer - Mt Dutton, Circleville South - Any Legal Weapon",Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1004,"Antlerless Deer - Mt Dutton, Circleville South - Any Legal Weapon",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1007,"Antlerless Deer - Panguitch Lake, Panguitch Valley - Any Legal Weapon",Nonresident,5,50.0,0.5,2021 Antlerless Draw Results.pdf
+DA1007,"Antlerless Deer - Panguitch Lake, Panguitch Valley - Any Legal Weapon",Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1009,"Antlerless Deer - Pine Valley, Enterprise - Any Legal Weapon",Nonresident,7,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1011,Cwmu Antlerless Deer - George Creek - Any Legal Weapon,Resident,7,25.0,0.25,2021 Antlerless Draw Results.pdf
+DA1012,Cwmu Two Doe Antlerless Deer - Junction Valley - Any Legal Weapon,Resident,11,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1012,Cwmu Two Doe Antlerless Deer - Junction Valley - Any Legal Weapon,Resident,12,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1013,Cwmu Antlerless Deer - Mt Carmel - Any Legal Weapon,Resident,10,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1017,"Antlerless Deer - Pine Valley, Enterprise - Any Legal Weapon",Nonresident,7,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1018,"Two Doe Antlerless Deer - Pine Valley, New Harmony - Archery, Mzldr, Shotgn Only",Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1018,"Two Doe Antlerless Deer - Pine Valley, New Harmony - Archery, Mzldr, Shotgn Only",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1026,Antlerless Deer - Chalk Creek - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1027,"Antlerless Deer - East Canyon, Davis-north Salt Lake - Any Legal Weapon",Nonresident,3,66.66666667,0.6666666667,2021 Antlerless Draw Results.pdf
+DA1027,"Antlerless Deer - East Canyon, Davis-north Salt Lake - Any Legal Weapon",Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1027,"Antlerless Deer - East Canyon, Davis-north Salt Lake - Any Legal Weapon",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1027,"Antlerless Deer - East Canyon, Davis-north Salt Lake - Any Legal Weapon",Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1027,"Antlerless Deer - East Canyon, Davis-north Salt Lake - Any Legal Weapon",Resident,7,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1028,"Antlerless Deer - East Canyon, Davis-north Salt Lake - Any Legal Weapon",Nonresident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1031,"Antlerless Deer - Oquirrh-stansbury, Settlement Cyn - Archery",Nonresident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1031,"Antlerless Deer - Oquirrh-stansbury, Settlement Cyn - Archery",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1031,"Antlerless Deer - Oquirrh-stansbury, Settlement Cyn - Archery",Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1033,"Antlerless Deer - San Juan, Monticello - Archery",Nonresident,10,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1033,"Antlerless Deer - San Juan, Monticello - Archery",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1039,Antlerless Deer - East Canyon - Any Legal Weapon,Resident,7,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1040,Antlerless Deer - East Canyon - Archery,Resident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1040,Antlerless Deer - East Canyon - Archery,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1041,"Antlerless Deer - Nine Mile, Green River Valley - Any Legal Weapon",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1042,"Antlerless Deer - San Juan, Monticello - Archery",Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1042,"Antlerless Deer - San Juan, Monticello - Archery",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1043,"Antlerless Deer - Southwest Desert, Cedar Valley - Archery, Mzldr, Shotgn Only",Nonresident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1043,"Antlerless Deer - Southwest Desert, Cedar Valley - Archery, Mzldr, Shotgn Only",Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1044,"Two Doe Antlerless Deer - South Slope, Myton - Any Legal Weapon",Resident,10,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1045,"Antlerless Deer - Fillmore, Oak City - Archery",Resident,2,38.46153846,0.3846153846,2021 Antlerless Draw Results.pdf
+DA1045,"Antlerless Deer - Fillmore, Oak City - Archery",Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1045,"Antlerless Deer - Fillmore, Oak City - Archery",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1045,"Antlerless Deer - Fillmore, Oak City - Archery",Resident,9,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1046,"Antlerless Deer - Nine Mile, Price River Valley - Archery, Mzldr, Shotgn Only",Resident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1046,"Antlerless Deer - Nine Mile, Price River Valley - Archery, Mzldr, Shotgn Only",Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1046,"Antlerless Deer - Nine Mile, Price River Valley - Archery, Mzldr, Shotgn Only",Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+DA1046,"Antlerless Deer - Nine Mile, Price River Valley - Archery, Mzldr, Shotgn Only",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+DB1001,Premium Le Archery Buck Deer - Paunsaugunt - Archery,Nonresident,24,100.0,1.0,21_bg-odds.pdf
+DB1003,Premium Le Alw (rifle) Buck Deer - Henry Mtns - Any Legal Weapon,Nonresident,26,100.0,1.0,21_bg-odds.pdf
+DB1003,Premium Le Alw (rifle) Buck Deer - Henry Mtns - Any Legal Weapon,Resident,23,100.0,1.0,21_bg-odds.pdf
+DB1003,Premium Le Alw (rifle) Buck Deer - Henry Mtns - Any Legal Weapon,Resident,24,100.0,1.0,21_bg-odds.pdf
+DB1006,Premium Le Muzzleloader Buck Deer - Paunsaugunt - Muzzleloader,Nonresident,24,100.0,1.0,21_bg-odds.pdf
+DB1007,Multi-season Premium Limited-entry Buck Deer - Henry Mtns - Any Legal Weapon,Resident,25,100.0,1.0,21_bg-odds.pdf
+DB1011,Limited-entry Archery Buck Deer - Book Cliffs - Archery,Nonresident,17,33.33333333,0.33333333330000003,21_bg-odds.pdf
+DB1011,Limited-entry Archery Buck Deer - Book Cliffs - Archery,Nonresident,18,100.0,1.0,21_bg-odds.pdf
+DB1012,"Limited-entry Archery Buck Deer - Fillmore, Oak Creek Le - Archery",Nonresident,12,3.125,0.03125,21_bg-odds.pdf
+DB1012,"Limited-entry Archery Buck Deer - Fillmore, Oak Creek Le - Archery",Resident,16,9.09090909,0.0909090909,21_bg-odds.pdf
+DB1012,"Limited-entry Archery Buck Deer - Fillmore, Oak Creek Le - Archery",Resident,20,100.0,1.0,21_bg-odds.pdf
+DB1013,"Limited-entry Archery Buck Deer - La Sal, Dolores Triangle - Archery",Resident,11,66.66666667,0.6666666667,21_bg-odds.pdf
+DB1013,"Limited-entry Archery Buck Deer - La Sal, Dolores Triangle - Archery",Resident,9,33.33333333,0.33333333330000003,21_bg-odds.pdf
+DB1014,"Limited-entry Archery Buck Deer - San Juan, Elk Ridge - Archery",Resident,19,100.0,1.0,21_bg-odds.pdf
+DB1015,"Limited-entry Archery Buck Deer - South Slope, Diamond Mtn - Archery",Resident,15,100.0,1.0,21_bg-odds.pdf
+DB1016,"Limited-entry Archery Buck Deer - West Desert, Vernon - Archery",Nonresident,13,33.33333333,0.33333333330000003,21_bg-odds.pdf
+DB1016,"Limited-entry Archery Buck Deer - West Desert, Vernon - Archery",Nonresident,15,100.0,1.0,21_bg-odds.pdf
+DB1016,"Limited-entry Archery Buck Deer - West Desert, Vernon - Archery",Resident,17,100.0,1.0,21_bg-odds.pdf
+DB1017,"Limited-entry Alw (rifle) Buck Deer - Book Cliffs, North - Any Legal Weapon",Nonresident,20,100.0,1.0,21_bg-odds.pdf
+DB1017,"Limited-entry Alw (rifle) Buck Deer - Book Cliffs, North - Any Legal Weapon",Resident,16,100.0,1.0,21_bg-odds.pdf
+DB1019,"Limited-entry Alw (rifle) Buck Deer - Fillmore, Oak Creek Le - Any Legal Weapon",Nonresident,24,50.0,0.5,21_bg-odds.pdf
+DB1019,"Limited-entry Alw (rifle) Buck Deer - Fillmore, Oak Creek Le - Any Legal Weapon",Resident,22,43.47826087,0.4347826087,21_bg-odds.pdf
+DB1019,"Limited-entry Alw (rifle) Buck Deer - Fillmore, Oak Creek Le - Any Legal Weapon",Resident,23,100.0,1.0,21_bg-odds.pdf
+DB1019,"Limited-entry Alw (rifle) Buck Deer - Fillmore, Oak Creek Le - Any Legal Weapon",Resident,25,100.0,1.0,21_bg-odds.pdf
+DB1020,"Limited-entry Alw (rifle) Buck Deer - La Sal, Dolores Triangle - Any Legal Weapon",Resident,19,100.0,1.0,21_bg-odds.pdf
+DB1022,"Limited-entry Alw (rifle) Buck Deer - San Juan, Elk Ridge - Any Legal Weapon",Resident,18,100.0,1.0,21_bg-odds.pdf
+DB1023,"Limited-entry Alw (rifle) Buck Deer - South Slope, Diamond Mtn - Any Legal Weapon",Nonresident,19,100.0,1.0,21_bg-odds.pdf
+DB1023,"Limited-entry Alw (rifle) Buck Deer - South Slope, Diamond Mtn - Any Legal Weapon",Resident,18,100.0,1.0,21_bg-odds.pdf
+DB1024,"Limited-entry Alw (rifle) Buck Deer - West Desert, Vernon - Any Legal Weapon",Resident,17,100.0,1.0,21_bg-odds.pdf
+DB1024,"Limited-entry Alw (rifle) Buck Deer - West Desert, Vernon - Any Legal Weapon",Resident,18,100.0,1.0,21_bg-odds.pdf
+DB1025,Limited-entry Muzzleloader Buck Deer - Book Cliffs - Muzzleloader,Nonresident,19,100.0,1.0,21_bg-odds.pdf
+DB1025,Limited-entry Muzzleloader Buck Deer - Book Cliffs - Muzzleloader,Nonresident,20,100.0,1.0,21_bg-odds.pdf
+DB1025,Limited-entry Muzzleloader Buck Deer - Book Cliffs - Muzzleloader,Resident,14,76.92307692,0.7692307692,21_bg-odds.pdf
+DB1025,Limited-entry Muzzleloader Buck Deer - Book Cliffs - Muzzleloader,Resident,15,100.0,1.0,21_bg-odds.pdf
+DB1026,"Limited-entry Muzzleloader Buck Deer - Cache, Crawford Mtn - Muzzleloader",Nonresident,21,100.0,1.0,21_bg-odds.pdf
+DB1026,"Limited-entry Muzzleloader Buck Deer - Cache, Crawford Mtn - Muzzleloader",Resident,16,100.0,1.0,21_bg-odds.pdf
+DB1027,Limited-entry Muzzleloader Buck Deer - Chalk Creek/east Canyon/morgan-south Rich - Muzzleloader,Nonresident,7,100.0,1.0,21_bg-odds.pdf
+DB1027,Limited-entry Muzzleloader Buck Deer - Chalk Creek/east Canyon/morgan-south Rich - Muzzleloader,Resident,12,100.0,1.0,21_bg-odds.pdf
+DB1028,Limited-entry Muzzleloader Buck Deer - Fillmore - Muzzleloader,Nonresident,7,50.0,0.5,21_bg-odds.pdf
+DB1028,Limited-entry Muzzleloader Buck Deer - Fillmore - Muzzleloader,Resident,12,20.0,0.2,21_bg-odds.pdf
+DB1028,Limited-entry Muzzleloader Buck Deer - Fillmore - Muzzleloader,Resident,15,100.0,1.0,21_bg-odds.pdf
+DB1031,"Limited-entry Muzzleloader Buck Deer - La Sal, Dolores Triangle - Muzzleloader",Resident,19,100.0,1.0,21_bg-odds.pdf
+DB1032,Limited-entry Muzzleloader Buck Deer - Monroe - Muzzleloader,Nonresident,12,100.0,1.0,21_bg-odds.pdf
+DB1032,Limited-entry Muzzleloader Buck Deer - Monroe - Muzzleloader,Resident,11,50.0,0.5,21_bg-odds.pdf
+DB1032,Limited-entry Muzzleloader Buck Deer - Monroe - Muzzleloader,Resident,7,16.66666667,0.16666666670000002,21_bg-odds.pdf
+DB1033,Limited-entry Muzzleloader Buck Deer - Nine Mile - Muzzleloader,Nonresident,4,50.0,0.5,21_bg-odds.pdf
+DB1033,Limited-entry Muzzleloader Buck Deer - Nine Mile - Muzzleloader,Resident,10,100.0,1.0,21_bg-odds.pdf
+DB1033,Limited-entry Muzzleloader Buck Deer - Nine Mile - Muzzleloader,Resident,7,50.0,0.5,21_bg-odds.pdf
+DB1033,Limited-entry Muzzleloader Buck Deer - Nine Mile - Muzzleloader,Resident,9,100.0,1.0,21_bg-odds.pdf
+DB1034,Limited-entry Muzzleloader Buck Deer - Pine Valley - Muzzleloader,Nonresident,20,100.0,1.0,21_bg-odds.pdf
+DB1034,Limited-entry Muzzleloader Buck Deer - Pine Valley - Muzzleloader,Resident,19,100.0,1.0,21_bg-odds.pdf
+DB1036,"Limited-entry Muzzleloader Buck Deer - Plateau, Thousand Lakes - Muzzleloader",Nonresident,12,100.0,1.0,21_bg-odds.pdf
+DB1036,"Limited-entry Muzzleloader Buck Deer - Plateau, Thousand Lakes - Muzzleloader",Resident,11,33.33333333,0.33333333330000003,21_bg-odds.pdf
+DB1036,"Limited-entry Muzzleloader Buck Deer - Plateau, Thousand Lakes - Muzzleloader",Resident,9,100.0,1.0,21_bg-odds.pdf
+DB1037,"Limited-entry Muzzleloader Buck Deer - San Juan, Elk Ridge - Muzzleloader",Resident,19,100.0,1.0,21_bg-odds.pdf
+DB1038,"Limited-entry Muzzleloader Buck Deer - South Slope, Diamond Mtn - Muzzleloader",Resident,16,100.0,1.0,21_bg-odds.pdf
+DB1039,"Limited-entry Muzzleloader Buck Deer - South Slope, Yellowstone - Muzzleloader",Nonresident,4,100.0,1.0,21_bg-odds.pdf
+DB1039,"Limited-entry Muzzleloader Buck Deer - South Slope, Yellowstone - Muzzleloader",Resident,11,100.0,1.0,21_bg-odds.pdf
+DB1039,"Limited-entry Muzzleloader Buck Deer - South Slope, Yellowstone - Muzzleloader",Resident,12,100.0,1.0,21_bg-odds.pdf
+DB1040,Limited-entry Muzzleloader Buck Deer - Southwest Desert - Muzzleloader,Resident,17,100.0,1.0,21_bg-odds.pdf
+DB1041,"Limited-entry Muzzleloader Buck Deer - Wasatch Mtns, East - Muzzleloader",Nonresident,14,100.0,1.0,21_bg-odds.pdf
+DB1041,"Limited-entry Muzzleloader Buck Deer - Wasatch Mtns, East - Muzzleloader",Resident,12,100.0,1.0,21_bg-odds.pdf
+DB1042,"Limited-entry Muzzleloader Buck Deer - West Desert, Vernon - Muzzleloader",Nonresident,12,7.69230769,0.0769230769,21_bg-odds.pdf
+DB1042,"Limited-entry Muzzleloader Buck Deer - West Desert, Vernon - Muzzleloader",Nonresident,18,33.33333333,0.33333333330000003,21_bg-odds.pdf
+DB1042,"Limited-entry Muzzleloader Buck Deer - West Desert, Vernon - Muzzleloader",Nonresident,19,100.0,1.0,21_bg-odds.pdf
+DB1043,Limited-entry Muzzleloader Buck Deer - Zion - Muzzleloader,Nonresident,16,33.33333333,0.33333333330000003,21_bg-odds.pdf
+DB1046,"Multi-season Limited-entry Buck Deer - San Juan, Elk Ridge - Any Legal Weapon",Resident,22,100.0,1.0,21_bg-odds.pdf
+DB1047,"Multi-season Limited-entry Buck Deer - South Slope, Diamond Mtn - Any Legal Weapon",Resident,17,100.0,1.0,21_bg-odds.pdf
+DB1048,"Multi-season Limited-entry Buck Deer - West Desert, Vernon - Any Legal Weapon",Nonresident,14,16.66666667,0.16666666670000002,21_bg-odds.pdf
+DB1048,"Multi-season Limited-entry Buck Deer - West Desert, Vernon - Any Legal Weapon",Resident,18,100.0,1.0,21_bg-odds.pdf
+DB1053,Limited-entry Muzzleloader Buck Deer - Mt Dutton - Muzzleloader,Nonresident,3,25.0,0.25,21_bg-odds.pdf
+DB1053,Limited-entry Muzzleloader Buck Deer - Mt Dutton - Muzzleloader,Resident,7,25.0,0.25,21_bg-odds.pdf
+DB1053,Limited-entry Muzzleloader Buck Deer - Mt Dutton - Muzzleloader,Resident,9,33.33333333,0.33333333330000003,21_bg-odds.pdf
+DB1054,Limited-entry Muzzleloader Buck Deer - Ogden - Muzzleloader,Nonresident,6,50.0,0.5,21_bg-odds.pdf
+DB1054,Limited-entry Muzzleloader Buck Deer - Ogden - Muzzleloader,Resident,10,100.0,1.0,21_bg-odds.pdf
+DB1054,Limited-entry Muzzleloader Buck Deer - Ogden - Muzzleloader,Resident,8,100.0,1.0,21_bg-odds.pdf
+DB1055,"Limited-entry Muzzleloader Buck Deer - Plateau, Fishlake - Muzzleloader",Nonresident,7,100.0,1.0,21_bg-odds.pdf
+DB1055,"Limited-entry Muzzleloader Buck Deer - Plateau, Fishlake - Muzzleloader",Resident,11,100.0,1.0,21_bg-odds.pdf
+DB1058,"Management Alw (rifle) Cactus Buck Deer - Paunsaugunt, Cactus Buck - Any Legal Weapon",Resident,14,100.0,1.0,21_bg-odds.pdf
+DB1059,Limited-entry Muzzleloader Buck Deer - Beaver - Muzzleloader,Resident,14,100.0,1.0,21_bg-odds.pdf
+DB1065,Limited-entry Muzzleloader Buck Deer - North Slope - Muzzleloader,Resident,8,100.0,1.0,21_bg-odds.pdf
+DB1065,Limited-entry Muzzleloader Buck Deer - North Slope - Muzzleloader,Resident,9,100.0,1.0,21_bg-odds.pdf
+DB1073,Management Archery Buck Deer - Paunsaugunt - Archery,Resident,13,50.0,0.5,21_bg-odds.pdf
+DB1073,Management Archery Buck Deer - Paunsaugunt - Archery,Resident,14,100.0,1.0,21_bg-odds.pdf
+DB1074,Management Muzzleloader Buck Deer - Paunsaugunt - Muzzleloader,Resident,14,50.0,0.5,21_bg-odds.pdf
+DB1074,Management Muzzleloader Buck Deer - Paunsaugunt - Muzzleloader,Resident,16,100.0,1.0,21_bg-odds.pdf
+DB1077,Limited-entry Muzzleloader Buck Deer - Box Elder - Muzzleloader,Nonresident,8,100.0,1.0,21_bg-odds.pdf
+DB1077,Limited-entry Muzzleloader Buck Deer - Box Elder - Muzzleloader,Resident,6,16.66666667,0.16666666670000002,21_bg-odds.pdf
+DB1077,Limited-entry Muzzleloader Buck Deer - Box Elder - Muzzleloader,Resident,7,100.0,1.0,21_bg-odds.pdf
+DB1078,Limited-entry Muzzleloader Buck Deer - Cache - Muzzleloader,Nonresident,1,50.0,0.5,21_bg-odds.pdf
+DB1078,Limited-entry Muzzleloader Buck Deer - Cache - Muzzleloader,Resident,12,33.33333333,0.33333333330000003,21_bg-odds.pdf
+DB1078,Limited-entry Muzzleloader Buck Deer - Cache - Muzzleloader,Resident,14,100.0,1.0,21_bg-odds.pdf
+DB1078,Limited-entry Muzzleloader Buck Deer - Cache - Muzzleloader,Resident,15,100.0,1.0,21_bg-odds.pdf
+DB1079,"Limited-entry Muzzleloader Buck Deer - Central Mtns, Manti/san Rafael - Muzzleloader",Nonresident,10,100.0,1.0,21_bg-odds.pdf
+DB1079,"Limited-entry Muzzleloader Buck Deer - Central Mtns, Manti/san Rafael - Muzzleloader",Nonresident,12,100.0,1.0,21_bg-odds.pdf
+DB1079,"Limited-entry Muzzleloader Buck Deer - Central Mtns, Manti/san Rafael - Muzzleloader",Nonresident,7,50.0,0.5,21_bg-odds.pdf
+DB1079,"Limited-entry Muzzleloader Buck Deer - Central Mtns, Manti/san Rafael - Muzzleloader",Resident,10,100.0,1.0,21_bg-odds.pdf
+DB1079,"Limited-entry Muzzleloader Buck Deer - Central Mtns, Manti/san Rafael - Muzzleloader",Resident,11,100.0,1.0,21_bg-odds.pdf
+DB1079,"Limited-entry Muzzleloader Buck Deer - Central Mtns, Manti/san Rafael - Muzzleloader",Resident,7,33.33333333,0.33333333330000003,21_bg-odds.pdf
+DB1079,"Limited-entry Muzzleloader Buck Deer - Central Mtns, Manti/san Rafael - Muzzleloader",Resident,9,76.92307692,0.7692307692,21_bg-odds.pdf
+DB1080,"Limited-entry Muzzleloader Buck Deer - Central Mtns, Nebo - Muzzleloader",Nonresident,1,50.0,0.5,21_bg-odds.pdf
+DB1080,"Limited-entry Muzzleloader Buck Deer - Central Mtns, Nebo - Muzzleloader",Nonresident,12,50.0,0.5,21_bg-odds.pdf
+DB1080,"Limited-entry Muzzleloader Buck Deer - Central Mtns, Nebo - Muzzleloader",Resident,10,100.0,1.0,21_bg-odds.pdf
+DB1081,"Limited-entry Muzzleloader Buck Deer - La Sal, La Sal Mtns - Muzzleloader",Nonresident,8,100.0,1.0,21_bg-odds.pdf
+DB1081,"Limited-entry Muzzleloader Buck Deer - La Sal, La Sal Mtns - Muzzleloader",Resident,10,100.0,1.0,21_bg-odds.pdf
+DB1081,"Limited-entry Muzzleloader Buck Deer - La Sal, La Sal Mtns - Muzzleloader",Resident,12,100.0,1.0,21_bg-odds.pdf
+DB1082,Limited-entry Muzzleloader Buck Deer - Oquirrh-stansbury - Muzzleloader,Resident,14,100.0,1.0,21_bg-odds.pdf
+DB1083,Limited-entry Muzzleloader Buck Deer - Panguitch Lake - Muzzleloader,Resident,11,20.0,0.2,21_bg-odds.pdf
+DB1083,Limited-entry Muzzleloader Buck Deer - Panguitch Lake - Muzzleloader,Resident,12,100.0,1.0,21_bg-odds.pdf
+DB1083,Limited-entry Muzzleloader Buck Deer - Panguitch Lake - Muzzleloader,Resident,14,100.0,1.0,21_bg-odds.pdf
+DB1084,"Limited-entry Muzzleloader Buck Deer - Plateau, Boulder/kaiparowits - Muzzleloader",Nonresident,12,33.33333333,0.33333333330000003,21_bg-odds.pdf
+DB1084,"Limited-entry Muzzleloader Buck Deer - Plateau, Boulder/kaiparowits - Muzzleloader",Resident,10,25.0,0.25,21_bg-odds.pdf
+DB1084,"Limited-entry Muzzleloader Buck Deer - Plateau, Boulder/kaiparowits - Muzzleloader",Resident,11,50.0,0.5,21_bg-odds.pdf
+DB1085,"Limited-entry Muzzleloader Buck Deer - San Juan, Abajo Mtns - Muzzleloader",Nonresident,4,50.0,0.5,21_bg-odds.pdf
+DB1085,"Limited-entry Muzzleloader Buck Deer - San Juan, Abajo Mtns - Muzzleloader",Resident,11,100.0,1.0,21_bg-odds.pdf
+DB1085,"Limited-entry Muzzleloader Buck Deer - San Juan, Abajo Mtns - Muzzleloader",Resident,12,100.0,1.0,21_bg-odds.pdf
+DB1086,"Limited-entry Muzzleloader Buck Deer - South Slope, Bonanza/vernal - Muzzleloader",Nonresident,1,33.33333333,0.33333333330000003,21_bg-odds.pdf
+DB1086,"Limited-entry Muzzleloader Buck Deer - South Slope, Bonanza/vernal - Muzzleloader",Resident,11,100.0,1.0,21_bg-odds.pdf
+DB1087,"Limited-entry Muzzleloader Buck Deer - Wasatch Mtns, West - Muzzleloader",Nonresident,0,25.0,0.25,21_bg-odds.pdf
+DB1087,"Limited-entry Muzzleloader Buck Deer - Wasatch Mtns, West - Muzzleloader",Nonresident,2,100.0,1.0,21_bg-odds.pdf
+DB1087,"Limited-entry Muzzleloader Buck Deer - Wasatch Mtns, West - Muzzleloader",Nonresident,6,50.0,0.5,21_bg-odds.pdf
+DB1087,"Limited-entry Muzzleloader Buck Deer - Wasatch Mtns, West - Muzzleloader",Nonresident,7,100.0,1.0,21_bg-odds.pdf
+DB1087,"Limited-entry Muzzleloader Buck Deer - Wasatch Mtns, West - Muzzleloader",Resident,7,100.0,1.0,21_bg-odds.pdf
+DB1087,"Limited-entry Muzzleloader Buck Deer - Wasatch Mtns, West - Muzzleloader",Resident,8,100.0,1.0,21_bg-odds.pdf
+DB1088,"Limited-entry Muzzleloader Buck Deer - West Desert, Tintic - Muzzleloader",Nonresident,0,100.0,1.0,21_bg-odds.pdf
+DB1088,"Limited-entry Muzzleloader Buck Deer - West Desert, Tintic - Muzzleloader",Resident,10,20.0,0.2,21_bg-odds.pdf
+DB1088,"Limited-entry Muzzleloader Buck Deer - West Desert, Tintic - Muzzleloader",Resident,11,100.0,1.0,21_bg-odds.pdf
+DB1088,"Limited-entry Muzzleloader Buck Deer - West Desert, Tintic - Muzzleloader",Resident,12,100.0,1.0,21_bg-odds.pdf
+DB1089,"Limited-entry Muzzleloader Buck Deer - West Desert, West - Muzzleloader",Resident,12,100.0,1.0,21_bg-odds.pdf
+DB1089,"Limited-entry Muzzleloader Buck Deer - West Desert, West - Muzzleloader",Resident,6,25.0,0.25,21_bg-odds.pdf
+DB1091,Limited-entry Hams Buck Deer - Kaiparowits Hams - H.a.m.s.,Resident,18,100.0,1.0,21_bg-odds.pdf
+DB1200,Premium Cwmu Buck Deer -Alton - An y Legal Weapon,Resident,24,100.0,1.0,21_bg-odds.pdf
+DB1202,Cwmu Buck Deer - Antelope Creek - Any Legal Weapon,Resident,5,100.0,1.0,21_bg-odds.pdf
+DB1204,Cwmu Buck Deer - Bally Watts - Any Legal Weapon,Resident,15,100.0,1.0,21_bg-odds.pdf
+DB1207,Cwmu Buck Deer - Bear Springs - Any Legal Weapon,Resident,8,100.0,1.0,21_bg-odds.pdf
+DB1211,Cwmu Buck Deer - Blue Spring Hills - Any Legal Weapon,Resident,7,50.0,0.5,21_bg-odds.pdf
+DB1212,Cwmu Buck Deer - Bluebell - Any Legal Weapon,Resident,10,100.0,1.0,21_bg-odds.pdf
+DB1213,Cwmu Buck Deer - Boobe Hole - Any Legal Weapon,Resident,4,50.0,0.5,21_bg-odds.pdf
+DB1215,Cwmu Buck Deer - Buckhorn Ranch - Any Legal Weapon,Resident,6,50.0,0.5,21_bg-odds.pdf
+DB1219,Cwmu Buck Deer - Chimney Rock - Any Legal Weapon,Resident,16,50.0,0.5,21_bg-odds.pdf
+DB1222,Cwmu Buck Deer - Coldwater Ranch -An y Legal Weapon,Resident,14,50.0,0.5,21_bg-odds.pdf
+DB1222,Cwmu Buck Deer - Coldwater Ranch -An y Legal Weapon,Resident,15,100.0,1.0,21_bg-odds.pdf
+DB1223,Cwmu Buck Deer - Conover-jensen - Any Legal Weapon,Resident,9,100.0,1.0,21_bg-odds.pdf
+DB1228,Cwmu Buck Deer - Deseret - Any Legal Weapon,Resident,19,100.0,1.0,21_bg-odds.pdf
+DB1230,Cwmu Buck Deer - Double R Ranch - Any Legal Weapon,Resident,10,100.0,1.0,21_bg-odds.pdf
+DB1230,Cwmu Buck Deer - Double R Ranch - Any Legal Weapon,Resident,14,100.0,1.0,21_bg-odds.pdf
+DB1231,Cwmu Buck Deer - Dove Creek - Any Legal Weapon,Resident,7,33.33333333,0.33333333330000003,21_bg-odds.pdf
+DB1232,Cwmu Buck Deer - Durst Mountain - Any Legal Weapon,Resident,15,100.0,1.0,21_bg-odds.pdf
+DB1233,Cwmu Buck Deer - East Fork Chalk Creek - Any Legal Weapon,Resident,14,100.0,1.0,21_bg-odds.pdf
+DB1236,Cwmu Buck Deer - Engineer Springs - Any Legal Weapon,Resident,4,100.0,1.0,21_bg-odds.pdf
+DB1237,Cwmu Buck Deer - Ensign Ranches - Any Legal Weapon,Resident,18,50.0,0.5,21_bg-odds.pdf
+DB1240,Cwmu Buck Deer - George Creek - Any Legal Weapon,Resident,4,100.0,1.0,21_bg-odds.pdf
+DB1241,Cwmu Buck Deer - Golden Spike - Any Legal Weapon,Resident,7,50.0,0.5,21_bg-odds.pdf
+DB1242,Cwmu Buck Deer - Grass Valley/clark Canyon -An y Legal Weapon,Resident,13,100.0,1.0,21_bg-odds.pdf
+DB1242,Cwmu Buck Deer - Grass Valley/clark Canyon -An y Legal Weapon,Resident,14,100.0,1.0,21_bg-odds.pdf
+DB1248,Cwmu Buck Deer - Heaston East - Any Legal Weapon,Resident,23,100.0,1.0,21_bg-odds.pdf
+DB1250,Cwmu Buck Deer - Indian Creek - Any Legal Weapon,Resident,3,100.0,1.0,21_bg-odds.pdf
+DB1253,Cwmu Buck Deer - J.b. Ranch - Any Legal Weapon,Resident,11,100.0,1.0,21_bg-odds.pdf
+DB1253,Cwmu Buck Deer - J.b. Ranch - Any Legal Weapon,Resident,9,100.0,1.0,21_bg-odds.pdf
+DB1255,Cwmu Buck Deer - Johnson Mountain Ranch - Any Legal Weapon,Resident,3,100.0,1.0,21_bg-odds.pdf
+DB1256,Cwmu Buck Deer - Junction Valley - Any Legal Weapon,Resident,8,100.0,1.0,21_bg-odds.pdf
+DB1257,Cwmu Buck Deer - Lazy H Ranch - Any Legal Weapon,Resident,9,100.0,1.0,21_bg-odds.pdf
+DB1258,Cwmu Buck Deer - Little Red Creek - Any Legal Weapon,Resident,9,50.0,0.5,21_bg-odds.pdf
+DB1259,Cwmu Buck Deer - Lone Tree Tunnel Hollow - Any Legal Weapon,Resident,14,100.0,1.0,21_bg-odds.pdf
+DB1260,Cwmu Buck Deer - Middle Ridge - Any Legal Weapon,Resident,10,100.0,1.0,21_bg-odds.pdf
+DB1260,Cwmu Buck Deer - Middle Ridge - Any Legal Weapon,Resident,11,100.0,1.0,21_bg-odds.pdf
+DB1260,Cwmu Buck Deer - Middle Ridge - Any Legal Weapon,Resident,12,100.0,1.0,21_bg-odds.pdf
+DB1260,Cwmu Buck Deer - Middle Ridge - Any Legal Weapon,Resident,8,100.0,1.0,21_bg-odds.pdf
+DB1261,Cwmu Buck Deer - Minnie Maud Ridge - Any Legal Weapon,Resident,10,100.0,1.0,21_bg-odds.pdf
+DB1264,Cwmu Buck Deer - Mountain Meadow - Any Legal Weapon,Resident,8,100.0,1.0,21_bg-odds.pdf
+DB1267,Cwmu Buck Deer - Neil Creek - Any Legal Weapon,Resident,14,100.0,1.0,21_bg-odds.pdf
+DB1269,Cwmu Buck Deer - North Promontory - Any Legal Weapon,Resident,14,100.0,1.0,21_bg-odds.pdf
+DB1270,Cwmu Buck Deer - Nucor West - Any Legal Weapon,Resident,7,100.0,1.0,21_bg-odds.pdf
+DB1271,Cwmu Buck Deer - Oak Ranch - Any Legal Weapon,Resident,4,100.0,1.0,21_bg-odds.pdf
+DB1272,Cwmu Buck Deer - Old Woman Plateau - Any Legal Weapon,Resident,2,25.0,0.25,21_bg-odds.pdf
+DB1272,Cwmu Buck Deer - Old Woman Plateau - Any Legal Weapon,Resident,7,100.0,1.0,21_bg-odds.pdf
+DB1272,Cwmu Buck Deer - Old Woman Plateau - Any Legal Weapon,Resident,9,100.0,1.0,21_bg-odds.pdf
+DB1273,Cwmu Buck Deer - Park Valley Hereford - Any Legal Weapon,Resident,7,100.0,1.0,21_bg-odds.pdf
+DB1274,Cwmu Buck Deer - Patmos Ridge - Any Legal Weapon,Resident,6,100.0,1.0,21_bg-odds.pdf
+DB1275,Cwmu Buck Deer - Pine Canyon -An y Legal Weapon,Resident,10,100.0,1.0,21_bg-odds.pdf
+DB1276,Cwmu Buck Deer - Plymouth Peak - Any Legal Weapon,Resident,6,100.0,1.0,21_bg-odds.pdf
+DB1280,Cwmu Buck Deer - Promontory Point - Any Legal Weapon,Resident,17,100.0,1.0,21_bg-odds.pdf
+DB1281,Cwmu Buck Deer - Rattlesnake Pass -An y Legal Weapon,Resident,3,66.66666667,0.6666666667,21_bg-odds.pdf
+DB1281,Cwmu Buck Deer - Rattlesnake Pass -An y Legal Weapon,Resident,4,100.0,1.0,21_bg-odds.pdf
+DB1282,Cwmu Buck Deer - Redd Ranches - Any Legal Weapon,Resident,12,50.0,0.5,21_bg-odds.pdf
+DB1282,Cwmu Buck Deer - Redd Ranches - Any Legal Weapon,Resident,5,33.33333333,0.33333333330000003,21_bg-odds.pdf
+DB1285,Cwmu Buck Deer - Sand Creek - Any Legal Weapon,Resident,8,100.0,1.0,21_bg-odds.pdf
+DB1286,Cwmu Buck Deer - Pisgah Mountain - Any Legal Weapon,Resident,6,33.33333333,0.33333333330000003,21_bg-odds.pdf
+DB1286,Cwmu Buck Deer - Pisgah Mountain - Any Legal Weapon,Resident,7,100.0,1.0,21_bg-odds.pdf
+DB1289,Cwmu Buck Deer - Sharp Mountain - Any Legal Weapon,Resident,12,50.0,0.5,21_bg-odds.pdf
+DB1292,Cwmu Buck Deer - Soldier Summit - Any Legal Weapon,Resident,15,100.0,1.0,21_bg-odds.pdf
+DB1293,Cwmu Buck Deer - South Canyon - Any Legal Weapon,Resident,10,100.0,1.0,21_bg-odds.pdf
+DB1293,Cwmu Buck Deer - South Canyon - Any Legal Weapon,Resident,9,50.0,0.5,21_bg-odds.pdf
+DB1294,Cwmu Buck Deer - Spring Creek Acres - Any Legal Weapon,Resident,8,100.0,1.0,21_bg-odds.pdf
+DB1297,Cwmu Buck Deer - Stillman Creek Ranch - Any Legal Weapon,Resident,10,25.0,0.25,21_bg-odds.pdf
+DB1297,Cwmu Buck Deer - Stillman Creek Ranch - Any Legal Weapon,Resident,14,100.0,1.0,21_bg-odds.pdf
+DB1301,Cwmu Buck Deer - Three C - Any Legal Weapon,Resident,14,100.0,1.0,21_bg-odds.pdf
+DB1303,Cwmu Buck Deer - North Peaks - Any Legal Weapon,Resident,6,100.0,1.0,21_bg-odds.pdf
+DB1305,Cwmu Buck Deer - Wallsburg - Any Legal Weapon,Resident,5,100.0,1.0,21_bg-odds.pdf
+DB1307,Cwmu Buck Deer - Weber Florence Creek - Any Legal Weapon,Resident,11,100.0,1.0,21_bg-odds.pdf
+DB1307,Cwmu Buck Deer - Weber Florence Creek - Any Legal Weapon,Resident,15,100.0,1.0,21_bg-odds.pdf
+DB1309,Cwmu Buck Deer - West Willow Creek Ranch -An y Legal Weapon,Resident,13,100.0,1.0,21_bg-odds.pdf
+DB1320,Cwmu Buck Deer - Deer Creek - Any Legal Weapon,Resident,6,100.0,1.0,21_bg-odds.pdf
+DB1323,Cwmu Buck Deer - Rock House - Any Legal Weapon,Resident,5,100.0,1.0,21_bg-odds.pdf
+DB1326,Cwmu Buck Deer - Rosette - Any Legal Weapon,Resident,2,50.0,0.5,21_bg-odds.pdf
+DB1327,Cwmu Buck Deer - Mountain Sky Ranch - Any Legal Weapon,Resident,7,100.0,1.0,21_bg-odds.pdf
+DB1328,Cwmu Buck Deer - Clear Creek - Any Legal Weapon,Resident,4,100.0,1.0,21_bg-odds.pdf
+DB1329,Cwmu Buck Deer - Indian Canyon - Any Legal Weapon,Resident,9,100.0,1.0,21_bg-odds.pdf
+DB1330,Cwmu Buck Deer - Iron Spring - Any Legal Weapon,Resident,1,50.0,0.5,21_bg-odds.pdf
+DB1331,Cwmu Buck Deer - Raft River - Any Legal Weapon,Resident,2,100.0,1.0,21_bg-odds.pdf
+DB1332,Cwmu Buck Deer - West Ridge - Any Legal Weapon,Resident,10,100.0,1.0,21_bg-odds.pdf
+DB1332,Cwmu Buck Deer - West Ridge - Any Legal Weapon,Resident,6,100.0,1.0,21_bg-odds.pdf
+DB1332,Cwmu Buck Deer - West Ridge - Any Legal Weapon,Resident,8,100.0,1.0,21_bg-odds.pdf
+DB1333,Cwmu Buck Deer - 5s Land And Livestock - Any Legal Weapon,Resident,6,100.0,1.0,21_bg-odds.pdf
+DB1334,"Cwmu Management Cactus Buck Deer - Alton, Cactus Buck - Any Legal Weapon",Resident,10,100.0,1.0,21_bg-odds.pdf
+DS6600,Desert Bighorn Sheep - Henry Mtns - Any Legal Weapon,Resident,23,100.0,1.0,21_bg-odds.pdf
+DS6601,"Desert Bighorn Sheep - Kaiparowits, East - Any Legal Weapon",Resident,26,100.0,1.0,21_bg-odds.pdf
+DS6602,"Desert Bighorn Sheep - Kaiparowits, Escalante -An y Legal Weapon",Resident,22,100.0,1.0,21_bg-odds.pdf
+DS6602,"Desert Bighorn Sheep - Kaiparowits, Escalante -An y Legal Weapon",Resident,23,100.0,1.0,21_bg-odds.pdf
+DS6603,"Desert Bighorn Sheep - Kaiparowits, West - Any Legal Weapon",Resident,25,100.0,1.0,21_bg-odds.pdf
+DS6606,"Desert Bighorn Sheep - San Juan, Lockhart - Any Legal Weapon",Resident,23,66.66666667,0.6666666667,21_bg-odds.pdf
+DS6607,"Desert Bighorn Sheep - San Juan, South - Any Legal Weapon",Resident,24,100.0,1.0,21_bg-odds.pdf
+DS6608,"Desert Bighorn Sheep - San Rafael, Dirty Devil - Any Legal Weapon",Nonresident,2,0.93457944,0.009345794400000001,21_bg-odds.pdf
+DS6608,"Desert Bighorn Sheep - San Rafael, Dirty Devil - Any Legal Weapon",Resident,23,100.0,1.0,21_bg-odds.pdf
+DS6609,"Desert Bighorn Sheep - San Rafael, North - Any Legal Weapon",Resident,24,100.0,1.0,21_bg-odds.pdf
+DS6610,"Desert Bighorn Sheep - San Rafael, South - Any Legal Weapon",Nonresident,28,20.0,0.2,21_bg-odds.pdf
+DS6611,Desert Bighorn Sheep -Zion - Any Legal Weapon,Resident,26,50.0,0.5,21_bg-odds.pdf
+DS6612,Desert Bighorn Sheep -Zion - Any Legal Weapon,Resident,25,66.66666667,0.6666666667,21_bg-odds.pdf
+DS6620,"Desert Bighorn Sheep - Pine Valley, Virgin River - Any Legal Weapon",Resident,25,50.0,0.5,21_bg-odds.pdf
+DS6622,"Desert Bighorn Sheep - San Juan, North - Any Legal Weapon",Resident,22,100.0,1.0,21_bg-odds.pdf
+DS6624,"Desert Bighorn Sheep Archery - San Rafael, Dirty Devil - Archery",Resident,18,25.0,0.25,21_bg-odds.pdf
+DS6624,"Desert Bighorn Sheep Archery - San Rafael, Dirty Devil - Archery",Resident,20,100.0,1.0,21_bg-odds.pdf
+EA1007,"Antlerless Elk - Box Elder, Grouse Creek - Any Legal Weapon",Nonresident,4,50.0,0.5,2021 Antlerless Draw Results.pdf
+EA1007,"Antlerless Elk - Box Elder, Grouse Creek - Any Legal Weapon",Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1008,"Antlerless Elk - Box Elder, Grouse Creek - Any Legal Weapon",Nonresident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1009,"Antlerless Elk - Cache, East - Any Legal Weapon",Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1011,"Antlerless Elk - Cache, Richards Hollow - Any Legal Weapon",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1012,"Antlerless Elk - Cache, Richmond Hyde Park - Any Legal Weapon",Nonresident,0,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1012,"Antlerless Elk - Cache, Richmond Hyde Park - Any Legal Weapon",Resident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1013,"Antlerless Elk - Central Mtns, Central Manti - Any Legal Weapon",Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1013,"Antlerless Elk - Central Mtns, Central Manti - Any Legal Weapon",Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1015,"Antlerless Elk - Central Mtns, Ferron Canyon - Any Legal Weapon",Nonresident,4,25.0,0.25,2021 Antlerless Draw Results.pdf
+EA1015,"Antlerless Elk - Central Mtns, Ferron Canyon - Any Legal Weapon",Resident,5,66.66666667,0.6666666667,2021 Antlerless Draw Results.pdf
+EA1017,"Antlerless Elk - Central Mtns, Gordon Creek-price Canyon - Any Legal Weapon",Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1018,"Antlerless Elk - Central Mtns, Horn Mtn - Any Legal Weapon",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1020,"Antlerless Elk - Central Mtns, Mohrland-stump Flat - Any Legal Weapon",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1022,"Antlerless Elk - Central Mtns, North Manti - Any Legal Weapon",Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1023,"Antlerless Elk - Central Mtns, South Manti - Any Legal Weapon",Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1025,"Antlerless Elk - Central Mtns, West Manti - Any Legal Weapon",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1025,"Antlerless Elk - Central Mtns, West Manti - Any Legal Weapon",Resident,7,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1030,"Antlerless Elk - Fillmore, Pahvant - Any Legal Weapon",Nonresident,4,76.92307692,0.7692307692,2021 Antlerless Draw Results.pdf
+EA1031,"Antlerless Elk - Fillmore, Pahvant - Any Legal Weapon",Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1033,Antlerless Elk - Kamas - Any Legal Weapon,Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1034,"Antlerless Elk - Kamas, Francis - Any Legal Weapon",Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1035,"Antlerless Elk - Kamas, Oakley - Any Legal Weapon",Nonresident,1,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1038,"Antlerless Elk - La Sal, La Sal Mtns - Any Legal Weapon",Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1040,"Antlerless Elk - Monroe, Koosharem Valley - Any Legal Weapon",Nonresident,2,33.33333333,0.33333333330000003,2021 Antlerless Draw Results.pdf
+EA1044,"Antlerless Elk - Morgan-south Rich, South Rich - Any Legal Weapon",Nonresident,1,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1044,"Antlerless Elk - Morgan-south Rich, South Rich - Any Legal Weapon",Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1049,"Antlerless Elk - Mt Dutton, Deep Creek -An y Legal Weapon",Nonresident,2,33.33333333,0.33333333330000003,2021 Antlerless Draw Results.pdf
+EA1049,"Antlerless Elk - Mt Dutton, Deep Creek -An y Legal Weapon",Nonresident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1049,"Antlerless Elk - Mt Dutton, Deep Creek -An y Legal Weapon",Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1052,"Antlerless Elk - Nine Mile, Avintaquin-west Anthro - Any Legal Weapon",Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1055,"Antlerless Elk - North Slope, Greendale - Any Legal Weapon",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1055,"Antlerless Elk - North Slope, Greendale - Any Legal Weapon",Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1061,"Antlerless Elk - North Slope, West Daggett - Muzzleloader",Nonresident,1,50.0,0.5,2021 Antlerless Draw Results.pdf
+EA1061,"Antlerless Elk - North Slope, West Daggett - Muzzleloader",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1063,Antlerless Elk - Ogden - Any Legal Weapon,Nonresident,1,66.66666667,0.6666666667,2021 Antlerless Draw Results.pdf
+EA1063,Antlerless Elk - Ogden - Any Legal Weapon,Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1063,Antlerless Elk - Ogden - Any Legal Weapon,Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1068,Antlerless Elk - Panguitch Lake - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1074,Antlerless Elk - Pine Valley - Any Legal Weapon,Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1075,"Antlerless Elk - Plateau, Boulder East - Any Legal Weapon",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1075,"Antlerless Elk - Plateau, Boulder East - Any Legal Weapon",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1076,"Antlerless Elk - Plateau, Boulder West - Any Legal Weapon",Nonresident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1077,"Antlerless Elk - Plateau, Boulder-circle Cliffs -An y Legal Weapon",Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1077,"Antlerless Elk - Plateau, Boulder-circle Cliffs -An y Legal Weapon",Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1078,"Antlerless Elk - Plateau, Fishlake/thousand Lakes - Any Legal Weapon",Nonresident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1079,"Antlerless Elk - Plateau, Fishlake/thousand Lakes East - Any Legal Weapon",Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1080,"Antlerless Elk - Plateau, Fishlake/thousand Lakes West - Any Legal Weapon",Resident,7,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1081,Antlerless Elk - San Juan - Any Legal Weapon,Nonresident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1081,Antlerless Elk - San Juan - Any Legal Weapon,Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1081,Antlerless Elk - San Juan - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1082,Antlerless Elk - San Juan - Any Legal Weapon,Nonresident,2,26.31578947,0.2631578947,2021 Antlerless Draw Results.pdf
+EA1082,Antlerless Elk - San Juan - Any Legal Weapon,Nonresident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1082,Antlerless Elk - San Juan - Any Legal Weapon,Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1082,Antlerless Elk - San Juan - Any Legal Weapon,Resident,2,50.0,0.5,2021 Antlerless Draw Results.pdf
+EA1082,Antlerless Elk - San Juan - Any Legal Weapon,Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1082,Antlerless Elk - San Juan - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1082,Antlerless Elk - San Juan - Any Legal Weapon,Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1084,"Antlerless Elk - San Rafael, North - Any Legal Weapon",Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1085,"Antlerless Elk - South Slope, Bonanza/vernal - Archery",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1085,"Antlerless Elk - South Slope, Bonanza/vernal - Archery",Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1085,"Antlerless Elk - South Slope, Bonanza/vernal - Archery",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1089,"Antlerless Elk - South Slope, Diamond Mtn - Any Legal Weapon",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1091,"Antlerless Elk - South Slope, Diamond Mtn - Any Legal Weapon",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1091,"Antlerless Elk - South Slope, Diamond Mtn - Any Legal Weapon",Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1091,"Antlerless Elk - South Slope, Diamond Mtn - Any Legal Weapon",Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1091,"Antlerless Elk - South Slope, Diamond Mtn - Any Legal Weapon",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1094,"Antlerless Elk - South Slope, Mosby Mtn - Any Legal Weapon",Nonresident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1098,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1098,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1099,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1100,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1101,Antlerless Elk - Southwest Desert - Any Legal Weapon,Nonresident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1101,Antlerless Elk - Southwest Desert - Any Legal Weapon,Nonresident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1101,Antlerless Elk - Southwest Desert - Any Legal Weapon,Nonresident,8,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1101,Antlerless Elk - Southwest Desert - Any Legal Weapon,Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1110,"Antlerless Elk - Wasatch Mtns, Salt Lake - Any Legal Weapon",Nonresident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1111,"Antlerless Elk - Wasatch Mtns, Wallsburg - Any Legal Weapon",Nonresident,1,50.0,0.5,2021 Antlerless Draw Results.pdf
+EA1111,"Antlerless Elk - Wasatch Mtns, Wallsburg - Any Legal Weapon",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1112,"Antlerless Elk - Wasatch Mtns, Wallsburg - Any Legal Weapon",Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1113,"Antlerless Elk - Wasatch Mtns, West Heber - Any Legal Weapon",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1113,"Antlerless Elk - Wasatch Mtns, West Heber - Any Legal Weapon",Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1114,"Antlerless Elk - Wasatch Mtns, West Timpanogos - Any Legal Weapon",Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1114,"Antlerless Elk - Wasatch Mtns, West Timpanogos - Any Legal Weapon",Nonresident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1116,Antlerless Elk - Zion - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1117,Antlerless Elk - Zion - Any Legal Weapon,Nonresident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1117,Antlerless Elk - Zion - Any Legal Weapon,Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1118,Cwmu Antlerless Elk - Alton - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1118,Cwmu Antlerless Elk - Alton - Any Legal Weapon,Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1120,Cwmu Antlerless Elk - Bear Mountain - Any Legal Weapon,Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1121,Cwmu Antlerless Elk - Boobe Hole - Any Legal Weapon,Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1122,Cwmu Antlerless Elk - Causey Spring - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1122,Cwmu Antlerless Elk - Causey Spring - Any Legal Weapon,Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1124,Cwmu Antlerless Elk - Chimney Rock - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1125,Cwmu Antlerless Elk - Coldwater Ranch - Any Legal Weapon,Resident,8,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1129,Cwmu Antlerless Elk - Deseret - Any Legal Weapon,Resident,8,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1130,Cwmu Antlerless Elk - Double Cone - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1131,Cwmu Antlerless Elk - Durst Mountain - Any Legal Weapon,Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1131,Cwmu Antlerless Elk - Durst Mountain - Any Legal Weapon,Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1132,Cwmu Antlerless Elk - East Fork Chalk Creek - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1135,Cwmu Antlerless Elk - Folley Ridge - Any Legal Weapon,Resident,7,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1138,Cwmu Antlerless Elk - Guildersleeve - Any Legal Weapon,Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1140,Cwmu Antlerless Elk - Heaston East - Any Legal Weapon,Resident,11,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1143,Cwmu Antlerless Elk - J.b. Ranch - Any Legal Weapon,Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1146,Cwmu Antlerless Elk - Jump Creek - Any Legal Weapon,Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1147,Cwmu Antlerless Elk - Little Red Creek - Any Legal Weapon,Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1149,Cwmu Antlerless Elk - Minnie Maud Ridge - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1151,Cwmu Antlerless Elk - Moon Ranch - Any Legal Weapon,Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1157,Cwmu Antlerless Elk - Redd Ranches - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1157,Cwmu Antlerless Elk - Redd Ranches - Any Legal Weapon,Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1158,Cwmu Antlerless Elk - Riverview Ranch Llc - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1159,Cwmu Antlerless Elk - Roan Cliffs - Any Legal Weapon,Resident,4,43.47826087,0.4347826087,2021 Antlerless Draw Results.pdf
+EA1162,Cwmu Antlerless Elk - Scofield East - Any Legal Weapon,Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1163,Cwmu Antlerless Elk - Scofield West - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1164,Cwmu Antlerless Elk - Sj Ranch - Any Legal Weapon,Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1166,Cwmu Antlerless Elk - Soldier Summit - Any Legal Weapon,Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1167,Cwmu Antlerless Elk - South Canyon - Any Legal Weapon,Resident,8,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1170,Cwmu Antlerless Elk - Strawberry Ridge - Any Legal Weapon,Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1172,Cwmu Antlerless Elk - Three C - Any Legal Weapon,Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1172,Cwmu Antlerless Elk - Three C - Any Legal Weapon,Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1175,Cwmu Antlerless Elk - Wallsburg - Any Legal Weapon,Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1175,Cwmu Antlerless Elk - Wallsburg - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1186,Antlerless Elk - Mt Dutton/plateau - Any Legal Weapon,Nonresident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1186,Antlerless Elk - Mt Dutton/plateau - Any Legal Weapon,Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1187,"Antlerless Elk - Paunsaugunt, Hatch Bench - Any Legal Weapon",Resident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1189,"Antlerless Elk - Wasatch Mtns, West-central - Muzzleloader",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1192,Cwmu Antlerless Elk - Pahvant Ensign - Any Legal Weapon,Resident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1192,Cwmu Antlerless Elk - Pahvant Ensign - Any Legal Weapon,Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1193,"Antlerless Elk - Cache, Rich - Any Legal Weapon",Nonresident,1,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1193,"Antlerless Elk - Cache, Rich - Any Legal Weapon",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1198,Cwmu Antlerless Elk - Bear Springs - Any Legal Weapon,Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1203,"Antlerless Elk - Box Elder, Pilot Mtn - Any Legal Weapon",Nonresident,4,50.0,0.5,2021 Antlerless Draw Results.pdf
+EA1203,"Antlerless Elk - Box Elder, Pilot Mtn - Any Legal Weapon",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1204,"Antlerless Elk - Box Elder, Pilot Mtn - Any Legal Weapon",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1204,"Antlerless Elk - Box Elder, Pilot Mtn - Any Legal Weapon",Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1205,"Antlerless Elk - Cache, Richmond Hyde Park - Any Legal Weapon",Nonresident,0,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1217,"Antlerless Elk - Wasatch Mtns, Avintaquin - Any Legal Weapon",Nonresident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1222,"Antlerless Elk - Beaver, East - Any Legal Weapon",Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1222,"Antlerless Elk - Beaver, East - Any Legal Weapon",Nonresident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1222,"Antlerless Elk - Beaver, East - Any Legal Weapon",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1225,"Antlerless Elk - Book Cliffs, Bitter Creek/south - Muzzleloader",Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1225,"Antlerless Elk - Book Cliffs, Bitter Creek/south - Muzzleloader",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1227,"Antlerless Elk - Fillmore, Kanosh Valley - Any Legal Weapon",Nonresident,1,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1228,Antlerless Elk - Morgan-south Rich - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1229,Antlerless Elk - Morgan-south Rich - Any Legal Weapon,Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1233,Cwmu Antlerless Elk - Avintaquin Canyon - Any Legal Weapon,Resident,2,50.0,0.5,2021 Antlerless Draw Results.pdf
+EA1233,Cwmu Antlerless Elk - Avintaquin Canyon - Any Legal Weapon,Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1233,Cwmu Antlerless Elk - Avintaquin Canyon - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1233,Cwmu Antlerless Elk - Avintaquin Canyon - Any Legal Weapon,Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1234,Cwmu Antlerless Elk - Royal Ivory Outfitters - Any Legal Weapon,Resident,0,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1234,Cwmu Antlerless Elk - Royal Ivory Outfitters - Any Legal Weapon,Resident,1,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1234,Cwmu Antlerless Elk - Royal Ivory Outfitters - Any Legal Weapon,Resident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1235,Cwmu Antlerless Elk - Sharp Mountain - Any Legal Weapon,Resident,0,20.0,0.2,2021 Antlerless Draw Results.pdf
+EA1235,Cwmu Antlerless Elk - Sharp Mountain - Any Legal Weapon,Resident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1235,Cwmu Antlerless Elk - Sharp Mountain - Any Legal Weapon,Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1236,Antlerless Elk - East Canyon - Any Legal Weapon,Nonresident,0,90.90909091,0.9090909091,2021 Antlerless Draw Results.pdf
+EA1236,Antlerless Elk - East Canyon - Any Legal Weapon,Nonresident,1,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1236,Antlerless Elk - East Canyon - Any Legal Weapon,Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1236,Antlerless Elk - East Canyon - Any Legal Weapon,Nonresident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1236,Antlerless Elk - East Canyon - Any Legal Weapon,Resident,1,62.5,0.625,2021 Antlerless Draw Results.pdf
+EA1236,Antlerless Elk - East Canyon - Any Legal Weapon,Resident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1236,Antlerless Elk - East Canyon - Any Legal Weapon,Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1236,Antlerless Elk - East Canyon - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1236,Antlerless Elk - East Canyon - Any Legal Weapon,Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1237,"Antlerless Elk - La Sal, La Sal Mtns, North - Any Legal Weapon",Nonresident,1,90.90909091,0.9090909091,2021 Antlerless Draw Results.pdf
+EA1237,"Antlerless Elk - La Sal, La Sal Mtns, North - Any Legal Weapon",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1237,"Antlerless Elk - La Sal, La Sal Mtns, North - Any Legal Weapon",Resident,0,52.63157895,0.5263157895,2021 Antlerless Draw Results.pdf
+EA1237,"Antlerless Elk - La Sal, La Sal Mtns, North - Any Legal Weapon",Resident,1,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1237,"Antlerless Elk - La Sal, La Sal Mtns, North - Any Legal Weapon",Resident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1237,"Antlerless Elk - La Sal, La Sal Mtns, North - Any Legal Weapon",Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1237,"Antlerless Elk - La Sal, La Sal Mtns, North - Any Legal Weapon",Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1238,"Antlerless Elk - Monroe, Rock Springs - Any Legal Weapon",Nonresident,3,40.0,0.4,2021 Antlerless Draw Results.pdf
+EA1238,"Antlerless Elk - Monroe, Rock Springs - Any Legal Weapon",Resident,3,30.3030303,0.303030303,2021 Antlerless Draw Results.pdf
+EA1238,"Antlerless Elk - Monroe, Rock Springs - Any Legal Weapon",Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1238,"Antlerless Elk - Monroe, Rock Springs - Any Legal Weapon",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1239,"Antlerless Elk - Nine Mile, Range Creek - Any Legal Weapon",Nonresident,0,66.66666667,0.6666666667,2021 Antlerless Draw Results.pdf
+EA1239,"Antlerless Elk - Nine Mile, Range Creek - Any Legal Weapon",Nonresident,1,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1239,"Antlerless Elk - Nine Mile, Range Creek - Any Legal Weapon",Resident,0,90.90909091,0.9090909091,2021 Antlerless Draw Results.pdf
+EA1239,"Antlerless Elk - Nine Mile, Range Creek - Any Legal Weapon",Resident,1,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1239,"Antlerless Elk - Nine Mile, Range Creek - Any Legal Weapon",Resident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1239,"Antlerless Elk - Nine Mile, Range Creek - Any Legal Weapon",Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1240,"Antlerless Elk - Nine Mile, Range Creek - Any Legal Weapon",Resident,1,38.46153846,0.3846153846,2021 Antlerless Draw Results.pdf
+EA1240,"Antlerless Elk - Nine Mile, Range Creek - Any Legal Weapon",Resident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1240,"Antlerless Elk - Nine Mile, Range Creek - Any Legal Weapon",Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1240,"Antlerless Elk - Nine Mile, Range Creek - Any Legal Weapon",Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1241,Antlerless Elk - Panguitch Lake - Any Legal Weapon,Nonresident,3,50.0,0.5,2021 Antlerless Draw Results.pdf
+EA1241,Antlerless Elk - Panguitch Lake - Any Legal Weapon,Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1241,Antlerless Elk - Panguitch Lake - Any Legal Weapon,Nonresident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1241,Antlerless Elk - Panguitch Lake - Any Legal Weapon,Nonresident,7,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1241,Antlerless Elk - Panguitch Lake - Any Legal Weapon,Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1241,Antlerless Elk - Panguitch Lake - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1242,"Antlerless Elk - South Slope, Buckskin Hills-jensen - Any Legal Weapon",Nonresident,0,47.61904762,0.47619047620000005,2021 Antlerless Draw Results.pdf
+EA1242,"Antlerless Elk - South Slope, Buckskin Hills-jensen - Any Legal Weapon",Nonresident,1,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1242,"Antlerless Elk - South Slope, Buckskin Hills-jensen - Any Legal Weapon",Resident,0,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1242,"Antlerless Elk - South Slope, Buckskin Hills-jensen - Any Legal Weapon",Resident,1,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1242,"Antlerless Elk - South Slope, Buckskin Hills-jensen - Any Legal Weapon",Resident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1242,"Antlerless Elk - South Slope, Buckskin Hills-jensen - Any Legal Weapon",Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1243,"Antlerless Elk - South Slope, Buckskin Hills-jensen - Any Legal Weapon",Nonresident,0,47.61904762,0.47619047620000005,2021 Antlerless Draw Results.pdf
+EA1243,"Antlerless Elk - South Slope, Buckskin Hills-jensen - Any Legal Weapon",Resident,0,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1243,"Antlerless Elk - South Slope, Buckskin Hills-jensen - Any Legal Weapon",Resident,1,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1243,"Antlerless Elk - South Slope, Buckskin Hills-jensen - Any Legal Weapon",Resident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1243,"Antlerless Elk - South Slope, Buckskin Hills-jensen - Any Legal Weapon",Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1244,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",Nonresident,0,71.42857143,0.7142857143000001,2021 Antlerless Draw Results.pdf
+EA1244,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",Nonresident,1,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1244,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1244,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",Resident,0,23.25581395,0.2325581395,2021 Antlerless Draw Results.pdf
+EA1244,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",Resident,1,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1244,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",Resident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1244,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1244,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1244,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1244,"Antlerless Elk - South Slope, Yellowstone - Any Legal Weapon",Resident,7,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1245,"Antlerless Elk - South Slope, Yellowstone - Muzzleloader",Nonresident,0,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1245,"Antlerless Elk - South Slope, Yellowstone - Muzzleloader",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1245,"Antlerless Elk - South Slope, Yellowstone - Muzzleloader",Resident,0,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1245,"Antlerless Elk - South Slope, Yellowstone - Muzzleloader",Resident,1,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1245,"Antlerless Elk - South Slope, Yellowstone - Muzzleloader",Resident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1245,"Antlerless Elk - South Slope, Yellowstone - Muzzleloader",Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+EA1245,"Antlerless Elk - South Slope, Yellowstone - Muzzleloader",Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+EB3000,"Limited-entry Archery Bull Elk - Beaver, East - Archery",Resident,19,100.0,1.0,21_bg-odds.pdf
+EB3000,"Limited-entry Archery Bull Elk - Beaver, East - Archery",Resident,20,100.0,1.0,21_bg-odds.pdf
+EB3000,"Limited-entry Archery Bull Elk - Beaver, East - Archery",Resident,21,100.0,1.0,21_bg-odds.pdf
+EB3001,"Limited-entry Archery Bull Elk - Book Cliffs, Bitter Creek/south - Archery",Nonresident,17,33.33333333,0.33333333330000003,21_bg-odds.pdf
+EB3001,"Limited-entry Archery Bull Elk - Book Cliffs, Bitter Creek/south - Archery",Nonresident,18,100.0,1.0,21_bg-odds.pdf
+EB3001,"Limited-entry Archery Bull Elk - Book Cliffs, Bitter Creek/south - Archery",Resident,11,100.0,1.0,21_bg-odds.pdf
+EB3001,"Limited-entry Archery Bull Elk - Book Cliffs, Bitter Creek/south - Archery",Resident,9,100.0,1.0,21_bg-odds.pdf
+EB3003,"Limited-entry Archery Bull Elk - Cache, Meadowville - Archery",Resident,2,100.0,1.0,21_bg-odds.pdf
+EB3005,"Limited-entry Archery Bull Elk - Cache, South - Archery",Resident,11,100.0,1.0,21_bg-odds.pdf
+EB3005,"Limited-entry Archery Bull Elk - Cache, South - Archery",Resident,13,100.0,1.0,21_bg-odds.pdf
+EB3006,"Limited-entry Archery Bull Elk - Central Mtns, Manti - Archery",Nonresident,19,100.0,1.0,21_bg-odds.pdf
+EB3006,"Limited-entry Archery Bull Elk - Central Mtns, Manti - Archery",Nonresident,20,100.0,1.0,21_bg-odds.pdf
+EB3006,"Limited-entry Archery Bull Elk - Central Mtns, Manti - Archery",Resident,15,100.0,1.0,21_bg-odds.pdf
+EB3007,"Limited-entry Archery Bull Elk - Central Mtns, Nebo - Archery",Resident,10,100.0,1.0,21_bg-odds.pdf
+EB3007,"Limited-entry Archery Bull Elk - Central Mtns, Nebo - Archery",Resident,11,100.0,1.0,21_bg-odds.pdf
+EB3007,"Limited-entry Archery Bull Elk - Central Mtns, Nebo - Archery",Resident,14,100.0,1.0,21_bg-odds.pdf
+EB3007,"Limited-entry Archery Bull Elk - Central Mtns, Nebo - Archery",Resident,15,100.0,1.0,21_bg-odds.pdf
+EB3008,"Limited-entry Archery Bull Elk - Fillmore, Pahvant - Archery",Resident,16,100.0,1.0,21_bg-odds.pdf
+EB3009,"Limited-entry Archery Bull Elk - La Sal, La Sal Mtns - Archery",Nonresident,17,100.0,1.0,21_bg-odds.pdf
+EB3009,"Limited-entry Archery Bull Elk - La Sal, La Sal Mtns - Archery",Resident,10,100.0,1.0,21_bg-odds.pdf
+EB3010,Limited-entry Archery Bull Elk - Monroe - Archery,Resident,18,100.0,1.0,21_bg-odds.pdf
+EB3010,Limited-entry Archery Bull Elk - Monroe - Archery,Resident,19,100.0,1.0,21_bg-odds.pdf
+EB3011,Limited-entry Archery Bull Elk - Mt Dutton - Archery,Nonresident,19,100.0,1.0,21_bg-odds.pdf
+EB3011,Limited-entry Archery Bull Elk - Mt Dutton - Archery,Resident,12,100.0,1.0,21_bg-odds.pdf
+EB3016,Limited-entry Archery Bull Elk - Paunsaugunt -Archer y,Nonresident,9,100.0,1.0,21_bg-odds.pdf
+EB3018,"Limited-entry Archery Bull Elk - Plateau, Fishlake/thousand Lakes - Archery",Nonresident,17,25.0,0.25,21_bg-odds.pdf
+EB3018,"Limited-entry Archery Bull Elk - Plateau, Fishlake/thousand Lakes - Archery",Nonresident,18,100.0,1.0,21_bg-odds.pdf
+EB3018,"Limited-entry Archery Bull Elk - Plateau, Fishlake/thousand Lakes - Archery",Resident,10,100.0,1.0,21_bg-odds.pdf
+EB3018,"Limited-entry Archery Bull Elk - Plateau, Fishlake/thousand Lakes - Archery",Resident,11,100.0,1.0,21_bg-odds.pdf
+EB3018,"Limited-entry Archery Bull Elk - Plateau, Fishlake/thousand Lakes - Archery",Resident,9,100.0,1.0,21_bg-odds.pdf
+EB3019,Limited-entry Archery Bull Elk - San Juan Bull Elk - Archery,Nonresident,24,100.0,1.0,21_bg-odds.pdf
+EB3019,Limited-entry Archery Bull Elk - San Juan Bull Elk - Archery,Resident,18,100.0,1.0,21_bg-odds.pdf
+EB3020,"Limited-entry Archery Bull Elk - South Slope, Diamond Mtn - Archery",Resident,9,100.0,1.0,21_bg-odds.pdf
+EB3022,Limited-entry Archery Bull Elk - Wasatch Mtns - Archery,Nonresident,12,90.90909091,0.9090909091,21_bg-odds.pdf
+EB3022,Limited-entry Archery Bull Elk - Wasatch Mtns - Archery,Nonresident,15,100.0,1.0,21_bg-odds.pdf
+EB3025,"Limited-entry Alw (rifle) Bull Elk - Late - Beaver, East - Any Legal Weapon",Resident,22,100.0,1.0,21_bg-odds.pdf
+EB3026,"Limited-entry Alw (rifle) Bull Elk - Early - Book Cliffs, Bitter Creek/south - Any Legal Weapon",Nonresident,22,16.66666667,0.16666666670000002,21_bg-odds.pdf
+EB3026,"Limited-entry Alw (rifle) Bull Elk - Early - Book Cliffs, Bitter Creek/south - Any Legal Weapon",Resident,25,100.0,1.0,21_bg-odds.pdf
+EB3026,"Limited-entry Alw (rifle) Bull Elk - Early - Book Cliffs, Bitter Creek/south - Any Legal Weapon",Resident,26,100.0,1.0,21_bg-odds.pdf
+EB3027,"Limited-entry Alw (rifle) Bull Elk - Late - Book Cliffs, Bitter Creek/south - Any Legal Weapon",Resident,14,100.0,1.0,21_bg-odds.pdf
+EB3027,"Limited-entry Alw (rifle) Bull Elk - Late - Book Cliffs, Bitter Creek/south - Any Legal Weapon",Resident,15,100.0,1.0,21_bg-odds.pdf
+EB3027,"Limited-entry Alw (rifle) Bull Elk - Late - Book Cliffs, Bitter Creek/south - Any Legal Weapon",Resident,17,100.0,1.0,21_bg-odds.pdf
+EB3027,"Limited-entry Alw (rifle) Bull Elk - Late - Book Cliffs, Bitter Creek/south - Any Legal Weapon",Resident,18,100.0,1.0,21_bg-odds.pdf
+EB3032,"Limited-entry Alw (rifle) Bull Elk - Early - Cache, Meadowville - Any Legal Weapon",Nonresident,14,100.0,1.0,21_bg-odds.pdf
+EB3032,"Limited-entry Alw (rifle) Bull Elk - Early - Cache, Meadowville - Any Legal Weapon",Resident,11,100.0,1.0,21_bg-odds.pdf
+EB3032,"Limited-entry Alw (rifle) Bull Elk - Early - Cache, Meadowville - Any Legal Weapon",Resident,19,100.0,1.0,21_bg-odds.pdf
+EB3032,"Limited-entry Alw (rifle) Bull Elk - Early - Cache, Meadowville - Any Legal Weapon",Resident,7,100.0,1.0,21_bg-odds.pdf
+EB3033,"Limited-entry Alw (rifle) Bull Elk - Late -Cache , Meadowville - Any Legal Weapon",Resident,10,100.0,1.0,21_bg-odds.pdf
+EB3033,"Limited-entry Alw (rifle) Bull Elk - Late -Cache , Meadowville - Any Legal Weapon",Resident,7,100.0,1.0,21_bg-odds.pdf
+EB3036,"Limited-entry Alw (rifle) Bull Elk - Early - Cache, South - Any Legal Weapon",Resident,18,43.47826087,0.4347826087,21_bg-odds.pdf
+EB3036,"Limited-entry Alw (rifle) Bull Elk - Early - Cache, South - Any Legal Weapon",Resident,21,100.0,1.0,21_bg-odds.pdf
+EB3036,"Limited-entry Alw (rifle) Bull Elk - Early - Cache, South - Any Legal Weapon",Resident,22,100.0,1.0,21_bg-odds.pdf
+EB3037,"Limited-entry Alw (rifle) Bull Elk - Late -Cache , South - Any Legal Weapon",Resident,16,100.0,1.0,21_bg-odds.pdf
+EB3037,"Limited-entry Alw (rifle) Bull Elk - Late -Cache , South - Any Legal Weapon",Resident,19,100.0,1.0,21_bg-odds.pdf
+EB3038,"Limited-entry Alw (rifle) Bull Elk - Early - Central Mtns, Manti - Any Legal Weapon",Nonresident,22,100.0,1.0,21_bg-odds.pdf
+EB3039,"Limited-entry Alw (rifle) Bull Elk - Late - Central Mtns, Manti - Any Legal Weapon",Nonresident,18,66.66666667,0.6666666667,21_bg-odds.pdf
+EB3039,"Limited-entry Alw (rifle) Bull Elk - Late - Central Mtns, Manti - Any Legal Weapon",Resident,19,100.0,1.0,21_bg-odds.pdf
+EB3040,"Limited-entry Alw (rifle) Bull Elk - Early - Central Mtns, Nebo - Any Legal Weapon",Nonresident,22,100.0,1.0,21_bg-odds.pdf
+EB3040,"Limited-entry Alw (rifle) Bull Elk - Early - Central Mtns, Nebo - Any Legal Weapon",Resident,22,100.0,1.0,21_bg-odds.pdf
+EB3040,"Limited-entry Alw (rifle) Bull Elk - Early - Central Mtns, Nebo - Any Legal Weapon",Resident,23,100.0,1.0,21_bg-odds.pdf
+EB3040,"Limited-entry Alw (rifle) Bull Elk - Early - Central Mtns, Nebo - Any Legal Weapon",Resident,25,100.0,1.0,21_bg-odds.pdf
+EB3041,"Limited-entry Alw (rifle) Bull Elk - Late - Central Mtns, Nebo - Any Legal Weapon",Resident,13,100.0,1.0,21_bg-odds.pdf
+EB3041,"Limited-entry Alw (rifle) Bull Elk - Late - Central Mtns, Nebo - Any Legal Weapon",Resident,14,100.0,1.0,21_bg-odds.pdf
+EB3042,"Limited-entry Alw (rifle) Bull Elk - Early - Fillmore, Pahvant - Any Legal Weapon",Resident,25,100.0,1.0,21_bg-odds.pdf
+EB3042,"Limited-entry Alw (rifle) Bull Elk - Early - Fillmore, Pahvant - Any Legal Weapon",Resident,26,100.0,1.0,21_bg-odds.pdf
+EB3043,"Limited-entry Alw (rifle) Bull Elk - Late -Fillmore , Pahvant - Any Legal Weapon",Resident,24,100.0,1.0,21_bg-odds.pdf
+EB3044,"Limited-entry Alw (rifle) Bull Elk - Late - La Sal, Dolores Triangle - Any Legal Weapon",Resident,20,100.0,1.0,21_bg-odds.pdf
+EB3045,"Limited-entry Alw (rifle) Bull Elk - Early - La Sal, La Sal Mtns - Any Legal Weapon",Nonresident,22,100.0,1.0,21_bg-odds.pdf
+EB3045,"Limited-entry Alw (rifle) Bull Elk - Early - La Sal, La Sal Mtns - Any Legal Weapon",Resident,16,100.0,1.0,21_bg-odds.pdf
+EB3045,"Limited-entry Alw (rifle) Bull Elk - Early - La Sal, La Sal Mtns - Any Legal Weapon",Resident,21,100.0,1.0,21_bg-odds.pdf
+EB3045,"Limited-entry Alw (rifle) Bull Elk - Early - La Sal, La Sal Mtns - Any Legal Weapon",Resident,23,100.0,1.0,21_bg-odds.pdf
+EB3046,"Limited-entry Alw (rifle) Bull Elk - Late - La Sal, La Sal Mtns - Any Legal Weapon",Nonresident,13,50.0,0.5,21_bg-odds.pdf
+EB3046,"Limited-entry Alw (rifle) Bull Elk - Late - La Sal, La Sal Mtns - Any Legal Weapon",Nonresident,15,100.0,1.0,21_bg-odds.pdf
+EB3046,"Limited-entry Alw (rifle) Bull Elk - Late - La Sal, La Sal Mtns - Any Legal Weapon",Nonresident,16,100.0,1.0,21_bg-odds.pdf
+EB3047,Limited-entry Alw (rifle) Bull Elk - Early - Monroe - Any Legal Weapon,Nonresident,25,50.0,0.5,21_bg-odds.pdf
+EB3048,Limited-entry Alw (rifle) Bull Elk - Late - Monroe - Any Legal Weapon,Resident,23,100.0,1.0,21_bg-odds.pdf
+EB3048,Limited-entry Alw (rifle) Bull Elk - Late - Monroe - Any Legal Weapon,Resident,25,100.0,1.0,21_bg-odds.pdf
+EB3049,Limited-entry Alw (rifle) Bull Elk - Early - Mt Dutton - Any Legal Weapon,Resident,21,66.66666667,0.6666666667,21_bg-odds.pdf
+EB3049,Limited-entry Alw (rifle) Bull Elk - Early - Mt Dutton - Any Legal Weapon,Resident,22,100.0,1.0,21_bg-odds.pdf
+EB3050,Limited-entry Alw (rifle) Bull Elk - Late - Mt Dutton - Any Legal Weapon,Resident,21,100.0,1.0,21_bg-odds.pdf
+EB3050,Limited-entry Alw (rifle) Bull Elk - Late - Mt Dutton - Any Legal Weapon,Resident,22,100.0,1.0,21_bg-odds.pdf
+EB3053,"Limited-entry Alw (rifle) Bull Elk - Mid - North Slope, Three Corners - Any Legal Weapon",Nonresident,18,100.0,1.0,21_bg-odds.pdf
+EB3053,"Limited-entry Alw (rifle) Bull Elk - Mid - North Slope, Three Corners - Any Legal Weapon",Resident,17,100.0,1.0,21_bg-odds.pdf
+EB3056,Limited-entry Alw (rifle) Bull Elk - Early - Panguitch Lake - Any Legal Weapon,Resident,23,100.0,1.0,21_bg-odds.pdf
+EB3057,Limited-entry Alw (rifle) Bull Elk - Late -Pan guitch Lake - Any Legal Weapon,Nonresident,20,100.0,1.0,21_bg-odds.pdf
+EB3057,Limited-entry Alw (rifle) Bull Elk - Late -Pan guitch Lake - Any Legal Weapon,Resident,18,100.0,1.0,21_bg-odds.pdf
+EB3058,Limited-entry Alw (rifle) Bull Elk - Early - Paunsaugunt -An y Legal Weapon,Nonresident,16,50.0,0.5,21_bg-odds.pdf
+EB3059,Limited-entry Alw (rifle) Bull Elk - Mid - Paunsaugunt - Any Legal Weapon,Nonresident,9,100.0,1.0,21_bg-odds.pdf
+EB3059,Limited-entry Alw (rifle) Bull Elk - Mid - Paunsaugunt - Any Legal Weapon,Resident,16,100.0,1.0,21_bg-odds.pdf
+EB3059,Limited-entry Alw (rifle) Bull Elk - Mid - Paunsaugunt - Any Legal Weapon,Resident,18,100.0,1.0,21_bg-odds.pdf
+EB3059,Limited-entry Alw (rifle) Bull Elk - Mid - Paunsaugunt - Any Legal Weapon,Resident,9,100.0,1.0,21_bg-odds.pdf
+EB3060,Limited-entry Alw (rifle) Bull Elk - Late - Paunsaugunt - Any Legal Weapon,Nonresident,6,100.0,1.0,21_bg-odds.pdf
+EB3060,Limited-entry Alw (rifle) Bull Elk - Late - Paunsaugunt - Any Legal Weapon,Resident,9,50.0,0.5,21_bg-odds.pdf
+EB3063,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Fishlake/thousand Lakes - Any Legal Weapon",Nonresident,22,100.0,1.0,21_bg-odds.pdf
+EB3063,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Fishlake/thousand Lakes - Any Legal Weapon",Nonresident,24,100.0,1.0,21_bg-odds.pdf
+EB3063,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Fishlake/thousand Lakes - Any Legal Weapon",Nonresident,25,100.0,1.0,21_bg-odds.pdf
+EB3063,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Fishlake/thousand Lakes - Any Legal Weapon",Resident,22,100.0,1.0,21_bg-odds.pdf
+EB3064,"Limited-entry Alw (rifle) Bull Elk - Mid - Plateau, Fishlake/thousand Lakes - Any Legal Weapon",Nonresident,17,100.0,1.0,21_bg-odds.pdf
+EB3064,"Limited-entry Alw (rifle) Bull Elk - Mid - Plateau, Fishlake/thousand Lakes - Any Legal Weapon",Nonresident,18,100.0,1.0,21_bg-odds.pdf
+EB3064,"Limited-entry Alw (rifle) Bull Elk - Mid - Plateau, Fishlake/thousand Lakes - Any Legal Weapon",Resident,14,100.0,1.0,21_bg-odds.pdf
+EB3064,"Limited-entry Alw (rifle) Bull Elk - Mid - Plateau, Fishlake/thousand Lakes - Any Legal Weapon",Resident,15,100.0,1.0,21_bg-odds.pdf
+EB3065,"Limited-entry Alw (rifle) Bull Elk - Late -Plateau , Fishlake/thousand Lakes - Any Legal Weapon",Nonresident,21,100.0,1.0,21_bg-odds.pdf
+EB3065,"Limited-entry Alw (rifle) Bull Elk - Late -Plateau , Fishlake/thousand Lakes - Any Legal Weapon",Resident,16,100.0,1.0,21_bg-odds.pdf
+EB3065,"Limited-entry Alw (rifle) Bull Elk - Late -Plateau , Fishlake/thousand Lakes - Any Legal Weapon",Resident,18,100.0,1.0,21_bg-odds.pdf
+EB3065,"Limited-entry Alw (rifle) Bull Elk - Late -Plateau , Fishlake/thousand Lakes - Any Legal Weapon",Resident,22,100.0,1.0,21_bg-odds.pdf
+EB3066,Limited-entry Alw (rifle) Bull Elk - Early - San Juan Bull Elk - Any Legal Weapon,Resident,27,100.0,1.0,21_bg-odds.pdf
+EB3067,Limited-entry Alw (rifle) Bull Elk - Late - San Juan Bull Elk - Any Legal Weapon,Nonresident,23,100.0,1.0,21_bg-odds.pdf
+EB3067,Limited-entry Alw (rifle) Bull Elk - Late - San Juan Bull Elk - Any Legal Weapon,Resident,22,100.0,1.0,21_bg-odds.pdf
+EB3068,"Limited-entry Alw (rifle) Bull Elk - Early - South Slope, Diamond Mtn - Any Legal Weapon",Nonresident,22,100.0,1.0,21_bg-odds.pdf
+EB3068,"Limited-entry Alw (rifle) Bull Elk - Early - South Slope, Diamond Mtn - Any Legal Weapon",Resident,18,100.0,1.0,21_bg-odds.pdf
+EB3069,"Limited-entry Alw (rifle) Bull Elk - Mid - South Slope, Diamond Mtn - Any Legal Weapon",Nonresident,14,50.0,0.5,21_bg-odds.pdf
+EB3069,"Limited-entry Alw (rifle) Bull Elk - Mid - South Slope, Diamond Mtn - Any Legal Weapon",Resident,16,100.0,1.0,21_bg-odds.pdf
+EB3069,"Limited-entry Alw (rifle) Bull Elk - Mid - South Slope, Diamond Mtn - Any Legal Weapon",Resident,17,100.0,1.0,21_bg-odds.pdf
+EB3072,Limited-entry Alw (rifle) Bull Elk - Early - Wasatch Mtns - Any Legal Weapon,Nonresident,20,100.0,1.0,21_bg-odds.pdf
+EB3072,Limited-entry Alw (rifle) Bull Elk - Early - Wasatch Mtns - Any Legal Weapon,Resident,22,100.0,1.0,21_bg-odds.pdf
+EB3073,Limited-entry Alw (rifle) Bull Elk - Late - Wasatch Mtns - Any Legal Weapon,Nonresident,16,100.0,1.0,21_bg-odds.pdf
+EB3073,Limited-entry Alw (rifle) Bull Elk - Late - Wasatch Mtns - Any Legal Weapon,Nonresident,18,100.0,1.0,21_bg-odds.pdf
+EB3073,Limited-entry Alw (rifle) Bull Elk - Late - Wasatch Mtns - Any Legal Weapon,Resident,17,100.0,1.0,21_bg-odds.pdf
+EB3073,Limited-entry Alw (rifle) Bull Elk - Late - Wasatch Mtns - Any Legal Weapon,Resident,18,100.0,1.0,21_bg-odds.pdf
+EB3073,Limited-entry Alw (rifle) Bull Elk - Late - Wasatch Mtns - Any Legal Weapon,Resident,21,100.0,1.0,21_bg-odds.pdf
+EB3078,"Limited-entry Muzzleloader Bull Elk - Book Cliffs, Bitter Creek/south - Muzzleloader",Nonresident,22,100.0,1.0,21_bg-odds.pdf
+EB3081,"Limited-entry Muzzleloader Bull Elk - Cache, Meadowville - Muzzleloader",Resident,5,100.0,1.0,21_bg-odds.pdf
+EB3081,"Limited-entry Muzzleloader Bull Elk - Cache, Meadowville - Muzzleloader",Resident,6,100.0,1.0,21_bg-odds.pdf
+EB3083,"Limited-entry Muzzleloader Bull Elk - Cache, South - Muzzleloader",Resident,16,33.33333333,0.33333333330000003,21_bg-odds.pdf
+EB3083,"Limited-entry Muzzleloader Bull Elk - Cache, South - Muzzleloader",Resident,17,100.0,1.0,21_bg-odds.pdf
+EB3084,"Limited-entry Muzzleloader Bull Elk - Central Mtns, Manti - Muzzleloader",Resident,16,100.0,1.0,21_bg-odds.pdf
+EB3084,"Limited-entry Muzzleloader Bull Elk - Central Mtns, Manti - Muzzleloader",Resident,18,100.0,1.0,21_bg-odds.pdf
+EB3085,"Limited-entry Muzzleloader Bull Elk - Central Mtns, Nebo - Muzzleloader",Resident,14,100.0,1.0,21_bg-odds.pdf
+EB3086,"Limited-entry Muzzleloader Bull Elk - Fillmore, Pahvant - Muzzleloader",Resident,22,100.0,1.0,21_bg-odds.pdf
+EB3087,"Limited-entry Muzzleloader Bull Elk - La Sal, La Sal Mtns - Muzzleloader",Nonresident,19,50.0,0.5,21_bg-odds.pdf
+EB3087,"Limited-entry Muzzleloader Bull Elk - La Sal, La Sal Mtns - Muzzleloader",Resident,15,100.0,1.0,21_bg-odds.pdf
+EB3088,Limited-entry Muzzleloader Bull Elk - Monroe - Muzzleloader,Resident,24,100.0,1.0,21_bg-odds.pdf
+EB3089,Limited-entry Muzzleloader Bull Elk - Mt Dutton - Muzzleloader,Resident,19,100.0,1.0,21_bg-odds.pdf
+EB3089,Limited-entry Muzzleloader Bull Elk - Mt Dutton - Muzzleloader,Resident,20,100.0,1.0,21_bg-odds.pdf
+EB3091,"Limited-entry Muzzleloader Bull Elk - North Slope, Three Corners - Muzzleloader",Resident,11,100.0,1.0,21_bg-odds.pdf
+EB3094,Limited-entry Muzzleloader Bull Elk - Paunsaugunt - Muzzleloader,Nonresident,7,100.0,1.0,21_bg-odds.pdf
+EB3096,"Limited-entry Muzzleloader Bull Elk - Plateau, Fishlake/thousand Lakes - Muzzleloader",Nonresident,21,100.0,1.0,21_bg-odds.pdf
+EB3096,"Limited-entry Muzzleloader Bull Elk - Plateau, Fishlake/thousand Lakes - Muzzleloader",Resident,15,100.0,1.0,21_bg-odds.pdf
+EB3097,Limited-entry Muzzleloader Bull Elk - San Juan Bull Elk - Muzzleloader,Nonresident,25,100.0,1.0,21_bg-odds.pdf
+EB3097,Limited-entry Muzzleloader Bull Elk - San Juan Bull Elk - Muzzleloader,Resident,25,100.0,1.0,21_bg-odds.pdf
+EB3098,"Limited-entry Muzzleloader Bull Elk - South Slope, Diamond Mtn - Muzzleloader",Resident,14,100.0,1.0,21_bg-odds.pdf
+EB3100,Limited-entry Muzzleloader Bull Elk - Wasatch Mtns - Muzzleloader,Nonresident,17,100.0,1.0,21_bg-odds.pdf
+EB3105,"Multi-season Limited-entry Any Bull Elk - Cache, Meadowville - Any Legal Weapon",Resident,21,100.0,1.0,21_bg-odds.pdf
+EB3108,"Multi-season Limited-entry Any Bull Elk - Central Mtns, Manti - Any Legal Weapon",Nonresident,20,14.28571429,0.14285714289999998,21_bg-odds.pdf
+EB3108,"Multi-season Limited-entry Any Bull Elk - Central Mtns, Manti - Any Legal Weapon",Nonresident,25,100.0,1.0,21_bg-odds.pdf
+EB3108,"Multi-season Limited-entry Any Bull Elk - Central Mtns, Manti - Any Legal Weapon",Resident,23,100.0,1.0,21_bg-odds.pdf
+EB3108,"Multi-season Limited-entry Any Bull Elk - Central Mtns, Manti - Any Legal Weapon",Resident,24,100.0,1.0,21_bg-odds.pdf
+EB3108,"Multi-season Limited-entry Any Bull Elk - Central Mtns, Manti - Any Legal Weapon",Resident,25,100.0,1.0,21_bg-odds.pdf
+EB3109,"Multi-season Limited-entry Any Bull Elk - Central Mtns, Nebo - Any Legal Weapon",Resident,25,100.0,1.0,21_bg-odds.pdf
+EB3111,"Multi-season Limited-entry Any Bull Elk - La Sal, La Sal Mtns - Any Legal Weapon",Resident,21,100.0,1.0,21_bg-odds.pdf
+EB3111,"Multi-season Limited-entry Any Bull Elk - La Sal, La Sal Mtns - Any Legal Weapon",Resident,24,100.0,1.0,21_bg-odds.pdf
+EB3118,Multi-season Limited-entry Any Bull Elk - Paunsaugunt - Any Legal Weapon,Resident,16,100.0,1.0,21_bg-odds.pdf
+EB3118,Multi-season Limited-entry Any Bull Elk - Paunsaugunt - Any Legal Weapon,Resident,19,100.0,1.0,21_bg-odds.pdf
+EB3120,"Multi-season Limited-entry Any Bull Elk - Plateau, Fishlake/thousand Lakes - Any Legal Weapon",Resident,24,100.0,1.0,21_bg-odds.pdf
+EB3122,"Multi-season Limited-entry Any Bull Elk - South Slope, Diamond Mtn - Any Legal Weapon",Resident,22,100.0,1.0,21_bg-odds.pdf
+EB3124,Multi-season Limited-entry Any Bull Elk - Wasatch Mtns - Any Legal Weapon,Nonresident,18,33.33333333,0.33333333330000003,21_bg-odds.pdf
+EB3124,Multi-season Limited-entry Any Bull Elk - Wasatch Mtns - Any Legal Weapon,Nonresident,22,100.0,1.0,21_bg-odds.pdf
+EB3124,Multi-season Limited-entry Any Bull Elk - Wasatch Mtns - Any Legal Weapon,Resident,23,100.0,1.0,21_bg-odds.pdf
+EB3124,Multi-season Limited-entry Any Bull Elk - Wasatch Mtns - Any Legal Weapon,Resident,24,100.0,1.0,21_bg-odds.pdf
+EB3124,Multi-season Limited-entry Any Bull Elk - Wasatch Mtns - Any Legal Weapon,Resident,25,100.0,1.0,21_bg-odds.pdf
+EB3126,"Limited-entry Alw (rifle) Bull Elk - Mid - Central Mtns, Manti - Any Legal Weapon",Nonresident,20,100.0,1.0,21_bg-odds.pdf
+EB3126,"Limited-entry Alw (rifle) Bull Elk - Mid - Central Mtns, Manti - Any Legal Weapon",Resident,17,100.0,1.0,21_bg-odds.pdf
+EB3127,Limited-entry Alw (rifle) Bull Elk - Mid - Wasatch Mtns - Any Legal Weapon,Resident,18,100.0,1.0,21_bg-odds.pdf
+EB3127,Limited-entry Alw (rifle) Bull Elk - Mid - Wasatch Mtns - Any Legal Weapon,Resident,19,100.0,1.0,21_bg-odds.pdf
+EB3130,"Limited-entry Archery Bull Elk - Box Elder, Pilot Mtn - Archery",Resident,1,12.5,0.125,21_bg-odds.pdf
+EB3130,"Limited-entry Archery Bull Elk - Box Elder, Pilot Mtn - Archery",Resident,13,100.0,1.0,21_bg-odds.pdf
+EB3130,"Limited-entry Archery Bull Elk - Box Elder, Pilot Mtn - Archery",Resident,18,100.0,1.0,21_bg-odds.pdf
+EB3131,"Limited-entry September Archery Bull Elk - Box Elder, Sawtooth - Archery",Nonresident,6,33.33333333,0.33333333330000003,21_bg-odds.pdf
+EB3131,"Limited-entry September Archery Bull Elk - Box Elder, Sawtooth - Archery",Resident,1,25.0,0.25,21_bg-odds.pdf
+EB3131,"Limited-entry September Archery Bull Elk - Box Elder, Sawtooth - Archery",Resident,8,100.0,1.0,21_bg-odds.pdf
+EB3132,"Limited-entry September Archery Bull Elk - Cache, North - Archery",Nonresident,4,33.33333333,0.33333333330000003,21_bg-odds.pdf
+EB3132,"Limited-entry September Archery Bull Elk - Cache, North - Archery",Nonresident,8,50.0,0.5,21_bg-odds.pdf
+EB3132,"Limited-entry September Archery Bull Elk - Cache, North - Archery",Resident,10,100.0,1.0,21_bg-odds.pdf
+EB3132,"Limited-entry September Archery Bull Elk - Cache, North - Archery",Resident,2,9.09090909,0.0909090909,21_bg-odds.pdf
+EB3132,"Limited-entry September Archery Bull Elk - Cache, North - Archery",Resident,22,100.0,1.0,21_bg-odds.pdf
+EB3132,"Limited-entry September Archery Bull Elk - Cache, North - Archery",Resident,3,7.69230769,0.0769230769,21_bg-odds.pdf
+EB3132,"Limited-entry September Archery Bull Elk - Cache, North - Archery",Resident,4,5.26315789,0.052631578899999996,21_bg-odds.pdf
+EB3132,"Limited-entry September Archery Bull Elk - Cache, North - Archery",Resident,5,8.33333333,0.0833333333,21_bg-odds.pdf
+EB3132,"Limited-entry September Archery Bull Elk - Cache, North - Archery",Resident,6,33.33333333,0.33333333330000003,21_bg-odds.pdf
+EB3132,"Limited-entry September Archery Bull Elk - Cache, North - Archery",Resident,8,100.0,1.0,21_bg-odds.pdf
+EB3132,"Limited-entry September Archery Bull Elk - Cache, North - Archery",Resident,9,100.0,1.0,21_bg-odds.pdf
+EB3133,"Limited-entry September Archery Bull Elk - Nine Mile, Anthro - Archery",Nonresident,10,100.0,1.0,21_bg-odds.pdf
+EB3133,"Limited-entry September Archery Bull Elk - Nine Mile, Anthro - Archery",Nonresident,4,16.66666667,0.16666666670000002,21_bg-odds.pdf
+EB3133,"Limited-entry September Archery Bull Elk - Nine Mile, Anthro - Archery",Resident,0,6.25,0.0625,21_bg-odds.pdf
+EB3133,"Limited-entry September Archery Bull Elk - Nine Mile, Anthro - Archery",Resident,1,9.09090909,0.0909090909,21_bg-odds.pdf
+EB3133,"Limited-entry September Archery Bull Elk - Nine Mile, Anthro - Archery",Resident,12,100.0,1.0,21_bg-odds.pdf
+EB3133,"Limited-entry September Archery Bull Elk - Nine Mile, Anthro - Archery",Resident,4,12.5,0.125,21_bg-odds.pdf
+EB3133,"Limited-entry September Archery Bull Elk - Nine Mile, Anthro - Archery",Resident,5,76.92307692,0.7692307692,21_bg-odds.pdf
+EB3133,"Limited-entry September Archery Bull Elk - Nine Mile, Anthro - Archery",Resident,6,100.0,1.0,21_bg-odds.pdf
+EB3133,"Limited-entry September Archery Bull Elk - Nine Mile, Anthro - Archery",Resident,7,100.0,1.0,21_bg-odds.pdf
+EB3133,"Limited-entry September Archery Bull Elk - Nine Mile, Anthro - Archery",Resident,9,100.0,1.0,21_bg-odds.pdf
+EB3134,Limited-entry September Archery Bull Elk - Oquirrh-stansbury - Archery,Nonresident,5,100.0,1.0,21_bg-odds.pdf
+EB3134,Limited-entry September Archery Bull Elk - Oquirrh-stansbury - Archery,Resident,1,4.34782609,0.043478260899999996,21_bg-odds.pdf
+EB3134,Limited-entry September Archery Bull Elk - Oquirrh-stansbury - Archery,Resident,3,22.22222222,0.22222222219999999,21_bg-odds.pdf
+EB3134,Limited-entry September Archery Bull Elk - Oquirrh-stansbury - Archery,Resident,4,12.5,0.125,21_bg-odds.pdf
+EB3134,Limited-entry September Archery Bull Elk - Oquirrh-stansbury - Archery,Resident,5,50.0,0.5,21_bg-odds.pdf
+EB3134,Limited-entry September Archery Bull Elk - Oquirrh-stansbury - Archery,Resident,6,100.0,1.0,21_bg-odds.pdf
+EB3134,Limited-entry September Archery Bull Elk - Oquirrh-stansbury - Archery,Resident,7,100.0,1.0,21_bg-odds.pdf
+EB3134,Limited-entry September Archery Bull Elk - Oquirrh-stansbury - Archery,Resident,8,100.0,1.0,21_bg-odds.pdf
+EB3135,"Limited-entry September Archery Bull Elk - Plateau, Barney Top/kaiparowits - Archery",Nonresident,6,25.0,0.25,21_bg-odds.pdf
+EB3135,"Limited-entry September Archery Bull Elk - Plateau, Barney Top/kaiparowits - Archery",Resident,10,100.0,1.0,21_bg-odds.pdf
+EB3135,"Limited-entry September Archery Bull Elk - Plateau, Barney Top/kaiparowits - Archery",Resident,14,50.0,0.5,21_bg-odds.pdf
+EB3135,"Limited-entry September Archery Bull Elk - Plateau, Barney Top/kaiparowits - Archery",Resident,16,100.0,1.0,21_bg-odds.pdf
+EB3135,"Limited-entry September Archery Bull Elk - Plateau, Barney Top/kaiparowits - Archery",Resident,19,100.0,1.0,21_bg-odds.pdf
+EB3135,"Limited-entry September Archery Bull Elk - Plateau, Barney Top/kaiparowits - Archery",Resident,2,11.11111111,0.11111111109999999,21_bg-odds.pdf
+EB3135,"Limited-entry September Archery Bull Elk - Plateau, Barney Top/kaiparowits - Archery",Resident,8,33.33333333,0.33333333330000003,21_bg-odds.pdf
+EB3136,"Limited-entry September Archery Bull Elk - Southwest Desert, North - Archery",Nonresident,7,20.0,0.2,21_bg-odds.pdf
+EB3136,"Limited-entry September Archery Bull Elk - Southwest Desert, North - Archery",Resident,16,100.0,1.0,21_bg-odds.pdf
+EB3136,"Limited-entry September Archery Bull Elk - Southwest Desert, North - Archery",Resident,2,11.11111111,0.11111111109999999,21_bg-odds.pdf
+EB3136,"Limited-entry September Archery Bull Elk - Southwest Desert, North - Archery",Resident,3,12.5,0.125,21_bg-odds.pdf
+EB3136,"Limited-entry September Archery Bull Elk - Southwest Desert, North - Archery",Resident,4,25.0,0.25,21_bg-odds.pdf
+EB3136,"Limited-entry September Archery Bull Elk - Southwest Desert, North - Archery",Resident,6,50.0,0.5,21_bg-odds.pdf
+EB3136,"Limited-entry September Archery Bull Elk - Southwest Desert, North - Archery",Resident,8,100.0,1.0,21_bg-odds.pdf
+EB3136,"Limited-entry September Archery Bull Elk - Southwest Desert, North - Archery",Resident,9,100.0,1.0,21_bg-odds.pdf
+EB3137,"Limited-entry September Archery Bull Elk - West Desert, Deep Creek - Archery",Nonresident,7,33.33333333,0.33333333330000003,21_bg-odds.pdf
+EB3137,"Limited-entry September Archery Bull Elk - West Desert, Deep Creek - Archery",Resident,0,5.26315789,0.052631578899999996,21_bg-odds.pdf
+EB3137,"Limited-entry September Archery Bull Elk - West Desert, Deep Creek - Archery",Resident,1,6.66666667,0.0666666667,21_bg-odds.pdf
+EB3137,"Limited-entry September Archery Bull Elk - West Desert, Deep Creek - Archery",Resident,10,100.0,1.0,21_bg-odds.pdf
+EB3137,"Limited-entry September Archery Bull Elk - West Desert, Deep Creek - Archery",Resident,11,100.0,1.0,21_bg-odds.pdf
+EB3137,"Limited-entry September Archery Bull Elk - West Desert, Deep Creek - Archery",Resident,12,100.0,1.0,21_bg-odds.pdf
+EB3137,"Limited-entry September Archery Bull Elk - West Desert, Deep Creek - Archery",Resident,15,100.0,1.0,21_bg-odds.pdf
+EB3137,"Limited-entry September Archery Bull Elk - West Desert, Deep Creek - Archery",Resident,4,11.11111111,0.11111111109999999,21_bg-odds.pdf
+EB3137,"Limited-entry September Archery Bull Elk - West Desert, Deep Creek - Archery",Resident,5,11.11111111,0.11111111109999999,21_bg-odds.pdf
+EB3137,"Limited-entry September Archery Bull Elk - West Desert, Deep Creek - Archery",Resident,7,11.11111111,0.11111111109999999,21_bg-odds.pdf
+EB3137,"Limited-entry September Archery Bull Elk - West Desert, Deep Creek - Archery",Resident,9,100.0,1.0,21_bg-odds.pdf
+EB3138,"Limited-entry Hams Bull Elk - Box Elder, Sawtooth - H.a.m.s.",Nonresident,7,100.0,1.0,21_bg-odds.pdf
+EB3138,"Limited-entry Hams Bull Elk - Box Elder, Sawtooth - H.a.m.s.",Resident,1,16.66666667,0.16666666670000002,21_bg-odds.pdf
+EB3138,"Limited-entry Hams Bull Elk - Box Elder, Sawtooth - H.a.m.s.",Resident,11,100.0,1.0,21_bg-odds.pdf
+EB3139,"Limited-entry Hams Bull Elk -Cache , North - H.a.m.s.",Nonresident,3,33.33333333,0.33333333330000003,21_bg-odds.pdf
+EB3139,"Limited-entry Hams Bull Elk -Cache , North - H.a.m.s.",Nonresident,8,100.0,1.0,21_bg-odds.pdf
+EB3139,"Limited-entry Hams Bull Elk -Cache , North - H.a.m.s.",Resident,1,14.92537313,0.1492537313,21_bg-odds.pdf
+EB3139,"Limited-entry Hams Bull Elk -Cache , North - H.a.m.s.",Resident,10,100.0,1.0,21_bg-odds.pdf
+EB3139,"Limited-entry Hams Bull Elk -Cache , North - H.a.m.s.",Resident,12,100.0,1.0,21_bg-odds.pdf
+EB3139,"Limited-entry Hams Bull Elk -Cache , North - H.a.m.s.",Resident,13,100.0,1.0,21_bg-odds.pdf
+EB3139,"Limited-entry Hams Bull Elk -Cache , North - H.a.m.s.",Resident,16,100.0,1.0,21_bg-odds.pdf
+EB3139,"Limited-entry Hams Bull Elk -Cache , North - H.a.m.s.",Resident,2,6.66666667,0.0666666667,21_bg-odds.pdf
+EB3139,"Limited-entry Hams Bull Elk -Cache , North - H.a.m.s.",Resident,4,10.0,0.1,21_bg-odds.pdf
+EB3139,"Limited-entry Hams Bull Elk -Cache , North - H.a.m.s.",Resident,5,25.0,0.25,21_bg-odds.pdf
+EB3139,"Limited-entry Hams Bull Elk -Cache , North - H.a.m.s.",Resident,8,16.66666667,0.16666666670000002,21_bg-odds.pdf
+EB3140,"Limited-entry Hams Bull Elk - Nine Mile, Anthro - H.a.m.s.",Nonresident,12,100.0,1.0,21_bg-odds.pdf
+EB3140,"Limited-entry Hams Bull Elk - Nine Mile, Anthro - H.a.m.s.",Nonresident,3,25.0,0.25,21_bg-odds.pdf
+EB3140,"Limited-entry Hams Bull Elk - Nine Mile, Anthro - H.a.m.s.",Resident,1,40.0,0.4,21_bg-odds.pdf
+EB3140,"Limited-entry Hams Bull Elk - Nine Mile, Anthro - H.a.m.s.",Resident,10,100.0,1.0,21_bg-odds.pdf
+EB3140,"Limited-entry Hams Bull Elk - Nine Mile, Anthro - H.a.m.s.",Resident,11,100.0,1.0,21_bg-odds.pdf
+EB3140,"Limited-entry Hams Bull Elk - Nine Mile, Anthro - H.a.m.s.",Resident,12,100.0,1.0,21_bg-odds.pdf
+EB3140,"Limited-entry Hams Bull Elk - Nine Mile, Anthro - H.a.m.s.",Resident,14,100.0,1.0,21_bg-odds.pdf
+EB3140,"Limited-entry Hams Bull Elk - Nine Mile, Anthro - H.a.m.s.",Resident,15,100.0,1.0,21_bg-odds.pdf
+EB3140,"Limited-entry Hams Bull Elk - Nine Mile, Anthro - H.a.m.s.",Resident,17,100.0,1.0,21_bg-odds.pdf
+EB3140,"Limited-entry Hams Bull Elk - Nine Mile, Anthro - H.a.m.s.",Resident,2,33.33333333,0.33333333330000003,21_bg-odds.pdf
+EB3140,"Limited-entry Hams Bull Elk - Nine Mile, Anthro - H.a.m.s.",Resident,4,16.66666667,0.16666666670000002,21_bg-odds.pdf
+EB3140,"Limited-entry Hams Bull Elk - Nine Mile, Anthro - H.a.m.s.",Resident,5,50.0,0.5,21_bg-odds.pdf
+EB3140,"Limited-entry Hams Bull Elk - Nine Mile, Anthro - H.a.m.s.",Resident,8,25.0,0.25,21_bg-odds.pdf
+EB3140,"Limited-entry Hams Bull Elk - Nine Mile, Anthro - H.a.m.s.",Resident,9,100.0,1.0,21_bg-odds.pdf
+EB3141,Limited-entry Hams Bull Elk -O quirrh-stansbury - H.a.m.s.,Nonresident,2,50.0,0.5,21_bg-odds.pdf
+EB3141,Limited-entry Hams Bull Elk -O quirrh-stansbury - H.a.m.s.,Resident,0,4.54545455,0.0454545455,21_bg-odds.pdf
+EB3141,Limited-entry Hams Bull Elk -O quirrh-stansbury - H.a.m.s.,Resident,10,66.66666667,0.6666666667,21_bg-odds.pdf
+EB3141,Limited-entry Hams Bull Elk -O quirrh-stansbury - H.a.m.s.,Resident,12,100.0,1.0,21_bg-odds.pdf
+EB3141,Limited-entry Hams Bull Elk -O quirrh-stansbury - H.a.m.s.,Resident,13,100.0,1.0,21_bg-odds.pdf
+EB3141,Limited-entry Hams Bull Elk -O quirrh-stansbury - H.a.m.s.,Resident,14,100.0,1.0,21_bg-odds.pdf
+EB3141,Limited-entry Hams Bull Elk -O quirrh-stansbury - H.a.m.s.,Resident,4,11.76470588,0.1176470588,21_bg-odds.pdf
+EB3141,Limited-entry Hams Bull Elk -O quirrh-stansbury - H.a.m.s.,Resident,5,12.5,0.125,21_bg-odds.pdf
+EB3141,Limited-entry Hams Bull Elk -O quirrh-stansbury - H.a.m.s.,Resident,8,100.0,1.0,21_bg-odds.pdf
+EB3142,"Limited-entry Hams Bull Elk - Plateau, Barney Top/kaiparowits - H.a.m.s.",Nonresident,7,50.0,0.5,21_bg-odds.pdf
+EB3142,"Limited-entry Hams Bull Elk - Plateau, Barney Top/kaiparowits - H.a.m.s.",Resident,1,12.5,0.125,21_bg-odds.pdf
+EB3142,"Limited-entry Hams Bull Elk - Plateau, Barney Top/kaiparowits - H.a.m.s.",Resident,11,100.0,1.0,21_bg-odds.pdf
+EB3142,"Limited-entry Hams Bull Elk - Plateau, Barney Top/kaiparowits - H.a.m.s.",Resident,12,100.0,1.0,21_bg-odds.pdf
+EB3142,"Limited-entry Hams Bull Elk - Plateau, Barney Top/kaiparowits - H.a.m.s.",Resident,13,100.0,1.0,21_bg-odds.pdf
+EB3142,"Limited-entry Hams Bull Elk - Plateau, Barney Top/kaiparowits - H.a.m.s.",Resident,4,20.0,0.2,21_bg-odds.pdf
+EB3142,"Limited-entry Hams Bull Elk - Plateau, Barney Top/kaiparowits - H.a.m.s.",Resident,6,33.33333333,0.33333333330000003,21_bg-odds.pdf
+EB3143,"Limited-entry Hams Bull Elk - Southwest Desert, North - H.a.m.s.",Nonresident,9,50.0,0.5,21_bg-odds.pdf
+EB3143,"Limited-entry Hams Bull Elk - Southwest Desert, North - H.a.m.s.",Resident,11,100.0,1.0,21_bg-odds.pdf
+EB3143,"Limited-entry Hams Bull Elk - Southwest Desert, North - H.a.m.s.",Resident,12,100.0,1.0,21_bg-odds.pdf
+EB3143,"Limited-entry Hams Bull Elk - Southwest Desert, North - H.a.m.s.",Resident,14,100.0,1.0,21_bg-odds.pdf
+EB3143,"Limited-entry Hams Bull Elk - Southwest Desert, North - H.a.m.s.",Resident,15,100.0,1.0,21_bg-odds.pdf
+EB3143,"Limited-entry Hams Bull Elk - Southwest Desert, North - H.a.m.s.",Resident,3,11.11111111,0.11111111109999999,21_bg-odds.pdf
+EB3143,"Limited-entry Hams Bull Elk - Southwest Desert, North - H.a.m.s.",Resident,4,40.0,0.4,21_bg-odds.pdf
+EB3144,"Limited-entry Hams Bull Elk - West Desert, Deep Creek - H.a.m.s.",Nonresident,6,50.0,0.5,21_bg-odds.pdf
+EB3144,"Limited-entry Hams Bull Elk - West Desert, Deep Creek - H.a.m.s.",Resident,11,100.0,1.0,21_bg-odds.pdf
+EB3144,"Limited-entry Hams Bull Elk - West Desert, Deep Creek - H.a.m.s.",Resident,13,100.0,1.0,21_bg-odds.pdf
+EB3144,"Limited-entry Hams Bull Elk - West Desert, Deep Creek - H.a.m.s.",Resident,15,100.0,1.0,21_bg-odds.pdf
+EB3144,"Limited-entry Hams Bull Elk - West Desert, Deep Creek - H.a.m.s.",Resident,17,100.0,1.0,21_bg-odds.pdf
+EB3144,"Limited-entry Hams Bull Elk - West Desert, Deep Creek - H.a.m.s.",Resident,2,5.55555556,0.0555555556,21_bg-odds.pdf
+EB3144,"Limited-entry Hams Bull Elk - West Desert, Deep Creek - H.a.m.s.",Resident,3,11.11111111,0.11111111109999999,21_bg-odds.pdf
+EB3144,"Limited-entry Hams Bull Elk - West Desert, Deep Creek - H.a.m.s.",Resident,4,33.33333333,0.33333333330000003,21_bg-odds.pdf
+EB3144,"Limited-entry Hams Bull Elk - West Desert, Deep Creek - H.a.m.s.",Resident,6,25.0,0.25,21_bg-odds.pdf
+EB3145,"Limited-entry Archery Bull Elk - Plateau, Boulder - Archery",Nonresident,12,8.33333333,0.0833333333,21_bg-odds.pdf
+EB3145,"Limited-entry Archery Bull Elk - Plateau, Boulder - Archery",Nonresident,24,100.0,1.0,21_bg-odds.pdf
+EB3145,"Limited-entry Archery Bull Elk - Plateau, Boulder - Archery",Resident,15,18.18181818,0.1818181818,21_bg-odds.pdf
+EB3145,"Limited-entry Archery Bull Elk - Plateau, Boulder - Archery",Resident,16,76.92307692,0.7692307692,21_bg-odds.pdf
+EB3145,"Limited-entry Archery Bull Elk - Plateau, Boulder - Archery",Resident,18,100.0,1.0,21_bg-odds.pdf
+EB3145,"Limited-entry Archery Bull Elk - Plateau, Boulder - Archery",Resident,19,100.0,1.0,21_bg-odds.pdf
+EB3145,"Limited-entry Archery Bull Elk - Plateau, Boulder - Archery",Resident,20,100.0,1.0,21_bg-odds.pdf
+EB3145,"Limited-entry Archery Bull Elk - Plateau, Boulder - Archery",Resident,4,3.22580645,0.032258064499999996,21_bg-odds.pdf
+EB3145,"Limited-entry Archery Bull Elk - Plateau, Boulder - Archery",Resident,5,3.7037037,0.037037037,21_bg-odds.pdf
+EB3145,"Limited-entry Archery Bull Elk - Plateau, Boulder - Archery",Resident,6,3.57142857,0.0357142857,21_bg-odds.pdf
+EB3145,"Limited-entry Archery Bull Elk - Plateau, Boulder - Archery",Resident,7,4.54545455,0.0454545455,21_bg-odds.pdf
+EB3145,"Limited-entry Archery Bull Elk - Plateau, Boulder - Archery",Resident,8,16.66666667,0.16666666670000002,21_bg-odds.pdf
+EB3146,"Limited-entry Archery Bull Elk - Southwest Desert, South - Archery",Nonresident,17,66.66666667,0.6666666667,21_bg-odds.pdf
+EB3146,"Limited-entry Archery Bull Elk - Southwest Desert, South - Archery",Nonresident,18,100.0,1.0,21_bg-odds.pdf
+EB3146,"Limited-entry Archery Bull Elk - Southwest Desert, South - Archery",Resident,1,5.88235294,0.0588235294,21_bg-odds.pdf
+EB3146,"Limited-entry Archery Bull Elk - Southwest Desert, South - Archery",Resident,10,100.0,1.0,21_bg-odds.pdf
+EB3146,"Limited-entry Archery Bull Elk - Southwest Desert, South - Archery",Resident,11,100.0,1.0,21_bg-odds.pdf
+EB3146,"Limited-entry Archery Bull Elk - Southwest Desert, South - Archery",Resident,14,100.0,1.0,21_bg-odds.pdf
+EB3146,"Limited-entry Archery Bull Elk - Southwest Desert, South - Archery",Resident,16,100.0,1.0,21_bg-odds.pdf
+EB3146,"Limited-entry Archery Bull Elk - Southwest Desert, South - Archery",Resident,2,4.76190476,0.0476190476,21_bg-odds.pdf
+EB3146,"Limited-entry Archery Bull Elk - Southwest Desert, South - Archery",Resident,3,7.14285714,0.0714285714,21_bg-odds.pdf
+EB3146,"Limited-entry Archery Bull Elk - Southwest Desert, South - Archery",Resident,4,4.0,0.04,21_bg-odds.pdf
+EB3146,"Limited-entry Archery Bull Elk - Southwest Desert, South - Archery",Resident,6,33.33333333,0.33333333330000003,21_bg-odds.pdf
+EB3146,"Limited-entry Archery Bull Elk - Southwest Desert, South - Archery",Resident,7,30.3030303,0.303030303,21_bg-odds.pdf
+EB3146,"Limited-entry Archery Bull Elk - Southwest Desert, South - Archery",Resident,8,58.82352941,0.5882352941,21_bg-odds.pdf
+EB3146,"Limited-entry Archery Bull Elk - Southwest Desert, South - Archery",Resident,9,100.0,1.0,21_bg-odds.pdf
+EB3147,"Limited-entry Alw (rifle) Bull Elk - Early - Box Elder, Grouse Creek - Any Legal Weapon",Nonresident,18,50.0,0.5,21_bg-odds.pdf
+EB3147,"Limited-entry Alw (rifle) Bull Elk - Early - Box Elder, Grouse Creek - Any Legal Weapon",Resident,1,3.44827586,0.034482758599999996,21_bg-odds.pdf
+EB3147,"Limited-entry Alw (rifle) Bull Elk - Early - Box Elder, Grouse Creek - Any Legal Weapon",Resident,11,20.0,0.2,21_bg-odds.pdf
+EB3147,"Limited-entry Alw (rifle) Bull Elk - Early - Box Elder, Grouse Creek - Any Legal Weapon",Resident,14,11.11111111,0.11111111109999999,21_bg-odds.pdf
+EB3147,"Limited-entry Alw (rifle) Bull Elk - Early - Box Elder, Grouse Creek - Any Legal Weapon",Resident,15,50.0,0.5,21_bg-odds.pdf
+EB3147,"Limited-entry Alw (rifle) Bull Elk - Early - Box Elder, Grouse Creek - Any Legal Weapon",Resident,16,100.0,1.0,21_bg-odds.pdf
+EB3147,"Limited-entry Alw (rifle) Bull Elk - Early - Box Elder, Grouse Creek - Any Legal Weapon",Resident,17,100.0,1.0,21_bg-odds.pdf
+EB3147,"Limited-entry Alw (rifle) Bull Elk - Early - Box Elder, Grouse Creek - Any Legal Weapon",Resident,2,3.84615385,0.038461538499999996,21_bg-odds.pdf
+EB3147,"Limited-entry Alw (rifle) Bull Elk - Early - Box Elder, Grouse Creek - Any Legal Weapon",Resident,21,100.0,1.0,21_bg-odds.pdf
+EB3147,"Limited-entry Alw (rifle) Bull Elk - Early - Box Elder, Grouse Creek - Any Legal Weapon",Resident,5,5.26315789,0.052631578899999996,21_bg-odds.pdf
+EB3147,"Limited-entry Alw (rifle) Bull Elk - Early - Box Elder, Grouse Creek - Any Legal Weapon",Resident,7,8.33333333,0.0833333333,21_bg-odds.pdf
+EB3148,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Boulder - Any Legal Weapon",Nonresident,14,2.3255814,0.023255814,21_bg-odds.pdf
+EB3148,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Boulder - Any Legal Weapon",Nonresident,25,11.11111111,0.11111111109999999,21_bg-odds.pdf
+EB3148,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Boulder - Any Legal Weapon",Nonresident,26,100.0,1.0,21_bg-odds.pdf
+EB3148,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Boulder - Any Legal Weapon",Resident,11,4.08163265,0.04081632650000001,21_bg-odds.pdf
+EB3148,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Boulder - Any Legal Weapon",Resident,14,2.22222222,0.0222222222,21_bg-odds.pdf
+EB3148,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Boulder - Any Legal Weapon",Resident,17,2.7027027,0.027027027000000002,21_bg-odds.pdf
+EB3148,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Boulder - Any Legal Weapon",Resident,18,2.56410256,0.0256410256,21_bg-odds.pdf
+EB3148,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Boulder - Any Legal Weapon",Resident,19,3.03030303,0.0303030303,21_bg-odds.pdf
+EB3148,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Boulder - Any Legal Weapon",Resident,20,2.85714286,0.0285714286,21_bg-odds.pdf
+EB3148,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Boulder - Any Legal Weapon",Resident,21,3.22580645,0.032258064499999996,21_bg-odds.pdf
+EB3148,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Boulder - Any Legal Weapon",Resident,23,10.75268817,0.10752688170000001,21_bg-odds.pdf
+EB3148,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Boulder - Any Legal Weapon",Resident,24,100.0,1.0,21_bg-odds.pdf
+EB3148,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Boulder - Any Legal Weapon",Resident,25,100.0,1.0,21_bg-odds.pdf
+EB3148,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Boulder - Any Legal Weapon",Resident,3,0.86206897,0.0086206897,21_bg-odds.pdf
+EB3148,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Boulder - Any Legal Weapon",Resident,8,1.96078431,0.0196078431,21_bg-odds.pdf
+EB3148,"Limited-entry Alw (rifle) Bull Elk - Early - Plateau, Boulder - Any Legal Weapon",Resident,9,2.17391304,0.0217391304,21_bg-odds.pdf
+EB3149,"Limited-entry Alw (rifle) Bull Elk - Early - Southwest Desert, South - Any Legal Weapon",Nonresident,12,4.16666667,0.041666666699999994,21_bg-odds.pdf
+EB3149,"Limited-entry Alw (rifle) Bull Elk - Early - Southwest Desert, South - Any Legal Weapon",Nonresident,24,100.0,1.0,21_bg-odds.pdf
+EB3149,"Limited-entry Alw (rifle) Bull Elk - Early - Southwest Desert, South - Any Legal Weapon",Resident,10,2.7027027,0.027027027000000002,21_bg-odds.pdf
+EB3149,"Limited-entry Alw (rifle) Bull Elk - Early - Southwest Desert, South - Any Legal Weapon",Resident,11,3.57142857,0.0357142857,21_bg-odds.pdf
+EB3149,"Limited-entry Alw (rifle) Bull Elk - Early - Southwest Desert, South - Any Legal Weapon",Resident,12,3.33333333,0.0333333333,21_bg-odds.pdf
+EB3149,"Limited-entry Alw (rifle) Bull Elk - Early - Southwest Desert, South - Any Legal Weapon",Resident,18,14.28571429,0.14285714289999998,21_bg-odds.pdf
+EB3149,"Limited-entry Alw (rifle) Bull Elk - Early - Southwest Desert, South - Any Legal Weapon",Resident,20,33.33333333,0.33333333330000003,21_bg-odds.pdf
+EB3149,"Limited-entry Alw (rifle) Bull Elk - Early - Southwest Desert, South - Any Legal Weapon",Resident,21,90.90909091,0.9090909091,21_bg-odds.pdf
+EB3149,"Limited-entry Alw (rifle) Bull Elk - Early - Southwest Desert, South - Any Legal Weapon",Resident,22,100.0,1.0,21_bg-odds.pdf
+EB3149,"Limited-entry Alw (rifle) Bull Elk - Early - Southwest Desert, South - Any Legal Weapon",Resident,23,100.0,1.0,21_bg-odds.pdf
+EB3149,"Limited-entry Alw (rifle) Bull Elk - Early - Southwest Desert, South - Any Legal Weapon",Resident,6,3.125,0.03125,21_bg-odds.pdf
+EB3149,"Limited-entry Alw (rifle) Bull Elk - Early - Southwest Desert, South - Any Legal Weapon",Resident,7,2.08333333,0.0208333333,21_bg-odds.pdf
+EB3149,"Limited-entry Alw (rifle) Bull Elk - Early - Southwest Desert, South - Any Legal Weapon",Resident,8,2.43902439,0.0243902439,21_bg-odds.pdf
+EB3149,"Limited-entry Alw (rifle) Bull Elk - Early - Southwest Desert, South - Any Legal Weapon",Resident,9,4.76190476,0.0476190476,21_bg-odds.pdf
+EB3150,"Limited-entry Alw (rifle) Bull Elk - Mid - Box Elder, Grouse Creek - Any Legal Weapon",Nonresident,12,100.0,1.0,21_bg-odds.pdf
+EB3150,"Limited-entry Alw (rifle) Bull Elk - Mid - Box Elder, Grouse Creek - Any Legal Weapon",Resident,11,100.0,1.0,21_bg-odds.pdf
+EB3150,"Limited-entry Alw (rifle) Bull Elk - Mid - Box Elder, Grouse Creek - Any Legal Weapon",Resident,12,100.0,1.0,21_bg-odds.pdf
+EB3150,"Limited-entry Alw (rifle) Bull Elk - Mid - Box Elder, Grouse Creek - Any Legal Weapon",Resident,13,100.0,1.0,21_bg-odds.pdf
+EB3150,"Limited-entry Alw (rifle) Bull Elk - Mid - Box Elder, Grouse Creek - Any Legal Weapon",Resident,14,100.0,1.0,21_bg-odds.pdf
+EB3150,"Limited-entry Alw (rifle) Bull Elk - Mid - Box Elder, Grouse Creek - Any Legal Weapon",Resident,4,16.66666667,0.16666666670000002,21_bg-odds.pdf
+EB3150,"Limited-entry Alw (rifle) Bull Elk - Mid - Box Elder, Grouse Creek - Any Legal Weapon",Resident,5,20.0,0.2,21_bg-odds.pdf
+EB3150,"Limited-entry Alw (rifle) Bull Elk - Mid - Box Elder, Grouse Creek - Any Legal Weapon",Resident,6,25.0,0.25,21_bg-odds.pdf
+EB3151,"Limited-entry Alw (rifle) Bull Elk - Late -Plateau , Boulder - Any Legal Weapon",Nonresident,21,100.0,1.0,21_bg-odds.pdf
+EB3151,"Limited-entry Alw (rifle) Bull Elk - Late -Plateau , Boulder - Any Legal Weapon",Nonresident,8,25.0,0.25,21_bg-odds.pdf
+EB3151,"Limited-entry Alw (rifle) Bull Elk - Late -Plateau , Boulder - Any Legal Weapon",Resident,1,5.0,0.05,21_bg-odds.pdf
+EB3151,"Limited-entry Alw (rifle) Bull Elk - Late -Plateau , Boulder - Any Legal Weapon",Resident,13,18.18181818,0.1818181818,21_bg-odds.pdf
+EB3151,"Limited-entry Alw (rifle) Bull Elk - Late -Plateau , Boulder - Any Legal Weapon",Resident,14,20.0,0.2,21_bg-odds.pdf
+EB3151,"Limited-entry Alw (rifle) Bull Elk - Late -Plateau , Boulder - Any Legal Weapon",Resident,15,11.11111111,0.11111111109999999,21_bg-odds.pdf
+EB3151,"Limited-entry Alw (rifle) Bull Elk - Late -Plateau , Boulder - Any Legal Weapon",Resident,18,50.0,0.5,21_bg-odds.pdf
+EB3151,"Limited-entry Alw (rifle) Bull Elk - Late -Plateau , Boulder - Any Legal Weapon",Resident,19,100.0,1.0,21_bg-odds.pdf
+EB3151,"Limited-entry Alw (rifle) Bull Elk - Late -Plateau , Boulder - Any Legal Weapon",Resident,21,100.0,1.0,21_bg-odds.pdf
+EB3151,"Limited-entry Alw (rifle) Bull Elk - Late -Plateau , Boulder - Any Legal Weapon",Resident,23,100.0,1.0,21_bg-odds.pdf
+EB3151,"Limited-entry Alw (rifle) Bull Elk - Late -Plateau , Boulder - Any Legal Weapon",Resident,3,9.52380952,0.0952380952,21_bg-odds.pdf
+EB3151,"Limited-entry Alw (rifle) Bull Elk - Late -Plateau , Boulder - Any Legal Weapon",Resident,6,5.0,0.05,21_bg-odds.pdf
+EB3152,"Limited-entry Alw (rifle) Bull Elk - Late - Southwest Desert, South - Any Legal Weapon",Nonresident,20,50.0,0.5,21_bg-odds.pdf
+EB3152,"Limited-entry Alw (rifle) Bull Elk - Late - Southwest Desert, South - Any Legal Weapon",Nonresident,5,12.5,0.125,21_bg-odds.pdf
+EB3152,"Limited-entry Alw (rifle) Bull Elk - Late - Southwest Desert, South - Any Legal Weapon",Resident,0,1.33333333,0.013333333300000002,21_bg-odds.pdf
+EB3152,"Limited-entry Alw (rifle) Bull Elk - Late - Southwest Desert, South - Any Legal Weapon",Resident,10,7.14285714,0.0714285714,21_bg-odds.pdf
+EB3152,"Limited-entry Alw (rifle) Bull Elk - Late - Southwest Desert, South - Any Legal Weapon",Resident,11,11.11111111,0.11111111109999999,21_bg-odds.pdf
+EB3152,"Limited-entry Alw (rifle) Bull Elk - Late - Southwest Desert, South - Any Legal Weapon",Resident,12,25.0,0.25,21_bg-odds.pdf
+EB3152,"Limited-entry Alw (rifle) Bull Elk - Late - Southwest Desert, South - Any Legal Weapon",Resident,14,14.28571429,0.14285714289999998,21_bg-odds.pdf
+EB3152,"Limited-entry Alw (rifle) Bull Elk - Late - Southwest Desert, South - Any Legal Weapon",Resident,16,100.0,1.0,21_bg-odds.pdf
+EB3152,"Limited-entry Alw (rifle) Bull Elk - Late - Southwest Desert, South - Any Legal Weapon",Resident,17,100.0,1.0,21_bg-odds.pdf
+EB3152,"Limited-entry Alw (rifle) Bull Elk - Late - Southwest Desert, South - Any Legal Weapon",Resident,19,100.0,1.0,21_bg-odds.pdf
+EB3152,"Limited-entry Alw (rifle) Bull Elk - Late - Southwest Desert, South - Any Legal Weapon",Resident,2,5.26315789,0.052631578899999996,21_bg-odds.pdf
+EB3152,"Limited-entry Alw (rifle) Bull Elk - Late - Southwest Desert, South - Any Legal Weapon",Resident,20,100.0,1.0,21_bg-odds.pdf
+EB3152,"Limited-entry Alw (rifle) Bull Elk - Late - Southwest Desert, South - Any Legal Weapon",Resident,7,10.75268817,0.10752688170000001,21_bg-odds.pdf
+EB3152,"Limited-entry Alw (rifle) Bull Elk - Late - Southwest Desert, South - Any Legal Weapon",Resident,8,7.14285714,0.0714285714,21_bg-odds.pdf
+EB3152,"Limited-entry Alw (rifle) Bull Elk - Late - Southwest Desert, South - Any Legal Weapon",Resident,9,5.0,0.05,21_bg-odds.pdf
+EB3153,"Limited-entry Muzzleloader Bull Elk - Box Elder, Grouse Creek - Muzzleloader",Nonresident,16,100.0,1.0,21_bg-odds.pdf
+EB3153,"Limited-entry Muzzleloader Bull Elk - Box Elder, Grouse Creek - Muzzleloader",Resident,12,100.0,1.0,21_bg-odds.pdf
+EB3153,"Limited-entry Muzzleloader Bull Elk - Box Elder, Grouse Creek - Muzzleloader",Resident,13,100.0,1.0,21_bg-odds.pdf
+EB3153,"Limited-entry Muzzleloader Bull Elk - Box Elder, Grouse Creek - Muzzleloader",Resident,14,100.0,1.0,21_bg-odds.pdf
+EB3153,"Limited-entry Muzzleloader Bull Elk - Box Elder, Grouse Creek - Muzzleloader",Resident,4,20.0,0.2,21_bg-odds.pdf
+EB3153,"Limited-entry Muzzleloader Bull Elk - Box Elder, Grouse Creek - Muzzleloader",Resident,7,50.0,0.5,21_bg-odds.pdf
+EB3153,"Limited-entry Muzzleloader Bull Elk - Box Elder, Grouse Creek - Muzzleloader",Resident,9,50.0,0.5,21_bg-odds.pdf
+EB3154,"Limited-entry Muzzleloader Bull Elk - Plateau, Boulder - Muzzleloader",Nonresident,12,3.57142857,0.0357142857,21_bg-odds.pdf
+EB3154,"Limited-entry Muzzleloader Bull Elk - Plateau, Boulder - Muzzleloader",Resident,13,11.11111111,0.11111111109999999,21_bg-odds.pdf
+EB3154,"Limited-entry Muzzleloader Bull Elk - Plateau, Boulder - Muzzleloader",Resident,14,7.69230769,0.0769230769,21_bg-odds.pdf
+EB3154,"Limited-entry Muzzleloader Bull Elk - Plateau, Boulder - Muzzleloader",Resident,22,62.5,0.625,21_bg-odds.pdf
+EB3154,"Limited-entry Muzzleloader Bull Elk - Plateau, Boulder - Muzzleloader",Resident,23,100.0,1.0,21_bg-odds.pdf
+EB3154,"Limited-entry Muzzleloader Bull Elk - Plateau, Boulder - Muzzleloader",Resident,3,9.09090909,0.0909090909,21_bg-odds.pdf
+EB3154,"Limited-entry Muzzleloader Bull Elk - Plateau, Boulder - Muzzleloader",Resident,6,6.66666667,0.0666666667,21_bg-odds.pdf
+EB3154,"Limited-entry Muzzleloader Bull Elk - Plateau, Boulder - Muzzleloader",Resident,8,8.33333333,0.0833333333,21_bg-odds.pdf
+EB3155,"Limited-entry Muzzleloader Bull Elk - Southwest Desert, South - Muzzleloader",Nonresident,21,50.0,0.5,21_bg-odds.pdf
+EB3155,"Limited-entry Muzzleloader Bull Elk - Southwest Desert, South - Muzzleloader",Nonresident,7,25.0,0.25,21_bg-odds.pdf
+EB3155,"Limited-entry Muzzleloader Bull Elk - Southwest Desert, South - Muzzleloader",Resident,15,100.0,1.0,21_bg-odds.pdf
+EB3155,"Limited-entry Muzzleloader Bull Elk - Southwest Desert, South - Muzzleloader",Resident,16,100.0,1.0,21_bg-odds.pdf
+EB3155,"Limited-entry Muzzleloader Bull Elk - Southwest Desert, South - Muzzleloader",Resident,17,100.0,1.0,21_bg-odds.pdf
+EB3155,"Limited-entry Muzzleloader Bull Elk - Southwest Desert, South - Muzzleloader",Resident,19,100.0,1.0,21_bg-odds.pdf
+EB3155,"Limited-entry Muzzleloader Bull Elk - Southwest Desert, South - Muzzleloader",Resident,4,9.52380952,0.0952380952,21_bg-odds.pdf
+EB3155,"Limited-entry Muzzleloader Bull Elk - Southwest Desert, South - Muzzleloader",Resident,5,14.28571429,0.14285714289999998,21_bg-odds.pdf
+EB3155,"Limited-entry Muzzleloader Bull Elk - Southwest Desert, South - Muzzleloader",Resident,6,7.69230769,0.0769230769,21_bg-odds.pdf
+EB3155,"Limited-entry Muzzleloader Bull Elk - Southwest Desert, South - Muzzleloader",Resident,8,12.5,0.125,21_bg-odds.pdf
+EB3156,"Multi-season Limited-entry Any Bull Elk - Plateau, Boulder - Any Legal Weapon",Resident,16,5.88235294,0.0588235294,21_bg-odds.pdf
+EB3156,"Multi-season Limited-entry Any Bull Elk - Plateau, Boulder - Any Legal Weapon",Resident,26,25.0,0.25,21_bg-odds.pdf
+EB3157,"Multi-season Limited-entry Any Bull Elk - Southwest Desert, South - Any Legal Weapon",Resident,17,12.5,0.125,21_bg-odds.pdf
+EB3157,"Multi-season Limited-entry Any Bull Elk - Southwest Desert, South - Any Legal Weapon",Resident,24,33.33333333,0.33333333330000003,21_bg-odds.pdf
+EB3157,"Multi-season Limited-entry Any Bull Elk - Southwest Desert, South - Any Legal Weapon",Resident,27,100.0,1.0,21_bg-odds.pdf
+EB3500,Cwmu Any Bull Elk - Alton - Any Legal Weapon,Resident,19,100.0,1.0,21_bg-odds.pdf
+EB3501,Cwmu Any Bull Elk - Bar J Ranch - Any Legal Weapon,Resident,21,100.0,1.0,21_bg-odds.pdf
+EB3504,Cwmu Any Bull Elk - Black Hawk - Any Legal Weapon,Resident,15,100.0,1.0,21_bg-odds.pdf
+EB3505,Cwmu Any Bull Elk -Boobe Hole - An y Legal Weapon,Resident,16,100.0,1.0,21_bg-odds.pdf
+EB3508,Cwmu Any Bull Elk - Chimney Rock - Any Legal Weapon,Resident,24,100.0,1.0,21_bg-odds.pdf
+EB3509,Cwmu Any Bull Elk - Coldwater Ranch - Any Legal Weapon,Resident,23,100.0,1.0,21_bg-odds.pdf
+EB3514,Cwmu Any Bull Elk - Deseret - Any Legal Weapon,Resident,24,100.0,1.0,21_bg-odds.pdf
+EB3516,Cwmu Any Bull Elk - Durst Mountain - Any Legal Weapon,Resident,17,100.0,1.0,21_bg-odds.pdf
+EB3517,Cwmu Any Bull Elk - East Fork Chalk Creek - Any Legal Weapon,Resident,10,100.0,1.0,21_bg-odds.pdf
+EB3519,Cwmu Any Bull Elk - Ensign Ranches - Any Legal Weapon,Resident,15,100.0,1.0,21_bg-odds.pdf
+EB3520,Cwmu Any Bull Elk - Folley Ridge - Any Legal Weapon,Resident,16,33.33333333,0.33333333330000003,21_bg-odds.pdf
+EB3521,Cwmu Any Bull Elk - Grass Valley/clark Canyon - Any Legal Weapon,Resident,12,100.0,1.0,21_bg-odds.pdf
+EB3524,Cwmu Any Bull Elk - Hardscrabble - Any Legal Weapon,Resident,11,100.0,1.0,21_bg-odds.pdf
+EB3525,Cwmu Any Bull Elk - Heaston East - Any Legal Weapon,Resident,17,100.0,1.0,21_bg-odds.pdf
+EB3525,Cwmu Any Bull Elk - Heaston East - Any Legal Weapon,Resident,18,100.0,1.0,21_bg-odds.pdf
+EB3527,Cwmu Any Bull Elk - Indian Head - Any Legal Weapon,Resident,6,50.0,0.5,21_bg-odds.pdf
+EB3528,Cwmu Any Bull Elk - Ingham Peak - Any Legal Weapon,Resident,13,100.0,1.0,21_bg-odds.pdf
+EB3530,Cwmu Any Bull Elk -Jacob's Creek - An y Legal Weapon,Resident,0,50.0,0.5,21_bg-odds.pdf
+EB3530,Cwmu Any Bull Elk -Jacob's Creek - An y Legal Weapon,Resident,14,100.0,1.0,21_bg-odds.pdf
+EB3531,Cwmu Any Bull Elk - Johnson Mountain Ranch - Any Legal Weapon,Resident,22,100.0,1.0,21_bg-odds.pdf
+EB3534,Cwmu Any Bull Elk - Little Red Creek - Any Legal Weapon,Resident,24,50.0,0.5,21_bg-odds.pdf
+EB3535,Cwmu Any Bull Elk - Lone Tree Tunnel Hollow - Any Legal Weapon,Resident,11,100.0,1.0,21_bg-odds.pdf
+EB3535,Cwmu Any Bull Elk - Lone Tree Tunnel Hollow - Any Legal Weapon,Resident,15,100.0,1.0,21_bg-odds.pdf
+EB3536,Cwmu Any Bull Elk - Minnie Maud Ridge - Any Legal Weapon,Resident,11,33.33333333,0.33333333330000003,21_bg-odds.pdf
+EB3540,Cwmu Any Bull Elk - Old Woman Plateau - Any Legal Weapon,Resident,11,50.0,0.5,21_bg-odds.pdf
+EB3542,Cwmu Any Bull Elk - Powder Mountain - Any Legal Weapon,Resident,11,50.0,0.5,21_bg-odds.pdf
+EB3543,Cwmu Any Bull Elk - Preston Nutter Ranch - Any Legal Weapon,Resident,23,33.33333333,0.33333333330000003,21_bg-odds.pdf
+EB3543,Cwmu Any Bull Elk - Preston Nutter Ranch - Any Legal Weapon,Resident,6,12.5,0.125,21_bg-odds.pdf
+EB3545,Cwmu Any Bull Elk - Riverview Ranch Llc - Any Legal Weapon,Resident,18,100.0,1.0,21_bg-odds.pdf
+EB3545,Cwmu Any Bull Elk - Riverview Ranch Llc - Any Legal Weapon,Resident,22,100.0,1.0,21_bg-odds.pdf
+EB3551,Cwmu Any Bull Elk - Sj Ranch - Any Legal Weapon,Resident,10,50.0,0.5,21_bg-odds.pdf
+EB3552,Cwmu Any Bull Elk - Skull Crack - Any Legal Weapon,Resident,15,50.0,0.5,21_bg-odds.pdf
+EB3553,Cwmu Any Bull Elk - Soldier Summit - Any Legal Weapon,Resident,21,100.0,1.0,21_bg-odds.pdf
+EB3554,Cwmu Any Bull Elk - South Canyon - Any Legal Weapon,Resident,13,100.0,1.0,21_bg-odds.pdf
+EB3555,Cwmu Any Bull Elk - Spring Creek/dodge - Any Legal Weapon,Resident,26,100.0,1.0,21_bg-odds.pdf
+EB3557,Cwmu Any Bull Elk - Strawberry Ridge - Any Legal Weapon,Resident,17,100.0,1.0,21_bg-odds.pdf
+EB3559,Cwmu Any Bull Elk - Three C - Any Legal Weapon,Resident,19,50.0,0.5,21_bg-odds.pdf
+EB3561,Cwmu Any Bull Elk - Two Bear - Any Legal Weapon,Resident,19,50.0,0.5,21_bg-odds.pdf
+EB3561,Cwmu Any Bull Elk - Two Bear - Any Legal Weapon,Resident,20,100.0,1.0,21_bg-odds.pdf
+EB3562,Cwmu Any Bull Elk - Wallsburg - Any Legal Weapon,Resident,8,50.0,0.5,21_bg-odds.pdf
+EB3563,Cwmu Any Bull Elk - Weber Florence Creek - Any Legal Weapon,Resident,12,100.0,1.0,21_bg-odds.pdf
+EB3563,Cwmu Any Bull Elk - Weber Florence Creek - Any Legal Weapon,Resident,14,100.0,1.0,21_bg-odds.pdf
+EB3563,Cwmu Any Bull Elk - Weber Florence Creek - Any Legal Weapon,Resident,15,100.0,1.0,21_bg-odds.pdf
+EB3565,Cwmu Any Bull Elk - North Peaks - Any Legal Weapon,Resident,8,50.0,0.5,21_bg-odds.pdf
+EB3607,Cwmu Any Bull Elk - West Willow Creek Ranch - Any Legal Weapon,Resident,8,100.0,1.0,21_bg-odds.pdf
+EB3608,Cwmu Any Bull Elk - Avintaquin Canyon - Any Legal Weapon,Resident,15,100.0,1.0,21_bg-odds.pdf
+EB3609,Cwmu Any Bull Elk - Royal Ivory Outfitters - Any Legal Weapon,Resident,11,100.0,1.0,21_bg-odds.pdf
+EB3609,Cwmu Any Bull Elk - Royal Ivory Outfitters - Any Legal Weapon,Resident,18,100.0,1.0,21_bg-odds.pdf
+EB3609,Cwmu Any Bull Elk - Royal Ivory Outfitters - Any Legal Weapon,Resident,3,100.0,1.0,21_bg-odds.pdf
+EB3610,Cwmu Any Bull Elk - Sharp Mountain - Any Legal Weapon,Resident,7,100.0,1.0,21_bg-odds.pdf
+EB3610,Cwmu Any Bull Elk - Sharp Mountain - Any Legal Weapon,Resident,9,100.0,1.0,21_bg-odds.pdf
+GO6800,Mountain Goat - Beaver - Any Legal Weapon,Nonresident,22,50.0,0.5,21_bg-odds.pdf
+GO6800,Mountain Goat - Beaver - Any Legal Weapon,Resident,22,100.0,1.0,21_bg-odds.pdf
+GO6804,"Mountain Goat - Chalk Creek/kamas, Uintas - Any Legal Weapon",Resident,18,100.0,1.0,21_bg-odds.pdf
+GO6804,"Mountain Goat - Chalk Creek/kamas, Uintas - Any Legal Weapon",Resident,23,100.0,1.0,21_bg-odds.pdf
+GO6805,"Mountain Goat - North Slope/south Slope, High Uintas Central - Any Legal Weapon",Resident,17,58.82352941,0.5882352941,21_bg-odds.pdf
+GO6808,"Mountain Goat - North Slope/south Slope, High Uintas West - Any Legal Weapon",Resident,18,100.0,1.0,21_bg-odds.pdf
+GO6814,Mountain Goat - Mt Dutton - Any Legal Weapon,Resident,21,50.0,0.5,21_bg-odds.pdf
+GO6815,"Mountain Goat Archery - North Slope/south Slope, High Uintas Central - Archery",Resident,15,50.0,0.5,21_bg-odds.pdf
+GO6817,"Mountain Goat - La Sal, La Sal Mtns - Any Legal Weapon",Resident,18,100.0,1.0,21_bg-odds.pdf
+GO6818,"Mountain Goat - Wasatch Mtns, Box Elder Peak - Any Legal Weapon",Resident,21,100.0,1.0,21_bg-odds.pdf
+GO6821,"Mountain Goat Archery - Central Mtns, Nebo - Archery",Resident,17,100.0,1.0,21_bg-odds.pdf
+GO6821,"Mountain Goat Archery - Central Mtns, Nebo - Archery",Resident,18,100.0,1.0,21_bg-odds.pdf
+MA1000,"Antlerless Moose - East Canyon, Davis-north Salt Lake - Any Legal Weapon",Resident,15,7.69230769,0.0769230769,2021 Antlerless Draw Results.pdf
+MA1001,"Antlerless Moose - East Canyon, Morgan-summit - Any Legal Weapon",Resident,15,100.0,1.0,2021 Antlerless Draw Results.pdf
+MA1003,"Antlerless Moose - Ogden, West - Any Legal Weapon",Resident,15,16.66666667,0.16666666670000002,2021 Antlerless Draw Results.pdf
+MA1005,Antlerless Moose - Morgan-south Rich -An y Legal Weapon,Nonresident,14,50.0,0.5,2021 Antlerless Draw Results.pdf
+MA1005,Antlerless Moose - Morgan-south Rich -An y Legal Weapon,Resident,15,100.0,1.0,2021 Antlerless Draw Results.pdf
+MB6000,Bull Moose - Cache - Any Legal Weapon,Resident,26,100.0,1.0,21_bg-odds.pdf
+MB6001,Bull Moose - Chalk Creek - Any Legal Weapon,Resident,25,100.0,1.0,21_bg-odds.pdf
+MB6002,Bull Moose - East Canyon - Any Legal Weapon,Resident,24,33.33333333,0.33333333330000003,21_bg-odds.pdf
+MB6003,"Bull Moose - East Canyon, Morgan-summit - Any Legal Weapon",Resident,23,100.0,1.0,21_bg-odds.pdf
+MB6003,"Bull Moose - East Canyon, Morgan-summit - Any Legal Weapon",Resident,24,100.0,1.0,21_bg-odds.pdf
+MB6004,Bull Moose - Kamas - Any Legal Weapon,Resident,24,66.66666667,0.6666666667,21_bg-odds.pdf
+MB6005,Bull Moose - Morgan-south Rich - Any Legal Weapon,Resident,24,100.0,1.0,21_bg-odds.pdf
+MB6006,"Bull Moose - North Slope, Summit - Any Legal Weapon",Nonresident,24,100.0,1.0,21_bg-odds.pdf
+MB6006,"Bull Moose - North Slope, Summit - Any Legal Weapon",Resident,25,100.0,1.0,21_bg-odds.pdf
+MB6007,"Bull Moose - North Slope, Three Corners/west Daggett - Any Legal Weapon",Resident,24,25.0,0.25,21_bg-odds.pdf
+MB6008,Bull Moose - Ogden - Any Legal Weapon,Resident,25,100.0,1.0,21_bg-odds.pdf
+MB6010,"Bull Moose - South Slope, Yellowstone - Any Legal Weapon",Resident,24,50.0,0.5,21_bg-odds.pdf
+MB6011,Bull Moose - Wasatch Mtns/central Mtns - Any Legal Weapon,Nonresident,24,28.57142857,0.28571428569999996,21_bg-odds.pdf
+MB6200,Cwmu Bull Moose - Bear Springs - Any Legal Weapon,Resident,9,25.0,0.25,21_bg-odds.pdf
+MB6201,Cwmu Bull Moose - Beaver Hollow - Any Legal Weapon,Resident,24,100.0,1.0,21_bg-odds.pdf
+MB6206,Cwmu Bull Moose - Deseret -An y Legal Weapon,Resident,26,25.0,0.25,21_bg-odds.pdf
+MB6208,Cwmu Bull Moose - East Fork Chalk Creek - Any Legal Weapon,Resident,24,50.0,0.5,21_bg-odds.pdf
+MB6208,Cwmu Bull Moose - East Fork Chalk Creek - Any Legal Weapon,Resident,25,100.0,1.0,21_bg-odds.pdf
+MB6211,Cwmu Bull Moose - Grass Valley/clark Canyon - Any Legal Weapon,Resident,24,66.66666667,0.6666666667,21_bg-odds.pdf
+MB6216,Cwmu Bull Moose - Powder Mountain - Any Legal Weapon,Resident,16,16.66666667,0.16666666670000002,21_bg-odds.pdf
+MB6217,Cwmu Bull Moose - Sharp Mountain - Any Legal Weapon,Resident,6,50.0,0.5,21_bg-odds.pdf
+MB6219,Cwmu Bull Moose - Skull Crack - Any Legal Weapon,Resident,26,100.0,1.0,21_bg-odds.pdf
+MB6220,Cwmu Bull Moose - South Canyon - Any Legal Weapon,Resident,12,100.0,1.0,21_bg-odds.pdf
+MB6223,Cwmu Bull Moose - Three C - Any Legal Weapon,Resident,20,20.0,0.2,21_bg-odds.pdf
+MB6224,Cwmu Bull Moose - Two Bear - Any Legal Weapon,Resident,25,100.0,1.0,21_bg-odds.pdf
+MB6225,Cwmu Bull Moose - Wallsburg - Any Legal Weapon,Resident,7,50.0,0.5,21_bg-odds.pdf
+MB6226,Cwmu Bull Moose - Weber Florence Creek - Any Legal Weapon,Resident,24,100.0,1.0,21_bg-odds.pdf
+MB6240,Cwmu Bull Moose - Chimney Rock - Any Legal Weapon,Resident,4,33.33333333,0.33333333330000003,21_bg-odds.pdf
+MB6252,Cwmu Bull Moose - Jacob's Creek - Any Legal Weapon,Resident,8,100.0,1.0,21_bg-odds.pdf
+MB6257,Cwmu Bull Moose - Ingham Peak - Any Legal Weapon,Resident,4,33.33333333,0.33333333330000003,21_bg-odds.pdf
+MB6262,Cwmu Bull Moose - Junction Valley - Any Legal Weapon,Resident,18,100.0,1.0,21_bg-odds.pdf
+MB6263,Cwmu Bull Moose - Moon Ranch - Any Legal Weapon,Resident,12,33.33333333,0.33333333330000003,21_bg-odds.pdf
+MB6264,Cwmu Bull Moose - Sand Creek - Any Legal Weapon,Resident,6,33.33333333,0.33333333330000003,21_bg-odds.pdf
+PB5000,Limited-entry Archery Buck Pronghorn - Beaver - Archery,Resident,4,100.0,1.0,21_bg-odds.pdf
+PB5001,"Limited-entry Archery Buck Pronghorn - Book Cliffs, Bitter Creek - Archery",Nonresident,2,25.0,0.25,21_bg-odds.pdf
+PB5002,"Limited-entry Archery Buck Pronghorn - Book Cliffs, South - Archery",Resident,3,100.0,1.0,21_bg-odds.pdf
+PB5002,"Limited-entry Archery Buck Pronghorn - Book Cliffs, South - Archery",Resident,4,100.0,1.0,21_bg-odds.pdf
+PB5005,"Limited-entry Archery Buck Pronghorn - Box Elder, Snowville - Archery",Resident,1,100.0,1.0,21_bg-odds.pdf
+PB5005,"Limited-entry Archery Buck Pronghorn - Box Elder, Snowville - Archery",Resident,3,100.0,1.0,21_bg-odds.pdf
+PB5007,Limited-entry Archery Buck Pronghorn - Cache/morgan-south Rich/ogden - Archery,Nonresident,6,100.0,1.0,21_bg-odds.pdf
+PB5007,Limited-entry Archery Buck Pronghorn - Cache/morgan-south Rich/ogden - Archery,Resident,2,100.0,1.0,21_bg-odds.pdf
+PB5008,"Limited-entry Archery Buck Pronghorn - Fillmore, Oak Creek South - Archery",Resident,5,100.0,1.0,21_bg-odds.pdf
+PB5009,"Limited-entry Archery Buck Pronghorn - La Sal, Potash/south Cisco - Archery",Resident,4,100.0,1.0,21_bg-odds.pdf
+PB5009,"Limited-entry Archery Buck Pronghorn - La Sal, Potash/south Cisco - Archery",Resident,5,100.0,1.0,21_bg-odds.pdf
+PB5011,"Limited-entry Archery Buck Pronghorn - Nine Mile, Anthro-myton Bench - Archery",Nonresident,12,50.0,0.5,21_bg-odds.pdf
+PB5011,"Limited-entry Archery Buck Pronghorn - Nine Mile, Anthro-myton Bench - Archery",Resident,6,100.0,1.0,21_bg-odds.pdf
+PB5013,Limited-entry Archery Buck Pronghorn - Pine Valley - Archery,Resident,4,100.0,1.0,21_bg-odds.pdf
+PB5015,"Limited-entry Archery Buck Pronghorn - San Rafael, North - Archery",Nonresident,14,100.0,1.0,21_bg-odds.pdf
+PB5015,"Limited-entry Archery Buck Pronghorn - San Rafael, North - Archery",Resident,6,100.0,1.0,21_bg-odds.pdf
+PB5017,"Limited-entry Archery Buck Pronghorn - South Slope, Vernal - Archery",Nonresident,12,100.0,1.0,21_bg-odds.pdf
+PB5017,"Limited-entry Archery Buck Pronghorn - South Slope, Vernal - Archery",Resident,5,100.0,1.0,21_bg-odds.pdf
+PB5018,Limited-entry Archery Buck Pronghorn - Southwest Desert - Archery,Nonresident,12,33.33333333,0.33333333330000003,21_bg-odds.pdf
+PB5019,"Limited-entry Archery Buck Pronghorn - West Desert, Riverbed - Archery",Nonresident,4,25.0,0.25,21_bg-odds.pdf
+PB5019,"Limited-entry Archery Buck Pronghorn - West Desert, Riverbed - Archery",Resident,10,100.0,1.0,21_bg-odds.pdf
+PB5020,"Limited-entry Archery Buck Pronghorn - West Desert, Rush Valley - Archery",Nonresident,2,50.0,0.5,21_bg-odds.pdf
+PB5021,"Limited-entry Archery Buck Pronghorn - West Desert, Snake Valley - Archery",Resident,5,100.0,1.0,21_bg-odds.pdf
+PB5022,Limited-entry Muzzle Buck Pronghorn - Cache/morgan-south Rich/ogden - Muzzleloader,Resident,4,100.0,1.0,21_bg-odds.pdf
+PB5024,Limited-entry Muzzle Buck Pronghorn - Southwest Desert - Muzzleloader,Nonresident,12,50.0,0.5,21_bg-odds.pdf
+PB5025,Limited-entry Alw (rifle) Buck Pronghorn - Beaver - Any Legal Weapon,Nonresident,13,100.0,1.0,21_bg-odds.pdf
+PB5026,"Limited-entry Alw (rifle) Buck Pronghorn - Book Cliffs, Bitter Creek - Any Legal Weapon",Nonresident,12,50.0,0.5,21_bg-odds.pdf
+PB5026,"Limited-entry Alw (rifle) Buck Pronghorn - Book Cliffs, Bitter Creek - Any Legal Weapon",Resident,8,100.0,1.0,21_bg-odds.pdf
+PB5027,"Limited-entry Alw (rifle) Buck Pronghorn - Book Cliffs, South - Any Legal Weapon",Resident,8,100.0,1.0,21_bg-odds.pdf
+PB5029,"Limited-entry Alw (rifle) Buck Pronghorn - Box Elder, Puddle Valley - Any Legal Weapon",Nonresident,12,100.0,1.0,21_bg-odds.pdf
+PB5029,"Limited-entry Alw (rifle) Buck Pronghorn - Box Elder, Puddle Valley - Any Legal Weapon",Resident,10,100.0,1.0,21_bg-odds.pdf
+PB5030,"Limited-entry Alw (rifle) Buck Pronghorn - Box Elder, Snowville - Any Legal Weapon",Nonresident,12,100.0,1.0,21_bg-odds.pdf
+PB5030,"Limited-entry Alw (rifle) Buck Pronghorn - Box Elder, Snowville - Any Legal Weapon",Resident,10,100.0,1.0,21_bg-odds.pdf
+PB5030,"Limited-entry Alw (rifle) Buck Pronghorn - Box Elder, Snowville - Any Legal Weapon",Resident,8,100.0,1.0,21_bg-odds.pdf
+PB5031,"Limited-entry Alw (rifle) Buck Pronghorn - Box Elder, West - Any Legal Weapon",Nonresident,12,66.66666667,0.6666666667,21_bg-odds.pdf
+PB5031,"Limited-entry Alw (rifle) Buck Pronghorn - Box Elder, West - Any Legal Weapon",Resident,12,100.0,1.0,21_bg-odds.pdf
+PB5032,Limited-entry Alw (rifle) Buck Pronghorn - Cache/morgan-south Rich/ogden - Any Legal Weapon,Nonresident,12,100.0,1.0,21_bg-odds.pdf
+PB5033,"Limited-entry Alw (rifle) Buck Pronghorn - Fillmore, Oak Creek South - Any Legal Weapon",Resident,10,100.0,1.0,21_bg-odds.pdf
+PB5034,Limited-entry Alw (rifle) Buck Pronghorn - Kaiparowits - Any Legal Weapon,Resident,8,100.0,1.0,21_bg-odds.pdf
+PB5035,"Limited-entry Alw (rifle) Buck Pronghorn - La Sal, Potash/south Cisco - Any Legal Weapon",Nonresident,13,100.0,1.0,21_bg-odds.pdf
+PB5035,"Limited-entry Alw (rifle) Buck Pronghorn - La Sal, Potash/south Cisco - Any Legal Weapon",Resident,9,100.0,1.0,21_bg-odds.pdf
+PB5038,"Limited-entry Alw (rifle) Buck Pronghorn - Nine Mile, Range Creek - Any Legal Weapon",Nonresident,5,20.0,0.2,21_bg-odds.pdf
+PB5039,"Limited-entry Alw (rifle) Buck Pronghorn - North Slope, Summit - Any Legal Weapon",Nonresident,9,100.0,1.0,21_bg-odds.pdf
+PB5039,"Limited-entry Alw (rifle) Buck Pronghorn - North Slope, Summit - Any Legal Weapon",Resident,10,100.0,1.0,21_bg-odds.pdf
+PB5040,"Limited-entry Alw (rifle) Buck Pronghorn - North Slope, Three Corners/west Daggett - Any Legal Weapon",Nonresident,13,100.0,1.0,21_bg-odds.pdf
+PB5040,"Limited-entry Alw (rifle) Buck Pronghorn - North Slope, Three Corners/west Daggett - Any Legal Weapon",Resident,10,100.0,1.0,21_bg-odds.pdf
+PB5040,"Limited-entry Alw (rifle) Buck Pronghorn - North Slope, Three Corners/west Daggett - Any Legal Weapon",Resident,9,100.0,1.0,21_bg-odds.pdf
+PB5041,"Limited-entry Alw (rifle) Buck Pronghorn - Panguitch Lake/zion, North - Any Legal Weapon",Nonresident,12,50.0,0.5,21_bg-odds.pdf
+PB5042,Limited-entry Alw (rifle) Buck Pronghorn - Pine Valley - Any Legal Weapon,Nonresident,12,50.0,0.5,21_bg-odds.pdf
+PB5042,Limited-entry Alw (rifle) Buck Pronghorn - Pine Valley - Any Legal Weapon,Nonresident,15,100.0,1.0,21_bg-odds.pdf
+PB5042,Limited-entry Alw (rifle) Buck Pronghorn - Pine Valley - Any Legal Weapon,Resident,7,100.0,1.0,21_bg-odds.pdf
+PB5045,"Limited-entry Alw (rifle) Buck Pronghorn - San Rafael, Desert - Any Legal Weapon",Resident,9,100.0,1.0,21_bg-odds.pdf
+PB5046,"Limited-entry Alw (rifle) Buck Pronghorn - San Rafael, North - Any Legal Weapon",Nonresident,22,100.0,1.0,21_bg-odds.pdf
+PB5046,"Limited-entry Alw (rifle) Buck Pronghorn - San Rafael, North - Any Legal Weapon",Resident,12,100.0,1.0,21_bg-odds.pdf
+PB5047,"Limited-entry Alw (rifle) Buck Pronghorn - South Slope, Bonanza/diamond Mtn - Any Legal Weapon",Resident,11,100.0,1.0,21_bg-odds.pdf
+PB5048,"Limited-entry Alw (rifle) Buck Pronghorn - South Slope, Vernal - Any Legal Weapon",Nonresident,12,76.92307692,0.7692307692,21_bg-odds.pdf
+PB5048,"Limited-entry Alw (rifle) Buck Pronghorn - South Slope, Vernal - Any Legal Weapon",Resident,7,100.0,1.0,21_bg-odds.pdf
+PB5049,Limited-entry Alw (rifle) Buck Pronghorn - Southwest Desert - Any Legal Weapon,Nonresident,17,100.0,1.0,21_bg-odds.pdf
+PB5050,"Limited-entry Alw (rifle) Buck Pronghorn - West Desert, Riverbed - Any Legal Weapon",Nonresident,14,100.0,1.0,21_bg-odds.pdf
+PB5050,"Limited-entry Alw (rifle) Buck Pronghorn - West Desert, Riverbed - Any Legal Weapon",Resident,15,100.0,1.0,21_bg-odds.pdf
+PB5050,"Limited-entry Alw (rifle) Buck Pronghorn - West Desert, Riverbed - Any Legal Weapon",Resident,17,100.0,1.0,21_bg-odds.pdf
+PB5051,"Limited-entry Alw (rifle) Buck Pronghorn - West Desert, Rush Valley - Any Legal Weapon",Nonresident,12,25.0,0.25,21_bg-odds.pdf
+PB5051,"Limited-entry Alw (rifle) Buck Pronghorn - West Desert, Rush Valley - Any Legal Weapon",Resident,13,100.0,1.0,21_bg-odds.pdf
+PB5052,"Limited-entry Alw (rifle) Buck Pronghorn - West Desert, Snake Valley - Any Legal Weapon",Nonresident,17,100.0,1.0,21_bg-odds.pdf
+PB5053,"Limited-entry Archery Buck Pronghorn - Nine Mile, Range Creek -Archer y",Resident,3,100.0,1.0,21_bg-odds.pdf
+PB5054,"Limited-entry Archery Buck Pronghorn - Panguitch Lake/zion, North - Archery",Nonresident,6,50.0,0.5,21_bg-odds.pdf
+PB5056,"Limited-entry Muzzle Buck Pronghorn - San Rafael, North - Muzzleloader",Nonresident,12,10.0,0.1,21_bg-odds.pdf
+PB5056,"Limited-entry Muzzle Buck Pronghorn - San Rafael, North - Muzzleloader",Resident,9,100.0,1.0,21_bg-odds.pdf
+PB5059,"Limited-entry Muzzle Buck Pronghorn - Nine Mile, Anthro-myton Bench - Muzzleloader",Nonresident,12,100.0,1.0,21_bg-odds.pdf
+PB5060,"Limited-entry Muzzle Buck Pronghorn - South Slope, Bonanza/diamond Mtn - Muzzleloader",Resident,4,100.0,1.0,21_bg-odds.pdf
+PB5062,Limited-entry Muzzle Buck Pronghorn - Pine Valley - Muzzleloader,Resident,1,16.66666667,0.16666666670000002,21_bg-odds.pdf
+PB5062,Limited-entry Muzzle Buck Pronghorn - Pine Valley - Muzzleloader,Resident,3,100.0,1.0,21_bg-odds.pdf
+PB5062,Limited-entry Muzzle Buck Pronghorn - Pine Valley - Muzzleloader,Resident,4,100.0,1.0,21_bg-odds.pdf
+PB5063,"Limited-entry Alw (rifle) Buck Pronghorn - Plateau, Highlands -An y Legal Weapon",Nonresident,12,40.0,0.4,21_bg-odds.pdf
+PB5063,"Limited-entry Alw (rifle) Buck Pronghorn - Plateau, Highlands -An y Legal Weapon",Resident,1,5.26315789,0.052631578899999996,21_bg-odds.pdf
+PB5063,"Limited-entry Alw (rifle) Buck Pronghorn - Plateau, Highlands -An y Legal Weapon",Resident,4,2.85714286,0.0285714286,21_bg-odds.pdf
+PB5063,"Limited-entry Alw (rifle) Buck Pronghorn - Plateau, Highlands -An y Legal Weapon",Resident,5,9.34579439,0.0934579439,21_bg-odds.pdf
+PB5063,"Limited-entry Alw (rifle) Buck Pronghorn - Plateau, Highlands -An y Legal Weapon",Resident,6,33.33333333,0.33333333330000003,21_bg-odds.pdf
+PB5063,"Limited-entry Alw (rifle) Buck Pronghorn - Plateau, Highlands -An y Legal Weapon",Resident,7,100.0,1.0,21_bg-odds.pdf
+PB5064,"Limited-entry Archery Buck Pronghorn - Plateau, Highlands - Archery",Resident,0,33.33333333,0.33333333330000003,21_bg-odds.pdf
+PB5064,"Limited-entry Archery Buck Pronghorn - Plateau, Highlands - Archery",Resident,1,66.66666667,0.6666666667,21_bg-odds.pdf
+PB5065,"Limited-entry Muzzle Buck Pronghorn - Fillmore, Oak Creek South - Muzzleloader",Nonresident,5,100.0,1.0,21_bg-odds.pdf
+PB5065,"Limited-entry Muzzle Buck Pronghorn - Fillmore, Oak Creek South - Muzzleloader",Resident,0,5.88235294,0.0588235294,21_bg-odds.pdf
+PB5065,"Limited-entry Muzzle Buck Pronghorn - Fillmore, Oak Creek South - Muzzleloader",Resident,1,20.0,0.2,21_bg-odds.pdf
+PB5065,"Limited-entry Muzzle Buck Pronghorn - Fillmore, Oak Creek South - Muzzleloader",Resident,2,37.03703704,0.37037037040000004,21_bg-odds.pdf
+PB5065,"Limited-entry Muzzle Buck Pronghorn - Fillmore, Oak Creek South - Muzzleloader",Resident,4,100.0,1.0,21_bg-odds.pdf
+PB5065,"Limited-entry Muzzle Buck Pronghorn - Fillmore, Oak Creek South - Muzzleloader",Resident,5,100.0,1.0,21_bg-odds.pdf
+PB5066,"Limited-entry Muzzle Buck Pronghorn - North Slope, Three Corners/west Daggett - Muzzleloader",Nonresident,1,14.28571429,0.14285714289999998,21_bg-odds.pdf
+PB5066,"Limited-entry Muzzle Buck Pronghorn - North Slope, Three Corners/west Daggett - Muzzleloader",Resident,1,16.66666667,0.16666666670000002,21_bg-odds.pdf
+PB5066,"Limited-entry Muzzle Buck Pronghorn - North Slope, Three Corners/west Daggett - Muzzleloader",Resident,2,100.0,1.0,21_bg-odds.pdf
+PB5066,"Limited-entry Muzzle Buck Pronghorn - North Slope, Three Corners/west Daggett - Muzzleloader",Resident,4,33.33333333,0.33333333330000003,21_bg-odds.pdf
+PB5066,"Limited-entry Muzzle Buck Pronghorn - North Slope, Three Corners/west Daggett - Muzzleloader",Resident,5,100.0,1.0,21_bg-odds.pdf
+PB5066,"Limited-entry Muzzle Buck Pronghorn - North Slope, Three Corners/west Daggett - Muzzleloader",Resident,7,100.0,1.0,21_bg-odds.pdf
+PB5067,"Limited-entry Muzzle Buck Pronghorn - Plateau, Highlands - Muzzleloader",Resident,1,40.0,0.4,21_bg-odds.pdf
+PB5067,"Limited-entry Muzzle Buck Pronghorn - Plateau, Highlands - Muzzleloader",Resident,3,76.92307692,0.7692307692,21_bg-odds.pdf
+PB5300,Cwmu Buck Pronghorn - Antelope Creek - Any Legal Weapon,Resident,6,100.0,1.0,21_bg-odds.pdf
+PB5306,Cwmu Buck Pronghorn - Rabbit Creek - Any Legal Weapon,Resident,2,50.0,0.5,21_bg-odds.pdf
+PB5311,Cwmu Buck Pronghorn - The Rose Of Snowville - Any Legal Weapon,Resident,8,100.0,1.0,21_bg-odds.pdf
+PB5313,Cwmu Buck Pronghorn - West Willow Creek Ranch - Any Legal Weapon,Resident,1,50.0,0.5,21_bg-odds.pdf
+PB5314,Cwmu Buck Pronghorn - Westlake - Any Legal Weapon,Resident,5,100.0,1.0,21_bg-odds.pdf
+PB5315,Cwmu Buck Pronghorn - Zane - Any Legal Weapon,Resident,2,100.0,1.0,21_bg-odds.pdf
+PB5326,Cwmu Buck Pronghorn - Cedar Springs - Any Legal Weapon,Resident,6,100.0,1.0,21_bg-odds.pdf
+PB5327,Cwmu Buck Pronghorn - Cottonwood Ridge - Any Legal Weapon,Resident,6,100.0,1.0,21_bg-odds.pdf
+PB5328,Cwmu Buck Pronghorn - Pahvant Ensign - Any Legal Weapon,Resident,7,100.0,1.0,21_bg-odds.pdf
+PB5329,Cwmu Buck Pronghorn - Snowville Flat - Any Legal Weapon,Resident,4,50.0,0.5,21_bg-odds.pdf
+PB5329,Cwmu Buck Pronghorn - Snowville Flat - Any Legal Weapon,Resident,5,100.0,1.0,21_bg-odds.pdf
+PB5331,Limited-entry Alw (rifle) Buck Pronghorn - Mt Dutton/paunsaugunt - Any Legal Weapon,Resident,13,100.0,1.0,21_bg-odds.pdf
+PB5332,Limited-entry Archery Buck Pronghorn - Mt Dutton/paunsaugunt - Archery,Nonresident,8,33.33333333,0.33333333330000003,21_bg-odds.pdf
+PB5332,Limited-entry Archery Buck Pronghorn - Mt Dutton/paunsaugunt - Archery,Resident,8,100.0,1.0,21_bg-odds.pdf
+PB5337,Cwmu Buck Pronghorn - Heist - Any Legal Weapon,Resident,5,100.0,1.0,21_bg-odds.pdf
+PB5338,Cwmu Buck Pronghorn - Castle Valley Outdoors - Any Legal Weapon,Resident,3,100.0,1.0,21_bg-odds.pdf
+PB5338,Cwmu Buck Pronghorn - Castle Valley Outdoors - Any Legal Weapon,Resident,4,100.0,1.0,21_bg-odds.pdf
+PB5339,Cwmu Buck Pronghorn - Iron Spring - Any Legal Weapon,Resident,0,100.0,1.0,21_bg-odds.pdf
+PD1003,Doe Pronghorn - Cache/morgan-south Rich/ogden - Any Legal Weapon,Nonresident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1003,Doe Pronghorn - Cache/morgan-south Rich/ogden - Any Legal Weapon,Resident,6,40.0,0.4,2021 Antlerless Draw Results.pdf
+PD1005,"Doe Pronghorn - North Slope, Summit - Any Legal Weapon",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1007,"Doe Pronghorn - San Rafael, North-cleveland - Any Legal Weapon",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1007,"Doe Pronghorn - San Rafael, North-cleveland - Any Legal Weapon",Resident,5,33.33333333,0.33333333330000003,2021 Antlerless Draw Results.pdf
+PD1007,"Doe Pronghorn - San Rafael, North-cleveland - Any Legal Weapon",Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1008,"Doe Pronghorn - Southwest Desert, Milford Flat -An y Legal Weapon",Nonresident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1012,"Doe Pronghorn - Box Elder, Promontory - Any Legal Weapon",Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1012,"Doe Pronghorn - Box Elder, Promontory - Any Legal Weapon",Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1013,Cwmu Doe Pronghorn - Rabbit Creek - Any Legal Weapon,Resident,6,50.0,0.5,2021 Antlerless Draw Results.pdf
+PD1014,Cwmu Doe Pronghorn - Rlf Deep Creek - Any Legal Weapon,Resident,7,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1016,Cwmu Doe Pronghorn - Zane - Any Legal Weapon,Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1017,"Doe Pronghorn - Box Elder, West - Any Legal Weapon",Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1017,"Doe Pronghorn - Box Elder, West - Any Legal Weapon",Resident,8,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1018,Doe Pronghorn - Mt Dutton/paunsaugunt - Any Legal Weapon,Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1018,Doe Pronghorn - Mt Dutton/paunsaugunt - Any Legal Weapon,Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1023,Cwmu Doe Pronghorn - George Creek - Any Legal Weapon,Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1023,Cwmu Doe Pronghorn - George Creek - Any Legal Weapon,Resident,7,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1026,Cwmu Doe Pronghorn - Pahvant Ensign - Any Legal Weapon,Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1026,Cwmu Doe Pronghorn - Pahvant Ensign - Any Legal Weapon,Resident,7,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1027,"Doe Pronghorn - Fillmore, Oak Creek South - Any Legal Weapon",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1030,"Doe Pronghorn - San Rafael, North-cleveland - Any Legal Weapon",Nonresident,12,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1032,Cwmu Doe Pronghorn - Antelope Creek - Any Legal Weapon,Resident,7,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1033,"Doe Pronghorn - Central Mtns, Poison Springs Bench - Any Legal Weapon",Nonresident,1,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1033,"Doe Pronghorn - Central Mtns, Poison Springs Bench - Any Legal Weapon",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1033,"Doe Pronghorn - Central Mtns, Poison Springs Bench - Any Legal Weapon",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1034,"Doe Pronghorn - Fillmore, Oak Creek South - Any Legal Weapon",Nonresident,3,33.33333333,0.33333333330000003,2021 Antlerless Draw Results.pdf
+PD1034,"Doe Pronghorn - Fillmore, Oak Creek South - Any Legal Weapon",Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1034,"Doe Pronghorn - Fillmore, Oak Creek South - Any Legal Weapon",Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1035,"Doe Pronghorn - Fillmore, Oak Creek South - Any Legal Weapon",Nonresident,3,40.0,0.4,2021 Antlerless Draw Results.pdf
+PD1035,"Doe Pronghorn - Fillmore, Oak Creek South - Any Legal Weapon",Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1035,"Doe Pronghorn - Fillmore, Oak Creek South - Any Legal Weapon",Resident,7,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1036,Doe Pronghorn - Beaver - Any Legal Weapon,Nonresident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1036,Doe Pronghorn - Beaver - Any Legal Weapon,Resident,7,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1037,"Doe Pronghorn - North Slope, Three Corners - Any Legal Weapon",Nonresident,2,50.0,0.5,2021 Antlerless Draw Results.pdf
+PD1037,"Doe Pronghorn - North Slope, Three Corners - Any Legal Weapon",Resident,7,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1038,"Doe Pronghorn - North Slope, West Daggett - Any Legal Weapon",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1038,"Doe Pronghorn - North Slope, West Daggett - Any Legal Weapon",Resident,7,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1039,"Doe Pronghorn - Panguitch Lake/zion, North - Any Legal Weapon",Nonresident,8,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1041,Cwmu Doe Pronghorn - Heist -An y Legal Weapon,Resident,3,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1042,Doe Pronghorn - Pine Valley - Any Legal Weapon,Nonresident,10,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1042,Doe Pronghorn - Pine Valley - Any Legal Weapon,Nonresident,14,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1042,Doe Pronghorn - Pine Valley - Any Legal Weapon,Nonresident,8,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1043,"Doe Pronghorn - Nine Mile, Anthro-pleasant Valley - Any Legal Weapon",Nonresident,0,16.66666667,0.16666666670000002,2021 Antlerless Draw Results.pdf
+PD1043,"Doe Pronghorn - Nine Mile, Anthro-pleasant Valley - Any Legal Weapon",Nonresident,1,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1043,"Doe Pronghorn - Nine Mile, Anthro-pleasant Valley - Any Legal Weapon",Nonresident,2,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1043,"Doe Pronghorn - Nine Mile, Anthro-pleasant Valley - Any Legal Weapon",Resident,3,90.90909091,0.9090909091,2021 Antlerless Draw Results.pdf
+PD1043,"Doe Pronghorn - Nine Mile, Anthro-pleasant Valley - Any Legal Weapon",Resident,4,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1043,"Doe Pronghorn - Nine Mile, Anthro-pleasant Valley - Any Legal Weapon",Resident,5,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1043,"Doe Pronghorn - Nine Mile, Anthro-pleasant Valley - Any Legal Weapon",Resident,6,100.0,1.0,2021 Antlerless Draw Results.pdf
+PD1043,"Doe Pronghorn - Nine Mile, Anthro-pleasant Valley - Any Legal Weapon",Resident,8,100.0,1.0,2021 Antlerless Draw Results.pdf
+RE1000,"Rocky Mountain Bighorn Sheep Ewe - Box Elder, Newfoundland Mtns - Any Legal Weapon",Resident,1,1.20336943,0.0120336943,2021 Antlerless Draw Results.pdf
+RS6703,"Rocky Mountain Bighorn Sheep - Box Elder, Newfoundland Mtn - Any Legal Weapon",Nonresident,18,3.44827586,0.034482758599999996,21_bg-odds.pdf
+RS6709,"Rocky Mountain Bighorn Sheep - North Slope, Summit/west Daggett - Any Legal Weapon",Resident,22,66.66666667,0.6666666667,21_bg-odds.pdf
+RS6712,"Rocky Mountain Bighorn Sheep - Nine Mile, Gray Canyon - Any Legal Weapon",Resident,23,76.92307692,0.7692307692,21_bg-odds.pdf
+RS6722,"Rocky Mountain Bighorn Sheep Archery - Box Elder, Newfoundland Mtn - Archery",Resident,18,100.0,1.0,21_bg-odds.pdf
+RS6724,"Rocky Mountain Bighorn Sheep - Wasatch Mtns, West -An y Legal Weapon",Resident,23,100.0,1.0,21_bg-odds.pdf
+RS6725,"Rocky Mountain Bighorn Sheep - Central Mtns, Nebo - Any Legal Weapon",Resident,21,66.66666667,0.6666666667,21_bg-odds.pdf
+RS6726,"Rocky Mountain Bighorn Sheep -Fillmore , Oak Creek - Any Legal Weapon",Resident,23,100.0,1.0,21_bg-odds.pdf
+RS6727,"Rocky Mountain Bighorn Sheep Archery -Fillmore , Oak Creek - Archery",Resident,17,100.0,1.0,21_bg-odds.pdf
+RS6727,"Rocky Mountain Bighorn Sheep Archery -Fillmore , Oak Creek - Archery",Resident,7,16.66666667,0.16666666670000002,21_bg-odds.pdf

@@ -1,0 +1,273 @@
+{
+  "Status": 0,
+  "Data": {
+    "DrawNameAvailableLicenseYears": [
+      {
+        "HuntCount": 107,
+        "DrawName": "Big Game",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 5,
+        "MasterHuntTypeName": "General-Season Buck Deer",
+        "HuntTypeLicenseYearID": 6,
+        "DisplayOrder": 1.0,
+        "DrawOddsCalculationSplitResidency": true,
+        "DrawOddsCalculationSplitYouth": true
+      },
+      {
+        "HuntCount": 32,
+        "DrawName": "Big Game",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 32,
+        "MasterHuntTypeName": "Dedicated Hunter Buck Deer",
+        "HuntTypeLicenseYearID": 16,
+        "DisplayOrder": 2.0,
+        "DrawOddsCalculationSplitResidency": false,
+        "DrawOddsCalculationSplitYouth": true
+      },
+      {
+        "HuntCount": 1,
+        "DrawName": "Big Game",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 6,
+        "MasterHuntTypeName": "Draw-only Youth Elk",
+        "HuntTypeLicenseYearID": 8,
+        "DisplayOrder": 4.0,
+        "DrawOddsCalculationSplitResidency": true,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 193,
+        "DrawName": "Big Game",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 8,
+        "MasterHuntTypeName": "Limited-Entry Buck Deer",
+        "HuntTypeLicenseYearID": 7,
+        "DisplayOrder": 5.0,
+        "DrawOddsCalculationSplitResidency": true,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 210,
+        "DrawName": "Big Game",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 9,
+        "MasterHuntTypeName": "Limited-Entry Bull Elk",
+        "HuntTypeLicenseYearID": 10,
+        "DisplayOrder": 6.0,
+        "DrawOddsCalculationSplitResidency": true,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 88,
+        "DrawName": "Big Game",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 10,
+        "MasterHuntTypeName": "Limited-Entry Buck Pronghorn",
+        "HuntTypeLicenseYearID": 9,
+        "DisplayOrder": 7.0,
+        "DrawOddsCalculationSplitResidency": true,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 27,
+        "DrawName": "Big Game",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 11,
+        "MasterHuntTypeName": "Bull Moose",
+        "HuntTypeLicenseYearID": 15,
+        "DisplayOrder": 8.0,
+        "DrawOddsCalculationSplitResidency": true,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 17,
+        "DrawName": "Big Game",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 12,
+        "MasterHuntTypeName": "Bison",
+        "HuntTypeLicenseYearID": 14,
+        "DisplayOrder": 9.0,
+        "DrawOddsCalculationSplitResidency": true,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 19,
+        "DrawName": "Big Game",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 13,
+        "MasterHuntTypeName": "Desert Bighorn Sheep",
+        "HuntTypeLicenseYearID": 11,
+        "DisplayOrder": 10.0,
+        "DrawOddsCalculationSplitResidency": true,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 16,
+        "DrawName": "Big Game",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 14,
+        "MasterHuntTypeName": "Rocky Mtn Bighorn Sheep",
+        "HuntTypeLicenseYearID": 13,
+        "DisplayOrder": 11.0,
+        "DrawOddsCalculationSplitResidency": true,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 18,
+        "DrawName": "Big Game",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 15,
+        "MasterHuntTypeName": "Mountain Goat",
+        "HuntTypeLicenseYearID": 12,
+        "DisplayOrder": 12.0,
+        "DrawOddsCalculationSplitResidency": true,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 91,
+        "DrawName": "Black Bear",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 1,
+        "MasterHuntTypeName": "Black Bear",
+        "HuntTypeLicenseYearID": 2,
+        "DisplayOrder": 1.0,
+        "DrawOddsCalculationSplitResidency": true,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 10,
+        "DrawName": "Black Bear",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 16,
+        "MasterHuntTypeName": "Black Bear Restricted Pursuit",
+        "HuntTypeLicenseYearID": 109,
+        "DisplayOrder": 2.0,
+        "DrawOddsCalculationSplitResidency": true,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 1,
+        "DrawName": "Sportsman",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 22,
+        "MasterHuntTypeName": "Sportsman Deer",
+        "HuntTypeLicenseYearID": 54,
+        "DisplayOrder": 1.0,
+        "DrawOddsCalculationSplitResidency": false,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 1,
+        "DrawName": "Sportsman",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 23,
+        "MasterHuntTypeName": "Sportsman Elk",
+        "HuntTypeLicenseYearID": 56,
+        "DisplayOrder": 2.0,
+        "DrawOddsCalculationSplitResidency": false,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 1,
+        "DrawName": "Sportsman",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 24,
+        "MasterHuntTypeName": "Sportsman Pronghorn",
+        "HuntTypeLicenseYearID": 59,
+        "DisplayOrder": 3.0,
+        "DrawOddsCalculationSplitResidency": false,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 1,
+        "DrawName": "Sportsman",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 25,
+        "MasterHuntTypeName": "Sportsman Moose",
+        "HuntTypeLicenseYearID": 57,
+        "DisplayOrder": 4.0,
+        "DrawOddsCalculationSplitResidency": false,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 1,
+        "DrawName": "Sportsman",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 26,
+        "MasterHuntTypeName": "Sportsman Bison",
+        "HuntTypeLicenseYearID": 53,
+        "DisplayOrder": 5.0,
+        "DrawOddsCalculationSplitResidency": false,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 1,
+        "DrawName": "Sportsman",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 28,
+        "MasterHuntTypeName": "Sportsman Desert Bighorn Sheep",
+        "HuntTypeLicenseYearID": 55,
+        "DisplayOrder": 6.0,
+        "DrawOddsCalculationSplitResidency": false,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 1,
+        "DrawName": "Sportsman",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 27,
+        "MasterHuntTypeName": "Sportsman Rocky Mtn Bighorn Sheep",
+        "HuntTypeLicenseYearID": 60,
+        "DisplayOrder": 7.0,
+        "DrawOddsCalculationSplitResidency": false,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 1,
+        "DrawName": "Sportsman",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 29,
+        "MasterHuntTypeName": "Sportsman Mountain Goat",
+        "HuntTypeLicenseYearID": 58,
+        "DisplayOrder": 8.0,
+        "DrawOddsCalculationSplitResidency": false,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 1,
+        "DrawName": "Sportsman",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 30,
+        "MasterHuntTypeName": "Sportsman Black Bear",
+        "HuntTypeLicenseYearID": 52,
+        "DisplayOrder": 9.0,
+        "DrawOddsCalculationSplitResidency": false,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 1,
+        "DrawName": "Sportsman",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 31,
+        "MasterHuntTypeName": "Sportsman Turkey",
+        "HuntTypeLicenseYearID": 61,
+        "DisplayOrder": 10.0,
+        "DrawOddsCalculationSplitResidency": false,
+        "DrawOddsCalculationSplitYouth": false
+      },
+      {
+        "HuntCount": 8,
+        "DrawName": "Turkey",
+        "LicenseYear": 2026,
+        "MasterHuntTypeID": 3,
+        "MasterHuntTypeName": "Turkey",
+        "HuntTypeLicenseYearID": 4,
+        "DisplayOrder": 0.0,
+        "DrawOddsCalculationSplitResidency": true,
+        "DrawOddsCalculationSplitYouth": true
+      }
+    ],
+    "CurrentUserPoints": []
+  },
+  "Message": null
+}

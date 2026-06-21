@@ -1,0 +1,20 @@
+{
+  "generated_at_utc": "2026-06-19T07:01:51.520073+00:00",
+  "comparison": "2021_predictions_model_year_2022_vs_2022_actual_truth",
+  "prediction_rows_filtered": 64698,
+  "prediction_rows_with_probability": 17577,
+  "actual_2022_rows": 66876,
+  "actual_2022_nonzero_applicant_rows": 18056,
+  "zero_applicant_actual_rows_excluded": 48820,
+  "join_key": "hunt_code + model_year + residency + hunt_program + point_level + draw_family",
+  "duplicate_join_key_groups": 0,
+  "joined_rows": 15026,
+  "prediction_only_unmatched_rows": 2551,
+  "actual_only_unmatched_rows": 3030,
+  "row_count": 15026,
+  "mae": 0.07732138578096781,
+  "rmse": 0.2066822798405885,
+  "bias": 0.020428151587200134,
+  "failure_count_abs_error_gt_0_25": 1461,
+  "outputs_dir": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\prediction_validation\\year_to_year_2021_to_2022_fixed_key"
+}

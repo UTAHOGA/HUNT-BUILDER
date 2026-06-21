@@ -1,0 +1,979 @@
+{
+  "generated_at_utc": "2026-06-20T19:44:50.028392+00:00",
+  "target": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_2019_for_2020_candidate_promotion_file_records.csv",
+  "backup": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_cross_year\\final_yearly_canonical_audit\\2019_for_2020\\hunt_name_numeric_cleanup_feeder\\backups\\feeder_cleanup_20260620T194439Z.csv",
+  "numeric_rows_scanned": 14732,
+  "rows_changed": 14732,
+  "changed_by_source_file": {
+    "19_antlerless_drawing_odds_report(1).pdf": 1258,
+    "19_drawing_odds(1).pdf": 4074,
+    "19_youth_antlerless_drawing_odds_report(1).pdf": 7888,
+    "2019_turkey_bonus_points(1).pdf": 252,
+    "2019_youth_turkey_bonus_points(1).pdf": 252,
+    "2020_cougar_odds_report(2).pdf": 1008
+  },
+  "changed_by_hunt_code": {
+    "BR1008": 42,
+    "BR1009": 42,
+    "BR1010": 42,
+    "BR1011": 42,
+    "BR1012": 42,
+    "BR1013": 42,
+    "BR7000": 42,
+    "BR7001": 42,
+    "BR7003": 42,
+    "BR7004": 42,
+    "BR7005": 42,
+    "BR7007": 42,
+    "BR7008": 42,
+    "BR7009": 42,
+    "BR7010": 42,
+    "BR7011": 42,
+    "BR7012": 42,
+    "BR7013": 42,
+    "BR7014": 42,
+    "BR7015": 42,
+    "BR7016": 42,
+    "BR7017": 42,
+    "BR7018": 42,
+    "BR7100": 42,
+    "BR7101": 42,
+    "BR7102": 42,
+    "BR7104": 42,
+    "BR7105": 42,
+    "BR7106": 42,
+    "BR7108": 42,
+    "BR7109": 42,
+    "BR7110": 42,
+    "BR7111": 42,
+    "BR7112": 42,
+    "BR7113": 42,
+    "BR7114": 42,
+    "BR7115": 42,
+    "BR7116": 42,
+    "BR7117": 42,
+    "BR7118": 42,
+    "BR7119": 42,
+    "BR7120": 42,
+    "BR7121": 42,
+    "BR7122": 42,
+    "BR7123": 42,
+    "BR7200": 42,
+    "BR7201": 42,
+    "BR7203": 42,
+    "BR7204": 42,
+    "BR7205": 42,
+    "BR7207": 42,
+    "BR7208": 42,
+    "BR7209": 42,
+    "BR7210": 42,
+    "BR7211": 42,
+    "BR7212": 42,
+    "BR7213": 42,
+    "BR7214": 42,
+    "BR7215": 42,
+    "BR7216": 42,
+    "BR7217": 42,
+    "BR7218": 42,
+    "BR7219": 42,
+    "BR7220": 42,
+    "BR7221": 42,
+    "BR7224": 42,
+    "BR7225": 42,
+    "BR7226": 42,
+    "BR7227": 42,
+    "BR7228": 42,
+    "BR7229": 42,
+    "BR7230": 42,
+    "BR7231": 42,
+    "BR7232": 42,
+    "BR7233": 42,
+    "BR7234": 42,
+    "BR7235": 42,
+    "BR7236": 42,
+    "BR7300": 42,
+    "BR7301": 42,
+    "BR7303": 42,
+    "BR7304": 42,
+    "BR7305": 42,
+    "BR7307": 42,
+    "BR7308": 42,
+    "BR7309": 42,
+    "BR7310": 42,
+    "BR7311": 42,
+    "BR7312": 42,
+    "BR7313": 42,
+    "BR7314": 42,
+    "BR7315": 42,
+    "BR7316": 42,
+    "BR7317": 42,
+    "BR7318": 42,
+    "BR7320": 42,
+    "BR7321": 42,
+    "CG1013": 42,
+    "CG1029": 42,
+    "CG1030": 42,
+    "CG1034": 42,
+    "CG7500": 42,
+    "CG7502": 42,
+    "CG7503": 42,
+    "CG7505": 42,
+    "CG7506": 42,
+    "CG7507": 42,
+    "CG7602": 42,
+    "CG7603": 42,
+    "CG7605": 42,
+    "CG7606": 42,
+    "CG7607": 42,
+    "CG7609": 42,
+    "CG7610": 42,
+    "CG7611": 42,
+    "CG7612": 42,
+    "CG7613": 42,
+    "CG7615": 42,
+    "CG7618": 42,
+    "CG7619": 42,
+    "CG7620": 42,
+    "DA1000": 68,
+    "DA1001": 34,
+    "DA1002": 34,
+    "DA1003": 34,
+    "DA1004": 34,
+    "DA1005": 34,
+    "DA1007": 34,
+    "DA1009": 34,
+    "DA1010": 68,
+    "DA1011": 34,
+    "DA1012": 34,
+    "DA1013": 34,
+    "DA1016": 68,
+    "DA1017": 34,
+    "DA1018": 34,
+    "DA1019": 34,
+    "DA1020": 68,
+    "DA1021": 68,
+    "DA1022": 68,
+    "DA1023": 68,
+    "DA1024": 68,
+    "DA1025": 68,
+    "DA1026": 34,
+    "DA1027": 34,
+    "DA1028": 34,
+    "DA1029": 34,
+    "DA1030": 34,
+    "DA1031": 34,
+    "DA1032": 68,
+    "DA1033": 34,
+    "DA1035": 68,
+    "DA1036": 34,
+    "DA1039": 34,
+    "DA1041": 34,
+    "DA1042": 34,
+    "DA1043": 34,
+    "EA1003": 68,
+    "EA1004": 68,
+    "EA1007": 34,
+    "EA1008": 34,
+    "EA1009": 34,
+    "EA1010": 34,
+    "EA1011": 34,
+    "EA1012": 34,
+    "EA1013": 34,
+    "EA1014": 68,
+    "EA1015": 34,
+    "EA1017": 34,
+    "EA1018": 34,
+    "EA1019": 68,
+    "EA1020": 34,
+    "EA1021": 34,
+    "EA1022": 34,
+    "EA1023": 34,
+    "EA1024": 34,
+    "EA1025": 34,
+    "EA1026": 34,
+    "EA1027": 34,
+    "EA1028": 34,
+    "EA1029": 34,
+    "EA1030": 34,
+    "EA1031": 34,
+    "EA1033": 34,
+    "EA1034": 34,
+    "EA1035": 34,
+    "EA1036": 68,
+    "EA1037": 34,
+    "EA1038": 34,
+    "EA1039": 34,
+    "EA1040": 34,
+    "EA1047": 68,
+    "EA1048": 68,
+    "EA1050": 68,
+    "EA1051": 68,
+    "EA1052": 34,
+    "EA1054": 34,
+    "EA1055": 34,
+    "EA1056": 34,
+    "EA1058": 34,
+    "EA1059": 68,
+    "EA1060": 34,
+    "EA1061": 34,
+    "EA1062": 68,
+    "EA1063": 34,
+    "EA1064": 34,
+    "EA1066": 34,
+    "EA1067": 34,
+    "EA1068": 34,
+    "EA1069": 34,
+    "EA1073": 34,
+    "EA1074": 34,
+    "EA1075": 34,
+    "EA1076": 34,
+    "EA1077": 34,
+    "EA1078": 34,
+    "EA1079": 34,
+    "EA1080": 34,
+    "EA1081": 34,
+    "EA1085": 34,
+    "EA1087": 34,
+    "EA1089": 34,
+    "EA1090": 34,
+    "EA1091": 34,
+    "EA1092": 34,
+    "EA1093": 34,
+    "EA1094": 34,
+    "EA1098": 34,
+    "EA1099": 34,
+    "EA1100": 34,
+    "EA1101": 34,
+    "EA1102": 34,
+    "EA1104": 34,
+    "EA1110": 34,
+    "EA1111": 34,
+    "EA1112": 34,
+    "EA1113": 34,
+    "EA1114": 34,
+    "EA1116": 34,
+    "EA1117": 34,
+    "EA1118": 34,
+    "EA1119": 34,
+    "EA1120": 34,
+    "EA1121": 34,
+    "EA1122": 34,
+    "EA1124": 34,
+    "EA1125": 34,
+    "EA1127": 34,
+    "EA1129": 34,
+    "EA1130": 34,
+    "EA1131": 34,
+    "EA1132": 34,
+    "EA1134": 34,
+    "EA1135": 34,
+    "EA1136": 34,
+    "EA1137": 34,
+    "EA1138": 34,
+    "EA1139": 34,
+    "EA1140": 34,
+    "EA1141": 34,
+    "EA1142": 34,
+    "EA1143": 34,
+    "EA1145": 34,
+    "EA1146": 34,
+    "EA1147": 34,
+    "EA1148": 68,
+    "EA1149": 34,
+    "EA1151": 34,
+    "EA1153": 34,
+    "EA1155": 34,
+    "EA1156": 34,
+    "EA1157": 34,
+    "EA1159": 34,
+    "EA1160": 34,
+    "EA1161": 34,
+    "EA1162": 34,
+    "EA1163": 34,
+    "EA1164": 34,
+    "EA1165": 34,
+    "EA1166": 34,
+    "EA1167": 34,
+    "EA1168": 34,
+    "EA1170": 34,
+    "EA1172": 34,
+    "EA1174": 34,
+    "EA1175": 34,
+    "EA1176": 34,
+    "EA1177": 34,
+    "EA1184": 68,
+    "EA1185": 34,
+    "EA1186": 34,
+    "EA1187": 34,
+    "EA1189": 34,
+    "EA1190": 34,
+    "EA1191": 68,
+    "EA1192": 34,
+    "EA1193": 34,
+    "EA1194": 34,
+    "EA1196": 34,
+    "EA1197": 34,
+    "EA1198": 34,
+    "EA1200": 34,
+    "EA1201": 34,
+    "EA1203": 34,
+    "EA1204": 34,
+    "EA1206": 34,
+    "EA1207": 34,
+    "EA1208": 34,
+    "EA1209": 34,
+    "EA1211": 34,
+    "EA1212": 68,
+    "EA1213": 68,
+    "EA1214": 34,
+    "EA1215": 68,
+    "EA1216": 68,
+    "EA1217": 34,
+    "EA1218": 68,
+    "EA1219": 34,
+    "PD1000": 34,
+    "PD1001": 34,
+    "PD1002": 34,
+    "PD1003": 34,
+    "PD1006": 68,
+    "PD1007": 34,
+    "PD1008": 68,
+    "PD1009": 68,
+    "PD1011": 68,
+    "PD1012": 34,
+    "PD1014": 34,
+    "PD1015": 68,
+    "PD1016": 34,
+    "PD1017": 34,
+    "PD1018": 34,
+    "PD1019": 68,
+    "PD1020": 68,
+    "PD1022": 34,
+    "PD1024": 34,
+    "PD1025": 34,
+    "PD1026": 34,
+    "PD1027": 34,
+    "PD1028": 34,
+    "PD1029": 34,
+    "PD1030": 34,
+    "PD1031": 34,
+    "PD1032": 34,
+    "PD1033": 34,
+    "PD1034": 34,
+    "PD1035": 34,
+    "PD1036": 34,
+    "PD1037": 34,
+    "PD1038": 34,
+    "PD1039": 34,
+    "PD1040": 34,
+    "TK1003": 84,
+    "TK1004": 84,
+    "TK1005": 84,
+    "TK1006": 84,
+    "TK1007": 84,
+    "TK1018": 84
+  },
+  "sample_changes": [
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1000",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Beaver, Circleville North - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1010",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Zion, Northwest Zion - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    },
+    {
+      "source_file": "19_antlerless_drawing_odds_report(1).pdf",
+      "hunt_code": "DA1016",
+      "old_hunt_name": "15",
+      "new_hunt_name": "Antlerless Deer - Plateau, East Angle - Any Legal Weapon"
+    }
+  ],
+  "status": "PASS"
+}

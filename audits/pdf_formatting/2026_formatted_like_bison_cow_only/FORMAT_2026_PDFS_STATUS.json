@@ -1,0 +1,205 @@
+{
+  "generated_at_utc": "2026-06-19T09:13:51.640768+00:00",
+  "reference_pdf": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\bison cow only.pdf",
+  "output_dir": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only",
+  "source_dir": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf",
+  "source_files_requested": 24,
+  "source_files_formatted": 24,
+  "missing_source_files": [],
+  "total_output_bytes": 85822271,
+  "results": [
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\rm  sheep non res.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__rm_sheep_non_res__UOGA_FORMATTED.pdf",
+      "source_pages": 32,
+      "output_pages": 32,
+      "cover_pages_removed": 0,
+      "output_bytes": 1036125
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\rm sheep res.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__rm_sheep_res__UOGA_FORMATTED.pdf",
+      "source_pages": 33,
+      "output_pages": 32,
+      "cover_pages_removed": 1,
+      "output_bytes": 1261242
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\bison non res.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__bison_non_res__UOGA_FORMATTED.pdf",
+      "source_pages": 35,
+      "output_pages": 34,
+      "cover_pages_removed": 1,
+      "output_bytes": 1072593
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\bison res.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__bison_res__UOGA_FORMATTED.pdf",
+      "source_pages": 35,
+      "output_pages": 34,
+      "cover_pages_removed": 1,
+      "output_bytes": 1336747
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\black bear pursuit res.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__black_bear_pursuit_res__UOGA_FORMATTED.pdf",
+      "source_pages": 10,
+      "output_pages": 10,
+      "cover_pages_removed": 0,
+      "output_bytes": 316063
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\deer  buck non res l.e..pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__deer_buck_non_res_l_e__UOGA_FORMATTED.pdf",
+      "source_pages": 386,
+      "output_pages": 386,
+      "cover_pages_removed": 0,
+      "output_bytes": 10817747
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\des sheep nr.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__des_sheep_nr__UOGA_FORMATTED.pdf",
+      "source_pages": 39,
+      "output_pages": 38,
+      "cover_pages_removed": 1,
+      "output_bytes": 1227672
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\desert sheep res.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__desert_sheep_res__UOGA_FORMATTED.pdf",
+      "source_pages": 39,
+      "output_pages": 38,
+      "cover_pages_removed": 1,
+      "output_bytes": 1491471
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\goat non res.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__goat_non_res__UOGA_FORMATTED.pdf",
+      "source_pages": 37,
+      "output_pages": 36,
+      "cover_pages_removed": 1,
+      "output_bytes": 1121215
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\goat res.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__goat_res__UOGA_FORMATTED.pdf",
+      "source_pages": 37,
+      "output_pages": 36,
+      "cover_pages_removed": 1,
+      "output_bytes": 996150
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\gs deer nr.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__gs_deer_nr__UOGA_FORMATTED.pdf",
+      "source_pages": 81,
+      "output_pages": 81,
+      "cover_pages_removed": 0,
+      "output_bytes": 436368
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\gs deer res.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__gs_deer_res__UOGA_FORMATTED.pdf",
+      "source_pages": 81,
+      "output_pages": 81,
+      "cover_pages_removed": 0,
+      "output_bytes": 436471
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\gs der res.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__gs_der_res__UOGA_FORMATTED.pdf",
+      "source_pages": 108,
+      "output_pages": 107,
+      "cover_pages_removed": 1,
+      "output_bytes": 4218576
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\le buck deer.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__le_buck_deer__UOGA_FORMATTED.pdf",
+      "source_pages": 387,
+      "output_pages": 386,
+      "cover_pages_removed": 1,
+      "output_bytes": 12446042
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\le buck prong.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__le_buck_prong__UOGA_FORMATTED.pdf",
+      "source_pages": 176,
+      "output_pages": 176,
+      "cover_pages_removed": 0,
+      "output_bytes": 720692
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\le elk nr.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__le_elk_nr__UOGA_FORMATTED.pdf",
+      "source_pages": 421,
+      "output_pages": 420,
+      "cover_pages_removed": 1,
+      "output_bytes": 13075618
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\le elk.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__le_elk__UOGA_FORMATTED.pdf",
+      "source_pages": 421,
+      "output_pages": 420,
+      "cover_pages_removed": 1,
+      "output_bytes": 14681837
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\mtn goat res.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__mtn_goat_res__UOGA_FORMATTED.pdf",
+      "source_pages": 37,
+      "output_pages": 36,
+      "cover_pages_removed": 1,
+      "output_bytes": 1352078
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\nr le buck deer.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__nr_le_buck_deer__UOGA_FORMATTED.pdf",
+      "source_pages": 108,
+      "output_pages": 107,
+      "cover_pages_removed": 1,
+      "output_bytes": 4219318
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\oil moose.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__oil_moose__UOGA_FORMATTED.pdf",
+      "source_pages": 55,
+      "output_pages": 54,
+      "cover_pages_removed": 1,
+      "output_bytes": 2060515
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\bison 2.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__bison_2__UOGA_FORMATTED.pdf",
+      "source_pages": 1,
+      "output_pages": 1,
+      "cover_pages_removed": 0,
+      "output_bytes": 45025
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\.pdf\\bear pursuit non res.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__bear_pursuit_non_res__UOGA_FORMATTED.pdf",
+      "source_pages": 10,
+      "output_pages": 10,
+      "cover_pages_removed": 0,
+      "output_bytes": 297229
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\bear nr.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__bear_nr__UOGA_FORMATTED.pdf",
+      "source_pages": 91,
+      "output_pages": 91,
+      "cover_pages_removed": 0,
+      "output_bytes": 5577967
+    },
+    {
+      "source_file": "C:\\Users\\tyler\\Desktop\\BIBLE HUNT CODES\\2026\\bear.pdf",
+      "output_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\output\\pdf\\2026_formatted_like_bison_cow_only\\2026_PERMITS_2027_MODEL__bear__UOGA_FORMATTED.pdf",
+      "source_pages": 91,
+      "output_pages": 91,
+      "cover_pages_removed": 0,
+      "output_bytes": 5577510
+    }
+  ],
+  "note": "Source pages were visually embedded into a UOGA/bison-cow-only style frame; source values were not re-parsed or modified."
+}

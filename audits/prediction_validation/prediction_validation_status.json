@@ -1,0 +1,43 @@
+{
+  "generated_at_utc": "2026-06-19T04:49:58.863101+00:00",
+  "prediction_file": "engine_rebuild_from_truth\\engine\\prediction_outputs.csv",
+  "truth_file": "data_truth\\finalized_point_distribution.csv",
+  "actual_probability_source": "published truth success_rate / 100 only",
+  "actual_probability_not_used": "permits/applicants was not used to create actual_probability",
+  "truth_rows": 460097,
+  "prediction_rows": 460097,
+  "truth_rows_by_classification": {
+    "SCORABLE_ACTUAL": 64745,
+    "SOURCE_ANOMALY_REVIEW": 1,
+    "UNSCORABLE_NONZERO_APPLICANTS_NO_PUBLISHED_SUCCESS_RATE": 77158,
+    "ZERO_APPLICANT_GUARANTEED_ZONE": 147169,
+    "ZERO_APPLICANT_STRUCTURAL": 171024
+  },
+  "source_anomaly_review_rows_excluded_from_metrics": 1,
+  "joined_scorable_actual_rows": 64745,
+  "missing_prediction_rows_for_scorable_actual": 0,
+  "missing_prediction_probability_rows_for_scorable_actual": 0,
+  "prediction_missing_probability_total_rows": 318193,
+  "requested_join_key_duplicate_groups_prediction": 55584,
+  "requested_join_key_duplicate_groups_truth": 55584,
+  "effective_join_key": "hunt_code + model_year + residency + point_level + duplicate_occurrence_index",
+  "row_count": 64745,
+  "mae": 0.0007398933734372983,
+  "rmse": 0.004280262510824513,
+  "bias": -0.00014353294528998467,
+  "failure_count_abs_error_gt_0_25": 0,
+  "failure_rate": 0.0,
+  "success_criteria_mae_lt_0_20": true,
+  "success_criteria_rmse_lt_0_30": true,
+  "success_criteria_bias_close_to_0_abs_lt_0_05": true,
+  "ds6608_failure_rows": 0,
+  "outputs": {
+    "prediction_vs_actual_full": "audits\\prediction_validation\\prediction_vs_actual_full.csv",
+    "prediction_vs_actual_summary": "audits\\prediction_validation\\prediction_vs_actual_summary.csv",
+    "prediction_vs_actual_by_year": "audits\\prediction_validation\\prediction_vs_actual_by_year.csv",
+    "prediction_vs_actual_by_point_bucket": "audits\\prediction_validation\\prediction_vs_actual_by_point_bucket.csv",
+    "truth_row_validation_classification_counts": "audits\\prediction_validation\\truth_row_validation_classification_counts.csv",
+    "success_rate_coverage_by_year": "audits\\prediction_validation\\success_rate_coverage_by_year.csv",
+    "DS6608_failure_inspection": "audits\\prediction_validation\\DS6608_failure_inspection.csv"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "generated_at_utc": "2026-06-21T02:17:09.677Z",
+  "generated_at_utc": "2026-06-21T02:40:40.872Z",
   "output_dir": "outputs",
   "preview_dir": "outputs/draw_results_standardized_preview",
   "workbooks": [
@@ -20,7 +20,7 @@
     },
     {
       "year": 2019,
-      "output_xlsx": "outputs/2019 standardized long.xlsx",
+      "output_xlsx": "outputs/2019 standardized long clustered.xlsx",
       "summary_rows": 1054,
       "point_rows": 63950,
       "unique_summary_codes": 1054,
@@ -28,7 +28,7 @@
     },
     {
       "year": 2020,
-      "output_xlsx": "outputs/2020 standardized long.xlsx",
+      "output_xlsx": "outputs/2020 standardized long clustered.xlsx",
       "summary_rows": 1028,
       "point_rows": 63808,
       "unique_summary_codes": 1028,
@@ -36,7 +36,7 @@
     },
     {
       "year": 2021,
-      "output_xlsx": "outputs/2021 standardized long.xlsx",
+      "output_xlsx": "outputs/2021 standardized long clustered.xlsx",
       "summary_rows": 1002,
       "point_rows": 64698,
       "unique_summary_codes": 1002,

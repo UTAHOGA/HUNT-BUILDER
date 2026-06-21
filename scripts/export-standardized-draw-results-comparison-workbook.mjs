@@ -29,22 +29,6 @@ function escapeRegExp(value) {
   return clean(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-function stripWeaponFromHuntName(name, weapon) {
-  let text = normalizeWhitespace(name);
-  const weaponText = normalizeWhitespace(weapon);
-  if (!text || !weaponText) return text;
-
-  const exactPattern = new RegExp(`(^|\\s[-–—:]\\s|\\s+)${escapeRegExp(weaponText)}(?=$|[\\s.-])`, "gi");
-  text = text.replace(exactPattern, " ");
-  text = text.replace(new RegExp(`\\b${escapeRegExp(weaponText)}\\b\\.?`, "gi"), " ");
-  text = text.replace(/\s*-\s*$/, "");
-  text = text.replace(/\s{2,}/g, " ").trim();
-  text = text.replace(/^[-–—:\s]+/, "").trim();
-  text = text.replace(/[-–—:\s]+$/, "").trim();
-  text = text.replace(/\s*-\s*/g, " - ");
-  return normalizeWhitespace(text);
-}
-
 function speciesLabel(speciesCode, huntCode = "") {
   const code = clean(speciesCode).toUpperCase();
   const hunt = clean(huntCode).toUpperCase();
@@ -195,7 +179,7 @@ function normalize2021TotalsRows(rows) {
     const totalPermits = clean(row.permits_total);
     return {
       hunt_code: clean(row.hunt_code),
-      hunt_name: stripWeaponFromHuntName(rawName, weapon),
+      hunt_name: normalizeWhitespace(rawName),
       raw_hunt_name: rawName,
       species,
       weapon,
@@ -228,7 +212,7 @@ function normalize2021PointRows(rows) {
     const weapon = deriveWeaponFromName(rawName);
     return {
       hunt_code: clean(row.hunt_code),
-      hunt_name: stripWeaponFromHuntName(rawName, weapon),
+      hunt_name: normalizeWhitespace(rawName),
       raw_hunt_name: rawName,
       species,
       weapon,
@@ -264,10 +248,7 @@ function buildSummaryRows(rows, year) {
   const out = [];
   for (const [code, group] of byCode.entries()) {
     const representative = group[0];
-    const huntName = stripWeaponFromHuntName(
-      firstNonEmpty(group.map((row) => row.hunt_name)),
-      firstNonEmpty(group.map((row) => row.weapon)),
-    );
+    const huntName = normalizeWhitespace(firstNonEmpty(group.map((row) => row.hunt_name)));
     out.push({
       "ACTUAL DRAW YEAR": year,
       "HUNT CODE": code,
@@ -321,10 +302,7 @@ function buildPointRows(rows, year) {
       "ACTUAL DRAW YEAR": year,
       "HUNT CODE": code,
       SPECIES: firstNonEmpty([row.species, summary.SPECIES]),
-      "HUNT NAME": stripWeaponFromHuntName(
-        firstNonEmpty([row.hunt_name, summary["HUNT NAME"], row.raw_hunt_name]),
-        firstNonEmpty([row.weapon, summary.WEAPON]),
-      ),
+      "HUNT NAME": normalizeWhitespace(firstNonEmpty([row.hunt_name, summary["HUNT NAME"], row.raw_hunt_name])),
       WEAPON: firstNonEmpty([row.weapon, summary.WEAPON]),
       SEX: firstNonEmpty([row.sex, summary.SEX]),
       "HUNT TYPE": firstNonEmpty([row.hunt_type, row.hunt_class, row.hunt_draw_class]),
@@ -532,7 +510,7 @@ for (const year of YEARS) {
   pointSheet.getRangeByIndexes(0, 0, pointValues.length, pointValues[0].length).values = pointValues;
   stylePointSheet(pointSheet, pointValues.length);
 
-  const outputXlsx = path.join(OUTPUT_DIR, `${year} standardized long.xlsx`);
+  const outputXlsx = path.join(OUTPUT_DIR, `${year} standardized long clustered.xlsx`);
   await savePreview(workbook, "Summary", "A1:I18", path.join(PREVIEW_DIR, `${year}_summary_preview.png`));
   await savePreview(workbook, "Points", "A1:Q18", path.join(PREVIEW_DIR, `${year}_points_preview.png`));
   await exportWorkbook(workbook, outputXlsx);

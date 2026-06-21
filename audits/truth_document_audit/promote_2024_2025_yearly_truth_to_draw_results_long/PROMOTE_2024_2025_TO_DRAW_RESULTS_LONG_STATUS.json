@@ -1,0 +1,100 @@
+{
+  "generated_at": "2026-06-18T16:14:41.716862",
+  "master": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+  "backup_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\promote_2024_2025_yearly_truth_to_draw_results_long\\backups\\draw_results_long.backup_before_2024_2025_promotion_20260618_161413.csv",
+  "yearly_inputs": {
+    "2024": {
+      "path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_2024_for_2025_candidate_promotion_file_records.csv",
+      "input_rows": 86659,
+      "input_columns": 84,
+      "conformed_rows": 86659
+    },
+    "2025": {
+      "path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_2025_for_2026_candidate_promotion_file_records.csv",
+      "input_rows": 75598,
+      "input_columns": 90,
+      "conformed_rows": 75598
+    }
+  },
+  "master_before": {
+    "rows": 429283,
+    "year_counts": {
+      "2019": 66945,
+      "2020": 66715,
+      "2021": 67565,
+      "2022": 69741,
+      "2023": 71658,
+      "2024": 86659
+    },
+    "unique_hunt_codes": 1327,
+    "blank_hunt_code": 0,
+    "blank_source_year": 0,
+    "cg9999_by_year": {
+      "2023": 1,
+      "2024": 1
+    },
+    "duplicate_strict_key_groups": 0
+  },
+  "current_2024_2025_replaced": {
+    "rows": 86659,
+    "year_counts": {
+      "2024": 86659
+    },
+    "unique_hunt_codes": 1028,
+    "blank_hunt_code": 0,
+    "blank_source_year": 0,
+    "cg9999_by_year": {
+      "2024": 1
+    },
+    "duplicate_strict_key_groups": 0
+  },
+  "promoted_2024": {
+    "rows": 86659,
+    "year_counts": {
+      "2024": 86659
+    },
+    "unique_hunt_codes": 1028,
+    "blank_hunt_code": 0,
+    "blank_source_year": 0,
+    "cg9999_by_year": {
+      "2024": 1
+    },
+    "duplicate_strict_key_groups": 0
+  },
+  "promoted_2025": {
+    "rows": 75598,
+    "year_counts": {
+      "2025": 75598
+    },
+    "unique_hunt_codes": 1064,
+    "blank_hunt_code": 0,
+    "blank_source_year": 0,
+    "cg9999_by_year": {
+      "2025": 1
+    },
+    "duplicate_strict_key_groups": 0
+  },
+  "master_after": {
+    "rows": 504881,
+    "year_counts": {
+      "2019": 66945,
+      "2020": 66715,
+      "2021": 67565,
+      "2022": 69741,
+      "2023": 71658,
+      "2024": 86659,
+      "2025": 75598
+    },
+    "unique_hunt_codes": 1411,
+    "blank_hunt_code": 0,
+    "blank_source_year": 0,
+    "cg9999_by_year": {
+      "2023": 1,
+      "2024": 1,
+      "2025": 1
+    },
+    "duplicate_strict_key_groups": 0
+  },
+  "failed_gates": [],
+  "status": "PASS_2024_2025_PROMOTED_TO_DRAW_RESULTS_LONG"
+}

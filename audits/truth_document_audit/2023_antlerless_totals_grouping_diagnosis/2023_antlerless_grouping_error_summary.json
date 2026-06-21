@@ -1,0 +1,16 @@
+{
+  "rows_examined": 408,
+  "issue_counts": {
+    "CHECK_PARSER_OR_SOURCE_MAPPING": 180,
+    "GROUPING_COLLAPSED_ADULT_AND_YOUTH_SHARED_HUNT_CODE": 228
+  },
+  "adult_source_matches_pdf_counts": {
+    "TRUE": 408
+  },
+  "collapsed_matches_pdf_counts": {
+    "TRUE": 180,
+    "FALSE": 228
+  },
+  "primary_finding": "2023 antlerless mismatch is primarily caused by totals grouping at hunt_code+model_year+residency, which collapses adult and youth reports sharing DA/EA/PD hunt codes.",
+  "required_key_fix": "Use source_report_family/source_file/report_family in the totals grouping key for families where adult/youth share hunt codes."
+}

@@ -1,0 +1,86 @@
+{
+  "Status": 0,
+  "Data": [
+    {
+      "ActiveDH": null,
+      "HuntID": 1026,
+      "HuntName": "Sportsman Buck Pronghorn",
+      "HuntCode": "PB1000",
+      "HuntMapURL": "https://dwrapps.utah.gov/huntboundary/hbstart?HN=PB1000",
+      "HuntCategoryName": "Sportsman",
+      "SpeciesSubtypeName": "Buck Pronghorn",
+      "IsMultiseasonHunt": true,
+      "OddsList": [
+        {
+          "HuntID": 1026,
+          "PreferencePoint": 0.0,
+          "Point": 0.0,
+          "ParticipantCount": 6415,
+          "AllChoicesSuccessfulCount": 1,
+          "AllChoicesSuccessfulByMaxPointRoundCount": 0,
+          "AllChoicesSuccessfulByRegularRoundCount": 1,
+          "SuccessfulCount": 1,
+          "YouthRoundFirstChoiceUnsuccessful": 0,
+          "SuccessfulByRegularRoundCount": 1,
+          "SuccessfulByMaxPointRoundCount": 0,
+          "SuccessfulByLifetimeCount": 0,
+          "ResidencyTypeID": 1,
+          "IsYouth": false,
+          "HideSuccessfulByRegularRoundCount": false,
+          "HideSuccessfulByMaxPointRoundCount": false,
+          "IsHistoricalData": false
+        }
+      ],
+      "MasterHuntTypeID": 24,
+      "SeasonWeapons": [
+        {
+          "HuntID": 1026,
+          "SeasonStartDate": "2026-08-15T00:00:00",
+          "SeasonEndDate": "2026-08-31T00:00:00",
+          "WeaponName": "Archery",
+          "UnCertainDateRange": false,
+          "SpecialInstruction": "",
+          "LicenseYear": 2026
+        },
+        {
+          "HuntID": 1026,
+          "SeasonStartDate": "2026-09-01T00:00:00",
+          "SeasonEndDate": "2026-11-15T00:00:00",
+          "WeaponName": "ANY LEGAL WEAPON",
+          "UnCertainDateRange": false,
+          "SpecialInstruction": "",
+          "LicenseYear": 2026
+        }
+      ],
+      "PointCalculationTypeID": null,
+      "IsBonusPoint": false,
+      "ResidentQuotaQuantity": null,
+      "NonResidentQuotaQuantity": null,
+      "QuotaQuantity": 1,
+      "QuotaFromArea": null,
+      "YouthQuotaPercentage": null,
+      "BreakoutResidentRegularRoundQuota": null,
+      "BreakoutNonResidentRegularRoundQuota": null,
+      "BreakoutResidentYouthQuota": null,
+      "BreakoutNonResidentYouthQuota": null,
+      "BreakoutYouthQuota": null,
+      "ConvertedYouthQuota": null,
+      "YouthQuotaQuantity": null,
+      "ResidentYouthQuotaQuantity": null,
+      "NonResidentYouthQuotaQuantity": null,
+      "ResidentMaxPointRoundQuota": null,
+      "ResidentRegularRoundQuota": null,
+      "NonResidentMaxPointRoundQuota": null,
+      "NonResidentRegularRoundQuota": null,
+      "MaxPointRoundQuota": 0,
+      "RegularRoundQuota": 1,
+      "YouthResidentMaxPointRoundQuota": null,
+      "YouthResidentRegularRoundQuota": null,
+      "YouthNonResidentMaxPointRoundQuota": null,
+      "YouthNonResidentRegularRoundQuota": null,
+      "YouthMaxPointRoundQuota": 0,
+      "YouthRegularRoundQuota": 1
+    }
+  ],
+  "Message": null
+}

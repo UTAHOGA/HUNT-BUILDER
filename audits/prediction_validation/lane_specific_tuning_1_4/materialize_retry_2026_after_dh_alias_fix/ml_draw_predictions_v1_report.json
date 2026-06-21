@@ -1,0 +1,12 @@
+{
+  "rows": 22542,
+  "unique_hunt_codes": 929,
+  "years": [
+    "2026"
+  ],
+  "forecast_year": 2026,
+  "source_years": "2021-2025",
+  "source_years_used_nonnull": 22542,
+  "source": "data_model\\runtime_drafts\\predictive_bonus_engine_2026.materialized.csv",
+  "command_used": "python -m engine.utah_bonus_predictive.materialize --output-dir audits\\prediction_validation\\lane_specific_tuning_1_4\\materialize_retry_2026_after_dh_alias_fix --forecast-year 2026 --history-years 2021,2022,2023,2024,2025 --skip-upstream"
+}

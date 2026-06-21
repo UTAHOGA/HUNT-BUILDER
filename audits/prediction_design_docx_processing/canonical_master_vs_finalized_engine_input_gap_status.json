@@ -1,0 +1,70 @@
+{
+  "generated_at_utc": "2026-06-19T09:39:27.987834+00:00",
+  "master_rows": 535179,
+  "covered_by_finalized_engine_input_keys": 519656,
+  "not_covered_by_finalized_engine_input_keys": 15523,
+  "not_covered_by_year": {
+    "2019": 2995,
+    "2020": 2907,
+    "2021": 2856,
+    "2023": 12,
+    "2024": 11,
+    "2025": 2716,
+    "2026": 4026
+  },
+  "not_covered_status_counts": [
+    [
+      "PDF_DERIVED_CANDIDATE_NOT_APPLIED",
+      3144
+    ],
+    [
+      "REBUILT_FIXED_2019_READY_FOR_PROMOTION",
+      2995
+    ],
+    [
+      "REBUILT_FIXED_2020_READY_FOR_PROMOTION",
+      2907
+    ],
+    [
+      "(blank)",
+      2856
+    ],
+    [
+      "PDF_GROUNDED_PROMOTED_CANDIDATE",
+      2332
+    ],
+    [
+      "POINT_PURCHASE_REFERENCE_NOT_DRAW_ODDS",
+      672
+    ],
+    [
+      "CANDIDATE_REVIEW_ONLY",
+      393
+    ],
+    [
+      "CANONICAL_SCORABLE_CANDIDATE_NOT_PROMOTED",
+      148
+    ],
+    [
+      "DO_NOT_PROMOTE_TO_HUNT_CODE_SCORING",
+      42
+    ],
+    [
+      "SEPARATE_LANE_REVIEW",
+      20
+    ],
+    [
+      "ACCEPTED_2023_UPLOADED_PDF_REBUILD",
+      12
+    ],
+    [
+      "SOURCE_BACKED_AVAILABILITY_REFERENCE",
+      2
+    ]
+  ],
+  "interpretation": "This is a normalized-key coverage audit only. Many not-covered rows are expected non-scorable/reference/supplemental rows or schema-scope differences; they should not be silently fed into prediction accuracy.",
+  "outputs": {
+    "summary": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\prediction_design_docx_processing\\canonical_master_rows_not_in_finalized_engine_inputs_summary.csv",
+    "sample": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\prediction_design_docx_processing\\canonical_master_rows_not_in_finalized_engine_inputs_sample.csv"
+  }
+}

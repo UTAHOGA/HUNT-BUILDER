@@ -1,0 +1,3 @@
+year,before_rows,before_columns,before_size_mb,after_rows,after_columns,after_size_mb,canonical_slice_rows,blank_hunt_code_after,blank_year_after,duplicate_strict_key_groups_after,exact_duplicate_row_groups_after,target
+2023,41201,105,33.766,71658,55,61.036,71658,0,0,0,0,C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\data_truth\draw_results_truth\normalized\draw_results_2023_for_2024_candidate_promotion_file_records.csv
+2024,37224,78,23.531,86659,55,57.344,86659,0,0,0,0,C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\data_truth\draw_results_truth\normalized\draw_results_2024_for_2025_candidate_promotion_file_records.csv

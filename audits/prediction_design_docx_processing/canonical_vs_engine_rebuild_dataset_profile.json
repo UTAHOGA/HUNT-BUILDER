@@ -1,0 +1,362 @@
+[
+  {
+    "dataset": "draw_results_long",
+    "path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+    "exists": true,
+    "rows": 535179,
+    "blank_hunt_code": 0,
+    "blank_year": 0,
+    "year_counts": {
+      "2019": 66945,
+      "2020": 66715,
+      "2021": 67565,
+      "2022": 69741,
+      "2023": 71658,
+      "2024": 86659,
+      "2025": 75598,
+      "2026": 30298
+    },
+    "top_row_types": [
+      [
+        "point_level_draw_result",
+        390810
+      ],
+      [
+        "POINT_ROW",
+        131574
+      ],
+      [
+        "hunt_total_draw_result",
+        5914
+      ],
+      [
+        "TOTAL",
+        2856
+      ],
+      [
+        "TOTAL_ROW",
+        2854
+      ],
+      [
+        "point_purchase_reference",
+        714
+      ],
+      [
+        "supplemental_permit_total_row",
+        393
+      ],
+      [
+        "SPORTSMAN_TOTAL",
+        22
+      ],
+      [
+        "sportsman_total_draw_result",
+        20
+      ],
+      [
+        "sportsman_total",
+        20
+      ],
+      [
+        "availability_only",
+        2
+      ]
+    ],
+    "top_statuses": [
+      [
+        "PDF_GROUNDED_PROMOTED_CANDIDATE",
+        161862
+      ],
+      [
+        "(blank)",
+        137306
+      ],
+      [
+        "ACCEPTED_2023_UPLOADED_PDF_REBUILD",
+        71658
+      ],
+      [
+        "REBUILT_FIXED_2019_READY_FOR_PROMOTION",
+        66945
+      ],
+      [
+        "REBUILT_FIXED_2020_READY_FOR_PROMOTION",
+        66715
+      ],
+      [
+        "CANONICAL_SCORABLE_CANDIDATE_NOT_PROMOTED",
+        18368
+      ],
+      [
+        "PDF_DERIVED_CANDIDATE_NOT_APPLIED",
+        11196
+      ],
+      [
+        "POINT_PURCHASE_REFERENCE_NOT_DRAW_ODDS",
+        672
+      ],
+      [
+        "CANDIDATE_REVIEW_ONLY",
+        393
+      ],
+      [
+        "DO_NOT_PROMOTE_TO_HUNT_CODE_SCORING",
+        42
+      ],
+      [
+        "SEPARATE_LANE_REVIEW",
+        20
+      ],
+      [
+        "SOURCE_BACKED_AVAILABILITY_REFERENCE",
+        2
+      ]
+    ],
+    "top_scopes": [
+      [
+        "BG_PARENT",
+        103618
+      ],
+      [
+        "LIMITED_ENTRY_ELK",
+        32441
+      ],
+      [
+        "20_bg-odds(2).pdf",
+        31610
+      ],
+      [
+        "19_bg-odds(1).pdf",
+        29960
+      ],
+      [
+        "CWMU",
+        29316
+      ],
+      [
+        "LIMITED_ENTRY_DEER",
+        23411
+      ],
+      [
+        "ANTLERLESS_REGULAR_MULTI",
+        22422
+      ],
+      [
+        "ANTLERLESS_YOUTH_MULTI",
+        19782
+      ],
+      [
+        "LIFETIME_DEER",
+        17010
+      ],
+      [
+        "YOUTH_GS_DEER",
+        14820
+      ],
+      [
+        "GS_DEER",
+        13808
+      ],
+      [
+        "BEAR",
+        12648
+      ],
+      [
+        "GENERAL_SEASON_DEER",
+        12169
+      ],
+      [
+        "LIMITED_ENTRY_PRONGHORN",
+        12027
+      ],
+      [
+        "BLACK_BEAR",
+        10974
+      ]
+    ]
+  },
+  {
+    "dataset": "point_distribution",
+    "path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\finalized_point_distribution.csv",
+    "exists": true,
+    "rows": 460097,
+    "blank_hunt_code": 0,
+    "blank_year": 0,
+    "year_counts": {
+      "2019": 63950,
+      "2020": 63808,
+      "2021": 64698,
+      "2022": 66876,
+      "2023": 57240,
+      "2024": 58730,
+      "2025": 58573,
+      "2026": 26222
+    },
+    "top_row_types": [
+      [
+        "point_level_draw_result",
+        328523
+      ],
+      [
+        "POINT_ROW",
+        131574
+      ]
+    ],
+    "top_statuses": [
+      [
+        "(blank)",
+        460097
+      ]
+    ],
+    "top_scopes": [
+      [
+        "2022_PERMITS=2023_MODEL",
+        66876
+      ],
+      [
+        "2021_PERMITS=2022_MODEL",
+        64698
+      ],
+      [
+        "2019_PERMITS=2020_MODEL_REBUILT_FIXED",
+        63950
+      ],
+      [
+        "2020_PERMITS=2021_MODEL_REBUILT_FIXED",
+        63808
+      ],
+      [
+        "2024_PERMITS=2025_MODEL",
+        58730
+      ],
+      [
+        "2025_PERMITS=2026_MODEL",
+        58573
+      ],
+      [
+        "2023_PERMITS=2024_MODEL",
+        57240
+      ],
+      [
+        "2026_PERMITS=2027_MODEL",
+        26222
+      ]
+    ]
+  },
+  {
+    "dataset": "hunt_truth",
+    "path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\finalized_hunt_truth.csv",
+    "exists": true,
+    "rows": 21246,
+    "blank_hunt_code": 0,
+    "blank_year": 0,
+    "year_counts": {
+      "2019": 2995,
+      "2020": 2907,
+      "2021": 2867,
+      "2022": 2865,
+      "2023": 2630,
+      "2024": 2777,
+      "2025": 2527,
+      "2026": 1678
+    },
+    "top_row_types": [
+      [
+        "COMPUTED_TOTAL_FROM_POINT_DISTRIBUTION_SOURCE_FILE_KEYED",
+        9612
+      ],
+      [
+        "hunt_total_draw_result",
+        5902
+      ],
+      [
+        "TOTAL",
+        2856
+      ],
+      [
+        "TOTAL_ROW",
+        2854
+      ],
+      [
+        "SPORTSMAN_TOTAL",
+        22
+      ]
+    ],
+    "top_statuses": [
+      [
+        "(blank)",
+        21246
+      ]
+    ],
+    "top_scopes": [
+      [
+        "2019_PERMITS=2020_MODEL_REBUILT_FIXED",
+        2995
+      ],
+      [
+        "2020_PERMITS=2021_MODEL_REBUILT_FIXED",
+        2907
+      ],
+      [
+        "2021_PERMITS=2022_MODEL",
+        2867
+      ],
+      [
+        "2022_PERMITS=2023_MODEL",
+        2865
+      ],
+      [
+        "2024_PERMITS=2025_MODEL",
+        2777
+      ],
+      [
+        "2023_PERMITS=2024_MODEL",
+        2630
+      ],
+      [
+        "2025_PERMITS=2026_MODEL",
+        2527
+      ],
+      [
+        "2026_PERMITS=2027_MODEL",
+        1678
+      ]
+    ]
+  },
+  {
+    "dataset": "prediction_outputs",
+    "path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\engine_rebuild_from_truth\\engine\\prediction_outputs.csv",
+    "exists": true,
+    "rows": 460097,
+    "blank_hunt_code": 0,
+    "blank_year": 0,
+    "year_counts": {
+      "2019": 63950,
+      "2020": 63808,
+      "2021": 64698,
+      "2022": 66876,
+      "2023": 57240,
+      "2024": 58730,
+      "2025": 58573,
+      "2026": 26222
+    },
+    "top_row_types": [
+      [
+        "(blank)",
+        460097
+      ]
+    ],
+    "top_statuses": [
+      [
+        "(blank)",
+        460097
+      ]
+    ],
+    "top_scopes": [
+      [
+        "(blank)",
+        460097
+      ]
+    ]
+  }
+]

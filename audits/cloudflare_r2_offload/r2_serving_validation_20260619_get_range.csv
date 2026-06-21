@@ -1,0 +1,8 @@
+﻿"url","status","content_length","content_type","bytes_read","ok","error"
+"https://json.uoga.workers.dev/data_truth/finalized_draw_truth_ALL.csv","200","129267681","text/csv; charset=utf-8","129267681","True",""
+"https://json.uoga.workers.dev/data_truth/finalized_point_distribution.csv","200","141634716","text/csv; charset=utf-8","141634716","True",""
+"https://json.uoga.workers.dev/data_truth/draw_results_truth/normalized/draw_results_long.csv.gz","200","4353927","application/gzip","4353927","True",""
+"https://json.uoga.workers.dev/engine_rebuild_from_truth/engine/draw_engine_input_point_rows_with_totals.csv","200","174540958","text/csv; charset=utf-8","174540958","True",""
+"https://json.uoga.workers.dev/engine_rebuild_from_truth/engine/draw_engine_input_point_rows.csv","200","141634716","text/csv; charset=utf-8","141634716","True",""
+"https://json.uoga.workers.dev/engine_rebuild_from_truth/engine/prediction_outputs.csv","200","121507527","text/csv; charset=utf-8","121507527","True",""
+"https://json.uoga.workers.dev/engine_rebuild_from_truth/engine/odds_tables.csv","200","76853190","text/csv; charset=utf-8","76853190","True",""

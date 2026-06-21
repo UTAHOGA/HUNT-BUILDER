@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-06-18T15:52:11.198004",
+  "target": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_2025_for_2026_candidate_promotion_file_records.csv",
+  "backup_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\repair_2025_year_metadata\\backups\\draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_year_metadata_20260618_155208.csv",
+  "rows_before": 75587,
+  "rows_after": 75587,
+  "changed_rows": 75587,
+  "blank_year_before": 0,
+  "blank_year_after": 0,
+  "blank_actual_draw_year_before": 75587,
+  "blank_actual_draw_year_after": 0,
+  "blank_source_report_family_before": 75587,
+  "blank_source_report_family_after": 0,
+  "added_columns": [
+    "actual_draw_year",
+    "source_report_family"
+  ],
+  "wrong_model_target_year_before": 0,
+  "wrong_model_target_year_after": 0,
+  "numeric_fields_changed": false,
+  "status": "PASS_METADATA_REPAIR_ONLY"
+}

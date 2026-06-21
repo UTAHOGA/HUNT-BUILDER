@@ -1,0 +1,71 @@
+{
+  "generated_at_utc": "2026-06-19T23:13:52.694688+00:00",
+  "status": "PASS_2019_FOR_2020_CANONICAL_YEARLY_BUILT",
+  "source_master": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+  "target": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2019_for_2020_canonical_yearly_draw_results.csv",
+  "year": 2019,
+  "model_year": 2020,
+  "profile": {
+    "rows": 66945,
+    "columns": 55,
+    "size_mb": 42.196,
+    "blank_hunt_code": 0,
+    "blank_year": 0,
+    "wrong_year": 0,
+    "unique_hunt_codes": 1054,
+    "duplicate_strict_key_groups": 0,
+    "exact_duplicate_row_groups": 0,
+    "cg9999_rows": 0,
+    "source_identity_count": 14,
+    "top_row_types": [
+      [
+        "point_level_draw_result",
+        63950
+      ],
+      [
+        "hunt_total_draw_result",
+        2995
+      ]
+    ],
+    "top_statuses": [
+      [
+        "REBUILT_FIXED_2019_READY_FOR_PROMOTION",
+        66945
+      ]
+    ],
+    "sha256": "f441169bb643e9bd3a8ecaf42b70cf622fe04049483b9268858e30eacf67d960"
+  },
+  "current_normalized_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_2019_for_2020_candidate_promotion_file_records.csv",
+  "current_normalized_profile": {
+    "rows": 66945,
+    "columns": 43,
+    "size_mb": 35.313,
+    "blank_hunt_code": 0,
+    "blank_year": 0,
+    "wrong_year": 0,
+    "unique_hunt_codes": 1054,
+    "duplicate_strict_key_groups": 0,
+    "exact_duplicate_row_groups": 0,
+    "cg9999_rows": 0,
+    "source_identity_count": 14,
+    "top_row_types": [
+      [
+        "point_level_draw_result",
+        63950
+      ],
+      [
+        "hunt_total_draw_result",
+        2995
+      ]
+    ],
+    "top_statuses": [
+      [
+        "REBUILT_FIXED_2019_READY_FOR_PROMOTION",
+        66945
+      ]
+    ],
+    "sha256": "968c3f69ba1242fb60b0b483123312143cbeeef4008f9dbdfedeb1da91e03df2"
+  },
+  "failed_gates": [],
+  "git_policy": "2019 canonical yearly CSV is under 50 MB, but generated truth data should still be reviewed before staging."
+}

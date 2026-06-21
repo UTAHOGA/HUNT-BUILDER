@@ -1,0 +1,19 @@
+{
+  "forecast_year": 2026,
+  "source_years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "modeled_rows": 0,
+  "modeled_hunt_codes_by_type": {
+    "PREFERENCE_ANTLERLESS_DEER": 0,
+    "PREFERENCE_ANTLERLESS_ELK": 0,
+    "PREFERENCE_DOE_PRONGHORN": 0
+  },
+  "modeled_inventory_rows": 0,
+  "modeled_inventory_residency_counts": {},
+  "csv": "audits\\prediction_validation\\lane_specific_tuning_1_4\\materialize_retry_2026_after_dh_fix\\phase4_antlerless_validation_inventory.csv"
+}

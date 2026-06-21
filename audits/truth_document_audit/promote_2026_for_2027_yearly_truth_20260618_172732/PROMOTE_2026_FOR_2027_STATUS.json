@@ -1,0 +1,48 @@
+{
+  "generated_at_utc": "2026-06-18T23:27:34.393884+00:00",
+  "status": "PASSED_PROMOTED",
+  "source_candidate": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\refresh_2026_candidate_from_live_utahdraws_20260618\\2026_live_plus_pdf_dense_ladder_candidate_NOT_PROMOTED.csv",
+  "target_normalized_yearly_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_2026_for_2027_candidate_promotion_file_records.csv",
+  "backup_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\promote_2026_for_2027_yearly_truth_20260618_172732\\backups\\draw_results_2026_for_2027_candidate_promotion_file_records.backup_before_2026_promotion_20260618_172732.csv",
+  "before_target_rows": 1096,
+  "source_candidate_rows": 30298,
+  "after_target_rows": 30298,
+  "target_column_count": 84,
+  "blank_hunt_code_rows": 0,
+  "blank_year_rows": 0,
+  "wrong_year_rows": 0,
+  "wrong_model_target_year_rows": 0,
+  "duplicate_merge_key_groups": 0,
+  "zero_applicant_rows": 12552,
+  "scorable_rows_with_applicants_and_drawn_field": 17746,
+  "record_kind_counts": {
+    "POINT_PURCHASE_REFERENCE": 714,
+    "POINT_ROW": 29564,
+    "SPORTSMAN_TOTAL": 20
+  },
+  "family_counts": {
+    "BLACK_BEAR": 2702,
+    "DEDICATED_HUNTER": 434,
+    "GENERAL_SEASON_DEER": 2555,
+    "LIMITED_ENTRY_DEER": 6757,
+    "LIMITED_ENTRY_ELK": 9561,
+    "LIMITED_ENTRY_PRONGHORN": 2231,
+    "OIL_BISON": 871,
+    "OIL_DESERT_BIGHORN_SHEEP": 1056,
+    "OIL_MTN_GOAT": 830,
+    "OIL_ROCKY_MTN_SHEEP": 762,
+    "POINT_PURCHASE_REFERENCE": 672,
+    "TURKEY": 213,
+    "BLACK_BEAR_RESTRICTED_PURSUIT": 116,
+    "OIL_BULL_MOOSE": 1516,
+    "YOUTH_GENERAL_SEASON_ELK": 2,
+    "SPORTSMAN_RANDOM_ONLY": 20
+  },
+  "failed_gates": [],
+  "outputs": {
+    "row_count_audit": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\promote_2026_for_2027_yearly_truth_20260618_172732\\promoted_2026_row_count_audit.csv",
+    "record_kind_counts": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\promote_2026_for_2027_yearly_truth_20260618_172732\\promoted_2026_record_kind_counts.csv",
+    "family_counts": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\promote_2026_for_2027_yearly_truth_20260618_172732\\promoted_2026_family_counts.csv",
+    "duplicate_keys": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\promote_2026_for_2027_yearly_truth_20260618_172732\\promoted_2026_duplicate_keys.csv"
+  }
+}

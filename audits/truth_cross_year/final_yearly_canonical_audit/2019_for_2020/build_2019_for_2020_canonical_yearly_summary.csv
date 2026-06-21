@@ -1,0 +1,2 @@
+year,model_year,target,rows,columns,size_mb,unique_hunt_codes,blank_hunt_code,blank_year,wrong_year,duplicate_strict_key_groups,exact_duplicate_row_groups,cg9999_rows,source_identity_count,sha256
+2019,2020,C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\data_truth\draw_results_truth\normalized\canonical_yearly\draw_results_2019_for_2020_canonical_yearly_draw_results.csv,66945,55,42.196,1054,0,0,0,0,0,0,14,f441169bb643e9bd3a8ecaf42b70cf622fe04049483b9268858e30eacf67d960

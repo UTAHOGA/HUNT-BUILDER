@@ -1,0 +1,111 @@
+{
+  "generated_at_utc": "2026-06-19T06:58:39.723395+00:00",
+  "input_validation_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\prediction_validation\\prediction_vs_actual_full_fixed.csv",
+  "target_draw_families": [
+    "BEAR_BONUS",
+    "DEDICATED_HUNTER_DEER_PREFERENCE",
+    "TURKEY_BONUS",
+    "YOUTH_ANTLERLESS_PREFERENCE",
+    "YOUTH_DEDICATED_HUNTER_DEER_PREFERENCE"
+  ],
+  "best_candidates": {
+    "BEAR_BONUS": {
+      "row_count": 7549,
+      "mae": 0.11917248797504125,
+      "rmse": 0.25266107515449754,
+      "bias": -0.023686071451485664,
+      "failure_count_abs_error_gt_0_25": 1094,
+      "draw_family": "BEAR_BONUS",
+      "candidate": "bias_shift_-0.05",
+      "baseline_mae": 0.12091922543572606,
+      "baseline_rmse": 0.25905428536159786,
+      "baseline_bias": -0.004205722745895515,
+      "mae_delta": -0.001746737460684808,
+      "rmse_delta": -0.006393210207100319,
+      "bias_abs_delta": 0.01948034870559015
+    },
+    "DEDICATED_HUNTER_DEER_PREFERENCE": {
+      "row_count": 950,
+      "mae": 0.2147998761887967,
+      "rmse": 0.4082891566692716,
+      "bias": 0.026817147489227137,
+      "failure_count_abs_error_gt_0_25": 252,
+      "draw_family": "DEDICATED_HUNTER_DEER_PREFERENCE",
+      "candidate": "scale_1.05",
+      "baseline_mae": 0.21482996568661905,
+      "baseline_rmse": 0.40617971592692925,
+      "baseline_bias": 0.019887891574869237,
+      "mae_delta": -3.008949782234982e-05,
+      "rmse_delta": 0.0021094407423423722,
+      "bias_abs_delta": 0.006929255914357901
+    },
+    "TURKEY_BONUS": {
+      "row_count": 402,
+      "mae": 0.11218692785031321,
+      "rmse": 0.22875963380738978,
+      "bias": 0.009786976550604795,
+      "failure_count_abs_error_gt_0_25": 58,
+      "draw_family": "TURKEY_BONUS",
+      "candidate": "identity_no_change",
+      "baseline_mae": 0.11218692785031321,
+      "baseline_rmse": 0.22875963380738978,
+      "baseline_bias": 0.009786976550604795,
+      "mae_delta": 0.0,
+      "rmse_delta": 0.0,
+      "bias_abs_delta": 0.0
+    },
+    "YOUTH_ANTLERLESS_PREFERENCE": {
+      "row_count": 2679,
+      "mae": 0.15489553609768822,
+      "rmse": 0.3138244812549033,
+      "bias": 0.04795933537562729,
+      "failure_count_abs_error_gt_0_25": 601,
+      "draw_family": "YOUTH_ANTLERLESS_PREFERENCE",
+      "candidate": "identity_no_change",
+      "baseline_mae": 0.15489553609768822,
+      "baseline_rmse": 0.3138244812549033,
+      "baseline_bias": 0.04795933537562729,
+      "mae_delta": 0.0,
+      "rmse_delta": 0.0,
+      "bias_abs_delta": 0.0
+    },
+    "YOUTH_DEDICATED_HUNTER_DEER_PREFERENCE": {
+      "row_count": 188,
+      "mae": 0.31864868439403965,
+      "rmse": 0.4311820234015714,
+      "bias": -0.0007092198586393635,
+      "failure_count_abs_error_gt_0_25": 73,
+      "draw_family": "YOUTH_DEDICATED_HUNTER_DEER_PREFERENCE",
+      "candidate": "blend_lane_actual_mean_0.5",
+      "baseline_mae": 0.3322802197797049,
+      "baseline_rmse": 0.5470196313514568,
+      "baseline_bias": -0.0014184397172786207,
+      "mae_delta": -0.01363153538566525,
+      "rmse_delta": -0.1158376079498854,
+      "bias_abs_delta": -0.0007092198586392572
+    }
+  },
+  "baseline": {
+    "row_count": 102436,
+    "mae": 0.07949705071330164,
+    "rmse": 0.21278789538209755,
+    "bias": 0.013266726655139277,
+    "failure_count_abs_error_gt_0_25": 10094
+  },
+  "lane_tuned_candidate": {
+    "row_count": 102436,
+    "mae": 0.07934302835040045,
+    "rmse": 0.21176772073517033,
+    "bias": 0.011896690477170244,
+    "failure_count_abs_error_gt_0_25": 10099
+  },
+  "overall_mae_delta": -0.00015402236290118498,
+  "overall_rmse_delta": -0.0010201746469272188,
+  "overall_bias_abs_delta": -0.0013700361779690334,
+  "recommendation": "REVIEW_CANDIDATES_ONLY_DO_NOT_PROMOTE",
+  "outputs": {
+    "candidate_results": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\prediction_validation\\lane_specific_tuning\\lane_tuning_candidate_results.csv",
+    "best_candidates": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\prediction_validation\\lane_specific_tuning\\lane_tuning_best_candidates.csv",
+    "lane_tuned_candidate": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\prediction_validation\\lane_specific_tuning\\prediction_validation_lane_tuned_candidate.csv"
+  }
+}

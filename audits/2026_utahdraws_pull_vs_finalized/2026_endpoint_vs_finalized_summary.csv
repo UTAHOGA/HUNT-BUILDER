@@ -1,0 +1,12 @@
+surface,metric,value
+endpoint,rows,19053
+endpoint,unique_keys,18554
+endpoint,unique_hunt_codes,847
+endpoint,raw_hunt_code_status:FAMILY_AGGREGATE_LABEL,633
+endpoint,raw_hunt_code_status:NONSTANDARD_CODE_SHAPE,39
+endpoint,raw_hunt_code_status:VALID_CODE_SHAPE,18381
+finalized,rows,26222
+finalized,unique_keys,26222
+finalized,unique_hunt_codes,839
+finalized,raw_hunt_code_status:FAMILY_AGGREGATE_LABEL,664
+finalized,raw_hunt_code_status:VALID_CODE_SHAPE,25558

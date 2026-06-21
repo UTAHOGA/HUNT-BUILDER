@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "generated_at_utc": "2026-06-21T02:58:40.664Z",
+  "source_rollup": "data_truth/draw_results_truth/normalized/draw_results_2023_for_2024_candidate_promotion_hunt_code_rollup.csv",
+  "source_point_rows": "pipeline/RAW/hunt_unit_database/2024/csv/draw_results_2023_for_2024_long.csv",
+  "output_xlsx": "outputs/2023 PERMITS.xlsx",
+  "summary_rows": 1040,
+  "long_rows": 35960,
+  "unique_hunt_codes": 1040,
+  "transformed_summary_names": [],
+  "transformed_long_names": []
+}

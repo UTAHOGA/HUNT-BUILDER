@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-06-19T03:27:20.685Z",
+  "max_public_file_bytes": 104857600,
+  "max_public_file_mb": 100,
+  "skipped_files": 3,
+  "skipped_due_to_path_rules": 0,
+  "skipped_for_100mb_limit": 3,
+  "skipped_records": [
+    {
+      "source_path": "data/hunt_odds_history.json",
+      "size_bytes": 113970739,
+      "size_mb": 108.7,
+      "r2_key_guess": "data_hunt_odds_history_json",
+      "public_url_guess": "https://json.uoga.workers.dev/data/hunt_odds_history.json",
+      "copy_status": "SKIPPED_LARGE_R2_REQUIRED"
+    },
+    {
+      "source_path": "processed_data/point_ladder_view.csv",
+      "size_bytes": 143562099,
+      "size_mb": 136.9,
+      "r2_key_guess": "research_point_ladder_view_csv",
+      "public_url_guess": "https://json.uoga.workers.dev/processed_data/point_ladder_view.csv",
+      "copy_status": "SKIPPED_LARGE_R2_REQUIRED"
+    },
+    {
+      "source_path": "processed_data/public_contracts/hunt_odds_history.json",
+      "size_bytes": 113951774,
+      "size_mb": 108.7,
+      "r2_key_guess": "public_contract_hunt_odds_history_json",
+      "public_url_guess": "https://json.uoga.workers.dev/processed_data/public_contracts/hunt_odds_history.json",
+      "copy_status": "SKIPPED_LARGE_R2_REQUIRED"
+    }
+  ]
+}

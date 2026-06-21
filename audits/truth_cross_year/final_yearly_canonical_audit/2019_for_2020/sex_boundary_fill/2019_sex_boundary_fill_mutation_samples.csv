@@ -1,0 +1,501 @@
+row_number,hunt_code,column,old_value,new_value,source_type,source_detail
+338,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+339,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+340,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+341,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+342,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+343,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+344,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+345,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+346,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+347,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+348,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+349,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+350,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+351,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+352,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+353,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+354,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+355,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+356,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+357,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+358,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+359,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+360,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+361,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+362,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+363,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+364,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+365,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+366,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+367,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+368,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+369,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+370,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+371,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+372,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+373,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+374,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+375,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+376,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+377,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+378,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+379,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+380,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+381,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+382,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+383,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+384,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+385,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+386,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+387,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+388,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+389,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+390,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+391,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+392,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+393,BI6507,boundary_id,,822,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__O.I.L - BISON DRAW RESULTS.pdf page 7"
+24194,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24194,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24194,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24195,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24195,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24195,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24196,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24196,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24196,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24197,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24197,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24197,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24198,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24198,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24198,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24199,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24199,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24199,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24200,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24200,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24200,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24201,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24201,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24201,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24202,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24202,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24202,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24203,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24203,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24203,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24204,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24204,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24204,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24205,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24205,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24205,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24206,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24206,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24206,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24207,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24207,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24207,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24208,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24208,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24208,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24209,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24209,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24209,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24210,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24210,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24210,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24211,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24211,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24211,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24212,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24212,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24212,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24213,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24213,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24213,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24214,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24214,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24214,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24215,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24215,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24215,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24216,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24216,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24216,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24217,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24217,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24217,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24218,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24218,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24218,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24219,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24219,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24219,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24220,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24220,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24220,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24221,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24221,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24221,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24222,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24222,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24222,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24223,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24223,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24223,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24224,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24224,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24224,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24225,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24225,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24225,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24226,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24226,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24226,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24227,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24227,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24227,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24228,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24228,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24228,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24229,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24229,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24229,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24230,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24230,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24230,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24231,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24231,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24231,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24232,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24232,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24232,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24233,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24233,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24233,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24234,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24234,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24234,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24235,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24235,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24235,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24236,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24236,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24236,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24237,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24237,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24237,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24238,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24238,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24238,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24239,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24239,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24239,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24240,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24240,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24240,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24241,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24241,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24241,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24242,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24242,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24242,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24243,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24243,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24243,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24244,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24244,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24244,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24245,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24245,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24245,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24246,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24246,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24246,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24247,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24247,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24247,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24248,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24248,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24248,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24249,GO6809,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24249,GO6809,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24249,GO6809,boundary_id,,157,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,"Ogden, Willard Peak | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__0.I.L MOUNTAIN GOAT DRAW RESULTS.pdf page 9"
+24306,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24306,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24307,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24307,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24308,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24308,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24309,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24309,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24310,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24310,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24311,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24311,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24312,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24312,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24313,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24313,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24314,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24314,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24315,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24315,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24316,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24316,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24317,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24317,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24318,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24318,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24319,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24319,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24320,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24320,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24321,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24321,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24322,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24322,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24323,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24323,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24324,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24324,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24325,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24325,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24326,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24326,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24327,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24327,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24328,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24328,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24329,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24329,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24330,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24330,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24331,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24331,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24332,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24332,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24333,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24333,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24334,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24334,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24335,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24335,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24336,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24336,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24337,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24337,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24338,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24338,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24339,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24339,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24340,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24340,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24341,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24341,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24342,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24342,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24343,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24343,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24344,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24344,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24345,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24345,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24346,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24346,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24347,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24347,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24348,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24348,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24349,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24349,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24350,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24350,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24351,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24351,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24352,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24352,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24353,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24353,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24354,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24354,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24355,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24355,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24356,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24356,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24357,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24357,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24358,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24358,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24359,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24359,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24360,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24360,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24361,GO6811,sex,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+24361,GO6811,sex_type,,Either Sex,USER_APPROVED_SPECIES_DEFAULT,user_directed_species_default_mountain_goat_either_sex
+28058,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28059,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28060,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28061,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28062,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28063,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28064,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28065,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28066,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28067,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28068,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28069,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28070,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28071,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28072,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28073,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28074,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28075,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28076,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28077,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28078,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28079,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28080,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28081,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28082,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28083,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28084,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28085,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28086,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28087,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28088,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28089,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28090,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28091,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28092,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28093,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28094,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28095,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28096,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28097,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28098,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28099,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28100,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28101,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28102,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28103,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28104,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28105,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28106,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28107,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28108,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28109,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28110,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28111,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28112,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28113,PB5304,boundary_id,,565,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Middle Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 59
+28282,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28283,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28284,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28285,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28286,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28287,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28288,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28289,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28290,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28291,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28292,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28293,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28294,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28295,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28296,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28297,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28298,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28299,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28300,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28301,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28302,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28303,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28304,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28305,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28306,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28307,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28308,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28309,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28310,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28311,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28312,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28313,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28314,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28315,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28316,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28317,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28318,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28319,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28320,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28321,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28322,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28323,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28324,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28325,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28326,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28327,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28328,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28329,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28330,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28331,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28332,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28333,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28334,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28335,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28336,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28337,PB5308,boundary_id,,576,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,SJ Ranch | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 63
+28394,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28395,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28396,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28397,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28398,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28399,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28400,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28401,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28402,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28403,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28404,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28405,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28406,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28407,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28408,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28409,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28410,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28411,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28412,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28413,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28414,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28415,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28416,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28417,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28418,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28419,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28420,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28421,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28422,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28423,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28424,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28425,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28426,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28427,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28428,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28429,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28430,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28431,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28432,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28433,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28434,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28435,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28436,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28437,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28438,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28439,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28440,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28441,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28442,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28443,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28444,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65
+28445,PB5310,boundary_id,,562,OFFICIAL_BOUNDARY_GEOJSON_EXACT_NAME_MATCH,Strawberry Ridge | data\hunt-boundaries-lite.geojson | data_truth\draw_results_truth\raw_pdfs\2019_PERMITS=2020_MODEL\2019_PERMITS=2020_MODEL__L.E. PROGHORN DRAW RESULTS.pdf page 65

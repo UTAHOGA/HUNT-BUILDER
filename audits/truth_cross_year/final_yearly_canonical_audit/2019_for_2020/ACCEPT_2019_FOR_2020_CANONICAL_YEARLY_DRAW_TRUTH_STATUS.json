@@ -1,0 +1,41 @@
+{
+  "generated_utc": "2026-06-20T00:01:32.296733+00:00",
+  "decision": "ACCEPTED_FOR_CANONICAL_YEARLY_DRAW_TRUTH_PROMOTION",
+  "boundary_enrichment_status": "PARTIAL_ACCEPTED_FOR_2019_OLD_CODE_FILE",
+  "boundary_note": "Remaining boundary_id blanks are accepted for 2019 promotion because exact future yearly CSV boundary matching produced no safe fills; do not guess old-code boundaries.",
+  "target": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2019_for_2020_canonical_yearly_draw_results.csv",
+  "row_count": 66945,
+  "expected_row_count": 66945,
+  "column_count": 55,
+  "schema_matches_55_column_contract": true,
+  "source_year_counts": {
+    "2019": 66945
+  },
+  "model_year_counts": {
+    "2020": 66945
+  },
+  "unique_hunt_codes": 1054,
+  "duplicate_strict_key_groups": 0,
+  "cg9999_rows": 0,
+  "critical_blank_counts": {
+    "hunt_code": 0,
+    "hunt_name": 0,
+    "species": 0,
+    "sex": 0,
+    "sex_type": 0,
+    "weapon": 0,
+    "draw_design": 0,
+    "residency": 0,
+    "points": 0,
+    "row_type": 0,
+    "record_type": 0,
+    "source_file": 0,
+    "source_pdf": 0,
+    "permits_year_res": 0,
+    "permits_year_nr": 0,
+    "permits_year_total": 0
+  },
+  "boundary_id_blank_count": 5811,
+  "boundary_id_blank_unique_hunt_codes": 98,
+  "promotion_ready": true
+}

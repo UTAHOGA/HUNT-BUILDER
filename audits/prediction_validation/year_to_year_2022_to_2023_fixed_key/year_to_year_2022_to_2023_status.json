@@ -1,0 +1,14 @@
+{
+  "generated_at_utc": "2026-06-19T07:16:00.303345+00:00",
+  "comparison": "2022_predictions_model_year_2023_vs_2023_actual_truth",
+  "input_fixed_key_validation": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\prediction_validation\\prediction_vs_actual_full_fixed.csv",
+  "join_key": "hunt_code + model_year + residency + hunt_program + point_level + draw_family",
+  "duplicate_join_key_groups": 0,
+  "row_count": 14675,
+  "mae": 0.07989083570780309,
+  "rmse": 0.21518909045573437,
+  "bias": 0.010865751642076803,
+  "failure_count_abs_error_gt_0_25": 1486,
+  "failure_rows_written": 1486,
+  "outputs_dir": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\prediction_validation\\year_to_year_2022_to_2023_fixed_key"
+}

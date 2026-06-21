@@ -1,0 +1,62 @@
+{
+  "generated_at_utc": "2026-06-19T09:28:25.673433+00:00",
+  "canonical_decision": "DRAW_RESULTS_LONG_REMAINS_ENGINE_FEEDER_CANONICAL",
+  "canonical_reason": "draw_results_long.csv carries the 55-column engine-facing schema and richer identity/source metadata; finalized_point_distribution.csv and finalized_hunt_truth.csv remain narrower reconciliation/source-truth surfaces.",
+  "finalized_point_distribution_rows": 460097,
+  "finalized_hunt_truth_rows": 21246,
+  "finalized_combined_rows": 481343,
+  "draw_results_long_rows_before": 535179,
+  "draw_results_long_rows_after": 535179,
+  "draw_results_long_backup": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\reconcile_finalized_vs_long_and_sync_2026\\backups\\draw_results_long.append_2026_reconcil.20260619_032746.csv",
+  "accepted_2026_candidate": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\refresh_2026_candidate_from_live_utahdraws_20260618\\2026_live_plus_pdf_dense_ladder_candidate_NOT_PROMOTED.csv",
+  "accepted_2026_rows": 30298,
+  "accepted_2026_columns": 39,
+  "mapped_2026_rows_added": 30298,
+  "normalized_2026_yearly_before_rows": 30298,
+  "normalized_2026_yearly_after_rows": 30298,
+  "normalized_2026_backup": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\reconcile_finalized_vs_long_and_sync_2026\\backups\\draw_results_2026_for_2027_candidate.sync_2026_yearly_fro.20260619_032746.csv",
+  "yearly_2021_2022_sync": [
+    {
+      "year": "2021",
+      "model_year": "2022",
+      "target": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_2021_for_2022_candidate_promotion_file_records.csv",
+      "before_rows": 67565,
+      "after_rows": 67565,
+      "source": "draw_results_long.csv canonical slice",
+      "backup_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\reconcile_finalized_vs_long_and_sync_2026\\backups\\draw_results_2021_for_2022_candidate.sync_2021_2022_yearl.20260619_032746.csv"
+    },
+    {
+      "year": "2022",
+      "model_year": "2023",
+      "target": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_2022_for_2023_candidate_promotion_file_records.csv",
+      "before_rows": 69741,
+      "after_rows": 69741,
+      "source": "draw_results_long.csv canonical slice",
+      "backup_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\reconcile_finalized_vs_long_and_sync_2026\\backups\\draw_results_2022_for_2023_candidate.sync_2022_2023_yearl.20260619_032746.csv"
+    }
+  ],
+  "row_counts_after_by_year": {
+    "2019": 66945,
+    "2020": 66715,
+    "2021": 67565,
+    "2022": 69741,
+    "2023": 71658,
+    "2024": 86659,
+    "2025": 75598,
+    "2026": 30298
+  },
+  "duplicate_strict_key_groups_after": 0,
+  "blank_hunt_code_rows_after": 0,
+  "blank_year_rows_after": 0,
+  "cg9999_by_year_after": {
+    "2023": 1,
+    "2024": 1,
+    "2025": 1
+  },
+  "reconciliation_report": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\reconcile_finalized_vs_long_and_sync_2026\\finalized_vs_draw_results_long_by_year.csv",
+  "row_count_audit": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\reconcile_finalized_vs_long_and_sync_2026\\draw_results_long_row_counts_before_after.csv",
+  "duplicate_key_audit": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\reconcile_finalized_vs_long_and_sync_2026\\draw_results_long_duplicate_strict_keys_after.csv",
+  "cg9999_audit": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\reconcile_finalized_vs_long_and_sync_2026\\draw_results_long_cg9999_by_year_after.csv",
+  "failed_gates": [],
+  "status": "PASS_RECONCILED_SYNCED_2021_2022_AND_APPENDED_2026"
+}

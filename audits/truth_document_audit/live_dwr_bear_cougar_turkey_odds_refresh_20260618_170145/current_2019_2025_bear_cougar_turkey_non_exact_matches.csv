@@ -1,0 +1,5 @@
+resolved_year,family,title,official_basename,match_status,official_size_bytes,official_sha256,url,exact_hash_match_count,exact_hash_match_paths,basename_match_count,basename_match_paths
+2025,BEAR,Drawing odds,25_drawing_odds.pdf,MISSING_LOCAL_EXACT,1641231,d18cf6df54d9e649ae945f43fe305bcad52410751bf2649f54713892483099e8,https://wildlife.utah.gov/pdf/bear/25_drawing_odds.pdf,0,,0,
+2024,BEAR,Drawing odds,24_drawing_odds.pdf,MISSING_LOCAL_EXACT,434608,7285646f7a11b529256c3040278a345f6b3df0613950570c0a9901e42e1ec8ea,https://wildlife.utah.gov/pdf/bear/24_drawing_odds.pdf,0,,0,
+2019,COUGAR,Drawing odds,2019_cougar_odds_report.pdf,MISSING_LOCAL_EXACT,168152,b39e97b45e3fbc7f215b2c317ad4aa76064e2166d1a29e29de826090b1914189,https://wildlife.utah.gov/pdf/cougar/2019_cougar_odds_report.pdf,0,,0,
+2025,TURKEY,Drawing results and bonus point purchase results,2025_turkey_bonus_points_draw_results.pdf,MISSING_LOCAL_EXACT,236278,121da5c9c837490df1a61b1ec3482c57a35f90592909516b43dce8f69acf2e69,https://wildlife.utah.gov/pdf/uplandgame/turkey/2025_turkey_bonus_points_draw_results.pdf,0,,0,

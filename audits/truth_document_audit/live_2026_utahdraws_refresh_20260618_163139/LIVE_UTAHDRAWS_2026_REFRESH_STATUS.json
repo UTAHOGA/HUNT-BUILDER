@@ -1,0 +1,56 @@
+{
+  "generated_at_utc": "2026-06-18T22:31:53.183962+00:00",
+  "out_dir": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\live_2026_utahdraws_refresh_20260618_163139",
+  "endpoint_count": 24,
+  "endpoint_success_count": 24,
+  "endpoint_error_count": 0,
+  "changed_since_20260603_count": 24,
+  "changed_slugs": [
+    "2026_big_game_05_general_season_buck_deer",
+    "2026_big_game_06_draw_only_youth_elk",
+    "2026_big_game_08_limited_entry_buck_deer",
+    "2026_big_game_09_limited_entry_bull_elk",
+    "2026_big_game_10_limited_entry_buck_pronghorn",
+    "2026_big_game_11_bull_moose",
+    "2026_big_game_12_bison",
+    "2026_big_game_13_desert_bighorn_sheep",
+    "2026_big_game_14_rocky_mtn_bighorn_sheep",
+    "2026_big_game_15_mountain_goat",
+    "2026_big_game_32_dedicated_hunter_buck_deer",
+    "2026_black_bear_01_black_bear",
+    "2026_black_bear_16_black_bear_restricted_pursuit",
+    "2026_turkey_03_turkey",
+    "2026_sportsman_22_sportsman_deer",
+    "2026_sportsman_23_sportsman_elk",
+    "2026_sportsman_24_sportsman_pronghorn",
+    "2026_sportsman_25_sportsman_moose",
+    "2026_sportsman_26_sportsman_bison",
+    "2026_sportsman_27_sportsman_rocky_mtn_bighorn_sheep",
+    "2026_sportsman_28_sportsman_desert_bighorn_sheep",
+    "2026_sportsman_29_sportsman_mountain_goat",
+    "2026_sportsman_30_sportsman_black_bear",
+    "2026_sportsman_31_sportsman_turkey"
+  ],
+  "total_hunt_records": 847,
+  "total_raw_odds_rows": 19050,
+  "supplement_summary": {
+    "http_status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "raw_json_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\live_2026_utahdraws_refresh_20260618_163139\\json\\DrawOddsSupplementData.json",
+    "sha256": "c9be9b3c248718636004a011f285fd35d7df8894e6e684ad83330876f5177cf9",
+    "top_level_type": "dict",
+    "top_level_keys": [
+      "Status",
+      "Data",
+      "Message"
+    ]
+  },
+  "outputs": {
+    "manifest_csv": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\live_2026_utahdraws_refresh_20260618_163139\\live_utahdraws_2026_endpoint_manifest.csv",
+    "flat_odds_csv": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\live_2026_utahdraws_refresh_20260618_163139\\live_utahdraws_2026_flat_odds_rows.csv",
+    "errors_csv": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\live_2026_utahdraws_refresh_20260618_163139\\live_utahdraws_2026_errors.csv",
+    "summary_json": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\live_2026_utahdraws_refresh_20260618_163139\\LIVE_UTAHDRAWS_2026_REFRESH_STATUS.json",
+    "report_md": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\live_2026_utahdraws_refresh_20260618_163139\\LIVE_UTAHDRAWS_2026_REFRESH_REPORT.md",
+    "raw_json_dir": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\live_2026_utahdraws_refresh_20260618_163139\\json"
+  }
+}

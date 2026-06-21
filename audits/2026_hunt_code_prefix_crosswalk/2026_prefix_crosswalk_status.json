@@ -1,0 +1,63 @@
+{
+  "generated_at_utc": "2026-06-19T08:29:57.675403+00:00",
+  "crosswalk_source": "data_truth\\crosswalk_truth\\normalized\\current_to_historical_hunt_code_crosswalk_2026.csv",
+  "crosswalk_rows_loaded": 165,
+  "target_files": [
+    "data_truth\\finalized_point_distribution.csv",
+    "data_truth\\finalized_hunt_truth.csv"
+  ],
+  "row_count_preserved": true,
+  "results": [
+    {
+      "path": "data_truth\\finalized_point_distribution.csv",
+      "rows_before": 460097,
+      "rows_after": 460097,
+      "row_count_preserved": true,
+      "changed_prefix_metadata_rows": 460097,
+      "status_counts": {
+        "CURRENT_2026_CODE_CROSSWALKED_TO_HISTORICAL_PREFIX:EXACT_CODE_HISTORY:HIGH": 4,
+        "FAMILY_AGGREGATE_LABEL_NOT_UNIQUE_HUNT_CODE": 664,
+        "UNCHANGED_2026_LEGACY_PREFIX": 25554
+      },
+      "legacy_prefix_counts": {
+        "BI": 882,
+        "BR": 2556,
+        "DB": 7790,
+        "DS": 1104,
+        "EB": 8578,
+        "GO": 870,
+        "MB": 1556,
+        "PB": 2066,
+        "RS": 818,
+        "TK": 2
+      }
+    },
+    {
+      "path": "data_truth\\finalized_hunt_truth.csv",
+      "rows_before": 21246,
+      "rows_after": 21246,
+      "row_count_preserved": true,
+      "changed_prefix_metadata_rows": 21246,
+      "status_counts": {
+        "CURRENT_2026_CODE_CROSSWALKED_TO_HISTORICAL_PREFIX:EXACT_CODE_HISTORY:HIGH": 4,
+        "FAMILY_AGGREGATE_LABEL_NOT_UNIQUE_HUNT_CODE": 24,
+        "UNCHANGED_2026_LEGACY_PREFIX": 1650
+      },
+      "legacy_prefix_counts": {
+        "BI": 36,
+        "BR": 204,
+        "DB": 666,
+        "DS": 40,
+        "EB": 424,
+        "GO": 38,
+        "MB": 56,
+        "PB": 178,
+        "RS": 34,
+        "TK": 2
+      }
+    }
+  ],
+  "detail_path": "audits\\2026_hunt_code_prefix_crosswalk\\2026_prefix_crosswalk_detail.csv",
+  "summary_path": "audits\\2026_hunt_code_prefix_crosswalk\\2026_prefix_crosswalk_summary.csv",
+  "rule": "Preserve raw hunt_code; add legacy_hunt_code_prefix for cross-year model routing."
+}

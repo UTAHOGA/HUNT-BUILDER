@@ -1,0 +1,194 @@
+{
+  "generated_at_utc": "2026-06-20T23:31:36.560364+00:00",
+  "target": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2019_for_2020_canonical_yearly_draw_results.csv",
+  "backup": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_cross_year\\final_yearly_canonical_audit\\2019_for_2020\\hunt_name_cleanup\\backups\\draw_results_2019_for_2020_canonical_yearly_draw_results.backup_before_hunt_name_cleanup_20260620T233110Z.csv",
+  "changed_rows": 26652,
+  "mutation_counts": {
+    "hunt_name": 26652
+  },
+  "sample_transformations": [
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6501",
+      "row_type": "point_level_draw_result",
+      "hunt_type": "Once-in-a-lifetime",
+      "old_hunt_name": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "new_hunt_name": "Book Cliffs"
+    }
+  ],
+  "status": "PASS",
+  "rules": [
+    "Strip leading Hunt: CODE labels when they leak into hunt_name.",
+    "Remove obvious species/program prefixes from hunt_name.",
+    "Strip trailing CWMU from CWMU hunt rows.",
+    "Strip trailing weapon suffixes like Any Legal Weapon, Archery, Muzzleloader, Rifle, and Shotgun.",
+    "Preserve raw_hunt_name and other fields unchanged."
+  ]
+}

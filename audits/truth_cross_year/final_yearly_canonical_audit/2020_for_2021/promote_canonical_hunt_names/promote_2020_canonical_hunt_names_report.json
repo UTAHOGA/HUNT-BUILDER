@@ -1,0 +1,26 @@
+{
+  "generated_at_utc": "2026-06-20T21:16:20.297691+00:00",
+  "status": "PASS",
+  "candidate_source": "data_truth/draw_results_truth/normalized/draw_results_2020_for_2021_candidate_promotion_file_records.csv",
+  "targets": {
+    "draw_results_long": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
+    "finalized_hunt_truth": "data_truth/finalized_hunt_truth.csv",
+    "finalized_point_distribution": "data_truth/finalized_point_distribution.csv"
+  },
+  "backup_paths": {
+    "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_long.csv": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_cross_year\\final_yearly_canonical_audit\\2020_for_2021\\promote_canonical_hunt_names\\backups\\draw_results_long.before_promote_2020_long_hunt_names.20260620T211551Z.csv",
+    "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\finalized_hunt_truth.csv": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_cross_year\\final_yearly_canonical_audit\\2020_for_2021\\promote_canonical_hunt_names\\backups\\finalized_hunt_truth.before_promote_2020_finalized_hunt_truth.20260620T211551Z.csv",
+    "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\finalized_point_distribution.csv": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_cross_year\\final_yearly_canonical_audit\\2020_for_2021\\promote_canonical_hunt_names\\backups\\finalized_point_distribution.before_promote_2020_finalized_point_distribution.20260620T211551Z.csv"
+  },
+  "changes": {
+    "draw_results_long": 5496,
+    "finalized_hunt_truth": 264,
+    "finalized_point_distribution": 5232
+  },
+  "year": 2020,
+  "notes": [
+    "Promoted cleaned 2020 hunt_name values from the corrected candidate promotion file into canonical master truth surfaces.",
+    "Left 2019 and 2021+ rows unchanged.",
+    "Preserved all other columns and source metadata."
+  ]
+}

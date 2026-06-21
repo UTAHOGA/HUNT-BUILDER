@@ -1,0 +1,73 @@
+key,species,sex_type,weapon,prediction_hunt_name,actual_hunt_name,prediction_source_file,actual_source_file
+DB1090|Resident|15|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,"Book Cliffs, Floy Canyon","Limited-entry Hams Buck Deer - Book Cliffs, Floy Canyon - H.a.m.s.",20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1090|Resident|14|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,"Book Cliffs, Floy Canyon","Limited-entry Hams Buck Deer - Book Cliffs, Floy Canyon - H.a.m.s.",20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1090|Nonresident|12|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,"Book Cliffs, Floy Canyon","Limited-entry Hams Buck Deer - Book Cliffs, Floy Canyon - H.a.m.s.",20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1090|Resident|4|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,"Book Cliffs, Floy Canyon","Limited-entry Hams Buck Deer - Book Cliffs, Floy Canyon - H.a.m.s.",20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1090|Resident|2|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,"Book Cliffs, Floy Canyon","Limited-entry Hams Buck Deer - Book Cliffs, Floy Canyon - H.a.m.s.",20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1091|Resident|16|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,Kaiparowits HAMSS,Limited-entry Hams Buck Deer - Kaiparowits Hams - H.a.m.s.,20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1091|Resident|7|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,Kaiparowits HAMSS,Limited-entry Hams Buck Deer - Kaiparowits Hams - H.a.m.s.,20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1091|Resident|5|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,Kaiparowits HAMSS,Limited-entry Hams Buck Deer - Kaiparowits Hams - H.a.m.s.,20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1091|Nonresident|2|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,Kaiparowits HAMSS,Limited-entry Hams Buck Deer - Kaiparowits Hams - H.a.m.s.,20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1092|Nonresident|12|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,Hams,Limited-entry Hams Buck Deer - Morgan-south Rich - H.a.m.s.,20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1092|Resident|8|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,Hams,Limited-entry Hams Buck Deer - Morgan-south Rich - H.a.m.s.,20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1092|Resident|7|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,Hams,Limited-entry Hams Buck Deer - Morgan-south Rich - H.a.m.s.,20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1092|Resident|2|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,Hams,Limited-entry Hams Buck Deer - Morgan-south Rich - H.a.m.s.,20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1200|Resident|20|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,Alton,Premium Cwmu Buck Deer -Alton - An y Legal Weapon,20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1242|Resident|12|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,Grass Valley/Clark Canyon CWMU,Cwmu Buck Deer - Grass Valley/clark Canyon -An y Legal Weapon,20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1242|Resident|11|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,Grass Valley/Clark Canyon CWMU,Cwmu Buck Deer - Grass Valley/clark Canyon -An y Legal Weapon,20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1242|Resident|10|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,Grass Valley/Clark Canyon CWMU,Cwmu Buck Deer - Grass Valley/clark Canyon -An y Legal Weapon,20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1242|Resident|9|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,Grass Valley/Clark Canyon CWMU,Cwmu Buck Deer - Grass Valley/clark Canyon -An y Legal Weapon,20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1242|Resident|7|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,Grass Valley/Clark Canyon CWMU,Cwmu Buck Deer - Grass Valley/clark Canyon -An y Legal Weapon,20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1242|Resident|2|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,Grass Valley/Clark Canyon CWMU,Cwmu Buck Deer - Grass Valley/clark Canyon -An y Legal Weapon,20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1242|Resident|0|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,Grass Valley/Clark Canyon CWMU,Cwmu Buck Deer - Grass Valley/clark Canyon -An y Legal Weapon,20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1275|Resident|9|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,Pine Canyon CWMU,Cwmu Buck Deer - Pine Canyon -An y Legal Weapon,20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1275|Resident|3|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,Pine Canyon CWMU,Cwmu Buck Deer - Pine Canyon -An y Legal Weapon,20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1309|Resident|12|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,West Willow Creek Ranch CWMU,Cwmu Buck Deer - West Willow Creek Ranch -An y Legal Weapon,20_bg-odds(2).pdf,21_bg-odds.pdf
+DB1309|Resident|11|BG_PARENT|BONUS_POINT,DEER,BUCK,UNKNOWN,West Willow Creek Ranch CWMU,Cwmu Buck Deer - West Willow Creek Ranch -An y Legal Weapon,20_bg-odds(2).pdf,21_bg-odds.pdf
+EB3505|Resident|9|BG_PARENT|BONUS_POINT,ELK,BULL,UNKNOWN,Boobe Hole CWMU,Cwmu Any Bull Elk -Boobe Hole - An y Legal Weapon,20_bg-odds(2).pdf,21_bg-odds.pdf
+MB6206|Resident|15|BG_PARENT|BONUS_POINT,MOOSE,BULL,UNKNOWN,Deseret CWMU,Cwmu Bull Moose - Deseret -An y Legal Weapon,20_bg-odds(2).pdf,21_bg-odds.pdf
+MB6254|Resident|8|BG_PARENT|BONUS_POINT,MOOSE,BULL,UNKNOWN,SJ Ranch CWMU,Cwmu Bull Moose - Sj Ranch -An y Legal Weapon,20_bg-odds(2).pdf,21_bg-odds.pdf
+DS6602|Resident|21|BG_PARENT|BONUS_POINT,DESERT_BIGHORN_SHEEP,RAM,UNKNOWN,"Kaiparowits, Escalante","Desert Bighorn Sheep - Kaiparowits, Escalante -An y Legal Weapon",20_bg-odds(2).pdf,21_bg-odds.pdf
+DS6602|Resident|16|BG_PARENT|BONUS_POINT,DESERT_BIGHORN_SHEEP,RAM,UNKNOWN,"Kaiparowits, Escalante","Desert Bighorn Sheep - Kaiparowits, Escalante -An y Legal Weapon",20_bg-odds(2).pdf,21_bg-odds.pdf
+DS6602|Resident|11|BG_PARENT|BONUS_POINT,DESERT_BIGHORN_SHEEP,RAM,UNKNOWN,"Kaiparowits, Escalante","Desert Bighorn Sheep - Kaiparowits, Escalante -An y Legal Weapon",20_bg-odds(2).pdf,21_bg-odds.pdf
+DS6602|Resident|5|BG_PARENT|BONUS_POINT,DESERT_BIGHORN_SHEEP,RAM,UNKNOWN,"Kaiparowits, Escalante","Desert Bighorn Sheep - Kaiparowits, Escalante -An y Legal Weapon",20_bg-odds(2).pdf,21_bg-odds.pdf
+RS6724|Resident|21|BG_PARENT|BONUS_POINT,ROCKY_MOUNTAIN_BIGHORN_SHEEP,RAM,UNKNOWN,"Wasatch Mtns, West","Rocky Mountain Bighorn Sheep - Wasatch Mtns, West -An y Legal Weapon",20_bg-odds(2).pdf,21_bg-odds.pdf
+RS6724|Resident|12|BG_PARENT|BONUS_POINT,ROCKY_MOUNTAIN_BIGHORN_SHEEP,RAM,UNKNOWN,"Wasatch Mtns, West","Rocky Mountain Bighorn Sheep - Wasatch Mtns, West -An y Legal Weapon",20_bg-odds(2).pdf,21_bg-odds.pdf
+GO6820|Resident|20|BG_PARENT|BONUS_POINT,MOUNTAIN_GOAT,EITHER_SEX,UNKNOWN,"Wasatch Mtns, Timpanogos","Mountain Goat - Wasatch Mtns, Timpanogos -An y Legal Weapon",20_bg-odds(2).pdf,21_bg-odds.pdf
+GO6820|Resident|19|BG_PARENT|BONUS_POINT,MOUNTAIN_GOAT,EITHER_SEX,UNKNOWN,"Wasatch Mtns, Timpanogos","Mountain Goat - Wasatch Mtns, Timpanogos -An y Legal Weapon",20_bg-odds(2).pdf,21_bg-odds.pdf
+GO6820|Resident|14|BG_PARENT|BONUS_POINT,MOUNTAIN_GOAT,EITHER_SEX,UNKNOWN,"Wasatch Mtns, Timpanogos","Mountain Goat - Wasatch Mtns, Timpanogos -An y Legal Weapon",20_bg-odds(2).pdf,21_bg-odds.pdf
+GO6820|Resident|5|BG_PARENT|BONUS_POINT,MOUNTAIN_GOAT,EITHER_SEX,UNKNOWN,"Wasatch Mtns, Timpanogos","Mountain Goat - Wasatch Mtns, Timpanogos -An y Legal Weapon",20_bg-odds(2).pdf,21_bg-odds.pdf
+EA1077|Resident|0|YOUTH_ANTLERLESS_PARENT|PREFERENCE_POINT,ELK,COW,UNKNOWN,Boulder-Circle Cliffs,"Antlerless Elk - Plateau, Boulder-circle Cliffs -An y Legal Weapon",20_youth_antlerless_drawing_odds_report(1).pdf,21_youth_antlerless_drawing_odds_report.pdf
+PD1008|Resident|2|YOUTH_ANTLERLESS_PARENT|PREFERENCE_POINT,PRONGHORN,DOE,UNKNOWN,15,"Doe Pronghorn - Southwest Desert, Milford Flat -An y Legal Weapon",20_youth_antlerless_drawing_odds_report(1).pdf,21_youth_antlerless_drawing_odds_report.pdf
+PD1008|Resident|1|YOUTH_ANTLERLESS_PARENT|PREFERENCE_POINT,PRONGHORN,DOE,UNKNOWN,15,"Doe Pronghorn - Southwest Desert, Milford Flat -An y Legal Weapon",20_youth_antlerless_drawing_odds_report(1).pdf,21_youth_antlerless_drawing_odds_report.pdf
+DB1528|Resident|2|GENERAL_SEASON_DEER|PREFERENCE_POINT,DEER,BUCK,UNKNOWN,"West Desert, West -Archer y","West Desert, West -Archer y",20_deer_odds(1).pdf,21_deer_odds.pdf
+DB1528|Resident|1|GENERAL_SEASON_DEER|PREFERENCE_POINT,DEER,BUCK,UNKNOWN,"West Desert, West -Archer y","West Desert, West -Archer y",20_deer_odds(1).pdf,21_deer_odds.pdf
+DB1528|Resident|0|GENERAL_SEASON_DEER|PREFERENCE_POINT,DEER,BUCK,UNKNOWN,"West Desert, West -Archer y","West Desert, West -Archer y",20_deer_odds(1).pdf,21_deer_odds.pdf
+DB1528|Nonresident|0|GENERAL_SEASON_DEER|PREFERENCE_POINT,DEER,BUCK,UNKNOWN,"West Desert, West -Archer y","West Desert, West -Archer y",20_deer_odds(1).pdf,21_deer_odds.pdf
+DB1558|Resident|5|GENERAL_SEASON_DEER|PREFERENCE_POINT,DEER,BUCK,UNKNOWN,"West Desert, West -An y Legal Weapon","West Desert, West -An y Legal Weapon",20_deer_odds(1).pdf,21_deer_odds.pdf
+DB1558|Resident|3|GENERAL_SEASON_DEER|PREFERENCE_POINT,DEER,BUCK,UNKNOWN,"West Desert, West -An y Legal Weapon","West Desert, West -An y Legal Weapon",20_deer_odds(1).pdf,21_deer_odds.pdf
+DB1558|Nonresident|3|GENERAL_SEASON_DEER|PREFERENCE_POINT,DEER,BUCK,UNKNOWN,"West Desert, West -An y Legal Weapon","West Desert, West -An y Legal Weapon",20_deer_odds(1).pdf,21_deer_odds.pdf
+DB1558|Resident|2|GENERAL_SEASON_DEER|PREFERENCE_POINT,DEER,BUCK,UNKNOWN,"West Desert, West -An y Legal Weapon","West Desert, West -An y Legal Weapon",20_deer_odds(1).pdf,21_deer_odds.pdf
+DB1558|Nonresident|2|GENERAL_SEASON_DEER|PREFERENCE_POINT,DEER,BUCK,UNKNOWN,"West Desert, West -An y Legal Weapon","West Desert, West -An y Legal Weapon",20_deer_odds(1).pdf,21_deer_odds.pdf
+DB1558|Resident|1|GENERAL_SEASON_DEER|PREFERENCE_POINT,DEER,BUCK,UNKNOWN,"West Desert, West -An y Legal Weapon","West Desert, West -An y Legal Weapon",20_deer_odds(1).pdf,21_deer_odds.pdf
+DB1558|Nonresident|1|GENERAL_SEASON_DEER|PREFERENCE_POINT,DEER,BUCK,UNKNOWN,"West Desert, West -An y Legal Weapon","West Desert, West -An y Legal Weapon",20_deer_odds(1).pdf,21_deer_odds.pdf
+DB1558|Nonresident|0|GENERAL_SEASON_DEER|PREFERENCE_POINT,DEER,BUCK,UNKNOWN,"West Desert, West -An y Legal Weapon","West Desert, West -An y Legal Weapon",20_deer_odds(1).pdf,21_deer_odds.pdf
+DB1558|Resident|0|LIFETIME_GENERAL_SEASON_DEER|PREFERENCE_POINT,DEER,BUCK,UNKNOWN,"West Desert, West -An y Legal Weapon","West Desert, West -An y Legal Weapon",20_lifetime_deer(1).pdf,21_lifetime_deer.pdf
+DB1558|Nonresident|0|LIFETIME_GENERAL_SEASON_DEER|PREFERENCE_POINT,DEER,BUCK,UNKNOWN,"West Desert, West -An y Legal Weapon","West Desert, West -An y Legal Weapon",20_lifetime_deer(1).pdf,21_lifetime_deer.pdf
+DB1558|Resident|1|YOUTH_GENERAL_SEASON_DEER|PREFERENCE_POINT,DEER,BUCK,UNKNOWN,"West Desert, West -An y Legal Weapon","West Desert, West -An y Legal Weapon",20_youth_deer(1).pdf,21_youth_deer.pdf
+DB1558|Resident|0|YOUTH_GENERAL_SEASON_DEER|PREFERENCE_POINT,DEER,BUCK,UNKNOWN,"West Desert, West -An y Legal Weapon","West Desert, West -An y Legal Weapon",20_youth_deer(1).pdf,21_youth_deer.pdf
+DB1558|Nonresident|0|YOUTH_GENERAL_SEASON_DEER|PREFERENCE_POINT,DEER,BUCK,UNKNOWN,"West Desert, West -An y Legal Weapon","West Desert, West -An y Legal Weapon",20_youth_deer(1).pdf,21_youth_deer.pdf
+DB1797|Resident|1|DEDICATED_HUNTER_DEER|PREFERENCE_POINT,DEER,BUCK,UNKNOWN,"West Desert, West -An y Legal Weapon","West Desert, West -An y Legal Weapon",20_dh_odds(1).pdf,21_dh_odds.pdf
+EA1049|Resident|3|ANTLERLESS_PARENT|PREFERENCE_POINT,ELK,COW,UNKNOWN,"Mt Dutton, Deep Creek","Antlerless Elk - Mt Dutton, Deep Creek -An y Legal Weapon",20_antlerless_drawing_odds_report(1).pdf,2021 Antlerless Draw Results.pdf
+EA1049|Resident|2|ANTLERLESS_PARENT|PREFERENCE_POINT,ELK,COW,UNKNOWN,"Mt Dutton, Deep Creek","Antlerless Elk - Mt Dutton, Deep Creek -An y Legal Weapon",20_antlerless_drawing_odds_report(1).pdf,2021 Antlerless Draw Results.pdf
+EA1049|Resident|1|ANTLERLESS_PARENT|PREFERENCE_POINT,ELK,COW,UNKNOWN,"Mt Dutton, Deep Creek","Antlerless Elk - Mt Dutton, Deep Creek -An y Legal Weapon",20_antlerless_drawing_odds_report(1).pdf,2021 Antlerless Draw Results.pdf
+EA1077|Resident|2|ANTLERLESS_PARENT|PREFERENCE_POINT,ELK,COW,UNKNOWN,Boulder-Circle Cliffs,"Antlerless Elk - Plateau, Boulder-circle Cliffs -An y Legal Weapon",20_antlerless_drawing_odds_report(1).pdf,2021 Antlerless Draw Results.pdf
+EA1077|Nonresident|0|ANTLERLESS_PARENT|PREFERENCE_POINT,ELK,COW,UNKNOWN,Boulder-Circle Cliffs,"Antlerless Elk - Plateau, Boulder-circle Cliffs -An y Legal Weapon",20_antlerless_drawing_odds_report(1).pdf,2021 Antlerless Draw Results.pdf
+PD1008|Resident|5|ANTLERLESS_PARENT|PREFERENCE_POINT,PRONGHORN,DOE,UNKNOWN,15,"Doe Pronghorn - Southwest Desert, Milford Flat -An y Legal Weapon",20_antlerless_drawing_odds_report(1).pdf,2021 Antlerless Draw Results.pdf
+PD1008|Resident|4|ANTLERLESS_PARENT|PREFERENCE_POINT,PRONGHORN,DOE,UNKNOWN,15,"Doe Pronghorn - Southwest Desert, Milford Flat -An y Legal Weapon",20_antlerless_drawing_odds_report(1).pdf,2021 Antlerless Draw Results.pdf
+PD1008|Nonresident|4|ANTLERLESS_PARENT|PREFERENCE_POINT,PRONGHORN,DOE,UNKNOWN,15,"Doe Pronghorn - Southwest Desert, Milford Flat -An y Legal Weapon",20_antlerless_drawing_odds_report(1).pdf,2021 Antlerless Draw Results.pdf
+PD1008|Nonresident|2|ANTLERLESS_PARENT|PREFERENCE_POINT,PRONGHORN,DOE,UNKNOWN,15,"Doe Pronghorn - Southwest Desert, Milford Flat -An y Legal Weapon",20_antlerless_drawing_odds_report(1).pdf,2021 Antlerless Draw Results.pdf
+PD1041|Resident|2|ANTLERLESS_PARENT|PREFERENCE_POINT,PRONGHORN,DOE,UNKNOWN,Heist,Cwmu Doe Pronghorn - Heist -An y Legal Weapon,20_antlerless_drawing_odds_report(1).pdf,2021 Antlerless Draw Results.pdf
+MA1005|Resident|8|ANTLERLESS_PARENT|PREFERENCE_POINT,MOOSE,COW,UNKNOWN,Morgan-South Rich,Antlerless Moose - Morgan-south Rich -An y Legal Weapon,20_antlerless_drawing_odds_report(1).pdf,2021 Antlerless Draw Results.pdf
+MA1005|Resident|3|ANTLERLESS_PARENT|PREFERENCE_POINT,MOOSE,COW,UNKNOWN,Morgan-South Rich,Antlerless Moose - Morgan-south Rich -An y Legal Weapon,20_antlerless_drawing_odds_report(1).pdf,2021 Antlerless Draw Results.pdf
+RE1000|Nonresident|0|ANTLERLESS_PARENT|PREFERENCE_POINT,ROCKY_MOUNTAIN_BIGHORN_SHEEP,UNKNOWN,ALW,"Box Elder, Newfoundland Mtns","Rocky Mountain Bighorn Sheep Ewe - Box Elder, Newfoundland Mtns - Any Legal Weapon",20_antlerless_drawing_odds_report(1).pdf,2021 Antlerless Draw Results.pdf

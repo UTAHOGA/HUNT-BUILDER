@@ -1,0 +1,23 @@
+{
+  "generated_at_utc": "2026-06-20T23:36:55.914129+00:00",
+  "target": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2019_for_2020_canonical_yearly_draw_results.csv",
+  "backup": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_cross_year\\final_yearly_canonical_audit\\2019_for_2020\\hunt_name_numeric_cleanup\\backups\\numeric_cleanup_20260620T233644Z.csv",
+  "numeric_rows_scanned": 0,
+  "rows_changed": 0,
+  "changed_by_source_file": {},
+  "changed_by_hunt_code": {},
+  "sample_changes": [],
+  "status": "NO_CHANGES",
+  "source_pdfs": {
+    "19_drawing_odds(1).pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\raw_pdfs\\2019_PERMITS=2020_MODEL\\2019_PERMITS=2020_MODEL__BLACK BEAR DRAW RESULTS.pdf",
+    "19_antlerless_drawing_odds_report(1).pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\raw_pdfs\\2019_PERMITS=2020_MODEL\\2019_PERMITS=2020_MODEL__ANTLERLESS DEER DRAW RESULTS.pdf",
+    "19_youth_antlerless_drawing_odds_report(1).pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\raw_pdfs\\2019_PERMITS=2020_MODEL\\2019_PERMITS=2020_MODEL__YOUTH ANTLERLESS DEER DRAW RESULTS.pdf",
+    "19_antlerless_elk_drawing_odds_report(1).pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\raw_pdfs\\2019_PERMITS=2020_MODEL\\2019_PERMITS=2020_MODEL__ANTLERLESS ELK DRAW RESULTS.pdf",
+    "19_youth_antlerless_elk_drawing_odds_report(1).pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\raw_pdfs\\2019_PERMITS=2020_MODEL\\2019_PERMITS=2020_MODEL__YOUTH ANTLERLESS ELK DRAW RESULTS.pdf",
+    "19_antlerless_pronghorn_drawing_odds_report(1).pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\raw_pdfs\\2019_PERMITS=2020_MODEL\\2019_PERMITS=2020_MODEL__ANTLERLESS PRONGHORN DRAW RESULTS.pdf",
+    "19_youth_antlerless_pronghorn_drawing_odds_report(1).pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\raw_pdfs\\2019_PERMITS=2020_MODEL\\2019_PERMITS=2020_MODEL__YOUTH ANTLERLESS PRONGHORN DRAW RESULTS.pdf",
+    "2019_turkey_bonus_points(1).pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\live_dwr_bear_cougar_turkey_odds_refresh_20260618_170145\\downloads\\unknown_year__2019_turkey_bonus_points.pdf",
+    "2019_youth_turkey_bonus_points(1).pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\live_dwr_bear_cougar_turkey_odds_refresh_20260618_170145\\downloads\\unknown_year__2019_youth_turkey_bonus_points.pdf",
+    "2020_cougar_odds_report(2).pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\live_dwr_bear_cougar_turkey_odds_refresh_20260618_170145\\downloads\\unknown_year__2020_cougar_odds_report.pdf"
+  }
+}
