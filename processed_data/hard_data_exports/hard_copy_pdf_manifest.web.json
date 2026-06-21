@@ -955,14 +955,6 @@
     "group": "draw_odds",
     "type": "pdf",
     "year": "2026",
-    "title": "Big game and antlerless bonus and preference point purchase results",
-    "subtitle": "Utah draw results/odds source PDF (model year folder 2026).",
-    "href": "./pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/2025__Big game and antlerless bonus and preference point purchase results.pdf"
-  },
-  {
-    "group": "draw_odds",
-    "type": "pdf",
-    "year": "2026",
     "title": "Dedicated Hunter deer draw results",
     "subtitle": "Utah draw results/odds source PDF (model year folder 2026).",
     "href": "./pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/2025__Dedicated Hunter deer draw results.pdf"
@@ -1286,14 +1278,6 @@
     "group": "draw_odds",
     "type": "pdf",
     "year": "2025",
-    "title": "24 point only purchases for big game and antlerless",
-    "subtitle": "Utah draw results/odds source PDF (model year folder 2025).",
-    "href": "./pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/24_point-only_purchases_for_big_game_and_antlerless.pdf"
-  },
-  {
-    "group": "draw_odds",
-    "type": "pdf",
-    "year": "2025",
     "title": "24 youth antlerless drawing odds report",
     "subtitle": "Utah draw results/odds source PDF (model year folder 2025).",
     "href": "./pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/24_youth_antlerless_drawing_odds_report.pdf"
@@ -1417,14 +1401,6 @@
     "title": "23 lifetime deer",
     "subtitle": "Utah draw results/odds source PDF (model year folder 2024).",
     "href": "./pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/23_lifetime_deer.pdf"
-  },
-  {
-    "group": "draw_odds",
-    "type": "pdf",
-    "year": "2024",
-    "title": "23 point only purchases for big game and antlerless",
-    "subtitle": "Utah draw results/odds source PDF (model year folder 2024).",
-    "href": "./pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/23_point-only_purchases_for_big_game_and_antlerless.pdf"
   },
   {
     "group": "draw_odds",
@@ -1577,14 +1553,6 @@
     "title": "Antlerless big game draw results",
     "subtitle": "Utah draw results/odds source PDF (model year folder 2023).",
     "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/draw_odds/c451ae2a__Antlerless big game draw results.pdf"
-  },
-  {
-    "group": "draw_odds",
-    "type": "pdf",
-    "year": "2023",
-    "title": "Big game and antlerless bonus and preference point purchase results",
-    "subtitle": "Utah draw results/odds source PDF (model year folder 2023).",
-    "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/draw_odds/b7af20c9__Big game and antlerless bonus and preference point purchase results.pdf"
   },
   {
     "group": "draw_odds",

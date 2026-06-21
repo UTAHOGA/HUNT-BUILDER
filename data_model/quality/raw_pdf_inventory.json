@@ -5226,25 +5226,6 @@
     ]
   },
   {
-    "path": "pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/2023 _Big game and antlerless bonus and preference point purchase results.pdf",
-    "filename": "2023 _Big game and antlerless bonus and preference point purchase results.pdf",
-    "inferred_species": "Unknown",
-    "inferred_year": "2024",
-    "inferred_report_type": "permit_or_draw_related",
-    "file_size_bytes": 94525,
-    "modified_time": "2026-05-01T11:44:47.412495+00:00",
-    "sha256": "03f051776d8eba49d782694d7e868f630266326d576f3f836b2ea5e30d005c78",
-    "page_count": 15,
-    "extraction_status": "raw_pdf_unparsed",
-    "likely_metric_families": [
-      "draw_odds",
-      "permits",
-      "applicants",
-      "points",
-      "residency_split"
-    ]
-  },
-  {
     "path": "pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/2023 _Dedicated Hunter deer draw results.pdf",
     "filename": "2023 _Dedicated Hunter deer draw results.pdf",
     "inferred_species": "Deer",
@@ -8792,25 +8773,6 @@
     "modified_time": "2026-05-06T19:22:14.842033+00:00",
     "sha256": "f14d3b9a927641e4c66a305f8e48da8b2bc8aefa68f3c6ae764d6696df9fd940",
     "page_count": 104,
-    "extraction_status": "raw_pdf_unparsed",
-    "likely_metric_families": [
-      "draw_odds",
-      "permits",
-      "applicants",
-      "points",
-      "residency_split"
-    ]
-  },
-  {
-    "path": "pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/24_point-only_purchases_for_big_game_and_antlerless.pdf",
-    "filename": "24_point-only_purchases_for_big_game_and_antlerless.pdf",
-    "inferred_species": "Unknown",
-    "inferred_year": "2025",
-    "inferred_report_type": "permit_or_draw_related",
-    "file_size_bytes": 92976,
-    "modified_time": "2026-05-03T08:53:11.652857+00:00",
-    "sha256": "e71d12a1060cac31d5cd2f7e1f21abbdea5b75c72bd03f1bfe09c4644c39508a",
-    "page_count": 15,
     "extraction_status": "raw_pdf_unparsed",
     "likely_metric_families": [
       "draw_odds",

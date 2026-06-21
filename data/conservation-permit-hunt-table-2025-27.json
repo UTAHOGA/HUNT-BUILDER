@@ -4,7 +4,6 @@
     "species": "Bison",
     "sex": "",
     "huntType": "Conservation",
-    "huntClass": "UWSF",
     "area": "Book Cliffs, Bitter Creek, Hunter's Choice",
     "unitCode": "book-cliffs-bitter-creek-hunter-s-choice",
     "unitNames": [
@@ -33,14 +32,14 @@
       "899",
       "9"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "UWSF"
   },
   {
     "huntCode": "CP-BISON-BOOK-CLIFFS-LITTLE-CREEK-SOUTH-HUNTER-S-CHOICE--ANY-LEGAL-WEAPON",
     "species": "Bison",
     "sex": "",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Book Cliffs, Little Creek/South, Hunter's Choice",
     "unitCode": "book-cliffs-little-creek-south-hunter-s-choice",
     "unitNames": [
@@ -64,14 +63,14 @@
     "boundaryIds": [
       "889"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-BISON-HENRY-MTNS-COW-ONLY-LATE--ANY-LEGAL-WEAPON",
     "species": "Bison",
     "sex": "",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Henry Mtns, Cow Only (late)",
     "unitCode": "henry-mtns-cow-only-late",
     "unitNames": [
@@ -96,14 +95,14 @@
       "637",
       "94"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-BISON-HENRY-MTNS-HUNTER-S-CHOICE-EARLY--ANY-LEGAL-WEAPON",
     "species": "Bison",
     "sex": "",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "Henry Mtns, Hunter's Choice (early)",
     "unitCode": "henry-mtns-hunter-s-choice-early",
     "unitNames": [
@@ -128,14 +127,14 @@
       "637",
       "94"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-BISON-HENRY-MTNS-HUNTER-S-CHOICE-LATE--ANY-LEGAL-WEAPON",
     "species": "Bison",
     "sex": "",
     "huntType": "Conservation",
-    "huntClass": "SCI",
     "area": "Henry Mtns, Hunter's Choice (late)",
     "unitCode": "henry-mtns-hunter-s-choice-late",
     "unitNames": [
@@ -160,14 +159,14 @@
       "637",
       "94"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "SCI"
   },
   {
     "huntCode": "CP-BISON-STATEWIDE--ANY-LEGAL-WEAPON",
     "species": "Bison",
     "sex": "",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Statewide",
     "unitCode": "statewide",
     "unitNames": [
@@ -193,14 +192,14 @@
     ],
     "sourceHuntCodes": [
       "BI6510"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-BLACK-BEAR-BEAVER-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Beaver",
     "unitCode": "beaver",
     "unitNames": [
@@ -229,14 +228,14 @@
       "BR7100",
       "BR7200",
       "BR7318"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-BLACK-BEAR-BOOK-CLIFFS-BITTER-CREEK-SOUTH-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Book Cliffs, Bitter Creek/South",
     "unitCode": "book-cliffs-bitter-creek-south",
     "unitNames": [
@@ -266,14 +265,14 @@
       "BR7201",
       "BR7222",
       "BR7300"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-BLACK-BEAR-BOOK-CLIFFS-BITTER-CREEK-SOUTH-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Book Cliffs, Bitter Creek/South",
     "unitCode": "book-cliffs-bitter-creek-south",
     "unitNames": [
@@ -305,14 +304,14 @@
       "BR7201",
       "BR7222",
       "BR7300"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-BLACK-BEAR-BOOK-CLIFFS-LITTLE-CREEK-ROADLESS-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Book Cliffs, Little Creek Roadless",
     "unitCode": "book-cliffs-little-creek-roadless",
     "unitNames": [
@@ -343,14 +342,14 @@
       "BR7224",
       "BR7225",
       "BR7301"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-BLACK-BEAR-BOULDER-KAIPAROWITS-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Boulder/Kaiparowits",
     "unitCode": "boulder-kaiparowits",
     "unitNames": [
@@ -383,14 +382,14 @@
       "BR7215",
       "BR7236",
       "BR7310"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-BLACK-BEAR-CHALK-CREEK-EAST-CANYON-MORGAN-SOUTH-RICH-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "DSC",
     "area": "Chalk Creek/East Canyon/Morgan-South Rich",
     "unitCode": "chalk-creek-east-canyon-morgan-south-rich",
     "unitNames": [
@@ -421,14 +420,14 @@
       "BR7234",
       "BR7324",
       "BR7325"
-    ]
+    ],
+    "draw_design": "DSC"
   },
   {
     "huntCode": "CP-BLACK-BEAR-DIAMOND-MTN-VERNAL-BONANZA-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Diamond Mtn/Vernal/Bonanza",
     "unitCode": "diamond-mtn-vernal-bonanza",
     "unitNames": [
@@ -457,14 +456,14 @@
       "BR7117",
       "BR7218",
       "BR7313"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-BLACK-BEAR-DIAMOND-MTN-VERNAL-BONANZA-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Diamond Mtn/Vernal/Bonanza",
     "unitCode": "diamond-mtn-vernal-bonanza",
     "unitNames": [
@@ -493,14 +492,14 @@
       "BR7117",
       "BR7218",
       "BR7313"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-BLACK-BEAR-FISHLAKE-THOUSAND-LAKES-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Fishlake/Thousand Lakes",
     "unitCode": "fishlake-thousand-lakes",
     "unitNames": [
@@ -530,14 +529,14 @@
       "BR7115",
       "BR7216",
       "BR7311"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-BLACK-BEAR-KAMAS-NORTH-SLOPE-SUMMIT-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Kamas/North Slope, Summit",
     "unitCode": "kamas-north-slope-summit",
     "unitNames": [
@@ -569,14 +568,14 @@
       "BR7235",
       "BR7306",
       "BR7321"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-BLACK-BEAR-LA-SAL-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "La Sal",
     "unitCode": "la-sal",
     "unitNames": [
@@ -609,14 +608,14 @@
       "BR7208",
       "BR7226",
       "BR7307"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-BLACK-BEAR-LA-SAL-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "La Sal",
     "unitCode": "la-sal",
     "unitNames": [
@@ -650,14 +649,14 @@
       "BR7208",
       "BR7226",
       "BR7307"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-BLACK-BEAR-LA-SAL-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "UHA",
     "area": "La Sal",
     "unitCode": "la-sal",
     "unitNames": [
@@ -690,14 +689,14 @@
       "BR7208",
       "BR7226",
       "BR7307"
-    ]
+    ],
+    "draw_design": "UHA"
   },
   {
     "huntCode": "CP-BLACK-BEAR-MANTI-NORTH-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Manti-North",
     "unitCode": "manti-north",
     "unitNames": [
@@ -729,14 +728,14 @@
       "BR7203",
       "BR7231",
       "BR7303"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-BLACK-BEAR-MANTI-NORTH-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Manti-North",
     "unitCode": "manti-north",
     "unitNames": [
@@ -768,14 +767,14 @@
       "BR7203",
       "BR7231",
       "BR7303"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-BLACK-BEAR-MANTI-NORTH-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "UHA",
     "area": "Manti-North",
     "unitCode": "manti-north",
     "unitNames": [
@@ -807,14 +806,14 @@
       "BR7203",
       "BR7231",
       "BR7303"
-    ]
+    ],
+    "draw_design": "UHA"
   },
   {
     "huntCode": "CP-BLACK-BEAR-MANTI-SOUTH-SAN-RAFAEL-NORTH-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Manti-South/San Rafael, North",
     "unitCode": "manti-south-san-rafael-north",
     "unitNames": [
@@ -846,14 +845,14 @@
       "BR7204",
       "BR7232",
       "BR7304"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-BLACK-BEAR-MANTI-SOUTH-SAN-RAFAEL-NORTH-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Manti-South/San Rafael, North",
     "unitCode": "manti-south-san-rafael-north",
     "unitNames": [
@@ -884,14 +883,14 @@
       "BR7204",
       "BR7232",
       "BR7304"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-BLACK-BEAR-NEBO-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "UHA",
     "area": "Nebo",
     "unitCode": "nebo",
     "unitNames": [
@@ -921,14 +920,14 @@
       "BR7205",
       "BR7233",
       "BR7305"
-    ]
+    ],
+    "draw_design": "UHA"
   },
   {
     "huntCode": "CP-BLACK-BEAR-NINE-MILE-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Nine Mile",
     "unitCode": "nine-mile",
     "unitNames": [
@@ -961,14 +960,14 @@
       "BR7110",
       "BR7211",
       "BR7317"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-BLACK-BEAR-PANGUITCH-LAKE-ZION-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Panguitch Lake/Zion",
     "unitCode": "panguitch-lake-zion",
     "unitNames": [
@@ -997,14 +996,14 @@
       "BR7112",
       "BR7213",
       "BR7309"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-BLACK-BEAR-PAUNSAUGUNT-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Paunsaugunt",
     "unitCode": "paunsaugunt",
     "unitNames": [
@@ -1035,14 +1034,14 @@
       "BR7113",
       "BR7214",
       "BR7323"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-BLACK-BEAR-SAN-JUAN-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "San Juan",
     "unitCode": "san-juan",
     "unitNames": [
@@ -1075,14 +1074,14 @@
       "BR7217",
       "BR7227",
       "BR7312"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-BLACK-BEAR-SAN-JUAN-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "San Juan",
     "unitCode": "san-juan",
     "unitNames": [
@@ -1116,14 +1115,14 @@
       "BR7217",
       "BR7227",
       "BR7312"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-BLACK-BEAR-SAN-JUAN-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "UHA",
     "area": "San Juan",
     "unitCode": "san-juan",
     "unitNames": [
@@ -1156,14 +1155,14 @@
       "BR7217",
       "BR7227",
       "BR7312"
-    ]
+    ],
+    "draw_design": "UHA"
   },
   {
     "huntCode": "CP-BLACK-BEAR-STATEWIDE-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Statewide",
     "unitCode": "statewide",
     "unitNames": [
@@ -1189,14 +1188,14 @@
     ],
     "sourceHuntCodes": [
       "BR7319"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-BLACK-BEAR-WASATCH-MTNS-AVINTAQUIN-CURRANT-CREEK-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Wasatch Mtns, Avintaquin/Currant Creek",
     "unitCode": "wasatch-mtns-avintaquin-currant-creek",
     "unitNames": [
@@ -1227,14 +1226,14 @@
       "BR7119",
       "BR7220",
       "BR7315"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-BLACK-BEAR-WASATCH-MTNS-WEST-CENTRAL-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Wasatch Mtns, West-Central",
     "unitCode": "wasatch-mtns-west-central",
     "unitNames": [
@@ -1265,14 +1264,14 @@
       "BR7120",
       "BR7221",
       "BR7316"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-BLACK-BEAR-WASATCH-MTNS-WEST-CENTRAL-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Wasatch Mtns, West-Central",
     "unitCode": "wasatch-mtns-west-central",
     "unitNames": [
@@ -1304,14 +1303,14 @@
       "BR7120",
       "BR7221",
       "BR7316"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-BLACK-BEAR-WASATCH-MTNS-WEST-CENTRAL-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "UAA",
     "area": "Wasatch Mtns, West-Central",
     "unitCode": "wasatch-mtns-west-central",
     "unitNames": [
@@ -1342,14 +1341,14 @@
       "BR7120",
       "BR7221",
       "BR7316"
-    ]
+    ],
+    "draw_design": "UAA"
   },
   {
     "huntCode": "CP-BLACK-BEAR-YELLOWSTONE-EITHER-SEX-MULTISEASON",
     "species": "Black Bear",
     "sex": "Either Sex",
     "huntType": "Conservation",
-    "huntClass": "WCF",
     "area": "Yellowstone",
     "unitCode": "yellowstone",
     "unitNames": [
@@ -1378,14 +1377,14 @@
       "BR7118",
       "BR7219",
       "BR7314"
-    ]
+    ],
+    "draw_design": "WCF"
   },
   {
     "huntCode": "CP-DEER-BOOK-CLIFFS-BUCK-HUNTER-S-CHOICE",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Book Cliffs",
     "unitCode": "book-cliffs",
     "unitNames": [
@@ -1419,14 +1418,14 @@
       "DB1025",
       "DB1044",
       "DB1056"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-DEER-BOOK-CLIFFS-BUCK-MULTISEASON",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Book Cliffs",
     "unitCode": "book-cliffs",
     "unitNames": [
@@ -1460,14 +1459,14 @@
       "DB1025",
       "DB1044",
       "DB1056"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-DEER-BOOK-CLIFFS-BUCK-HUNTER-S-CHOICE",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Book Cliffs",
     "unitCode": "book-cliffs",
     "unitNames": [
@@ -1501,14 +1500,14 @@
       "DB1025",
       "DB1044",
       "DB1056"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-DEER-BOOK-CLIFFS-BUCK-MULTISEASON",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Book Cliffs",
     "unitCode": "book-cliffs",
     "unitNames": [
@@ -1542,14 +1541,14 @@
       "DB1025",
       "DB1044",
       "DB1056"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-DEER-BOOK-CLIFFS-BUCK-ARCHERY",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "UAA",
     "area": "Book Cliffs",
     "unitCode": "book-cliffs",
     "unitNames": [
@@ -1583,14 +1582,14 @@
       "DB1025",
       "DB1044",
       "DB1056"
-    ]
+    ],
+    "draw_design": "UAA"
   },
   {
     "huntCode": "CP-DEER-BOOK-CLIFFS-BUCK-MUZZLELOADER",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "UHA",
     "area": "Book Cliffs",
     "unitCode": "book-cliffs",
     "unitNames": [
@@ -1624,14 +1623,14 @@
       "DB1025",
       "DB1044",
       "DB1056"
-    ]
+    ],
+    "draw_design": "UHA"
   },
   {
     "huntCode": "CP-DEER-BOOK-CLIFFS-BUCK-ARCHERY",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "WCF",
     "area": "Book Cliffs",
     "unitCode": "book-cliffs",
     "unitNames": [
@@ -1665,14 +1664,14 @@
       "DB1025",
       "DB1044",
       "DB1056"
-    ]
+    ],
+    "draw_design": "WCF"
   },
   {
     "huntCode": "CP-DEER-BOOK-CLIFFS-BUCK-MUZZLELOADER",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "WCF",
     "area": "Book Cliffs",
     "unitCode": "book-cliffs",
     "unitNames": [
@@ -1706,14 +1705,14 @@
       "DB1025",
       "DB1044",
       "DB1056"
-    ]
+    ],
+    "draw_design": "WCF"
   },
   {
     "huntCode": "CP-DEER-DIAMOND-MTN-BUCK-ARCHERY",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Diamond Mtn",
     "unitCode": "diamond-mtn",
     "unitNames": [
@@ -1742,14 +1741,14 @@
       "DB1023",
       "DB1038",
       "DB1047"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-DEER-DIAMOND-MTN-BUCK-HUNTER-S-CHOICE",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Diamond Mtn",
     "unitCode": "diamond-mtn",
     "unitNames": [
@@ -1778,14 +1777,14 @@
       "DB1023",
       "DB1038",
       "DB1047"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-DEER-DIAMOND-MTN-BUCK-MULTISEASON",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Diamond Mtn",
     "unitCode": "diamond-mtn",
     "unitNames": [
@@ -1815,14 +1814,14 @@
       "DB1023",
       "DB1038",
       "DB1047"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-DEER-DIAMOND-MTN-BUCK-HUNTER-S-CHOICE",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "Diamond Mtn",
     "unitCode": "diamond-mtn",
     "unitNames": [
@@ -1851,14 +1850,14 @@
       "DB1023",
       "DB1038",
       "DB1047"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-DEER-DIAMOND-MTN-BUCK-MUZZLELOADER",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Diamond Mtn",
     "unitCode": "diamond-mtn",
     "unitNames": [
@@ -1887,14 +1886,14 @@
       "DB1023",
       "DB1038",
       "DB1047"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-DEER-FILLMORE-OAK-CREEK-LE-BUCK-HUNTER-S-CHOICE",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Fillmore, Oak Creek LE",
     "unitCode": "fillmore-oak-creek-le",
     "unitNames": [
@@ -1923,14 +1922,14 @@
       "DB1019",
       "DB1029",
       "DB1045"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-DEER-FILLMORE-OAK-CREEK-LE-BUCK-MULTISEASON",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Fillmore, Oak Creek LE",
     "unitCode": "fillmore-oak-creek-le",
     "unitNames": [
@@ -1959,14 +1958,14 @@
       "DB1019",
       "DB1029",
       "DB1045"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-DEER-HENRY-MTNS-BUCK-MULTISEASON",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Henry Mtns",
     "unitCode": "henry-mtns",
     "unitNames": [
@@ -1996,14 +1995,14 @@
       "DB1005",
       "DB1007",
       "DB1009"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-DEER-HENRY-MTNS-BUCK-HUNTER-S-CHOICE",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Henry Mtns",
     "unitCode": "henry-mtns",
     "unitNames": [
@@ -2033,14 +2032,14 @@
       "DB1005",
       "DB1007",
       "DB1009"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-DEER-LA-SAL-DOLORES-TRIANGLE-BUCK-MULTISEASON",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SCI",
     "area": "La Sal, Dolores Triangle",
     "unitCode": "la-sal-dolores-triangle",
     "unitNames": [
@@ -2077,14 +2076,14 @@
       "DB1539",
       "DB1569",
       "DB1778"
-    ]
+    ],
+    "draw_design": "SCI"
   },
   {
     "huntCode": "CP-DEER-PAUNSAUGUNT-BUCK-HUNTER-S-CHOICE",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Paunsaugunt",
     "unitCode": "paunsaugunt",
     "unitNames": [
@@ -2117,14 +2116,14 @@
       "DB1058",
       "DB1073",
       "DB1074"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-DEER-PAUNSAUGUNT-BUCK-MUZZLELOADER",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Paunsaugunt",
     "unitCode": "paunsaugunt",
     "unitNames": [
@@ -2157,14 +2156,14 @@
       "DB1058",
       "DB1073",
       "DB1074"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-DEER-PAUNSAUGUNT-BUCK-ARCHERY",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "Paunsaugunt",
     "unitCode": "paunsaugunt",
     "unitNames": [
@@ -2197,14 +2196,14 @@
       "DB1058",
       "DB1073",
       "DB1074"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-DEER-PAUNSAUGUNT-BUCK-MUZZLELOADER",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "Paunsaugunt",
     "unitCode": "paunsaugunt",
     "unitNames": [
@@ -2237,14 +2236,14 @@
       "DB1058",
       "DB1073",
       "DB1074"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-DEER-PAUNSAUGUNT-BUCK-HUNTER-S-CHOICE",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Paunsaugunt",
     "unitCode": "paunsaugunt",
     "unitNames": [
@@ -2277,14 +2276,14 @@
       "DB1058",
       "DB1073",
       "DB1074"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-DEER-PAUNSAUGUNT-BUCK-MULTISEASON",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Paunsaugunt",
     "unitCode": "paunsaugunt",
     "unitNames": [
@@ -2318,14 +2317,14 @@
       "DB1058",
       "DB1073",
       "DB1074"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-DEER-SAN-JUAN-ELK-RIDGE-BUCK-MUZZLELOADER",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "San Juan, Elk Ridge",
     "unitCode": "san-juan-elk-ridge",
     "unitNames": [
@@ -2354,14 +2353,14 @@
       "DB1022",
       "DB1037",
       "DB1046"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-DEER-SAN-JUAN-ELK-RIDGE-BUCK-HUNTER-S-CHOICE",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "San Juan, Elk Ridge",
     "unitCode": "san-juan-elk-ridge",
     "unitNames": [
@@ -2390,14 +2389,14 @@
       "DB1022",
       "DB1037",
       "DB1046"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-DEER-SAN-JUAN-ELK-RIDGE-BUCK-MULTISEASON",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "San Juan, Elk Ridge",
     "unitCode": "san-juan-elk-ridge",
     "unitNames": [
@@ -2426,14 +2425,14 @@
       "DB1022",
       "DB1037",
       "DB1046"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-DEER-SAN-JUAN-ELK-RIDGE-BUCK-ARCHERY",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "UAA",
     "area": "San Juan, Elk Ridge",
     "unitCode": "san-juan-elk-ridge",
     "unitNames": [
@@ -2462,14 +2461,14 @@
       "DB1022",
       "DB1037",
       "DB1046"
-    ]
+    ],
+    "draw_design": "UAA"
   },
   {
     "huntCode": "CP-DEER-STATEWIDE-BUCK-ANY-LEGAL-WEAPON",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Statewide",
     "unitCode": "statewide",
     "unitNames": [
@@ -2494,14 +2493,14 @@
     "boundaryIds": [
       "454"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-DEER-WEST-DESERT-VERNON-BUCK-MUZZLELOADER",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "DSC",
     "area": "West Desert, Vernon",
     "unitCode": "west-desert-vernon",
     "unitNames": [
@@ -2530,14 +2529,14 @@
       "DB1024",
       "DB1042",
       "DB1048"
-    ]
+    ],
+    "draw_design": "DSC"
   },
   {
     "huntCode": "CP-DEER-WEST-DESERT-VERNON-BUCK-ARCHERY",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "West Desert, Vernon",
     "unitCode": "west-desert-vernon",
     "unitNames": [
@@ -2566,14 +2565,14 @@
       "DB1024",
       "DB1042",
       "DB1048"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-DEER-WEST-DESERT-VERNON-BUCK-MULTISEASON",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "West Desert, Vernon",
     "unitCode": "west-desert-vernon",
     "unitNames": [
@@ -2602,14 +2601,14 @@
       "DB1024",
       "DB1042",
       "DB1048"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-DEER-WEST-DESERT-VERNON-BUCK-MUZZLELOADER",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "West Desert, Vernon",
     "unitCode": "west-desert-vernon",
     "unitNames": [
@@ -2638,14 +2637,14 @@
       "DB1024",
       "DB1042",
       "DB1048"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-DEER-WEST-DESERT-VERNON-BUCK-ARCHERY",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "West Desert, Vernon",
     "unitCode": "west-desert-vernon",
     "unitNames": [
@@ -2674,14 +2673,14 @@
       "DB1024",
       "DB1042",
       "DB1048"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-DEER-WEST-DESERT-VERNON-BUCK-HUNTER-S-CHOICE",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "West Desert, Vernon",
     "unitCode": "west-desert-vernon",
     "unitNames": [
@@ -2711,14 +2710,14 @@
       "DB1024",
       "DB1042",
       "DB1048"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-DEER-WEST-DESERT-VERNON-BUCK-MULTISEASON",
     "species": "Deer",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "West Desert, Vernon",
     "unitCode": "west-desert-vernon",
     "unitNames": [
@@ -2747,14 +2746,14 @@
       "DB1024",
       "DB1042",
       "DB1048"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-DESERT-BIGHORN-SHEEP-KAIPAROWITS-EAST-RAM-ANY-LEGAL-WEAPON",
     "species": "Desert Bighorn Sheep",
     "sex": "Ram",
     "huntType": "Conservation",
-    "huntClass": "UWSF",
     "area": "Kaiparowits, East",
     "unitCode": "kaiparowits-east",
     "unitNames": [
@@ -2781,14 +2780,14 @@
     "sourceHuntCodes": [
       "DS1002",
       "DS6601"
-    ]
+    ],
+    "draw_design": "UWSF"
   },
   {
     "huntCode": "CP-DESERT-BIGHORN-SHEEP-KAIPAROWITS-ESCALANTE-RAM-ANY-LEGAL-WEAPON",
     "species": "Desert Bighorn Sheep",
     "sex": "Ram",
     "huntType": "Conservation",
-    "huntClass": "UWSF",
     "area": "Kaiparowits, Escalante",
     "unitCode": "kaiparowits-escalante",
     "unitNames": [
@@ -2815,14 +2814,14 @@
     ],
     "sourceHuntCodes": [
       "DS1003"
-    ]
+    ],
+    "draw_design": "UWSF"
   },
   {
     "huntCode": "CP-DESERT-BIGHORN-SHEEP-KAIPAROWITS-WEST-RAM-ANY-LEGAL-WEAPON",
     "species": "Desert Bighorn Sheep",
     "sex": "Ram",
     "huntType": "Conservation",
-    "huntClass": "UWSF",
     "area": "Kaiparowits, West",
     "unitCode": "kaiparowits-west",
     "unitNames": [
@@ -2849,14 +2848,14 @@
     "sourceHuntCodes": [
       "DS1006",
       "DS6603"
-    ]
+    ],
+    "draw_design": "UWSF"
   },
   {
     "huntCode": "CP-DESERT-BIGHORN-SHEEP-LA-SAL-POTASH-SOUTH-CISCO-RAM-ANY-LEGAL-WEAPON",
     "species": "Desert Bighorn Sheep",
     "sex": "Ram",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "La Sal, Potash/South Cisco",
     "unitCode": "la-sal-potash-south-cisco",
     "unitNames": [
@@ -2882,14 +2881,14 @@
       "193",
       "94"
     ],
-    "sourceHuntCodes": "DS6604"
+    "sourceHuntCodes": "DS6604",
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-DESERT-BIGHORN-SHEEP-PINE-VALLEY-BEAVER-DAM-RAM-ANY-LEGAL-WEAPON",
     "species": "Desert Bighorn Sheep",
     "sex": "Ram",
     "huntType": "Conservation",
-    "huntClass": "UWSF",
     "area": "Pine Valley, Beaver Dam",
     "unitCode": "pine-valley-beaver-dam",
     "unitNames": [
@@ -2913,14 +2912,14 @@
     "boundaryIds": [
       "305"
     ],
-    "sourceHuntCodes": "DS6621"
+    "sourceHuntCodes": "DS6621",
+    "draw_design": "UWSF"
   },
   {
     "huntCode": "CP-DESERT-BIGHORN-SHEEP-SAN-RAFAEL-DIRTY-DEVIL-RAM-ANY-LEGAL-WEAPON",
     "species": "Desert Bighorn Sheep",
     "sex": "Ram",
     "huntType": "Conservation",
-    "huntClass": "SCI",
     "area": "San Rafael, Dirty Devil",
     "unitCode": "san-rafael-dirty-devil",
     "unitNames": [
@@ -2950,14 +2949,14 @@
       "DS1004",
       "DS6608",
       "DS6624"
-    ]
+    ],
+    "draw_design": "SCI"
   },
   {
     "huntCode": "CP-DESERT-BIGHORN-SHEEP-SAN-RAFAEL-SOUTH-RAM-ANY-LEGAL-WEAPON",
     "species": "Desert Bighorn Sheep",
     "sex": "Ram",
     "huntType": "Conservation",
-    "huntClass": "UWSF",
     "area": "San Rafael, South",
     "unitCode": "san-rafael-south",
     "unitNames": [
@@ -2987,14 +2986,14 @@
     "sourceHuntCodes": [
       "DS1007",
       "DS6610"
-    ]
+    ],
+    "draw_design": "UWSF"
   },
   {
     "huntCode": "CP-DESERT-BIGHORN-SHEEP-STATEWIDE-RAM-ANY-LEGAL-WEAPON",
     "species": "Desert Bighorn Sheep",
     "sex": "Ram",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Statewide",
     "unitCode": "statewide",
     "unitNames": [
@@ -3020,14 +3019,14 @@
     ],
     "sourceHuntCodes": [
       "DS6618"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-BEAVER-EAST-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Beaver, East",
     "unitCode": "beaver-east",
     "unitNames": [
@@ -3059,14 +3058,14 @@
       "EB3102",
       "EB3158",
       "EB3159"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-BEAVER-EAST-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Beaver, East",
     "unitCode": "beaver-east",
     "unitNames": [
@@ -3098,14 +3097,14 @@
       "EB3102",
       "EB3158",
       "EB3159"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-BEAVER-EAST-BULL-HUNTER-S-CHOICE",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Beaver, East",
     "unitCode": "beaver-east",
     "unitNames": [
@@ -3137,14 +3136,14 @@
       "EB3102",
       "EB3158",
       "EB3159"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-BEAVER-EAST-BULL-ARCHERY",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "UAA",
     "area": "Beaver, East",
     "unitCode": "beaver-east",
     "unitNames": [
@@ -3176,14 +3175,14 @@
       "EB3102",
       "EB3158",
       "EB3159"
-    ]
+    ],
+    "draw_design": "UAA"
   },
   {
     "huntCode": "CP-ELK-BOOK-CLIFFS-BITTER-CREEK-EAST-BULL-HUNTER-S-CHOICE",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "DSC",
     "area": "Book Cliffs, Bitter Creek/East",
     "unitCode": "book-cliffs-bitter-creek-east",
     "unitNames": [
@@ -3216,14 +3215,14 @@
       "EB3164",
       "EB3165",
       "EB3166"
-    ]
+    ],
+    "draw_design": "DSC"
   },
   {
     "huntCode": "CP-ELK-BOOK-CLIFFS-BITTER-CREEK-EAST-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "Book Cliffs, Bitter Creek/East",
     "unitCode": "book-cliffs-bitter-creek-east",
     "unitNames": [
@@ -3256,14 +3255,14 @@
       "EB3164",
       "EB3165",
       "EB3166"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-ELK-BOOK-CLIFFS-BITTER-CREEK-EAST-BULL-ARCHERY",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Book Cliffs, Bitter Creek/East",
     "unitCode": "book-cliffs-bitter-creek-east",
     "unitNames": [
@@ -3296,14 +3295,14 @@
       "EB3164",
       "EB3165",
       "EB3166"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-BOOK-CLIFFS-BITTER-CREEK-EAST-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "WCF",
     "area": "Book Cliffs, Bitter Creek/East",
     "unitCode": "book-cliffs-bitter-creek-east",
     "unitNames": [
@@ -3336,14 +3335,14 @@
       "EB3164",
       "EB3165",
       "EB3166"
-    ]
+    ],
+    "draw_design": "WCF"
   },
   {
     "huntCode": "CP-ELK-BOULDER-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Boulder",
     "unitCode": "boulder",
     "unitNames": [
@@ -3375,14 +3374,14 @@
       "EB3156",
       "EB3190",
       "EB3191"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-BOULDER-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Boulder",
     "unitCode": "boulder",
     "unitNames": [
@@ -3414,14 +3413,14 @@
       "EB3156",
       "EB3190",
       "EB3191"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-BOULDER-BULL-HUNTER-S-CHOICE",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SCI",
     "area": "Boulder",
     "unitCode": "boulder",
     "unitNames": [
@@ -3453,14 +3452,14 @@
       "EB3156",
       "EB3190",
       "EB3191"
-    ]
+    ],
+    "draw_design": "SCI"
   },
   {
     "huntCode": "CP-ELK-BOULDER-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Boulder",
     "unitCode": "boulder",
     "unitNames": [
@@ -3492,14 +3491,14 @@
       "EB3156",
       "EB3190",
       "EB3191"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-BOULDER-BULL-ARCHERY",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Boulder",
     "unitCode": "boulder",
     "unitNames": [
@@ -3531,14 +3530,14 @@
       "EB3156",
       "EB3190",
       "EB3191"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-BOULDER-BULL-MUZZLELOADER",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Boulder",
     "unitCode": "boulder",
     "unitNames": [
@@ -3570,14 +3569,14 @@
       "EB3156",
       "EB3190",
       "EB3191"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-BOX-ELDER-GROUSE-CREEK-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Box Elder, Grouse Creek",
     "unitCode": "box-elder-grouse-creek",
     "unitNames": [
@@ -3606,14 +3605,14 @@
       "EB3147",
       "EB3150",
       "EB3153"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-BOX-ELDER-PILOT-MTN-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Box Elder, Pilot Mtn",
     "unitCode": "box-elder-pilot-mtn",
     "unitNames": [
@@ -3641,14 +3640,14 @@
       "EB3031",
       "EB3130",
       "EB3209"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-CACHE-ANTLERLESS-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Antlerless",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "Cache",
     "unitCode": "cache",
     "unitNames": [
@@ -3673,14 +3672,14 @@
     "boundaryIds": [
       "29"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-ELK-CACHE-ANTLERLESS-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Antlerless",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "Cache",
     "unitCode": "cache",
     "unitNames": [
@@ -3706,14 +3705,14 @@
     "boundaryIds": [
       "29"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-ELK-CACHE-ANTLERLESS-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Antlerless",
     "huntType": "Conservation",
-    "huntClass": "WCF",
     "area": "Cache",
     "unitCode": "cache",
     "unitNames": [
@@ -3738,14 +3737,14 @@
     "boundaryIds": [
       "29"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "WCF"
   },
   {
     "huntCode": "CP-ELK-CACHE-MEADOWVILLE-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "Cache, Meadowville",
     "unitCode": "cache-meadowville",
     "unitNames": [
@@ -3777,14 +3776,14 @@
       "EB3105",
       "EB3168",
       "EB3169"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-ELK-CACHE-MEADOWVILLE-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "Cache, Meadowville",
     "unitCode": "cache-meadowville",
     "unitNames": [
@@ -3816,14 +3815,14 @@
       "EB3105",
       "EB3168",
       "EB3169"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-ELK-CACHE-MEADOWVILLE-BULL-HUNTER-S-CHOICE",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SCI",
     "area": "Cache, Meadowville",
     "unitCode": "cache-meadowville",
     "unitNames": [
@@ -3855,14 +3854,14 @@
       "EB3105",
       "EB3168",
       "EB3169"
-    ]
+    ],
+    "draw_design": "SCI"
   },
   {
     "huntCode": "CP-ELK-CACHE-SOUTH-BULL-HUNTER-S-CHOICE",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Cache, South",
     "unitCode": "cache-south",
     "unitNames": [
@@ -3895,14 +3894,14 @@
       "EB3107",
       "EB3170",
       "EB3171"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-CACHE-SOUTH-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Cache, South",
     "unitCode": "cache-south",
     "unitNames": [
@@ -3935,14 +3934,14 @@
       "EB3107",
       "EB3170",
       "EB3171"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-DIAMOND-MTN-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Diamond Mtn",
     "unitCode": "diamond-mtn",
     "unitNames": [
@@ -3974,14 +3973,14 @@
       "EB3122",
       "EB3195",
       "EB3196"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-DIAMOND-MTN-BULL-ARCHERY",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Diamond Mtn",
     "unitCode": "diamond-mtn",
     "unitNames": [
@@ -4013,14 +4012,14 @@
       "EB3122",
       "EB3195",
       "EB3196"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-DIAMOND-MTN-BULL-HUNTER-S-CHOICE",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Diamond Mtn",
     "unitCode": "diamond-mtn",
     "unitNames": [
@@ -4052,14 +4051,14 @@
       "EB3122",
       "EB3195",
       "EB3196"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-DIAMOND-MTN-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "Diamond Mtn",
     "unitCode": "diamond-mtn",
     "unitNames": [
@@ -4091,14 +4090,14 @@
       "EB3122",
       "EB3195",
       "EB3196"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-ELK-DIAMOND-MTN-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "Diamond Mtn",
     "unitCode": "diamond-mtn",
     "unitNames": [
@@ -4130,14 +4129,14 @@
       "EB3122",
       "EB3195",
       "EB3196"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-ELK-FILLMORE-PAHVANT-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Fillmore, Pahvant",
     "unitCode": "fillmore-pahvant",
     "unitNames": [
@@ -4169,14 +4168,14 @@
       "EB3110",
       "EB3180",
       "EB3181"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-FILLMORE-PAHVANT-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "Fillmore, Pahvant",
     "unitCode": "fillmore-pahvant",
     "unitNames": [
@@ -4208,14 +4207,14 @@
       "EB3110",
       "EB3180",
       "EB3181"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-ELK-FILLMORE-PAHVANT-BULL-ARCHERY",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Fillmore, Pahvant",
     "unitCode": "fillmore-pahvant",
     "unitNames": [
@@ -4247,14 +4246,14 @@
       "EB3110",
       "EB3180",
       "EB3181"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-FILLMORE-PAHVANT-BULL-HUNTER-S-CHOICE",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Fillmore, Pahvant",
     "unitCode": "fillmore-pahvant",
     "unitNames": [
@@ -4286,14 +4285,14 @@
       "EB3110",
       "EB3180",
       "EB3181"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-FISHLAKE-ANTLERLESS-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Antlerless",
     "huntType": "Conservation",
-    "huntClass": "SCI",
     "area": "Fishlake",
     "unitCode": "fishlake",
     "unitNames": [
@@ -4319,14 +4318,14 @@
     "boundaryIds": [
       "175"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "SCI"
   },
   {
     "huntCode": "CP-ELK-FISHLAKE-ANTLERLESS-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Antlerless",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Fishlake",
     "unitCode": "fishlake",
     "unitNames": [
@@ -4354,14 +4353,14 @@
     "boundaryIds": [
       "175"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-FISHLAKE-THOUSAND-LAKES-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Fishlake/Thousand Lakes",
     "unitCode": "fishlake-thousand-lakes",
     "unitNames": [
@@ -4393,14 +4392,14 @@
       "EB3096",
       "EB3120",
       "EB3192"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-FISHLAKE-THOUSAND-LAKES-BULL-MUZZLELOADER",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Fishlake/Thousand Lakes",
     "unitCode": "fishlake-thousand-lakes",
     "unitNames": [
@@ -4432,14 +4431,14 @@
       "EB3096",
       "EB3120",
       "EB3192"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-FISHLAKE-THOUSAND-LAKES-BULL-HUNTER-S-CHOICE",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "Fishlake/Thousand Lakes",
     "unitCode": "fishlake-thousand-lakes",
     "unitNames": [
@@ -4471,14 +4470,14 @@
       "EB3096",
       "EB3120",
       "EB3192"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-ELK-FISHLAKE-THOUSAND-LAKES-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SCI",
     "area": "Fishlake/Thousand Lakes",
     "unitCode": "fishlake-thousand-lakes",
     "unitNames": [
@@ -4510,14 +4509,14 @@
       "EB3096",
       "EB3120",
       "EB3192"
-    ]
+    ],
+    "draw_design": "SCI"
   },
   {
     "huntCode": "CP-ELK-FISHLAKE-THOUSAND-LAKES-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Fishlake/Thousand Lakes",
     "unitCode": "fishlake-thousand-lakes",
     "unitNames": [
@@ -4553,14 +4552,14 @@
       "EB3096",
       "EB3120",
       "EB3192"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-FISHLAKE-THOUSAND-LAKES-BULL-HUNTER-S-CHOICE",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Fishlake/Thousand Lakes",
     "unitCode": "fishlake-thousand-lakes",
     "unitNames": [
@@ -4592,14 +4591,14 @@
       "EB3096",
       "EB3120",
       "EB3192"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-FISHLAKE-THOUSAND-LAKES-BULL-ARCHERY",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "UAA",
     "area": "Fishlake/Thousand Lakes",
     "unitCode": "fishlake-thousand-lakes",
     "unitNames": [
@@ -4631,14 +4630,14 @@
       "EB3096",
       "EB3120",
       "EB3192"
-    ]
+    ],
+    "draw_design": "UAA"
   },
   {
     "huntCode": "CP-ELK-LA-SAL-ANTLERLESS-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Antlerless",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "La Sal",
     "unitCode": "la-sal",
     "unitNames": [
@@ -4663,14 +4662,14 @@
     "boundaryIds": [
       "684"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-ELK-LA-SAL-ANTLERLESS-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Antlerless",
     "huntType": "Conservation",
-    "huntClass": "UAA",
     "area": "La Sal",
     "unitCode": "la-sal",
     "unitNames": [
@@ -4695,14 +4694,14 @@
     "boundaryIds": [
       "684"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "UAA"
   },
   {
     "huntCode": "CP-ELK-LA-SAL-ANTLERLESS-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Antlerless",
     "huntType": "Conservation",
-    "huntClass": "WCF",
     "area": "La Sal",
     "unitCode": "la-sal",
     "unitNames": [
@@ -4728,14 +4727,14 @@
     "boundaryIds": [
       "684"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "WCF"
   },
   {
     "huntCode": "CP-ELK-LA-SAL-LA-SAL-MTNS-BULL-ARCHERY",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "La Sal, La Sal Mtns",
     "unitCode": "la-sal-la-sal-mtns",
     "unitNames": [
@@ -4773,14 +4772,14 @@
       "EB3111",
       "EB3182",
       "EB3183"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-LA-SAL-LA-SAL-MTNS-BULL-HUNTER-S-CHOICE",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "La Sal, La Sal Mtns",
     "unitCode": "la-sal-la-sal-mtns",
     "unitNames": [
@@ -4819,14 +4818,14 @@
       "EB3111",
       "EB3182",
       "EB3183"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-LA-SAL-LA-SAL-MTNS-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "La Sal, La Sal Mtns",
     "unitCode": "la-sal-la-sal-mtns",
     "unitNames": [
@@ -4864,14 +4863,14 @@
       "EB3111",
       "EB3182",
       "EB3183"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-LA-SAL-LA-SAL-MTNS-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "La Sal, La Sal Mtns",
     "unitCode": "la-sal-la-sal-mtns",
     "unitNames": [
@@ -4909,14 +4908,14 @@
       "EB3111",
       "EB3182",
       "EB3183"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-ELK-LA-SAL-LA-SAL-MTNS-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "La Sal, La Sal Mtns",
     "unitCode": "la-sal-la-sal-mtns",
     "unitNames": [
@@ -4954,14 +4953,14 @@
       "EB3111",
       "EB3182",
       "EB3183"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-ELK-LA-SAL-LA-SAL-MTNS-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "La Sal, La Sal Mtns",
     "unitCode": "la-sal-la-sal-mtns",
     "unitNames": [
@@ -4999,14 +4998,14 @@
       "EB3111",
       "EB3182",
       "EB3183"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-LA-SAL-LA-SAL-MTNS-BULL-MUZZLELOADER",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "La Sal, La Sal Mtns",
     "unitCode": "la-sal-la-sal-mtns",
     "unitNames": [
@@ -5044,14 +5043,14 @@
       "EB3111",
       "EB3182",
       "EB3183"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-MANTI-ANTLERLESS-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Antlerless",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Manti",
     "unitCode": "manti",
     "unitNames": [
@@ -5076,14 +5075,14 @@
     "boundaryIds": [
       "51"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-MANTI-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Manti",
     "unitCode": "manti",
     "unitNames": [
@@ -5115,14 +5114,14 @@
       "EB3108",
       "EB3126",
       "EB3172"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-MANTI-BULL-HUNTER-S-CHOICE",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Manti",
     "unitCode": "manti",
     "unitNames": [
@@ -5154,14 +5153,14 @@
       "EB3108",
       "EB3126",
       "EB3172"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-MANTI-BULL-MUZZLELOADER",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Manti",
     "unitCode": "manti",
     "unitNames": [
@@ -5193,14 +5192,14 @@
       "EB3108",
       "EB3126",
       "EB3172"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-MANTI-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "Manti",
     "unitCode": "manti",
     "unitNames": [
@@ -5232,14 +5231,14 @@
       "EB3108",
       "EB3126",
       "EB3172"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-ELK-MANTI-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "Manti",
     "unitCode": "manti",
     "unitNames": [
@@ -5271,14 +5270,14 @@
       "EB3108",
       "EB3126",
       "EB3172"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-ELK-MANTI-ANTLERLESS-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Antlerless",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Manti",
     "unitCode": "manti",
     "unitNames": [
@@ -5305,14 +5304,14 @@
     "boundaryIds": [
       "51"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-MANTI-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Manti",
     "unitCode": "manti",
     "unitNames": [
@@ -5344,14 +5343,14 @@
       "EB3108",
       "EB3126",
       "EB3172"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-MANTI-BULL-ARCHERY",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Manti",
     "unitCode": "manti",
     "unitNames": [
@@ -5383,14 +5382,14 @@
       "EB3108",
       "EB3126",
       "EB3172"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-MANTI-BULL-HUNTER-S-CHOICE",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "UWSF",
     "area": "Manti",
     "unitCode": "manti",
     "unitNames": [
@@ -5422,14 +5421,14 @@
       "EB3108",
       "EB3126",
       "EB3172"
-    ]
+    ],
+    "draw_design": "UWSF"
   },
   {
     "huntCode": "CP-ELK-MONROE-BULL-HUNTER-S-CHOICE",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Monroe",
     "unitCode": "monroe",
     "unitNames": [
@@ -5461,14 +5460,14 @@
       "EB3112",
       "EB3184",
       "EB3185"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-MONROE-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "Monroe",
     "unitCode": "monroe",
     "unitNames": [
@@ -5500,14 +5499,14 @@
       "EB3112",
       "EB3184",
       "EB3185"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-ELK-MONROE-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SCI",
     "area": "Monroe",
     "unitCode": "monroe",
     "unitNames": [
@@ -5539,14 +5538,14 @@
       "EB3112",
       "EB3184",
       "EB3185"
-    ]
+    ],
+    "draw_design": "SCI"
   },
   {
     "huntCode": "CP-ELK-MONROE-BULL-ARCHERY",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Monroe",
     "unitCode": "monroe",
     "unitNames": [
@@ -5578,14 +5577,14 @@
       "EB3112",
       "EB3184",
       "EB3185"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-MT-DUTTON-BULL-ARCHERY",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Mt Dutton",
     "unitCode": "mt-dutton",
     "unitNames": [
@@ -5617,14 +5616,14 @@
       "EB3113",
       "EB3186",
       "EB3187"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-MT-DUTTON-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Mt Dutton",
     "unitCode": "mt-dutton",
     "unitNames": [
@@ -5656,14 +5655,14 @@
       "EB3113",
       "EB3186",
       "EB3187"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-MT-DUTTON-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "Mt Dutton",
     "unitCode": "mt-dutton",
     "unitNames": [
@@ -5695,14 +5694,14 @@
       "EB3113",
       "EB3186",
       "EB3187"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-ELK-MT-DUTTON-BULL-HUNTER-S-CHOICE",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Mt Dutton",
     "unitCode": "mt-dutton",
     "unitNames": [
@@ -5734,14 +5733,14 @@
       "EB3113",
       "EB3186",
       "EB3187"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-NEBO-SAN-PITCH-MTNS-BULL-HUNTER-S-CHOICE",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Nebo/San Pitch Mtns",
     "unitCode": "nebo-san-pitch-mtns",
     "unitNames": [
@@ -5773,14 +5772,14 @@
       "EB3177",
       "EB3178",
       "EB3179"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-NEBO-SAN-PITCH-MTNS-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "Nebo/San Pitch Mtns",
     "unitCode": "nebo-san-pitch-mtns",
     "unitNames": [
@@ -5812,14 +5811,14 @@
       "EB3177",
       "EB3178",
       "EB3179"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-ELK-NEBO-SAN-PITCH-MTNS-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Nebo/San Pitch Mtns",
     "unitCode": "nebo-san-pitch-mtns",
     "unitNames": [
@@ -5851,14 +5850,14 @@
       "EB3177",
       "EB3178",
       "EB3179"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-NEBO-SAN-PITCH-MTNS-BULL-ARCHERY",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Nebo/San Pitch Mtns",
     "unitCode": "nebo-san-pitch-mtns",
     "unitNames": [
@@ -5890,14 +5889,14 @@
       "EB3177",
       "EB3178",
       "EB3179"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-NORTH-SLOPE-THREE-CORNERS-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "North Slope, Three Corners",
     "unitCode": "north-slope-three-corners",
     "unitNames": [
@@ -5927,14 +5926,14 @@
       "EB3091",
       "EB3115",
       "EB3210"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-ELK-PANGUITCH-LAKE-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Panguitch Lake",
     "unitCode": "panguitch-lake",
     "unitNames": [
@@ -5966,14 +5965,14 @@
       "EB3117",
       "EB3188",
       "EB3189"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-PANGUITCH-LAKE-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Panguitch Lake",
     "unitCode": "panguitch-lake",
     "unitNames": [
@@ -6005,14 +6004,14 @@
       "EB3117",
       "EB3188",
       "EB3189"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-PANGUITCH-LAKE-BULL-HUNTER-S-CHOICE",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Panguitch Lake",
     "unitCode": "panguitch-lake",
     "unitNames": [
@@ -6044,14 +6043,14 @@
       "EB3117",
       "EB3188",
       "EB3189"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-SAN-JUAN-BULL-ELK-BULL-ARCHERY",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "San Juan Bull Elk",
     "unitCode": "san-juan-bull-elk",
     "unitNames": [
@@ -6083,14 +6082,14 @@
       "EB3121",
       "EB3193",
       "EB3194"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-SAN-JUAN-BULL-ELK-BULL-HUNTER-S-CHOICE",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "San Juan Bull Elk",
     "unitCode": "san-juan-bull-elk",
     "unitNames": [
@@ -6122,14 +6121,14 @@
       "EB3121",
       "EB3193",
       "EB3194"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-SAN-JUAN-BULL-ELK-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "San Juan Bull Elk",
     "unitCode": "san-juan-bull-elk",
     "unitNames": [
@@ -6161,14 +6160,14 @@
       "EB3121",
       "EB3193",
       "EB3194"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-ELK-SAN-JUAN-BULL-ELK-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "San Juan Bull Elk",
     "unitCode": "san-juan-bull-elk",
     "unitNames": [
@@ -6200,14 +6199,14 @@
       "EB3121",
       "EB3193",
       "EB3194"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-ELK-SAN-JUAN-BULL-ELK-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "San Juan Bull Elk",
     "unitCode": "san-juan-bull-elk",
     "unitNames": [
@@ -6239,14 +6238,14 @@
       "EB3121",
       "EB3193",
       "EB3194"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-SOUTHWEST-DESERT-SOUTH-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Southwest Desert, South",
     "unitCode": "southwest-desert-south",
     "unitNames": [
@@ -6278,14 +6277,14 @@
       "EB3157",
       "EB3197",
       "EB3198"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-SOUTHWEST-DESERT-SOUTH-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Southwest Desert, South",
     "unitCode": "southwest-desert-south",
     "unitNames": [
@@ -6317,14 +6316,14 @@
       "EB3157",
       "EB3197",
       "EB3198"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-SOUTHWEST-DESERT-SOUTH-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "Southwest Desert, South",
     "unitCode": "southwest-desert-south",
     "unitNames": [
@@ -6356,14 +6355,14 @@
       "EB3157",
       "EB3197",
       "EB3198"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-ELK-SOUTHWEST-DESERT-SOUTH-BULL-MUZZLELOADER",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "Southwest Desert, South",
     "unitCode": "southwest-desert-south",
     "unitNames": [
@@ -6395,14 +6394,14 @@
       "EB3157",
       "EB3197",
       "EB3198"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-ELK-SOUTHWEST-DESERT-SOUTH-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Southwest Desert, South",
     "unitCode": "southwest-desert-south",
     "unitNames": [
@@ -6434,14 +6433,14 @@
       "EB3157",
       "EB3197",
       "EB3198"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-SOUTHWEST-DESERT-SOUTH-BULL-HUNTER-S-CHOICE",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Southwest Desert, South",
     "unitCode": "southwest-desert-south",
     "unitNames": [
@@ -6473,14 +6472,14 @@
       "EB3157",
       "EB3197",
       "EB3198"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-SOUTHWEST-DESERT-SOUTH-BULL-ARCHERY",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "UAA",
     "area": "Southwest Desert, South",
     "unitCode": "southwest-desert-south",
     "unitNames": [
@@ -6512,14 +6511,14 @@
       "EB3157",
       "EB3197",
       "EB3198"
-    ]
+    ],
+    "draw_design": "UAA"
   },
   {
     "huntCode": "CP-ELK-STATEWIDE-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Statewide",
     "unitCode": "statewide",
     "unitNames": [
@@ -6570,14 +6569,14 @@
       "685",
       "88"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-WASATCH-MTNS-ANTLERLESS-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Antlerless",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Wasatch Mtns",
     "unitCode": "wasatch-mtns",
     "unitNames": [
@@ -6605,14 +6604,14 @@
       "222",
       "234"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-WASATCH-MTNS-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Wasatch Mtns",
     "unitCode": "wasatch-mtns",
     "unitNames": [
@@ -6644,14 +6643,14 @@
       "EB3124",
       "EB3127",
       "EB3199"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-WASATCH-MTNS-BULL-MUZZLELOADER",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Wasatch Mtns",
     "unitCode": "wasatch-mtns",
     "unitNames": [
@@ -6683,14 +6682,14 @@
       "EB3124",
       "EB3127",
       "EB3199"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-ELK-WASATCH-MTNS-ANTLERLESS-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Antlerless",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "Wasatch Mtns",
     "unitCode": "wasatch-mtns",
     "unitNames": [
@@ -6718,14 +6717,14 @@
       "222",
       "234"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-ELK-WASATCH-MTNS-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "Wasatch Mtns",
     "unitCode": "wasatch-mtns",
     "unitNames": [
@@ -6757,14 +6756,14 @@
       "EB3124",
       "EB3127",
       "EB3199"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-ELK-WASATCH-MTNS-BULL-MULTISEASON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "Wasatch Mtns",
     "unitCode": "wasatch-mtns",
     "unitNames": [
@@ -6796,14 +6795,14 @@
       "EB3124",
       "EB3127",
       "EB3199"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-ELK-WASATCH-MTNS-ANTLERLESS-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Antlerless",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Wasatch Mtns",
     "unitCode": "wasatch-mtns",
     "unitNames": [
@@ -6832,14 +6831,14 @@
       "222",
       "234"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-WASATCH-MTNS-BULL-ANY-LEGAL-WEAPON",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Wasatch Mtns",
     "unitCode": "wasatch-mtns",
     "unitNames": [
@@ -6871,14 +6870,14 @@
       "EB3124",
       "EB3127",
       "EB3199"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-WASATCH-MTNS-BULL-HUNTER-S-CHOICE",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Wasatch Mtns",
     "unitCode": "wasatch-mtns",
     "unitNames": [
@@ -6911,14 +6910,14 @@
       "EB3124",
       "EB3127",
       "EB3199"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ELK-WASATCH-MTNS-BULL-ARCHERY",
     "species": "Elk",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "WCF",
     "area": "Wasatch Mtns",
     "unitCode": "wasatch-mtns",
     "unitNames": [
@@ -6950,14 +6949,14 @@
       "EB3124",
       "EB3127",
       "EB3199"
-    ]
+    ],
+    "draw_design": "WCF"
   },
   {
     "huntCode": "CP-MOOSE-CACHE-BULL-ANY-LEGAL-WEAPON",
     "species": "Moose",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "UCWF",
     "area": "Cache",
     "unitCode": "cache",
     "unitNames": [
@@ -6983,14 +6982,14 @@
     ],
     "sourceHuntCodes": [
       "MB6000"
-    ]
+    ],
+    "draw_design": "UCWF"
   },
   {
     "huntCode": "CP-MOOSE-NORTH-SLOPE-SUMMIT-BULL-ANY-LEGAL-WEAPON",
     "species": "Moose",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SCI",
     "area": "North Slope, Summit",
     "unitCode": "north-slope-summit",
     "unitNames": [
@@ -7016,14 +7015,14 @@
     ],
     "sourceHuntCodes": [
       "MB6006"
-    ]
+    ],
+    "draw_design": "SCI"
   },
   {
     "huntCode": "CP-MOOSE-NORTH-SLOPE-SUMMIT-BULL-ANY-LEGAL-WEAPON",
     "species": "Moose",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "North Slope, Summit",
     "unitCode": "north-slope-summit",
     "unitNames": [
@@ -7049,14 +7048,14 @@
     ],
     "sourceHuntCodes": [
       "MB6006"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-MOOSE-STATEWIDE-BULL-ANY-LEGAL-WEAPON",
     "species": "Moose",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "Statewide",
     "unitCode": "statewide",
     "unitNames": [
@@ -7082,14 +7081,14 @@
     ],
     "sourceHuntCodes": [
       "MB6260"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-MOOSE-WASATCH-MTNS-CENTRAL-MTNS-BULL-ANY-LEGAL-WEAPON",
     "species": "Moose",
     "sex": "Bull",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "Wasatch Mtns/Central Mtns",
     "unitCode": "wasatch-mtns-central-mtns",
     "unitNames": [
@@ -7115,14 +7114,14 @@
     ],
     "sourceHuntCodes": [
       "MB6011"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-MOUNTAIN-GOAT-BEAVER-EARLY-HUNTER-S-CHOICE-ANY-LEGAL-WEAPON",
     "species": "Mountain Goat",
     "sex": "Hunter's Choice",
     "huntType": "Conservation",
-    "huntClass": "UWSF",
     "area": "Beaver (early)",
     "unitCode": "beaver-early",
     "unitNames": [
@@ -7147,14 +7146,14 @@
       "617",
       "628"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "UWSF"
   },
   {
     "huntCode": "CP-MOUNTAIN-GOAT-HIGH-UINTAS-WEST-HUNTER-S-CHOICE-ANY-LEGAL-WEAPON",
     "species": "Mountain Goat",
     "sex": "Hunter's Choice",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "High Uintas West",
     "unitCode": "high-uintas-west",
     "unitNames": [
@@ -7178,14 +7177,14 @@
     "boundaryIds": [
       "148"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-MOUNTAIN-GOAT-LA-SAL-LA-SAL-MTNS-HUNTER-S-CHOICE-ANY-LEGAL-WEAPON",
     "species": "Mountain Goat",
     "sex": "Hunter's Choice",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "La Sal, La Sal Mtns",
     "unitCode": "la-sal-la-sal-mtns",
     "unitNames": [
@@ -7209,14 +7208,14 @@
     "boundaryIds": [
       "617"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-MOUNTAIN-GOAT-NEBO-HUNTER-S-CHOICE-ARCHERY",
     "species": "Mountain Goat",
     "sex": "Hunter's Choice",
     "huntType": "Conservation",
-    "huntClass": "UAA",
     "area": "Nebo",
     "unitCode": "nebo",
     "unitNames": [
@@ -7240,14 +7239,14 @@
     "boundaryIds": [
       "616"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "UAA"
   },
   {
     "huntCode": "CP-MOUNTAIN-GOAT-NEBO-HUNTER-S-CHOICE-ANY-LEGAL-WEAPON",
     "species": "Mountain Goat",
     "sex": "Hunter's Choice",
     "huntType": "Conservation",
-    "huntClass": "UWSF",
     "area": "Nebo",
     "unitCode": "nebo",
     "unitNames": [
@@ -7271,14 +7270,14 @@
     "boundaryIds": [
       "616"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "UWSF"
   },
   {
     "huntCode": "CP-MOUNTAIN-GOAT-STATEWIDE-HUNTER-S-CHOICE-ANY-LEGAL-WEAPON",
     "species": "Mountain Goat",
     "sex": "Hunter's Choice",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Statewide",
     "unitCode": "statewide",
     "unitNames": [
@@ -7304,14 +7303,14 @@
     ],
     "sourceHuntCodes": [
       "GO6816"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-MOUNTAIN-GOAT-WASATCH-MTNS-TIMPANOGOS-HUNTER-S-CHOICE-ANY-LEGAL-WEAPON",
     "species": "Mountain Goat",
     "sex": "Hunter's Choice",
     "huntType": "Conservation",
-    "huntClass": "SCI",
     "area": "Wasatch Mtns, Timpanogos",
     "unitCode": "wasatch-mtns-timpanogos",
     "unitNames": [
@@ -7335,14 +7334,14 @@
     "boundaryIds": [
       "200"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "SCI"
   },
   {
     "huntCode": "CP-PRONGHORN-BEAVER-BUCK-HUNTER-S-CHOICE",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Beaver",
     "unitCode": "beaver",
     "unitNames": [
@@ -7369,14 +7368,14 @@
     "sourceHuntCodes": [
       "PB5000",
       "PB5025"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-PRONGHORN-BEAVER-BUCK-HUNTER-S-CHOICE",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "UAA",
     "area": "Beaver",
     "unitCode": "beaver",
     "unitNames": [
@@ -7403,14 +7402,14 @@
     "sourceHuntCodes": [
       "PB5000",
       "PB5025"
-    ]
+    ],
+    "draw_design": "UAA"
   },
   {
     "huntCode": "CP-PRONGHORN-BOOK-CLIFFS-BITTER-CREEK-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "DSC",
     "area": "Book Cliffs, Bitter Creek",
     "unitCode": "book-cliffs-bitter-creek",
     "unitNames": [
@@ -7442,14 +7441,14 @@
     "sourceHuntCodes": [
       "PB5001",
       "PB5026"
-    ]
+    ],
+    "draw_design": "DSC"
   },
   {
     "huntCode": "CP-PRONGHORN-BOOK-CLIFFS-BITTER-CREEK-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Book Cliffs, Bitter Creek",
     "unitCode": "book-cliffs-bitter-creek",
     "unitNames": [
@@ -7481,14 +7480,14 @@
     "sourceHuntCodes": [
       "PB5001",
       "PB5026"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-PRONGHORN-BOOK-CLIFFS-BITTER-CREEK-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Book Cliffs, Bitter Creek",
     "unitCode": "book-cliffs-bitter-creek",
     "unitNames": [
@@ -7520,14 +7519,14 @@
     "sourceHuntCodes": [
       "PB5001",
       "PB5026"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-PRONGHORN-BOOK-CLIFFS-SOUTH-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Book Cliffs, South",
     "unitCode": "book-cliffs-south",
     "unitNames": [
@@ -7554,14 +7553,14 @@
     "sourceHuntCodes": [
       "PB5002",
       "PB5027"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-PRONGHORN-BOOK-CLIFFS-SOUTH-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "Book Cliffs, South",
     "unitCode": "book-cliffs-south",
     "unitNames": [
@@ -7588,14 +7587,14 @@
     "sourceHuntCodes": [
       "PB5002",
       "PB5027"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-PRONGHORN-BOX-ELDER-PROMONTORY-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Box Elder, Promontory",
     "unitCode": "box-elder-promontory",
     "unitNames": [
@@ -7622,14 +7621,14 @@
     "sourceHuntCodes": [
       "PB5003",
       "PB5028"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-PRONGHORN-BOX-ELDER-PUDDLE-VALLEY-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Box Elder, Puddle Valley",
     "unitCode": "box-elder-puddle-valley",
     "unitNames": [
@@ -7656,14 +7655,14 @@
     "sourceHuntCodes": [
       "PB5004",
       "PB5029"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-PRONGHORN-BOX-ELDER-SNOWVILLE-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Box Elder, Snowville",
     "unitCode": "box-elder-snowville",
     "unitNames": [
@@ -7692,14 +7691,14 @@
       "PB5005",
       "PB5030",
       "PB5080"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-PRONGHORN-BOX-ELDER-WEST-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Box Elder, West",
     "unitCode": "box-elder-west",
     "unitNames": [
@@ -7727,14 +7726,14 @@
       "PB5006",
       "PB5031",
       "PB5079"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-PRONGHORN-BOX-ELDER-WEST-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "UHA",
     "area": "Box Elder, West",
     "unitCode": "box-elder-west",
     "unitNames": [
@@ -7762,14 +7761,14 @@
       "PB5006",
       "PB5031",
       "PB5079"
-    ]
+    ],
+    "draw_design": "UHA"
   },
   {
     "huntCode": "CP-PRONGHORN-FILLMORE-OAK-CREEK-SOUTH-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Fillmore, Oak Creek South",
     "unitCode": "fillmore-oak-creek-south",
     "unitNames": [
@@ -7797,14 +7796,14 @@
       "PB5008",
       "PB5033",
       "PB5065"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-PRONGHORN-FILLMORE-OAK-CREEK-SOUTH-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "Fillmore, Oak Creek South",
     "unitCode": "fillmore-oak-creek-south",
     "unitNames": [
@@ -7832,14 +7831,14 @@
       "PB5008",
       "PB5033",
       "PB5065"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-PRONGHORN-FILLMORE-OAK-CREEK-SOUTH-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Fillmore, Oak Creek South",
     "unitCode": "fillmore-oak-creek-south",
     "unitNames": [
@@ -7867,14 +7866,14 @@
       "PB5008",
       "PB5033",
       "PB5065"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-PRONGHORN-LA-SAL-POTASH-SOUTH-CISCO-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "UHA",
     "area": "La Sal, Potash/South Cisco",
     "unitCode": "la-sal-potash-south-cisco",
     "unitNames": [
@@ -7901,14 +7900,14 @@
     "sourceHuntCodes": [
       "PB5009",
       "PB5035"
-    ]
+    ],
+    "draw_design": "UHA"
   },
   {
     "huntCode": "CP-PRONGHORN-MT-DUTTON-PAUNSAUGUNT-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Mt Dutton/Paunsaugunt",
     "unitCode": "mt-dutton-paunsaugunt",
     "unitNames": [
@@ -7936,14 +7935,14 @@
     "sourceHuntCodes": [
       "PB5331",
       "PB5332"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-PRONGHORN-MT-DUTTON-PAUNSAUGUNT-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Mt Dutton/Paunsaugunt",
     "unitCode": "mt-dutton-paunsaugunt",
     "unitNames": [
@@ -7971,14 +7970,14 @@
     "sourceHuntCodes": [
       "PB5331",
       "PB5332"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-PRONGHORN-NINE-MILE-ANTHRO-MYTON-BENCH-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Nine Mile, Anthro-Myton Bench",
     "unitCode": "nine-mile-anthro-myton-bench",
     "unitNames": [
@@ -8006,14 +8005,14 @@
       "PB5011",
       "PB5037",
       "PB5059"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-PRONGHORN-NINE-MILE-ANTHRO-MYTON-BENCH-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "Nine Mile, Anthro-Myton Bench",
     "unitCode": "nine-mile-anthro-myton-bench",
     "unitNames": [
@@ -8043,14 +8042,14 @@
       "PB5011",
       "PB5037",
       "PB5059"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-PRONGHORN-NINE-MILE-ANTHRO-MYTON-BENCH-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Nine Mile, Anthro-Myton Bench",
     "unitCode": "nine-mile-anthro-myton-bench",
     "unitNames": [
@@ -8078,14 +8077,14 @@
       "PB5011",
       "PB5037",
       "PB5059"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-PRONGHORN-NINE-MILE-ANTHRO-MYTON-BENCH-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "WCF",
     "area": "Nine Mile, Anthro-Myton Bench",
     "unitCode": "nine-mile-anthro-myton-bench",
     "unitNames": [
@@ -8114,14 +8113,14 @@
       "PB5011",
       "PB5037",
       "PB5059"
-    ]
+    ],
+    "draw_design": "WCF"
   },
   {
     "huntCode": "CP-PRONGHORN-NINE-MILE-RANGE-CREEK-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "Nine Mile, Range Creek",
     "unitCode": "nine-mile-range-creek",
     "unitNames": [
@@ -8148,14 +8147,14 @@
     "sourceHuntCodes": [
       "PB5038",
       "PB5053"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-PRONGHORN-NORTH-SLOPE-SUMMIT-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "North Slope, Summit",
     "unitCode": "north-slope-summit",
     "unitNames": [
@@ -8181,14 +8180,14 @@
     ],
     "sourceHuntCodes": [
       "PB5039"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-PRONGHORN-NORTH-SLOPE-THREE-CORNERS-WEST-DAGGETT-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "North Slope, Three Corners/West Daggett",
     "unitCode": "north-slope-three-corners-west-daggett",
     "unitNames": [
@@ -8216,14 +8215,14 @@
       "PB5012",
       "PB5040",
       "PB5066"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-PRONGHORN-NORTH-SLOPE-THREE-CORNERS-WEST-DAGGETT-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "North Slope, Three Corners/West Daggett",
     "unitCode": "north-slope-three-corners-west-daggett",
     "unitNames": [
@@ -8252,14 +8251,14 @@
       "PB5012",
       "PB5040",
       "PB5066"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-PRONGHORN-PANGUITCH-LAKE-ZION-NORTH-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Panguitch Lake/Zion, North",
     "unitCode": "panguitch-lake-zion-north",
     "unitNames": [
@@ -8287,14 +8286,14 @@
       "PB5041",
       "PB5054",
       "PB5061"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-PRONGHORN-PANGUITCH-LAKE-ZION-NORTH-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Panguitch Lake/Zion, North",
     "unitCode": "panguitch-lake-zion-north",
     "unitNames": [
@@ -8322,14 +8321,14 @@
       "PB5041",
       "PB5054",
       "PB5061"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-PRONGHORN-PARKER-MTN-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Parker Mtn",
     "unitCode": "parker-mtn",
     "unitNames": [
@@ -8359,14 +8358,14 @@
       "PB5076",
       "PB5077",
       "PB5078"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-PRONGHORN-PARKER-MTN-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Parker Mtn",
     "unitCode": "parker-mtn",
     "unitNames": [
@@ -8398,14 +8397,14 @@
       "PB5076",
       "PB5077",
       "PB5078"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-PRONGHORN-PINE-VALLEY-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Pine Valley",
     "unitCode": "pine-valley",
     "unitNames": [
@@ -8433,14 +8432,14 @@
       "PB5013",
       "PB5042",
       "PB5062"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-PRONGHORN-PINE-VALLEY-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Pine Valley",
     "unitCode": "pine-valley",
     "unitNames": [
@@ -8468,14 +8467,14 @@
       "PB5013",
       "PB5042",
       "PB5062"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-PRONGHORN-SAN-RAFAEL-NORTH-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "San Rafael, North",
     "unitCode": "san-rafael-north",
     "unitNames": [
@@ -8506,14 +8505,14 @@
       "PB5015",
       "PB5046",
       "PB5056"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-PRONGHORN-SAN-RAFAEL-NORTH-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "San Rafael, North",
     "unitCode": "san-rafael-north",
     "unitNames": [
@@ -8543,14 +8542,14 @@
       "PB5015",
       "PB5046",
       "PB5056"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-PRONGHORN-SOUTHWEST-DESERT-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "DSC",
     "area": "Southwest Desert",
     "unitCode": "southwest-desert",
     "unitNames": [
@@ -8578,14 +8577,14 @@
       "PB5018",
       "PB5024",
       "PB5049"
-    ]
+    ],
+    "draw_design": "DSC"
   },
   {
     "huntCode": "CP-PRONGHORN-SOUTHWEST-DESERT-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Southwest Desert",
     "unitCode": "southwest-desert",
     "unitNames": [
@@ -8614,14 +8613,14 @@
       "PB5018",
       "PB5024",
       "PB5049"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-PRONGHORN-SOUTHWEST-DESERT-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "Southwest Desert",
     "unitCode": "southwest-desert",
     "unitNames": [
@@ -8650,14 +8649,14 @@
       "PB5018",
       "PB5024",
       "PB5049"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-PRONGHORN-SOUTHWEST-DESERT-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "Southwest Desert",
     "unitCode": "southwest-desert",
     "unitNames": [
@@ -8685,14 +8684,14 @@
       "PB5018",
       "PB5024",
       "PB5049"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-PRONGHORN-SOUTHWEST-DESERT-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Southwest Desert",
     "unitCode": "southwest-desert",
     "unitNames": [
@@ -8720,14 +8719,14 @@
       "PB5018",
       "PB5024",
       "PB5049"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-PRONGHORN-SOUTHWEST-DESERT-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "UAA",
     "area": "Southwest Desert",
     "unitCode": "southwest-desert",
     "unitNames": [
@@ -8755,14 +8754,14 @@
       "PB5018",
       "PB5024",
       "PB5049"
-    ]
+    ],
+    "draw_design": "UAA"
   },
   {
     "huntCode": "CP-PRONGHORN-STATEWIDE-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Statewide",
     "unitCode": "statewide",
     "unitNames": [
@@ -8788,14 +8787,14 @@
     ],
     "sourceHuntCodes": [
       "PB5057"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-PRONGHORN-VERNAL-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Vernal",
     "unitCode": "vernal",
     "unitNames": [
@@ -8823,14 +8822,14 @@
       "PB5017",
       "PB5048",
       "PB5072"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-PRONGHORN-VERNAL-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "Vernal",
     "unitCode": "vernal",
     "unitNames": [
@@ -8858,14 +8857,14 @@
       "PB5017",
       "PB5048",
       "PB5072"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-PRONGHORN-VERNAL-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SCI",
     "area": "Vernal",
     "unitCode": "vernal",
     "unitNames": [
@@ -8893,14 +8892,14 @@
       "PB5017",
       "PB5048",
       "PB5072"
-    ]
+    ],
+    "draw_design": "SCI"
   },
   {
     "huntCode": "CP-PRONGHORN-VERNAL-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "WCF",
     "area": "Vernal",
     "unitCode": "vernal",
     "unitNames": [
@@ -8929,14 +8928,14 @@
       "PB5017",
       "PB5048",
       "PB5072"
-    ]
+    ],
+    "draw_design": "WCF"
   },
   {
     "huntCode": "CP-PRONGHORN-WEST-DESERT-RIVERBED-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "West Desert, Riverbed",
     "unitCode": "west-desert-riverbed",
     "unitNames": [
@@ -8963,14 +8962,14 @@
     "sourceHuntCodes": [
       "PB5019",
       "PB5050"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-PRONGHORN-WEST-DESERT-RIVERBED-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "West Desert, Riverbed",
     "unitCode": "west-desert-riverbed",
     "unitNames": [
@@ -8998,14 +8997,14 @@
     "sourceHuntCodes": [
       "PB5019",
       "PB5050"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-PRONGHORN-WEST-DESERT-RIVERBED-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "West Desert, Riverbed",
     "unitCode": "west-desert-riverbed",
     "unitNames": [
@@ -9032,14 +9031,14 @@
     "sourceHuntCodes": [
       "PB5019",
       "PB5050"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-PRONGHORN-WEST-DESERT-RUSH-VALLEY-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "West Desert, Rush Valley",
     "unitCode": "west-desert-rush-valley",
     "unitNames": [
@@ -9066,14 +9065,14 @@
     "sourceHuntCodes": [
       "PB5020",
       "PB5051"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-PRONGHORN-WEST-DESERT-RUSH-VALLEY-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "West Desert, Rush Valley",
     "unitCode": "west-desert-rush-valley",
     "unitNames": [
@@ -9100,14 +9099,14 @@
     "sourceHuntCodes": [
       "PB5020",
       "PB5051"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-PRONGHORN-WEST-DESERT-SNAKE-VALLEY-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "West Desert, Snake Valley",
     "unitCode": "west-desert-snake-valley",
     "unitNames": [
@@ -9134,14 +9133,14 @@
     "sourceHuntCodes": [
       "PB5021",
       "PB5052"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-PRONGHORN-WEST-DESERT-SNAKE-VALLEY-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "RMEF",
     "area": "West Desert, Snake Valley",
     "unitCode": "west-desert-snake-valley",
     "unitNames": [
@@ -9168,14 +9167,14 @@
     "sourceHuntCodes": [
       "PB5021",
       "PB5052"
-    ]
+    ],
+    "draw_design": "RMEF"
   },
   {
     "huntCode": "CP-PRONGHORN-WEST-DESERT-SNAKE-VALLEY-BUCK-ANY-LEGAL-WEAPON",
     "species": "Pronghorn",
     "sex": "Buck",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "West Desert, Snake Valley",
     "unitCode": "west-desert-snake-valley",
     "unitNames": [
@@ -9204,14 +9203,14 @@
     "sourceHuntCodes": [
       "PB5021",
       "PB5052"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ROCKY-MOUNTAIN-BIGHORN-SHEEP-BOOK-CLIFFS-SOUTH-RAM-ANY-LEGAL-WEAPON",
     "species": "Rocky Mountain Bighorn Sheep",
     "sex": "Ram",
     "huntType": "Conservation",
-    "huntClass": "UWSF",
     "area": "Book Cliffs, South",
     "unitCode": "book-cliffs-south",
     "unitNames": [
@@ -9238,14 +9237,14 @@
     "sourceHuntCodes": [
       "RS1001",
       "RS6701"
-    ]
+    ],
+    "draw_design": "UWSF"
   },
   {
     "huntCode": "CP-ROCKY-MOUNTAIN-BIGHORN-SHEEP-BOX-ELDER-NEWFOUNDLAND-MTNS-EARLY-RAM-ANY-LEGAL-WEAPON",
     "species": "Rocky Mountain Bighorn Sheep",
     "sex": "Ram",
     "huntType": "Conservation",
-    "huntClass": "UWSF",
     "area": "Box Elder, Newfoundland Mtns (early)",
     "unitCode": "box-elder-newfoundland-mtns-early",
     "unitNames": [
@@ -9269,14 +9268,14 @@
     "boundaryIds": [
       "20"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "UWSF"
   },
   {
     "huntCode": "CP-ROCKY-MOUNTAIN-BIGHORN-SHEEP-BOX-ELDER-NEWFOUNDLAND-MTNS-LATE-RAM-ANY-LEGAL-WEAPON",
     "species": "Rocky Mountain Bighorn Sheep",
     "sex": "Ram",
     "huntType": "Conservation",
-    "huntClass": "UWSF",
     "area": "Box Elder, Newfoundland Mtns (late)",
     "unitCode": "box-elder-newfoundland-mtns-late",
     "unitNames": [
@@ -9300,14 +9299,14 @@
     "boundaryIds": [
       "20"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "UWSF"
   },
   {
     "huntCode": "CP-ROCKY-MOUNTAIN-BIGHORN-SHEEP-FILLMORE-OAK-CREEK-LATE-RAM-ANY-LEGAL-WEAPON",
     "species": "Rocky Mountain Bighorn Sheep",
     "sex": "Ram",
     "huntType": "Conservation",
-    "huntClass": "UWSF",
     "area": "Fillmore, Oak Creek (late)",
     "unitCode": "fillmore-oak-creek-late",
     "unitNames": [
@@ -9333,14 +9332,14 @@
       "81",
       "85"
     ],
-    "sourceHuntCodes": null
+    "sourceHuntCodes": null,
+    "draw_design": "UWSF"
   },
   {
     "huntCode": "CP-ROCKY-MOUNTAIN-BIGHORN-SHEEP-NINE-MILE-GRAY-CANYON-RAM-ANY-LEGAL-WEAPON",
     "species": "Rocky Mountain Bighorn Sheep",
     "sex": "Ram",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Nine Mile, Gray Canyon",
     "unitCode": "nine-mile-gray-canyon",
     "unitNames": [
@@ -9367,14 +9366,14 @@
     "sourceHuntCodes": [
       "RS1006",
       "RS6712"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-ROCKY-MOUNTAIN-BIGHORN-SHEEP-STATEWIDE-RAM-ANY-LEGAL-WEAPON",
     "species": "Rocky Mountain Bighorn Sheep",
     "sex": "Ram",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Statewide",
     "unitCode": "statewide",
     "unitNames": [
@@ -9400,14 +9399,14 @@
     ],
     "sourceHuntCodes": [
       "RS6718"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-TURKEY-CENTRAL-AREA-BEARDED-MULTISEASON",
     "species": "Turkey",
     "sex": "Bearded",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Central Area",
     "unitCode": "central-area",
     "unitNames": [
@@ -9434,14 +9433,14 @@
     "sourceHuntCodes": [
       "TK1003",
       "TK1012"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-TURKEY-CENTRAL-AREA-BEARDED-MULTISEASON",
     "species": "Turkey",
     "sex": "Bearded",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "Central Area",
     "unitCode": "central-area",
     "unitNames": [
@@ -9469,14 +9468,14 @@
     "sourceHuntCodes": [
       "TK1003",
       "TK1012"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-TURKEY-CENTRAL-AREA-BEARDED-MULTISEASON",
     "species": "Turkey",
     "sex": "Bearded",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Central Area",
     "unitCode": "central-area",
     "unitNames": [
@@ -9507,14 +9506,14 @@
     "sourceHuntCodes": [
       "TK1003",
       "TK1012"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-TURKEY-NORTHEASTERN-AREA-BEARDED-MULTISEASON",
     "species": "Turkey",
     "sex": "Bearded",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "Northeastern Area",
     "unitCode": "northeastern-area",
     "unitNames": [
@@ -9541,14 +9540,14 @@
     "sourceHuntCodes": [
       "TK1004",
       "TK1013"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-TURKEY-NORTHEASTERN-AREA-BEARDED-MULTISEASON",
     "species": "Turkey",
     "sex": "Bearded",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Northeastern Area",
     "unitCode": "northeastern-area",
     "unitNames": [
@@ -9580,14 +9579,14 @@
     "sourceHuntCodes": [
       "TK1004",
       "TK1013"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-TURKEY-NORTHEASTERN-AREA-BEARDED-MULTISEASON",
     "species": "Turkey",
     "sex": "Bearded",
     "huntType": "Conservation",
-    "huntClass": "WCF",
     "area": "Northeastern Area",
     "unitCode": "northeastern-area",
     "unitNames": [
@@ -9614,14 +9613,14 @@
     "sourceHuntCodes": [
       "TK1004",
       "TK1013"
-    ]
+    ],
+    "draw_design": "WCF"
   },
   {
     "huntCode": "CP-TURKEY-NORTHERN-AREA-BEARDED-MULTISEASON",
     "species": "Turkey",
     "sex": "Bearded",
     "huntType": "Conservation",
-    "huntClass": "DSC",
     "area": "Northern Area",
     "unitCode": "northern-area",
     "unitNames": [
@@ -9648,14 +9647,14 @@
     "sourceHuntCodes": [
       "TK1005",
       "TK1014"
-    ]
+    ],
+    "draw_design": "DSC"
   },
   {
     "huntCode": "CP-TURKEY-NORTHERN-AREA-BEARDED-MULTISEASON",
     "species": "Turkey",
     "sex": "Bearded",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "Northern Area",
     "unitCode": "northern-area",
     "unitNames": [
@@ -9682,14 +9681,14 @@
     "sourceHuntCodes": [
       "TK1005",
       "TK1014"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-TURKEY-NORTHERN-AREA-BEARDED-MULTISEASON",
     "species": "Turkey",
     "sex": "Bearded",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Northern Area",
     "unitCode": "northern-area",
     "unitNames": [
@@ -9719,14 +9718,14 @@
     "sourceHuntCodes": [
       "TK1005",
       "TK1014"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-TURKEY-NORTHERN-AREA-BEARDED-MULTISEASON",
     "species": "Turkey",
     "sex": "Bearded",
     "huntType": "Conservation",
-    "huntClass": "UHA",
     "area": "Northern Area",
     "unitCode": "northern-area",
     "unitNames": [
@@ -9753,14 +9752,14 @@
     "sourceHuntCodes": [
       "TK1005",
       "TK1014"
-    ]
+    ],
+    "draw_design": "UHA"
   },
   {
     "huntCode": "CP-TURKEY-NORTHERN-AREA-BEARDED-MULTISEASON",
     "species": "Turkey",
     "sex": "Bearded",
     "huntType": "Conservation",
-    "huntClass": "WCF",
     "area": "Northern Area",
     "unitCode": "northern-area",
     "unitNames": [
@@ -9787,14 +9786,14 @@
     "sourceHuntCodes": [
       "TK1005",
       "TK1014"
-    ]
+    ],
+    "draw_design": "WCF"
   },
   {
     "huntCode": "CP-TURKEY-SOUTHEASTERN-AREA-BEARDED-MULTISEASON",
     "species": "Turkey",
     "sex": "Bearded",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "Southeastern Area",
     "unitCode": "southeastern-area",
     "unitNames": [
@@ -9823,14 +9822,14 @@
     "sourceHuntCodes": [
       "TK1006",
       "TK1015"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-TURKEY-SOUTHEASTERN-AREA-BEARDED-MULTISEASON",
     "species": "Turkey",
     "sex": "Bearded",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Southeastern Area",
     "unitCode": "southeastern-area",
     "unitNames": [
@@ -9861,14 +9860,14 @@
     "sourceHuntCodes": [
       "TK1006",
       "TK1015"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-TURKEY-SOUTHERN-AREA-BEARDED-MULTISEASON",
     "species": "Turkey",
     "sex": "Bearded",
     "huntType": "Conservation",
-    "huntClass": "MDF",
     "area": "Southern Area",
     "unitCode": "southern-area",
     "unitNames": [
@@ -9895,14 +9894,14 @@
     "sourceHuntCodes": [
       "TK1007",
       "TK1016"
-    ]
+    ],
+    "draw_design": "MDF"
   },
   {
     "huntCode": "CP-TURKEY-SOUTHERN-AREA-BEARDED-MULTISEASON",
     "species": "Turkey",
     "sex": "Bearded",
     "huntType": "Conservation",
-    "huntClass": "NWTF",
     "area": "Southern Area",
     "unitCode": "southern-area",
     "unitNames": [
@@ -9930,14 +9929,14 @@
     "sourceHuntCodes": [
       "TK1007",
       "TK1016"
-    ]
+    ],
+    "draw_design": "NWTF"
   },
   {
     "huntCode": "CP-TURKEY-SOUTHERN-AREA-BEARDED-MULTISEASON",
     "species": "Turkey",
     "sex": "Bearded",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Southern Area",
     "unitCode": "southern-area",
     "unitNames": [
@@ -9967,14 +9966,14 @@
     "sourceHuntCodes": [
       "TK1007",
       "TK1016"
-    ]
+    ],
+    "draw_design": "SFW"
   },
   {
     "huntCode": "CP-TURKEY-SOUTHERN-AREA-BEARDED-MULTISEASON",
     "species": "Turkey",
     "sex": "Bearded",
     "huntType": "Conservation",
-    "huntClass": "UHA",
     "area": "Southern Area",
     "unitCode": "southern-area",
     "unitNames": [
@@ -10001,14 +10000,14 @@
     "sourceHuntCodes": [
       "TK1007",
       "TK1016"
-    ]
+    ],
+    "draw_design": "UHA"
   },
   {
     "huntCode": "CP-TURKEY-STATEWIDE-BEARDED-ANY-LEGAL-WEAPON",
     "species": "Turkey",
     "sex": "Bearded",
     "huntType": "Conservation",
-    "huntClass": "SFW",
     "area": "Statewide",
     "unitCode": "statewide",
     "unitNames": [
@@ -10036,6 +10035,7 @@
       "TK0001",
       "TK1000",
       "TK1017"
-    ]
+    ],
+    "draw_design": "SFW"
   }
 ]

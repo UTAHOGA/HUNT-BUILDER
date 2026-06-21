@@ -6,7 +6,6 @@ normalized_25_bg-odds_1_.csv,1003115,603,YES,YES,YES,YES,YES,YES,602,0,176,419,5
 normalized_25_deer_odds.csv,147975,108,YES,YES,YES,YES,YES,YES,107,89,18,89,106,106,0
 normalized_25_dh_odds.csv,41948,33,YES,YES,YES,YES,YES,YES,32,25,6,26,31,31,0
 normalized_25_lifetime_deer_1_.csv,134167,105,YES,YES,YES,YES,YES,YES,104,88,16,88,103,103,0
-normalized_25_point-only_purchases_for_big_game_and_antlerless.csv,9913,16,YES,YES,YES,YES,YES,YES,15,0,0,0,0,0,0
 normalized_25_youth_antlerless_drawing_odds_report.csv,249361,203,YES,YES,YES,YES,YES,YES,202,3,3,87,199,199,0
 normalized_25_youth_deer.csv,139871,108,YES,YES,YES,YES,YES,YES,107,89,18,89,106,106,0
 normalized_25_youth_dh_odds.csv,31077,25,YES,YES,YES,YES,YES,YES,24,20,3,21,23,23,0
@@ -34,7 +33,6 @@ raw_extract_25_bg-odds_1_.csv,893165,603,NO,YES,NO,NO,NO,YES,602,0,0,595,0,0,0
 raw_extract_25_deer_odds.csv,128808,108,NO,YES,NO,NO,NO,YES,107,0,0,107,0,0,0
 raw_extract_25_dh_odds.csv,36060,33,NO,YES,NO,NO,NO,YES,32,0,0,32,0,0,0
 raw_extract_25_lifetime_deer_1_.csv,115282,105,NO,YES,NO,NO,NO,YES,104,0,0,104,0,0,0
-raw_extract_25_point-only_purchases_for_big_game_and_antlerless.csv,8105,16,NO,YES,NO,NO,NO,YES,15,0,0,0,0,0,0
 raw_extract_25_youth_antlerless_drawing_odds_report.csv,209585,203,NO,YES,NO,NO,NO,YES,202,0,0,0,0,0,0
 raw_extract_25_youth_deer.csv,120772,108,NO,YES,NO,NO,NO,YES,107,0,0,107,0,0,0
 raw_extract_25_youth_dh_odds.csv,26493,25,NO,YES,NO,NO,NO,YES,24,0,0,24,0,0,0

@@ -51,12 +51,6 @@
       "row_count": 37618
     },
     {
-      "path": "data/black_bear_bonus_point_purchases.csv",
-      "bytes": 2542,
-      "sha256": "cf29c691d762cb76b083fd36c6bf7bfc863b285856fc4fa145646bfa67cd894a",
-      "row_count": 32
-    },
-    {
       "path": "data/black_bear_draw_hunt_totals.csv",
       "bytes": 40112,
       "sha256": "393932dab399ddd207d4400d0a371560393ebf0baf4ab22cc0871ea6508b1959",

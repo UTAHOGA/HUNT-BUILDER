@@ -135,7 +135,6 @@
       "sample_codes_not_in_canonical": 0
     },
     {
-      "file": "normalized_25_point-only_purchases_for_big_game_and_antlerless.csv",
       "bytes": 9913,
       "approx_rows": "16",
       "structured": "YES",
@@ -639,7 +638,6 @@
       "sample_codes_not_in_canonical": 0
     },
     {
-      "file": "raw_extract_25_point-only_purchases_for_big_game_and_antlerless.csv",
       "bytes": 8105,
       "approx_rows": "16",
       "structured": "NO",

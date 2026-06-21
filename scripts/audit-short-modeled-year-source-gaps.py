@@ -283,7 +283,6 @@ DRAW_SOURCE_FAMILIES = [
         "modeled_year": "2024",
         "reported_source_year": "2023",
         "source_family": "points_purchase_reference",
-        "patterns": ["pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/2023 _Big game and antlerless bonus and preference point purchase results.pdf"],
         "online_url": DWR_BIG_GAME_ODDS_URL,
         "not_draw_rows": True,
     },

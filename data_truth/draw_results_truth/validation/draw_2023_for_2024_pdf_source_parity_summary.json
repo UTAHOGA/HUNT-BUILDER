@@ -10,9 +10,6 @@
   "missing_active_source_files": 0,
   "review_file_count": 0,
   "active_only_source_file_count": 0,
-  "active_only_source_files": [],
-  "legacy_duplicate_hash_groups": [],
-  "active_duplicate_hash_groups": [],
   "active_duplicate_hash_group_count": 0,
   "source_draw_result_year": "2023",
   "model_target_year": "2024",
@@ -29,7 +26,6 @@
       "represented_pdf_labels_matching_expected_set": [
         "23_bg-odds.pdf"
       ],
-      "represented_pdf_labels_not_in_expected_set": [],
       "expected_pdf_labels_not_represented": [
         "2022-23 Sportsman draw odds report.pdf",
         "2023 Antlerless big game draw results.pdf",
@@ -39,7 +35,6 @@
         "2023 Youth antlerless big game draw results.pdf",
         "2023 Youth draw-only elk bonus point draw results.pdf",
         "2023 Youth general-season deer draw results.pdf",
-        "2023 _Big game and antlerless bonus and preference point purchase results.pdf",
         "2023 _Dedicated Hunter deer draw results.pdf",
         "2023 _turkey_2023_turkey_bonus_points_draw_results.pdf",
         "2023 draw results General Season Deer Draw Odds.pdf",
@@ -76,13 +71,11 @@
         "2023 draw results General Season Deer Draw Odds.pdf",
         "23_drawing_odds.pdf"
       ],
-      "represented_pdf_labels_not_in_expected_set": [],
       "expected_pdf_labels_not_represented": [
         "2022-23 Sportsman draw odds report.pdf",
         "2023 ELK + OTHER BIG GAME.pdf",
         "2023 Lifetime general-season deer draw results.pdf",
         "2023 Youth draw-only elk bonus point draw results.pdf",
-        "2023 _Big game and antlerless bonus and preference point purchase results.pdf",
         "2023 _Dedicated Hunter deer draw results.pdf",
         "2023 _turkey_2023_turkey_bonus_points_draw_results.pdf",
         "2023 turkey_2023_youth_turkey_draw_results.pdf",
@@ -108,14 +101,12 @@
         "2023 ELK + OTHER BIG GAME.pdf",
         "2023 Lifetime general-season deer draw results.pdf",
         "2023 Youth draw-only elk bonus point draw results.pdf",
-        "2023 _Big game and antlerless bonus and preference point purchase results.pdf",
         "2023 _Dedicated Hunter deer draw results.pdf",
         "2023 _turkey_2023_turkey_bonus_points_draw_results.pdf",
         "2023 turkey_2023_youth_turkey_draw_results.pdf",
         "2023_cougar_odds_report.pdf",
         "23_youth_dh_odds.pdf"
-      ],
-      "csv_source_labels_not_in_expected_pdf_set": []
+      ]
     }
   },
   "normalized_draw_truth_source_summary": {
@@ -129,7 +120,6 @@
       "24_le_deer.pdf": 22,
       "24_le_bull_elk.pdf": 92
     },
-    "normalized_source_labels_matching_expected_pdf_set": [],
     "normalized_source_labels_not_in_expected_pdf_set": [
       "24_OIL_ALL.pdf",
       "24_bg-draw-results.pdf",
@@ -145,7 +135,6 @@
       "2023 Youth antlerless big game draw results.pdf",
       "2023 Youth draw-only elk bonus point draw results.pdf",
       "2023 Youth general-season deer draw results.pdf",
-      "2023 _Big game and antlerless bonus and preference point purchase results.pdf",
       "2023 _Dedicated Hunter deer draw results.pdf",
       "2023 _turkey_2023_turkey_bonus_points_draw_results.pdf",
       "2023 draw results General Season Deer Draw Odds.pdf",

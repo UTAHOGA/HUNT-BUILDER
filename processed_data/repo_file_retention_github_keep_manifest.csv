@@ -70,7 +70,6 @@ data/annual_report_key_metrics.csv,SMALL_PROJECT_FILE,1809,TRUE,FALSE,FALSE,
 data/big_game_draw_hunt_totals.csv,SMALL_PROJECT_FILE,271087,TRUE,FALSE,FALSE,
 data/bighorn_sheep_hunt_table_official.json,SMALL_PROJECT_FILE,27894,TRUE,FALSE,FALSE,
 data/bison_hunt_table_official.json,SMALL_PROJECT_FILE,7982,TRUE,FALSE,FALSE,
-data/black_bear_bonus_point_purchases.csv,SMALL_PROJECT_FILE,2542,TRUE,FALSE,FALSE,
 data/black_bear_hunt_table_official.json,SMALL_PROJECT_FILE,53897,TRUE,FALSE,FALSE,
 data/conservation-permit-areas.json,SMALL_PROJECT_FILE,22437,TRUE,FALSE,FALSE,
 data/conservation-permit-hunt-table-2025-27-audit.json,SMALL_PROJECT_FILE,932,TRUE,FALSE,FALSE,DUPLICATE_BASENAME_SAME_HASH

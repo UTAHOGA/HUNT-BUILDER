@@ -21,7 +21,6 @@ Manifest: `engine_payload_manifest.json`
 - `big_game_draw_hunt_totals.csv`: 1,122 rows
 - `black_bear_draw_point_level.csv`: 4,312 rows
 - `black_bear_draw_hunt_totals.csv`: 196 rows
-- `black_bear_bonus_point_purchases.csv`: 32 rows
 - `sportsman_draw_odds_2025.csv`: 10 rows
 - `annual_report_key_metrics.csv`: 13 rows
 - `mule_deer_statewide_harvest_history.csv`: 100 rows

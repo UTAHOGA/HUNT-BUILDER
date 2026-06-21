@@ -534,7 +534,6 @@
 - `data/big_game_draw_hunt_totals.csv`: `SMALL_PROJECT_FILE`
 - `data/bighorn_sheep_hunt_table_official.json`: `SMALL_PROJECT_FILE`
 - `data/bison_hunt_table_official.json`: `SMALL_PROJECT_FILE`
-- `data/black_bear_bonus_point_purchases.csv`: `SMALL_PROJECT_FILE`
 - `data/black_bear_hunt_table_official.json`: `SMALL_PROJECT_FILE`
 - `data/conservation-permit-areas.json`: `SMALL_PROJECT_FILE`
 - `data/conservation-permit-hunt-table-2025-27-audit.json`: `SMALL_PROJECT_FILE`

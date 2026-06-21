@@ -125,7 +125,6 @@ data/bighorn_sheep_hunt_table_official.json,29153,0.028,.json,data_or_feeder,off
 data/big_game_draw_hunt_totals.csv,271087,0.259,.csv,data_or_feeder,unknown,2026-05-23T22:11:41
 data/big_game_draw_point_level.csv,8463461,8.071,.csv,data_or_feeder,unknown,2026-05-23T22:11:41
 data/bison_hunt_table_official.json,7982,0.008,.json,data_or_feeder,official_or_extracted_official,2026-05-23T22:11:41
-data/black_bear_bonus_point_purchases.csv,2542,0.002,.csv,data_or_feeder,unknown,2026-05-23T22:11:41
 data/black_bear_hunt_table_official.json,53897,0.051,.json,data_or_feeder,official_or_extracted_official,2026-05-23T22:11:41
 data/blm-surface-ownership-shapefile,2,0.0,,other,unknown,2026-05-31T22:10:23
 data/conservation-permit-areas.json,22437,0.021,.json,data_or_feeder,unknown,2026-05-23T22:11:41
@@ -5497,7 +5496,6 @@ pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/2023 turkey_2023_youth_turkey
 pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/2023 Youth antlerless big game draw results.pdf,689163,0.657,.pdf,data_or_feeder,official_or_extracted_official,2026-05-01T05:44:47
 pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/2023 Youth draw-only elk bonus point draw results.pdf,76712,0.073,.pdf,data_or_feeder,official_or_extracted_official,2026-05-01T05:44:46
 pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/2023 Youth general-season deer draw results.pdf,439421,0.419,.pdf,data_or_feeder,official_or_extracted_official,2026-05-01T05:44:46
-pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/2023 _Big game and antlerless bonus and preference point purchase results.pdf,94525,0.09,.pdf,data_or_feeder,official_or_extracted_official,2026-05-01T05:44:47
 pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/2023 _Dedicated Hunter deer draw results.pdf,179888,0.172,.pdf,data_or_feeder,official_or_extracted_official,2026-05-01T05:44:47
 pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/2023 _turkey_2023_turkey_bonus_points_draw_results.pdf,131980,0.126,.pdf,data_or_feeder,official_or_extracted_official,2026-05-01T05:53:52
 pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/2023_cougar_odds_report.pdf,135475,0.129,.pdf,data_or_feeder,official_or_extracted_official,2026-04-03T19:52:16
@@ -5878,7 +5876,6 @@ pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/24_le_deer.pdf,1043882,0.996,
 pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/24_le_pronghorn.pdf,533752,0.509,.pdf,data_or_feeder,official_or_extracted_official,2026-05-06T13:21:02
 pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/24_lifetime_deer.pdf,437601,0.417,.pdf,data_or_feeder,official_or_extracted_official,2026-05-03T02:52:25
 pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/24_OIL_ALL.pdf,647008,0.617,.pdf,data_or_feeder,official_or_extracted_official,2026-05-06T13:22:14
-pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/24_point-only_purchases_for_big_game_and_antlerless.pdf,92976,0.089,.pdf,data_or_feeder,official_or_extracted_official,2026-05-03T02:53:11
 pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/24_youth_antlerless_drawing_odds_report.pdf,693897,0.662,.pdf,data_or_feeder,official_or_extracted_official,2026-05-03T02:53:05
 pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/24_youth_deer.pdf,442269,0.422,.pdf,data_or_feeder,official_or_extracted_official,2026-05-03T02:52:32
 pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/24_youth_dh_odds.pdf,181643,0.173,.pdf,data_or_feeder,official_or_extracted_official,2026-05-03T02:53:44
