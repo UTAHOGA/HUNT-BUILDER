@@ -1003,3 +1003,4 @@ data_truth/comparison_outputs/validation/short_modeled_year_source_gap_audit.csv
 /public/hard-copy/manifests/hard_data_manifest.json
 /scripts/build-public-data-contracts.js
 app.js
+app.js
