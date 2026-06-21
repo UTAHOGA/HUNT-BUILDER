@@ -32,7 +32,7 @@ Target-scope big-game families include:
 - Premium limited-entry big game
 - Once-in-a-lifetime big game
 - General-season big-game draw categories
-- Dedicated Hunter deer where present
+- Dedicated Hunter deer where present, with the hunt type kept visible even though the draw system resolves as preference
 - Youth big-game draw categories where present
 - Landowner big-game categories where present
 - Mitigation / depredation big-game categories where present
@@ -145,9 +145,16 @@ These categories must not use the OIL/LE/PLE bonus algorithm:
 Reason:
 
 - General-season deer and antlerless deer/elk/doe pronghorn are preference-point systems, not OIL/LE/PLE bonus systems.
-- Mountain lion/cougar uses a rule-status and availability strategy for 2026, not a draw-odds model.
+- Mountain lion/cougar uses a rule-status and O.T.C. / allotment strategy for 2026, not a draw-odds model.
 
 ## Current State
+
+The predictive stack is intentionally split into separate engines by draw family. The current contract does not treat these as one blended model:
+
+- bonus / max-weighted split engine
+- preference engine
+- sportsman random engine
+- O.T.C. / allotment engine
 
 Completed:
 
@@ -159,12 +166,12 @@ Completed:
 - Phase 6: CWMU public + antlerless moose + ewe bighorn bonus families
 - Phase 7: limited-entry turkey bonus strategy
 - Phase 8: public bear bonus strategy + Sportsman permit classifier
-- Phase 9: private-lands-only antlerless elk allocation / availability strategy
-- Phase 10: mountain lion / cougar rule-status + availability strategy
+- Phase 9: private-lands-only antlerless elk allocation / allotment strategy
+- Phase 10: mountain lion / cougar rule-status + allotment strategy
 - Phase 11: Sportsman permit odds strategy
-- Phase 12: bear subtype-aware quota draw + availability strategy
-- Phase 13: mountain lion / cougar rule-status + availability closeout
-- Phase 14: private-lands-only antlerless elk allocation / availability closeout
+- Phase 12: bear subtype-aware quota draw + allotment strategy
+- Phase 13: mountain lion / cougar rule-status + allotment closeout
+- Phase 14: private-lands-only antlerless elk allocation / allotment closeout
 - Phase 15: youth family separation and pending-strategy closeout
 
 Currently modeled as `MODELED_BONUS`:
@@ -190,7 +197,7 @@ Currently modeled as `MODELED_ALLOCATION`:
 
 - `PRIVATE_LANDS_ONLY_ANTLERLESS_ELK`
 
-Currently modeled as `MODELED_AVAILABILITY`:
+Currently modeled as O.T.C. / allotment-status rows (`MODELED_AVAILABILITY`):
 
 - `MOUNTAIN_LION_DRAW`
 - Bear availability/status subtypes inside `BEAR_DRAW`
@@ -216,8 +223,8 @@ Still pending:
 Private-lands-only antlerless elk note:
 
 - This category stays in scope.
-- It is modeled as an allocation / availability family, not a preference-draw probability model.
-- Phase 14 closes this family as an allocation-status strategy with explicit availability semantics when source support exists.
+- It is modeled as an O.T.C. / allocation / allotment family, not a preference-draw probability model.
+- Phase 14 closes this family as an O.T.C. / allotment-status strategy with explicit status semantics when source support exists.
 - It must not receive `p_draw`, `p_draw_pct`, `p_bonus_pool`, `p_random_pool`, or `p_preference_draw`.
 - Allocation fields such as `permits_allotted`, `allocation_status`, `p_availability`, and `availability_pct` populate only when source data supports them.
 
@@ -225,7 +232,7 @@ Sportsman permit note:
 
 - Sportsman permits are classified as their own statewide draw family.
 - They are modeled from the official Sportsman odds source, not from hunt-code suffix rules.
-- They do not use bonus pools, preference points, max-point pools, or bear-availability logic.
+- They do not use max/weighted split pools, preference points, max-point pools, or bear-availability logic.
 - `BR1000`, `DB0007`, `RS0001`, and `TK0001` are all Sportsman permits even though not every Sportsman code ends with `1000`.
 
 Bear note:
@@ -238,19 +245,19 @@ Bear note:
 
 Mountain lion / cougar note:
 
-- Utah cougar hunting is treated as statewide OTC rule-status and availability, not draw odds.
+- Utah cougar hunting is treated as statewide O.T.C. rule-status and allotment, not draw odds.
 - The local geometry source lists management/reporting units used for check-in and harvest reporting.
-- Phase 13 closes this family as an availability strategy with explicit rule-status reporting, not a draw-odds strategy.
+- Phase 13 closes this family as an O.T.C. / allotment strategy with explicit rule-status reporting, not a draw-odds strategy.
 - `MOUNTAIN_LION_DRAW` rows must not receive `p_draw`, `p_draw_pct`, `p_bonus_pool`, `p_random_pool`, or `p_preference_draw`.
-- Availability fields such as `permit_availability_type`, `season_start`, `season_end`, `unit_name`, `unit_status`, `p_availability`, and `availability_pct` are the user-facing outputs for this family.
-- `MODELED_AVAILABILITY` is not draw odds and must stay documented as availability/status semantics only.
+- Allotment/status fields such as `permit_availability_type`, `season_start`, `season_end`, `unit_name`, `unit_status`, `p_availability`, and `availability_pct` are the user-facing outputs for this family.
+- `MODELED_AVAILABILITY` is not draw odds and must stay documented as O.T.C. / allotment semantics only.
 
-Availability semantics note:
+O.T.C. / allotment semantics note:
 
-- `MODELED_AVAILABILITY` means source-supported rule-status / availability reporting, not modeled draw probability.
-- Availability rows must keep `p_draw` and `p_draw_pct` null.
-- The system must not fabricate bonus, preference, or draw-probability fields for availability rows.
-- Any non-mountain-lion and non-bear availability rows must be explicitly documented in the availability review artifacts before they can remain `MODELED_AVAILABILITY`.
+- `MODELED_AVAILABILITY` means source-supported rule-status / allotment reporting, not modeled draw probability.
+- O.T.C. / allotment rows must keep `p_draw` and `p_draw_pct` null.
+- The system must not fabricate bonus, preference, or draw-probability fields for O.T.C. / allotment rows.
+- Any non-mountain-lion and non-bear O.T.C. / allotment rows must be explicitly documented in the allotment review artifacts before they can remain `MODELED_AVAILABILITY`.
 
 Youth note:
 
@@ -258,7 +265,7 @@ Youth note:
 - Youth general deer reserve, youth antlerless/doe reserve, and draw-only youth elk stay in scope and stay separate from adult general deer, adult antlerless/doe, and OIL / LE / PLE bonus families.
 - Phase 15 closes the youth classifier and reporting pass, but the families remain pending unless the active-year youth mechanics are source-proven.
 - `EB1007` is the current draw-only youth elk row and routes to `YOUTH_DRAW_ONLY_ELK`.
-- `EB1011` is general-season youth elk availability/purchase behavior and routes to `YOUTH_OTC_OR_AVAILABILITY`, not youth draw odds.
+- `EB1011` is general-season youth elk O.T.C./purchase behavior and routes to `YOUTH_OTC_OR_AVAILABILITY`, not youth draw odds.
 - Youth rows must not receive `p_draw`, `p_draw_pct`, `p_preference_draw`, `p_bonus_pool`, or `p_random_pool` until a defensible youth-specific strategy is accepted.
 
 Out of scope:

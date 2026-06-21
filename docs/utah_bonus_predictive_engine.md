@@ -14,12 +14,12 @@ This engine covers Utah `OIL`, `LE`, and `PLE` hunts and uses bonus-point logic 
 
 All user-facing draw odds should render in combined `~1 in X or Y%` format. This is display-only and does not change internal probability math.
 
-Availability rows are separate from draw odds:
+O.T.C. / allotment rows are separate from draw odds:
 
-- `MODELED_AVAILABILITY` rows are source-backed availability/status outputs, not draw-probability rows.
+- `MODELED_AVAILABILITY` rows are source-backed O.T.C. / allotment status outputs, not draw-probability rows.
 - They must keep `p_draw`, `p_draw_pct`, `p_bonus_pool`, `p_random_pool`, and `p_preference_draw` null.
 - They may use `p_availability`, `availability_pct`, `availability_status`, `permit_availability_type`, `unit_status`, `rule_status`, and explicit `reason_codes`.
-- Current accepted availability families are mountain lion / cougar and bear availability-only subtypes such as harvest objective and unlimited pursuit.
+- Current accepted O.T.C. / allotment families are mountain lion / cougar and bear status subtypes such as harvest objective and unlimited pursuit.
 
 ## Core rules
 

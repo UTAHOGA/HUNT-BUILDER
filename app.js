@@ -1344,7 +1344,18 @@ function normalizeHuntTypeLabel(raw) {
   const value = safe(raw).trim();
   const lower = value.toLowerCase();
   if (!value) return '';
-  if (lower.includes('private land only')) return 'Private Land Only';
+  if (
+    lower.includes('harvest objective') ||
+    lower.includes('over the counter') ||
+    lower.includes('private land only') ||
+    lower.includes('pursuit') ||
+    lower.includes('availability') ||
+    lower.includes('allotment') ||
+    lower.includes('remaining permit')
+  ) {
+    return 'O.T.C.';
+  }
+  if (lower.includes('sportsman')) return 'Sportsman';
   if (lower.includes('premium')) return 'Premium Limited Entry';
   if (lower.includes('limited')) return 'Limited Entry';
   if (lower.includes('once-in-a-lifetime')) return 'Once-in-a-Lifetime';
@@ -1429,13 +1440,56 @@ function getHuntType(h) {
     getNormalizedSex(h) === 'Bull' &&
     safe(firstNonEmpty(h.draw_family, h.drawFamily, h.draw_2026_system_type)).toUpperCase().includes('SPORTSMAN')
   ) {
-    return 'Limited Entry';
+    return 'Sportsman';
   }
   const raw = firstNonEmpty(h.huntType, h.HuntType, h.type);
   if (getSpeciesDisplay(h) === 'Elk' && getNormalizedSex(h) === 'Bull' && safe(raw).toLowerCase().includes('youth')) {
     return safe(raw).toLowerCase().includes('general') ? 'General Season' : normalizeHuntTypeLabel(raw);
   }
   return normalizeHuntTypeLabel(raw);
+}
+function normalizeDrawDesignLabel(raw) {
+  const value = safe(raw).trim();
+  const lower = value.toLowerCase();
+  if (!value) return '';
+  if (lower.includes('preference')) return 'Preference';
+  if (lower.includes('sportsman')) return 'Random';
+  if (lower.includes('weighted random')) return 'Max/Weighted Split';
+  if (lower.includes('random')) return 'Random';
+  if (lower.includes('allocation')) return 'Capped Permits';
+  if (lower.includes('allotment')) return 'Capped Permits';
+  if (lower.includes('availability') || lower.includes('pursuit')) return 'Capped Permits';
+  if (lower.includes('dedicated hunter')) return 'Preference';
+  if (lower.includes('max') || lower.includes('bonus') || lower.includes('split')) return 'Max/Weighted Split';
+  if (lower.includes('standard')) return 'Preference';
+  return value;
+}
+function getDrawDesign(h) {
+  const explicit = firstNonEmpty(h.draw_design, h.drawDesign, h.draw_type, h.drawType);
+  const normalized = normalizeDrawDesignLabel(explicit);
+  if (normalized) return normalized;
+
+  const species = getSpeciesDisplay(h);
+  const drawFamily = safe(firstNonEmpty(h.draw_family, h.drawFamily, h.draw_2026_system_type)).toUpperCase();
+  const huntType = safe(getHuntType(h)).toLowerCase();
+  const rawCategory = safe(firstNonEmpty(h.huntCategory, h.HuntCategory, h.category)).toLowerCase();
+  const text = [
+    getHuntTitle(h),
+    getWeapon(h),
+    getDates(h),
+    getHuntType(h),
+    drawFamily,
+    rawCategory,
+  ].map(v => safe(v).toLowerCase()).join(' ');
+
+  if (drawFamily.includes('SPORTSMAN') || huntType.includes('sportsman')) return 'Random';
+  if (huntType.includes('dedicated hunter') || text.includes('dedicated hunter')) return 'Preference';
+  if (species === 'Cougar' || huntType.includes('private land only') || rawCategory.includes('private land only') || text.includes('allotment')) return 'Capped Permits';
+  if (huntType.includes('general season') || huntType.includes('antlerless') || rawCategory.includes('antlerless') || text.includes('preference point')) return 'Preference';
+  if (huntType.includes('limited entry') || huntType.includes('premium limited entry') || huntType.includes('once-in-a-lifetime') || text.includes('bonus point')) return 'Max/Weighted Split';
+  if (huntType.includes('harvest objective') || text.includes('availability') || text.includes('pursuit')) return 'Capped Permits';
+  if (huntType.includes('otc') || text.includes('over the counter') || text.includes('unlimited')) return 'Random';
+  return '';
 }
 function normalizeHuntCategoryLabel(raw) {
   const value = safe(raw).trim();
@@ -1447,6 +1501,7 @@ function normalizeHuntCategoryLabel(raw) {
   if (lower.includes('premium')) return 'Premium Limited Entry';
   if (lower.includes('limited')) return 'Limited Entry';
   if (lower.includes('cwmu')) return 'CWMU';
+  if (lower.includes('sportsman')) return 'Sportsman';
   if (lower.includes('youth')) return 'Youth';
   if (lower.includes('conservation')) return 'Conservation';
   if (lower.includes('management')) return 'Management';
@@ -1506,7 +1561,11 @@ function getHuntCategory(h) {
   const sex = getNormalizedSex(h);
   const haystack = `${safe(raw)} ${getHuntTitle(h)} ${getUnitName(h)}`.toLowerCase();
 
-  if (species === 'Cougar') return 'Statewide';
+  if (safe(firstNonEmpty(h.draw_family, h.drawFamily, h.draw_2026_system_type)).toUpperCase().includes('SPORTSMAN') || huntType === 'Sportsman') {
+    return 'Sportsman';
+  }
+
+  if (species === 'Cougar') return '';
 
   if (species === 'Black Bear' && sex === 'Either Sex' && huntType === 'Limited Entry') {
     return getBearLimitedEntryMethodClass(h);
@@ -1523,10 +1582,6 @@ function getHuntCategory(h) {
   }
 
   if (species === 'Elk' && sex === 'Bull') {
-    if (safe(firstNonEmpty(h.draw_family, h.drawFamily, h.draw_2026_system_type)).toUpperCase().includes('SPORTSMAN')) {
-      return 'Sportsmen';
-    }
-
     if (huntType === 'Limited Entry') {
       return getElkBullLimitedEntrySeasonClass(h);
     }
@@ -1764,6 +1819,7 @@ function getPanelHeading(hunt) {
   const permitTotal = getPermitTotal(hunt);
 
   const prefixParts = [];
+  if (combined.includes('sportsman')) prefixParts.push('Sportsman');
   const isOil = combined.includes('once-in-a-lifetime');
   const isPremium = combined.includes('premium');
   if (isOil) prefixParts.push('O.I.L.');
@@ -2629,6 +2685,7 @@ function buildMatchingHuntCard(h, selectedKey) {
   const code = escapeHtml(getHuntCode(h) || '');
   const weapon = escapeHtml(getWeapon(h) || 'Weapon pending');
   const huntType = escapeHtml(getHuntType(h) || 'Hunt type pending');
+  const drawDesign = escapeHtml(getDrawDesign(h) || 'Draw design pending');
   return `
     <div class="hunt-card${selected ? ' is-selected' : ''}" data-hunt-key="${huntKey}" role="button" tabindex="0">
       <div class="hunt-card-head">
@@ -2636,7 +2693,7 @@ function buildMatchingHuntCard(h, selectedKey) {
         <div>
           <div class="hunt-card-code">${code}</div>
           <div class="hunt-card-title">${name}</div>
-          <div class="hunt-card-meta">${weapon} | ${huntType}</div>
+          <div class="hunt-card-meta">${weapon} | ${huntType} | ${drawDesign}</div>
         </div>
       </div>
       <div class="hunt-card-actions">
@@ -2903,7 +2960,7 @@ function openInlineHuntDetails(hunt) {
   const link = getBoundaryLink(hunt);
   if (!section || !frame || !link || !hunt) return;
   if (title) title.textContent = `${getHuntCode(hunt)} | ${getUnitName(hunt) || getHuntTitle(hunt)}`;
-  if (meta) meta.textContent = `${getSpeciesDisplay(hunt)} | ${getNormalizedSex(hunt)} | ${getHuntType(hunt)} | ${getWeapon(hunt)}`;
+  if (meta) meta.textContent = `${getSpeciesDisplay(hunt)} | ${getNormalizedSex(hunt)} | ${getHuntType(hunt)} | ${getDrawDesign(hunt)} | ${getWeapon(hunt)}`;
   if (fallback) fallback.href = link;
   frame.src = link;
   section.hidden = false;
@@ -3741,6 +3798,7 @@ function buildPopupCardForHunt(hunt) {
   const species = escapeHtml(getSpeciesDisplay(hunt) || 'N/A');
   const sex = escapeHtml(getNormalizedSex(hunt) || 'N/A');
   const huntType = escapeHtml(getHuntType(hunt) || 'N/A');
+  const drawDesign = escapeHtml(getDrawDesign(hunt) || 'N/A');
   const weapon = escapeHtml(getWeapon(hunt) || 'N/A');
   const dates = escapeHtml(getDates(hunt) || 'See official hunt details');
   const heading = escapeHtml(getPanelHeading(hunt));
@@ -3761,6 +3819,7 @@ function buildPopupCardForHunt(hunt) {
       </div>
       <div style="padding:12px 14px;display:grid;gap:8px;">
         <div style="font-size:13px;color:rgba(244,239,228,.78);line-height:1.35;">${species} | ${sex} | ${huntType}</div>
+        <div style="font-size:13px;color:rgba(244,239,228,.78);line-height:1.35;">Draw design: ${drawDesign}</div>
         <div style="font-size:13px;color:rgba(244,239,228,.78);line-height:1.35;">${weapon}</div>
         <div style="font-size:13px;color:rgba(244,239,228,.78);line-height:1.35;">${dates}</div>
         <div style="font-size:13px;color:rgba(244,239,228,.9);line-height:1.35;">${boundaryLine}</div>
@@ -3800,7 +3859,7 @@ function showHuntMatchesChooser(title, matches, kicker = 'Available Hunts', opti
   mapChooserBody.innerHTML = matches.length ? matches.slice(0, 12).map(h => `
     <div class="map-chooser-card" data-popup-hunt-key="${escapeHtml(getHuntRecordKey(h))}" role="button" tabindex="0">
       <div class="hunt-card-title">${escapeHtml(getHuntCode(h))} | ${escapeHtml(getUnitName(h) || getHuntTitle(h))}</div>
-      <div class="map-chooser-meta">${escapeHtml(getSpeciesDisplay(h))} | ${escapeHtml(getNormalizedSex(h))} | ${escapeHtml(getHuntType(h))}</div>
+      <div class="map-chooser-meta">${escapeHtml(getSpeciesDisplay(h))} | ${escapeHtml(getNormalizedSex(h))} | ${escapeHtml(getHuntType(h))} | ${escapeHtml(getDrawDesign(h) || 'N/A')}</div>
       <div class="map-chooser-meta">${escapeHtml(getWeapon(h))} | ${escapeHtml(getDates(h) || 'See official hunt details')}</div>
     </div>
   `).join('') : '<div class="map-chooser-empty">No matching hunts found for this boundary.</div>';

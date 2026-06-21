@@ -529,6 +529,7 @@ window.UOGA_CONFIG = (() => {
 
   const HUNT_TYPE_ORDER = [
     'O.T.C.',
+    'Sportsman',
     'General Season',
     'Youth',
     'Limited Entry',
@@ -560,7 +561,7 @@ window.UOGA_CONFIG = (() => {
     'Spot and Stalk',
     'Hounds',
     'Bait',
-    'Sportsmen',
+    'Sportsman',
     'Limited Entry',
     'Premium Limited Entry',
     'Youth',

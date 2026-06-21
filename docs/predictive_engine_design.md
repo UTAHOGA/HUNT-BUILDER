@@ -41,15 +41,15 @@ This repository is moving from a legacy research-page lookup system to a Utah pr
 - Permit promotion may add metadata fields such as `permit_source`, `quota_source`, `truth_source_file`, `truth_source_status`, and `reason_codes`.
 - Existing columns should be preserved whenever possible; promotion is additive unless a stale permit value must be corrected.
 
-## Availability-Only Families
+## O.T.C. / Allotment Families
 
-- Availability-only families must not be treated as standard draw-probability rows.
-- Private-lands-only antlerless elk is availability-only in the current design unless a source explicitly provides draw mechanics and a valid residency split.
-- Availability-only rows may appear in the runtime CSVs for lookup continuity, but they must not be assigned invented probabilities.
-- `MODELED_AVAILABILITY` is a source-backed status/availability classification, not draw-odds modeling.
-- Mountain lion / cougar currently uses availability/status semantics rather than draw odds.
-- Bear harvest-objective and pursuit-only subtypes currently use availability/status semantics rather than draw odds.
-- Availability review should run after predictive artifact regeneration so every availability row is explicitly accounted for and no hidden non-draw family drifts into the runtime outputs.
+- O.T.C. / allotment families must not be treated as standard draw-probability rows.
+- Private-lands-only antlerless elk is O.T.C. / allotment-only in the current design unless a source explicitly provides draw mechanics and a valid residency split.
+- O.T.C. / allotment rows may appear in the runtime CSVs for lookup continuity, but they must not be assigned invented probabilities.
+- `MODELED_AVAILABILITY` is a source-backed O.T.C. / allotment status classification, not draw-odds modeling.
+- Mountain lion / cougar currently uses O.T.C. / allotment semantics rather than draw odds.
+- Bear harvest-objective and pursuit-only subtypes currently use O.T.C. / allotment semantics rather than draw odds.
+- O.T.C. / allotment review should run after predictive artifact regeneration so every such row is explicitly accounted for and no hidden non-draw family drifts into the runtime outputs.
 
 ## Overlay Exceptions
 

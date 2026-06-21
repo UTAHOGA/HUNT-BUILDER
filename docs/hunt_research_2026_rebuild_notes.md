@@ -8,7 +8,7 @@ Generated: 2026-06-04T02:41:28.271656
   - `processed_data/hunt_research_2026_summary.json` (group-level summary)
   - `processed_data/hunt_research_2026_ladder.json` (point-level ladder)
   - `processed_data/hunt_research_2026_ladder_preference.json` (preference ladder rows)
-  - `processed_data/hunt_research_2026_ladder_bonus_max_random.json` (bonus/max-random ladder rows)
+  - `processed_data/hunt_research_2026_ladder_bonus_max_random.json` (max/weighted split ladder rows)
 
 ## Sources used
 - DATABASE truth: `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`

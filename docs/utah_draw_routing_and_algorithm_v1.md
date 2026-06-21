@@ -1,6 +1,6 @@
 # Utah Draw Routing And Algorithm V1
 
-This document is the active `HUNT-BUILDER` contract for how a selected hunt row is routed into the correct Utah draw model. It explains why `hunt_class` exists, when it should be visible to the user, and what formula family the prediction engine should use after the final hunt is selected.
+This document is the active `HUNT-BUILDER` contract for how a selected hunt row is routed into the correct Utah draw model. It explains why `hunt_class` exists, when it should be visible to the user, and what separate engine family should be used after the final hunt is selected.
 
 The core rule is:
 
@@ -9,6 +9,17 @@ species -> sex_type -> hunt_type -> weapon -> optional hunt_class -> hunt_code
 ```
 
 `hunt_class` is not a duplicate label. It is only useful when it further separates rows that otherwise look the same but must route to different draw behavior. If `hunt_type` already fully explains the family, `hunt_class` should be hidden from the selector and carried only as metadata.
+
+## Engine Families
+
+The routing layer should hand each row to one of these separate engines:
+
+- `Preference` engine for general-season, Dedicated Hunter, and other preference-point rows
+- `Max/Weighted Split` engine for limited-entry and once-in-a-lifetime rows that split permits between a max-point pass and a weighted random pass
+- `Random` engine for Sportsman rows
+- `O.T.C.` / allotment engine for cougar, bear status rows, youth OTC rows, and other rule/status rows that are not true draw-odds rows
+
+These are separate model paths, not just different labels on one generic probability engine.
 
 ## Source Anchors
 
@@ -23,14 +34,15 @@ Official DWR sources checked for this contract:
 
 Important DWR rule facts:
 
-- Limited-entry, CWMU, once-in-a-lifetime, antlerless moose, ewe bighorn, turkey, and most bear draw rows use bonus-point style routing.
+- Limited-entry, CWMU, once-in-a-lifetime, antlerless moose, ewe bighorn, turkey, and most bear draw rows use max/weighted split routing.
 - General-season buck deer, Dedicated Hunter deer, antlerless deer, antlerless elk, and doe pronghorn use preference-point style routing.
+- Dedicated Hunter stays visible as a hunt-type label, but its draw system is preference.
 - Group applications average points and round down.
 - Youth-only groups can receive reserved youth quotas for general-season buck deer, antlerless deer, antlerless elk, doe pronghorn, turkey, and some bird permits.
 - Draw-only youth any bull/hunter's choice elk is a separate Big Game draw family; preference points are not awarded or used for it.
 - General-season youth elk is a purchase/availability family, not the same as draw-only youth elk.
-- Sportsman permits are a separate resident-only random draw; bonus and preference points are not used.
-- Expo permits are random selection rows; bonus and preference points are not used and no resident/nonresident quota split is imposed unless the rule/source explicitly says otherwise.
+- Sportsman permits are a separate resident-only random draw; max/weighted split and preference points are not used.
+- Expo permits are random selection rows; max/weighted split and preference points are not used and no resident/nonresident quota split is imposed unless the rule/source explicitly says otherwise.
 
 ## Routing Algorithm
 
@@ -66,8 +78,8 @@ elif hunt_code is general-season youth elk:
     draw_system_type = YOUTH_OTC_OR_AVAILABILITY
 elif row is private-lands-only antlerless elk:
     draw_system_type = PRIVATE_LANDS_ONLY_ANTLERLESS_ELK
-elif row is cougar/mountain lion availability:
-    draw_system_type = MOUNTAIN_LION_AVAILABILITY
+elif row is cougar/mountain lion O.T.C. / allotment:
+    draw_system_type = MOUNTAIN_LION_OTC_ALLOTMENT
 else:
     draw_system_type = REVIEW_REQUIRED
 ```
@@ -91,15 +103,15 @@ Rules:
 - CWMU and many private/overlay rows are total-only unless DWR publishes a split.
 - Conservation, landowner, mitigation, and expo overlays must not be merged into public draw quotas unless a source explicitly says they are public draw permits.
 
-## Bonus-Point Formula
+## Max/Weighted Split Formula
 
-Used for `BONUS_*` rows.
+Used for `BONUS_*` rows and the corresponding max/weighted split families. This is where the specific permit availability / allotment for a hunt and residency lane is split between the top-point pool and the weighted random pool.
 
 Let:
 
 ```text
 Q = quota for the residency lane
-A[p] = applicant count at bonus-point level p
+A[p] = applicant count at point level p
 G[p] = group-size-adjusted application count at point level p
 ```
 
@@ -116,6 +128,14 @@ else:
     Q_max = ceil(Q / 2)
     Q_random = Q - Q_max
 ```
+
+Interpretation:
+
+- `Q_max` is the permit allotment reserved for the highest-point pass.
+- `Q_random` is the remaining permit allotment assigned to the weighted random pass.
+- If the source publishes a total-only row, the same split is applied to the total for that residency lane.
+- The split happens per hunt code and residency lane, using the official published quota or allotment as the input.
+- If resident and nonresident allotments differ, each lane gets its own split instead of sharing a combined pool.
 
 Max-point pass:
 
@@ -229,7 +249,7 @@ Q = 1 per species unless source says otherwise
 p_draw = 1 / eligible_applicants
 ```
 
-Sportsman rows do not use bonus points, preference points, max-pool quotas, random-pool bonus tickets, or resident/nonresident splits. They are Utah-resident-only unless DWR changes the rule.
+Sportsman rows do not use max/weighted split points, preference points, max-pool quotas, random-pool tickets, or resident/nonresident splits. They are Utah-resident-only unless DWR changes the rule.
 
 Expo:
 
@@ -237,7 +257,7 @@ Expo:
 p_draw = permits_for_expo_row / eligible_expo_applications
 ```
 
-Expo rows do not use bonus or preference points and should not impose resident/nonresident splits unless a rule/source explicitly provides one.
+Expo rows do not use max/weighted split or preference points and should not impose resident/nonresident splits unless a rule/source explicitly provides one.
 
 ## Mixed Public-Data Prediction Formula
 
@@ -264,7 +284,7 @@ Guardrails:
 
 - `p_quality` is only a small demand-pressure nudge; it cannot invent permits or overwrite quota.
 - `MAX POOL` is descriptive only. It does not force 100 percent odds.
-- If the row is an availability family, keep draw probability null and use availability fields instead.
+- If the row is an O.T.C. / allotment family, keep draw probability null and use status/allotment fields instead.
 - If the row has only total permits and no published residency split, do not fabricate resident/nonresident odds.
 - If the row is historical-only, discontinued, or lacks a definite current crosswalk, do not route it to a current prediction model.
 
@@ -273,7 +293,7 @@ Guardrails:
 The current classifier should be tightened so youth rows do not drift:
 
 - `EB1007` should route to a youth draw-only elk family.
-- `EB1011` should route to availability or remaining/OTC, not the draw-only youth elk model.
+- `EB1011` should route to O.T.C. / allotment or remaining/OTC, not the draw-only youth elk model.
 - Youth general deer and youth antlerless/doe rows should be reserve-pool variants of the preference family.
 - Youth limited-entry turkey can remain under the turkey bonus family if the source draw report uses bonus/regular columns, or it can be split into a named youth-turkey bonus family for reporting clarity.
 

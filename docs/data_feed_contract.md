@@ -57,6 +57,13 @@ The existing UI still consumes processed CSVs keyed by `(hunt_code, residency, p
 
 - `mixed_predictive_v1.0.0` is an additive prediction layer over the existing runtime files.
 - The mixed engine uses prior-year DWR draw behavior as the anchor, then applies official current-year quota, applicant rollover / point-bank movement, and a small harvest-quality demand adjustment.
+- The runtime should treat each draw design as a separate engine family, not as one blended probability model with a different label.
+- `draw_model_class` and `probability_model` should point to the family-specific engine path:
+  - `MODELED_PREFERENCE` -> preference engine
+  - `MODELED_BONUS` -> max/weighted split engine
+  - `MODELED_SPORTSMAN_DRAW` -> random sportsman engine
+  - `MODELED_AVAILABILITY` -> O.T.C. / allotment engine
+  - `MODELED_ALLOCATION` -> permit-allotment / O.T.C. engine
 - Default component weights are:
   - `prior_year_behavior_weight = 0.60`
   - `quota_change_weight = 0.20`
@@ -64,6 +71,7 @@ The existing UI still consumes processed CSVs keyed by `(hunt_code, residency, p
   - `harvest_quality_demand_weight = 0.05`
 - The harvest quality component must not exceed `0.10` without an explicit model version bump and regression coverage.
 - Official 2026 RAC/DATABASE allotment fields drive `quota_2026_total`, `quota_2026_max_pool`, and `quota_2026_random_pool` when available.
+- Those quota fields are derived from the official permit allotment for the lane, then split into max and random pools inside the max/weighted split engine.
 - `quota_source_status = official` means the row is using the current-year official allotment source.
 - Prior-year random-pool successes are historical draw results only; they must not be copied into 2026 point-specific odds.
 - MAX POOL status text is descriptive only and must not create a guaranteed probability unless the modeled 2026 applicant/permit state supports it.
@@ -90,7 +98,7 @@ The existing UI still consumes processed CSVs keyed by `(hunt_code, residency, p
 - Special permit overlays may be used for total-permit reconciliation, source metadata, explanatory display, and audit traceability.
 - Special permit overlays must not increase `p_draw_mean`.
 - Special permit overlays must not enter max-point-pool or random-pool quota.
-- Sportsman rows use their own sportsman strategy and are not folded into bonus/preference public draw pools.
+- Sportsman rows use their own sportsman strategy and are not folded into max/weighted split or preference public draw pools.
 
 ## Promotion Metadata
 
@@ -116,16 +124,16 @@ The existing UI still consumes processed CSVs keyed by `(hunt_code, residency, p
 - If a truth source provides only total permits, do not invent a resident/nonresident split.
 - Private-lands-only antlerless elk is availability-only unless a source explicitly provides split-by-residency draw mechanics.
 
-## Availability-Only Runtime Handling
+## O.T.C. / Allotment Runtime Handling
 
-- Availability-only rows must not be forced into normal draw-probability semantics.
+- O.T.C. / allotment rows must not be forced into normal draw-probability semantics.
 - Private-lands-only antlerless elk rows should use:
   - `hunt_category = PRIVATE_LANDS_ONLY_ANTLERLESS_ELK`
   - `draw_model_class = AVAILABILITY_ONLY`
   - `probability_model = NONE`
-- Availability-only rows may still appear in runtime surfaces for lookup continuity, but they must not receive invented draw probabilities.
-- `MODELED_AVAILABILITY` rows are not draw odds. They must keep `p_draw`, `p_draw_pct`, `p_bonus_pool`, `p_random_pool`, and `p_preference_draw` null.
-- Availability/status rows may use:
+- O.T.C. / allotment rows may still appear in runtime surfaces for lookup continuity, but they must not receive invented draw probabilities.
+- `MODELED_AVAILABILITY` rows are O.T.C. / allotment rows, not draw odds. They must keep `p_draw`, `p_draw_pct`, `p_bonus_pool`, `p_random_pool`, and `p_preference_draw` null.
+- O.T.C. / allotment rows may use:
   - `p_availability`
   - `availability_pct`
   - `availability_status`
@@ -133,8 +141,8 @@ The existing UI still consumes processed CSVs keyed by `(hunt_code, residency, p
   - `unit_status`
   - `rule_status`
   - `reason_codes`
-- Mountain lion / cougar uses availability/status semantics rather than draw odds.
-- Bear harvest-objective and pursuit-only rows use availability/status semantics rather than draw odds.
+- Mountain lion / cougar uses O.T.C. / allotment semantics rather than draw odds.
+- Bear harvest-objective and pursuit-only rows use O.T.C. / allotment semantics rather than draw odds.
 
 ## Out-Of-Scope Non-Target Handling
 

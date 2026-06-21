@@ -482,7 +482,8 @@ def classify_ladder_row(row):
     """
     Split ladder rows by draw system family for runtime convenience:
     - preference point draw hunts
-    - bonus/max-random draw hunts
+    - max/weighted split draw hunts
+    These are separate engine families, not one blended draw model.
     Returns: 'preference' | 'bonus_max_random' | ''
     """
     draw_system = upper(
@@ -934,8 +935,8 @@ def main():
     coverage_rows.append({"section": "summary", "metric": "rows", "value": str(len(rows)), "pct": "", "notes": ""})
     coverage_rows.append({"section": "summary", "metric": "summary_rows", "value": str(len(summary_rows)), "pct": "", "notes": "One row per hunt_code/residency/draw_pool group."})
     coverage_rows.append({"section": "summary", "metric": "ladder_preference_rows", "value": str(len(preference_ladder_rows)), "pct": "", "notes": "Rows where draw_system family is preference."})
-    coverage_rows.append({"section": "summary", "metric": "ladder_bonus_max_random_rows", "value": str(len(bonus_max_random_ladder_rows)), "pct": "", "notes": "Rows where draw_system family is bonus/max-random."})
-    coverage_rows.append({"section": "summary", "metric": "ladder_unclassified_rows", "value": str(unclassified_ladder_rows), "pct": "", "notes": "Rows outside preference/bonus split (kept in full ladder)."})
+    coverage_rows.append({"section": "summary", "metric": "ladder_bonus_max_random_rows", "value": str(len(bonus_max_random_ladder_rows)), "pct": "", "notes": "Rows where draw_system family is max/weighted split engine."})
+    coverage_rows.append({"section": "summary", "metric": "ladder_unclassified_rows", "value": str(unclassified_ladder_rows), "pct": "", "notes": "Rows outside preference/max-weighted split (kept in full ladder)."})
     coverage_rows.append({"section": "summary", "metric": "database_codes", "value": str(len(db_codes)), "pct": "", "notes": ""})
     coverage_rows.append({"section": "summary", "metric": "contract_codes", "value": str(len(contract_codes)), "pct": "", "notes": ""})
     coverage_rows.append({"section": "summary", "metric": "missing_codes_vs_database", "value": str(len(missing_codes)), "pct": "", "notes": ";".join(missing_codes[:100])})
@@ -975,7 +976,7 @@ Generated: {generated_at}
   - `processed_data/hunt_research_2026_summary.json` (group-level summary)
   - `processed_data/hunt_research_2026_ladder.json` (point-level ladder)
   - `processed_data/hunt_research_2026_ladder_preference.json` (preference ladder rows)
-  - `processed_data/hunt_research_2026_ladder_bonus_max_random.json` (bonus/max-random ladder rows)
+  - `processed_data/hunt_research_2026_ladder_bonus_max_random.json` (max/weighted split engine rows)
 
 ## Sources used
 - DATABASE truth: `{display_path(DB_PATH)}`
@@ -990,7 +991,7 @@ Generated: {generated_at}
 - Contract rows: {len(rows)}
 - Summary rows: {len(summary_rows)}
 - Preference ladder rows: {len(preference_ladder_rows)}
-- Bonus/max-random ladder rows: {len(bonus_max_random_ladder_rows)}
+- Max/weighted split ladder rows: {len(bonus_max_random_ladder_rows)}
 - Unclassified ladder rows (kept in full ladder): {unclassified_ladder_rows}
 - Unique contract hunt codes: {len(contract_codes)}
 - DATABASE hunt codes: {len(db_codes)}
