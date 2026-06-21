@@ -984,3 +984,7 @@ pages-dist/processed_data/**/*.json
 /processed_data/dwr_huntplanner_hanumber_2026_raw_payloads.json
 /processed_data/harvest_results_all_years_long.csv
 /processed_data/public_contracts/hunt_odds_history.csv
+app.js
+data_truth/comparison_outputs/database_fragment_audit/database_fragment_manifest.csv
+data_truth/comparison_outputs/database_fragment_audit/database_fragment_recommendations.csv
+data_truth/comparison_outputs/validation/short_modeled_year_source_gap_audit.csv
