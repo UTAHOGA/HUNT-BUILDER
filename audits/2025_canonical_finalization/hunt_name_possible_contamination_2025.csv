@@ -1,0 +1,47 @@
+hunt_code,hunt_name,species,sex_type,weapon,hunt_type,draw_design,match_2026_name
+DB0008,Deer Extended Archery Only,Deer,Hunters Choice,Archery,O.T.C.,Capped Permits,Deer Extended Archery Only
+DB1005,Muzzleloader,Deer,Buck,Muzzleloader,Premium Limited Entry,Max/Weighted Split,Henry Mtns
+DB1345,Diamond Mountain Cwmu,Deer,Buck,Any Legal Weapon,CWMU,Max/Weighted Split,
+DS6611,Any Legal Weapon,Desert Bighorn Sheep,Male Only,Any Legal Weapon,Once-in-a-lifetime,Max/Weighted Split,Zion
+PB5019,"West Desert, Riverbed -Archery",Pronghorn,Buck,Archery,Limited Entry,Max/Weighted Split,"West Desert, Riverbed"
+PB5030,"Box Elder, Snowville -Any Legal Weapon",Pronghorn,Buck,Any Legal Weapon,Limited Entry,Max/Weighted Split,"Box Elder, Snowville"
+PB5053,"Nine Mile, Range Creek -Archery",Pronghorn,Buck,Archery,Limited Entry,Max/Weighted Split,"Nine Mile, Range Creek"
+PB5060,Muzzleloader,Pronghorn,Buck,Muzzleloader,Limited Entry,Max/Weighted Split,Diamond Mtn/Bonanza
+PB5305,Park Valley -Any Legal Weapon,Pronghorn,Buck,Any Legal Weapon,CWMU,Max/Weighted Split,Park Valley
+PB5306,Rabbit Creek -Any Legal Weapon,Pronghorn,Buck,Any Legal Weapon,CWMU,Max/Weighted Split,Rabbit Creek
+PB5315,Zane -Any Legal Weapon,Pronghorn,Buck,Any Legal Weapon,CWMU,Max/Weighted Split,Zane
+EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry,Max/Weighted Split,San Juan Bull Elk
+EB3022,Wasatch Mtns -Archery,Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Wasatch Mtns
+EB3064,Mid -Fishlake/thousand Lakes -Any Legal Weapon,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Fishlake/Thousand Lakes
+EB3066,Early -San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,San Juan Bull Elk
+EB3067,Late - San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,San Juan Bull Elk
+EB3081,"Cache, Meadowville -Muzzleloader",Elk,Bull,Muzzleloader,Limited Entry,Max/Weighted Split,"Cache, Meadowville"
+EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry,Max/Weighted Split,San Juan Bull Elk
+EB3110,"Fillmore, Pahvant -Any Legal Weapon",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,"Fillmore, Pahvant"
+EB3113,Mt Dutton -Any Legal Weapon,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Mt Dutton
+EB3115,"North Slope, Three Corners -Any Legal Weapon",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,"North Slope, Three Corners"
+EB3121,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,San Juan Bull Elk
+EB3135,Barney Top/kaiparowits -Archery,Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Barney Top/Kaiparowits
+EB3146,"Southwest Desert, South -Archery",Elk,Bull,Archery,Limited Entry,Max/Weighted Split,"Southwest Desert, South"
+EB3156,Boulder -Any Legal Weapon,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Boulder
+EB3193,Late - San Juan Bull Elk,Elk,Bull,Archery,Limited Entry,Max/Weighted Split,San Juan Bull Elk
+EB3194,Mid -San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,San Juan Bull Elk
+EB3198,"Mid -Southwest Desert, South -Any Legal Weapon",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,"Southwest Desert, South"
+EB3500,Any Legal Weapon,Elk,Bull,Any Legal Weapon,CWMU,Max/Weighted Split,Alton
+EB3505,Cwmu Bull Elk -Boobe Hole -Any Legal Weapon,Elk,Bull,Any Legal Weapon,CWMU,Max/Weighted Split,Boobe Hole
+EB3524,Any Legal Weapon,Elk,Bull,Any Legal Weapon,CWMU,Max/Weighted Split,Hardscrabble
+EB3540,Old Woman Plateau -Any Legal Weapon,Elk,Bull,Any Legal Weapon,CWMU,Max/Weighted Split,Old Woman Plateau
+EB3543,Preston Nutter Ranch -Any Legal Weapon,Elk,Bull,Any Legal Weapon,CWMU,Max/Weighted Split,Preston Nutter Ranch
+EB3546,Roan Cliffs -Any Legal Weapon,Elk,Bull,Any Legal Weapon,CWMU,Max/Weighted Split,Roan Cliffs
+EB3551,Sj Ranch -Any Legal Weapon,Elk,Bull,Any Legal Weapon,CWMU,Max/Weighted Split,SJ Ranch
+EB3617,Diamond Mountain Cwmu,Elk,Bull,Any Legal Weapon,CWMU,Max/Weighted Split,
+DB0007,Sportsman Buck Deer,Deer,Buck,Any Legal Weapon,Sportsman,Random,Sportsman Buck Deer
+EB1000,Sportsman Bull Elk,Elk,Bull,Any Legal Weapon,Sportsman,Random,Sportsman Bull Elk
+PB1000,Sportsman Buck Pronghorn,Pronghorn,Buck,Any Legal Weapon,Sportsman,Random,Sportsman Buck Pronghorn
+MB1000,Sportsman Bull Moose,Moose,Bull,Any Legal Weapon,Sportsman,Random,Sportsman Bull Moose
+BI1000,Sportsman Bison,Bison,Either Sex,Any Legal Weapon,Sportsman,Random,Sportsman Bison
+RS0001,Sportsman Rocky Mountain Bighorn Sheep,Rocky Mountain Bighorn Sheep,Ram,Any Legal Weapon,Sportsman,Random,Sportsman Rocky Mountain Bighorn Sheep
+DS1000,Sportsman Desert Bighorn Sheep,Desert Bighorn Sheep,Ram,Any Legal Weapon,Sportsman,Random,Sportsman Desert Bighorn Sheep
+GO1000,Sportsman Mountain Goat,Mountain Goat,Either Sex,Any Legal Weapon,Sportsman,Random,Sportsman Mountain Goat
+BR1000,Sportsman Black Bear,Black Bear,Either Sex,Any Legal Weapon,Sportsman,Random,Sportsman Black Bear
+TK0001,Sportsman Bearded Turkey,Turkey,Bearded,Any Legal Weapon,Sportsman,Random,Sportsman Bearded Turkey

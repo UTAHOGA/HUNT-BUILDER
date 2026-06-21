@@ -1,0 +1,120 @@
+hunt_code,hunt_name_2025,hunt_name_2026,2025_species,2025_sex_type,2025_weapon,2025_hunt_type,2025_draw_design,2026_species,2026_sex_type,2026_weapon,2026_hunt_type,2026_draw_design
+DB1005,Muzzleloader,Henry Mtns,Deer,Buck,Muzzleloader,Premium Limited Entry,Max/Weighted Split,Deer,Buck,,Premium,Max/Weighted Split
+DB1013,"La Sal, Dolores Triangle",Dolores Triangle,Deer,Buck,Archery,Limited Entry,Max/Weighted Split,Deer,Buck,,Limited Entry,Unlimited
+DB1020,"La Sal, Dolores Triangle",Dolores Triangle,Deer,Buck,Any Legal Weapon,Limited Entry,Max/Weighted Split,Deer,Buck,,Limited Entry,Max/Weighted Split
+DB1031,"La Sal, Dolores Triangle",Dolores Triangle,Deer,Buck,Muzzleloader,Limited Entry,Max/Weighted Split,Deer,Buck,,Limited Entry,Unlimited
+DB1081,"La Sal, La Sal Mtns",La Sal Mtns,Deer,Buck,Muzzleloader,Limited Entry,Max/Weighted Split,Deer,Buck,,Limited Entry,Max/Weighted Split
+DB1115,"Henry Mtns, Little Rockies",Little Rockies,Deer,Buck,Any Legal Weapon,Limited Entry,Max/Weighted Split,Deer,Buck,,Limited Entry,Max/Weighted Split
+DB1119,"La Sal, Moab Valley",Moab Valley,Deer,Buck,Any Legal Weapon,Limited Entry,Max/Weighted Split,Deer,Buck,,Limited Entry,Max/Weighted Split
+DB1120,"La Sal, Castle Valley",Castle Valley,Deer,Buck,Any Legal Weapon,Limited Entry,Max/Weighted Split,Deer,Buck,,Limited Entry,Max/Weighted Split
+DB1200,An y Legal Weapon,Alton,Deer,Buck,Any Legal Weapon,CWMU,Max/Weighted Split,Deer,Buck,,Limited Entry,Unlimited
+DB1615,"Beaver, West - Error","Beaver, West",Deer,Buck,Restricted Muzzleloader,General Season,Preference,Deer,Buck,,General Season,Preference
+DB1616,"Beaver, West - Error","Beaver, West",Deer,Buck,Restricted Rifle,General Season,Preference,Deer,Buck,,General Season,Preference
+DB1627,Cache - Error,Cache,Deer,Buck,Restricted Rifle,General Season,Preference,Deer,Buck,,General Season,Preference
+DB1628,Cache - Error,Cache,Deer,Buck,Restricted Muzzleloader,General Season,Preference,Deer,Buck,,General Season,Preference
+DB1629,Boulder/kaiparowits - Error,Boulder/Kaiparowits,Deer,Buck,Restricted Rifle,General Season,Preference,Deer,Buck,,General Season,Preference
+DB1630,Boulder/kaiparowits - Error,Boulder/Kaiparowits,Deer,Buck,Restricted Muzzleloader,General Season,Preference,Deer,Buck,,General Season,Preference
+DS6611,Any Legal Weapon,Zion,Desert Bighorn Sheep,Male Only,Any Legal Weapon,Once-in-a-lifetime,Max/Weighted Split,Desert Bighorn Sheep,Ram,,Once-in-a-Lifetime,Unlimited
+EB1007,Draw-only Youth Elk - Draw-only Youth Any Bull/hunter's Choice Elk,Youth Any Bull/Hunter's Choice Elk,Elk,Bull,Any Legal Weapon,O.T.C.,Capped Permits,Draw-only Youth Elk,General Bull,,General Season,Preference
+EB3009,"La Sal, La Sal Mtns",La Sal Mtns,Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3022,Wasatch Mtns -Archery,Wasatch Mtns,Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3024,"Early - Beaver, East","Beaver, East",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3025,"Late - Beaver, East","Beaver, East",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3028,"Early -Book Cliffs, Little Creek Roadless","Book Cliffs, Little Creek Roadless",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Unlimited
+EB3031,"Early -Box Elder, Pilot Mtn","Box Elder, Pilot Mtn",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3032,"Early - Cache, Meadowville","Cache, Meadowville",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3033,"Late -Cache, Meadowville","Cache, Meadowville",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3036,"Early - Cache, South","Cache, South",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Unlimited
+EB3037,"Late -Cache, South","Cache, South",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3038,Early -Manti,Manti,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3039,Late -Manti,Manti,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3042,"Early -Fillmore, Pahvant","Fillmore, Pahvant",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3043,"Late -Fillmore, Pahvant","Fillmore, Pahvant",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3044,"Late - La Sal, Dolores Triangle",Dolores Triangle,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3045,"Early -La Sal, La Sal Mtns",La Sal Mtns,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3046,"Late - La Sal, La Sal Mtns",La Sal Mtns,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3047,Early -Monroe,Monroe,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3048,Late - Monroe,Monroe,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3049,Early -Mt Dutton,Mt Dutton,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3050,Late - Mt Dutton,Mt Dutton,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3053,"Mid -North Slope, Three Corners","North Slope, Three Corners",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3056,Early -Panguitch Lake,Panguitch Lake,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3057,Late -Panguitch Lake,Panguitch Lake,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3063,Early - Fishlake/thousand Lakes,Fishlake/Thousand Lakes,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3064,Mid -Fishlake/thousand Lakes -Any Legal Weapon,Fishlake/Thousand Lakes,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3065,Late - Fishlake/thousand Lakes,Fishlake/Thousand Lakes,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3066,Early -San Juan Bull Elk,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3067,Late - San Juan Bull Elk,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3068,Early -Diamond Mtn,Diamond Mtn,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3069,Mid -Diamond Mtn,Diamond Mtn,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3072,Early,Wasatch Mtns,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3073,Late - Wasatch Mtns,Wasatch Mtns,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3081,"Cache, Meadowville -Muzzleloader","Cache, Meadowville",Elk,Bull,Muzzleloader,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3087,"La Sal, La Sal Mtns",La Sal Mtns,Elk,Bull,Muzzleloader,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3110,"Fillmore, Pahvant -Any Legal Weapon","Fillmore, Pahvant",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Unlimited
+EB3111,"La Sal, La Sal Mtns",La Sal Mtns,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Unlimited
+EB3113,Mt Dutton -Any Legal Weapon,Mt Dutton,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Unlimited
+EB3115,"North Slope, Three Corners -Any Legal Weapon","North Slope, Three Corners",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Unlimited
+EB3126,Mid -Manti,Manti,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3127,Mid -Wasatch Mtns,Wasatch Mtns,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3135,Barney Top/kaiparowits -Archery,Barney Top/Kaiparowits,Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3146,"Southwest Desert, South -Archery","Southwest Desert, South",Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3147,"Early -Box Elder, Grouse Creek","Box Elder, Grouse Creek",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3148,Early - Boulder,Boulder,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3149,Early,"Southwest Desert, South",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3150,Mid,"Box Elder, Grouse Creek",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3151,Late -Boulder,Boulder,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3152,"Late - Southwest Desert, South","Southwest Desert, South",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3156,Boulder -Any Legal Weapon,Boulder,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Unlimited
+EB3158,"Late - Beaver, East","Beaver, East",Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3159,"Mid -Beaver, East","Beaver, East",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3161,"Late - Book Cliffs, Bitter Creek/east","Book Cliffs, Bitter Creek/East",Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3162,"Early -Book Cliffs, Bitter Creek/east","Book Cliffs, Bitter Creek/East",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3163,"Late - Book Cliffs, Bitter Creek/east","Book Cliffs, Bitter Creek/East",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3164,"Mid -Book Cliffs, Bitter Creek/east","Book Cliffs, Bitter Creek/East",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3167,"Mid -Book Cliffs, Little Creek Roadless","Book Cliffs, Little Creek Roadless",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3169,"Mid -Cache, Meadowville","Cache, Meadowville",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3170,"Late - Cache, South","Cache, South",Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3171,"Mid -Cache, South","Cache, South",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3172,Late - Manti,Manti,Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3174,Late - Nebo/san Pitch Mtns,Nebo/San Pitch Mtns,Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3175,Early - Nebo/san Pitch Mtns,Nebo/San Pitch Mtns,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3176,Late - Nebo/san Pitch Mtns,Nebo/San Pitch Mtns,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3177,Mid -Nebo/san Pitch Mtns,Nebo/San Pitch Mtns,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3180,"Late - Fillmore, Pahvant","Fillmore, Pahvant",Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3181,"Mid -Fillmore, Pahvant","Fillmore, Pahvant",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3182,"Late - La Sal, La Sal Mtns",La Sal Mtns,Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Unlimited
+EB3183,"Mid -La Sal, La Sal Mtns",La Sal Mtns,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3184,Late - Monroe,Monroe,Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3185,Mid -Monroe,Monroe,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3186,Late -Mt Dutton,Mt Dutton,Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3187,Mid -Mt Dutton,Mt Dutton,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3188,Late - Panguitch Lake,Panguitch Lake,Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3189,Mid -Panguitch Lake,Panguitch Lake,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3190,Late - Boulder,Boulder,Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3191,Mid -Boulder,Boulder,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3192,Late - Fishlake/thousand Lakes,Fishlake/Thousand Lakes,Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3193,Late - San Juan Bull Elk,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3194,Mid -San Juan Bull Elk,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3195,Late - Diamond Mtn,Diamond Mtn,Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Unlimited
+EB3196,Late - Diamond Mtn,Diamond Mtn,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3197,Late,"Southwest Desert, South",Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3198,"Mid -Southwest Desert, South -Any Legal Weapon","Southwest Desert, South",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3199,Late - Wasatch Mtns,Wasatch Mtns,Elk,Bull,Archery,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3208,Late -Morgan-south Rich,Morgan-South Rich,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Max/Weighted Split
+EB3210,"Early -North Slope, Three Corners","North Slope, Three Corners",Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split,Elk,Bull,,Limited Entry,Unlimited
+EB3500,Any Legal Weapon,Alton,Elk,Bull,Any Legal Weapon,CWMU,Max/Weighted Split,Elk,Bull,,Limited Entry,Unlimited
+EB3505,Cwmu Bull Elk -Boobe Hole -Any Legal Weapon,Boobe Hole,Elk,Bull,Any Legal Weapon,CWMU,Max/Weighted Split,Elk,Bull,,Limited Entry,Unlimited
+EB3524,Any Legal Weapon,Hardscrabble,Elk,Bull,Any Legal Weapon,CWMU,Max/Weighted Split,Elk,Bull,,Limited Entry,Unlimited
+EB3540,Old Woman Plateau -Any Legal Weapon,Old Woman Plateau,Elk,Bull,Any Legal Weapon,CWMU,Max/Weighted Split,Elk,Bull,,Limited Entry,Unlimited
+EB3543,Preston Nutter Ranch -Any Legal Weapon,Preston Nutter Ranch,Elk,Bull,Any Legal Weapon,CWMU,Max/Weighted Split,Elk,Bull,,Limited Entry,Unlimited
+EB3546,Roan Cliffs -Any Legal Weapon,Roan Cliffs,Elk,Bull,Any Legal Weapon,CWMU,Max/Weighted Split,Elk,Bull,,Limited Entry,Unlimited
+EB3551,Sj Ranch -Any Legal Weapon,SJ Ranch,Elk,Bull,Any Legal Weapon,CWMU,Max/Weighted Split,Elk,Bull,,Limited Entry,Unlimited
+GO6817,"La Sal, La Sal Mtns",La Sal Mtns,Mountain Goat,Either Sex,Any Legal Weapon,Once-in-a-lifetime,Max/Weighted Split,Mountain Goat,Either Sex,,Once-in-a-Lifetime,Max/Weighted Split
+PB5019,"West Desert, Riverbed -Archery","West Desert, Riverbed",Pronghorn,Buck,Archery,Limited Entry,Max/Weighted Split,Pronghorn,Buck,,Limited Entry,Max/Weighted Split
+PB5030,"Box Elder, Snowville -Any Legal Weapon","Box Elder, Snowville",Pronghorn,Buck,Any Legal Weapon,Limited Entry,Max/Weighted Split,Pronghorn,Buck,,Limited Entry,Max/Weighted Split
+PB5053,"Nine Mile, Range Creek -Archery","Nine Mile, Range Creek",Pronghorn,Buck,Archery,Limited Entry,Max/Weighted Split,Pronghorn,Buck,,Limited Entry,Unlimited
+PB5060,Muzzleloader,Diamond Mtn/Bonanza,Pronghorn,Buck,Muzzleloader,Limited Entry,Max/Weighted Split,Pronghorn,Buck,,Limited Entry,Max/Weighted Split
+PB5305,Park Valley -Any Legal Weapon,Park Valley,Pronghorn,Buck,Any Legal Weapon,CWMU,Max/Weighted Split,Pronghorn,Buck,,Limited Entry,Unlimited
+PB5306,Rabbit Creek -Any Legal Weapon,Rabbit Creek,Pronghorn,Buck,Any Legal Weapon,CWMU,Max/Weighted Split,Pronghorn,Buck,,Limited Entry,Unlimited
+PB5315,Zane -Any Legal Weapon,Zane,Pronghorn,Buck,Any Legal Weapon,CWMU,Max/Weighted Split,Pronghorn,Buck,,Limited Entry,Unlimited

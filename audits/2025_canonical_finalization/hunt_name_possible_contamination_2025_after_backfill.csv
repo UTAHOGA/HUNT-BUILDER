@@ -1,0 +1,11 @@
+hunt_code,hunt_name,species,sex_type,weapon,hunt_type,draw_design
+EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry,Max/Weighted Split
+EB3066,Early -San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split
+EB3067,Late - San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split
+EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry,Max/Weighted Split
+EB3121,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split
+EB3193,Late - San Juan Bull Elk,Elk,Bull,Archery,Limited Entry,Max/Weighted Split
+EB3194,Mid -San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry,Max/Weighted Split
+DB0007,Sportsman Buck Deer,Deer,Buck,Any Legal Weapon,Sportsman,Random
+EB1000,Sportsman Bull Elk,Elk,Bull,Any Legal Weapon,Sportsman,Random
+PB1000,Sportsman Buck Pronghorn,Pronghorn,Buck,Any Legal Weapon,Sportsman,Random

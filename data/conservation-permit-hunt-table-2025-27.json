@@ -32,7 +32,13 @@
       "899",
       "9"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "BI6523",
+      "BI6532",
+      "BI6534",
+      "BI6535",
+      "BI6536"
+    ],
     "draw_design": "UWSF"
   },
   {
@@ -63,7 +69,13 @@
     "boundaryIds": [
       "889"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "BI6528",
+      "BI6529",
+      "BI6530",
+      "BI6531",
+      "BI6537"
+    ],
     "draw_design": "SFW"
   },
   {
@@ -95,7 +107,15 @@
       "637",
       "94"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "BI6503",
+      "BI6504",
+      "BI6505",
+      "BI6506",
+      "BI6509",
+      "BI6516",
+      "BI6539"
+    ],
     "draw_design": "SFW"
   },
   {
@@ -127,7 +147,15 @@
       "637",
       "94"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "BI6503",
+      "BI6504",
+      "BI6505",
+      "BI6506",
+      "BI6509",
+      "BI6516",
+      "BI6539"
+    ],
     "draw_design": "RMEF"
   },
   {
@@ -159,7 +187,15 @@
       "637",
       "94"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "BI6503",
+      "BI6504",
+      "BI6505",
+      "BI6506",
+      "BI6509",
+      "BI6516",
+      "BI6539"
+    ],
     "draw_design": "SCI"
   },
   {
@@ -191,6 +227,7 @@
       "454"
     ],
     "sourceHuntCodes": [
+      "BI1000",
       "BI6510"
     ],
     "draw_design": "SFW"
@@ -1187,6 +1224,7 @@
       "454"
     ],
     "sourceHuntCodes": [
+      "BR1000",
       "BR7319"
     ],
     "draw_design": "MDF"
@@ -2493,7 +2531,9 @@
     "boundaryIds": [
       "454"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "DB0007"
+    ],
     "draw_design": "MDF"
   },
   {
@@ -2813,7 +2853,8 @@
       "99"
     ],
     "sourceHuntCodes": [
-      "DS1003"
+      "DS1003",
+      "DS6602"
     ],
     "draw_design": "UWSF"
   },
@@ -2881,7 +2922,9 @@
       "193",
       "94"
     ],
-    "sourceHuntCodes": "DS6604",
+    "sourceHuntCodes": [
+      "DS6604"
+    ],
     "draw_design": "SFW"
   },
   {
@@ -2912,7 +2955,10 @@
     "boundaryIds": [
       "305"
     ],
-    "sourceHuntCodes": "DS6621",
+    "sourceHuntCodes": [
+      "DS6605",
+      "DS6621"
+    ],
     "draw_design": "UWSF"
   },
   {
@@ -3018,6 +3064,7 @@
       "454"
     ],
     "sourceHuntCodes": [
+      "DS1000",
       "DS6618"
     ],
     "draw_design": "SFW"
@@ -3672,7 +3719,9 @@
     "boundaryIds": [
       "29"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "EA2041"
+    ],
     "draw_design": "NWTF"
   },
   {
@@ -3705,7 +3754,9 @@
     "boundaryIds": [
       "29"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "EA2041"
+    ],
     "draw_design": "RMEF"
   },
   {
@@ -3737,7 +3788,9 @@
     "boundaryIds": [
       "29"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "EA2041"
+    ],
     "draw_design": "WCF"
   },
   {
@@ -4318,7 +4371,9 @@
     "boundaryIds": [
       "175"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "EA1270"
+    ],
     "draw_design": "SCI"
   },
   {
@@ -4353,7 +4408,9 @@
     "boundaryIds": [
       "175"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "EA1270"
+    ],
     "draw_design": "SFW"
   },
   {
@@ -4662,7 +4719,9 @@
     "boundaryIds": [
       "684"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "EA1180"
+    ],
     "draw_design": "NWTF"
   },
   {
@@ -4694,7 +4753,9 @@
     "boundaryIds": [
       "684"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "EA1180"
+    ],
     "draw_design": "UAA"
   },
   {
@@ -4727,7 +4788,9 @@
     "boundaryIds": [
       "684"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "EA1180"
+    ],
     "draw_design": "WCF"
   },
   {
@@ -5075,7 +5138,9 @@
     "boundaryIds": [
       "51"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "EA1271"
+    ],
     "draw_design": "MDF"
   },
   {
@@ -5304,7 +5369,9 @@
     "boundaryIds": [
       "51"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "EA1271"
+    ],
     "draw_design": "SFW"
   },
   {
@@ -6569,7 +6636,9 @@
       "685",
       "88"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "EB1000"
+    ],
     "draw_design": "SFW"
   },
   {
@@ -6604,7 +6673,9 @@
       "222",
       "234"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "EA2045"
+    ],
     "draw_design": "MDF"
   },
   {
@@ -6717,7 +6788,9 @@
       "222",
       "234"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "EA2045"
+    ],
     "draw_design": "RMEF"
   },
   {
@@ -6831,7 +6904,9 @@
       "222",
       "234"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "EA2045"
+    ],
     "draw_design": "SFW"
   },
   {
@@ -7080,6 +7155,7 @@
       "454"
     ],
     "sourceHuntCodes": [
+      "MB1000",
       "MB6260"
     ],
     "draw_design": "RMEF"
@@ -7146,7 +7222,11 @@
       "617",
       "628"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "GO6800",
+      "GO6801",
+      "GO6822"
+    ],
     "draw_design": "UWSF"
   },
   {
@@ -7177,7 +7257,9 @@
     "boundaryIds": [
       "148"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "GO6808"
+    ],
     "draw_design": "RMEF"
   },
   {
@@ -7208,7 +7290,9 @@
     "boundaryIds": [
       "617"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "GO6817"
+    ],
     "draw_design": "SFW"
   },
   {
@@ -7239,7 +7323,10 @@
     "boundaryIds": [
       "616"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "GO6803",
+      "GO6821"
+    ],
     "draw_design": "UAA"
   },
   {
@@ -7270,7 +7357,10 @@
     "boundaryIds": [
       "616"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "GO6803",
+      "GO6821"
+    ],
     "draw_design": "UWSF"
   },
   {
@@ -7302,6 +7392,7 @@
       "454"
     ],
     "sourceHuntCodes": [
+      "GO1000",
       "GO6816"
     ],
     "draw_design": "SFW"
@@ -7334,7 +7425,9 @@
     "boundaryIds": [
       "200"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "GO6820"
+    ],
     "draw_design": "SCI"
   },
   {
@@ -8786,6 +8879,7 @@
       "454"
     ],
     "sourceHuntCodes": [
+      "PB1000",
       "PB5057"
     ],
     "draw_design": "MDF"
@@ -9268,7 +9362,12 @@
     "boundaryIds": [
       "20"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "RS1003",
+      "RS6703",
+      "RS6704",
+      "RS6722"
+    ],
     "draw_design": "UWSF"
   },
   {
@@ -9299,7 +9398,12 @@
     "boundaryIds": [
       "20"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "RS1003",
+      "RS6703",
+      "RS6704",
+      "RS6722"
+    ],
     "draw_design": "UWSF"
   },
   {
@@ -9332,7 +9436,11 @@
       "81",
       "85"
     ],
-    "sourceHuntCodes": null,
+    "sourceHuntCodes": [
+      "RS6720",
+      "RS6726",
+      "RS6727"
+    ],
     "draw_design": "UWSF"
   },
   {
@@ -9398,6 +9506,7 @@
       "454"
     ],
     "sourceHuntCodes": [
+      "RS0001",
       "RS6718"
     ],
     "draw_design": "SFW"
