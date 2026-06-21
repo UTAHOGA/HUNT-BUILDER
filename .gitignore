@@ -175,7 +175,6 @@ processed_data/public_contracts/*.json
 
 # Generated Cloudflare/Vercel build output stays local only. Commit source files
 # and public contracts, not the generated pages-dist tree.
-pages-dist/
 
 # Prediction accuracy backtest row-level outputs
 audits/prediction_accuracy_backtest/rowlevel_*.csv
@@ -201,9 +200,6 @@ audits/prediction_model_runs/MODEL_RUN_2025_2026_TRUTH_SUMMARY.json
 audits/prediction_model_runs/run_2025_2026_truth_model_runs.py
 
 # Row-level / retrospective verification outputs
-audits/prediction_accuracy_backtest/rowlevel_verification_outputs/
-audits/prediction_accuracy_backtest/retrospective_outputs/
-audits/prediction_accuracy_backtest/rowlevel_*.csv
 
 # Hunt-name / cell-shift generated candidate repairs
 audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/
@@ -227,116 +223,22 @@ audits/repo_hygiene/staged_snapshot_*.txt
 # -------------------------------------------------------------------
 # AUTO-IGNORED FILES OVER 50 MB
 # -------------------------------------------------------------------
-./processed_data/audits/hunt_research_2026_before_numeric_fix_snapshot.json
-.wrangler/state/v3/r2/uoga-data/blobs/6ec173e0d44bb24a4d97983ca2ec7922474ce770f8b8e442a1be9c2218eee9b20000019e84842112
-./processed_data/hunt_research_2026.json
-.wrangler/state/v3/r2/hunt-builder-large-files/blobs/5db857b68737663678fc2bfa95b0cb0a4e28e13c969cc2428473fd611bbdb1310000019e9631e6c4
-./processed_data/hunt_research_2026_ladder.json
-.wrangler/state/v3/r2/hunt-builder-large-files/blobs/4c7c23e834d313121a8856f7e04c5a1a4357754113d96629705becd9a4250cb60000019e9631be4f
-./audits/draw_truth_rebuild/draw_results_long_database_identity_overhaul/planned_mutations.csv
-./processed_data/audits/research_feeder_database_permit_sync_audit.csv
-.wrangler/state/v3/r2/hunt-builder-large-files/blobs/c62b5c689de4f0345dc2a94f7b5925599cf68a507edbd47ad0329ed58c4c8ff10000019e96324852
-./processed_data/hunt_research_2026_ladder_bonus_max_random.json
-.wrangler/state/v3/r2/hunt-builder-large-files/blobs/73f89fdf8ecaddb41c990028948c3912aa58198714c0a1069f59db9e8c0c68a10000019e96321a1c
-./point_ladder_view1.csv
-./processed_data/backups/research_feeder_sync_20260604T064259Z/processed_data/point_ladder_view.csv
-./data/hunt_odds_history.json
-./pages-dist/processed_data/public_contracts/hunt_odds_history.json
-./processed_data/public_contracts/hunt_odds_history.json
-.wrangler/state/v3/r2/hunt-builder-large-files/blobs/59ce508a4775d65dcaa790a1d3320cf80e584794d4a889f066a48ba33ff9e65c0000019e96326c9f
-.wrangler/state/v3/r2/uoga-data/blobs/88d83f85345170633292b51260cf8d5649d311c3a9727aeb5ca0719d6bcd35ab0000019e848412f1
-./node_modules/@cloudflare/workerd-windows-64/bin/workerd.exe
-./data/hunt_boundaries_arcgis.json
-.wrangler/state/v3/r2/hunt-builder-large-files/blobs/06fc059f519501da1c609f0286e32b63730c7000a47d96334280fb7e172fcc8b0000019e9631a77a
-./data/utah/official_downloads_2026/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson
-./processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson
-./processed_data/statewide_composite_boundaries_2026.geojson
-.wrangler/state/v3/r2/uoga-data/blobs/288a5a00d623412a0028d838ce1ff8d843fcc217aeb7c1689027aaa0e1aa30db0000019e848449ad
-./data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.geojson
-.wrangler/state/v3/r2/uoga-data/blobs/d409cb5e0a15c4b43205dd18ee250386516b3153f1680468a88b769c1437ec1d0000019e84843e18
-./data_truth/draw_results_truth/normalized/draw_results_long.csv
-./processed_data/hunt_truth_from_json.sqlite
-.wrangler/state/v3/r2/hunt-builder-large-files/blobs/62ee17e8c801144270fd1ac673c2c48c82ec34e632f95f796c0e43c5347cefed0000019e96320c81
-./processed_data/hunt_research_2026_ladder_preference.json
-./audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_model__runtime_drafts__point_ladder_unified_runtime_v2026.csv
-./audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_model/runtime_drafts/point_ladder_unified_runtime_v2026.csv
-./data_model/runtime_drafts/point_ladder_unified_runtime_v2026.csv
-./processed_data/draw_system_coverage_report.csv
-.wrangler/state/v3/r2/uoga-data/blobs/c578871690914e8c13289f225fdae85ce13f55c8f09a1ed0bd85bea1efcef4970000019e84829026
-./data/utah/foundation_bundle_2026/utah_hunt_foundation_2026.sqlite
-./audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_truth__draw_results_truth__normalized__draw_results_2025_for_2026_candidate_promotion_file_records.csv
-./audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.csv
-./data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.csv
-./audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/pipeline__RAW__hunt_unit_database__2026__csv__Draw__Odds__draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv
-./processed_data/backups/permit_allocations_2026_20260523_082859/processed_data/point_ladder_view.csv
-./audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/pipeline/RAW/hunt_unit_database/2026/csv/Draw Odds/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv
-./pipeline/RAW/hunt_unit_database/2026/csv/draw_results_database_alignment_outputs_V3/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv
-./pipeline/RAW/hunt_unit_database/2026/csv/Draw Odds/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv
-./pipeline/RAW/hunt_unit_database/2026/csv/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED.csv
-./pipeline/RAW/hunt_unit_database/2026/csv/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv
-./pipeline/RAW/hunt_unit_database/2026/csv/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V2.csv
-.wrangler/state/v3/r2/hunt-builder-large-files/blobs/04455992bdd3f4f2a7b86c1adcfc30bafe46d553cf0e75c7a683aa733af74ab70000019e96325b59
-./data_truth/draw_results_truth/normalized/draw_results_2020_for_2021_hunt_level_only.csv
-./data_truth/draw_results_truth/normalized/draw_results_2020_for_2021_candidate_promotion_file_records.csv
-.wrangler/state/v3/r2/uoga-data/blobs/c341379a51bf810d835e8565a8acd443105498efdf050d17ce15d894c8f8b79e0000019e848455b2
-.wrangler/state/v3/r2/hunt-builder-large-files/blobs/ee9d77bee15db79247cf1112f1262a5625bbdf4b2a89d793247cbb5120387a610000019e9631b416
-./processed_data/composite_hunt_unit_mapping_2026.geojson
-./processed_data/draw_reality_engine_backup_before_2024_import.csv
 
 # -------------------------------------------------------------------
 # LOCAL / GENERATED AUDIT OUTPUTS - DO NOT COMMIT
 # -------------------------------------------------------------------
 
 # Prediction model run outputs
-audits/prediction_model_runs/2026_from_2025_truth_pdf_draw_results/
-audits/prediction_model_runs/2027_from_2026_dwr_released_candidate/
-audits/prediction_model_runs/01_model_source_profiles.json
-audits/prediction_model_runs/02_model_run_results.json
-audits/prediction_model_runs/03_model_output_profiles.csv
-audits/prediction_model_runs/MODEL_RUN_2025_2026_TRUTH_SUMMARY.json
-audits/prediction_model_runs/run_2025_2026_truth_model_runs.py
 
 # Row-level / retrospective verification outputs
-audits/prediction_accuracy_backtest/rowlevel_verification_outputs/
-audits/prediction_accuracy_backtest/retrospective_outputs/
-audits/prediction_accuracy_backtest/rowlevel_*.csv
 
 # Hunt-name / cell-shift generated candidate repairs
-audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/
 
 # Large/generated draw truth rebuild candidates
-audits/draw_truth_rebuild/draw_results_long_REBUILT_CANDIDATE.csv
-audits/draw_truth_rebuild/dedupe_audit.csv
 
 # Runtime draft generated model outputs
-data_model/runtime_drafts/*.audit.csv
-data_model/runtime_drafts/*.predictions.csv
-data_model/runtime_drafts/*.materialized.csv
-data_model/runtime_drafts/*_rows_added.csv
-data_model/runtime_drafts/*_schema_changes.csv
-data_model/runtime_drafts/*_validation_report.json
-data_model/runtime_drafts/*_vs_current_report.json
 
 # Temporary local snapshots
-audits/repo_hygiene/staged_snapshot_*.txt
-./processed_data/audits/hunt_research_2026_before_numeric_fix_snapshot.json
-.wrangler/state/v3/r2/uoga-data/blobs/6ec173e0d44bb24a4d97983ca2ec7922474ce770f8b8e442a1be9c2218eee9b20000019e84842112
-./processed_data/hunt_research_2026.json
-.wrangler/state/v3/r2/hunt-builder-large-files/blobs/5db857b68737663678fc2bfa95b0cb0a4e28e13c969cc2428473fd611bbdb1310000019e9631e6c4
-./processed_data/hunt_research_2026_ladder.json
-.wrangler/state/v3/r2/hunt-builder-large-files/blobs/4c7c23e834d313121a8856f7e04c5a1a4357754113d96629705becd9a4250cb60000019e9631be4f
-./audits/draw_truth_rebuild/draw_results_long_database_identity_overhaul/planned_mutations.csv
-./processed_data/audits/research_feeder_database_permit_sync_audit.csv
-.wrangler/state/v3/r2/hunt-builder-large-files/blobs/c62b5c689de4f0345dc2a94f7b5925599cf68a507edbd47ad0329ed58c4c8ff10000019e96324852
-./processed_data/hunt_research_2026_ladder_bonus_max_random.json
-.wrangler/state/v3/r2/hunt-builder-large-files/blobs/73f89fdf8ecaddb41c990028948c3912aa58198714c0a1069f59db9e8c0c68a10000019e96321a1c
-./point_ladder_view1.csv
-./processed_data/backups/research_feeder_sync_20260604T064259Z/processed_data/point_ladder_view.csv
-./data/hunt_odds_history.json
-./pages-dist/processed_data/public_contracts/hunt_odds_history.json
-./processed_data/public_contracts/hunt_odds_history.json
-.wrangler/state/v3/r2/hunt-builder-large-files/blobs/59ce508a4775d65dcaa790a1d3320cf80e584794d4a889f066a48ba33ff9e65c0000019e96326c9f
-.wrangler/state/v3/r2/uoga-data/blobs/88d83f85345170633292b51260cf8d5649d311c3a9727aeb5ca0719d6bcd35ab0000019e848412f1
 
 # Cloudflare Wrangler local state/cache
 .wrangler/state/
@@ -348,12 +250,8 @@ processed_data/hunt_research_2026.json
 processed_data/hunt_research_2026_ladder.json
 processed_data/hunt_research_2026_ladder_bonus_max_random.json
 processed_data/hunt_research_2026_ladder_preference.json
-processed_data/audits/hunt_research_2026_before_numeric_fix_snapshot.json
-processed_data/audits/research_feeder_database_permit_sync_audit.csv
 
 # Large odds/history/public contract files
-data/hunt_odds_history.json
-processed_data/public_contracts/hunt_odds_history.json
 pages-dist/processed_data/public_contracts/hunt_odds_history.json
 
 # Large draw truth / rebuild candidates
@@ -363,29 +261,13 @@ data_truth/draw_results_truth/normalized/draw_results_2020_for_2021_candidate_pr
 data_truth/draw_results_truth/normalized/draw_results_2020_for_2021_hunt_level_only.csv
 audits/draw_truth_rebuild/draw_results_long_database_identity_overhaul/planned_mutations.csv
 audits/draw_truth_rebuild/draw_results_long_database_identity_overhaul/mutation_ledger.csv
-audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/
 
 # Large boundaries / sqlite
-data/hunt_boundaries_arcgis.json
-data/utah/official_downloads_2026/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson
-data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.geojson
-data/utah/foundation_bundle_2026/utah_hunt_foundation_2026.sqlite
-processed_data/statewide_composite_boundaries_2026.geojson
-processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson
-processed_data/composite_hunt_unit_mapping_2026.geojson
 processed_data/hunt_truth_from_json.sqlite
 
 # Large point ladder / runtime backups
-point_ladder_view1.csv
 data_model/runtime_drafts/point_ladder_unified_runtime_v2026.csv
-processed_data/backups/
 tools/draw_truth_rebuild/apply_database_identity_overhaul_to_draw_results_long.py
-
-audits*
-tools*
-pipeline*
-
-Add-Content ".gitignore" @"
 
 # Vercel build output large generated data should not be committed
 pages-dist/processed_data/public_contracts/*.json
@@ -396,10 +278,6 @@ pages-dist/data/hunt_odds_history.json
 pages-dist/data/hunt_odds_history.csv
 
 # Keep pages-dist static shell files if needed, but not huge runtime data
-"@
-AGENTS.before_repo_safety_20260606_232057.md
-AGENTS.MD
-AGENTS.MD
 
 /processed_data/ml_draw_predictions_v1.csv
 
@@ -428,8 +306,6 @@ engine_rebuild_from_truth/audit/*.csv
 engine_rebuild_from_truth/outputs/*.csv
 
 # Local R2 staging/copy payloads.
-pipeline/R2_OFFLOAD/incoming/**
-pipeline/R2_OFFLOAD/uploaded/**
 
 # Local backups of huge canonical truth files.
 data_truth/draw_results_truth/normalized/*.BACKUP*.csv
@@ -439,104 +315,88 @@ audits/**/draw_results_engine_ready*.csv
 audits/**/finalized_draw_truth_ALL*.csv
 audits/**/finalized_point_distribution*.csv
 
-# Cloudflare R2 large-file offload - generated 2026-06-20 20:25:19
-/.pytest_tmp_retry_2022/test_draw_system_coverage_repo0/draw_system_coverage_report.csv
-/.pytest_tmp_retry_after_dh_alias_fix/test_draw_system_coverage_repo0/draw_system_coverage_report.csv
-/audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2019_long_hunt_names.20260620T205744Z.csv
-/audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2019_long_hunt_names.20260620T205824Z.csv
-/audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2019_finalized_point_distribution.20260620T205744Z.csv
-/audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2019_finalized_point_distribution.20260620T205824Z.csv
-/audits/draw_results_long_2019_2020_backfill/draw_results_long_2019_2020_backfill_candidate.csv
-/audits/draw_system_design/row_level_draw_design_audit.csv
-/audits/draw_truth_rebuild/clean_rebuild_now_20260607/draw_results_long_CLEAN_CANDIDATE.csv
-/audits/draw_truth_rebuild/draw_results_long_clean_rebuild/draw_results_long_CLEAN_CANDIDATE.csv
-/audits/draw_truth_rebuild/draw_results_long_clean_rebuild_now/draw_results_long_CLEAN_CANDIDATE.csv
-/audits/draw_truth_rebuild/draw_results_long_database_identity_overhaul/mutation_ledger.csv
-/audits/draw_truth_rebuild/draw_results_long_identity_clear_hunt_class_check_20260607/mutation_ledger.csv
-/audits/draw_truth_rebuild/draw_results_long_identity_clear_hunt_class_check_20260607/planned_mutations.csv
-/audits/prediction_accuracy_backtest/production_equivalent_outputs/20260607T125630Z/truth_inputs/draw_results_long_with_2020_staging.csv
-/audits/prediction_accuracy_backtest/production_equivalent_outputs/20260607T185737Z/truth_inputs/draw_results_long_with_2020_staging.csv
-/audits/prediction_accuracy_backtest/production_equivalent_outputs/20260607T185949Z/truth_inputs/draw_results_long_with_2020_staging.csv
-/audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T041655Z.csv
-/audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T041919Z.csv
-/audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T043910Z.csv
-/audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T044654Z.csv
-/audits/truth_cross_year/final_yearly_canonical_audit/2020_for_2021/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2020_long_hunt_names.20260620T211551Z.csv
-/audits/truth_cross_year/final_yearly_canonical_audit/2020_for_2021/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2020_finalized_point_distribution.20260620T211551Z.csv
-/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2021_long_hunt_names.20260620T214103Z.csv
-/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2021_long_hunt_names.20260620T214219Z.csv
-/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2021_long_hunt_names.20260620T214309Z.csv
-/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2021_long_hunt_names.20260620T232804Z.csv
-/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T214103Z.csv
-/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T214219Z.csv
-/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T214309Z.csv
-/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T232804Z.csv
-/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2023_for_2024_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T232844Z.csv
-/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2023_for_2024_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T233703Z.csv
-/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2024_for_2025_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T232844Z.csv
-/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2024_for_2025_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T233703Z.csv
-/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2025_for_2026_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T232844Z.csv
-/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2025_for_2026_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T233703Z.csv
-/audits/truth_cross_year/final_yearly_canonical_audit/draw_results_long_rebuilt_from_canonical_yearly_DRYRUN.csv
-/audits/truth_document_audit/add_2025_cg9999_otc_availability/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_cg9999_otc_20260618_160358.csv
-/audits/truth_document_audit/add_2025_sportsman_truth_rows/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_sportsman_rows_20260618_155351.csv
-/audits/truth_document_audit/promote_2024_2025_yearly_truth_to_draw_results_long/backups/draw_results_long.backup_before_2024_2025_promotion_20260618_161413.csv
-/audits/truth_document_audit/promote_2024_2025_yearly_truth_to_draw_results_long/current_long_2024_2025_rows_replaced.csv
-/audits/truth_document_audit/promote_2024_2025_yearly_truth_to_draw_results_long/promoted_2024_2025_conformed_rows.csv
-/audits/truth_document_audit/rebuild_2025_le_oil_from_uploaded_pdfs/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_le_oil_20260618_153152.csv
-/audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.append_2026_reconcil.20260619_032544.csv
-/audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.append_2026_reconcil.20260619_032746.csv
-/audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.backup_before_append_2026_reconciled_slice_20260619_032348.csv
-/audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.backup_before_append_2026_reconciled_slice_20260619_032456.csv
-/audits/truth_document_audit/repair_2025_le_oil_subfamily_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_le_oil_subfamily_metadata_20260618_155026.csv
-/audits/truth_document_audit/repair_2025_remaining_family_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_remaining_family_metadata_20260618_154425.csv
-/audits/truth_document_audit/repair_2025_year_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_year_metadata_20260618_155109.csv
-/audits/truth_document_audit/repair_2025_year_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_year_metadata_20260618_155208.csv
-/audits/truth_organization_staging/2019_PERMITS=2020_MODEL/clean_apply/draw_results_long_CLEANED_2019_USER_VALIDATED_CANDIDATE.csv
-/audits/truth_organization_staging/2019_PERMITS=2020_MODEL/dedupe_repair/draw_results_long_2019_DEDUPED_CANDIDATE_NOT_APPLIED.csv
-/audits/truth_organization_staging/2019_PERMITS=2020_MODEL/dedupe_repair/draw_results_long_2019_FINAL_DEDUPED_PLUS_VALIDATED_CG_TK_NOT_APPLIED.csv
-/audits/truth_organization_staging/2019_PERMITS=2020_MODEL/patch_candidate/draw_results_long_WITH_2019_STRICT_PATCH_CANDIDATE.csv
-/audits/truth_organization_staging/2020_PERMITS=2021_MODEL/clean_apply/draw_results_long_CLEANED_2020_CANONICAL_PATCH_CANDIDATE.csv
-/audits/truth_organization_staging/2020_PERMITS=2021_MODEL/dense_canonical/draw_results_2020_for_2021_DENSE_DUPLICATE_MERGE_LOG.csv
-/clean_github_desktop_upload_large_to_cloudflare_v3.ps1
-/data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2023_for_2024_canonical_yearly_draw_results.csv
-/data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2024_for_2025_canonical_yearly_draw_results.csv
-/data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2025_for_2026_canonical_yearly_draw_results.csv
-/data_truth/draw_results_truth/normalized/draw_results_2020_for_2021_candidate_promotion_file_records.BACKUP_BEFORE_YEARLY_PROMOTION_20260612_163957.csv
-/data_truth/draw_results_truth/normalized/draw_results_2023_for_2024_candidate_promotion_file_records.csv
-/data_truth/draw_results_truth/normalized/draw_results_2024_for_2025_candidate_promotion_file_records.csv
-/data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.BACKUP_BEFORE_FAMILY_NORMALIZATION_20260609_185337.csv
-/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2019_CLEAN_20260609_091524.csv
-/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_CLEAN_20260609_101436.csv
-/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_CLEAN_20260609_101852.csv
-/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260612_163957.csv
-/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260612_174617.csv
-/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260613_051501.csv
-/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260613_051633.csv
-/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260613_051651.csv
-/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2021_FOR_2022_PROMOTION_20260612_204547.csv
-/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_APPEND_2_MISSING_2019_ROWS_20260612_181442.csv
-/data_truth/draw_results_truth/normalized/draw_results_long_apply_backup.csv
-/data_truth/draw_results_truth/normalized/draw_results_long_identity_fixed_20260607_004807.csv
-/data_truth/draw_results_truth/normalized/engine_ready_by_year/draw_results_engine_ready_2019_2022.csv
-/data_truth/finalized_draw_truth_ALL.csv
-/data_truth/finalized_point_distribution.csv
-/engine_rebuild_from_truth/engine/draw_engine_input_point_rows.csv
-/engine_rebuild_from_truth/engine/draw_engine_input_point_rows_with_totals.csv
-/engine_rebuild_from_truth/engine/odds_tables.csv
-/engine_rebuild_from_truth/engine/odds_tables_with_modifiers.csv
-/engine_rebuild_from_truth/engine/prediction_outputs.csv
-/engine_rebuild_from_truth/engine/prediction_outputs_with_modifiers.csv
-/pages-dist/processed_data/composite_hunt_unit_mapping_2026.geojson
-/pages-dist/processed_data/draw_reality_engine.csv
-/pages-dist/processed_data/draw_system_coverage_report.csv
-/pages-dist/processed_data/statewide_composite_boundaries_2026.geojson
-/pages-dist/processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson
-/pipeline/R2_OFFLOAD/incoming/processed_data/composite_hunt_unit_mapping_2026.geojson
-/pipeline/R2_OFFLOAD/incoming/processed_data/hunt_research_2026.json
-/pipeline/R2_OFFLOAD/incoming/processed_data/hunt_research_2026_ladder.json
-/pipeline/R2_OFFLOAD/incoming/processed_data/hunt_research_2026_ladder_bonus_max_random.json
-/pipeline/R2_OFFLOAD/incoming/processed_data/point_ladder_view.csv
-/pipeline/R2_OFFLOAD/incoming/processed_data/public_contracts/hunt_odds_history.json
-/pipeline/R2_OFFLOAD/incoming/processed_data/statewide_composite_boundaries_2026.geojson
-/processed_data/draw_reality_engine.csv
+# -------------------------------------------------------------------
+# CLOUDFLARE R2 / LOCAL LARGE-FILE BACKUPS - DO NOT COMMIT
+# -------------------------------------------------------------------
+# These rules keep generated backups, row-level audit dumps, R2 cache/state,
+# and local cleanup helpers out of GitHub Desktop. They do not delete files.
+
+# Local helper scripts used for R2/Git cleanup
+/clean_github_desktop_upload_large_to_cloudflare*.ps1
+
+# Cloudflare Wrangler local cache/state. The bucket contents live in R2.
+.wrangler/
+.wrangler*/
+
+# Generic local backup folders and generated backup files
+**/backup/
+**/backups/
+**/BACKUP*/
+**/*backup*/
+**/*Backup*/
+**/*BACKUP*/
+**/*.backup*.csv
+**/*.BACKUP*.csv
+**/*backup*.csv
+**/*BACKUP*.csv
+**/*before*.csv
+**/*BEFORE*.csv
+**/*.before_*.csv
+**/*.before-*.csv
+**/draw_results_long.before_*.csv
+**/draw_results_long.before-*.csv
+**/draw_results_long*.BACKUP*.csv
+**/draw_results_long*.backup*.csv
+
+# Truth/canonical promotion scratch outputs
+audits/**/backups/
+audits/**/candidate_repaired_files/
+audits/**/engine_outputs/
+audits/**/runtime_inputs/
+audits/**/rowlevel_verification_outputs/
+audits/**/retrospective_outputs/
+audits/**/production_equivalent_outputs/
+audits/**/drop_filter_diagnosis*/
+audits/**/forecast_builder_repair_directive/
+audits/**/rowlevel_*.csv
+
+# Preserve small handoff/readme docs inside audits when explicitly force-added or already tracked
+!audits/**/*.md
+!audits/**/README*.md
+!audits/**/*HANDOFF*.md
+!audits/**/*CERTIFICATION*.md
+
+# Pipeline/raw heavy/generated data stays local or R2 unless explicitly force-added
+pipeline/RAW/**/*.pdf
+pipeline/RAW/**/*.xlsx
+pipeline/RAW/**/*.xls
+pipeline/RAW/**/*.csv
+pipeline/RAW/**/*.zip
+pipeline/RAW/**/*.kml
+pipeline/RAW/**/*.kmz
+pipeline/RAW/**/*.geojson
+pipeline/RAW/**/*.sqlite
+
+# Keep the canonical 2026 hunt database exception visible
+
+# Local truth rebuild and engine rebuild generated surfaces
+data_truth/draw_results_truth/normalized/*.backup*.csv
+data_truth/draw_results_truth/normalized/*before*.csv
+data_model/runtime_drafts/*.json
+
+# Large generated public/runtime data should be served from R2/public contracts,
+# not committed directly unless explicitly force-added.
+processed_data/audits/*.json
+processed_data/*BACKUP*.csv
+processed_data/*before*.csv
+processed_data/draw_reality_engine*.csv
+processed_data/statewide_composite_boundaries_2026*.geojson
+
+# Keep the compact R2 manifest tracked after upload cleanup
+!processed_data/cloudflare_large_file_manifest.csv
+!processed_data/cloudflare_large_file_manifest.json
+
+# Pages build output / generated runtime exports
+pages-dist/processed_data/**/*.json
+
+# Keep accidental nested-clone/output folders out of the repo
