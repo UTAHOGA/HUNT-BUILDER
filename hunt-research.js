@@ -1286,17 +1286,10 @@
 
   function getDrawPoolPositionLabel(meta, row, referenceRow) {
     if (!row) return 'No modeled point row is loaded yet.';
-    if (isPreferenceFamily(meta, row, referenceRow)) {
-      const gap = num(row.gap);
-      if (gap !== null && gap <= 0) return 'Inside the preference line.';
-      return 'Below the preference line.';
-    }
-    const zone = String(row.point_pool_zone || '').trim();
-    if (zone === 'max_point_pool' || zone === 'max_pool_guaranteed') return 'In the max-point pool.';
-    if (zone === 'max_pool_cutoff_mixed') return 'On the max-point cutoff line; some applicants at this point level may spill into random.';
-    if (zone === 'random_pool') return 'In the random pool.';
-    if (isRandomOnlyBonusCase(meta, row, referenceRow)) return 'Random draw only.';
-    return 'Draw pool not classified yet.';
+    return firstAvailable(row, ['hunt_class', 'huntClass'])
+      || firstAvailable(referenceRow, ['hunt_class', 'huntClass'])
+      || firstAvailable(meta, ['hunt_class', 'huntClass'])
+      || 'Hunt class not classified yet.';
   }
 
   function getCatchTrainSummary(meta, row, filters, referenceRow) {

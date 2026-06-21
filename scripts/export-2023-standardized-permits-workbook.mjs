@@ -19,6 +19,15 @@ const RAW_HUNT_CODE_ROLLUP = path.join(
   "normalized",
   "draw_results_2023_for_2024_candidate_promotion_hunt_code_rollup.csv",
 );
+const YEAR_AUDIT_2023 = path.join(
+  REPO_ROOT,
+  "processed_data",
+  "audits",
+  "bible_hunt_code_year_documents",
+  "bible_hunt_code_year_document_2023.csv",
+);
+const DISPLAY_BOUNDARY_INDEX_2026 = path.join(REPO_ROOT, "processed_data", "display-boundary-index-2026.csv");
+const DATABASE_2026 = path.join(REPO_ROOT, "pipeline", "RAW", "hunt_unit_database", "2026", "csv", "DATABASE.csv");
 const OUTPUT_DIR = path.join(REPO_ROOT, "outputs");
 const OUTPUT_XLSX = path.join(OUTPUT_DIR, "2023 PERMITS.xlsx");
 const OUTPUT_REPORT = path.join(OUTPUT_DIR, "2023_PERMITS_report.json");
@@ -36,6 +45,7 @@ const WEAPON_SUFFIXES = [
   "Archery Only",
   "HAMMS",
   "HAMS",
+  "HAMSS",
   "Hounds",
   "Rifle",
   "Shotgun",
@@ -60,6 +70,7 @@ const LEADING_PREFIXES = [
   "Any Weapon",
   "Multi-season",
   "HAMMS",
+  "HAMSS",
   "ALW",
   "Bison",
   "Black Bear",
@@ -98,6 +109,48 @@ function parseMaybeNumber(value) {
   if (!text) return "";
   const number = Number(text);
   return Number.isFinite(number) ? number : "";
+}
+
+function speciesLabel(speciesCode, huntCode = "") {
+  const code = clean(speciesCode).toUpperCase();
+  const hunt = clean(huntCode).toUpperCase();
+  if (code === "BISON" || hunt.startsWith("BI")) return "Bison";
+  if (code === "BLACK_BEAR" || hunt.startsWith("BR")) return "Black Bear";
+  if (code === "COUGAR" || hunt.startsWith("CG")) return "Cougar";
+  if (code === "DEER" || hunt.startsWith("DB") || hunt.startsWith("DA")) return "Deer";
+  if (code === "DESERT_BIGHORN_SHEEP" || hunt.startsWith("DS")) return "Desert Bighorn Sheep";
+  if (code === "ELK" || hunt.startsWith("EB") || hunt.startsWith("EA")) return "Elk";
+  if (code === "MOOSE" || hunt.startsWith("MB")) return "Moose";
+  if (code === "MOUNTAIN_GOAT" || hunt.startsWith("GO")) return "Mountain Goat";
+  if (code === "PRONGHORN" || hunt.startsWith("PB") || hunt.startsWith("PD")) return "Pronghorn";
+  if (code === "ROCKY_MOUNTAIN_BIGHORN_SHEEP" || hunt.startsWith("RS")) return "Rocky Mountain Sheep";
+  if (code === "TURKEY" || hunt.startsWith("TK")) return "Turkey";
+  return clean(speciesCode);
+}
+
+function deriveSexFromName(rawName, species, row = {}) {
+  const text = normalize(rawName).toUpperCase();
+  const huntType = clean(row.hunt_type).toUpperCase();
+  if (/\bPURSUIT\b/.test(text)) return "Either";
+  if (/\bBEARDED\b/.test(text)) return "Bearded";
+  if (huntType === "SPORTSMAN") return "Either";
+  if (species === "Black Bear" || species === "Mountain Goat" || species === "Cougar") return "Either";
+  if (species === "Turkey") return "Bearded";
+  if (species === "Bison") return "Hunters Choice";
+  if (species === "Deer") return "Buck";
+  if (species === "Elk") return "Bull";
+  if (species === "Moose") return "Bull";
+  if (species === "Pronghorn") return "Buck";
+  if (species === "Desert Bighorn Sheep" || species === "Rocky Mountain Sheep") return "Ram";
+  if (/\bANTLERLESS\b/.test(text)) return "Antlerless";
+  if (/\bBULL\b/.test(text)) return "Bull";
+  if (/\bBUCK\b/.test(text)) return "Buck";
+  if (/\bCOW\b/.test(text)) return "Cow";
+  if (/\bDOE\b/.test(text)) return "Doe";
+  if (/\bRAM\b/.test(text)) return "Ram";
+  if (/\bEWE\b/.test(text)) return "Ewe";
+  if (/\bEITHER SEX\b/.test(text)) return "Either Sex";
+  return "";
 }
 
 function sumNumeric(values) {
@@ -260,7 +313,7 @@ function cleanHuntName(value, row = {}) {
   return normalize(text)
     .replace(/^[-–—:\s]+/, "")
     .replace(/[-–—:\s]+$/, "")
-    .replace(/\bHAMMS\b/gi, "")
+    .replace(/\bHAM+S+\b/gi, "")
     .replace(/\s{2,}/g, " ")
     .trim();
 }
@@ -268,7 +321,7 @@ function cleanHuntName(value, row = {}) {
 function cleanWeapon(value) {
   const text = normalize(value);
   if (!text) return "";
-  if (/\bH\.?A\.?M\.?S\.?\b/i.test(text) || /\bHAMS\b/i.test(text)) return "HAMMS";
+  if (/\bH\.?A\.?M\.?S\.?\b/i.test(text) || /\bHAM+S+\b/i.test(text)) return "HAMMS";
   if (/\bPursuit\b/i.test(text)) return "Pursuit Only";
   if (/\bAny Legal Weapon\b/i.test(text) || /\bALW\b/i.test(text)) return "Any Legal Weapon";
   if (/\bAny Weapon\b/i.test(text)) return "Any Weapon";
@@ -281,6 +334,50 @@ function cleanWeapon(value) {
   return text;
 }
 
+function normalizeHuntType(value, row = {}) {
+  const text = normalize(firstNonEmpty([value, row.hunt_type, row.huntType, row.hunt_class, row.huntClass, row.draw_design, row.drawDesign]));
+  if (!text) return "";
+  const context = normalize([text, row.hunt_name, row.huntName, row.hunt_class, row.huntClass].map(clean).join(" "));
+  if (/sportsman/i.test(context)) return "Sportsman";
+  if (/statewide/i.test(text) && /sportsman/i.test(context)) return "Sportsman";
+  return text;
+}
+
+function normalizeDrawMethod(huntType, row = {}) {
+  const text = normalizeHuntType(firstNonEmpty([huntType, row.hunt_type, row.huntType, row.hunt_class, row.huntClass, row.draw_design, row.drawDesign]), row);
+  if (!text) return "";
+  if (/sportsman/i.test(text)) return "Sportsman";
+  if (/once[-\s]*in[-\s]*a[-\s]*lifetime/i.test(text)) return "O.I.L.";
+  if (/limited[-\s]*entry|premium[-\s]*limited[-\s]*entry/i.test(text)) return "L.E.";
+  if (/general[-\s]*season/i.test(text)) return "G.S.";
+  if (/multiseason/i.test(text)) return "M.S.";
+  if (/pursuit/i.test(text)) return "Pursuit";
+  if (/cwmu/i.test(text)) return "C.W.M.U.";
+  if (/antlerless/i.test(text)) return "A.L.";
+  return text;
+}
+
+function normalizeDrawPool(value, row = {}) {
+  const text = normalize(firstNonEmpty([value, row.draw_pool, row.drawPool]));
+  if (text) {
+    if (/random/i.test(text)) return "random";
+    if (/max/i.test(text)) return "max";
+    if (/split/i.test(text)) return "split";
+    if (/bonus/i.test(text)) return "bonus";
+    if (/preference/i.test(text)) return "preference";
+    return text;
+  }
+
+  const context = normalize([row.hunt_type, row.huntType, row.hunt_class, row.huntClass, row.draw_design, row.drawDesign, row.season].map(clean).join(" "));
+  if (/sportsman/i.test(context) || /general[-\s]*season/i.test(context) || /pursuit/i.test(context)) return "random";
+  if (/split/i.test(context)) return "split";
+  if (/max/i.test(context)) return "max";
+  if (/limited[-\s]*entry|once[-\s]*in[-\s]*a[-\s]*lifetime|cwmu|antlerless|premium[-\s]*limited[-\s]*entry/i.test(context)) {
+    return "bonus";
+  }
+  return "";
+}
+
 function firstNonEmpty(values) {
   for (const value of values) {
     const text = clean(value);
@@ -289,18 +386,60 @@ function firstNonEmpty(values) {
   return "";
 }
 
-function buildRollupMap(rows) {
+function buildBoundaryLookupMap(sourceRowsList) {
+  const map = new Map();
+
+  const take = (row, candidates) => firstNonEmpty(candidates.map((field) => row[field]));
+  const setIfMissing = (code, boundaryId) => {
+    const normalizedCode = clean(code).toUpperCase();
+    const normalizedBoundaryId = parseMaybeNumber(boundaryId);
+    if (!normalizedCode || normalizedBoundaryId === "") return;
+    if (!map.has(normalizedCode)) map.set(normalizedCode, normalizedBoundaryId);
+  };
+
+  for (const rows of sourceRowsList) {
+    for (const row of rows) {
+      const code = take(row, [
+        "hunt_code",
+        "comparison_hunt_code",
+        "HUNT_CODE",
+        "huntCode",
+        "candidate_hunt_code",
+      ]);
+      const boundaryId = take(row, [
+        "display_boundary_id",
+        "resolved_boundary_id",
+        "current_database_boundary_id",
+        "boundary_id",
+        "boundaryId",
+        "BOUNDARYID",
+        "boundary_id_numeric",
+        "hunt_boundary_crosswalk_id",
+        "split_index_boundary_id",
+      ]);
+      setIfMissing(code, boundaryId);
+    }
+  }
+
+  return map;
+}
+
+function buildRollupMap(rows, boundaryLookupMap) {
   const map = new Map();
   for (const row of rows) {
     const code = clean(row.hunt_code).toUpperCase();
     if (!code) continue;
+    const species = speciesLabel(row.species, row.hunt_code);
+    const huntType = normalizeHuntType(row.hunt_type, row);
+    const huntName = cleanHuntName(row.hunt_name, row);
     map.set(code, {
       code,
-      huntName: cleanHuntName(row.hunt_name, row),
-      species: clean(row.species),
-      sex: clean(row.sex_type),
-      huntType: clean(row.hunt_type),
-      weapon: cleanWeapon(row.weapon),
+      boundaryId: parseMaybeNumber(firstNonEmpty([boundaryLookupMap?.get(code), row.boundary_id])),
+      huntName,
+      species,
+      sex: firstNonEmpty([clean(row.sex_type), deriveSexFromName(row.hunt_name, species, row)]),
+      huntType,
+      weapon: cleanWeapon(firstNonEmpty([row.weapon, row.hunt_name, huntType])),
       residentTotal: parseMaybeNumber(row.resident_total_permits_sum),
       nonresidentTotal: parseMaybeNumber(row.nonresident_total_permits_sum),
       totalPublic: parseMaybeNumber(row.total_public_permits_sum),
@@ -310,7 +449,21 @@ function buildRollupMap(rows) {
   return map;
 }
 
-function buildSummaryRows(rows, rollupMap) {
+function buildPointMetaMap(rows) {
+  const map = new Map();
+  for (const row of rows) {
+    const code = clean(row.hunt_code).toUpperCase();
+    if (!code) continue;
+    const existing = map.get(code) || {};
+    map.set(code, {
+      drawPool: firstNonEmpty([existing.drawPool, row.draw_pool]),
+      drawMethod: firstNonEmpty([existing.drawMethod, row.draw_method]),
+    });
+  }
+  return map;
+}
+
+function buildSummaryRows(rows, rollupMap, pointMetaMap) {
   const out = [];
   for (const row of rows) {
     const code = clean(row.hunt_code).toUpperCase();
@@ -326,13 +479,21 @@ function buildSummaryRows(rows, rollupMap) {
     if (total === "" && (resident !== "" || nonresident !== "")) {
       total = Number(resident || 0) + Number(nonresident || 0);
     }
+    const huntName = firstNonEmpty([rollup.huntName, rollup.huntType]);
+    const meta = pointMetaMap.get(code) || {};
+    const drawPool = normalizeDrawPool(meta.drawPool, rollup);
+    const drawMethod = normalizeDrawMethod(firstNonEmpty([meta.drawMethod, rollup.huntType]), rollup);
+    const boundaryId = parseMaybeNumber(rollup.boundaryId);
     out.push({
       "ACTUAL DRAW YEAR": 2023,
       "HUNT CODE": code,
-      SPECIES: rollup.species,
-      "HUNT NAME": rollup.huntName,
-      WEAPON: rollup.weapon,
-      SEX: rollup.sex,
+      "BOUNDARY ID": boundaryId,
+      SPECIES: firstNonEmpty([rollup.species, speciesLabel(row.species, code)]),
+      "HUNT NAME": huntName,
+      WEAPON: firstNonEmpty([rollup.weapon, cleanWeapon(firstNonEmpty([row.weapon, row.hunt_name, rollup.huntType]))]),
+      SEX: firstNonEmpty([rollup.sex, deriveSexFromName(huntName, firstNonEmpty([rollup.species, speciesLabel(row.species, code)]), row)]),
+      "DRAW POOL": drawPool,
+      "DRAW METHOD": drawMethod,
       "PERMITS 2023 RES": resident,
       "PERMITS 2023 NR": nonresident,
       "PERMITS 2023 TOTAL": total,
@@ -344,30 +505,66 @@ function buildSummaryRows(rows, rollupMap) {
 }
 
 function buildPointRows(rows, rollupMap) {
-  const out = [];
+  const grouped = new Map();
   for (const row of rows) {
+    if (!row) continue;
     const code = clean(row.hunt_code).toUpperCase();
-    if (!code) continue;
+    const points = parseMaybeNumber(row.points);
+    if (!code || points === "") continue;
+    const key = `${code}__${points}`;
+    if (!grouped.has(key)) grouped.set(key, []);
+    grouped.get(key).push(row);
+  }
+
+  const out = [];
+  for (const [key, group] of grouped.entries()) {
+    const [code, pointsText] = key.split("__");
     const rollup = rollupMap.get(code) || {};
+    const first = group[0] || {};
+    const huntName = firstNonEmpty([rollup.huntName, cleanHuntName(first.hunt_name, first), rollup.huntType]);
+    const species = firstNonEmpty([rollup.species, speciesLabel(first.species, code)]);
+    const weapon = firstNonEmpty([rollup.weapon, cleanWeapon(firstNonEmpty([first.weapon, first.hunt_name, rollup.huntType]))]);
+    const sex = firstNonEmpty([rollup.sex, first.sex_type, deriveSexFromName(huntName, species, first)]);
+    const huntType = normalizeHuntType(firstNonEmpty([rollup.huntType, first.hunt_type]), first);
+    const drawPool = normalizeDrawPool(firstNonEmpty(group.map((entry) => entry.draw_pool)), rollup);
+    const drawMethod = normalizeDrawMethod(firstNonEmpty([first.draw_method, rollup.huntType, first.hunt_type]), first);
+    const residentPermits =
+      rollup.residentTotal !== "" ? rollup.residentTotal : sumNumeric(
+        group.filter((entry) => clean(entry.residency).toLowerCase() === "resident").map((entry) => entry.total_permits),
+      );
+    const nonresidentPermits =
+      rollup.nonresidentTotal !== "" ? rollup.nonresidentTotal : sumNumeric(
+        group.filter((entry) => clean(entry.residency).toLowerCase() === "nonresident").map((entry) => entry.total_permits),
+      );
+    const totalPermits =
+      rollup.totalPublic !== ""
+        ? rollup.totalPublic
+        : Number(residentPermits || 0) + Number(nonresidentPermits || 0);
+    const eligibleApplicants = sumNumeric(group.map((entry) => entry.eligible_applicants));
+    const bonusPermits = sumNumeric(group.map((entry) => entry.bonus_permits));
+    const regularPermits = sumNumeric(group.map((entry) => entry.regular_permits));
+    const totalPermitCounts = sumNumeric(group.map((entry) => entry.total_permits));
+
     out.push({
       "ACTUAL DRAW YEAR": 2023,
       "HUNT CODE": code,
-      SPECIES: firstNonEmpty([row.species, rollup.species]),
-      "HUNT NAME": firstNonEmpty([rollup.huntName, cleanHuntName(row.hunt_name, row)]),
-      WEAPON: cleanWeapon(firstNonEmpty([row.weapon, rollup.weapon])),
-      SEX: firstNonEmpty([row.sex_type, rollup.sex]),
-      "HUNT TYPE": firstNonEmpty([row.hunt_type, rollup.huntType]),
-      RESIDENCY: firstNonEmpty([row.residency]),
-      POINTS: parseMaybeNumber(row.points),
-      "ELIGIBLE APPLICANTS": parseMaybeNumber(row.eligible_applicants),
-      "BONUS PERMITS": parseMaybeNumber(row.bonus_permits),
-      "REGULAR PERMITS": parseMaybeNumber(row.regular_permits),
-      "TOTAL PERMITS": parseMaybeNumber(row.total_permits),
-      "SUCCESS RATIO": firstNonEmpty([row.success_ratio]),
-      "DRAW POOL": firstNonEmpty([row.draw_pool]),
-      "DRAW METHOD": firstNonEmpty([row.draw_method]),
-      "SOURCE FILE": firstNonEmpty([row.source_file]),
-      "SOURCE PAGE": firstNonEmpty([row.source_pdf_page]),
+      SPECIES: species,
+      "HUNT NAME": huntName,
+      WEAPON: weapon,
+      SEX: sex,
+      "HUNT TYPE": huntType,
+      POINTS: parseMaybeNumber(pointsText),
+      "PERMITS 2023 RES": residentPermits,
+      "PERMITS 2023 NR": nonresidentPermits,
+      "PERMITS 2023 TOTAL": totalPermits,
+      "ELIGIBLE APPLICANTS": eligibleApplicants,
+      "BONUS PERMITS": bonusPermits,
+      "REGULAR PERMITS": regularPermits,
+      "TOTAL PERMITS": totalPermitCounts,
+      "DRAW POOL": drawPool,
+      "DRAW METHOD": drawMethod,
+      "SOURCE FILE": firstNonEmpty(group.map((entry) => entry.source_file)),
+      "SOURCE PAGE": firstNonEmpty(group.map((entry) => entry.source_pdf_page)),
     });
   }
 
@@ -376,8 +573,7 @@ function buildPointRows(rows, rollupMap) {
     if (codeCmp !== 0) return codeCmp;
     const pointsLeft = Number(left.POINTS === "" ? -1 : left.POINTS);
     const pointsRight = Number(right.POINTS === "" ? -1 : right.POINTS);
-    if (pointsRight !== pointsLeft) return pointsRight - pointsLeft;
-    return left.RESIDENCY.localeCompare(right.RESIDENCY);
+    return pointsRight - pointsLeft;
   });
 
   return out;
@@ -387,70 +583,77 @@ function styleSummarySheet(sheet, rowCount) {
   sheet.freezePanes.freezeRows(1);
   sheet.showGridLines = false;
   sheet.getUsedRange().format = { font: { name: "Aptos", size: 10, color: "#2F2418" }, wrapText: true };
-  sheet.getRange(`A1:I1`).format = {
+  sheet.getRange(`A1:L1`).format = {
     fill: "#5E3A1B",
     font: { bold: true, color: "#FFFFFF" },
     wrapText: true,
     horizontalAlignment: "center",
   };
   if (rowCount > 1) {
-    sheet.getRange(`A2:I${rowCount}`).format = { fill: "#FFFDF8", font: { color: "#2F2418" }, wrapText: true };
+    sheet.getRange(`A2:L${rowCount}`).format = { fill: "#FFFDF8", font: { color: "#2F2418" }, wrapText: true };
   }
   sheet.getRange(`A2:A${rowCount}`).format = { numberFormat: "0", horizontalAlignment: "center" };
   sheet.getRange(`B2:B${rowCount}`).format = { horizontalAlignment: "center" };
   sheet.getRange(`C2:C${rowCount}`).format = { horizontalAlignment: "center" };
-  sheet.getRange(`D2:D${rowCount}`).format = { horizontalAlignment: "left" };
-  sheet.getRange(`E2:F${rowCount}`).format = { horizontalAlignment: "center" };
-  sheet.getRange(`G2:I${rowCount}`).format = { horizontalAlignment: "center", numberFormat: "0" };
+  sheet.getRange(`D2:D${rowCount}`).format = { horizontalAlignment: "center" };
+  sheet.getRange(`E2:E${rowCount}`).format = { horizontalAlignment: "left" };
+  sheet.getRange(`F2:F${rowCount}`).format = { horizontalAlignment: "center" };
+  sheet.getRange(`G2:H${rowCount}`).format = { horizontalAlignment: "center" };
+  sheet.getRange(`I2:L${rowCount}`).format = { horizontalAlignment: "center", numberFormat: "0" };
   sheet.getRange("A:A").format.columnWidthPx = 92;
   sheet.getRange("B:B").format.columnWidthPx = 100;
-  sheet.getRange("C:C").format.columnWidthPx = 170;
-  sheet.getRange("D:D").format.columnWidthPx = 330;
-  sheet.getRange("E:E").format.columnWidthPx = 140;
-  sheet.getRange("F:F").format.columnWidthPx = 110;
-  sheet.getRange("G:G").format.columnWidthPx = 130;
-  sheet.getRange("H:H").format.columnWidthPx = 130;
-  sheet.getRange("I:I").format.columnWidthPx = 140;
+  sheet.getRange("C:C").format.columnWidthPx = 120;
+  sheet.getRange("D:D").format.columnWidthPx = 170;
+  sheet.getRange("E:E").format.columnWidthPx = 330;
+  sheet.getRange("F:F").format.columnWidthPx = 140;
+  sheet.getRange("G:G").format.columnWidthPx = 110;
+  sheet.getRange("H:H").format.columnWidthPx = 110;
+  sheet.getRange("I:I").format.columnWidthPx = 130;
+  sheet.getRange("J:J").format.columnWidthPx = 130;
+  sheet.getRange("K:K").format.columnWidthPx = 140;
+  sheet.getRange("L:L").format.columnWidthPx = 140;
 }
 
 function stylePointSheet(sheet, rowCount) {
   sheet.freezePanes.freezeRows(1);
   sheet.showGridLines = false;
   sheet.getUsedRange().format = { font: { name: "Aptos", size: 10, color: "#2F2418" }, wrapText: true };
-  sheet.getRange(`A1:R1`).format = {
+  sheet.getRange(`A1:S1`).format = {
     fill: "#254A3F",
     font: { bold: true, color: "#FFFFFF" },
     wrapText: true,
     horizontalAlignment: "center",
   };
   if (rowCount > 1) {
-    sheet.getRange(`A2:R${rowCount}`).format = { fill: "#F7FBF9", font: { color: "#20332D" }, wrapText: true };
+    sheet.getRange(`A2:S${rowCount}`).format = { fill: "#F7FBF9", font: { color: "#20332D" }, wrapText: true };
   }
   sheet.getRange(`A2:A${rowCount}`).format = { numberFormat: "0", horizontalAlignment: "center" };
   sheet.getRange(`B2:B${rowCount}`).format = { horizontalAlignment: "center" };
-  sheet.getRange(`G2:G${rowCount}`).format = { horizontalAlignment: "center" };
-  sheet.getRange(`H2:H${rowCount}`).format = { horizontalAlignment: "center" };
-  sheet.getRange(`I2:N${rowCount}`).format = { horizontalAlignment: "center" };
-  sheet.getRange(`O2:P${rowCount}`).format = { horizontalAlignment: "left" };
-  sheet.getRange(`Q2:R${rowCount}`).format = { horizontalAlignment: "left" };
+  sheet.getRange(`C2:C${rowCount}`).format = { horizontalAlignment: "center" };
+  sheet.getRange(`D2:D${rowCount}`).format = { horizontalAlignment: "left" };
+  sheet.getRange(`E2:E${rowCount}`).format = { horizontalAlignment: "center" };
+  sheet.getRange(`F2:F${rowCount}`).format = { horizontalAlignment: "center" };
+  sheet.getRange(`G2:Q${rowCount}`).format = { horizontalAlignment: "center" };
+  sheet.getRange(`R2:S${rowCount}`).format = { horizontalAlignment: "left" };
   sheet.getRange("A:A").format.columnWidthPx = 88;
   sheet.getRange("B:B").format.columnWidthPx = 100;
   sheet.getRange("C:C").format.columnWidthPx = 120;
   sheet.getRange("D:D").format.columnWidthPx = 300;
   sheet.getRange("E:E").format.columnWidthPx = 120;
-  sheet.getRange("F:F").format.columnWidthPx = 100;
+  sheet.getRange("F:F").format.columnWidthPx = 120;
   sheet.getRange("G:G").format.columnWidthPx = 135;
-  sheet.getRange("H:H").format.columnWidthPx = 110;
-  sheet.getRange("I:I").format.columnWidthPx = 70;
+  sheet.getRange("H:H").format.columnWidthPx = 80;
+  sheet.getRange("I:I").format.columnWidthPx = 90;
   sheet.getRange("J:J").format.columnWidthPx = 90;
   sheet.getRange("K:K").format.columnWidthPx = 90;
   sheet.getRange("L:L").format.columnWidthPx = 90;
   sheet.getRange("M:M").format.columnWidthPx = 90;
   sheet.getRange("N:N").format.columnWidthPx = 90;
-  sheet.getRange("O:O").format.columnWidthPx = 90;
-  sheet.getRange("P:P").format.columnWidthPx = 130;
-  sheet.getRange("Q:Q").format.columnWidthPx = 180;
-  sheet.getRange("R:R").format.columnWidthPx = 90;
+  sheet.getRange("O:O").format.columnWidthPx = 130;
+  sheet.getRange("P:P").format.columnWidthPx = 100;
+  sheet.getRange("Q:Q").format.columnWidthPx = 100;
+  sheet.getRange("R:R").format.columnWidthPx = 180;
+  sheet.getRange("S:S").format.columnWidthPx = 90;
 }
 
 async function savePreview(workbook, sheetName, range, outputPath) {
@@ -471,10 +674,15 @@ async function exportWorkbook(workbook, outputPath) {
 await fs.mkdir(OUTPUT_DIR, { recursive: true });
 await fs.mkdir(PREVIEW_DIR, { recursive: true });
 
+const yearAuditRows = readCsv(await fs.readFile(YEAR_AUDIT_2023, "utf8"));
+const displayBoundaryRows = readCsv(await fs.readFile(DISPLAY_BOUNDARY_INDEX_2026, "utf8"));
+const databaseRows = readCsv(await fs.readFile(DATABASE_2026, "utf8"));
 const rollupRows = readCsv(await fs.readFile(RAW_HUNT_CODE_ROLLUP, "utf8"));
 const pointRows = readCsv(await fs.readFile(RAW_POINT_ROWS, "utf8"));
-const rollupMap = buildRollupMap(rollupRows);
-const summaryRows = buildSummaryRows(rollupRows, rollupMap);
+const boundaryLookupMap = buildBoundaryLookupMap([yearAuditRows, displayBoundaryRows, databaseRows]);
+const rollupMap = buildRollupMap(rollupRows, boundaryLookupMap);
+const pointMetaMap = buildPointMetaMap(pointRows);
+const summaryRows = buildSummaryRows(rollupRows, rollupMap, pointMetaMap);
 const longRows = buildPointRows(pointRows, rollupMap);
 
 const workbook = Workbook.create();
@@ -484,10 +692,13 @@ const longSheet = workbook.worksheets.add("2023 Long");
 const summaryColumns = [
   "ACTUAL DRAW YEAR",
   "HUNT CODE",
+  "BOUNDARY ID",
   "SPECIES",
   "HUNT NAME",
   "WEAPON",
   "SEX",
+  "DRAW POOL",
+  "DRAW METHOD",
   "PERMITS 2023 RES",
   "PERMITS 2023 NR",
   "PERMITS 2023 TOTAL",
@@ -500,13 +711,14 @@ const longColumns = [
   "WEAPON",
   "SEX",
   "HUNT TYPE",
-  "RESIDENCY",
   "POINTS",
+  "PERMITS 2023 RES",
+  "PERMITS 2023 NR",
+  "PERMITS 2023 TOTAL",
   "ELIGIBLE APPLICANTS",
   "BONUS PERMITS",
   "REGULAR PERMITS",
   "TOTAL PERMITS",
-  "SUCCESS RATIO",
   "DRAW POOL",
   "DRAW METHOD",
   "SOURCE FILE",
@@ -524,7 +736,7 @@ stylePointSheet(longSheet, longValues.length);
 
 const previewSummary = await workbook.render({
   sheetName: "2023 Summary",
-  range: "A1:I18",
+  range: "A1:L18",
   scale: 1,
   format: "png",
 });
@@ -535,7 +747,7 @@ await fs.writeFile(
 
 const previewLong = await workbook.render({
   sheetName: "2023 Long",
-  range: "A1:R18",
+  range: "A1:S18",
   scale: 1,
   format: "png",
 });
@@ -554,6 +766,11 @@ const report = {
   generated_at_utc: new Date().toISOString(),
   source_rollup: path.relative(REPO_ROOT, RAW_HUNT_CODE_ROLLUP).replaceAll("\\", "/"),
   source_point_rows: path.relative(REPO_ROOT, RAW_POINT_ROWS).replaceAll("\\", "/"),
+  boundary_lookup_sources: [
+    path.relative(REPO_ROOT, YEAR_AUDIT_2023).replaceAll("\\", "/"),
+    path.relative(REPO_ROOT, DISPLAY_BOUNDARY_INDEX_2026).replaceAll("\\", "/"),
+    path.relative(REPO_ROOT, DATABASE_2026).replaceAll("\\", "/"),
+  ],
   output_xlsx: path.relative(REPO_ROOT, OUTPUT_XLSX).replaceAll("\\", "/"),
   summary_rows: summaryRows.length,
   long_rows: longRows.length,
