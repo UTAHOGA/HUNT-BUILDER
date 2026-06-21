@@ -1004,3 +1004,7 @@ data_truth/comparison_outputs/validation/short_modeled_year_source_gap_audit.csv
 /scripts/build-public-data-contracts.js
 app.js
 /app.js*
+app.js
+
+# Cloudflare R2 offloaded app file
+/app.js
