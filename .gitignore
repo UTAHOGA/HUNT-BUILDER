@@ -450,30 +450,9 @@ pipeline/R2_OFFLOAD/manifests/**
 !pipeline/R2_OFFLOAD/manifests/**/*.json
 !pipeline/R2_OFFLOAD/manifests/**/*.md
 
-# Pipeline heavy/raw/generated data stays local unless explicitly promoted.
-pipeline/RAW/*
-!pipeline/RAW/hunt_unit_database/
-pipeline/RAW/hunt_unit_database/*
-!pipeline/RAW/hunt_unit_database/2026/
-pipeline/RAW/hunt_unit_database/2026/*
-!pipeline/RAW/hunt_unit_database/2026/csv/
-pipeline/RAW/hunt_unit_database/2026/csv/*
-!pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv
-pipeline/normalized/
-pipeline/processed/
-pipeline/**/*.html
-pipeline/**/*_files/
-pipeline/**/*.kmz
-pipeline/**/*.kml
-pipeline/**/*.geodatabase
-pipeline/**/*.gpkg
-pipeline/**/*.shp
-pipeline/**/*.shx
-pipeline/**/*.dbf
-pipeline/**/*.prj
-pipeline/**/*.cpg
-pipeline/**/*.xlsx
-pipeline/**/*.xls
+#  Pipeline
+pipeline*
+/pipeline*
 
 # Large archives/geospatial/database files
 *.zip
