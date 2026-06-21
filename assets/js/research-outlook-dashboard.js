@@ -75,6 +75,20 @@
     return hasValue(value) ? String(value).trim() : fallback;
   }
 
+  function normalizeDrawDesignLabel(value) {
+    const text = String(value || "").trim();
+    const lower = text.toLowerCase();
+    const upper = text.toUpperCase();
+    if (!text) return "";
+    if (lower.includes("preference")) return "Preference";
+    if (lower.includes("sportsman") || lower === "random" || upper.includes("SPORTSMAN")) return "Random";
+    if (lower.includes("max") || lower.includes("weighted") || lower.includes("bonus") || lower.includes("split") || upper.includes("BEAR_DRAW")) return "Max/Weighted Split";
+    if (lower.includes("capped") || lower.includes("allotment") || lower.includes("private_lands_only")) return "Capped Permits";
+    if (lower.includes("unlimited")) return "Unlimited";
+    if (lower.includes("allocation") || lower.includes("reference only") || lower.includes("conservation") || lower.includes("tribal")) return "Allocation / Reference Only";
+    return text;
+  }
+
   function formatInteger(value) {
     const parsed = num(value);
     return parsed === null ? "Not available" : parsed.toLocaleString();
@@ -368,8 +382,11 @@
 
   function buildComparableRows(selection, meta, selectedRow, outlookRow = null) {
     const species = String(outlookRow?.species || meta?.species || selectedRow?.species || "").trim().toLowerCase();
-    const huntClass = String(outlookRow?.hunt_class || meta?.hunt_class || selectedRow?.hunt_class || "").trim().toLowerCase();
     const huntType = String(outlookRow?.hunt_type || meta?.hunt_type || selectedRow?.hunt_type || "").trim().toLowerCase();
+    const drawDesign = String(
+      normalizeDrawDesignLabel(outlookRow?.draw_design || meta?.draw_design || selectedRow?.draw_design || outlookRow?.draw_system_type || meta?.draw_system_type || selectedRow?.draw_system_type)
+    ).trim().toLowerCase();
+    const huntClass = String(outlookRow?.hunt_class || meta?.hunt_class || selectedRow?.hunt_class || "").trim().toLowerCase();
     const seen = new Set([selection.huntCode]);
     const rows = [];
     const sourceRows = state.rows.outlook.length ? state.rows.outlook : state.rows.master;
@@ -379,8 +396,12 @@
       if (normalizeResidency(row.residency) !== selection.residency) continue;
       if (hasValue(row.draw_pool) && normalizeDrawPool(row.draw_pool) !== selection.drawPool) continue;
       if (species && String(row.species || "").trim().toLowerCase() !== species) continue;
-      if (huntClass && String(row.hunt_class || "").trim().toLowerCase() !== huntClass) continue;
-      if (!huntClass && huntType && String(row.hunt_type || "").trim().toLowerCase() !== huntType) continue;
+      if (drawDesign) {
+        const rowDesign = normalizeDrawDesignLabel(row.draw_design || row.draw_system_type || row.draw_2026_system_type).toLowerCase();
+        if (rowDesign !== drawDesign) continue;
+      }
+      if (huntType && String(row.hunt_type || "").trim().toLowerCase() !== huntType) continue;
+      if (!drawDesign && !huntType && huntClass && String(row.hunt_class || "").trim().toLowerCase() !== huntClass) continue;
       seen.add(code);
       rows.push(row);
       if (rows.length >= 5) break;
@@ -468,10 +489,13 @@
   function isStatusOnlyContext(meta, reference, selectedRow) {
     const text = [
       meta?.hunt_type,
+      meta?.draw_design,
       meta?.hunt_class,
       meta?.permit_type,
       reference?.hunt_type,
+      reference?.draw_design,
       selectedRow?.hunt_type,
+      selectedRow?.draw_design,
       selectedRow?.hunt_class,
       selectedRow?.status,
     ].filter(Boolean).join(" ").toLowerCase();
@@ -631,6 +655,13 @@
     const harvestSuccess = firstValue(contract, ["harvest_success_pct"]) || getHarvestSuccess(meta, reference, selectedRow);
     const avgDays = firstValue(contract, ["average_days_hunted"]) || getAverageDays(meta, reference);
     const permitTotal = firstValue(contract, ["permits_2026_total"]) || getPermitTotal(meta, reference, selectedRow);
+    const huntType = firstValue(contract, ["hunt_type"]) || firstValue(meta, ["hunt_type"]) || firstValue(reference, ["hunt_type"]) || firstValue(selectedRow, ["hunt_type"]);
+    const drawDesign = normalizeDrawDesignLabel(
+      firstValue(contract, ["draw_design"])
+      || firstValue(meta, ["draw_design", "draw_system_type", "draw_2026_system_type", "draw_family"])
+      || firstValue(reference, ["draw_design", "draw_system_type", "draw_2026_system_type", "draw_family"])
+      || firstValue(selectedRow, ["draw_design", "draw_system_type", "draw_2026_system_type", "draw_family"])
+    );
     const guaranteedLine = firstValue(contract, ["guaranteed_line_points"]) || getGuaranteedLine(selectedRow, meta);
     const pointTrend = firstValue(contract, ["point_creep_1yr"]) || getPointTrend(selectedRow, meta);
     const pointStatus = firstValue(selectedRow, ["status", "draw_outlook", "point_status"])
@@ -663,7 +694,7 @@
           <div class="uoga-outlook-hero-title">
             <p>Hunt Application Outlook</p>
             <h2>${escapeHtml(selection.huntCode || "No hunt selected")} - ${escapeHtml(title)}</h2>
-            <span>${escapeHtml(selection.residency)} &middot; ${escapeHtml(String(selection.points))} points &middot; ${escapeHtml(selection.drawPool)} draw pool</span>
+            <span>${escapeHtml(selection.residency)} &middot; ${escapeHtml(String(selection.points))} points &middot; ${escapeHtml(formatValue(huntType))} &middot; ${escapeHtml(formatValue(drawDesign, "Draw design pending"))}</span>
             <div class="uoga-badge-row">
               ${(sourceBadges.length ? sourceBadges : ["Official DWR Source", "U.O.G.A. Modeled Output"]).map((label) => {
                 const lower = label.toLowerCase();
@@ -693,6 +724,8 @@
             metricRow("Guaranteed line", formatValue(guaranteedLine)),
             metricRow("Point creep / trend", formatValue(pointTrend)),
             metricRow("Permits", formatInteger(permitTotal)),
+            metricRow("Hunt type", formatValue(huntType)),
+            metricRow("Draw design", formatValue(drawDesign, "Draw design pending")),
           ])}
           `, "is-modeled")}
           ${panel("Official DWR Field Evidence", `

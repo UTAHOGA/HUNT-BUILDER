@@ -69,6 +69,7 @@
       current_points: context.current_points ?? context.selected_points ?? context.points ?? "",
       weapon: String(context.weapon || context.weapon_type || "").trim(),
       hunt_type: String(context.hunt_type || context.huntType || "").trim(),
+      draw_design: String(context.draw_design || context.drawDesign || "").trim(),
       hunt_class: String(context.hunt_class || context.huntClass || "").trim(),
       boundary_id: String(context.boundary_id || context.boundaryId || "").trim(),
       unit_name: String(context.unit_name || context.unit || context.unitName || "").trim(),
@@ -118,6 +119,7 @@
       current_points: get("points", "current_points", "selected_points") || document.getElementById("pointsInput")?.value || localStorage.getItem(SELECTED_POINTS_KEY) || "0",
       weapon: get("weapon", "weapon_type"),
       hunt_type: get("hunt_type", "huntType"),
+      draw_design: get("draw_design", "drawDesign"),
       hunt_class: get("hunt_class", "huntClass"),
       boundary_id: get("boundary_id", "boundaryId"),
       unit_name: get("unit_name", "unit", "unitName"),
@@ -511,13 +513,17 @@
 
     const species = firstValue(meta, ["species", "Species"]) || context.species || firstValue(decision, ["species"]) || "Not available";
     const huntName = context.hunt_name || firstValue(meta, ["hunt_name", "hunt_name_2026", "Hunt Name"]) || firstValue(decision, ["hunt_name"]) || huntCode;
-    const drawFamily = firstValue(decision, ["draw_system_type", "draw_2026_system_type", "draw_family"]) || firstValue(meta, ["draw_system_type", "draw_2026_system_type"]) || "Not available";
+    const drawDesign = firstValue(decision, ["draw_design", "drawDesign"])
+      || firstValue(meta, ["draw_design", "drawDesign"])
+      || firstValue(decision, ["draw_system_type", "draw_2026_system_type", "draw_family"])
+      || firstValue(meta, ["draw_system_type", "draw_2026_system_type"])
+      || "Not available";
     const probability = probabilityFrom(prediction) || probabilityFrom(decision) || probabilityFrom(ladder);
     const qualityScore = toNumber(firstValue(decision, ["quality_score", "decision_score", "application_value_score", "age_quality_score"]));
     const observedAge = firstValue(age, ["average_harvest_age", "average_age", "mean_age"]);
     const percent5 = firstValue(age, ["percent_5plus", "percent_mature_or_5_plus"]);
     const obj = objectiveStatus(species, management, age);
-    const label = decisionLabel(probability, qualityScore, firstValue(decision, ["algorithm_status", "draw_system_type"]) || drawFamily);
+    const label = decisionLabel(probability, qualityScore, firstValue(decision, ["algorithm_status", "draw_design", "draw_system_type"]) || drawDesign);
     const creep = firstValue(prediction, ["point_creep_1yr", "point_creep_last_year"]) || firstValue(ladder, ["point_creep_1yr", "point_creep_last_year"]);
     const recommendation = recommendationText(label, probability, obj.status, creep);
 
@@ -538,7 +544,7 @@
       <div class="uoga-outlook-grid">
         ${buildCard("Decision Label", label)}
         ${buildCard("Modeled Draw Probability", probability !== "" ? formatPercent(probability) : "Not available")}
-        ${buildCard("Draw Family", drawFamily)}
+        ${buildCard("Draw Design", drawDesign)}
         ${buildCard("Point Creep", formatValue(creep))}
       </div>
       <p style="margin-top:12px;">${escapeHtml(recommendation)}</p>`;
