@@ -104,3 +104,124 @@ def test_build_preference_dedicated_hunter_predictions_returns_modeled_rows() ->
     assert all(row["p_bonus_pool"] == "" for row in rows)
     assert all(row["p_random_pool"] == "" for row in rows)
     assert any(float(row["p_draw"]) > 0.0 for row in rows)
+
+
+def test_youth_dedicated_hunter_is_separate_preference_lane() -> None:
+    truth_rows = [
+        {
+            "hunt_code": "DB1770",
+            "hunt_name": "Adult Unit",
+            "species": "Deer",
+            "sex_type": "Buck",
+            "hunt_type": "General Season",
+            "hunt_class": "Dedicated Hunter",
+            "weapon": "Dedicated Hunter",
+            "year": year,
+            "draw_pool": "dedicated_hunter",
+            "residency": "Resident",
+            "points": "0",
+            "eligible_applicants": "20",
+            "total_permits": "10",
+        }
+        for year in ("2024", "2025")
+    ] + [
+        {
+            "hunt_code": "DB1770",
+            "hunt_name": "Youth Unit",
+            "species": "Deer",
+            "sex_type": "Buck",
+            "hunt_type": "Youth Dedicated Hunter",
+            "hunt_class": "Youth Dedicated Hunter",
+            "weapon": "Dedicated Hunter",
+            "year": year,
+            "draw_pool": "youth_dedicated_hunter",
+            "residency": "Resident",
+            "points": "0",
+            "eligible_applicants": "5",
+            "total_permits": "1",
+        }
+        for year in ("2024", "2025")
+    ]
+    db_rows = [
+        {
+            "hunt_code": "DB1770",
+            "hunt_name": "Adult Unit",
+            "species": "Deer",
+            "sex_type": "Buck",
+            "hunt_type": "General Season",
+            "hunt_class": "Dedicated Hunter",
+            "weapon": "Dedicated Hunter",
+            "draw_pool": "dedicated_hunter",
+            "permits_2026_total": "10",
+        },
+        {
+            "hunt_code": "DB1770",
+            "hunt_name": "Youth Unit",
+            "species": "Deer",
+            "sex_type": "Buck",
+            "hunt_type": "Youth Dedicated Hunter",
+            "hunt_class": "Youth Dedicated Hunter",
+            "weapon": "Dedicated Hunter",
+            "draw_pool": "youth_dedicated_hunter",
+            "permits_2026_total": "2",
+        },
+    ]
+
+    rows = build_preference_dedicated_hunter_predictions(
+        truth_rows=truth_rows,
+        db_rows=db_rows,
+        forecast_year=2026,
+        history_years=[2024, 2025],
+    )
+
+    assert {row["draw_pool"] for row in rows} == {"dedicated_hunter", "youth_dedicated_hunter"}
+    youth_rows = [row for row in rows if row["draw_pool"] == "youth_dedicated_hunter"]
+    assert youth_rows
+    assert all(row["model_strategy"] == "preference_youth_dedicated_hunter_deer" for row in youth_rows)
+    assert all(row["hunt_class"] == "Youth Dedicated Hunter" for row in youth_rows)
+    assert all(is_modeled_dedicated_hunter_row(row) for row in youth_rows)
+
+
+def test_dedicated_hunter_uses_permit_allotment_fallback_for_current_quota() -> None:
+    truth_rows = [
+        {
+            "hunt_code": "DB1770",
+            "hunt_name": "Box Elder",
+            "species": "Deer",
+            "sex_type": "Buck",
+            "hunt_type": "General Season",
+            "hunt_class": "Dedicated Hunter",
+            "weapon": "Dedicated Hunter",
+            "year": year,
+            "draw_pool": "dedicated_hunter",
+            "residency": "Resident",
+            "points": "0",
+            "eligible_applicants": "10",
+            "total_permits": "5",
+        }
+        for year in ("2024", "2025")
+    ]
+    db_rows = [
+        {
+            "hunt_code": "DB1770",
+            "hunt_name": "Box Elder",
+            "species": "Deer",
+            "sex_type": "Buck",
+            "hunt_type": "General Season",
+            "hunt_class": "Dedicated Hunter",
+            "weapon": "Dedicated Hunter",
+            "draw_pool": "dedicated_hunter",
+            "permits_2026_total": "",
+            "permit_allotment_2026_total": "12",
+        }
+    ]
+
+    rows = build_preference_dedicated_hunter_predictions(
+        truth_rows=truth_rows,
+        db_rows=db_rows,
+        forecast_year=2026,
+        history_years=[2024, 2025],
+    )
+
+    assert rows
+    assert {str(row["public_permits_2026"]) for row in rows} == {"12"}

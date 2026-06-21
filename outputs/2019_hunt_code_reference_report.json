@@ -1,0 +1,76 @@
+{
+  "status": "PASS",
+  "source_csv": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2019_for_2020_canonical_yearly_draw_results.csv",
+  "output_xlsx": "outputs\\2019_hunt_code_reference.xlsx",
+  "row_count": 1054,
+  "unique_hunt_codes": 1054,
+  "formula_error_scan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+  "cleanup_rules": [
+    "Strip obvious leading program/species labels from hunt_name when they are glued into the PDF-extracted text.",
+    "Strip trailing weapon suffixes like Any Legal Weapon, Archery, Muzzleloader, Rifle, and Shotgun.",
+    "Remove common OCR spacing artifacts in names like An y and Henr y.",
+    "Preserve the source canonical CSV unchanged."
+  ],
+  "sample_transformations": [
+    {
+      "hunt_code": "BI6501",
+      "before": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "after": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6507",
+      "before": "Bison - Book Cliffs, Wild Horse Bench/nine Mile, Anthro - Any Legal Weapon",
+      "after": "Book Cliffs, Wild Horse Bench/nine Mile, Anthro"
+    },
+    {
+      "hunt_code": "BI6508",
+      "before": "Bison - Book Cliffs (cow Only) - Any Legal Weapon",
+      "after": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6515",
+      "before": "Henry Mtns (cow Only)",
+      "after": "Henry Mtns"
+    },
+    {
+      "hunt_code": "BI6517",
+      "before": "Book Cliffs (hunter's Choice)",
+      "after": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6518",
+      "before": "Bison - Book Cliffs (hunter's Choice) - Any Legal Weapon",
+      "after": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6519",
+      "before": "Book Cliffs, Little Creek Roadless (hunter's Choice)",
+      "after": "Book Cliffs, Little Creek Roadless"
+    },
+    {
+      "hunt_code": "BI6520",
+      "before": "Book Cliffs (cow Only)",
+      "after": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BR7000",
+      "before": "Beaver - Any Legal Weapon",
+      "after": "Beaver"
+    },
+    {
+      "hunt_code": "BR7001",
+      "before": "Book Cliffs, Bitter Creek/south - Any Legal Weapon",
+      "after": "Book Cliffs, Bitter Creek/south"
+    },
+    {
+      "hunt_code": "BR7003",
+      "before": "Central Mtns, Manti-north - Any Legal Weapon",
+      "after": "Central Mtns, Manti-north"
+    },
+    {
+      "hunt_code": "BR7004",
+      "before": "Central Mtns, Manti-south/san Rafael,north - Any Legal Weapon",
+      "after": "Central Mtns, Manti-south/san Rafael, north"
+    }
+  ]
+}

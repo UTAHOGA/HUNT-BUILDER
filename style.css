@@ -632,8 +632,18 @@
     .hunt-card.is-selected .hunt-card-code { color: var(--selected-text); }
     .hunt-card-title { font-weight: 800; line-height: 1.25; font-size: 15px; color: var(--text); }
     .hunt-card-meta, .map-chooser-meta { font-size: 13px; color: var(--muted); line-height: 1.4; }
-    .hunt-card-head { display:grid; grid-template-columns: 40px minmax(0, 1fr); gap:10px; align-items:start; }
-    .hunt-card-logo { width: 40px; height: 40px; border-radius: 10px; object-fit: contain; background: #fff; padding: 4px; border: 1px solid rgba(201, 162, 127, 0.55); box-shadow: 0 5px 12px rgba(0,0,0,0.16); }
+    .hunt-card-head { display:grid; grid-template-columns: 48px minmax(0, 1fr); gap:12px; align-items:center; }
+    .hunt-card-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      object-fit: contain;
+      background: transparent;
+      padding: 0;
+      border: 0;
+      box-shadow: none;
+      display: block;
+    }
     .hunt-card-code { font-size: 12px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
     .hunt-card-actions { margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; }
     .hunt-research-ring { border: 2px solid rgba(255, 126, 40, 0.9) !important; box-shadow: 0 0 0 2px rgba(255, 126, 40, 0.18), 0 8px 18px rgba(0,0,0,0.18); }
@@ -643,6 +653,17 @@
       font-weight: 900;
       letter-spacing: .01em;
       padding-inline: 16px !important;
+    }
+    .map-chooser-logo {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: transparent;
+      padding: 0;
+      border: 0;
+      box-shadow: none;
+      display: block;
     }
 
     .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 14px; }
@@ -842,7 +863,17 @@
     .selected-unit-placard-close { width: 34px; height: 34px; padding: 0; border-radius: 999px; border: 1px solid rgba(255,255,255,0.34); background: rgba(36, 22, 13, 0.24); color: #fff9f3; box-shadow: none; font-size: 18px; line-height: 1; }
     .selected-unit-placard-body { display:grid; gap:12px; padding:14px; }
     .selected-unit-placard-top { display:grid; grid-template-columns: 52px minmax(0,1fr); gap:12px; align-items:start; }
-    .selected-unit-placard-logo { width: 52px; height: 52px; border-radius: 12px; object-fit: contain; background: #fff; padding: 5px; border: 1px solid rgba(255, 214, 185, 0.5); box-shadow: 0 6px 16px rgba(0,0,0,0.24); }
+    .selected-unit-placard-logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      object-fit: contain;
+      background: transparent;
+      padding: 0;
+      border: 0;
+      box-shadow: none;
+      display: block;
+    }
     .selected-unit-placard-code { font-size: 12px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; color: #ffc99b; }
     .selected-unit-placard-name { margin: 4px 0 0; font-size: 22px; font-weight: 900; line-height: 1.02; color: #fff9f3; }
     .selected-unit-placard-sub { margin: 6px 0 0; font-size: 13px; line-height: 1.4; color: #e0c4ad; }
@@ -1352,6 +1383,35 @@
       }
       .map-chooser-head button {
         width: 100%;
+      }
+      .map-chooser-logo {
+        width: 60px;
+        height: 60px;
+      }
+      .hunt-card {
+        padding: 14px;
+      }
+      .hunt-card-head {
+        grid-template-columns: 60px minmax(0, 1fr);
+        gap: 14px;
+      }
+      .hunt-card-logo {
+        width: 60px;
+        height: 60px;
+      }
+      .hunt-card-title {
+        font-size: 16px;
+      }
+      .hunt-card-meta {
+        font-size: 12px;
+      }
+      .selected-unit-placard-top {
+        grid-template-columns: 60px minmax(0, 1fr);
+        gap: 14px;
+      }
+      .selected-unit-placard-logo {
+        width: 60px;
+        height: 60px;
       }
     }
 

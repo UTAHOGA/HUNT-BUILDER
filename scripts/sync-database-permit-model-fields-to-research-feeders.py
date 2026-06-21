@@ -78,6 +78,14 @@ def clean(value: Any) -> str:
     return re.sub(r"\s+", " ", str(value or "").strip())
 
 
+def first_nonempty(*values: Any) -> str:
+    for value in values:
+        text = clean(value)
+        if text:
+            return text
+    return ""
+
+
 def normalize_number(value: Any) -> str:
     text = clean(value).replace(",", "")
     if text == "":
@@ -142,9 +150,9 @@ def load_database() -> dict[str, dict[str, str]]:
 
 def public_permit_for(row: dict[str, str], db_row: dict[str, str]) -> str:
     residency = clean(row.get("residency")).lower()
-    res = db_row.get("permit_allotment_2026_res", "")
-    nr = db_row.get("permit_allotment_2026_nr", "")
-    total = db_row.get("permit_allotment_2026_total", "")
+    res = first_nonempty(db_row.get("permit_allotment_2026_res", ""), db_row.get("permits_2026_res", ""))
+    nr = first_nonempty(db_row.get("permit_allotment_2026_nr", ""), db_row.get("permits_2026_nr", ""))
+    total = first_nonempty(db_row.get("permit_allotment_2026_total", ""), db_row.get("permits_2026_total", ""))
     if residency.startswith("non"):
         return nr or total
     if residency.startswith("res"):

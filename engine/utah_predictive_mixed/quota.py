@@ -5,21 +5,31 @@ import math
 from engine.utah_predictive_mixed.prior_year import clamp, to_float
 
 
+def _first_float(*values: object) -> float | None:
+    for value in values:
+        parsed = to_float(value)
+        if parsed is not None:
+            return parsed
+    return None
+
+
 def quota_for_row(row: dict[str, str]) -> tuple[dict[str, str], list[str]]:
     reasons = ["OFFICIAL_2026_QUOTA_USED"]
     residency = row.get("residency", "")
     if residency == "Resident":
-        quota = to_float(row.get("permit_allotment_2026_res")) or to_float(row.get("quota_2026_total"))
+        quota = _first_float(row.get("permit_allotment_2026_res"), row.get("quota_2026_total"))
     elif residency == "Nonresident":
-        quota = to_float(row.get("permit_allotment_2026_nr")) or to_float(row.get("quota_2026_total"))
+        quota = _first_float(row.get("permit_allotment_2026_nr"), row.get("quota_2026_total"))
     else:
-        quota = to_float(row.get("permit_allotment_2026_total")) or to_float(row.get("quota_2026_total"))
-    total = to_float(row.get("quota_2026_total")) or quota or to_float(row.get("permit_allotment_2026_total"))
+        quota = _first_float(row.get("permit_allotment_2026_total"), row.get("quota_2026_total"))
+    total = quota if quota is not None else _first_float(row.get("quota_2026_total"), row.get("permit_allotment_2026_total"))
     max_pool = to_float(row.get("quota_2026_max_pool"))
     random_pool = to_float(row.get("quota_2026_random_pool"))
     if quota is not None and max_pool is None:
         max_pool = math.ceil(quota * 0.50)
         random_pool = quota - max_pool
+    if quota is not None and quota <= 0:
+        reasons.append("ZERO_QUOTA_NONPREDICTIVE")
     if quota is None and total is not None and not row.get("permit_allotment_2026_res") and not row.get("permit_allotment_2026_nr"):
         reasons.append("TOTAL_ONLY_QUOTA")
     return {
@@ -38,11 +48,13 @@ def quota_adjusted_probability(
     reasons: list[str] = []
     prior = to_float(prior_public_permits)
     current = to_float(current_public_quota)
-    if prior in (None, 0) or current is None:
+    if prior in (None, 0) or current is None or current <= 0:
         ratio = 1.0
         reasons.append("QUOTA_RATIO_DEFAULTED")
     else:
         ratio = current / prior
+    if current is not None and current <= 0:
+        reasons.append("ZERO_QUOTA_NONPREDICTIVE")
     capped = min(2.0, max(0.25, ratio))
     if capped != ratio and ratio < 0.25:
         reasons.append("QUOTA_RATIO_CAPPED_LOW")

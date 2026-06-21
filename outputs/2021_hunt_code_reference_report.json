@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "source_csv": "data_truth\\draw_results_truth\\rebuilt_clean\\2021_PERMITS=2022_MODEL\\draw_results_2021_for_2022_CLEAN_PARENT_PDF_HUNT_TOTALS.csv",
+  "output_xlsx": "outputs\\2021 PERMITS.xlsx",
+  "row_count": 1002,
+  "unique_hunt_codes": 1002,
+  "formula_error_scan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}",
+  "source_permit_field": "permits_total",
+  "sample_transformations": [
+    {
+      "hunt_code": "BI6504",
+      "before": "Bison (hunter’s Choice) - Henry Mtns (hunter's Choice) - Any Legal Weapon",
+      "after": "Henry Mtns"
+    },
+    {
+      "hunt_code": "BI6505",
+      "before": "Bison (cow Only) - Henry Mtns (cow Only) - Any Legal Weapon",
+      "after": "Henry Mtns"
+    },
+    {
+      "hunt_code": "BI6506",
+      "before": "Bison (cow Only) - Henry Mtns (cow Only) - Any Legal Weapon",
+      "after": "Henry Mtns"
+    },
+    {
+      "hunt_code": "BI6509",
+      "before": "Bison Archery (hunter’s Choice) - Henry Mtns (hunter's Choice) - Archery",
+      "after": "Henry Mtns"
+    },
+    {
+      "hunt_code": "BI6516",
+      "before": "Bison (hunter’s Choice) - Henry Mtns (hunter's Choice) - Any Legal Weapon",
+      "after": "Henry Mtns"
+    },
+    {
+      "hunt_code": "BI6519",
+      "before": "Bison (hunter’s Choice) - Book Cliffs, Little Creek Roadless (hunter's Choice) - Any Legal Weapon",
+      "after": "Book Cliffs, Little Creek Roadless"
+    },
+    {
+      "hunt_code": "BI6520",
+      "before": "Bison (cow Only) - Book Cliffs (cow Only) - Any Legal Weapon",
+      "after": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6521",
+      "before": "Bison Archery (hunter’s Choice) - Book Cliffs (hunter's Choice) - Archery",
+      "after": "Book Cliffs"
+    },
+    {
+      "hunt_code": "BI6523",
+      "before": "Bison (hunter’s Choice) - Book Cliffs, Bitter Creek/south (hunter's Choice) - Any Legal Weapon",
+      "after": "Book Cliffs, Bitter Creek/south"
+    },
+    {
+      "hunt_code": "BI6524",
+      "before": "Bison (cow Only) - Book Cliffs, Little Creek Roadless (cow Only) - Any Legal Weapon",
+      "after": "Book Cliffs, Little Creek Roadless"
+    },
+    {
+      "hunt_code": "BI6526",
+      "before": "Bison (hunter’s Choice) - Book Cliffs, Wild Horse Bench (hunter's Choice) - Closed - Any Legal Weapon",
+      "after": "Book Cliffs, Wild Horse Bench (hunter's Choice) - Closed"
+    },
+    {
+      "hunt_code": "BR7000",
+      "before": "Beaver - Any Legal Weapon",
+      "after": "Beaver"
+    }
+  ]
+}

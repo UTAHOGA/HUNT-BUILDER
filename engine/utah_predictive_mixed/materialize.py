@@ -159,10 +159,16 @@ def mixed_row(row: dict[str, str], prior: dict[str, str] | None, harvest: dict[s
     prior_row = prior or row
     p_prior, prior_fields, prior_reasons = prior_year_baseline(prior_row)
     quota_fields, quota_reasons = quota_for_row(row)
+    zero_quota = to_float(quota_fields.get("quota_2026_total")) is not None and to_float(quota_fields.get("quota_2026_total")) <= 0
+    if zero_quota:
+        quota_reasons.append("ZERO_QUOTA_NO_PREDICTION")
+    current_quota = quota_fields.get("quota_2026_total")
+    if str(current_quota).strip() == "":
+        current_quota = row.get("public_permits_2026")
     p_quota, _, quota_adjust_reasons = quota_adjusted_probability(
         p_prior,
         row.get("public_permits_2025") or prior_fields.get("prior_year_total_permits"),
-        quota_fields.get("quota_2026_total") or row.get("public_permits_2026"),
+        current_quota,
     )
     p_rollover, rollover_reasons = rollover_probability_from_pools(
         row.get("p_max_pool_mean"), row.get("p_random_mean"), row.get("p_preference_draw")
@@ -170,7 +176,10 @@ def mixed_row(row: dict[str, str], prior: dict[str, str] | None, harvest: dict[s
     if status == "MODELED_SPORTSMAN_DRAW":
         p_rollover = to_float(row.get("p_sportsman_draw") or row.get("p_draw") or row.get("p_draw_mean"))
     p_harvest, harvest_reasons = harvest_adjusted_probability(p_rollover, harvest or {})
-    if not is_draw_modeled:
+    if zero_quota:
+        p_prior = p_quota = p_rollover = p_harvest = None
+        reasons.append("ZERO_QUOTA_NO_PREDICTION")
+    elif not is_draw_modeled:
         p_prior = p_quota = p_rollover = p_harvest = None
         reasons.append(f"{status}_NO_PUBLIC_DRAW_ODDS")
     p_draw, blend_reasons = blend_probability(p_prior, p_quota, p_rollover, p_harvest, weights)

@@ -50,6 +50,15 @@ def write_csv(path: Path, rows: list[dict[str, object]], fieldnames: list[str]) 
         writer.writerows(rows)
 
 
+def first_nonempty(*values: object) -> object:
+    for value in values:
+        if value is None:
+            continue
+        if str(value).strip():
+            return value
+    return ""
+
+
 def build_truth_indexes(
     truth_rows: list[dict[str, str]],
 ) -> tuple[
@@ -163,11 +172,14 @@ def materialize_prediction_rows(
 
         prior = permits.get((prior_year_text, hunt_code, residency), {"public": 0, "bonus": 0, "regular": 0})
         forecast = permits.get((forecast_year_text, hunt_code, residency))
-        row_quota_total = to_int(row.get("quota_2026_total")) or to_int(row.get("public_permits_2026"))
-        public_permits_2026 = row_quota_total or (forecast["public"] if forecast and forecast["public"] > 0 else prior["public"])
+        row_quota_text = first_nonempty(row.get("quota_2026_total"), row.get("public_permits_2026"))
+        row_quota_total = to_int(row_quota_text) if row_quota_text != "" else None
+        public_permits_2026 = row_quota_total if row_quota_total is not None else (forecast["public"] if forecast and forecast["public"] > 0 else prior["public"])
         split = split_utah_bonus_permits(public_permits_2026)
-        max_point_permits_2026 = to_int(row.get("quota_2026_max_pool")) or split.maxPointPermits
-        random_permits_2026 = to_int(row.get("quota_2026_random_pool")) or split.randomPermits
+        max_pool_text = first_nonempty(row.get("quota_2026_max_pool"))
+        random_pool_text = first_nonempty(row.get("quota_2026_random_pool"))
+        max_point_permits_2026 = to_int(max_pool_text) if max_pool_text != "" else split.maxPointPermits
+        random_permits_2026 = to_int(random_pool_text) if random_pool_text != "" else split.randomPermits
         if forecast and (forecast["bonus"] > 0 or forecast["regular"] > 0):
             max_point_permits_2026 = forecast["bonus"]
             random_permits_2026 = forecast["regular"]

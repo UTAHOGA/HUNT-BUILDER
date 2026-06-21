@@ -5,6 +5,7 @@ from __future__ import annotations
 from collections import defaultdict
 from statistics import mean
 from typing import Iterable, Mapping
+import re
 
 from engine.utah_bonus_predictive.rules import MODEL_VERSION
 
@@ -12,7 +13,10 @@ from . import ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING, ALGORITHM_STATUS_MODELED_
 
 
 MODEL_STRATEGY_NAME = "preference_dedicated_hunter_deer"
+YOUTH_MODEL_STRATEGY_NAME = "preference_youth_dedicated_hunter_deer"
 PREFERENCE_RULE_VERSION = "utah_preference_dedicated_hunter_deer_v1.0.0"
+DEDICATED_HUNTER_POOL = "dedicated_hunter"
+YOUTH_DEDICATED_HUNTER_POOL = "youth_dedicated_hunter"
 
 
 STRATEGY_SPECS = [
@@ -36,6 +40,29 @@ def _clean_lower(value: object) -> str:
     return _clean(value).lower()
 
 
+def _joined_text(row: Mapping[str, object]) -> str:
+    return " ".join(
+        _clean_lower(row.get(key))
+        for key in (
+            "hunt_code",
+            "hunt_name",
+            "species",
+            "sex_type",
+            "hunt_type",
+            "hunt_class",
+            "weapon",
+            "draw_pool",
+            "source_file",
+            "source_scope",
+            "source_report_family",
+        )
+    )
+
+
+def _normalized_text(row: Mapping[str, object]) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", _joined_text(row)).strip()
+
+
 def _to_int(value: object) -> int:
     text = _clean(value)
     if not text:
@@ -48,6 +75,20 @@ def _to_int(value: object) -> int:
 
 def _round_count(value: float) -> int:
     return max(0, int(round(value)))
+
+
+def _forecast_total_permits(row: Mapping[str, object]) -> int:
+    for key in (
+        "permits_2026_total",
+        "public_permits_2026",
+        "permit_allotment_2026_total",
+        "quota_2026_total",
+        "permits_allotted",
+    ):
+        value = _to_int(row.get(key))
+        if value > 0:
+            return value
+    return 0
 
 
 def _band_for_points(points: int) -> str:
@@ -64,16 +105,23 @@ def _band_for_points(points: int) -> str:
     return "10_plus"
 
 
-def _looks_like_dedicated_hunter_deer(row: Mapping[str, object]) -> bool:
-    text = " ".join(
-        _clean_lower(row.get(key))
-        for key in ("hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "draw_pool")
+def _is_youth_dedicated_hunter(row: Mapping[str, object]) -> bool:
+    text = _normalized_text(row)
+    return (
+        _clean_lower(row.get("draw_pool")) == YOUTH_DEDICATED_HUNTER_POOL
+        or ("youth" in text and any(token in text for token in ("dedicated hunter", "d h deer", "dh deer")))
     )
+
+
+def _dedicated_hunter_lane(row: Mapping[str, object]) -> str:
+    return YOUTH_DEDICATED_HUNTER_POOL if _is_youth_dedicated_hunter(row) else DEDICATED_HUNTER_POOL
+
+
+def _looks_like_dedicated_hunter_deer(row: Mapping[str, object]) -> bool:
+    text = _normalized_text(row)
     if "deer" not in text or "buck" not in text:
         return False
-    if "dedicated hunter" not in text:
-        return False
-    if "youth" in text:
+    if not any(token in text for token in ("dedicated hunter", "d h deer", "dh deer")):
         return False
     return True
 
@@ -82,14 +130,18 @@ def _is_supported_pool(row: Mapping[str, object]) -> bool:
     draw_pool = _clean_lower(row.get("draw_pool"))
     hunt_class = _clean_lower(row.get("hunt_class"))
     weapon = _clean_lower(row.get("weapon"))
-    if draw_pool in {"dedicated_hunter", "standard", ""} and weapon == "dedicated hunter":
+    text = _normalized_text(row)
+    if draw_pool in {DEDICATED_HUNTER_POOL, YOUTH_DEDICATED_HUNTER_POOL, "standard", ""} and weapon == "dedicated hunter":
         return True
-    return draw_pool == "dedicated_hunter" or hunt_class == "dedicated hunter"
+    return draw_pool in {DEDICATED_HUNTER_POOL, YOUTH_DEDICATED_HUNTER_POOL} or hunt_class in {
+        "dedicated hunter",
+        "youth dedicated hunter",
+    } or any(token in text for token in ("dedicated hunter deer", "d h deer", "dh deer"))
 
 
 def is_modeled_dedicated_hunter_row(row: Mapping[str, object]) -> bool:
     return (
-        _clean_lower(row.get("model_strategy")) == MODEL_STRATEGY_NAME
+        _clean_lower(row.get("model_strategy")) in {MODEL_STRATEGY_NAME, YOUTH_MODEL_STRATEGY_NAME}
         and _clean_lower(row.get("preference_model_valid")) in {"1", "true", "yes", "y"}
     )
 
@@ -98,13 +150,13 @@ def _build_truth_ladders(
     truth_rows: Iterable[Mapping[str, object]],
     history_years: set[int],
 ) -> tuple[
-    dict[tuple[int, str, str], dict[int, dict[str, int]]],
-    dict[str, dict[str, str]],
-    dict[tuple[str, int], dict[str, int]],
+    dict[tuple[str, int, str, str], dict[int, dict[str, int]]],
+    dict[tuple[str, str], dict[str, str]],
+    dict[tuple[str, str, int], dict[str, int]],
 ]:
-    ladders: dict[tuple[int, str, str], dict[int, dict[str, int]]] = defaultdict(lambda: defaultdict(lambda: {"eligible": 0, "drawn": 0}))
-    meta: dict[str, dict[str, str]] = {}
-    total_drawn_by_code_year: dict[tuple[str, int], dict[str, int]] = defaultdict(lambda: defaultdict(int))
+    ladders: dict[tuple[str, int, str, str], dict[int, dict[str, int]]] = defaultdict(lambda: defaultdict(lambda: {"eligible": 0, "drawn": 0}))
+    meta: dict[tuple[str, str], dict[str, str]] = {}
+    total_drawn_by_code_year: dict[tuple[str, str, int], dict[str, int]] = defaultdict(lambda: defaultdict(int))
 
     for row in truth_rows:
         year = _to_int(row.get("year"))
@@ -122,12 +174,14 @@ def _build_truth_ladders(
         if not hunt_code:
             continue
 
-        ladders[(year, hunt_code, residency)][points]["eligible"] += eligible
-        ladders[(year, hunt_code, residency)][points]["drawn"] += drawn
-        total_drawn_by_code_year[(hunt_code, year)][residency] += drawn
+        lane = _dedicated_hunter_lane(row)
+        ladders[(lane, year, hunt_code, residency)][points]["eligible"] += eligible
+        ladders[(lane, year, hunt_code, residency)][points]["drawn"] += drawn
+        total_drawn_by_code_year[(lane, hunt_code, year)][residency] += drawn
 
-        if hunt_code not in meta:
-            meta[hunt_code] = {
+        meta_key = (lane, hunt_code)
+        if meta_key not in meta:
+            meta[meta_key] = {
                 "hunt_name": _clean(row.get("hunt_name")),
                 "species": _clean(row.get("species")),
                 "hunt_type": _clean(row.get("hunt_type")) or "General Season",
@@ -138,21 +192,21 @@ def _build_truth_ladders(
 
 
 def _build_retention_and_zero_growth(
-    ladders: Mapping[tuple[int, str, str], dict[int, dict[str, int]]],
+    ladders: Mapping[tuple[str, int, str, str], dict[int, dict[str, int]]],
 ) -> tuple[dict[str, float], float]:
     retention_samples: dict[str, list[float]] = defaultdict(list)
     zero_growth_samples: list[float] = []
-    keys_by_code_res: dict[tuple[str, str], list[int]] = defaultdict(list)
-    for year, hunt_code, residency in ladders:
-        keys_by_code_res[(hunt_code, residency)].append(year)
+    keys_by_lane_code_res: dict[tuple[str, str, str], list[int]] = defaultdict(list)
+    for lane, year, hunt_code, residency in ladders:
+        keys_by_lane_code_res[(lane, hunt_code, residency)].append(year)
 
-    for (hunt_code, residency), years in keys_by_code_res.items():
+    for (lane, hunt_code, residency), years in keys_by_lane_code_res.items():
         for prior_year in sorted(years):
             next_year = prior_year + 1
             if next_year not in years:
                 continue
-            prior = ladders[(prior_year, hunt_code, residency)]
-            nxt = ladders[(next_year, hunt_code, residency)]
+            prior = ladders[(lane, prior_year, hunt_code, residency)]
+            nxt = ladders[(lane, next_year, hunt_code, residency)]
             prior_zero = prior.get(0, {}).get("eligible", 0)
             next_zero = nxt.get(0, {}).get("eligible", 0)
             if prior_zero > 0:
@@ -242,13 +296,14 @@ def _status(probability: float) -> str:
 
 
 def _forecast_quota_for_residency(
+    lane: str,
     hunt_code: str,
     residency: str,
     forecast_total: int,
     latest_year: int,
-    total_drawn_by_code_year: Mapping[tuple[str, int], dict[str, int]],
+    total_drawn_by_code_year: Mapping[tuple[str, str, int], dict[str, int]],
 ) -> int:
-    observed = total_drawn_by_code_year.get((hunt_code, latest_year), {})
+    observed = total_drawn_by_code_year.get((lane, hunt_code, latest_year), {})
     res_total = sum(int(value) for value in observed.values())
     if forecast_total <= 0:
         return 0
@@ -302,30 +357,34 @@ def build_preference_dedicated_hunter_predictions(
         if _looks_like_dedicated_hunter_deer(row)
         and _clean(row.get("hunt_code"))
     ]
-    current_codes = {_clean(row.get("hunt_code")).upper(): row for row in current_dedicated_rows}
+    current_codes = {(_dedicated_hunter_lane(row), _clean(row.get("hunt_code")).upper()): row for row in current_dedicated_rows}
 
-    years_by_key: dict[tuple[str, str], list[int]] = defaultdict(list)
-    for year, hunt_code, residency in ladders:
-        years_by_key[(hunt_code, residency)].append(year)
+    years_by_key: dict[tuple[str, str, str], list[int]] = defaultdict(list)
+    for lane, year, hunt_code, residency in ladders:
+        years_by_key[(lane, hunt_code, residency)].append(year)
 
-    for hunt_code, db_row in sorted(current_codes.items()):
-        forecast_total = _to_int(db_row.get("permits_2026_total"))
+    for (lane, hunt_code), db_row in sorted(current_codes.items()):
+        forecast_total = _forecast_total_permits(db_row)
         if forecast_total <= 0:
             continue
 
-        hunt_name = _clean(db_row.get("hunt_name")) or truth_meta.get(hunt_code, {}).get("hunt_name", "")
-        species = _clean(db_row.get("species")) or truth_meta.get(hunt_code, {}).get("species", "Deer")
-        hunt_type = _clean(db_row.get("hunt_type")) or truth_meta.get(hunt_code, {}).get("hunt_type", "General Season")
-        weapon = _clean(db_row.get("weapon")) or truth_meta.get(hunt_code, {}).get("weapon", "Dedicated Hunter")
+        meta = truth_meta.get((lane, hunt_code), {})
+        hunt_name = _clean(db_row.get("hunt_name")) or meta.get("hunt_name", "")
+        species = _clean(db_row.get("species")) or meta.get("species", "Deer")
+        hunt_type = _clean(db_row.get("hunt_type")) or meta.get("hunt_type", "General Season")
+        weapon = _clean(db_row.get("weapon")) or meta.get("weapon", "Dedicated Hunter")
+        is_youth_lane = lane == YOUTH_DEDICATED_HUNTER_POOL
+        model_strategy = YOUTH_MODEL_STRATEGY_NAME if is_youth_lane else MODEL_STRATEGY_NAME
+        hunt_class = "Youth Dedicated Hunter" if is_youth_lane else "Dedicated Hunter"
 
         for residency in ("Resident", "Nonresident"):
-            available_years = sorted(year for year in set(years_by_key.get((hunt_code, residency), [])) if year in history_year_set)
+            available_years = sorted(year for year in set(years_by_key.get((lane, hunt_code, residency), [])) if year in history_year_set)
             if latest_source_year not in available_years or len(available_years) < 2:
                 continue
 
-            latest_ladder = ladders[(latest_source_year, hunt_code, residency)]
+            latest_ladder = ladders[(lane, latest_source_year, hunt_code, residency)]
             prior_total = sum(int(values["drawn"]) for values in latest_ladder.values())
-            forecast_quota = _forecast_quota_for_residency(hunt_code, residency, forecast_total, latest_source_year, total_drawn_by_code_year)
+            forecast_quota = _forecast_quota_for_residency(lane, hunt_code, residency, forecast_total, latest_source_year, total_drawn_by_code_year)
             if forecast_quota <= 0:
                 continue
 
@@ -358,10 +417,10 @@ def build_preference_dedicated_hunter_predictions(
                         "species": species,
                         "sex_type": "Buck",
                         "hunt_type": hunt_type,
-                        "hunt_class": "Dedicated Hunter",
+                        "hunt_class": hunt_class,
                         "residency": residency,
                         "points": str(points),
-                        "draw_pool": "dedicated_hunter",
+                        "draw_pool": lane,
                         "public_permits_2025": prior_total,
                         "public_permits_2026": forecast_quota,
                         "max_point_permits_2025": "",
@@ -390,9 +449,13 @@ def build_preference_dedicated_hunter_predictions(
                         "latest_source_year": latest_source_year,
                         "earliest_source_year": min(available_years),
                         "source_dataset": "predictive",
-                        "model_strategy": MODEL_STRATEGY_NAME,
+                        "model_strategy": model_strategy,
                         "preference_model_valid": "TRUE",
-                        "preference_model_note": f"Forecasted from {latest_source_year} dedicated hunter ladder with residency quota split and preference carry-forward.",
+                        "preference_model_note": (
+                            f"Forecasted from {latest_source_year} {hunt_class.lower()} ladder with residency quota split and preference carry-forward."
+                            if not is_youth_lane
+                            else f"Forecasted from {latest_source_year} youth dedicated hunter ladder as a separate preference lane; no 20 percent youth-reserve rule applied."
+                        ),
                         "weapon": weapon,
                         "draw_system_type": "PREFERENCE_DEDICATED_HUNTER_DEER",
                     }

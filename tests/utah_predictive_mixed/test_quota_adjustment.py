@@ -33,3 +33,24 @@ def test_quota_adjustment_caps_and_codes() -> None:
     assert p == 1.0
     assert ratio == 2.0
     assert "QUOTA_RATIO_CAPPED_HIGH" in reasons
+
+
+def test_zero_quota_is_preserved_as_nonpredictive() -> None:
+    row = {
+        "residency": "Nonresident",
+        "permit_allotment_2026_nr": "0",
+        "permit_allotment_2026_total": "14",
+    }
+    quota, reasons = quota_for_row(row)
+    assert quota["quota_2026_total"] == "0"
+    assert quota["quota_2026_max_pool"] == "0"
+    assert quota["quota_2026_random_pool"] == "0"
+    assert "ZERO_QUOTA_NONPREDICTIVE" in reasons
+
+
+def test_zero_current_quota_defaults_probability_ratio() -> None:
+    p, ratio, reasons = quota_adjusted_probability(0.5, 10, 0)
+    assert p == 0.5
+    assert ratio == 1.0
+    assert "QUOTA_RATIO_DEFAULTED" in reasons
+    assert "ZERO_QUOTA_NONPREDICTIVE" in reasons

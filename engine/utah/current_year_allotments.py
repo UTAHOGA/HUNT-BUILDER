@@ -72,6 +72,14 @@ def to_int(value: object) -> int:
     return int(text) if text else 0
 
 
+def first_nonempty(*values: object) -> str:
+    for value in values:
+        text = clean(value)
+        if text:
+            return text
+    return ""
+
+
 def _row_total(row: Mapping[str, str]) -> str:
     total = to_int_text(row.get("permits_2026_total"))
     if total:
@@ -171,7 +179,7 @@ def current_year_quota_for_residency(row: Mapping[str, str], residency: str) -> 
         return to_int(row.get("permit_allotment_2026_total"))
 
     if residency_text.startswith("non"):
-        return to_int(row.get("permit_allotment_2026_nr") or row.get("permits_2026_nr"))
+        return to_int(first_nonempty(row.get("permit_allotment_2026_nr"), row.get("permits_2026_nr")))
     if residency_text.startswith("res"):
-        return to_int(row.get("permit_allotment_2026_res") or row.get("permits_2026_res"))
-    return to_int(row.get("permit_allotment_2026_total") or row.get("permits_2026_total"))
+        return to_int(first_nonempty(row.get("permit_allotment_2026_res"), row.get("permits_2026_res")))
+    return to_int(first_nonempty(row.get("permit_allotment_2026_total"), row.get("permits_2026_total")))

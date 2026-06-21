@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "generated_at_utc": "2026-06-21T02:17:09.677Z",
+  "output_dir": "outputs",
+  "preview_dir": "outputs/draw_results_standardized_preview",
+  "workbooks": [
+    {
+      "kind": "comparison_summary",
+      "output_xlsx": "outputs/draw_results_standardized_comparison_summary.xlsx",
+      "years": [
+        2019,
+        2020,
+        2021
+      ],
+      "sheets": [
+        "2019 Summary",
+        "2020 Summary",
+        "2021 Summary"
+      ]
+    },
+    {
+      "year": 2019,
+      "output_xlsx": "outputs/2019 standardized long.xlsx",
+      "summary_rows": 1054,
+      "point_rows": 63950,
+      "unique_summary_codes": 1054,
+      "unique_point_codes": 1043
+    },
+    {
+      "year": 2020,
+      "output_xlsx": "outputs/2020 standardized long.xlsx",
+      "summary_rows": 1028,
+      "point_rows": 63808,
+      "unique_summary_codes": 1028,
+      "unique_point_codes": 1017
+    },
+    {
+      "year": 2021,
+      "output_xlsx": "outputs/2021 standardized long.xlsx",
+      "summary_rows": 1002,
+      "point_rows": 64698,
+      "unique_summary_codes": 1002,
+      "unique_point_codes": 1011
+    }
+  ]
+}

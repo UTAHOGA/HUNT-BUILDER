@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-07T05:16:07.801Z",
+  "generated_at": "2026-06-19T03:20:42.827Z",
   "input_resolution": {
     "predictive": "processed_data/draw_reality_engine_predictive_v2.csv",
     "oddsHistory": "processed_data/draw_reality_engine_v2.csv",
@@ -8,12 +8,12 @@
     "huntUnitsLite": "data/hunt_boundaries.geojson"
   },
   "outputs": {
-    "hunt_predictions_rows": 26389,
+    "hunt_predictions_rows": 22813,
     "hunt_odds_history_rows": 176753,
     "hunt_application_outlook_rows": 2898,
     "outfitters_public_rows": 11,
     "hunt_units_features": 683,
-    "unique_prediction_hunts": 864,
+    "unique_prediction_hunts": 911,
     "unique_outlook_hunts": 1449,
     "prediction_source_mode": "runtime_csv",
     "odds_history_source_mode": "runtime_csv",
@@ -31,9 +31,9 @@
       "file_path": "processed_data/draw_reality_engine_predictive_v2.csv",
       "role": "source_runtime_for_hunt_predictions",
       "exists": true,
-      "size_bytes": 42944164,
-      "sha256": "2f0113d018d9c35700ff3ed4e51972cf4f16b07e7512476204c6903c392c5b35",
-      "row_count": 26389
+      "size_bytes": 22355072,
+      "sha256": "0d95490b91305f27a57e08ebbd265f67b7428e824a40a48ebdb1a3b20c99fae7",
+      "row_count": 22813
     },
     {
       "file_path": "processed_data/draw_reality_engine_v2.csv",
@@ -71,9 +71,9 @@
       "file_path": "processed_data/public_contracts/hunt_predictions.json",
       "role": "public_contract:hunt_predictions.json",
       "exists": true,
-      "size_bytes": 28443195,
-      "sha256": "b44ef03735442e26584f10f4f2f79c8262d9b56fc5e6dc248949544131d22f26",
-      "row_count": 26389
+      "size_bytes": 19935975,
+      "sha256": "87702739d4a47c81197a5267d1f0c55f0b9ce8a677fbb36343f2e805783ff489",
+      "row_count": 22813
     },
     {
       "file_path": "processed_data/public_contracts/hunt_odds_history.json",

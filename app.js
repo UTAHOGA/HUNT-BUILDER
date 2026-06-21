@@ -3774,7 +3774,7 @@ function buildPopupListForMatches(matches) {
   return `
     <div style="display:grid;gap:10px;min-width:320px;max-width:380px;">
       <div style="display:flex;align-items:center;gap:10px;">
-        <img src="${LOGO_DWR_SELECTOR}" alt="Utah DWR logo" style="width:48px;height:48px;object-fit:contain;border-radius:8px;background:#fff;padding:3px;border:1px solid #d6c1ae;">
+        <img src="${LOGO_DWR_SELECTOR}" alt="Utah DWR logo" class="map-chooser-logo">
         <div>
           <div style="font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:${DNR_ORANGE};">DWR Hunt Unit</div>
           <div style="font-size:15px;font-weight:900;color:#2b1c12;">Multiple Available Hunts</div>

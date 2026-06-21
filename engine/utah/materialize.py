@@ -98,6 +98,15 @@ def _legacy_projection(row: Mapping[str, object], key: str, fallback: float | No
     return fallback
 
 
+def _first_nonempty(*values: object) -> object:
+    for value in values:
+        if value is None:
+            continue
+        if str(value).strip():
+            return value
+    return ""
+
+
 def materialize_row(
     prediction: Mapping[str, object] | object,
     legacy_row: Mapping[str, object] | None = None,
@@ -148,12 +157,12 @@ def materialize_row(
         "quota_source_status": str(row.get("quota_source_status") or legacy_row.get("quota_source_status") or ""),
         "quota_source_year": row.get("quota_source_year") or legacy_row.get("quota_source_year") or "",
         "quota_source_file": row.get("quota_source_file") or legacy_row.get("quota_source_file") or "",
-        "quota_2026_total": row.get("quota_2026_total") or legacy_row.get("quota_2026_total") or "",
-        "quota_2026_max_pool": row.get("quota_2026_max_pool") or legacy_row.get("quota_2026_max_pool") or "",
-        "quota_2026_random_pool": row.get("quota_2026_random_pool") or legacy_row.get("quota_2026_random_pool") or "",
-        "permit_allotment_2026_res": row.get("permit_allotment_2026_res") or legacy_row.get("permit_allotment_2026_res") or "",
-        "permit_allotment_2026_nr": row.get("permit_allotment_2026_nr") or legacy_row.get("permit_allotment_2026_nr") or "",
-        "permit_allotment_2026_total": row.get("permit_allotment_2026_total") or legacy_row.get("permit_allotment_2026_total") or "",
+        "quota_2026_total": _first_nonempty(row.get("quota_2026_total"), legacy_row.get("quota_2026_total")),
+        "quota_2026_max_pool": _first_nonempty(row.get("quota_2026_max_pool"), legacy_row.get("quota_2026_max_pool")),
+        "quota_2026_random_pool": _first_nonempty(row.get("quota_2026_random_pool"), legacy_row.get("quota_2026_random_pool")),
+        "permit_allotment_2026_res": _first_nonempty(row.get("permit_allotment_2026_res"), legacy_row.get("permit_allotment_2026_res")),
+        "permit_allotment_2026_nr": _first_nonempty(row.get("permit_allotment_2026_nr"), legacy_row.get("permit_allotment_2026_nr")),
+        "permit_allotment_2026_total": _first_nonempty(row.get("permit_allotment_2026_total"), legacy_row.get("permit_allotment_2026_total")),
         "permit_allotment_2026_source": row.get("permit_allotment_2026_source") or legacy_row.get("permit_allotment_2026_source") or "",
         "permit_allotment_2026_source_file": row.get("permit_allotment_2026_source_file") or legacy_row.get("permit_allotment_2026_source_file") or "",
         "permit_allotment_2026_status": row.get("permit_allotment_2026_status") or legacy_row.get("permit_allotment_2026_status") or "",
