@@ -940,3 +940,5 @@ pages-dist/processed_data/**/*.json
 /processed_data/point_ladder_view.csv
 /processed_data/statewide_composite_boundaries_2026.geojson
 /processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson
+
+# Cloudflare R2 large-file offload - generated 2026-06-21 00:40:48

@@ -8,7 +8,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2021_long_hunt_names.20260620T214103Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2021_long_hunt_names.20260620T214103Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2021_long_hunt_names.20260620T214103Z.csv",
-        "uploaded_at":  "2026-06-20T20:47:53"
+        "uploaded_at":  "2026-06-21T00:30:36"
     },
     {
         "local_path":  "audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2019_long_hunt_names.20260620T205824Z.csv",
@@ -19,7 +19,7 @@
         "r2_key":  "hunt-builder/large-files/audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2019_long_hunt_names.20260620T205824Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2019_long_hunt_names.20260620T205824Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2019_long_hunt_names.20260620T205824Z.csv",
-        "uploaded_at":  "2026-06-20T20:48:03"
+        "uploaded_at":  "2026-06-21T00:30:47"
     },
     {
         "local_path":  "audits/truth_cross_year/final_yearly_canonical_audit/2020_for_2021/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2020_long_hunt_names.20260620T211551Z.csv",
@@ -30,7 +30,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2020_for_2021/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2020_long_hunt_names.20260620T211551Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2020_for_2021/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2020_long_hunt_names.20260620T211551Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2020_for_2021/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2020_long_hunt_names.20260620T211551Z.csv",
-        "uploaded_at":  "2026-06-20T20:48:13"
+        "uploaded_at":  "2026-06-21T00:30:57"
     },
     {
         "local_path":  "audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.append_2026_reconcil.20260619_032746.csv",
@@ -41,7 +41,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.append_2026_reconcil.20260619_032746.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.append_2026_reconcil.20260619_032746.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.append_2026_reconcil.20260619_032746.csv",
-        "uploaded_at":  "2026-06-20T20:48:23"
+        "uploaded_at":  "2026-06-21T00:31:07"
     },
     {
         "local_path":  "audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.append_2026_reconcil.20260619_032544.csv",
@@ -52,7 +52,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.append_2026_reconcil.20260619_032544.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.append_2026_reconcil.20260619_032544.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.append_2026_reconcil.20260619_032544.csv",
-        "uploaded_at":  "2026-06-20T20:48:33"
+        "uploaded_at":  "2026-06-21T00:31:16"
     },
     {
         "local_path":  "audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.backup_before_append_2026_reconciled_slice_20260619_032456.csv",
@@ -63,7 +63,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.backup_before_append_2026_reconciled_slice_20260619_032456.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.backup_before_append_2026_reconciled_slice_20260619_032456.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.backup_before_append_2026_reconciled_slice_20260619_032456.csv",
-        "uploaded_at":  "2026-06-20T20:48:43"
+        "uploaded_at":  "2026-06-21T00:31:27"
     },
     {
         "local_path":  "audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2019_long_hunt_names.20260620T205744Z.csv",
@@ -74,7 +74,7 @@
         "r2_key":  "hunt-builder/large-files/audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2019_long_hunt_names.20260620T205744Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2019_long_hunt_names.20260620T205744Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2019_long_hunt_names.20260620T205744Z.csv",
-        "uploaded_at":  "2026-06-20T20:48:54"
+        "uploaded_at":  "2026-06-21T00:31:37"
     },
     {
         "local_path":  "audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2021_long_hunt_names.20260620T232804Z.csv",
@@ -85,7 +85,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2021_long_hunt_names.20260620T232804Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2021_long_hunt_names.20260620T232804Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2021_long_hunt_names.20260620T232804Z.csv",
-        "uploaded_at":  "2026-06-20T20:49:04"
+        "uploaded_at":  "2026-06-21T00:31:48"
     },
     {
         "local_path":  "audits/truth_cross_year/final_yearly_canonical_audit/draw_results_long_rebuilt_from_canonical_yearly_DRYRUN.csv",
@@ -96,7 +96,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/draw_results_long_rebuilt_from_canonical_yearly_DRYRUN.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/draw_results_long_rebuilt_from_canonical_yearly_DRYRUN.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/draw_results_long_rebuilt_from_canonical_yearly_DRYRUN.csv",
-        "uploaded_at":  "2026-06-20T20:49:13"
+        "uploaded_at":  "2026-06-21T00:31:58"
     },
     {
         "local_path":  "audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2021_long_hunt_names.20260620T214309Z.csv",
@@ -107,7 +107,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2021_long_hunt_names.20260620T214309Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2021_long_hunt_names.20260620T214309Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2021_long_hunt_names.20260620T214309Z.csv",
-        "uploaded_at":  "2026-06-20T20:49:24"
+        "uploaded_at":  "2026-06-21T00:32:07"
     },
     {
         "local_path":  "audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2021_long_hunt_names.20260620T214219Z.csv",
@@ -118,7 +118,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2021_long_hunt_names.20260620T214219Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2021_long_hunt_names.20260620T214219Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/draw_results_long.before_promote_2021_long_hunt_names.20260620T214219Z.csv",
-        "uploaded_at":  "2026-06-20T20:49:34"
+        "uploaded_at":  "2026-06-21T00:32:16"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/draw_results_long.csv",
@@ -129,7 +129,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.csv",
-        "uploaded_at":  "2026-06-20T20:49:44"
+        "uploaded_at":  "2026-06-21T00:32:26"
     },
     {
         "local_path":  "audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.backup_before_append_2026_reconciled_slice_20260619_032348.csv",
@@ -140,7 +140,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.backup_before_append_2026_reconciled_slice_20260619_032348.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.backup_before_append_2026_reconciled_slice_20260619_032348.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_document_audit/reconcile_finalized_vs_long_and_sync_2026/backups/draw_results_long.backup_before_append_2026_reconciled_slice_20260619_032348.csv",
-        "uploaded_at":  "2026-06-20T20:49:53"
+        "uploaded_at":  "2026-06-21T00:32:35"
     },
     {
         "local_path":  "processed_data/audits/hunt_research_2026_before_numeric_fix_snapshot.json",
@@ -151,7 +151,7 @@
         "r2_key":  "hunt-builder/large-files/processed_data/audits/hunt_research_2026_before_numeric_fix_snapshot.json",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/processed_data/audits/hunt_research_2026_before_numeric_fix_snapshot.json",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/processed_data/audits/hunt_research_2026_before_numeric_fix_snapshot.json",
-        "uploaded_at":  "2026-06-20T20:50:02"
+        "uploaded_at":  "2026-06-21T00:32:45"
     },
     {
         "local_path":  "audits/truth_document_audit/promote_2024_2025_yearly_truth_to_draw_results_long/backups/draw_results_long.backup_before_2024_2025_promotion_20260618_161413.csv",
@@ -162,7 +162,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_document_audit/promote_2024_2025_yearly_truth_to_draw_results_long/backups/draw_results_long.backup_before_2024_2025_promotion_20260618_161413.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_document_audit/promote_2024_2025_yearly_truth_to_draw_results_long/backups/draw_results_long.backup_before_2024_2025_promotion_20260618_161413.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_document_audit/promote_2024_2025_yearly_truth_to_draw_results_long/backups/draw_results_long.backup_before_2024_2025_promotion_20260618_161413.csv",
-        "uploaded_at":  "2026-06-20T20:50:10"
+        "uploaded_at":  "2026-06-21T00:32:53"
     },
     {
         "local_path":  "audits/draw_truth_rebuild/draw_results_long_database_identity_overhaul/planned_mutations.csv",
@@ -173,7 +173,7 @@
         "r2_key":  "hunt-builder/large-files/audits/draw_truth_rebuild/draw_results_long_database_identity_overhaul/planned_mutations.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/draw_truth_rebuild/draw_results_long_database_identity_overhaul/planned_mutations.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/draw_truth_rebuild/draw_results_long_database_identity_overhaul/planned_mutations.csv",
-        "uploaded_at":  "2026-06-20T20:50:18"
+        "uploaded_at":  "2026-06-21T00:33:01"
     },
     {
         "local_path":  "audits/draw_truth_rebuild/draw_results_long_database_identity_overhaul/mutation_ledger.csv",
@@ -184,7 +184,7 @@
         "r2_key":  "hunt-builder/large-files/audits/draw_truth_rebuild/draw_results_long_database_identity_overhaul/mutation_ledger.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/draw_truth_rebuild/draw_results_long_database_identity_overhaul/mutation_ledger.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/draw_truth_rebuild/draw_results_long_database_identity_overhaul/mutation_ledger.csv",
-        "uploaded_at":  "2026-06-20T20:50:26"
+        "uploaded_at":  "2026-06-21T00:33:09"
     },
     {
         "local_path":  "processed_data/audits/research_feeder_database_permit_sync_audit.csv",
@@ -195,7 +195,7 @@
         "r2_key":  "hunt-builder/large-files/processed_data/audits/research_feeder_database_permit_sync_audit.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/processed_data/audits/research_feeder_database_permit_sync_audit.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/processed_data/audits/research_feeder_database_permit_sync_audit.csv",
-        "uploaded_at":  "2026-06-20T20:50:33"
+        "uploaded_at":  "2026-06-21T00:33:16"
     },
     {
         "local_path":  "pipeline/R2_OFFLOAD/incoming/processed_data/hunt_research_2026.json",
@@ -206,7 +206,7 @@
         "r2_key":  "hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/hunt_research_2026.json",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/hunt_research_2026.json",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/hunt_research_2026.json",
-        "uploaded_at":  "2026-06-20T20:50:39"
+        "uploaded_at":  "2026-06-21T00:33:22"
     },
     {
         "local_path":  "pipeline/R2_OFFLOAD/incoming/processed_data/hunt_research_2026_ladder.json",
@@ -217,7 +217,7 @@
         "r2_key":  "hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/hunt_research_2026_ladder.json",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/hunt_research_2026_ladder.json",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/hunt_research_2026_ladder.json",
-        "uploaded_at":  "2026-06-20T20:50:45"
+        "uploaded_at":  "2026-06-21T00:33:28"
     },
     {
         "local_path":  "processed_data/hunt_research_2026_ladder.json",
@@ -228,7 +228,7 @@
         "r2_key":  "hunt-builder/large-files/processed_data/hunt_research_2026_ladder.json",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/processed_data/hunt_research_2026_ladder.json",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/processed_data/hunt_research_2026_ladder.json",
-        "uploaded_at":  "2026-06-20T20:50:51"
+        "uploaded_at":  "2026-06-21T00:33:34"
     },
     {
         "local_path":  "processed_data/hunt_research_2026.json",
@@ -239,7 +239,7 @@
         "r2_key":  "hunt-builder/large-files/processed_data/hunt_research_2026.json",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/processed_data/hunt_research_2026.json",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/processed_data/hunt_research_2026.json",
-        "uploaded_at":  "2026-06-20T20:50:57"
+        "uploaded_at":  "2026-06-21T00:33:40"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260613_051501.csv",
@@ -250,7 +250,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260613_051501.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260613_051501.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260613_051501.csv",
-        "uploaded_at":  "2026-06-20T20:51:02"
+        "uploaded_at":  "2026-06-21T00:33:46"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260613_051633.csv",
@@ -261,7 +261,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260613_051633.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260613_051633.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260613_051633.csv",
-        "uploaded_at":  "2026-06-20T20:51:08"
+        "uploaded_at":  "2026-06-21T00:33:51"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260613_051651.csv",
@@ -272,7 +272,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260613_051651.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260613_051651.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260613_051651.csv",
-        "uploaded_at":  "2026-06-20T20:51:14"
+        "uploaded_at":  "2026-06-21T00:33:57"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2021_FOR_2022_PROMOTION_20260612_204547.csv",
@@ -283,7 +283,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2021_FOR_2022_PROMOTION_20260612_204547.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2021_FOR_2022_PROMOTION_20260612_204547.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2021_FOR_2022_PROMOTION_20260612_204547.csv",
-        "uploaded_at":  "2026-06-20T20:51:19"
+        "uploaded_at":  "2026-06-21T00:34:03"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_APPEND_2_MISSING_2019_ROWS_20260612_181442.csv",
@@ -294,7 +294,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_APPEND_2_MISSING_2019_ROWS_20260612_181442.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_APPEND_2_MISSING_2019_ROWS_20260612_181442.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_APPEND_2_MISSING_2019_ROWS_20260612_181442.csv",
-        "uploaded_at":  "2026-06-20T20:51:25"
+        "uploaded_at":  "2026-06-21T00:34:08"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260612_163957.csv",
@@ -305,7 +305,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260612_163957.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260612_163957.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260612_163957.csv",
-        "uploaded_at":  "2026-06-20T20:51:30"
+        "uploaded_at":  "2026-06-21T00:34:14"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260612_174617.csv",
@@ -316,7 +316,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260612_174617.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260612_174617.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_YEARLY_PROMOTION_20260612_174617.csv",
-        "uploaded_at":  "2026-06-20T20:51:36"
+        "uploaded_at":  "2026-06-21T00:34:19"
     },
     {
         "local_path":  "engine_rebuild_from_truth/engine/draw_engine_input_point_rows_with_totals.csv",
@@ -327,7 +327,7 @@
         "r2_key":  "hunt-builder/large-files/engine_rebuild_from_truth/engine/draw_engine_input_point_rows_with_totals.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/engine_rebuild_from_truth/engine/draw_engine_input_point_rows_with_totals.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/engine_rebuild_from_truth/engine/draw_engine_input_point_rows_with_totals.csv",
-        "uploaded_at":  "2026-06-20T20:51:41"
+        "uploaded_at":  "2026-06-21T00:34:25"
     },
     {
         "local_path":  "engine_rebuild_from_truth/engine/prediction_outputs_with_modifiers.csv",
@@ -338,7 +338,7 @@
         "r2_key":  "hunt-builder/large-files/engine_rebuild_from_truth/engine/prediction_outputs_with_modifiers.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/engine_rebuild_from_truth/engine/prediction_outputs_with_modifiers.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/engine_rebuild_from_truth/engine/prediction_outputs_with_modifiers.csv",
-        "uploaded_at":  "2026-06-20T20:51:46"
+        "uploaded_at":  "2026-06-21T00:34:30"
     },
     {
         "local_path":  "audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T214103Z.csv",
@@ -349,7 +349,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T214103Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T214103Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T214103Z.csv",
-        "uploaded_at":  "2026-06-20T20:51:51"
+        "uploaded_at":  "2026-06-21T00:34:35"
     },
     {
         "local_path":  "audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T214219Z.csv",
@@ -360,7 +360,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T214219Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T214219Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T214219Z.csv",
-        "uploaded_at":  "2026-06-20T20:51:56"
+        "uploaded_at":  "2026-06-21T00:34:40"
     },
     {
         "local_path":  "audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T214309Z.csv",
@@ -371,7 +371,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T214309Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T214309Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T214309Z.csv",
-        "uploaded_at":  "2026-06-20T20:52:01"
+        "uploaded_at":  "2026-06-21T00:34:45"
     },
     {
         "local_path":  "audits/truth_cross_year/final_yearly_canonical_audit/2020_for_2021/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2020_finalized_point_distribution.20260620T211551Z.csv",
@@ -382,7 +382,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2020_for_2021/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2020_finalized_point_distribution.20260620T211551Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2020_for_2021/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2020_finalized_point_distribution.20260620T211551Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2020_for_2021/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2020_finalized_point_distribution.20260620T211551Z.csv",
-        "uploaded_at":  "2026-06-20T20:52:06"
+        "uploaded_at":  "2026-06-21T00:34:50"
     },
     {
         "local_path":  "audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2019_finalized_point_distribution.20260620T205824Z.csv",
@@ -393,7 +393,7 @@
         "r2_key":  "hunt-builder/large-files/audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2019_finalized_point_distribution.20260620T205824Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2019_finalized_point_distribution.20260620T205824Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2019_finalized_point_distribution.20260620T205824Z.csv",
-        "uploaded_at":  "2026-06-20T20:52:11"
+        "uploaded_at":  "2026-06-21T00:34:55"
     },
     {
         "local_path":  "audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2019_finalized_point_distribution.20260620T205744Z.csv",
@@ -404,7 +404,7 @@
         "r2_key":  "hunt-builder/large-files/audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2019_finalized_point_distribution.20260620T205744Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2019_finalized_point_distribution.20260620T205744Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/2019_promote_truth_surfaces/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2019_finalized_point_distribution.20260620T205744Z.csv",
-        "uploaded_at":  "2026-06-20T20:52:16"
+        "uploaded_at":  "2026-06-21T00:35:01"
     },
     {
         "local_path":  "data_truth/finalized_point_distribution.csv",
@@ -415,7 +415,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/finalized_point_distribution.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/finalized_point_distribution.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/finalized_point_distribution.csv",
-        "uploaded_at":  "2026-06-20T20:52:21"
+        "uploaded_at":  "2026-06-21T00:35:06"
     },
     {
         "local_path":  "audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T232804Z.csv",
@@ -426,7 +426,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T232804Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T232804Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/2021_for_2022/promote_canonical_hunt_names/backups/finalized_point_distribution.before_promote_2021_finalized_point_distribution.20260620T232804Z.csv",
-        "uploaded_at":  "2026-06-20T20:52:26"
+        "uploaded_at":  "2026-06-21T00:35:12"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/engine_ready_by_year/draw_results_engine_ready_2019_2022.csv",
@@ -437,7 +437,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/engine_ready_by_year/draw_results_engine_ready_2019_2022.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/engine_ready_by_year/draw_results_engine_ready_2019_2022.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/engine_ready_by_year/draw_results_engine_ready_2019_2022.csv",
-        "uploaded_at":  "2026-06-20T20:52:30"
+        "uploaded_at":  "2026-06-21T00:35:16"
     },
     {
         "local_path":  "pipeline/R2_OFFLOAD/incoming/processed_data/point_ladder_view.csv",
@@ -448,7 +448,7 @@
         "r2_key":  "hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/point_ladder_view.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/point_ladder_view.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/point_ladder_view.csv",
-        "uploaded_at":  "2026-06-20T20:52:35"
+        "uploaded_at":  "2026-06-21T00:35:21"
     },
     {
         "local_path":  "processed_data/point_ladder_view.csv",
@@ -459,7 +459,7 @@
         "r2_key":  "hunt-builder/large-files/processed_data/point_ladder_view.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/processed_data/point_ladder_view.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/processed_data/point_ladder_view.csv",
-        "uploaded_at":  "2026-06-20T20:52:39"
+        "uploaded_at":  "2026-06-21T00:35:25"
     },
     {
         "local_path":  "audits/draw_results_long_2019_2020_backfill/draw_results_long_2019_2020_backfill_candidate.csv",
@@ -470,7 +470,7 @@
         "r2_key":  "hunt-builder/large-files/audits/draw_results_long_2019_2020_backfill/draw_results_long_2019_2020_backfill_candidate.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/draw_results_long_2019_2020_backfill/draw_results_long_2019_2020_backfill_candidate.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/draw_results_long_2019_2020_backfill/draw_results_long_2019_2020_backfill_candidate.csv",
-        "uploaded_at":  "2026-06-20T20:52:44"
+        "uploaded_at":  "2026-06-21T00:35:30"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2019_CLEAN_20260609_091524.csv",
@@ -481,7 +481,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2019_CLEAN_20260609_091524.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2019_CLEAN_20260609_091524.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2019_CLEAN_20260609_091524.csv",
-        "uploaded_at":  "2026-06-20T20:52:48"
+        "uploaded_at":  "2026-06-21T00:35:34"
     },
     {
         "local_path":  "audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T044654Z.csv",
@@ -492,7 +492,7 @@
         "r2_key":  "hunt-builder/large-files/audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T044654Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T044654Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T044654Z.csv",
-        "uploaded_at":  "2026-06-20T20:52:53"
+        "uploaded_at":  "2026-06-21T00:35:39"
     },
     {
         "local_path":  "audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T043910Z.csv",
@@ -503,7 +503,7 @@
         "r2_key":  "hunt-builder/large-files/audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T043910Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T043910Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T043910Z.csv",
-        "uploaded_at":  "2026-06-20T20:52:57"
+        "uploaded_at":  "2026-06-21T00:35:43"
     },
     {
         "local_path":  "audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T041919Z.csv",
@@ -514,7 +514,7 @@
         "r2_key":  "hunt-builder/large-files/audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T041919Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T041919Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T041919Z.csv",
-        "uploaded_at":  "2026-06-20T20:53:02"
+        "uploaded_at":  "2026-06-21T00:35:48"
     },
     {
         "local_path":  "engine_rebuild_from_truth/engine/draw_engine_input_point_rows.csv",
@@ -525,7 +525,7 @@
         "r2_key":  "hunt-builder/large-files/engine_rebuild_from_truth/engine/draw_engine_input_point_rows.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/engine_rebuild_from_truth/engine/draw_engine_input_point_rows.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/engine_rebuild_from_truth/engine/draw_engine_input_point_rows.csv",
-        "uploaded_at":  "2026-06-20T20:53:06"
+        "uploaded_at":  "2026-06-21T00:35:52"
     },
     {
         "local_path":  "audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T041655Z.csv",
@@ -536,7 +536,7 @@
         "r2_key":  "hunt-builder/large-files/audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T041655Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T041655Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/prediction_validation/patch_2021_success_rates_from_parent_pdfs/backups/finalized_point_distribution.BACKUP_BEFORE_2021_SUCCESS_RATE_PATCH_20260619T041655Z.csv",
-        "uploaded_at":  "2026-06-20T20:53:11"
+        "uploaded_at":  "2026-06-21T00:35:57"
     },
     {
         "local_path":  "point_ladder_view1.csv",
@@ -547,7 +547,7 @@
         "r2_key":  "hunt-builder/large-files/point_ladder_view1.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/point_ladder_view1.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/point_ladder_view1.csv",
-        "uploaded_at":  "2026-06-20T20:53:15"
+        "uploaded_at":  "2026-06-21T00:36:01"
     },
     {
         "local_path":  "processed_data/backups/research_feeder_sync_20260604T064259Z/processed_data/point_ladder_view.csv",
@@ -558,7 +558,7 @@
         "r2_key":  "hunt-builder/large-files/processed_data/backups/research_feeder_sync_20260604T064259Z/processed_data/point_ladder_view.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/processed_data/backups/research_feeder_sync_20260604T064259Z/processed_data/point_ladder_view.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/processed_data/backups/research_feeder_sync_20260604T064259Z/processed_data/point_ladder_view.csv",
-        "uploaded_at":  "2026-06-20T20:53:19"
+        "uploaded_at":  "2026-06-21T00:36:06"
     },
     {
         "local_path":  "audits/draw_truth_rebuild/clean_rebuild_now_20260607/draw_results_long_CLEAN_CANDIDATE.csv",
@@ -569,7 +569,7 @@
         "r2_key":  "hunt-builder/large-files/audits/draw_truth_rebuild/clean_rebuild_now_20260607/draw_results_long_CLEAN_CANDIDATE.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/draw_truth_rebuild/clean_rebuild_now_20260607/draw_results_long_CLEAN_CANDIDATE.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/draw_truth_rebuild/clean_rebuild_now_20260607/draw_results_long_CLEAN_CANDIDATE.csv",
-        "uploaded_at":  "2026-06-20T20:53:23"
+        "uploaded_at":  "2026-06-21T00:36:10"
     },
     {
         "local_path":  "audits/draw_truth_rebuild/draw_results_long_clean_rebuild/draw_results_long_CLEAN_CANDIDATE.csv",
@@ -580,7 +580,7 @@
         "r2_key":  "hunt-builder/large-files/audits/draw_truth_rebuild/draw_results_long_clean_rebuild/draw_results_long_CLEAN_CANDIDATE.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/draw_truth_rebuild/draw_results_long_clean_rebuild/draw_results_long_CLEAN_CANDIDATE.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/draw_truth_rebuild/draw_results_long_clean_rebuild/draw_results_long_CLEAN_CANDIDATE.csv",
-        "uploaded_at":  "2026-06-20T20:53:28"
+        "uploaded_at":  "2026-06-21T00:36:14"
     },
     {
         "local_path":  "audits/draw_truth_rebuild/draw_results_long_clean_rebuild_now/draw_results_long_CLEAN_CANDIDATE.csv",
@@ -591,7 +591,7 @@
         "r2_key":  "hunt-builder/large-files/audits/draw_truth_rebuild/draw_results_long_clean_rebuild_now/draw_results_long_CLEAN_CANDIDATE.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/draw_truth_rebuild/draw_results_long_clean_rebuild_now/draw_results_long_CLEAN_CANDIDATE.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/draw_truth_rebuild/draw_results_long_clean_rebuild_now/draw_results_long_CLEAN_CANDIDATE.csv",
-        "uploaded_at":  "2026-06-20T20:53:32"
+        "uploaded_at":  "2026-06-21T00:36:18"
     },
     {
         "local_path":  "data_truth/finalized_draw_truth_ALL.csv",
@@ -602,7 +602,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/finalized_draw_truth_ALL.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/finalized_draw_truth_ALL.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/finalized_draw_truth_ALL.csv",
-        "uploaded_at":  "2026-06-20T20:53:36"
+        "uploaded_at":  "2026-06-21T00:36:22"
     },
     {
         "local_path":  "audits/draw_truth_rebuild/draw_results_long_identity_clear_hunt_class_check_20260607/planned_mutations.csv",
@@ -613,7 +613,7 @@
         "r2_key":  "hunt-builder/large-files/audits/draw_truth_rebuild/draw_results_long_identity_clear_hunt_class_check_20260607/planned_mutations.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/draw_truth_rebuild/draw_results_long_identity_clear_hunt_class_check_20260607/planned_mutations.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/draw_truth_rebuild/draw_results_long_identity_clear_hunt_class_check_20260607/planned_mutations.csv",
-        "uploaded_at":  "2026-06-20T20:53:40"
+        "uploaded_at":  "2026-06-21T00:36:27"
     },
     {
         "local_path":  "audits/draw_truth_rebuild/draw_results_long_identity_clear_hunt_class_check_20260607/mutation_ledger.csv",
@@ -624,7 +624,7 @@
         "r2_key":  "hunt-builder/large-files/audits/draw_truth_rebuild/draw_results_long_identity_clear_hunt_class_check_20260607/mutation_ledger.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/draw_truth_rebuild/draw_results_long_identity_clear_hunt_class_check_20260607/mutation_ledger.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/draw_truth_rebuild/draw_results_long_identity_clear_hunt_class_check_20260607/mutation_ledger.csv",
-        "uploaded_at":  "2026-06-20T20:53:45"
+        "uploaded_at":  "2026-06-21T00:36:32"
     },
     {
         "local_path":  "engine_rebuild_from_truth/engine/prediction_outputs.csv",
@@ -635,7 +635,7 @@
         "r2_key":  "hunt-builder/large-files/engine_rebuild_from_truth/engine/prediction_outputs.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/engine_rebuild_from_truth/engine/prediction_outputs.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/engine_rebuild_from_truth/engine/prediction_outputs.csv",
-        "uploaded_at":  "2026-06-20T20:53:49"
+        "uploaded_at":  "2026-06-21T00:36:36"
     },
     {
         "local_path":  "audits/truth_document_audit/promote_2024_2025_yearly_truth_to_draw_results_long/promoted_2024_2025_conformed_rows.csv",
@@ -646,7 +646,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_document_audit/promote_2024_2025_yearly_truth_to_draw_results_long/promoted_2024_2025_conformed_rows.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_document_audit/promote_2024_2025_yearly_truth_to_draw_results_long/promoted_2024_2025_conformed_rows.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_document_audit/promote_2024_2025_yearly_truth_to_draw_results_long/promoted_2024_2025_conformed_rows.csv",
-        "uploaded_at":  "2026-06-20T20:53:52"
+        "uploaded_at":  "2026-06-21T00:36:40"
     },
     {
         "local_path":  "data/hunt_odds_history.json",
@@ -657,7 +657,7 @@
         "r2_key":  "hunt-builder/large-files/data/hunt_odds_history.json",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data/hunt_odds_history.json",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data/hunt_odds_history.json",
-        "uploaded_at":  "2026-06-20T20:53:56"
+        "uploaded_at":  "2026-06-21T00:36:44"
     },
     {
         "local_path":  "pipeline/R2_OFFLOAD/incoming/processed_data/public_contracts/hunt_odds_history.json",
@@ -668,7 +668,7 @@
         "r2_key":  "hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/public_contracts/hunt_odds_history.json",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/public_contracts/hunt_odds_history.json",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/public_contracts/hunt_odds_history.json",
-        "uploaded_at":  "2026-06-20T20:54:00"
+        "uploaded_at":  "2026-06-21T00:36:48"
     },
     {
         "local_path":  "processed_data/public_contracts/hunt_odds_history.json",
@@ -679,7 +679,7 @@
         "r2_key":  "hunt-builder/large-files/processed_data/public_contracts/hunt_odds_history.json",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/processed_data/public_contracts/hunt_odds_history.json",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/processed_data/public_contracts/hunt_odds_history.json",
-        "uploaded_at":  "2026-06-20T20:54:04"
+        "uploaded_at":  "2026-06-21T00:36:52"
     },
     {
         "local_path":  "processed_data/hunt_research_2026_ladder_bonus_max_random.json",
@@ -690,7 +690,7 @@
         "r2_key":  "hunt-builder/large-files/processed_data/hunt_research_2026_ladder_bonus_max_random.json",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/processed_data/hunt_research_2026_ladder_bonus_max_random.json",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/processed_data/hunt_research_2026_ladder_bonus_max_random.json",
-        "uploaded_at":  "2026-06-20T20:54:07"
+        "uploaded_at":  "2026-06-21T00:36:56"
     },
     {
         "local_path":  "pipeline/R2_OFFLOAD/incoming/processed_data/hunt_research_2026_ladder_bonus_max_random.json",
@@ -701,7 +701,7 @@
         "r2_key":  "hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/hunt_research_2026_ladder_bonus_max_random.json",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/hunt_research_2026_ladder_bonus_max_random.json",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/hunt_research_2026_ladder_bonus_max_random.json",
-        "uploaded_at":  "2026-06-20T20:54:11"
+        "uploaded_at":  "2026-06-21T00:37:00"
     },
     {
         "local_path":  "engine_rebuild_from_truth/engine/odds_tables_with_modifiers.csv",
@@ -712,7 +712,7 @@
         "r2_key":  "hunt-builder/large-files/engine_rebuild_from_truth/engine/odds_tables_with_modifiers.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/engine_rebuild_from_truth/engine/odds_tables_with_modifiers.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/engine_rebuild_from_truth/engine/odds_tables_with_modifiers.csv",
-        "uploaded_at":  "2026-06-20T20:54:15"
+        "uploaded_at":  "2026-06-21T00:37:04"
     },
     {
         "local_path":  "audits/truth_organization_staging/2020_PERMITS=2021_MODEL/dense_canonical/draw_results_2020_for_2021_DENSE_DUPLICATE_MERGE_LOG.csv",
@@ -723,7 +723,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_organization_staging/2020_PERMITS=2021_MODEL/dense_canonical/draw_results_2020_for_2021_DENSE_DUPLICATE_MERGE_LOG.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_organization_staging/2020_PERMITS=2021_MODEL/dense_canonical/draw_results_2020_for_2021_DENSE_DUPLICATE_MERGE_LOG.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_organization_staging/2020_PERMITS=2021_MODEL/dense_canonical/draw_results_2020_for_2021_DENSE_DUPLICATE_MERGE_LOG.csv",
-        "uploaded_at":  "2026-06-20T20:54:18"
+        "uploaded_at":  "2026-06-21T00:37:07"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_CLEAN_20260609_101852.csv",
@@ -734,7 +734,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_CLEAN_20260609_101852.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_CLEAN_20260609_101852.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_CLEAN_20260609_101852.csv",
-        "uploaded_at":  "2026-06-20T20:54:22"
+        "uploaded_at":  "2026-06-21T00:37:11"
     },
     {
         "local_path":  "audits/truth_organization_staging/2020_PERMITS=2021_MODEL/clean_apply/draw_results_long_CLEANED_2020_CANONICAL_PATCH_CANDIDATE.csv",
@@ -745,7 +745,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_organization_staging/2020_PERMITS=2021_MODEL/clean_apply/draw_results_long_CLEANED_2020_CANONICAL_PATCH_CANDIDATE.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_organization_staging/2020_PERMITS=2021_MODEL/clean_apply/draw_results_long_CLEANED_2020_CANONICAL_PATCH_CANDIDATE.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_organization_staging/2020_PERMITS=2021_MODEL/clean_apply/draw_results_long_CLEANED_2020_CANONICAL_PATCH_CANDIDATE.csv",
-        "uploaded_at":  "2026-06-20T20:54:26"
+        "uploaded_at":  "2026-06-21T00:37:15"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_CLEAN_20260609_101436.csv",
@@ -756,7 +756,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_CLEAN_20260609_101436.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_CLEAN_20260609_101436.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long.BACKUP_BEFORE_2020_CLEAN_20260609_101436.csv",
-        "uploaded_at":  "2026-06-20T20:54:29"
+        "uploaded_at":  "2026-06-21T00:37:19"
     },
     {
         "local_path":  "audits/truth_organization_staging/2019_PERMITS=2020_MODEL/clean_apply/draw_results_long_CLEANED_2019_USER_VALIDATED_CANDIDATE.csv",
@@ -767,7 +767,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_organization_staging/2019_PERMITS=2020_MODEL/clean_apply/draw_results_long_CLEANED_2019_USER_VALIDATED_CANDIDATE.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_organization_staging/2019_PERMITS=2020_MODEL/clean_apply/draw_results_long_CLEANED_2019_USER_VALIDATED_CANDIDATE.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_organization_staging/2019_PERMITS=2020_MODEL/clean_apply/draw_results_long_CLEANED_2019_USER_VALIDATED_CANDIDATE.csv",
-        "uploaded_at":  "2026-06-20T20:54:33"
+        "uploaded_at":  "2026-06-21T00:37:23"
     },
     {
         "local_path":  "audits/truth_organization_staging/2019_PERMITS=2020_MODEL/patch_candidate/draw_results_long_WITH_2019_STRICT_PATCH_CANDIDATE.csv",
@@ -778,7 +778,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_organization_staging/2019_PERMITS=2020_MODEL/patch_candidate/draw_results_long_WITH_2019_STRICT_PATCH_CANDIDATE.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_organization_staging/2019_PERMITS=2020_MODEL/patch_candidate/draw_results_long_WITH_2019_STRICT_PATCH_CANDIDATE.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_organization_staging/2019_PERMITS=2020_MODEL/patch_candidate/draw_results_long_WITH_2019_STRICT_PATCH_CANDIDATE.csv",
-        "uploaded_at":  "2026-06-20T20:54:36"
+        "uploaded_at":  "2026-06-21T00:37:27"
     },
     {
         "local_path":  "audits/truth_organization_staging/2019_PERMITS=2020_MODEL/dedupe_repair/draw_results_long_2019_FINAL_DEDUPED_PLUS_VALIDATED_CG_TK_NOT_APPLIED.csv",
@@ -789,7 +789,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_organization_staging/2019_PERMITS=2020_MODEL/dedupe_repair/draw_results_long_2019_FINAL_DEDUPED_PLUS_VALIDATED_CG_TK_NOT_APPLIED.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_organization_staging/2019_PERMITS=2020_MODEL/dedupe_repair/draw_results_long_2019_FINAL_DEDUPED_PLUS_VALIDATED_CG_TK_NOT_APPLIED.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_organization_staging/2019_PERMITS=2020_MODEL/dedupe_repair/draw_results_long_2019_FINAL_DEDUPED_PLUS_VALIDATED_CG_TK_NOT_APPLIED.csv",
-        "uploaded_at":  "2026-06-20T20:54:40"
+        "uploaded_at":  "2026-06-21T00:37:30"
     },
     {
         "local_path":  "audits/truth_organization_staging/2019_PERMITS=2020_MODEL/dedupe_repair/draw_results_long_2019_DEDUPED_CANDIDATE_NOT_APPLIED.csv",
@@ -800,7 +800,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_organization_staging/2019_PERMITS=2020_MODEL/dedupe_repair/draw_results_long_2019_DEDUPED_CANDIDATE_NOT_APPLIED.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_organization_staging/2019_PERMITS=2020_MODEL/dedupe_repair/draw_results_long_2019_DEDUPED_CANDIDATE_NOT_APPLIED.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_organization_staging/2019_PERMITS=2020_MODEL/dedupe_repair/draw_results_long_2019_DEDUPED_CANDIDATE_NOT_APPLIED.csv",
-        "uploaded_at":  "2026-06-20T20:54:43"
+        "uploaded_at":  "2026-06-21T00:37:34"
     },
     {
         "local_path":  "pages-dist/processed_data/draw_reality_engine.csv",
@@ -811,7 +811,7 @@
         "r2_key":  "hunt-builder/large-files/pages-dist/processed_data/draw_reality_engine.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/pages-dist/processed_data/draw_reality_engine.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/pages-dist/processed_data/draw_reality_engine.csv",
-        "uploaded_at":  "2026-06-20T20:54:47"
+        "uploaded_at":  "2026-06-21T00:37:38"
     },
     {
         "local_path":  "processed_data/draw_reality_engine.csv",
@@ -822,7 +822,7 @@
         "r2_key":  "hunt-builder/large-files/processed_data/draw_reality_engine.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/processed_data/draw_reality_engine.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/processed_data/draw_reality_engine.csv",
-        "uploaded_at":  "2026-06-20T20:54:50"
+        "uploaded_at":  "2026-06-21T00:37:41"
     },
     {
         "local_path":  "audits/draw_system_design/row_level_draw_design_audit.csv",
@@ -833,7 +833,7 @@
         "r2_key":  "hunt-builder/large-files/audits/draw_system_design/row_level_draw_design_audit.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/draw_system_design/row_level_draw_design_audit.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/draw_system_design/row_level_draw_design_audit.csv",
-        "uploaded_at":  "2026-06-20T20:54:54"
+        "uploaded_at":  "2026-06-21T00:37:44"
     },
     {
         "local_path":  "audits/prediction_accuracy_backtest/production_equivalent_outputs/20260607T185949Z/truth_inputs/draw_results_long_with_2020_staging.csv",
@@ -844,7 +844,7 @@
         "r2_key":  "hunt-builder/large-files/audits/prediction_accuracy_backtest/production_equivalent_outputs/20260607T185949Z/truth_inputs/draw_results_long_with_2020_staging.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/prediction_accuracy_backtest/production_equivalent_outputs/20260607T185949Z/truth_inputs/draw_results_long_with_2020_staging.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/prediction_accuracy_backtest/production_equivalent_outputs/20260607T185949Z/truth_inputs/draw_results_long_with_2020_staging.csv",
-        "uploaded_at":  "2026-06-20T20:54:57"
+        "uploaded_at":  "2026-06-21T00:37:48"
     },
     {
         "local_path":  "audits/prediction_accuracy_backtest/production_equivalent_outputs/20260607T185737Z/truth_inputs/draw_results_long_with_2020_staging.csv",
@@ -855,7 +855,7 @@
         "r2_key":  "hunt-builder/large-files/audits/prediction_accuracy_backtest/production_equivalent_outputs/20260607T185737Z/truth_inputs/draw_results_long_with_2020_staging.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/prediction_accuracy_backtest/production_equivalent_outputs/20260607T185737Z/truth_inputs/draw_results_long_with_2020_staging.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/prediction_accuracy_backtest/production_equivalent_outputs/20260607T185737Z/truth_inputs/draw_results_long_with_2020_staging.csv",
-        "uploaded_at":  "2026-06-20T20:55:00"
+        "uploaded_at":  "2026-06-21T00:37:51"
     },
     {
         "local_path":  "data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.geojson",
@@ -866,7 +866,7 @@
         "r2_key":  "hunt-builder/large-files/data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.geojson",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.geojson",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data/utah/foundation_bundle_2026/utah_boundaries_canonical_2026.geojson",
-        "uploaded_at":  "2026-06-20T20:55:03"
+        "uploaded_at":  "2026-06-21T00:37:55"
     },
     {
         "local_path":  "processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson",
@@ -877,7 +877,7 @@
         "r2_key":  "hunt-builder/large-files/processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson",
-        "uploaded_at":  "2026-06-20T20:55:06"
+        "uploaded_at":  "2026-06-21T00:37:58"
     },
     {
         "local_path":  "processed_data/statewide_composite_boundaries_2026.geojson",
@@ -888,7 +888,7 @@
         "r2_key":  "hunt-builder/large-files/processed_data/statewide_composite_boundaries_2026.geojson",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/processed_data/statewide_composite_boundaries_2026.geojson",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/processed_data/statewide_composite_boundaries_2026.geojson",
-        "uploaded_at":  "2026-06-20T20:55:09"
+        "uploaded_at":  "2026-06-21T00:38:02"
     },
     {
         "local_path":  "pages-dist/processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson",
@@ -899,7 +899,7 @@
         "r2_key":  "hunt-builder/large-files/pages-dist/processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/pages-dist/processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/pages-dist/processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson",
-        "uploaded_at":  "2026-06-20T20:55:12"
+        "uploaded_at":  "2026-06-21T00:38:06"
     },
     {
         "local_path":  "pages-dist/processed_data/statewide_composite_boundaries_2026.geojson",
@@ -910,7 +910,7 @@
         "r2_key":  "hunt-builder/large-files/pages-dist/processed_data/statewide_composite_boundaries_2026.geojson",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/pages-dist/processed_data/statewide_composite_boundaries_2026.geojson",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/pages-dist/processed_data/statewide_composite_boundaries_2026.geojson",
-        "uploaded_at":  "2026-06-20T20:55:16"
+        "uploaded_at":  "2026-06-21T00:38:09"
     },
     {
         "local_path":  "pipeline/R2_OFFLOAD/incoming/processed_data/statewide_composite_boundaries_2026.geojson",
@@ -921,7 +921,7 @@
         "r2_key":  "hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/statewide_composite_boundaries_2026.geojson",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/statewide_composite_boundaries_2026.geojson",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/statewide_composite_boundaries_2026.geojson",
-        "uploaded_at":  "2026-06-20T20:55:19"
+        "uploaded_at":  "2026-06-21T00:38:13"
     },
     {
         "local_path":  "data/utah/official_downloads_2026/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson",
@@ -932,7 +932,7 @@
         "r2_key":  "hunt-builder/large-files/data/utah/official_downloads_2026/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data/utah/official_downloads_2026/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data/utah/official_downloads_2026/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson",
-        "uploaded_at":  "2026-06-20T20:55:22"
+        "uploaded_at":  "2026-06-21T00:38:17"
     },
     {
         "local_path":  "audits/prediction_accuracy_backtest/production_equivalent_outputs/20260607T125630Z/truth_inputs/draw_results_long_with_2020_staging.csv",
@@ -943,7 +943,7 @@
         "r2_key":  "hunt-builder/large-files/audits/prediction_accuracy_backtest/production_equivalent_outputs/20260607T125630Z/truth_inputs/draw_results_long_with_2020_staging.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/prediction_accuracy_backtest/production_equivalent_outputs/20260607T125630Z/truth_inputs/draw_results_long_with_2020_staging.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/prediction_accuracy_backtest/production_equivalent_outputs/20260607T125630Z/truth_inputs/draw_results_long_with_2020_staging.csv",
-        "uploaded_at":  "2026-06-20T20:55:26"
+        "uploaded_at":  "2026-06-21T00:38:20"
     },
     {
         "local_path":  "processed_data/hunt_truth_from_json.sqlite",
@@ -954,7 +954,7 @@
         "r2_key":  "hunt-builder/large-files/processed_data/hunt_truth_from_json.sqlite",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/processed_data/hunt_truth_from_json.sqlite",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/processed_data/hunt_truth_from_json.sqlite",
-        "uploaded_at":  "2026-06-20T20:55:29"
+        "uploaded_at":  "2026-06-21T00:38:23"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/draw_results_long_apply_backup.csv",
@@ -965,7 +965,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long_apply_backup.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long_apply_backup.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long_apply_backup.csv",
-        "uploaded_at":  "2026-06-20T20:55:32"
+        "uploaded_at":  "2026-06-21T00:38:27"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/draw_results_long_identity_fixed_20260607_004807.csv",
@@ -976,7 +976,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long_identity_fixed_20260607_004807.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long_identity_fixed_20260607_004807.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_long_identity_fixed_20260607_004807.csv",
-        "uploaded_at":  "2026-06-20T20:55:35"
+        "uploaded_at":  "2026-06-21T00:38:30"
     },
     {
         "local_path":  "audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_model__runtime_drafts__point_ladder_unified_runtime_v2026.csv",
@@ -987,7 +987,7 @@
         "r2_key":  "hunt-builder/large-files/audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_model__runtime_drafts__point_ladder_unified_runtime_v2026.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_model__runtime_drafts__point_ladder_unified_runtime_v2026.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_model__runtime_drafts__point_ladder_unified_runtime_v2026.csv",
-        "uploaded_at":  "2026-06-20T20:55:39"
+        "uploaded_at":  "2026-06-21T00:38:34"
     },
     {
         "local_path":  "audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_model/runtime_drafts/point_ladder_unified_runtime_v2026.csv",
@@ -998,7 +998,7 @@
         "r2_key":  "hunt-builder/large-files/audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_model/runtime_drafts/point_ladder_unified_runtime_v2026.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_model/runtime_drafts/point_ladder_unified_runtime_v2026.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_model/runtime_drafts/point_ladder_unified_runtime_v2026.csv",
-        "uploaded_at":  "2026-06-20T20:55:42"
+        "uploaded_at":  "2026-06-21T00:38:37"
     },
     {
         "local_path":  "data_model/runtime_drafts/point_ladder_unified_runtime_v2026.csv",
@@ -1009,7 +1009,7 @@
         "r2_key":  "hunt-builder/large-files/data_model/runtime_drafts/point_ladder_unified_runtime_v2026.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_model/runtime_drafts/point_ladder_unified_runtime_v2026.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_model/runtime_drafts/point_ladder_unified_runtime_v2026.csv",
-        "uploaded_at":  "2026-06-20T20:55:45"
+        "uploaded_at":  "2026-06-21T00:38:41"
     },
     {
         "local_path":  "processed_data/draw_system_coverage_report.csv",
@@ -1020,7 +1020,7 @@
         "r2_key":  "hunt-builder/large-files/processed_data/draw_system_coverage_report.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/processed_data/draw_system_coverage_report.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/processed_data/draw_system_coverage_report.csv",
-        "uploaded_at":  "2026-06-20T20:55:48"
+        "uploaded_at":  "2026-06-21T00:38:44"
     },
     {
         "local_path":  "pages-dist/processed_data/draw_system_coverage_report.csv",
@@ -1031,7 +1031,7 @@
         "r2_key":  "hunt-builder/large-files/pages-dist/processed_data/draw_system_coverage_report.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/pages-dist/processed_data/draw_system_coverage_report.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/pages-dist/processed_data/draw_system_coverage_report.csv",
-        "uploaded_at":  "2026-06-20T20:55:51"
+        "uploaded_at":  "2026-06-21T00:38:48"
     },
     {
         "local_path":  "audits/truth_document_audit/promote_2024_2025_yearly_truth_to_draw_results_long/current_long_2024_2025_rows_replaced.csv",
@@ -1042,7 +1042,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_document_audit/promote_2024_2025_yearly_truth_to_draw_results_long/current_long_2024_2025_rows_replaced.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_document_audit/promote_2024_2025_yearly_truth_to_draw_results_long/current_long_2024_2025_rows_replaced.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_document_audit/promote_2024_2025_yearly_truth_to_draw_results_long/current_long_2024_2025_rows_replaced.csv",
-        "uploaded_at":  "2026-06-20T20:55:54"
+        "uploaded_at":  "2026-06-21T00:38:51"
     },
     {
         "local_path":  ".pytest_tmp_retry_2022/test_draw_system_coverage_repo0/draw_system_coverage_report.csv",
@@ -1053,7 +1053,7 @@
         "r2_key":  "hunt-builder/large-files/.pytest_tmp_retry_2022/test_draw_system_coverage_repo0/draw_system_coverage_report.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/.pytest_tmp_retry_2022/test_draw_system_coverage_repo0/draw_system_coverage_report.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/.pytest_tmp_retry_2022/test_draw_system_coverage_repo0/draw_system_coverage_report.csv",
-        "uploaded_at":  "2026-06-20T20:55:57"
+        "uploaded_at":  "2026-06-21T00:38:54"
     },
     {
         "local_path":  ".pytest_tmp_retry_after_dh_alias_fix/test_draw_system_coverage_repo0/draw_system_coverage_report.csv",
@@ -1064,7 +1064,7 @@
         "r2_key":  "hunt-builder/large-files/.pytest_tmp_retry_after_dh_alias_fix/test_draw_system_coverage_repo0/draw_system_coverage_report.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/.pytest_tmp_retry_after_dh_alias_fix/test_draw_system_coverage_repo0/draw_system_coverage_report.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/.pytest_tmp_retry_after_dh_alias_fix/test_draw_system_coverage_repo0/draw_system_coverage_report.csv",
-        "uploaded_at":  "2026-06-20T20:56:00"
+        "uploaded_at":  "2026-06-21T00:38:58"
     },
     {
         "local_path":  "engine_rebuild_from_truth/engine/odds_tables.csv",
@@ -1075,7 +1075,7 @@
         "r2_key":  "hunt-builder/large-files/engine_rebuild_from_truth/engine/odds_tables.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/engine_rebuild_from_truth/engine/odds_tables.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/engine_rebuild_from_truth/engine/odds_tables.csv",
-        "uploaded_at":  "2026-06-20T20:56:03"
+        "uploaded_at":  "2026-06-21T00:39:01"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.csv",
@@ -1086,7 +1086,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.csv",
-        "uploaded_at":  "2026-06-20T20:56:06"
+        "uploaded_at":  "2026-06-21T00:39:05"
     },
     {
         "local_path":  "audits/truth_document_audit/add_2025_cg9999_otc_availability/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_cg9999_otc_20260618_160358.csv",
@@ -1097,7 +1097,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_document_audit/add_2025_cg9999_otc_availability/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_cg9999_otc_20260618_160358.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_document_audit/add_2025_cg9999_otc_availability/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_cg9999_otc_20260618_160358.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_document_audit/add_2025_cg9999_otc_availability/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_cg9999_otc_20260618_160358.csv",
-        "uploaded_at":  "2026-06-20T20:56:09"
+        "uploaded_at":  "2026-06-21T00:39:08"
     },
     {
         "local_path":  "audits/truth_document_audit/add_2025_sportsman_truth_rows/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_sportsman_rows_20260618_155351.csv",
@@ -1108,7 +1108,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_document_audit/add_2025_sportsman_truth_rows/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_sportsman_rows_20260618_155351.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_document_audit/add_2025_sportsman_truth_rows/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_sportsman_rows_20260618_155351.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_document_audit/add_2025_sportsman_truth_rows/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_sportsman_rows_20260618_155351.csv",
-        "uploaded_at":  "2026-06-20T20:56:11"
+        "uploaded_at":  "2026-06-21T00:39:11"
     },
     {
         "local_path":  "data/utah/foundation_bundle_2026/utah_hunt_foundation_2026.sqlite",
@@ -1119,7 +1119,7 @@
         "r2_key":  "hunt-builder/large-files/data/utah/foundation_bundle_2026/utah_hunt_foundation_2026.sqlite",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data/utah/foundation_bundle_2026/utah_hunt_foundation_2026.sqlite",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data/utah/foundation_bundle_2026/utah_hunt_foundation_2026.sqlite",
-        "uploaded_at":  "2026-06-20T20:56:14"
+        "uploaded_at":  "2026-06-21T00:39:14"
     },
     {
         "local_path":  "audits/truth_document_audit/repair_2025_year_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_year_metadata_20260618_155208.csv",
@@ -1130,7 +1130,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_document_audit/repair_2025_year_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_year_metadata_20260618_155208.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_document_audit/repair_2025_year_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_year_metadata_20260618_155208.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_document_audit/repair_2025_year_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_year_metadata_20260618_155208.csv",
-        "uploaded_at":  "2026-06-20T20:56:17"
+        "uploaded_at":  "2026-06-21T00:39:17"
     },
     {
         "local_path":  "audits/truth_document_audit/repair_2025_year_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_year_metadata_20260618_155109.csv",
@@ -1141,7 +1141,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_document_audit/repair_2025_year_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_year_metadata_20260618_155109.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_document_audit/repair_2025_year_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_year_metadata_20260618_155109.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_document_audit/repair_2025_year_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_year_metadata_20260618_155109.csv",
-        "uploaded_at":  "2026-06-20T20:56:21"
+        "uploaded_at":  "2026-06-21T00:39:21"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/draw_results_2020_for_2021_candidate_promotion_file_records.BACKUP_BEFORE_YEARLY_PROMOTION_20260612_163957.csv",
@@ -1152,7 +1152,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2020_for_2021_candidate_promotion_file_records.BACKUP_BEFORE_YEARLY_PROMOTION_20260612_163957.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2020_for_2021_candidate_promotion_file_records.BACKUP_BEFORE_YEARLY_PROMOTION_20260612_163957.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2020_for_2021_candidate_promotion_file_records.BACKUP_BEFORE_YEARLY_PROMOTION_20260612_163957.csv",
-        "uploaded_at":  "2026-06-20T20:56:24"
+        "uploaded_at":  "2026-06-21T00:39:24"
     },
     {
         "local_path":  "audits/truth_document_audit/rebuild_2025_le_oil_from_uploaded_pdfs/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_le_oil_20260618_153152.csv",
@@ -1163,7 +1163,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_document_audit/rebuild_2025_le_oil_from_uploaded_pdfs/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_le_oil_20260618_153152.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_document_audit/rebuild_2025_le_oil_from_uploaded_pdfs/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_le_oil_20260618_153152.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_document_audit/rebuild_2025_le_oil_from_uploaded_pdfs/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_le_oil_20260618_153152.csv",
-        "uploaded_at":  "2026-06-20T20:56:27"
+        "uploaded_at":  "2026-06-21T00:39:27"
     },
     {
         "local_path":  "audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_truth__draw_results_truth__normalized__draw_results_2025_for_2026_candidate_promotion_file_records.csv",
@@ -1174,7 +1174,7 @@
         "r2_key":  "hunt-builder/large-files/audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_truth__draw_results_truth__normalized__draw_results_2025_for_2026_candidate_promotion_file_records.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_truth__draw_results_truth__normalized__draw_results_2025_for_2026_candidate_promotion_file_records.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_truth__draw_results_truth__normalized__draw_results_2025_for_2026_candidate_promotion_file_records.csv",
-        "uploaded_at":  "2026-06-20T20:56:30"
+        "uploaded_at":  "2026-06-21T00:39:31"
     },
     {
         "local_path":  "audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.csv",
@@ -1185,7 +1185,7 @@
         "r2_key":  "hunt-builder/large-files/audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.csv",
-        "uploaded_at":  "2026-06-20T20:56:33"
+        "uploaded_at":  "2026-06-21T00:39:34"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.BACKUP_BEFORE_FAMILY_NORMALIZATION_20260609_185337.csv",
@@ -1196,7 +1196,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.BACKUP_BEFORE_FAMILY_NORMALIZATION_20260609_185337.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.BACKUP_BEFORE_FAMILY_NORMALIZATION_20260609_185337.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.BACKUP_BEFORE_FAMILY_NORMALIZATION_20260609_185337.csv",
-        "uploaded_at":  "2026-06-20T20:56:36"
+        "uploaded_at":  "2026-06-21T00:39:38"
     },
     {
         "local_path":  "audits/truth_document_audit/repair_2025_le_oil_subfamily_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_le_oil_subfamily_metadata_20260618_155026.csv",
@@ -1207,18 +1207,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_document_audit/repair_2025_le_oil_subfamily_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_le_oil_subfamily_metadata_20260618_155026.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_document_audit/repair_2025_le_oil_subfamily_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_le_oil_subfamily_metadata_20260618_155026.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_document_audit/repair_2025_le_oil_subfamily_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_le_oil_subfamily_metadata_20260618_155026.csv",
-        "uploaded_at":  "2026-06-20T20:56:39"
-    },
-    {
-        "local_path":  "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2023_for_2024_canonical_yearly_draw_results.csv",
-        "size_bytes":  64000440,
-        "size_mb":  61.04,
-        "git_tracked":  false,
-        "r2_bucket":  "uoga-data",
-        "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2023_for_2024_canonical_yearly_draw_results.csv",
-        "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2023_for_2024_canonical_yearly_draw_results.csv",
-        "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2023_for_2024_canonical_yearly_draw_results.csv",
-        "uploaded_at":  "2026-06-20T20:56:41"
+        "uploaded_at":  "2026-06-21T00:39:43"
     },
     {
         "local_path":  "audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2023_for_2024_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T233703Z.csv",
@@ -1229,18 +1218,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2023_for_2024_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T233703Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2023_for_2024_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T233703Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2023_for_2024_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T233703Z.csv",
-        "uploaded_at":  "2026-06-20T20:56:44"
-    },
-    {
-        "local_path":  "data_truth/draw_results_truth/normalized/draw_results_2023_for_2024_candidate_promotion_file_records.csv",
-        "size_bytes":  64000440,
-        "size_mb":  61.04,
-        "git_tracked":  false,
-        "r2_bucket":  "uoga-data",
-        "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2023_for_2024_candidate_promotion_file_records.csv",
-        "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2023_for_2024_candidate_promotion_file_records.csv",
-        "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2023_for_2024_candidate_promotion_file_records.csv",
-        "uploaded_at":  "2026-06-20T20:56:47"
+        "uploaded_at":  "2026-06-21T00:39:46"
     },
     {
         "local_path":  "audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2023_for_2024_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T232844Z.csv",
@@ -1251,7 +1229,18 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2023_for_2024_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T232844Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2023_for_2024_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T232844Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2023_for_2024_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T232844Z.csv",
-        "uploaded_at":  "2026-06-20T20:56:50"
+        "uploaded_at":  "2026-06-21T00:39:48"
+    },
+    {
+        "local_path":  "data_truth/draw_results_truth/normalized/draw_results_2023_for_2024_candidate_promotion_file_records.csv",
+        "size_bytes":  64000440,
+        "size_mb":  61.04,
+        "git_tracked":  false,
+        "r2_bucket":  "uoga-data",
+        "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2023_for_2024_candidate_promotion_file_records.csv",
+        "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2023_for_2024_candidate_promotion_file_records.csv",
+        "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2023_for_2024_candidate_promotion_file_records.csv",
+        "uploaded_at":  "2026-06-21T00:39:51"
     },
     {
         "local_path":  "audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/pipeline__RAW__hunt_unit_database__2026__csv__Draw__Odds__draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
@@ -1262,7 +1251,7 @@
         "r2_key":  "hunt-builder/large-files/audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/pipeline__RAW__hunt_unit_database__2026__csv__Draw__Odds__draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/pipeline__RAW__hunt_unit_database__2026__csv__Draw__Odds__draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/pipeline__RAW__hunt_unit_database__2026__csv__Draw__Odds__draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
-        "uploaded_at":  "2026-06-20T20:56:53"
+        "uploaded_at":  "2026-06-21T00:39:54"
     },
     {
         "local_path":  "processed_data/backups/permit_allocations_2026_20260523_082859/processed_data/point_ladder_view.csv",
@@ -1273,18 +1262,7 @@
         "r2_key":  "hunt-builder/large-files/processed_data/backups/permit_allocations_2026_20260523_082859/processed_data/point_ladder_view.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/processed_data/backups/permit_allocations_2026_20260523_082859/processed_data/point_ladder_view.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/processed_data/backups/permit_allocations_2026_20260523_082859/processed_data/point_ladder_view.csv",
-        "uploaded_at":  "2026-06-20T20:56:55"
-    },
-    {
-        "local_path":  "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2024_for_2025_canonical_yearly_draw_results.csv",
-        "size_bytes":  60129536,
-        "size_mb":  57.34,
-        "git_tracked":  false,
-        "r2_bucket":  "uoga-data",
-        "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2024_for_2025_canonical_yearly_draw_results.csv",
-        "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2024_for_2025_canonical_yearly_draw_results.csv",
-        "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2024_for_2025_canonical_yearly_draw_results.csv",
-        "uploaded_at":  "2026-06-20T20:56:58"
+        "uploaded_at":  "2026-06-21T00:39:57"
     },
     {
         "local_path":  "audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2024_for_2025_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T232844Z.csv",
@@ -1295,7 +1273,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2024_for_2025_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T232844Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2024_for_2025_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T232844Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2024_for_2025_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T232844Z.csv",
-        "uploaded_at":  "2026-06-20T20:57:01"
+        "uploaded_at":  "2026-06-21T00:40:00"
     },
     {
         "local_path":  "audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2024_for_2025_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T233703Z.csv",
@@ -1306,7 +1284,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2024_for_2025_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T233703Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2024_for_2025_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T233703Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2024_for_2025_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T233703Z.csv",
-        "uploaded_at":  "2026-06-20T20:57:04"
+        "uploaded_at":  "2026-06-21T00:40:03"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/draw_results_2024_for_2025_candidate_promotion_file_records.csv",
@@ -1317,7 +1295,18 @@
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2024_for_2025_candidate_promotion_file_records.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2024_for_2025_candidate_promotion_file_records.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2024_for_2025_candidate_promotion_file_records.csv",
-        "uploaded_at":  "2026-06-20T20:57:07"
+        "uploaded_at":  "2026-06-21T00:40:05"
+    },
+    {
+        "local_path":  "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2024_for_2025_canonical_yearly_draw_results.csv",
+        "size_bytes":  60109251,
+        "size_mb":  57.32,
+        "git_tracked":  false,
+        "r2_bucket":  "uoga-data",
+        "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2024_for_2025_canonical_yearly_draw_results.csv",
+        "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2024_for_2025_canonical_yearly_draw_results.csv",
+        "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2024_for_2025_canonical_yearly_draw_results.csv",
+        "uploaded_at":  "2026-06-21T00:40:08"
     },
     {
         "local_path":  "audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/pipeline/RAW/hunt_unit_database/2026/csv/Draw Odds/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
@@ -1328,7 +1317,7 @@
         "r2_key":  "hunt-builder/large-files/audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/pipeline/RAW/hunt_unit_database/2026/csv/Draw Odds/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/pipeline/RAW/hunt_unit_database/2026/csv/Draw Odds/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/draw_truth_rebuild/hunt_name_cell_shift_2026/candidate_repaired_files/pipeline/RAW/hunt_unit_database/2026/csv/Draw Odds/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
-        "uploaded_at":  "2026-06-20T20:57:09"
+        "uploaded_at":  "2026-06-21T00:40:11"
     },
     {
         "local_path":  "pipeline/RAW/hunt_unit_database/2026/csv/Draw Odds/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
@@ -1339,7 +1328,7 @@
         "r2_key":  "hunt-builder/large-files/pipeline/RAW/hunt_unit_database/2026/csv/Draw Odds/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/pipeline/RAW/hunt_unit_database/2026/csv/Draw Odds/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/pipeline/RAW/hunt_unit_database/2026/csv/Draw Odds/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
-        "uploaded_at":  "2026-06-20T20:57:12"
+        "uploaded_at":  "2026-06-21T00:40:13"
     },
     {
         "local_path":  "pipeline/RAW/hunt_unit_database/2026/csv/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED.csv",
@@ -1350,7 +1339,7 @@
         "r2_key":  "hunt-builder/large-files/pipeline/RAW/hunt_unit_database/2026/csv/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/pipeline/RAW/hunt_unit_database/2026/csv/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/pipeline/RAW/hunt_unit_database/2026/csv/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED.csv",
-        "uploaded_at":  "2026-06-20T20:57:15"
+        "uploaded_at":  "2026-06-21T00:40:16"
     },
     {
         "local_path":  "pipeline/RAW/hunt_unit_database/2026/csv/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
@@ -1361,7 +1350,7 @@
         "r2_key":  "hunt-builder/large-files/pipeline/RAW/hunt_unit_database/2026/csv/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/pipeline/RAW/hunt_unit_database/2026/csv/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/pipeline/RAW/hunt_unit_database/2026/csv/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
-        "uploaded_at":  "2026-06-20T20:57:18"
+        "uploaded_at":  "2026-06-21T00:40:19"
     },
     {
         "local_path":  "pipeline/RAW/hunt_unit_database/2026/csv/draw_results_database_alignment_outputs_V3/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
@@ -1372,7 +1361,7 @@
         "r2_key":  "hunt-builder/large-files/pipeline/RAW/hunt_unit_database/2026/csv/draw_results_database_alignment_outputs_V3/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/pipeline/RAW/hunt_unit_database/2026/csv/draw_results_database_alignment_outputs_V3/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/pipeline/RAW/hunt_unit_database/2026/csv/draw_results_database_alignment_outputs_V3/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V3.csv",
-        "uploaded_at":  "2026-06-20T20:57:20"
+        "uploaded_at":  "2026-06-21T00:40:21"
     },
     {
         "local_path":  "audits/truth_document_audit/repair_2025_remaining_family_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_remaining_family_metadata_20260618_154425.csv",
@@ -1383,7 +1372,18 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_document_audit/repair_2025_remaining_family_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_remaining_family_metadata_20260618_154425.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_document_audit/repair_2025_remaining_family_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_remaining_family_metadata_20260618_154425.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_document_audit/repair_2025_remaining_family_metadata/backups/draw_results_2025_for_2026_candidate_promotion_file_records.csv.backup_before_2025_remaining_family_metadata_20260618_154425.csv",
-        "uploaded_at":  "2026-06-20T20:57:23"
+        "uploaded_at":  "2026-06-21T00:40:24"
+    },
+    {
+        "local_path":  "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2023_for_2024_canonical_yearly_draw_results.csv",
+        "size_bytes":  58835063,
+        "size_mb":  56.11,
+        "git_tracked":  false,
+        "r2_bucket":  "uoga-data",
+        "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2023_for_2024_canonical_yearly_draw_results.csv",
+        "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2023_for_2024_canonical_yearly_draw_results.csv",
+        "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2023_for_2024_canonical_yearly_draw_results.csv",
+        "uploaded_at":  "2026-06-21T00:40:26"
     },
     {
         "local_path":  "audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2025_for_2026_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T232844Z.csv",
@@ -1394,7 +1394,7 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2025_for_2026_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T232844Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2025_for_2026_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T232844Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2025_for_2026_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T232844Z.csv",
-        "uploaded_at":  "2026-06-20T20:57:26"
+        "uploaded_at":  "2026-06-21T00:40:29"
     },
     {
         "local_path":  "audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2025_for_2026_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T233703Z.csv",
@@ -1405,18 +1405,18 @@
         "r2_key":  "hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2025_for_2026_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T233703Z.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2025_for_2026_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T233703Z.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/audits/truth_cross_year/final_yearly_canonical_audit/backups/draw_results_2025_for_2026_canonical_yearly_draw_results.backup_before_final_yearly_canonical_20260620T233703Z.csv",
-        "uploaded_at":  "2026-06-20T20:57:29"
+        "uploaded_at":  "2026-06-21T00:40:31"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2025_for_2026_canonical_yearly_draw_results.csv",
-        "size_bytes":  58519377,
-        "size_mb":  55.81,
+        "size_bytes":  58492398,
+        "size_mb":  55.78,
         "git_tracked":  false,
         "r2_bucket":  "uoga-data",
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2025_for_2026_canonical_yearly_draw_results.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2025_for_2026_canonical_yearly_draw_results.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2025_for_2026_canonical_yearly_draw_results.csv",
-        "uploaded_at":  "2026-06-20T20:57:32"
+        "uploaded_at":  "2026-06-21T00:40:34"
     },
     {
         "local_path":  "pipeline/RAW/hunt_unit_database/2026/csv/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V2.csv",
@@ -1427,7 +1427,7 @@
         "r2_key":  "hunt-builder/large-files/pipeline/RAW/hunt_unit_database/2026/csv/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V2.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/pipeline/RAW/hunt_unit_database/2026/csv/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V2.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/pipeline/RAW/hunt_unit_database/2026/csv/draw_results_long_cumulative_2025_draw_folder_DATABASE_ALIGNED_V2.csv",
-        "uploaded_at":  "2026-06-20T20:57:35"
+        "uploaded_at":  "2026-06-21T00:40:36"
     },
     {
         "local_path":  "data_truth/draw_results_truth/normalized/draw_results_2020_for_2021_hunt_level_only.csv",
@@ -1438,7 +1438,7 @@
         "r2_key":  "hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2020_for_2021_hunt_level_only.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2020_for_2021_hunt_level_only.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/data_truth/draw_results_truth/normalized/draw_results_2020_for_2021_hunt_level_only.csv",
-        "uploaded_at":  "2026-06-20T20:57:37"
+        "uploaded_at":  "2026-06-21T00:40:39"
     },
     {
         "local_path":  "processed_data/composite_hunt_unit_mapping_2026.geojson",
@@ -1449,7 +1449,7 @@
         "r2_key":  "hunt-builder/large-files/processed_data/composite_hunt_unit_mapping_2026.geojson",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/processed_data/composite_hunt_unit_mapping_2026.geojson",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/processed_data/composite_hunt_unit_mapping_2026.geojson",
-        "uploaded_at":  "2026-06-20T20:57:40"
+        "uploaded_at":  "2026-06-21T00:40:41"
     },
     {
         "local_path":  "pages-dist/processed_data/composite_hunt_unit_mapping_2026.geojson",
@@ -1460,7 +1460,7 @@
         "r2_key":  "hunt-builder/large-files/pages-dist/processed_data/composite_hunt_unit_mapping_2026.geojson",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/pages-dist/processed_data/composite_hunt_unit_mapping_2026.geojson",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/pages-dist/processed_data/composite_hunt_unit_mapping_2026.geojson",
-        "uploaded_at":  "2026-06-20T20:57:43"
+        "uploaded_at":  "2026-06-21T00:40:43"
     },
     {
         "local_path":  "pipeline/R2_OFFLOAD/incoming/processed_data/composite_hunt_unit_mapping_2026.geojson",
@@ -1471,7 +1471,7 @@
         "r2_key":  "hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/composite_hunt_unit_mapping_2026.geojson",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/composite_hunt_unit_mapping_2026.geojson",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/pipeline/R2_OFFLOAD/incoming/processed_data/composite_hunt_unit_mapping_2026.geojson",
-        "uploaded_at":  "2026-06-20T20:57:46"
+        "uploaded_at":  "2026-06-21T00:40:46"
     },
     {
         "local_path":  "processed_data/draw_reality_engine_backup_before_2024_import.csv",
@@ -1482,6 +1482,6 @@
         "r2_key":  "hunt-builder/large-files/processed_data/draw_reality_engine_backup_before_2024_import.csv",
         "r2_uri":  "r2://uoga-data/hunt-builder/large-files/processed_data/draw_reality_engine_backup_before_2024_import.csv",
         "public_url_candidate":  "https://json.uoga.workers.dev/hunt-builder/large-files/processed_data/draw_reality_engine_backup_before_2024_import.csv",
-        "uploaded_at":  "2026-06-20T20:57:48"
+        "uploaded_at":  "2026-06-21T00:40:48"
     }
 ]
