@@ -204,6 +204,11 @@ Currently modeled as O.T.C. / allotment-status rows (`MODELED_AVAILABILITY`):
   - `HARVEST_OBJECTIVE_AVAILABILITY`
   - `UNLIMITED_PURSUIT_PERMIT`
 
+Surface label contract:
+
+- `hunt_type` displays as `O.T.C.` for capped-permit rows.
+- `draw_system` / `draw_design` displays as `Capped Permits` for capped-permit rows.
+
 Currently modeled as `MODELED_SPORTSMAN_DRAW`:
 
 - `SPORTSMAN_PERMIT`

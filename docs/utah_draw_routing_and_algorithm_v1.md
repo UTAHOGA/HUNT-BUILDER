@@ -21,6 +21,11 @@ The routing layer should hand each row to one of these separate engines:
 
 These are separate model paths, not just different labels on one generic probability engine.
 
+Surface label rule for capped-permit rows:
+
+- `hunt_type` displays as `O.T.C.`
+- `draw_system` / `draw_design` displays as `Capped Permits`
+
 ## Source Anchors
 
 Official DWR sources checked for this contract:

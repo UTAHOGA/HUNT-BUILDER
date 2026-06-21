@@ -106,7 +106,7 @@ The existing UI still consumes processed CSVs keyed by `(hunt_code, residency, p
   - `permit_source`
   - `quota_source`
   - `truth_source_file`
-  - `truth_source_status`
+- `truth_source_status`
   - `data_quality_grade`
   - `reason_codes`
   - `hunt_category`
@@ -116,6 +116,12 @@ The existing UI still consumes processed CSVs keyed by `(hunt_code, residency, p
   - `new_this_year`
 - The canonical permit-overlay source label for this pass is `2026_RAC_TRUTH_SOURCE`.
 - `reason_codes` append with pipe delimiters rather than replacing useful existing values.
+
+## Surface Label Contract
+
+- For capped-permit / allotment rows, the visible `hunt_type` label should be `O.T.C.`.
+- For those same rows, the visible draw-system / draw-design label should be `Capped Permits`.
+- The underlying runtime may still store source phrases such as `availability`, `allotment`, or `harvest objective` for traceability, but the user-facing labels should remain the standardized pair above.
 
 ## Total-Only And Dash Rules
 
