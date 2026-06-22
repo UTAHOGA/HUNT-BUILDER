@@ -101,7 +101,7 @@ def _looks_like_general_buck_deer(row: Mapping[str, object]) -> bool:
 def _looks_like_standard_pool(row: Mapping[str, object]) -> bool:
     draw_pool = _clean_lower(row.get("draw_pool"))
     hunt_class = _clean_lower(row.get("hunt_class"))
-    return draw_pool in {"", "standard"} and hunt_class in {"", "public"}
+    return draw_pool in {"", "standard"} and hunt_class in {"", "public", "general season"}
 
 
 def is_modeled_general_deer_row(row: Mapping[str, object]) -> bool:

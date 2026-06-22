@@ -1,0 +1,12 @@
+{
+  "rows": 26427,
+  "unique_hunt_codes": 934,
+  "years": [
+    "2026"
+  ],
+  "forecast_year": 2026,
+  "source_years": "2021-2025",
+  "source_years_used_nonnull": 26427,
+  "source": "audits\\prediction_blind_backtests\\2025_to_2026\\inputs\\runtime_drafts_2026_frozen_copy\\predictive_bonus_engine_2026.materialized.csv",
+  "command_used": "blind audit: 2025_to_2026 prediction phase; TRUTH_PATH=draw_results_long_scorable_through_2025.csv; run_upstream=False"
+}

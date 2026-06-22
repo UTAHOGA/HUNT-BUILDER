@@ -1,0 +1,32 @@
+{
+  "generated_at_utc": "2026-06-22T20:08:52.860705+00:00",
+  "canonical_source": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+  "scorable_source": "outputs/2026 scorable draw results.csv",
+  "quota_source": "outputs/2026 quota allotment rows.csv",
+  "canonical_backup": "audits/2026_canonical_reconciliation/backups/draw_results_2026_for_2027_canonical_yearly_draw_results.before_promote_2026_scorable_20260622T200840Z.csv",
+  "long_backup": "audits/2026_canonical_reconciliation/backups/draw_results_long.before_promote_2026_scorable_20260622T200840Z.csv",
+  "old_canonical_rows": 22714,
+  "old_canonical_columns": 52,
+  "promoted_canonical_rows": 29811,
+  "promoted_canonical_columns": 36,
+  "scorable_rows": 29549,
+  "quota_rows": 262,
+  "long_rows_before": 275515,
+  "long_rows_after": 282612,
+  "long_columns_before": 95,
+  "long_columns_after": 102,
+  "record_type_counts": {
+    "point_level_draw_result": 29529,
+    "hunt_planner_permit_quota": 262,
+    "sportsman_total": 20
+  },
+  "blank_counts": {
+    "hunt_code": 0,
+    "total_permits": 0,
+    "eligible_applicants": 0,
+    "permits_2026_res": 13347,
+    "permits_2026_nr": 13347,
+    "permits_2026_total": 11134
+  },
+  "duplicate_strict_key_groups": 482
+}

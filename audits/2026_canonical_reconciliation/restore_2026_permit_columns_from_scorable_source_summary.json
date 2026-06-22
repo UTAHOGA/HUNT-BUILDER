@@ -1,0 +1,32 @@
+{
+  "generated_at_utc": "2026-06-22T20:11:02.561115+00:00",
+  "source_rows": 29329,
+  "results": {
+    "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2026_for_2027_canonical_yearly_draw_results.csv": {
+      "updates": 83614,
+      "updates_by_column": {
+        "permits_2026_res": 29799,
+        "permits_2026_nr": 24013,
+        "permits_2026_total": 29802
+      },
+      "blank_counts_after": {
+        "permits_2026_res": 13347,
+        "permits_2026_nr": 13347,
+        "permits_2026_total": 11134
+      }
+    },
+    "data_truth/draw_results_truth/normalized/draw_results_long.csv": {
+      "updates": 83614,
+      "updates_by_column": {
+        "permits_2026_res": 29799,
+        "permits_2026_nr": 24013,
+        "permits_2026_total": 29802
+      },
+      "blank_counts_after": {
+        "permits_2026_res": 13347,
+        "permits_2026_nr": 13347,
+        "permits_2026_total": 11134
+      }
+    }
+  }
+}

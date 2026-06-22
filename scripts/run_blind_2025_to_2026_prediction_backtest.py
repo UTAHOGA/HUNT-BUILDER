@@ -186,6 +186,40 @@ def is_scorable_history_row(row: Mapping[str, Any]) -> bool:
     return probability_from_actual(row) is not None or parse_int(row.get("eligible_applicants")) is not None
 
 
+def expanded_engine_rows(row: Mapping[str, Any]) -> list[dict[str, Any]]:
+    """Return engine-ready rows, exploding collapsed resident/nonresident rows."""
+    if clean(row.get("residency")):
+        return [dict(row)]
+
+    expanded: list[dict[str, Any]] = []
+    for residency, prefix in (("Resident", "resident"), ("Nonresident", "nonresident")):
+        has_data = any(
+            clean(row.get(f"{prefix}_{field}")) != ""
+            for field in (
+                "eligible_applicants",
+                "bonus_permits",
+                "regular_permits",
+                "total_permits",
+                "success_ratio",
+                "p_draw",
+                "p_draw_percent",
+            )
+        )
+        if not has_data:
+            continue
+        out = dict(row)
+        out["residency"] = residency
+        out["eligible_applicants"] = clean(row.get(f"{prefix}_eligible_applicants"))
+        out["bonus_permits"] = clean(row.get(f"{prefix}_bonus_permits"))
+        out["regular_permits"] = clean(row.get(f"{prefix}_regular_permits"))
+        out["total_permits"] = clean(row.get(f"{prefix}_total_permits"))
+        out["success_ratio"] = clean(row.get(f"{prefix}_success_ratio"))
+        out["p_draw"] = clean(row.get(f"{prefix}_p_draw"))
+        out["p_draw_percent"] = clean(row.get(f"{prefix}_p_draw_percent"))
+        expanded.append(out)
+    return expanded or [dict(row)]
+
+
 def build_filtered_truth(out_dir: Path) -> dict[str, Any]:
     headers, rows = read_csv(SOURCE_LONG)
     output_headers = [field for field in LEAN_TRUTH_COLUMNS if field in set(headers) or field in {"year", "draw_pool", "hunt_class"}]
@@ -194,30 +228,38 @@ def build_filtered_truth(out_dir: Path) -> dict[str, Any]:
     input_year_counts: Counter[int] = Counter()
     kept_year_counts: Counter[int] = Counter()
     excluded_type_counts: Counter[str] = Counter()
+    expanded_input_rows = 0
     for row in rows:
         year = draw_year(row)
         if year is not None:
             input_year_counts[year] += 1
-        if not is_scorable_history_row(row):
-            if year is not None and year <= 2025:
-                excluded_type_counts[clean(row.get("record_type")).lower() or "(blank)"] += 1
-            continue
-        out = dict(row)
-        out["year"] = str(year)
-        out.setdefault("draw_pool", clean(row.get("draw_pool")) or "standard")
-        if clean(out.get("draw_pool")) == "":
-            out["draw_pool"] = "standard"
-        out.setdefault("hunt_class", clean(row.get("hunt_class")) or "Public")
-        if clean(out.get("hunt_class")) == "":
-            out["hunt_class"] = "Public"
-        kept.append({field: out.get(field, "") for field in output_headers})
-        kept_year_counts[year or 0] += 1
+        expanded_rows = expanded_engine_rows(row)
+        expanded_input_rows += len(expanded_rows)
+        kept_any = False
+        for expanded in expanded_rows:
+            if not is_scorable_history_row(expanded):
+                continue
+            out = dict(expanded)
+            out["year"] = str(year)
+            out.setdefault("draw_pool", clean(expanded.get("draw_pool")) or "standard")
+            if clean(out.get("draw_pool")) == "":
+                out["draw_pool"] = "standard"
+            # Do not force blank hunt_class to "Public" here. Some family
+            # engines, especially public CWMU, use blank vs CWMU/private as
+            # a meaningful source signal.
+            out.setdefault("hunt_class", clean(expanded.get("hunt_class")))
+            kept.append({field: out.get(field, "") for field in output_headers})
+            kept_year_counts[year or 0] += 1
+            kept_any = True
+        if not kept_any and year is not None and year <= 2025:
+            excluded_type_counts[clean(row.get("record_type")).lower() or "(blank)"] += 1
 
     path = out_dir / "inputs" / "draw_results_long_scorable_through_2025.csv"
     write_csv(path, output_headers, kept)
     return {
         "path": path,
         "input_rows": len(rows),
+        "expanded_input_rows": expanded_input_rows,
         "kept_rows": len(kept),
         "input_year_counts": dict(sorted(input_year_counts.items())),
         "kept_year_counts": dict(sorted(kept_year_counts.items())),

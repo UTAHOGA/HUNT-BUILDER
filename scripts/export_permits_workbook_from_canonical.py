@@ -211,6 +211,41 @@ def long_header(year: int) -> list[str]:
 
 
 def long_row(row: dict[str, str], year: int) -> dict[str, object]:
+    def split_metric(prefix: str, metric: str) -> object:
+        direct = row.get(f"{prefix}_{metric}")
+        if clean(direct):
+            return maybe_number(f"{prefix}_{metric}", direct)
+        residency = clean(row.get("residency")).lower().replace("-", "").replace(" ", "")
+        if prefix == "resident" and residency not in {"resident", "res"}:
+            return ""
+        if prefix == "nonresident" and residency not in {"nonresident", "nonres", "nr"}:
+            return ""
+        source = {
+            "eligible_applicants": "eligible_applicants",
+            "bonus_permits": "bonus_permits",
+            "regular_permits": "regular_permits",
+            "total_permits": "total_permits",
+            "success_ratio": "success_ratio",
+        }.get(metric)
+        if not source:
+            return ""
+        return maybe_number(source, row.get(source))
+
+    def total_metric(metric: str) -> object:
+        direct = row.get(f"total_{metric}")
+        if clean(direct):
+            return maybe_number(f"total_{metric}", direct)
+        source = {
+            "eligible_applicants": "eligible_applicants",
+            "bonus_permits": "bonus_permits",
+            "regular_permits": "regular_permits",
+            "total_permits": "total_permits",
+            "success_ratio": "success_ratio",
+        }.get(metric)
+        if not source:
+            return ""
+        return maybe_number(source, row.get(source))
+
     mapping = {
         "ACTUAL DRAW YEAR": ("actual_draw_year",),
         "MODEL TARGET YEAR": ("model_target_year",),
@@ -249,6 +284,21 @@ def long_row(row: dict[str, str], year: int) -> dict[str, object]:
     out: dict[str, object] = {}
     for label, (source,) in mapping.items():
         out[label] = maybe_number(source, row.get(source))
+    out["RES ELIGIBLE APPLICANTS"] = split_metric("resident", "eligible_applicants")
+    out["RES BONUS PERMITS"] = split_metric("resident", "bonus_permits")
+    out["RES REGULAR PERMITS"] = split_metric("resident", "regular_permits")
+    out["RES TOTAL PERMITS"] = split_metric("resident", "total_permits")
+    out["RES SUCCESS RATIO"] = split_metric("resident", "success_ratio")
+    out["NR ELIGIBLE APPLICANTS"] = split_metric("nonresident", "eligible_applicants")
+    out["NR BONUS PERMITS"] = split_metric("nonresident", "bonus_permits")
+    out["NR REGULAR PERMITS"] = split_metric("nonresident", "regular_permits")
+    out["NR TOTAL PERMITS"] = split_metric("nonresident", "total_permits")
+    out["NR SUCCESS RATIO"] = split_metric("nonresident", "success_ratio")
+    out["TOTAL ELIGIBLE APPLICANTS"] = total_metric("eligible_applicants")
+    out["TOTAL BONUS PERMITS"] = total_metric("bonus_permits")
+    out["TOTAL REGULAR PERMITS"] = total_metric("regular_permits")
+    out["TOTAL PERMITS"] = total_metric("total_permits")
+    out["TOTAL SUCCESS RATIO"] = total_metric("success_ratio")
     out["HUNT CODE"] = clean(out.get("HUNT CODE")).upper()
     return out
 

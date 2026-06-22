@@ -20,6 +20,6 @@ year,output_kind,rows,path,normalized_legacy_sportsman_rows,zero_applicant_scora
 2025,scorable,37724,outputs/2025 scorable draw results.csv,0,23037
 2025,reference,396,outputs/2025 non-scorable reference rows.csv,,
 2025,quota,0,outputs/2025 quota allotment rows.csv,,
-2026,scorable,22452,outputs/2026 scorable draw results.csv,0,10400
+2026,scorable,29549,outputs/2026 scorable draw results.csv,0,12477
 2026,reference,262,outputs/2026 non-scorable reference rows.csv,,
 2026,quota,262,outputs/2026 quota allotment rows.csv,,

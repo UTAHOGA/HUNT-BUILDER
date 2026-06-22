@@ -1,0 +1,67 @@
+{
+  "actual_2026_reserved_for_scoring_only": {
+    "path": "outputs/2026 scorable draw results.csv",
+    "sha256": "cad2ce89a074762d713e229353482e82a1d25138e475697d9158b5ef40e60474"
+  },
+  "filtered_truth_input": {
+    "excluded_pre_2026_record_type_counts": {
+      "availability_only": 3,
+      "conservation_auction_allocation": 3,
+      "hunt_total_draw_result": 5817,
+      "supplemental_permit_total_row": 392
+    },
+    "expanded_input_rows": 534948,
+    "input_rows": 282612,
+    "input_year_counts": {
+      "2019": 33478,
+      "2020": 33370,
+      "2021": 33788,
+      "2022": 34876,
+      "2023": 35834,
+      "2024": 43335,
+      "2025": 38120,
+      "2026": 29811
+    },
+    "kept_rows": 493127,
+    "kept_year_counts": {
+      "2019": 63950,
+      "2020": 63808,
+      "2021": 64709,
+      "2022": 66898,
+      "2023": 71666,
+      "2024": 86658,
+      "2025": 75438
+    },
+    "path": "audits/prediction_blind_backtests/2025_to_2026/inputs/draw_results_long_scorable_through_2025.csv",
+    "sha256": "d85971c3ffff4f4684754d03fb1c7c38fb7249925de5f23c649c9ade3df72e25"
+  },
+  "frozen_prediction": {
+    "path": "audits/prediction_blind_backtests/2025_to_2026/prediction_phase/ml_draw_predictions_v1.csv",
+    "sha256": "c010094eb995ee1843d263f5f4835941f5949b1a923013381d6c659f5a9a7c4e"
+  },
+  "generated_at_utc": "2026-06-22T20:23:00.645369+00:00",
+  "history_years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "no_leakage_rule": "prediction phase uses scorable actual_draw_year <= 2025 only; 2026 actual file read only after prediction hash is recorded",
+  "prediction_target_year": 2026,
+  "purpose": "blind_2025_to_2026_prediction_backtest",
+  "run_started_utc": "2026-06-22T20:21:42.861946+00:00",
+  "runtime_input_copy": {
+    "files": {
+      "predictive_bonus_engine_2026.audit.csv": "audits/prediction_blind_backtests/2025_to_2026/inputs/runtime_drafts_2026_frozen_copy/predictive_bonus_engine_2026.audit.csv",
+      "predictive_bonus_engine_2026.materialized.csv": "audits/prediction_blind_backtests/2025_to_2026/inputs/runtime_drafts_2026_frozen_copy/predictive_bonus_engine_2026.materialized.csv",
+      "predictive_bonus_engine_2026.predictions.csv": "audits/prediction_blind_backtests/2025_to_2026/inputs/runtime_drafts_2026_frozen_copy/predictive_bonus_engine_2026.predictions.csv"
+    },
+    "path": "audits/prediction_blind_backtests/2025_to_2026/inputs/runtime_drafts_2026_frozen_copy",
+    "sha256": {
+      "predictive_bonus_engine_2026.audit.csv": "66a6f376de50b6b8d9088154fdd297139778afb2022f5afe100101e52acab03b",
+      "predictive_bonus_engine_2026.materialized.csv": "9a83ac3d8b6fba15c75aceb2d2683e319549d6b1ab8b010e15e0f3d1e56b7a32",
+      "predictive_bonus_engine_2026.predictions.csv": "9e8d225216d3f4d7cd0cadbba14deda1e94a29b8eb15d97bf6bd3b08e2514c3a"
+    }
+  }
+}

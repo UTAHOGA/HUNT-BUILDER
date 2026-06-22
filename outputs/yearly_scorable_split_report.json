@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-06-22T19:41:08.812534+00:00",
+  "generated_at_utc": "2026-06-22T20:13:37.168146+00:00",
   "write": true,
   "rule": "Scorable outputs include point-level draw-result rows plus Sportsman total rows; quota/allocation/reference rows are excluded.",
   "years": [
@@ -377,39 +377,35 @@
     {
       "year": 2026,
       "source": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
-      "source_rows": 22714,
-      "source_columns": 52,
+      "source_rows": 29811,
+      "source_columns": 36,
       "record_type_counts": {
-        "point_level_draw_result": 22432,
+        "point_level_draw_result": 29529,
         "hunt_planner_permit_quota": 262,
         "sportsman_total": 20
       },
-      "scorable_rows": 22452,
+      "scorable_rows": 29549,
       "reference_rows": 262,
       "quota_rows": 262,
       "normalized_legacy_sportsman_rows": 0,
       "unique_hunt_codes_scorable": 834,
-      "zero_applicant_scorable_rows": 10400,
+      "zero_applicant_scorable_rows": 12477,
       "blank_scorable_fields": {
         "hunt_code": 0,
-        "residency_row_label": 22452,
+        "residency_row_label": 0,
         "points": 0,
         "eligible_applicants_any": 0,
-        "total_eligible_applicants": 0,
+        "total_eligible_applicants": null,
         "total_permits": 0,
-        "permits_2026_res": 0,
-        "permits_2026_nr": 0,
+        "permits_2026_res": 3153,
+        "permits_2026_nr": 3153,
         "permits_2026_total": 0,
-        "p_draw": null,
-        "p_draw_percent": null
+        "p_draw": 23599,
+        "p_draw_percent": 11174
       },
       "p_columns_present": [
-        "resident_p_draw",
-        "resident_p_draw_percent",
-        "nonresident_p_draw",
-        "nonresident_p_draw_percent",
-        "total_p_draw",
-        "total_p_draw_percent"
+        "p_draw",
+        "p_draw_percent"
       ],
       "outputs": {
         "scorable": "outputs/2026 scorable draw results.csv",
