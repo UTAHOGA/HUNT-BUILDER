@@ -1,0 +1,42 @@
+{
+  "generated_at_utc": "2026-06-22T19:40:48.362019+00:00",
+  "source_pdfs": {
+    "2022": "audits/2025_canonical_finalization/fresh_live_pulls_20260621_192945/older_years_biggame_odds/2022/22-23_sportsman_odds.pdf",
+    "2023": "audits/2025_canonical_finalization/fresh_live_pulls_20260621_192945/older_years_biggame_odds/2023/23-24_sportsman_odds.pdf"
+  },
+  "parsed_codes": {
+    "2022": [
+      "BI1000",
+      "BR1000",
+      "CG1000",
+      "DB0007",
+      "DS1000",
+      "EB1000",
+      "GO1000",
+      "MB1000",
+      "PB1000",
+      "RS0001",
+      "TK0001"
+    ],
+    "2023": [
+      "BI1000",
+      "BR1000",
+      "DB0007",
+      "DS1000",
+      "EB1000",
+      "GO1000",
+      "MB1000",
+      "PB1000",
+      "RS0001",
+      "TK0001"
+    ]
+  },
+  "changes": 975,
+  "changed_files": [
+    "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2022_for_2023_canonical_yearly_draw_results.csv",
+    "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2023_for_2024_canonical_yearly_draw_results.csv",
+    "data_truth/draw_results_truth/normalized/draw_results_long.csv",
+    "outputs/2022 scorable draw results.csv",
+    "outputs/2023 scorable draw results.csv"
+  ]
+}
