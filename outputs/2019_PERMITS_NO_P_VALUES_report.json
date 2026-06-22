@@ -1,8 +1,8 @@
 {
-  "generated_at_utc": "2026-06-22T19:04:05.656801+00:00",
+  "generated_at_utc": "2026-06-22T18:47:16.109588+00:00",
   "year": 2019,
   "canonical_source": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2019_for_2020_canonical_yearly_draw_results.csv",
-  "output_xlsx": "outputs/2019 PERMITS.xlsx",
+  "output_xlsx": "outputs/2019 PERMITS NO P VALUES.xlsx",
   "summary_rows": 1054,
   "long_rows": 33478,
   "long_columns": 33,

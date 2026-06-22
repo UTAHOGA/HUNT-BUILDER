@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-06-22T18:27:10.978406+00:00",
+  "generated_at_utc": "2026-06-22T18:56:45.230978+00:00",
   "output_dir": "outputs/yearly_canonical_workbooks",
   "years": [
     {
@@ -13,7 +13,7 @@
       "display_reference_rows": 262,
       "canonical_columns": 52,
       "long_file_columns": 95,
-      "yearly_database_columns": 58
+      "yearly_database_columns": 52
     }
   ]
 }

@@ -195,20 +195,16 @@ def long_header(year: int) -> list[str]:
         "RES REGULAR PERMITS",
         "RES TOTAL PERMITS",
         "RES SUCCESS RATIO",
-        "RES P DRAW",
         "NR ELIGIBLE APPLICANTS",
         "NR BONUS PERMITS",
         "NR REGULAR PERMITS",
         "NR TOTAL PERMITS",
         "NR SUCCESS RATIO",
-        "NR P DRAW",
         "TOTAL ELIGIBLE APPLICANTS",
         "TOTAL BONUS PERMITS",
         "TOTAL REGULAR PERMITS",
         "TOTAL PERMITS",
         "TOTAL SUCCESS RATIO",
-        "TOTAL P DRAW",
-        "TOTAL P DRAW PERCENT",
         "SOURCE FILE",
         "PDF PAGE",
     ]
@@ -237,32 +233,22 @@ def long_row(row: dict[str, str], year: int) -> dict[str, object]:
         "RES REGULAR PERMITS": ("resident_regular_permits",),
         "RES TOTAL PERMITS": ("resident_total_permits",),
         "RES SUCCESS RATIO": ("resident_success_ratio",),
-        "RES P DRAW": ("resident_p_draw",),
         "NR ELIGIBLE APPLICANTS": ("nonresident_eligible_applicants",),
         "NR BONUS PERMITS": ("nonresident_bonus_permits",),
         "NR REGULAR PERMITS": ("nonresident_regular_permits",),
         "NR TOTAL PERMITS": ("nonresident_total_permits",),
         "NR SUCCESS RATIO": ("nonresident_success_ratio",),
-        "NR P DRAW": ("nonresident_p_draw",),
         "TOTAL ELIGIBLE APPLICANTS": ("total_eligible_applicants",),
         "TOTAL BONUS PERMITS": ("total_bonus_permits",),
         "TOTAL REGULAR PERMITS": ("total_regular_permits",),
         "TOTAL PERMITS": ("total_permits",),
         "TOTAL SUCCESS RATIO": ("total_success_ratio",),
-        "TOTAL P DRAW": ("total_p_draw",),
-        "TOTAL P DRAW PERCENT": ("total_p_draw_percent",),
         "SOURCE FILE": ("source_file",),
         "PDF PAGE": ("pdf_page",),
     }
     out: dict[str, object] = {}
     for label, (source,) in mapping.items():
         out[label] = maybe_number(source, row.get(source))
-    out["RES P DRAW"] = maybe_number("resident_p_draw", probability_from_row(row, "resident", row.get("resident_p_draw_percent")))
-    out["NR P DRAW"] = maybe_number("nonresident_p_draw", probability_from_row(row, "nonresident", row.get("nonresident_p_draw_percent")))
-    out["TOTAL P DRAW"] = maybe_number("total_p_draw", probability_from_row(row, "total", row.get("total_p_draw_percent")))
-    total_p = out.get("TOTAL P DRAW")
-    if isinstance(total_p, (int, float)):
-        out["TOTAL P DRAW PERCENT"] = total_p * 100
     out["HUNT CODE"] = clean(out.get("HUNT CODE")).upper()
     return out
 

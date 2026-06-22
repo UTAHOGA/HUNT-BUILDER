@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-06-22T18:12:52.775459+00:00",
+  "generated_at_utc": "2026-06-22T18:46:18.864201+00:00",
   "year": 2025,
   "canonical_source": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2025_for_2026_canonical_yearly_draw_results.csv",
   "output_xlsx": "outputs/2025 standardized long.xlsx",
   "summary_rows": 1064,
   "long_rows": 38120,
-  "long_columns": 37,
+  "long_columns": 33,
   "record_type_counts": {
     "point_level_draw_result": 37714,
     "supplemental_permit_total_row": 392,

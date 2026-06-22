@@ -74,6 +74,15 @@ HARVEST_COLUMNS = [
 ]
 
 
+def is_p_value_column(column: object) -> bool:
+    text = clean(column).lower()
+    return "p_draw" in text
+
+
+def visible_header(header: Iterable[str]) -> list[str]:
+    return [column for column in header if not is_p_value_column(column)]
+
+
 def clean(value: object) -> str:
     if value is None:
         return ""
@@ -217,22 +226,16 @@ def yearly_database_header(raw_header: list[str], year: int) -> list[str]:
         "resident_regular_permits",
         "resident_total_permits",
         "resident_success_ratio",
-        "resident_p_draw",
-        "resident_p_draw_percent",
         "nonresident_eligible_applicants",
         "nonresident_bonus_permits",
         "nonresident_regular_permits",
         "nonresident_total_permits",
         "nonresident_success_ratio",
-        "nonresident_p_draw",
-        "nonresident_p_draw_percent",
         "total_eligible_applicants",
         "total_bonus_permits",
         "total_regular_permits",
         "total_permits",
         "total_success_ratio",
-        "total_p_draw",
-        "total_p_draw_percent",
         *HARVEST_COLUMNS,
         "source_file",
         "source_scope",
@@ -289,8 +292,6 @@ def fill_metric_columns(out: dict[str, object], row: dict[str, str], prefix: str
         "regular_permits",
         "total_permits",
         "success_ratio",
-        "p_draw",
-        "p_draw_percent",
     ]:
         value = maybe_number(column, row.get(column))
         if value != "":
@@ -483,6 +484,8 @@ def audit_rows(
 def export_year(year: int) -> dict[str, object]:
     canonical_header, canonical_rows = read_csv_rows(canonical_path(year))
     long_header, long_rows = long_rows_for_year(year)
+    visible_canonical_header = visible_header(canonical_header)
+    visible_long_header = visible_header(long_header)
     database_by_code = load_database_by_hunt_code()
     summary_rows = build_summary_rows(canonical_rows, year)
     database_header = yearly_database_header(canonical_header, year)
@@ -536,12 +539,12 @@ def export_year(year: int) -> dict[str, object]:
     set_widths(summary, summary_header)
 
     canonical_sheet = workbook.create_sheet("RAW_CANONICAL")
-    write_table(canonical_sheet, canonical_header, canonical_rows)
-    set_widths(canonical_sheet, canonical_header)
+    write_table(canonical_sheet, visible_canonical_header, canonical_rows)
+    set_widths(canonical_sheet, visible_canonical_header)
 
     long_sheet = workbook.create_sheet("LONG_FILE_COPY")
-    write_table(long_sheet, long_header, long_rows)
-    set_widths(long_sheet, long_header)
+    write_table(long_sheet, visible_long_header, long_rows)
+    set_widths(long_sheet, visible_long_header)
 
     audit = workbook.create_sheet("Audit")
     audit_data = audit_rows(

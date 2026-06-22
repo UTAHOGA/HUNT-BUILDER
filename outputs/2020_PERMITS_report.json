@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-06-22T18:04:01.113793+00:00",
+  "generated_at_utc": "2026-06-22T18:44:20.532914+00:00",
   "year": 2020,
   "canonical_source": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2020_for_2021_canonical_yearly_draw_results.csv",
   "output_xlsx": "outputs/2020 PERMITS.xlsx",
   "summary_rows": 1028,
   "long_rows": 33370,
-  "long_columns": 37,
+  "long_columns": 33,
   "record_type_counts": {
     "hunt_total_draw_result": 1459,
     "point_level_draw_result": 31911

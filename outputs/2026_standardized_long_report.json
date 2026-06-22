@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-06-22T18:13:03.862560+00:00",
+  "generated_at_utc": "2026-06-22T18:46:29.999365+00:00",
   "year": 2026,
   "canonical_source": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
   "output_xlsx": "outputs/2026 standardized long.xlsx",
   "summary_rows": 1096,
   "long_rows": 22714,
-  "long_columns": 37,
+  "long_columns": 33,
   "record_type_counts": {
     "point_level_draw_result": 22432,
     "hunt_planner_permit_quota": 262,
