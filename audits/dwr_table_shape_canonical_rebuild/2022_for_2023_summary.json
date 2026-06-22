@@ -1,0 +1,21 @@
+{
+  "year": 2022,
+  "source_path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2022_for_2023_canonical_yearly_draw_results.csv",
+  "write": true,
+  "rows_before": 69741,
+  "rows_after": 34876,
+  "columns_before": 55,
+  "columns_after": 71,
+  "row_reduction": 34865,
+  "collapse_conflicts": 0,
+  "record_type_counts": {
+    "TOTAL_ROW": 1427,
+    "point_level_draw_result": 33438,
+    "sportsman_total": 11
+  },
+  "source_residency_counts": {
+    "nonresident; resident": 34865,
+    "resident": 11
+  },
+  "backup_path": "audits/dwr_table_shape_canonical_rebuild/backups/draw_results_2022_for_2023_canonical_yearly_draw_results.before_dwr_table_shape_20260622T131617Z.csv"
+}

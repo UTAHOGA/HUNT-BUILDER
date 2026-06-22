@@ -1,0 +1,473 @@
+{
+  "output_dir": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents",
+  "tracked_count": 45,
+  "skipped_count": 14,
+  "generated": [
+    {
+      "source_file": "dwr_huntboundary_bison_cow_only.json",
+      "stem": "huntboundary_bison_cow_only",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_bison_cow_only.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_bison_cow_only_summary.png",
+      "hunts": 5,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_bison_hunters_choice.json",
+      "stem": "huntboundary_bison_hunters_choice",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_bison_hunters_choice.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_bison_hunters_choice_summary.png",
+      "hunts": 14,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_black_bear_either_sex.json",
+      "stem": "huntboundary_black_bear_either_sex",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_black_bear_either_sex.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_black_bear_either_sex_summary.png",
+      "hunts": 106,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_cougar_either_sex.json",
+      "stem": "huntboundary_cougar_either_sex",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_cougar_either_sex.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_cougar_either_sex_summary.png",
+      "hunts": 1,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_deer_antlerless.json",
+      "stem": "huntboundary_deer_antlerless",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_deer_antlerless.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_deer_antlerless_summary.png",
+      "hunts": 21,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_deer_buck.json",
+      "stem": "huntboundary_deer_buck",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_deer_buck.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_deer_buck_summary.png",
+      "hunts": 459,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_deer_hunters_choice.json",
+      "stem": "huntboundary_deer_hunters_choice",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_deer_hunters_choice.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_deer_hunters_choice_summary.png",
+      "hunts": 1,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_desert_bighorn_sheep_male_only.json",
+      "stem": "huntboundary_desert_bighorn_sheep_male_only",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_desert_bighorn_sheep_male_only.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_desert_bighorn_sheep_male_only_summary.png",
+      "hunts": 25,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_elk_antlerless.json",
+      "stem": "huntboundary_elk_antlerless",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_elk_antlerless.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_elk_antlerless_summary.png",
+      "hunts": 212,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_elk_bull.json",
+      "stem": "huntboundary_elk_bull",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_elk_bull.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_elk_bull_summary.png",
+      "hunts": 353,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_elk_hunters_choice.json",
+      "stem": "huntboundary_elk_hunters_choice",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_elk_hunters_choice.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_elk_hunters_choice_summary.png",
+      "hunts": 1,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_moose_antlerless.json",
+      "stem": "huntboundary_moose_antlerless",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_moose_antlerless.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_moose_antlerless_summary.png",
+      "hunts": 5,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_moose_bull.json",
+      "stem": "huntboundary_moose_bull",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_moose_bull.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_moose_bull_summary.png",
+      "hunts": 27,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_mountain_goat_hunters_choice.json",
+      "stem": "huntboundary_mountain_goat_hunters_choice",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_mountain_goat_hunters_choice.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_mountain_goat_hunters_choice_summary.png",
+      "hunts": 18,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_pronghorn_buck.json",
+      "stem": "huntboundary_pronghorn_buck",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_pronghorn_buck.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_pronghorn_buck_summary.png",
+      "hunts": 94,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_pronghorn_doe.json",
+      "stem": "huntboundary_pronghorn_doe",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_pronghorn_doe.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_pronghorn_doe_summary.png",
+      "hunts": 25,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_rocky_mountain_bighorn_sheep_ewe.json",
+      "stem": "huntboundary_rocky_mountain_bighorn_sheep_ewe",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_rocky_mountain_bighorn_sheep_ewe.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_rocky_mountain_bighorn_sheep_ewe_summary.png",
+      "hunts": 1,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_rocky_mountain_bighorn_sheep_male_only.json",
+      "stem": "huntboundary_rocky_mountain_bighorn_sheep_male_only",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_rocky_mountain_bighorn_sheep_male_only.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_rocky_mountain_bighorn_sheep_male_only_summary.png",
+      "hunts": 20,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_tribal_na.json",
+      "stem": "huntboundary_tribal_na",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_tribal_na.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_tribal_na_summary.png",
+      "hunts": 1,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_turkey_bearded.json",
+      "stem": "huntboundary_turkey_bearded",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_turkey_bearded.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_turkey_bearded_summary.png",
+      "hunts": 14,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "dwr_huntboundary_turkey_either_sex.json",
+      "stem": "huntboundary_turkey_either_sex",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\huntboundary_turkey_either_sex.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\huntboundary_turkey_either_sex_summary.png",
+      "hunts": 4,
+      "odds": 0,
+      "seasons": 0,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_bison_mht12.json",
+      "stem": "big_game_2026_bison_mht12",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\big_game_2026_bison_mht12.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\big_game_2026_bison_mht12_summary.png",
+      "hunts": 17,
+      "odds": 578,
+      "seasons": 17,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_bull_moose_mht11.json",
+      "stem": "big_game_2026_bull_moose_mht11",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\big_game_2026_bull_moose_mht11.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\big_game_2026_bull_moose_mht11_summary.png",
+      "hunts": 27,
+      "odds": 927,
+      "seasons": 27,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_dedicated_hunter_buck_deer_mht32.json",
+      "stem": "big_game_2026_dedicated_hunter_buck_deer_mht32",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\big_game_2026_dedicated_hunter_buck_deer_mht32.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\big_game_2026_dedicated_hunter_buck_deer_mht32_summary.png",
+      "hunts": 32,
+      "odds": 301,
+      "seasons": 32,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_desert_bighorn_sheep_mht13.json",
+      "stem": "big_game_2026_desert_bighorn_sheep_mht13",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\big_game_2026_desert_bighorn_sheep_mht13.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\big_game_2026_desert_bighorn_sheep_mht13_summary.png",
+      "hunts": 19,
+      "odds": 727,
+      "seasons": 19,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_draw_only_youth_elk_mht6.json",
+      "stem": "big_game_2026_draw_only_youth_elk_mht6",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\big_game_2026_draw_only_youth_elk_mht6.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\big_game_2026_draw_only_youth_elk_mht6_summary.png",
+      "hunts": 1,
+      "odds": 2,
+      "seasons": 1,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_general_season_buck_deer_mht5.json",
+      "stem": "big_game_2026_general_season_buck_deer_mht5",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\big_game_2026_general_season_buck_deer_mht5.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\big_game_2026_general_season_buck_deer_mht5_summary.png",
+      "hunts": 107,
+      "odds": 1773,
+      "seasons": 109,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_limited_entry_buck_deer_mht8.json",
+      "stem": "big_game_2026_limited_entry_buck_deer_mht8",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\big_game_2026_limited_entry_buck_deer_mht8.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\big_game_2026_limited_entry_buck_deer_mht8_summary.png",
+      "hunts": 193,
+      "odds": 3945,
+      "seasons": 209,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_limited_entry_buck_pronghorn_mht10.json",
+      "stem": "big_game_2026_limited_entry_buck_pronghorn_mht10",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\big_game_2026_limited_entry_buck_pronghorn_mht10.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\big_game_2026_limited_entry_buck_pronghorn_mht10_summary.png",
+      "hunts": 88,
+      "odds": 1477,
+      "seasons": 88,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_limited_entry_bull_elk_mht9.json",
+      "stem": "big_game_2026_limited_entry_bull_elk_mht9",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\big_game_2026_limited_entry_bull_elk_mht9.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\big_game_2026_limited_entry_bull_elk_mht9_summary.png",
+      "hunts": 210,
+      "odds": 6456,
+      "seasons": 284,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_mountain_goat_mht15.json",
+      "stem": "big_game_2026_mountain_goat_mht15",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\big_game_2026_mountain_goat_mht15.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\big_game_2026_mountain_goat_mht15_summary.png",
+      "hunts": 18,
+      "odds": 582,
+      "seasons": 18,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_rocky_mtn_bighorn_sheep_mht14.json",
+      "stem": "big_game_2026_rocky_mtn_bighorn_sheep_mht14",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\big_game_2026_rocky_mtn_bighorn_sheep_mht14.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\big_game_2026_rocky_mtn_bighorn_sheep_mht14_summary.png",
+      "hunts": 16,
+      "odds": 535,
+      "seasons": 16,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_black_bear_2026_black_bear_mht1.json",
+      "stem": "black_bear_2026_black_bear_mht1",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\black_bear_2026_black_bear_mht1.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\black_bear_2026_black_bear_mht1_summary.png",
+      "hunts": 91,
+      "odds": 1461,
+      "seasons": 205,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_black_bear_2026_black_bear_restricted_pursuit_mht16.json",
+      "stem": "black_bear_2026_black_bear_restricted_pursuit_mht16",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\black_bear_2026_black_bear_restricted_pursuit_mht16.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\black_bear_2026_black_bear_restricted_pursuit_mht16_summary.png",
+      "hunts": 10,
+      "odds": 89,
+      "seasons": 10,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_bison_mht26.json",
+      "stem": "sportsman_2026_sportsman_bison_mht26",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\sportsman_2026_sportsman_bison_mht26.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\sportsman_2026_sportsman_bison_mht26_summary.png",
+      "hunts": 1,
+      "odds": 1,
+      "seasons": 1,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_black_bear_mht30.json",
+      "stem": "sportsman_2026_sportsman_black_bear_mht30",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\sportsman_2026_sportsman_black_bear_mht30.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\sportsman_2026_sportsman_black_bear_mht30_summary.png",
+      "hunts": 1,
+      "odds": 1,
+      "seasons": 1,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_deer_mht22.json",
+      "stem": "sportsman_2026_sportsman_deer_mht22",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\sportsman_2026_sportsman_deer_mht22.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\sportsman_2026_sportsman_deer_mht22_summary.png",
+      "hunts": 1,
+      "odds": 1,
+      "seasons": 2,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_desert_bighorn_sheep_mht28.json",
+      "stem": "sportsman_2026_sportsman_desert_bighorn_sheep_mht28",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\sportsman_2026_sportsman_desert_bighorn_sheep_mht28.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\sportsman_2026_sportsman_desert_bighorn_sheep_mht28_summary.png",
+      "hunts": 1,
+      "odds": 1,
+      "seasons": 1,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_elk_mht23.json",
+      "stem": "sportsman_2026_sportsman_elk_mht23",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\sportsman_2026_sportsman_elk_mht23.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\sportsman_2026_sportsman_elk_mht23_summary.png",
+      "hunts": 1,
+      "odds": 1,
+      "seasons": 2,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_moose_mht25.json",
+      "stem": "sportsman_2026_sportsman_moose_mht25",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\sportsman_2026_sportsman_moose_mht25.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\sportsman_2026_sportsman_moose_mht25_summary.png",
+      "hunts": 1,
+      "odds": 1,
+      "seasons": 1,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_mountain_goat_mht29.json",
+      "stem": "sportsman_2026_sportsman_mountain_goat_mht29",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\sportsman_2026_sportsman_mountain_goat_mht29.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\sportsman_2026_sportsman_mountain_goat_mht29_summary.png",
+      "hunts": 1,
+      "odds": 1,
+      "seasons": 1,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_pronghorn_mht24.json",
+      "stem": "sportsman_2026_sportsman_pronghorn_mht24",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\sportsman_2026_sportsman_pronghorn_mht24.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\sportsman_2026_sportsman_pronghorn_mht24_summary.png",
+      "hunts": 1,
+      "odds": 1,
+      "seasons": 2,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_rocky_mtn_bighorn_sheep_mht27.json",
+      "stem": "sportsman_2026_sportsman_rocky_mtn_bighorn_sheep_mht27",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\sportsman_2026_sportsman_rocky_mtn_bighorn_sheep_mht27.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\sportsman_2026_sportsman_rocky_mtn_bighorn_sheep_mht27_summary.png",
+      "hunts": 1,
+      "odds": 1,
+      "seasons": 1,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_turkey_mht31.json",
+      "stem": "sportsman_2026_sportsman_turkey_mht31",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\sportsman_2026_sportsman_turkey_mht31.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\sportsman_2026_sportsman_turkey_mht31_summary.png",
+      "hunts": 1,
+      "odds": 1,
+      "seasons": 1,
+      "status": "created_xlsx"
+    },
+    {
+      "source_file": "utahdraws_turkey_2026_turkey_mht3.json",
+      "stem": "turkey_2026_turkey_mht3",
+      "xlsx_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\turkey_2026_turkey_mht3.xlsx",
+      "preview_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_json_documents\\_previews\\turkey_2026_turkey_mht3_summary.png",
+      "hunts": 8,
+      "odds": 187,
+      "seasons": 8,
+      "status": "created_xlsx"
+    }
+  ],
+  "skipped": [
+    "antlerless_guidebook_vs_hunt_planner_code_coverage_summary.json",
+    "dwr_huntboundary_coyote_either_sex.json",
+    "dwr_huntboundary_goose_dark_either_sex.json",
+    "dwr_huntboundary_goose_light_either_sex.json",
+    "dwr_huntboundary_goose_white_fronted_either_sex.json",
+    "dwr_huntboundary_greater_sage_grouse_either_sex.json",
+    "dwr_huntboundary_hasetup.json",
+    "dwr_huntboundary_sandhill_crane_either_sex.json",
+    "dwr_huntboundary_sharp_tailed_grouse_either_sex.json",
+    "dwr_huntboundary_tundra_swan_either_sex.json",
+    "dwr_huntboundary_waterfowl_either_sex.json",
+    "utah_wildlife_bear_cougar_turkey_odds_archive_summary.json",
+    "utah_wildlife_biggame_odds_archive_summary.json",
+    "utahdraws_draw_odds_supplement_data.json"
+  ]
+}

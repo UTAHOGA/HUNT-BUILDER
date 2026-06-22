@@ -1,0 +1,44 @@
+{
+  "generated_at_utc": "2026-06-22T05:52:56.985473+00:00",
+  "canonical_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+  "long_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+  "rows": 29811,
+  "columns": 36,
+  "unique_hunt_codes": 1096,
+  "removed_columns_absent": {
+    "successful_applicants": true,
+    "unsuccessful_applicants": true
+  },
+  "blank_counts": {
+    "hunt_code": 0,
+    "hunt_name": 0,
+    "species": 0,
+    "sex_type": 0,
+    "hunt_type": 0,
+    "draw_design": 0,
+    "boundary_id": 0,
+    "weapon": 0,
+    "season": 0,
+    "p_draw": 23861,
+    "p_draw_percent": 11436,
+    "pdf_page": 18637,
+    "permits_2026_res": 13347,
+    "permits_2026_nr": 13347,
+    "permits_2026_total": 11134
+  },
+  "record_type_counts": {
+    "point_level_draw_result": 29529,
+    "sportsman_total": 20,
+    "hunt_planner_permit_quota": 262
+  },
+  "unexpected_hunt_type_values": [],
+  "unexpected_draw_design_values": [],
+  "sportsman_sex_type_rows": 0,
+  "point_rows_unlimited_draw_design": 0,
+  "decision": "successful_applicants and unsuccessful_applicants are removed because no distinct raw artifact fields exist; do not fabricate from permit totals.",
+  "long_columns": 57,
+  "long_removed_columns_absent": {
+    "successful_applicants": true,
+    "unsuccessful_applicants": true
+  }
+}

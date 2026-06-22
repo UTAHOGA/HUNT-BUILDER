@@ -1,0 +1,28 @@
+{
+  "generated_at_utc": "2026-06-22T05:48:42.438359+00:00",
+  "decision": "Removed successful_applicants and unsuccessful_applicants because the raw Utah draw artifacts expose applicant counts, permit counts, and success ratio, but not distinct successful/unsuccessful applicant source columns. Do not derive or fabricate these fields until a true raw source field is identified.",
+  "removed_columns": [
+    "successful_applicants",
+    "unsuccessful_applicants"
+  ],
+  "targets": [
+    {
+      "path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+      "rows": 29811,
+      "columns_before": 38,
+      "columns_after": 36,
+      "removed_columns_present": "successful_applicants|unsuccessful_applicants",
+      "successful_applicants_blank_count_before": 29811,
+      "unsuccessful_applicants_blank_count_before": 29811
+    },
+    {
+      "path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "rows": 534648,
+      "columns_before": 59,
+      "columns_after": 57,
+      "removed_columns_present": "successful_applicants|unsuccessful_applicants",
+      "successful_applicants_blank_count_before": 459087,
+      "unsuccessful_applicants_blank_count_before": 459479
+    }
+  ]
+}

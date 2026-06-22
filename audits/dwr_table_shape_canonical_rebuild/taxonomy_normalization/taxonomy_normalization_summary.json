@@ -1,0 +1,117 @@
+{
+  "write": true,
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "audit_path": "audits/dwr_table_shape_canonical_rebuild/taxonomy_normalization/taxonomy_normalization_audit.csv",
+  "total_cell_changes": 21097,
+  "changes_by_year": {
+    "2019": 112,
+    "2020": 0,
+    "2021": 780,
+    "2022": 9699,
+    "2023": 10506,
+    "2024": 0,
+    "2025": 0,
+    "2026": 0
+  },
+  "changes_by_field": {
+    "sex_type": 20004,
+    "hunt_type": 421,
+    "draw_design": 421,
+    "species": 251
+  },
+  "summaries": [
+    {
+      "year": 2019,
+      "write": true,
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2019_for_2020_canonical_yearly_draw_results.csv",
+      "backup_path": "audits/dwr_table_shape_canonical_rebuild/taxonomy_normalization/backups/draw_results_2019_for_2020_canonical_yearly_draw_results.before_taxonomy_normalization_20260622T133018Z.csv",
+      "rows": 33478,
+      "cell_changes": 112,
+      "changes_by_field": {
+        "sex_type": 112
+      }
+    },
+    {
+      "year": 2020,
+      "write": true,
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2020_for_2021_canonical_yearly_draw_results.csv",
+      "backup_path": "",
+      "rows": 33370,
+      "cell_changes": 0,
+      "changes_by_field": {}
+    },
+    {
+      "year": 2021,
+      "write": true,
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2021_for_2022_canonical_yearly_draw_results.csv",
+      "backup_path": "audits/dwr_table_shape_canonical_rebuild/taxonomy_normalization/backups/draw_results_2021_for_2022_canonical_yearly_draw_results.before_taxonomy_normalization_20260622T133020Z.csv",
+      "rows": 33788,
+      "cell_changes": 780,
+      "changes_by_field": {
+        "hunt_type": 390,
+        "draw_design": 390
+      }
+    },
+    {
+      "year": 2022,
+      "write": true,
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2022_for_2023_canonical_yearly_draw_results.csv",
+      "backup_path": "audits/dwr_table_shape_canonical_rebuild/taxonomy_normalization/backups/draw_results_2022_for_2023_canonical_yearly_draw_results.before_taxonomy_normalization_20260622T133021Z.csv",
+      "rows": 34876,
+      "cell_changes": 9699,
+      "changes_by_field": {
+        "sex_type": 9386,
+        "species": 251,
+        "hunt_type": 31,
+        "draw_design": 31
+      }
+    },
+    {
+      "year": 2023,
+      "write": true,
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2023_for_2024_canonical_yearly_draw_results.csv",
+      "backup_path": "audits/dwr_table_shape_canonical_rebuild/taxonomy_normalization/backups/draw_results_2023_for_2024_canonical_yearly_draw_results.before_taxonomy_normalization_20260622T133023Z.csv",
+      "rows": 35834,
+      "cell_changes": 10506,
+      "changes_by_field": {
+        "sex_type": 10506
+      }
+    },
+    {
+      "year": 2024,
+      "write": true,
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2024_for_2025_canonical_yearly_draw_results.csv",
+      "backup_path": "",
+      "rows": 43335,
+      "cell_changes": 0,
+      "changes_by_field": {}
+    },
+    {
+      "year": 2025,
+      "write": true,
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2025_for_2026_canonical_yearly_draw_results.csv",
+      "backup_path": "",
+      "rows": 38120,
+      "cell_changes": 0,
+      "changes_by_field": {}
+    },
+    {
+      "year": 2026,
+      "write": true,
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+      "backup_path": "",
+      "rows": 22714,
+      "cell_changes": 0,
+      "changes_by_field": {}
+    }
+  ]
+}

@@ -7,7 +7,8 @@ from pathlib import Path
 
 
 REPO = Path(__file__).resolve().parents[1]
-INPUT_V3 = REPO / "data_truth" / "draw_results_truth" / "normalized" / "draw_results_long.csv"
+INPUT_LONG = REPO / "data_truth" / "draw_results_truth" / "normalized" / "draw_results_long.csv"
+INPUT_2026_SCORABLE = REPO / "outputs" / "2026 scorable draw results.csv"
 CURRENT_RUNTIME = REPO / "processed_data" / "draw_reality_engine.csv"
 DATABASE_2026 = REPO / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "DATABASE.csv"
 RAW_INVENTORY = REPO / "data_model" / "quality" / "raw_pdf_inventory.csv"
@@ -19,6 +20,7 @@ OUT_VALIDATION = OUT_DIR / "draw_reality_engine_v2_validation_report.json"
 OUT_COMPARE = OUT_DIR / "draw_reality_engine_v2_vs_current_report.json"
 OUT_ROWS_ADDED = OUT_DIR / "draw_reality_engine_v2_rows_added.csv"
 OUT_SCHEMA_CHANGES = OUT_DIR / "draw_reality_engine_v2_schema_changes.csv"
+OUT_COLLAPSED_DUPES = OUT_DIR / "draw_reality_engine_v2_collapsed_duplicate_scorable_rows.csv"
 
 REQUIRED_COLUMNS = [
     "hunt_code",
@@ -29,6 +31,7 @@ REQUIRED_COLUMNS = [
     "hunt_type",
     "weapon",
     "hunt_class",
+    "draw_design",
     "season",
     "year",
     "draw_pool",
@@ -46,6 +49,32 @@ REQUIRED_COLUMNS = [
     "validation_status",
     "validation_notes",
 ]
+
+SCORABLE_RECORD_TYPES = {
+    "point_level_draw_result",
+    "point_row",
+    "point_level",
+    "sportsman_total",
+    "sportsman_total_draw_result",
+    "sportsman_random_total",
+}
+
+NON_SCORABLE_RECORD_TYPES = {
+    "hunt_planner_permit_quota",
+    "quota",
+    "quota_row",
+    "permit_quota",
+    "hunt_total_draw_result",
+    "total",
+    "total_row",
+    "supplemental_permit_total_row",
+    "availability_only",
+    "conservation_auction_allocation",
+    "allocation_only",
+    "reference_only",
+    "point_purchase_reference",
+    "cwmu_contact_operator_reference_only",
+}
 
 
 def read_csv(path: Path):
@@ -98,6 +127,202 @@ def normalize_success_ratio(value):
         return f"{float(stripped):.6f}".rstrip("0").rstrip(".")
     except Exception:
         return t
+
+
+def success_ratio_from_counts(eligible_applicants, total_permits):
+    eligible = normalize_int(eligible_applicants)
+    permits = normalize_int(total_permits)
+    if eligible == "" or permits == "":
+        return ""
+    eligible_n = int(eligible)
+    permits_n = int(permits)
+    if eligible_n <= 0 or permits_n <= 0:
+        return "N/A"
+    return f"{permits_n / eligible_n:.6f}".rstrip("0").rstrip(".")
+
+
+def first_nonempty(row, *fields):
+    for field in fields:
+        value = clean(row.get(field))
+        if value:
+            return value
+    return ""
+
+
+def row_year(row):
+    return normalize_year(first_nonempty(row, "actual_draw_year", "year", "source_year"))
+
+
+def record_type(row):
+    return clean(first_nonempty(row, "record_type", "row_type", "record_kind")).lower()
+
+
+def derive_draw_design(row):
+    existing = first_nonempty(row, "draw_design", "draw_pool")
+    if existing:
+        return existing
+
+    text = " ".join(
+        clean(row.get(field)).lower()
+        for field in (
+            "hunt_code",
+            "hunt_name",
+            "species",
+            "sex_type",
+            "hunt_type",
+            "hunt_class",
+            "weapon",
+            "source_scope",
+            "source_file",
+        )
+    )
+    hunt_type = clean(row.get("hunt_type")).lower()
+    code = clean(row.get("hunt_code")).upper()
+
+    if "sportsman" in text:
+        return "Random"
+    if "cougar" in text or code.startswith("CG"):
+        return "Unlimited"
+    if "o.t.c" in text or "otc" in text or "over-the-counter" in text or "over the counter" in text:
+        return "Capped Permits"
+    if "private land" in text or "pursuit" in text or "spot and stalk" in text:
+        return "Capped Permits"
+    if "dedicated hunter" in text:
+        return "Preference"
+    if "management" in text:
+        return "Max/Weighted Split"
+    if "general season" in hunt_type or "general season" in text:
+        return "Preference"
+    if "antlerless" in text or "doe pronghorn" in text:
+        return "Preference"
+    if "limited entry" in hunt_type or "limited-entry" in text:
+        return "Max/Weighted Split"
+    if "once-in-a-lifetime" in hunt_type or "once in a lifetime" in text:
+        return "Max/Weighted Split"
+    if "cwmu" in text:
+        return "Max/Weighted Split"
+    if "conservation" in text:
+        return "Organizations"
+    if code.startswith(("DA", "EA", "PD")):
+        return "Preference"
+    if code.startswith(("DB", "EB", "PB", "MB", "BI", "DS", "RS", "GO", "BR", "TK")):
+        return "Max/Weighted Split"
+    return ""
+
+
+def is_scorable_truth_row(row):
+    status = clean(row.get("algorithm_status")).upper()
+    qa_status = clean(row.get("qa_status")).lower()
+    if status.startswith("NON_SCORABLE") or "quota_only" in qa_status:
+        return False
+
+    hunt_type = clean(row.get("hunt_type")).lower()
+    draw_design = clean(first_nonempty(row, "draw_design", "draw_pool")).lower()
+    source_scope = clean(row.get("source_scope")).lower()
+    text = " ".join(
+        clean(row.get(key)).lower()
+        for key in ("record_type", "hunt_type", "draw_design", "draw_pool", "source_scope", "source_file", "notes")
+    )
+    if (
+        hunt_type == "conservation"
+        or draw_design in {"organizations", "organization"}
+        or "conservation_auction_allocation" in text
+        or "allocation/reference" in text
+        or "allocation_only" in text
+        or "conservation" in source_scope
+    ):
+        return False
+
+    kind = record_type(row)
+    if kind in NON_SCORABLE_RECORD_TYPES:
+        return False
+    if kind in SCORABLE_RECORD_TYPES:
+        return True
+
+    # Older truth surfaces sometimes omitted record_type but still had a real
+    # point/residency/applicant ladder. Keep those, but never keep quota rows.
+    return bool(
+        clean(row.get("hunt_code"))
+        and row_year(row)
+        and clean(first_nonempty(row, "residency"))
+        and clean(first_nonempty(row, "points")) != ""
+        and clean(first_nonempty(row, "eligible_applicants", "applicants"))
+    )
+
+
+def load_truth_rows():
+    long_rows = read_csv(INPUT_LONG)
+    scorable_rows = [row for row in long_rows if is_scorable_truth_row(row)]
+    replaced_2026_rows = 0
+    source_note = str(INPUT_LONG.relative_to(REPO)).replace("\\", "/")
+
+    if INPUT_2026_SCORABLE.exists():
+        scorable_2026_rows = [row for row in read_csv(INPUT_2026_SCORABLE) if is_scorable_truth_row(row)]
+        replaced_2026_rows = len([row for row in scorable_rows if row_year(row) == "2026"])
+        scorable_rows = [row for row in scorable_rows if row_year(row) != "2026"] + scorable_2026_rows
+        source_note = (
+            f"{str(INPUT_LONG.relative_to(REPO)).replace('\\', '/')} "
+            f"with 2026 slice replaced by {str(INPUT_2026_SCORABLE.relative_to(REPO)).replace('\\', '/')}"
+        )
+
+    return scorable_rows, {
+        "source_note": source_note,
+        "long_input_rows": len(long_rows),
+        "long_scorable_rows_after_filter": len([row for row in long_rows if is_scorable_truth_row(row)]),
+        "replaced_2026_scorable_rows": replaced_2026_rows,
+        "input_2026_scorable_path": str(INPUT_2026_SCORABLE.relative_to(REPO)).replace("\\", "/")
+        if INPUT_2026_SCORABLE.exists()
+        else "",
+        "input_2026_scorable_rows": len(scorable_2026_rows) if INPUT_2026_SCORABLE.exists() else 0,
+        "final_scorable_rows": len(scorable_rows),
+    }
+
+
+def collapse_duplicate_scorable_rows(rows):
+    grouped = defaultdict(list)
+    for row in rows:
+        grouped[key_full(row)].append(row)
+
+    collapsed = []
+    collapse_audit = []
+    for key, group in grouped.items():
+        if len(group) == 1:
+            collapsed.append(group[0])
+            continue
+
+        base = dict(group[0])
+        for field in ("eligible_applicants", "bonus_permits", "regular_permits", "total_permits"):
+            base[field] = str(sum(int(normalize_int(row.get(field)) or 0) for row in group))
+        base["success_ratio"] = success_ratio_from_counts(base["eligible_applicants"], base["total_permits"])
+
+        source_files = []
+        for row in group:
+            source_file = clean(row.get("source_file"))
+            if source_file and source_file not in source_files:
+                source_files.append(source_file)
+        if source_files:
+            base["source_file"] = "; ".join(source_files[:5])
+
+        notes = clean(base.get("validation_notes"))
+        suffix = f"COLLAPSED_DUPLICATE_SCORABLE_ROWS={len(group)}"
+        base["validation_notes"] = f"{notes};{suffix}" if notes else suffix
+        collapsed.append(base)
+        collapse_audit.append(
+            {
+                "key": key,
+                "collapsed_row_count": len(group),
+                "hunt_code": base.get("hunt_code", ""),
+                "year": base.get("year", ""),
+                "draw_pool": base.get("draw_pool", ""),
+                "residency": base.get("residency", ""),
+                "points": base.get("points", ""),
+                "eligible_applicants_sum": base.get("eligible_applicants", ""),
+                "total_permits_sum": base.get("total_permits", ""),
+                "source_files": base.get("source_file", ""),
+            }
+        )
+
+    return collapsed, collapse_audit
 
 
 DRAW_POOL_VALUES = {
@@ -235,8 +460,8 @@ def choose_source_sha(source_sha_index, source_file, year):
 
 
 def main():
-    if not INPUT_V3.exists():
-        raise FileNotFoundError(f"Missing V3 truth input: {INPUT_V3}")
+    if not INPUT_LONG.exists():
+        raise FileNotFoundError(f"Missing draw truth input: {INPUT_LONG}")
     if not DATABASE_2026.exists():
         raise FileNotFoundError(f"Missing DATABASE source: {DATABASE_2026}")
     if not CURRENT_RUNTIME.exists():
@@ -244,7 +469,7 @@ def main():
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    v3_rows = read_csv(INPUT_V3)
+    v3_rows, truth_input_report = load_truth_rows()
     current_rows = read_csv(CURRENT_RUNTIME)
     db_rows = read_csv(DATABASE_2026)
 
@@ -266,10 +491,13 @@ def main():
 
     for row in v3_rows:
         hunt_code = clean(row.get("hunt_code")).upper()
-        year = normalize_year(row.get("year"))
-        draw_pool = clean(row.get("draw_pool")).lower()
-        residency = normalize_residency(row.get("residency"))
-        points = normalize_int(row.get("points"))
+        year = row_year(row)
+        draw_design = derive_draw_design(row)
+        draw_pool = clean(first_nonempty(row, "draw_pool") or draw_design).lower()
+        residency = normalize_residency(first_nonempty(row, "residency"))
+        points = normalize_int(first_nonempty(row, "points"))
+        if points == "" and record_type(row) in {"sportsman_total", "sportsman_total_draw_result", "sportsman_random_total"}:
+            points = "0"
         boundary_id = clean(row.get("boundary_id"))
 
         code_in_db = hunt_code in db_codes if hunt_code else False
@@ -306,8 +534,8 @@ def main():
             notes.append("POINTS_BLANK")
 
         source_file = clean(row.get("source_file"))
-        source_pdf_page = normalize_int(row.get("source_pdf_page"))
-        source_report_page = normalize_int(row.get("source_report_page") or row.get("page_number"))
+        source_pdf_page = normalize_int(first_nonempty(row, "source_pdf_page", "pdf_page"))
+        source_report_page = normalize_int(first_nonempty(row, "source_report_page", "page_number", "pdf_page"))
         source_sha256 = choose_source_sha(source_sha_index, source_file, year)
 
         out_row = {
@@ -319,12 +547,13 @@ def main():
             "hunt_type": clean(row.get("hunt_type")),
             "weapon": clean(row.get("weapon")),
             "hunt_class": normalize_hunt_class(
-                row.get("hunt_class"),
+                first_nonempty(row, "hunt_class", "draw_design"),
                 row.get("species"),
                 row.get("sex_type"),
                 row.get("hunt_type"),
                 row.get("weapon"),
             ),
+            "draw_design": clean(draw_design),
             "season": clean(row.get("season")),
             "year": year,
             "draw_pool": draw_pool,
@@ -344,6 +573,24 @@ def main():
         }
         out_rows.append(out_row)
 
+    out_rows, collapsed_duplicate_rows = collapse_duplicate_scorable_rows(out_rows)
+    write_csv(
+        OUT_COLLAPSED_DUPES,
+        [
+            "key",
+            "collapsed_row_count",
+            "hunt_code",
+            "year",
+            "draw_pool",
+            "residency",
+            "points",
+            "eligible_applicants_sum",
+            "total_permits_sum",
+            "source_files",
+        ],
+        collapsed_duplicate_rows,
+    )
+
     write_csv(OUT_V2, REQUIRED_COLUMNS, out_rows)
 
     # Validation
@@ -359,7 +606,15 @@ def main():
         "draw_pool_blank_count": sum(1 for r in out_rows if not clean(r["draw_pool"])),
         "residency_blank_count": sum(1 for r in out_rows if not clean(r["residency"])),
         "points_blank_count": sum(1 for r in out_rows if clean(r["points"]) == ""),
+        "draw_design_blank_count": sum(1 for r in out_rows if not clean(r["draw_design"])),
     }
+
+    non_scorable_leaks = [
+        row
+        for row in out_rows
+        if clean(row.get("validation_notes")).upper().startswith("NON_SCORABLE")
+        or clean(row.get("draw_pool")) in {"hunt_planner_permit_quota", "quota"}
+    ]
 
     db_matched_rows = [r for r in out_rows if "DATABASE_MATCHED" in clean(r["validation_notes"])]
     db_matched_missing_boundary = sum(1 for r in db_matched_rows if not clean(r["boundary_id"]))
@@ -463,10 +718,12 @@ def main():
     )
 
     validation_ok = (
-        row_count_v2 == row_count_v3
+        row_count_v2 > 0
+        and row_count_v2 <= row_count_v3
         and duplicate_keys == 0
         and all(v == 0 for v in blank_counts.values())
         and db_matched_missing_boundary == 0
+        and len(non_scorable_leaks) == 0
     )
 
     promotion_blockers = [
@@ -477,13 +734,22 @@ def main():
 
     validation_report = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
-        "input_v3_path": str(INPUT_V3.relative_to(REPO)).replace("\\", "/"),
-        "input_v3_sha256": sha256_file(INPUT_V3),
+        "input_truth_path": truth_input_report["source_note"],
+        "input_long_path": str(INPUT_LONG.relative_to(REPO)).replace("\\", "/"),
+        "input_long_sha256": sha256_file(INPUT_LONG),
+        "input_2026_scorable_sha256": sha256_file(INPUT_2026_SCORABLE) if INPUT_2026_SCORABLE.exists() else "",
+        "truth_input_report": truth_input_report,
         "output_v2_path": str(OUT_V2.relative_to(REPO)).replace("\\", "/"),
         "row_count_v3": row_count_v3,
         "row_count_v2": row_count_v2,
         "row_count_equal": row_count_v3 == row_count_v2,
+        "row_count_difference_reason": (
+            "runtime feed collapses duplicate scorable keys by summing applicant/permit fields"
+            if row_count_v3 != row_count_v2
+            else ""
+        ),
         "corrected_key_duplicate_count": duplicate_keys,
+        "collapsed_duplicate_scorable_key_count": len(collapsed_duplicate_rows),
         "blank_counts": blank_counts,
         "db_matched_rows_count": len(db_matched_rows),
         "db_matched_rows_missing_boundary_id_count": db_matched_missing_boundary,
@@ -491,6 +757,7 @@ def main():
         "hunt_code_not_in_2026_database_hunt_code_count": len(not_in_db_codes),
         "hunt_code_not_in_2026_database_hunt_codes_sample": not_in_db_codes[:500],
         "validation_ok": validation_ok,
+        "non_scorable_leak_count": len(non_scorable_leaks),
         "promotion_blockers": promotion_blockers,
     }
 
@@ -522,8 +789,9 @@ def main():
     manifest = {
         "id": "draw_reality_engine_v2_draft",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
-        "truth_source": str(INPUT_V3.relative_to(REPO)).replace("\\", "/"),
-        "truth_source_sha256": sha256_file(INPUT_V3),
+        "truth_source": truth_input_report["source_note"],
+        "truth_source_sha256": sha256_file(INPUT_LONG),
+        "truth_input_report": truth_input_report,
         "output_feed": str(OUT_V2.relative_to(REPO)).replace("\\", "/"),
         "required_key": "hunt_code + year + draw_pool + residency + points",
         "required_columns": REQUIRED_COLUMNS,
@@ -531,8 +799,12 @@ def main():
         "comparison_report": str(OUT_COMPARE.relative_to(REPO)).replace("\\", "/"),
         "rows_added_file": str(OUT_ROWS_ADDED.relative_to(REPO)).replace("\\", "/"),
         "schema_changes_file": str(OUT_SCHEMA_CHANGES.relative_to(REPO)).replace("\\", "/"),
+        "collapsed_duplicate_rows_file": str(OUT_COLLAPSED_DUPES.relative_to(REPO)).replace("\\", "/"),
         "notes": [
             "V3 is used as draw-result truth source",
+            "Only scorable record types are admitted; quota/allotment/reference rows are excluded",
+            "Duplicate scorable keys are collapsed by summing applicant/permit counts for runtime use",
+            "2026 scorable slice is loaded from outputs/2026 scorable draw results.csv when present",
             "No production processed_data runtime feeds were overwritten in this task",
             "Historical hunt codes not in 2026 DATABASE are preserved and flagged",
         ],
@@ -547,6 +819,8 @@ def main():
             "row_count_v3": row_count_v3,
             "row_count_v2": row_count_v2,
             "corrected_key_duplicate_count": duplicate_keys,
+            "collapsed_duplicate_scorable_key_count": len(collapsed_duplicate_rows),
+            "non_scorable_leak_count": len(non_scorable_leaks),
             "rows_added_vs_current_feed": rows_added_vs_current,
             "current_runtime_has_draw_pool": current_has_draw_pool,
             "validation_ok": validation_ok,

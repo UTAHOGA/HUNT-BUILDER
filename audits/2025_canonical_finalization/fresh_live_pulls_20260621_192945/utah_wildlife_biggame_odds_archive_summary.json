@@ -1,0 +1,106 @@
+﻿{
+    "source_page":  "https://wildlife.utah.gov/biggame/odds",
+    "out_dir":  "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\2025_canonical_finalization\\fresh_live_pulls_20260621_192945\\older_years_biggame_odds",
+    "manifest":  "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\2025_canonical_finalization\\fresh_live_pulls_20260621_192945\\utah_wildlife_biggame_odds_archive_manifest.csv",
+    "total_links":  181,
+    "ok":  180,
+    "errors":  1,
+    "by_year":  [
+                    {
+                        "year":  "2010",
+                        "count":  6,
+                        "ok":  6,
+                        "errors":  0
+                    },
+                    {
+                        "year":  "2011",
+                        "count":  6,
+                        "ok":  6,
+                        "errors":  0
+                    },
+                    {
+                        "year":  "2012",
+                        "count":  15,
+                        "ok":  14,
+                        "errors":  1
+                    },
+                    {
+                        "year":  "2013",
+                        "count":  14,
+                        "ok":  14,
+                        "errors":  0
+                    },
+                    {
+                        "year":  "2014",
+                        "count":  18,
+                        "ok":  18,
+                        "errors":  0
+                    },
+                    {
+                        "year":  "2015",
+                        "count":  10,
+                        "ok":  10,
+                        "errors":  0
+                    },
+                    {
+                        "year":  "2016",
+                        "count":  11,
+                        "ok":  11,
+                        "errors":  0
+                    },
+                    {
+                        "year":  "2017",
+                        "count":  13,
+                        "ok":  13,
+                        "errors":  0
+                    },
+                    {
+                        "year":  "2018",
+                        "count":  11,
+                        "ok":  11,
+                        "errors":  0
+                    },
+                    {
+                        "year":  "2019",
+                        "count":  10,
+                        "ok":  10,
+                        "errors":  0
+                    },
+                    {
+                        "year":  "2020",
+                        "count":  11,
+                        "ok":  11,
+                        "errors":  0
+                    },
+                    {
+                        "year":  "2021",
+                        "count":  11,
+                        "ok":  11,
+                        "errors":  0
+                    },
+                    {
+                        "year":  "2022",
+                        "count":  11,
+                        "ok":  11,
+                        "errors":  0
+                    },
+                    {
+                        "year":  "2023",
+                        "count":  12,
+                        "ok":  12,
+                        "errors":  0
+                    },
+                    {
+                        "year":  "2024",
+                        "count":  12,
+                        "ok":  12,
+                        "errors":  0
+                    },
+                    {
+                        "year":  "2025",
+                        "count":  10,
+                        "ok":  10,
+                        "errors":  0
+                    }
+                ]
+}

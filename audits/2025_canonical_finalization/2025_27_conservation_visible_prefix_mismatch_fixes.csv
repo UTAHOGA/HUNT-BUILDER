@@ -1,0 +1,44 @@
+row,no,species,hunt_name,sex_type,old_hunt_code,new_hunt_code,old_boundary_id,new_boundary_id,old_map_geojson,new_map_geojson,status
+66,65,Bison,"Book Cliffs, Bitter Creek, Hunter's Choice",Hunter's Choice,BR1000,BI6534,5001,667,processed_data/boundaries/BR1000.geojson,processed_data/boundaries/BI6534.geojson,patched
+67,66,Bison,"Book Cliffs, Little Creek/South, Hunter's Choice",Hunter's Choice,BR1000,BI6531,5001,889,processed_data/boundaries/BR1000.geojson,processed_data/boundaries/BI6531.geojson,patched
+68,67,Bison,"Henry Mtns, Hunter's Choice (early)",Hunter's Choice,BR1000,BI6503,5001,94,processed_data/boundaries/BR1000.geojson,processed_data/boundaries/BI6503.geojson,patched
+69,68,Bison,"Henry Mtns, Cow Only (late)",Cow Only,BR1000,BI6505,5001,94,processed_data/boundaries/BR1000.geojson,processed_data/boundaries/BI6505.geojson,patched
+75,74,Desert Bighorn Sheep,"La Sal, Potash/South Cisco",Male Only,DB1010,DS6604,163,688,processed_data/boundaries/DB1001.geojson|processed_data/boundaries/DB1004.geojson|processed_data/boundaries/DB1006.geojson|processed_data/boundaries/DB1008.geojson|processed_data/boundaries/DB1010.geojson|processed_data/boundaries/DB1058.geojson|processed_data/boundaries/DB1073.geojson|processed_data/boundaries/DB1074.geojson,processed_data/boundaries/DS6604.geojson,patched
+79,78,Desert Bighorn Sheep,Statewide,Male Only,DB1006,DS1000,163,5110,processed_data/boundaries/DB1006.geojson|processed_data/boundaries/DB1074.geojson,processed_data/boundaries/DS1000.geojson,patched
+110,109,Deer,"West Desert, Vernon",Buck,DB1016,DB1048,248,248,processed_data/boundaries/DB1016.geojson,processed_data/boundaries/DB1048.geojson,patched
+111,110,Deer,"West Desert, Vernon",Buck,DB1016,DB1048,248,248,processed_data/boundaries/DB1016.geojson,processed_data/boundaries/DB1048.geojson,patched
+112,111,Deer,"West Desert, Vernon",Buck,DB0007,DB1048,5108,248,processed_data/boundaries/DB0007.geojson,processed_data/boundaries/DB1048.geojson,patched
+113,112,Deer,"West Desert, Vernon",Buck,DS6604,DB1048,688,248,processed_data/boundaries/DS6604.geojson,processed_data/boundaries/DB1048.geojson,patched
+116,115,Deer,"West Desert, Vernon",Buck,DB1042,DB1048,248,248,processed_data/boundaries/DB1042.geojson,processed_data/boundaries/DB1048.geojson,patched
+117,116,Deer,"West Desert, Vernon",Buck,DB1042,DB1048,248,248,processed_data/boundaries/DB1042.geojson,processed_data/boundaries/DB1048.geojson,patched
+118,117,Deer,Statewide,Buck,EB3025,DB0007,685,5108,processed_data/boundaries/EB3025.geojson,processed_data/boundaries/DB0007.geojson,patched
+227,226,Pronghorn,"Book Cliffs, South",Buck,GO1000,PB5027,5131,15,processed_data/boundaries/GO1000.geojson,processed_data/boundaries/PB5027.geojson,patched
+228,227,Pronghorn,"Book Cliffs, South",Buck,GO1000,PB5027,5131,15,processed_data/boundaries/GO1000.geojson,processed_data/boundaries/PB5027.geojson,patched
+231,230,Pronghorn,"Box Elder, Snowville",Buck,GO1000,PB5030,5131,27,processed_data/boundaries/GO1000.geojson,processed_data/boundaries/PB5030.geojson,patched
+232,231,Pronghorn,"Box Elder, Snowville",Buck,GO1000,PB5030,5131,27,processed_data/boundaries/GO1000.geojson,processed_data/boundaries/PB5030.geojson,patched
+233,232,Pronghorn,"Box Elder, West",Buck,GO1000,PB5031,5131,755,processed_data/boundaries/GO1000.geojson,processed_data/boundaries/PB5031.geojson,patched
+234,233,Pronghorn,"Box Elder, West",Buck,GO1000,PB5031,5131,755,processed_data/boundaries/GO1000.geojson,processed_data/boundaries/PB5031.geojson,patched
+305,304,Turkey,Northeastern Area,Bearded,RS0001,TK1013,5135,886,processed_data/boundaries/RS0001.geojson,processed_data/boundaries/TK1013.geojson,patched
+306,305,Turkey,Northeastern Area,Bearded,RS0001,TK1013,5135,886,processed_data/boundaries/RS0001.geojson,processed_data/boundaries/TK1013.geojson,patched
+307,306,Turkey,Northeastern Area,Bearded,RS0001,TK1013,5135,886,processed_data/boundaries/RS0001.geojson,processed_data/boundaries/TK1013.geojson,patched
+308,307,Turkey,Northeastern Area,Bearded,RS0001,TK1013,5135,886,processed_data/boundaries/RS0001.geojson,processed_data/boundaries/TK1013.geojson,patched
+309,308,Turkey,Northeastern Area,Bearded,RS0001,TK1013,5135,886,processed_data/boundaries/RS0001.geojson,processed_data/boundaries/TK1013.geojson,patched
+310,309,Turkey,Northeastern Area,Bearded,RS0001,TK1013,5135,886,processed_data/boundaries/RS0001.geojson,processed_data/boundaries/TK1013.geojson,patched
+311,310,Turkey,Northeastern Area,Bearded,RS0001,TK1013,5135,886,processed_data/boundaries/RS0001.geojson,processed_data/boundaries/TK1013.geojson,patched
+312,311,Turkey,Northeastern Area,Bearded,RS0001,TK1013,5135,886,processed_data/boundaries/RS0001.geojson,processed_data/boundaries/TK1013.geojson,patched
+313,312,Turkey,Northern Area,Bearded,RS0001,TK1014,5135,888,processed_data/boundaries/RS0001.geojson,processed_data/boundaries/TK1014.geojson,patched
+314,313,Turkey,Northern Area,Bearded,RS0001,TK1014,5135,888,processed_data/boundaries/RS0001.geojson,processed_data/boundaries/TK1014.geojson,patched
+315,314,Turkey,Northern Area,Bearded,RS0001,TK1014,5135,888,processed_data/boundaries/RS0001.geojson,processed_data/boundaries/TK1014.geojson,patched
+316,315,Turkey,Northern Area,Bearded,RS0001,TK1014,5135,888,processed_data/boundaries/RS0001.geojson,processed_data/boundaries/TK1014.geojson,patched
+317,316,Turkey,Northern Area,Bearded,RS0001,TK1014,5135,888,processed_data/boundaries/RS0001.geojson,processed_data/boundaries/TK1014.geojson,patched
+318,317,Turkey,Northern Area,Bearded,RS0001,TK1014,5135,888,processed_data/boundaries/RS0001.geojson,processed_data/boundaries/TK1014.geojson,patched
+319,318,Turkey,Northern Area,Bearded,RS0001,TK1014,5135,888,processed_data/boundaries/RS0001.geojson,processed_data/boundaries/TK1014.geojson,patched
+320,319,Turkey,Northern Area,Bearded,RS0001,TK1014,5135,888,processed_data/boundaries/RS0001.geojson,processed_data/boundaries/TK1014.geojson,patched
+321,320,Turkey,Southeastern Area,Bearded,RS0001,TK1015,5135,884,processed_data/boundaries/RS0001.geojson,processed_data/boundaries/TK1015.geojson,patched
+322,321,Turkey,Southeastern Area,Bearded,RS0001,TK1015,5135,884,processed_data/boundaries/RS0001.geojson,processed_data/boundaries/TK1015.geojson,patched
+323,322,Turkey,Southeastern Area,Bearded,RS0001,TK1015,5135,884,processed_data/boundaries/RS0001.geojson,processed_data/boundaries/TK1015.geojson,patched
+324,323,Turkey,Southeastern Area,Bearded,TK1007,TK1015,885,884,processed_data/boundaries/TK1007.geojson,processed_data/boundaries/TK1015.geojson,patched
+325,324,Turkey,Southeastern Area,Bearded,TK1007,TK1015,885,884,processed_data/boundaries/TK1007.geojson,processed_data/boundaries/TK1015.geojson,patched
+326,325,Turkey,Southeastern Area,Bearded,TK1007,TK1015,885,884,processed_data/boundaries/TK1007.geojson,processed_data/boundaries/TK1015.geojson,patched
+327,326,Turkey,Southeastern Area,Bearded,TK1007,TK1015,885,884,processed_data/boundaries/TK1007.geojson,processed_data/boundaries/TK1015.geojson,patched
+328,327,Turkey,Southeastern Area,Bearded,TK1007,TK1015,885,884,processed_data/boundaries/TK1007.geojson,processed_data/boundaries/TK1015.geojson,patched

@@ -1,0 +1,8 @@
+hunt_code,hunt_name,species,sex_type,weapon,season,reason,canonical_boundary_id,source_filename
+EA1222,"Beaver, East",Elk,Antlerless,Any Legal Weapon,Nov 21 2026 - Dec 11 2026,already_present_in_canonical,685,dwr_huntboundary_elk_antlerless.json
+EA1284,Panguitch Lake,Elk,Antlerless,Muzzleloader,Oct 28 2026 - Nov 05 2026,already_present_in_canonical,634,dwr_huntboundary_elk_antlerless.json
+BI6505,Henry Mtns,Bison,Cow Only,Any Legal Weapon,Dec 9 2026 - Dec 20 2026,already_present_in_canonical,94,dwr_huntboundary_bison_cow_only.json
+BI6506,Henry Mtns,Bison,Cow Only,Any Legal Weapon,"Dec 23, 2026 - Jan 3, 2027",already_present_in_canonical,94,dwr_huntboundary_bison_cow_only.json
+BI6529,"Book Cliffs, Little Creek/South",Bison,Cow Only,Any Legal Weapon,Oct 17 2026 - Oct 27 2026,already_present_in_canonical,889,dwr_huntboundary_bison_cow_only.json
+BI6536,"Book Cliffs, Bitter Creek",Bison,Cow Only,Any Legal Weapon,Nov 14 2026 - Nov 29 2026,already_present_in_canonical,667,dwr_huntboundary_bison_cow_only.json
+BI6539,Henry Mtns,Bison,Cow Only,Any Legal Weapon,"Jan 6 - 17, 2027",already_present_in_canonical,94,dwr_huntboundary_bison_cow_only.json

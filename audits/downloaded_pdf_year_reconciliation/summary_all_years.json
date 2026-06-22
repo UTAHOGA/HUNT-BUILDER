@@ -1,0 +1,68 @@
+[
+  {
+    "canonical_codes": 1062,
+    "canonical_only_actionable_codes": [],
+    "canonical_only_actionable_key_count": 0,
+    "canonical_only_codes": [
+      "BI1000",
+      "BR1000",
+      "DB0007",
+      "DS1000",
+      "EB1000",
+      "GO1000",
+      "MB1000",
+      "PB1000",
+      "RS0001",
+      "TK0001"
+    ],
+    "canonical_only_key_count": 10,
+    "canonical_only_shared_conservation_code_count": 10,
+    "canonical_prefix_counts": {
+      "BI": 16,
+      "BR": 97,
+      "DA": 20,
+      "DB": 333,
+      "DS": 19,
+      "EA": 168,
+      "EB": 212,
+      "GO": 18,
+      "MA": 5,
+      "MB": 37,
+      "PB": 89,
+      "PD": 23,
+      "RE": 1,
+      "RS": 16,
+      "TK": 8
+    },
+    "canonical_rows": 75438,
+    "duplicate_pdf_key_conflict_count": 3740,
+    "parser_blank_row_count": 0,
+    "payload_mismatch_count": 0,
+    "pdf_codes": 1053,
+    "pdf_files": 13,
+    "pdf_files_parsed": 12,
+    "pdf_only_codes": [
+      "BR7307"
+    ],
+    "pdf_only_key_count": 54,
+    "pdf_prefix_counts": {
+      "BI": 15,
+      "BR": 97,
+      "DA": 20,
+      "DB": 332,
+      "DS": 18,
+      "EA": 168,
+      "EB": 211,
+      "GO": 17,
+      "MA": 5,
+      "MB": 36,
+      "PB": 88,
+      "PD": 23,
+      "RE": 1,
+      "RS": 15,
+      "TK": 7
+    },
+    "pdf_rows": 76172,
+    "year": 2025
+  }
+]

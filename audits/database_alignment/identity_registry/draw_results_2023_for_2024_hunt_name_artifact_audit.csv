@@ -1,0 +1,943 @@
+row,hunt_code,hunt_name,species,sex_type,weapon,hunt_type
+182,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+183,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+184,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+185,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+186,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+187,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+188,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+189,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+190,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+191,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+192,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+193,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+194,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+195,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+196,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+197,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+198,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+199,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+236,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+237,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+238,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+239,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+240,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+241,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+242,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+243,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+244,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+245,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+246,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+247,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+248,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+249,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+250,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+251,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+252,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+253,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+578,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+579,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+580,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+581,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+582,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+583,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+584,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+585,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+586,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+587,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+588,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+589,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+590,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+591,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+592,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+593,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+594,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+595,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+776,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+777,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+778,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+779,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+780,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+781,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+782,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+783,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+784,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+785,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+786,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+787,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+788,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+789,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+790,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+791,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+792,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+793,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+2612,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+2613,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+2614,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+2615,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+2616,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+2617,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+2618,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+2619,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+2620,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+2621,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+2622,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+2623,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+2624,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+2625,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+2626,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+2627,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+2628,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+2629,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+3834,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3835,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3836,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3837,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3838,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3839,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3840,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3841,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3842,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3843,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3844,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3845,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3846,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3847,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3848,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3849,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3882,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3883,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3884,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3885,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3886,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3887,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3888,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3889,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3890,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3891,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3892,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3893,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3894,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3895,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3896,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+3897,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,Limited Entry
+4074,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4075,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4076,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4077,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4078,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4079,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4080,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4081,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4082,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4083,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4084,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4085,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4086,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4087,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4088,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4089,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4234,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4235,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4236,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4237,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4238,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4239,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4240,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4241,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4242,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4243,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4244,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4245,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4246,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4247,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4248,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+4249,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+5818,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+5819,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+5820,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+5821,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+5822,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+5823,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+5824,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+5825,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+5826,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+5827,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+5828,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+5829,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+5830,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+5831,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+5832,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+5833,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+10531,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10532,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10533,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10534,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10535,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10536,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10537,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10538,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10539,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10540,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10541,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10542,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10543,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10544,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10545,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10546,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10547,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10548,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10549,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10550,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10551,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10552,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10553,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10554,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10555,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10556,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10557,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10558,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10559,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10560,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10561,DB1014,"San Juan, Elk Ridge",Deer,Buck,Archery,Limited Entry
+10934,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10935,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10936,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10937,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10938,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10939,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10940,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10941,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10942,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10943,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10944,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10945,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10946,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10947,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10948,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10949,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10950,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10951,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10952,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10953,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10954,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10955,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10956,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10957,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10958,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10959,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10960,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10961,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10962,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10963,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+10964,DB1304,Two Bear CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11616,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11617,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11618,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11619,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11620,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11621,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11622,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11623,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11624,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11625,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11626,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11627,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11628,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11629,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11630,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11631,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11632,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11633,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11634,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11635,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11636,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11637,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11638,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11639,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11640,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11641,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11642,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11643,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11644,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11645,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+11646,DB1334,Alton - Cactus Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+12391,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12392,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12393,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12394,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12395,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12396,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12397,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12398,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12399,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12400,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12401,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12402,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12403,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12404,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12405,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12406,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12407,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12408,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12409,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12410,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12411,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12412,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12413,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12414,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12415,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12416,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12417,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12418,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12419,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12420,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12421,EB3019,San Juan Bull Elk,Elk,Bull,Archery,Limited Entry
+12918,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12919,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12920,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12921,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12922,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12923,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12924,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12925,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12926,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12927,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12928,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12929,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12930,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12931,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12932,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12933,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12934,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12935,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12936,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12937,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12938,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12939,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12940,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12941,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12942,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12943,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12944,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12945,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12946,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12947,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+12948,DB1022,"San Juan, Elk Ridge",Deer,Buck,Any Legal Weapon,Limited Entry
+13352,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13353,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13354,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13355,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13356,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13357,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13358,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13359,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13360,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13361,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13362,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13363,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13364,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13365,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13366,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13367,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13368,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13369,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13370,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13371,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13372,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13373,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13374,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13375,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13376,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13377,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13378,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13379,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13380,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13381,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13382,EB3066,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13383,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13384,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13385,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13386,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13387,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13388,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13389,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13390,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13391,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13392,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13393,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13394,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13395,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13396,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13397,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13398,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13399,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13400,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13401,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13402,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13403,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13404,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13405,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13406,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13407,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13408,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13409,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13410,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13411,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13412,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13413,EB3067,San Juan Bull Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+13972,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13973,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13974,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13975,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13976,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13977,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13978,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13979,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13980,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13981,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13982,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13983,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13984,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13985,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13986,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13987,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13988,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13989,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13990,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13991,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13992,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13993,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13994,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13995,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13996,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13997,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13998,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+13999,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+14000,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+14001,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+14002,EB3097,San Juan Bull Elk,Elk,Bull,Muzzleloader,Limited Entry
+14468,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14469,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14470,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14471,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14472,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14473,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14474,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14475,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14476,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14477,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14478,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14479,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14480,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14481,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14482,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14483,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14484,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14485,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14486,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14487,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14488,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14489,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14490,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14491,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14492,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14493,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14494,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14495,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14496,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14497,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+14498,EB3121,San Juan Bull Elk,Elk,Bull,Multi-season,Limited Entry
+16607,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16608,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16609,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16610,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16611,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16612,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16613,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16614,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16615,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16616,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16617,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16618,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16619,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16620,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16621,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16622,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16623,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16624,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16625,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16626,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16627,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16628,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16629,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16630,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16631,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16632,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16633,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16634,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16635,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16636,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16637,EB3193,San Juan Bull Elk,Elk,Bull,Late Archery,Limited Entry
+16638,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16639,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16640,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16641,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16642,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16643,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16644,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16645,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16646,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16647,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16648,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16649,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16650,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16651,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16652,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16653,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16654,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16655,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16656,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16657,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16658,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16659,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16660,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16661,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16662,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16663,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16664,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16665,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16666,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16667,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16668,EB3194,San Juan Bull Elk,Elk,Bull,Mid Any Legal Weapon,Limited Entry
+16917,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16918,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16919,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16920,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16921,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16922,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16923,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16924,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16925,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16926,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16927,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16928,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16929,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16930,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16931,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16932,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16933,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16934,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16935,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16936,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16937,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16938,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16939,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16940,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16941,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16942,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16943,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16944,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16945,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16946,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16947,EB3502,Bear Mountain CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16948,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16949,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16950,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16951,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16952,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16953,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16954,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16955,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16956,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16957,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16958,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16959,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16960,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16961,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16962,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16963,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16964,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16965,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16966,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16967,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16968,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16969,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16970,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16971,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16972,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16973,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16974,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16975,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16976,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16977,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+16978,EB3503,Bear Springs CWMU,Elk,Bull,Any Legal Weapon,Limited Entry
+17382,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17383,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17384,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17385,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17386,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17387,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17388,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17389,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17390,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17391,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17392,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17393,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17394,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17395,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17396,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17397,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17398,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17399,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17400,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17401,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17402,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17403,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17404,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17405,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17406,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17407,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17408,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17409,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17410,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17411,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+17412,DB1037,"San Juan, Elk Ridge",Deer,Buck,Muzzleloader,Limited Entry
+18622,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18623,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18624,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18625,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18626,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18627,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18628,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18629,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18630,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18631,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18632,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18633,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18634,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18635,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18636,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18637,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18638,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18639,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18640,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18641,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18642,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18643,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18644,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18645,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18646,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18647,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18648,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18649,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18650,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18651,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+18652,EB3561,Two Bear,Elk,Bull,Any Legal Weapon,CWMU
+20451,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20452,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20453,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20454,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20455,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20456,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20457,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20458,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20459,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20460,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20461,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20462,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20463,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20464,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20465,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20466,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20467,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20468,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20469,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20470,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20471,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20472,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20473,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20474,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20475,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20476,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20477,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20478,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20479,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20480,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+20481,DB1046,"San Juan, Elk Ridge",Deer,Buck,Multi-season,Limited Entry
+24636,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24637,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24638,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24639,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24640,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24641,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24642,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24643,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24644,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24645,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24646,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24647,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24648,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24649,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24650,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24651,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24652,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24653,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24654,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24655,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24656,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24657,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24658,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24659,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24660,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24661,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24662,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24663,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24664,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24665,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+24666,MB6224,Two Bear,Moose,Bull,Any Legal Weapon,CWMU
+25969,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25970,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25971,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25972,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25973,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25974,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25975,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25976,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25977,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25978,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25979,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25980,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25981,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25982,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25983,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25984,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25985,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25986,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25987,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25988,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25989,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25990,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25991,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25992,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25993,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25994,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25995,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25996,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25997,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25998,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+25999,DB1200,Alton - Premium Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26000,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26001,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26002,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26003,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26004,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26005,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26006,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26007,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26008,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26009,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26010,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26011,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26012,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26013,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26014,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26015,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26016,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26017,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26018,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26019,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26020,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26021,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26022,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26023,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26024,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26025,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26026,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26027,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26028,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26029,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26030,DB1201,Alton - Management Buck CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26186,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26187,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26188,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26189,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26190,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26191,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26192,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26193,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26194,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26195,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26196,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26197,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26198,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26199,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26200,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26201,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26202,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26203,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26204,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26205,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26206,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26207,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26208,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26209,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26210,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26211,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26212,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26213,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26214,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26215,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26216,DB1206,Bear Mountain CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26217,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26218,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26219,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26220,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26221,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26222,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26223,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26224,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26225,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26226,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26227,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26228,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26229,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26230,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26231,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26232,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26233,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26234,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26235,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26236,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26237,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26238,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26239,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26240,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26241,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26242,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26243,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26244,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26245,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26246,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+26247,DB1207,Bear Springs CWMU,Deer,Buck,Any Legal Weapon,Limited Entry
+32013,BI1000,Sportsman,Bison,Either Sex,Any Legal Weapon,Sportsman
+32014,BR1000,Sportsman,Black Bear,Either Sex,Any Legal Weapon,Sportsman
+32015,DB0007,Sportsman,Deer,Buck,Any Legal Weapon,Sportsman
+32016,DS1000,Sportsman,Desert Bighorn Sheep,Ram,Any Legal Weapon,Sportsman
+32017,EB1000,Sportsman,Elk,Bull,Any Legal Weapon,Sportsman
+32018,GO1000,Sportsman,Mountain Goat,Either Sex,Any Legal Weapon,Sportsman
+32019,MB1000,Sportsman,Moose,Bull,Any Legal Weapon,Sportsman
+32020,PB1000,Sportsman,Pronghorn,Buck,Any Legal Weapon,Sportsman
+32021,RS0001,Sportsman,Rocky Mountain Sheep,Ram,Any Legal Weapon,Sportsman
+32022,TK0001,Sportsman,Turkey,Bearded,Any Legal Weapon,Sportsman
+32303,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32304,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32305,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32306,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32307,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32308,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32309,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32310,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32311,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32312,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32313,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32314,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32315,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32316,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32317,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32318,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32319,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32320,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32321,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32322,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32323,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32324,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32325,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32326,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32327,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32328,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32329,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32330,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32331,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32332,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+32333,EB1007,Any Bull/Hunters Choice Elk,Elk,Bull,Any Legal Weapon,Limited Entry
+33244,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33245,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33246,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33247,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33248,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33249,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33250,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33251,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33252,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33253,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33254,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33255,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33256,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33257,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33258,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33259,EA1174,Two Bear CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33404,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33405,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33406,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33407,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33408,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33409,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33410,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33411,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33412,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33413,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33414,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33415,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33416,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33417,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33418,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+33419,EA1198,Bear Springs CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+34444,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34445,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34446,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34447,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34448,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34449,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34450,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34451,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34452,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34453,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34454,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34455,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34456,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34457,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34458,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34459,DA1001,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34604,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34605,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34606,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34607,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34608,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34609,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34610,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34611,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34612,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34613,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34614,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34615,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34616,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34617,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34618,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+34619,DA1002,"Box Elder, West Bear River",Deer,Antlerless,Archery,General Season
+35596,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+35597,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+35598,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+35599,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+35600,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+35601,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+35602,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+35603,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+35604,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+35605,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+35606,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+35607,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+35608,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+35609,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+35610,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU
+35611,EA1120,Bear Mountain CWMU,Elk,Antlerless,Any Legal Weapon,CWMU

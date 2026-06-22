@@ -1,0 +1,58 @@
+{
+  "audit_csv": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\2026_canonical_reconciliation\\normalize_2026_canonical_remaining_holes_audit.csv",
+  "canonical_cell_changes": 70805,
+  "canonical_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+  "change_counts_by_field": {
+    "draw_design": 19482,
+    "hunt_type": 1384,
+    "season": 58882,
+    "sex_type": 18,
+    "species": 2964,
+    "weapon": 58880
+  },
+  "change_counts_by_reason": {
+    "exact hunt_code backfill from DATABASE.csv single unambiguous value": 114656,
+    "inherit non-Unlimited draw_design from same hunt code point rows": 19482,
+    "move bear artifact species 'Bear Fall' into normalized field": 1048,
+    "move bear artifact species 'Bear Multi-season' into normalized field": 1800,
+    "move bear artifact species 'Bear Restricted Pursuit' into normalized field": 426,
+    "move bear artifact species 'Bear Spot And Stalk' into normalized field": 52,
+    "move bear artifact species 'Bear Spring' into normalized field": 1200,
+    "move bear artifact species 'Bear Summer' into normalized field": 1544,
+    "normalize hunt_type to established canonical category": 1384,
+    "sportsman belongs in hunt_type/draw_design, not sex_type": 18
+  },
+  "database_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2026\\csv\\DATABASE.csv",
+  "generated_at_utc": "2026-06-22T05:39:16.580875+00:00",
+  "long_cell_changes": 70805,
+  "long_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+  "post_canonical_summary": {
+    "bear_species_artifact_rows": 0,
+    "blank_counts": {
+      "boundary_id": 0,
+      "draw_design": 0,
+      "hunt_code": 0,
+      "hunt_name": 0,
+      "hunt_type": 0,
+      "season": 2,
+      "sex_type": 0,
+      "species": 0,
+      "successful_applicants": 29811,
+      "unsuccessful_applicants": 29811,
+      "weapon": 0
+    },
+    "point_rows_unlimited_draw_design": 0,
+    "record_type_counts": {
+      "hunt_planner_permit_quota": 262,
+      "point_level_draw_result": 29529,
+      "sportsman_total": 20
+    },
+    "rows": 29811,
+    "sportsman_sex_type_rows": 0,
+    "successful_applicants_decision": "left blank; no source column has been identified that distinguishes successful applicants from permit counts without fabrication",
+    "unexpected_draw_design_values": [],
+    "unexpected_hunt_type_values": [],
+    "unique_hunt_codes": 1096,
+    "unsuccessful_applicants_decision": "left blank; can be derived later only after successful_applicants is source-defined"
+  }
+}

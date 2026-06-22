@@ -1,0 +1,153 @@
+{
+  "model_version": "hybrid_ml_v2.1.0",
+  "rule_version": "utah_bonus_rules_v1.1.0",
+  "forecast_year": 2026,
+  "source_years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "command_used": "blind audit: 2025_to_2026 prediction phase; TRUTH_PATH=draw_results_long_scorable_through_2025.csv; run_upstream=False",
+  "generated_at": "2026-06-22T09:45:00.654749+00:00",
+  "output_files": {
+    "ml_draw_predictions_v1.csv": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\ml_draw_predictions_v1.csv",
+    "ml_draw_predictions_v1_report.json": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\ml_draw_predictions_v1_report.json",
+    "backtest_utah_bonus_draw.csv": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\backtest_utah_bonus_draw.csv",
+    "backtest_utah_bonus_draw_report.json": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\backtest_utah_bonus_draw_report.json",
+    "draw_reality_engine_predictive_v2.csv": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\draw_reality_engine_predictive_v2.csv",
+    "draw_reality_engine_v2.csv": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\draw_reality_engine_v2.csv",
+    "predictive_coverage_report.json": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\predictive_coverage_report.json",
+    "predictive_coverage_report.csv": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\predictive_coverage_report.csv",
+    "dedicated_hunter_predictions_v1.csv": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\dedicated_hunter_predictions_v1.csv",
+    "dedicated_hunter_report.json": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\dedicated_hunter_report.json",
+    "phase4_antlerless_validation_inventory.csv": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\phase4_antlerless_validation_inventory.csv",
+    "phase4_antlerless_validation_inventory.json": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\phase4_antlerless_validation_inventory.json",
+    "phase6_bonus_special_predictions_v1.csv": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\phase6_bonus_special_predictions_v1.csv",
+    "phase6_bonus_special_report.json": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\phase6_bonus_special_report.json",
+    "turkey_bonus_predictions_v1.csv": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\turkey_bonus_predictions_v1.csv",
+    "turkey_bonus_report.json": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\turkey_bonus_report.json",
+    "bear_draw_predictions_v1.csv": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\bear_draw_predictions_v1.csv",
+    "bear_draw_report.json": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\bear_draw_report.json",
+    "bear_predictions_v1.csv": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\bear_predictions_v1.csv",
+    "bear_report.json": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\bear_report.json",
+    "bear_draw_odds_source_audit.csv": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\bear_draw_odds_source_audit.csv",
+    "bear_draw_odds_source_audit.json": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\bear_draw_odds_source_audit.json",
+    "sportsman_permit_predictions_v1.csv": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\sportsman_permit_predictions_v1.csv",
+    "sportsman_permit_report.json": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\sportsman_permit_report.json",
+    "private_lands_antlerless_elk_predictions_v1.csv": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\private_lands_antlerless_elk_predictions_v1.csv",
+    "private_lands_antlerless_elk_allocations_v1.csv": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\private_lands_antlerless_elk_allocations_v1.csv",
+    "private_lands_antlerless_elk_report.json": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\private_lands_antlerless_elk_report.json",
+    "mountain_lion_availability_predictions_v1.csv": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\mountain_lion_availability_predictions_v1.csv",
+    "mountain_lion_availability_report.json": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\mountain_lion_availability_report.json"
+  },
+  "output_row_counts": {
+    "ml_draw_predictions_v1.csv": 23710,
+    "backtest_utah_bonus_draw.csv": 16870,
+    "draw_reality_engine_predictive_v2.csv": 23710,
+    "draw_reality_engine_v2.csv": 492805
+  },
+  "duplicate_key_counts": {
+    "ml_draw_predictions_v1.csv": 0,
+    "draw_reality_engine_predictive_v2.csv": 0
+  },
+  "p_draw_non_null_count": 22797,
+  "p_draw_pct_non_null_count": 22797,
+  "calibration_metric_non_null_count": 16870,
+  "EB3024_regression_result": {
+    "pass": true,
+    "resident_2024": {
+      "public": 7,
+      "bonus": 4,
+      "regular": 3
+    },
+    "resident_2025": {
+      "public": 9,
+      "bonus": 5,
+      "regular": 4
+    },
+    "nonresident_2024": {
+      "public": 1,
+      "bonus": 0,
+      "regular": 1
+    },
+    "nonresident_2025": {
+      "public": 1,
+      "bonus": 0,
+      "regular": 1
+    },
+    "unsuccessful_2024_28": 6,
+    "retention_2024_28_to_2025_29": 0.833333
+  },
+  "one_permit_random_only_result": {
+    "pass": true
+  },
+  "MAX_POOL_safety_result": {
+    "pass": true
+  },
+  "UI_precedence_result": {
+    "precedence_ok": true,
+    "max_pool_force_100_absent": true
+  },
+  "coverage_report_summary": {
+    "total_historical_backtest_hunt_codes": 1399,
+    "total_forecast_hunt_codes": 934,
+    "total_active_2026_forecast_eligible_hunt_codes": 479,
+    "count_excluded_not_OIL_LE_PLE": 438,
+    "count_excluded_not_active_in_2026": 0,
+    "count_excluded_missing_forecast_quota": 148,
+    "count_excluded_missing_required_metadata": 0,
+    "count_excluded_hunt_code_changed_or_not_crosswalked": 289,
+    "count_excluded_other_reason": 11,
+    "count_excluded_missing_model_input_or_not_in_predictive_draft": 11,
+    "forecast_codes_match_active_eligible_universe": false,
+    "active_eligible_codes_missing_from_forecast": 0,
+    "forecast_codes_outside_active_eligible_universe": 455,
+    "reason_counts": {
+      "included_forecast": 934,
+      "not_OIL_LE_PLE": 438,
+      "not_active_in_2026": 0,
+      "missing_forecast_quota": 148,
+      "missing_required_metadata": 0,
+      "hunt_code_changed_or_not_crosswalked": 289,
+      "other_missing_model_input": 11
+    },
+    "source_csv": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\predictive_coverage_report.csv"
+  },
+  "anomaly_checks": {
+    "prediction": {
+      "p_draw_outside_0_1": 0,
+      "p_draw_pct_outside_0_100": 0,
+      "p_draw_pct_null": 913,
+      "public_permits_gt_0_but_p_draw_null": 16,
+      "status_max_pool_and_p_draw_pct_100": 1128,
+      "status_max_pool_and_p_draw_pct_lt_100": 0,
+      "random_permits_gt_0_and_p_random_pool_0": 10992,
+      "duplicate_key_count": 0
+    },
+    "backtest": {
+      "calibration_error_by_probability_bucket_null": 0,
+      "brier_score_by_point_level_null": 0,
+      "guaranteed_at_error_null": 9265,
+      "year_transitions_tested": [
+        "2019->2020",
+        "2020->2021",
+        "2021->2022",
+        "2022->2023",
+        "2023->2024",
+        "2024->2025"
+      ],
+      "distinct_hunt_code_count": 1399,
+      "distinct_residency_count": 4
+    }
+  },
+  "source_files_used": {
+    "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\inputs\\draw_results_long_scorable_through_2025.csv": "38142b83c5dd8c593d43c450f1e982b018f19288d648337734b685a3edf8cb2d",
+    "pipeline\\RAW\\hunt_unit_database\\2026\\csv\\DATABASE.csv": "5e68a7ffabf82f878d0479935bc9161e56eed8cba738bea857970f4ef56df6a3",
+    "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\draw_reality_engine_v2.csv": "38142b83c5dd8c593d43c450f1e982b018f19288d648337734b685a3edf8cb2d",
+    "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\inputs\\runtime_drafts_2026_frozen_copy\\predictive_bonus_engine_2026.materialized.csv": "9a83ac3d8b6fba15c75aceb2d2683e319549d6b1ab8b010e15e0f3d1e56b7a32",
+    "hunt-research.js": "17492a26bd17dc6c5508a50329987ce49decec2613ba17f2373028b0817bd4c3",
+    "config.js": "69c25ca5c79deeff23c4b316e39a14bb17437e2fb4680090687e4c78716c3b20"
+  }
+}

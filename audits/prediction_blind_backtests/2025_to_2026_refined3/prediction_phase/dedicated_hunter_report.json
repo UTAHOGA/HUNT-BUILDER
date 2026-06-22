@@ -1,0 +1,23 @@
+{
+  "forecast_year": 2026,
+  "source_years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "exists": true,
+  "total_rows": 135,
+  "modeled_preference_row_count": 135,
+  "in_scope_model_pending_row_count": 0,
+  "modeled_hunt_code_count": 26,
+  "p_preference_draw_non_null_count": 135,
+  "p_draw_non_null_count": 135,
+  "p_draw_pct_non_null_count": 135,
+  "p_bonus_pool_non_null_count": 0,
+  "p_random_pool_non_null_count": 0,
+  "p_draw_outside_0_1_count": 0,
+  "p_draw_pct_outside_0_100_count": 0,
+  "csv": "audits\\prediction_blind_backtests\\2025_to_2026_refined3\\prediction_phase\\dedicated_hunter_predictions_v1.csv"
+}

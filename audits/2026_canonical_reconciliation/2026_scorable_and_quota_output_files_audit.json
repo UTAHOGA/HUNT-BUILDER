@@ -1,0 +1,33 @@
+{
+  "scorable": {
+    "path": "outputs\\2026 scorable draw results.csv",
+    "rows": 29549,
+    "columns": 36,
+    "record_types": [
+      "point_level_draw_result",
+      "sportsman_total"
+    ],
+    "size": 19027360,
+    "quota_rows_present": 0
+  },
+  "quota": {
+    "path": "outputs\\2026 quota allotment rows.csv",
+    "rows": 262,
+    "columns": 36,
+    "record_types": [
+      "hunt_planner_permit_quota"
+    ],
+    "size": 160683,
+    "draw_success_nonblank": {
+      "points": 0,
+      "residency": 0,
+      "eligible_applicants": 0,
+      "bonus_permits": 0,
+      "regular_permits": 0,
+      "total_permits": 0,
+      "success_ratio": 0,
+      "p_draw": 0,
+      "p_draw_percent": 0
+    }
+  }
+}

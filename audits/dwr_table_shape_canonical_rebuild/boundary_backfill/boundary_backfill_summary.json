@@ -1,0 +1,123 @@
+{
+  "write": false,
+  "trusted_canonical_years": [
+    2024,
+    2025,
+    2026
+  ],
+  "database": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "audit_path": "audits/dwr_table_shape_canonical_rebuild/boundary_backfill/boundary_backfill_audit.csv",
+  "ambiguous_path": "audits/dwr_table_shape_canonical_rebuild/boundary_backfill/boundary_backfill_ambiguous.csv",
+  "total_filled": 0,
+  "total_ambiguous": 0,
+  "filled_by_year": {
+    "2019": 0,
+    "2020": 0,
+    "2021": 0,
+    "2022": 0,
+    "2023": 0,
+    "2024": 0,
+    "2025": 0,
+    "2026": 0
+  },
+  "blank_after_by_year": {
+    "2019": 4310,
+    "2020": 2683,
+    "2021": 2053,
+    "2022": 4761,
+    "2023": 1981,
+    "2024": 1422,
+    "2025": 0,
+    "2026": 0
+  },
+  "summaries": [
+    {
+      "year": 2019,
+      "write": false,
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2019_for_2020_canonical_yearly_draw_results.csv",
+      "rows": 33478,
+      "filled": 0,
+      "ambiguous": 0,
+      "blank_before": 4310,
+      "blank_after": 4310,
+      "backup_path": ""
+    },
+    {
+      "year": 2020,
+      "write": false,
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2020_for_2021_canonical_yearly_draw_results.csv",
+      "rows": 33370,
+      "filled": 0,
+      "ambiguous": 0,
+      "blank_before": 2683,
+      "blank_after": 2683,
+      "backup_path": ""
+    },
+    {
+      "year": 2021,
+      "write": false,
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2021_for_2022_canonical_yearly_draw_results.csv",
+      "rows": 33788,
+      "filled": 0,
+      "ambiguous": 0,
+      "blank_before": 2053,
+      "blank_after": 2053,
+      "backup_path": ""
+    },
+    {
+      "year": 2022,
+      "write": false,
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2022_for_2023_canonical_yearly_draw_results.csv",
+      "rows": 34876,
+      "filled": 0,
+      "ambiguous": 0,
+      "blank_before": 4761,
+      "blank_after": 4761,
+      "backup_path": ""
+    },
+    {
+      "year": 2023,
+      "write": false,
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2023_for_2024_canonical_yearly_draw_results.csv",
+      "rows": 35834,
+      "filled": 0,
+      "ambiguous": 0,
+      "blank_before": 1981,
+      "blank_after": 1981,
+      "backup_path": ""
+    },
+    {
+      "year": 2024,
+      "write": false,
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2024_for_2025_canonical_yearly_draw_results.csv",
+      "rows": 43335,
+      "filled": 0,
+      "ambiguous": 0,
+      "blank_before": 1422,
+      "blank_after": 1422,
+      "backup_path": ""
+    },
+    {
+      "year": 2025,
+      "write": false,
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2025_for_2026_canonical_yearly_draw_results.csv",
+      "rows": 38120,
+      "filled": 0,
+      "ambiguous": 0,
+      "blank_before": 0,
+      "blank_after": 0,
+      "backup_path": ""
+    },
+    {
+      "year": 2026,
+      "write": false,
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+      "rows": 22714,
+      "filled": 0,
+      "ambiguous": 0,
+      "blank_before": 0,
+      "blank_after": 0,
+      "backup_path": ""
+    }
+  ]
+}

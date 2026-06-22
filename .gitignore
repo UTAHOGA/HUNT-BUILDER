@@ -1008,3 +1008,26 @@ app.js
 
 # Cloudflare R2 offloaded app file
 /app.js
+
+# R2 / Cloudflare-hosted large live feed files
+data/hunt_predictions.json
+data/hunt_odds_history.csv
+data/utah/foundation_bundle_2026/*.kml
+data_model/harvest_quality/*.csv
+data_model/runtime_drafts/*.csv
+processed_data/point_ladder_view.csv
+processed_data/*.zip
+*.zip
+*.7z
+*.tmp
+*.bak
+
+# Cloudflare R2 offloaded large/raw/runtime artifacts
+audits/database_alignment/identity_registry/year_specific_permit_population_applied.csv
+data_model/runtime_drafts/draw_reality_engine_v2_manifest.json
+data_model/runtime_drafts/draw_reality_engine_v2_schema_changes.csv
+data_model/runtime_drafts/draw_reality_engine_v2_validation_report.json
+data_model/runtime_drafts/draw_reality_engine_v2_vs_current_report.json
+flipbooks/2026/2025-27 Conservation Permits.pdf
+processed_data/hard_data_exports/hunt_tables/2026/CLEAN_XLXS_STAGED/2025-27 Conservation Permits.xlsx
+processed_data/hard_data_exports/hunt_tables/2026/CLEAN_XLXS_STAGED/2026 DEER BUCK CONSERVATION MUZZLELOADER.xlsx

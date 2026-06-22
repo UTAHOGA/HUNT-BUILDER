@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-06-21T17:55:20.834Z",
+  "target_workbooks": [
+    "processed_data/hard_data_exports/hunt_tables/2026/CLEAN_XLXS_STAGED/2025-27 Conservation Permits.xlsx"
+  ],
+  "lookup_file": "audits/2025_canonical_finalization/2025_27_conservation_hunt_code_boundary_lookup.csv",
+  "database_file": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "total_workbook_rows": 347,
+  "total_audit_rows": 347,
+  "target_summaries": [
+    {
+      "target_workbook": "processed_data/hard_data_exports/hunt_tables/2026/CLEAN_XLXS_STAGED/2025-27 Conservation Permits.xlsx",
+      "totalDataRows": 347,
+      "mappedBoundaryIds": 347,
+      "changedBoundaryRows": 0,
+      "changedCodeRows": 0,
+      "mappedFromLookup": 0,
+      "mappedFromDatabase": 0,
+      "mappedFromBoundaryFallback": 0,
+      "unresolved": 0,
+      "unchanged": 347,
+      "locked": 347,
+      "rows_written": "347"
+    }
+  ]
+}

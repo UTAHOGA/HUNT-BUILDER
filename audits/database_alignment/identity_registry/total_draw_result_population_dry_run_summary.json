@@ -1,0 +1,129 @@
+{
+  "generated_at_utc": "2026-06-22T18:11:48.811196+00:00",
+  "write_mode": false,
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "summaries": [
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2019_for_2020_canonical_yearly_draw_results.csv",
+      "actual_draw_year": 2019,
+      "target_rows": 33478,
+      "cell_updates": 0,
+      "updates_by_column": {}
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "actual_draw_year": 2019,
+      "target_rows": 33478,
+      "cell_updates": 0,
+      "updates_by_column": {}
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2020_for_2021_canonical_yearly_draw_results.csv",
+      "actual_draw_year": 2020,
+      "target_rows": 33370,
+      "cell_updates": 0,
+      "updates_by_column": {}
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "actual_draw_year": 2020,
+      "target_rows": 33370,
+      "cell_updates": 0,
+      "updates_by_column": {}
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2021_for_2022_canonical_yearly_draw_results.csv",
+      "actual_draw_year": 2021,
+      "target_rows": 33788,
+      "cell_updates": 0,
+      "updates_by_column": {}
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "actual_draw_year": 2021,
+      "target_rows": 33788,
+      "cell_updates": 0,
+      "updates_by_column": {}
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2022_for_2023_canonical_yearly_draw_results.csv",
+      "actual_draw_year": 2022,
+      "target_rows": 34876,
+      "cell_updates": 0,
+      "updates_by_column": {}
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "actual_draw_year": 2022,
+      "target_rows": 34876,
+      "cell_updates": 0,
+      "updates_by_column": {}
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2023_for_2024_canonical_yearly_draw_results.csv",
+      "actual_draw_year": 2023,
+      "target_rows": 35834,
+      "cell_updates": 0,
+      "updates_by_column": {}
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "actual_draw_year": 2023,
+      "target_rows": 35834,
+      "cell_updates": 0,
+      "updates_by_column": {}
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2024_for_2025_canonical_yearly_draw_results.csv",
+      "actual_draw_year": 2024,
+      "target_rows": 43335,
+      "cell_updates": 0,
+      "updates_by_column": {}
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "actual_draw_year": 2024,
+      "target_rows": 43335,
+      "cell_updates": 0,
+      "updates_by_column": {}
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2025_for_2026_canonical_yearly_draw_results.csv",
+      "actual_draw_year": 2025,
+      "target_rows": 38120,
+      "cell_updates": 0,
+      "updates_by_column": {}
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "actual_draw_year": 2025,
+      "target_rows": 38120,
+      "cell_updates": 0,
+      "updates_by_column": {}
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+      "actual_draw_year": 2026,
+      "target_rows": 22714,
+      "cell_updates": 0,
+      "updates_by_column": {}
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "actual_draw_year": 2026,
+      "target_rows": 22714,
+      "cell_updates": 0,
+      "updates_by_column": {}
+    }
+  ],
+  "changes_csv": "audits\\database_alignment\\identity_registry\\total_draw_result_population_dry_run.csv"
+}

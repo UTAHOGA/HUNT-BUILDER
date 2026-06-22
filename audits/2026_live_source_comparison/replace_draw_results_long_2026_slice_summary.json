@@ -1,0 +1,11 @@
+{
+  "canonical_2026_rows": 29811,
+  "long_2026_rows_after": 29811,
+  "long_2026_rows_before": 29811,
+  "long_file_size_bytes_after": 214361460,
+  "long_rows_kept_non_2026": 504837,
+  "old_2026_exact_payload_extra_rows": 0,
+  "old_2026_exact_payload_missing_rows": 0,
+  "top_extra_old_hunt_codes": [],
+  "top_missing_old_hunt_codes": []
+}

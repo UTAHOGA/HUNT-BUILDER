@@ -1,0 +1,2 @@
+action,live_no,staged_no,field,old_value,new_value
+dropped_live,348,,row_status,present,removed_no_match_in_staged

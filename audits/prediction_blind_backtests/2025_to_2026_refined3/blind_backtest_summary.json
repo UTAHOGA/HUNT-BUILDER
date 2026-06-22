@@ -1,0 +1,66 @@
+{
+  "comparison": {
+    "actual_file": "outputs/2026 scorable draw results.csv",
+    "actual_rows_raw": 29549,
+    "actual_rows_with_probability": 17072,
+    "actual_rows_without_probability": 0,
+    "actual_unique_keys": 16598,
+    "actual_zero_applicant_rows_excluded": 12477,
+    "duplicate_actual_key_groups": 474,
+    "duplicate_prediction_key_groups": 0,
+    "join_key": "hunt_code + residency + points + draw_system_type",
+    "joined_keys": 11905,
+    "outputs": {
+      "duplicate_actual_keys": "audits/prediction_blind_backtests/2025_to_2026_refined3/comparison_phase/duplicate_actual_keys.csv",
+      "duplicate_prediction_keys": "audits/prediction_blind_backtests/2025_to_2026_refined3/comparison_phase/duplicate_prediction_keys.csv",
+      "grouped": "audits/prediction_blind_backtests/2025_to_2026_refined3/comparison_phase/prediction_accuracy_grouped.csv",
+      "rowlevel": "audits/prediction_blind_backtests/2025_to_2026_refined3/comparison_phase/prediction_2025_to_2026_vs_actual_2026_rowlevel.csv",
+      "unmatched_actuals": "audits/prediction_blind_backtests/2025_to_2026_refined3/comparison_phase/unmatched_2026_actuals.csv",
+      "unmatched_predictions": "audits/prediction_blind_backtests/2025_to_2026_refined3/comparison_phase/unmatched_frozen_predictions.csv"
+    },
+    "overall_metrics": {
+      "bias": -0.017586191191768165,
+      "failure_abs_error_gt_0_25": 1635,
+      "joined_rows": 11905,
+      "mae": 0.1184373946851743,
+      "median_abs_error": 0.013603,
+      "p90_abs_error": 0.433867,
+      "rmse": 0.2774126701719221
+    },
+    "prediction_file": "audits/prediction_blind_backtests/2025_to_2026_refined3/prediction_phase/ml_draw_predictions_v1.csv",
+    "prediction_rows_raw": 23710,
+    "prediction_rows_with_probability": 22797,
+    "prediction_rows_without_probability": 913,
+    "prediction_unique_keys": 22797,
+    "unmatched_actual_keys": 4693,
+    "unmatched_prediction_keys": 10892
+  },
+  "comparison_summary": "audits/prediction_blind_backtests/2025_to_2026_refined3/comparison_phase/comparison_summary.json",
+  "frozen_prediction_sha256": "1a080f42f24857899a894143d26f5b5a9c6ebc7110555fc9781ceefbdc472262",
+  "large_temp_truth_cleanup": {
+    "keep_temp_truth": false,
+    "reason": "Large copied truth/runtime inputs are hash-locked, regenerable audit intermediates and should not be retained as repo artifacts by default.",
+    "records": [
+      {
+        "path": "audits/prediction_blind_backtests/2025_to_2026_refined3/inputs/draw_results_long_scorable_through_2025.csv",
+        "removed": true,
+        "sha256": "38142b83c5dd8c593d43c450f1e982b018f19288d648337734b685a3edf8cb2d",
+        "size_bytes": 102712528
+      },
+      {
+        "path": "audits/prediction_blind_backtests/2025_to_2026_refined3/inputs/runtime_drafts_2026_frozen_copy/draw_reality_engine_v2.csv",
+        "removed": true,
+        "sha256": "38142b83c5dd8c593d43c450f1e982b018f19288d648337734b685a3edf8cb2d",
+        "size_bytes": 102712528
+      },
+      {
+        "path": "audits/prediction_blind_backtests/2025_to_2026_refined3/prediction_phase/draw_reality_engine_v2.csv",
+        "removed": true,
+        "sha256": "38142b83c5dd8c593d43c450f1e982b018f19288d648337734b685a3edf8cb2d",
+        "size_bytes": 102712528
+      }
+    ],
+    "regeneration_command": "python scripts/run_blind_2025_to_2026_prediction_backtest.py --out-dir <same-out-dir>"
+  },
+  "locked_prediction_manifest": "audits/prediction_blind_backtests/2025_to_2026_refined3/locked_prediction_manifest.json"
+}

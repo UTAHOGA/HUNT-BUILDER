@@ -1,0 +1,28 @@
+{
+  "guidebook_pdf": "C:\\Users\\tyler\\Desktop\\antlerless_guidebook.pdf",
+  "guidebook_pages": 43,
+  "guidebook_code_line_rows": 252,
+  "guidebook_unique_codes": 251,
+  "hunt_planner_rows": 269,
+  "hunt_planner_unique_codes": 267,
+  "codes_in_both": 251,
+  "guidebook_only_codes": 0,
+  "hunt_planner_only_codes": 16,
+  "guidebook_prefix_counts": {
+    "DA": 21,
+    "EA": 199,
+    "MA": 5,
+    "PD": 25,
+    "RE": 1
+  },
+  "hunt_planner_prefix_counts": {
+    "BI": 5,
+    "DA": 21,
+    "EA": 210,
+    "MA": 5,
+    "PD": 25,
+    "RE": 1
+  },
+  "extract_csv": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\2025_canonical_finalization\\fresh_live_pulls_20260621_192945\\antlerless_guidebook_hunt_code_line_inventory.csv",
+  "coverage_csv": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\2025_canonical_finalization\\fresh_live_pulls_20260621_192945\\antlerless_guidebook_vs_hunt_planner_code_coverage.csv"
+}

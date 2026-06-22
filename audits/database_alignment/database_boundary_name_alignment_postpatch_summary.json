@@ -1,0 +1,50 @@
+{
+  "rows": 1471,
+  "columns": 41,
+  "unique_hunt_codes": 1471,
+  "blank_hunt_code_rows": 0,
+  "blank_boundary_id_rows": 0,
+  "blank_hunt_name_rows": 0,
+  "hunt_codes_not_in_display_index": 0,
+  "boundary_id_mismatches_vs_display_index": 0,
+  "hunt_codes_with_multiple_boundary_ids": 0,
+  "remaining_obvious_hunt_name_artifact_rows": 6,
+  "remaining_artifact_sample": [
+    [
+      1356,
+      "BR1001",
+      "5002",
+      "Black Bear Harvest Objective Units"
+    ],
+    [
+      1357,
+      "BR1007",
+      "5003",
+      "Black Bear Pursuit - Resident"
+    ],
+    [
+      1358,
+      "BR1018",
+      "5013",
+      "Black Bear Pursuit - Nonresident"
+    ],
+    [
+      1375,
+      "EB1001",
+      "5120",
+      "Any Bull Elk Units"
+    ],
+    [
+      1376,
+      "EB1002",
+      "5121",
+      "Any Bull Elk Units"
+    ],
+    [
+      1382,
+      "EB1010",
+      "5127",
+      "Any Bull Elk Units"
+    ]
+  ]
+}

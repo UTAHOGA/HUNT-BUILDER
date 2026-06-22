@@ -1,0 +1,248 @@
+{
+  "output_dir": "outputs/2026_PERMITS=2027_MODEL_json_documents",
+  "generated_count": 45,
+  "skipped_count": 14,
+  "generated": [
+    {
+      "source_file": "dwr_huntboundary_bison_cow_only.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_bison_cow_only.pdf",
+      "hunt_records": 5
+    },
+    {
+      "source_file": "dwr_huntboundary_bison_hunters_choice.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_bison_hunters_choice.pdf",
+      "hunt_records": 14
+    },
+    {
+      "source_file": "dwr_huntboundary_black_bear_either_sex.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_black_bear_either_sex.pdf",
+      "hunt_records": 106
+    },
+    {
+      "source_file": "dwr_huntboundary_cougar_either_sex.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_cougar_either_sex.pdf",
+      "hunt_records": 1
+    },
+    {
+      "source_file": "dwr_huntboundary_deer_antlerless.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_deer_antlerless.pdf",
+      "hunt_records": 21
+    },
+    {
+      "source_file": "dwr_huntboundary_deer_buck.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_deer_buck.pdf",
+      "hunt_records": 459
+    },
+    {
+      "source_file": "dwr_huntboundary_deer_hunters_choice.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_deer_hunters_choice.pdf",
+      "hunt_records": 1
+    },
+    {
+      "source_file": "dwr_huntboundary_desert_bighorn_sheep_male_only.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_desert_bighorn_sheep_male_only.pdf",
+      "hunt_records": 25
+    },
+    {
+      "source_file": "dwr_huntboundary_elk_antlerless.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_elk_antlerless.pdf",
+      "hunt_records": 212
+    },
+    {
+      "source_file": "dwr_huntboundary_elk_bull.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_elk_bull.pdf",
+      "hunt_records": 353
+    },
+    {
+      "source_file": "dwr_huntboundary_elk_hunters_choice.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_elk_hunters_choice.pdf",
+      "hunt_records": 1
+    },
+    {
+      "source_file": "dwr_huntboundary_moose_antlerless.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_moose_antlerless.pdf",
+      "hunt_records": 5
+    },
+    {
+      "source_file": "dwr_huntboundary_moose_bull.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_moose_bull.pdf",
+      "hunt_records": 27
+    },
+    {
+      "source_file": "dwr_huntboundary_mountain_goat_hunters_choice.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_mountain_goat_hunters_choice.pdf",
+      "hunt_records": 18
+    },
+    {
+      "source_file": "dwr_huntboundary_pronghorn_buck.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_pronghorn_buck.pdf",
+      "hunt_records": 94
+    },
+    {
+      "source_file": "dwr_huntboundary_pronghorn_doe.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_pronghorn_doe.pdf",
+      "hunt_records": 25
+    },
+    {
+      "source_file": "dwr_huntboundary_rocky_mountain_bighorn_sheep_ewe.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_rocky_mountain_bighorn_sheep_ewe.pdf",
+      "hunt_records": 1
+    },
+    {
+      "source_file": "dwr_huntboundary_rocky_mountain_bighorn_sheep_male_only.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_rocky_mountain_bighorn_sheep_male_only.pdf",
+      "hunt_records": 20
+    },
+    {
+      "source_file": "dwr_huntboundary_tribal_na.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_tribal_na.pdf",
+      "hunt_records": 1
+    },
+    {
+      "source_file": "dwr_huntboundary_turkey_bearded.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_turkey_bearded.pdf",
+      "hunt_records": 14
+    },
+    {
+      "source_file": "dwr_huntboundary_turkey_either_sex.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/huntboundary_turkey_either_sex.pdf",
+      "hunt_records": 4
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_bison_mht12.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/big_game_2026_bison_mht12.pdf",
+      "hunt_records": 17
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_bull_moose_mht11.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/big_game_2026_bull_moose_mht11.pdf",
+      "hunt_records": 27
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_dedicated_hunter_buck_deer_mht32.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/big_game_2026_dedicated_hunter_buck_deer_mht32.pdf",
+      "hunt_records": 32
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_desert_bighorn_sheep_mht13.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/big_game_2026_desert_bighorn_sheep_mht13.pdf",
+      "hunt_records": 19
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_draw_only_youth_elk_mht6.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/big_game_2026_draw_only_youth_elk_mht6.pdf",
+      "hunt_records": 1
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_general_season_buck_deer_mht5.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/big_game_2026_general_season_buck_deer_mht5.pdf",
+      "hunt_records": 107
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_limited_entry_buck_deer_mht8.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/big_game_2026_limited_entry_buck_deer_mht8.pdf",
+      "hunt_records": 193
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_limited_entry_buck_pronghorn_mht10.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/big_game_2026_limited_entry_buck_pronghorn_mht10.pdf",
+      "hunt_records": 88
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_limited_entry_bull_elk_mht9.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/big_game_2026_limited_entry_bull_elk_mht9.pdf",
+      "hunt_records": 210
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_mountain_goat_mht15.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/big_game_2026_mountain_goat_mht15.pdf",
+      "hunt_records": 18
+    },
+    {
+      "source_file": "utahdraws_big_game_2026_rocky_mtn_bighorn_sheep_mht14.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/big_game_2026_rocky_mtn_bighorn_sheep_mht14.pdf",
+      "hunt_records": 16
+    },
+    {
+      "source_file": "utahdraws_black_bear_2026_black_bear_mht1.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/black_bear_2026_black_bear_mht1.pdf",
+      "hunt_records": 91
+    },
+    {
+      "source_file": "utahdraws_black_bear_2026_black_bear_restricted_pursuit_mht16.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/black_bear_2026_black_bear_restricted_pursuit_mht16.pdf",
+      "hunt_records": 10
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_bison_mht26.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/sportsman_2026_sportsman_bison_mht26.pdf",
+      "hunt_records": 1
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_black_bear_mht30.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/sportsman_2026_sportsman_black_bear_mht30.pdf",
+      "hunt_records": 1
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_deer_mht22.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/sportsman_2026_sportsman_deer_mht22.pdf",
+      "hunt_records": 1
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_desert_bighorn_sheep_mht28.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/sportsman_2026_sportsman_desert_bighorn_sheep_mht28.pdf",
+      "hunt_records": 1
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_elk_mht23.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/sportsman_2026_sportsman_elk_mht23.pdf",
+      "hunt_records": 1
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_moose_mht25.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/sportsman_2026_sportsman_moose_mht25.pdf",
+      "hunt_records": 1
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_mountain_goat_mht29.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/sportsman_2026_sportsman_mountain_goat_mht29.pdf",
+      "hunt_records": 1
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_pronghorn_mht24.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/sportsman_2026_sportsman_pronghorn_mht24.pdf",
+      "hunt_records": 1
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_rocky_mtn_bighorn_sheep_mht27.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/sportsman_2026_sportsman_rocky_mtn_bighorn_sheep_mht27.pdf",
+      "hunt_records": 1
+    },
+    {
+      "source_file": "utahdraws_sportsman_2026_sportsman_turkey_mht31.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/sportsman_2026_sportsman_turkey_mht31.pdf",
+      "hunt_records": 1
+    },
+    {
+      "source_file": "utahdraws_turkey_2026_turkey_mht3.json",
+      "pdf_path": "outputs/2026_PERMITS=2027_MODEL_json_documents/turkey_2026_turkey_mht3.pdf",
+      "hunt_records": 8
+    }
+  ],
+  "skipped": [
+    "antlerless_guidebook_vs_hunt_planner_code_coverage_summary.json",
+    "dwr_huntboundary_coyote_either_sex.json",
+    "dwr_huntboundary_goose_dark_either_sex.json",
+    "dwr_huntboundary_goose_light_either_sex.json",
+    "dwr_huntboundary_goose_white_fronted_either_sex.json",
+    "dwr_huntboundary_greater_sage_grouse_either_sex.json",
+    "dwr_huntboundary_hasetup.json",
+    "dwr_huntboundary_sandhill_crane_either_sex.json",
+    "dwr_huntboundary_sharp_tailed_grouse_either_sex.json",
+    "dwr_huntboundary_tundra_swan_either_sex.json",
+    "dwr_huntboundary_waterfowl_either_sex.json",
+    "utah_wildlife_bear_cougar_turkey_odds_archive_summary.json",
+    "utah_wildlife_biggame_odds_archive_summary.json",
+    "utahdraws_draw_odds_supplement_data.json"
+  ]
+}

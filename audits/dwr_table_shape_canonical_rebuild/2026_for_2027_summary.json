@@ -1,0 +1,23 @@
+{
+  "year": 2026,
+  "source_path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+  "write": true,
+  "rows_before": 29811,
+  "rows_after": 22714,
+  "columns_before": 36,
+  "columns_after": 52,
+  "row_reduction": 7097,
+  "collapse_conflicts": 2473,
+  "record_type_counts": {
+    "point_level_draw_result": 22432,
+    "hunt_planner_permit_quota": 262,
+    "sportsman_total": 20
+  },
+  "source_residency_counts": {
+    "nonresident": 8017,
+    "nonresident; resident": 6615,
+    "resident": 7820,
+    "total": 262
+  },
+  "backup_path": "audits/dwr_table_shape_canonical_rebuild/backups/draw_results_2026_for_2027_canonical_yearly_draw_results.before_dwr_table_shape_20260622T132238Z.csv"
+}

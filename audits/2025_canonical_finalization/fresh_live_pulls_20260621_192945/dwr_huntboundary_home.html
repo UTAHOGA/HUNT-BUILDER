@@ -1,0 +1,4085 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<title>Utah Hunt Planner -- Utah Division of Wildlife Resources</title>
+<meta name="description" content="The Utah Division of Wildlife Resources' Utah Hunt Planner is an interactive map designed to help hunters research hunting units. The Utah Hunt Planner also provides the legal hunting boundaries approved by the Utah Wildlife Board. Research hunts and units before you apply in the big game drawing, and any of Utah's other hunt drawings. Search for a hunt by wildlife species -- including buck deer, bull elk, bison, mountain goat, bull moose, pronghorn, desert bighorn sheep, Rocky Mountain bighorn sheep, cougar, black bear, wild turkey, greater sage-grouse, sharp-tailed grouse and sandhill crane. Find information about Cooperative Wildlife Management Units (CWMUs), Wildlife Management Areas (WMAs), Antlerless Control Areas and Walk-In Access areas. Read biologist notes on each unit, population and harvest statistics, management objectives, access information and more." />
+
+<link rel="stylesheet" href="/huntboundary/select2-4.0.3/css/select2.css" type="text/css">
+<link rel="stylesheet" href="/huntboundary/jquery/tablesorterMottie/theme.default.css" type="text/css">
+<link rel="stylesheet" href="https://js.arcgis.com/3.36/esri/css/esri.css">
+<link rel="stylesheet" href="/huntboundary/jquery/jquery-ui-1.12.1.custom/jquery-ui.min.css" type="text/css">
+<link rel="stylesheet" href="/huntboundary/css/hbR.css" type="text/css">
+
+<script type="text/javascript" src="/huntboundary/jquery/jquery-1.11.3.min.js"></script> 
+<script type="text/javascript" src="/huntboundary/jquery/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/huntboundary/select2-4.0.3/js/select2.min.js"></script>
+<script type="text/javascript" src="/huntboundary/jquery/tablesorterMottie/jquery.tablesorter.js"></script>
+<script type="text/javascript" src="/huntboundary/jquery/tablesorterMottie/widgets/widget-stickyHeaders.js"></script>
+<script type="text/javascript" src="/huntboundary/jquery/tablesorterMottie/widgets/widget-filter.js"></script>
+<script type="text/javascript" src="https://js.arcgis.com/3.36/"></script>
+
+<script>var dojoConfig = { parseOnLoad: true };</script>
+
+<script type="text/javascript">
+
+
+
+
+if (!Array.prototype.indexOf) {
+	alert("Your experience on this site may be limited due to the browser version you are using. Please see the help tab for a list of browsers that work best with this site.");
+}
+
+var map;
+var gl = {};
+
+gl.location = 10;
+gl.huntLayer2Selected = "";
+gl.boundaryArray2BID = {};
+var db = 'PROD';
+
+
+
+require(["esri/symbols/PictureMarkerSymbol",
+		 "esri/renderers/UniqueValueRenderer",
+         "esri/map",
+         "esri/tasks/query",
+         "esri/tasks/QueryTask",
+         "esri/layers/FeatureLayer",
+         "esri/layers/ArcGISDynamicMapServiceLayer",
+         "esri/layers/ArcGISTiledMapServiceLayer",
+         "esri/renderers/SimpleRenderer",
+         "esri/dijit/Scalebar",
+         "esri/Color",
+         "esri/symbols/SimpleLineSymbol", 
+         "esri/symbols/SimpleFillSymbol",
+         "esri/symbols/SimpleMarkerSymbol",
+         "dojo/_base/array",
+         "dojo/dom",
+         "dijit/form/Select",
+         "dojo/_base/window",
+         "dijit/TitlePane",
+         "dojo/_base/lang",
+         "esri/graphic",
+         "dojo/promise/all",
+         "dojo/Deferred",
+      	 "dojo/parser",
+      	 "esri/SpatialReference",
+      	 "esri/geometry/Extent",
+      	 "dijit/Dialog",
+      	 "dijit/TooltipDialog",
+		 "esri/geometry/Point",
+		 "esri/geometry/webMercatorUtils",
+		 "esri/basemaps",
+		 "esri/layers/VectorTileLayer"
+         ], function(PictureMarkerSymbol, UniqueValueRenderer, Map, Query, QueryTask, FeatureLayer,
+        		 ArcGISDynamicMapServiceLayer, ArcGISTiledMapServiceLayer, SimpleRenderer,
+        		 Scalebar, Color, SimpleLineSymbol, SimpleFillSymbol, SimpleMarkerSymbol,
+        		 array, dom, Select, win, TitlePane, lang, Graphic, all, Deferred,
+        		 parser, SpatialReference, Extent, Dialog, TooltipDialog, Point, webMercatorUtils,
+        		 esriBasemaps, VectorTileLayer ){
+	
+	
+	$.getJSON("HuntMapData", function(list) {
+		gl.list = list;
+
+		
+		$.each(list, function(index, data) {
+	        switch (data.keyName) {
+		        case "HUNT_BOUNDARY_" + db:
+		        	gl.servicePathMap = data.serviceURL;
+		        	break;
+		        case "WMA_" + db:
+		        	gl.wmaLayerPath = data.serviceURL;
+		        	break;	
+		        case "WIA_" + db:
+		        	gl.wiaLayerPath = data.serviceURL;
+		        	break;
+		        case "WIAPOINT_" + db:
+		        	gl.wiaLayerPointPath = data.serviceURL;
+		        	break;
+		        case "HABITAT_" + db:
+		        	gl.habitatLayerPath = data.serviceURL;
+		        	gl.habitatLayerDisable = data.hoverFieldName;
+		        	break;
+		        case "LANDOWNERSHIP":
+		        	gl.landOwnershipLayerPath = data.serviceURL;
+		        	gl.landOwnershipLayerDisable = data.hoverFieldName;
+		        	break;
+		        case "LANDOWNERSHIPTILE":
+		        	gl.landOwnershipTilesLayerPath = data.serviceURL;
+		        	break;
+		        case "NATIONAL_PARKS":
+		        	gl.nationalParksLayerPath = data.serviceURL;
+		        	break;
+		        case "serviceToken":
+		        	gl.serviceToken = data.serviceURL;
+		        	break;
+		        case "HUNT_KML":
+		        	gl.KMLUrl = data.serviceURL;
+		        	break;
+		        case "HEALTH":
+		        	gl.HealthUrl = data.serviceURL;
+		        	break;
+		        case "STARTSTATEMENT1":
+		        	$("#st1").html(data.serviceURL);
+		        	break;
+		        case "STARTSTATEMENT2":
+		        	$("#st2").html(data.serviceURL);
+		        	break;
+		        case "STARTSTATEMENT3":
+		        	$("#st3").html(data.serviceURL);
+		        	break;
+		        case "STARTSTATEMENT4":
+		        	$("#st4").html(data.serviceURL);
+		        	break;
+		        case "ABOUT1":
+		        	$("#about1").html(data.serviceURL);
+		        	break;
+		        case "ABOUT2":
+		        	$("#about2").html(data.serviceURL);
+		        	break;
+		        case "ABOUT3":
+		        	$("#about3").html(data.serviceURL);
+		        	break;
+		        case "ABOUT4":
+		        	$("#about4").html(data.serviceURL);
+		        	break;
+		        case "ABOUT5":
+		        	$("#about5").html(data.serviceURL);
+		        	break;
+		        case "EXTRA1":
+		        	gl.extra1Path = data.serviceURL;
+		        	gl.extra1CFN = JSON.parse(data.clickFieldName);
+		        	gl.extra1HFN = data.hoverFieldName;
+		        	gl.extra1Desc = data.description;
+		        	break;
+		        case "EXTRA2":
+		        	gl.extra2Path = data.serviceURL;
+		        	gl.extra2CFN = JSON.parse(data.clickFieldName);
+		        	gl.extra2HFN = data.hoverFieldName;
+		        	gl.extra2Desc = data.description;
+		        	break;
+		        case "EXTRA3":
+		        	gl.extra3Path = data.serviceURL;
+		        	gl.extra3CFN = JSON.parse(data.clickFieldName);
+		        	gl.extra3HFN = data.hoverFieldName;
+		        	gl.extra3Desc = data.description;
+		        	break;
+		        case "EXTRA4":
+		        	gl.extra4Path = data.serviceURL;
+		        	gl.extra4CFN = JSON.parse(data.clickFieldName);
+		        	gl.extra4HFN = data.hoverFieldName;
+		        	gl.extra4Desc = data.description;
+		        	break;
+				case "EXTRA5":
+		        	gl.extra5Path = data.serviceURL;
+		        	gl.extra5CFN = JSON.parse(data.clickFieldName);
+		        	gl.extra5HFN = data.hoverFieldName;
+		        	gl.extra5Desc = data.description;
+		        	break;
+				case "EXTRA6":
+		        	gl.extra6Path = data.serviceURL;
+		        	gl.extra6CFN = JSON.parse(data.clickFieldName);
+		        	gl.extra6HFN = data.hoverFieldName;
+		        	gl.extra6Desc = data.description;
+		        	break;
+				case "EXTRA7":
+		        	gl.extra7Path = data.serviceURL;
+		        	gl.extra7CFN = JSON.parse(data.clickFieldName);
+		        	gl.extra7HFN = data.hoverFieldName;
+		        	gl.extra7Desc = data.description;
+		        	break;
+		        case "BASEMAP":
+		        	gl.basemapObject = JSON.parse(data.serviceURL);
+		        	break;
+		        case "LANDOWNERSHIP_ZOOM":
+		        	gl.LandOwnershipTilesDisplayLevels = JSON.parse(data.clickFieldName);
+		        	gl.LandOwnershipMinScale = data.hoverFieldName;
+		        	break;
+		        case "DRAWODDS_BIGGAME":
+		        	gl.drawOddsBigGame = data.serviceURL;
+		        	break;
+		        case "DRAWODDS_OTHER":
+		        	gl.drawOddsOther = data.serviceURL;
+		        	break;
+	        }
+	    });
+		
+		$( "#statement" ).dialog({
+			dialogClass: "no-close noTitle",
+			position: { my: "top", at: "top", of: window },
+			buttons: [{
+				text: "OK",
+				click: function() {
+			 		$( this ).dialog( "close" );
+				}
+			}],
+			width: 320
+		});
+		
+		$( "#statement").on('click', function(){$( "#statement" ).dialog("close")});
+		
+		dojo.ready(init);
+	});
+
+	
+
+function init () {
+	$(document).ready(function(){
+		if (db != "PROD") {
+			$("#pageDB").html("*** AT Database ***<br>*** AT Database ***<br>*** AT Database ***<br>*** AT Database ***");
+		}
+		
+		parser.parse();
+		
+		// Handle the change between normal and phone views better.
+		gl.wMaxH = 500;
+		gl.wMaxW = '90vw';
+		gl.wPosition = { my:'center', at:'center' };
+		var startingZoom = 8;
+		if ($('.mobileLayout').is(":visible")) {
+			startingZoom = 6;
+// 			var spacing =  Math.round(($(window).width() - 40 * 5) / 6);
+// 			if (spacing < 30) {
+				// $(".mobileIcon").css('margin-right', Math.round(($(window).width() - 40 * 5 ) / 6)); // width + padding
+// 			}
+			gl.wMaxH = $(window).height() - 40;
+			gl.wMaxW = '97vw';
+			gl.wPosition = { my:'top', at:'top' };
+		}
+		
+		var resizeTimer;
+		
+		$(window).resize(function () {
+			clearTimeout(resizeTimer);
+			resizeTimer = setTimeout(function() {
+			    // Run code here, resizing has "stopped" for the timeout period (this is called debouncing)
+				if ($('.mobileLayout').is(":visible")) {
+// 					var spacing =  Math.round(($(window).width() - 40 * 5) / 6);
+// 					if (spacing < 30) {
+// 						$(".mobileIcon").css('margin-right', Math.round( ( ( $(window).width() - 40 ) * 5 ) / 6 ) ); // width + padding
+// 					}
+					gl.wMaxH = $(window).height() - 40;
+					gl.wMaxW = '97vw';
+					gl.wPosition = { my:'top', at:'top' };
+					if ($(".mobileFind").hasClass("sel")) {
+						
+					} else {
+						$("#selectionOptions").hide();
+					}
+				} else {
+					$("#selectionOptions").show(); 
+				}
+			}, 250);
+		});
+		
+// 		$( "#dwrLogoDrag" ).draggable();
+
+		// Dynamicaly add basemap layers
+		// console.log("gl.basemapObject", gl.basemapObject);
+		gl.vectorList = {};
+		for (var i = 0; i < gl.basemapObject.length; i++) {
+			// Any basemap that is not already a default member of the basemap group needs to be added here.
+			if ( gl.basemapObject[i].url !== undefined && gl.basemapObject[i].url != "" ) {
+				esriBasemaps[ gl.basemapObject[i].mapName ] = {
+					      baseMapLayers: [{url: gl.basemapObject[i].url }
+					      ],
+					      thumbnailUrl: "",
+					      title: gl.basemapObject[i].mapText
+				};
+			}
+			if ( gl.basemapObject[i].basemapType == "Vector" ) {
+				gl.vectorList [ gl.basemapObject[i].mapName ] = { 
+											'basemap': gl.basemapObject[i].basemapBase,
+											'url': gl.basemapObject[i].url,
+											'vtLayer': null };
+			}
+		}
+		
+		// console.log("gl.vectorList", gl.vectorList);
+		
+		// What is the starting basemap?  If its a vector, which basemap to use with it?
+		var useBasemap = gl.basemapObject[0].mapName;
+		if (gl.basemapObject[0].basemapType == "Vector") {
+			useBasemap = gl.basemapObject[0].basemapBase;
+		}
+		
+		map = new Map("mapDiv", { 
+	        'basemap': useBasemap, // "streets",
+	        'center': [-111.4937, 39.3210],
+	        'zoom': startingZoom
+	    });
+		
+		var scalebar = new Scalebar({
+	          map: map });
+		
+		map.on("click", mapClickedEvent);
+		
+		map.on("zoom-end", function(){
+			// $( "#zoomNumber" ).text(map.getZoom());
+			// console.log("map zoomend", map.extent.getWidth(), map.width, map.extent.getWidth() / map.width);
+	    });
+		
+		// June 14th, 2017 - Show loading icon on map
+		// gl.loadCounter = 0;
+		map.on("update-start", showLoading);
+    	map.on("update-end", hideLoading);
+    	
+    	map.on("load", function (){ 
+			setupLocation();
+    	});
+    	
+		createBasemapDD();
+		
+		// Store the current basemap.  Used to turn off vectors if they exist with the map
+		gl.basemapName = gl.basemapObject[0].mapName;
+		// If the default map has a vertor, add it here.  Otherwise they will be added on change.
+		if (gl.basemapObject[0].basemapType == "Vector") {
+			gl.vectorList[ gl.basemapObject[0].mapName ].vtLayer = new VectorTileLayer( gl.basemapObject[0].url );
+			map.addLayer( gl.vectorList[ gl.basemapObject[0].mapName ].vtLayer );
+		}
+		
+		var additionalDataDeferred = [];
+		gl.deferredMakeDD2 = [];
+
+		gl.deferredMakeDD2[0] = new Deferred();
+		gl.huntLayer = new FeatureLayer ( gl.servicePathMap + "MapServer/0" + gl.serviceToken, {
+			outFields : [ 'Boundary_Name','BoundaryID' ],
+			mode : FeatureLayer.MODE_SNAPSHOT
+		});
+		
+		gl.deferredMakeDD2[1] = new Deferred();
+		gl.huntLayer2 = new FeatureLayer ( gl.servicePathMap + "MapServer/0" + gl.serviceToken, {
+			outFields : ['Boundary_Name','BoundaryID'],
+			mode : FeatureLayer.MODE_SNAPSHOT
+		});
+		
+		gl.huntTask = new QueryTask( gl.servicePathMap + "MapServer/0" + gl.serviceToken);
+		gl.huntQuery = new Query();
+		
+		var sls = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new dojo.Color([ 0, 0, 139 ]), 1);  // [ 204, 0, 255 ]), 1
+		var sfs = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, sls, new dojo.Color([ 0, 102, 255, 0.1 ]));  //[ 0, 102, 255, 0.20 ]
+		myRenderer = new SimpleRenderer(sfs);
+		gl.huntLayer.setRenderer(myRenderer);
+		
+		var sls2 = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new dojo.Color([ 204, 0, 255 ]), 1); // [ 208, 255, 255 ]), 1
+		var sfs2 = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, sls2, new dojo.Color([ 204, 0, 255, 0.05 ]));
+		var selectRenderer = new SimpleRenderer(sfs2);
+		gl.huntLayer2.setRenderer(selectRenderer);
+		
+		gl.bCounter = 0;
+		gl.bData = [];
+		gl.bData[gl.bCounter++] = [];
+		setDefExp();
+		
+		gl.boundaryArray2 = [];
+		setDefExp2();
+		gl.huntLayer.on("mouse-over", showTooltip2);
+		gl.huntLayer.on("mouse-out", closeTooltip2);
+		gl.huntLayer2.on("mouse-over", showTooltip2);
+		gl.huntLayer2.on("mouse-out", closeTooltip2);
+		
+		gl.huntLayer.on("load", function() {
+			gl.deferredMakeDD2[0].resolve();
+		});
+		gl.huntLayer2.on("load", function() {
+			gl.deferredMakeDD2[1].resolve();
+		});
+		gl.huntLayer.on("update-end", huntLayerUpdateEnd);
+		
+		// Add a new layer for the "antlerless control" hunt.
+		additionalDataDeferred[0] = new Deferred();
+		gl.huntLayerAC = new FeatureLayer ( gl.servicePathMap + "FeatureServer/0" + gl.serviceToken, {
+			outFields : ['Boundary_Name'],
+			mode : FeatureLayer.MODE_SNAPSHOT
+		});
+		var sls1 = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([ 204, 0, 51 ]), 2);
+		var sfs1 = new SimpleFillSymbol(SimpleFillSymbol.STYLE_BACKWARD_DIAGONAL, sls1, new Color([ 204, 0, 51 ]));
+		var myRendererAC = new SimpleRenderer(sfs1);
+		gl.huntLayerAC.setRenderer(myRendererAC);
+		gl.huntLayerAC.setDefinitionExpression("1=2");
+		gl.huntLayerAC.setVisibility(false);
+		gl.huntLayerAC.on("load", function() { 
+			additionalDataDeferred[0].resolve();
+		});
+		map.addLayer(gl.huntLayerAC,0);
+		gl.huntLayerAC.on("mouse-over", showTooltipAC);
+		gl.huntLayerAC.on("mouse-out", closeTooltipAC);
+		
+		$.getJSON("HuntNameToBoundaries", {HN: 'Antlerless Elk Control'}, function(boundaries) {
+			gl.huntLayerACDefExp = "BoundaryID in ('" + boundaries.join("','") + "')";
+			gl.huntLayerAC.setDefinitionExpression(gl.huntLayerACDefExp);
+		});
+		
+		// 2/25/2016 - Add layer for CWMUs
+		additionalDataDeferred[1] = new Deferred();
+		gl.CWMULayer = new FeatureLayer(gl.servicePathMap + "FeatureServer/0" + gl.serviceToken, {
+			outFields : [ "Boundary_Name" ],
+			mode : FeatureLayer.MODE_SNAPSHOT
+		});
+		// 2025 02 06 - Have CWMU layer default to on
+		// $("#cwmuAreaToggle").addClass("buttonElementGreenToggle");
+		gl.CWMULayer.setDefinitionExpression("1=2");
+		gl.CWMULayer.setVisibility(false);
+		gl.CWMULayer.on("mouse-over", showCWMUTooltip);
+		gl.CWMULayer.on("mouse-out", closeCWMUTooltip);
+		
+		sls1 = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([ 125, 0, 125 ]), 2);
+		var CWMUFill = new SimpleFillSymbol(SimpleFillSymbol.STYLE_CROSS, sls1, new Color([ 125, 0, 125 ]));
+		var CWMURenderer = new SimpleRenderer(CWMUFill);
+		gl.CWMULayer.setRenderer(CWMURenderer);
+		gl.CWMULayer.on("load", function() { 
+			additionalDataDeferred[1].resolve();
+		});
+		map.addLayer(gl.CWMULayer,0);
+		
+		$.getJSON("GetCWMUBoundaries", {}, function(boundaries) {
+			gl.CWMULayerDefExp = "BoundaryID in ('" + boundaries.join("','") + "')";
+			gl.CWMULayer.setDefinitionExpression(gl.CWMULayerDefExp);
+		});
+		
+		gl.deferredMakeDD2[2] = new Deferred();
+		
+		makeDD();
+		
+		// wait until the drop downs are finished before selecting one
+		all(gl.deferredMakeDD2).then(function() {
+			// console.log("huntLayers loaded and dropdowns are made");
+			var huntN = 'null';
+			var hSpecies = 'null';
+			var hBoundary = 'null';
+			var hName = 'null';
+			// console.log("hName", hName);
+			gl.hSex = 'null';
+			var tableOpen = 'null';
+// 			if (gl.hSex != 'null') {
+// 				var loop = 20 - gl.hSex.length;
+// 				for (var i=0; i<loop; i++) {
+// 					gl.hSex += " ";					
+// 				}
+// 				// console.log("gl.hSex", gl.hSex.length, gl.hSex);
+// 			}
+			gl.hType = 'null';
+			gl.wType = 'null';
+			if (gl.hSex != 'null' && (gl.hType != 'null' || gl.wType != 'null')) {
+				gl.skipGenderChange = true;
+				gl.skipSpeciesChange = true;
+				if (gl.hType != 'null' && gl.wType != 'null') {
+					// we need to skip it twice
+					gl.skipHuntTypeChange = true;
+				} else {
+					gl.skipHuntTypeChange = false;
+				}
+			} else if (gl.hSex != 'null') {
+				gl.skipGenderChange = false;
+				gl.skipSpeciesChange = true;
+			} else {
+				gl.skipGenderChange = false;
+				gl.skipSpeciesChange = false;
+			}
+			// console.log("Parms HT WT", gl.hType, gl.wType);
+			if (huntN != 'null') {
+				// Does the hunt number exist?
+				var foundHunt = $("#huntNumberSelect option:contains(" + huntN + ")").val();
+				if (foundHunt != null) {
+					$("#huntNumberSelect").val(huntN).trigger("change");
+	//				$("#huntNumberSelect").select2().val(huntN).trigger("change");
+	// 				$("#huntNumberSelect").select2({ width: '100%' });
+				}
+			} else if (hSpecies != 'null') {
+				var foundSpecies = $("#huntSpecies option:contains(" + hSpecies + ")").val();
+				if (foundSpecies != null) {
+					$("#huntSpecies").val(hSpecies).trigger("change");
+	// 				$("#huntSpecies").select2().val(hSpecies).trigger("change");
+	// 				$("#huntSpecies").select2({ width: '100%' });
+				}
+			} else if (hBoundary != 'null') {
+				// console.log("hBoundary", hBoundary);
+				var foundBID = $("#huntBoundarySelect option:contains(" + hBoundary + ")").text();
+				// console.log("hBoundary", hBoundary, foundBID);
+				if (foundBID != null) {
+					$("#huntBoundarySelect").val(hBoundary).trigger("change");
+	// 				$("#huntBoundarySelect").select2().val(hBoundary).trigger("change");
+	// 				$("#huntBoundarySelect").select2({ width: '100%' });
+				}
+			} else if (hName != 'null') {
+				var boundaryID = $("#huntBoundarySelect option:contains(" + hName + ")").val(); //.find('option[text="' + hName + '"]');
+				// console.log("hName", hName, boundaryID);
+				if (boundaryID != null) {
+					$("#huntBoundarySelect").val(boundaryID).trigger("change");
+	// 				$("#huntBoundarySelect").select2().val(boundaryID).trigger("change");
+	// 				$("#huntBoundarySelect").select2({ width: '100%' });
+				}
+			}
+			if (tableOpen == 'true') {
+// 				console.log("tableOpen", tableOpen);
+// 				$("#tableDivTitle").show();
+				$("#fullTableView").removeClass("hideElement");
+				$(".mobileTable").addClass("sel");
+			}
+		});
+		
+		gl.habitatLayer = [];
+		
+		var selectOutline = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([ 255, 0, 255 ]), 1);
+		
+		// Move habitat layer setup to later
+		
+		additionalDataDeferred[2] = new Deferred();
+		gl.wmaLayer = new FeatureLayer ( gl.wmaLayerPath + gl.serviceToken, {
+			outFields : [ "UDWR.DWRADMIN.WMA_Properties_Pub.OBJECTID",
+			              	"UDWR.DWRADMIN.WMA_Properties_Pub.Name",
+			              	"UDWR.DWRADMIN.WMA_Properties_Pub.PropertyID" ],
+			mode : FeatureLayer.MODE_ONDEMAND,
+			opacity : .9
+		});
+		gl.wmaLayer.setVisibility(false);
+		gl.wmaLayer.on("load", function() { 
+			additionalDataDeferred[2].resolve();
+		});
+		gl.wmaLayer.on("mouse-over", showWMATooltip);
+		gl.wmaLayer.on("mouse-out", closeWMATooltip);
+		gl.wmaLayer.on("click", openRAMWMA);
+		
+		var sls = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new dojo.Color([ 0, 0, 205 ]), 2);
+		var sfs = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, sls, new dojo.Color([ 255, 165, 79, 0.20 ]));
+		myRenderer = new SimpleRenderer(sfs);
+		gl.wmaLayer.setRenderer(myRenderer);
+		
+		additionalDataDeferred[3] = new Deferred();
+		gl.wiaLayer = new FeatureLayer ( gl.wiaLayerPath + gl.serviceToken, {
+			outFields : [ "UDWR.DWRADMIN.WIA_Properties.Name",
+			              	"UDWR.DWRADMIN.WIA_Properties.OBJECTID",
+			              	"UDWR.DWRADMIN.WIA_Properties.PropertyID" ],
+			mode : FeatureLayer.MODE_ONDEMAND,
+			opacity : .9
+		});
+		gl.wiaLayer.setVisibility(false);
+		gl.wiaLayer.on("load", function() { 
+			additionalDataDeferred[3].resolve();
+		});
+		gl.wiaLayer.on("mouse-over", showWIATooltip);
+		gl.wiaLayer.on("mouse-out", closeWIATooltip);
+		gl.wiaLayer.on("click", openRAMWIA);
+		
+		var sls = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new dojo.Color([ 0, 0, 255 ]), 2);
+		var sfs = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, sls, new dojo.Color([ 0, 125, 125, 0.20 ]));
+		myRenderer = new SimpleRenderer(sfs);
+		gl.wiaLayer.setRenderer(myRenderer);
+// new start
+		additionalDataDeferred[4] = new Deferred();
+		gl.wiaLayerPoints = new esri.layers.FeatureLayer(gl.wiaLayerPointPath + gl.serviceToken, {
+			outFields : [ "UDWR.DWRADMIN.WIA_Properties_Points.PointTypeID",
+			              	"UDWR.DWRADMIN.WIA_Properties_Points.DisplayName" ],
+			mode : FeatureLayer.MODE_SNAPSHOT,
+			opacity : .9
+		});
+		gl.wiaLayerPoints.setVisibility(false);
+		gl.wiaLayerPoints.on("load", function() { 
+			additionalDataDeferred[4].resolve();
+		});
+		gl.wiaLayerPoints.setMinScale(300000);
+		
+		gl.wiaLayerPoints.on( "mouse-over", showWIAPointTooltip);
+		gl.wiaLayerPoints.on( "mouse-out", closeWIAPointTooltip);
+		var rendererPicture = new UniqueValueRenderer(new PictureMarkerSymbol('/huntboundary/images/Yin.gif', 16, 16), "UDWR.DWRADMIN.WIA_Properties_Points.PointTypeID");
+		rendererPicture.addValue("Parking", new PictureMarkerSymbol('/huntboundary/images/parking.gif', 18, 18));
+		rendererPicture.addValue("Access and Parking", new PictureMarkerSymbol('/huntboundary/images/parking.gif', 18, 18));
+		rendererPicture.addValue("Access Point", new PictureMarkerSymbol('/huntboundary/images/Access Point.png', 18, 18));
+		rendererPicture.addValue("Buoy line", new PictureMarkerSymbol('/huntboundary/images/buoy.png', 18, 18));
+		gl.wiaLayerPoints.setRenderer(rendererPicture);
+// new end
+		
+		
+		
+		// Add the event to listen for toggle of map/table
+		$("#mapToggle").on("click", mapToggle);
+// 		$("#tableDivTitle").hide();
+		$("#fullTableView").addClass("hideElement");
+
+		if (gl.landOwnershipLayerDisable == 'DISABLE') {
+			// setting the hoverFieldName in the DB will disable this layer temporarily.  Used during busiest server times.
+		} else {
+			additionalDataDeferred[5] = new Deferred();
+			gl.landOwnershipLayer = new FeatureLayer(gl.landOwnershipLayerPath + gl.serviceToken, {
+				outFields : [ "owner", "agency", "admin" ],
+// 				outFields : [ "OWNER", "AGENCY", "ADMIN" ],  12/28/2022 original
+				mode : FeatureLayer.MODE_ONDEMAND,
+				opacity : 1,
+				// definitionExpression : "OWNER IN ('FEDERAL', 'STATE', 'PRIVATE')",
+				visible: false
+			});
+			
+			gl.landOwnershipLayer.setMinScale(gl.LandOwnershipMinScale);
+			gl.landOwnershipLayer.on("load", function() { 
+				additionalDataDeferred[5].resolve();
+			});
+			map.addLayer( gl.landOwnershipLayer );
+			gl.landOwnershipLayer.on("mouse-over", showLandOwnershipTooltip);
+			gl.landOwnershipLayer.on("mouse-out", closeLandOwnershipTooltip);
+			
+			var lineColor = new SimpleLineSymbol( SimpleLineSymbol.STYLE_SOLID, new dojo.Color([ 132, 132, 130 ]), 1);
+			var greenFill = new SimpleFillSymbol( SimpleFillSymbol.STYLE_SOLID, lineColor, new dojo.Color([ 0,255,0, 0.10 ]));
+			var redFill = new SimpleFillSymbol( SimpleFillSymbol.STYLE_SOLID, lineColor, new dojo.Color([ 255,0,0, 0.10 ]));
+			var blueFill = new SimpleFillSymbol( SimpleFillSymbol.STYLE_SOLID, lineColor, new dojo.Color([ 0,0,255, 0.10 ]));
+			var yellowFill = new SimpleFillSymbol( SimpleFillSymbol.STYLE_SOLID, lineColor, new dojo.Color([ 255,255,0, 0.10 ]));
+			var pinkFill = new SimpleFillSymbol( SimpleFillSymbol.STYLE_SOLID, lineColor, new dojo.Color([ 255,0,255, .10 ]));
+			
+			var landOwnerRenderer = new UniqueValueRenderer(pinkFill, "owner");  // 12/28/2022  OWNER
+			landOwnerRenderer.addValue("Federal", greenFill);
+			landOwnerRenderer.addValue("Private", redFill);
+			landOwnerRenderer.addValue("Tribal", blueFill);
+			landOwnerRenderer.addValue("State", yellowFill);
+			
+			gl.landOwnershipLayer.setRenderer(landOwnerRenderer);
+		
+			additionalDataDeferred[6] = new Deferred();
+			gl.landOwnershipTileLayer = new ArcGISTiledMapServiceLayer(gl.landOwnershipTilesLayerPath + gl.serviceToken, {
+				displayLevels: gl.LandOwnershipTilesDisplayLevels,  // [6,7,8,9,10]  from the DB
+				visible: false
+			});
+			
+			// console.log("Tile Layer load");
+			
+			gl.landOwnershipTileLayer.on("load", function() { 
+				additionalDataDeferred[6].resolve();
+				// console.log("Tile Layer added");
+			});
+			map.addLayer( gl.landOwnershipTileLayer );
+		}
+		
+		gl.tribalLayer = new FeatureLayer(gl.landOwnershipLayerPath + gl.serviceToken, {
+			outFields : [ "owner" ],
+			mode : FeatureLayer.MODE_SNAPSHOT,
+			opacity : 1,
+			definitionExpression : "owner='Tribal'"
+		});
+		
+		gl.tribalLayer.on("mouse-over", showTribalTooltip);
+		gl.tribalLayer.on("mouse-out", closeTribalTooltip);
+		
+		sls1 = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([ 125, 5, 82 ]), 2);
+		var tribalFill = new SimpleFillSymbol(SimpleFillSymbol.STYLE_DIAGONAL_CROSS, sls1, new Color([ 204, 0, 51 ]));
+		var tribalRenderer = new SimpleRenderer(tribalFill);
+		gl.tribalLayer.setRenderer(tribalRenderer);
+		
+// 		gl.NPSLayer = new FeatureLayer(gl.nationalParksLayerPath, {  "http://dwrmapserv.utah.gov/dwrarcgis/rest/services/HuntBoundary/NPS_UTAH_V1/MapServer/0"
+		gl.NPSLayer = new FeatureLayer( gl.nationalParksLayerPath + gl.serviceToken, {
+			outFields : [ "UNIT_CODE" ],
+			mode : FeatureLayer.MODE_SNAPSHOT,
+			opacity : 1
+			// ,definitionExpression : "UNIT_CODE IN ('GOSP','DINO','ARCH','CANY','ZION','BRCA','CEBR','NABR','CARE','HOVE','TICA')" // ,'GLCA'
+		});
+		
+		gl.NPSLayer.on("mouse-over", showNPSTooltip);
+		gl.NPSLayer.on("mouse-out", closeNPSTooltip);
+		
+		sls1 = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([ 37, 65, 23 ]), 2);
+		var NPSFill = new SimpleFillSymbol(SimpleFillSymbol.STYLE_DIAGONAL_CROSS, sls1, new Color([ 204, 0, 51 ]));
+		var NPSRenderer = new SimpleRenderer(NPSFill);
+		gl.NPSLayer.setRenderer(NPSRenderer);
+		
+		additionalDataDeferred[7] = new Deferred();
+		gl.HealthLayer = new FeatureLayer(gl.HealthUrl + gl.serviceToken, {
+			outFields : [ "NAME", "ADDRESS", "TELEPHONE", "CITY", "TYPE", "FUNCTIONAL_CATEGORY" ],
+			mode : FeatureLayer.MODE_ON_DEMAND,
+		});
+		gl.HealthLayer.on("mouse-over", showHealthTooltip);
+		gl.HealthLayer.on("mouse-out", closeHealthTooltip);
+		gl.HealthLayer.on("click", clickHealthTooltip);
+		$("#clinicAreaToggle").on("click", toggleHealth);
+		gl.HealthLayer.setVisibility(false);
+		gl.HealthLayer.on("load", function() { 
+			additionalDataDeferred[7].resolve();
+		});
+		
+		// put the huntLayer on last so its on top.
+		map.addLayer(gl.huntLayer);
+		map.addLayer(gl.huntLayer2);
+		map.addLayer(gl.tribalLayer);
+		map.addLayer(gl.NPSLayer);
+		map.addLayer(gl.wmaLayer);
+		map.addLayer(gl.wiaLayer);
+		map.addLayer( gl.wiaLayerPoints );
+		map.addLayer(gl.HealthLayer)
+		
+		$("#selectionOptions").on('click', toggleFind);
+		$("#selectionOptions2").on('click', toggleLayers);
+		$("#changeBasemapToggle").on('click', toggleBasemap);
+		$("#about").on('click', showAbout);
+		
+		
+		// #selectionOptions, #selectionOptions2, #mapToggle, #changeBasemapToggle
+		$(".mobileFind").on('click', toggleMobileFind);
+		$(".mobileLayers").on('click', toggleMobileLayers);
+		$(".mobileTable").on('click', toggleMobileTable);  //function(){ $("#mapToggle").toggle();}
+		$(".mobileBasemap").on('click', toggleMobileBasemap);
+		$(".mobileExtras").on('click', showAboutMobile); 
+		
+		all(additionalDataDeferred).then( populateAdditionalDataTab );
+		
+		
+		
+		$("#mapView").on('click', switchToMap);
+		$("#selectView").on('click', showSelectOnTable);
+	
+		// Optional extra data layers that can be added through DB entries
+		addExtraXLayers();
+		
+		$("#messageView").on('click', function() {
+			if ($("#messageView").hasClass("messageClick")) {
+				$("#messageView").removeClass("messageClick");
+			} else {
+				$("#messageView").addClass("messageClick");
+			}
+		
+		});
+		
+	});
+}
+	
+// Add a featureLayer to the map of extra data.
+// 					gl.extra1Path = data.serviceURL;
+// 		        	gl.extra1CFN >> outfields used in the hover
+// 		        	gl.extra1HFN >> not used
+// 		        	gl.extra1Desc >> the name on the button;
+function addExtraXLayers() {
+	if (gl.extra1Path !== undefined) {
+		$( "#extra1" ).removeClass("hideElement");
+		$( "#extra1 .buttonSpan" ).html(gl.extra1Desc);
+		gl.extra1Layer = new FeatureLayer(gl.extra1Path + gl.serviceToken, {
+			outFields : gl.extra1CFN,
+			mode : FeatureLayer.MODE_ON_DEMAND,
+			visible : false
+		});
+		map.addLayer(gl.extra1Layer);
+		gl.extra1Layer.on("mouse-over", showExtra1Tooltip);
+		gl.extra1Layer.on("mouse-out", closeExtra1Tooltip);
+		$("#extra1").on("click", toggleExtra1);
+	}
+	if (gl.extra2Path !== undefined) {
+		$( "#extra2" ).removeClass("hideElement");
+		$( "#extra2 .buttonSpan" ).html(gl.extra2Desc);
+		gl.extra2Layer = new FeatureLayer(gl.extra2Path + gl.serviceToken, {
+			outFields : gl.extra2CFN,
+			mode : FeatureLayer.MODE_ON_DEMAND,
+			visible : false
+		});
+		map.addLayer(gl.extra2Layer);
+		gl.extra2Layer.on("mouse-over", showExtra2Tooltip);
+		gl.extra2Layer.on("mouse-out", closeExtra2Tooltip);
+		$("#extra2").on("click", toggleExtra2);
+	}
+	if (gl.extra3Path !== undefined) {
+		$( "#extra3" ).removeClass("hideElement");
+		$( "#extra3 .buttonSpan" ).html(gl.extra3Desc);
+		gl.extra3Layer = new FeatureLayer(gl.extra3Path , { // + gl.serviceToken  Dev testing, put this back in PROD!!!!
+			outFields : gl.extra3CFN,
+			mode : FeatureLayer.MODE_ON_DEMAND,
+			visible : false
+		});
+		map.addLayer(gl.extra3Layer, 0);
+		gl.extra3Layer.on("mouse-over", showExtra3Tooltip);
+		gl.extra3Layer.on("mouse-out", closeExtra3Tooltip);
+		$("#extra3").on("click", toggleExtra3);
+	}
+	if (gl.extra4Path !== undefined) {
+		$( "#extra4" ).removeClass("hideElement");
+		$( "#extra4 .buttonSpan" ).html(gl.extra4Desc);
+		gl.extra4Layer = new FeatureLayer(gl.extra4Path + gl.serviceToken, {
+			outFields : gl.extra4CFN,
+			mode : FeatureLayer.MODE_ON_DEMAND,
+			visible : false
+		});
+		map.addLayer(gl.extra4Layer);
+		gl.extra4Layer.on("mouse-over", showExtra4Tooltip);
+		gl.extra4Layer.on("mouse-out", closeExtra4Tooltip);
+		$("#extra4").on("click", toggleExtra4);
+	}
+	
+	if (gl.extra5Path !== undefined) {
+		$( "#extra5" ).removeClass("hideElement");
+		$( "#extra5 .buttonSpan" ).html(gl.extra5Desc);
+		gl.extra5Layer = new FeatureLayer(gl.extra5Path + gl.serviceToken, {
+			outFields : gl.extra5CFN,
+			mode : FeatureLayer.MODE_ON_DEMAND,
+			visible : false
+		});
+		map.addLayer(gl.extra5Layer);
+		gl.extra5Layer.on("mouse-over", showExtra5Tooltip);
+		gl.extra5Layer.on("mouse-out", closeExtra5Tooltip);
+		$("#extra5").on("click", toggleExtra5);
+	}
+	if (gl.extra6Path !== undefined) {
+		$( "#extra6" ).removeClass("hideElement");
+		$( "#extra6 .buttonSpan" ).html(gl.extra6Desc);
+		gl.extra6Layer = new FeatureLayer(gl.extra6Path + gl.serviceToken, {
+			outFields : gl.extra6CFN,
+			mode : FeatureLayer.MODE_ON_DEMAND,
+			visible : false
+		});
+		map.addLayer(gl.extra6Layer);
+		gl.extra6Layer.on("mouse-over", showExtra6Tooltip);
+		gl.extra6Layer.on("mouse-out", closeExtra6Tooltip);
+		$("#extra6").on("click", toggleExtra6);
+	}
+	if (gl.extra7Path !== undefined) {
+		$( "#extra7" ).removeClass("hideElement");
+		$( "#extra7 .buttonSpan" ).html(gl.extra7Desc);
+		gl.extra7Layer = new FeatureLayer(gl.extra7Path + gl.serviceToken, {
+			outFields : gl.extra7CFN,
+			mode : FeatureLayer.MODE_ON_DEMAND,
+			visible : false
+		});
+		map.addLayer(gl.extra7Layer);
+		gl.extra7Layer.on("mouse-over", showExtra7Tooltip);
+		gl.extra7Layer.on("mouse-out", closeExtra7Tooltip);
+		$("#extra7").on("click", toggleExtra7);
+	}
+}
+	
+function showSelectOnTable() {
+	if ($("#filterLayout").hasClass("moveToFront")) {
+		$("#filterLayout").removeClass("moveToFront");
+	} else {
+		$("#filterLayout").addClass("moveToFront");
+	}
+}
+ 	
+function switchToMap() {
+	$("#fullTableView").addClass("hideElement");
+	$("#filterLayout").removeClass("moveToFront");
+}
+
+function showLoading(evt) {
+// 	console.log("showLoading", gl.loadCounter, evt);
+// 	gl.loadCounter++;
+	$("#loadingImage").removeClass("hideElement");
+}
+
+function hideLoading(evt) {
+// 	console.log("hideLoading", gl.loadCounter, evt);
+// 	gl.loadCounter--;
+// 	if ( gl.loadCounter <= 0 ) {
+		$("#loadingImage").addClass("hideElement");
+// 	}
+}
+
+// From esri https://developers.arcgis.com/javascript/3/jshelp/best_practices_feature_layers.html
+function calcOffset() {
+	console.log("calcOffest", map.extent.getWidth(), map.width, map.extent.getWidth() / map.width);
+    return (map.extent.getWidth() / map.width);
+}
+
+
+function showAbout(evt) {
+	$( "#aboutDiv" ).removeClass("hideElement");
+	$( "#aboutDiv" ).dialog({
+		dialogClass: "ui-dialog-osx no-close noTitle aboutDiv",
+		width: '90%',
+		maxWidth: '600px',
+		position: { my: "top - 10%", at: "center", of: window },
+		buttons: [{
+			text: "OK",
+			click: function() {
+				$( this ).dialog( "close");
+// 		 		$( this ).dialog( "destroy" );
+			}
+		}],
+		close: closeAbout
+ 	});
+// 	ga('send', 'event', 'hunt', 'about', 'about shown');
+}
+
+// modal: true,  // must be interacted with
+// draggable: true,
+// resizable: true,
+// position: gl.wPosition,  // position: { my:'center', at:'center', of: window },
+// show: 'blind',
+// hide: 'blind',
+// width: gl.wMaxW,
+// maxHeight: gl.wMaxH,  // Setting this will auto add the scrollbar when needed. was 500.
+
+function showAboutMobile(evt) {
+	if ($(".mobileExtras").hasClass("sel")) {
+		$( "#aboutDiv" ).dialog("close");
+		$(".mobileExtras").removeClass("sel");
+	} else {
+		$(".mobileExtras").addClass("sel");
+		$( "#aboutDiv" ).removeClass("hideElement");
+		$( "#aboutDiv" ).dialog({
+			title: 'About',
+			dialogClass: "ui-dialog-osx aboutDiv",
+			height: 400,
+			position: { my: "center", at: "center", of: window },
+			buttons: [{
+				text: "OK",
+				click: function() {
+					$( this ).dialog( "close");
+	// 		 		$( this ).dialog( "destroy" );
+				}
+			}],
+			close: closeAbout
+		});
+		// console.log("#aboutDiv", $( "#aboutDiv" ).parent(), $( "#aboutDiv" ).parent().scrollTop());
+		$( "#aboutDiv" ).parent().scrollTop(0);
+// 		ga('send', 'event', 'hunt', 'aboutMobile', 'about shown');
+	}
+}
+
+function closeAbout(evt) {
+	$(".mobileExtras").removeClass("sel");
+	// console.log("about closing", evt);
+// 	if ($( "#aboutDiv" ).hasClass("hideElement")) {
+// 	    alert("aboutDiv has hide");	
+// 	} else {
+		$( "#aboutDiv" ).addClass("hideElement");
+// 	}
+}
+
+function setupLocation() {
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showUserPosition);
+   	}
+	// Attempt to hide the address bar on Safari
+// 	if ($('.mobileLayout').is(":visible")) {
+// 		setTimeout(function(){
+// 			// Hide the address bar!
+// 			window.scrollTo(0, 1);
+// 		}, 0);
+// 	}
+}
+
+function showUserPositionPrep() {
+	navigator.geolocation.watchPosition(showUserPosition);
+}
+
+function showUserPosition(position) {
+	userLat = position.coords.latitude;
+    userLng = position.coords.longitude;
+    setUserPosition();
+    map.graphics.on( "mouse-over", showTooltipUserLoc);
+	map.graphics.on( "mouse-out", closeTooltipUserLoc);
+}
+
+function setUserPosition() {
+	var pt = new Point(userLng, userLat, new SpatialReference({ 'wkid': 4326 }));
+	var symbol = new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_DIAMOND, 15,
+			   new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+					   new Color([255,0,0]), 4),
+					   new Color([0,255,0,0.35]));
+	gl.locationGraphic = map.graphics.add(new Graphic(
+				webMercatorUtils.geographicToWebMercator(pt), // geometry
+				symbol,
+				{Name:"UserLoc"}
+	));
+}
+
+function showTooltipUserLoc(evt) {
+	if (evt.graphic.attributes === undefined) {
+	} else {
+		createTooltip("tooltipUserLoc", "Your Location", evt, false);
+	}
+}
+
+function closeTooltipUserLoc() {
+	var widget = dijit.byId("tooltipUserLoc");
+	if (widget) {
+		widget.destroy();
+	}
+}
+
+function mapToggle(evt) {
+	$("#mapToggle").removeClass("showTable");  // turn off the highligt on the toggle button
+	
+	if ($("#tableDiv").html() == "") {
+		$("#fullTableView").addClass("hideElement");
+	} else if ( $("#fullTableView").hasClass("hideElement") ) {
+		$("#fullTableView").removeClass("hideElement");
+	} else {
+		$("#fullTableView").addClass("hideElement");
+	}
+}
+
+function toggleMobileTable(evt) {
+	if ($("#tableDiv").html() == "") {
+// 		$('.closeTable:not(.bound)').addClass('bound').on("click", toggleTableClose);
+		$("#tableDiv").html("<div>A selection by unit name or species and sex must be made to populate this item.  Use the bottom left find icon.</div>");
+	}
+	$("#mapToggle").toggle();
+	if ($(".mobileTable").hasClass("sel")) {
+		$(".mobileTable").removeClass("sel");
+// 		$("#tableDivTitle").hide();
+// 		$("#tableDiv").hide();
+		$("#fullTableView").addClass("hideElement");
+		$("#mapToggle").hide();
+	} else {
+		$(".mobileTable").addClass("sel");
+// 		$("#tableDivTitle").show();
+// 		$("#tableDiv").show();
+		$("#fullTableView").removeClass("hideElement");
+		$("#mapToggle").hide();
+	}
+// 	if ($(".huntTable")[0] === undefined) {
+// 		// error when no table data exists
+// 	} else if ($(".huntTable")[0].scrollWidth > $(window).width()) {
+// 		$(".scrollIconRight").removeClass("hideElement");
+// 		$('.scrollLayoutR:not(.bound)').addClass('bound').on("click", scrollTableR );
+// 		$('.scrollLayoutL:not(.bound)').addClass('bound').on("click", scrollTableL );
+// 	} else if (!$(".scrollIconRight").hasClass("hideElement")) {
+// 		$(".scrollIconRight").addClass("hideElement");
+// 		$('.scrollLayoutR.bound').removeClass('bound').off("click", scrollTableR );
+// 		$('.scrollLayoutL.bound').removeClass('bound').off("click", scrollTableL );
+// 	}
+}
+
+function toggleFind(evt) {
+	$("#selectionOptionsInner").toggle();
+	if ($('.mobileLayout').is(":visible")) {
+		if (evt != "startup") {
+			toggleMobileFind();
+		}
+	}
+}
+
+function toggleMobileFind(evt) {
+	if ($(".mobileFind").hasClass("sel")) {
+		$(".mobileFind").removeClass("sel");
+		$("#selectionOptions").hide(); 
+		$("#selectionOptionsInner").hide();
+	} else {
+		$(".mobileFind").addClass("sel");
+		$("#selectionOptions").show(); 
+		$("#selectionOptionsInner").show();
+	}
+}
+
+function toggleLayers(evt) {
+	$("#selectionOptions2Inner").toggle();
+	if ($('.mobileLayout').is(":visible")) {
+		if (evt != "startup") {
+			toggleMobileLayers();
+		}
+	}
+}
+
+function toggleMobileLayers(evt) {
+	if ($(".mobileLayers").hasClass("sel")) {
+		$(".mobileLayers").removeClass("sel");
+		$("#selectionOptions2").hide(); 
+		$("#selectionOptions2Inner").hide();	
+	} else {
+		$(".mobileLayers").addClass("sel");
+		$("#selectionOptions2").show(); 
+		$("#selectionOptions2Inner").show();	
+	}
+}
+
+function addHabitatLayers() {
+	gl.layerCount = 23;
+	$.getJSON( gl.habitatLayerPath + "FeatureServer/layers" + gl.serviceToken + "&f=pjson", {}, function(habitatObject) {
+// 		console.log("habitatObject", habitatObject);
+// 		console.log("count ", habitatObject.layers.length);
+		if (habitatObject.layers.length !== undefined) {
+			gl.layerCount = habitatObject.layers.length;
+		}
+		addHabitatLayersStart();
+	});
+}
+
+function addHabitatLayersStart() {
+	$("#habitatSelectAlt").off("click", addHabitatLayers);
+	$("#habitatSelectAlt").html("");
+	
+	var sls2 = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([ 0, 102, 204 ]), 1);
+	var sfs2 = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, sls2, new Color([ 234, 117, 234, .25]));
+	var myRendererHabitat = new SimpleRenderer(sfs2);
+	var habitatDeferred = [];
+	
+	for (var i = 0; i < gl.layerCount; i++) {
+		habitatDeferred[i] = new Deferred();
+		gl.habitatLayer[i] = new FeatureLayer ( gl.habitatLayerPath + "FeatureServer/" + i + gl.serviceToken, {
+			// 1/21/2020 - change from * to actual names.
+			outFields : [ 'SEASON','VALUE','SPECIES','COMMENTS' ],
+			mode : FeatureLayer.MODE_ONDEMAND,
+			opacity : .9
+		});
+		gl.habitatLayer[i].setVisibility(false);
+		gl.habitatLayer[i].on("load", lang.partial( function(i) { 
+			habitatDeferred[i].resolve();
+		}, i));
+		gl.habitatLayer[i].on("mouse-over", showHabitatTooltip);
+		gl.habitatLayer[i].on("mouse-out", closeHabitatTooltip);
+		gl.habitatLayer[i].setRenderer(myRendererHabitat);
+		map.addLayer(gl.habitatLayer[i], 0);
+	}
+	
+	all(habitatDeferred).then( createHabitatDD );
+}
+
+function createHabitatDD () {
+	// console.log("createHabitatDD started");
+	var habitatSelect = document.createElement("select");
+    habitatSelect.id = "habitatSelect";
+    var option = document.createElement("option");
+	option.text = '';
+	option.value = '';
+	habitatSelect.add(option);
+    for (var i = 0; i < gl.layerCount; i++) {
+		var option = document.createElement("option");
+		option.text = gl.habitatLayer[i].name;
+		option.value = i;
+		habitatSelect.add(option);
+	}
+	document.getElementById("habitatSelectAlt").appendChild(habitatSelect);
+	
+	$("#habitatSelect").select2({
+		placeholder: "Choose a habitat layer",
+		width: '100%',
+		minimumResultsForSearch: Infinity,
+		allowClear: true
+	})
+	$("#habitatSelect").on("change", toggleHabitat);
+	
+	if ( gl.hName !== undefined ) {
+		$("#habitatSelect").select2().val(gl.hName).trigger("change");
+		$("#habitatSelect").select2({ width: '100%' });
+		delete gl.hName;
+	}
+}
+ 
+//  Create the habitat checkboxes. 
+function populateAdditionalDataTab() {
+	// Do not add the habitat layers until they click on the option
+	// This is an attempt to minimize the load on the server
+	// console.log("populateAdditionalDataTab Started", gl.habitatLayerDisable);
+	if (gl.habitatLayerDisable == 'DISABLE') {
+		// $("#habitatSelectAlt").addClass("buttonElementGray");
+		$("#habitatSelectAlt").addClass("hideElement");
+	} else {
+		$("#habitatSelectAlt").on("click", addHabitatLayers);
+	}
+	
+	$('#wmaAreaToggle').on('click', toggleWMA);
+	$('#wiaAreaToggle').on('click', toggleWIA);
+	
+	if (gl.landOwnershipLayerDisable == 'DISABLE') {
+		// $("#fedAreaToggle").addClass("buttonElementGray");
+		$("#fedAreaToggle").addClass("hideElement");
+	} else {
+		$('#fedAreaToggle').on('click', toggleFed);
+	}
+// 	$('#stateAreaToggle').on('click', toggleState);
+// 	$('#privAreaToggle').on('click', togglePriv);
+	
+	$('#antlerControlAreaToggle').on('click', toggleAntlerlessControl);
+	
+	$('#cwmuAreaToggle').on('click', toggleCWMU);
+	
+	// Add the ability to turn on the additional data layers
+	if ('null' == 'on') {
+		$("#antlerControlAreaToggle").click();
+	}
+	if ('null' == 'on') {
+		$("#cwmuAreaToggle").click();
+	}
+	if ('null' == 'on') {
+		$("#wiaAreaToggle").click();
+	}
+	if ('null' == 'on') {
+		$("#wmaAreaToggle").click();
+	}
+	if ('null' == 'on') {
+		$("#fedAreaToggle").click();
+	}
+
+// 		$("#privAreaToggle").click();
+// 	}
+
+// 		$("#stateAreaToggle").click();
+// 	}
+	if (gl.habitatLayerDisable == 'DISABLE') {
+		// Skip loading the switch if the layer is disabled in the DB.  part of the 4/21/2018 fix
+	} else if ('null' != 'null') {
+
+// 		$("#habitatSelect").select2().val(hName).trigger("change");
+// 		$("#habitatSelect").select2({ width: '100%' });
+// April 21st, 2018 - The DD no longer is built on startup.  So we need to build
+//  the dropdown and then select this habitat.
+		gl.hName = 'null';
+		addHabitatLayers();
+	}
+	if ('null' == 'on') {
+		$("#clinicAreaToggle").click();
+	}
+	// Oct 17, 2018 - Add the ability to turn on the 3 alternate layers with a command line switch
+	if ('null' == 'on') {
+		$("#extra1").click();
+	}
+	if ('null' == 'on') {
+		$("#extra2").click();
+	}
+	if ('null' == 'on') {
+		$("#extra3").click();
+	}
+	if ('null' == 'on') {
+		$("#extra4").click();
+	}
+	if ('null' == 'on') {
+		$("#extra5").click();
+	}
+	if ('null' == 'on') {
+		$("#extra6").click();
+	}
+	if ('null' == 'on') {
+		$("#extra7").click();
+	}
+}
+
+function toggleHabitat (evt) {
+	var habitatLayer = $("#habitatSelect").val();
+	if (habitatLayer == null){
+		$("#habitatSelectAlt").removeClass("buttonElementGreenToggle");
+	} else if ($("#habitatSelectAlt").hasClass("buttonElementGreenToggle")) {
+		// Allready has the class no need to add.
+	} else {
+		$("#habitatSelectAlt").addClass("buttonElementGreenToggle");
+	}
+	for (var i=0; i<gl.habitatLayer.length; i++) {
+		gl.habitatLayer[i].setVisibility(false);
+	}
+// 	console.log("toggleHabitat", habitatLayer);
+	if (habitatLayer != null && habitatLayer != "") {
+		gl.habitatLayer[habitatLayer].setVisibility(true);
+// 		ga('send', 'event', 'hunt', 'habitat', $("#habitatSelect").text());
+	}
+}
+
+function toggleWMA (evt) {
+	if ($("#wmaAreaToggle").hasClass("buttonElementGreenToggle")){
+		$("#wmaAreaToggle").removeClass("buttonElementGreenToggle");
+		gl.wmaLayer.setVisibility(false);
+	} else {
+		$("#wmaAreaToggle").addClass("buttonElementGreenToggle");
+		gl.wmaLayer.setVisibility(true);
+// 		ga('send', 'event', 'hunt', 'wma', 'wma on');
+	}
+}
+
+function toggleWIA (evt) {
+	if ($("#wiaAreaToggle").hasClass("buttonElementGreenToggle")){
+		$("#wiaAreaToggle").removeClass("buttonElementGreenToggle");
+		gl.wiaLayer.setVisibility(false);
+		gl.wiaLayerPoints.setVisibility(false);
+	} else {
+		$("#wiaAreaToggle").addClass("buttonElementGreenToggle");
+		gl.wiaLayer.setVisibility(true);
+		gl.wiaLayerPoints.setVisibility(true);
+//		ga('send', 'event', 'hunt', 'wia', 'wia on');
+	}
+}
+
+function toggleHealth (evt) {
+	if ($("#clinicAreaToggle").hasClass("buttonElementGreenToggle")){
+		$("#clinicAreaToggle").removeClass("buttonElementGreenToggle");
+		gl.HealthLayer.setVisibility(false);
+	} else {
+		$("#clinicAreaToggle").addClass("buttonElementGreenToggle");
+		gl.HealthLayer.setVisibility(true);
+// 		ga('send', 'event', 'hunt', 'health', 'health on');
+	}
+}
+
+function toggleFed (evt) {
+	if ($("#fedAreaToggle").hasClass("buttonElementGreenToggle")) {
+		$("#fedAreaToggle").removeClass("buttonElementGreenToggle");
+	} else {
+		$("#fedAreaToggle").addClass("buttonElementGreenToggle");
+// 		ga('send', 'event', 'hunt', 'landownership', 'federal');
+	}
+	toggleLandOwnership();
+}
+
+/* function toggleState (evt) {
+	if ($("#stateAreaToggle").hasClass("buttonElementGreenToggle")){
+		$("#stateAreaToggle").removeClass("buttonElementGreenToggle");
+	} else {
+		$("#stateAreaToggle").addClass("buttonElementGreenToggle");
+		ga('send', 'event', 'landownership', 'select', 'state');
+	}
+	toggleLandOwnership();
+} */
+
+/* function togglePriv (evt) {
+	if ($("#privAreaToggle").hasClass("buttonElementGreenToggle")){
+		$("#privAreaToggle").removeClass("buttonElementGreenToggle");
+	} else {
+		$("#privAreaToggle").addClass("buttonElementGreenToggle");
+		ga('send', 'event', 'landownership', 'select', 'private');
+	}
+	toggleLandOwnership();
+} */
+
+/*  Old version of toggle.  Now only have it on or off.
+ * 
+function toggleLandOwnership (landType) {
+	var landDefArray = [];
+	if ($("#fedAreaToggle").hasClass("buttonElementGreenToggle")){
+		landDefArray.push("Federal");
+	}
+	if ($("#stateAreaToggle").hasClass("buttonElementGreenToggle")){
+		landDefArray.push("State");
+	} 
+	if ($("#privAreaToggle").hasClass("buttonElementGreenToggle")){
+		landDefArray.push("Private");
+	}
+	if (landDefArray.length > 0) {
+		var landDef = "OWNER IN ('" + landDefArray.join("','") + "')";
+		gl.landOwnershipLayer.setDefinitionExpression(landDef);
+	} else {
+		gl.landOwnershipLayer.setDefinitionExpression("1=2");
+	}
+} */
+
+function toggleLandOwnership () {
+	// console.log("toggleLandOwnership", $("#fedAreaToggle").hasClass("buttonElementGreenToggle"));
+	if ($("#fedAreaToggle").hasClass("buttonElementGreenToggle")){
+// 		console.log("minscale", gl.landOwnershipLayer.minScale);
+		gl.landOwnershipTileLayer.setVisibility(true);
+// 		console.log("minscale toggleLand", map.getScale());
+// 		if ( map.getScale() <= gl.LandOwnershipMinScale ) {
+// 			console.log("toggleLand ON");
+			gl.landOwnershipLayer.setVisibility(true);
+// 		} else {
+// 			console.log("toggleLand OFF");
+// 			gl.landOwnershipLayer.setVisibility(false);
+// 		}
+		$("#ownershipLegend").removeClass("hideElement");
+	} else {
+		gl.landOwnershipTileLayer.setVisibility(false);
+		gl.landOwnershipLayer.setVisibility(false);
+		$("#ownershipLegend").addClass("hideElement");
+	}
+// 	if ($("#stateAreaToggle").hasClass("buttonElementGreenToggle")){
+// 		landDefArray.push("State");
+// 	} 
+// 	if ($("#privAreaToggle").hasClass("buttonElementGreenToggle")){
+// 		landDefArray.push("Private");
+// 	}
+// 	if (landDefArray.length > 0) {
+// 		var landDef = "OWNER IN ('" + landDefArray.join("','") + "')";
+// 		gl.landOwnershipLayer.setDefinitionExpression(landDef);
+// 	} else {
+// 		gl.landOwnershipLayer.setDefinitionExpression("1=2");
+// 	}
+}
+
+function toggleExtra1 (evt) {
+	if ($("#extra1").hasClass("buttonElementGreenToggle")) {
+		$("#extra1").removeClass("buttonElementGreenToggle");
+		gl.extra1Layer.setVisibility(false);
+	} else {
+		$("#extra1").addClass("buttonElementGreenToggle");
+		gl.extra1Layer.setVisibility(true);
+	}
+// 	ga('send', 'event', 'hunt', 'extra1', 'extra1');
+}
+
+function toggleExtra2 (evt) {
+	if ($("#extra2").hasClass("buttonElementGreenToggle")) {
+		$("#extra2").removeClass("buttonElementGreenToggle");
+		gl.extra2Layer.setVisibility(false);
+	} else {
+		$("#extra2").addClass("buttonElementGreenToggle");
+		gl.extra2Layer.setVisibility(true);
+	}
+// 	ga('send', 'event', 'hunt', 'extra2', 'extra2');
+}
+
+function toggleExtra3 (evt) {
+	if ($("#extra3").hasClass("buttonElementGreenToggle")) {
+		$("#extra3").removeClass("buttonElementGreenToggle");
+		gl.extra3Layer.setVisibility(false);
+	} else {
+		$("#extra3").addClass("buttonElementGreenToggle");
+		gl.extra3Layer.setVisibility(true);
+	}
+// 	ga('send', 'event', 'hunt', 'extra3', 'extra3');
+}
+function toggleExtra4 (evt) {
+	if ($("#extra4").hasClass("buttonElementGreenToggle")) {
+		$("#extra4").removeClass("buttonElementGreenToggle");
+		gl.extra4Layer.setVisibility(false);
+	} else {
+		$("#extra4").addClass("buttonElementGreenToggle");
+		gl.extra4Layer.setVisibility(true);
+	}
+// 	ga('send', 'event', 'hunt', 'extra4', 'extra4');
+}
+
+function showExtra4Tooltip(evt) {
+	closeExtra4Tooltip();
+// 	console.log("showExtra4Tooltip fieldArray ", gl.extra4CFN);
+	var newContent = "";
+	for ( var i=0; i < gl.extra4CFN.length; i++ ) {
+		if (evt.graphic.attributes[gl.extra4CFN[i]] != null) {
+			newContent +=  evt.graphic.attributes[gl.extra4CFN[i]] + "<br>";
+		}
+	}
+	if (newContent != "") {
+		newContent = "<b>" + gl.extra4Desc + "</b><br>" + newContent;
+		createTooltip("tooltipExtra4", newContent, evt, true);
+	}
+}
+
+function closeExtra4Tooltip() {
+	var widget = dijit.byId("tooltipExtra4");
+	if (widget) {
+		widget.destroy();
+	}
+}	
+	
+function toggleExtra5 (evt) {
+	if ($("#extra5").hasClass("buttonElementGreenToggle")) {
+		$("#extra5").removeClass("buttonElementGreenToggle");
+		gl.extra5Layer.setVisibility(false);
+	} else {
+		$("#extra5").addClass("buttonElementGreenToggle");
+		gl.extra5Layer.setVisibility(true);
+	}
+// 	ga('send', 'event', 'hunt', 'extra5', 'extra5');
+}
+
+function showExtra5Tooltip(evt) {
+	closeExtra5Tooltip();
+// 	console.log("showExtra5Tooltip fieldArray ", gl.extra5CFN);
+	var newContent = "";
+	for ( var i=0; i < gl.extra5CFN.length; i++ ) {
+		if (evt.graphic.attributes[gl.extra5CFN[i]] != null) {
+			newContent +=  evt.graphic.attributes[gl.extra5CFN[i]] + "<br>";
+		}
+	}
+	if (newContent != "") {
+		newContent = "<b>" + gl.extra5Desc + "</b><br>" + newContent;
+		createTooltip("tooltipExtra5", newContent, evt, true);
+	}
+}
+
+function closeExtra5Tooltip() {
+	var widget = dijit.byId("tooltipExtra5");
+	if (widget) {
+		widget.destroy();
+	}
+}	
+function toggleExtra6 (evt) {
+	if ($("#extra6").hasClass("buttonElementGreenToggle")) {
+		$("#extra6").removeClass("buttonElementGreenToggle");
+		gl.extra6Layer.setVisibility(false);
+	} else {
+		$("#extra6").addClass("buttonElementGreenToggle");
+		gl.extra6Layer.setVisibility(true);
+	}
+// 	ga('send', 'event', 'hunt', 'extra6', 'extra6');
+}
+
+function showExtra6Tooltip(evt) {
+	closeExtra6Tooltip();
+// 	console.log("showExtra6Tooltip fieldArray ", gl.extra6CFN);
+	var newContent = "";
+	for ( var i=0; i < gl.extra6CFN.length; i++ ) {
+		if (evt.graphic.attributes[gl.extra6CFN[i]] != null) {
+			newContent +=  evt.graphic.attributes[gl.extra6CFN[i]] + "<br>";
+		}
+	}
+	if (newContent != "") {
+		newContent = "<b>" + gl.extra6Desc + "</b><br>" + newContent;
+		createTooltip("tooltipExtra6", newContent, evt, true);
+	}
+}
+
+function closeExtra6Tooltip() {
+	var widget = dijit.byId("tooltipExtra6");
+	if (widget) {
+		widget.destroy();
+	}
+}
+	
+function toggleExtra7 (evt) {
+	if ($("#extra7").hasClass("buttonElementGreenToggle")) {
+		$("#extra7").removeClass("buttonElementGreenToggle");
+		gl.extra7Layer.setVisibility(false);
+	} else {
+		$("#extra7").addClass("buttonElementGreenToggle");
+		gl.extra7Layer.setVisibility(true);
+	}
+// 	ga('send', 'event', 'hunt', 'extra7', 'extra7');
+}
+
+function showExtra7Tooltip(evt) {
+	closeExtra7Tooltip();
+// 	console.log("showExtra7Tooltip fieldArray ", gl.extra7CFN);
+	var newContent = "";
+	for ( var i=0; i < gl.extra7CFN.length; i++ ) {
+		if (evt.graphic.attributes[gl.extra7CFN[i]] != null) {
+			newContent +=  evt.graphic.attributes[gl.extra7CFN[i]] + "<br>";
+		}
+	}
+	if (newContent != "") {
+		newContent = "<b>" + gl.extra7Desc + "</b><br>" + newContent;
+		createTooltip("tooltipExtra7", newContent, evt, true);
+	}
+}
+
+function closeExtra7Tooltip() {
+	var widget = dijit.byId("tooltipExtra7");
+	if (widget) {
+		widget.destroy();
+	}
+}
+
+function openRAMWMA (evt) {
+	var openRam = confirm("Open " + evt.graphic.attributes["UDWR.DWRADMIN.WMA_Properties_Pub.Name"] + " in a new tab/window?");
+	if (openRam) {
+		// { and } not allowed in parms with apache 2.4
+		var tempProp = evt.graphic.attributes["UDWR.DWRADMIN.WMA_Properties_Pub.PropertyID"];
+		tempProp = tempProp.replace("{", "");
+		tempProp = tempProp.replace("}", "");
+		window.open("https://dwrapps.utah.gov/ram/start2?filter=properties&values=" + tempProp, "_blank");
+	}
+}
+
+function openRAMWIA (evt) {
+	var openRam = confirm("Open " + evt.graphic.attributes["UDWR.DWRADMIN.WIA_Properties.Name"] + " in a new tab/window?");
+	if (openRam) {
+		var tempProp = evt.graphic.attributes["UDWR.DWRADMIN.WIA_Properties.PropertyID"];
+		tempProp = tempProp.replace("{", "");
+		tempProp = tempProp.replace("}", "");
+		window.open("https://dwrapps.utah.gov/ram/start2?filter=properties&values=" + tempProp, "_blank");
+	}
+}
+
+function toggleAntlerlessControl(evt) {
+	if ($("#antlerControlAreaToggle").hasClass("buttonElementGreenToggle")){
+		$("#antlerControlAreaToggle").removeClass("buttonElementGreenToggle");
+// 		gl.huntLayerAC.setDefinitionExpression("1=2");
+		gl.huntLayerAC.setVisibility(false);
+	} else {
+		$("#antlerControlAreaToggle").addClass("buttonElementGreenToggle");
+		// gl.huntLayerAC.setDefinitionExpression(gl.huntLayerACDefExp);
+		gl.huntLayerAC.setVisibility(true);
+// 		ga('send', 'event', 'hunt', 'antlerless control', 'antlerless control on');
+	}
+}
+
+function toggleCWMU(evt) {
+	if ($("#cwmuAreaToggle").hasClass("buttonElementGreenToggle")){
+		$("#cwmuAreaToggle").removeClass("buttonElementGreenToggle");
+		// gl.CWMULayer.setDefinitionExpression("1=2");
+		gl.CWMULayer.setVisibility(false);
+	} else {
+		$("#cwmuAreaToggle").addClass("buttonElementGreenToggle");
+		// gl.CWMULayer.setDefinitionExpression(gl.CWMULayerDefExp);
+		gl.CWMULayer.setVisibility(true);
+// 		ga('send', 'event', 'hunt', 'cwmu', 'CWMU on');
+	}
+}
+
+function showTooltip2(evt) {
+	closeTooltip2();
+	var dialog;
+	var newContent = 'Boundary name: </br>' + evt.graphic.attributes.Boundary_Name;
+	map.setMapCursor("pointer");
+	createTooltip("tooltipDialog2", newContent, evt, true);
+}
+
+function closeTooltip2() {
+	map.setMapCursor("default");
+	var widget = dijit.byId("tooltipDialog2");
+	if (widget) {
+		widget.destroy();
+	}
+}
+
+function showTooltipAC(evt) {
+	closeTooltipAC();
+	var newContent = 'Antlerless elk-control area: </br><span class="tooltipBold">' + evt.graphic.attributes.Boundary_Name + '</span> - ';
+	newContent += 'You may obtain an antlerless elk-control permit if you have a buck, bull or once-in-a-lifetime permit for areas that overlap antlerless elk-control hunting units.';
+	createTooltip("tooltipDialogAC", newContent, evt, false);
+}
+
+function closeTooltipAC() {
+	var widget = dijit.byId("tooltipDialogAC");
+	if (widget) {
+		widget.destroy();
+	}
+}
+
+function showCWMUTooltip(evt) {
+	closeCWMUTooltip();
+	var newContent = 'CWMU Area: <span class="tooltipBold">' + evt.graphic.attributes.Boundary_Name + '</span></br> ';
+	newContent += 'No access without appropriate CWMU permit.';
+	createTooltip("tooltipCWMUDialog", newContent, evt, false);
+}
+
+function closeCWMUTooltip() {
+	var widget = dijit.byId("tooltipCWMUDialog");
+	if (widget) {
+		widget.destroy();
+	}
+}
+
+function showHabitatTooltip(evt) {
+	closeHabitatTooltip();
+	var newContent = '<span class="tooltipBold">' + evt.graphic.attributes.SPECIES + '</span><br/>'; 
+	if (evt.graphic.attributes.SEASON == null || evt.graphic.attributes.SEASON == 'null') {
+		
+	} else {
+		newContent += evt.graphic.attributes.SEASON + "<br/>";
+	}
+	if (evt.graphic.attributes.VALUE == null || evt.graphic.attributes.VALUE == 'null') {
+		
+	} else {
+		newContent += evt.graphic.attributes.VALUE + "<br/>";
+	}
+	if (evt.graphic.attributes.COMMENTS == null || evt.graphic.attributes.COMMENTS == 'null') {
+		
+	} else {
+		newContent += evt.graphic.attributes.COMMENTS;
+	}
+	createTooltip("tooltipHabitat", newContent, evt, false);
+}
+
+function closeHabitatTooltip() {
+	var widget = dijit.byId("tooltipHabitat");
+	if (widget) {
+		widget.destroy();
+	}
+}
+
+function showWMATooltip(evt) {
+	closeWMATooltip();
+	var newContent = 'WMA: <span class="tooltipBold">' + evt.graphic.attributes["UDWR.DWRADMIN.WMA_Properties_Pub.Name"] + '</span><br/>'; 
+	createTooltip("tooltipWMA", newContent, evt, true);
+}
+
+function closeWMATooltip() {
+	var widget = dijit.byId("tooltipWMA");
+	if (widget) {
+		widget.destroy();
+	}
+}
+
+function showWIATooltip(evt) {
+	closeWMATooltip();
+	var newContent = 'WIA: <span class="tooltipBold">' + evt.graphic.attributes["UDWR.DWRADMIN.WIA_Properties.Name"] + '</span><br/>'; 
+	createTooltip("tooltipWIA", newContent, evt, true);
+}
+
+function closeWIATooltip() {
+	var widget = dijit.byId("tooltipWIA");
+	if (widget) {
+		widget.destroy();
+	}
+}
+
+function showWIAPointTooltip(evt) {
+	closeWMATooltip();
+	var newContent = evt.graphic.attributes["UDWR.DWRADMIN.WIA_Properties_Points.PointTypeID"] + ': <span class="tooltipBold">' + evt.graphic.attributes["UDWR.DWRADMIN.WIA_Properties_Points.DisplayName"] + '</span><br/>'; 
+	createTooltip("tooltipWIAPoint", newContent, evt, true);
+}
+
+function closeWIAPointTooltip() {
+	var widget = dijit.byId("tooltipWIAPoint");
+	if (widget) {
+		widget.destroy();
+	}
+}
+
+// 12/28/2022 Change column names to lowercase .. UGRC ... dohhhh!
+function showLandOwnershipTooltip(evt) {
+	closeLandOwnershipTooltip();
+	var newContent = "OWNER: " + evt.graphic.attributes.owner + "<br/>AGENCY: " + evt.graphic.attributes.agency +
+			"<br/>ADMIN: " + evt.graphic.attributes.admin;
+	createTooltip("tooltipLandOwnership", newContent, evt, false);
+}
+
+/* original 12/28/2022
+function showLandOwnershipTooltip(evt) {
+	closeLandOwnershipTooltip();
+	var newContent = "OWNER: " + evt.graphic.attributes.OWNER + "<br/>AGENCY: " + evt.graphic.attributes.AGENCY +
+			"<br/>ADMIN: " + evt.graphic.attributes.ADMIN;
+	createTooltip("tooltipLandOwnership", newContent, evt, false);
+} */
+
+function closeLandOwnershipTooltip() {
+	var widget = dijit.byId("tooltipLandOwnership");
+	if (widget) {
+		widget.destroy();
+	}
+}
+
+function showTribalTooltip(evt) {
+	closeTribalTooltip();
+	var newContent = 'TRIBAL LANDS: <span class="tooltipBold">No Hunting</span><br/>'; 
+	createTooltip("tooltipTribal", newContent, evt, false);
+}
+
+function closeTribalTooltip() {
+	var widget = dijit.byId("tooltipTribal");
+	if (widget) {
+		widget.destroy();
+	}
+}
+
+function showNPSTooltip(evt) {
+	closeNPSTooltip();
+	var newContent = 'National Park Service Lands: <span class="tooltipBold">No Hunting</span><br/>'; 
+	createTooltip("tooltipNPS", newContent, evt, false);
+}
+
+function closeNPSTooltip() {
+	var widget = dijit.byId("tooltipNPS");
+	if (widget) {
+		widget.destroy();
+	}
+}
+
+function showHealthTooltip(evt) {
+	closeHealthTooltip();
+	var newContent = '<span class="tooltipBold">' + evt.graphic.attributes.TYPE + '</span>';
+	if (evt.graphic.attributes.NAME != null) {
+		newContent += "<br>" + evt.graphic.attributes.NAME;
+	}
+	if (evt.graphic.attributes.ADDRESS != null) {
+		newContent += "<br>" + evt.graphic.attributes.ADDRESS;
+	}
+	if (evt.graphic.attributes.CITY != null) {
+		newContent += "<br>" + evt.graphic.attributes.CITY;
+	}
+	if (evt.graphic.attributes.TELEPHONE != null) {
+		var tele = evt.graphic.attributes.TELEPHONE;
+		var outTelephone = "";
+		if (tele.length == 10) {
+			outTelephone = "(" + tele.substring(0,3) + ") " + tele.substring(3,6) + "-" + tele.substring(6,10);
+		} else if (tele.length == 7) {
+			outTelephone = tele.substring(0,3) + "-" + tele.substring(3,7);
+		} else {
+			outTelephone = tele;
+		}
+		newContent += "<br>" + outTelephone;
+	}
+	if (evt.graphic.attributes.FUNCTIONAL_CATEGORY != null) {
+		newContent += "<br>" + evt.graphic.attributes.FUNCTIONAL_CATEGORY;
+	}
+	createTooltip("tooltipHealth", newContent, evt, true);
+}
+
+function closeHealthTooltip() {
+	var widget = dijit.byId("tooltipHealth");
+	if (widget) {
+		widget.destroy();
+	}
+}
+
+function showExtra1Tooltip(evt) {
+	closeExtra1Tooltip();
+// 	console.log("showExtra1Tooltip fieldArray ", gl.extra1CFN);
+	var newContent = "";
+	for ( var i=0; i < gl.extra1CFN.length; i++ ) {
+		if (evt.graphic.attributes[gl.extra1CFN[i]] != null) {
+			newContent +=  evt.graphic.attributes[gl.extra1CFN[i]] + "<br>";
+		}
+	}
+	if (newContent != "") {
+		newContent = "<b>" + gl.extra1Desc + "</b><br>" + newContent;
+		createTooltip("tooltipExtra1", newContent, evt, true);
+	}
+}
+
+function closeExtra1Tooltip() {
+	var widget = dijit.byId("tooltipExtra1");
+	if (widget) {
+		widget.destroy();
+	}
+}
+
+function showExtra2Tooltip(evt) {
+	closeExtra2Tooltip();
+// 	console.log("showExtra2Tooltip fieldArray ", gl.extra2CFN);
+	var newContent = "";
+	for ( var i=0; i < gl.extra2CFN.length; i++ ) {
+		if (evt.graphic.attributes[gl.extra2CFN[i]] != null) {
+			newContent +=  evt.graphic.attributes[gl.extra2CFN[i]] + "<br>";
+		}
+	}
+	if (newContent != "") {
+		newContent = "<b>" + gl.extra2Desc + "</b><br>" + newContent;
+		createTooltip("tooltipExtra2", newContent, evt, true);
+	}
+}
+
+function closeExtra2Tooltip() {
+	var widget = dijit.byId("tooltipExtra2");
+	if (widget) {
+		widget.destroy();
+	}
+}
+
+function showExtra3Tooltip(evt) {
+	closeExtra3Tooltip();
+// 	console.log("showExtra3Tooltip fieldArray ", gl.extra3CFN);
+	var newContent = "";
+	for ( var i=0; i < gl.extra3CFN.length; i++ ) {
+		if (evt.graphic.attributes[gl.extra3CFN[i]] != null) {
+			newContent +=  evt.graphic.attributes[gl.extra3CFN[i]] + "<br>";
+		}
+	}
+	if (newContent != "") {
+		newContent = "<b>" + gl.extra3Desc + "</b><br>" + newContent;
+		createTooltip("tooltipExtra3", newContent, evt, true);
+	}
+}
+
+function closeExtra3Tooltip() {
+	var widget = dijit.byId("tooltipExtra3");
+	if (widget) {
+		widget.destroy();
+	}
+}
+
+function clickHealthTooltip(evt) {
+	var newContent = '<span class="tooltipBold">' + evt.graphic.attributes.TYPE + '</span>';
+	if (evt.graphic.attributes.NAME != null) {
+		newContent += "<br>" + evt.graphic.attributes.NAME;
+	}
+	if (evt.graphic.attributes.ADDRESS != null) {
+		newContent += "<br>" + evt.graphic.attributes.ADDRESS;
+	}
+	if (evt.graphic.attributes.CITY != null) {
+		newContent += "<br>" + evt.graphic.attributes.CITY;
+	}
+	if (evt.graphic.attributes.TELEPHONE != null) {
+		var tele = evt.graphic.attributes.TELEPHONE;
+		var outTelephone = "";
+		if (tele.length == 10) {
+			outTelephone = "(" + tele.substring(0,3) + ") " + tele.substring(3,6) + "-" + tele.substring(6,10);
+		} else if (tele.length == 7) {
+			outTelephone = tele.substring(0,3) + "-" + tele.substring(3,7);
+		} else {
+			outTelephone = tele;
+		}
+		newContent += "<br>" + outTelephone;
+	}
+	if (evt.graphic.attributes.FUNCTIONAL_CATEGORY != null) {
+		newContent += "<br>" + evt.graphic.attributes.FUNCTIONAL_CATEGORY;
+	}
+	if (dijit.byId("tooltipHealth2") === undefined) {
+		gl.dialogHealth = new Dialog({
+				'id' : 'tooltipHealth2',
+				'content' : newContent,
+				"class" : "tooltip",
+				'closable' : true
+			});
+	} else {
+		gl.dialogHealth.set("content", newContent);
+	}
+	gl.dialogHealth.show();
+}
+
+function createTooltip(tID, tContent, evt, mobileExtra) {
+	if ($('.mobileLayout').is(":visible") && mobileExtra) {
+		tContent += "<br> Tap/Click again to display information."
+	}
+	var dialog = new TooltipDialog(
+			{
+				'id' : tID,
+				'content' : tContent, // evt.graphic.attributes['UDWR.DWRADMIN.WMA_Properties_Pub.Name'] + '<br /><span class="tooltipDesc">' + desc + '</span><br />',
+				"class" : "tooltip"
+			});
+	dialog.startup();
+	dojo.style(dialog.domNode, "opacity", 0.85);
+	dijit.place.at(dialog.domNode, {
+		x : evt.pageX,
+		y : evt.pageY
+	}, [ "TL", "BL", "TR", "BR" ], {
+		x : 10,
+		y : 10
+	});
+}
+
+function mapClickedEvent(evt) {
+	// console.log("mapClickedEvent", evt);
+	if (evt.graphic === undefined) {
+		
+	} else {
+	    
+	    // first check if there are multiple boundaries stacked at this point
+	    // 2nd display the hunts on that boundaary
+	    if (evt.graphic.attributes.BoundaryID === undefined) {
+// 	    	ga('send', 'event', 'hunt', 'map', 'not on boundary');
+	    } else {
+	    	gl.huntQuery = null;
+	    	gl.huntQuery = new Query();
+	    	if ( evt.graphic._graphicsLayer._defnExpr !== undefined ) {
+		    	gl.huntQuery.where = evt.graphic._graphicsLayer._defnExpr;
+	    	} else {
+	    		// This is not getting called anymore?
+	    		gl.huntQuery.where = getDefExp();
+	    	}
+		   	gl.huntQuery.geometry = evt.mapPoint;
+		   	gl.huntQuery.spatialRelationship = Query.SPATIAL_REL_INTERSECTS;
+		   	gl.huntQuery.outFields=["BoundaryID", "Boundary_Name"];
+		   	
+		   	gl.huntTask.execute(gl.huntQuery, function(results) {
+		   		// 8/24/2015 Instead of using a boundary picker we are going to display all information on all
+		   		//  the hunt boundaries.  So change to an array.
+		   		var boundaries = [];
+		   		var features = results.features;
+		   		if (features.length >= 1) {
+		   			for (var i=0; i< features.length; i++) {
+		   				boundaries[i] = features[i].attributes.BoundaryID;
+		   			}
+		   			huntClicked(boundaries, evt.graphic.attributes.Boundary_Name);
+// 		   			ga('send', 'event', 'hunt', 'map', evt.graphic.attributes.Boundary_Name);
+		   		}
+		   	});
+		   	
+	    }
+	}
+}
+
+// allow multiple boundaryIDs, name is no longer used.  First 2 filter selections instead.
+function huntClicked(boundaryIDs, boundaryName) {
+	// Get the id of the boundary that was clicked and query the DB directly to get the related hunts.
+	
+	$.getJSON("BoundaryToHuntNumbers", {boundaryID: JSON.stringify(boundaryIDs)}, function(huntData) {
+		
+		// get the filter values so we can toggle between the specific hunts on a boundary to all hunts
+		var speciesSelect = document.getElementById("huntSpecies");
+		var species = speciesSelect.options[speciesSelect.selectedIndex].value;
+		var genderSelect = document.getElementById("huntGender");
+		var gender = genderSelect.options[genderSelect.selectedIndex].value;
+		var typeSelect = document.getElementById("huntType");
+		var type = typeSelect.options[typeSelect.selectedIndex].value;
+		var weaponSelect = document.getElementById("huntWeapon");
+		var weapon = weaponSelect.options[weaponSelect.selectedIndex].value;
+		var season = "";
+		
+		var allContent = [];
+		var filteredContent = [];
+		var headerRow = '<thead><tr class="huntPickerHeader">';
+		headerRow += '<th class="tcol1">Hunt Name</th>';
+		headerRow += '<th class="tcol2">Hunt Number</th>';
+		headerRow += '<th class="tcol3">Gender</th>';
+		headerRow += '<th class="tcol4">Species</th>';
+		headerRow += '<th class="tcol5">Weapon</th>';
+		headerRow += '<th class="tcol6">Hunt Type</th>';
+		headerRow += '<th class="tcol7">Dates</th>';
+		headerRow += '<th class="tcol8">Permits</th>';
+		headerRow += '</tr></thead><tbody>';
+		for (var i=0; i< huntData.length; i++) {
+			// Create the table of content.  Will be two options.  All hunts and filtered hunts.
+			var contentRow = '<tr class="huntPicker" value="' + huntData[i].huntNumber + '">';  // figure out how to get the huntNumber in the click function from this
+			if (huntData[i].huntName != undefined) {
+				contentRow += "<td>" + huntData[i].huntName + "</td>";
+			} else {
+				contentRow += "<td></td>";
+			}
+			contentRow += "<td>" + huntData[i].huntNumber + "</td>";
+			contentRow += "<td>" + huntData[i].gender + "</td>";
+			contentRow += "<td>" + huntData[i].species + "</td>";
+			if (huntData[i].weapon != undefined) {
+				contentRow += "<td>" + huntData[i].weapon + "</td>";
+			} else {
+				contentRow += "<td>N/A</td>";
+			}
+			if (huntData[i].huntType != undefined) {
+				contentRow += "<td>" + huntData[i].huntType + "</td>";
+			} else {
+				contentRow += "<td>N/A</td>";
+			}
+			if (huntData[i].seasonDateText != undefined) {
+				contentRow += '<td class="tcol7">' + formatSeasonDateText(huntData[i].seasonDateText) + "</td>";
+			} else {
+				contentRow += '<td class="tcol7">N/A</td>';
+			}
+			var tempQuotaText = '';
+			var resQuota = 0;
+			var nonresQuota = 0;
+			if (huntData[i].resQuota !== undefined) {
+				resQuota = huntData[i].resQuota;
+			}
+			if ( huntData[i].nonresQuota !== undefined ) {
+				nonresQuota = huntData[i].nonresQuota;
+			}
+			if ( resQuota == 0 && nonresQuota == 0 ) {
+				if  ( huntData[i].quota !== undefined && huntData[i].quota != 0) {
+					tempQuotaText = 'Total: ' + huntData[i].quota;
+				}
+			} else {
+				tempQuotaText = 'Res: ' + resQuota;
+				tempQuotaText += '<br>NonRes: ' + nonresQuota;
+			}
+			contentRow += '<td class="tcol8">' + tempQuotaText + "</td>";
+			contentRow += "</tr>";
+			allContent.push(contentRow);  // every row gets added to this
+			// Create the filtered content
+			var tempMatch = true;
+			if (species == "") {
+				
+			} else if (huntData[i].species != undefined ) {
+				if (huntData[i].species == species) {
+					
+				} else {
+					tempMatch = false;
+				}
+			}
+			if (gender == "") {
+				
+			} else if (huntData[i].gender != undefined ) {
+				if (huntData[i].gender == gender) {
+					
+				} else {
+					tempMatch = false;
+				}
+			}
+			if (type == "") {
+				
+			} else if (huntData[i].huntType != undefined ) {
+				if (huntData[i].huntType == type) {
+					
+				} else {
+					tempMatch = false;
+				}
+			}
+			if (weapon == "") {
+				
+			} else if (huntData[i].weapon != undefined ) {
+				if (huntData[i].weapon == weapon) {
+					
+				} else {
+					tempMatch = false;
+				}
+			}
+			if (season == "") {
+				
+			} else if (huntData[i].season != undefined ) {
+				if (huntData[i].season == season) {
+					
+				} else {
+					tempMatch = false;
+				}
+			}
+			if (tempMatch) {
+				filteredContent.push(contentRow);  // only matching content gets added
+			}
+ 		}
+		
+		// Add scroll indicators to the screen
+		var tempScroller = '<div class="scrollHuntsR">' +
+					'<span class="scrollIconRightO"></span>' +
+					'<span class="scrollIconRightO"></span>' +
+					'<span class="scrollIconRightO"></span>' +
+				'</div>' +
+				'<div class="scrollHuntsL">' +
+					'<span class="scrollIconLeftO"></span>' +
+					'<span class="scrollIconLeftO"></span>' +
+					'<span class="scrollIconLeftO"></span>' +
+				'</div>';
+		
+ 		gl.tempContent = tempScroller + '<table class="tableContent tablesorter huntPicked">' + headerRow + allContent.join('') + '</tbody></table>';
+ 		gl.tempContentFiltered = tempScroller + '<table class="tableContent tablesorter huntPicked">' + headerRow + filteredContent.join('') + '</tbody></table>';
+			
+		var tempGender = gender;
+		var tempSpecies = species;
+		if (gender == '') {
+			tempGender = 'No';
+		}
+		if (species == '') {
+			tempSpecies = 'filter';
+		}
+		$("#huntPicker").dialog({
+			title:  tempGender + " " + tempSpecies + " (Select a specific hunt below)",
+		    modal: true,  // must be interacted with
+		    draggable: true,
+		    resizable: true,
+		    position: gl.wPosition,  // position: { my:'center', at:'center', of: window },
+		    show: 'blind',
+		    hide: 'blind',
+		    width: gl.wMaxW,
+		    maxHeight: gl.wMaxH,  // Setting this will auto add the scrollbar when needed. was 500.
+		    dialogClass: 'ui-dialog-osx',
+		    buttons: [ {text: "Show all hunts on this boundary",
+		    			click: toggleHuntList
+		    			}]
+		});
+		
+		$("#huntPicker").html(gl.tempContentFiltered);
+		$(".tableContent").tablesorter();
+		$('.huntPicked:not(.bound)').addClass('bound').on("click", huntPicked);
+		//  The tableContent is not fully initialized when this runs
+// 		$("#huntPicker").on("dialogfocus", function() {
+			if ($(".tableContent").parent()[0].scrollLeftMax == 0) {
+				$('.scrollHuntsR').removeClass('bound').off("click", huntPRight);
+				$('.scrollHunts').removeClass('bound').off("click", huntPLeft);
+				$('.scrollHuntsR').hide();
+				$('.scrollHuntsL').hide();
+			} else {
+				$('.scrollHuntsR:not(.bound)').addClass('bound').on("click", huntPRight);
+				$('.scrollHuntsL:not(.bound)').addClass('bound').on("click", huntPLeft);
+				$('.scrollHuntsL').hide();
+			}
+// 		}); 
+	});
+
+}
+
+function huntPRight (evt) {
+	$(".tableContent").parent().scrollLeft($(".tableContent").parent()[0].scrollWidth);
+	$('.scrollHuntsR').hide();
+	$('.scrollHuntsL').show();
+}
+
+function huntPLeft (evt) {
+	$(".tableContent").parent().scrollLeft(0);
+	$('.scrollHuntsR').show();
+	$('.scrollHuntsL').hide();
+}
+
+function formatSeasonDateText (seasonDateIn) {
+	var seasonDateOut = "";
+	var seasonDateArray = seasonDateIn.split(' and ');
+	if (seasonDateArray.length == 1) {
+		seasonDateOut = seasonDateIn;
+	} else {
+		seasonDateOut = "<div>";
+		for (var i=0; i< seasonDateArray.length; i++) {
+			seasonDateOut += seasonDateArray[i].trim() + "<br>";
+		}
+		seasonDateOut += "</div>";
+	}
+	return seasonDateOut;
+}
+// Toggle between full hunt list on a boundary and the filtered list.  Filtered is initial state.
+// Commented this out was giving to much grief
+function toggleHuntList(evt) {
+	if (evt.target.textContent == "Show all hunts on this boundary") {
+		$("#huntPicker").html(gl.tempContent);
+		
+		$("#huntPicker").dialog("option","buttons",[{text:"Show filtered hunts on this boundary",
+														click: toggleHuntList}]);
+		$(".tableContent").tablesorter();
+		$('.huntPicked:not(.bound)').addClass('bound').on("click", huntPicked);
+	} else {
+		$("#huntPicker").html(gl.tempContentFiltered);
+		$("#huntPicker").dialog("option","buttons",[{text:"Show all hunts on this boundary",
+														click: toggleHuntList}]);
+		$(".tableContent").tablesorter();
+		$('.huntPicked:not(.bound)').addClass('bound').on("click", huntPicked);
+	}
+}
+
+/* From a click on the map */
+function huntPicked(evt) {
+	gl.huntLayer2Selected = evt.target.parentElement.attributes['value']['value'];
+	$("#huntNumberSelect").select2().val(gl.huntLayer2Selected).trigger('change');
+	$("#huntNumberSelect").select2({ width: '100%' });  // Puts the select back to the full width ...
+	$("#huntPicker").html("");
+	$("#huntPicker").dialog("destroy");
+// 	ga('send', 'event', 'hunt', 'select', gl.huntLayer2Selected);
+}
+
+/* From Table View */
+function huntPicked2(evt) {
+	gl.huntLayer2Selected = evt.target.parentElement.cells[1].textContent;
+	mapToggle();
+// 	console.log("huntPicked2", gl.huntLayer2Selected);
+	$("#huntNumberSelect").select2().val(gl.huntLayer2Selected).trigger('change');
+	$("#huntNumberSelect").select2({ width: '100%' });
+	
+// 	$("#huntPicker").html("");
+// 	$("#huntPicker").dialog("destroy");
+// 	ga('send', 'event', 'huntTable', 'select', gl.huntLayer2Selected);
+}
+
+function zoomToFeature(evt) {
+	var huntNumber = $("#huntNumberSelect").val();
+	$.getJSON("HuntNumberToBoundaries", {HN: huntNumber}, function(boundaries) {
+		if (boundaries.length == 1) {
+			gl.huntQuery = null;
+	    	gl.huntQuery = new Query();
+		    gl.huntQuery.where = "BoundaryID in ('" + boundaries.join("','") + "')";
+		   	gl.huntQuery.outFields=["BoundaryID", "Boundary_Name"];
+		   	gl.huntQuery.returnGeometry = true;
+		   	gl.huntQuery.outSpatialReference = new SpatialReference(102100);
+		   	gl.huntTask.execute(gl.huntQuery, function(results) {
+				var tempExtent = results.features[0].geometry.getExtent().expand(2);
+				map.setExtent(tempExtent);
+		   	});
+		} else {
+			// minX: -12701972.43, maxY: 5165587.47, maxX: -12133280.94, minY: 4435460.98
+			var changeExtent = Extent(
+					{	"xmin":-12701972.43,
+						"ymin":4435460.98,
+						"xmax":-12133280.94,
+						"ymax":5165587.47,
+				  		"spatialReference": map.spatialReference
+				  	});
+			map.setExtent(changeExtent.expand(1.5));	
+		}
+		// gl.boundaryArray = boundaries;
+		gl.bData[gl.bCounter++] = boundaries;
+		setDefExp();
+		gl.boundaryArray2 = [];
+		setDefExp2();
+	});
+}
+
+function getKML(evt) {
+	var tempWhere = evt.target.attributes['value2'];
+	var postIt = $.post( gl.KMLUrl, {
+			where: tempWhere,
+			time:'',
+			text:'',
+			spatialRel:	'esriSpatialRelIntersects',
+			returnZ: 'false',
+			returnM: 'false',
+			returnIdsOnly: 'false',
+			returnGeometry: 'true',
+			returnDistinctValues: 'false',
+			returnCountOnly: 'false',
+			relationParam:'',
+			outStatistics:'',
+			outSR:'',
+			outFields:'BoundaryID',
+			orderByFields:'',
+			objectIds:'',
+			maxAllowableOffset:'',
+			inSR:'',
+			groupByFieldsForStatistics:'',	
+			geometryType: 'esriGeometryEnvelope',
+			geometryPrecision:'',
+			geometry:'',
+			gdbVersion:'',
+			f: 'kmz'
+	});
+}
+
+function closeDataElement(evt) {
+	evt.stopPropagation(); 
+	$('.destroy'+evt.target.value).remove();
+}
+
+function toggleDataExtras(evt) {
+	if ($(".extraElementsOuter").hasClass("hideElement")) {
+		$(".extraElementsOuter").removeClass("hideElement");
+	} else {
+		$(".extraElementsOuter").addClass("hideElement");
+	}
+}
+
+// Major changes the tab will now have data on a hunt number only.
+function loadInfoTab(evt) {
+	$('#startHere').text('Find a hunt');
+	// this is the huntnumber that is selected in the dropdown, it may also be in the event.
+	var huntNumber = $("#huntNumberSelect").val();
+	if (huntNumber == gl.huntLayer2Selected) {
+		// same hunt do not clear filters
+	} else {
+// 		gl.boundaryArray = [];
+		gl.bData[gl.bCounter++] = [];
+		setDefExp();
+		gl.boundaryArray2 = [];
+		setDefExp2();
+		// Clear all of the other dropdowns except hunt number
+		$('#huntSpecies').val('').prop('selected', true);
+		$("#huntSpecies").trigger('change.select2');
+		$('#huntGender').val('').prop('selected', true);
+		$("#huntGender").prop("disabled","disabled");
+		$("#huntGender").trigger('change.select2');
+		$('#huntType').val('').prop('selected', true);
+		$("#huntType").prop("disabled","disabled");
+		$("#huntType").trigger('change.select2');
+		$('#huntWeapon').val('').prop('selected', true);
+		$("#huntWeapon").prop("disabled","disabled");
+		$("#huntWeapon").trigger('change.select2');
+	}
+	
+	var huntBoundaryTemp = $("#huntBoundarySelect").val();
+	if (huntBoundaryTemp == '') {
+		
+	} else {
+		$('#huntBoundarySelect').val('').prop('selected', true);
+		$("#huntBoundarySelect").trigger('change.select2'); // Notify only Select2 of changes
+	}
+	// end clear all
+	
+	if (huntNumber == '') { 
+		// Clear the hunt info tab and change its label back to default
+		var dataBoxDiv = dom.byId("dataBoxDiv");
+		
+		if (dataBoxDiv === undefined) {
+		} else {
+			dojo.empty(dataBoxDiv);
+			$("#dataBoxDiv").html("Step 1:  Select the options you want from the 'Find a hunt' search box.<br>Step 2:  Click an area on the map, or from the table view.<br>Step 3:  Click the hunt you wish to display information about from the list of hunts.");
+		}
+	} else {
+		$.getJSON("HaNumber", {hn: huntNumber, 'roles':gl.outputRole}, function(huntInfo) {
+			// If this is not set it means we came here from a direct change to the select by hunt number dropdown.
+// 			if (gl.boundaryArray.length == 0) {
+			if (gl.bData[gl.bCounter - 1].length == 0) {
+// 				gl.boundaryArray = huntInfo.boundaries;
+				gl.bData[gl.bCounter++] = huntInfo.boundaries;
+				setDefExp();
+			}
+			gl.boundaryArray2 = huntInfo.boundaries;
+			setDefExp2(huntInfo.boundaries);
+		
+			var tempLabel = huntNumber;
+			if (huntInfo.huntMaster.HUNT_NAME !== undefined) {
+				tempLabel += " (" + huntInfo.huntMaster.HUNT_NAME+ ")";
+			}
+			if (tempLabel.length > 22) {
+				tempLabel = tempLabel.substring(0, 22) + "...";
+			}
+			
+// Create the new style data box header and content area
+			var dataLayout = dom.byId("dataLayout");
+			$(".deToggle").hide();  // Close all tabs when entering
+			if (dom.byId('dataBoxButton'+huntNumber) === null) {
+				// 6/16/2017 - AHeyman - When a data tab is created store its boundaryID array so that if the user goes back to it the map can be updated	
+				gl.boundaryArray2BID[huntNumber] = huntInfo.boundaries;
+				var tempDiv = dojo.create('div', {'id':'dataBoxButton'+huntNumber, 'class':'dataButtonElement dataElementButton destroy'+huntNumber, 'value':huntNumber}, dataLayout);
+				// selText turns the text black on the most recently selected.
+				$(".dataButtonElement .buttonSpan").removeClass("selText");
+				dojo.create('span', {innerHTML:tempLabel, 'class':'buttonSpan selText'}, tempDiv);
+				dojo.create('span', {innerHTML:'X', 'class':'closeButtonSpan', 'value':huntNumber}, tempDiv);
+				dojo.create('span', {innerHTML:'--', 'class':'minButtonSpan'}, tempDiv);
+				$('#dataBoxButton'+huntNumber+':not(.bound)').addClass('bound').on('click', openHuntData);
+				$('.closeButtonSpan:not(.bound)').addClass('bound').on('click', closeDataElement);
+				dojo.create('div', {'id':'dataBox'+huntNumber, 'class':'dataElement deToggle destroy'+huntNumber}, dataLayout);
+				adjustDataHeight(huntNumber);
+			} else {
+				$("#dataBox"+huntNumber).show();
+			}
+			// We want to pin the hunt# and extras box to the top of the data window (no scroll).
+			var dataBoxDivOuter = dom.byId("dataBox"+huntNumber);
+			if (dataBoxDivOuter === undefined) {
+			} else {
+				dojo.empty(dataBoxDivOuter);
+			}
+			
+			var dataBoxTop = dojo.create('div', {'class':'dataBoxTop'}, dataBoxDivOuter);
+			var dataBoxDiv = dojo.create('div', {'id':'dataBoxScroll'+huntNumber, 'class':'dataBoxScroll'}, dataBoxDivOuter);
+			
+			var tempValue = "BoundaryID in (" + huntInfo.boundaries.join (",")+ ")";
+			var tempValue2 = '&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=BoundaryID&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false';
+			tempUrl = gl.KMLUrl + "?where=" + tempValue + tempValue2 + "&f=kmz";
+// Add the buttons to an icon on the dataBox bar
+			var extrasButton = dojo.create('div', {'class':'extrasButton', 'value':huntNumber}, dataBoxTop);
+			$(".extrasButton:not(.bound)").addClass('bound').on('click', toggleDataExtras);
+			var dataExtras = dojo.create('div', {'class':'dataExtras'}, extrasButton);
+			var extrasElementOuter = dojo.create('div', {'class':'extraElementsOuter hideElement'}, extrasButton);
+			dojo.create('div', {'class':'buttonZoomto extrasElement', innerHTML:'<div class="extrasLeft">Zoom to</div>', 'value':huntNumber}, extrasElementOuter);
+			$('.buttonZoomto:not(.bound)').addClass('bound').on('click', zoomToFeature);
+			dojo.create('div', {'class':'printButton extrasElement', innerHTML:'<div class="extrasLeft">Print</div>'}, extrasElementOuter);
+			$('.printButton:not(.bound)').addClass('bound').on('click', printHunt);
+			dojo.create('div', {'class':'clearButton extrasElement', innerHTML:'<div class="extrasLeft">Clear extra boundaries</div>', 'value':huntInfo.boundaries}, extrasElementOuter);
+			$('.clearButton:not(.bound)').addClass('bound').on('click', clearSelected);
+			dojo.create('div', {'class':'shareButton extrasElement', innerHTML:'<div class="extrasLeft">Share url</div>'}, extrasElementOuter);
+			$('.shareButton:not(.bound)').addClass('bound').on('click', shareSelected);
+			dojo.create('a', {'class':'aKML extrasElement', href:tempUrl, innerHTML:'<div class="extrasLeft">KML for Google Earth</div>'}, extrasElementOuter);
+	// 		dojo.create('a', {'class':'aKML', innerHTML:'Get KML'}, dataBoxDiv);
+	// 		$('.aKML:not(.bound)').addClass('bound').on('click', getKML);
+			var tempTitle = "Hunt# " + huntInfo.huntMaster.HUNT_NBR + " - ";
+			if (huntInfo.huntMaster.HUNT_TYPE !== undefined) {
+				tempTitle += huntInfo.huntMaster.HUNT_TYPE + " ";
+			}
+			tempTitle += huntInfo.huntMaster.GENDER + " ";
+			tempTitle += huntInfo.huntMaster.SPECIES + " (";
+			tempTitle += huntInfo.huntYears[0].HUNT_YEAR + ")";
+			dojo.create('div', {'class':'leftTextTitle', innerHTML:tempTitle}, dataBoxTop);
+			tempTitle = huntInfo.huntMaster.HUNT_NAME;
+			if (huntInfo.huntBios[0].CLOSED !== undefined) {
+				if (huntInfo.huntBios[0].CLOSED == "Y") {
+					tempTitle += ' <span STYLE="color:red;">*** HUNT IS CLOSED ***</span>';
+				}
+			}
+			dojo.create('div', {'class':'leftTextName', innerHTML:tempTitle}, dataBoxDiv);
+			// Adjust the height of the databox scroll bar.
+			$("#dataBoxScroll"+huntNumber).height($("#dataBox"+huntNumber).height() - $("#dataBox"+huntNumber).find(".leftTextName").outerHeight(true));
+			dojo.create('div', {'class':'leftHead', innerHTML:"Weapon Type"}, dataBoxDiv);
+			if (huntInfo.huntMaster.WEAPON !== undefined) {
+				dojo.create('div', {'class':'leftText', innerHTML:huntInfo.huntMaster.WEAPON}, dataBoxDiv);
+			}
+			dojo.create('div', {'class':'leftHead', innerHTML:"Season Dates"}, dataBoxDiv);
+			if (huntInfo.huntYears[0].SEASON_DATE_TEXT !== undefined) {
+				var tempText = formatSeasonDateText(huntInfo.huntYears[0].SEASON_DATE_TEXT);
+				dojo.create('div', {'class':'leftText', innerHTML:tempText}, dataBoxDiv);
+			} else {
+				dojo.create('div', {'class':'leftText', innerHTML:"Season dates not yet available"}, dataBoxDiv);
+			}
+
+//  5/2/2017 - Add hunt_master_year notes to the output.		
+			if (huntInfo.huntYears[0].NOTES !== undefined) {
+				dojo.create('div', {'class':'leftText', innerHTML:huntInfo.huntYears[0].NOTES}, dataBoxDiv);
+			}
+			
+			var quotaRes = '0';
+			if (huntInfo.huntYears[0].QUOTA_RES !== undefined) {
+				quotaRes = huntInfo.huntYears[0].QUOTA_RES;
+			}
+			var quotaNonRes = '0';
+			if (huntInfo.huntYears[0].QUOTA_NRES !== undefined) {
+				quotaNonRes = huntInfo.huntYears[0].QUOTA_NRES;
+			}
+			var quota = '0';
+			if (huntInfo.huntYears[0].QUOTA !== undefined) {
+				quota = huntInfo.huntYears[0].QUOTA;
+			}
+			if (quota != '0' || quotaRes != '0' || quotaNonRes != '0') { // Skip if all are zero
+				dojo.create('div', {'class':'leftHead', innerHTML:"Permits"}, dataBoxDiv);
+				var tempPermits = "<ul>";
+				if (quotaRes != '0') {
+					tempPermits += "<li>Resident permits: " + quotaRes + "</li>";
+				}
+				if (quotaNonRes != '0') {
+					tempPermits += "<li>Nonresident permits: " + quotaNonRes + "</li>";
+				}
+				if (quota != '0') {
+					tempPermits += "<li>Total permits: " + quota + "</li>";
+				}
+				tempPermits += "</ul>";
+				dojo.create('div', {'class':'leftText', innerHTML:tempPermits}, dataBoxDiv);
+			}
+			
+			// 2024 03 26 - add fields
+			if (huntInfo.huntYears[0] !== undefined) {
+				
+				if (huntInfo.huntYears[0].HUNT_ADVISORIES !== undefined && huntInfo.huntYears[0].HUNT_ADVISORIES !== '') {
+					dojo.create('div', {'class':'leftHead', innerHTML:getDisplayText(huntInfo.huntDisplayNames, "HUNT_MASTER_YEAR", 'HUNT_ADVISORIES')}, dataBoxDiv);
+					dojo.create('div', {'class':'leftText', innerHTML:huntInfo.huntYears[0].HUNT_ADVISORIES}, dataBoxDiv);
+				}
+			}
+			if (huntInfo.huntMaster !== undefined) {
+				if (huntInfo.huntMaster.HARVEST_REPORTING !== undefined && huntInfo.huntMaster.HARVEST_REPORTING !== '') {
+					dojo.create('div', {'class':'leftHead', innerHTML:getDisplayText(huntInfo.huntDisplayNames, "HUNT_MASTER", 'HARVEST_REPORTING')}, dataBoxDiv);
+					dojo.create('div', {'class':'leftText', innerHTML:huntInfo.huntMaster.HARVEST_REPORTING}, dataBoxDiv);
+				}
+			}
+			// 2024 03 26 - add 4 fields from HUNT_MASTER_YEAR
+			if (huntInfo.huntYears[0] !== undefined) {
+				// console.log("huntInfo.huntYears[0]", huntInfo.huntYears[0]);
+				if (huntInfo.huntYears[0].HARV_SURV_DUE !== undefined && huntInfo.huntYears[0].HARV_SURV_DUE !== '') {
+					dojo.create('div', {'class':'leftHead', innerHTML:getDisplayText(huntInfo.huntDisplayNames, "HUNT_MASTER_YEAR", 'HARV_SURV_DUE')}, dataBoxDiv);
+					dojo.create('div', {'class':'leftText', innerHTML:huntInfo.huntYears[0].HARV_SURV_DUE}, dataBoxDiv);
+				}
+				if (huntInfo.huntYears[0].HARV_PENALTY_DATE !== undefined && huntInfo.huntYears[0].HARV_PENALTY_DATE !== '') {
+					dojo.create('div', {'class':'leftHead', innerHTML:getDisplayText(huntInfo.huntDisplayNames, "HUNT_MASTER_YEAR", 'HARV_PENALTY_DATE')}, dataBoxDiv);
+					dojo.create('div', {'class':'leftText', innerHTML:huntInfo.huntYears[0].HARV_PENALTY_DATE}, dataBoxDiv);
+				}
+				if (huntInfo.huntYears[0].SURRENDER_INFO !== undefined && huntInfo.huntYears[0].SURRENDER_INFO !== '') {
+					dojo.create('div', {'class':'leftHead', innerHTML:getDisplayText(huntInfo.huntDisplayNames, "HUNT_MASTER_YEAR", 'SURRENDER_INFO')}, dataBoxDiv);
+					dojo.create('div', {'class':'leftText', innerHTML:huntInfo.huntYears[0].SURRENDER_INFO}, dataBoxDiv);
+				}
+			}
+			if (huntInfo.huntMaster !== undefined) {
+				if (huntInfo.huntMaster.NOTES !== undefined && huntInfo.huntMaster.NOTES !== '') {
+					dojo.create('div', {'class':'leftHead', innerHTML:getDisplayText(huntInfo.huntDisplayNames, "HUNT_MASTER", 'NOTES')}, dataBoxDiv);
+					dojo.create('div', {'class':'leftText', innerHTML:huntInfo.huntMaster.NOTES}, dataBoxDiv);
+				}
+				if (huntInfo.huntMaster.SPECIAL_REQUIREMENTS !== undefined && huntInfo.huntMaster.SPECIAL_REQUIREMENTS !== '') {
+					dojo.create('div', {'class':'leftHead', innerHTML:getDisplayText(huntInfo.huntDisplayNames, "HUNT_MASTER", 'SPECIAL_REQUIREMENTS')}, dataBoxDiv);
+					dojo.create('div', {'class':'leftText', innerHTML:huntInfo.huntMaster.SPECIAL_REQUIREMENTS}, dataBoxDiv);
+				}
+				if (huntInfo.huntMaster.SPECIAL_INSTRUCTIONS !== undefined && huntInfo.huntMaster.SPECIAL_INSTRUCTIONS !== '') {
+					dojo.create('div', {'class':'leftHead', innerHTML:getDisplayText(huntInfo.huntDisplayNames, "HUNT_MASTER", 'SPECIAL_INSTRUCTIONS')}, dataBoxDiv);
+					dojo.create('div', {'class':'leftText', innerHTML:huntInfo.huntMaster.SPECIAL_INSTRUCTIONS}, dataBoxDiv);
+				}
+				if (huntInfo.huntMaster.SPECIAL_PROVISIONS !== undefined && huntInfo.huntMaster.SPECIAL_PROVISIONS !== '') {
+					dojo.create('div', {'class':'leftHead', innerHTML:getDisplayText(huntInfo.huntDisplayNames, "HUNT_MASTER", 'SPECIAL_PROVISIONS')}, dataBoxDiv);
+					dojo.create('div', {'class':'leftText', innerHTML:huntInfo.huntMaster.SPECIAL_PROVISIONS}, dataBoxDiv);
+				}
+			}
+				
+			// July 5th, 2017 - Fix the link for the different types of hunts			
+			var huntCode = huntNumber.substring(0,2);
+			if (huntCode == 'BR' || huntCode == 'CG' || huntCode == 'SG' || huntCode == 'TK' || huntCode == 'ST' || huntCode == 'SC' || huntCode == 'TS') {
+				dojo.create('div', {'class':'leftHead', innerHTML:"Draw Odds Report"}, dataBoxDiv);
+				// tempUrl = 'https://wildlife.utah.gov/drawing-odds-and-point-results.html';
+				tempUrl = gl.drawOddsOther;
+				var drawOddsDiv = dojo.create('div', {'class':'leftText', innerHTML:''}, dataBoxDiv);
+				dojo.create('a', {'class':'aDrawingOdds', href:tempUrl, innerHTML:'Drawing odds report page', target:'_blank'}, drawOddsDiv);
+			} else if (huntCode == 'LG' || huntCode == 'DG') {
+				// no drawing odds
+			} else {
+				dojo.create('div', {'class':'leftHead', innerHTML:"Draw Odds Report"}, dataBoxDiv);
+				// var tempUrl = 'https://wildlife.utah.gov/biggame/odds';
+				tempUrl = gl.drawOddsBigGame;
+				var drawOddsDiv = dojo.create('div', {'class':'leftText', innerHTML:''}, dataBoxDiv);
+				dojo.create('a', {'class':'aDrawingOdds', href:tempUrl, innerHTML:'Drawing odds report page', target:'_blank'}, drawOddsDiv);
+			}
+			
+			// output any Master records we have not done before.
+			var exclusionFromMaster = ["HUNT_NBR", "HUNT_NAME", "SPECIES", "GENDER", "WEAPON", "HUNT_TYPE", "SEASON_TYPE", "HUNT_AREA_ID", "CREATED_BY", "CREATED_DATE", "UPDATED_BY", "UPDATED_DATE", "REVIEWED_BY", "REVIEWED_DATE", "APPROVED_BY", "APPROVED_DATE", "STATUS", "SUBCODE", "PRINT_IMAGE", "DRAW_DESIGNATION", "UNIT_LABEL", "PRINT_HUNT_NAME", "HARVEST_REPORTING", "NOTES", "SPECIAL_REQUIREMENTS", "SPECIAL_INSTRUCTIONS", "SPECIAL_PROVISIONS"];
+			
+			$.each(huntInfo.huntMaster, function (key, value) {
+				var found = false;
+				for (var j=0; j<exclusionFromMaster.length; j++) {
+					if (key == exclusionFromMaster[j]) {
+						found = true;
+						break;
+					}
+				}
+				if (!found) {
+					// output it here
+					if (value == '0') {
+						// no output on zeros
+					} else {
+						if (key == "WAITING_PERIOD_YEARS") {
+							if (value > 5) {
+								value = "Once in a lifetime";
+							}
+						}
+						dojo.create('div', {'class':'leftHead', innerHTML:getDisplayText(huntInfo.huntDisplayNames, "HUNT_MASTER", key)}, dataBoxDiv);
+						dojo.create('div', {'class':'leftText', innerHTML:value}, dataBoxDiv);
+					}
+				}
+			});
+			
+			
+					
+			
+
+		  if (huntInfo.displayNonApproved != true) {
+			// dojo.create('div', {'class':'leftHeadX', innerHTML:"Hunt specific information"}, dataBoxDiv); 
+			dojo.create('div', {'class':'leftText', innerHTML:'Information about this hunt has been changed and is pending approval.  Please check back later for updated information.'}, dataBoxDiv);
+		  } else {
+			
+			
+			// okay now output the bio record.  This is only funky on a multi unit hunt
+			var exclusionFromBio = ["HUNT_NBR", "HUNT_AREA_ID", "BOUNDARY_ID", "CLOSED"];
+			if (huntInfo.huntBios[0] !== undefined) {  // skip if no record
+				dojo.create('div', {'class':'leftHeadX', 'id':'huntstat', innerHTML:"Population and Harvest Statistics"}, dataBoxDiv);
+				var foundOutput = false;
+				foundOutput = customHuntStatOuput(dataBoxDiv, huntInfo.huntBios[0], huntInfo.huntDisplayNames, foundOutput);
+				if (!foundOutput) {
+					document.getElementById("huntstat").innerHTML = "";
+				}
+				
+				dojo.create('div', {'class':'leftHeadX', 'id':'huntbio', innerHTML:"Hunt specific information"}, dataBoxDiv);
+				foundOutput = false;
+				foundOutput = customHuntBioOuput(dataBoxDiv, huntInfo.huntBios[0], huntInfo.huntDisplayNames, foundOutput);
+				if (!foundOutput) {
+					document.getElementById("huntbio").innerHTML = "";
+				}
+			}
+			
+			// Now output the boundary info if a single unit hunt.  On multi unit hunts add it to the collapsible grid.
+			var exclusionFromBoundaryInfo = ["BOUNDARY_ID", "BOUNDARY_NAME", "UPDATEDBY", "UPDATEDDATE", "huntBoundarySpecies", "DISPLAY_STATUS", 'OPERATOR_NAME', 'OPERATOR_PHONE', 'OPERATOR_EMAIL', 'COUNTIES', 'ACRES_PUBLIC', 'ACRES_PRIV', 'ACCESS_NAME', 'ACCESS_PHONE', 'ACCESS_EMAIL', 'Q_GUEST', 'Q_SUNDAY', 'Q_SCOUT', 'Q_HORSES', 'Q_ATV', 'Q_GUIDE', 'Q_PACKING', 'Q_LODGE_FOOD', 'Q_CAMP', 'Q_HANDICAP', 'Q_MAPS', 'Q_ACTIVITIES', 'Q_CLOSED', 'RULES'];
+			var exclusionFromBoundarySpecies = [ "BOUNDARY_ID", "SPECIES_SEX", "UPDATEDBY", "UPDATEDDATE" ];
+			if (huntInfo.huntBoundaryInfos.length == 1) {
+				dojo.create('div', {'class':'leftHeadX', 'id':'huntbound' + i, innerHTML:"Area specific information"}, dataBoxDiv);
+				foundOutput = false;
+				$.each(huntInfo.huntBoundaryInfos[0], function (key, value) {
+					var found = false;
+					for (var j=0; j<exclusionFromBoundaryInfo.length; j++) {
+						if (key == exclusionFromBoundaryInfo[j]) {
+							found = true;
+							break;
+						}
+					}
+					if (!found) {
+						// output it here
+						if (value == '0') {
+						// no output on zeros
+						} else {
+							foundOutput = true;
+							dojo.create('div', {'class':'leftHead', innerHTML:getDisplayText(huntInfo.huntDisplayNames, "HUNT_BOUNDARY_INFO", key)}, dataBoxDiv);
+							dojo.create('div', {'class':'leftText', innerHTML:value}, dataBoxDiv);
+						}
+					}
+				});
+				// Layout the CWMU similar to existing page
+				foundOutput = cwmuOutput(dataBoxDiv, huntInfo.huntBoundaryInfos[0], foundOutput);
+				if (!foundOutput) {
+					document.getElementById("huntbound0").innerHTML = "";
+				}
+			}
+			
+			// We assumed they would be sorted by boundary_ID.  Change it so that the order does not matter.
+			if ( huntInfo.huntBios.length > 1 || huntInfo.huntBoundaryInfos.length > 1) {
+				var outputArray = [];
+				for (var i=0; i < huntInfo.huntBios.length; i++) {
+					
+					if (huntInfo.huntBios[i].BOUNDARY_ID == 0) {
+						// All Areas is being put above the list of boundaries so do not output it here.
+						// outputArray[huntInfo.huntBios[i].BOUNDARY_ID] = {'huntBios':huntInfo.huntBios[i]};
+						// outputArray[huntInfo.huntBios[i].BOUNDARY_ID]['huntBoundary'] = {'BOUNDARY_NAME':'  All Areas'};
+					} else {
+						outputArray[huntInfo.huntBios[i].BOUNDARY_ID] = {'huntBios':huntInfo.huntBios[i]};
+						outputArray[huntInfo.huntBios[i].BOUNDARY_ID]['huntBoundary'] = {'BOUNDARY_NAME':'ZZ No Name Set (' +huntInfo.huntBios[i].BOUNDARY_ID + ')'};
+					}
+				}
+				for (var i=0; i < huntInfo.huntBoundaryInfos.length; i++) {
+					if (outputArray[huntInfo.huntBoundaryInfos[i].BOUNDARY_ID] === undefined) {
+						outputArray[huntInfo.huntBoundaryInfos[i].BOUNDARY_ID] = {};
+					}
+					outputArray[huntInfo.huntBoundaryInfos[i].BOUNDARY_ID]['huntBoundary'] = huntInfo.huntBoundaryInfos[i];
+				}
+				outputArray.sort(function(a,b){
+					if (a.huntBoundary.BOUNDARY_NAME < b.huntBoundary.BOUNDARY_NAME)
+					    return -1;
+					  else if (a.huntBoundary.BOUNDARY_NAME > b.huntBoundary.BOUNDARY_NAME)
+					    return 1;
+					  else 
+					    return 0;
+				});
+				// This is a multi unit hunt.  Add them to a collapsible grid.
+				// console.log("outputArray", outputArray);
+				for (var i=0; i < outputArray.length; i++) {
+					if (outputArray[i] === undefined) {
+					} else if (outputArray[i].huntBoundary === undefined) {
+					} else if (outputArray[i].huntBoundary.BOUNDARY_NAME === undefined) {
+					} else {
+						var startBoundary = 0;
+						if (outputArray[i].huntBoundary.BOUNDARY_ID !== undefined) {
+							startBoundary = outputArray[i].huntBoundary.BOUNDARY_ID;
+						} else {
+							startBoundary = outputArray[i].huntBios.BOUNDARY_ID;
+						}
+						var temp = '<span class="fixed"><span id="bID' + huntNumber + startBoundary + '">' + outputArray[i].huntBoundary.BOUNDARY_NAME.trim() + '</span></span>';
+// 						console.log(i, temp);
+						var tp = new TitlePane({'title':temp,
+								'open': false,
+								'class':'titlePane2' });
+						dataBoxDiv.appendChild(tp.domNode);
+						tp.set('content','<div id="tp' + huntNumber + startBoundary + '"></div>');
+						var tpDiv = dom.byId("tp" + huntNumber + startBoundary);
+						if (outputArray[i].huntBios !== undefined) {
+							dojo.create('div', {'class':'leftHeadX', 'id':'huntstat' + huntNumber + i, innerHTML:"Population and Harvest Statistics"}, tpDiv);
+							var foundOutput = false;
+							foundOutput = customHuntStatOuput(tpDiv, outputArray[i].huntBios, huntInfo.huntDisplayNames, foundOutput);
+							if (!foundOutput) {
+								document.getElementById("huntstat" + huntNumber + i).innerHTML = "";
+							}
+							dojo.create('div', {'class':'leftHeadX', 'id':'huntbio' + huntNumber + i, innerHTML:"Hunt specific information"}, tpDiv);
+							foundOutput = false;
+							foundOutput = customHuntBioOuput(tpDiv, outputArray[i].huntBios, huntInfo.huntDisplayNames, foundOutput);
+							if (!foundOutput) {
+								document.getElementById("huntbio" + huntNumber + i).innerHTML = ""; // clear if no records found.
+							}
+							if(outputArray[i].huntBios.CLOSED == "Y") {
+								tp.set("title", tp.get("title") + " *** HUNT IS CLOSED ***");
+							}
+						}
+						
+						foundOutput = false;
+						dojo.create('div', {'class':'leftHeadX', 'id':'huntbound' + huntNumber + i, innerHTML:"Area specific information"}, tpDiv);
+						$.each(outputArray[i].huntBoundary, function (key, value) {
+							var found = false;
+							for (var j=0; j<exclusionFromBoundaryInfo.length; j++) {
+								if (key == exclusionFromBoundaryInfo[j]) {
+									found = true;
+									break;
+								}
+							}
+							if (!found) {
+								// output it here
+								if (value == '0') {
+								// no output on zeros
+								} else {
+									foundOutput = true;
+									dojo.create('div', {'class':'leftHead', innerHTML:getDisplayText(huntInfo.huntDisplayNames, "HUNT_BOUNDARY_INFO", key)}, tpDiv);
+									dojo.create('div', {'class':'leftText', innerHTML:value}, tpDiv);
+								}
+							}
+						});
+						if (outputArray[i].huntBios !== undefined) {
+							foundOutput = cwmuOutput(tpDiv, outputArray[i].huntBios, foundOutput);
+						}
+						if (!foundOutput) {
+							document.getElementById("huntbound" + huntNumber + i).innerHTML = "";
+						}
+					}
+				}
+			}
+
+		  }
+		  dojo.create('br', {}, dataBoxDiv);
+		});
+	}
+// 	ga('send', 'event', 'hunt', 'huntNumber', huntNumber);
+}
+
+function openHuntData(evt) {
+	var hn = evt.currentTarget.value;
+	$("#dataBox"+hn).toggle();
+	adjustDataHeight(hn);
+	if (gl.boundaryArray2BID[hn] !== undefined) {
+		gl.boundaryArray2 = gl.boundaryArray2BID[hn];
+		setDefExp2();
+	}
+	// Change the text to black so the user knows which boundary is being shown.
+	$(".dataButtonElement .buttonSpan").removeClass("selText");
+	$("#dataBoxButton" + hn + " .buttonSpan").addClass("selText");
+}
+
+function adjustDataHeight (hn) {
+	var adjustH = $(window).height();
+	var extraAdjust = 10;
+	if (!isNaN($("#dataBox"+hn)[0].offsetTop)){
+		adjustH = adjustH - $("#dataBox"+hn)[0].offsetTop;
+	}
+	if ($(".stateHeader").is(":visible")) {
+		if (!isNaN($(".stateHeader").height())){
+			adjustH = adjustH - $(".stateHeader").height();
+		}
+	}
+	if ($('.mobileLayout').is(":visible")) {
+		if (!isNaN($('.mobileLayout').height())){
+			adjustH = adjustH - $('.mobileLayout').height();
+			extraAdjust = 6;
+		}
+	}
+	adjustH = adjustH - extraAdjust; // a few extras ...
+	$("#dataBox"+hn).height(adjustH);
+	// fixed the hunt# in the databox so also take it off
+	
+	if ($("#dataBox"+hn) !== undefined && $("#dataBox"+hn).find(".leftTextName") !== undefined) {
+		adjustH = adjustH - $("#dataBox"+hn).find(".leftTextName").outerHeight(true) - 2;
+		$("#dataBoxScroll"+hn).height(adjustH);
+	}
+}
+
+function clearSelected (evt) {
+	var boundary = evt.target.parentElement.value;
+/*	if (boundary.length == 1) {
+		gl.boundaryArray = [];
+		gl.boundaryArray.push(boundary);
+		gl.boundaryArray2 = [];
+	} else if (boundary.length > 1) {
+		gl.boundaryArray = boundary;
+		gl.boundaryArray2 = [];
+	} */
+	if (boundary.length == 1) {
+		gl.bData[gl.bCounter++] = new Array(boundary) ;
+		gl.boundaryArray2 = [];
+	} else if (boundary.length > 1) {
+		gl.bData[gl.bCounter++] = boundary;
+		gl.boundaryArray2 = [];
+	}
+	setDefExp();
+	setDefExp2();
+	
+}
+
+function shareSelected () {
+	var huntNumber = $("#huntNumberSelect").val();
+	var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?HN=' + huntNumber;
+	if (history.pushState) {
+        window.history.pushState({path:newurl},'',newurl);
+    }
+	
+	$( "#shareLink" ).dialog({
+		title: 'Share this hunt',
+// 		width: '60%',
+	    maxWidth: '90vw',  // Setting this will auto add the scrollbar when needed.
+	    open: function() {
+	    	$("#theLink").val(newurl);
+	    },
+	    buttons: [
+	        {
+	            text: "Close",
+	            click: function() {
+	                $( this ).dialog( "close" );
+	            }
+	        }
+	    ]
+	});
+	$( "#shareLink" ).html("The URL in your browser's address bar has been changed to display this hunt. Please copy and paste the address from your address bar.");
+}
+
+// from http://stackoverflow.com/questions/11545960/sort-elements-of-javascript
+function sortElements(parentId, tagClass) {
+    var itemsToSort, p = document.getElementById(parentId);
+    if (p.getElementsByClassName) {
+        itemsToSort = p.getElementsByClassName(tagClass);
+    } else {
+        itemsToSort = getElementsByClassName(tagClass, "*", p);
+    }
+    // get all data into a sortable array
+    var data = [], order = [], item, placeHolder, i;
+    for (i = 0; i < itemsToSort.length; i++) {
+        item = itemsToSort[i];
+        // save position of item by inserting a placeholder right before it
+        placeHolder = document.createElement(item.tagName);
+        item.parentNode.insertBefore(placeHolder, item);
+        order.push(placeHolder);
+        // save item and text
+        data.push({obj: item, text: strTrim(item.innerHTML)});
+    }
+    // sort the item array by the text
+    data.sort(function(a, b) {
+        return(a.text.localeCompare(b.text));
+    });
+    // now reinsert items in sorted order
+    for (i = 0; i < data.length; i++) {
+        item = data[i].obj;
+        placeHolder = order[i];
+        // insert in new location
+        placeHolder.parentNode.insertBefore(item, placeHolder);
+        // remove placeholder
+        placeHolder.parentNode.removeChild(placeHolder);
+    }
+}
+
+function strTrim(str) {
+    return(str.replace(/^\s+/, "").replace(/\s+$/, ""));
+}
+
+function getDisplayText (displayArray, tableName, columnName) {
+	var returnValue = columnName;
+	for (var i=0;i < displayArray.length; i++) {
+		if (displayArray[i].TABLE_NAME == tableName && displayArray[i].FIELD_NAME == columnName) {
+			returnValue = displayArray[i].DISPLAY_TEXT;
+			break;
+		} 
+	}
+	return returnValue;
+}
+
+function loadByBoundaryName (evt) {
+	$('#startHere').text('Find a hunt');
+	// Clear all of the other dropdowns except hunt boundary
+	$('#huntSpecies').val('').prop('selected', true);
+	$("#huntSpecies").trigger('change.select2');
+	$('#huntGender').val('').prop('selected', true);
+	$("#huntGender").trigger('change.select2');
+	$("#huntGender").prop("disabled","disabled");
+	$('#huntType').val('').prop('selected', true);
+	$("#huntType").trigger('change.select2');
+	$("#huntType").prop("disabled","disabled");
+	$('#huntWeapon').val('').prop('selected', true);
+	$("#huntWeapon").trigger('change.select2');
+	$("#huntWeapon").prop("disabled","disabled");
+	var huntNumber = $("#huntNumberSelect").val();
+	if (huntNumber == '') {
+		
+	} else {
+		$('#huntNumberSelect').val('').prop('selected', true);
+		$('#huntNumberSelect').trigger('change.select2'); // Notify only Select2 of changes
+	}
+	// end clear all
+	
+	var boundaryID = $("#huntBoundarySelect").val();
+	// gl.boundaryArray = [];
+	gl.bData[gl.bCounter++] = new Array();
+	gl.boundaryArray2 = [];
+	if(boundaryID == "") {
+		$("#mapToggle").removeClass("showTable");
+	} else {
+		
+		// July 20th, 2017 - Correctly handle multi unit hunts, also had to change the json sql.
+		var boundayIDSplit = boundaryID.split(",");
+		for (var i=0; i < boundayIDSplit.length; i++) {
+// 			console.log("bid", boundayIDSplit[i]);
+			gl.bData[gl.bCounter - 1].push(boundayIDSplit[i]);
+		}
+		// Add the Table view 6/15/2016
+		loadHuntTableByName(boundaryID);
+	}
+	setDefExp();
+	gl.boundaryArray2 = [];
+	setDefExp2();
+	
+// 	ga('send', 'event', 'hunt', 'huntName', $("#huntBoundarySelect").text());
+}
+
+function makeDD() {
+	var dataOut = {};
+	
+	$.getJSON("HaSetup", dataOut, function(setupData) {
+		gl.setupData = setupData;
+		
+		var tempHNs = setupData.huntNumberList;
+		// tempHNs.unshift("Not Selected");
+		tempHNs.unshift("");
+		
+	    var huntNumberSelect = document.createElement("select");
+	    huntNumberSelect.id = "huntNumberSelect";
+	    
+	    for (var i=0; i<tempHNs.length; i++) {
+			var option = document.createElement("option");
+			option.text = tempHNs[i];
+			option.value = tempHNs[i];
+			huntNumberSelect.add(option);
+		}
+		document.getElementById("huntNumberSelectAlt").appendChild(huntNumberSelect);
+		
+		$("#huntNumberSelect").select2({
+			placeholder: "Select by hunt number",
+			width: '100%',
+			allowClear: true,
+		})
+		$("#huntNumberSelect").on("change", loadInfoTab);
+		
+		// now build the boundary select
+		var tempBoundaries = setupData.boundaryNameList;
+		tempBoundaries.unshift({"BOUNDARY_NAME":"", "BOUNDARY_ID":""});
+		var huntNameSelect = document.createElement("select");
+	    huntNameSelect.id = "huntBoundarySelect";
+	    
+	    for (var i=0; i<tempBoundaries.length; i++) {
+			var option = document.createElement("option");
+			option.text = tempBoundaries[i].BOUNDARY_NAME;
+			option.value = tempBoundaries[i].BOUNDARY_ID;
+			huntNameSelect.add(option);
+		}
+		document.getElementById("huntBoundarySelectAlt").appendChild(huntNameSelect);
+		
+		$("#huntBoundarySelect").select2({
+			placeholder: "Select by hunt name",
+			width: '100%',
+			allowClear: true
+		});
+		
+		$("#huntBoundarySelect").on('change', loadByBoundaryName);
+		
+		// Make the intial dropdowns.  Only species will contain data.
+		var buildSpanSpecies = '<select id="huntSpecies" class="propertyPane">';
+		var buildSpanGender = '<select id="huntGender" class="propertyPane">';  // OnChange="loadHunt()"
+		var buildSpanType = '<select id="huntType" class="propertyPane">';
+		var buildSpanWeapon = '<select id="huntWeapon" class="propertyPane">';
+		
+		var temp = '<option value="" selected="true"></option>';
+		buildSpanSpecies += temp;
+		buildSpanGender += temp;
+		buildSpanType += temp;
+		buildSpanWeapon += temp;
+		
+		for (var i=0; i<setupData.speciesList.length; i++) {
+	 		buildSpanSpecies += '<option value="' + setupData.speciesList[i] + '">' + setupData.speciesList[i] + '</option>';
+	 	}
+		
+		buildSpanSpecies += "</select>";
+		buildSpanGender += "</select>";
+		buildSpanType += "</select>";
+		buildSpanWeapon += "</select>";
+		
+		dojo.byId("speciesDDAlt").innerHTML = buildSpanSpecies;
+		dojo.byId("genderDDAlt").innerHTML = buildSpanGender;
+		dojo.byId("typeDDAlt").innerHTML = buildSpanType;
+		dojo.byId("weaponDDAlt").innerHTML = buildSpanWeapon;
+		
+		$("#huntSpecies").select2({
+			placeholder: "Select by species (required)",
+			width: '100%',
+			minimumResultsForSearch: Infinity,
+			allowClear: true
+		});
+		$("#huntSpecies").on("change", speciesChange);
+		
+		$("#huntGender").select2({
+ 			placeholder: "and Sex (required)",
+			width: '100%',
+			minimumResultsForSearch: Infinity,
+			allowClear: true
+		});
+		$("#huntGender").on("change", genderChange);
+		
+		$("#huntType").select2({
+			placeholder: "Hunt type (optional)",
+			width: '100%',
+			minimumResultsForSearch: Infinity,
+			allowClear: true
+		});
+		$("#huntType").on("change", loadHunt);
+		
+		$("#huntWeapon").select2({
+			placeholder: "Weapon type (optional)",
+			width: '100%',
+			minimumResultsForSearch: Infinity,
+			allowClear: true
+		});
+		$("#huntWeapon").on("change", loadHunt);
+		
+		$("#huntGender").prop("disabled","disabled");
+		$("#huntType").prop("disabled","disabled");
+		$("#huntWeapon").prop("disabled","disabled");
+		
+		// close all of the toggles to start
+		toggleFind("startup");
+		toggleLayers("startup");
+		toggleBasemap("startup");
+	
+		gl.deferredMakeDD2[2].resolve();  // left over from service creation
+		
+		if ($('.mobileLayout').is(":visible")) {
+			toggleMobileFind("start");
+		}
+	});
+}
+
+function createBasemapDD() {
+	// removed 2/12/2019 -- {value:"streets", text:"Streets", selected:'selected'}, {value:"topo", text:"Topographic"},
+	// Loading them dynamically from the setup data.
+	var basemapSelect = document.createElement("select");
+	basemapSelect.id = "basemapSelect";
+    
+    for ( var i=0; i < gl.basemapObject.length; i++ ) {
+    	if ( gl.basemapObject[i].basemapType == "NoDD" ) {
+			// Available but not pickable.  Used as a Vector basemap
+		} else {
+			var option = document.createElement("option");
+			option.text = gl.basemapObject[i].mapText;
+			option.value = gl.basemapObject[i].mapName;
+			if ( option.selected == 'selected' ) {
+				option.selected = 'selected';
+			}
+			
+			basemapSelect.add(option);
+		}
+	}
+	document.getElementById("basemapToggle").appendChild(basemapSelect);
+	
+	$("#basemapSelect").select2({
+		minimumResultsForSearch: Infinity,
+		width: '100%'
+	});
+	
+	$("#basemapSelect").on('change', changeBasemap);
+}
+
+function changeBasemap(evt) {
+	if ( gl.vectorList[ gl.basemapName ] !== undefined ) {
+		gl.vectorList[ gl.basemapName ].vtLayer.hide();  // Turn off the curent one on a map change
+	}
+	var newBasemap = $("#basemapSelect").val();
+	if ( gl.vectorList[newBasemap] !== undefined ) {  // Does it have a vector?
+		map.setBasemap( gl.vectorList[newBasemap].basemap );
+		if ( gl.vectorList[ newBasemap ].vtLayer == null ) {
+			// First time loading this vector, so create it.
+			gl.vectorList[ newBasemap ].vtLayer = new VectorTileLayer ( gl.vectorList[ newBasemap ].url );
+			map.addLayer( gl.vectorList[ newBasemap ].vtLayer );
+		} else {
+			gl.vectorList[ newBasemap ].vtLayer.show();
+		}
+		
+	} else {
+		map.setBasemap(newBasemap);
+	}
+	gl.basemapName = newBasemap;
+	toggleBasemap(); // and close it
+// 	ga('send', 'event', 'hunt', 'basemap', newBasemap);
+}
+
+function toggleBasemap(evt) {
+	if ( $("#changeBasemapToggleInner").hasClass("hideElement") ) {
+		$("#changeBasemapToggleInner").removeClass("hideElement");
+	} else {
+		$("#changeBasemapToggleInner").addClass("hideElement");
+	}
+	if ($('.mobileLayout').is(":visible")) {
+		if (evt != "startup") {
+			toggleMobileBasemap();
+		} else {
+			$("#changeBasemapToggleInner").removeClass("hideElement");
+			$("#changeBasemapToggleInner").hide();
+		}
+	}
+}
+
+function toggleMobileBasemap(evt) {
+	
+	if ($(".mobileBasemap").hasClass("sel")) {
+		$(".mobileBasemap").removeClass("sel");
+		$("#changeBasemapToggle").hide(); 
+		$("#changeBasemapToggleInner").hide();
+	} else {
+		$(".mobileBasemap").addClass("sel");
+		$("#changeBasemapToggle").show();
+		$("#changeBasemapToggleInner").show();
+	}
+}
+
+function speciesChange(evt) {
+	// Clear the other "OR" dropdowns
+	$('#startHere').text('Find a hunt');
+	$('#huntBoundarySelect').val('').prop('selected', true);
+	$('#huntBoundarySelect').trigger('change.select2'); // Notify only Select2 of changes
+	$('#huntNumberSelect').val('').prop('selected', true);
+	$('#huntNumberSelect').trigger('change.select2'); // Notify only Select2 of changes
+	// end clear
+	// we allready have what genders are available for each species from the initial
+	//  load of the page.  Adjust the gender drop down based on which species has
+	//  been selected.
+	var speciesSelect = document.getElementById("huntSpecies");
+	var species = speciesSelect.options[speciesSelect.selectedIndex].value;
+	
+	
+	
+
+	if (gl.skipSpeciesChange == true) {
+		
+	} else {
+		$("#huntGender").prop("disabled","disabled");
+		$("#huntType").prop("disabled","disabled");
+		$("#huntWeapon").prop("disabled","disabled");
+		
+//	 	$("#huntGender").val('').prop('selected',true);
+//	 	$("#huntType").val('').prop('selected',true);
+//	 	$("#huntWeapon").val('').prop('selected',true);
+//	 	$('#huntGender').trigger('change.select2');
+//	 	$('#huntType').trigger('change.select2');
+//	 	$('#huntWeapon').trigger('change.select2');
+		
+		$("#huntWeapon").val(null).trigger('change.select2');
+		$("#huntType").val(null).trigger('change.select2');
+ 		$("#huntGender").val(null).trigger('change.select2');
+	}
+	
+	if (species == '') {
+		
+// 		$("#huntGender").prop("disabled","disabled");
+// 		$("#huntType").prop("disabled","disabled");
+// 		$("#huntWeapon").prop("disabled","disabled");
+		
+// 		$("#huntGender").val('').prop('selected',true);
+// 		$("#huntType").val('').prop('selected',true);
+// 		$("#huntWeapon").val('').prop('selected',true);
+// 		$('#huntGender').trigger('change.select2');
+// 		$('#huntType').trigger('change.select2');
+// 		$('#huntWeapon').trigger('change.select2');
+		
+	} else {
+		
+		// console.log("gl.hSex", gl.hSex);
+		var $hg = $("#huntGender");
+		$('#huntGender option:gt(0)').remove();  // remove all but first
+		var foundglSexMatch = false;
+		$.each(gl.setupData.gbsList, function(value, key) {
+			if (key.species == species) {
+				$.each(key.genderList, function(value2, key2) {
+				  $hg.append($("<option></option>").attr("value", key2).text(key2));
+				  if (key2 == gl.hSex) {  // parameter used at startup match?
+					  foundglSexMatch = true;
+				  }
+				});
+			}
+		});
+		$("#huntGender").prop("disabled",false);
+		// the startup parameter "SE" is set and valid
+		if (foundglSexMatch) {
+			// console.log("sex from parameter", gl.hSex);
+// 			$("#huntGender").select2().val(gl.hSex).trigger("change");
+			$("#huntGender").val(gl.hSex).trigger("change");
+// 			$("#huntGender").select2({ width: '100%' });
+			gl.hSex = "null";
+		}
+// 		ga('send', 'event', 'hunt', 'species', species);
+	}
+	if (gl.skipSpeciesChange == true) {
+		// console.log("NO loadHunt from speciesChange");
+		gl.skipSpeciesChange = false;
+	} else {
+		// console.log("loadHunt from speciesChange");
+		gl.bCounter = 0;
+		gl.bData = [];
+		gl.bData[gl.bCounter++] = new Array();
+		loadHunt();
+	}
+}
+
+function genderChange(evt) {
+	// 7/13/2017 - skip gender change event if a parm for huntType or weapon is also set.
+	// console.log("genderChange", gl.skipGenderChange);
+	
+	var speciesSelect = document.getElementById("huntSpecies");
+	var species = speciesSelect.options[speciesSelect.selectedIndex].value;
+	var genderSelect = document.getElementById("huntGender");
+	// console.log("genderChange", species, genderSelect.options[genderSelect.selectedIndex].value, gl.hType);
+	var gender = "";
+	if (genderSelect.selectedIndex == -1) {
+// 		console.log("genderSelect.selectedIndex", genderSelect.selectedIndex);
+		gl.hSex = 'null';
+		gl.hType = 'null';
+		gl.wType = 'null';
+	} else {
+		// console.log("genderSelect.selectedIndex", genderSelect.selectedIndex);
+		gl.hSex = 'null';
+		gender = genderSelect.options[genderSelect.selectedIndex].value;
+	}
+	$("#huntType").prop("disabled","disabled");
+	$("#huntWeapon").prop("disabled","disabled");
+	$("#huntType").val('').prop('selected',true);
+	$("#huntWeapon").val('').prop('selected',true);
+	$('#huntType').trigger('change.select2');
+	$('#huntWeapon').trigger('change.select2');
+	
+	if (gender == '' || species == '') {
+// 		$("#huntType").prop("disabled","disabled");
+// 		$("#huntWeapon").prop("disabled","disabled");
+// 		$("#huntType").val('').prop('selected',true);
+// 		$("#huntWeapon").val('').prop('selected',true);
+// 		$('#huntType').trigger('change.select2');
+// 		$('#huntWeapon').trigger('change.select2');
+	} else {
+		
+		// Dynamically set the items available in the dropdowns based on the species/gender selection
+		$.getJSON("HaSetupDDs", {'species': species, 'gender': gender } ,function(ddData) {
+			if (ddData == "INVALID") {
+				console.log("Invalid return from server", species, gender);
+			} else {
+				var startupHTmatch = false;
+				var startupWTmatch = false;
+				var $ht = $("#huntType");
+				$('#huntType option:gt(0)').remove();  // remove all but first
+				$.each(ddData.huntType, function(key, value) {
+					$ht.append($("<option></option>").attr("value", value).text(value));
+					// console.log("looking for hType match", value, gl.hType);
+					if (value == gl.hType) {
+						startupHTmatch = true;
+					}
+				});
+				$ht = $("#huntWeapon");
+				$('#huntWeapon option:gt(0)').remove();  // remove all but first
+				$.each(ddData.weapon, function(key, value) {
+					$ht.append($("<option></option>").attr("value", value).text(value));
+					if (value == gl.wType) {
+						startupWTmatch = true;
+					}
+				});
+				// do not enable them until the return from the server has occured
+				$("#huntType").prop("disabled",false);
+				$("#huntWeapon").prop("disabled",false);
+				$('#huntType').trigger('change.select2');
+				$('#huntWeapon').trigger('change.select2');
+				if (startupHTmatch) {
+// 					console.log("HT set at startup", gl.hType);
+					$("#huntType").val(gl.hType).trigger("change");
+// 					$("#huntType").select2().val(gl.hType).trigger("change");
+// 					$("#huntType").select2({ width: '100%' });
+					gl.hType = "null";
+				}
+				if (startupWTmatch) {
+// 					console.log("WT set at startup", gl.wType);
+					$("#huntWeapon").val(gl.wType).trigger("change");
+// 					$("#huntWeapon").select2().val(gl.wType).trigger("change");
+// 					$("#huntWeapon").select2({ width: '100%' });
+					gl.wType = "null";
+				}
+			}
+			
+		});
+// 		ga('send', 'event', 'hunt', 'gender', gender);
+	}
+	if (gl.skipGenderChange == true) {
+		// console.log("NO loadHunt from genderChange");
+		gl.skipGenderChange = false;
+	} else {
+		// console.log("loadHunt from genderChange");
+		loadHunt();  // It should be okay for this to start loading before the DDs are finished building.
+	}
+}
+
+// create the map view of hunts
+function loadHunt(evt) {
+	// If both the hunttype and weapon are preset on page load, skip the huntype button change.
+	if (gl.skipHuntTypeChange == true) {
+		gl.skipHuntTypeChange = false;
+	} else {
+	// console.log("loadHunt", evt);
+		$("#mapToggle").removeClass("showTable");
+		// This path means we want to clear any previous selected.
+		gl.huntLayer2Selected = "";
+// 		gl.boundaryArray = [];
+		gl.bData[gl.bCounter++] = new Array();
+		setDefExp();
+		gl.boundaryArray2 = [];
+		setDefExp2();
+		var speciesSelect = document.getElementById("huntSpecies");
+		var species = speciesSelect.options[speciesSelect.selectedIndex].value;
+		var genderSelect = document.getElementById("huntGender");
+		var gender = genderSelect.options[genderSelect.selectedIndex].value;
+		var typeSelect = document.getElementById("huntType");
+		var type = typeSelect.options[typeSelect.selectedIndex].value;
+		var weaponSelect = document.getElementById("huntWeapon");
+		var weapon = weaponSelect.options[weaponSelect.selectedIndex].value;
+	// 	var seasonSelect = document.getElementById("huntSeason");
+	// 	var season = seasonSelect.options[seasonSelect.selectedIndex].value;
+		var season = "";
+		
+		// console.log("loadHunt", species, gender, type, weapon);
+		// console.log("loadHunt (2)", gl.hType, gl.wType);
+		if (species != "" && gender != "") {
+			var tempData = {'species': species, 'gender': gender };
+			
+			if (weapon != "") {
+				tempData.weapon = weapon;
+			}
+			if (type != "") {
+				tempData.type = type;
+			}
+			if (season != "") {
+				tempData.season = season;
+			}
+			
+			$.getJSON("FilterToBoundaries", tempData, function(huntBoundariesList) {
+				// console.log("loadHunt::FilterToBoundaries", tempData);
+				// gl.boundaryArray = huntBoundariesList;
+				gl.bData[gl.bCounter++] = huntBoundariesList;
+				setDefExp();
+			});
+		}
+		loadHuntTable(species, gender, weapon, type, season);
+// 		ga('send', 'event', 'hunt', 'filter', "S:" + species+" G:"+gender+" W:"+weapon+" T:"+type);
+	}
+}
+
+// Create the table view of hunts.
+function loadHuntTable(species, gender, weapon, type, season) {
+	// console.log("loadHuntTable started", species, gender, weapon, type, season);
+	var tempData = {'species': species, 'gender': gender };
+	var filterText = "";
+	if (species == '' || gender == '') {
+		dojo.empty('tableDiv');
+	} else {
+		filterText = species + " - " + gender;
+		if (weapon != "") {
+			tempData.weapon = weapon;
+			filterText += " - " + weapon;
+		}
+		if (type != "") {
+			tempData.type = type;
+			filterText += " - " + type;
+		}
+// 		if (season != "") {
+// 			tempData.season = season;
+// 		}
+		$.getJSON("HuntTableData", tempData ,function(huntTableArray) {
+			// output a table of the array
+			// console.log("huntTableData json", huntTableArray);
+			dojo.empty('tableDiv');
+			var table = dojo.create('table', {'class':'huntTable tablesorter'}, 'tableDiv');
+			var headerArray = ["Hunt Name", "Hunt Number", "Gender", "Species", "Weapon", "Type", "Season Date(s)", "Permits"];
+			var placeholderArray = ["filter name", "filter number", "filter gender", "filter speces", "filter weapon", "filter type", "filter date", "filter permits"];			
+			var thead = dojo.create('thead', null, table);
+			var row = dojo.create('tr', {'class':'huntTableHeader'}, thead);
+			for (var i=0; i<8; i++) {
+				var thElement = dojo.create('th', {'class': 'tcol'+(i+1), 'id':'huntCol'+i, 'innerHTML':headerArray[i], 'data-placeholder':placeholderArray[i]}, row);
+			}
+			var tbody = dojo.create('tbody', null, table);
+			$.each(huntTableArray, function (key, value) {
+				addTableRow(key, value, tbody);
+			});
+			// console.log("tableSorter started on huntTable");
+			$(".huntTable").tablesorter({
+				widgets: ['filter','stickyHeaders'], 
+				widgetOptions: {
+					stickyHeaders_attachTo: '#tableDiv',
+					stickyHeaders_includeCaption: false,
+				}				
+			});
+			// console.log("tableSorter started on huntTable", $(".huntTable"));
+			$('.huntTableRow:not(.bound)').addClass('bound').on("click", huntPicked2);
+			$('.closeTable:not(.bound)').addClass('bound').on("click", toggleTableClose);
+			$("#selectCriteriaText").html(filterText);
+		}); 
+		$("#mapToggle").addClass("showTable");
+	}
+}
+
+function toggleTableClose(evt) {
+	if ($('.mobileLayout').is(":visible")) {
+		toggleMobileTable();
+	} else {
+		$("#fullTableView").addClass("hideElement"); 
+// 		$("#tableDivTitle").hide();
+	}
+}
+
+function scrollTableR(evt) {
+	$("#tableDiv").scrollLeft($("#tableDiv")[0].scrollWidth);
+	$(".scrollIconRight").addClass("hideElement");
+	$(".scrollIconLeft").removeClass("hideElement");
+}
+
+function scrollTableL(evt) {
+	$("#tableDiv").scrollLeft(0);
+	$(".scrollIconRight").removeClass("hideElement");
+	$(".scrollIconLeft").addClass("hideElement");
+}
+
+//Create the table view of hunts.
+function loadHuntTableByName(boundaryID) {
+	var tempData = { 'boundaryID': boundaryID };
+	$.getJSON("HuntTableDataByName", tempData ,function(huntTableArray) {
+		// output a table of the array
+		dojo.empty('tableDiv');
+		var table = dojo.create('table', {'class':'huntTable tablesorter'}, 'tableDiv');
+		var headerArray = ["Hunt Name", "Hunt Number", "Gender", "Species", "Weapon", "Type", "Season Date(s)", "Permits"];
+		var thead = dojo.create('thead', null, table);
+		var row = dojo.create('tr', {'class':'huntTableHeader'}, thead);
+		for (var i=0; i<8; i++) {
+			var thElement = dojo.create('th', {'class': 'tcol'+(i+1), 'id':'huntCol'+i, 'innerHTML':headerArray[i]}, row);
+		}
+		var tbody = dojo.create('tbody', null, table);
+		$.each(huntTableArray, function (key, value) {
+			addTableRow(key, value, tbody);
+		});
+// 		console.log("tableSorter started on huntTable 2");
+		$(".huntTable").tablesorter({
+			widgets: ['filter','stickyHeaders'], 
+			widgetOptions: {
+				stickyHeaders_attachTo: '#tableDiv',
+				stickyHeaders_includeCaption: false,
+			}				
+		});
+		$('.huntTableRow:not(.bound)').addClass('bound').on("click", huntPicked2);
+		$('.closeTable:not(.bound)').addClass('bound').on("click", toggleTableClose);
+		
+		var boundarySelect = document.getElementById("huntBoundarySelect");
+		var boundaryName = boundarySelect.options[boundarySelect.selectedIndex].text;
+		$("#selectCriteriaText").html(boundaryName);
+	});
+	$("#mapToggle").addClass("showTable");
+}
+
+function addTableRow (key, value, tbodyElement) {
+// 	console.log("key", key, value);
+	var row2 = dojo.create('tr', {'class':'huntTableRow'}, tbodyElement);
+	if (value.HUNT_NAME !== undefined) {
+		dojo.create('td', {'class':'tableData', 'innerHTML': value.HUNT_NAME}, row2, 'last');
+	} else {
+		dojo.create('td', {'class':'tableData', 'innerHTML': "N/A"}, row2, 'last');
+	}
+	
+	if (value.HUNT_NBR !== undefined) {
+		dojo.create('td', {'class':'tableData', 'innerHTML': value.HUNT_NBR}, row2, 'last');
+	} else {
+		dojo.create('td', {'class':'tableData', 'innerHTML': "IMPOSSIBLE"}, row2, 'last');
+	}
+	
+	if (value.GENDER !== undefined) {
+		dojo.create('td', {'class':'tableData', 'innerHTML': value.GENDER}, row2, 'last');
+	} else {
+		dojo.create('td', {'class':'tableData', 'innerHTML': "N/A"}, row2, 'last');
+	}
+	
+	if (value.SPECIES !== undefined) {
+		dojo.create('td', {'class':'tableData', 'innerHTML': value.SPECIES}, row2, 'last');
+	} else {
+		dojo.create('td', {'class':'tableData', 'innerHTML': "N/A"}, row2, 'last');
+	}
+	
+	if (value.WEAPON !== undefined) {
+		dojo.create('td', {'class':'tableData', 'innerHTML': value.WEAPON}, row2, 'last');
+	} else {
+		dojo.create('td', {'class':'tableData', 'innerHTML': "N/A"}, row2, 'last');
+	}
+	
+	if (value.HUNT_TYPE !== undefined) {
+		dojo.create('td', {'class':'tableData', 'innerHTML': value.HUNT_TYPE}, row2, 'last');
+	} else {
+		dojo.create('td', {'class':'tableData', 'innerHTML': "N/A"}, row2, 'last');
+	}
+	
+	if (value.SEASON_DATE_TEXT !== undefined) {
+		var tempDateText = formatSeasonDateText(value.SEASON_DATE_TEXT);
+		dojo.create('td', {'class':'tableData tcol7', 'innerHTML': tempDateText}, row2, 'last');
+	} else {
+		dojo.create('td', {'class':'tableData tcol7', 'innerHTML': "N/A"}, row2, 'last');
+	}
+	
+	var tempQuota = "";
+	var resQuota = 0;
+	var nonresQuota = 0;
+	if (value.QUOTA_RES !== undefined) {
+		resQuota = value.QUOTA_RES;
+	} 
+	if (value.QUOTA_NRES !== undefined) {
+		nonresQuota = value.QUOTA_NRES;
+	}
+
+	if (resQuota == 0 && nonresQuota == 0) {
+		if (value.QUOTA !== undefined && value.QUOTA != 0) {
+			tempQuota = "Total: " + value.QUOTA;
+			dojo.create('td', {'class':'tableData tcol8', 'innerHTML': tempQuota}, row2, 'last');
+		} else {
+			dojo.create('td', {'class':'tableData tcol8', 'innerHTML': ''}, row2, 'last');
+		}
+	} else {
+		tempQuota = "Res: " + resQuota;
+		tempQuota += "<br>NonRes: " + nonresQuota;
+		dojo.create('td', {'class':'tableData tcol8', 'innerHTML': tempQuota}, row2, 'last');
+	}
+	
+}
+
+function setDefExp () {
+	// alert("setDefExp");
+
+	// rework to keep track of order
+	// console.log("gl.bData", gl.bCounter - 1, gl.bData);
+	if (gl.bData[gl.bCounter - 1].length > 0) { 
+		gl.huntLayer.setDefinitionExpression("BoundaryID IN (" + gl.bData[gl.bCounter - 1].join(",") + ")");
+		gl.huntLayer.setVisibility(true);  // this had to be before the set ...
+		gl.huntLayer.setDefinitionExpression("BoundaryID IN (" + gl.bData[gl.bCounter - 1].join(",") + ")");
+	} else {
+		gl.huntLayer.setVisibility(false);
+	}
+	// console.log("gl.bData AFTER", gl.bCounter - 1, gl.bData);
+}
+
+function huntLayerUpdateEnd (evt) {
+	// If the dropdowns get changed to fast this can be off.  Fix it.
+	if (evt.target.graphics.length != gl.bData[gl.bCounter - 1].length) {
+		gl.huntLayer.setDefinitionExpression("BoundaryID IN (" + gl.bData[gl.bCounter - 1].join(",") + ")");
+	}
+}
+
+function setDefExp2 () {
+	if (gl.boundaryArray2.length > 0) {
+		gl.huntLayer2.setDefinitionExpression("BoundaryID IN (" + gl.boundaryArray2.join(",") + ")");
+		gl.huntLayer2.setVisibility(true);  // this had to be before the set ...
+		gl.huntLayer2.setDefinitionExpression("BoundaryID IN (" + gl.boundaryArray2.join(",") + ")");
+	} else {
+		gl.huntLayer2.setVisibility(false);
+		// gl.huntLayer2.setDefinitionExpression("1=2");
+	}
+}
+
+// no longer used
+function getDefExp () {
+// 	console.log("getDefExp");
+	var temp = "1=2";
+	// if (gl.boundaryArray.length > 0) { 
+	if (gl.bData[gl.bCounter - 1].length > 0) { 
+		// temp = "BoundaryID IN (" + gl.boundaryArray.join(",") + ")";
+		temp = "BoundaryID IN (" + gl.bData[gl.bCounter - 1].join(",") + ")";
+	}
+	return temp;
+}
+
+function strcmp(a, b) {
+    return a > b ? 1 : a < b ? -1 : 0;
+}
+
+function natcmpDDObjects(a, b) {
+	var aa = a.label.toUpperCase();
+	var bb = b.label.toUpperCase();
+    var x = [], y = [];
+
+    aa.replace(/(\d+)|(\D+)/g, function($0, $1, $2) { 
+    	x.push([$1 || 0, $2]); 
+    });
+    bb.replace(/(\d+)|(\D+)/g, function($0, $1, $2) { 
+    	y.push([$1 || 0, $2]); 
+    });
+
+    while(x.length && y.length) {
+        var xx = x.shift();
+        var yy = y.shift();
+        var nn = (xx[0] - yy[0]) || strcmp(xx[1], yy[1]);
+        if(nn) return nn;
+    }
+
+    if(x.length) return -1;
+    if(y.length) return +1;
+
+    return 0;
+}
+
+function customHuntStatOuput(dataBoxDiv, customHuntInfo, customDisplayNames, foundOutput) {
+	// Management_Obj is the largest use it to store the stat data
+	// It will have multiple fields seperated by a tilde
+	// Lookup the header in the reference table as "MANAGEMENT_OBJ" + index, starting at 0.
+	if(customHuntInfo.MANAGEMENT_OBJ !== undefined) {
+		var statArray = customHuntInfo.MANAGEMENT_OBJ.split('~');
+		// See if they are all blank
+		var allBlank = true;
+		for (var i=0; i<statArray.length; i++) {
+			if (statArray[i].trim().length > 0) {
+				allBlank = false;
+				break;
+			}
+		}
+		if (allBlank) {
+		} else {
+			foundOutput = true;
+			for (var i=0; i<statArray.length; i++) {
+				if (statArray[i].trim().length > 0) {
+					dojo.create('div', {'class':'leftHead', innerHTML:getDisplayText(customDisplayNames, "HUNT_BIO", "MANAGEMENT_OBJ" + i)}, dataBoxDiv);
+					dojo.create('div', {'class':'leftText', innerHTML:statArray[i].trim()}, dataBoxDiv);
+				}
+			}
+		}
+	}
+	return foundOutput;
+}
+
+function customHuntBioOuput(dataBoxDiv, customHuntInfo, customDisplayNames, foundOutput) {
+	if(customHuntInfo.GENERAL_INFORMATION !== undefined) {
+		foundOutput = true;
+		dojo.create('div', {'class':'leftHead', innerHTML:getDisplayText(customDisplayNames, "HUNT_BIO", "GENERAL_INFORMATION")}, dataBoxDiv);
+		dojo.create('div', {'class':'leftText', innerHTML:customHuntInfo.GENERAL_INFORMATION}, dataBoxDiv);
+	}
+	// Moved 2nd per Justin 4/27/2016
+	if(customHuntInfo.BIOLOGIST_NOTES !== undefined) {
+		foundOutput = true;
+		dojo.create('div', {'class':'leftHead', innerHTML:getDisplayText(customDisplayNames, "HUNT_BIO", "BIOLOGIST_NOTES")}, dataBoxDiv);
+		dojo.create('div', {'class':'leftText', innerHTML:customHuntInfo.BIOLOGIST_NOTES}, dataBoxDiv);
+	}
+	if(customHuntInfo.SAFETY_CONS !== undefined) {
+		foundOutput = true;
+		dojo.create('div', {'class':'leftHead', innerHTML:getDisplayText(customDisplayNames, "HUNT_BIO", "SAFETY_CONS")}, dataBoxDiv);
+		dojo.create('div', {'class':'leftText', innerHTML:customHuntInfo.SAFETY_CONS}, dataBoxDiv);
+	}
+	if(customHuntInfo.WEATHER_CONS !== undefined) {
+		foundOutput = true;
+		dojo.create('div', {'class':'leftHead', innerHTML:getDisplayText(customDisplayNames, "HUNT_BIO", "WEATHER_CONS")}, dataBoxDiv);
+		dojo.create('div', {'class':'leftText', innerHTML:customHuntInfo.WEATHER_CONS}, dataBoxDiv);
+	}
+	
+	return foundOutput;
+}
+
+function cwmuOutput(dataBoxDiv, dataIn, foundOutput) {
+ 
+	if (dataIn.OPERATOR_NAME === undefined || dataIn.OPERATOR_PHONE === undefined ) { // || dataIn.OPERATOR_EMAIL === undefined || dataIn.ACCESS_EMAIL === undefined
+	} else {
+		foundOutput = true;
+		dojo.create('div', {'class':'leftHeadCWMU', innerHTML:"Operator information"}, dataBoxDiv);
+		dojo.create('div', {'class':'leftInnerCWMU', innerHTML:"<b>" + "Name:</b> " + dataIn.OPERATOR_NAME}, dataBoxDiv);
+		dojo.create('div', {'class':'leftInnerCWMU', innerHTML:"<b>" + "Phone:</b> " + dataIn.OPERATOR_PHONE}, dataBoxDiv);
+		if ( dataIn.OPERATOR_EMAIL !== undefined ) {
+			dojo.create('div', {'class':'leftInnerCWMU', innerHTML:"<b>" + "Email:</b> " + dataIn.OPERATOR_EMAIL}, dataBoxDiv);
+		}
+		if (dataIn.ACCESS_NAME !== undefined && dataIn.ACCESS_NAME != dataIn.OPERATOR_NAME) {
+			dojo.create('div', {'class':'leftInnerCWMU', innerHTML:"<b>" + "Access contact:</b> " + dataIn.ACCESS_NAME}, dataBoxDiv);
+		}
+		if (dataIn.ACCESS_PHONE !== undefined && dataIn.ACCESS_PHONE != dataIn.OPERATOR_PHONE) {
+			dojo.create('div', {'class':'leftInnerCWMU', innerHTML:"<b>" + "Access contact phone:</b> " + dataIn.ACCESS_PHONE}, dataBoxDiv);
+		}
+		if ( dataIn.ACCESS_EMAIL !== undefined ) {
+			dojo.create('div', {'class':'leftInnerCWMU', innerHTML:"<b>" + "Best time to contact:</b> " + dataIn.ACCESS_EMAIL}, dataBoxDiv);
+		}
+		dojo.create('br', {}, dataBoxDiv);
+	}
+	
+	if (dataIn.COUNTIES === undefined) {
+	} else {
+		foundOutput = true;
+		dojo.create('div', {'class':'leftHeadCWMU', innerHTML:"Location"}, dataBoxDiv);
+			dojo.create('div', {'class':'leftInnerCWMU', innerHTML:"<b>" + "Counties:</b> " + dataIn.COUNTIES}, dataBoxDiv);
+			// dojo.create('div', {'class':'leftInnerCWMU', innerHTML:"<b>" + "Wildlife management unit(s):</b> " + dataIn.COUNTIES}, dataBoxDiv);
+		dojo.create('br', {}, dataBoxDiv);
+	}
+	
+// 2/25/2016 - removed this section per wildlife, move Best time to contact above.
+// 	if (dataIn.ACCESS_NAME === undefined || dataIn.ACCESS_PHONE === undefined || dataIn.ACCESS_EMAIL === undefined) {
+// 	} else {
+// 		dojo.create('div', {'class':'leftHeadCWMU', innerHTML:"Access contact"}, dataBoxDiv);
+// 			dojo.create('div', {'class':'leftInnerCWMU', innerHTML:"<b>" + "Name:</b> " + dataIn.ACCESS_NAME}, dataBoxDiv);
+// 			dojo.create('div', {'class':'leftInnerCWMU', innerHTML:"<b>" + "Phone:</b> " + dataIn.ACCESS_PHONE}, dataBoxDiv);
+// 			dojo.create('div', {'class':'leftInnerCWMU', innerHTML:"<b>" + "Best time to contact:</b> " + dataIn.ACCESS_EMAIL}, dataBoxDiv);
+// 		dojo.create('br', {}, dataBoxDiv);
+// 	}
+	
+	if (dataIn.ACRES_PRIV === undefined && dataIn.ACRES_PUBLIC === undefined ) {
+	} else {
+		if (dataIn.ACRES_PRIV == 0 && dataIn.ACRES_PUBLIC == 0 ) {
+		} else {
+			foundOutput = true;
+			dojo.create('div', {'class':'leftHeadCWMU', innerHTML:"Property size"}, dataBoxDiv);
+			dojo.create('div', {'class':'leftHeadCWMUitalics', innerHTML:"An estimate of the property size and the public/private composition."}, dataBoxDiv);
+			// size table here
+			var table = dojo.create('table', {'class':'tableSpecies tablesorter'}, dataBoxDiv);
+			var thead = dojo.create('thead', {'class':'tableHeader'}, table);
+			var row = dojo.create('tr', {'class':'tableHeader'}, thead);
+			dojo.create('th', {'class':'tableHeaderColumn', 'innerHTML':''}, row);
+			dojo.create('th', {'class':'tableHeaderColumn', 'innerHTML':'Acres'}, row);
+			var tbody = dojo.create('tbody', {'class':'tableHeader'}, table);
+			var row2 = dojo.create('tr', {'class':'tableHeader'}, tbody);
+			dojo.create('td', {'class':'tableData', 'innerHTML': 'Private'}, row2, 'last');
+			if (dataIn.ACRES_PRIV != undefined) {
+				dojo.create('td', {'class':'tableData', 'innerHTML': dataIn.ACRES_PRIV}, row2, 'last');
+			} else {
+				dojo.create('td', {'class':'tableData', 'innerHTML': '-'}, row2, 'last');
+			}
+			row2 = dojo.create('tr', {'class':'tableHeader'}, tbody);
+			dojo.create('td', {'class':'tableData', 'innerHTML': 'Public'}, row2, 'last');
+			if (dataIn.ACRES_PUBLIC != undefined) {
+				dojo.create('td', {'class':'tableData', 'innerHTML': dataIn.ACRES_PUBLIC}, row2, 'last');
+			} else {
+				dojo.create('td', {'class':'tableData', 'innerHTML': '-'}, row2, 'last');
+			}
+		}
+	}
+	if (dataIn.huntBoundarySpecies === undefined) {
+	} else if (dataIn.huntBoundarySpecies.length == 0) {
+	} else {
+		foundOutput = true;
+/*	Removed per Covy, statistaclly insignificant results
+		dojo.create('div', {'class':'leftHeadCWMU', innerHTML:"Satisfaction index"}, dataBoxDiv);
+		dojo.create('div', {'class':'leftHeadCWMUitalics', innerHTML:"The satisfaction index ranges from 1 to 5 with 5 being the best. Hunters are asked how they rate their hunt and the satisfaction index is an average of those responses. This is a three-year average."}, dataBoxDiv);
+		table = dojo.create('table', {'class':'tableSpecies tablesorter'}, dataBoxDiv);
+		thead = dojo.create('thead', {'class':'tableHeader'}, table);
+		row = dojo.create('tr', {'class':'tableHeader'}, thead);
+		dojo.create('th', {'class':'tableHeaderColumn', 'innerHTML':''}, row);
+		dojo.create('th', {'class':'tableHeaderColumn', 'innerHTML':'Public'}, row);
+		dojo.create('th', {'class':'tableHeaderColumn', 'innerHTML':'Private'}, row);
+		tbody = dojo.create('tbody', {'class':'tableHeader'}, table);
+		$.each(dataIn.huntBoundarySpecies, function (key, value) {
+			row = dojo.create('tr', {'class':'tableHeader'}, tbody);
+			dojo.create('td', {'class':'tableData', 'innerHTML':value.SPECIES_SEX}, row);
+			dojo.create('td', {'class':'tableData', 'innerHTML':value.SAT_INDEX_PUB}, row);
+			dojo.create('td', {'class':'tableData', 'innerHTML':value.SAT_INDEX_PRIV}, row);
+		}); */
+	
+/*		dojo.create('div', {'class':'leftHeadCWMU', innerHTML:"Hunter success"}, dataBoxDiv);
+		dojo.create('div', {'class':'leftHeadCWMUitalics', innerHTML:"Hunter success is the percent of hunters who successfully harvested an animal, reported for years in which data is available."}, dataBoxDiv);
+		table = dojo.create('table', {'class':'tableSpecies tablesorter'}, dataBoxDiv);
+		thead = dojo.create('thead', {'class':'tableHeader'}, table);
+		row = dojo.create('tr', {'class':'tableHeader'}, thead);
+		dojo.create('th', {'class':'tableHeaderColumn', 'innerHTML':''}, row);
+		dojo.create('th', {'class':'tableHeaderColumn', 'innerHTML':'Public'}, row);
+		dojo.create('th', {'class':'tableHeaderColumn', 'innerHTML':'Private'}, row);
+		tbody = dojo.create('tbody', {'class':'tableHeader'}, table);
+		$.each(dataIn.huntBoundarySpecies, function (key, value) {
+			row = dojo.create('tr', {'class':'tableHeader'}, tbody);
+			dojo.create('td', {'class':'tableData', 'innerHTML':value.SPECIES_SEX}, row);
+			dojo.create('td', {'class':'tableData', 'innerHTML':value.H_SUCCESS_PUB+'%'}, row);
+			dojo.create('td', {'class':'tableData', 'innerHTML':value.H_SUCCESS_PRIV+'%'}, row);
+		}); */
+		
+		dojo.create('div', {'class':'leftHeadCWMU', innerHTML:"Hunting opportunities (acres, days and dates)"}, dataBoxDiv);
+		dojo.create('div', {'class':'leftHeadCWMUitalics', innerHTML:"The opportunity to hunt on this CWMU depends on the type of animal hunted."}, dataBoxDiv);
+		table = dojo.create('table', {'class':'tableSpecies tablesorter'}, dataBoxDiv);
+		thead = dojo.create('thead', {'class':'tableHeader'}, table);
+		row = dojo.create('tr', {'class':'tableHeader'}, thead);
+		dojo.create('th', {'class':'tableHeaderColumn', 'innerHTML':''}, row);
+		dojo.create('th', {'class':'tableHeaderColumn', 'innerHTML':'Acres'}, row);
+		dojo.create('th', {'class':'tableHeaderColumn', 'innerHTML':'Days'}, row);
+		dojo.create('th', {'class':'tableHeaderColumn', 'innerHTML':'Dates'}, row);
+		tbody = dojo.create('tbody', {'class':'tableHeader'}, table);
+		$.each(dataIn.huntBoundarySpecies, function (key, value) {
+			row = dojo.create('tr', {'class':'tableHeader'}, tbody);
+			dojo.create('td', {'class':'tableData', 'innerHTML':value.SPECIES_SEX}, row);
+			dojo.create('td', {'class':'tableData', 'innerHTML':value.H_OPP_ACRES}, row);
+			dojo.create('td', {'class':'tableData', 'innerHTML':value.H_OPP_DAYS}, row);
+			if (value.H_OPP_DATES != undefined) {
+				dojo.create('td', {'class':'tableData', 'innerHTML':value.H_OPP_DATES}, row);
+			} else {
+				dojo.create('td', {'class':'tableData', 'innerHTML':''}, row);
+			}
+		});
+	
+/*  Removed 5/30/2017  The data is above.
+		dojo.create('div', {'class':'leftHeadCWMU', innerHTML:"Available hunting permits"}, dataBoxDiv);
+		dojo.create('div', {'class':'leftHeadCWMUitalics', innerHTML:"Private indicates that there are permits available for sale by the CWMU operator."}, dataBoxDiv);
+		table = dojo.create('table', {'class':'tableSpecies tablesorter'}, dataBoxDiv);
+		thead = dojo.create('thead', {'class':'tableHeader'}, table);
+		row = dojo.create('tr', {'class':'tableHeader'}, thead);
+		dojo.create('th', {'class':'tableHeaderColumn', 'innerHTML':''}, row);
+		dojo.create('th', {'class':'tableHeaderColumn', 'innerHTML':'Public'}, row);
+		dojo.create('th', {'class':'tableHeaderColumn', 'innerHTML':'Private'}, row);
+		tbody = dojo.create('tbody', {'class':'tableHeader'}, table);
+		$.each(dataIn.huntBoundarySpecies, function (key, value) {
+			row = dojo.create('tr', {'class':'tableHeader'}, tbody);
+			dojo.create('td', {'class':'tableData', 'innerHTML':value.SPECIES_SEX}, row);
+			dojo.create('td', {'class':'tableData', 'innerHTML':value.PERM_PUB}, row);
+			dojo.create('td', {'class':'tableData', 'innerHTML':value.PERM_PRIV}, row);
+		}); */
+	}
+	
+	if (dataIn.Q_GUEST === undefined || dataIn.Q_SUNDAY === undefined || dataIn.Q_SCOUT === undefined
+			|| dataIn.Q_HORSES === undefined || dataIn.Q_ATV === undefined || dataIn.Q_GUIDE === undefined
+			|| dataIn.Q_PACKING === undefined || dataIn.Q_LODGE_FOOD === undefined || dataIn.Q_CAMP === undefined
+			|| dataIn.Q_HANDICAP === undefined || dataIn.Q_MAPS === undefined || dataIn.Q_ACTIVITIES === undefined
+			|| dataIn.Q_CLOSED === undefined ) {
+	} else {
+		foundOutput = true;
+		dojo.create('div', {'class':'leftHeadCWMU', innerHTML:"Common questions"}, dataBoxDiv);
+		table = dojo.create('table', {'class':'tableSpecies tablesorter'}, dataBoxDiv);
+		thead = dojo.create('thead', {'class':'tableHeader'}, table);
+		row = dojo.create('tr', {'class':'tableHeader'}, thead);
+		dojo.create('th', {'class':'tableHeaderColumn', 'innerHTML':'Question'}, row);
+		dojo.create('th', {'class':'tableHeaderColumn', 'innerHTML':'Answer'}, row);
+		tbody = dojo.create('tbody', {'class':'tableHeader'}, table);
+		row = dojo.create('tr', {'class':'tableHeader'}, tbody);
+		dojo.create('td', {'class':'tableData', 'innerHTML':'Can I bring a guest?'}, row);
+		dojo.create('td', {'class':'tableData', 'innerHTML':dataIn.Q_GUEST}, row);
+		row = dojo.create('tr', {'class':'tableHeader'}, tbody);
+		dojo.create('td', {'class':'tableData', 'innerHTML':'Can I hunt on Sunday?'}, row);
+		dojo.create('td', {'class':'tableData', 'innerHTML':dataIn.Q_SUNDAY}, row);
+		row = dojo.create('tr', {'class':'tableHeader'}, tbody);
+		dojo.create('td', {'class':'tableData', 'innerHTML':'Can I scout the CWMU before the season?'}, row);
+		dojo.create('td', {'class':'tableData', 'innerHTML':dataIn.Q_SCOUT}, row);
+		row = dojo.create('tr', {'class':'tableHeader'}, tbody);
+		dojo.create('td', {'class':'tableData', 'innerHTML':'Are horses allowed?'}, row);
+		dojo.create('td', {'class':'tableData', 'innerHTML':dataIn.Q_HORSES}, row);
+		row = dojo.create('tr', {'class':'tableHeader'}, tbody);
+		dojo.create('td', {'class':'tableData', 'innerHTML':"Are ATV's allowed?"}, row);
+		dojo.create('td', {'class':'tableData', 'innerHTML':dataIn.Q_ATV}, row);
+		row = dojo.create('tr', {'class':'tableHeader'}, tbody);
+		dojo.create('td', {'class':'tableData', 'innerHTML':'Is a guide service available?'}, row);
+		dojo.create('td', {'class':'tableData', 'innerHTML':dataIn.Q_GUIDE}, row);
+		row = dojo.create('tr', {'class':'tableHeader'}, tbody);
+		dojo.create('td', {'class':'tableData', 'innerHTML':'Do you offer a packing service?'}, row);
+		dojo.create('td', {'class':'tableData', 'innerHTML':dataIn.Q_PACKING}, row);
+		row = dojo.create('tr', {'class':'tableHeader'}, tbody);
+		dojo.create('td', {'class':'tableData', 'innerHTML':'Is lodging or food available?'}, row);
+		dojo.create('td', {'class':'tableData', 'innerHTML':dataIn.Q_LODGE_FOOD}, row);
+		row = dojo.create('tr', {'class':'tableHeader'}, tbody);
+		dojo.create('td', {'class':'tableData', 'innerHTML':'Can I camp on the CWMU?'}, row);
+		dojo.create('td', {'class':'tableData', 'innerHTML':dataIn.Q_CAMP}, row);
+		row = dojo.create('tr', {'class':'tableHeader'}, tbody);
+		dojo.create('td', {'class':'tableData', 'innerHTML':'Is the CWMU handicapped accessible?'}, row);
+		dojo.create('td', {'class':'tableData', 'innerHTML':dataIn.Q_HANDICAP}, row);
+		row = dojo.create('tr', {'class':'tableHeader'}, tbody);
+		dojo.create('td', {'class':'tableData', 'innerHTML':'Are maps available?'}, row);
+		dojo.create('td', {'class':'tableData', 'innerHTML':dataIn.Q_MAPS}, row);
+		row = dojo.create('tr', {'class':'tableHeader'}, tbody);
+		dojo.create('td', {'class':'tableData', 'innerHTML':'Are any other activities offered on the CWMU?'}, row);
+		dojo.create('td', {'class':'tableData', 'innerHTML':dataIn.Q_ACTIVITIES}, row);
+		row = dojo.create('tr', {'class':'tableHeader'}, tbody);
+		dojo.create('td', {'class':'tableData', 'innerHTML':'Are there any closed areas on the property?'}, row);
+		dojo.create('td', {'class':'tableData', 'innerHTML':dataIn.Q_CLOSED}, row);
+	}
+	
+	if (dataIn.RULES === undefined) {
+		
+	} else {
+		foundOutput = true;
+		var tempRules = dataIn.RULES.split("~");
+		var liArray = [];
+		for (var i=0; i<tempRules.length; i++) {
+			if (tempRules[i].trim() != "") {
+				liArray.push(tempRules[i].trim());
+			}
+		}
+		if (liArray.length != 0) {
+			dojo.create('div', {'class':'leftHeadCWMU', innerHTML:"Rules of conduct"}, dataBoxDiv);
+			var ul = dojo.create('ul', {'class':'leftInnerCWMU'}, dataBoxDiv);
+// 			var tempRules = dataIn.RULES.split("~");
+			for (var i=0; i<liArray.length; i++) {
+				dojo.create('li', {'class':'', innerHTML:liArray[i]}, ul);
+			}
+		}
+	}
+	return foundOutput;
+}
+
+function printHunt() {
+	var huntNumber = $("#huntNumberSelect").val();
+	var buildParms = "HN=" + huntNumber;
+	buildParms += "&MINX=" + Math.trunc(map.extent.xmin);
+	buildParms += "&MINY=" + Math.trunc(map.extent.ymin);
+	buildParms += "&MAXX=" + Math.trunc(map.extent.xmax);
+	buildParms += "&MAXY=" + Math.trunc(map.extent.ymax);
+// 	var bmap = map.getBasemap();
+	var bmap = gl.basemapName;
+	buildParms += "&BASEMAP=" + bmap;
+	if ($("#antlerControlAreaToggle").hasClass("buttonElementGreenToggle")) {
+		buildParms += "&AC=ON";
+	}
+	if ($("#cwmuAreaToggle").hasClass("buttonElementGreenToggle")) {
+		buildParms += "&CWMU=ON";
+	}
+	if ($("#wiaAreaToggle").hasClass("buttonElementGreenToggle")) {
+		buildParms += "&WIA=ON";
+	}
+	if ($("#wmaAreaToggle").hasClass("buttonElementGreenToggle")) {
+		buildParms += "&WMA=ON";
+	}
+	if ($("#fedAreaToggle").hasClass("buttonElementGreenToggle")) {
+		buildParms += "&LFED=ON";
+	}
+// 	if ($("#privAreaToggle").hasClass("buttonElementGreenToggle")) {
+// 		buildParms += "&LPRIV=ON";
+// 	}
+// 	if ($("#stateAreaToggle").hasClass("buttonElementGreenToggle")) {
+// 		buildParms += "&LSTATE=ON";
+// 	}
+	if ($("#habitatSelectAlt").hasClass("buttonElementGreenToggle")) {
+		buildParms += "&HABITAT=" + $("#habitatSelectAlt").val();
+	}
+	
+	window.open('https://dwrapps.utah.gov' + "/huntboundary/PrintABoundary?" + buildParms, "_blank");
+}
+
+});
+
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-11Y80DXQRJ"></script> -->
+ <script>
+//   window.dataLayer = window.dataLayer || [];
+//   function gtag(){dataLayer.push(arguments);}
+//   gtag('js', new Date());
+
+//   gtag('config', 'G-11Y80DXQRJ');
+ </script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-11Y80DXQRJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-11Y80DXQRJ');
+</script>
+
+</head>
+<body>
+<div class="stateHeader">
+<!-- 	<script type="text/javascript" src="https://secure.utah.gov/nav/fluidheader.js"></script> -->
+	<script type="text/javascript" src="https://www.utah.gov/nav/navheader.js"></script>
+</div>
+<!-- End of State Header -->
+<div id="mapDiv">
+	
+	<div id="dwrLogoDrag">
+		<div id="dwrlogo">
+     		<img src="/huntboundary/images/Wildlife_hunt_planner_transparent.png" alt="Wildlife" />
+ 		</div>
+ 		<div id="dwrlogoMobile">
+     		<img src="/huntboundary/images/Wildlife_hp_small.png" alt="Wildlife" />
+ 		</div>
+	</div>
+	
+	<div id="filterLayout">
+		<div id="selectionOptions" class="buttonElement"><span id="startHere" class="buttonSpan">Find a hunt<br>(START HERE)</span><span id="mSearch" class="mAll"></span></div>
+		<div id="selectionOptionsInner">
+			<div id="huntNumberSelectAlt" class="filterElement"></div>
+			<div class="buttonElementShort"><span class="buttonSpan">-- OR --</span></div>
+			<div id="huntBoundarySelectAlt" class="filterElement"></div>
+			<div class="buttonElementShort"><span class="buttonSpan">-- OR --</span></div>
+			<div class="filterElement">
+<!-- 				<div class="gregsSpecial"><div class="gregsSpecialInner">Initial boundaries may take a few seconds to load</div></div> -->
+				<div id="speciesDDAlt"></div>
+				<div id="genderDDAlt"></div>
+				<div id="typeDDAlt"></div>
+				<div id="weaponDDAlt"></div>
+			</div>
+		</div>
+		<div id="selectionOptions2" class="buttonElement"><span class="buttonSpan">Add map data layers</span><span id="mAdd" class="mAll"></span></div>
+		<div id="selectionOptions2Inner">
+			<div id="antlerControlAreaToggle" class="buttonElementBlueToggle"><span class="buttonSpan">Antlerless elk-control areas</span></div>
+			<div id="cwmuAreaToggle" class="buttonElementBlueToggle"><span class="buttonSpan">CWMU areas</span></div>
+			<div id="wmaAreaToggle" class="buttonElementBlueToggle"><div class="buttonSpan">Wildlife management areas</div></div>
+			<div id="wiaAreaToggle" class="buttonElementBlueToggle"><span class="buttonSpan">Walk-in access areas</span></div>
+			<div id="habitatSelectAlt" class="buttonElementBlueToggle"><span class="buttonSpan">Species Habitat Layers</span></div>
+			<div id="fedAreaToggle" class="buttonElementBlueToggle"><span class="buttonSpan">Land ownership</span></div>
+<!-- 			<div id="stateAreaToggle" class="buttonElementBlueToggle"><span class="buttonSpan">State ownership</span></div> -->
+<!-- 			<div id="privAreaToggle" class="buttonElementBlueToggle"><span class="buttonSpan">Private ownership</span></div> -->
+			<div id="clinicAreaToggle" class="buttonElementBlueToggle"><span class="buttonSpan">Medical facilities</span></div>
+			<div id="extra1" class="buttonElementBlueToggle hideElement"><span class="buttonSpan">Extra1</span></div>
+			<div id="extra2" class="buttonElementBlueToggle hideElement"><span class="buttonSpan">Extra2</span></div>
+			<div id="extra3" class="buttonElementBlueToggle hideElement"><span class="buttonSpan">Extra3</span></div>
+			<div id="extra4" class="buttonElementBlueToggle hideElement"><span class="buttonSpan">Extra4</span></div>
+			<div id="extra5" class="buttonElementBlueToggle hideElement"><span class="buttonSpan">Extra5</span></div>
+			<div id="extra6" class="buttonElementBlueToggle hideElement"><span class="buttonSpan">Extra6</span></div>
+			<div id="extra7" class="buttonElementBlueToggle hideElement"><span class="buttonSpan">Extra7</span></div>
+		</div>
+		<div id="mapToggle" class="buttonElement"><span class="buttonSpan">Hunts as table view</span><span id="mTable" class="mAll"></span></div>
+		<div id="changeBasemapToggle" class="buttonElement"><span class="buttonSpan">Change basemap</span><span id="mBasemap" class="mAll"></span></div>
+		<div id="changeBasemapToggleInner">
+			<div id="basemapToggle" class="buttonElementBlueToggle"></div>
+		</div>
+		<div id="about" class="buttonElement"><span class="buttonSpan">About</span><span id="mAbout" class="mAll"></span></div>
+		<p id="pageDB"></p>
+	</div>
+	
+	<div id="dataLayout"></div>
+	
+	<div class="mobileLayout">
+		<span class="mobileSpace"><span class="mobileIcon mobileExtras"></span></span>
+		<span class="mobileSpace"><span class="mobileIcon mobileBasemap"></span></span>
+		<span class="mobileSpace"><span class="mobileIcon mobileTable"></span></span>
+		<span class="mobileSpace"><span class="mobileIcon mobileLayers"></span></span>
+		<span class="mobileSpace"><span class="mobileIcon mobileFind"></span></span>
+<!-- 		<span class="mobileIcon mobileExtras"></span> -->
+<!-- 		<span class="mobileIcon mobileBasemap"></span> -->
+<!-- 		<span class="mobileIcon mobileTable"></span> -->
+<!-- 		<span class="mobileIcon mobileLayers"></span> -->
+<!-- 		<span class="mobileIcon mobileFind"></span> -->
+	</div>
+	
+	<div id="huntPicker"></div>
+	<div id="boundaryPicker"></div>
+<!-- 	<div id="tableDivOuter"> -->
+<!-- 		<div id="tableDivTitle" class="buttonElementWider"> -->
+<!-- 			<span class="buttonSpan">Hunt Table</span> -->
+<!-- 			<span class="closeTable">X</span> -->
+<!-- 			<span class="scrollLayoutR"> -->
+<!-- 				<span class="scrollIconRight hideElement"></span> -->
+<!-- 				<span class="scrollIconRight hideElement"></span> -->
+<!-- 				<span class="scrollIconRight hideElement"></span> -->
+<!-- 			</span> -->
+<!-- 			<span class="scrollLayoutL"> -->
+<!-- 				<span class="scrollIconLeft hideElement"></span> -->
+<!-- 				<span class="scrollIconLeft hideElement"></span> -->
+<!-- 				<span class="scrollIconLeft hideElement"></span> -->
+<!-- 			</span> -->
+<!-- 		</div> -->
+<!-- 		<div id="tableDiv"></div> -->
+<!-- 	</div> -->
+	<div id="shareLink"></div>
+	<div id="statement">
+		<span id="st1"></span>
+		<span id="st2"></span>
+		<span id="st3"></span>
+		<span id="st4"></span>
+	</div>
+	<div id="ownershipLegend" class="hideElement">
+		<span id="fedL">FEDERAL</span>
+		<span id="staL">STATE</span>
+		<span id="priL">PRIVATE</span>
+	</div>
+	<div id="loadingImage" class="hideElement"></div>
+</div>
+<div id="aboutDiv" class="hideElement">
+	<div id="dwrAbout">
+		<img style="overflow-x:hidden;" src="/huntboundary/images/Wildlife_hunt_planner_transparent.png" alt="Wildlife" />
+	</div>
+	<div id="dwrAboutMobile">
+     	<img src="/huntboundary/images/Wildlife_hp_small.png" alt="Wildlife" />
+ 	</div>
+	
+	<span id="about1"></span>
+	<span id="about2"></span>
+	<span id="about3"></span>
+	<span id="about4"></span>
+	<span id="about5"></span>
+	<br>
+</div>
+
+<div id="fullTableView" class="hideElement">
+	<div class="tableHeader2">
+		<span id="dwrAbout2">
+			<img style="overflow-x:hidden;" src="/huntboundary/images/Wildlife_hunt_planner_transparent.png" alt="Wildlife" />
+			
+		</span>
+		<span id="tableMessage">Click a hunt below to view that boundary<br>Click map icon to right for all boundaries</span>
+		<div id="mapView"></div>
+		<div id="selectView"></div>
+		<span class="clearBoth"></span>
+	</div>
+	<div class="seperatorBar"></div>
+	<div id="selectCriteriaText"></div>
+	<div id="tableDiv"></div>
+</div>
+
+<div id="messageView" class="messageClick"><div class="messageDiv">Be Advised - National Forests may contain areas of private land.  Please obtain written permission from land owner to hunt private property.</div></div>
+
+</body>
+</html>

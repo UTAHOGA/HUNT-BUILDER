@@ -1,12 +1,19 @@
 {
-  "status": "PASS",
-  "generated_at_utc": "2026-06-21T06:57:11.763Z",
-  "source_rollup": "data_truth/draw_results_truth/normalized/draw_results_2024_for_2025_candidate_promotion_hunt_code_rollup.csv",
-  "source_point_rows": "data_truth/draw_results_truth/normalized/draw_results_2024_for_2025_candidate_promotion_file_records.csv",
+  "generated_at_utc": "2026-06-22T18:12:34.184279+00:00",
+  "year": 2024,
+  "canonical_source": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2024_for_2025_canonical_yearly_draw_results.csv",
   "output_xlsx": "outputs/2024 standardized long.xlsx",
-  "summary_rows": 676,
-  "long_rows": 27649,
-  "unique_hunt_codes": 676,
-  "transformed_summary_names": [],
-  "transformed_long_names": []
+  "summary_rows": 1028,
+  "long_rows": 43335,
+  "long_columns": 37,
+  "record_type_counts": {
+    "point_level_draw_result": 43324,
+    "availability_only": 1,
+    "sportsman_total": 10
+  },
+  "permit_blank_counts": {
+    "permits_2024_res": 0,
+    "permits_2024_nr": 0,
+    "permits_2024_total": 0
+  }
 }

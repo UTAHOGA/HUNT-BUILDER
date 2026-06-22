@@ -1,0 +1,470 @@
+{
+  "file": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2023_for_2024_canonical_yearly_draw_results.csv",
+  "rows": 35834,
+  "unique_hunt_codes": 1034,
+  "blank_boundary_rows": 1981,
+  "blank_boundary_unique_hunt_codes": 49,
+  "by_prefix": [
+    [
+      "DB",
+      1190
+    ],
+    [
+      "EA",
+      636
+    ],
+    [
+      "EB",
+      124
+    ],
+    [
+      "MB",
+      31
+    ]
+  ],
+  "by_species": [
+    [
+      "Deer",
+      1190
+    ],
+    [
+      "Elk",
+      760
+    ],
+    [
+      "MOOSE",
+      31
+    ]
+  ],
+  "by_hunt_type": [
+    [
+      "General Season",
+      1028
+    ],
+    [
+      "Limited Entry",
+      754
+    ],
+    [
+      "Dedicated Hunter",
+      168
+    ],
+    [
+      "Once-in-a-Lifetime",
+      31
+    ]
+  ],
+  "by_draw_design": [
+    [
+      "Preference",
+      1640
+    ],
+    [
+      "Max/Weighted Split",
+      341
+    ]
+  ],
+  "top_blank_hunt_codes": [
+    {
+      "hunt_code": "EA1194",
+      "blank_rows": 50,
+      "hunt_name": "Cache, Richmond Hyde Park",
+      "species": "Elk",
+      "sex_type": "Antlerless",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Limited Entry",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "EA1205",
+      "blank_rows": 50,
+      "hunt_name": "Cache, Richmond Hyde Park",
+      "species": "Elk",
+      "sex_type": "Antlerless",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Limited Entry",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "EA1227",
+      "blank_rows": 50,
+      "hunt_name": "Fillmore, Kanosh Valley",
+      "species": "Elk",
+      "sex_type": "Antlerless",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Limited Entry",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "EA1253",
+      "blank_rows": 50,
+      "hunt_name": "Southwest Desert, Desert Experimental Range",
+      "species": "Elk",
+      "sex_type": "Antlerless",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Limited Entry",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "EA1255",
+      "blank_rows": 50,
+      "hunt_name": "5s",
+      "species": "Elk",
+      "sex_type": "Antlerless",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Limited Entry",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "EA2035",
+      "blank_rows": 50,
+      "hunt_name": "Ogden",
+      "species": "Elk",
+      "sex_type": "Antlerless",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Limited Entry",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "EA1009",
+      "blank_rows": 50,
+      "hunt_name": "Cache, East",
+      "species": "Elk",
+      "sex_type": "Antlerless",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Limited Entry",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "EA1052",
+      "blank_rows": 50,
+      "hunt_name": "Nine Mile, Avintaquin-west Anthro",
+      "species": "Elk",
+      "sex_type": "Antlerless",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Limited Entry",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "EA1091",
+      "blank_rows": 50,
+      "hunt_name": "South Slope, Diamond Mtn",
+      "species": "Elk",
+      "sex_type": "Antlerless",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Limited Entry",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "EA1098",
+      "blank_rows": 50,
+      "hunt_name": "South Slope, Yellowstone",
+      "species": "Elk",
+      "sex_type": "Antlerless",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Limited Entry",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "EA1099",
+      "blank_rows": 50,
+      "hunt_name": "South Slope, Yellowstone",
+      "species": "Elk",
+      "sex_type": "Antlerless",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Limited Entry",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "EA1100",
+      "blank_rows": 50,
+      "hunt_name": "South Slope, Yellowstone",
+      "species": "Elk",
+      "sex_type": "Antlerless",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Limited Entry",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1515",
+      "blank_rows": 44,
+      "hunt_name": "Oquirrh-stansbury",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Archery",
+      "hunt_type": "General Season",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1500",
+      "blank_rows": 44,
+      "hunt_name": "Beaver",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Archery",
+      "hunt_type": "General Season",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1520",
+      "blank_rows": 44,
+      "hunt_name": "Plateau, Thousand Lakes",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Archery",
+      "hunt_type": "General Season",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1527",
+      "blank_rows": 44,
+      "hunt_name": "West Desert, Tintic",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Archery",
+      "hunt_type": "General Season",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1528",
+      "blank_rows": 44,
+      "hunt_name": "West Desert, West",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Archery",
+      "hunt_type": "General Season",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1530",
+      "blank_rows": 44,
+      "hunt_name": "Beaver",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "General Season",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1532",
+      "blank_rows": 44,
+      "hunt_name": "Cache",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "General Season",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1545",
+      "blank_rows": 44,
+      "hunt_name": "Oquirrh-stansbury",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "General Season",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1548",
+      "blank_rows": 44,
+      "hunt_name": "Plateau, Boulder/kaiparowits",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "General Season",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1550",
+      "blank_rows": 44,
+      "hunt_name": "Plateau, Thousand Lakes",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "General Season",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1557",
+      "blank_rows": 44,
+      "hunt_name": "West Desert, Tintic",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "General Season",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1558",
+      "blank_rows": 44,
+      "hunt_name": "West Desert, West",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "General Season",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1560",
+      "blank_rows": 44,
+      "hunt_name": "Beaver",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Muzzleloader",
+      "hunt_type": "General Season",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1562",
+      "blank_rows": 44,
+      "hunt_name": "Cache",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Muzzleloader",
+      "hunt_type": "General Season",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1575",
+      "blank_rows": 44,
+      "hunt_name": "Oquirrh-stansbury",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Muzzleloader",
+      "hunt_type": "General Season",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1578",
+      "blank_rows": 44,
+      "hunt_name": "Plateau, Boulder/kaiparowits",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Muzzleloader",
+      "hunt_type": "General Season",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1580",
+      "blank_rows": 44,
+      "hunt_name": "Plateau, Thousand Lakes",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Muzzleloader",
+      "hunt_type": "General Season",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1587",
+      "blank_rows": 44,
+      "hunt_name": "West Desert, Tintic",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Muzzleloader",
+      "hunt_type": "General Season",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1588",
+      "blank_rows": 44,
+      "hunt_name": "West Desert, West",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Muzzleloader",
+      "hunt_type": "General Season",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1784",
+      "blank_rows": 42,
+      "hunt_name": "Oquirrh-stansbury",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Dedicated Hunter",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1769",
+      "blank_rows": 42,
+      "hunt_name": "Beaver",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Dedicated Hunter",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1796",
+      "blank_rows": 42,
+      "hunt_name": "West Desert, Tintic",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Dedicated Hunter",
+      "draw_design": "Preference"
+    },
+    {
+      "hunt_code": "DB1278",
+      "blank_rows": 31,
+      "hunt_name": "Powder Mountain",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Limited Entry",
+      "draw_design": "Max/Weighted Split"
+    },
+    {
+      "hunt_code": "DB1297",
+      "blank_rows": 31,
+      "hunt_name": "Stillman Creek Ranch",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Limited Entry",
+      "draw_design": "Max/Weighted Split"
+    },
+    {
+      "hunt_code": "DB1307",
+      "blank_rows": 31,
+      "hunt_name": "Weber Florence Creek",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Limited Entry",
+      "draw_design": "Max/Weighted Split"
+    },
+    {
+      "hunt_code": "DB1339",
+      "blank_rows": 31,
+      "hunt_name": "Double J Valley",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Limited Entry",
+      "draw_design": "Max/Weighted Split"
+    },
+    {
+      "hunt_code": "DB1340",
+      "blank_rows": 31,
+      "hunt_name": "Tunnel Hollow",
+      "species": "Deer",
+      "sex_type": "Buck",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Limited Entry",
+      "draw_design": "Max/Weighted Split"
+    },
+    {
+      "hunt_code": "EB3510",
+      "blank_rows": 31,
+      "hunt_name": "Conover-jensen",
+      "species": "Elk",
+      "sex_type": "Bull",
+      "weapon": "Any Legal Weapon",
+      "hunt_type": "Limited Entry",
+      "draw_design": "Max/Weighted Split"
+    }
+  ],
+  "rollup_csv": "audits\\database_alignment\\identity_registry\\draw_results_2023_for_2024_boundary_blank_code_rollup.csv"
+}

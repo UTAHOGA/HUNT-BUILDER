@@ -1,0 +1,4 @@
+year,file,rows,columns,hunt_code_column,boundary_id_column,hunt_code_blank_rows,boundary_id_blank_rows,unique_hunt_codes,hunt_codes_with_blank_boundary_id,hunt_codes_with_multiple_boundary_ids
+2024,data_truth\draw_results_truth\normalized\canonical_yearly\draw_results_2024_for_2025_canonical_yearly_draw_results.csv,43335,71,hunt_code,boundary_id,0,0,1028,0,0
+2025,data_truth\draw_results_truth\normalized\canonical_yearly\draw_results_2025_for_2026_canonical_yearly_draw_results.csv,38120,54,hunt_code,boundary_id,0,0,1064,0,0
+2026,data_truth\draw_results_truth\normalized\canonical_yearly\draw_results_2026_for_2027_canonical_yearly_draw_results.csv,22714,52,hunt_code,boundary_id,0,0,1096,0,0

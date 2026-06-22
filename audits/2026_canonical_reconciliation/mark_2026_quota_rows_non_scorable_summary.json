@@ -1,0 +1,29 @@
+{
+  "generated_at_utc": "2026-06-22T05:58:11.101464+00:00",
+  "decision": "Quota/allotment rows are not draw-result rows. They retain permit quota columns but are explicitly marked non-scorable and any draw-success fields are blanked if present.",
+  "draw_success_fields_checked": [
+    "points",
+    "residency",
+    "eligible_applicants",
+    "bonus_permits",
+    "regular_permits",
+    "total_permits",
+    "success_ratio",
+    "p_draw",
+    "p_draw_percent"
+  ],
+  "targets": [
+    {
+      "path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+      "quota_rows": 262,
+      "contaminated_quota_rows_before_cleanup": 0,
+      "change_count": 524
+    },
+    {
+      "path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "quota_rows": 262,
+      "contaminated_quota_rows_before_cleanup": 0,
+      "change_count": 524
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "generated_at_utc": "2026-06-22T04:21:35.500066+00:00",
+  "canonical": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+  "raw_pdf_dir": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\raw_pdfs\\2026_PERMITS=2027_MODEL",
+  "family_pdf_dir": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_species_family_docs\\pdf",
+  "manifest": [
+    {
+      "title": "ANTLERLESS DEER PERMIT QUOTA",
+      "raw_pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\raw_pdfs\\2026_PERMITS=2027_MODEL\\2026_PERMITS=2027_MODEL__ANTLERLESS DEER PERMIT QUOTA.pdf",
+      "family_pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_species_family_docs\\pdf\\2026_PERMITS=2027_MODEL__ANTLERLESS DEER PERMIT QUOTA.pdf",
+      "hunt_count": 21,
+      "resident_permits": 0,
+      "nonresident_permits": 0,
+      "total_permits": 378
+    },
+    {
+      "title": "ANTLERLESS ELK PERMIT QUOTA",
+      "raw_pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\raw_pdfs\\2026_PERMITS=2027_MODEL\\2026_PERMITS=2027_MODEL__ANTLERLESS ELK PERMIT QUOTA.pdf",
+      "family_pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_species_family_docs\\pdf\\2026_PERMITS=2027_MODEL__ANTLERLESS ELK PERMIT QUOTA.pdf",
+      "hunt_count": 210,
+      "resident_permits": 11819,
+      "nonresident_permits": 1202,
+      "total_permits": 22851
+    },
+    {
+      "title": "ANTLERLESS MOOSE PERMIT QUOTA",
+      "raw_pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\raw_pdfs\\2026_PERMITS=2027_MODEL\\2026_PERMITS=2027_MODEL__ANTLERLESS MOOSE PERMIT QUOTA.pdf",
+      "family_pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_species_family_docs\\pdf\\2026_PERMITS=2027_MODEL__ANTLERLESS MOOSE PERMIT QUOTA.pdf",
+      "hunt_count": 5,
+      "resident_permits": 9,
+      "nonresident_permits": 1,
+      "total_permits": 10
+    },
+    {
+      "title": "ANTLERLESS PERMIT QUOTA SUMMARY",
+      "raw_pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\raw_pdfs\\2026_PERMITS=2027_MODEL\\2026_PERMITS=2027_MODEL__ANTLERLESS PERMIT QUOTA SUMMARY.pdf",
+      "family_pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_species_family_docs\\pdf\\2026_PERMITS=2027_MODEL__ANTLERLESS PERMIT QUOTA SUMMARY.pdf",
+      "hunt_count": 262,
+      "resident_permits": 12371,
+      "nonresident_permits": 1254,
+      "total_permits": 23833
+    },
+    {
+      "title": "DOE PRONGHORN PERMIT QUOTA",
+      "raw_pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\raw_pdfs\\2026_PERMITS=2027_MODEL\\2026_PERMITS=2027_MODEL__DOE PRONGHORN PERMIT QUOTA.pdf",
+      "family_pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_species_family_docs\\pdf\\2026_PERMITS=2027_MODEL__DOE PRONGHORN PERMIT QUOTA.pdf",
+      "hunt_count": 25,
+      "resident_permits": 539,
+      "nonresident_permits": 50,
+      "total_permits": 589
+    },
+    {
+      "title": "EWE ROCKY MTN SHEEP PERMIT QUOTA",
+      "raw_pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\raw_pdfs\\2026_PERMITS=2027_MODEL\\2026_PERMITS=2027_MODEL__EWE ROCKY MTN SHEEP PERMIT QUOTA.pdf",
+      "family_pdf": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\outputs\\2026_PERMITS=2027_MODEL_species_family_docs\\pdf\\2026_PERMITS=2027_MODEL__EWE ROCKY MTN SHEEP PERMIT QUOTA.pdf",
+      "hunt_count": 1,
+      "resident_permits": 4,
+      "nonresident_permits": 1,
+      "total_permits": 5
+    }
+  ],
+  "source_map": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\2026_live_source_comparison\\antlerless_pdf_2026_hunt_code_sources.csv"
+}

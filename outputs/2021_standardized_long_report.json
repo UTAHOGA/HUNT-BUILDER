@@ -1,0 +1,19 @@
+{
+  "generated_at_utc": "2026-06-22T18:05:34.123817+00:00",
+  "year": 2021,
+  "canonical_source": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2021_for_2022_canonical_yearly_draw_results.csv",
+  "output_xlsx": "outputs/2021 standardized long.xlsx",
+  "summary_rows": 1022,
+  "long_rows": 33788,
+  "long_columns": 37,
+  "record_type_counts": {
+    "point_level_draw_result": 32349,
+    "hunt_total_draw_result": 1428,
+    "sportsman_total": 11
+  },
+  "permit_blank_counts": {
+    "permits_2021_res": 0,
+    "permits_2021_nr": 0,
+    "permits_2021_total": 0
+  }
+}

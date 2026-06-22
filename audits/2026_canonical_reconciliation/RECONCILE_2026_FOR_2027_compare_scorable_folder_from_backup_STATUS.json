@@ -1,0 +1,79 @@
+{
+  "generated_utc": "2026-06-21T20:00:14.504190+00:00",
+  "canonical_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+  "target_path": "tmp\\compare_scorable_folder_from_backup.csv",
+  "canonical_rows": 29549,
+  "target_rows_before": 14544,
+  "target_rows_after": 14542,
+  "target_reference_rows_removed": 0,
+  "target_unmatched_rows_removed": 2,
+  "target_kept_rows": 14542,
+  "canonical_rows_consumed": 14542,
+  "canonical_rows_remaining": 15007,
+  "expected_target_after": 14542,
+  "strict_match_fields": [
+    "actual_draw_year",
+    "model_target_year",
+    "hunt_code",
+    "residency",
+    "points",
+    "record_type_or_row_type"
+  ],
+  "mutations": 69837,
+  "mutation_column_counts": [
+    {
+      "field": "eligible_applicants",
+      "count": 408
+    },
+    {
+      "field": "hunt_name",
+      "count": 36
+    },
+    {
+      "field": "hunt_type",
+      "count": 13676
+    },
+    {
+      "field": "p_draw_percent",
+      "count": 9273
+    },
+    {
+      "field": "season",
+      "count": 14542
+    },
+    {
+      "field": "sex_type",
+      "count": 1261
+    },
+    {
+      "field": "source_file",
+      "count": 14542
+    },
+    {
+      "field": "species",
+      "count": 1557
+    },
+    {
+      "field": "weapon",
+      "count": 14542
+    }
+  ],
+  "row_mutation_fields": [
+    "eligible_applicants",
+    "hunt_name",
+    "hunt_type",
+    "p_draw_percent",
+    "season",
+    "sex_type",
+    "source_file",
+    "species",
+    "weapon"
+  ],
+  "removed_reference_audit": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\2026_canonical_reconciliation\\draw_results_2026_for_2027_compare_scorable_folder_from_backup_point_purchase_rows_dropped.csv",
+  "unmatched_target_audit": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\2026_canonical_reconciliation\\draw_results_2026_for_2027_compare_scorable_folder_from_backup_unmatched_rows_dropped.csv",
+  "mutation_audit": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\2026_canonical_reconciliation\\draw_results_2026_for_2027_compare_scorable_folder_from_backup_sync_mutations.csv",
+  "status": "REVIEW_REQUIRED",
+  "status_reason": "strict key mismatch remains",
+  "backup_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\2026_canonical_reconciliation\\backups\\compare_scorable_folder_from_backup.before_reconcile_20260621T200014Z.csv",
+  "output_path": "tmp\\compare_scorable_folder_from_backup.csv"
+}

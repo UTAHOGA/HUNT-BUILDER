@@ -1,0 +1,3 @@
+const fs = require('fs');
+function parse(path){const lines=fs.readFileSync(path,'utf8').replace(/\r/g,'').split('\n');const h=lines.shift().split(',');const out={}; for(const l of lines){if(!l.trim()) continue; const vals=[]; let cur='';let q=false; for(let i=0;i<l.length;i++){const ch=l[i],nx=l[i+1]; if(q){if(ch==='"'&&nx==='"'){cur+='"';i++;} else if(ch==='"'){q=false;} else cur+=ch;} else {if(ch==='"') q=true; else if(ch===','){vals.push(cur);cur='';} else cur+=ch;}} vals.push(cur); const row={};h.forEach((hh,idx)=>row[hh]=vals[idx]||''); if(row.hunt_code==='EB3025') console.log(row);} }
+parse('pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv');

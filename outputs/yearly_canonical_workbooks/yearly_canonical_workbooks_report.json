@@ -1,0 +1,19 @@
+{
+  "generated_at_utc": "2026-06-22T18:27:10.978406+00:00",
+  "output_dir": "outputs/yearly_canonical_workbooks",
+  "years": [
+    {
+      "year": 2026,
+      "output_xlsx": "outputs/yearly_canonical_workbooks/2026_PERMITS=2027_MODEL__CANONICAL_WORKBOOK.xlsx",
+      "canonical_rows": 22714,
+      "long_file_slice_rows": 22714,
+      "summary_hunt_code_rows": 1096,
+      "yearly_database_collapsed_rows": 22713,
+      "scorable_rows": 22452,
+      "display_reference_rows": 262,
+      "canonical_columns": 52,
+      "long_file_columns": 95,
+      "yearly_database_columns": 58
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "write": true,
+  "hunt_units_file": "data/hunt_units.geojson",
+  "arcgis_file": "pipeline/RAW/hunt_unit_database/2026/arcgis/udwr_huntnumber_boundary_table1.json",
+  "geometry_feature_count": 683,
+  "geometry_boundary_id_count": 683,
+  "arcgis_record_count": 1000,
+  "arcgis_boundary_id_count": 304,
+  "matched_boundary_id_count": 296,
+  "geometry_only_boundary_id_count": 387,
+  "arcgis_only_boundary_id_count": 8,
+  "arcgis_matched_features": 296,
+  "arcgis_boundary_name_match_features": 133,
+  "arcgis_boundary_name_drift_features": 163,
+  "changed_features_if_written": 683,
+  "matched_audit": "audits/boundary_runtime/hunt_units_arcgis_reconcile_matched_boundaries.csv",
+  "arcgis_only_audit": "audits/boundary_runtime/hunt_units_arcgis_reconcile_arcgis_only_boundary_ids.csv",
+  "geometry_only_audit": "audits/boundary_runtime/hunt_units_arcgis_reconcile_geometry_only_boundary_ids.csv",
+  "note": "The GeoJSON is boundary geometry keyed by boundary_id. The ArcGIS table is a hunt-code-to-boundary crosswalk keyed by HUNT_NUMBER and BOUNDARYID, so reconciliation is by boundary_id and ArcGIS fields are preserved as aliases/lists on geometry features.",
+  "backup_path": "audits/boundary_runtime/hunt_units.before_arcgis_reconcile_20260622T154551Z.geojson",
+  "synced_copies": [
+    "processed_data/public_contracts/hunt_units.geojson",
+    "pages-dist/data/hunt_units.geojson",
+    "pages-dist/processed_data/public_contracts/hunt_units.geojson"
+  ]
+}

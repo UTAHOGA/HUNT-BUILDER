@@ -46,8 +46,6 @@ PROTECTED_NUMERIC_FIELDS = {
     "total_permits",
     "p_draw",
     "p_draw_percent",
-    "successful_applicants",
-    "unsuccessful_applicants",
 }
 
 

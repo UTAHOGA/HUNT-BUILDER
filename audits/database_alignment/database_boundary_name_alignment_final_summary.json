@@ -1,0 +1,13 @@
+{
+  "rows": 1471,
+  "columns": 41,
+  "unique_hunt_codes": 1471,
+  "blank_hunt_code_rows": 0,
+  "blank_boundary_id_rows": 0,
+  "blank_hunt_name_rows": 0,
+  "hunt_codes_not_in_display_index": 0,
+  "boundary_id_mismatches_vs_display_index": 0,
+  "hunt_codes_with_multiple_boundary_ids": 0,
+  "remaining_obvious_hunt_name_artifact_rows": 0,
+  "remaining_artifact_sample": []
+}

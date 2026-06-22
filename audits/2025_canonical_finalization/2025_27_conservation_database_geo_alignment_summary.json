@@ -1,0 +1,15 @@
+{
+  "generated_utc": "2026-06-21T21:08:25.818632+00:00",
+  "workbook_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\processed_data\\hard_data_exports\\hunt_tables\\2026\\CLEAN_XLXS_STAGED\\2025-27 Conservation Permits.xlsx",
+  "database_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2026\\csv\\DATABASE.csv",
+  "backup_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\2025_canonical_finalization\\backups\\2025-27 Conservation Permits.before_database_geo_alignment_20260621T210807Z.xlsx",
+  "rows": 336,
+  "changed_rows": 68,
+  "status_counts": {
+    "PATCHED": 47,
+    "PATCHED_CURRENT_CODE": 179,
+    "REVIEW_LOW_SCORE": 1,
+    "REVIEW_TIE": 109
+  },
+  "audit_csv": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\2025_canonical_finalization\\2025_27_conservation_database_geo_alignment_audit.csv"
+}

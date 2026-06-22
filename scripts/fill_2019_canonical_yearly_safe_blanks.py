@@ -27,8 +27,6 @@ PROTECTED_FIELDS = {
     "success_ratio",
     "p_draw",
     "p_draw_percent",
-    "successful_applicants",
-    "unsuccessful_applicants",
 }
 
 

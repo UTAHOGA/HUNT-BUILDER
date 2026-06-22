@@ -1,0 +1,3 @@
+path,rows,columns_before,columns_after,removed_columns_present,successful_applicants_blank_count_before,unsuccessful_applicants_blank_count_before
+C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\data_truth\draw_results_truth\normalized\canonical_yearly\draw_results_2026_for_2027_canonical_yearly_draw_results.csv,29811,38,36,successful_applicants|unsuccessful_applicants,29811,29811
+C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\data_truth\draw_results_truth\normalized\draw_results_long.csv,534648,59,57,successful_applicants|unsuccessful_applicants,459087,459479

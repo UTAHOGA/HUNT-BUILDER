@@ -1,0 +1,185 @@
+{
+  "generated_at_utc": "2026-06-22T17:24:54.106094+00:00",
+  "write_mode": true,
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "summaries": [
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2019_for_2020_canonical_yearly_draw_results.csv",
+      "actual_draw_year": 2019,
+      "target_rows": 33478,
+      "cell_updates": 100434,
+      "updates_by_column": {
+        "permits_2019_res": 33478,
+        "permits_2019_nr": 33478,
+        "permits_2019_total": 33478
+      }
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "actual_draw_year": 2019,
+      "target_rows": 33478,
+      "cell_updates": 100434,
+      "updates_by_column": {
+        "permits_2019_res": 33478,
+        "permits_2019_nr": 33478,
+        "permits_2019_total": 33478
+      }
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2020_for_2021_canonical_yearly_draw_results.csv",
+      "actual_draw_year": 2020,
+      "target_rows": 33370,
+      "cell_updates": 100110,
+      "updates_by_column": {
+        "permits_2020_res": 33370,
+        "permits_2020_nr": 33370,
+        "permits_2020_total": 33370
+      }
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "actual_draw_year": 2020,
+      "target_rows": 33370,
+      "cell_updates": 100110,
+      "updates_by_column": {
+        "permits_2020_res": 33370,
+        "permits_2020_nr": 33370,
+        "permits_2020_total": 33370
+      }
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2021_for_2022_canonical_yearly_draw_results.csv",
+      "actual_draw_year": 2021,
+      "target_rows": 33788,
+      "cell_updates": 101364,
+      "updates_by_column": {
+        "permits_2021_res": 33788,
+        "permits_2021_nr": 33788,
+        "permits_2021_total": 33788
+      }
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "actual_draw_year": 2021,
+      "target_rows": 33788,
+      "cell_updates": 101364,
+      "updates_by_column": {
+        "permits_2021_res": 33788,
+        "permits_2021_nr": 33788,
+        "permits_2021_total": 33788
+      }
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2022_for_2023_canonical_yearly_draw_results.csv",
+      "actual_draw_year": 2022,
+      "target_rows": 34876,
+      "cell_updates": 104628,
+      "updates_by_column": {
+        "permits_2022_res": 34876,
+        "permits_2022_nr": 34876,
+        "permits_2022_total": 34876
+      }
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "actual_draw_year": 2022,
+      "target_rows": 34876,
+      "cell_updates": 104628,
+      "updates_by_column": {
+        "permits_2022_res": 34876,
+        "permits_2022_nr": 34876,
+        "permits_2022_total": 34876
+      }
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2023_for_2024_canonical_yearly_draw_results.csv",
+      "actual_draw_year": 2023,
+      "target_rows": 35834,
+      "cell_updates": 0,
+      "updates_by_column": {}
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "actual_draw_year": 2023,
+      "target_rows": 35834,
+      "cell_updates": 0,
+      "updates_by_column": {}
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2024_for_2025_canonical_yearly_draw_results.csv",
+      "actual_draw_year": 2024,
+      "target_rows": 43335,
+      "cell_updates": 130005,
+      "updates_by_column": {
+        "permits_2024_res": 43335,
+        "permits_2024_nr": 43335,
+        "permits_2024_total": 43335
+      }
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "actual_draw_year": 2024,
+      "target_rows": 43335,
+      "cell_updates": 130005,
+      "updates_by_column": {
+        "permits_2024_res": 43335,
+        "permits_2024_nr": 43335,
+        "permits_2024_total": 43335
+      }
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2025_for_2026_canonical_yearly_draw_results.csv",
+      "actual_draw_year": 2025,
+      "target_rows": 38120,
+      "cell_updates": 662,
+      "updates_by_column": {
+        "permits_2025_res": 244,
+        "permits_2025_nr": 174,
+        "permits_2025_total": 244
+      }
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "actual_draw_year": 2025,
+      "target_rows": 38120,
+      "cell_updates": 662,
+      "updates_by_column": {
+        "permits_2025_res": 244,
+        "permits_2025_nr": 174,
+        "permits_2025_total": 244
+      }
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+      "actual_draw_year": 2026,
+      "target_rows": 22714,
+      "cell_updates": 32864,
+      "updates_by_column": {
+        "permits_2026_res": 10996,
+        "permits_2026_nr": 10881,
+        "permits_2026_total": 10987
+      }
+    },
+    {
+      "path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "actual_draw_year": 2026,
+      "target_rows": 22714,
+      "cell_updates": 32864,
+      "updates_by_column": {
+        "permits_2026_res": 10996,
+        "permits_2026_nr": 10881,
+        "permits_2026_total": 10987
+      }
+    }
+  ],
+  "changes_csv": "audits\\database_alignment\\identity_registry\\year_specific_permit_population_applied.csv"
+}

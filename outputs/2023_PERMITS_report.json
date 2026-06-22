@@ -1,63 +1,19 @@
 {
-  "status": "PASS",
-  "generated_at_utc": "2026-06-21T06:10:53.725Z",
-  "source_rollup": "data_truth/draw_results_truth/normalized/draw_results_2023_for_2024_candidate_promotion_hunt_code_rollup.csv",
-  "source_point_rows": "pipeline/RAW/hunt_unit_database/2024/csv/draw_results_2023_for_2024_long.csv",
-  "boundary_lookup_sources": [
-    "processed_data/audits/bible_hunt_code_year_documents/bible_hunt_code_year_document_2023.csv",
-    "processed_data/display-boundary-index-2026.csv",
-    "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
-  ],
+  "generated_at_utc": "2026-06-22T18:12:13.488950+00:00",
+  "year": 2023,
+  "canonical_source": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2023_for_2024_canonical_yearly_draw_results.csv",
   "output_xlsx": "outputs/2023 PERMITS.xlsx",
-  "summary_rows": 1040,
-  "long_rows": 17980,
-  "unique_hunt_codes": 1040,
-  "transformed_summary_names": [
-    {
-      "hunt_code": "BI1000",
-      "before": "Sportsman",
-      "after": ""
-    },
-    {
-      "hunt_code": "BR1000",
-      "before": "Sportsman",
-      "after": ""
-    },
-    {
-      "hunt_code": "CG1000",
-      "before": "Sportsman",
-      "after": ""
-    },
-    {
-      "hunt_code": "DB0007",
-      "before": "Sportsman",
-      "after": ""
-    },
-    {
-      "hunt_code": "DS1000",
-      "before": "Sportsman",
-      "after": ""
-    },
-    {
-      "hunt_code": "EB1000",
-      "before": "Sportsman",
-      "after": ""
-    },
-    {
-      "hunt_code": "GO1000",
-      "before": "Sportsman",
-      "after": ""
-    },
-    {
-      "hunt_code": "MB1000",
-      "before": "Sportsman",
-      "after": ""
-    },
-    {
-      "hunt_code": "PB1000",
-      "before": "Sportsman",
-      "after": ""
-    }
-  ],
-  "transformed_long_names": []
+  "summary_rows": 1034,
+  "long_rows": 35834,
+  "long_columns": 37,
+  "record_type_counts": {
+    "point_level_draw_result": 35823,
+    "availability_only": 1,
+    "sportsman_total": 10
+  },
+  "permit_blank_counts": {
+    "permits_2023_res": 0,
+    "permits_2023_nr": 0,
+    "permits_2023_total": 0
+  }
 }

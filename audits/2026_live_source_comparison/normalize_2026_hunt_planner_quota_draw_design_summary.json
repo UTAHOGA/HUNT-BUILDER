@@ -1,0 +1,19 @@
+{
+  "results": [
+    {
+      "path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+      "changed_rows": 0,
+      "exists": true
+    },
+    {
+      "path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "changed_rows": 0,
+      "exists": true
+    },
+    {
+      "path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\2026_live_source_comparison\\appended_2026_hunt_planner_antlerless_rows.csv",
+      "changed_rows": 71,
+      "exists": true
+    }
+  ]
+}

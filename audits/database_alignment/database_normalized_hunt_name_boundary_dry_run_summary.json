@@ -1,0 +1,13 @@
+{
+  "database_rows": 1471,
+  "display_index_boundary_map_count": 1471,
+  "direct_boundary_unique_name_count": 1433,
+  "direct_boundary_multi_name_count": 38,
+  "canonical_unique_clean_name_count": 1227,
+  "pending_changes": 232,
+  "source_counts": {
+    "direct_boundary_geojson_unique_name": 212,
+    "canonical_unique_clean_name:draw_results_2026_for_2027_canonical_yearly_draw_results.csv": 18,
+    "canonical_unique_clean_name:draw_results_2025_for_2026_canonical_yearly_draw_results.csv": 2
+  }
+}

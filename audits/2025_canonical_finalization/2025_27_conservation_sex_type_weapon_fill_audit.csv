@@ -1,0 +1,91 @@
+row,no,field,old_value,new_value,reason
+66,65,SEX TYPE,,Hunter's Choice,species_rule
+67,66,SEX TYPE,,Hunter's Choice,species_rule
+68,67,SEX TYPE,,Hunter's Choice,species_rule
+69,68,SEX TYPE,,Cow Only,species_rule
+70,69,SEX TYPE,Hunters Choice,Hunter's Choice,species_rule
+71,70,SEX TYPE,Hunters Choice,Hunter's Choice,species_rule
+75,74,SEX TYPE,Buck,Male Only,species_rule
+79,78,SEX TYPE,Buck,Male Only,species_rule
+112,111,SEX TYPE,,Buck,species_rule
+113,112,SEX TYPE,Ram,Buck,species_rule
+118,117,SEX TYPE,Bull,Buck,species_rule
+118,117,WEAPON,,"Any Legal Weapon, late",pre_header_enrichment_fallback
+200,199,SEX TYPE,,Bull,species_rule
+201,200,SEX TYPE,Antlerless,Bull,species_rule
+202,201,SEX TYPE,Antlerless,Bull,species_rule
+209,208,WEAPON,,Any Legal Weapon,pre_header_enrichment_fallback
+214,213,WEAPON,,Any Legal Weapon,pre_header_enrichment_fallback
+218,217,SEX TYPE,Hunters Choice,Either Sex,species_rule
+220,219,SEX TYPE,Hunters Choice,Either Sex,species_rule
+221,220,SEX TYPE,Hunters Choice,Either Sex,species_rule
+221,220,WEAPON,,Any Legal Weapon,pre_header_enrichment_fallback
+227,226,SEX TYPE,,Buck,species_rule
+228,227,SEX TYPE,,Buck,species_rule
+231,230,SEX TYPE,,Buck,species_rule
+232,231,SEX TYPE,,Buck,species_rule
+233,232,SEX TYPE,,Buck,species_rule
+234,233,SEX TYPE,,Buck,species_rule
+255,254,SEX TYPE,,Buck,species_rule
+256,255,SEX TYPE,,Buck,species_rule
+257,256,SEX TYPE,,Buck,species_rule
+258,257,SEX TYPE,,Buck,species_rule
+259,258,SEX TYPE,,Buck,species_rule
+260,259,SEX TYPE,,Buck,species_rule
+261,260,SEX TYPE,,Buck,species_rule
+262,261,SEX TYPE,,Buck,species_rule
+263,262,SEX TYPE,,Buck,species_rule
+264,263,SEX TYPE,,Buck,species_rule
+265,264,SEX TYPE,,Buck,species_rule
+266,265,SEX TYPE,,Buck,species_rule
+267,266,SEX TYPE,,Buck,species_rule
+268,267,SEX TYPE,,Buck,species_rule
+269,268,SEX TYPE,,Buck,species_rule
+270,269,SEX TYPE,,Buck,species_rule
+271,270,SEX TYPE,,Buck,species_rule
+272,271,SEX TYPE,,Buck,species_rule
+273,272,SEX TYPE,,Buck,species_rule
+274,273,SEX TYPE,,Buck,species_rule
+275,274,SEX TYPE,,Buck,species_rule
+276,275,SEX TYPE,,Buck,species_rule
+277,276,SEX TYPE,,Buck,species_rule
+278,277,SEX TYPE,,Buck,species_rule
+279,278,SEX TYPE,,Buck,species_rule
+280,279,SEX TYPE,,Buck,species_rule
+281,280,SEX TYPE,,Buck,species_rule
+282,281,SEX TYPE,,Buck,species_rule
+283,282,SEX TYPE,,Buck,species_rule
+284,283,SEX TYPE,,Buck,species_rule
+285,284,SEX TYPE,,Buck,species_rule
+290,289,WEAPON,,Any Legal Weapon,pre_header_enrichment_fallback
+291,290,SEX TYPE,Ram,Male Only,species_rule
+292,291,SEX TYPE,Ram,Male Only,species_rule
+293,292,SEX TYPE,Ram,Male Only,species_rule
+294,293,SEX TYPE,Ram,Male Only,species_rule
+295,294,SEX TYPE,Ram,Male Only,species_rule
+296,295,SEX TYPE,Ram,Male Only,species_rule
+296,295,WEAPON,,Any Legal Weapon,pre_header_enrichment_fallback
+305,304,SEX TYPE,,Bearded,species_rule
+306,305,SEX TYPE,,Bearded,species_rule
+307,306,SEX TYPE,,Bearded,species_rule
+308,307,SEX TYPE,,Bearded,species_rule
+309,308,SEX TYPE,,Bearded,species_rule
+310,309,SEX TYPE,,Bearded,species_rule
+311,310,SEX TYPE,,Bearded,species_rule
+312,311,SEX TYPE,,Bearded,species_rule
+313,312,SEX TYPE,,Bearded,species_rule
+314,313,SEX TYPE,,Bearded,species_rule
+315,314,SEX TYPE,,Bearded,species_rule
+316,315,SEX TYPE,,Bearded,species_rule
+317,316,SEX TYPE,,Bearded,species_rule
+318,317,SEX TYPE,,Bearded,species_rule
+319,318,SEX TYPE,,Bearded,species_rule
+320,319,SEX TYPE,,Bearded,species_rule
+321,320,SEX TYPE,,Bearded,species_rule
+322,321,SEX TYPE,,Bearded,species_rule
+323,322,SEX TYPE,,Bearded,species_rule
+333,332,SEX TYPE,,Bearded,species_rule
+334,333,SEX TYPE,,Bearded,species_rule
+335,334,SEX TYPE,,Bearded,species_rule
+336,335,SEX TYPE,,Bearded,species_rule
+337,336,WEAPON,,Any Legal Weapon,pre_header_enrichment_fallback

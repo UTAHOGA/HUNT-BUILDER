@@ -86,7 +86,7 @@ def _band_for_points(points: int) -> str:
 def _joined_text(row: Mapping[str, object]) -> str:
     return " ".join(
         _clean_lower(row.get(key))
-        for key in ("hunt_code", "hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "draw_pool", "source_file")
+        for key in ("hunt_code", "hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "draw_pool", "draw_design", "source_file")
     )
 
 
@@ -95,8 +95,11 @@ def _is_turkey(row: Mapping[str, object]) -> bool:
 
 
 def _is_youth_turkey(row: Mapping[str, object]) -> bool:
-    text = _joined_text(row)
-    return _clean_lower(row.get("draw_pool")) == "youth_turkey" or "youth" in text
+    source_file = _clean_lower(row.get("source_file"))
+    draw_pool = _clean_lower(row.get("draw_pool"))
+    # Youth must be source-classified. Current hunt-table rows can mention
+    # youth dates/set-asides while still representing the adult LE hunt code.
+    return draw_pool == "youth_turkey" or "youth turkey draw results" in source_file or "youth_turkey" in source_file
 
 
 def _is_excluded_turkey_context(row: Mapping[str, object]) -> bool:
@@ -107,7 +110,25 @@ def _is_excluded_turkey_context(row: Mapping[str, object]) -> bool:
 def _is_limited_entry_or_cwmu_turkey(row: Mapping[str, object]) -> bool:
     text = _joined_text(row)
     hunt_type = _clean_lower(row.get("hunt_type"))
-    return hunt_type in {"limited entry", "cwmu"} or "limited entry" in text or "cwmu" in text
+    draw_design = _clean_lower(row.get("draw_design") or row.get("hunt_class"))
+    source_file = _clean_lower(row.get("source_file"))
+    hunt_code = _clean(row.get("hunt_code")).upper()
+    source_backed_adult_draw_result = (
+        hunt_code.startswith("TK")
+        and hunt_code != "TKY"
+        and (
+            "turkey draw results" in source_file
+            or "turkey_draw_results" in source_file
+            or "utahdraws live drawoddsdata: turkey" in source_file
+        )
+    )
+    return (
+        hunt_type in {"limited entry", "cwmu"}
+        or "limited entry" in text
+        or "cwmu" in text
+        or (draw_design == "max/weighted split" and _source_proves_bonus_turkey(row))
+        or source_backed_adult_draw_result
+    )
 
 
 def is_turkey_row(row: Mapping[str, object]) -> bool:
@@ -139,7 +160,16 @@ def _source_proves_bonus_turkey(row: Mapping[str, object]) -> bool:
     source_file = _clean_lower(row.get("source_file"))
     if not source_file:
         return True
-    return "turkey_bonus_points_draw_results" in source_file
+    return any(
+        token in source_file
+        for token in (
+            "turkey_bonus_points_draw_results",
+            "turkey bonus points",
+            "turkey draw results",
+            "turkey_draw_results",
+            "utahdraws live drawoddsdata: turkey",
+        )
+    )
 
 
 def _is_proven_bonus_turkey_truth_row(row: Mapping[str, object]) -> bool:
@@ -191,7 +221,7 @@ def _build_truth_ladders(
     total_drawn_by_code_year: dict[tuple[str, int], dict[str, int]] = defaultdict(lambda: defaultdict(int))
 
     for row in truth_rows:
-        year = _to_int(row.get("year"))
+        year = _to_int(row.get("year") or row.get("actual_draw_year"))
         if year not in history_years or not _is_proven_bonus_turkey_truth_row(row):
             continue
         hunt_code = _clean(row.get("hunt_code")).upper()
@@ -362,9 +392,9 @@ def _forecast_quota_for_residency(
     latest_year: int,
     total_drawn_by_code_year: Mapping[tuple[str, int], dict[str, int]],
 ) -> int:
-    res_specific = _to_int(db_row.get("permits_2026_res"))
-    nr_specific = _to_int(db_row.get("permits_2026_nr"))
-    total = _to_int(db_row.get("permits_2026_total"))
+    res_specific = _to_int(db_row.get("permit_allotment_2026_res")) or _to_int(db_row.get("permits_2026_res"))
+    nr_specific = _to_int(db_row.get("permit_allotment_2026_nr")) or _to_int(db_row.get("permits_2026_nr"))
+    total = _to_int(db_row.get("permit_allotment_2026_total")) or _to_int(db_row.get("permits_2026_total"))
     if res_specific or nr_specific:
         return res_specific if residency == "Resident" else nr_specific
     observed = total_drawn_by_code_year.get((hunt_code, latest_year), {})

@@ -1,0 +1,87 @@
+status,excel_row,workbook_no,column,old_value,pdf_value
+removed_not_in_pdf,338,337,,,
+removed_not_in_pdf,339,338,,,
+removed_not_in_pdf,340,339,,,
+removed_not_in_pdf,341,340,,,
+removed_not_in_pdf,342,341,,,
+removed_not_in_pdf,343,342,,,
+removed_not_in_pdf,344,343,,,
+removed_not_in_pdf,345,344,,,
+removed_not_in_pdf,346,345,,,
+removed_not_in_pdf,347,346,,,
+removed_not_in_pdf,348,347,,,
+source_cell_reset_to_pdf,2,1,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,3,2,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,4,3,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,5,4,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,6,5,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,7,6,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,8,7,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,9,8,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,10,9,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,11,10,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,12,11,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,13,12,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,14,13,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,15,14,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,16,15,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,17,16,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,18,17,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,19,18,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,20,19,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,21,20,Species,Elk,Antlerless Elk
+source_cell_reset_to_pdf,22,21,Species,Black Bear,Bear
+source_cell_reset_to_pdf,23,22,Species,Black Bear,Bear
+source_cell_reset_to_pdf,24,23,Species,Black Bear,Bear
+source_cell_reset_to_pdf,25,24,Species,Black Bear,Bear
+source_cell_reset_to_pdf,26,25,Species,Black Bear,Bear
+source_cell_reset_to_pdf,27,26,Species,Black Bear,Bear
+source_cell_reset_to_pdf,28,27,Species,Black Bear,Bear
+source_cell_reset_to_pdf,29,28,Species,Black Bear,Bear
+source_cell_reset_to_pdf,30,29,Species,Black Bear,Bear
+source_cell_reset_to_pdf,31,30,Species,Black Bear,Bear
+source_cell_reset_to_pdf,32,31,Species,Black Bear,Bear
+source_cell_reset_to_pdf,33,32,Species,Black Bear,Bear
+source_cell_reset_to_pdf,34,33,Species,Black Bear,Bear
+source_cell_reset_to_pdf,35,34,Species,Black Bear,Bear
+source_cell_reset_to_pdf,36,35,Species,Black Bear,Bear
+source_cell_reset_to_pdf,37,36,Species,Black Bear,Bear
+source_cell_reset_to_pdf,38,37,Species,Black Bear,Bear
+source_cell_reset_to_pdf,39,38,Species,Black Bear,Bear
+source_cell_reset_to_pdf,40,39,Species,Black Bear,Bear
+source_cell_reset_to_pdf,41,40,Species,Black Bear,Bear
+source_cell_reset_to_pdf,42,41,Species,Black Bear,Bear
+source_cell_reset_to_pdf,43,42,Species,Black Bear,Bear
+source_cell_reset_to_pdf,44,43,Species,Black Bear,Bear
+source_cell_reset_to_pdf,45,44,Species,Black Bear,Bear
+source_cell_reset_to_pdf,46,45,Species,Black Bear,Bear
+source_cell_reset_to_pdf,47,46,Species,Black Bear,Bear
+source_cell_reset_to_pdf,48,47,Species,Black Bear,Bear
+source_cell_reset_to_pdf,49,48,Species,Black Bear,Bear
+source_cell_reset_to_pdf,50,49,Species,Black Bear,Bear
+source_cell_reset_to_pdf,51,50,Species,Black Bear,Bear
+source_cell_reset_to_pdf,52,51,Species,Black Bear,Bear
+source_cell_reset_to_pdf,53,52,Species,Black Bear,Bear
+source_cell_reset_to_pdf,54,53,Species,Black Bear,Bear
+source_cell_reset_to_pdf,55,54,Species,Black Bear,Bear
+source_cell_reset_to_pdf,56,55,Species,Black Bear,Bear
+source_cell_reset_to_pdf,57,56,Species,Black Bear,Bear
+source_cell_reset_to_pdf,58,57,Species,Black Bear,Bear
+source_cell_reset_to_pdf,59,58,Species,Black Bear,Bear
+source_cell_reset_to_pdf,60,59,Species,Black Bear,Bear
+source_cell_reset_to_pdf,61,60,Species,Black Bear,Bear
+source_cell_reset_to_pdf,62,61,Species,Black Bear,Bear
+source_cell_reset_to_pdf,63,62,Species,Black Bear,Bear
+source_cell_reset_to_pdf,64,63,Species,Black Bear,Bear
+source_cell_reset_to_pdf,72,71,Species,Deer,Desert Bighorn Sheep
+source_cell_reset_to_pdf,74,73,Species,Deer,Desert Bighorn Sheep
+source_cell_reset_to_pdf,75,74,Species,Deer,Desert Bighorn Sheep
+source_cell_reset_to_pdf,76,75,Species,Deer,Desert Bighorn Sheep
+source_cell_reset_to_pdf,79,78,Species,Deer,Desert Bighorn Sheep
+source_cell_reset_to_pdf,80,79,Condition,Archery,Hunter's Choice
+source_cell_reset_to_pdf,81,80,Condition,Archery,Multiseason
+source_cell_reset_to_pdf,84,83,Condition,Any Legal Weapon,Hunter's Choice
+source_cell_reset_to_pdf,85,84,Condition,Any Legal Weapon,Multiseason
+source_cell_reset_to_pdf,118,117,Condition,"Any Legal Weapon, late",
+source_cell_reset_to_pdf,209,208,Condition,Any Legal Weapon,
+source_cell_reset_to_pdf,214,213,Condition,Any Legal Weapon,

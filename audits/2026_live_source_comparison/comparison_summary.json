@@ -1,0 +1,30 @@
+{
+  "antlerless_hunt_planner_rows": 269,
+  "antlerless_hunt_planner_unique_hunt_codes": 267,
+  "antlerless_missing_from_canonical": 0,
+  "antlerless_permit_mismatch_or_blank": 2,
+  "antlerless_status_counts": {
+    "matched": 267,
+    "permit_mismatch": 2
+  },
+  "audit_files": {
+    "antlerless_vs_canonical": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\2026_live_source_comparison\\dwr_hunt_planner_2026_antlerless_vs_canonical_hunt_code_audit.csv",
+    "utahdraws_vs_canonical": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\2026_live_source_comparison\\utahdraws_2026_live_vs_canonical_hunt_code_audit.csv"
+  },
+  "canonical_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+  "canonical_rows": 29811,
+  "canonical_unique_hunt_codes": 1096,
+  "raw_2026_has_antlerless_pdf": false,
+  "raw_2026_has_bear_restricted_pursuit_pdf": true,
+  "raw_2026_has_expo_pdf": false,
+  "raw_2026_has_regular_turkey_pdf": false,
+  "raw_2026_pdf_count": 24,
+  "utahdraws_live_rows": 834,
+  "utahdraws_live_unique_hunt_codes": 834,
+  "utahdraws_missing_from_canonical": 0,
+  "utahdraws_permit_mismatch_or_blank": 137,
+  "utahdraws_status_counts": {
+    "canonical_res_blank | canonical_nr_blank": 137,
+    "matched_or_not_checkable": 697
+  }
+}

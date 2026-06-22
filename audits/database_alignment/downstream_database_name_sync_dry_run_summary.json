@@ -1,0 +1,125 @@
+{
+  "database_key_count": 1471,
+  "summary": [
+    {
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2024_for_2025_canonical_yearly_draw_results.csv",
+      "status": "ok",
+      "rows": 43335,
+      "considered_rows": 43335,
+      "matching_name_updates": 11514,
+      "no_database_key_match": 1614
+    },
+    {
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2025_for_2026_canonical_yearly_draw_results.csv",
+      "status": "ok",
+      "rows": 38120,
+      "considered_rows": 38120,
+      "matching_name_updates": 7774,
+      "no_database_key_match": 189
+    },
+    {
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+      "status": "ok",
+      "rows": 22714,
+      "considered_rows": 22714,
+      "matching_name_updates": 1721,
+      "no_database_key_match": 61
+    },
+    {
+      "path": "data_truth/draw_results_truth/normalized/draw_results_2024_for_2025_candidate_promotion_file_records.csv",
+      "status": "ok",
+      "rows": 86659,
+      "considered_rows": 86659,
+      "matching_name_updates": 83430,
+      "no_database_key_match": 3228
+    },
+    {
+      "path": "data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.csv",
+      "status": "ok",
+      "rows": 75598,
+      "considered_rows": 75598,
+      "matching_name_updates": 47302,
+      "no_database_key_match": 518
+    },
+    {
+      "path": "data_truth/draw_results_truth/normalized/draw_results_2026_for_2027_candidate_promotion_file_records.csv",
+      "status": "ok",
+      "rows": 29522,
+      "considered_rows": 29522,
+      "matching_name_updates": 2094,
+      "no_database_key_match": 70
+    },
+    {
+      "path": "data_truth/draw_results_truth/normalized/draw_results_2026_for_2027_candidate_promotion_file_records_CANONICAL_SCORABLE_CANDIDATE.csv",
+      "status": "ok",
+      "rows": 18365,
+      "considered_rows": 18365,
+      "matching_name_updates": 1338,
+      "no_database_key_match": 26
+    },
+    {
+      "path": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
+      "status": "ok",
+      "rows": 275515,
+      "considered_rows": 104169,
+      "matching_name_updates": 21009,
+      "no_database_key_match": 1864
+    },
+    {
+      "path": "processed_data/hunt-master-canonical-2026-source-of-truth.csv",
+      "status": "ok",
+      "rows": 1471,
+      "considered_rows": 1471,
+      "matching_name_updates": 546,
+      "no_database_key_match": 32
+    },
+    {
+      "path": "processed_data/hunt_master_enriched.csv",
+      "status": "ok",
+      "rows": 51857,
+      "considered_rows": 51857,
+      "matching_name_updates": 24791,
+      "no_database_key_match": 330
+    },
+    {
+      "path": "processed_data/hunt_unit_reference_linked.csv",
+      "status": "ok",
+      "rows": 2997,
+      "considered_rows": 2997,
+      "matching_name_updates": 588,
+      "no_database_key_match": 2352
+    },
+    {
+      "path": "processed_data/draw_reality_engine_v2.csv",
+      "status": "ok",
+      "rows": 176753,
+      "considered_rows": 176753,
+      "matching_name_updates": 96455,
+      "no_database_key_match": 14238
+    },
+    {
+      "path": "processed_data/point_ladder_view.csv",
+      "status": "ok",
+      "rows": 91712,
+      "considered_rows": 91712,
+      "matching_name_updates": 33788,
+      "no_database_key_match": 528
+    },
+    {
+      "path": "processed_data/library/canonical_current_hunts_2026.csv",
+      "status": "ok",
+      "rows": 1471,
+      "considered_rows": 1471,
+      "matching_name_updates": 559,
+      "no_database_key_match": 0
+    },
+    {
+      "path": "processed_data/research_page/hunt_application_outlook.csv",
+      "status": "ok",
+      "rows": 2898,
+      "considered_rows": 2898,
+      "matching_name_updates": 1092,
+      "no_database_key_match": 20
+    }
+  ]
+}

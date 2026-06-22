@@ -1,0 +1,25 @@
+{
+  "total_historical_backtest_hunt_codes": 1399,
+  "total_forecast_hunt_codes": 934,
+  "total_active_2026_forecast_eligible_hunt_codes": 479,
+  "count_excluded_not_OIL_LE_PLE": 438,
+  "count_excluded_not_active_in_2026": 0,
+  "count_excluded_missing_forecast_quota": 148,
+  "count_excluded_missing_required_metadata": 0,
+  "count_excluded_hunt_code_changed_or_not_crosswalked": 289,
+  "count_excluded_other_reason": 11,
+  "count_excluded_missing_model_input_or_not_in_predictive_draft": 11,
+  "forecast_codes_match_active_eligible_universe": false,
+  "active_eligible_codes_missing_from_forecast": 0,
+  "forecast_codes_outside_active_eligible_universe": 455,
+  "reason_counts": {
+    "included_forecast": 934,
+    "not_OIL_LE_PLE": 438,
+    "not_active_in_2026": 0,
+    "missing_forecast_quota": 148,
+    "missing_required_metadata": 0,
+    "hunt_code_changed_or_not_crosswalked": 289,
+    "other_missing_model_input": 11
+  },
+  "source_csv": "audits\\prediction_blind_backtests\\2025_to_2026_refined2\\prediction_phase\\predictive_coverage_report.csv"
+}

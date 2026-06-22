@@ -331,7 +331,7 @@ def _build_truth_ladders(
     total_drawn_by_code_year: dict[tuple[str, int], dict[str, int]] = defaultdict(lambda: defaultdict(int))
 
     for row in truth_rows:
-        year = _to_int(row.get("year"))
+        year = _to_int(row.get("year") or row.get("actual_draw_year"))
         if year not in history_years or not _is_proven_bonus_bear_truth_row(row):
             continue
         subtype = classify_bear_subtype(row)
@@ -505,9 +505,9 @@ def _forecast_quota_for_residency(
     latest_year: int,
     total_drawn_by_code_year: Mapping[tuple[str, int], dict[str, int]],
 ) -> int:
-    res_specific = _to_int(db_row.get("permits_2026_res"))
-    nr_specific = _to_int(db_row.get("permits_2026_nr"))
-    total = _to_int(db_row.get("permits_2026_total"))
+    res_specific = _to_int(db_row.get("permit_allotment_2026_res")) or _to_int(db_row.get("permits_2026_res"))
+    nr_specific = _to_int(db_row.get("permit_allotment_2026_nr")) or _to_int(db_row.get("permits_2026_nr"))
+    total = _to_int(db_row.get("permit_allotment_2026_total")) or _to_int(db_row.get("permits_2026_total"))
     if res_specific or nr_specific:
         return res_specific if residency == "Resident" else nr_specific
     observed = total_drawn_by_code_year.get((hunt_code, latest_year), {})
@@ -753,8 +753,18 @@ def build_bear_bonus_predictions(
             elif hunt_code == "BR1018":
                 residencies = ("Nonresident",)
             else:
-                has_resident_line = _to_int(db_row.get("permits_2026_res")) > 0 or "res:" in _clean_lower(db_row.get("permits_2026_total"))
-                has_nonresident_line = _to_int(db_row.get("permits_2026_nr")) > 0 or "nonres:" in _clean_lower(db_row.get("permits_2026_total"))
+                has_resident_line = (
+                    _to_int(db_row.get("permit_allotment_2026_res")) > 0
+                    or _to_int(db_row.get("permits_2026_res")) > 0
+                    or "res:" in _clean_lower(db_row.get("permit_allotment_2026_total"))
+                    or "res:" in _clean_lower(db_row.get("permits_2026_total"))
+                )
+                has_nonresident_line = (
+                    _to_int(db_row.get("permit_allotment_2026_nr")) > 0
+                    or _to_int(db_row.get("permits_2026_nr")) > 0
+                    or "nonres:" in _clean_lower(db_row.get("permit_allotment_2026_total"))
+                    or "nonres:" in _clean_lower(db_row.get("permits_2026_total"))
+                )
                 if has_resident_line and has_nonresident_line:
                     residencies = ("Resident", "Nonresident")
                 elif has_resident_line:

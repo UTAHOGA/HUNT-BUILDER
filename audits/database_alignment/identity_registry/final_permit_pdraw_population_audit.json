@@ -1,0 +1,386 @@
+{
+  "canonical_2019": {
+    "rows": 33478,
+    "missing_columns": [],
+    "blank_counts": {
+      "permits_2019_res": 0,
+      "permits_2019_nr": 0,
+      "permits_2019_total": 0,
+      "resident_p_draw": 20391,
+      "resident_p_draw_percent": 20391,
+      "nonresident_p_draw": 27759,
+      "nonresident_p_draw_percent": 27759,
+      "total_p_draw": 19938,
+      "total_p_draw_percent": 19938
+    },
+    "out_of_range_counts": {
+      "resident_p_draw": 0,
+      "resident_p_draw_percent": 0,
+      "nonresident_p_draw": 0,
+      "nonresident_p_draw_percent": 0,
+      "total_p_draw": 0,
+      "total_p_draw_percent": 0
+    },
+    "permit_math_mismatches": 0
+  },
+  "canonical_2020": {
+    "rows": 33370,
+    "missing_columns": [],
+    "blank_counts": {
+      "permits_2020_res": 0,
+      "permits_2020_nr": 0,
+      "permits_2020_total": 0,
+      "resident_p_draw": 20104,
+      "resident_p_draw_percent": 20104,
+      "nonresident_p_draw": 27460,
+      "nonresident_p_draw_percent": 27460,
+      "total_p_draw": 19567,
+      "total_p_draw_percent": 19567
+    },
+    "out_of_range_counts": {
+      "resident_p_draw": 0,
+      "resident_p_draw_percent": 0,
+      "nonresident_p_draw": 0,
+      "nonresident_p_draw_percent": 0,
+      "total_p_draw": 0,
+      "total_p_draw_percent": 0
+    },
+    "permit_math_mismatches": 0
+  },
+  "canonical_2021": {
+    "rows": 33788,
+    "missing_columns": [],
+    "blank_counts": {
+      "permits_2021_res": 0,
+      "permits_2021_nr": 0,
+      "permits_2021_total": 0,
+      "resident_p_draw": 20252,
+      "resident_p_draw_percent": 20252,
+      "nonresident_p_draw": 27540,
+      "nonresident_p_draw_percent": 27540,
+      "total_p_draw": 19614,
+      "total_p_draw_percent": 19614
+    },
+    "out_of_range_counts": {
+      "resident_p_draw": 0,
+      "resident_p_draw_percent": 0,
+      "nonresident_p_draw": 0,
+      "nonresident_p_draw_percent": 0,
+      "total_p_draw": 0,
+      "total_p_draw_percent": 0
+    },
+    "permit_math_mismatches": 0
+  },
+  "canonical_2022": {
+    "rows": 34876,
+    "missing_columns": [],
+    "blank_counts": {
+      "permits_2022_res": 0,
+      "permits_2022_nr": 0,
+      "permits_2022_total": 0,
+      "resident_p_draw": 21074,
+      "resident_p_draw_percent": 21074,
+      "nonresident_p_draw": 28450,
+      "nonresident_p_draw_percent": 28450,
+      "total_p_draw": 20370,
+      "total_p_draw_percent": 20370
+    },
+    "out_of_range_counts": {
+      "resident_p_draw": 0,
+      "resident_p_draw_percent": 0,
+      "nonresident_p_draw": 0,
+      "nonresident_p_draw_percent": 0,
+      "total_p_draw": 0,
+      "total_p_draw_percent": 0
+    },
+    "permit_math_mismatches": 0
+  },
+  "canonical_2023": {
+    "rows": 35834,
+    "missing_columns": [],
+    "blank_counts": {
+      "permits_2023_res": 0,
+      "permits_2023_nr": 0,
+      "permits_2023_total": 0,
+      "resident_p_draw": 22906,
+      "resident_p_draw_percent": 22906,
+      "nonresident_p_draw": 29792,
+      "nonresident_p_draw_percent": 29792,
+      "total_p_draw": 22117,
+      "total_p_draw_percent": 22117
+    },
+    "out_of_range_counts": {
+      "resident_p_draw": 0,
+      "resident_p_draw_percent": 0,
+      "nonresident_p_draw": 0,
+      "nonresident_p_draw_percent": 0,
+      "total_p_draw": 0,
+      "total_p_draw_percent": 0
+    },
+    "permit_math_mismatches": 0
+  },
+  "canonical_2024": {
+    "rows": 43335,
+    "missing_columns": [],
+    "blank_counts": {
+      "permits_2024_res": 0,
+      "permits_2024_nr": 0,
+      "permits_2024_total": 0,
+      "resident_p_draw": 27485,
+      "resident_p_draw_percent": 27485,
+      "nonresident_p_draw": 36937,
+      "nonresident_p_draw_percent": 36937,
+      "total_p_draw": 26626,
+      "total_p_draw_percent": 26626
+    },
+    "out_of_range_counts": {
+      "resident_p_draw": 0,
+      "resident_p_draw_percent": 0,
+      "nonresident_p_draw": 0,
+      "nonresident_p_draw_percent": 0,
+      "total_p_draw": 0,
+      "total_p_draw_percent": 0
+    },
+    "permit_math_mismatches": 0
+  },
+  "canonical_2025": {
+    "rows": 38120,
+    "missing_columns": [],
+    "blank_counts": {
+      "permits_2025_res": 0,
+      "permits_2025_nr": 0,
+      "permits_2025_total": 0,
+      "resident_p_draw": 10850,
+      "resident_p_draw_percent": 10850,
+      "nonresident_p_draw": 15258,
+      "nonresident_p_draw_percent": 15258,
+      "total_p_draw": 9982,
+      "total_p_draw_percent": 9982
+    },
+    "out_of_range_counts": {
+      "resident_p_draw": 0,
+      "resident_p_draw_percent": 0,
+      "nonresident_p_draw": 0,
+      "nonresident_p_draw_percent": 0,
+      "total_p_draw": 0,
+      "total_p_draw_percent": 0
+    },
+    "permit_math_mismatches": 0
+  },
+  "canonical_2026": {
+    "rows": 22714,
+    "missing_columns": [],
+    "blank_counts": {
+      "permits_2026_res": 0,
+      "permits_2026_nr": 0,
+      "permits_2026_total": 0,
+      "resident_p_draw": 11666,
+      "resident_p_draw_percent": 10912,
+      "nonresident_p_draw": 17164,
+      "nonresident_p_draw_percent": 16623,
+      "total_p_draw": 10661,
+      "total_p_draw_percent": 9866
+    },
+    "out_of_range_counts": {
+      "resident_p_draw": 0,
+      "resident_p_draw_percent": 0,
+      "nonresident_p_draw": 0,
+      "nonresident_p_draw_percent": 0,
+      "total_p_draw": 0,
+      "total_p_draw_percent": 0
+    },
+    "permit_math_mismatches": 0
+  },
+  "long_2019": {
+    "rows": 33478,
+    "missing_columns": [],
+    "blank_counts": {
+      "permits_2019_res": 0,
+      "permits_2019_nr": 0,
+      "permits_2019_total": 0,
+      "resident_p_draw": 20391,
+      "resident_p_draw_percent": 20391,
+      "nonresident_p_draw": 27759,
+      "nonresident_p_draw_percent": 27759,
+      "total_p_draw": 19938,
+      "total_p_draw_percent": 19938
+    },
+    "out_of_range_counts": {
+      "resident_p_draw": 0,
+      "resident_p_draw_percent": 0,
+      "nonresident_p_draw": 0,
+      "nonresident_p_draw_percent": 0,
+      "total_p_draw": 0,
+      "total_p_draw_percent": 0
+    },
+    "permit_math_mismatches": 0
+  },
+  "long_2020": {
+    "rows": 33370,
+    "missing_columns": [],
+    "blank_counts": {
+      "permits_2020_res": 0,
+      "permits_2020_nr": 0,
+      "permits_2020_total": 0,
+      "resident_p_draw": 20104,
+      "resident_p_draw_percent": 20104,
+      "nonresident_p_draw": 27460,
+      "nonresident_p_draw_percent": 27460,
+      "total_p_draw": 19567,
+      "total_p_draw_percent": 19567
+    },
+    "out_of_range_counts": {
+      "resident_p_draw": 0,
+      "resident_p_draw_percent": 0,
+      "nonresident_p_draw": 0,
+      "nonresident_p_draw_percent": 0,
+      "total_p_draw": 0,
+      "total_p_draw_percent": 0
+    },
+    "permit_math_mismatches": 0
+  },
+  "long_2021": {
+    "rows": 33788,
+    "missing_columns": [],
+    "blank_counts": {
+      "permits_2021_res": 0,
+      "permits_2021_nr": 0,
+      "permits_2021_total": 0,
+      "resident_p_draw": 20252,
+      "resident_p_draw_percent": 20252,
+      "nonresident_p_draw": 27540,
+      "nonresident_p_draw_percent": 27540,
+      "total_p_draw": 19614,
+      "total_p_draw_percent": 19614
+    },
+    "out_of_range_counts": {
+      "resident_p_draw": 0,
+      "resident_p_draw_percent": 0,
+      "nonresident_p_draw": 0,
+      "nonresident_p_draw_percent": 0,
+      "total_p_draw": 0,
+      "total_p_draw_percent": 0
+    },
+    "permit_math_mismatches": 0
+  },
+  "long_2022": {
+    "rows": 34876,
+    "missing_columns": [],
+    "blank_counts": {
+      "permits_2022_res": 0,
+      "permits_2022_nr": 0,
+      "permits_2022_total": 0,
+      "resident_p_draw": 21074,
+      "resident_p_draw_percent": 21074,
+      "nonresident_p_draw": 28450,
+      "nonresident_p_draw_percent": 28450,
+      "total_p_draw": 20370,
+      "total_p_draw_percent": 20370
+    },
+    "out_of_range_counts": {
+      "resident_p_draw": 0,
+      "resident_p_draw_percent": 0,
+      "nonresident_p_draw": 0,
+      "nonresident_p_draw_percent": 0,
+      "total_p_draw": 0,
+      "total_p_draw_percent": 0
+    },
+    "permit_math_mismatches": 0
+  },
+  "long_2023": {
+    "rows": 35834,
+    "missing_columns": [],
+    "blank_counts": {
+      "permits_2023_res": 0,
+      "permits_2023_nr": 0,
+      "permits_2023_total": 0,
+      "resident_p_draw": 22906,
+      "resident_p_draw_percent": 22906,
+      "nonresident_p_draw": 29792,
+      "nonresident_p_draw_percent": 29792,
+      "total_p_draw": 22117,
+      "total_p_draw_percent": 22117
+    },
+    "out_of_range_counts": {
+      "resident_p_draw": 0,
+      "resident_p_draw_percent": 0,
+      "nonresident_p_draw": 0,
+      "nonresident_p_draw_percent": 0,
+      "total_p_draw": 0,
+      "total_p_draw_percent": 0
+    },
+    "permit_math_mismatches": 0
+  },
+  "long_2024": {
+    "rows": 43335,
+    "missing_columns": [],
+    "blank_counts": {
+      "permits_2024_res": 0,
+      "permits_2024_nr": 0,
+      "permits_2024_total": 0,
+      "resident_p_draw": 27485,
+      "resident_p_draw_percent": 27485,
+      "nonresident_p_draw": 36937,
+      "nonresident_p_draw_percent": 36937,
+      "total_p_draw": 26626,
+      "total_p_draw_percent": 26626
+    },
+    "out_of_range_counts": {
+      "resident_p_draw": 0,
+      "resident_p_draw_percent": 0,
+      "nonresident_p_draw": 0,
+      "nonresident_p_draw_percent": 0,
+      "total_p_draw": 0,
+      "total_p_draw_percent": 0
+    },
+    "permit_math_mismatches": 0
+  },
+  "long_2025": {
+    "rows": 38120,
+    "missing_columns": [],
+    "blank_counts": {
+      "permits_2025_res": 0,
+      "permits_2025_nr": 0,
+      "permits_2025_total": 0,
+      "resident_p_draw": 10850,
+      "resident_p_draw_percent": 10850,
+      "nonresident_p_draw": 15258,
+      "nonresident_p_draw_percent": 15258,
+      "total_p_draw": 9982,
+      "total_p_draw_percent": 9982
+    },
+    "out_of_range_counts": {
+      "resident_p_draw": 0,
+      "resident_p_draw_percent": 0,
+      "nonresident_p_draw": 0,
+      "nonresident_p_draw_percent": 0,
+      "total_p_draw": 0,
+      "total_p_draw_percent": 0
+    },
+    "permit_math_mismatches": 0
+  },
+  "long_2026": {
+    "rows": 22714,
+    "missing_columns": [],
+    "blank_counts": {
+      "permits_2026_res": 0,
+      "permits_2026_nr": 0,
+      "permits_2026_total": 0,
+      "resident_p_draw": 11666,
+      "resident_p_draw_percent": 10912,
+      "nonresident_p_draw": 17164,
+      "nonresident_p_draw_percent": 16623,
+      "total_p_draw": 10661,
+      "total_p_draw_percent": 9866
+    },
+    "out_of_range_counts": {
+      "resident_p_draw": 0,
+      "resident_p_draw_percent": 0,
+      "nonresident_p_draw": 0,
+      "nonresident_p_draw_percent": 0,
+      "total_p_draw": 0,
+      "total_p_draw_percent": 0
+    },
+    "permit_math_mismatches": 0
+  }
+}

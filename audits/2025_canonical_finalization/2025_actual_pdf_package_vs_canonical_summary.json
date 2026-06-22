@@ -1,0 +1,43 @@
+{
+  "canonical_2025_rows": 75835,
+  "canonical_only_codes": [
+    "BI1000",
+    "BR1000",
+    "DB0007",
+    "DS1000",
+    "EB1000",
+    "GO1000",
+    "MB1000",
+    "PB1000",
+    "RS0001",
+    "TK0001"
+  ],
+  "canonical_only_key_count": 10,
+  "canonical_scorable_codes": 1062,
+  "canonical_scorable_rows": 75438,
+  "pdf_codes": 1053,
+  "pdf_files_extracted": 12,
+  "pdf_files_total": 13,
+  "pdf_only_codes": [
+    "BR7307"
+  ],
+  "pdf_only_key_count": 54,
+  "pdf_rows": 76172,
+  "prefix_counts": {
+    "BI": 1054,
+    "BR": 4462,
+    "DA": 1524,
+    "DB": 29070,
+    "DS": 1254,
+    "EA": 11828,
+    "EB": 13992,
+    "GO": 1186,
+    "MA": 242,
+    "MB": 2438,
+    "PB": 5866,
+    "PD": 1666,
+    "RE": 40,
+    "RS": 990,
+    "TK": 560
+  }
+}

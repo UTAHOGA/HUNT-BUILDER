@@ -226,7 +226,6 @@ def map_2026_to_long(row: dict[str, str], long_fields: list[str]) -> dict[str, s
             "p_draw_percent": clean(row.get("p_draw_percent")),
             "row_type": record_type,
             "record_type": record_type,
-            "successful_applicants": clean(row.get("successful_applicants") or row.get("total_drawn")),
             "candidate_promotion_status": clean(row.get("candidate_promotion_status")),
             "algorithm_status": clean(row.get("candidate_promotion_reason")),
             "source_dataset": clean(row.get("source_dataset")),

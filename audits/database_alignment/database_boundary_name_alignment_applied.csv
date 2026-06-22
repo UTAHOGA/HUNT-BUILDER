@@ -1,0 +1,206 @@
+row,hunt_code,old_boundary_id,new_boundary_id,old_hunt_name,new_hunt_name,source
+3,DB0009,1,1,Antelope Island - Conservation/Expo,Antelope Island,direct_boundary_geojson_unique_name
+5,DB1121,1,1,Antelope Island Management,Antelope Island,direct_boundary_geojson_unique_name
+15,DB1056,7,7,Book Cliffs (North & South),Book Cliffs,direct_boundary_geojson_unique_name
+16,DB1075,7,7,Book Cliffs (North & South),Book Cliffs,direct_boundary_geojson_unique_name
+17,DB1076,7,7,Book Cliffs (North & South),Book Cliffs,direct_boundary_geojson_unique_name
+20,BR7102,12,12,Book Cliffs Little Creek Roadless,"Book Cliffs, Little Creek Roadless",direct_boundary_geojson_unique_name
+21,BR7224,12,12,Book Cliffs Little Creek Roadless,"Book Cliffs, Little Creek Roadless",direct_boundary_geojson_unique_name
+22,BR7225,12,12,Book Cliffs Little Creek Roadless,"Book Cliffs, Little Creek Roadless",direct_boundary_geojson_unique_name
+23,BR7301,12,12,Book Cliffs Little Creek Roadless,"Book Cliffs, Little Creek Roadless",direct_boundary_geojson_unique_name
+29,EL3002,12,12,Book Cliffs Little Creek Roadless,"Book Cliffs, Little Creek Roadless",direct_boundary_geojson_unique_name
+30,EL3028,12,12,Book Cliffs Little Creek Roadless,"Book Cliffs, Little Creek Roadless",direct_boundary_geojson_unique_name
+31,EL3079,12,12,Book Cliffs Little Creek Roadless,"Book Cliffs, Little Creek Roadless",direct_boundary_geojson_unique_name
+32,EL3167,12,12,Book Cliffs Little Creek Roadless,"Book Cliffs, Little Creek Roadless",direct_boundary_geojson_unique_name
+78,EL3003,33,33,Cache Meadowville,"Cache, Meadowville",direct_boundary_geojson_unique_name
+79,EL3032,33,33,Cache Meadowville,"Cache, Meadowville",direct_boundary_geojson_unique_name
+80,EL3033,33,33,Cache Meadowville,"Cache, Meadowville",direct_boundary_geojson_unique_name
+81,EL3081,33,33,Cache Meadowville,"Cache, Meadowville",direct_boundary_geojson_unique_name
+82,EL3168,33,33,Cache Meadowville,"Cache, Meadowville",direct_boundary_geojson_unique_name
+83,EL3169,33,33,Cache Meadowville,"Cache, Meadowville",direct_boundary_geojson_unique_name
+86,EL3132,36,36,Cache North,"Cache, North",direct_boundary_geojson_unique_name
+87,EL3139,36,36,Cache North,"Cache, North",direct_boundary_geojson_unique_name
+94,EA1012,40,40,"Cache, Richmond Hyde Park","Cache, Richmond-Hyde Park",direct_boundary_geojson_unique_name
+95,EA1206,40,40,"Cache, Richmond Hyde Park","Cache, Richmond-Hyde Park",direct_boundary_geojson_unique_name
+103,EL3005,41,41,Cache South,"Cache, South",direct_boundary_geojson_unique_name
+104,EL3036,41,41,Cache South,"Cache, South",direct_boundary_geojson_unique_name
+105,EL3037,41,41,Cache South,"Cache, South",direct_boundary_geojson_unique_name
+106,EL3083,41,41,Cache South,"Cache, South",direct_boundary_geojson_unique_name
+107,EL3170,41,41,Cache South,"Cache, South",direct_boundary_geojson_unique_name
+108,EL3171,41,41,Cache South,"Cache, South",direct_boundary_geojson_unique_name
+127,BR7003,52,52,Manti North,"Manti, North",direct_boundary_geojson_unique_name
+128,BR7104,52,52,Manti North,"Manti, North",direct_boundary_geojson_unique_name
+129,BR7203,52,52,Manti North,"Manti, North",direct_boundary_geojson_unique_name
+130,BR7303,52,52,Manti North,"Manti, North",direct_boundary_geojson_unique_name
+131,EA1020,55,55,"Manti, Mohrland-Stump Flat","Manti, Morhland Stump Flat",direct_boundary_geojson_unique_name
+162,BR7007,88,88,Fillmore Pahvant,"Fillmore, Pahvant",direct_boundary_geojson_unique_name
+163,BR7124,88,88,Fillmore Pahvant,"Fillmore, Pahvant",direct_boundary_geojson_unique_name
+164,BR7207,88,88,Fillmore Pahvant,"Fillmore, Pahvant",direct_boundary_geojson_unique_name
+175,EL3008,88,88,Fillmore Pahvant,"Fillmore, Pahvant",direct_boundary_geojson_unique_name
+176,EL3042,88,88,Fillmore Pahvant,"Fillmore, Pahvant",direct_boundary_geojson_unique_name
+177,EL3043,88,88,Fillmore Pahvant,"Fillmore, Pahvant",direct_boundary_geojson_unique_name
+178,EL3086,88,88,Fillmore Pahvant,"Fillmore, Pahvant",direct_boundary_geojson_unique_name
+179,EL3180,88,88,Fillmore Pahvant,"Fillmore, Pahvant",direct_boundary_geojson_unique_name
+180,EL3181,88,88,Fillmore Pahvant,"Fillmore, Pahvant",direct_boundary_geojson_unique_name
+197,DB1009,94,94,Henry Mtns Management,Henry Mtns,direct_boundary_geojson_unique_name
+218,EL3044,108,108,La Sal Dolores Triangle,Dolores Triangle,direct_boundary_geojson_unique_name
+262,EL3013,140,140,North Slope Three Corners,"North Slope, Three Corners",direct_boundary_geojson_unique_name
+263,EL3053,140,140,North Slope Three Corners,"North Slope, Three Corners",direct_boundary_geojson_unique_name
+264,EL3091,140,140,North Slope Three Corners,"North Slope, Three Corners",direct_boundary_geojson_unique_name
+265,EL3210,140,140,North Slope Three Corners,"North Slope, Three Corners",direct_boundary_geojson_unique_name
+285,DB1010,163,163,Paunsaugunt Management,Paunsaugunt,direct_boundary_geojson_unique_name
+286,DB1058,163,163,Paunsaugunt Cactus,Paunsaugunt,direct_boundary_geojson_unique_name
+287,DB1073,163,163,Paunsaugunt Management,Paunsaugunt,direct_boundary_geojson_unique_name
+288,DB1074,163,163,Paunsaugunt Management,Paunsaugunt,direct_boundary_geojson_unique_name
+381,LO0008,206,206,Diamond Mtn Landowner Association,Diamond Mtn,direct_boundary_geojson_unique_name
+382,LO0009,206,206,Diamond Mtn Landowner Association,Diamond Mtn,direct_boundary_geojson_unique_name
+383,LO0010,206,206,Diamond Mtn Landowner Association,Diamond Mountain,direct_boundary_geojson_unique_name
+384,LO0011,206,206,Diamond Mtn Landowner Association,Diamond Mtn,direct_boundary_geojson_unique_name
+385,LO0012,206,206,Diamond Mtn Landowner Association,Diamond Mtn,direct_boundary_geojson_unique_name
+386,LO0013,206,206,Diamond Mtn Landowner Association,Diamond Mtn,direct_boundary_geojson_unique_name
+387,LO0014,206,206,Diamond Mtn Landowner Association,Diamond Mtn,direct_boundary_geojson_unique_name
+388,LO0015,206,206,Diamond Mtn Landowner Association,Diamond Mtn,direct_boundary_geojson_unique_name
+406,EA1106,224,224,"Wasatch Mtns, Avintaquin","Wasatch Mtns, Avintaquin A",direct_boundary_geojson_unique_name
+407,EA1217,224,224,"Wasatch Mtns, Avintaquin","Wasatch Mtns, Avintaquin A",direct_boundary_geojson_unique_name
+419,EL3137,241,241,West Desert Deep Creek,"West Desert, Deep Creek",direct_boundary_geojson_unique_name
+420,EL3144,241,241,West Desert Deep Creek,"West Desert, Deep Creek",direct_boundary_geojson_unique_name
+432,BR7018,251,251,Kamas/North Slope Summit,"Kamas/North Slope, Summit",direct_boundary_geojson_unique_name
+434,DB1105,276,276,HAMSS,East Canyon,direct_boundary_geojson_unique_name
+454,BR7111,289,289,North Slope Three Corners/West Daggett,"North Slope, Three Corners/West Daggett",direct_boundary_geojson_unique_name
+455,BR7212,289,289,North Slope Three Corners/West Daggett,"North Slope, Three Corners/West Daggett",direct_boundary_geojson_unique_name
+456,BR7308,289,289,North Slope Three Corners/West Daggett,"North Slope, Three Corners/West Daggett",direct_boundary_geojson_unique_name
+461,DB1090,301,301,HAMSS,"Book Cliffs, Floy Canyon",direct_boundary_geojson_unique_name
+467,DB1091,314,314,HAMSS,Kaiparowits (HAMS),direct_boundary_geojson_unique_name
+476,BR7120,448,448,Wasatch Mtns West-Central,"Wasatch Mtns, West-Central",direct_boundary_geojson_unique_name
+477,BR7221,448,448,Wasatch Mtns West-Central,"Wasatch Mtns, West-Central",direct_boundary_geojson_unique_name
+478,BR7316,448,448,Wasatch Mtns West-Central,"Wasatch Mtns, West-Central",direct_boundary_geojson_unique_name
+480,BR7001,449,449,Book Cliffs Bitter Creek/South,"Book Cliffs, Bitter Creek/South",direct_boundary_geojson_unique_name
+481,BR7101,449,449,Book Cliffs Bitter Creek/South,"Book Cliffs, Bitter Creek/South",direct_boundary_geojson_unique_name
+482,BR7201,449,449,Book Cliffs Bitter Creek/South,"Book Cliffs, Bitter Creek/South",direct_boundary_geojson_unique_name
+483,BR7300,449,449,Book Cliffs Bitter Creek/South,"Book Cliffs, Bitter Creek/South",direct_boundary_geojson_unique_name
+510,BR7119,463,463,Wasatch Mtns Avintaquin/Currant Creek,"Wasatch Mtns, Avintaquin/Currant Creek",direct_boundary_geojson_unique_name
+511,BR7220,463,463,Wasatch Mtns Avintaquin/Currant Creek,"Wasatch Mtns, Avintaquin/Currant Creek",direct_boundary_geojson_unique_name
+512,BR7315,463,463,Wasatch Mtns Avintaquin/Currant Creek,"Wasatch Mtns, Avintaquin/Currant Creek",direct_boundary_geojson_unique_name
+514,EA1114,480,480,"Wasatch Mtns, West Timpanogos","Wasatch Mtns, Timpanogos B",direct_boundary_geojson_unique_name
+521,DB1310,488,488,White's Valley,Whites Valley,direct_boundary_geojson_unique_name
+538,DB1209,500,500,Blind Springs,Blind Spring,direct_boundary_geojson_unique_name
+558,EA1158,517,517,Cactus Ranch LLC,Riverview Ranch LLC,direct_boundary_geojson_unique_name
+559,EB3545,517,517,Cactus Ranch LLC,Riverview Ranch LLC,direct_boundary_geojson_unique_name
+571,DB1349,524,524,Weber Florence Creek/Stillman Creek,Weber Florence Creek,direct_boundary_geojson_unique_name
+572,EA1263,524,524,Weber Florence Creek/Stillman Creek,Weber Florence Creek,direct_boundary_geojson_unique_name
+573,EB3619,524,524,Weber Florence Creek/Stillman Creek,Weber Florence Creek,direct_boundary_geojson_unique_name
+574,MB6266,524,524,Weber Florence Creek/Stillman Creek,Weber Florence Creek,direct_boundary_geojson_unique_name
+579,DB1200,526,526,Alton - Premium Buck,Alton,direct_boundary_geojson_unique_name
+580,DB1201,526,526,Alton - Management Buck,Alton,direct_boundary_geojson_unique_name
+581,DB1334,526,526,Alton - Cactus Buck,Alton,direct_boundary_geojson_unique_name
+593,DB1255,531,531,Johnson Mountain Ranch,Johnson Mtn Ranch,direct_boundary_geojson_unique_name
+594,EA1145,531,531,Johnson Mountain Ranch,Johnson Mtn Ranch,direct_boundary_geojson_unique_name
+595,EB3531,531,531,Johnson Mountain Ranch,Johnson Mtn Ranch,direct_boundary_geojson_unique_name
+650,DB1337,556,556,Little Pole Canyon,Coyote Little Pole,direct_boundary_geojson_unique_name
+651,EA1256,556,556,Little Pole Canyon,Coyote Little Pole,direct_boundary_geojson_unique_name
+652,EB3613,556,556,Little Pole Canyon,Coyote Little Pole,direct_boundary_geojson_unique_name
+653,MB6265,556,556,Little Pole Canyon,Coyote Little Pole,direct_boundary_geojson_unique_name
+703,DB1238,579,579,Folley Ridge,Folly Ridge,direct_boundary_geojson_unique_name
+704,EA1135,579,579,Folley Ridge,Folly Ridge,direct_boundary_geojson_unique_name
+705,EB3520,579,579,Folley Ridge,Folly Ridge,direct_boundary_geojson_unique_name
+862,EL3009,617,617,La Sal La Sal Mtns,La Sal Mtns,direct_boundary_geojson_unique_name
+863,EL3045,617,617,La Sal La Sal Mtns,La Sal Mtns,direct_boundary_geojson_unique_name
+864,EL3046,617,617,La Sal La Sal Mtns,La Sal Mtns,direct_boundary_geojson_unique_name
+865,EL3087,617,617,La Sal La Sal Mtns,La Sal Mtns,direct_boundary_geojson_unique_name
+866,EL3182,617,617,La Sal La Sal Mtns,La Sal Mtns,direct_boundary_geojson_unique_name
+867,EL3183,617,617,La Sal La Sal Mtns,La Sal Mtns,direct_boundary_geojson_unique_name
+869,LO1509,617,617,"La Sal, La Sal Mtns",La Sal Mtns,direct_boundary_geojson_unique_name
+870,LO1539,617,617,"La Sal, La Sal Mtns",La Sal Mtns,direct_boundary_geojson_unique_name
+871,LO1569,617,617,"La Sal, La Sal Mtns",La Sal Mtns,direct_boundary_geojson_unique_name
+893,EA2012,620,620,"Wasatch Mtns, West-Central","Wasatch Mtns, West",direct_boundary_geojson_unique_name
+1053,BI6532,667,667,"Book Cliffs, Bitter Creek","Book Cliffs, Bitter Creek (pronghorn)",direct_boundary_geojson_unique_name
+1054,BI6534,667,667,"Book Cliffs, Bitter Creek","Book Cliffs, Bitter Creek (pronghorn)",direct_boundary_geojson_unique_name
+1055,BI6535,667,667,"Book Cliffs, Bitter Creek","Book Cliffs, Bitter Creek (pronghorn)",direct_boundary_geojson_unique_name
+1056,BI6536,667,667,"Book Cliffs, Bitter Creek","Book Cliffs, Bitter Creek (pronghorn)",direct_boundary_geojson_unique_name
+1057,PB5001,667,667,"Book Cliffs, Bitter Creek","Book Cliffs, Bitter Creek (pronghorn)",direct_boundary_geojson_unique_name
+1058,PB5026,667,667,"Book Cliffs, Bitter Creek","Book Cliffs, Bitter Creek (pronghorn)",direct_boundary_geojson_unique_name
+1059,RS6720,668,668,"Fillmore, Oak Creek","Fillmore, Oak Creek (cougar)",direct_boundary_geojson_unique_name
+1060,RS6726,668,668,"Fillmore, Oak Creek","Fillmore, Oak Creek (cougar)",direct_boundary_geojson_unique_name
+1061,RS6727,668,668,"Fillmore, Oak Creek","Fillmore, Oak Creek (cougar)",direct_boundary_geojson_unique_name
+1074,EL3031,682,682,Box Elder Pilot Mtn,"Box Elder, Pilot Mtn",direct_boundary_geojson_unique_name
+1075,EL3130,682,682,Box Elder Pilot Mtn,"Box Elder, Pilot Mtn",direct_boundary_geojson_unique_name
+1095,EL3000,685,685,Beaver East,"Beaver, East",direct_boundary_geojson_unique_name
+1096,EL3024,685,685,Beaver East,"Beaver, East",direct_boundary_geojson_unique_name
+1097,EL3025,685,685,Beaver East,"Beaver, East",direct_boundary_geojson_unique_name
+1098,EL3077,685,685,Beaver East,"Beaver, East",direct_boundary_geojson_unique_name
+1099,EL3158,685,685,Beaver East,"Beaver, East",direct_boundary_geojson_unique_name
+1100,EL3159,685,685,Beaver East,"Beaver, East",direct_boundary_geojson_unique_name
+1148,BR7004,744,744,Manti South/San Rafael North,"Manti South/San Rafael, North",direct_boundary_geojson_unique_name
+1149,BR7105,744,744,Manti South/San Rafael North,"Manti South/San Rafael, North",direct_boundary_geojson_unique_name
+1150,BR7204,744,744,Manti South/San Rafael North,"Manti South/San Rafael, North",direct_boundary_geojson_unique_name
+1151,BR7304,744,744,Manti South/San Rafael North,"Manti South/San Rafael, North",direct_boundary_geojson_unique_name
+1174,DB1208,874,874,Blackhawk,West Ridge,direct_boundary_geojson_unique_name
+1175,EA1261,874,874,Blackhawk,West Ridge,direct_boundary_geojson_unique_name
+1176,EB3504,874,874,Blackhawk,West Ridge,direct_boundary_geojson_unique_name
+1196,BR7016,845,845,Wasatch Mtns West-Central,"Wasatch Mtns, West-Central",direct_boundary_geojson_unique_name
+1204,DB0004,865,865,Southern Navajo,Navajo Nation SR permit area,direct_boundary_geojson_unique_name
+1205,DB0005,865,865,Southern Navajo,Navajo Nation SR permit area,direct_boundary_geojson_unique_name
+1206,DB0006,865,865,Southern Navajo,Navajo Nation SR permit area,direct_boundary_geojson_unique_name
+1207,DB0010,865,865,Southern Paiute,Navajo Nation SR permit area,direct_boundary_geojson_unique_name
+1208,DB0011,865,865,Southern Paiute,Navajo Nation SR permit area,direct_boundary_geojson_unique_name
+1209,DB0012,865,865,Southern Paiute,Navajo Nation SR permit area,direct_boundary_geojson_unique_name
+1210,DB0013,865,865,Southern Paiute,Navajo Nation SR permit area,direct_boundary_geojson_unique_name
+1211,DB0001,866,866,Southeastern Navajo,Navajo Nation SER permit area,direct_boundary_geojson_unique_name
+1212,DB0002,866,866,Southeastern Navajo,Navajo Nation SER permit area,direct_boundary_geojson_unique_name
+1213,DB0003,866,866,Southeastern Navajo,Navajo Nation SER permit area,direct_boundary_geojson_unique_name
+1218,EL3147,867,867,Box Elder Grouse Creek,"Box Elder, Grouse Creek",direct_boundary_geojson_unique_name
+1219,EL3150,867,867,Box Elder Grouse Creek,"Box Elder, Grouse Creek",direct_boundary_geojson_unique_name
+1220,EL3153,867,867,Box Elder Grouse Creek,"Box Elder, Grouse Creek",direct_boundary_geojson_unique_name
+1228,EL3136,871,871,Southwest Desert North,"Southwest Desert, North",direct_boundary_geojson_unique_name
+1229,EL3143,871,871,Southwest Desert North,"Southwest Desert, North",direct_boundary_geojson_unique_name
+1237,EL3146,872,872,Southwest Desert South,"Southwest Desert, South",direct_boundary_geojson_unique_name
+1238,EL3149,872,872,Southwest Desert South,"Southwest Desert, South",direct_boundary_geojson_unique_name
+1239,EL3152,872,872,Southwest Desert South,"Southwest Desert, South",direct_boundary_geojson_unique_name
+1240,EL3155,872,872,Southwest Desert South,"Southwest Desert, South",direct_boundary_geojson_unique_name
+1241,EL3197,872,872,Southwest Desert South,"Southwest Desert, South",direct_boundary_geojson_unique_name
+1242,EL3198,872,872,Southwest Desert South,"Southwest Desert, South",direct_boundary_geojson_unique_name
+1246,EA1260,808,808,West Ridge,Blackhawk,direct_boundary_geojson_unique_name
+1249,DB1330,876,876,Iron Spring,Iron Springs,direct_boundary_geojson_unique_name
+1250,PB5339,876,876,Iron Spring,Iron Springs,direct_boundary_geojson_unique_name
+1251,DB1333,878,878,5S,5S Land and Livestock,direct_boundary_geojson_unique_name
+1252,EA1237,879,879,"La Sal Mtns, North","LaSal, Mtns-North",direct_boundary_geojson_unique_name
+1253,EA1280,879,879,"La Sal, La Sal Mtns-North","LaSal, Mtns-North",direct_boundary_geojson_unique_name
+1256,PD1043,882,882,"Nine Mile, Anthro-Pleasant Valley","Nine Mile, Anthro Pleasant Valley",direct_boundary_geojson_unique_name
+1257,TK1006,884,884,Southeastern Area,Southeastern Region,direct_boundary_geojson_unique_name
+1258,TK1015,884,884,Southeastern Area,Southeastern Region,direct_boundary_geojson_unique_name
+1259,TK1007,885,885,Southern Area,Southern Region,direct_boundary_geojson_unique_name
+1260,TK1016,885,885,Southern Area,Southern Region,direct_boundary_geojson_unique_name
+1261,TK1004,886,886,Northeastern Area,Northeastern Region,direct_boundary_geojson_unique_name
+1262,TK1013,886,886,Northeastern Area,Northeastern Region,direct_boundary_geojson_unique_name
+1263,TK1003,887,887,Central Area,Central Region,direct_boundary_geojson_unique_name
+1264,TK1012,887,887,Central Area,Central Region,direct_boundary_geojson_unique_name
+1265,TK1005,888,888,Northern Area,Northern Region,direct_boundary_geojson_unique_name
+1266,TK1014,888,888,Northern Area,Northern Region,direct_boundary_geojson_unique_name
+1272,DB1335,892,892,Big Piney Ranch,Big Piney Mountain Ranch,direct_boundary_geojson_unique_name
+1284,EL3160,899,899,Book Cliffs Bitter Creek/East,"Book Cliffs, Bitter Creek/East",direct_boundary_geojson_unique_name
+1285,EL3161,899,899,Book Cliffs Bitter Creek/East,"Book Cliffs, Bitter Creek/East",direct_boundary_geojson_unique_name
+1286,EL3162,899,899,Book Cliffs Bitter Creek/East,"Book Cliffs, Bitter Creek/East",direct_boundary_geojson_unique_name
+1287,EL3163,899,899,Book Cliffs Bitter Creek/East,"Book Cliffs, Bitter Creek/East",direct_boundary_geojson_unique_name
+1288,EL3164,899,899,Book Cliffs Bitter Creek/East,"Book Cliffs, Bitter Creek/East",direct_boundary_geojson_unique_name
+1289,EL3166,899,899,Book Cliffs Bitter Creek/East,"Book Cliffs, Bitter Creek/East",direct_boundary_geojson_unique_name
+1307,DA1048,910,910,Fillmore City,"Fillmore, Fillmore City",direct_boundary_geojson_unique_name
+1313,EA1259,923,923,Diamond Mountain,The Dirty Dozen,direct_boundary_geojson_unique_name
+1341,DB1116,929,929,HAMSS,"San Juan, Mancos Mesa",direct_boundary_geojson_unique_name
+1359,BR7123,5053,5053,Kamas/North Slope Summit,"Kamas/North Slope, Summit",canonical_unique_clean_name:draw_results_2026_for_2027_canonical_yearly_draw_results.csv
+1360,BR7229,5079,5079,Kamas/North Slope Summit,"Kamas/North Slope, Summit",canonical_unique_clean_name:draw_results_2026_for_2027_canonical_yearly_draw_results.csv
+1361,BR7321,5101,5101,Kamas/North Slope Summit,"Kamas/North Slope, Summit",canonical_unique_clean_name:draw_results_2026_for_2027_canonical_yearly_draw_results.csv
+1362,CG9999,5107,5107,Statewide,Cougar - Statewide,canonical_unique_clean_name:draw_results_2025_for_2026_canonical_yearly_draw_results.csv
+1364,DB0008,5109,5109,Extended Archery,Deer Extended,canonical_unique_clean_name:draw_results_2026_for_2027_canonical_yearly_draw_results.csv
+1367,EA1220,5112,5112,Manti (Expo),Manti,canonical_unique_clean_name:draw_results_2026_for_2027_canonical_yearly_draw_results.csv
+1368,EA1258,5113,5113,La Sal (Expo),La Sal,canonical_unique_clean_name:draw_results_2026_for_2027_canonical_yearly_draw_results.csv
+1380,EB1007,5125,5125,Youth Any Bull Units,Youth Any Bull/Hunter's Choice Elk,canonical_unique_clean_name:draw_results_2025_for_2026_canonical_yearly_draw_results.csv
+1385,EX1000,5130,5130,Elk Extended Archery,Elk Extended,existing_name_artifact_cleanup_only
+1391,TK1019,5137,5137,Southeastern Region - Select areas only,Southeastern Region,direct_boundary_geojson_unique_name
+1392,TK1022,5138,5138,Southern Region - Select areas only,Southern Region,direct_boundary_geojson_unique_name
+1394,EA1221,5145,5145,Fishlake/Thousand Lake (Expo),Fishlake/Thousand Lake,canonical_unique_clean_name:draw_results_2026_for_2027_canonical_yearly_draw_results.csv
+1395,DS6625,10003,10003,Mineral Mtns,Mineral Mountain,direct_boundary_geojson_unique_name
+1414,DB1345,923,923,Diamond Mountain,The Dirty Dozen,direct_boundary_geojson_unique_name
+1426,EB3617,923,923,Diamond Mountain,The Dirty Dozen,direct_boundary_geojson_unique_name
+1442,PD1006,171,171,Parker Mtn,Plateau,direct_boundary_geojson_unique_name
+1458,EA1291,950,950,"Mt Dutton, North",Mt Dutton North,direct_boundary_geojson_unique_name
+1459,EA1292,950,950,"Mt Dutton, North",Mt Dutton North,direct_boundary_geojson_unique_name

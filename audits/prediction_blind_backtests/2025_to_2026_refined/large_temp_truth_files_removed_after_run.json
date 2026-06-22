@@ -1,0 +1,25 @@
+{
+  "keep_temp_truth": false,
+  "reason": "Large copied truth/runtime inputs are hash-locked, regenerable audit intermediates and should not be retained as repo artifacts by default.",
+  "records": [
+    {
+      "path": "audits/prediction_blind_backtests/2025_to_2026_refined/inputs/draw_results_long_scorable_through_2025.csv",
+      "removed": true,
+      "sha256": "317c022727196035df0f1b5e14473428a03a630470ee5261681fe6c132ef71ac",
+      "size_bytes": 96934534
+    },
+    {
+      "path": "audits/prediction_blind_backtests/2025_to_2026_refined/inputs/runtime_drafts_2026_frozen_copy/draw_reality_engine_v2.csv",
+      "removed": true,
+      "sha256": "317c022727196035df0f1b5e14473428a03a630470ee5261681fe6c132ef71ac",
+      "size_bytes": 96934534
+    },
+    {
+      "path": "audits/prediction_blind_backtests/2025_to_2026_refined/prediction_phase/draw_reality_engine_v2.csv",
+      "removed": true,
+      "sha256": "317c022727196035df0f1b5e14473428a03a630470ee5261681fe6c132ef71ac",
+      "size_bytes": 96934534
+    }
+  ],
+  "regeneration_command": "python scripts/run_blind_2025_to_2026_prediction_backtest.py --out-dir <same-out-dir>"
+}

@@ -1,0 +1,36 @@
+{
+  "actual_file": "outputs/2026 scorable draw results.csv",
+  "actual_rows_raw": 29549,
+  "actual_rows_with_probability": 17072,
+  "actual_rows_without_probability": 0,
+  "actual_unique_keys": 16598,
+  "actual_zero_applicant_rows_excluded": 12477,
+  "duplicate_actual_key_groups": 474,
+  "duplicate_prediction_key_groups": 0,
+  "join_key": "hunt_code + residency + points + draw_system_type",
+  "joined_keys": 10778,
+  "outputs": {
+    "duplicate_actual_keys": "audits/prediction_blind_backtests/2025_to_2026_clean/comparison_phase/duplicate_actual_keys.csv",
+    "duplicate_prediction_keys": "audits/prediction_blind_backtests/2025_to_2026_clean/comparison_phase/duplicate_prediction_keys.csv",
+    "grouped": "audits/prediction_blind_backtests/2025_to_2026_clean/comparison_phase/prediction_accuracy_grouped.csv",
+    "rowlevel": "audits/prediction_blind_backtests/2025_to_2026_clean/comparison_phase/prediction_2025_to_2026_vs_actual_2026_rowlevel.csv",
+    "unmatched_actuals": "audits/prediction_blind_backtests/2025_to_2026_clean/comparison_phase/unmatched_2026_actuals.csv",
+    "unmatched_predictions": "audits/prediction_blind_backtests/2025_to_2026_clean/comparison_phase/unmatched_frozen_predictions.csv"
+  },
+  "overall_metrics": {
+    "bias": -0.03985168433276118,
+    "failure_abs_error_gt_0_25": 1180,
+    "joined_rows": 10778,
+    "mae": 0.10206092927857673,
+    "median_abs_error": 0.011344,
+    "p90_abs_error": 0.313368333,
+    "rmse": 0.2644314294279094
+  },
+  "prediction_file": "audits/prediction_blind_backtests/2025_to_2026_clean/prediction_phase/ml_draw_predictions_v1.csv",
+  "prediction_rows_raw": 22427,
+  "prediction_rows_with_probability": 21381,
+  "prediction_rows_without_probability": 1046,
+  "prediction_unique_keys": 21381,
+  "unmatched_actual_keys": 5820,
+  "unmatched_prediction_keys": 10603
+}

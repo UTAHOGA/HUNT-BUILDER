@@ -1,0 +1,88 @@
+row,status,hunt_code,boundary_id,species,hunt_name,sex_type,weapon,old_season,new_season,db_hunt_name,db_species,db_boundary_id,db_sex_type,db_weapon
+111,no_strict_species_boundary_sex_weapon_season_match,DB1048,248,Deer,"West Desert, Vernon",Buck,Archery,,,,,,,
+112,strict_match_filled,DB1048,248,Deer,"West Desert, Vernon",Buck,Multiseason,,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026","West Desert, Vernon",Deer,248,Buck,Multiseason
+113,strict_match_filled,DB1048,248,Deer,"West Desert, Vernon",Buck,Multiseason,,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026","West Desert, Vernon",Deer,248,Buck,Multiseason
+114,strict_match_filled,DB1048,248,Deer,"West Desert, Vernon",Buck,Multiseason,,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026","West Desert, Vernon",Deer,248,Buck,Multiseason
+115,strict_match_filled,DB1048,248,Deer,"West Desert, Vernon",Buck,Multiseason,,"Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026","West Desert, Vernon",Deer,248,Buck,Multiseason
+116,no_strict_species_boundary_sex_weapon_season_match,DB1048,248,Deer,"West Desert, Vernon",Buck,Muzzleloader,,,,,,,
+117,no_strict_species_boundary_sex_weapon_season_match,DB1048,248,Deer,"West Desert, Vernon",Buck,Muzzleloader,,,,,,,
+118,strict_match_filled,DB0007,5108,Deer,Statewide,Buck,Any Legal Weapon,,"Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027",Buck Deer - Statewide Permit,Deer,5108,Buck,Any Legal Weapon
+210,strict_match_filled,MB1000,5133,Moose,Cache,Bull,Any Legal Weapon,,"Sept 1 - Nov 15, 2026",Moose - Statewide Permit,Moose,5133,Bull,Any Legal Weapon
+211,strict_match_filled,MB1000,5133,Moose,"North Slope, Summit",Bull,Any Legal Weapon,,"Sept 1 - Nov 15, 2026",Moose - Statewide Permit,Moose,5133,Bull,Any Legal Weapon
+212,strict_match_filled,MB1000,5133,Moose,"North Slope, Summit",Bull,Any Legal Weapon,,"Sept 1 - Nov 15, 2026",Moose - Statewide Permit,Moose,5133,Bull,Any Legal Weapon
+214,strict_match_filled,MB1000,5133,Moose,Statewide,Bull,Any Legal Weapon,,"Sept 1 - Nov 15, 2026",Moose - Statewide Permit,Moose,5133,Bull,Any Legal Weapon
+216,strict_match_filled,GO6817,617,Mountain Goat,High Uintas West,Either Sex,Any Legal Weapon,,Sept 05 2026 - Nov 25 2026,La Sal Mtns,Mountain Goat,617,Either Sex,Any Legal Weapon
+217,strict_match_filled,GO6820,200,Mountain Goat,"La Sal, La Sal Mtns",Either Sex,Any Legal Weapon,,Sept 05 2026 - Nov 25 2026,"Wasatch Mtns, Timpanogos",Mountain Goat,200,Either Sex,Any Legal Weapon
+218,strict_match_filled,GO1000,5131,Mountain Goat,Nebo,Either Sex,Any Legal Weapon,,"Sept 1 - Dec 31, 2026",Mountain Goat - Statewide Permit,Mountain Goat,5131,Hunters Choice,Any Legal Weapon
+221,strict_match_filled,GO1000,5131,Mountain Goat,Statewide,Either Sex,Any Legal Weapon,,"Sept 1 - Dec 31, 2026",Mountain Goat - Statewide Permit,Mountain Goat,5131,Hunters Choice,Any Legal Weapon
+224,no_strict_species_boundary_sex_weapon_season_match,PB5026,667,Pronghorn,"Book Cliffs, Bitter Creek",Buck,Muzzleloader,,,,,,,
+225,strict_match_filled,PB5026,667,Pronghorn,"Book Cliffs, Bitter Creek",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"Book Cliffs, Bitter Creek",Pronghorn,667,Buck,Any Legal Weapon
+226,strict_match_filled,PB5026,667,Pronghorn,"Book Cliffs, Bitter Creek",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"Book Cliffs, Bitter Creek",Pronghorn,667,Buck,Any Legal Weapon
+227,no_strict_species_boundary_sex_weapon_season_match,PB5027,15,Pronghorn,"Book Cliffs, South",Buck,Archery,,,,,,,
+228,strict_match_filled,PB5027,15,Pronghorn,"Book Cliffs, South",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"Book Cliffs, South",Pronghorn,15,Buck,Any Legal Weapon
+229,strict_match_filled,PB5029,25,Pronghorn,"Box Elder, Promontory",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"Box Elder, Puddle Valley",Pronghorn,25,Buck,Any Legal Weapon
+230,no_strict_species_boundary_sex_weapon_season_match,PB5029,25,Pronghorn,"Box Elder, Puddle Valley",Buck,Muzzleloader,,,,,,,
+231,strict_match_filled,PB5030,27,Pronghorn,"Box Elder, Snowville",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"Box Elder, Snowville",Pronghorn,27,Buck,Any Legal Weapon
+232,strict_match_filled,PB5030,27,Pronghorn,"Box Elder, Snowville",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"Box Elder, Snowville",Pronghorn,27,Buck,Any Legal Weapon
+233,strict_match_filled,PB5031,755,Pronghorn,"Box Elder, West",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"Box Elder, West",Pronghorn,755,Buck,Any Legal Weapon
+234,strict_match_filled,PB5031,755,Pronghorn,"Box Elder, West",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"Box Elder, West",Pronghorn,755,Buck,Any Legal Weapon
+235,strict_match_filled,PB5033,81,Pronghorn,"Fillmore, Oak Creek South",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"Fillmore, Oak Creek South",Pronghorn,81,Buck,Any Legal Weapon
+236,strict_match_filled,PB5033,81,Pronghorn,"Fillmore, Oak Creek South",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"Fillmore, Oak Creek South",Pronghorn,81,Buck,Any Legal Weapon
+237,strict_match_filled,PB5033,81,Pronghorn,"Fillmore, Oak Creek South",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"Fillmore, Oak Creek South",Pronghorn,81,Buck,Any Legal Weapon
+238,strict_match_filled,PB5035,688,Pronghorn,"La Sal, Potash/South Cisco",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"La Sal, Potash/South Cisco",Pronghorn,688,Buck,Any Legal Weapon
+239,strict_match_filled,PB5331,453,Pronghorn,Mt Dutton/Paunsaugunt,Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,Mt Dutton/Paunsaugunt,Pronghorn,453,Buck,Any Legal Weapon
+240,no_strict_species_boundary_sex_weapon_season_match,PB5331,453,Pronghorn,Mt Dutton/Paunsaugunt,Buck,Archery,,,,,,,
+241,no_strict_species_boundary_sex_weapon_season_match,PB5037,129,Pronghorn,"Nine Mile, Anthro-Myton Bench",Buck,Muzzleloader,,,,,,,
+242,no_strict_species_boundary_sex_weapon_season_match,PB5037,129,Pronghorn,"Nine Mile, Anthro-Myton Bench",Buck,Muzzleloader,,,,,,,
+243,strict_match_filled,PB5037,129,Pronghorn,"Nine Mile, Anthro-Myton Bench",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"Nine Mile, Anthro-Myton Bench",Pronghorn,129,Buck,Any Legal Weapon
+244,strict_match_filled,PB5037,129,Pronghorn,"Nine Mile, Anthro-Myton Bench",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"Nine Mile, Anthro-Myton Bench",Pronghorn,129,Buck,Any Legal Weapon
+245,no_strict_species_boundary_sex_weapon_season_match,PB5037,129,Pronghorn,"Nine Mile, Anthro-Myton Bench",Buck,Archery,,,,,,,
+246,strict_match_filled,PB5037,129,Pronghorn,"Nine Mile, Anthro-Myton Bench",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"Nine Mile, Anthro-Myton Bench",Pronghorn,129,Buck,Any Legal Weapon
+247,no_strict_species_boundary_sex_weapon_season_match,PB5037,129,Pronghorn,"Nine Mile, Anthro-Myton Bench",Buck,Muzzleloader,,,,,,,
+248,strict_match_filled,PB5038,277,Pronghorn,"Nine Mile, Range Creek",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"Nine Mile, Range Creek",Pronghorn,277,Buck,Any Legal Weapon
+249,strict_match_filled,PB5039,138,Pronghorn,"North Slope, Summit",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+250,no_strict_species_boundary_sex_weapon_season_match,PB5040,289,Pronghorn,"North Slope, Three Corners/West Daggett",Buck,Archery,,,,,,,
+251,no_strict_species_boundary_sex_weapon_season_match,PB5040,289,Pronghorn,"North Slope, Three Corners/West Daggett",Buck,Archery,,,,,,,
+252,strict_match_filled,PB5040,289,Pronghorn,"North Slope, Three Corners/West Daggett",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Three Corners/West Daggett",Pronghorn,289,Buck,Any Legal Weapon
+253,strict_match_filled,PB5041,718,Pronghorn,"Panguitch Lake/Zion, North",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"Panguitch Lake/Zion, North",Pronghorn,718,Buck,Any Legal Weapon
+254,no_strict_species_boundary_sex_weapon_season_match,PB5041,718,Pronghorn,"Panguitch Lake/Zion, North",Buck,Muzzleloader,,,,,,,
+255,no_strict_species_boundary_sex_weapon_season_match,PB5039,138,Pronghorn,Parker Mtn,Buck,Muzzleloader,,,,,,,
+256,strict_match_filled,PB5039,138,Pronghorn,Parker Mtn,Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+257,strict_match_filled,PB5039,138,Pronghorn,Parker Mtn,Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+258,strict_match_filled,PB5039,138,Pronghorn,Parker Mtn,Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+259,strict_match_filled,PB5039,138,Pronghorn,Pine Valley,Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+260,strict_match_filled,PB5039,138,Pronghorn,Pine Valley,Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+261,strict_match_filled,PB5039,138,Pronghorn,"San Rafael, North",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+262,strict_match_filled,PB5039,138,Pronghorn,"San Rafael, North",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+263,strict_match_filled,PB5039,138,Pronghorn,"San Rafael, North",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+264,strict_match_filled,PB5039,138,Pronghorn,"San Rafael, North",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+265,strict_match_filled,PB5039,138,Pronghorn,"San Rafael, North",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+266,strict_match_filled,PB5039,138,Pronghorn,Southwest Desert,Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+267,no_strict_species_boundary_sex_weapon_season_match,PB5039,138,Pronghorn,Southwest Desert,Buck,Archery,,,,,,,
+268,strict_match_filled,PB5039,138,Pronghorn,Southwest Desert,Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+269,strict_match_filled,PB5039,138,Pronghorn,Southwest Desert,Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+270,strict_match_filled,PB5039,138,Pronghorn,Southwest Desert,Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+271,no_strict_species_boundary_sex_weapon_season_match,PB5039,138,Pronghorn,Southwest Desert,Buck,Archery,,,,,,,
+272,strict_match_filled,PB5039,138,Pronghorn,Southwest Desert,Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+273,strict_match_filled,PB5039,138,Pronghorn,Southwest Desert,Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+275,strict_match_filled,PB5039,138,Pronghorn,Vernal,Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+276,no_strict_species_boundary_sex_weapon_season_match,PB5039,138,Pronghorn,Vernal,Buck,Archery,,,,,,,
+277,strict_match_filled,PB5039,138,Pronghorn,Vernal,Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+278,strict_match_filled,PB5039,138,Pronghorn,Vernal,Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+279,no_strict_species_boundary_sex_weapon_season_match,PB5039,138,Pronghorn,"West Desert, Riverbed",Buck,Muzzleloader,,,,,,,
+280,strict_match_filled,PB5039,138,Pronghorn,"West Desert, Riverbed",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+281,strict_match_filled,PB5039,138,Pronghorn,"West Desert, Riverbed",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+282,strict_match_filled,PB5039,138,Pronghorn,"West Desert, Riverbed",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+283,strict_match_filled,PB5039,138,Pronghorn,"West Desert, Rush Valley",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+284,strict_match_filled,PB5039,138,Pronghorn,"West Desert, Rush Valley",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+285,strict_match_filled,PB5039,138,Pronghorn,"West Desert, Snake Valley",Buck,Any Legal Weapon,,Sept 12 2026 - Sept 20 2026,"North Slope, Summit",Pronghorn,138,Buck,Any Legal Weapon
+286,strict_match_filled,PB1000,5134,Pronghorn,"West Desert, Snake Valley",Buck,Any Legal Weapon,,"Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1 - Nov 15, 2026",Pronghorn - Statewide Permit,Pronghorn,5134,Buck,Any Legal Weapon
+287,strict_match_filled,PB1000,5134,Pronghorn,"West Desert, Snake Valley",Buck,Any Legal Weapon,,"Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1 - Nov 15, 2026",Pronghorn - Statewide Permit,Pronghorn,5134,Buck,Any Legal Weapon
+288,strict_match_filled,PB1000,5134,Pronghorn,"West Desert, Snake Valley",Buck,Any Legal Weapon,,"Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1 - Nov 15, 2026",Pronghorn - Statewide Permit,Pronghorn,5134,Buck,Any Legal Weapon
+289,no_strict_species_boundary_sex_weapon_season_match,PB1000,5134,Pronghorn,"West Desert, Snake Valley",Buck,Archery,,,,,,,
+290,strict_match_filled,PB1000,5134,Pronghorn,Statewide,Buck,Any Legal Weapon,,"Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1 - Nov 15, 2026",Pronghorn - Statewide Permit,Pronghorn,5134,Buck,Any Legal Weapon
+291,no_strict_species_boundary_sex_weapon_season_match,RS1001,15,Rocky Mountain Sheep,"Book Cliffs, South",Male Only,Any Legal Weapon,,,,,,,
+292,no_strict_species_boundary_sex_weapon_season_match,RS0001,5135,Rocky Mountain Sheep,"Box Elder, Newfoundland Mtns",Male Only,Any Legal Weapon,,,,,,,
+293,no_strict_species_boundary_sex_weapon_season_match,RS0001,5135,Rocky Mountain Sheep,"Box Elder, Newfoundland Mtns",Male Only,Archery,,,,,,,
+294,no_strict_species_boundary_sex_weapon_season_match,RS0001,5135,Rocky Mountain Sheep,"Fillmore, Oak Creek",Male Only,Any Legal Weapon,,,,,,,
+295,no_strict_species_boundary_sex_weapon_season_match,RS0001,5135,Rocky Mountain Sheep,"Nine Mile, Gray Canyon",Male Only,Any Legal Weapon,,,,,,,

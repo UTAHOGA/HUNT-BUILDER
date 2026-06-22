@@ -1,0 +1,124 @@
+{
+  "summary": [
+    {
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2024_for_2025_canonical_yearly_draw_results.csv",
+      "rows": 43335,
+      "considered_rows": 43335,
+      "remaining_database_name_diffs": 0,
+      "no_database_key_match": 1614,
+      "remaining_obvious_artifact_rows": 0
+    },
+    {
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2025_for_2026_canonical_yearly_draw_results.csv",
+      "rows": 38120,
+      "considered_rows": 38120,
+      "remaining_database_name_diffs": 0,
+      "no_database_key_match": 189,
+      "remaining_obvious_artifact_rows": 0
+    },
+    {
+      "path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+      "rows": 22714,
+      "considered_rows": 22714,
+      "remaining_database_name_diffs": 0,
+      "no_database_key_match": 61,
+      "remaining_obvious_artifact_rows": 0
+    },
+    {
+      "path": "data_truth/draw_results_truth/normalized/draw_results_2024_for_2025_candidate_promotion_file_records.csv",
+      "rows": 86659,
+      "considered_rows": 86659,
+      "remaining_database_name_diffs": 0,
+      "no_database_key_match": 3228,
+      "remaining_obvious_artifact_rows": 2568
+    },
+    {
+      "path": "data_truth/draw_results_truth/normalized/draw_results_2025_for_2026_candidate_promotion_file_records.csv",
+      "rows": 75598,
+      "considered_rows": 75598,
+      "remaining_database_name_diffs": 0,
+      "no_database_key_match": 518,
+      "remaining_obvious_artifact_rows": 264
+    },
+    {
+      "path": "data_truth/draw_results_truth/normalized/draw_results_2026_for_2027_candidate_promotion_file_records.csv",
+      "rows": 29522,
+      "considered_rows": 29522,
+      "remaining_database_name_diffs": 0,
+      "no_database_key_match": 70,
+      "remaining_obvious_artifact_rows": 0
+    },
+    {
+      "path": "data_truth/draw_results_truth/normalized/draw_results_2026_for_2027_candidate_promotion_file_records_CANONICAL_SCORABLE_CANDIDATE.csv",
+      "rows": 18365,
+      "considered_rows": 18365,
+      "remaining_database_name_diffs": 0,
+      "no_database_key_match": 26,
+      "remaining_obvious_artifact_rows": 0
+    },
+    {
+      "path": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
+      "rows": 275515,
+      "considered_rows": 104169,
+      "remaining_database_name_diffs": 0,
+      "no_database_key_match": 1864,
+      "remaining_obvious_artifact_rows": 0
+    },
+    {
+      "path": "processed_data/hunt-master-canonical-2026-source-of-truth.csv",
+      "rows": 1471,
+      "considered_rows": 1471,
+      "remaining_database_name_diffs": 0,
+      "no_database_key_match": 32,
+      "remaining_obvious_artifact_rows": 0
+    },
+    {
+      "path": "processed_data/hunt_master_enriched.csv",
+      "rows": 51857,
+      "considered_rows": 51857,
+      "remaining_database_name_diffs": 0,
+      "no_database_key_match": 330,
+      "remaining_obvious_artifact_rows": 0
+    },
+    {
+      "path": "processed_data/hunt_unit_reference_linked.csv",
+      "rows": 2997,
+      "considered_rows": 2997,
+      "remaining_database_name_diffs": 0,
+      "no_database_key_match": 2352,
+      "remaining_obvious_artifact_rows": 6
+    },
+    {
+      "path": "processed_data/draw_reality_engine_v2.csv",
+      "rows": 176753,
+      "considered_rows": 176753,
+      "remaining_database_name_diffs": 0,
+      "no_database_key_match": 14238,
+      "remaining_obvious_artifact_rows": 12229
+    },
+    {
+      "path": "processed_data/point_ladder_view.csv",
+      "rows": 91712,
+      "considered_rows": 91712,
+      "remaining_database_name_diffs": 0,
+      "no_database_key_match": 528,
+      "remaining_obvious_artifact_rows": 0
+    },
+    {
+      "path": "processed_data/library/canonical_current_hunts_2026.csv",
+      "rows": 1471,
+      "considered_rows": 1471,
+      "remaining_database_name_diffs": 0,
+      "no_database_key_match": 0,
+      "remaining_obvious_artifact_rows": 0
+    },
+    {
+      "path": "processed_data/research_page/hunt_application_outlook.csv",
+      "rows": 2898,
+      "considered_rows": 2898,
+      "remaining_database_name_diffs": 0,
+      "no_database_key_match": 20,
+      "remaining_obvious_artifact_rows": 0
+    }
+  ]
+}

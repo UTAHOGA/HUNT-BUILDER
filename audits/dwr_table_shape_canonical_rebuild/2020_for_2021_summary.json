@@ -1,0 +1,21 @@
+{
+  "year": 2020,
+  "source_path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2020_for_2021_canonical_yearly_draw_results.csv",
+  "write": true,
+  "rows_before": 66715,
+  "rows_after": 33370,
+  "columns_before": 55,
+  "columns_after": 71,
+  "row_reduction": 33345,
+  "collapse_conflicts": 0,
+  "record_type_counts": {
+    "hunt_total_draw_result": 1459,
+    "point_level_draw_result": 31911
+  },
+  "source_residency_counts": {
+    "resident": 18,
+    "nonresident; resident": 33345,
+    "nonresident": 7
+  },
+  "backup_path": "audits/dwr_table_shape_canonical_rebuild/backups/draw_results_2020_for_2021_canonical_yearly_draw_results.before_dwr_table_shape_20260622T131602Z.csv"
+}

@@ -1,0 +1,21 @@
+{
+  "generated_at_utc": "2026-06-22T18:12:52.775459+00:00",
+  "year": 2025,
+  "canonical_source": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2025_for_2026_canonical_yearly_draw_results.csv",
+  "output_xlsx": "outputs/2025 standardized long.xlsx",
+  "summary_rows": 1064,
+  "long_rows": 38120,
+  "long_columns": 37,
+  "record_type_counts": {
+    "point_level_draw_result": 37714,
+    "supplemental_permit_total_row": 392,
+    "conservation_auction_allocation": 3,
+    "availability_only": 1,
+    "sportsman_total": 10
+  },
+  "permit_blank_counts": {
+    "permits_2025_res": 0,
+    "permits_2025_nr": 0,
+    "permits_2025_total": 0
+  }
+}

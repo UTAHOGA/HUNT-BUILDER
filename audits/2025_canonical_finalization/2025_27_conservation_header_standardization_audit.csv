@@ -1,0 +1,6 @@
+item,value
+backup_path,C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\audits\2025_canonical_finalization\backups\2025-27 Conservation Permits.before_header_standardization_20260621T211542Z.xlsx
+workbook_path,C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\processed_data\hard_data_exports\hunt_tables\2026\CLEAN_XLXS_STAGED\2025-27 Conservation Permits.xlsx
+rows,336
+original_headers,No. | Species | Area | Condition | Value |  | Organization | HUNT CODE | HUNT NAME | SEX | WEAPON | BOUNDARY ID | MAP GEOJSON
+final_headers,No. | Species | HUNT NAME | SEX TYPE | WEAPON | Value | Organization | HUNT CODE | BOUNDARY ID | MAP GEOJSON

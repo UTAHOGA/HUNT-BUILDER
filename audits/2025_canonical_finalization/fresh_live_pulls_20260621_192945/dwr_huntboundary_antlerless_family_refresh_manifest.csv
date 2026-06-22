@@ -1,0 +1,7 @@
+"species","gender","file","bytes","url"
+"Deer","Antlerless","dwr_huntboundary_deer_antlerless.json","5137","https://dwrapps.utah.gov/huntboundary/HuntTableData?species=Deer&gender=Antlerless"
+"Elk","Antlerless","dwr_huntboundary_elk_antlerless.json","53934","https://dwrapps.utah.gov/huntboundary/HuntTableData?species=Elk&gender=Antlerless"
+"Moose","Antlerless","dwr_huntboundary_moose_antlerless.json","1200","https://dwrapps.utah.gov/huntboundary/HuntTableData?species=Moose&gender=Antlerless"
+"Pronghorn","Doe","dwr_huntboundary_pronghorn_doe.json","5960","https://dwrapps.utah.gov/huntboundary/HuntTableData?species=Pronghorn&gender=Doe"
+"Rocky Mountain Bighorn Sheep","Ewe","dwr_huntboundary_rocky_mountain_bighorn_sheep_ewe.json","268","https://dwrapps.utah.gov/huntboundary/HuntTableData?species=Rocky%20Mountain%20Bighorn%20Sheep&gender=Ewe"
+"Bison","Cow Only","dwr_huntboundary_bison_cow_only.json","1557","https://dwrapps.utah.gov/huntboundary/HuntTableData?species=Bison&gender=Cow%20Only"

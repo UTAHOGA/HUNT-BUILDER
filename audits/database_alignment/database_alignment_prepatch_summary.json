@@ -1,0 +1,14 @@
+{
+  "database_rows": 1471,
+  "database_unique_hunt_codes": 1471,
+  "display_index_rows": 1471,
+  "display_index_unique_hunt_codes": 1471,
+  "blank_hunt_code_rows": 0,
+  "blank_boundary_id_rows": 0,
+  "blank_hunt_name_rows": 0,
+  "hunt_codes_not_in_display_index": 0,
+  "boundary_id_mismatches_vs_display_index": 0,
+  "unique_canonical_name_map_count": 1227,
+  "hunt_name_diffs_vs_unique_canonical": 174,
+  "hunt_codes_without_unique_canonical_name": 304
+}

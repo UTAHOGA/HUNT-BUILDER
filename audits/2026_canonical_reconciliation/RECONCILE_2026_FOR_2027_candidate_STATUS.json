@@ -1,0 +1,79 @@
+{
+  "generated_utc": "2026-06-21T20:00:26.289942+00:00",
+  "canonical_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+  "target_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_2026_for_2027_candidate_promotion_file_records.csv",
+  "canonical_rows": 29549,
+  "target_rows_before": 30298,
+  "target_rows_after": 29522,
+  "target_reference_rows_removed": 714,
+  "target_unmatched_rows_removed": 62,
+  "target_kept_rows": 29522,
+  "canonical_rows_consumed": 29522,
+  "canonical_rows_remaining": 27,
+  "expected_target_after": 29522,
+  "strict_match_fields": [
+    "actual_draw_year",
+    "model_target_year",
+    "hunt_code",
+    "residency",
+    "points",
+    "record_type_or_row_type"
+  ],
+  "mutations": 119923,
+  "mutation_column_counts": [
+    {
+      "field": "boundary_id",
+      "count": 29522
+    },
+    {
+      "field": "draw_design",
+      "count": 29522
+    },
+    {
+      "field": "hunt_name",
+      "count": 44
+    },
+    {
+      "field": "hunt_type",
+      "count": 25763
+    },
+    {
+      "field": "p_draw",
+      "count": 2032
+    },
+    {
+      "field": "sex_type",
+      "count": 1485
+    },
+    {
+      "field": "species",
+      "count": 1
+    },
+    {
+      "field": "success_ratio",
+      "count": 2032
+    },
+    {
+      "field": "successful_applicants",
+      "count": 29522
+    }
+  ],
+  "row_mutation_fields": [
+    "boundary_id",
+    "draw_design",
+    "hunt_name",
+    "hunt_type",
+    "p_draw",
+    "sex_type",
+    "species",
+    "success_ratio",
+    "successful_applicants"
+  ],
+  "removed_reference_audit": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\2026_canonical_reconciliation\\draw_results_2026_for_2027_candidate_point_purchase_rows_dropped.csv",
+  "unmatched_target_audit": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\2026_canonical_reconciliation\\draw_results_2026_for_2027_candidate_unmatched_rows_dropped.csv",
+  "mutation_audit": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\2026_canonical_reconciliation\\draw_results_2026_for_2027_candidate_sync_mutations.csv",
+  "status": "REVIEW_REQUIRED",
+  "status_reason": "strict key mismatch remains",
+  "backup_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\2026_canonical_reconciliation\\backups\\draw_results_2026_for_2027_candidate_promotion_file_records.before_reconcile_20260621T200026Z.csv",
+  "output_path": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_2026_for_2027_candidate_promotion_file_records.csv"
+}

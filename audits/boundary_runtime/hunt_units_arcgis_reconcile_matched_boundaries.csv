@@ -1,0 +1,318 @@
+boundary_id,hunt_units_boundary_name,arcgis_hunt_count,arcgis_hunt_numbers,arcgis_boundary_names,arcgis_seasons,arcgis_boundary_name_match
+1,Antelope Island,6,BI0001|BI6500|DB0009|DB1002|DB1049|DB1121,Antelope Island|Antelope Island - Conservation/Expo|Antelope Island - Hunt #BI0001|Antelope Island Conservation,"Dec 07 2026 - Dec 09 2026|Nov 11 2026 - Nov 18 2026|Nov 16 2026 - Nov 20, 2026|Nov 9, 2026 - Nov 16, 2026",True
+8,"Book Cliffs, East",6,CG0018|CG0019|CG0999|CG1000|CG1001|CG9999,"Book Cliffs, East|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Statewide Conservation|Statewide Spot and Stalk",,True
+15,"Book Cliffs, South",5,DB0007|DB1018|DB1056|DB1075|DB1076,"Book Cliffs (North & South)|Book Cliffs, South|Buck Deer - Statewide Permit","Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Oct 17 2026 - Oct 25 2026|Oct 17, 2026 - Oct 25, 2026",True
+26,"Box Elder, Raft River",7,CG0018|CG0019|CG0999|CG1000|CG7508|CG7603|CG9999,"Box Elder, Desert and Box Elder, Raft River Conservation|Box Elder, Raft River|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Statewide Conservation|Statewide Spot and Stalk",,True
+29,Cache,9,CG0018|CG0019|CG0999|CG1000|CG1004|CG9999|DB1061|DB1078|DB1502,Cache|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Statewide Conservation|Statewide Spot and Stalk,Aug 15 2026 - Sept 11 2026|Oct 28 2026 - Nov 05 2026,True
+56,Nebo (excludes West Face),6,CG0018|CG0019|CG0999|CG1000|CG7605|CG9999,Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Nebo (excludes West Face)|Statewide Conservation|Statewide Spot and Stalk,,True
+57,Nebo-West Face,8,CG0003|CG0018|CG0019|CG0999|CG1000|CG7510|CG7606|CG9999,Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Nebo and Nebo-West Face Conservation|Nebo-West Face|Statewide Conservation|Statewide Spot and Stalk,,True
+59,"Manti, Northwest",7,CG0001|CG0018|CG0019|CG0999|CG1000|CG7507|CG9999,Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Northwest Manti|Statewide Conservation|Statewide Spot and Stalk,,False
+63,"Manti, Southeast",7,CG0005|CG0018|CG0019|CG0999|CG1000|CG7609|CG9999,Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Southeast Manti|Statewide Conservation|Statewide Spot and Stalk,,False
+71,Chalk Creek/Kamas,8,BR7306|CG0018|CG0019|CG0999|CG1000|CG7501|CG7511|CG9999,"Chalk Creek/Kamas|Chalk Creek/Kamas, East Canyon, and Morgan-South Rich Conservation|Chalk Creek/Kamas/North Slope, Summit|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Statewide Conservation|Statewide Spot and Stalk",,True
+76,"East Canyon, Davis",6,CG0018|CG0019|CG0999|CG1000|CG7610|CG9999,"Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|East Canyon, Davis|Statewide Conservation|Statewide Spot and Stalk",,True
+140,"North Slope, Three Corners",6,CG0018|CG0019|CG0999|CG1000|CG1011|CG9999,"Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|North Slope, Three Corners|Statewide Conservation|Statewide Spot and Stalk",,True
+185,"San Juan, Elk Ridge",5,DB0007|DB1014|DB1022|DB1037|DB1046,"Buck Deer - Statewide Permit|San Juan, Elk Ridge","Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026|Aug 15 2026 - Sept 11 2026|Oct 17 2026 - Oct 25 2026|Sept 23 2026 - Oct 01 2026",True
+191,San Rafael,7,CG0018|CG0019|CG0098|CG0999|CG1000|CG1017|CG9999,Cougar - Statewide|Cougar - Statewide Permit|Cougar Control|Cougar Pursuit|San Rafael|Statewide Conservation|Statewide Spot and Stalk,,True
+226,"Wasatch Mtns, Cascade",6,CG0018|CG0019|CG0999|CG1000|CG1022|CG9999,"Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Statewide Conservation|Statewide Spot and Stalk|Wasatch Mtns, Cascade",,True
+237,"Wasatch Mtns, Timpanogos A",6,CG0018|CG0019|CG0999|CG1000|CG1023|CG9999,"Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Statewide Conservation|Statewide Spot and Stalk|Wasatch Mtns, Timpanogos",,False
+243,"West Desert, Mtn Ranges",6,CG0018|CG0019|CG0999|CG1000|CG1024|CG9999,"Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Statewide Conservation|Statewide Spot and Stalk|West Desert, Mtn Ranges",,True
+248,"West Desert, Vernon",5,DB0007|DB1016|DB1024|DB1042|DB1048,"Buck Deer - Statewide Permit|West Desert, Vernon","Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026|Aug 15 2026 - Sept 11 2026|Oct 17 2026 - Oct 25 2026|Sept 23 2026 - Oct 01 2026",True
+444,Diamond Mtn/Vernal/Bonanza,14,BR1000|BR1001|BR1007|BR1018|BR7015|BR7117|BR7218|BR7313|CG0018|CG0019|CG0999|CG1000|CG1018|CG9999,Black Bear - Statewide Permit|Black Bear Harvest Objective Units|Black Bear Pursuit - Nonresident|Black Bear Pursuit - Resident|Bonanza/Diamond Mtn/Vernal|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Diamond Mtn/Vernal/Bonanza|Statewide Conservation|Statewide Spot and Stalk,"Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|March 28 - May 25, 2026|May 25 - June 28, 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+445,"Manti, Northeast",7,CG0004|CG0018|CG0019|CG0999|CG1000|CG7607|CG9999,Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Northeast Manti|Statewide Conservation|Statewide Spot and Stalk,,False
+446,"Manti, Southwest",7,CG0006|CG0018|CG0019|CG0999|CG1000|CG7500|CG9999,Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Southwest Manti|Statewide Conservation|Statewide Spot and Stalk,,False
+449,"Book Cliffs, Bitter Creek/South",9,BI6522|BI6523|BR1000|BR1001|BR7001|BR7101|BR7201|BR7222|BR7300,"Black Bear - Statewide Permit|Black Bear Harvest Objective Units|Book Cliffs, Bitter Creek/South","Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Aug. 1 - Aug. 14, 2026 & Oct. 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 14 & Aug. 15 - Oct. 1 & Oct. 2 - Nov. 8, 2026|March 28 - May 25, 2026|May 25 - June 28, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+607,Box Elder,3,DB1060|DB1077|DB1501,Box Elder,Aug 15 2026 - Sept 11 2026|Oct 28 2026 - Nov 05 2026,True
+610,Chalk Creek/East Canyon/Morgan-South Rich,7,BR1000|BR1001|BR7019|BR7324|BR7325|DB0007|DB1027,Black Bear - Statewide Permit|Black Bear Harvest Objective Units|Buck Deer - Statewide Permit|Chalk Creek/East Canyon/Morgan-South Rich,"Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+612,North Slope,2,DB0007|DB1065,Buck Deer - Statewide Permit|North Slope,"Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Oct 28 2026 - Nov 05 2026",True
+615,Nine Mile,13,BI6527|BI6538|BR1000|BR1001|BR1002|BR1007|BR1014|BR1018|BR7110|BR7211|BR7317|DB0007|DB1033,"Black Bear - Statewide Permit|Black Bear Harvest Objective Units|Black Bear Pursuit - Nonresident|Black Bear Pursuit - Resident|Buck Deer - Statewide Permit|Nine Mile|Nine Mile, Private Lands Only","Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|May 25 - June 28, 2026|Oct 28 2026 - Nov 05 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+616,Nebo,13,BR1000|BR1001|BR1007|BR1018|BR7005|BR7106|BR7205|BR7233|BR7305|CG0002|CG7510|DB1063|DB1080,Black Bear - Statewide Permit|Black Bear Harvest Objective Units|Black Bear Pursuit - Nonresident|Black Bear Pursuit - Resident|Nebo|Nebo and Nebo-West Face Conservation,"Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|March 28 - May 25, 2026|May 25 - June 28, 2026|Oct 28 2026 - Nov 05 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+618,"San Juan, Abajo Mtns",2,DB1068|DB1085,"San Juan, Abajo Mtns",Oct 28 2026 - Nov 05 2026,True
+620,"Wasatch Mtns, West",2,DB1070|DB1087,"Wasatch Mtns, West",Oct 28 2026 - Nov 05 2026,True
+621,"Wasatch Mtns, East",2,DB0007|DB1041,"Buck Deer - Statewide Permit|Wasatch Mtns, East","Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Oct 28 2026 - Nov 05 2026",True
+623,"West Desert, West",2,DB1072|DB1089,"West Desert, West",,True
+628,Beaver,13,BR1000|BR1001|BR1007|BR1018|BR7000|BR7100|BR7200|BR7318|CG0999|CG7600|DB0007|DB1059|DB1500,Beaver|Black Bear - Statewide Permit|Black Bear Harvest Objective Units|Black Bear Pursuit - Nonresident|Black Bear Pursuit - Resident|Buck Deer - Statewide Permit|Cougar Pursuit,"Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|March 28 - May 25, 2026|May 25 - June 28, 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+632,Thousand Lakes,12,CG0018|CG0019|CG0999|CG1000|CG7620|CG9999|DB0007|DB1036|DB1106|DB1107|DB1108|DB1109,Buck Deer - Statewide Permit|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Statewide Conservation|Statewide Spot and Stalk|Thousand Lakes,"Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026|Aug 15 2026 - Sept 11 2026|Oct 17 2026 - Oct 25 2026|Sept 23 2026 - Oct 01 2026",True
+633,Fishlake,9,CG0014|CG0018|CG0019|CG0999|CG1000|CG7619|CG9999|DB0007|DB1055,Buck Deer - Statewide Permit|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Fishlake|Statewide Conservation|Statewide Spot and Stalk,"Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Oct 28 2026 - Nov 05 2026",True
+638,"Book Cliffs, Wild Horse Bench",2,BI6502|BI6526,"Book Cliffs, Wild Horse Bench",,True
+668,"Fillmore, Oak Creek (cougar)",6,CG0018|CG0019|CG0999|CG1000|CG1005|CG9999,"Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Fillmore, Oak Creek|Statewide Conservation|Statewide Spot and Stalk",,False
+684,La Sal,17,BR1000|BR1007|BR1009|BR1012|BR1017|BR7008|BR7108|BR7208|BR7226|BR7307|CG0018|CG0019|CG0999|CG1000|CG1008|CG9999|DB1064,"Black Bear - Statewide Permit|Black Bear Pursuit - Resident|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|La Sal|La Sal, La Sal Mtns|Statewide Conservation|Statewide Spot and Stalk","Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|July 18 - July 31, 2026|July 5 - 16, 2026|Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Nov 2 - Nov. 8, 2026|March 28 - May 25, 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026",True
+7,Book Cliffs,16,BI6501|BI6508|BI6517|BI6518|BI6520|BI6521|BR1000|BR1007|BR1008|BR1011|BR1015|DB0007|DB1011|DB1025|DB1044|DB1050,Black Bear - Statewide Permit|Black Bear Pursuit - Resident|Book Cliffs|Buck Deer - Statewide Permit,"Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-25, 2026|Aug 15 2026 - Sept 11 2026|July 18 - July 31, 2026|July 5 - 16, 2026|March 28 - May 25, 2026|Sept 23 2026 - Oct 01 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026",True
+28,"Box Elder, West Bear River",3,DA1001|DA1002|DB0008,"Box Elder, West Bear River|Extended Archery Deer","Sept 12-Oct 15, 2026 -OR- Sept 12-Nov 30, 2026 | See guidebook for units & dates",True
+32,"Cache, Crawford Mtn",2,DB0007|DB1026,"Buck Deer - Statewide Permit|Cache, Crawford Mtn","Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Nov 07 2026 - Nov 22 2026",True
+97,Kaiparowits,6,CG0018|CG0019|CG0098|CG0999|CG1007|CG9999,Cougar - Statewide|Cougar Control|Cougar Pursuit|Kaiparowits|Statewide Conservation|Statewide Spot and Stalk,,True
+484,Little Red Creek,1,DB1258,Little Red Creek CWMU,Contact Operator for 2026 season dates,False
+493,Ingham Peak,1,DB1252,Ingham Peak CWMU,Contact Operator for 2026 season dates,False
+498,Bootjack,1,DB1214,Bootjack CWMU,,False
+510,Blue Spring Hills,1,DB1211,Blue Spring Hills CWMU,Contact Operator for 2026 season dates,False
+521,Two Bear,1,DB1304,Two Bear CWMU,Contact Operator for 2026 season dates,False
+523,State Corner,1,DB1296,State Corner CWMU,,False
+529,Boobe Hole,1,DB1213,Boobe Hole CWMU,Contact Operator for 2026 season dates,False
+530,Grazing Pasture,1,DB1243,Grazing Pasture CWMU,Contact Operator for 2026 season dates,False
+534,Oak Ranch,1,DB1271,Oak Ranch CWMU,Contact Operator for 2026 season dates,False
+535,Old Woman Plateau,1,DB1272,Old Woman Plateau CWMU,Contact Operator for 2026 season dates,False
+536,Round Valley,1,DB1284,Round Valley CWMU,,False
+553,Three C,1,DB1301,Three C CWMU,Contact Operator for 2026 season dates,False
+560,Causey Spring,1,DB1217,Causey Spring CWMU,Contact Operator for 2026 season dates,False
+578,Skull Crack,1,DB1290,Skull Crack CWMU,Contact Operator for 2026 season dates,False
+582,Bear Mountain,1,DB1206,Bear Mountain CWMU,Contact Operator for 2026 season dates,False
+588,Chrises Creek,1,DB1220,Chrises Creek CWMU,,False
+598,Buckhorn Ranch,1,DB1215,Buckhorn Ranch CWMU,Contact Operator for 2026 season dates,False
+604,Bluebell,1,DB1212,Bluebell CWMU,Contact Operator for 2026 season dates,False
+619,Manti/San Rafael,3,DB1062|DB1079|DB1503,Manti/San Rafael,Aug 15 2026 - Sept 11 2026|Oct 28 2026 - Nov 05 2026,True
+641,New Harmony,1,DB1268,New Harmony CWMU,,False
+667,"Book Cliffs, Bitter Creek (pronghorn)",5,BI1000|BI6532|BI6534|BI6535|BI6536,"Bison - Statewide Permit|Book Cliffs, Bitter Creek","Aug 1, 2026 - Jan 31, 2027|Aug 15 2026 - Sept 11 2026|Nov 14 2026 - Nov 29 2026|Oct 03 2026 - Oct 15 2026|Sept 12 2026 - Sept 20 2026",False
+683,"Box Elder, Pilot Mtn B",5,CG0018|CG0019|CG1000|CG1003|CG9999,"Box Elder, Pilot Mtn|Cougar - Statewide|Cougar - Statewide Permit|Statewide Conservation|Statewide Spot and Stalk",,False
+137,"North Slope, Manila-Phil Pico",1,DA1005,"North Slope, Manila-Phil Pico",,True
+138,"North Slope, Summit",8,BR1000|BR7123|BR7229|BR7235|BR7306|BR7321|DB0007|DB1021,"Black Bear - Statewide Permit|Buck Deer - Statewide Permit|Chalk Creek/Kamas/North Slope, Summit|Kamas/North Slope, Summit|North Slope, Summit","Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|May 25 - June 28, 2026",True
+172,Boulder,7,CG0013|CG0018|CG0019|CG0999|CG1000|CG7618|CG9999,Boulder|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Statewide Conservation|Statewide Spot and Stalk,,True
+475,"Panguitch Lake, Cottonwood",1,DA1006,"Panguitch Lake, Cottonwood",,True
+476,"Panguitch Lake, Summit",1,DA1008,"Panguitch Lake, Summit",,True
+52,"Manti, North",9,BR1000|BR1001|BR1007|BR1018|BR7003|BR7104|BR7203|BR7231|BR7303,"Black Bear - Statewide Permit|Black Bear Harvest Objective Units|Black Bear Pursuit - Nonresident|Black Bear Pursuit - Resident|Manti, North|Manti-North","Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|March 28 - May 25, 2026|May 25 - June 28, 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+247,"West Desert, Tintic-Vernon",8,CG0017|CG0018|CG0019|CG0999|CG1000|CG7512|CG7602|CG9999,"Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Oquirrh-Stansbury and West Desert, Tintic-Vernon Conservation|Statewide Conservation|Statewide Spot and Stalk|West Desert, Tintic-Vernon",,True
+280,Ogden Extended Archery Area,1,DB0008,Extended Archery Deer,"Sept 12-Oct 15, 2026 -OR- Sept 12-Nov 30, 2026 | See guidebook for units & dates",False
+432,"Panguitch Lake, Panguitch Valley",1,DA1007,"Panguitch Lake, Panguitch Valley",,True
+448,"Wasatch Mtns, West-Central",7,BR1000|BR1006|BR1007|BR1018|BR7120|BR7221|BR7316,"Black Bear - Statewide Permit|Black Bear Pursuit - Nonresident|Black Bear Pursuit - Resident|Wasatch Mtns, West-Central","Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|May 25 - June 28, 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026",True
+456,Cache/East Canyon/Morgan-South Rich/Ogden,7,BR1000|BR1007|BR1018|BR7002|BR7103|BR7202|BR7302,Black Bear - Statewide Permit|Black Bear Pursuit - Nonresident|Black Bear Pursuit - Resident|Cache/East Canyon/Morgan-South Rich/Ogden,"Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026",True
+457,"Chalk Creek/Kamas/North Slope, Summit",6,BR1000|BR1007|BR1018|BR7006|BR7107|BR7206,"Black Bear - Statewide Permit|Black Bear Pursuit - Nonresident|Black Bear Pursuit - Resident|Chalk Creek/Kamas/North Slope, Summit","Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026",True
+462,Panguitch Lake/Zion,8,BR1000|BR1001|BR1007|BR1018|BR7010|BR7112|BR7213|BR7309,Black Bear - Statewide Permit|Black Bear Harvest Objective Units|Black Bear Pursuit - Nonresident|Black Bear Pursuit - Resident|Panguitch Lake/Zion,"Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|March 28 - May 25, 2026|May 25 - June 28, 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+463,"Wasatch Mtns, Avintaquin/Currant Creek",9,BR1000|BR1001|BR1005|BR1007|BR1018|BR7119|BR7220|BR7315|CG1036,"Black Bear - Statewide Permit|Black Bear Harvest Objective Units|Black Bear Pursuit - Nonresident|Black Bear Pursuit - Resident|Wasatch Mtns, Avintaquin/Currant Creek|Wasatch Mtns, Avintaquin/Currant Creek (bear)","Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|May 25 - June 28, 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+491,South Canyon,1,DB1293,South Canyon CWMU,Contact Operator for 2026 season dates,False
+526,Alton,3,DB1200|DB1201|DB1334,Alton - Cactus Buck CWMU|Alton - Management Buck CWMU|Alton - Premium Buck CWMU,Contact Operator for 2026 season dates|Contact operator for 2026 season dates,False
+622,Oquirrh-Stansbury,5,CG0999|CG7504|CG7512|DB1066|DB1082,"Cougar Pursuit|Oquirrh-Stansbury|Oquirrh-Stansbury and West Desert, Tintic-Vernon Conservation",,True
+624,"West Desert, Tintic",2,DB1071|DB1088,"West Desert, Tintic",,True
+710,San Juan,13,BR1000|BR1001|BR1007|BR1010|BR1013|BR1016|BR7014|BR7116|BR7217|BR7227|BR7312|CG0999|CG1016,Black Bear - Statewide Permit|Black Bear Harvest Objective Units|Black Bear Pursuit - Resident|Cougar Pursuit|San Juan,"Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|July 18 - July 31, 2026|July 5 - 16, 2026|Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|March 28 - May 25, 2026|May 25 - June 28, 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+711,"Wasatch Mtns, Currant Creek-North",8,CG0015|CG0018|CG0019|CG0999|CG1000|CG7505|CG7514|CG9999,"Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Statewide Conservation|Statewide Spot and Stalk|Wasatch Mtns, Currant Creek North and Wasatch Mtns,West-Strawberry Conservation|Wasatch Mtns, Currant Creek-North",,True
+714,"Book Cliffs, North",5,DB0007|DB1017|DB1056|DB1075|DB1076,"Book Cliffs (North & South)|Book Cliffs, North|Buck Deer - Statewide Permit","Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Oct 17 2026 - Oct 25 2026|Oct 17, 2026 - Oct 25, 2026",True
+729,"Pine Valley, North",6,CG0018|CG0019|CG0999|CG1000|CG1014|CG9999,"Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Pine Valley, North|Statewide Conservation|Statewide Spot and Stalk",,True
+730,"Pine Valley, South",6,CG0018|CG0019|CG0999|CG1000|CG1015|CG9999,"Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Pine Valley, South|Statewide Conservation|Statewide Spot and Stalk",,True
+740,Sand Creek,1,DB1285,Sand Creek CWMU,Contact Operator for 2026 season dates,False
+741,Spring Creek Acres,1,DB1294,Spring Creek Acres CWMU,Contact Operator for 2026 season dates,False
+744,"Manti South/San Rafael, North",9,BR1000|BR1001|BR1007|BR1018|BR7004|BR7105|BR7204|BR7232|BR7304,"Black Bear - Statewide Permit|Black Bear Harvest Objective Units|Black Bear Pursuit - Nonresident|Black Bear Pursuit - Resident|Manti, South/San Rafael, North|Manti-South/San Rafael, North","Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|March 28 - May 25, 2026|May 25 - June 28, 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+752,"Book Cliffs, Rattlesnake Canyon/Nine Mile, South",7,CG0018|CG0019|CG0098|CG0999|CG1000|CG1002|CG9999,"Book Cliffs, Rattlesnake Canyon/Nine Mile, South|Cougar - Statewide|Cougar - Statewide Permit|Cougar Control|Cougar Pursuit|Statewide Conservation|Statewide Spot and Stalk",,True
+753,"Nine Mile, North",6,CG0018|CG0019|CG0999|CG1000|CG1009|CG9999,"Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Nine Mile, North|Statewide Conservation|Statewide Spot and Stalk",,True
+85,"Fillmore, Oak Creek LE",6,DB0007|DB1012|DB1019|DB1029|DB1045|DB1117,"Buck Deer - Statewide Permit|Fillmore, Oak Creek LE","Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026|Aug 15 2026 - Sept 11 2026|Oct 17 2026 - Oct 25 2026|Sept 23 2026 - Oct 01 2026",True
+681,"Wasatch Mtns, Avintaquin-Wildcat",6,CG0018|CG0019|CG0999|CG1000|CG1021|CG9999,"Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Statewide Conservation|Statewide Spot and Stalk|Wasatch Mtns, Avintaquin-Wildcat",,True
+802,Fillmore B,2,DB0007|DB1028,Buck Deer - Statewide Permit|Fillmore,"Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Oct 28 2026 - Nov 05 2026",False
+16,"Box Elder, Desert",7,CG0018|CG0019|CG0999|CG1000|CG7508|CG7601|CG9999,"Box Elder, Desert|Box Elder, Desert and Box Elder, Raft River Conservation|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Statewide Conservation|Statewide Spot and Stalk",,True
+252,"Zion, Northwest Zion",2,DA1010|DA1025,"Zion, Northwest Zion",,True
+454,Statewide,4,BI6510|BR7319|CG7513|DB1057,Black Bear Conservation - Statewide|Statewide Conservation,,False
+531,Johnson Mtn Ranch,1,DB1255,Johnson Mountain Ranch CWMU,Contact operator for 2026 season dates,False
+583,Heartland West,1,DB1247,Heartland West CWMU,,False
+595,TJ Cattle Company,2,DB1302|DB1339,Double J Valley CWMU|TJ Cattle Company CWMU,,False
+686,Deer Creek,2,DB1315|DB1320,Deer Creek CWMU,,False
+748,"Mt Dutton, Circleville South",1,DA1004,"Mt Dutton, Circleville South",,True
+749,"Beaver, Circleville North",1,DA1000,"Beaver, Circleville North",,True
+805,West Willow Creek Ranch,1,DB1309,West Willow Creek Ranch CWMU,Contact Operator for 2026 season dates,False
+806,George Creek,2,DA1011|DB1240,George Creek CWMU,Contact Operator for 2026 season dates,False
+818,"San Juan, Desert",6,CG0018|CG0019|CG0098|CG1000|CG1026|CG9999,"Cougar - Statewide|Cougar - Statewide Permit|Cougar Control|San Juan, Desert|Statewide Conservation|Statewide Spot and Stalk",,True
+819,"San Juan, Mountains",5,CG0018|CG0019|CG1000|CG1027|CG9999,"Cougar - Statewide|Cougar - Statewide Permit|San Juan, Mountains|Statewide Conservation|Statewide Spot and Stalk",,True
+825,Mecham Ridge,1,DB1321,Mecham Ridge CWMU,,False
+828,Royal Ivory Outfitters,1,DB1324,Royal Ivory Outfitters CWMU,,False
+21,"Oquirrh-Stansbury, Settlement Cyn",1,DA1031,"Oquirrh-Stansbury, Settlement Cyn",,True
+22,"Panguitch Lake, Parowan Front",1,DA1032,"Panguitch Lake, Parowan Front",,True
+31,"Southwest Desert, Garrison",2,DA1034|DA1035,"Southwest Desert, Garrison",,True
+84,"Wasatch Mtns, West-Sheep Creek",1,DA1036,"Wasatch Mtns, West-Sheep Creek",,True
+87,Chalk Creek-private lands only,1,DA1026,Chalk Creek,,False
+115,"Monroe/Plateau, Seveir Valley",2,DA1003|DA1038,"Monroe/Plateau, Sevier Valley",,False
+234,"Wasatch Mtns, Salt Lake",5,CG0018|CG0019|CG1000|CG1028|CG9999,"Cougar - Statewide|Cougar - Statewide Permit|Statewide Conservation|Statewide Spot and Stalk|Wasatch Mtns, Salt Lake",,True
+239,"Wasatch Mtns, West-Strawberry",8,CG0016|CG0018|CG0019|CG0999|CG1000|CG7506|CG7514|CG9999,"Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Statewide Conservation|Statewide Spot and Stalk|Wasatch Mtns, Currant Creek North and Wasatch Mtns,West-Strawberry Conservation|Wasatch Mtns, West-Strawberry",,True
+485,Moon Ranch,1,DB1263,Moon Ranch CWMU,Contact Operator for 2026 season dates,False
+502,Promontory Point,1,DB1280,Promontory Point CWMU,Contact Operator for 2026 season dates,False
+522,Ensign Ranches,1,DB1237,Ensign Ranches CWMU,Contact Operator for 2026 season dates,False
+538,Emma Park,1,DB1235,Emma Park CWMU,,False
+544,Conover-Jensen,1,DB1223,Conover-Jensen CWMU,,False
+550,Hiawatha,1,DB1249,Hiawatha CWMU,Contact Operator for 2026 season dates,False
+566,Cedar Canyon,1,DB1218,Cedar Canyon CWMU,,False
+573,Guildersleeve,1,DB1245,Guildersleeve CWMU,Contact Operator for 2026 season dates,False
+592,Pine Canyon,1,DB1275,Pine Canyon CWMU,Contact Operator for 2026 season dates,False
+822,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro",1,BI6507,"Book Cliffs, Wild Horse Bench/Nine Mile, Anthro",,True
+833,"Monroe, Annabella",1,DA1014,"Monroe, Annabella",,True
+834,"Monroe, Foothills",1,DA1015,"Monroe, Foothills",,True
+839,"Pine Valley, Enterprise",2,DA1009|DA1017,"Pine Valley, Enterprise",,True
+840,"Pine Valley, New Harmony",2,DA1018|DA1019,"Pine Valley, New Harmony",,True
+841,"Pine Valley, Quichapa",2,DA1020|DA1021,"Pine Valley, Quichapa",,True
+842,Antimony,2,DA1022|DA1023,Antimony,,True
+844,Fremont River Valley,1,DA1024,Fremont River Valley,,True
+845,"Wasatch Mtns, West-Central",3,BR1000|BR1001|BR7016,"Black Bear - Statewide Permit|Black Bear Harvest Objective Units|Wasatch Mtns, West-Central","Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|March 28 - May 25, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+3,"Henry Mtns/Plateau, Boulder/Kaiparowits",4,BI6511|BI6512|BI6513|BI6514,"Henry Mtns/Plateau, Boulder/Kaiparowits",,True
+6,"Nine Mile, Green River Valley",3,DA1029|DA1041|DB0008,"Extended Archery Deer|Nine Mile, Green River Valley","Sept 12-Oct 15, 2026 -OR- Sept 12-Nov 30, 2026 | See guidebook for units & dates",True
+11,"Nine Mile, Price River Valley",2,DA1030|DA1046,"Nine Mile, Price River Valley",,True
+23,"San Juan, Monticello",2,DA1033|DA1042,"San Juan, Monticello",,True
+75,"Oquirrh-Stansbury, West",5,CG0018|CG0019|CG1000|CG1032|CG9999,"Cougar - Statewide|Cougar - Statewide Permit|Oquirrh-Stansbury, West|Statewide Conservation|Statewide Spot and Stalk",,True
+86,"Oquirrh-Stansbury, East",6,CG0011|CG0018|CG0019|CG1000|CG1029|CG9999,"Cougar - Statewide|Cougar - Statewide Permit|Oquirrh-Stansbury, East|Statewide Conservation|Statewide Spot and Stalk",,True
+92,Cache/Ogden,7,BR1000|BR1001|BR7017|BR7121|BR7228|BR7230|BR7320,Black Bear - Statewide Permit|Black Bear Harvest Objective Units|Cache/Ogden,"Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|March 28 - May 25, 2026|May 25 - June 28, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+93,Chalk Creek/East Canyon/Morgan-South Rich,3,BR1000|BR7122|BR7234,Black Bear - Statewide Permit|Chalk Creek/East Canyon/Morgan-South Rich,"Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|May 25 - June 28, 2026",True
+101,Herriman South Valley Extended Archery Area,1,DB0008,Extended Archery Deer,"Sept 12-Oct 15, 2026 -OR- Sept 12-Nov 30, 2026 | See guidebook for units & dates",False
+106,South Wasatch Front Extended Archery Area,1,DB0008,Extended Archery Deer,"Sept 12-Oct 15, 2026 -OR- Sept 12-Nov 30, 2026 | See guidebook for units & dates",False
+109,Utah Lake Extended Archery Area,1,DB0008,Extended Archery Deer,"Sept 12-Oct 15, 2026 -OR- Sept 12-Nov 30, 2026 | See guidebook for units & dates",False
+112,"Southwest Desert, Cedar Valley",1,DA1043,"Southwest Desert, Cedar Valley",,True
+113,East Canyon (private lands),2,DA1039|DA1040,East Canyon,,False
+218,Uintah Basin Extended Archery Area,1,DB0008,Extended Archery Deer,"Sept 12-Oct 15, 2026 -OR- Sept 12-Nov 30, 2026 | See guidebook for units & dates",False
+251,"Kamas/North Slope, Summit",2,BR1001|BR7018,"Black Bear Harvest Objective Units|Kamas/North Slope, Summit","March 28 - May 25, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+311,Sanpete Valley Extended Archery Area,1,DB0008,Extended Archery Deer,"Sept 12-Oct 15, 2026 -OR- Sept 12-Nov 30, 2026 | See guidebook for units & dates",False
+312,Wasatch Front Extended Archery Area,1,DB0008,Extended Archery Deer,"Sept 12-Oct 15, 2026 -OR- Sept 12-Nov 30, 2026 | See guidebook for units & dates",False
+494,Clear Creek,2,DB1221|DB1328,Clear Creek CWMU|Clear Valley Ranch CWMU,Contact Operator for 2026 season dates,False
+520,East Fork Chalk Creek,1,DB1233,East Fork Chalk Creek CWMU,Contact Operator for 2026 season dates,False
+549,Circle E Ranch,1,DB1253,Circle E Ranch CWMU,Contact Operator for 2026 season dates,False
+554,Double R Ranch,1,DB1230,Double R Ranch CWMU,Contact Operator for 2026 season dates,False
+599,Avintaquin Canyon,1,DB1203,Avintaquin Canyon CWMU,Contact Operator for 2026 season dates,False
+637,Henry Mtns (bison),9,BI1000|BI6503|BI6504|BI6505|BI6506|BI6509|BI6515|BI6516|BI6539,Bison - Statewide Permit|Henry Mtns,"Aug 1, 2026 - Jan 31, 2027|Dec 23, 2026 - Jan 3, 2027|Dec 9 2026 - Dec 20 2026|Jan 18 - 31, 2027|Jan 6 - 17, 2027|Nov 11 2026 - Nov 22 2026|Nov 25 2026 - Dec 6 2026|Oct 28 2026 - Nov 8 2026",False
+731,West Cache Extended Archery Area,1,DB0008,Extended Archery Deer,"Sept 12-Oct 15, 2026 -OR- Sept 12-Nov 30, 2026 | See guidebook for units & dates",False
+732,Chimney Rock,1,DB1219,Chimney Rock CWMU,Contact Operator for 2026 season dates,False
+827,Rock House,1,DB1323,Rock House CWMU,Contact Operator for 2026 season dates,False
+835,East Angle,2,DA1016|DA1037,East Angle,,True
+858,Mountain Sky Ranch,1,DB1327,Mountain Sky Ranch CWMU,Contact Operator for 2026 season dates,False
+289,"North Slope, Three Corners/West Daggett",8,BR1000|BR1001|BR1003|BR1007|BR1018|BR7111|BR7212|BR7308,"Black Bear - Statewide Permit|Black Bear Harvest Objective Units|Black Bear Pursuit - Nonresident|Black Bear Pursuit - Resident|North Slope, Three Corners/West Daggett","Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|May 25 - June 28, 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+314,Kaiparowits (HAMS),1,DB1091,Kaiparowits HAMSS,Nov 07 2026 - Nov 30 2026,False
+539,Scofield Canyons,1,DB1287,Scofield Canyons CWMU,Contact Operator for 2026 season dates,False
+541,Scofield West,1,DB1288,Scofield West CWMU,Contact Operator for 2026 season dates,False
+543,Roan Cliffs,1,DB1283,Roan Cliffs CWMU,Contact Operator for 2026 season dates,False
+551,Minnie Maud Ridge,1,DB1261,Minnie Maud Ridge CWMU,Contact Operator for 2026 season dates,False
+552,Soldier Summit,1,DB1292,Soldier Summit CWMU,Contact Operator for 2026 season dates,False
+562,Strawberry Ridge,1,DB1298,Strawberry Ridge CWMU,Contact Operator for 2026 season dates,False
+593,Stillman Creek Ranch,1,DB1297,Stillman Creek Ranch CWMU,,False
+594,Blue Creek,1,DB1210,Blue Creek CWMU,,False
+596,Neil Creek,1,DB1267,Neil Creek CWMU,,False
+859,"East Canyon, Davis-North Salt Lake",2,DA1027|DA1028,"East Canyon, Davis-North Salt Lake",,True
+864,Myton,2,DA1044|DB1094,Myton,,True
+865,Navajo Nation SR permit area,8,DB0004|DB0005|DB0006|DB0010|DB0011|DB0012|DB0013|DB0014,Southern Navajo Buck Deer|Southern Paiute Buck Deer|Southern Paiute Buck Deer (early)|Southern Paiute Buck Deer (late)|Southern Region - Paiute Buck Deer,,False
+866,Navajo Nation SER permit area,3,DB0001|DB0002|DB0003,Southeastern Navajo Buck Deer,,False
+876,Iron Springs,1,DB1330,Iron Spring CWMU,Contact Operator for 2026 season dates,False
+877,Indian Canyon,1,DB1329,Indian Canyon CWMU,,False
+881,"Fillmore, Oak City (Archery Only)",1,DA1045,"Fillmore, Oak City",,False
+489,Green Canyon,1,DB1244,Green Canyon CWMU,Contact Operator for 2026 season dates,False
+495,Indian Creek,1,DB1250,Indian Creek CWMU,Contact Operator for 2026 season dates,False
+497,Golden Spike,1,DB1241,Golden Spike CWMU,Contact Operator for 2026 season dates,False
+500,Blind Spring,1,DB1209,Blind Springs CWMU,Contact Operator for 2026 season dates,False
+503,Nucor West,1,DB1270,Nucor West CWMU,Contact Operator for 2026 season dates,False
+505,Coldwater Ranch,1,DB1222,Coldwater Ranch CWMU,Contact Operator for 2026 season dates,False
+513,North Promontory,1,DB1269,North Promontory CWMU,Contact Operator for 2026 season dates,False
+518,Mountain Meadow,1,DB1264,Mountain Meadow CWMU,Contact Operator for 2026 season dates,False
+519,Engineer Springs,1,DB1236,Engineer Springs CWMU,Contact Operator for 2026 season dates,False
+525,Grass Valley/Clark Canyon,1,DB1242,Grass Valley/Clark Canyon CWMU,Contact Operator for 2026 season dates,False
+527,Bar J Ranch,1,DB1205,Bar J Ranch CWMU,Contact Operator for 2026 season dates,False
+545,Castle Valley Outdoors,1,DB1216,Castle Valley Outdoors CWMU,Contact Operator for 2026 season dates,False
+559,Bally Watts,1,DB1204,Bally Watts CWMU,Contact Operator for 2026 season dates,False
+567,Durst Mountain,1,DB1232,Durst Mountain CWMU,Contact Operator for 2026 season dates,False
+569,Tunnel Hollow,2,DB1259|DB1340,Tunnel Hollow CWMU,Contact Operator for 2026 season dates,False
+571,Woodruff Creek South,1,DB1312,Woodruff Creek South CWMU,Contact Operator for 2026 season dates,False
+572,Mountain Top,1,DB1265,Mountain Top CWMU,Contact Operator for 2026 season dates,False
+575,Bear Springs,1,DB1207,Bear Springs CWMU,Contact Operator for 2026 season dates,False
+577,Hardscrabble,1,DB1246,Hardscrabble CWMU,Contact Operator for 2026 season dates,False
+579,Folly Ridge,1,DB1238,Folley Ridge CWMU,Contact Operator for 2026 season dates,False
+580,Jacob's Creek,1,DB1317,Jacob's Creek CWMU,Contact Operator for 2026 season dates,False
+581,Antelope Creek,1,DB1202,Antelope Creek CWMU,Contact Operator for 2026 season dates,False
+585,Skull Valley South,1,DB1291,Skull Valley South CWMU,Contact Operator for 2026 season dates,False
+597,Lazy H Ranch,1,DB1257,Lazy H Ranch CWMU,,False
+606,Deer Haven,1,DB1227,Deer Haven CWMU,Contact Operator for 2026 season dates,False
+733,Dilly Ranch,1,DB1229,Dilly Ranch CWMU,Contact Operator for 2026 season dates,False
+735,Indian Head,1,DB1251,Indian Head CWMU,Contact Operator for 2026 season dates,False
+736,Patmos Ridge,1,DB1274,Patmos Ridge CWMU,Contact Operator for 2026 season dates,False
+889,"Book Cliffs, Little Creek/South",7,BI1000|BI6528|BI6529|BI6530|BI6531|BI6533|BI6537,"Bison - Statewide Permit|Book Cliffs, Little Creek/South","Aug 1, 2026 - Jan 31, 2027|Aug 15 2026 - Sept 11 2026|Nov 07 2026 - Jan 31 2027|Oct 17 2026 - Oct 27 2026|Sept 21 2026 - Oct 02 2026",True
+890,First Light,1,DB1336,First Light CWMU,Contact Operator for 2026 season dates,False
+891,Sweetwater,1,DB1338,Sweetwater CWMU,,False
+892,Big Piney Mountain Ranch,1,DB1335,Big Piney Ranch CWMU,Contact Operator for 2026 season dates,False
+895,Vernal-Ouray Valley,1,DA1047,Vernal-Ouray Valley,,True
+905,Faust Valley,1,DB1342,Faust Valley CWMU,Contact Operator for 2026 season dates,False
+909,"Vernal, Ashley Valley",1,DA1049,"Vernal, Ashley Valley",,True
+910,"Fillmore, Fillmore City",1,DA1048,Fillmore City,,False
+12,"Book Cliffs, Little Creek Roadless",8,BI6519|BI6524|BR1000|BR7102|BR7223|BR7224|BR7225|BR7301,"Black Bear - Statewide Permit|Book Cliffs, Little Creek Roadless|Book Cliffs, Little Creek Roadless (Cow only)","Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Mar. 28 - May 25 & May 25 - June 28 & Sept. 1 - Nov. 8, 2026|March 28 - May 25, 2026|May 25 - June 28, 2026|Sept. 1 - Nov. 8, 2026",True
+490,Sharp Mountain,1,DB1289,Sharp Mountain CWMU,Contact Operator for 2026 season dates,False
+492,North Peaks,1,DB1303,North Peaks CWMU,Contact Operator for 2026 season dates,False
+504,Park Valley Hereford,1,DB1273,Park Valley Hereford CWMU,Contact Operator for 2026 season dates,False
+509,The Rose of Snowville,2,DA1050|DB1347,The Rose of Snowville CWMU,Contact Operator for 2026 season dates,False
+512,Dove Creek,1,DB1231,Dove Creek CWMU,Contact Operator for 2026 season dates,False
+516,Double Cone,1,DB1325,Double Cone CWMU,Contact Operator for 2026 season dates,False
+524,Weber Florence Creek,2,DB1307|DB1349,Weber Florence Creek CWMU|Weber Florence Creek/Stillman Creek CWMU,Contact Operator for 2026 season dates,False
+533,Mt Carmel,2,DA1013|DB1266,Mt Carmel CWMU,Contact Operator for 2026 season dates,False
+555,Heaston East,1,DB1248,Heaston East CWMU,Contact Operator for 2026 season dates,False
+556,Coyote Little Pole,2,DB1225|DB1337,Coyote Little Pole CWMU|Little Pole Canyon CWMU,Contact Operator for 2026 season dates,False
+565,Middle Ridge,1,DB1260,Middle Ridge CWMU,Contact Operator for 2026 season dates,False
+568,Deseret,1,DB1228,Deseret CWMU,Contact Operator for 2026 season dates,False
+574,Pisgah Mountain,1,DB1286,Pisgah Mountain CWMU,Contact Operator for 2026 season dates,False
+586,Wallsburg,1,DB1305,Wallsburg CWMU,Contact Operator for 2026 season dates,False
+589,Junction Valley,2,DA1012|DB1256,Junction Valley CWMU,Contact Operator for 2026 season dates,False
+603,Park Valley,1,DB1318,Park Valley CWMU,,False
+737,Plymouth Peak,1,DB1276,Plymouth Peak CWMU,Contact Operator for 2026 season dates,False
+807,East Zion,1,DB1234,East Zion CWMU,Contact Operator for 2026 season dates,False
+826,Pahvant Ensign,1,DB1322,Pahvant Ensign CWMU,Contact Operator for 2026 season dates,False
+856,Rosette,1,DB1326,Rosette CWMU,Contact Operator for 2026 season dates,False
+874,West Ridge,1,DB1332,West Ridge CWMU,Contact Operator for 2026 season dates,False
+875,Raft River,1,DB1331,Raft River CWMU,Contact Operator for 2026 season dates,False
+878,5S Land and Livestock,1,DB1333,5S CWMU,Contact Operator for 2026 season dates,False
+906,Salt Wells,1,DB1344,Salt Wells CWMU,,False
+907,Red Iron,1,DB1343,Red Iron CWMU,,False
+908,Dry Creek,1,DB1341,Dry Creek CWMU,Contact Operator for 2026 season dates,False
+922,Kimberly,1,DB1348,Kimberly CWMU,,False
+923,The Dirty Dozen,2,DB1345|DB1351,Diamond Mountain CWMU|The Dirty Dozen,Contact Operator for 2026 season dates,True
+925,Cedar/Stansbury,1,DB1114,Cedar/Stansbury,Oct 28 2026 - Nov 05 2026,True
+926,"West Desert, Swasey",1,DB1112,"West Desert, Swasey",Oct 28 2026 - Nov 05 2026,True
+927,Oquirrh/Tintic,1,DB1113,Oquirrh/Tintic,Oct 28 2026 - Nov 05 2026,True
+928,Little Rockies,1,DB1115,Little Rockies,Nov 07 2026 - Nov 30 2026,True
+929,"San Juan, Mancos Mesa",1,DB1116,"San Juan, Mancos Mesa",Nov 07 2026 - Nov 30 2026,True
+930,Moab Valley,1,DB1119,Moab Valley,Nov 07 2026 - Nov 22 2026,True
+932,Castle Valley,1,DB1120,Castle Valley,Nov 07 2026 - Nov 22 2026,True
+10003,Mineral Mountain,1,CG1035,"Beaver, Mineral Mountains",,False
+51,Manti,1,CG7509,Manti Conservation,,False
+69,Chalk Creek,2,CG1033|DB1100,Chalk Creek,Oct 28 2026 - Nov 05 2026,True
+88,"Fillmore, Pahvant",14,BR1000|BR1001|BR1007|BR1018|BR7007|BR7124|BR7207|CG0008|CG0018|CG0019|CG0999|CG1000|CG7611|CG9999,"Black Bear - Statewide Permit|Black Bear Harvest Objective Units|Black Bear Pursuit - Nonresident|Black Bear Pursuit - Resident|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Fillmore, Pahvant|Statewide Conservation|Statewide Spot and Stalk","Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|March 28 - May 25, 2026|May 25 - June 28, 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+94,Henry Mtns,14,CG0018|CG0019|CG0999|CG1000|CG1006|CG9999|DB0007|DB1000|DB1003|DB1005|DB1007|DB1009|DB1051|DB1052,Buck Deer - Statewide Permit|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Henry Mtns|Henry Mtns (Management Buck Deer)|Statewide Conservation|Statewide Spot and Stalk,"Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026|Aug 15 2026 - Sept 11 2026|Oct 17 2026 - Oct 25 2026|Oct 26 2026 - Oct 30 2026|Sept 23 2026 - Oct 01 2026",True
+108,Dolores Triangle,8,BR7021|BR7126|BR7238|DB0007|DB1013|DB1020|DB1031|DB1118,Buck Deer - Statewide Permit|Dolores Triangle,"Arch: Oct 31-Nov 13, 2026 | Any Legal Weapon: Nov 14-22, 2026 | Muzz: Nov 23-Dec 1, 2026|Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|March 28 - May 25, 2026|May 25 - June 28, 2026|Nov 14 2026 - Nov 22 2026|Nov 23 2026 - Dec 01 2026|Oct 31 2026 - Nov 13 2026",True
+117,Morgan-South Rich,10,CG0009|CG0018|CG0019|CG0999|CG1000|CG7503|CG7511|CG9999|DB1092|DB1103,"Chalk Creek/Kamas, East Canyon, and Morgan-South Rich Conservation|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Morgan-South Rich|Statewide Conservation|Statewide Spot and Stalk",Oct 28 2026 - Nov 05 2026,True
+143,"North Slope, Summit/West Daggett",6,CG0018|CG0019|CG0999|CG1000|CG1010|CG9999,"Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|North Slope, Summit/West Daggett|Statewide Conservation|Statewide Spot and Stalk",,True
+163,Paunsaugunt,22,BR1000|BR1007|BR1018|BR7011|BR7113|BR7214|BR7323|CG0018|CG0019|CG0999|CG1000|CG1013|CG9999|DB0007|DB1001|DB1004|DB1006|DB1008|DB1010|DB1058|DB1073|DB1074,Black Bear - Statewide Permit|Black Bear Pursuit - Nonresident|Black Bear Pursuit - Resident|Buck Deer - Statewide Permit|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Paunsaugunt|Statewide Conservation|Statewide Spot and Stalk,"Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 31, 2026|Aug 15 2026 - Sept 11 2026|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Nov 2 - Nov. 8, 2026|March 28 - May 25, 2026|May 25 - June 28, 2026|Nov 02 2026 - Nov 20 2026|Oct 17 2026 - Oct 31 2026|Sept 23 2026 - Oct 01 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026",True
+175,Fishlake/Thousand Lakes,8,BR1000|BR1001|BR1007|BR1018|BR7013|BR7115|BR7216|BR7311,Black Bear - Statewide Permit|Black Bear Harvest Objective Units|Black Bear Pursuit - Nonresident|Black Bear Pursuit - Resident|Fishlake/Thousand Lakes,"Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|March 28 - May 25, 2026|May 25 - June 28, 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+206,Diamond Mtn,5,DB0007|DB1015|DB1023|DB1038|DB1047,Buck Deer - Statewide Permit|Diamond Mtn,"Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Archery: Aug 15-Sept 11, 2026 | Muzz: Sept 23-Oct 1, 2026 | ALW: Oct 17-Oct 25, 2026|Aug 15 2026 - Sept 11 2026|Oct 17 2026 - Oct 25 2026|Sept 23 2026 - Oct 01 2026",True
+276,East Canyon,8,CG0018|CG0019|CG1000|CG7502|CG7511|CG9999|DB1101|DB1105,"Chalk Creek/Kamas, East Canyon, and Morgan-South Rich Conservation|Cougar - Statewide|Cougar - Statewide Permit|East Canyon|Statewide Conservation|Statewide Spot and Stalk",Nov 07 2026 - Nov 30 2026|Oct 28 2026 - Nov 05 2026,True
+277,"Nine Mile, Range Creek",1,BI6525,Nine Mile,,False
+301,"Book Cliffs, Floy Canyon",1,DB1090,"Book Cliffs, Floy Canyon",Nov 07 2026 - Nov 30 2026,True
+455,Boulder/Kaiparowits,11,BR1000|BR1001|BR1007|BR1018|BR7012|BR7114|BR7215|BR7236|BR7310|DB1035|DB1084,Black Bear - Statewide Permit|Black Bear Harvest Objective Units|Black Bear Pursuit - Nonresident|Black Bear Pursuit - Resident|Boulder/Kaiparowits,"Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|March 28 - May 25, 2026|May 25 - June 28, 2026|Oct 28 2026 - Nov 05 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+609,Ogden,8,CG0018|CG0019|CG0999|CG1000|CG1012|CG9999|DB0007|DB1054,Buck Deer - Statewide Permit|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Ogden|Statewide Conservation|Statewide Spot and Stalk,"Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Oct 28 2026 - Nov 05 2026",True
+611,Kamas,9,BR1000|BR7123|BR7229|BR7235|BR7321|CG0007|CG1034|DB0007|DB1030,"Black Bear - Statewide Permit|Buck Deer - Statewide Permit|Kamas|Kamas/North Slope, Summit","Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|May 25 - June 28, 2026|Oct 28 2026 - Nov 05 2026",True
+613,Yellowstone,16,BR1000|BR1001|BR1004|BR1007|BR1018|BR7118|BR7219|BR7314|CG0018|CG0019|CG0999|CG1000|CG1019|CG9999|DB0007|DB1039,Black Bear - Statewide Permit|Black Bear Harvest Objective Units|Black Bear Pursuit - Nonresident|Black Bear Pursuit - Resident|Buck Deer - Statewide Permit|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Statewide Conservation|Statewide Spot and Stalk|Yellowstone,"Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|May 25 - June 28, 2026|Oct 28 2026 - Nov 05 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+614,Vernal/Bonanza,2,DB1069|DB1086,Bonanza/Vernal|Vernal/Bonanza,Oct 28 2026 - Nov 05 2026,True
+617,La Sal Mtns,6,BR1001|BR7022|BR7127|BR7239|BR7326|DB1081,Black Bear Harvest Objective Units|La Sal Mtns,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|March 28 - May 25, 2026|May 25 - June 28, 2026|Oct 28 2026 - Nov 05 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+625,Southwest Desert,8,CG0018|CG0019|CG0999|CG1000|CG1020|CG9999|DB0007|DB1040,Buck Deer - Statewide Permit|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Southwest Desert|Statewide Conservation|Statewide Spot and Stalk,"Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Oct 28 2026 - Nov 05 2026",True
+629,Monroe,15,BR1000|BR1007|BR1018|BR7020|BR7125|BR7209|BR7237|CG0018|CG0019|CG0999|CG1000|CG7612|CG9999|DB0007|DB1032,Black Bear - Statewide Permit|Black Bear Pursuit - Nonresident|Black Bear Pursuit - Resident|Buck Deer - Statewide Permit|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Monroe|Statewide Conservation|Statewide Spot and Stalk,"Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|March 28 - May 25, 2026|May 25 - June 28, 2026|Oct 28 2026 - Nov 05 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026",True
+630,Mt Dutton,17,BR1000|BR1001|BR1007|BR1018|BR7009|BR7109|BR7210|BR7322|CG0010|CG0018|CG0019|CG0999|CG1000|CG7613|CG9999|DB0007|DB1053,Black Bear - Statewide Permit|Black Bear Harvest Objective Units|Black Bear Pursuit - Nonresident|Black Bear Pursuit - Resident|Buck Deer - Statewide Permit|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Mt Dutton|Statewide Conservation|Statewide Spot and Stalk,"Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates and take methods.|Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026|Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026|March 28 - May 25, 2026|May 25 - June 28, 2026|Oct 28 2026 - Nov 05 2026|Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026|Visit wildlife.utah.gov/bearharvest for units & closures.
+You are required to complete the annual bear orientation course & carry proof while hunting bear.  Visit wildlife.utah.gov/bear for details.",True
+634,Panguitch Lake,9,CG0012|CG0018|CG0019|CG0999|CG1000|CG7615|CG9999|DB1067|DB1083,Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Panguitch Lake|Statewide Conservation|Statewide Spot and Stalk,Oct 28 2026 - Nov 05 2026,True
+635,Zion,8,CG0018|CG0019|CG0999|CG1000|CG1025|CG9999|DB0007|DB1043,Buck Deer - Statewide Permit|Cougar - Statewide|Cougar - Statewide Permit|Cougar Pursuit|Statewide Conservation|Statewide Spot and Stalk|Zion,"Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Oct 28 2026 - Nov 05 2026",True
+636,Pine Valley,2,DB0007|DB1034,Buck Deer - Statewide Permit|Pine Valley,"Archery: Aug 15 - Aug 31, 2026 | ALW: Sept 1, 2026 - Jan 15, 2027|Oct 28 2026 - Nov 05 2026",True
+672,"Beaver, West",6,CG0018|CG0019|CG1000|CG1031|CG9999|DB1111,"Beaver, West|Cougar - Statewide|Cougar - Statewide Permit|Statewide Conservation|Statewide Spot and Stalk",Oct 28 2026 - Nov 05 2026,True
+685,"Beaver, East",6,CG0018|CG0019|CG1000|CG1030|CG9999|DB1110,"Beaver, East|Cougar - Statewide|Cougar - Statewide Permit|Statewide Conservation|Statewide Spot and Stalk",Oct 28 2026 - Nov 05 2026,True
+935,$50 Coyote Bounty,1,COY050,Coyote Reimbursement - $50,,False
+488,Whites Valley,1,DB1310,White's Valley CWMU,Contact Operator for 2026 season dates,False
+496,Rattlesnake Pass,1,DB1281,Rattlesnake Pass CWMU,Contact Operator for 2026 season dates,False
+499,Washakie,1,DB1306,Washakie CWMU,Contact Operator for 2026 season dates,False
+501,Pocatello Valley,1,DB1277,Pocatello Valley CWMU,Contact Operator for 2026 season dates,False
+511,West Hills,1,DB1308,West Hills CWMU,Contact Operator for 2026 season dates,False
+514,Fort Ranch,1,DB1239,Fort Ranch CWMU,Contact Operator for 2026 season dates,False
+542,Preston Nutter Ranch,1,DB1279,Preston Nutter Ranch CWMU,Contact Operator for 2026 season dates,False
+546,Spring Creek/Dodge,1,DB1295,Spring Creek/Dodge CWMU,Contact Operator for 2026 season dates,False
+547,Summit Point,1,DB1299,Summit Point CWMU,Contact Operator for 2026 season dates,False
+548,Redd Ranches,1,DB1282,Redd Ranches CWMU,Contact Operator for 2026 season dates,False
+602,Thatcher Mountain,1,DB1300,Thatcher Mountain CWMU,Contact Operator for 2026 season dates,False
+640,Cotton Thomas,1,DB1224,Cotton Thomas CWMU,Contact Operator for 2026 season dates,False
+808,Blackhawk,1,DB1208,Blackhawk CWMU,Contact Operator for 2026 season dates,False
+936,$100 Coyote Bounty,1,COY100,Coyote Reimbursement - $100,,False

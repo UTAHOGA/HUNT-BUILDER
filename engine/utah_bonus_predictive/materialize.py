@@ -820,7 +820,7 @@ def _eb3024_regression(truth_rows: list[dict[str, str]]) -> dict[str, object]:
     for row in truth_rows:
         if str(row.get("hunt_code", "")).strip().upper() != "EB3024":
             continue
-        year = str(row.get("year", "")).strip()
+        year = str(row.get("year") or row.get("actual_draw_year") or "").strip()
         residency = str(row.get("residency", "")).strip()
         points_text = str(row.get("points", "")).strip()
         permit_key = (year, residency)

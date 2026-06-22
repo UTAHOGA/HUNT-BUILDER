@@ -2,7 +2,7 @@
   {
     "hunt_code": "BI1000",
     "species": "Bison",
-    "hunt_name": "Bison - Statewide Permit",
+    "hunt_name": "Statewide",
     "hunt_type": "Statewide",
     "hunt_class": "Statewide Permit",
     "weapon": "Any Legal Weapon",
@@ -288,7 +288,7 @@
   {
     "hunt_code": "BI6532",
     "species": "Bison",
-    "hunt_name": "Book Cliffs, Bitter Creek",
+    "hunt_name": "Book Cliffs, Bitter Creek (pronghorn)",
     "hunt_type": "Once-in-a-lifetime",
     "hunt_class": "Once-in-a-lifetime",
     "weapon": "Archery",
@@ -310,7 +310,7 @@
   {
     "hunt_code": "BI6534",
     "species": "Bison",
-    "hunt_name": "Book Cliffs, Bitter Creek",
+    "hunt_name": "Book Cliffs, Bitter Creek (pronghorn)",
     "hunt_type": "Once-in-a-lifetime",
     "hunt_class": "Once-in-a-lifetime",
     "weapon": "Any Legal Weapon",
@@ -332,7 +332,7 @@
   {
     "hunt_code": "BI6535",
     "species": "Bison",
-    "hunt_name": "Book Cliffs, Bitter Creek",
+    "hunt_name": "Book Cliffs, Bitter Creek (pronghorn)",
     "hunt_type": "Once-in-a-lifetime",
     "hunt_class": "Once-in-a-lifetime",
     "weapon": "Any Legal Weapon",
@@ -354,7 +354,7 @@
   {
     "hunt_code": "BI6536",
     "species": "Bison",
-    "hunt_name": "Book Cliffs, Bitter Creek",
+    "hunt_name": "Book Cliffs, Bitter Creek (pronghorn)",
     "hunt_type": "Once-in-a-lifetime",
     "hunt_class": "Antlerless",
     "weapon": "Any Legal Weapon",
@@ -398,7 +398,7 @@
   {
     "hunt_code": "BI6538",
     "species": "Bison",
-    "hunt_name": "Nine Mile, Private Lands Only",
+    "hunt_name": "Nine Mile",
     "hunt_type": "General Season",
     "hunt_class": "General Season",
     "weapon": "Any Legal Weapon",
@@ -442,7 +442,7 @@
   {
     "hunt_code": "BR1000",
     "species": "Black Bear",
-    "hunt_name": "Black Bear - Statewide Permit",
+    "hunt_name": "Statewide",
     "hunt_type": "Statewide",
     "hunt_class": "Statewide Permit",
     "weapon": "Any Legal Weapon",
@@ -464,7 +464,7 @@
   {
     "hunt_code": "BR1001",
     "species": "Black Bear",
-    "hunt_name": "Black Bear Harvest Objective Units",
+    "hunt_name": "Harvest Objective Units",
     "hunt_type": "Harvest Objective",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -486,7 +486,7 @@
   {
     "hunt_code": "BR1007",
     "species": "Black Bear",
-    "hunt_name": "Black Bear Pursuit - Resident",
+    "hunt_name": "Pursuit",
     "hunt_type": "Pursuit",
     "hunt_class": "Pursuit",
     "weapon": "Pursuit Only",
@@ -706,7 +706,7 @@
   {
     "hunt_code": "BR1018",
     "species": "Black Bear",
-    "hunt_name": "Black Bear Pursuit - Nonresident",
+    "hunt_name": "Pursuit",
     "hunt_type": "Pursuit",
     "hunt_class": "",
     "weapon": "Pursuit Only",
@@ -750,7 +750,7 @@
   {
     "hunt_code": "BR7001",
     "species": "Black Bear",
-    "hunt_name": "Book Cliffs Bitter Creek/South",
+    "hunt_name": "Book Cliffs, Bitter Creek/South",
     "hunt_type": "Limited Entry - Spring",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -772,7 +772,7 @@
   {
     "hunt_code": "BR7003",
     "species": "Black Bear",
-    "hunt_name": "Manti North",
+    "hunt_name": "Manti, North",
     "hunt_type": "Limited Entry - Spring",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -794,7 +794,7 @@
   {
     "hunt_code": "BR7004",
     "species": "Black Bear",
-    "hunt_name": "Manti South/San Rafael North",
+    "hunt_name": "Manti South/San Rafael, North",
     "hunt_type": "Limited Entry - Spring",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -838,7 +838,7 @@
   {
     "hunt_code": "BR7007",
     "species": "Black Bear",
-    "hunt_name": "Fillmore Pahvant",
+    "hunt_name": "Fillmore, Pahvant",
     "hunt_type": "Limited Entry - Spring",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -1036,7 +1036,7 @@
   {
     "hunt_code": "BR7016",
     "species": "Black Bear",
-    "hunt_name": "Wasatch Mtns West-Central",
+    "hunt_name": "Wasatch Mtns, West-Central",
     "hunt_type": "Limited Entry - Spring",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -1080,7 +1080,7 @@
   {
     "hunt_code": "BR7018",
     "species": "Black Bear",
-    "hunt_name": "Kamas/North Slope Summit",
+    "hunt_name": "Kamas/North Slope, Summit",
     "hunt_type": "Limited Entry - Spring",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -1212,7 +1212,7 @@
   {
     "hunt_code": "BR7101",
     "species": "Black Bear",
-    "hunt_name": "Book Cliffs Bitter Creek/South",
+    "hunt_name": "Book Cliffs, Bitter Creek/South",
     "hunt_type": "Limited Entry - Summer",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -1234,7 +1234,7 @@
   {
     "hunt_code": "BR7102",
     "species": "Black Bear",
-    "hunt_name": "Book Cliffs Little Creek Roadless",
+    "hunt_name": "Book Cliffs, Little Creek Roadless",
     "hunt_type": "Limited Entry - Summer",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -1256,7 +1256,7 @@
   {
     "hunt_code": "BR7104",
     "species": "Black Bear",
-    "hunt_name": "Manti North",
+    "hunt_name": "Manti, North",
     "hunt_type": "Limited Entry - Summer",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -1278,7 +1278,7 @@
   {
     "hunt_code": "BR7105",
     "species": "Black Bear",
-    "hunt_name": "Manti South/San Rafael North",
+    "hunt_name": "Manti South/San Rafael, North",
     "hunt_type": "Limited Entry - Summer",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -1388,7 +1388,7 @@
   {
     "hunt_code": "BR7111",
     "species": "Black Bear",
-    "hunt_name": "North Slope Three Corners/West Daggett",
+    "hunt_name": "North Slope, Three Corners/West Daggett",
     "hunt_type": "Limited Entry - Summer",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -1564,7 +1564,7 @@
   {
     "hunt_code": "BR7119",
     "species": "Black Bear",
-    "hunt_name": "Wasatch Mtns Avintaquin/Currant Creek",
+    "hunt_name": "Wasatch Mtns, Avintaquin/Currant Creek",
     "hunt_type": "Limited Entry - Summer",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -1586,7 +1586,7 @@
   {
     "hunt_code": "BR7120",
     "species": "Black Bear",
-    "hunt_name": "Wasatch Mtns West-Central",
+    "hunt_name": "Wasatch Mtns, West-Central",
     "hunt_type": "Limited Entry - Summer",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -1652,7 +1652,7 @@
   {
     "hunt_code": "BR7123",
     "species": "Black Bear",
-    "hunt_name": "Kamas/North Slope Summit",
+    "hunt_name": "Kamas/North Slope, Summit",
     "hunt_type": "Limited Entry - Summer",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -1674,7 +1674,7 @@
   {
     "hunt_code": "BR7124",
     "species": "Black Bear",
-    "hunt_name": "Fillmore Pahvant",
+    "hunt_name": "Fillmore, Pahvant",
     "hunt_type": "Limited Entry - Summer",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -1784,7 +1784,7 @@
   {
     "hunt_code": "BR7201",
     "species": "Black Bear",
-    "hunt_name": "Book Cliffs Bitter Creek/South",
+    "hunt_name": "Book Cliffs, Bitter Creek/South",
     "hunt_type": "Limited Entry - Fall",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -1806,7 +1806,7 @@
   {
     "hunt_code": "BR7203",
     "species": "Black Bear",
-    "hunt_name": "Manti North",
+    "hunt_name": "Manti, North",
     "hunt_type": "Limited Entry - Fall",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -1828,7 +1828,7 @@
   {
     "hunt_code": "BR7204",
     "species": "Black Bear",
-    "hunt_name": "Manti South/San Rafael North",
+    "hunt_name": "Manti South/San Rafael, North",
     "hunt_type": "Limited Entry - Fall",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -1872,7 +1872,7 @@
   {
     "hunt_code": "BR7207",
     "species": "Black Bear",
-    "hunt_name": "Fillmore Pahvant",
+    "hunt_name": "Fillmore, Pahvant",
     "hunt_type": "Limited Entry - Fall",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -1960,7 +1960,7 @@
   {
     "hunt_code": "BR7212",
     "species": "Black Bear",
-    "hunt_name": "North Slope Three Corners/West Daggett",
+    "hunt_name": "North Slope, Three Corners/West Daggett",
     "hunt_type": "Limited Entry - Fall",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -2136,7 +2136,7 @@
   {
     "hunt_code": "BR7220",
     "species": "Black Bear",
-    "hunt_name": "Wasatch Mtns Avintaquin/Currant Creek",
+    "hunt_name": "Wasatch Mtns, Avintaquin/Currant Creek",
     "hunt_type": "Limited Entry - Fall",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -2158,7 +2158,7 @@
   {
     "hunt_code": "BR7221",
     "species": "Black Bear",
-    "hunt_name": "Wasatch Mtns West-Central",
+    "hunt_name": "Wasatch Mtns, West-Central",
     "hunt_type": "Limited Entry - Fall",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -2180,7 +2180,7 @@
   {
     "hunt_code": "BR7224",
     "species": "Black Bear",
-    "hunt_name": "Book Cliffs Little Creek Roadless",
+    "hunt_name": "Book Cliffs, Little Creek Roadless",
     "hunt_type": "Limited Entry - Spring",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -2202,7 +2202,7 @@
   {
     "hunt_code": "BR7225",
     "species": "Black Bear",
-    "hunt_name": "Book Cliffs Little Creek Roadless",
+    "hunt_name": "Book Cliffs, Little Creek Roadless",
     "hunt_type": "Spot and Stalk",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -2246,7 +2246,7 @@
   {
     "hunt_code": "BR7229",
     "species": "Black Bear",
-    "hunt_name": "Kamas/North Slope Summit",
+    "hunt_name": "Kamas/North Slope, Summit",
     "hunt_type": "Limited Entry - Fall",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -2334,7 +2334,7 @@
   {
     "hunt_code": "BR7300",
     "species": "Black Bear",
-    "hunt_name": "Book Cliffs Bitter Creek/South",
+    "hunt_name": "Book Cliffs, Bitter Creek/South",
     "hunt_type": "Limited Entry - Multiseason",
     "hunt_class": "",
     "weapon": "Multiseason",
@@ -2356,7 +2356,7 @@
   {
     "hunt_code": "BR7301",
     "species": "Black Bear",
-    "hunt_name": "Book Cliffs Little Creek Roadless",
+    "hunt_name": "Book Cliffs, Little Creek Roadless",
     "hunt_type": "Limited Entry - Multiseason",
     "hunt_class": "",
     "weapon": "Multiseason",
@@ -2378,7 +2378,7 @@
   {
     "hunt_code": "BR7303",
     "species": "Black Bear",
-    "hunt_name": "Manti North",
+    "hunt_name": "Manti, North",
     "hunt_type": "Limited Entry - Multiseason",
     "hunt_class": "",
     "weapon": "Multiseason",
@@ -2400,7 +2400,7 @@
   {
     "hunt_code": "BR7304",
     "species": "Black Bear",
-    "hunt_name": "Manti South/San Rafael North",
+    "hunt_name": "Manti South/San Rafael, North",
     "hunt_type": "Limited Entry - Multiseason",
     "hunt_class": "",
     "weapon": "Multiseason",
@@ -2466,7 +2466,7 @@
   {
     "hunt_code": "BR7308",
     "species": "Black Bear",
-    "hunt_name": "North Slope Three Corners/West Daggett",
+    "hunt_name": "North Slope, Three Corners/West Daggett",
     "hunt_type": "Limited Entry - Multiseason",
     "hunt_class": "",
     "weapon": "Multiseason",
@@ -2620,7 +2620,7 @@
   {
     "hunt_code": "BR7315",
     "species": "Black Bear",
-    "hunt_name": "Wasatch Mtns Avintaquin/Currant Creek",
+    "hunt_name": "Wasatch Mtns, Avintaquin/Currant Creek",
     "hunt_type": "Limited Entry - Multiseason",
     "hunt_class": "",
     "weapon": "Multiseason",
@@ -2642,7 +2642,7 @@
   {
     "hunt_code": "BR7316",
     "species": "Black Bear",
-    "hunt_name": "Wasatch Mtns West-Central",
+    "hunt_name": "Wasatch Mtns, West-Central",
     "hunt_type": "Limited Entry - Multiseason",
     "hunt_class": "",
     "weapon": "Multiseason",
@@ -2730,7 +2730,7 @@
   {
     "hunt_code": "BR7321",
     "species": "Black Bear",
-    "hunt_name": "Kamas/North Slope Summit",
+    "hunt_name": "Kamas/North Slope, Summit",
     "hunt_type": "Limited Entry - Multiseason",
     "hunt_class": "",
     "weapon": "Multiseason",
@@ -2972,7 +2972,7 @@
   {
     "hunt_code": "DA1011",
     "species": "Deer",
-    "hunt_name": "George Creek CWMU",
+    "hunt_name": "George Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -2994,7 +2994,7 @@
   {
     "hunt_code": "DA1012",
     "species": "Deer",
-    "hunt_name": "Junction Valley CWMU",
+    "hunt_name": "Junction Valley",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -3016,7 +3016,7 @@
   {
     "hunt_code": "DA1013",
     "species": "Deer",
-    "hunt_name": "Mt Carmel CWMU",
+    "hunt_name": "Mt Carmel",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -3280,7 +3280,7 @@
   {
     "hunt_code": "DA1048",
     "species": "Deer",
-    "hunt_name": "Fillmore City",
+    "hunt_name": "Fillmore, Fillmore City",
     "hunt_type": "General Season",
     "hunt_class": "Antlerless",
     "weapon": "Archery",
@@ -3324,7 +3324,7 @@
   {
     "hunt_code": "DA1050",
     "species": "Deer",
-    "hunt_name": "The Rose of Snowville CWMU",
+    "hunt_name": "The Rose of Snowville",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -3368,7 +3368,7 @@
   {
     "hunt_code": "DB0001",
     "species": "Deer",
-    "hunt_name": "Southeastern Navajo Buck Deer",
+    "hunt_name": "Navajo Nation SER permit area",
     "hunt_type": "Tribal",
     "hunt_class": "Tribal",
     "weapon": "Any Legal Weapon",
@@ -3390,7 +3390,7 @@
   {
     "hunt_code": "DB0002",
     "species": "Deer",
-    "hunt_name": "Southeastern Navajo Buck Deer",
+    "hunt_name": "Navajo Nation SER permit area",
     "hunt_type": "Tribal",
     "hunt_class": "Tribal",
     "weapon": "Archery",
@@ -3412,7 +3412,7 @@
   {
     "hunt_code": "DB0003",
     "species": "Deer",
-    "hunt_name": "Southeastern Navajo Buck Deer",
+    "hunt_name": "Navajo Nation SER permit area",
     "hunt_type": "Tribal",
     "hunt_class": "Tribal",
     "weapon": "Muzzleloader",
@@ -3434,7 +3434,7 @@
   {
     "hunt_code": "DB0004",
     "species": "Deer",
-    "hunt_name": "Southern Navajo Buck Deer",
+    "hunt_name": "Navajo Nation SR permit area",
     "hunt_type": "Tribal",
     "hunt_class": "Tribal",
     "weapon": "Any Legal Weapon",
@@ -3456,7 +3456,7 @@
   {
     "hunt_code": "DB0005",
     "species": "Deer",
-    "hunt_name": "Southern Navajo Buck Deer",
+    "hunt_name": "Navajo Nation SR permit area",
     "hunt_type": "Tribal",
     "hunt_class": "Tribal",
     "weapon": "Archery",
@@ -3478,7 +3478,7 @@
   {
     "hunt_code": "DB0006",
     "species": "Deer",
-    "hunt_name": "Southern Navajo Buck Deer",
+    "hunt_name": "Navajo Nation SR permit area",
     "hunt_type": "Tribal",
     "hunt_class": "Tribal",
     "weapon": "Muzzleloader",
@@ -3500,7 +3500,7 @@
   {
     "hunt_code": "DB0007",
     "species": "Deer",
-    "hunt_name": "Buck Deer - Statewide Permit",
+    "hunt_name": "Statewide",
     "hunt_type": "Statewide",
     "hunt_class": "Statewide Permit",
     "weapon": "Any Legal Weapon",
@@ -3522,7 +3522,7 @@
   {
     "hunt_code": "DB0008",
     "species": "Deer",
-    "hunt_name": "Extended Archery Deer",
+    "hunt_name": "Deer Extended",
     "hunt_type": "Extended Archery",
     "hunt_class": "Extended Archery",
     "weapon": "Archery",
@@ -3544,7 +3544,7 @@
   {
     "hunt_code": "DB0009",
     "species": "Deer",
-    "hunt_name": "Antelope Island - Conservation/Expo",
+    "hunt_name": "Antelope Island",
     "hunt_type": "Premium Limited Entry",
     "hunt_class": "Premium Limited Entry",
     "weapon": "Any Legal Weapon",
@@ -3566,7 +3566,7 @@
   {
     "hunt_code": "DB0010",
     "species": "Deer",
-    "hunt_name": "Southern Paiute Buck Deer (early)",
+    "hunt_name": "Navajo Nation SR permit area",
     "hunt_type": "Tribal",
     "hunt_class": "Tribal",
     "weapon": "Any Legal Weapon",
@@ -3588,7 +3588,7 @@
   {
     "hunt_code": "DB0011",
     "species": "Deer",
-    "hunt_name": "Southern Paiute Buck Deer",
+    "hunt_name": "Navajo Nation SR permit area",
     "hunt_type": "Tribal",
     "hunt_class": "Tribal",
     "weapon": "Archery",
@@ -3610,7 +3610,7 @@
   {
     "hunt_code": "DB0012",
     "species": "Deer",
-    "hunt_name": "Southern Paiute Buck Deer",
+    "hunt_name": "Navajo Nation SR permit area",
     "hunt_type": "Tribal",
     "hunt_class": "Tribal",
     "weapon": "Muzzleloader",
@@ -3632,7 +3632,7 @@
   {
     "hunt_code": "DB0013",
     "species": "Deer",
-    "hunt_name": "Southern Paiute Buck Deer (late)",
+    "hunt_name": "Navajo Nation SR permit area",
     "hunt_type": "Tribal",
     "hunt_class": "Tribal",
     "weapon": "Any Legal Weapon",
@@ -3654,7 +3654,7 @@
   {
     "hunt_code": "DB1000",
     "species": "Deer",
-    "hunt_name": "Henry Mtns Premium",
+    "hunt_name": "Henry Mtns",
     "hunt_type": "Premium Limited Entry",
     "hunt_class": "Premium Limited Entry",
     "weapon": "Archery",
@@ -3676,7 +3676,7 @@
   {
     "hunt_code": "DB1001",
     "species": "Deer",
-    "hunt_name": "Paunsaugunt Premium",
+    "hunt_name": "Paunsaugunt",
     "hunt_type": "Premium Limited Entry",
     "hunt_class": "Premium Limited Entry",
     "weapon": "Archery",
@@ -3698,7 +3698,7 @@
   {
     "hunt_code": "DB1002",
     "species": "Deer",
-    "hunt_name": "Antelope Island Premium",
+    "hunt_name": "Antelope Island",
     "hunt_type": "Premium Limited Entry",
     "hunt_class": "Premium Limited Entry",
     "weapon": "Any Legal Weapon",
@@ -3720,7 +3720,7 @@
   {
     "hunt_code": "DB1003",
     "species": "Deer",
-    "hunt_name": "Henry Mtns Premium",
+    "hunt_name": "Henry Mtns",
     "hunt_type": "Premium Limited Entry",
     "hunt_class": "Premium Limited Entry",
     "weapon": "Any Legal Weapon",
@@ -3742,7 +3742,7 @@
   {
     "hunt_code": "DB1004",
     "species": "Deer",
-    "hunt_name": "Paunsaugunt Premium",
+    "hunt_name": "Paunsaugunt",
     "hunt_type": "Premium Limited Entry",
     "hunt_class": "Premium Limited Entry",
     "weapon": "Any Legal Weapon",
@@ -3764,7 +3764,7 @@
   {
     "hunt_code": "DB1005",
     "species": "Deer",
-    "hunt_name": "Henry Mtns Premium",
+    "hunt_name": "Henry Mtns",
     "hunt_type": "Premium Limited Entry",
     "hunt_class": "Premium Limited Entry",
     "weapon": "Muzzleloader",
@@ -3786,7 +3786,7 @@
   {
     "hunt_code": "DB1006",
     "species": "Deer",
-    "hunt_name": "Paunsaugunt Premium",
+    "hunt_name": "Paunsaugunt",
     "hunt_type": "Premium Limited Entry",
     "hunt_class": "Premium Limited Entry",
     "weapon": "Muzzleloader",
@@ -3808,7 +3808,7 @@
   {
     "hunt_code": "DB1007",
     "species": "Deer",
-    "hunt_name": "Henry Mtns Premium",
+    "hunt_name": "Henry Mtns",
     "hunt_type": "Premium Limited Entry",
     "hunt_class": "Premium Limited Entry",
     "weapon": "Multiseason",
@@ -3830,7 +3830,7 @@
   {
     "hunt_code": "DB1008",
     "species": "Deer",
-    "hunt_name": "Paunsaugunt Premium",
+    "hunt_name": "Paunsaugunt",
     "hunt_type": "Premium Limited Entry",
     "hunt_class": "Premium Limited Entry",
     "weapon": "Multiseason",
@@ -3852,7 +3852,7 @@
   {
     "hunt_code": "DB1009",
     "species": "Deer",
-    "hunt_name": "Henry Mtns Management",
+    "hunt_name": "Henry Mtns",
     "hunt_type": "Premium Limited Entry",
     "hunt_class": "Management",
     "weapon": "Any Legal Weapon",
@@ -3874,7 +3874,7 @@
   {
     "hunt_code": "DB1010",
     "species": "Deer",
-    "hunt_name": "Paunsaugunt Management",
+    "hunt_name": "Paunsaugunt",
     "hunt_type": "Premium Limited Entry",
     "hunt_class": "Management",
     "weapon": "Any Legal Weapon",
@@ -3918,7 +3918,7 @@
   {
     "hunt_code": "DB1012",
     "species": "Deer",
-    "hunt_name": "Fillmore, Oak Creek LE",
+    "hunt_name": "Fillmore, Oak Creek",
     "hunt_type": "Limited Entry",
     "hunt_class": "Limited Entry",
     "weapon": "Archery",
@@ -4072,7 +4072,7 @@
   {
     "hunt_code": "DB1019",
     "species": "Deer",
-    "hunt_name": "Fillmore, Oak Creek LE",
+    "hunt_name": "Fillmore, Oak Creek",
     "hunt_type": "Limited Entry",
     "hunt_class": "Limited Entry",
     "weapon": "Any Legal Weapon",
@@ -4248,7 +4248,7 @@
   {
     "hunt_code": "DB1029",
     "species": "Deer",
-    "hunt_name": "Fillmore, Oak Creek LE",
+    "hunt_name": "Fillmore, Oak Creek",
     "hunt_type": "Limited Entry",
     "hunt_class": "Limited Entry",
     "weapon": "Muzzleloader",
@@ -4578,7 +4578,7 @@
   {
     "hunt_code": "DB1045",
     "species": "Deer",
-    "hunt_name": "Fillmore, Oak Creek LE",
+    "hunt_name": "Fillmore, Oak Creek",
     "hunt_type": "Limited Entry",
     "hunt_class": "Limited Entry",
     "weapon": "Multiseason",
@@ -4732,7 +4732,7 @@
   {
     "hunt_code": "DB1056",
     "species": "Deer",
-    "hunt_name": "Book Cliffs (North & South)",
+    "hunt_name": "Book Cliffs",
     "hunt_type": "Conservation",
     "hunt_class": "Conservation",
     "weapon": "Any Legal Weapon",
@@ -4754,7 +4754,7 @@
   {
     "hunt_code": "DB1058",
     "species": "Deer",
-    "hunt_name": "Paunsaugunt Cactus",
+    "hunt_name": "Paunsaugunt",
     "hunt_type": "Premium Limited Entry",
     "hunt_class": "Cactus Buck",
     "weapon": "Any Legal Weapon",
@@ -4820,7 +4820,7 @@
   {
     "hunt_code": "DB1073",
     "species": "Deer",
-    "hunt_name": "Paunsaugunt Management",
+    "hunt_name": "Paunsaugunt",
     "hunt_type": "Premium Limited Entry",
     "hunt_class": "Management",
     "weapon": "Archery",
@@ -4842,7 +4842,7 @@
   {
     "hunt_code": "DB1074",
     "species": "Deer",
-    "hunt_name": "Paunsaugunt Management",
+    "hunt_name": "Paunsaugunt",
     "hunt_type": "Premium Limited Entry",
     "hunt_class": "Management",
     "weapon": "Muzzleloader",
@@ -4864,7 +4864,7 @@
   {
     "hunt_code": "DB1075",
     "species": "Deer",
-    "hunt_name": "Book Cliffs (North & South)",
+    "hunt_name": "Book Cliffs",
     "hunt_type": "Conservation",
     "hunt_class": "Conservation",
     "weapon": "Archery",
@@ -4886,7 +4886,7 @@
   {
     "hunt_code": "DB1076",
     "species": "Deer",
-    "hunt_name": "Book Cliffs (North & South)",
+    "hunt_name": "Book Cliffs",
     "hunt_type": "Conservation",
     "hunt_class": "Conservation",
     "weapon": "Muzzleloader",
@@ -5194,7 +5194,7 @@
   {
     "hunt_code": "DB1090",
     "species": "Deer",
-    "hunt_name": "HAMSS",
+    "hunt_name": "Book Cliffs, Floy Canyon",
     "hunt_type": "Limited Entry",
     "hunt_class": "Limited Entry",
     "weapon": "Book Cliffs, Floy Canyon",
@@ -5216,7 +5216,7 @@
   {
     "hunt_code": "DB1091",
     "species": "Deer",
-    "hunt_name": "HAMSS",
+    "hunt_name": "Kaiparowits (HAMS)",
     "hunt_type": "Limited Entry",
     "hunt_class": "Limited Entry",
     "weapon": "Kaiparowits HAMSS",
@@ -5326,7 +5326,7 @@
   {
     "hunt_code": "DB1105",
     "species": "Deer",
-    "hunt_name": "HAMSS",
+    "hunt_name": "East Canyon",
     "hunt_type": "Limited Entry",
     "hunt_class": "Limited Entry",
     "weapon": "East Canyon",
@@ -5568,7 +5568,7 @@
   {
     "hunt_code": "DB1116",
     "species": "Deer",
-    "hunt_name": "HAMSS",
+    "hunt_name": "San Juan, Mancos Mesa",
     "hunt_type": "Limited Entry",
     "hunt_class": "Limited Entry",
     "weapon": "San Juan, Mancos Mesa",
@@ -5656,7 +5656,7 @@
   {
     "hunt_code": "DB1121",
     "species": "Deer",
-    "hunt_name": "Antelope Island Management",
+    "hunt_name": "Antelope Island",
     "hunt_type": "Premium Limited Entry",
     "hunt_class": "Management",
     "weapon": "Any Legal Weapon",
@@ -5678,7 +5678,7 @@
   {
     "hunt_code": "DB1200",
     "species": "Deer",
-    "hunt_name": "Alton - Premium Buck CWMU",
+    "hunt_name": "Alton",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -5700,7 +5700,7 @@
   {
     "hunt_code": "DB1201",
     "species": "Deer",
-    "hunt_name": "Alton - Management Buck CWMU",
+    "hunt_name": "Alton",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -5722,7 +5722,7 @@
   {
     "hunt_code": "DB1202",
     "species": "Deer",
-    "hunt_name": "Antelope Creek CWMU",
+    "hunt_name": "Antelope Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -5744,7 +5744,7 @@
   {
     "hunt_code": "DB1203",
     "species": "Deer",
-    "hunt_name": "Avintaquin Canyon CWMU",
+    "hunt_name": "Avintaquin Canyon",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -5766,7 +5766,7 @@
   {
     "hunt_code": "DB1204",
     "species": "Deer",
-    "hunt_name": "Bally Watts CWMU",
+    "hunt_name": "Bally Watts",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -5788,7 +5788,7 @@
   {
     "hunt_code": "DB1205",
     "species": "Deer",
-    "hunt_name": "Bar J Ranch CWMU",
+    "hunt_name": "Bar J Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -5810,7 +5810,7 @@
   {
     "hunt_code": "DB1206",
     "species": "Deer",
-    "hunt_name": "Bear Mountain CWMU",
+    "hunt_name": "Bear Mountain",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -5832,7 +5832,7 @@
   {
     "hunt_code": "DB1207",
     "species": "Deer",
-    "hunt_name": "Bear Springs CWMU",
+    "hunt_name": "Bear Springs",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -5876,7 +5876,7 @@
   {
     "hunt_code": "DB1209",
     "species": "Deer",
-    "hunt_name": "Blind Springs CWMU",
+    "hunt_name": "Blind Spring",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -5898,7 +5898,7 @@
   {
     "hunt_code": "DB1211",
     "species": "Deer",
-    "hunt_name": "Blue Spring Hills CWMU",
+    "hunt_name": "Blue Spring Hills",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -5920,7 +5920,7 @@
   {
     "hunt_code": "DB1212",
     "species": "Deer",
-    "hunt_name": "Bluebell CWMU",
+    "hunt_name": "Bluebell",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -5942,7 +5942,7 @@
   {
     "hunt_code": "DB1213",
     "species": "Deer",
-    "hunt_name": "Boobe Hole CWMU",
+    "hunt_name": "Boobe Hole",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -5964,7 +5964,7 @@
   {
     "hunt_code": "DB1215",
     "species": "Deer",
-    "hunt_name": "Buckhorn Ranch CWMU",
+    "hunt_name": "Buckhorn Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -5986,7 +5986,7 @@
   {
     "hunt_code": "DB1216",
     "species": "Deer",
-    "hunt_name": "Castle Valley Outdoors CWMU",
+    "hunt_name": "Castle Valley Outdoors",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6008,7 +6008,7 @@
   {
     "hunt_code": "DB1217",
     "species": "Deer",
-    "hunt_name": "Causey Spring CWMU",
+    "hunt_name": "Causey Spring",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6030,7 +6030,7 @@
   {
     "hunt_code": "DB1219",
     "species": "Deer",
-    "hunt_name": "Chimney Rock CWMU",
+    "hunt_name": "Chimney Rock",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6052,7 +6052,7 @@
   {
     "hunt_code": "DB1222",
     "species": "Deer",
-    "hunt_name": "Coldwater Ranch CWMU",
+    "hunt_name": "Coldwater Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6074,7 +6074,7 @@
   {
     "hunt_code": "DB1224",
     "species": "Deer",
-    "hunt_name": "Cotton Thomas CWMU",
+    "hunt_name": "Cotton Thomas",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6096,7 +6096,7 @@
   {
     "hunt_code": "DB1227",
     "species": "Deer",
-    "hunt_name": "Deer Haven CWMU",
+    "hunt_name": "Deer Haven",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6118,7 +6118,7 @@
   {
     "hunt_code": "DB1228",
     "species": "Deer",
-    "hunt_name": "Deseret CWMU",
+    "hunt_name": "Deseret",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6140,7 +6140,7 @@
   {
     "hunt_code": "DB1229",
     "species": "Deer",
-    "hunt_name": "Dilly Ranch CWMU",
+    "hunt_name": "Dilly Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6162,7 +6162,7 @@
   {
     "hunt_code": "DB1230",
     "species": "Deer",
-    "hunt_name": "Double R Ranch CWMU",
+    "hunt_name": "Double R Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6184,7 +6184,7 @@
   {
     "hunt_code": "DB1231",
     "species": "Deer",
-    "hunt_name": "Dove Creek CWMU",
+    "hunt_name": "Dove Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6206,7 +6206,7 @@
   {
     "hunt_code": "DB1232",
     "species": "Deer",
-    "hunt_name": "Durst Mountain CWMU",
+    "hunt_name": "Durst Mountain",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6228,7 +6228,7 @@
   {
     "hunt_code": "DB1233",
     "species": "Deer",
-    "hunt_name": "East Fork Chalk Creek CWMU",
+    "hunt_name": "East Fork Chalk Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6250,7 +6250,7 @@
   {
     "hunt_code": "DB1234",
     "species": "Deer",
-    "hunt_name": "East Zion CWMU",
+    "hunt_name": "East Zion",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6272,7 +6272,7 @@
   {
     "hunt_code": "DB1236",
     "species": "Deer",
-    "hunt_name": "Engineer Springs CWMU",
+    "hunt_name": "Engineer Springs",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6294,7 +6294,7 @@
   {
     "hunt_code": "DB1237",
     "species": "Deer",
-    "hunt_name": "Ensign Ranches CWMU",
+    "hunt_name": "Ensign Ranches",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6316,7 +6316,7 @@
   {
     "hunt_code": "DB1238",
     "species": "Deer",
-    "hunt_name": "Folley Ridge CWMU",
+    "hunt_name": "Folly Ridge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6338,7 +6338,7 @@
   {
     "hunt_code": "DB1239",
     "species": "Deer",
-    "hunt_name": "Fort Ranch CWMU",
+    "hunt_name": "Fort Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6360,7 +6360,7 @@
   {
     "hunt_code": "DB1240",
     "species": "Deer",
-    "hunt_name": "George Creek CWMU",
+    "hunt_name": "George Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6382,7 +6382,7 @@
   {
     "hunt_code": "DB1241",
     "species": "Deer",
-    "hunt_name": "Golden Spike CWMU",
+    "hunt_name": "Golden Spike",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6404,7 +6404,7 @@
   {
     "hunt_code": "DB1242",
     "species": "Deer",
-    "hunt_name": "Grass Valley/Clark Canyon CWMU",
+    "hunt_name": "Grass Valley/Clark Canyon",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6426,7 +6426,7 @@
   {
     "hunt_code": "DB1243",
     "species": "Deer",
-    "hunt_name": "Grazing Pasture CWMU",
+    "hunt_name": "Grazing Pasture",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6448,7 +6448,7 @@
   {
     "hunt_code": "DB1244",
     "species": "Deer",
-    "hunt_name": "Green Canyon CWMU",
+    "hunt_name": "Green Canyon",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6470,7 +6470,7 @@
   {
     "hunt_code": "DB1245",
     "species": "Deer",
-    "hunt_name": "Guildersleeve CWMU",
+    "hunt_name": "Guildersleeve",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6492,7 +6492,7 @@
   {
     "hunt_code": "DB1246",
     "species": "Deer",
-    "hunt_name": "Hardscrabble CWMU",
+    "hunt_name": "Hardscrabble",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6514,7 +6514,7 @@
   {
     "hunt_code": "DB1248",
     "species": "Deer",
-    "hunt_name": "Heaston East CWMU",
+    "hunt_name": "Heaston East",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6536,7 +6536,7 @@
   {
     "hunt_code": "DB1249",
     "species": "Deer",
-    "hunt_name": "Hiawatha CWMU",
+    "hunt_name": "Hiawatha",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6558,7 +6558,7 @@
   {
     "hunt_code": "DB1250",
     "species": "Deer",
-    "hunt_name": "Indian Creek CWMU",
+    "hunt_name": "Indian Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6580,7 +6580,7 @@
   {
     "hunt_code": "DB1251",
     "species": "Deer",
-    "hunt_name": "Indian Head CWMU",
+    "hunt_name": "Indian Head",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6602,7 +6602,7 @@
   {
     "hunt_code": "DB1252",
     "species": "Deer",
-    "hunt_name": "Ingham Peak CWMU",
+    "hunt_name": "Ingham Peak",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6624,7 +6624,7 @@
   {
     "hunt_code": "DB1253",
     "species": "Deer",
-    "hunt_name": "Circle E Ranch CWMU",
+    "hunt_name": "Circle E Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6646,7 +6646,7 @@
   {
     "hunt_code": "DB1255",
     "species": "Deer",
-    "hunt_name": "Johnson Mountain Ranch CWMU",
+    "hunt_name": "Johnson Mtn Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6668,7 +6668,7 @@
   {
     "hunt_code": "DB1256",
     "species": "Deer",
-    "hunt_name": "Junction Valley CWMU",
+    "hunt_name": "Junction Valley",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6690,7 +6690,7 @@
   {
     "hunt_code": "DB1258",
     "species": "Deer",
-    "hunt_name": "Little Red Creek CWMU",
+    "hunt_name": "Little Red Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6712,7 +6712,7 @@
   {
     "hunt_code": "DB1259",
     "species": "Deer",
-    "hunt_name": "Tunnel Hollow CWMU",
+    "hunt_name": "Tunnel Hollow",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6734,7 +6734,7 @@
   {
     "hunt_code": "DB1260",
     "species": "Deer",
-    "hunt_name": "Middle Ridge CWMU",
+    "hunt_name": "Middle Ridge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6756,7 +6756,7 @@
   {
     "hunt_code": "DB1261",
     "species": "Deer",
-    "hunt_name": "Minnie Maud Ridge CWMU",
+    "hunt_name": "Minnie Maud Ridge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6778,7 +6778,7 @@
   {
     "hunt_code": "DB1263",
     "species": "Deer",
-    "hunt_name": "Moon Ranch CWMU",
+    "hunt_name": "Moon Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6800,7 +6800,7 @@
   {
     "hunt_code": "DB1264",
     "species": "Deer",
-    "hunt_name": "Mountain Meadow CWMU",
+    "hunt_name": "Mountain Meadow",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6822,7 +6822,7 @@
   {
     "hunt_code": "DB1265",
     "species": "Deer",
-    "hunt_name": "Mountain Top CWMU",
+    "hunt_name": "Mountain Top",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6844,7 +6844,7 @@
   {
     "hunt_code": "DB1266",
     "species": "Deer",
-    "hunt_name": "Mt Carmel CWMU",
+    "hunt_name": "Mt Carmel",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6866,7 +6866,7 @@
   {
     "hunt_code": "DB1269",
     "species": "Deer",
-    "hunt_name": "North Promontory CWMU",
+    "hunt_name": "North Promontory",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6888,7 +6888,7 @@
   {
     "hunt_code": "DB1270",
     "species": "Deer",
-    "hunt_name": "Nucor West CWMU",
+    "hunt_name": "Nucor West",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6910,7 +6910,7 @@
   {
     "hunt_code": "DB1271",
     "species": "Deer",
-    "hunt_name": "Oak Ranch CWMU",
+    "hunt_name": "Oak Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6932,7 +6932,7 @@
   {
     "hunt_code": "DB1272",
     "species": "Deer",
-    "hunt_name": "Old Woman Plateau CWMU",
+    "hunt_name": "Old Woman Plateau",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6954,7 +6954,7 @@
   {
     "hunt_code": "DB1273",
     "species": "Deer",
-    "hunt_name": "Park Valley Hereford CWMU",
+    "hunt_name": "Park Valley Hereford",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6976,7 +6976,7 @@
   {
     "hunt_code": "DB1274",
     "species": "Deer",
-    "hunt_name": "Patmos Ridge CWMU",
+    "hunt_name": "Patmos Ridge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -6998,7 +6998,7 @@
   {
     "hunt_code": "DB1275",
     "species": "Deer",
-    "hunt_name": "Pine Canyon CWMU",
+    "hunt_name": "Pine Canyon",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7020,7 +7020,7 @@
   {
     "hunt_code": "DB1276",
     "species": "Deer",
-    "hunt_name": "Plymouth Peak CWMU",
+    "hunt_name": "Plymouth Peak",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -7042,7 +7042,7 @@
   {
     "hunt_code": "DB1277",
     "species": "Deer",
-    "hunt_name": "Pocatello Valley CWMU",
+    "hunt_name": "Pocatello Valley",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7064,7 +7064,7 @@
   {
     "hunt_code": "DB1279",
     "species": "Deer",
-    "hunt_name": "Preston Nutter Ranch CWMU",
+    "hunt_name": "Preston Nutter Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7086,7 +7086,7 @@
   {
     "hunt_code": "DB1280",
     "species": "Deer",
-    "hunt_name": "Promontory Point CWMU",
+    "hunt_name": "Promontory Point",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7108,7 +7108,7 @@
   {
     "hunt_code": "DB1281",
     "species": "Deer",
-    "hunt_name": "Rattlesnake Pass CWMU",
+    "hunt_name": "Rattlesnake Pass",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7130,7 +7130,7 @@
   {
     "hunt_code": "DB1282",
     "species": "Deer",
-    "hunt_name": "Redd Ranches CWMU",
+    "hunt_name": "Redd Ranches",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7152,7 +7152,7 @@
   {
     "hunt_code": "DB1283",
     "species": "Deer",
-    "hunt_name": "Roan Cliffs CWMU",
+    "hunt_name": "Roan Cliffs",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7174,7 +7174,7 @@
   {
     "hunt_code": "DB1285",
     "species": "Deer",
-    "hunt_name": "Sand Creek CWMU",
+    "hunt_name": "Sand Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7196,7 +7196,7 @@
   {
     "hunt_code": "DB1286",
     "species": "Deer",
-    "hunt_name": "Pisgah Mountain CWMU",
+    "hunt_name": "Pisgah Mountain",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7218,7 +7218,7 @@
   {
     "hunt_code": "DB1287",
     "species": "Deer",
-    "hunt_name": "Scofield Canyons CWMU",
+    "hunt_name": "Scofield Canyons",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7240,7 +7240,7 @@
   {
     "hunt_code": "DB1288",
     "species": "Deer",
-    "hunt_name": "Scofield West CWMU",
+    "hunt_name": "Scofield West",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7262,7 +7262,7 @@
   {
     "hunt_code": "DB1289",
     "species": "Deer",
-    "hunt_name": "Sharp Mountain CWMU",
+    "hunt_name": "Sharp Mountain",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7284,7 +7284,7 @@
   {
     "hunt_code": "DB1290",
     "species": "Deer",
-    "hunt_name": "Skull Crack CWMU",
+    "hunt_name": "Skull Crack",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7306,7 +7306,7 @@
   {
     "hunt_code": "DB1291",
     "species": "Deer",
-    "hunt_name": "Skull Valley South CWMU",
+    "hunt_name": "Skull Valley South",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7328,7 +7328,7 @@
   {
     "hunt_code": "DB1292",
     "species": "Deer",
-    "hunt_name": "Soldier Summit CWMU",
+    "hunt_name": "Soldier Summit",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7350,7 +7350,7 @@
   {
     "hunt_code": "DB1293",
     "species": "Deer",
-    "hunt_name": "South Canyon CWMU",
+    "hunt_name": "South Canyon",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7372,7 +7372,7 @@
   {
     "hunt_code": "DB1294",
     "species": "Deer",
-    "hunt_name": "Spring Creek Acres CWMU",
+    "hunt_name": "Spring Creek Acres",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7394,7 +7394,7 @@
   {
     "hunt_code": "DB1295",
     "species": "Deer",
-    "hunt_name": "Spring Creek/Dodge CWMU",
+    "hunt_name": "Spring Creek/Dodge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7416,7 +7416,7 @@
   {
     "hunt_code": "DB1298",
     "species": "Deer",
-    "hunt_name": "Strawberry Ridge CWMU",
+    "hunt_name": "Strawberry Ridge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7438,7 +7438,7 @@
   {
     "hunt_code": "DB1299",
     "species": "Deer",
-    "hunt_name": "Summit Point CWMU",
+    "hunt_name": "Summit Point",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7460,7 +7460,7 @@
   {
     "hunt_code": "DB1300",
     "species": "Deer",
-    "hunt_name": "Thatcher Mountain CWMU",
+    "hunt_name": "Thatcher Mountain",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7482,7 +7482,7 @@
   {
     "hunt_code": "DB1301",
     "species": "Deer",
-    "hunt_name": "Three C CWMU",
+    "hunt_name": "Three C",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7504,7 +7504,7 @@
   {
     "hunt_code": "DB1303",
     "species": "Deer",
-    "hunt_name": "North Peaks CWMU",
+    "hunt_name": "North Peaks",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7526,7 +7526,7 @@
   {
     "hunt_code": "DB1304",
     "species": "Deer",
-    "hunt_name": "Two Bear CWMU",
+    "hunt_name": "Two Bear",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7548,7 +7548,7 @@
   {
     "hunt_code": "DB1305",
     "species": "Deer",
-    "hunt_name": "Wallsburg CWMU",
+    "hunt_name": "Wallsburg",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7570,7 +7570,7 @@
   {
     "hunt_code": "DB1306",
     "species": "Deer",
-    "hunt_name": "Washakie CWMU",
+    "hunt_name": "Washakie",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7592,7 +7592,7 @@
   {
     "hunt_code": "DB1308",
     "species": "Deer",
-    "hunt_name": "West Hills CWMU",
+    "hunt_name": "West Hills",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7614,7 +7614,7 @@
   {
     "hunt_code": "DB1309",
     "species": "Deer",
-    "hunt_name": "West Willow Creek Ranch CWMU",
+    "hunt_name": "West Willow Creek Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7636,7 +7636,7 @@
   {
     "hunt_code": "DB1310",
     "species": "Deer",
-    "hunt_name": "White's Valley CWMU",
+    "hunt_name": "Whites Valley",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7658,7 +7658,7 @@
   {
     "hunt_code": "DB1312",
     "species": "Deer",
-    "hunt_name": "Woodruff Creek South CWMU",
+    "hunt_name": "Woodruff Creek South",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7680,7 +7680,7 @@
   {
     "hunt_code": "DB1317",
     "species": "Deer",
-    "hunt_name": "Jacob's Creek CWMU",
+    "hunt_name": "Jacob's Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7702,7 +7702,7 @@
   {
     "hunt_code": "DB1320",
     "species": "Deer",
-    "hunt_name": "Deer Creek CWMU",
+    "hunt_name": "Deer Creek",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -7724,7 +7724,7 @@
   {
     "hunt_code": "DB1322",
     "species": "Deer",
-    "hunt_name": "Pahvant Ensign CWMU",
+    "hunt_name": "Pahvant Ensign",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7746,7 +7746,7 @@
   {
     "hunt_code": "DB1323",
     "species": "Deer",
-    "hunt_name": "Rock House CWMU",
+    "hunt_name": "Rock House",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7768,7 +7768,7 @@
   {
     "hunt_code": "DB1324",
     "species": "Deer",
-    "hunt_name": "Royal Ivory Outfitters CWMU",
+    "hunt_name": "Royal Ivory Outfitters",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -7790,7 +7790,7 @@
   {
     "hunt_code": "DB1325",
     "species": "Deer",
-    "hunt_name": "Double Cone CWMU",
+    "hunt_name": "Double Cone",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7812,7 +7812,7 @@
   {
     "hunt_code": "DB1326",
     "species": "Deer",
-    "hunt_name": "Rosette CWMU",
+    "hunt_name": "Rosette",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7834,7 +7834,7 @@
   {
     "hunt_code": "DB1327",
     "species": "Deer",
-    "hunt_name": "Mountain Sky Ranch CWMU",
+    "hunt_name": "Mountain Sky Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7856,7 +7856,7 @@
   {
     "hunt_code": "DB1328",
     "species": "Deer",
-    "hunt_name": "Clear Creek CWMU",
+    "hunt_name": "Clear Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7878,7 +7878,7 @@
   {
     "hunt_code": "DB1330",
     "species": "Deer",
-    "hunt_name": "Iron Spring CWMU",
+    "hunt_name": "Iron Springs",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7900,7 +7900,7 @@
   {
     "hunt_code": "DB1331",
     "species": "Deer",
-    "hunt_name": "Raft River CWMU",
+    "hunt_name": "Raft River",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7922,7 +7922,7 @@
   {
     "hunt_code": "DB1332",
     "species": "Deer",
-    "hunt_name": "West Ridge CWMU",
+    "hunt_name": "West Ridge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7944,7 +7944,7 @@
   {
     "hunt_code": "DB1333",
     "species": "Deer",
-    "hunt_name": "5S CWMU",
+    "hunt_name": "5S Land and Livestock",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7966,7 +7966,7 @@
   {
     "hunt_code": "DB1334",
     "species": "Deer",
-    "hunt_name": "Alton - Cactus Buck CWMU",
+    "hunt_name": "Alton",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -7988,7 +7988,7 @@
   {
     "hunt_code": "DB1335",
     "species": "Deer",
-    "hunt_name": "Big Piney Ranch CWMU",
+    "hunt_name": "Big Piney Mountain Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -8010,7 +8010,7 @@
   {
     "hunt_code": "DB1336",
     "species": "Deer",
-    "hunt_name": "First Light CWMU",
+    "hunt_name": "First Light",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -8032,7 +8032,7 @@
   {
     "hunt_code": "DB1337",
     "species": "Deer",
-    "hunt_name": "Little Pole Canyon CWMU",
+    "hunt_name": "Coyote Little Pole",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -8054,7 +8054,7 @@
   {
     "hunt_code": "DB1338",
     "species": "Deer",
-    "hunt_name": "Sweetwater CWMU",
+    "hunt_name": "Sweetwater",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -8076,7 +8076,7 @@
   {
     "hunt_code": "DB1341",
     "species": "Deer",
-    "hunt_name": "Dry Creek CWMU",
+    "hunt_name": "Dry Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -8098,7 +8098,7 @@
   {
     "hunt_code": "DB1342",
     "species": "Deer",
-    "hunt_name": "Faust Valley CWMU",
+    "hunt_name": "Faust Valley",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -8120,7 +8120,7 @@
   {
     "hunt_code": "DB1343",
     "species": "Deer",
-    "hunt_name": "Red Iron CWMU",
+    "hunt_name": "Red Iron",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -8142,7 +8142,7 @@
   {
     "hunt_code": "DB1344",
     "species": "Deer",
-    "hunt_name": "Salt Wells CWMU",
+    "hunt_name": "Salt Wells",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -8164,7 +8164,7 @@
   {
     "hunt_code": "DB1345",
     "species": "Deer",
-    "hunt_name": "Diamond Mountain CWMU",
+    "hunt_name": "The Dirty Dozen",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -8186,7 +8186,7 @@
   {
     "hunt_code": "DB1347",
     "species": "Deer",
-    "hunt_name": "The Rose of Snowville CWMU",
+    "hunt_name": "The Rose of Snowville",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -8208,7 +8208,7 @@
   {
     "hunt_code": "DB1348",
     "species": "Deer",
-    "hunt_name": "Kimberly CWMU",
+    "hunt_name": "Kimberly",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -8230,7 +8230,7 @@
   {
     "hunt_code": "DB1349",
     "species": "Deer",
-    "hunt_name": "Weber Florence Creek/Stillman Creek CWMU",
+    "hunt_name": "Weber Florence Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -11266,7 +11266,7 @@
   {
     "hunt_code": "DS1000",
     "species": "Desert Bighorn Sheep",
-    "hunt_name": "Desert Bighorn Sheep - Statewide Permit",
+    "hunt_name": "Statewide",
     "hunt_type": "Statewide",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -11772,7 +11772,7 @@
   {
     "hunt_code": "DS6625",
     "species": "Desert Bighorn Sheep",
-    "hunt_name": "Mineral Mtns",
+    "hunt_name": "Mineral Mountain",
     "hunt_type": "Once-in-a-lifetime",
     "hunt_class": "Once-in-a-lifetime",
     "weapon": "Any Legal Weapon",
@@ -11904,7 +11904,7 @@
   {
     "hunt_code": "EA1012",
     "species": "Elk",
-    "hunt_name": "Cache, Richmond Hyde Park",
+    "hunt_name": "Cache, Richmond-Hyde Park",
     "hunt_type": "General Season",
     "hunt_class": "Antlerless",
     "weapon": "Any Legal Weapon",
@@ -12014,7 +12014,7 @@
   {
     "hunt_code": "EA1020",
     "species": "Elk",
-    "hunt_name": "Manti, Mohrland-Stump Flat",
+    "hunt_name": "Manti, Morhland Stump Flat",
     "hunt_type": "General Season",
     "hunt_class": "Antlerless",
     "weapon": "Any Legal Weapon",
@@ -12960,7 +12960,7 @@
   {
     "hunt_code": "EA1106",
     "species": "Elk",
-    "hunt_name": "Wasatch Mtns, Avintaquin",
+    "hunt_name": "Wasatch Mtns, Avintaquin A",
     "hunt_type": "General Season",
     "hunt_class": "Antlerless",
     "weapon": "Any Legal Weapon",
@@ -13092,7 +13092,7 @@
   {
     "hunt_code": "EA1114",
     "species": "Elk",
-    "hunt_name": "Wasatch Mtns, West Timpanogos",
+    "hunt_name": "Wasatch Mtns, Timpanogos B",
     "hunt_type": "General Season",
     "hunt_class": "Antlerless",
     "weapon": "Any Legal Weapon",
@@ -13158,7 +13158,7 @@
   {
     "hunt_code": "EA1118",
     "species": "Elk",
-    "hunt_name": "Alton CWMU",
+    "hunt_name": "Alton",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13180,7 +13180,7 @@
   {
     "hunt_code": "EA1119",
     "species": "Elk",
-    "hunt_name": "Bar J Ranch CWMU",
+    "hunt_name": "Bar J Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13202,7 +13202,7 @@
   {
     "hunt_code": "EA1120",
     "species": "Elk",
-    "hunt_name": "Bear Mountain CWMU",
+    "hunt_name": "Bear Mountain",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13224,7 +13224,7 @@
   {
     "hunt_code": "EA1121",
     "species": "Elk",
-    "hunt_name": "Boobe Hole CWMU",
+    "hunt_name": "Boobe Hole",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13246,7 +13246,7 @@
   {
     "hunt_code": "EA1122",
     "species": "Elk",
-    "hunt_name": "Causey Spring CWMU",
+    "hunt_name": "Causey Spring",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13268,7 +13268,7 @@
   {
     "hunt_code": "EA1124",
     "species": "Elk",
-    "hunt_name": "Chimney Rock CWMU",
+    "hunt_name": "Chimney Rock",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13290,7 +13290,7 @@
   {
     "hunt_code": "EA1125",
     "species": "Elk",
-    "hunt_name": "Coldwater Ranch CWMU",
+    "hunt_name": "Coldwater Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13312,7 +13312,7 @@
   {
     "hunt_code": "EA1126",
     "species": "Elk",
-    "hunt_name": "Cotton Thomas CWMU",
+    "hunt_name": "Cotton Thomas",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -13334,7 +13334,7 @@
   {
     "hunt_code": "EA1129",
     "species": "Elk",
-    "hunt_name": "Deseret CWMU",
+    "hunt_name": "Deseret",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13356,7 +13356,7 @@
   {
     "hunt_code": "EA1130",
     "species": "Elk",
-    "hunt_name": "Double Cone CWMU",
+    "hunt_name": "Double Cone",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13378,7 +13378,7 @@
   {
     "hunt_code": "EA1131",
     "species": "Elk",
-    "hunt_name": "Durst Mountain CWMU",
+    "hunt_name": "Durst Mountain",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13400,7 +13400,7 @@
   {
     "hunt_code": "EA1132",
     "species": "Elk",
-    "hunt_name": "East Fork Chalk Creek CWMU",
+    "hunt_name": "East Fork Chalk Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13422,7 +13422,7 @@
   {
     "hunt_code": "EA1134",
     "species": "Elk",
-    "hunt_name": "Ensign Ranches CWMU",
+    "hunt_name": "Ensign Ranches",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13444,7 +13444,7 @@
   {
     "hunt_code": "EA1135",
     "species": "Elk",
-    "hunt_name": "Folley Ridge CWMU",
+    "hunt_name": "Folly Ridge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13466,7 +13466,7 @@
   {
     "hunt_code": "EA1136",
     "species": "Elk",
-    "hunt_name": "Grass Valley/Clark Canyon CWMU",
+    "hunt_name": "Grass Valley/Clark Canyon",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13488,7 +13488,7 @@
   {
     "hunt_code": "EA1137",
     "species": "Elk",
-    "hunt_name": "Grazing Pasture CWMU",
+    "hunt_name": "Grazing Pasture",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13510,7 +13510,7 @@
   {
     "hunt_code": "EA1138",
     "species": "Elk",
-    "hunt_name": "Guildersleeve CWMU",
+    "hunt_name": "Guildersleeve",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13532,7 +13532,7 @@
   {
     "hunt_code": "EA1139",
     "species": "Elk",
-    "hunt_name": "Hardscrabble CWMU",
+    "hunt_name": "Hardscrabble",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13554,7 +13554,7 @@
   {
     "hunt_code": "EA1140",
     "species": "Elk",
-    "hunt_name": "Heaston East CWMU",
+    "hunt_name": "Heaston East",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13576,7 +13576,7 @@
   {
     "hunt_code": "EA1141",
     "species": "Elk",
-    "hunt_name": "Hiawatha CWMU",
+    "hunt_name": "Hiawatha",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13598,7 +13598,7 @@
   {
     "hunt_code": "EA1142",
     "species": "Elk",
-    "hunt_name": "Indian Head CWMU",
+    "hunt_name": "Indian Head",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13620,7 +13620,7 @@
   {
     "hunt_code": "EA1143",
     "species": "Elk",
-    "hunt_name": "Circle E Ranch CWMU",
+    "hunt_name": "Circle E Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13642,7 +13642,7 @@
   {
     "hunt_code": "EA1145",
     "species": "Elk",
-    "hunt_name": "Johnson Mountain Ranch CWMU",
+    "hunt_name": "Johnson Mtn Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13664,7 +13664,7 @@
   {
     "hunt_code": "EA1146",
     "species": "Elk",
-    "hunt_name": "Jump Creek CWMU",
+    "hunt_name": "Jump Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13686,7 +13686,7 @@
   {
     "hunt_code": "EA1147",
     "species": "Elk",
-    "hunt_name": "Little Red Creek CWMU",
+    "hunt_name": "Little Red Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13708,7 +13708,7 @@
   {
     "hunt_code": "EA1149",
     "species": "Elk",
-    "hunt_name": "Minnie Maud Ridge CWMU",
+    "hunt_name": "Minnie Maud Ridge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13730,7 +13730,7 @@
   {
     "hunt_code": "EA1151",
     "species": "Elk",
-    "hunt_name": "Moon Ranch CWMU",
+    "hunt_name": "Moon Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13752,7 +13752,7 @@
   {
     "hunt_code": "EA1153",
     "species": "Elk",
-    "hunt_name": "Old Woman Plateau CWMU",
+    "hunt_name": "Old Woman Plateau",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13774,7 +13774,7 @@
   {
     "hunt_code": "EA1156",
     "species": "Elk",
-    "hunt_name": "Preston Nutter Ranch CWMU",
+    "hunt_name": "Preston Nutter Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13796,7 +13796,7 @@
   {
     "hunt_code": "EA1157",
     "species": "Elk",
-    "hunt_name": "Redd Ranches CWMU",
+    "hunt_name": "Redd Ranches",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13818,7 +13818,7 @@
   {
     "hunt_code": "EA1158",
     "species": "Elk",
-    "hunt_name": "Cactus Ranch LLC CWMU",
+    "hunt_name": "Riverview Ranch LLC",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13840,7 +13840,7 @@
   {
     "hunt_code": "EA1159",
     "species": "Elk",
-    "hunt_name": "Roan Cliffs CWMU",
+    "hunt_name": "Roan Cliffs",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13862,7 +13862,7 @@
   {
     "hunt_code": "EA1160",
     "species": "Elk",
-    "hunt_name": "Sand Creek CWMU",
+    "hunt_name": "Sand Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13884,7 +13884,7 @@
   {
     "hunt_code": "EA1161",
     "species": "Elk",
-    "hunt_name": "Scofield Canyons CWMU",
+    "hunt_name": "Scofield Canyons",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13906,7 +13906,7 @@
   {
     "hunt_code": "EA1162",
     "species": "Elk",
-    "hunt_name": "Scofield East CWMU",
+    "hunt_name": "Scofield East",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13928,7 +13928,7 @@
   {
     "hunt_code": "EA1163",
     "species": "Elk",
-    "hunt_name": "Scofield West CWMU",
+    "hunt_name": "Scofield West",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13950,7 +13950,7 @@
   {
     "hunt_code": "EA1164",
     "species": "Elk",
-    "hunt_name": "SJ Ranch CWMU",
+    "hunt_name": "SJ Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13972,7 +13972,7 @@
   {
     "hunt_code": "EA1165",
     "species": "Elk",
-    "hunt_name": "Skull Crack CWMU",
+    "hunt_name": "Skull Crack",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -13994,7 +13994,7 @@
   {
     "hunt_code": "EA1166",
     "species": "Elk",
-    "hunt_name": "Soldier Summit CWMU",
+    "hunt_name": "Soldier Summit",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -14016,7 +14016,7 @@
   {
     "hunt_code": "EA1167",
     "species": "Elk",
-    "hunt_name": "South Canyon CWMU",
+    "hunt_name": "South Canyon",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -14038,7 +14038,7 @@
   {
     "hunt_code": "EA1168",
     "species": "Elk",
-    "hunt_name": "Spring Creek/Dodge CWMU",
+    "hunt_name": "Spring Creek/Dodge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -14060,7 +14060,7 @@
   {
     "hunt_code": "EA1170",
     "species": "Elk",
-    "hunt_name": "Strawberry Ridge CWMU",
+    "hunt_name": "Strawberry Ridge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -14082,7 +14082,7 @@
   {
     "hunt_code": "EA1171",
     "species": "Elk",
-    "hunt_name": "Summit Point CWMU",
+    "hunt_name": "Summit Point",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -14104,7 +14104,7 @@
   {
     "hunt_code": "EA1172",
     "species": "Elk",
-    "hunt_name": "Three C CWMU",
+    "hunt_name": "Three C",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -14126,7 +14126,7 @@
   {
     "hunt_code": "EA1174",
     "species": "Elk",
-    "hunt_name": "Two Bear CWMU",
+    "hunt_name": "Two Bear",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -14148,7 +14148,7 @@
   {
     "hunt_code": "EA1175",
     "species": "Elk",
-    "hunt_name": "Wallsburg CWMU",
+    "hunt_name": "Wallsburg",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -14170,7 +14170,7 @@
   {
     "hunt_code": "EA1176",
     "species": "Elk",
-    "hunt_name": "Weber Florence Creek CWMU",
+    "hunt_name": "Weber Florence Creek",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -14192,7 +14192,7 @@
   {
     "hunt_code": "EA1177",
     "species": "Elk",
-    "hunt_name": "Woodruff Creek South CWMU",
+    "hunt_name": "Woodruff Creek South",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -14280,7 +14280,7 @@
   {
     "hunt_code": "EA1192",
     "species": "Elk",
-    "hunt_name": "Pahvant Ensign CWMU",
+    "hunt_name": "Pahvant Ensign",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -14346,7 +14346,7 @@
   {
     "hunt_code": "EA1198",
     "species": "Elk",
-    "hunt_name": "Bear Springs CWMU",
+    "hunt_name": "Bear Springs",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -14368,7 +14368,7 @@
   {
     "hunt_code": "EA1200",
     "species": "Elk",
-    "hunt_name": "Double R Ranch CWMU",
+    "hunt_name": "Double R Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -14390,7 +14390,7 @@
   {
     "hunt_code": "EA1201",
     "species": "Elk",
-    "hunt_name": "Mountain Sky Ranch CWMU",
+    "hunt_name": "Mountain Sky Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -14456,7 +14456,7 @@
   {
     "hunt_code": "EA1206",
     "species": "Elk",
-    "hunt_name": "Cache, Richmond Hyde Park",
+    "hunt_name": "Cache, Richmond-Hyde Park",
     "hunt_type": "General Season",
     "hunt_class": "Antlerless",
     "weapon": "Any Legal Weapon",
@@ -14522,7 +14522,7 @@
   {
     "hunt_code": "EA1209",
     "species": "Elk",
-    "hunt_name": "Fillmore, Oak Creek LE",
+    "hunt_name": "Fillmore, Oak Creek",
     "hunt_type": "General Season",
     "hunt_class": "Antlerless",
     "weapon": "Any Legal Weapon",
@@ -14544,7 +14544,7 @@
   {
     "hunt_code": "EA1217",
     "species": "Elk",
-    "hunt_name": "Wasatch Mtns, Avintaquin",
+    "hunt_name": "Wasatch Mtns, Avintaquin A",
     "hunt_type": "General Season",
     "hunt_class": "Antlerless",
     "weapon": "Any Legal Weapon",
@@ -14566,7 +14566,7 @@
   {
     "hunt_code": "EA1220",
     "species": "Elk",
-    "hunt_name": "Manti (Expo)",
+    "hunt_name": "Manti",
     "hunt_type": "General Season",
     "hunt_class": "Antlerless",
     "weapon": "Any Legal Weapon",
@@ -14588,7 +14588,7 @@
   {
     "hunt_code": "EA1221",
     "species": "Elk",
-    "hunt_name": "Fishlake/Thousand Lake (Expo)",
+    "hunt_name": "Fishlake/Thousand Lake",
     "hunt_type": "General Season",
     "hunt_class": "Antlerless",
     "weapon": "Any Legal Weapon",
@@ -14786,7 +14786,7 @@
   {
     "hunt_code": "EA1233",
     "species": "Elk",
-    "hunt_name": "Avintaquin Canyon CWMU",
+    "hunt_name": "Avintaquin Canyon",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -14808,7 +14808,7 @@
   {
     "hunt_code": "EA1234",
     "species": "Elk",
-    "hunt_name": "Royal Ivory Outfitters CWMU",
+    "hunt_name": "Royal Ivory Outfitters",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -14830,7 +14830,7 @@
   {
     "hunt_code": "EA1235",
     "species": "Elk",
-    "hunt_name": "Sharp Mountain CWMU",
+    "hunt_name": "Sharp Mountain",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -14874,7 +14874,7 @@
   {
     "hunt_code": "EA1237",
     "species": "Elk",
-    "hunt_name": "La Sal Mtns, North",
+    "hunt_name": "LaSal, Mtns-North",
     "hunt_type": "General Season",
     "hunt_class": "Antlerless",
     "weapon": "Any Legal Weapon",
@@ -15116,7 +15116,7 @@
   {
     "hunt_code": "EA1256",
     "species": "Elk",
-    "hunt_name": "Little Pole Canyon CWMU",
+    "hunt_name": "Coyote Little Pole",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -15138,7 +15138,7 @@
   {
     "hunt_code": "EA1257",
     "species": "Elk",
-    "hunt_name": "Tunnel Hollow CWMU",
+    "hunt_name": "Tunnel Hollow",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -15160,7 +15160,7 @@
   {
     "hunt_code": "EA1258",
     "species": "Elk",
-    "hunt_name": "La Sal (Expo)",
+    "hunt_name": "La Sal",
     "hunt_type": "General Season",
     "hunt_class": "Antlerless",
     "weapon": "Any Legal Weapon",
@@ -15182,7 +15182,7 @@
   {
     "hunt_code": "EA1259",
     "species": "Elk",
-    "hunt_name": "Diamond Mountain CWMU",
+    "hunt_name": "The Dirty Dozen",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -15248,7 +15248,7 @@
   {
     "hunt_code": "EA1263",
     "species": "Elk",
-    "hunt_name": "Weber Florence Creek/Stillman Creek CWMU",
+    "hunt_name": "Weber Florence Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -15600,7 +15600,7 @@
   {
     "hunt_code": "EA1280",
     "species": "Elk",
-    "hunt_name": "La Sal, La Sal Mtns-North",
+    "hunt_name": "LaSal, Mtns-North",
     "hunt_type": "General Season",
     "hunt_class": "Antlerless",
     "weapon": "Any Legal Weapon",
@@ -16282,7 +16282,7 @@
   {
     "hunt_code": "EA2012",
     "species": "Elk",
-    "hunt_name": "Wasatch Mtns, West-Central",
+    "hunt_name": "Wasatch Mtns, West",
     "hunt_type": "Private Lands Only",
     "hunt_class": "Antlerless",
     "weapon": "Any Legal Weapon",
@@ -16788,7 +16788,7 @@
   {
     "hunt_code": "EA2045",
     "species": "Elk",
-    "hunt_name": "Wasatch Mtns (Conservation)",
+    "hunt_name": "Wasatch Mtns",
     "hunt_type": "Conservation",
     "hunt_class": "Conservation",
     "weapon": "Any Legal Weapon",
@@ -16832,7 +16832,7 @@
   {
     "hunt_code": "EB1000",
     "species": "Elk",
-    "hunt_name": "Elk - Statewide Permit",
+    "hunt_name": "Statewide",
     "hunt_type": "Statewide",
     "hunt_class": "Statewide Permit",
     "weapon": "Any Legal Weapon",
@@ -16854,7 +16854,7 @@
   {
     "hunt_code": "EB1001",
     "species": "Elk",
-    "hunt_name": "Any Bull Elk Units",
+    "hunt_name": "Any Bull Units",
     "hunt_type": "General Season - Any Bull",
     "hunt_class": "General Bull",
     "weapon": "Any Legal Weapon",
@@ -16876,7 +16876,7 @@
   {
     "hunt_code": "EB1002",
     "species": "Elk",
-    "hunt_name": "Any Bull Elk Units",
+    "hunt_name": "Any Bull Units",
     "hunt_type": "General Season - Any Bull",
     "hunt_class": "General Bull",
     "weapon": "Muzzleloader",
@@ -16942,7 +16942,7 @@
   {
     "hunt_code": "EB1005",
     "species": "Elk",
-    "hunt_name": "Archery Hunters Choice Elk",
+    "hunt_name": "Any Bull Units",
     "hunt_type": "General Season - Archery",
     "hunt_class": "General Bull",
     "weapon": "Archery",
@@ -16964,7 +16964,7 @@
   {
     "hunt_code": "EB1007",
     "species": "Elk",
-    "hunt_name": "Draw-only Youth Any Bull/Hunters Choice Elk",
+    "hunt_name": "Youth Any Bull/Hunter's Choice Elk",
     "hunt_type": "General Season - Any Bull",
     "hunt_class": "Youth",
     "weapon": "Any Legal Weapon",
@@ -16986,7 +16986,7 @@
   {
     "hunt_code": "EB1009",
     "species": "Elk",
-    "hunt_name": "Spike Only Elk Units - Multiseason",
+    "hunt_name": "Spike Only Elk Units",
     "hunt_type": "General Season - Spike Bull",
     "hunt_class": "Spike Only",
     "weapon": "Multiseason",
@@ -17008,7 +17008,7 @@
   {
     "hunt_code": "EB1010",
     "species": "Elk",
-    "hunt_name": "Any Bull Elk Units",
+    "hunt_name": "Any Bull Units",
     "hunt_type": "General Season - Any Bull",
     "hunt_class": "General Bull",
     "weapon": "Any Legal Weapon",
@@ -17030,7 +17030,7 @@
   {
     "hunt_code": "EB1011",
     "species": "Elk",
-    "hunt_name": "Youth General Season Bull Elk",
+    "hunt_name": "Youth General Season Units",
     "hunt_type": "General Season - Youth",
     "hunt_class": "General Bull",
     "weapon": "Any Legal Weapon",
@@ -17052,7 +17052,7 @@
   {
     "hunt_code": "EB1012",
     "species": "Elk",
-    "hunt_name": "Uinta Basin Private Lands Any Bull Elk",
+    "hunt_name": "Uinta Basin",
     "hunt_type": "General Season - Any Bull",
     "hunt_class": "General Bull",
     "weapon": "Any Legal Weapon",
@@ -17338,7 +17338,7 @@
   {
     "hunt_code": "EB3019",
     "species": "Elk",
-    "hunt_name": "San Juan Bull Elk",
+    "hunt_name": "San Juan",
     "hunt_type": "Limited Entry",
     "hunt_class": "Mature Bull",
     "weapon": "Archery",
@@ -17954,7 +17954,7 @@
   {
     "hunt_code": "EB3066",
     "species": "Elk",
-    "hunt_name": "San Juan Bull Elk",
+    "hunt_name": "San Juan",
     "hunt_type": "Limited Entry",
     "hunt_class": "Mature Bull",
     "weapon": "Early Any Legal Weapon",
@@ -17976,7 +17976,7 @@
   {
     "hunt_code": "EB3067",
     "species": "Elk",
-    "hunt_name": "San Juan Bull Elk",
+    "hunt_name": "San Juan",
     "hunt_type": "Limited Entry",
     "hunt_class": "Mature Bull",
     "weapon": "Late Any Legal Weapon",
@@ -18350,7 +18350,7 @@
   {
     "hunt_code": "EB3097",
     "species": "Elk",
-    "hunt_name": "San Juan Bull Elk",
+    "hunt_name": "San Juan",
     "hunt_type": "Limited Entry",
     "hunt_class": "Mature Bull",
     "weapon": "Muzzleloader",
@@ -18680,7 +18680,7 @@
   {
     "hunt_code": "EB3121",
     "species": "Elk",
-    "hunt_name": "San Juan Bull Elk",
+    "hunt_name": "San Juan",
     "hunt_type": "Limited Entry",
     "hunt_class": "Mature Bull",
     "weapon": "Multiseason",
@@ -20066,7 +20066,7 @@
   {
     "hunt_code": "EB3193",
     "species": "Elk",
-    "hunt_name": "San Juan Bull Elk",
+    "hunt_name": "San Juan",
     "hunt_type": "Limited Entry",
     "hunt_class": "Mature Bull",
     "weapon": "Late Archery",
@@ -20088,7 +20088,7 @@
   {
     "hunt_code": "EB3194",
     "species": "Elk",
-    "hunt_name": "San Juan Bull Elk",
+    "hunt_name": "San Juan",
     "hunt_type": "Limited Entry",
     "hunt_class": "Mature Bull",
     "weapon": "Mid Any Legal Weapon",
@@ -20308,7 +20308,7 @@
   {
     "hunt_code": "EB3500",
     "species": "Elk",
-    "hunt_name": "Alton CWMU",
+    "hunt_name": "Alton",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20330,7 +20330,7 @@
   {
     "hunt_code": "EB3501",
     "species": "Elk",
-    "hunt_name": "Bar J Ranch CWMU",
+    "hunt_name": "Bar J Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20352,7 +20352,7 @@
   {
     "hunt_code": "EB3502",
     "species": "Elk",
-    "hunt_name": "Bear Mountain CWMU",
+    "hunt_name": "Bear Mountain",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20374,7 +20374,7 @@
   {
     "hunt_code": "EB3503",
     "species": "Elk",
-    "hunt_name": "Bear Springs CWMU",
+    "hunt_name": "Bear Springs",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20418,7 +20418,7 @@
   {
     "hunt_code": "EB3505",
     "species": "Elk",
-    "hunt_name": "Boobe Hole CWMU",
+    "hunt_name": "Boobe Hole",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20440,7 +20440,7 @@
   {
     "hunt_code": "EB3506",
     "species": "Elk",
-    "hunt_name": "Causey Spring CWMU",
+    "hunt_name": "Causey Spring",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20462,7 +20462,7 @@
   {
     "hunt_code": "EB3508",
     "species": "Elk",
-    "hunt_name": "Chimney Rock CWMU",
+    "hunt_name": "Chimney Rock",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20484,7 +20484,7 @@
   {
     "hunt_code": "EB3509",
     "species": "Elk",
-    "hunt_name": "Coldwater Ranch CWMU",
+    "hunt_name": "Coldwater Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20506,7 +20506,7 @@
   {
     "hunt_code": "EB3511",
     "species": "Elk",
-    "hunt_name": "Cotton Thomas CWMU",
+    "hunt_name": "Cotton Thomas",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20528,7 +20528,7 @@
   {
     "hunt_code": "EB3514",
     "species": "Elk",
-    "hunt_name": "Deseret CWMU",
+    "hunt_name": "Deseret",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20550,7 +20550,7 @@
   {
     "hunt_code": "EB3515",
     "species": "Elk",
-    "hunt_name": "Double Cone CWMU",
+    "hunt_name": "Double Cone",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20572,7 +20572,7 @@
   {
     "hunt_code": "EB3516",
     "species": "Elk",
-    "hunt_name": "Durst Mountain CWMU",
+    "hunt_name": "Durst Mountain",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20594,7 +20594,7 @@
   {
     "hunt_code": "EB3517",
     "species": "Elk",
-    "hunt_name": "East Fork Chalk Creek CWMU",
+    "hunt_name": "East Fork Chalk Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20616,7 +20616,7 @@
   {
     "hunt_code": "EB3519",
     "species": "Elk",
-    "hunt_name": "Ensign Ranches CWMU",
+    "hunt_name": "Ensign Ranches",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20638,7 +20638,7 @@
   {
     "hunt_code": "EB3520",
     "species": "Elk",
-    "hunt_name": "Folley Ridge CWMU",
+    "hunt_name": "Folly Ridge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20660,7 +20660,7 @@
   {
     "hunt_code": "EB3521",
     "species": "Elk",
-    "hunt_name": "Grass Valley/Clark Canyon CWMU",
+    "hunt_name": "Grass Valley/Clark Canyon",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20682,7 +20682,7 @@
   {
     "hunt_code": "EB3522",
     "species": "Elk",
-    "hunt_name": "Grazing Pasture CWMU",
+    "hunt_name": "Grazing Pasture",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20704,7 +20704,7 @@
   {
     "hunt_code": "EB3523",
     "species": "Elk",
-    "hunt_name": "Guildersleeve CWMU",
+    "hunt_name": "Guildersleeve",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20726,7 +20726,7 @@
   {
     "hunt_code": "EB3524",
     "species": "Elk",
-    "hunt_name": "Hardscrabble CWMU",
+    "hunt_name": "Hardscrabble",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20748,7 +20748,7 @@
   {
     "hunt_code": "EB3525",
     "species": "Elk",
-    "hunt_name": "Heaston East CWMU",
+    "hunt_name": "Heaston East",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20770,7 +20770,7 @@
   {
     "hunt_code": "EB3526",
     "species": "Elk",
-    "hunt_name": "Hiawatha CWMU",
+    "hunt_name": "Hiawatha",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20792,7 +20792,7 @@
   {
     "hunt_code": "EB3527",
     "species": "Elk",
-    "hunt_name": "Indian Head CWMU",
+    "hunt_name": "Indian Head",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20814,7 +20814,7 @@
   {
     "hunt_code": "EB3528",
     "species": "Elk",
-    "hunt_name": "Ingham Peak CWMU",
+    "hunt_name": "Ingham Peak",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20836,7 +20836,7 @@
   {
     "hunt_code": "EB3529",
     "species": "Elk",
-    "hunt_name": "Circle E Ranch CWMU",
+    "hunt_name": "Circle E Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20858,7 +20858,7 @@
   {
     "hunt_code": "EB3530",
     "species": "Elk",
-    "hunt_name": "Jacob's Creek CWMU",
+    "hunt_name": "Jacob's Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20880,7 +20880,7 @@
   {
     "hunt_code": "EB3531",
     "species": "Elk",
-    "hunt_name": "Johnson Mountain Ranch CWMU",
+    "hunt_name": "Johnson Mtn Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20902,7 +20902,7 @@
   {
     "hunt_code": "EB3532",
     "species": "Elk",
-    "hunt_name": "Jump Creek CWMU",
+    "hunt_name": "Jump Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20924,7 +20924,7 @@
   {
     "hunt_code": "EB3533",
     "species": "Elk",
-    "hunt_name": "Junction Valley CWMU",
+    "hunt_name": "Junction Valley",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20946,7 +20946,7 @@
   {
     "hunt_code": "EB3534",
     "species": "Elk",
-    "hunt_name": "Little Red Creek CWMU",
+    "hunt_name": "Little Red Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20968,7 +20968,7 @@
   {
     "hunt_code": "EB3536",
     "species": "Elk",
-    "hunt_name": "Minnie Maud Ridge CWMU",
+    "hunt_name": "Minnie Maud Ridge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -20990,7 +20990,7 @@
   {
     "hunt_code": "EB3538",
     "species": "Elk",
-    "hunt_name": "Moon Ranch CWMU",
+    "hunt_name": "Moon Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21012,7 +21012,7 @@
   {
     "hunt_code": "EB3540",
     "species": "Elk",
-    "hunt_name": "Old Woman Plateau CWMU",
+    "hunt_name": "Old Woman Plateau",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21034,7 +21034,7 @@
   {
     "hunt_code": "EB3541",
     "species": "Elk",
-    "hunt_name": "Patmos Ridge CWMU",
+    "hunt_name": "Patmos Ridge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21056,7 +21056,7 @@
   {
     "hunt_code": "EB3543",
     "species": "Elk",
-    "hunt_name": "Preston Nutter Ranch CWMU",
+    "hunt_name": "Preston Nutter Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21078,7 +21078,7 @@
   {
     "hunt_code": "EB3544",
     "species": "Elk",
-    "hunt_name": "Redd Ranches CWMU",
+    "hunt_name": "Redd Ranches",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21100,7 +21100,7 @@
   {
     "hunt_code": "EB3545",
     "species": "Elk",
-    "hunt_name": "Cactus Ranch LLC CWMU",
+    "hunt_name": "Riverview Ranch LLC",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21122,7 +21122,7 @@
   {
     "hunt_code": "EB3546",
     "species": "Elk",
-    "hunt_name": "Roan Cliffs CWMU",
+    "hunt_name": "Roan Cliffs",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21144,7 +21144,7 @@
   {
     "hunt_code": "EB3547",
     "species": "Elk",
-    "hunt_name": "Sand Creek CWMU",
+    "hunt_name": "Sand Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21166,7 +21166,7 @@
   {
     "hunt_code": "EB3548",
     "species": "Elk",
-    "hunt_name": "Scofield Canyons CWMU",
+    "hunt_name": "Scofield Canyons",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21188,7 +21188,7 @@
   {
     "hunt_code": "EB3549",
     "species": "Elk",
-    "hunt_name": "Scofield East CWMU",
+    "hunt_name": "Scofield East",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21210,7 +21210,7 @@
   {
     "hunt_code": "EB3550",
     "species": "Elk",
-    "hunt_name": "Scofield West CWMU",
+    "hunt_name": "Scofield West",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21232,7 +21232,7 @@
   {
     "hunt_code": "EB3551",
     "species": "Elk",
-    "hunt_name": "SJ Ranch CWMU",
+    "hunt_name": "SJ Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21254,7 +21254,7 @@
   {
     "hunt_code": "EB3552",
     "species": "Elk",
-    "hunt_name": "Skull Crack CWMU",
+    "hunt_name": "Skull Crack",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21276,7 +21276,7 @@
   {
     "hunt_code": "EB3553",
     "species": "Elk",
-    "hunt_name": "Soldier Summit CWMU",
+    "hunt_name": "Soldier Summit",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21298,7 +21298,7 @@
   {
     "hunt_code": "EB3554",
     "species": "Elk",
-    "hunt_name": "South Canyon CWMU",
+    "hunt_name": "South Canyon",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21320,7 +21320,7 @@
   {
     "hunt_code": "EB3555",
     "species": "Elk",
-    "hunt_name": "Spring Creek/Dodge CWMU",
+    "hunt_name": "Spring Creek/Dodge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21342,7 +21342,7 @@
   {
     "hunt_code": "EB3557",
     "species": "Elk",
-    "hunt_name": "Strawberry Ridge CWMU",
+    "hunt_name": "Strawberry Ridge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21364,7 +21364,7 @@
   {
     "hunt_code": "EB3558",
     "species": "Elk",
-    "hunt_name": "Summit Point CWMU",
+    "hunt_name": "Summit Point",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21386,7 +21386,7 @@
   {
     "hunt_code": "EB3559",
     "species": "Elk",
-    "hunt_name": "Three C CWMU",
+    "hunt_name": "Three C",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21408,7 +21408,7 @@
   {
     "hunt_code": "EB3561",
     "species": "Elk",
-    "hunt_name": "Two Bear CWMU",
+    "hunt_name": "Two Bear",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -21430,7 +21430,7 @@
   {
     "hunt_code": "EB3562",
     "species": "Elk",
-    "hunt_name": "Wallsburg CWMU",
+    "hunt_name": "Wallsburg",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21452,7 +21452,7 @@
   {
     "hunt_code": "EB3564",
     "species": "Elk",
-    "hunt_name": "Woodruff Creek South CWMU",
+    "hunt_name": "Woodruff Creek South",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21474,7 +21474,7 @@
   {
     "hunt_code": "EB3565",
     "species": "Elk",
-    "hunt_name": "North Peaks CWMU",
+    "hunt_name": "North Peaks",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21496,7 +21496,7 @@
   {
     "hunt_code": "EB3603",
     "species": "Elk",
-    "hunt_name": "Pahvant Ensign CWMU",
+    "hunt_name": "Pahvant Ensign",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21518,7 +21518,7 @@
   {
     "hunt_code": "EB3604",
     "species": "Elk",
-    "hunt_name": "Double R Ranch CWMU",
+    "hunt_name": "Double R Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21540,7 +21540,7 @@
   {
     "hunt_code": "EB3606",
     "species": "Elk",
-    "hunt_name": "Mountain Sky Ranch CWMU",
+    "hunt_name": "Mountain Sky Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21562,7 +21562,7 @@
   {
     "hunt_code": "EB3607",
     "species": "Elk",
-    "hunt_name": "West Willow Creek Ranch CWMU",
+    "hunt_name": "West Willow Creek Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21584,7 +21584,7 @@
   {
     "hunt_code": "EB3608",
     "species": "Elk",
-    "hunt_name": "Avintaquin Canyon CWMU",
+    "hunt_name": "Avintaquin Canyon",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21606,7 +21606,7 @@
   {
     "hunt_code": "EB3609",
     "species": "Elk",
-    "hunt_name": "Royal Ivory Outfitters CWMU",
+    "hunt_name": "Royal Ivory Outfitters",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -21628,7 +21628,7 @@
   {
     "hunt_code": "EB3610",
     "species": "Elk",
-    "hunt_name": "Sharp Mountain CWMU",
+    "hunt_name": "Sharp Mountain",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21650,7 +21650,7 @@
   {
     "hunt_code": "EB3611",
     "species": "Elk",
-    "hunt_name": "West Ridge CWMU",
+    "hunt_name": "West Ridge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21672,7 +21672,7 @@
   {
     "hunt_code": "EB3613",
     "species": "Elk",
-    "hunt_name": "Little Pole Canyon CWMU",
+    "hunt_name": "Coyote Little Pole",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21694,7 +21694,7 @@
   {
     "hunt_code": "EB3614",
     "species": "Elk",
-    "hunt_name": "Tunnel Hollow CWMU",
+    "hunt_name": "Tunnel Hollow",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21716,7 +21716,7 @@
   {
     "hunt_code": "EB3616",
     "species": "Elk",
-    "hunt_name": "Sweetwater CWMU",
+    "hunt_name": "Sweetwater",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -21738,7 +21738,7 @@
   {
     "hunt_code": "EB3617",
     "species": "Elk",
-    "hunt_name": "Diamond Mountain CWMU",
+    "hunt_name": "The Dirty Dozen",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -21760,7 +21760,7 @@
   {
     "hunt_code": "EB3619",
     "species": "Elk",
-    "hunt_name": "Weber Florence Creek/Stillman Creek CWMU",
+    "hunt_name": "Weber Florence Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -21804,7 +21804,7 @@
   {
     "hunt_code": "EL3000",
     "species": "Elk",
-    "hunt_name": "Beaver East",
+    "hunt_name": "Beaver, East",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -21826,7 +21826,7 @@
   {
     "hunt_code": "EL3002",
     "species": "Elk",
-    "hunt_name": "Book Cliffs Little Creek Roadless",
+    "hunt_name": "Book Cliffs, Little Creek Roadless",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -21848,7 +21848,7 @@
   {
     "hunt_code": "EL3003",
     "species": "Elk",
-    "hunt_name": "Cache Meadowville",
+    "hunt_name": "Cache, Meadowville",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -21870,7 +21870,7 @@
   {
     "hunt_code": "EL3005",
     "species": "Elk",
-    "hunt_name": "Cache South",
+    "hunt_name": "Cache, South",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -21914,7 +21914,7 @@
   {
     "hunt_code": "EL3008",
     "species": "Elk",
-    "hunt_name": "Fillmore Pahvant",
+    "hunt_name": "Fillmore, Pahvant",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -21936,7 +21936,7 @@
   {
     "hunt_code": "EL3009",
     "species": "Elk",
-    "hunt_name": "La Sal La Sal Mtns",
+    "hunt_name": "La Sal Mtns",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -22002,7 +22002,7 @@
   {
     "hunt_code": "EL3013",
     "species": "Elk",
-    "hunt_name": "North Slope Three Corners",
+    "hunt_name": "North Slope, Three Corners",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -22068,7 +22068,7 @@
   {
     "hunt_code": "EL3019",
     "species": "Elk",
-    "hunt_name": "San Juan Bull Elk",
+    "hunt_name": "San Juan",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -22134,7 +22134,7 @@
   {
     "hunt_code": "EL3024",
     "species": "Elk",
-    "hunt_name": "Beaver East",
+    "hunt_name": "Beaver, East",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -22156,7 +22156,7 @@
   {
     "hunt_code": "EL3025",
     "species": "Elk",
-    "hunt_name": "Beaver East",
+    "hunt_name": "Beaver, East",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -22178,7 +22178,7 @@
   {
     "hunt_code": "EL3028",
     "species": "Elk",
-    "hunt_name": "Book Cliffs Little Creek Roadless",
+    "hunt_name": "Book Cliffs, Little Creek Roadless",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -22200,7 +22200,7 @@
   {
     "hunt_code": "EL3031",
     "species": "Elk",
-    "hunt_name": "Box Elder Pilot Mtn",
+    "hunt_name": "Box Elder, Pilot Mtn",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -22222,7 +22222,7 @@
   {
     "hunt_code": "EL3032",
     "species": "Elk",
-    "hunt_name": "Cache Meadowville",
+    "hunt_name": "Cache, Meadowville",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -22244,7 +22244,7 @@
   {
     "hunt_code": "EL3033",
     "species": "Elk",
-    "hunt_name": "Cache Meadowville",
+    "hunt_name": "Cache, Meadowville",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -22266,7 +22266,7 @@
   {
     "hunt_code": "EL3036",
     "species": "Elk",
-    "hunt_name": "Cache South",
+    "hunt_name": "Cache, South",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -22288,7 +22288,7 @@
   {
     "hunt_code": "EL3037",
     "species": "Elk",
-    "hunt_name": "Cache South",
+    "hunt_name": "Cache, South",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -22354,7 +22354,7 @@
   {
     "hunt_code": "EL3042",
     "species": "Elk",
-    "hunt_name": "Fillmore Pahvant",
+    "hunt_name": "Fillmore, Pahvant",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -22376,7 +22376,7 @@
   {
     "hunt_code": "EL3043",
     "species": "Elk",
-    "hunt_name": "Fillmore Pahvant",
+    "hunt_name": "Fillmore, Pahvant",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -22398,7 +22398,7 @@
   {
     "hunt_code": "EL3044",
     "species": "Elk",
-    "hunt_name": "La Sal Dolores Triangle",
+    "hunt_name": "Dolores Triangle",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -22420,7 +22420,7 @@
   {
     "hunt_code": "EL3045",
     "species": "Elk",
-    "hunt_name": "La Sal La Sal Mtns",
+    "hunt_name": "La Sal Mtns",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -22442,7 +22442,7 @@
   {
     "hunt_code": "EL3046",
     "species": "Elk",
-    "hunt_name": "La Sal La Sal Mtns",
+    "hunt_name": "La Sal Mtns",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -22552,7 +22552,7 @@
   {
     "hunt_code": "EL3053",
     "species": "Elk",
-    "hunt_name": "North Slope Three Corners",
+    "hunt_name": "North Slope, Three Corners",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -22684,7 +22684,7 @@
   {
     "hunt_code": "EL3066",
     "species": "Elk",
-    "hunt_name": "San Juan Bull Elk",
+    "hunt_name": "San Juan",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -22706,7 +22706,7 @@
   {
     "hunt_code": "EL3067",
     "species": "Elk",
-    "hunt_name": "San Juan Bull Elk",
+    "hunt_name": "San Juan",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -22816,7 +22816,7 @@
   {
     "hunt_code": "EL3077",
     "species": "Elk",
-    "hunt_name": "Beaver East",
+    "hunt_name": "Beaver, East",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Muzzleloader",
@@ -22838,7 +22838,7 @@
   {
     "hunt_code": "EL3079",
     "species": "Elk",
-    "hunt_name": "Book Cliffs Little Creek Roadless",
+    "hunt_name": "Book Cliffs, Little Creek Roadless",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Muzzleloader",
@@ -22860,7 +22860,7 @@
   {
     "hunt_code": "EL3081",
     "species": "Elk",
-    "hunt_name": "Cache Meadowville",
+    "hunt_name": "Cache, Meadowville",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Muzzleloader",
@@ -22882,7 +22882,7 @@
   {
     "hunt_code": "EL3083",
     "species": "Elk",
-    "hunt_name": "Cache South",
+    "hunt_name": "Cache, South",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Muzzleloader",
@@ -22926,7 +22926,7 @@
   {
     "hunt_code": "EL3086",
     "species": "Elk",
-    "hunt_name": "Fillmore Pahvant",
+    "hunt_name": "Fillmore, Pahvant",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Muzzleloader",
@@ -22948,7 +22948,7 @@
   {
     "hunt_code": "EL3087",
     "species": "Elk",
-    "hunt_name": "La Sal La Sal Mtns",
+    "hunt_name": "La Sal Mtns",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Muzzleloader",
@@ -23014,7 +23014,7 @@
   {
     "hunt_code": "EL3091",
     "species": "Elk",
-    "hunt_name": "North Slope Three Corners",
+    "hunt_name": "North Slope, Three Corners",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Muzzleloader",
@@ -23080,7 +23080,7 @@
   {
     "hunt_code": "EL3097",
     "species": "Elk",
-    "hunt_name": "San Juan Bull Elk",
+    "hunt_name": "San Juan",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Muzzleloader",
@@ -23190,7 +23190,7 @@
   {
     "hunt_code": "EL3130",
     "species": "Elk",
-    "hunt_name": "Box Elder Pilot Mtn",
+    "hunt_name": "Box Elder, Pilot Mtn",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -23212,7 +23212,7 @@
   {
     "hunt_code": "EL3132",
     "species": "Elk",
-    "hunt_name": "Cache North",
+    "hunt_name": "Cache, North",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -23256,7 +23256,7 @@
   {
     "hunt_code": "EL3136",
     "species": "Elk",
-    "hunt_name": "Southwest Desert North",
+    "hunt_name": "Southwest Desert, North",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -23278,7 +23278,7 @@
   {
     "hunt_code": "EL3137",
     "species": "Elk",
-    "hunt_name": "West Desert Deep Creek",
+    "hunt_name": "West Desert, Deep Creek",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -23300,7 +23300,7 @@
   {
     "hunt_code": "EL3139",
     "species": "Elk",
-    "hunt_name": "Cache North",
+    "hunt_name": "Cache, North",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",
@@ -23344,7 +23344,7 @@
   {
     "hunt_code": "EL3143",
     "species": "Elk",
-    "hunt_name": "Southwest Desert North",
+    "hunt_name": "Southwest Desert, North",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",
@@ -23366,7 +23366,7 @@
   {
     "hunt_code": "EL3144",
     "species": "Elk",
-    "hunt_name": "West Desert Deep Creek",
+    "hunt_name": "West Desert, Deep Creek",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "HAMSS (Handgun, Archery, Muzzleloader, Shotgun or Straight-walled rifle)",
@@ -23410,7 +23410,7 @@
   {
     "hunt_code": "EL3146",
     "species": "Elk",
-    "hunt_name": "Southwest Desert South",
+    "hunt_name": "Southwest Desert, South",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -23432,7 +23432,7 @@
   {
     "hunt_code": "EL3147",
     "species": "Elk",
-    "hunt_name": "Box Elder Grouse Creek",
+    "hunt_name": "Box Elder, Grouse Creek",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -23476,7 +23476,7 @@
   {
     "hunt_code": "EL3149",
     "species": "Elk",
-    "hunt_name": "Southwest Desert South",
+    "hunt_name": "Southwest Desert, South",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -23498,7 +23498,7 @@
   {
     "hunt_code": "EL3150",
     "species": "Elk",
-    "hunt_name": "Box Elder Grouse Creek",
+    "hunt_name": "Box Elder, Grouse Creek",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -23542,7 +23542,7 @@
   {
     "hunt_code": "EL3152",
     "species": "Elk",
-    "hunt_name": "Southwest Desert South",
+    "hunt_name": "Southwest Desert, South",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -23564,7 +23564,7 @@
   {
     "hunt_code": "EL3153",
     "species": "Elk",
-    "hunt_name": "Box Elder Grouse Creek",
+    "hunt_name": "Box Elder, Grouse Creek",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Muzzleloader",
@@ -23608,7 +23608,7 @@
   {
     "hunt_code": "EL3155",
     "species": "Elk",
-    "hunt_name": "Southwest Desert South",
+    "hunt_name": "Southwest Desert, South",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Muzzleloader",
@@ -23630,7 +23630,7 @@
   {
     "hunt_code": "EL3158",
     "species": "Elk",
-    "hunt_name": "Beaver East",
+    "hunt_name": "Beaver, East",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -23652,7 +23652,7 @@
   {
     "hunt_code": "EL3159",
     "species": "Elk",
-    "hunt_name": "Beaver East",
+    "hunt_name": "Beaver, East",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -23674,7 +23674,7 @@
   {
     "hunt_code": "EL3160",
     "species": "Elk",
-    "hunt_name": "Book Cliffs Bitter Creek/East",
+    "hunt_name": "Book Cliffs, Bitter Creek/East",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -23696,7 +23696,7 @@
   {
     "hunt_code": "EL3161",
     "species": "Elk",
-    "hunt_name": "Book Cliffs Bitter Creek/East",
+    "hunt_name": "Book Cliffs, Bitter Creek/East",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -23718,7 +23718,7 @@
   {
     "hunt_code": "EL3162",
     "species": "Elk",
-    "hunt_name": "Book Cliffs Bitter Creek/East",
+    "hunt_name": "Book Cliffs, Bitter Creek/East",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -23740,7 +23740,7 @@
   {
     "hunt_code": "EL3163",
     "species": "Elk",
-    "hunt_name": "Book Cliffs Bitter Creek/East",
+    "hunt_name": "Book Cliffs, Bitter Creek/East",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -23762,7 +23762,7 @@
   {
     "hunt_code": "EL3164",
     "species": "Elk",
-    "hunt_name": "Book Cliffs Bitter Creek/East",
+    "hunt_name": "Book Cliffs, Bitter Creek/East",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -23784,7 +23784,7 @@
   {
     "hunt_code": "EL3166",
     "species": "Elk",
-    "hunt_name": "Book Cliffs Bitter Creek/East",
+    "hunt_name": "Book Cliffs, Bitter Creek/East",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Muzzleloader",
@@ -23806,7 +23806,7 @@
   {
     "hunt_code": "EL3167",
     "species": "Elk",
-    "hunt_name": "Book Cliffs Little Creek Roadless",
+    "hunt_name": "Book Cliffs, Little Creek Roadless",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -23828,7 +23828,7 @@
   {
     "hunt_code": "EL3168",
     "species": "Elk",
-    "hunt_name": "Cache Meadowville",
+    "hunt_name": "Cache, Meadowville",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -23850,7 +23850,7 @@
   {
     "hunt_code": "EL3169",
     "species": "Elk",
-    "hunt_name": "Cache Meadowville",
+    "hunt_name": "Cache, Meadowville",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -23872,7 +23872,7 @@
   {
     "hunt_code": "EL3170",
     "species": "Elk",
-    "hunt_name": "Cache South",
+    "hunt_name": "Cache, South",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -23894,7 +23894,7 @@
   {
     "hunt_code": "EL3171",
     "species": "Elk",
-    "hunt_name": "Cache South",
+    "hunt_name": "Cache, South",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -24070,7 +24070,7 @@
   {
     "hunt_code": "EL3180",
     "species": "Elk",
-    "hunt_name": "Fillmore Pahvant",
+    "hunt_name": "Fillmore, Pahvant",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -24092,7 +24092,7 @@
   {
     "hunt_code": "EL3181",
     "species": "Elk",
-    "hunt_name": "Fillmore Pahvant",
+    "hunt_name": "Fillmore, Pahvant",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -24114,7 +24114,7 @@
   {
     "hunt_code": "EL3182",
     "species": "Elk",
-    "hunt_name": "La Sal La Sal Mtns",
+    "hunt_name": "La Sal Mtns",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -24136,7 +24136,7 @@
   {
     "hunt_code": "EL3183",
     "species": "Elk",
-    "hunt_name": "La Sal La Sal Mtns",
+    "hunt_name": "La Sal Mtns",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -24356,7 +24356,7 @@
   {
     "hunt_code": "EL3193",
     "species": "Elk",
-    "hunt_name": "San Juan Bull Elk",
+    "hunt_name": "San Juan",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -24378,7 +24378,7 @@
   {
     "hunt_code": "EL3194",
     "species": "Elk",
-    "hunt_name": "San Juan Bull Elk",
+    "hunt_name": "San Juan",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -24444,7 +24444,7 @@
   {
     "hunt_code": "EL3197",
     "species": "Elk",
-    "hunt_name": "Southwest Desert South",
+    "hunt_name": "Southwest Desert, South",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -24466,7 +24466,7 @@
   {
     "hunt_code": "EL3198",
     "species": "Elk",
-    "hunt_name": "Southwest Desert South",
+    "hunt_name": "Southwest Desert, South",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -24554,7 +24554,7 @@
   {
     "hunt_code": "EL3210",
     "species": "Elk",
-    "hunt_name": "North Slope Three Corners",
+    "hunt_name": "North Slope, Three Corners",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -24576,7 +24576,7 @@
   {
     "hunt_code": "EX1000",
     "species": "Elk",
-    "hunt_name": "Elk Extended Archery",
+    "hunt_name": "Elk Extended",
     "hunt_type": "Extended Archery",
     "hunt_class": "Extended Archery",
     "weapon": "Archery",
@@ -24598,7 +24598,7 @@
   {
     "hunt_code": "GO1000",
     "species": "Mountain Goat",
-    "hunt_name": "Mountain Goat - Statewide Permit",
+    "hunt_name": "Statewide",
     "hunt_type": "Statewide",
     "hunt_class": "Statewide Permit",
     "weapon": "Any Legal Weapon",
@@ -24994,7 +24994,7 @@
   {
     "hunt_code": "LD1001",
     "species": "Deer",
-    "hunt_name": "Paunsaugunt - Private Land Only",
+    "hunt_name": "Paunsaugunt",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -25016,7 +25016,7 @@
   {
     "hunt_code": "LD1004",
     "species": "Deer",
-    "hunt_name": "Paunsaugunt - Private Land Only",
+    "hunt_name": "Paunsaugunt",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -25038,7 +25038,7 @@
   {
     "hunt_code": "LD1006",
     "species": "Deer",
-    "hunt_name": "Paunsaugunt - Private Land Only",
+    "hunt_name": "Paunsaugunt",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Muzzleloader",
@@ -25060,7 +25060,7 @@
   {
     "hunt_code": "LD1019",
     "species": "Deer",
-    "hunt_name": "Fillmore, Oak Creek LE - Private Land Only",
+    "hunt_name": "Fillmore, Oak Creek",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -25082,7 +25082,7 @@
   {
     "hunt_code": "LD1023",
     "species": "Deer",
-    "hunt_name": "Diamond Mtn - Private Land Only",
+    "hunt_name": "Diamond Mtn",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -25104,7 +25104,7 @@
   {
     "hunt_code": "LD1108",
     "species": "Deer",
-    "hunt_name": "Thousand Lakes - Private Land Only",
+    "hunt_name": "Thousand Lakes",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Restricted Rifle",
@@ -25126,7 +25126,7 @@
   {
     "hunt_code": "LO0008",
     "species": "Deer",
-    "hunt_name": "Diamond Mtn Landowner Association",
+    "hunt_name": "Diamond Mtn",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -25148,7 +25148,7 @@
   {
     "hunt_code": "LO0009",
     "species": "Deer",
-    "hunt_name": "Diamond Mtn Landowner Association",
+    "hunt_name": "Diamond Mtn",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -25170,7 +25170,7 @@
   {
     "hunt_code": "LO0010",
     "species": "Deer",
-    "hunt_name": "Diamond Mtn Landowner Association",
+    "hunt_name": "Diamond Mountain",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "",
     "weapon": "Muzzleloader",
@@ -25192,7 +25192,7 @@
   {
     "hunt_code": "LO0011",
     "species": "Elk",
-    "hunt_name": "Diamond Mtn Landowner Association",
+    "hunt_name": "Diamond Mtn",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -25214,7 +25214,7 @@
   {
     "hunt_code": "LO0012",
     "species": "Elk",
-    "hunt_name": "Diamond Mtn Landowner Association",
+    "hunt_name": "Diamond Mtn",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -25236,7 +25236,7 @@
   {
     "hunt_code": "LO0013",
     "species": "Elk",
-    "hunt_name": "Diamond Mtn Landowner Association",
+    "hunt_name": "Diamond Mtn",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -25258,7 +25258,7 @@
   {
     "hunt_code": "LO0014",
     "species": "Elk",
-    "hunt_name": "Diamond Mtn Landowner Association",
+    "hunt_name": "Diamond Mtn",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Muzzleloader",
@@ -25280,7 +25280,7 @@
   {
     "hunt_code": "LO0015",
     "species": "Elk",
-    "hunt_name": "Diamond Mtn Landowner Association",
+    "hunt_name": "Diamond Mtn",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -25434,7 +25434,7 @@
   {
     "hunt_code": "LO1509",
     "species": "Deer",
-    "hunt_name": "La Sal, La Sal Mtns",
+    "hunt_name": "La Sal Mtns",
     "hunt_type": "General Season - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Archery",
@@ -25918,7 +25918,7 @@
   {
     "hunt_code": "LO1539",
     "species": "Deer",
-    "hunt_name": "La Sal, La Sal Mtns",
+    "hunt_name": "La Sal Mtns",
     "hunt_type": "General Season - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon (Late)",
@@ -26380,7 +26380,7 @@
   {
     "hunt_code": "LO1569",
     "species": "Deer",
-    "hunt_name": "La Sal, La Sal Mtns",
+    "hunt_name": "La Sal Mtns",
     "hunt_type": "General Season - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Muzzleloader",
@@ -27612,7 +27612,7 @@
   {
     "hunt_code": "LP5025",
     "species": "Pronghorn",
-    "hunt_name": "Beaver - Private Land Only",
+    "hunt_name": "Beaver",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -27634,7 +27634,7 @@
   {
     "hunt_code": "LP5031",
     "species": "Pronghorn",
-    "hunt_name": "Box Elder, West - Private Land Only",
+    "hunt_name": "Box Elder, West",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -27656,7 +27656,7 @@
   {
     "hunt_code": "LP5033",
     "species": "Pronghorn",
-    "hunt_name": "Fillmore, Oak Creek South - Private Land Only",
+    "hunt_name": "Fillmore, Oak Creek South",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -27678,7 +27678,7 @@
   {
     "hunt_code": "LP5046",
     "species": "Pronghorn",
-    "hunt_name": "San Rafael, North - Private Land Only",
+    "hunt_name": "San Rafael, North",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -27700,7 +27700,7 @@
   {
     "hunt_code": "LP5049",
     "species": "Pronghorn",
-    "hunt_name": "Southwest Desert - Private Land Only",
+    "hunt_name": "Southwest Desert",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -27722,7 +27722,7 @@
   {
     "hunt_code": "LP5051",
     "species": "Pronghorn",
-    "hunt_name": "West Desert, Rush Valley - Private Land Only",
+    "hunt_name": "West Desert, Rush Valley",
     "hunt_type": "Limited Entry - Private Land Only",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -27832,7 +27832,7 @@
   {
     "hunt_code": "MA1009",
     "species": "Moose",
-    "hunt_name": "Causey Spring CWMU",
+    "hunt_name": "Causey Spring",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -27854,7 +27854,7 @@
   {
     "hunt_code": "MA1010",
     "species": "Moose",
-    "hunt_name": "Deseret CWMU",
+    "hunt_name": "Deseret",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -27898,7 +27898,7 @@
   {
     "hunt_code": "MB1000",
     "species": "Moose",
-    "hunt_name": "Moose - Statewide Permit",
+    "hunt_name": "Statewide",
     "hunt_type": "Statewide",
     "hunt_class": "Statewide Permit",
     "weapon": "Any Legal Weapon",
@@ -28206,7 +28206,7 @@
   {
     "hunt_code": "MB6200",
     "species": "Moose",
-    "hunt_name": "Bear Springs CWMU",
+    "hunt_name": "Bear Springs",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -28228,7 +28228,7 @@
   {
     "hunt_code": "MB6201",
     "species": "Moose",
-    "hunt_name": "Beaver Hollow CWMU",
+    "hunt_name": "Beaver Hollow",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -28250,7 +28250,7 @@
   {
     "hunt_code": "MB6202",
     "species": "Moose",
-    "hunt_name": "Causey Spring CWMU",
+    "hunt_name": "Causey Spring",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -28272,7 +28272,7 @@
   {
     "hunt_code": "MB6206",
     "species": "Moose",
-    "hunt_name": "Deseret CWMU",
+    "hunt_name": "Deseret",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -28294,7 +28294,7 @@
   {
     "hunt_code": "MB6207",
     "species": "Moose",
-    "hunt_name": "Durst Mountain CWMU",
+    "hunt_name": "Durst Mountain",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -28316,7 +28316,7 @@
   {
     "hunt_code": "MB6208",
     "species": "Moose",
-    "hunt_name": "East Fork Chalk Creek CWMU",
+    "hunt_name": "East Fork Chalk Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -28338,7 +28338,7 @@
   {
     "hunt_code": "MB6209",
     "species": "Moose",
-    "hunt_name": "Ensign Ranches CWMU",
+    "hunt_name": "Ensign Ranches",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -28360,7 +28360,7 @@
   {
     "hunt_code": "MB6211",
     "species": "Moose",
-    "hunt_name": "Grass Valley/Clark Canyon CWMU",
+    "hunt_name": "Grass Valley/Clark Canyon",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -28382,7 +28382,7 @@
   {
     "hunt_code": "MB6217",
     "species": "Moose",
-    "hunt_name": "Sharp Mountain CWMU",
+    "hunt_name": "Sharp Mountain",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -28404,7 +28404,7 @@
   {
     "hunt_code": "MB6219",
     "species": "Moose",
-    "hunt_name": "Skull Crack CWMU",
+    "hunt_name": "Skull Crack",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -28426,7 +28426,7 @@
   {
     "hunt_code": "MB6220",
     "species": "Moose",
-    "hunt_name": "South Canyon CWMU",
+    "hunt_name": "South Canyon",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -28448,7 +28448,7 @@
   {
     "hunt_code": "MB6222",
     "species": "Moose",
-    "hunt_name": "Strawberry Ridge CWMU",
+    "hunt_name": "Strawberry Ridge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -28470,7 +28470,7 @@
   {
     "hunt_code": "MB6223",
     "species": "Moose",
-    "hunt_name": "Three C CWMU",
+    "hunt_name": "Three C",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -28492,7 +28492,7 @@
   {
     "hunt_code": "MB6224",
     "species": "Moose",
-    "hunt_name": "Two Bear CWMU",
+    "hunt_name": "Two Bear",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -28514,7 +28514,7 @@
   {
     "hunt_code": "MB6225",
     "species": "Moose",
-    "hunt_name": "Wallsburg CWMU",
+    "hunt_name": "Wallsburg",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -28536,7 +28536,7 @@
   {
     "hunt_code": "MB6240",
     "species": "Moose",
-    "hunt_name": "Chimney Rock CWMU",
+    "hunt_name": "Chimney Rock",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -28558,7 +28558,7 @@
   {
     "hunt_code": "MB6251",
     "species": "Moose",
-    "hunt_name": "Hardscrabble CWMU",
+    "hunt_name": "Hardscrabble",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -28580,7 +28580,7 @@
   {
     "hunt_code": "MB6254",
     "species": "Moose",
-    "hunt_name": "SJ Ranch CWMU",
+    "hunt_name": "SJ Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -28602,7 +28602,7 @@
   {
     "hunt_code": "MB6256",
     "species": "Moose",
-    "hunt_name": "Woodruff Creek South CWMU",
+    "hunt_name": "Woodruff Creek South",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -28624,7 +28624,7 @@
   {
     "hunt_code": "MB6257",
     "species": "Moose",
-    "hunt_name": "Ingham Peak CWMU",
+    "hunt_name": "Ingham Peak",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -28646,7 +28646,7 @@
   {
     "hunt_code": "MB6258",
     "species": "Moose",
-    "hunt_name": "Jacob's Creek CWMU",
+    "hunt_name": "Jacob's Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -28668,7 +28668,7 @@
   {
     "hunt_code": "MB6259",
     "species": "Moose",
-    "hunt_name": "Royal Ivory Outfitters CWMU",
+    "hunt_name": "Royal Ivory Outfitters",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -28690,7 +28690,7 @@
   {
     "hunt_code": "MB6262",
     "species": "Moose",
-    "hunt_name": "Junction Valley CWMU",
+    "hunt_name": "Junction Valley",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -28712,7 +28712,7 @@
   {
     "hunt_code": "MB6263",
     "species": "Moose",
-    "hunt_name": "Moon Ranch CWMU",
+    "hunt_name": "Moon Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -28734,7 +28734,7 @@
   {
     "hunt_code": "MB6264",
     "species": "Moose",
-    "hunt_name": "Sand Creek CWMU",
+    "hunt_name": "Sand Creek",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -28756,7 +28756,7 @@
   {
     "hunt_code": "MB6265",
     "species": "Moose",
-    "hunt_name": "Little Pole Canyon CWMU",
+    "hunt_name": "Coyote Little Pole",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -28778,7 +28778,7 @@
   {
     "hunt_code": "MB6266",
     "species": "Moose",
-    "hunt_name": "Weber Florence Creek/Stillman Creek CWMU",
+    "hunt_name": "Weber Florence Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -28800,7 +28800,7 @@
   {
     "hunt_code": "PB1000",
     "species": "Pronghorn",
-    "hunt_name": "Pronghorn - Statewide Permit",
+    "hunt_name": "Statewide",
     "hunt_type": "Statewide",
     "hunt_class": "Statewide Permit",
     "weapon": "Any Legal Weapon",
@@ -28844,7 +28844,7 @@
   {
     "hunt_code": "PB5001",
     "species": "Pronghorn",
-    "hunt_name": "Book Cliffs, Bitter Creek",
+    "hunt_name": "Book Cliffs, Bitter Creek (pronghorn)",
     "hunt_type": "Limited Entry",
     "hunt_class": "Limited Entry",
     "weapon": "Archery",
@@ -29284,7 +29284,7 @@
   {
     "hunt_code": "PB5026",
     "species": "Pronghorn",
-    "hunt_name": "Book Cliffs, Bitter Creek",
+    "hunt_name": "Book Cliffs, Bitter Creek (pronghorn)",
     "hunt_type": "Limited Entry",
     "hunt_class": "Limited Entry",
     "weapon": "Any Legal Weapon",
@@ -30230,7 +30230,7 @@
   {
     "hunt_code": "PB5300",
     "species": "Pronghorn",
-    "hunt_name": "Antelope Creek CWMU",
+    "hunt_name": "Antelope Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30252,7 +30252,7 @@
   {
     "hunt_code": "PB5302",
     "species": "Pronghorn",
-    "hunt_name": "Deseret CWMU",
+    "hunt_name": "Deseret",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30274,7 +30274,7 @@
   {
     "hunt_code": "PB5305",
     "species": "Pronghorn",
-    "hunt_name": "Park Valley CWMU",
+    "hunt_name": "Park Valley",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30296,7 +30296,7 @@
   {
     "hunt_code": "PB5306",
     "species": "Pronghorn",
-    "hunt_name": "Rabbit Creek CWMU",
+    "hunt_name": "Rabbit Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30318,7 +30318,7 @@
   {
     "hunt_code": "PB5309",
     "species": "Pronghorn",
-    "hunt_name": "Skull Valley South CWMU",
+    "hunt_name": "Skull Valley South",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30340,7 +30340,7 @@
   {
     "hunt_code": "PB5311",
     "species": "Pronghorn",
-    "hunt_name": "The Rose of Snowville CWMU",
+    "hunt_name": "The Rose of Snowville",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30362,7 +30362,7 @@
   {
     "hunt_code": "PB5312",
     "species": "Pronghorn",
-    "hunt_name": "TL Bar Ranch CWMU",
+    "hunt_name": "TL Bar Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30384,7 +30384,7 @@
   {
     "hunt_code": "PB5313",
     "species": "Pronghorn",
-    "hunt_name": "West Willow Creek Ranch CWMU",
+    "hunt_name": "West Willow Creek Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -30406,7 +30406,7 @@
   {
     "hunt_code": "PB5314",
     "species": "Pronghorn",
-    "hunt_name": "Westlake CWMU",
+    "hunt_name": "Westlake",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30428,7 +30428,7 @@
   {
     "hunt_code": "PB5315",
     "species": "Pronghorn",
-    "hunt_name": "Zane CWMU",
+    "hunt_name": "Zane",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30450,7 +30450,7 @@
   {
     "hunt_code": "PB5325",
     "species": "Pronghorn",
-    "hunt_name": "Allen Ranch CWMU",
+    "hunt_name": "Allen Ranch",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30494,7 +30494,7 @@
   {
     "hunt_code": "PB5327",
     "species": "Pronghorn",
-    "hunt_name": "Cottonwood Ridge CWMU",
+    "hunt_name": "Cottonwood Ridge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30516,7 +30516,7 @@
   {
     "hunt_code": "PB5328",
     "species": "Pronghorn",
-    "hunt_name": "Pahvant Ensign CWMU",
+    "hunt_name": "Pahvant Ensign",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30538,7 +30538,7 @@
   {
     "hunt_code": "PB5329",
     "species": "Pronghorn",
-    "hunt_name": "Snowville Flat CWMU",
+    "hunt_name": "Snowville Flat",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30560,7 +30560,7 @@
   {
     "hunt_code": "PB5330",
     "species": "Pronghorn",
-    "hunt_name": "George Creek CWMU",
+    "hunt_name": "George Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30626,7 +30626,7 @@
   {
     "hunt_code": "PB5337",
     "species": "Pronghorn",
-    "hunt_name": "Heist CWMU",
+    "hunt_name": "Heist",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30648,7 +30648,7 @@
   {
     "hunt_code": "PB5338",
     "species": "Pronghorn",
-    "hunt_name": "Castle Valley Outdoors CWMU",
+    "hunt_name": "Castle Valley Outdoors",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30670,7 +30670,7 @@
   {
     "hunt_code": "PB5339",
     "species": "Pronghorn",
-    "hunt_name": "Iron Spring CWMU",
+    "hunt_name": "Iron Springs",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30692,7 +30692,7 @@
   {
     "hunt_code": "PB5341",
     "species": "Pronghorn",
-    "hunt_name": "Sweetwater CWMU",
+    "hunt_name": "Sweetwater",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -30714,7 +30714,7 @@
   {
     "hunt_code": "PB5342",
     "species": "Pronghorn",
-    "hunt_name": "Salt Wells CWMU",
+    "hunt_name": "Salt Wells",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30736,7 +30736,7 @@
   {
     "hunt_code": "PB5345",
     "species": "Pronghorn",
-    "hunt_name": "Green River Flat CWMU",
+    "hunt_name": "Green River Flat",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30758,7 +30758,7 @@
   {
     "hunt_code": "PB5346",
     "species": "Pronghorn",
-    "hunt_name": "Junction Valley CWMU",
+    "hunt_name": "Junction Valley",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30802,7 +30802,7 @@
   {
     "hunt_code": "PD1006",
     "species": "Pronghorn",
-    "hunt_name": "Parker Mtn",
+    "hunt_name": "Plateau",
     "hunt_type": "General Season",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -30868,7 +30868,7 @@
   {
     "hunt_code": "PD1016",
     "species": "Pronghorn",
-    "hunt_name": "Zane CWMU",
+    "hunt_name": "Zane",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -30912,7 +30912,7 @@
   {
     "hunt_code": "PD1025",
     "species": "Pronghorn",
-    "hunt_name": "Cottonwood Ridge CWMU",
+    "hunt_name": "Cottonwood Ridge",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -30934,7 +30934,7 @@
   {
     "hunt_code": "PD1026",
     "species": "Pronghorn",
-    "hunt_name": "Pahvant Ensign CWMU",
+    "hunt_name": "Pahvant Ensign",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -30956,7 +30956,7 @@
   {
     "hunt_code": "PD1031",
     "species": "Pronghorn",
-    "hunt_name": "Westlake CWMU",
+    "hunt_name": "Westlake",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -30978,7 +30978,7 @@
   {
     "hunt_code": "PD1032",
     "species": "Pronghorn",
-    "hunt_name": "Antelope Creek CWMU",
+    "hunt_name": "Antelope Creek",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -31110,7 +31110,7 @@
   {
     "hunt_code": "PD1043",
     "species": "Pronghorn",
-    "hunt_name": "Nine Mile, Anthro-Pleasant Valley",
+    "hunt_name": "Nine Mile, Anthro Pleasant Valley",
     "hunt_type": "General Season",
     "hunt_class": "Antlerless",
     "weapon": "Any Legal Weapon",
@@ -31154,7 +31154,7 @@
   {
     "hunt_code": "PD1045",
     "species": "Pronghorn",
-    "hunt_name": "The Rose of Snowville CWMU",
+    "hunt_name": "The Rose of Snowville",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -31176,7 +31176,7 @@
   {
     "hunt_code": "PD1046",
     "species": "Pronghorn",
-    "hunt_name": "Green River Flat CWMU",
+    "hunt_name": "Green River Flat",
     "hunt_type": "CWMU",
     "hunt_class": "",
     "weapon": "Any Legal Weapon",
@@ -31198,7 +31198,7 @@
   {
     "hunt_code": "PD1047",
     "species": "Pronghorn",
-    "hunt_name": "Antelope Creek CWMU",
+    "hunt_name": "Antelope Creek",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -31220,7 +31220,7 @@
   {
     "hunt_code": "PD1048",
     "species": "Pronghorn",
-    "hunt_name": "The Rose of Snowville CWMU",
+    "hunt_name": "The Rose of Snowville",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -31242,7 +31242,7 @@
   {
     "hunt_code": "PD1049",
     "species": "Pronghorn",
-    "hunt_name": "Zane CWMU",
+    "hunt_name": "Zane",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -31264,7 +31264,7 @@
   {
     "hunt_code": "PD1050",
     "species": "Pronghorn",
-    "hunt_name": "Cottonwood Ridge CWMU",
+    "hunt_name": "Cottonwood Ridge",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -31286,7 +31286,7 @@
   {
     "hunt_code": "PD1051",
     "species": "Pronghorn",
-    "hunt_name": "Pahvant Ensign CWMU",
+    "hunt_name": "Pahvant Ensign",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -31308,7 +31308,7 @@
   {
     "hunt_code": "PD1052",
     "species": "Pronghorn",
-    "hunt_name": "Heist CWMU",
+    "hunt_name": "Heist",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -31330,7 +31330,7 @@
   {
     "hunt_code": "PD1053",
     "species": "Pronghorn",
-    "hunt_name": "Green River Flat CWMU",
+    "hunt_name": "Green River Flat",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -31528,7 +31528,7 @@
   {
     "hunt_code": "RS0001",
     "species": "Rocky Mountain Bighorn Sheep",
-    "hunt_name": "Rocky Mountain Bighorn Sheep - Statewide Permit",
+    "hunt_name": "Statewide",
     "hunt_type": "Statewide",
     "hunt_class": "Statewide Permit",
     "weapon": "Any Legal Weapon",
@@ -31550,7 +31550,7 @@
   {
     "hunt_code": "RS1000",
     "species": "Rocky Mountain Bighorn Sheep",
-    "hunt_name": "Antelope Island Conservation",
+    "hunt_name": "Antelope Island",
     "hunt_type": "Once-in-a-lifetime",
     "hunt_class": "Once-in-a-lifetime",
     "weapon": "Any Legal Weapon",
@@ -31814,7 +31814,7 @@
   {
     "hunt_code": "RS6720",
     "species": "Rocky Mountain Bighorn Sheep",
-    "hunt_name": "Fillmore, Oak Creek",
+    "hunt_name": "Fillmore, Oak Creek (cougar)",
     "hunt_type": "Once-in-a-lifetime",
     "hunt_class": "Once-in-a-lifetime",
     "weapon": "Any Legal Weapon",
@@ -31924,7 +31924,7 @@
   {
     "hunt_code": "RS6726",
     "species": "Rocky Mountain Bighorn Sheep",
-    "hunt_name": "Fillmore, Oak Creek",
+    "hunt_name": "Fillmore, Oak Creek (cougar)",
     "hunt_type": "Once-in-a-lifetime",
     "hunt_class": "Once-in-a-lifetime",
     "weapon": "Any Legal Weapon",
@@ -31946,7 +31946,7 @@
   {
     "hunt_code": "RS6727",
     "species": "Rocky Mountain Bighorn Sheep",
-    "hunt_name": "Fillmore, Oak Creek",
+    "hunt_name": "Fillmore, Oak Creek (cougar)",
     "hunt_type": "Once-in-a-lifetime",
     "hunt_class": "Once-in-a-lifetime",
     "weapon": "Archery",
@@ -31968,7 +31968,7 @@
   {
     "hunt_code": "TK0001",
     "species": "Turkey",
-    "hunt_name": "Turkey - Statewide Permit",
+    "hunt_name": "Statewide",
     "hunt_type": "Statewide",
     "hunt_class": "Statewide Permit",
     "weapon": "Any Legal Weapon",
@@ -32012,7 +32012,7 @@
   {
     "hunt_code": "TK1001",
     "species": "Turkey",
-    "hunt_name": "Northern Region - Private land only",
+    "hunt_name": "Northern Region",
     "hunt_type": "Fall Management",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -32034,7 +32034,7 @@
   {
     "hunt_code": "TK1003",
     "species": "Turkey",
-    "hunt_name": "Central Area",
+    "hunt_name": "Central Region",
     "hunt_type": "Limited Entry",
     "hunt_class": "Youth",
     "weapon": "Any Legal Weapon",
@@ -32056,7 +32056,7 @@
   {
     "hunt_code": "TK1004",
     "species": "Turkey",
-    "hunt_name": "Northeastern Area",
+    "hunt_name": "Northeastern Region",
     "hunt_type": "Limited Entry",
     "hunt_class": "Youth",
     "weapon": "Any Legal Weapon",
@@ -32078,7 +32078,7 @@
   {
     "hunt_code": "TK1005",
     "species": "Turkey",
-    "hunt_name": "Northern Area",
+    "hunt_name": "Northern Region",
     "hunt_type": "Limited Entry",
     "hunt_class": "Youth",
     "weapon": "Any Legal Weapon",
@@ -32100,7 +32100,7 @@
   {
     "hunt_code": "TK1006",
     "species": "Turkey",
-    "hunt_name": "Southeastern Area",
+    "hunt_name": "Southeastern Region",
     "hunt_type": "Limited Entry",
     "hunt_class": "Youth",
     "weapon": "Any Legal Weapon",
@@ -32122,7 +32122,7 @@
   {
     "hunt_code": "TK1007",
     "species": "Turkey",
-    "hunt_name": "Southern Area",
+    "hunt_name": "Southern Region",
     "hunt_type": "Limited Entry",
     "hunt_class": "Youth",
     "weapon": "Any Legal Weapon",
@@ -32144,7 +32144,7 @@
   {
     "hunt_code": "TK1012",
     "species": "Turkey",
-    "hunt_name": "Central Area",
+    "hunt_name": "Central Region",
     "hunt_type": "Conservation",
     "hunt_class": "Conservation",
     "weapon": "Any Legal Weapon",
@@ -32166,7 +32166,7 @@
   {
     "hunt_code": "TK1013",
     "species": "Turkey",
-    "hunt_name": "Northeastern Area",
+    "hunt_name": "Northeastern Region",
     "hunt_type": "Conservation",
     "hunt_class": "Conservation",
     "weapon": "Any Legal Weapon",
@@ -32188,7 +32188,7 @@
   {
     "hunt_code": "TK1014",
     "species": "Turkey",
-    "hunt_name": "Northern Area",
+    "hunt_name": "Northern Region",
     "hunt_type": "Conservation",
     "hunt_class": "Conservation",
     "weapon": "Any Legal Weapon",
@@ -32210,7 +32210,7 @@
   {
     "hunt_code": "TK1015",
     "species": "Turkey",
-    "hunt_name": "Southeastern Area",
+    "hunt_name": "Southeastern Region",
     "hunt_type": "Conservation",
     "hunt_class": "Conservation",
     "weapon": "Any Legal Weapon",
@@ -32232,7 +32232,7 @@
   {
     "hunt_code": "TK1016",
     "species": "Turkey",
-    "hunt_name": "Southern Area",
+    "hunt_name": "Southern Region",
     "hunt_type": "Conservation",
     "hunt_class": "Conservation",
     "weapon": "Any Legal Weapon",
@@ -32254,7 +32254,7 @@
   {
     "hunt_code": "TK1018",
     "species": "Turkey",
-    "hunt_name": "Pahvant Ensign CWMU",
+    "hunt_name": "Pahvant Ensign",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -32276,7 +32276,7 @@
   {
     "hunt_code": "TK1019",
     "species": "Turkey",
-    "hunt_name": "Southeastern Region - Select areas only",
+    "hunt_name": "Southeastern Region",
     "hunt_type": "Fall Management",
     "hunt_class": "Management",
     "weapon": "Any Legal Weapon",
@@ -32298,7 +32298,7 @@
   {
     "hunt_code": "TK1020",
     "species": "Turkey",
-    "hunt_name": "Central Region - Private land only",
+    "hunt_name": "Central Region",
     "hunt_type": "Fall Management",
     "hunt_class": "Private Land Only",
     "weapon": "Any Legal Weapon",
@@ -32320,7 +32320,7 @@
   {
     "hunt_code": "TK1021",
     "species": "Turkey",
-    "hunt_name": "East Zion CWMU",
+    "hunt_name": "East Zion",
     "hunt_type": "CWMU",
     "hunt_class": "CWMU",
     "weapon": "Any Legal Weapon",
@@ -32342,7 +32342,7 @@
   {
     "hunt_code": "TK1022",
     "species": "Turkey",
-    "hunt_name": "Southern Region - Select areas only",
+    "hunt_name": "Southern Region",
     "hunt_type": "Fall Management",
     "hunt_class": "Management",
     "weapon": "Any Legal Weapon",

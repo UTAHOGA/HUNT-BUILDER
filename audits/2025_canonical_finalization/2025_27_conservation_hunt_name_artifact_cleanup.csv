@@ -1,0 +1,15 @@
+row,no,species,old_hunt_name,new_hunt_name,old_sex_type,new_sex_type,old_weapon,new_weapon,notes
+66,65,Bison,"Book Cliffs, Bitter Creek, Hunter's Choice","Book Cliffs, Bitter Creek",Hunter's Choice,Hunter's Choice,Any Legal Weapon,Any Legal Weapon,moved_hunters_choice_to_sex_type
+67,66,Bison,"Book Cliffs, Little Creek/South, Hunter's Choice","Book Cliffs, Little Creek/South",Hunter's Choice,Hunter's Choice,Any Legal Weapon,Any Legal Weapon,moved_hunters_choice_to_sex_type
+68,67,Bison,"Henry Mtns, Hunter's Choice (early)",Henry Mtns,Hunter's Choice,Hunter's Choice,Any Legal Weapon,"Any Legal Weapon, early",moved_early_to_weapon;moved_hunters_choice_to_sex_type
+69,68,Bison,"Henry Mtns, Cow Only (late)",Henry Mtns,Cow Only,Cow Only,Any Legal Weapon,"Any Legal Weapon, late",moved_late_to_weapon;moved_cow_only_to_sex_type
+70,69,Bison,"Henry Mtns, Hunter's Choice (late)",Henry Mtns,Hunter's Choice,Hunter's Choice,Any Legal Weapon,"Any Legal Weapon, late",moved_late_to_weapon;moved_hunters_choice_to_sex_type
+189,188,Elk,San Juan Bull Elk,San Juan,Bull,Bull,"Any Legal Weapon, late","Any Legal Weapon, late",moved_bull_elk_to_species_sex
+190,189,Elk,San Juan Bull Elk,San Juan,Bull,Bull,"Any Legal Weapon, mid","Any Legal Weapon, mid",moved_bull_elk_to_species_sex
+191,190,Elk,San Juan Bull Elk,San Juan,Bull,Bull,Archery,Archery,moved_bull_elk_to_species_sex
+192,191,Elk,San Juan Bull Elk,San Juan,Bull,Bull,Hunter's Choice,Hunter's Choice,moved_bull_elk_to_species_sex
+193,192,Elk,San Juan Bull Elk,San Juan,Bull,Bull,Multiseason,Multiseason,moved_bull_elk_to_species_sex
+215,214,Mountain Goat,Beaver (early),Beaver,Either Sex,Either Sex,"Any Legal Weapon, early","Any Legal Weapon, early",moved_early_to_weapon
+292,291,Rocky Mountain Bighorn Sheep,"Box Elder, Newfoundland Mtns (early)","Box Elder, Newfoundland Mtns",Male Only,Male Only,Any Legal Weapon,"Any Legal Weapon, early",moved_early_to_weapon
+293,292,Rocky Mountain Bighorn Sheep,"Box Elder, Newfoundland Mtns (late)","Box Elder, Newfoundland Mtns",Male Only,Male Only,Any Legal Weapon,"Any Legal Weapon, late",moved_late_to_weapon
+294,293,Rocky Mountain Bighorn Sheep,"Fillmore, Oak Creek (late)","Fillmore, Oak Creek",Male Only,Male Only,Any Legal Weapon,"Any Legal Weapon, late",moved_late_to_weapon
