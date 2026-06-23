@@ -1,0 +1,92 @@
+[
+  {
+    "folderId": "rules",
+    "title": "2026 Big Game Application Guidebook",
+    "subtitle": "Current-cycle big game application guidebook.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/regulations/2026.biggame.app.pdf",
+    "type": "pdf",
+    "year": "2026",
+    "sort_order": 10
+  },
+  {
+    "folderId": "rules",
+    "title": "2026 Cougar and Bear Regulations",
+    "subtitle": "Current-cycle cougar and bear rules.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/regulations/2026.regs.cougar.bear.pdf",
+    "type": "pdf",
+    "year": "2026",
+    "sort_order": 20
+  },
+  {
+    "folderId": "rules",
+    "title": "2026 Turkey Regulations",
+    "subtitle": "Current-cycle turkey regulations.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/regulations/2026.regs.turkey.pdf",
+    "type": "pdf",
+    "year": "2026",
+    "sort_order": 30
+  },
+  {
+    "folderId": "harvest",
+    "title": "2025 Harvest Summary (Public)",
+    "subtitle": "Public summary workbook for harvest results.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/data/2025_harvest_summary_public.xlsx",
+    "type": "xlsx",
+    "year": "2025",
+    "sort_order": 10
+  },
+  {
+    "folderId": "draw",
+    "title": "2025 Draw Results Summary (Public)",
+    "subtitle": "Public summary workbook for draw outcomes.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/data/2025_draw_results_summary_public.xlsx",
+    "type": "xlsx",
+    "year": "2025",
+    "sort_order": 10
+  },
+  {
+    "folderId": "conservation",
+    "title": "Unit-Specific Conservation / Expo Bundles",
+    "subtitle": "Public workbook with conservation/expo permit bundles by unit.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/harvest%20results/unit_specific_conservation_expo_bundles.xlsx",
+    "type": "xlsx",
+    "year": "2026",
+    "sort_order": 10
+  },
+  {
+    "folderId": "expo",
+    "title": "2026 EXPO Draw Results",
+    "subtitle": "Formatted Expo draw results (PDF).",
+    "href": "./public/hard-copy/DISPLAY%20DATA/expo%20permits/2026%20EXPO%20DRAW%20RESULTS.pdf",
+    "type": "pdf",
+    "year": "2026",
+    "sort_order": 10
+  },
+  {
+    "folderId": "calendar",
+    "title": "2026 Fishing Regulations Calendar Context",
+    "subtitle": "Public regulations publication with key timing context.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/regulations/2026.regs.fishing.pdf",
+    "type": "pdf",
+    "year": "2026",
+    "sort_order": 20
+  },
+  {
+    "folderId": "units2026",
+    "title": "2026 Hunt Units / Permit Numbers",
+    "subtitle": "Current 2026 hunt code, hunt unit, and permit workbook.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/data/2026_hunt_units_permit_numbers.xlsx",
+    "type": "xlsx",
+    "year": "2026",
+    "sort_order": 10
+  },
+  {
+    "folderId": "outfitters",
+    "title": "Utah Outfitters by Hunt Code / Hunt Name",
+    "subtitle": "Public outfitter workbook tied to hunt code and hunt name.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/data/utah_outfitters_by_hunt_code_hunt_name.xlsx",
+    "type": "xlsx",
+    "year": "2026",
+    "sort_order": 10
+  }
+]
