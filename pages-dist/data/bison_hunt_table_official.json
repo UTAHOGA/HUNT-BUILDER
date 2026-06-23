@@ -1,0 +1,354 @@
+[
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Antelope Island",
+      "BOUNDARYID": "1",
+      "HUNT_NUMBER": "BI6500",
+      "SEASON": "Dec 07 2026 - Dec 09 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Antelope Island - Hunt #BI0001",
+      "BOUNDARYID": "1",
+      "HUNT_NUMBER": "BI0001",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns/Plateau, Boulder/Kaiparowits",
+      "BOUNDARYID": "3",
+      "HUNT_NUMBER": "BI6511",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns/Plateau, Boulder/Kaiparowits",
+      "BOUNDARYID": "3",
+      "HUNT_NUMBER": "BI6512",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns/Plateau, Boulder/Kaiparowits",
+      "BOUNDARYID": "3",
+      "HUNT_NUMBER": "BI6513",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns/Plateau, Boulder/Kaiparowits",
+      "BOUNDARYID": "3",
+      "HUNT_NUMBER": "BI6514",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs",
+      "BOUNDARYID": "7",
+      "HUNT_NUMBER": "BI6501",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs",
+      "BOUNDARYID": "7",
+      "HUNT_NUMBER": "BI6508",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs",
+      "BOUNDARYID": "7",
+      "HUNT_NUMBER": "BI6517",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs",
+      "BOUNDARYID": "7",
+      "HUNT_NUMBER": "BI6518",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs",
+      "BOUNDARYID": "7",
+      "HUNT_NUMBER": "BI6520",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs",
+      "BOUNDARYID": "7",
+      "HUNT_NUMBER": "BI6521",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, Little Creek Roadless",
+      "BOUNDARYID": "12",
+      "HUNT_NUMBER": "BI6519",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, Little Creek Roadless (Cow only)",
+      "BOUNDARYID": "12",
+      "HUNT_NUMBER": "BI6524",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Nine Mile",
+      "BOUNDARYID": "277",
+      "HUNT_NUMBER": "BI6525",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Bison - Statewide Permit",
+      "BOUNDARYID": "667",
+      "HUNT_NUMBER": "BI1000",
+      "SEASON": "Aug 1, 2026 - Jan 31, 2027"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, Bitter Creek",
+      "BOUNDARYID": "667",
+      "HUNT_NUMBER": "BI6532",
+      "SEASON": "Aug 15 2026 - Sept 11 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, Bitter Creek",
+      "BOUNDARYID": "667",
+      "HUNT_NUMBER": "BI6534",
+      "SEASON": "Sept 12 2026 - Sept 20 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, Bitter Creek",
+      "BOUNDARYID": "667",
+      "HUNT_NUMBER": "BI6535",
+      "SEASON": "Oct 03 2026 - Oct 15 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, Bitter Creek",
+      "BOUNDARYID": "667",
+      "HUNT_NUMBER": "BI6536",
+      "SEASON": "Nov 14 2026 - Nov 29 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Bison - Statewide Permit",
+      "BOUNDARYID": "889",
+      "HUNT_NUMBER": "BI1000",
+      "SEASON": "Aug 1, 2026 - Jan 31, 2027"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, Little Creek/South",
+      "BOUNDARYID": "889",
+      "HUNT_NUMBER": "BI6528",
+      "SEASON": "Aug 15 2026 - Sept 11 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, Little Creek/South",
+      "BOUNDARYID": "889",
+      "HUNT_NUMBER": "BI6529",
+      "SEASON": "Oct 17 2026 - Oct 27 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, Little Creek/South",
+      "BOUNDARYID": "889",
+      "HUNT_NUMBER": "BI6530",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, Little Creek/South",
+      "BOUNDARYID": "889",
+      "HUNT_NUMBER": "BI6531",
+      "SEASON": "Sept 21 2026 - Oct 02 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, Little Creek/South ",
+      "BOUNDARYID": "889",
+      "HUNT_NUMBER": "BI6533",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, Little Creek/South",
+      "BOUNDARYID": "889",
+      "HUNT_NUMBER": "BI6537",
+      "SEASON": "Nov 07 2026 - Jan 31 2027"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Nine Mile",
+      "BOUNDARYID": "615",
+      "HUNT_NUMBER": "BI6527",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Nine Mile, Private Lands Only",
+      "BOUNDARYID": "615",
+      "HUNT_NUMBER": "BI6538",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns",
+      "BOUNDARYID": "637",
+      "HUNT_NUMBER": "BI6503",
+      "SEASON": "Oct 28 2026 - Nov 8 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns",
+      "BOUNDARYID": "637",
+      "HUNT_NUMBER": "BI6504",
+      "SEASON": "Nov 11 2026 - Nov 22 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns",
+      "BOUNDARYID": "637",
+      "HUNT_NUMBER": "BI6505",
+      "SEASON": "Dec 9 2026 - Dec 20 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns",
+      "BOUNDARYID": "637",
+      "HUNT_NUMBER": "BI6506",
+      "SEASON": "Dec 23, 2026 - Jan 3, 2027"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns",
+      "BOUNDARYID": "637",
+      "HUNT_NUMBER": "BI6509",
+      "SEASON": "Jan 18 - 31, 2027"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Bison - Statewide Permit",
+      "BOUNDARYID": "637",
+      "HUNT_NUMBER": "BI1000",
+      "SEASON": "Aug 1, 2026 - Jan 31, 2027"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns",
+      "BOUNDARYID": "637",
+      "HUNT_NUMBER": "BI6515",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns",
+      "BOUNDARYID": "637",
+      "HUNT_NUMBER": "BI6516",
+      "SEASON": "Nov 25 2026 - Dec 6 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns",
+      "BOUNDARYID": "637",
+      "HUNT_NUMBER": "BI6539",
+      "SEASON": "Jan 6 - 17, 2027"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, Wild Horse Bench",
+      "BOUNDARYID": "638",
+      "HUNT_NUMBER": "BI6502",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, Wild Horse Bench",
+      "BOUNDARYID": "638",
+      "HUNT_NUMBER": "BI6526",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, Bitter Creek/South",
+      "BOUNDARYID": "449",
+      "HUNT_NUMBER": "BI6522",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, Bitter Creek/South",
+      "BOUNDARYID": "449",
+      "HUNT_NUMBER": "BI6523",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Statewide Conservation",
+      "BOUNDARYID": "454",
+      "HUNT_NUMBER": "BI6510",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, Wild Horse Bench/Nine Mile, Anthro",
+      "BOUNDARYID": "822",
+      "HUNT_NUMBER": "BI6507",
+      "SEASON": null
+    }
+  }
+]

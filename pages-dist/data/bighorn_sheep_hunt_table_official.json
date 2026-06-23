@@ -1,0 +1,1258 @@
+[
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Antelope Island",
+      "BOUNDARYID": "1",
+      "HUNT_NUMBER": "RS6700",
+      "SEASON": "Nov 9 2026 - Nov 16 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Antelope Island Conservation",
+      "BOUNDARYID": "1",
+      "HUNT_NUMBER": "RS1000",
+      "SEASON": "Nov 11, 2026 - Nov 18, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, South",
+      "BOUNDARYID": "15",
+      "HUNT_NUMBER": "RS6701",
+      "SEASON": "Oct 31 2026 - Nov 30 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, South",
+      "BOUNDARYID": "15",
+      "HUNT_NUMBER": "RS1001",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Book Cliffs, South",
+      "BOUNDARYID": "15",
+      "HUNT_NUMBER": "RS6715",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Rocky Mountain Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "15",
+      "HUNT_NUMBER": "RS0001",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Box Elder, Newfoundland Mtn",
+      "BOUNDARYID": "20",
+      "HUNT_NUMBER": "RS6703",
+      "SEASON": "Oct 03 2026 - Oct 23 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Box Elder, Newfoundland Mtn",
+      "BOUNDARYID": "20",
+      "HUNT_NUMBER": "RS1002",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Box Elder, Newfoundland Mtn",
+      "BOUNDARYID": "20",
+      "HUNT_NUMBER": "RS6704",
+      "SEASON": "Oct 24 2026 - Nov 13 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Box Elder, Newfoundland Mtn",
+      "BOUNDARYID": "20",
+      "HUNT_NUMBER": "RS1003",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Box Elder, Newfoundland Mtn (early)",
+      "BOUNDARYID": "20",
+      "HUNT_NUMBER": "RS6716",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Rocky Mountain Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "20",
+      "HUNT_NUMBER": "RS0001",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Box Elder, Newfoundland Mtn",
+      "BOUNDARYID": "20",
+      "HUNT_NUMBER": "RS6722",
+      "SEASON": "Nov 14 2026 - Dec 06 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Box Elder, Newfoundland Mtn (late)",
+      "BOUNDARYID": "20",
+      "HUNT_NUMBER": "RS6723",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "North Slope, Three Corners",
+      "BOUNDARYID": "140",
+      "HUNT_NUMBER": "RS6708",
+      "SEASON": "Sept 14 2026 - Nov 30 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "North Slope, Summit/West Daggett",
+      "BOUNDARYID": "143",
+      "HUNT_NUMBER": "RS6709",
+      "SEASON": "Sept 14 2026 - Nov 30 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Nine Mile, Range Creek",
+      "BOUNDARYID": "277",
+      "HUNT_NUMBER": "RS6706",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Nine Mile, Range Creek",
+      "BOUNDARYID": "277",
+      "HUNT_NUMBER": "RS6707",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Stansbury",
+      "BOUNDARYID": "288",
+      "HUNT_NUMBER": "RS6710",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Rocky Mountain Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "616",
+      "HUNT_NUMBER": "RS0001",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Nebo",
+      "BOUNDARYID": "616",
+      "HUNT_NUMBER": "RS6725",
+      "SEASON": "Oct 31 2026 - Nov 30 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Rocky Mountain Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "620",
+      "HUNT_NUMBER": "RS0001",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Wasatch Mtns, West",
+      "BOUNDARYID": "620",
+      "HUNT_NUMBER": "RS6724",
+      "SEASON": "Oct 31 2026 - Nov 30 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Fillmore, Oak Creek",
+      "BOUNDARYID": "668",
+      "HUNT_NUMBER": "RS6720",
+      "SEASON": "Oct 03 2026 - Oct 23 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Fillmore, Oak Creek",
+      "BOUNDARYID": "668",
+      "HUNT_NUMBER": "RS1004",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Rocky Mountain Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "668",
+      "HUNT_NUMBER": "RS0001",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Fillmore, Oak Creek",
+      "BOUNDARYID": "668",
+      "HUNT_NUMBER": "RS6726",
+      "SEASON": "Oct 24 2026 - Nov 13 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Fillmore, Oak Creek",
+      "BOUNDARYID": "668",
+      "HUNT_NUMBER": "RS1005",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Fillmore, Oak Creek",
+      "BOUNDARYID": "668",
+      "HUNT_NUMBER": "RS6727",
+      "SEASON": "Nov 14 2026 - Dec 06 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Box Elder, Pilot Mtn",
+      "BOUNDARYID": "682",
+      "HUNT_NUMBER": "RS6702",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Nebo/Wasatch Mtns, West",
+      "BOUNDARYID": "716",
+      "HUNT_NUMBER": "RS6705",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Wasatch Mtns, Avintaquin",
+      "BOUNDARYID": "224",
+      "HUNT_NUMBER": "RS6711",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Rocky Mountain Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "75",
+      "HUNT_NUMBER": "RS0001",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Oquirrh-Stansbury, West",
+      "BOUNDARYID": "75",
+      "HUNT_NUMBER": "RS6721",
+      "SEASON": "Oct 31 2026 - Nov 30 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Oquirrh-Stansbury, West",
+      "BOUNDARYID": "75",
+      "HUNT_NUMBER": "RS1007",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Statewide Conservation",
+      "BOUNDARYID": "454",
+      "HUNT_NUMBER": "RS6718",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Nine Mile, Jack Creek",
+      "BOUNDARYID": "820",
+      "HUNT_NUMBER": "RS6713",
+      "SEASON": "Oct 31 2026 - Nov 30 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Rocky Mountain Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "820",
+      "HUNT_NUMBER": "RS0001",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Nine Mile, Gray Canyon",
+      "BOUNDARYID": "821",
+      "HUNT_NUMBER": "RS6712",
+      "SEASON": "Oct 31 2026 - Nov 30 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Nine Mile, Gray Canyon",
+      "BOUNDARYID": "821",
+      "HUNT_NUMBER": "RS1006",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Nine Mile, Gray Canyon",
+      "BOUNDARYID": "821",
+      "HUNT_NUMBER": "RS6717",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Rocky Mountain Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "821",
+      "HUNT_NUMBER": "RS0001",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "North Slope, Bare Top/West Daggett",
+      "BOUNDARYID": "823",
+      "HUNT_NUMBER": "RS6714",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Rocky Mountain Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "823",
+      "HUNT_NUMBER": "RS0001",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Nebo/Wasatch Mtns",
+      "BOUNDARYID": "854",
+      "HUNT_NUMBER": "RS6719",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Rocky Mountain Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "854",
+      "HUNT_NUMBER": "RS0001",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Pine Valley, Beaver Dam",
+      "BOUNDARYID": "305",
+      "HUNT_NUMBER": "DS6605",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Pine Valley, Beaver Dam",
+      "BOUNDARYID": "305",
+      "HUNT_NUMBER": "DS6621",
+      "SEASON": "Oct 24 2026 - Dec 25 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Pine Valley, Virgin River",
+      "BOUNDARYID": "306",
+      "HUNT_NUMBER": "DS6620",
+      "SEASON": "Oct 24 2026 - Dec 25 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "San Juan, Lockhart",
+      "BOUNDARYID": "307",
+      "HUNT_NUMBER": "DS6606",
+      "SEASON": "Sept 12 2026 - Nov 10 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns/La Sal, Potash/South Cisco/San Juan, Lockhart/San Juan, South/San Rafael, Dirty Devil Conservation",
+      "BOUNDARYID": "307",
+      "HUNT_NUMBER": "DS6615",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns/La Sal, Potash/South Cisco/San Juan, Lockhart/San Juan, South/San Rafael, Dirty Devil Conservation",
+      "BOUNDARYID": "308",
+      "HUNT_NUMBER": "DS6615",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "San Juan, North",
+      "BOUNDARYID": "308",
+      "HUNT_NUMBER": "DS6622",
+      "SEASON": "Sept 12 2026 - Nov 10 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns/La Sal, Potash/South Cisco/San Juan, Lockhart/San Juan, South/San Rafael, Dirty Devil Conservation",
+      "BOUNDARYID": "309",
+      "HUNT_NUMBER": "DS6615",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "San Juan, San Juan River",
+      "BOUNDARYID": "309",
+      "HUNT_NUMBER": "DS6623",
+      "SEASON": "Sept 12 2026 - Nov 10 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "San Juan, South",
+      "BOUNDARYID": "310",
+      "HUNT_NUMBER": "DS6607",
+      "SEASON": "Sept 12 2026 - Nov 10 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns/La Sal, Potash/South Cisco/San Juan, Lockhart/San Juan, South/San Rafael, Dirty Devil Conservation",
+      "BOUNDARYID": "310",
+      "HUNT_NUMBER": "DS6615",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "La Sal, Potash/South Cisco",
+      "BOUNDARYID": "688",
+      "HUNT_NUMBER": "DS6604",
+      "SEASON": "Sept 12 2026 - Nov 10 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns/La Sal, Potash/South Cisco/San Juan, Lockhart/San Juan, South/San Rafael, Dirty Devil Conservation",
+      "BOUNDARYID": "688",
+      "HUNT_NUMBER": "DS6615",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Desert Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "688",
+      "HUNT_NUMBER": "DS1000",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Escalante, East",
+      "BOUNDARYID": "933",
+      "HUNT_NUMBER": "DS6626",
+      "SEASON": "Sept 12 2026 - Nov 10 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Kaiparowits, Escalante East/West",
+      "BOUNDARYID": "933",
+      "HUNT_NUMBER": "DS1003",
+      "SEASON": "Sept 12 - Nov 10, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Escalante, West",
+      "BOUNDARYID": "934",
+      "HUNT_NUMBER": "DS6627",
+      "SEASON": "Sept 12 2026 - Nov 10 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Kaiparowits, Escalante East/West",
+      "BOUNDARYID": "934",
+      "HUNT_NUMBER": "DS1003",
+      "SEASON": "Sept 12 - Nov 10, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Mineral Mtns",
+      "BOUNDARYID": "10003",
+      "HUNT_NUMBER": "DS6625",
+      "SEASON": "Sept 12 2026 - Nov 10 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Desert Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "187",
+      "HUNT_NUMBER": "DS1000",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Desert Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "190",
+      "HUNT_NUMBER": "DS1000",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "San Rafael, Dirty Devil",
+      "BOUNDARYID": "193",
+      "HUNT_NUMBER": "DS6608",
+      "SEASON": "Sept 12 2026 - Nov 10 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "San Rafael, Dirty Devil",
+      "BOUNDARYID": "193",
+      "HUNT_NUMBER": "DS1004",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns/La Sal, Potash/South Cisco/San Juan, Lockhart/San Juan, South/San Rafael, Dirty Devil Conservation",
+      "BOUNDARYID": "193",
+      "HUNT_NUMBER": "DS6615",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Desert Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "193",
+      "HUNT_NUMBER": "DS1000",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "San Rafael, Dirty Devil",
+      "BOUNDARYID": "193",
+      "HUNT_NUMBER": "DS6624",
+      "SEASON": "Nov 11 2026 - Dec 17 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "San Rafael, North",
+      "BOUNDARYID": "194",
+      "HUNT_NUMBER": "DS6609",
+      "SEASON": "Sept 12 2026 - Nov 10 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "San Rafael, North",
+      "BOUNDARYID": "194",
+      "HUNT_NUMBER": "DS1005",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "San Rafael North/South Conservation",
+      "BOUNDARYID": "194",
+      "HUNT_NUMBER": "DS6617",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Desert Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "194",
+      "HUNT_NUMBER": "DS1000",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "San Rafael North/South Conservation",
+      "BOUNDARYID": "195",
+      "HUNT_NUMBER": "DS6617",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns",
+      "BOUNDARYID": "94",
+      "HUNT_NUMBER": "DS6600",
+      "SEASON": "Sept 12 2026 - Nov 10 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns",
+      "BOUNDARYID": "94",
+      "HUNT_NUMBER": "DS1001",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Henry Mtns/La Sal, Potash/South Cisco/San Juan, Lockhart/San Juan, South/San Rafael, Dirty Devil Conservation",
+      "BOUNDARYID": "94",
+      "HUNT_NUMBER": "DS6615",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Desert Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "94",
+      "HUNT_NUMBER": "DS1000",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Kaiparowits, East",
+      "BOUNDARYID": "98",
+      "HUNT_NUMBER": "DS6601",
+      "SEASON": "Sept 12 2026 - Nov 10 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Kaiparowits, East",
+      "BOUNDARYID": "98",
+      "HUNT_NUMBER": "DS1002",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Kaiparowits, East/Escalante/West Conservation",
+      "BOUNDARYID": "98",
+      "HUNT_NUMBER": "DS6616",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Desert Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "98",
+      "HUNT_NUMBER": "DS1000",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Kaiparowits, Escalante",
+      "BOUNDARYID": "99",
+      "HUNT_NUMBER": "DS6602",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Kaiparowits, East/Escalante/West Conservation",
+      "BOUNDARYID": "99",
+      "HUNT_NUMBER": "DS6616",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Desert Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "99",
+      "HUNT_NUMBER": "DS1000",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Kaiparowits, West",
+      "BOUNDARYID": "100",
+      "HUNT_NUMBER": "DS6603",
+      "SEASON": "Sept 12 2026 - Nov 10 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Kaiparowits, East/Escalante/West Conservation",
+      "BOUNDARYID": "100",
+      "HUNT_NUMBER": "DS6616",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Desert Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "100",
+      "HUNT_NUMBER": "DS1000",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Kaiparowits, West",
+      "BOUNDARYID": "100",
+      "HUNT_NUMBER": "DS1006",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Zion",
+      "BOUNDARYID": "635",
+      "HUNT_NUMBER": "DS6611",
+      "SEASON": "Sept 12 2026 - Nov 10 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Zion",
+      "BOUNDARYID": "635",
+      "HUNT_NUMBER": "DS6612",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Zion Conservation",
+      "BOUNDARYID": "635",
+      "HUNT_NUMBER": "DS6613",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Zion (late) - Conservation",
+      "BOUNDARYID": "635",
+      "HUNT_NUMBER": "DS6614",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Desert Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "635",
+      "HUNT_NUMBER": "DS1000",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Zion",
+      "BOUNDARYID": "635",
+      "HUNT_NUMBER": "DS6619",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Desert Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "636",
+      "HUNT_NUMBER": "DS1000",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Statewide Conservation",
+      "BOUNDARYID": "454",
+      "HUNT_NUMBER": "DS6618",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "San Rafael, South",
+      "BOUNDARYID": "756",
+      "HUNT_NUMBER": "DS6610",
+      "SEASON": "Sept 12 2026 - Nov 10 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "San Rafael, South",
+      "BOUNDARYID": "756",
+      "HUNT_NUMBER": "DS1007",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Desert Bighorn Sheep - Statewide Permit",
+      "BOUNDARYID": "756",
+      "HUNT_NUMBER": "DS1000",
+      "SEASON": "Sept 1 - Dec 31, 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Nine Mile, Green River Valley",
+      "BOUNDARYID": "6",
+      "HUNT_NUMBER": "DA1029",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Nine Mile, Green River Valley",
+      "BOUNDARYID": "6",
+      "HUNT_NUMBER": "DA1041",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Nine Mile, Price River Valley",
+      "BOUNDARYID": "11",
+      "HUNT_NUMBER": "DA1030",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Nine Mile, Price River Valley",
+      "BOUNDARYID": "11",
+      "HUNT_NUMBER": "DA1046",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Oquirrh-Stansbury, Settlement Cyn",
+      "BOUNDARYID": "21",
+      "HUNT_NUMBER": "DA1031",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Panguitch Lake, Parowan Front",
+      "BOUNDARYID": "22",
+      "HUNT_NUMBER": "DA1032",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "San Juan, Monticello",
+      "BOUNDARYID": "23",
+      "HUNT_NUMBER": "DA1033",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "San Juan, Monticello",
+      "BOUNDARYID": "23",
+      "HUNT_NUMBER": "DA1042",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Box Elder, West Bear River",
+      "BOUNDARYID": "28",
+      "HUNT_NUMBER": "DA1001",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Box Elder, West Bear River",
+      "BOUNDARYID": "28",
+      "HUNT_NUMBER": "DA1002",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Southwest Desert, Garrison",
+      "BOUNDARYID": "31",
+      "HUNT_NUMBER": "DA1034",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Southwest Desert, Garrison",
+      "BOUNDARYID": "31",
+      "HUNT_NUMBER": "DA1035",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Southwest Desert, Cedar Valley",
+      "BOUNDARYID": "112",
+      "HUNT_NUMBER": "DA1043",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "East Canyon",
+      "BOUNDARYID": "113",
+      "HUNT_NUMBER": "DA1039",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "East Canyon",
+      "BOUNDARYID": "113",
+      "HUNT_NUMBER": "DA1040",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Monroe/Plateau, Sevier Valley",
+      "BOUNDARYID": "115",
+      "HUNT_NUMBER": "DA1003",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Monroe/Plateau, Sevier Valley",
+      "BOUNDARYID": "115",
+      "HUNT_NUMBER": "DA1038",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "North Slope, Manila-Phil Pico",
+      "BOUNDARYID": "137",
+      "HUNT_NUMBER": "DA1005",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Zion, Northwest Zion",
+      "BOUNDARYID": "252",
+      "HUNT_NUMBER": "DA1010",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Zion, Northwest Zion",
+      "BOUNDARYID": "252",
+      "HUNT_NUMBER": "DA1025",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Panguitch Lake, Panguitch Valley",
+      "BOUNDARYID": "432",
+      "HUNT_NUMBER": "DA1007",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Mt Carmel CWMU",
+      "BOUNDARYID": "533",
+      "HUNT_NUMBER": "DA1013",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Junction Valley CWMU",
+      "BOUNDARYID": "589",
+      "HUNT_NUMBER": "DA1012",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "East Canyon, Davis-North Salt Lake",
+      "BOUNDARYID": "859",
+      "HUNT_NUMBER": "DA1027",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "East Canyon, Davis-North Salt Lake",
+      "BOUNDARYID": "859",
+      "HUNT_NUMBER": "DA1028",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Myton",
+      "BOUNDARYID": "864",
+      "HUNT_NUMBER": "DA1044",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Fillmore, Oak City",
+      "BOUNDARYID": "881",
+      "HUNT_NUMBER": "DA1045",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Vernal-Ouray Valley",
+      "BOUNDARYID": "895",
+      "HUNT_NUMBER": "DA1047",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Vernal, Ashley Valley",
+      "BOUNDARYID": "909",
+      "HUNT_NUMBER": "DA1049",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Fillmore City",
+      "BOUNDARYID": "910",
+      "HUNT_NUMBER": "DA1048",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Wasatch Mtns, West-Sheep Creek",
+      "BOUNDARYID": "84",
+      "HUNT_NUMBER": "DA1036",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Chalk Creek",
+      "BOUNDARYID": "87",
+      "HUNT_NUMBER": "DA1026",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Panguitch Lake, Cottonwood",
+      "BOUNDARYID": "475",
+      "HUNT_NUMBER": "DA1006",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Panguitch Lake, Summit",
+      "BOUNDARYID": "476",
+      "HUNT_NUMBER": "DA1008",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "The Rose of Snowville CWMU",
+      "BOUNDARYID": "509",
+      "HUNT_NUMBER": "DA1050",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Mt Dutton, Circleville South",
+      "BOUNDARYID": "748",
+      "HUNT_NUMBER": "DA1004",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Beaver, Circleville North",
+      "BOUNDARYID": "749",
+      "HUNT_NUMBER": "DA1000",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "George Creek CWMU",
+      "BOUNDARYID": "806",
+      "HUNT_NUMBER": "DA1011",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Monroe, Annabella",
+      "BOUNDARYID": "833",
+      "HUNT_NUMBER": "DA1014",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Monroe, Foothills",
+      "BOUNDARYID": "834",
+      "HUNT_NUMBER": "DA1015",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "East Angle",
+      "BOUNDARYID": "835",
+      "HUNT_NUMBER": "DA1016",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "East Angle",
+      "BOUNDARYID": "835",
+      "HUNT_NUMBER": "DA1037",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Pine Valley, Enterprise",
+      "BOUNDARYID": "839",
+      "HUNT_NUMBER": "DA1009",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Pine Valley, Enterprise",
+      "BOUNDARYID": "839",
+      "HUNT_NUMBER": "DA1017",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Pine Valley, New Harmony",
+      "BOUNDARYID": "840",
+      "HUNT_NUMBER": "DA1018",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Pine Valley, New Harmony",
+      "BOUNDARYID": "840",
+      "HUNT_NUMBER": "DA1019",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Pine Valley, Quichapa",
+      "BOUNDARYID": "841",
+      "HUNT_NUMBER": "DA1020",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Pine Valley, Quichapa",
+      "BOUNDARYID": "841",
+      "HUNT_NUMBER": "DA1021",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Antimony",
+      "BOUNDARYID": "842",
+      "HUNT_NUMBER": "DA1022",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Antimony",
+      "BOUNDARYID": "842",
+      "HUNT_NUMBER": "DA1023",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Fremont River Valley",
+      "BOUNDARYID": "844",
+      "HUNT_NUMBER": "DA1024",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Box Elder, Newfoundland Mtn",
+      "BOUNDARYID": "20",
+      "HUNT_NUMBER": "RE1000",
+      "SEASON": null
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Antelope Island Conservation",
+      "BOUNDARYID": "1",
+      "HUNT_NUMBER": "RS1000",
+      "SEASON": "Nov 9 2026 - Nov 16 2026"
+    }
+  },
+  {
+    "attributes": {
+      "BOUNDARY_NAME": "Antelope Island",
+      "BOUNDARYID": "1",
+      "HUNT_NUMBER": "RS6700",
+      "SEASON": "Nov 09, 2026 - Nov 16, 2026"
+    }
+  }
+]
