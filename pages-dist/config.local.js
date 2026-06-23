@@ -1,0 +1,1 @@
+window.UOGA_CONFIG_LOCAL = window.UOGA_CONFIG_LOCAL || {};

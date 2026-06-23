@@ -1,0 +1,983 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script src="./embed-mode.js?v=20260422-embed-1"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Outfitter Verification</title>
+  <link rel="icon" type="image/png" href="./assets/logos/favicon.ico.png" />
+  <link rel="stylesheet" href="./style.css?v=20260606-runtime-ladder-mask-1" />
+  <style>
+    :root {
+      /* Align page-local tones with the shared light theme. */
+      --bg: #f6f0e7;
+      --panel: rgba(255, 253, 249, 0.92);
+      --panel-strong: rgba(255, 253, 249, 0.96);
+      --panel2: rgba(255, 253, 249, 0.96);
+      --line: rgba(163, 120, 83, 0.55);
+      --line-soft: rgba(0, 0, 0, 0.08);
+      --text: #2b1c12;
+      --muted: #6b5646;
+      --accent: rgb(240, 120, 0);
+      --accent-dark: rgb(240, 120, 0);
+      --shadow: 0 10px 28px rgba(58, 37, 18, 0.16);
+      --font-display: "Arial Black", "Segoe UI Black", Impact, sans-serif;
+      --font-ui: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+
+    body { background: transparent; color: var(--text); font-family: var(--font-ui); }
+
+    a { color: #7cbcf7; }
+
+    .shell {
+      width: min(1200px, calc(100vw - 28px));
+      margin: 0 auto;
+      padding: 18px 0 40px;
+    }
+
+    /* Header is shared via style.css; keep page-local CSS from overriding it. */
+    .topbar { border-radius: 0; border-left: 0; border-right: 0; }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand img {
+      height: 72px;
+      width: auto;
+      background: #fff;
+      border-radius: 6px;
+      padding: 2px;
+    }
+
+    .brand-copy h1 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 32px;
+      line-height: .98;
+      text-transform: uppercase;
+    }
+
+     .brand-plain h1 {
+       margin: 0;
+       font-family: var(--font-display);
+       font-size: 22px;
+       line-height: 1;
+       text-transform: uppercase;
+     }
+
+    .brand-copy p {
+      margin: 6px 0 0;
+      color: var(--accent);
+      font-size: 22px;
+      font-family: var(--font-display);
+      line-height: 1.08;
+      text-transform: none;
+    }
+
+     .nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .controls { margin-left: 0; }
+
+     .nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--accent) 52%, transparent);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.22), transparent 34%),
+        linear-gradient(180deg, rgba(57, 44, 34, 0.92), rgba(28, 22, 17, 0.96));
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      font-size: 12px;
+      white-space: nowrap;
+      transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+    }
+
+     .nav a.active,
+    .nav a:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(240, 120, 0, 0.16), 0 12px 28px rgba(82, 44, 20, 0.30);
+      transform: translateY(-1px);
+    }
+
+    .nav a.active {
+      border-color: #d1ab83;
+      background: linear-gradient(180deg, rgba(240, 120, 0, 0.98), rgba(240, 120, 0, 0.98));
+      color: #2f1d12;
+      box-shadow: 0 10px 24px rgba(82, 44, 20, 0.28);
+    }
+
+    .nav-icon-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .nav-icon-link img {
+      display: block;
+      width: auto;
+      height: 54px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.22);
+      transition: transform 0.14s ease, box-shadow 0.14s ease;
+    }
+
+    .nav-icon-link:hover img,
+    .nav-icon-link:focus-visible img {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
+    }
+
+    .hero {
+      margin-top: 18px;
+      padding: 30px 28px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background:
+        linear-gradient(135deg, rgba(240, 120, 0, 0.14), rgba(240, 120, 0, 0) 44%),
+        var(--panel-strong);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero h2 {
+      margin: 0;
+      max-width: 980px;
+      font-family: var(--font-display);
+      font-size: clamp(30px, 4.5vw, 52px);
+      line-height: 1.06;
+      color: var(--accent);
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      text-transform: none;
+    }
+
+    .hero-sub {
+      margin: 14px auto 0;
+      max-width: 760px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+      justify-content: center;
+    }
+
+    .hero-actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      font-size: 12px;
+      background: var(--panel2);
+    }
+
+    .hero-actions a.primary {
+      border-color: transparent;
+      color: #fff6ed;
+      background: linear-gradient(180deg, var(--accent), var(--accent-dark));
+    }
+
+    .hero-actions a:hover {
+      border-color: var(--accent);
+    }
+
+    .status-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+      justify-content: center;
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(240, 120, 0, 0.28);
+      background: rgba(240, 120, 0, 0.12);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .card {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .card h4 {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .card h3 {
+      margin: 0 0 14px;
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 1.05;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .span-4 { grid-column: span 4; }
+    .span-5 { grid-column: span 5; }
+    .span-6 { grid-column: span 6; }
+    .span-7 { grid-column: span 7; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+
+    .definition-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .definition {
+      padding: 18px;
+      border: 1px solid var(--line-soft);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .definition strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--text);
+      font-size: 18px;
+      letter-spacing: .02em;
+    }
+
+    .callout {
+      padding: 18px 20px;
+      border-radius: 18px;
+      border: 1px solid rgba(240, 120, 0, 0.32);
+      background: rgba(240, 120, 0, 0.12);
+    }
+
+    .callout p,
+    .callout li {
+      margin: 0;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .callout ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      padding: 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .footer-note h3 {
+      margin: 0 0 10px;
+      font-family: var(--font-display);
+      font-size: 24px;
+      line-height: 1.05;
+    }
+
+    .footer-note ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .footer-note li {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .outfitter-directory-status {
+      margin: 4px 0 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .outfitter-public-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .outfitter-public-card {
+      border: 1px solid var(--line-soft);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.55);
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .outfitter-public-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .outfitter-public-head h5 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    .outfitter-public-sub {
+      margin: 4px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .outfitter-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .outfitter-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(240, 120, 0, 0.34);
+      background: rgba(240, 120, 0, 0.1);
+      color: #5c2f10;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .outfitter-list-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .outfitter-list-badges .outfitter-badge {
+      min-height: 22px;
+      padding: 3px 8px;
+      font-size: 10px;
+      letter-spacing: .03em;
+    }
+
+    .outfitter-public-meta {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .outfitter-public-meta strong {
+      color: var(--text);
+    }
+
+    .outfitter-public-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .outfitter-public-actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      text-decoration: none;
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      background: var(--panel2);
+    }
+
+    .outfitter-public-actions .is-primary {
+      border-color: transparent;
+      color: #fff6ed;
+      background: linear-gradient(180deg, var(--accent), var(--accent-dark));
+    }
+
+    .outfitter-public-actions a:hover {
+      border-color: var(--accent);
+    }
+
+    @media (max-width: 980px) {
+      .definition-grid { grid-template-columns: 1fr; }
+      .span-4, .span-5, .span-6, .span-7, .span-8 { grid-column: span 12; }
+      .outfitter-public-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        width: min(100vw - 20px, 1200px);
+        padding-top: 14px;
+      }
+
+      .topbar, .hero, .card, .footer-note {
+        padding: 18px;
+      }
+
+      .brand {
+        align-items: flex-start;
+      }
+
+      .brand img {
+        height: 58px;
+      }
+
+      .brand-copy h1 {
+        font-size: 26px;
+      }
+
+      .brand-plain h1 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: 22px;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .brand-copy p {
+        font-size: 18px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions a {
+        width: 100%;
+      }
+    }
+  </style>
+  <script src="https://js.sentry-cdn.com/26137c5576f01423efc85f47076f9548.min.js" crossorigin="anonymous"></script>
+  <script src="./sentry-browser-init.js"></script></head>
+<body>
+  <section class="page-nav-strip" aria-label="Site navigation">
+    <div class="page-nav-case">
+      <nav class="utility-nav">
+        <a class="utility-link" href="./"><span>HUNT BUILDER</span></a>
+        <a class="utility-link" href="./research.html"><span>HUNT RESEARCH</span></a>
+        <a class="utility-link active" href="./verify.html" aria-current="page"><span>OUTFITTERS</span></a>
+        <a class="utility-link" href="./hard-copy.html"><span>HUNTING BIBLE</span></a>
+      </nav>
+    </div>
+  </section>
+
+  <header class="topbar">
+    <div class="controls">
+      <div class="controls-center"></div>
+    </div>
+  </header>
+
+  <main class="shell">
+
+    <section class="hero">
+      <h2>Reviewed outfitters. Clearer trust signal.</h2>
+      <p class="hero-sub">Verified identity. Reviewed operations. Public standing.</p>
+
+    </section>
+
+    <section class="layout">
+      <article class="card span-12">
+        <h4>At a Glance</h4>
+        <h3>What it means</h3>
+        <ul>
+          <li>Only reviewed outfitters are publicly listed</li>
+          <li>Designation is meant to create a trust signal</li>
+          <li>Not every outfitter qualifies for public listing</li>
+          <li>Higher designation requires stronger standing</li>
+        </ul>
+      </article>
+
+      <article class="card span-12">
+        <h4>Designation Levels</h4>
+        <h3>Public designation levels</h3>
+        <div class="definition-grid">
+          <div class="definition">
+            <strong>Verified</strong>
+            <ul>
+              <li>Baseline public review designation</li>
+              <li>Identity and business profile reviewed</li>
+              <li>Source data compared</li>
+              <li>Suitable for public listing</li>
+            </ul>
+          </div>
+
+          <div class="definition">
+            <strong>Certified Professional Outfitter (C.P.O.)</strong>
+            <ul>
+              <li>Higher internal designation</li>
+              <li>All Verified standards already satisfied</li>
+              <li>Stronger overall readiness and standing</li>
+              <li>Reserved for higher-confidence operators</li>
+            </ul>
+          </div>
+
+          <div class="definition">
+            <strong>Unpublished / Hold</strong>
+            <ul>
+              <li>Incomplete record</li>
+              <li>Unresolved conflict</li>
+              <li>Not review ready</li>
+              <li>Not publicly designated</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="card span-5">
+        <h4>Why It Exists</h4>
+        <h3>Why it exists</h3>
+        <ul>
+          <li>Filters weak or unreliable listings</li>
+          <li>Creates professional distinction for outfitters</li>
+          <li>Gives hunters a stronger trust signal</li>
+          <li>Raises the standard above a raw list of names</li>
+        </ul>
+      </article>
+
+      <article class="card span-7">
+        <h4>Verified Means</h4>
+        <h3>Baseline trust for listing</h3>
+        <ul>
+          <li>Business identity is sufficiently confirmed</li>
+          <li>Contact information is usable</li>
+          <li>Operating relevance is clear enough to publish</li>
+          <li>Available source data is reasonably consistent</li>
+          <li>No major unresolved conflict remains</li>
+        </ul>
+      </article>
+
+      <article class="card span-6">
+        <h4>Verified Standard</h4>
+        <h3>Verified standard</h3>
+        <ul>
+          <li>Identity and business information reviewed</li>
+          <li>Contact information current enough to list</li>
+          <li>Registration or licensure identified where applicable</li>
+          <li>Services and authority claims are clear</li>
+          <li>No major inconsistency blocks publication</li>
+        </ul>
+      </article>
+
+      <article class="card span-6">
+        <h4>C.P.O. Standard</h4>
+        <h3>Higher professional standing</h3>
+        <ul>
+          <li>All Verified requirements already met</li>
+          <li>Stronger business completeness and reliability</li>
+          <li>Stronger responsiveness and readiness</li>
+          <li>Cleaner regulatory and operating standing where applicable</li>
+          <li>No material concern that undercuts higher designation</li>
+        </ul>
+      </article>
+
+      <article class="card span-7">
+        <h4>How Review Works</h4>
+        <h3>How review works</h3>
+        <ul>
+          <li>Outfitter submits business and operating information</li>
+          <li>U.O.G.A. compares it against available sources</li>
+          <li>Record is reviewed for clarity, consistency, and standing</li>
+          <li>Result: Verified, C.P.O., or not published</li>
+        </ul>
+      </article>
+
+      <article class="card span-5">
+        <h4>What Gets Reviewed</h4>
+        <h3>Sources used</h3>
+        <ul>
+          <li>Submitted outfitter information</li>
+          <li>Public business presence and contact data</li>
+          <li>Website and social-business identity</li>
+          <li>Government-source information where available</li>
+          <li>Federal and state permit-reference information where available</li>
+        </ul>
+      </article>
+
+      <article class="card span-12" id="dwr-registration-floor">
+        <h4>Regulatory Floor</h4>
+        <h3>Utah DWR registration matters</h3>
+        <div class="callout">
+          <ul>
+            <li>Where Utah DWR registration is required, that status matters in review</li>
+            <li>U.O.G.A. does not replace DWR authority</li>
+            <li>Public designation should reflect whether that baseline is addressed</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="card span-12">
+        <h4>Important Limitation</h4>
+        <h3>What designation does not mean</h3>
+        <ul>
+          <li>Not a license</li>
+          <li>Not a permit grant</li>
+          <li>Not a land-access guarantee</li>
+          <li>Not an agency authorization</li>
+          <li>Not a legal determination</li>
+        </ul>
+      </article>
+
+      <article class="card span-12">
+        <h4>Public Directory</h4>
+        <h3>Verified Outfitter Records</h3>
+        <p>These cards show public-facing service coverage and contact routes for reviewed outfitters.</p>
+        <p id="outfitterDirectoryStatus" class="outfitter-directory-status">Loading verified outfitter records...</p>
+        <div id="verifiedOutfitterGrid" class="outfitter-public-grid"></div>
+      </article>
+    </section>
+
+    <section class="footer-note">
+      <h3>Ongoing review still applies</h3>
+      <ul>
+        <li>Designation may require updated information</li>
+        <li>U.O.G.A. may re-review records over time</li>
+        <li>Designation may be removed if information becomes incomplete, inconsistent, outdated, or unreliable</li>
+      </ul>
+    </section>
+  </main>
+  <div id="dwrOutfitterModal" class="source-modal" hidden>
+    <div class="source-modal-card" role="dialog" aria-modal="true" aria-labelledby="dwrOutfitterModalTitle">
+      <div class="source-modal-head">
+        <div>
+          <h3 id="dwrOutfitterModalTitle">Utah DWR Outfitter Resources</h3>
+          <p>Embedded DWR page. If blocked, use the fallback link below.</p>
+        </div>
+        <button id="dwrOutfitterCloseBtn" class="source-close" type="button" aria-label="Close">X</button>
+      </div>
+      <div style="padding: 10px;">
+        <div class="iframe-crop" style="--iframe-crop: 74px;">
+          <iframe
+            id="dwrOutfitterFrame"
+            class="iframe-crop-frame"
+            title="Utah DWR Outfitter Resources"
+            referrerpolicy="no-referrer-when-downgrade"
+            loading="lazy"
+          ></iframe>
+        </div>
+        <p class="helper" style="margin-top:10px;">
+          Fallback:
+          <a id="dwrOutfitterFallback" href="https://wildlife.utah.gov/" target="_blank" rel="noopener noreferrer">Open Utah DWR in a new tab</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <script src="./ui.js?v=20260606-runtime-ladder-mask-1"></script>
+  <script>
+    (function () {
+      const link = document.querySelector('.header-dnr-link');
+      const modal = document.getElementById('dwrOutfitterModal');
+      const frame = document.getElementById('dwrOutfitterFrame');
+      const closeBtn = document.getElementById('dwrOutfitterCloseBtn');
+      const fallback = document.getElementById('dwrOutfitterFallback');
+      const dwrUrl = 'https://wildlife.utah.gov/guide/outfitter.html';
+      if (!link || !modal || !frame || !closeBtn || !fallback) return;
+      link.setAttribute('href', '#');
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        frame.setAttribute('src', dwrUrl);
+        fallback.setAttribute('href', dwrUrl);
+        modal.hidden = false;
+      });
+      closeBtn.addEventListener('click', function () { modal.hidden = true; });
+      modal.addEventListener('click', function (event) {
+        if (event.target === modal) modal.hidden = true;
+      });
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') modal.hidden = true;
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      const statusEl = document.getElementById('outfitterDirectoryStatus');
+      const gridEl = document.getElementById('verifiedOutfitterGrid');
+      if (!statusEl || !gridEl) return;
+
+      const sources = (
+        Array.isArray(window.UOGA_CONFIG?.OUTFITTERS_DATA_SOURCES)
+          ? window.UOGA_CONFIG.OUTFITTERS_DATA_SOURCES
+          : []
+      ).filter(Boolean);
+
+      function safe(value) {
+        return String(value == null ? '' : value).trim();
+      }
+
+      function escapeHtml(value) {
+        return safe(value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function normalizeList(value) {
+        if (Array.isArray(value)) return value.map(safe).filter(Boolean);
+        const v = safe(value);
+        return v ? [v] : [];
+      }
+
+      function dedupeList(values) {
+        const seen = new Set();
+        const out = [];
+        values.forEach((item) => {
+          const text = safe(item);
+          if (!text) return;
+          const key = text.toLowerCase();
+          if (seen.has(key)) return;
+          seen.add(key);
+          out.push(text);
+        });
+        return out;
+      }
+
+      function firstValue() {
+        for (let i = 0; i < arguments.length; i += 1) {
+          const v = safe(arguments[i]);
+          if (v) return v;
+        }
+        return '';
+      }
+
+      function pickServiceBadges(item) {
+        const explicit = normalizeList(item.serviceTypes || item.service_types)
+          .map((entry) => safe(entry).replace(/_/g, ' '));
+        if (explicit.length) return dedupeList(explicit).slice(0, 10);
+        const badges = [];
+        if (item.guidedHunts) badges.push('Fully Guided');
+        if (item.diySupport) badges.push('Semi-Guided');
+        if (item.scoutingPackage || item.scouting_package) badges.push('Scouting Package');
+        if (item.packTrips || item.pack_out || item.recovery) badges.push('Pack-Out / Recovery');
+        if (item.youthHunts) badges.push('Youth Friendly');
+        if (item.antlerless || item.freezer_hunt) badges.push('Antlerless / Freezer Hunt');
+        if (item.trespassAccess || item.private_land_access) badges.push('Private Land Access');
+        if (item.archery || item.muzzleloader) badges.push('Weapon-Specific Service');
+        if (item.high_country || item.mountain_goat) badges.push('High-Country / Mountain Goat');
+        if (item.oil_species) badges.push('O.I.L. Species');
+        return dedupeList(badges).length ? dedupeList(badges) : ['Guide Service'];
+      }
+
+      function formatReviewedDate(value) {
+        const raw = safe(value);
+        if (!raw) return 'Review date pending publication';
+        const parsed = new Date(raw);
+        if (Number.isNaN(parsed.getTime())) return raw;
+        return parsed.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+      }
+
+      function normalizeOutfitter(raw) {
+        const species = dedupeList(normalizeList(raw.speciesServed || raw.species_served));
+        const units = dedupeList(normalizeList(raw.unitsServed || raw.units_served));
+        const services = pickServiceBadges(raw);
+        const phone = normalizeList(raw.phone);
+        const email = normalizeList(raw.email);
+        const website = firstValue(raw.website, raw.url);
+        const city = firstValue(raw.city, raw.hometown);
+        const state = firstValue(raw.state, raw.region, 'Utah');
+        const reviewed = formatReviewedDate(firstValue(raw.reviewed_at, raw.reviewedAt, raw.lastReviewed, ''));
+        const verification = firstValue(raw.verificationStatus, raw.certLevel, raw.listingType, 'Verified');
+        const permitContext = firstValue(raw.federal_permit_context, raw.state_permit_context, raw.permit_context, raw.notes);
+        return {
+          name: firstValue(raw.listingName, raw.businessName, raw.name, 'Verified Outfitter'),
+          verification,
+          cityState: city ? `${city}, ${state}` : state,
+          species,
+          units,
+          services,
+          website,
+          phone: phone[0] || '',
+          email: email[0] || '',
+          reviewed,
+          permitContext
+        };
+      }
+
+      function renderBadgeList(items, fallbackText) {
+        if (!items.length) return `<span class="outfitter-public-sub">${escapeHtml(fallbackText)}</span>`;
+        return `<div class="outfitter-list-badges">${items.slice(0, 10).map((item) => `<span class="outfitter-badge">${escapeHtml(item)}</span>`).join('')}</div>`;
+      }
+
+      function renderCards(items, dataClass) {
+        if (!items.length) {
+          gridEl.innerHTML = '<div class="outfitter-public-card"><p>No reviewed outfitter records are published yet.</p></div>';
+          return;
+        }
+        statusEl.textContent = dataClass === 'contract'
+          ? `Showing ${items.length} public outfitter record${items.length === 1 ? '' : 's'} (public contract feed).`
+          : dataClass === 'public'
+            ? `Showing ${items.length} public outfitter record${items.length === 1 ? '' : 's'}.`
+            : `Showing ${items.length} reviewed records (fallback source).`;
+        gridEl.innerHTML = items.map((item) => {
+          const serviceBadges = item.services.map((tag) => `<span class="outfitter-badge">${escapeHtml(tag)}</span>`).join('');
+          const speciesBadges = renderBadgeList(item.species, 'Species not published');
+          const unitBadges = renderBadgeList(item.units, 'Units not published');
+          const primaryContact = item.phone
+            ? `<a class="is-primary" href="tel:${escapeHtml(item.phone.replace(/[^0-9+]/g, ''))}">Contact</a>`
+            : item.email
+              ? `<a class="is-primary" href="mailto:${escapeHtml(item.email)}">Contact</a>`
+              : item.website
+                ? `<a class="is-primary" href="${escapeHtml(item.website)}" target="_blank" rel="noopener noreferrer">Contact</a>`
+                : '';
+          const actions = [
+            primaryContact,
+            item.website ? `<a href="${escapeHtml(item.website)}" target="_blank" rel="noopener noreferrer">Website</a>` : '',
+            item.phone ? `<a href="tel:${escapeHtml(item.phone.replace(/[^0-9+]/g, ''))}">Call</a>` : '',
+            item.email ? `<a href="mailto:${escapeHtml(item.email)}">Email</a>` : ''
+          ].filter(Boolean);
+          const uniqueActions = [...new Set(actions)].join('');
+          return `
+            <article class="outfitter-public-card">
+              <div class="outfitter-public-head">
+                <div>
+                  <h5>${escapeHtml(item.name)}</h5>
+                  <p class="outfitter-public-sub">${escapeHtml(item.cityState)}</p>
+                </div>
+                <span class="outfitter-badge">${escapeHtml(item.verification)}</span>
+              </div>
+              <div class="outfitter-badge-row">${serviceBadges}</div>
+              <ul class="outfitter-public-meta">
+                <li><strong>Species served:</strong> ${speciesBadges}</li>
+                <li><strong>Units served:</strong> ${unitBadges}</li>
+                <li><strong>Reviewed:</strong> ${escapeHtml(item.reviewed)}</li>
+                <li><strong>Permit context:</strong> ${escapeHtml(item.permitContext || 'Public permit context not published.')}</li>
+              </ul>
+              <div class="outfitter-public-actions">${uniqueActions || '<span class="outfitter-public-sub">Contact route not published</span>'}</div>
+            </article>`;
+        }).join('');
+      }
+
+      async function loadJson(url) {
+        const response = await fetch(url, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`Failed ${url}`);
+        return response.json();
+      }
+
+      (async function initDirectory() {
+        try {
+          let records = [];
+          let mode = 'contract';
+
+          for (let i = 0; i < sources.length && !records.length; i += 1) {
+            const source = safe(sources[i]);
+            if (!source) continue;
+            try {
+              const payload = await loadJson(source);
+              const isFallback = /\/data\/outfitters(?:-public)?\.json/i.test(source);
+              const candidateRows = Array.isArray(payload) ? payload : [];
+              records = isFallback
+                ? candidateRows.filter((row) => {
+                  const status = safe(row.verificationStatus).toLowerCase();
+                  const cert = safe(row.certLevel).toLowerCase();
+                  return status.includes('vetted') || status.includes('verified') || cert.includes('cpo');
+                })
+                : candidateRows;
+              mode = isFallback ? 'fallback' : (i === 0 ? 'contract' : 'public');
+            } catch (error) {
+              console.warn(`Outfitter feed not available: ${source}`, error);
+            }
+          }
+
+          if (!records.length) {
+            throw new Error('No outfitter feed sources returned data.');
+          }
+
+          const normalized = records.map(normalizeOutfitter).filter((row) => safe(row.name));
+          renderCards(normalized, mode);
+        } catch (error) {
+          console.error(error);
+          statusEl.textContent = 'Could not load outfitter records right now.';
+          gridEl.innerHTML = '<div class="outfitter-public-card"><p>Try refreshing, or check the public data feed files.</p></div>';
+        }
+      })();
+    })();
+  </script>
+  <script src="./header-layout.js?v=20260606-runtime-ladder-mask-1"></script>
+</body>
+</html>

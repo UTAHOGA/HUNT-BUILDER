@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="./assets/logos/favicon.ico.png" />
+  <title>U.O.G.A. Hunt-Builder Resource Library</title>
+  <script src="./embed-mode.js?v=20260422-embed-1"></script>
+  <link rel="stylesheet" href="./style.css?v=20260606-runtime-ladder-mask-1" />
+  <link rel="stylesheet" href="./assets/css/hard-copy-public-library.css?v=20260606-library-overlay-menu-1" />
+  <script src="https://js.sentry-cdn.com/26137c5576f01423efc85f47076f9548.min.js" crossorigin="anonymous"></script>
+  <script src="./sentry-browser-init.js"></script>
+</head>
+<body class="hard-copy-page" style="--wallpaper: url('/assets/backgrounds/CABIN.png');">
+  <section class="page-nav-strip" aria-label="Site navigation">
+    <div class="page-nav-case">
+      <nav class="utility-nav">
+        <a class="utility-link" href="./"><span>U.O.G.A. HOME</span></a>
+        <a class="utility-link" href="./"><span>HUNT BUILDER</span></a>
+        <a class="utility-link" href="./research.html"><span>HUNT RESEARCH</span></a>
+        <a class="utility-link" href="./verify.html"><span>OUTFITTERS</span></a>
+        <a class="utility-link active" href="./hard-copy.html" aria-current="page"><span>HUNTING BIBLE</span></a>
+      </nav>
+    </div>
+  </section>
+
+  <header class="topbar topbar-planner hard-copy-topbar" aria-label="Hunting Bible navigation">
+    <div class="topbar-left"></div>
+    <div class="topbar-right"></div>
+  </header>
+
+  <main class="public-library-shell" aria-label="U.O.G.A. Hunt-Builder public resource library">
+    <section class="library-wall-stage">
+      <div class="public-library-controls" aria-label="Search public hunt library">
+        <input
+          id="uogaLibrarySearch"
+          class="public-library-search"
+          type="search"
+          placeholder="Search folders or files (rules, harvest, draw, permits, outfitters...)"
+          autocomplete="off"
+        />
+        <button id="uogaLibraryClear" type="button" class="public-library-clear">Clear</button>
+      </div>
+      <p class="public-library-note">Detailed draw and harvest datasets are available through Hunt Research. This library shows curated public reference documents.</p>
+      <div id="uogaFolderWall" class="public-library-folders" aria-label="Public hunt library folders"></div>
+    </section>
+
+    <section id="uogaResultsPanel" class="public-library-results" aria-live="polite" aria-hidden="true" hidden>
+      <header class="public-library-results-head">
+        <div>
+          <h2 id="uogaResultsTitle">Filtered Results</h2>
+          <span id="uogaLibraryCount">0 files</span>
+        </div>
+        <button id="uogaResultsClose" class="public-library-results-close" type="button" aria-label="Close folder results">Close</button>
+      </header>
+      <div id="uogaActiveFilters" class="public-library-active-filters"></div>
+      <div id="uogaLibrarySections" class="public-library-results-grid"></div>
+      <div id="uogaPdfFlipPanel" class="uoga-pdf-flip-panel" hidden role="dialog" aria-modal="true" aria-labelledby="uogaPdfFlipTitle">
+        <div class="uoga-pdf-flip-backdrop" data-action="close-pdf"></div>
+        <div class="uoga-pdf-flip-modal">
+          <div class="uoga-pdf-flip-head">
+            <strong id="uogaPdfFlipTitle">PDF Viewer</strong>
+            <div class="uoga-pdf-flip-actions">
+              <a id="uogaPdfDownload" href="#" target="_blank" rel="noopener noreferrer">Download Original</a>
+              <button type="button" id="uogaPdfFlipClose">Close</button>
+            </div>
+          </div>
+          <div class="uoga-pdf-flip-toolbar">
+            <button type="button" id="uogaPdfPrev">Previous</button>
+            <span id="uogaPdfStatus">Loading...</span>
+            <button type="button" id="uogaPdfNext">Next</button>
+          </div>
+          <div id="uogaPdfFlipbook" class="uoga-pdf-flipbook"></div>
+        </div>
+      </div>
+      <div id="uogaEmbedPanel" class="uoga-embed-panel" hidden>
+        <div class="uoga-embed-head">
+          <strong id="uogaEmbedTitle">Embedded Resource</strong>
+          <button type="button" id="uogaEmbedClose">Close</button>
+        </div>
+        <iframe id="uogaEmbedFrame" title="Embedded Public Resource" loading="lazy"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <script src="./header-layout.js?v=20260606-runtime-ladder-mask-1"></script>
+  <script src="./assets/js/hard-copy-public-library.js?v=20260530-library-render-fix-3"></script>
+</body>
+</html>

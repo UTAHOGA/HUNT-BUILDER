@@ -1,0 +1,6 @@
+{
+  "count": 1120,
+  "index_file": "hunt_research_2026.index.json",
+  "detail_dir": "hunts",
+  "notes": "Index contains lightweight metadata plus matrix-facing summary ladders. Full ladders and projections live in per-hunt detail files."
+}
