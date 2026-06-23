@@ -8,7 +8,7 @@
   const FOLDERS = [
     { id: "rules", title: "UTAH DWR RULES & REGULATIONS", description: "Current-year/current-cycle public rules and regulation PDFs." },
     { id: "harvest", title: "HARVEST DATA", description: "Public harvest reports and data across years." },
-    { id: "draw", title: "DRAW RESULTS", description: "Public draw results and draw odds across years." },
+    { id: "draw", title: "2026 HUNT DRAW RESULTS", description: "Public 2026 draw results and permit quota PDF documents." },
     { id: "conservation", title: "CONSERVATION PERMITS", description: "Current-cycle conservation permit references." },
     { id: "expo", title: "HUNT EXPO", description: "Current-year Hunt Expo permit number references." },
     { id: "calendar", title: "SIGNIFICANT DATES / CALENDAR", description: "Application windows, deadlines, season dates, and calendar references." },

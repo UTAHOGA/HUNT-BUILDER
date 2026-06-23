@@ -88,5 +88,132 @@
     "type": "xlsx",
     "year": "2026",
     "sort_order": 10
+  },
+  {
+    "folderId": "2026 DRAW RESULTS",
+    "title": "2026 Bear Draw Results",
+    "subtitle": "Black bear draw results",
+    "href": "./public/hard-copy/DISPLAY%20DATA/2026%20HUNT%20DRAW%20RESULTS/BEAR_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "type": "pdf",
+    "year": "2026",
+    "sort_order": 100
+  },
+  {
+    "folderId": "2026 DRAW RESULTS",
+    "title": "2026 Bear Restricted Pursuit Draw Results",
+    "subtitle": "Bear restricted pursuit draw results.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/2026%20HUNT%20DRAW%20RESULTS/BEAR_RESTRICTED_PURSUIT_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "type": "pdf",
+    "year": "2026",
+    "sort_order": 110
+  },
+  {
+    "folderId": "2026 DRAW RESULTS",
+    "title": "2026 Dedicated Hunter Deer Draw Results",
+    "subtitle": "Dedicated Hunter buck deer draw results.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/2026%20HUNT%20DRAW%20RESULTS/D_H_DEER_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "type": "pdf",
+    "year": "2026",
+    "sort_order": 120
+  },
+  {
+    "folderId": 2026 DRAW RESULTS"",
+    "title": "2026 General Season Buck Deer Draw Results",
+    "subtitle": "General-season buck deer draw results.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/2026%20HUNT%20DRAW%20RESULTS/G_S_BUCK_DEER_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "type": "pdf",
+    "year": "2026",
+    "sort_order": 130
+  },
+  {
+    "folderId": "2026 DRAW RESULTS",
+    "title": "2026 Limited-Entry Buck Deer Draw Results",
+    "subtitle": "Limited-entry buck deer draw results with.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/2026%20HUNT%20DRAW%20RESULTS/L_E_BUCK_DEER_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "type": "pdf",
+    "year": "2026",
+    "sort_order": 140
+  },
+  {
+    "folderId": "2026 DRAW RESULTS",
+    "title": "2026 Limited-Entry Bull Elk Draw Results",
+    "subtitle": "Limited-entry bull elk draw results.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/2026%20HUNT%20DRAW%20RESULTS/L_E_BULL_ELK_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "type": "pdf",
+    "year": "2026",
+    "sort_order": 150
+  },
+  {
+    "folderId": "2026 DRAW RESULTS",
+    "title": "2026 Limited-Entry Buck Pronghorn Draw Results",
+    "subtitle": "Limited-entry buck pronghorn draw results with.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/2026%20HUNT%20DRAW%20RESULTS/L_E_BUCK_PRONGHORN_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "type": "pdf",
+    "year": "2026",
+    "sort_order": 160
+  },
+  {
+    "folderId": "2026 DRAW RESULTS",
+    "title": "2026 O.I.L. Bison Draw Results",
+    "subtitle": "Once-in-a-lifetime bison draw results with.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/2026%20HUNT%20DRAW%20RESULTS/O_I_L_BISON_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "type": "pdf",
+    "year": "2026",
+    "sort_order": 170
+  },
+  {
+    "folderId": "2026 DRAW RESULTS",
+    "title": "2026 O.I.L. Bull Moose Draw Results",
+    "subtitle": "Once-in-a-lifetime bull moose draw results.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/2026%20HUNT%20DRAW%20RESULTS/O_I_L_BULL_MOOSE_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "type": "pdf",
+    "year": "2026",
+    "sort_order": 180
+  },
+  {
+    "folderId": "2026 DRAW RESULTS",
+    "title": "2026 O.I.L. Desert Bighorn Sheep Draw Results",
+    "subtitle": "Once-in-a-lifetime desert bighorn sheep draw results",
+    "href": "./public/hard-copy/DISPLAY%20DATA/2026%20HUNT%20DRAW%20RESULTS/O_I_L_DESERT_BIGHORN_SHEEP_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "type": "pdf",
+    "year": "2026",
+    "sort_order": 190
+  },
+  {
+    "folderId": "2026 DRAW RESULTS",
+    "title": "2026 O.I.L. Mountain Goat Draw Results",
+    "subtitle": "Once-in-a-lifetime mountain goat draw results.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/2026%20HUNT%20DRAW%20RESULTS/O_I_L_MTN_GOAT_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "type": "pdf",
+    "year": "2026",
+    "sort_order": 200
+  },
+  {
+    "folderId": "2026 DRAW RESULTS",
+    "title": "2026 O.I.L. Rocky Mountain Sheep Draw Results",
+    "subtitle": "Once-in-a-lifetime Rocky Mountain bighorn sheep draw results.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/2026%20HUNT%20DRAW%20RESULTS/O_I_L_ROCKY_MTN_SHEEP_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "type": "pdf",
+    "year": "2026",
+    "sort_order": 210
+  },
+  {
+    "folderId": "2026 DRAW RESULTS",
+    "title": "2026 Sportsman Draw Results",
+    "subtitle": "Consolidated Sportsman draw results.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/2026%20HUNT%20DRAW%20RESULTS/SPORTSMAN_DRAW_RESULTS_CONSOLIDATED_FIXED_NARROW_DROPDOWN.pdf",
+    "type": "pdf",
+    "year": "2026",
+    "sort_order": 220
+  },
+  {
+    "folderId": "2026 DRAW RESULTS",
+    "title": "2026 Youth Elk Draw Results",
+    "subtitle": "Youth elk draw results.",
+    "href": "./public/hard-copy/DISPLAY%20DATA/2026%20HUNT%20DRAW%20RESULTS/YOUTH_ELK_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "type": "pdf",
+    "year": "2026",
+    "sort_order": 230
   }
+]
 ]
