@@ -1090,3 +1090,6 @@ audits/prediction_accuracy_backtest/
 !public/**/*.csv
 
 !assets/**/*.js
+/audits*
+audits*
+/audits/**
