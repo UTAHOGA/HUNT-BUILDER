@@ -1,9 +1,0 @@
-metric,value
-generated_at_utc,2026-06-19T06:52:38.341402+00:00
-input_prediction_file,C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\engine_rebuild_from_truth\engine\prediction_outputs.csv
-output_prediction_file,C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\engine_rebuild_from_truth\engine\prediction_outputs_with_modifiers.csv
-output_odds_table_file,C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\engine_rebuild_from_truth\engine\odds_tables_with_modifiers.csv
-rows_written,460097
-draw_type_counts,"{""BONUS"": 296254, ""PREFERENCE"": 163803, ""RANDOM"": 40}"
-modifier_status_counts,"{""BONUS_WEIGHT_POINTS_PLUS_ONE"": 92066, ""NON_SCORABLE_OR_UNCLASSIFIED_UNCHANGED"": 116782, ""PREFERENCE_ABOVE_CUTOFF_HIGH"": 14502, ""PREFERENCE_BELOW_CUTOFF_LOW"": 7263, ""PREFERENCE_CUTOFF_TRANSITION"": 4066, ""RANDOM_NO_APPLICANTS_UNCHANGED"": 20, ""RANDOM_TOTAL_PERMITS_OVER_TOTAL_APPLICANTS"": 20, ""ZERO_APPLICANTS_UNCHANGED"": 121196, ""ZERO_OR_NO_WEIGHT_UNCHANGED"": 104182}"
-validation,"{""validation_status"": ""PASS"", ""metrics_recomputed"": true, ""zero_applicant_actual_rows_excluded"": 318193, ""joined_rows"": 87381, ""prediction_only_unmatched_rows"": 30536, ""actual_only_unmatched_rows"": 54523, ""duplicate_join_key_groups"": 0, ""row_count"": 87381, ""mae"": 0.09735924758557402, ""rmse"": 0.21669164635678245, ""bias"": -0.017823036202466173, ""failure_count_abs_error_gt_0_25"": 9164}"

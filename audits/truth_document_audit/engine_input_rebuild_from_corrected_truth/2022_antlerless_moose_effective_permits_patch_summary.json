@@ -1,7 +1,0 @@
-{
-  "generated_at_utc": "2026-06-19T02:28:57.630319+00:00",
-  "changed_point_distribution_rows": 2,
-  "changed_finalized_draw_truth_all_rows": 2,
-  "patch_rows": 4,
-  "audit_csv": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_document_audit\\engine_input_rebuild_from_corrected_truth\\2022_antlerless_moose_effective_permits_patch.csv"
-}

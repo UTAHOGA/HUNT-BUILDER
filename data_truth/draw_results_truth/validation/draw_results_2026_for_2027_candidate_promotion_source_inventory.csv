@@ -1,3 +1,0 @@
-source_file,reported_draw_year,model_target_year,record_count,unique_hunt_codes,record_kinds,source_datasets,source_sha256,first_page,last_page,candidate_promotion_status
-DATABASE.csv,2026,2027,1074,537,POINT_ROW,draw_results_long_year_2026,,,,CANDIDATE_REVIEW_ONLY
-SPORTSMAN_PERMIT_NO_DRAW_ODDS,2026,2027,22,11,POINT_ROW,draw_results_long_year_2026,,,,CANDIDATE_REVIEW_ONLY

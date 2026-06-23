@@ -1,5 +1,0 @@
-output_file,row_count,unique_hunt_code_count,boundary_id_missing_count,duplicate_key_count,notes
-data_model/runtime_drafts/permits_2026_online.csv,1394,1394,0,0,one row per valid 2026 hunt_code
-data_model/runtime_drafts/point_ladder_view_v2.csv,91588,1394,0,0,key=hunt_code+residency+points
-data_model/runtime_drafts/hunt_master_enriched_v2.csv,51857,793,0,0,key=hunt_code+residency+points (where points exists)
-data_model/runtime_drafts/hunt_boundary_crosswalk_v2.csv,1394,1394,0,0,duplicate boundary_id allowed when shared by multiple hunts

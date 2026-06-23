@@ -1,7 +1,0 @@
-species,sex_type,file,rows,permits_res_sum,permits_nr_sum,quota_field_sum,computed_permits_total_sum,hunt_types
-Deer,Antlerless,dwr_huntboundary_deer_antlerless.json,21,0,0,378,378,CWMU:4 | General Season:16 | General-Season:1
-Elk,Antlerless,dwr_huntboundary_elk_antlerless.json,212,11904,1212,9905,22946,Antlerless Elk Control:1 | CWMU:56 | Conservation:5 | General Season:109 | General-Season:13 | General-season:1 | Private Lands Only:27
-Moose,Antlerless,dwr_huntboundary_moose_antlerless.json,5,9,1,0,10,CWMU:2 | Limited Entry:3
-Pronghorn,Doe,dwr_huntboundary_pronghorn_doe.json,25,539,50,0,589,CWMU:9 | General Season:16
-Rocky Mountain Bighorn Sheep,Ewe,dwr_huntboundary_rocky_mountain_bighorn_sheep_ewe.json,1,4,1,0,5,General Season:1
-Bison,Cow Only,dwr_huntboundary_bison_cow_only.json,5,53,3,56,56,Once-in-a-lifetime:5

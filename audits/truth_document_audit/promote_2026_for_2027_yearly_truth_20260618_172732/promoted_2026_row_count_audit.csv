@@ -1,7 +1,0 @@
-metric,value
-before_target_rows,1096
-source_candidate_rows,30298
-promoted_rows_written,30298
-after_target_rows,30298
-zero_applicant_rows,12552
-scorable_rows_with_applicants_and_drawn_field,17746

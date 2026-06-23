@@ -1,4 +1,0 @@
-excel_row,hunt_code,boundary_id,species,hunt_name,sex_type,weapon,organization,old_season,source_season,new_season,status,source_codes
-230,PB5029,25,Pronghorn,"Box Elder, Puddle Valley",Buck,Muzzleloader,SFW,,,,skipped_no_plausible_source_season,PB5004|PB5029
-279,PB5039,138,Pronghorn,"West Desert, Riverbed",Buck,Muzzleloader,NWTF,,,,skipped_no_plausible_source_season,PB5019|PB5050 | PB5019|PB5050
-292,RS0001,5135,Rocky Mountain Sheep,"Box Elder, Newfoundland Mtns",Male Only,Any Legal Weapon,UWSF,,Early Rifle | Late Rifle,,skipped_ambiguous_source_seasons,RS6703 | RS6704

@@ -1,2 +1,0 @@
-source_file,uploaded_path,reported_hunt_year,model_target_year,source_status,source_date,source_family,rows_processed,unique_hunt_codes,species_count,notes
-2026-03-06-2025-preliminary-bg-harvest.xlsx,/mnt/data/2026-03-06-2025-preliminary-bg-harvest.xlsx,2025,2026,preliminary,2026-03-06,preliminary_big_game_harvest,1120,1120,8,"Preliminary 2025 big-game harvest spreadsheet available 2026-03-06; use as harvest quality/history input for 2026 modeling, not as quota or direct p_draw."

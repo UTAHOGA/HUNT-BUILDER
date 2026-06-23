@@ -1,6 +1,0 @@
-lane,status,action_taken,next_action
-DEDICATED_HUNTER_DEER_PREFERENCE,PATCHED_ROUTING_AND_FEEDER_ALIAS,"Separated adult DH and Youth DH ladder/current-row keys; recognized DH_DEER/D.H. source aliases; used permit_allotment_2026_total quota fallback","Rebuild production/runtime predictive artifacts when Tyler approves production output update"
-YOUTH_DEDICATED_HUNTER_DEER_PREFERENCE,PATCHED_SEPARATE_LANE_NO_SCALAR,"Added youth_dedicated_hunter model strategy; no youth reserve applied","Inspect source quota/cutoff after regenerated predictions"
-YOUTH_ANTLERLESS_PREFERENCE,NEEDS_EXACT_ENGINE_MECHANICS,"No scalar applied; existing broad approximation rejected","Implement source-backed youth reserve pool plus main draw rollback"
-BEAR_BONUS,NEEDS_SPLIT_AND_RETENTION_INSPECTION,"No scalar applied","Inspect bonus/random split and applicant retention"
-TURKEY_BONUS,NEEDS_SPLIT_AND_RETENTION_INSPECTION,"No scalar applied","Inspect turkey-specific bonus logic and youth turkey 15 percent rule separately"

@@ -1,8 +1,0 @@
-﻿"url","status","content_length","content_type","ok","error"
-"https://json.uoga.workers.dev/data_truth/finalized_draw_truth_ALL.csv","ERROR","","","False","The remote server returned an error: (404) Not Found."
-"https://json.uoga.workers.dev/data_truth/finalized_point_distribution.csv","ERROR","","","False","The remote server returned an error: (404) Not Found."
-"https://json.uoga.workers.dev/data_truth/draw_results_truth/normalized/draw_results_long.csv.gz","ERROR","","","False","Object reference not set to an instance of an object."
-"https://json.uoga.workers.dev/engine_rebuild_from_truth/engine/draw_engine_input_point_rows_with_totals.csv","ERROR","","","False","Object reference not set to an instance of an object."
-"https://json.uoga.workers.dev/engine_rebuild_from_truth/engine/draw_engine_input_point_rows.csv","ERROR","","","False","Object reference not set to an instance of an object."
-"https://json.uoga.workers.dev/engine_rebuild_from_truth/engine/prediction_outputs.csv","ERROR","","","False","Object reference not set to an instance of an object."
-"https://json.uoga.workers.dev/engine_rebuild_from_truth/engine/odds_tables.csv","ERROR","","","False","Object reference not set to an instance of an object."

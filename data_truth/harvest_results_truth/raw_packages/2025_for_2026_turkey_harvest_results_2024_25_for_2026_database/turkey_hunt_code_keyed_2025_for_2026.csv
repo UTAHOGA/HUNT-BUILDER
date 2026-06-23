@@ -1,8 +1,0 @@
-report_cycle,reported_hunt_year,season_year,model_target_year,species,hunt_code,hunt_name,source_family,season,total_permits,hunters_afield,total_harvest,mean_public_days_afield,mean_private_days_afield,percent_success,source_file,source_page,trend_feature_eligible,do_not_use_for_permit_quota,do_not_use_directly_for_p_draw
-2024-25,2025,2025,2026,Wild Turkey,TK1003,Central region,spring_limited_entry_cwmu_by_hunt,Spring limited entry/CWMU,496,433,228,3.5,0.5,52.0,2024-25 turkey.pdf,5,True,True,True
-2024-25,2025,2025,2026,Wild Turkey,TK1004,Northeastern region,spring_limited_entry_cwmu_by_hunt,Spring limited entry/CWMU,247,198,95,2.5,1.7,48.1,2024-25 turkey.pdf,5,True,True,True
-2024-25,2025,2025,2026,Wild Turkey,TK1005,Northern region,spring_limited_entry_cwmu_by_hunt,Spring limited entry/CWMU,547,460,252,2.3,0.8,55.6,2024-25 turkey.pdf,5,True,True,True
-2024-25,2025,2025,2026,Wild Turkey,TK1006,Southeastern region,spring_limited_entry_cwmu_by_hunt,Spring limited entry/CWMU,199,168,98,2.8,0.5,57.7,2024-25 turkey.pdf,5,True,True,True
-2024-25,2025,2025,2026,Wild Turkey,TK1007,Southern region,spring_limited_entry_cwmu_by_hunt,Spring limited entry/CWMU,615,531,283,2.8,0.5,52.9,2024-25 turkey.pdf,5,True,True,True
-2024-25,2025,2025,2026,Wild Turkey,TK1018,Pahvant Ensign CWMU,spring_limited_entry_cwmu_by_hunt,Spring limited entry/CWMU,11,11,9,,2.9,85.7,2024-25 turkey.pdf,5,True,True,True
-2024-25,2025,2025,2026,Wild Turkey,TK1021,East Zion CWMU,spring_limited_entry_cwmu_by_hunt,Spring limited entry/CWMU,7,7,1,,3.2,16.7,2024-25 turkey.pdf,5,True,True,True

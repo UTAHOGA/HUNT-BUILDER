@@ -1,8 +1,0 @@
-permit_class,permit_total_2026,assignment_status,notes
-public_rac,17231.0,official_2026_joined,Official 2026 RAC/public recommended permits source.
-cwmu,1645.0,deduped_2026_cwmu_joined,Deduped CWMU permits.
-sportsman,10.0,one_statewide_per_species_year,Sportsman total is 1 statewide permit per species/year.
-conservation,336.0,each_source_row_applies_per_year,"Each conservation row is one permit per year for 2025, 2026, and 2027; not annualized down."
-known_all_class_2026_total,19222.0,aggregate_reconciled,Public RAC + CWMU + sportsman + conservation annual per-row total.
-conservation_selected_to_hunt_code,171.0,selected_high_confidence_hunt_code,Subset of conservation permits assigned to one active hunt code.
-conservation_manual_review_unassigned,165.0,manual_review_required,Conservation permits that apply in 2026 but need review to assign a single hunt code.

@@ -1,2 +1,0 @@
-year,pdf_files,pdf_files_parsed,pdf_rows,pdf_codes,canonical_rows,canonical_codes,pdf_only_key_count,canonical_only_key_count,payload_mismatch_count,pdf_only_codes,canonical_only_codes
-2025,13,12,76172,1053,75438,1062,54,10,0,['BR7307'],"['BI1000', 'BR1000', 'DB0007', 'DS1000', 'EB1000', 'GO1000', 'MB1000', 'PB1000', 'RS0001', 'TK0001']"

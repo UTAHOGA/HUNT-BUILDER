@@ -1,7 +1,0 @@
-draw_year,model_target_year,draw_rows,native_unique_draw_hunt_codes,current_database_hunt_codes,current_database_codes_covered,current_database_codes_missing,current_database_coverage_pct,current_database_comparison_use,historical_only_draw_codes,residency_counts,status_counts,draw_pool_counts,draw_method_counts
-2021,2022,27519,550,1449,490,959,33.82,CROSS_REFERENCE_ONLY_NOT_YEAR_COMPLETENESS,60,Nonresident:15318|Resident:12201,,standard:27519,BONUS:27519
-2022,2023,18688,1024,1449,867,582,59.83,CROSS_REFERENCE_ONLY_NOT_YEAR_COMPLETENESS,157,Nonresident:6276|Resident:12412,,standard:18688,BONUS:50
-2023,2024,17128,1010,1449,883,566,60.94,CROSS_REFERENCE_ONLY_NOT_YEAR_COMPLETENESS,127,Nonresident:5637|Resident:11491,,standard:17128,
-2024,2025,37128,580,1449,580,869,40.03,CROSS_REFERENCE_ONLY_NOT_YEAR_COMPLETENESS,0,Nonresident:18561|Resident:18567,,standard:37128,BONUS:37128
-2025,2026,75194,1053,1449,1052,397,72.60,CROSS_REFERENCE_ONLY_NOT_YEAR_COMPLETENESS,1,Nonresident:37597|Resident:37597,,dedicated_hunter:1302|lifetime:4326|standard:57222|youth:11032|youth_dedicated_hunter:966|youth_mature_bull:66|youth_turkey:280,BONUS:17282|PREFERENCE:31182
-2026,2027,1096,548,1449,548,901,37.82,CROSS_REFERENCE_ONLY_NOT_YEAR_COMPLETENESS,0,Nonresident:548|Resident:548,NO_DRAW_ODDS_SOURCE:1074|SPORTSMAN_NO_PUBLISHED_DRAW_DATA:22,standard:1096,

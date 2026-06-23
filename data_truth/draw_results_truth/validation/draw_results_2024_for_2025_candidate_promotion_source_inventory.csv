@@ -1,6 +1,0 @@
-source_file,reported_draw_year,model_target_year,record_count,unique_hunt_codes,record_kinds,source_datasets,source_sha256,first_page,last_page,candidate_promotion_status,candidate_promotion_reason
-24_OIL_ALL.pdf,2024,2025,84,39,POINT_ROW,draw_results_long_year_2024,,4,102,CANDIDATE_REVIEW_ONLY,Source file evidence retained for comparison before promotion.
-24_bg-draw-results.pdf,2024,2025,36930,580,POINT_ROW,draw_results_long_year_2024,,2,588,CANDIDATE_REVIEW_ONLY,Source file evidence retained for comparison before promotion.
-24_le_bull_elk.pdf,2024,2025,92,39,POINT_ROW,draw_results_long_year_2024,,2,190,CANDIDATE_REVIEW_ONLY,Source file evidence retained for comparison before promotion.
-24_le_deer.pdf,2024,2025,22,11,POINT_ROW,draw_results_long_year_2024,,2,112,CANDIDATE_REVIEW_ONLY,Source file evidence retained for comparison before promotion.
-pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/24 bear draw odds complete.pdf,2024,2025,96,96,PERMIT_TOTAL_ROW,black_bear_2024_draw_odds_model_target_2025_permit_totals,50a7d2a6b7278e4bd526746655a560567f4bd7f0cc77bab844025956a5f32299,3,98,CANDIDATE_REVIEW_ONLY,Source file evidence retained for comparison before promotion.

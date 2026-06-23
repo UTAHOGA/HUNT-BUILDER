@@ -1,9 +1,0 @@
-year,current_yearly_path,exists,rows,columns,size_mb,blank_hunt_code,blank_year,canonical_rows,canonical_columns,row_delta_current_minus_canonical,column_delta_current_minus_canonical
-2019,C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\data_truth\draw_results_truth\normalized\draw_results_2019_for_2020_candidate_promotion_file_records.csv,True,66945,43,36.017,0,0,66945,55,0,-12
-2020,C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\data_truth\draw_results_truth\normalized\draw_results_2020_for_2021_candidate_promotion_file_records.csv,True,66715,43,36.339,0,0,66715,55,0,-12
-2021,C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\data_truth\draw_results_truth\normalized\draw_results_2021_for_2022_candidate_promotion_file_records.csv,True,67565,55,29.589,0,0,67565,55,0,0
-2022,C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\data_truth\draw_results_truth\normalized\draw_results_2022_for_2023_candidate_promotion_file_records.csv,True,69741,55,32.017,0,0,69741,55,0,0
-2023,C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\data_truth\draw_results_truth\normalized\draw_results_2023_for_2024_candidate_promotion_file_records.csv,True,71658,55,61.036,0,0,71658,55,0,0
-2024,C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\data_truth\draw_results_truth\normalized\draw_results_2024_for_2025_candidate_promotion_file_records.csv,True,86659,55,57.344,0,0,86659,55,0,0
-2025,C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\data_truth\draw_results_truth\normalized\draw_results_2025_for_2026_candidate_promotion_file_records.csv,True,75598,90,70.402,0,0,75598,55,0,35
-2026,C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER\data_truth\draw_results_truth\normalized\draw_results_2026_for_2027_candidate_promotion_file_records.csv,True,30298,55,28.903,0,0,30298,55,0,0

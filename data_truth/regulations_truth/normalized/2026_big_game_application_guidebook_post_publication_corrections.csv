@@ -1,5 +1,0 @@
-hunt_code,guidebook_page,correction_date,action,corrected_value,superseded_by_hunt_code,reason,source_row_found_before_correction,source_row_present_after_correction,database_row_present,database_hunt_name,superseded_by_database_row_present,superseded_by_database_hunt_name,validation_status
-DB1276,72,2026-04-06,DELETE_HUNT_ROW,,DB1306,Plymouth Peak is no longer a CWMU and was combined with Washakie CWMU.,false,false,false,,true,Washakie CWMU,PASS
-MB6264,78,2026-03-13,DELETE_HUNT_ROW,,,Sand Creek CWMU was included in error; there is no public moose permit this year on that CWMU.,false,false,false,,false,,PASS
-DB1115,51,2026-03-03,RENAME_HUNT,Little Rockies,,"Hunt name shortened from Henry Mtns, Little Rockies to Little Rockies.",true,true,true,Little Rockies,false,,PASS
-DB1350,71,2026-02-25,DELETE_HUNT_ROW,,,Milburn CWMU withdrew from the program.,false,false,false,,false,,PASS

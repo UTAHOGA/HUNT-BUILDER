@@ -1,7 +1,0 @@
-path,row_number,actual_draw_year,hunt_code,column,old_value,new_value
-data_truth\draw_results_truth\normalized\canonical_yearly\draw_results_2022_for_2023_canonical_yearly_draw_results.csv,2261,2022,MA1000,total_p_draw,0.25,0
-data_truth\draw_results_truth\normalized\canonical_yearly\draw_results_2022_for_2023_canonical_yearly_draw_results.csv,2297,2022,MA1006,total_p_draw,0.1162790698,0
-data_truth\draw_results_truth\normalized\draw_results_long.csv,102897,2022,MA1000,total_p_draw,0.25,0
-data_truth\draw_results_truth\normalized\draw_results_long.csv,102933,2022,MA1006,total_p_draw,0.1162790698,0
-data_truth\draw_results_truth\normalized\canonical_yearly\draw_results_2026_for_2027_canonical_yearly_draw_results.csv,3848,2026,DB1541,total_p_draw,0.6201550388,0.6279069767
-data_truth\draw_results_truth\normalized\draw_results_long.csv,256649,2026,DB1541,total_p_draw,0.6201550388,0.6279069767

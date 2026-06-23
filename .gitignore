@@ -1036,3 +1036,57 @@ processed_data/hard_data_exports/hunt_tables/2026/CLEAN_XLXS_STAGED/2026 DEER BU
 # Local pytest retry/temp outputs
 .pytest_tmp*/
 .pytest_cache/
+data_truth/comparison_outputs/
+data_truth/harvest_results_truth/validation/
+
+# =========================
+# CORE PIPELINE OUTPUTS (NEVER COMMIT)
+# =========================
+
+# Raw + ingestion
+pipeline/RAW/
+
+# Runtime drafts / engines
+data_model/runtime_drafts/
+
+# Truth + validation outputs
+data_truth/comparison_outputs/
+data_truth/harvest_results_truth/validation/
+
+# General outputs
+outputs/
+
+# Temporary + audits
+audits/**/temp/
+audits/**/debug/
+audits/**/raw/
+audits/prediction_blind_backtests/
+audits/prediction_accuracy_backtest/
+
+# Pytest / temp
+.pytest_tmp*/
+.pytest_cache/
+
+# =========================
+# LARGE FILE TYPES
+# =========================
+*.csv
+*.xlsx
+*.pdf
+*.zip
+*.7z
+*.tmp
+*.bak
+
+# =========================
+# EXCEPTIONS (KEEP THESE)
+# =========================
+
+!processed_data/**/*.json
+!processed_data/**/*.geojson
+!processed_data/**/*.md
+
+!public/**/*.json
+!public/**/*.csv
+
+!assets/**/*.js

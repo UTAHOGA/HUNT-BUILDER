@@ -1,6 +1,0 @@
-pdf,exists,pages,text_chars,code_mentions,unique_codes_in_pdf,codes_present_in_2026_scorable,scorable_rows_for_pdf_codes,scorable_rows_with_p_draw_for_pdf_codes,unique_codes_with_p_draw_in_scorable,codes_missing_from_scorable
-2026_PERMITS=2027_MODEL__L.E. ELK.pdf,True,210,235040,209,209,209,9560,1656,209,
-2026_PERMITS=2027_MODEL__L.E. DEER.pdf,True,193,181252,192,192,192,6756,988,191,
-2026_PERMITS=2027_MODEL__L.E. PRONGHORN.pdf,True,88,71372,87,87,87,2222,567,87,
-2026_PERMITS=2027_MODEL__BEAR RESTRICTED PURSUIT DRAW RESULTS.pdf,True,10,6159,9,9,9,116,50,9,
-2026_PERMITS=2027_MODEL__BEAR DRAW RESULTS.pdf,True,91,78026,90,90,90,2698,532,90,

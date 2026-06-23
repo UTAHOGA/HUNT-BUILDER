@@ -1,4 +1,0 @@
-snapshot_utc,hunt_code,hunt_name,unit,old_total,new_total,promotion_status,source_file,source_sheet,source_row,source_text
-2026-05-26T21:04:27+00:00,EA1220,Manti (Expo),Manti,,3,UPDATED_FROM_EXPO_HARD_COPY,pipeline/RAW/hunt_unit_database/2026/xlsx/expo permits 2026.xlsx,Sheet1,294,Antlerless Elk - General Season - Any Open Season and Unit Within Boundary - Manti - Permits: 3
-2026-05-26T21:04:27+00:00,EA1258,La Sal (Expo),La Sal,,1,UPDATED_FROM_EXPO_HARD_COPY,pipeline/RAW/hunt_unit_database/2026/xlsx/expo permits 2026.xlsx,Sheet1,299,Antlerless Elk - General Season - Any Open Season and Unit Within Boundary - La Sal - Permits: 1
-2026-05-26T21:04:27+00:00,EA1221,Fishlake/Thousand Lake (Expo),Fishlake/Thousand Lakes,,1,UPDATED_FROM_EXPO_HARD_COPY,pipeline/RAW/hunt_unit_database/2026/xlsx/expo permits 2026.xlsx,Sheet1,302,Antlerless Elk - General Season - Any Open Season and Unit Within Boundary - Fishlake/Thousand Lakes - Permits: 1

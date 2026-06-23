@@ -1,9 +1,0 @@
-{
-  "display_index_rows": 1471,
-  "unique_hunt_codes": 1471,
-  "duplicate_hunt_codes": 0,
-  "missing_boundary_geojson_path": 0,
-  "boundary_geojson_path_target_missing": 0,
-  "boundary_geojson_path_invalid_json": 0,
-  "boundary_geojson_path_empty_features": 0
-}
