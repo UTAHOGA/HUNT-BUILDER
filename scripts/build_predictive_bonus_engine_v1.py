@@ -47,6 +47,19 @@ TARGET_TOKENS = (
     "premium limited entry",
 )
 
+TRUE_PLE_HUNT_CODES = {
+    "DB0009",
+    "DB1000",
+    "DB1001",
+    "DB1002",
+    "DB1003",
+    "DB1004",
+    "DB1005",
+    "DB1006",
+    "DB1007",
+    "DB1008",
+}
+
 
 def clean(v: object) -> str:
     return "" if v is None else str(v).strip()
@@ -90,9 +103,20 @@ def is_target_bonus_hunt(hunt_type: str) -> bool:
     return any(tok in h for tok in TARGET_TOKENS)
 
 
-def hunt_kind_label(hunt_type: str) -> str:
+def normalize_bonus_hunt_type(hunt_type: str, hunt_code: str) -> str:
+    h = clean(hunt_type)
+    if clean(hunt_code).upper() in TRUE_PLE_HUNT_CODES:
+        return "Premium Limited Entry"
+    if "premium limited entry" in h.lower() and clean(hunt_code).upper() not in TRUE_PLE_HUNT_CODES:
+        return "Limited Entry"
+    return h
+
+
+def hunt_kind_label(hunt_type: str, hunt_code: str = "") -> str:
+    if clean(hunt_code).upper() in TRUE_PLE_HUNT_CODES:
+        return "PLE"
     h = clean(hunt_type).lower()
-    if "premium limited entry" in h:
+    if "premium limited entry" in h and clean(hunt_code).upper() in TRUE_PLE_HUNT_CODES:
         return "PLE"
     if "once-in-a-lifetime" in h or "once in a lifetime" in h or "oial" in h:
         return "OIL"
@@ -267,9 +291,10 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
         if not db:
             continue
 
-        hunt_type = clean(db.get("hunt_type"))
-        kind = hunt_kind_label(hunt_type)
-        if not is_target_bonus_hunt(hunt_type):
+        raw_hunt_type = clean(db.get("hunt_type"))
+        hunt_type = normalize_bonus_hunt_type(raw_hunt_type, code)
+        kind = hunt_kind_label(raw_hunt_type, code)
+        if not is_target_bonus_hunt(raw_hunt_type):
             continue
 
         # Quota per residency from RAC current-year allotment first, then DB fallback.

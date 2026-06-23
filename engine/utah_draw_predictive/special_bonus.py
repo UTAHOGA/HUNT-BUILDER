@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from collections import Counter, defaultdict
 from statistics import mean
 from typing import Iterable, Mapping
@@ -28,10 +29,17 @@ def _to_int(value: object) -> int:
     text = _clean(value)
     if not text:
         return 0
+    text = text.replace(",", "")
     try:
         return int(float(text))
     except Exception:
-        return 0
+        matches = re.findall(r"-?\d+(?:\.\d+)?", text)
+        if not matches:
+            return 0
+        try:
+            return int(float(matches[-1]))
+        except Exception:
+            return 0
 
 
 def _round_count(value: float) -> int:
@@ -73,6 +81,8 @@ def _is_cwmu_public(row: Mapping[str, object]) -> bool:
     text = _joined_text(row)
     if "cwmu" not in text:
         return False
+    if "turkey" in text:
+        return False
     if _is_antlerless_moose(row) or _is_ewe_bighorn(row):
         return False
     if any(token in text for token in ("private", "landowner", "voucher", "conservation", "expo", "sportsman", "remaining permit", "over the counter", " otc", "youth")):
@@ -80,7 +90,7 @@ def _is_cwmu_public(row: Mapping[str, object]) -> bool:
     hunt_type = _clean_lower(row.get("hunt_type"))
     hunt_class = _clean_lower(row.get("hunt_class"))
     draw_pool = _clean_lower(row.get("draw_pool"))
-    return hunt_type == "cwmu" and hunt_class in {"", "cwmu"} and draw_pool in {"", "standard"}
+    return hunt_type == "cwmu" and not any(token in hunt_class for token in ("private", "landowner", "voucher", "conservation", "expo", "sportsman")) and draw_pool in {"", "standard"}
 
 
 def _classify_phase6_family(row: Mapping[str, object]) -> str | None:
@@ -298,9 +308,9 @@ def _forecast_quota_for_residency(
     latest_year: int,
     total_drawn_by_code_year: Mapping[tuple[str, int], dict[str, int]],
 ) -> int:
-    res_specific = _to_int(db_row.get("permits_2026_res"))
-    nr_specific = _to_int(db_row.get("permits_2026_nr"))
-    total = _to_int(db_row.get("permits_2026_total"))
+    res_specific = _to_int(db_row.get("permit_allotment_2026_res")) or _to_int(db_row.get("permits_2026_res"))
+    nr_specific = _to_int(db_row.get("permit_allotment_2026_nr")) or _to_int(db_row.get("permits_2026_nr"))
+    total = _to_int(db_row.get("permit_allotment_2026_total")) or _to_int(db_row.get("permits_2026_total"))
     if res_specific or nr_specific:
         return res_specific if residency == "Resident" else nr_specific
     observed = total_drawn_by_code_year.get((hunt_code, latest_year), {})
@@ -369,11 +379,12 @@ def build_phase6_bonus_special_predictions(
 
         for residency in ("Resident", "Nonresident"):
             available_years = sorted(year for year in set(years_by_key.get((draw_system_type, hunt_code, residency), [])) if year in history_year_set)
-            forecast_quota = _forecast_quota_for_residency(db_row, hunt_code, residency, latest_source_year, total_drawn_by_code_year)
-            latest_ladder = ladders.get((draw_system_type, latest_source_year, hunt_code, residency), {})
+            latest_year = available_years[-1] if available_years else latest_source_year
+            forecast_quota = _forecast_quota_for_residency(db_row, hunt_code, residency, latest_year, total_drawn_by_code_year)
+            latest_ladder = ladders.get((draw_system_type, latest_year, hunt_code, residency), {})
             prior_total = sum(int(values.get("total", 0)) for values in latest_ladder.values())
 
-            if latest_source_year not in available_years or len(available_years) < 2 or forecast_quota <= 0:
+            if not available_years or forecast_quota <= 0:
                 row = {
                     "model_version": MODEL_VERSION,
                     "rule_version": BONUS_RULE_VERSION,
@@ -398,13 +409,13 @@ def build_phase6_bonus_special_predictions(
                     "draw_outlook": "MODEL PENDING",
                     "source_years_used": source_years_used_text,
                     "source_year_count": source_year_count,
-                    "latest_source_year": latest_source_year,
+                    "latest_source_year": latest_year,
                     "earliest_source_year": earliest_source_year,
                     "source_dataset": "predictive",
                     "model_strategy": MODEL_STRATEGY_NAME,
                     "bonus_special_valid": "FALSE",
                     "draw_system_type": draw_system_type,
-                    "data_quality_flags": "|".join(flag for flag in ["MISSING_PRIOR_YEAR" if latest_source_year not in available_years else "", "MISSING_MULTIPLE_YEARS" if len(available_years) < 2 else "", "MISSING_FORECAST_QUOTA" if forecast_quota <= 0 else ""] if flag),
+                    "data_quality_flags": "|".join(flag for flag in ["MISSING_PRIOR_YEAR" if not available_years else "", "MISSING_FORECAST_QUOTA" if forecast_quota <= 0 else ""] if flag),
                 }
                 rows.append(row)
                 report_counts[(draw_system_type, "IN_SCOPE_MODEL_PENDING")] += 1
@@ -456,6 +467,8 @@ def build_phase6_bonus_special_predictions(
             forecast_guaranteed = _guaranteed_level(forecast_ladder, public_quota)
             total_applicants = sum(forecast_ladder.values())
             flags = _data_quality_flags(total_applicants, public_quota, max_point_permits, available_years)
+            if latest_year != latest_source_year:
+                flags.append("MISSING_LATEST_SOURCE_YEAR")
             for flag in flags:
                 data_quality_counter[flag] += 1
 
@@ -506,12 +519,12 @@ def build_phase6_bonus_special_predictions(
                     "draw_outlook": _draw_outlook(p_draw, gap),
                     "source_years_used": ",".join(str(year) for year in available_years),
                     "source_year_count": source_year_count,
-                    "latest_source_year": latest_source_year,
+                    "latest_source_year": latest_year,
                     "earliest_source_year": earliest_source_year,
                     "source_dataset": "predictive",
                     "model_strategy": MODEL_STRATEGY_NAME,
                     "bonus_special_valid": "TRUE",
-                    "bonus_special_note": f"Forecasted from {latest_source_year} bonus ladder with Utah split rule.",
+                    "bonus_special_note": f"Forecasted from {latest_year} bonus ladder with Utah split rule.",
                     "weapon": weapon,
                     "draw_system_type": draw_system_type,
                     "data_quality_flags": "|".join(flags),

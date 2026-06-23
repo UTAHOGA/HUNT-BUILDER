@@ -187,13 +187,8 @@ def map_2026_to_long(row: dict[str, str], long_fields: list[str]) -> dict[str, s
     mapped = {field: "" for field in long_fields}
     mapped.update(
         {
-            "source_year": year,
-            "year": year,
             "actual_draw_year": year,
-            "model_year": model_year,
             "model_target_year": model_year,
-            "truth_year": year,
-            "permits_year": model_year,
             "source_scope": source_family or source_file,
             "source_namespace": "2026_PERMITS=2027_MODEL_LIVE_PLUS_PDF_DENSE",
             "draw_source_namespace": "2026_LIVE_PLUS_PDF_DENSE_RECONCILED",
@@ -234,9 +229,9 @@ def map_2026_to_long(row: dict[str, str], long_fields: list[str]) -> dict[str, s
             "qa_status": clean(row.get("candidate_promotion_status")),
             "qa_notes": clean(row.get("candidate_promotion_reason")),
             "notes": clean(row.get("source_report_title")),
-            "permits_year_res": clean(row.get("resident_quota_quantity")),
-            "permits_year_nr": clean(row.get("nonresident_quota_quantity")),
-            "permits_year_total": clean(row.get("quota_quantity")),
+            "permits_2026_res": clean(row.get("resident_quota_quantity")),
+            "permits_2026_nr": clean(row.get("nonresident_quota_quantity")),
+            "permits_2026_total": clean(row.get("quota_quantity")),
         }
     )
     return mapped

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -17,6 +18,7 @@ SUMMARY_JSON = AUDIT_DIR / "normalize_2026_canonical_remaining_holes_summary.jso
 
 EXPECTED_HUNT_TYPES = {
     "Limited Entry",
+    "P.L.E.",
     "Once-in-a-Lifetime",
     "General Season",
     "Sportsman",
@@ -38,7 +40,11 @@ BEAR_SPECIES_ARTIFACTS = {
 }
 
 HUNT_TYPE_NORMALIZATION = {
-    "Premium": "Limited Entry",
+    "P.L.E.": "P.L.E.",
+    "PLE": "P.L.E.",
+    "Premium": "P.L.E.",
+    "Premium LE": "P.L.E.",
+    "Premium Limited Entry": "P.L.E.",
     "Management": "Limited Entry",
     "Turkey": "Limited Entry",
     "Over-the-Counter": "O.T.C.",
@@ -55,6 +61,67 @@ SPORTSMAN_SEX_TYPE_BY_CODE = {
     "PB1000": "Buck",
     "RS0001": "Ram",
     "TK0001": "Bearded",
+}
+
+HUNT_NAME_CODE_OVERRIDES = {
+    "EB1007": "Youth",
+}
+
+HUNT_NAME_PREFIX_PATTERNS = [
+    r"^Premium[-\s]*Limited[-\s]*Entry[\s-]*",
+    r"^Premium[-\s]*Le[\s-]*",
+    r"^Limited[-\s]*Entry[\s-]*",
+    r"^CWMU[\s-]*",
+    r"^Cwmu[\s-]*",
+    r"^Youth[\s-]*",
+    r"^General[-\s]*Season[\s-]*",
+    r"^Draw[-\s]*Only[\s-]*",
+    r"^Management[\s-]*",
+    r"^Archery[\s-]*",
+    r"^Muzzleloader[\s-]*",
+    r"^Rifle[\s-]*",
+    r"^Shotgun[\s-]*",
+    r"^Any[-\s]*Legal[-\s]*Weapon[\s-]*",
+    r"^Any[-\s]*Weapon[\s-]*",
+    r"^Multi[-\s]*season[\s-]*",
+    r"^HAM+S+[\s-]*",
+    r"^(?:Black Bear|Bison|Cougar|Deer|Desert Bighorn Sheep|Elk|Moose|Mountain Goat|Pronghorn|Rocky Mountain Bighorn Sheep|Rocky Mountain Sheep|Turkey)(?:\s*\([^)]*\))?[\s-]*",
+    r"^(?:Bull|Buck|Cow|Doe|Ram|Ewe|Bearded|Antlerless|Hunters Choice|Hunter'?s Choice|Either Sex|Male Only|Female Only|Cow Only|Bull Only|Buck Only|Doe Only)[\s-]*",
+    r"^Sportsman[\s-]*",
+    r"^Statewide[\s-]*",
+    r"^[-\s:]+",
+    r"^[A-Z]{2}\d{4}[\s-]*",
+]
+
+HUNT_NAME_TRAILING_PATTERNS = [
+    r"\s+(?:LE|L\.E\.|Limited Entry|Premium|Premium LE|Premium Limited Entry|Sportsman|CWMU|Conservation|OIL|O\.I\.L\.|Statewide Permit|Statewide)\s*$",
+    r"\s+(?:Any Legal Weapon|Any Weapon|Archery|Muzzleloader|Shotgun|Rifle|Pursuit Only|Dedicated Hunter|Multiseason|Multi-season|Multi Season|HAMSS?|H\.A\.M\.S\.?\.?)\s*$",
+    r"\s+(?:Bull|Buck|Cow|Doe|Ram|Ewe|Bearded|Antlerless|Hunters Choice|Hunter'?s Choice|Either Sex|Male Only|Female Only|Cow Only|Bull Only|Buck Only|Doe Only)\s*$",
+    r"\s+(?:Black Bear|Bison|Cougar|Deer|Desert Bighorn Sheep|Elk|Moose|Mountain Goat|Pronghorn|Rocky Mountain Bighorn Sheep|Rocky Mountain Sheep|Turkey)\s*$",
+    r"\s+Permit\s*$",
+    r"\s+Only\s*$",
+    r"\s*-\s*Statewide Permit\s*$",
+]
+
+BAD_SOLO_HUNT_NAME_VALUES = {
+    "any",
+    "bull",
+    "buck",
+    "cow",
+    "doe",
+    "ram",
+    "ewe",
+    "bearded",
+    "antlerless",
+    "hunters choice",
+    "hunter's choice",
+    "either sex",
+    "male only",
+    "female only",
+    "cow only",
+    "bull only",
+    "buck only",
+    "doe only",
 }
 
 
@@ -93,6 +160,96 @@ def unique_database_values() -> dict[str, dict[str, str]]:
             if len(candidates) == 1:
                 unique[code][field] = next(iter(candidates))
     return unique
+
+
+def normalize_hunt_name(value: object, row: dict[str, str]) -> str:
+    code = clean(row.get("hunt_code")).upper()
+    if code in HUNT_NAME_CODE_OVERRIDES:
+        return HUNT_NAME_CODE_OVERRIDES[code]
+
+    text = clean(value)
+    if not text:
+        return ""
+
+    original = text
+    text = (
+        text.replace("\u2019", "'")
+        .replace("\u2018", "'")
+        .replace("\u2013", "-")
+        .replace("\u2014", "-")
+    )
+    text = " ".join(text.split()).strip(" ,;-")
+
+    changed = True
+    while changed:
+        changed = False
+
+        next_text = re.sub(r"\s*\|\s*.*$", "", text)
+        if next_text != text:
+            text = next_text.strip()
+            changed = True
+
+        next_text = re.sub(r"\s+-\s+Statewide Permit\s*$", " - Statewide", text, flags=re.I)
+        if next_text != text:
+            text = next_text.strip()
+            changed = True
+
+        for pattern in HUNT_NAME_PREFIX_PATTERNS:
+            next_text = re.sub(pattern, "", text, flags=re.I)
+            if next_text != text:
+                text = next_text.strip()
+                changed = True
+
+        segments = [segment.strip() for segment in re.split(r"\s+-\s*|\s*-\s+", text) if segment.strip()]
+        if len(segments) >= 3:
+            tail = segments[-1]
+            if re.search(
+                r"^(?:Any Legal Weapon|Any Weapon|Archery|Muzzleloader|Shotgun|Rifle|Pursuit Only|Dedicated Hunter|Multiseason|Multi-season|Multi Season|HAMSS?|H\.A\.M\.S\.?\.?)$",
+                tail,
+                flags=re.I,
+            ):
+                text = " - ".join(segments[1:-1])
+                changed = True
+        elif len(segments) == 2:
+            head = segments[0]
+            if re.search(
+                r"^(?:Any Legal Weapon|Any Weapon|Archery|Muzzleloader|Shotgun|Rifle|Pursuit Only|Dedicated Hunter|Multiseason|Multi-season|Multi Season|HAMSS?|H\.A\.M\.S\.?\.?)$",
+                head,
+                flags=re.I,
+            ):
+                text = segments[1]
+                changed = True
+
+        for pattern in HUNT_NAME_TRAILING_PATTERNS:
+            next_text = re.sub(pattern, "", text, flags=re.I)
+            if next_text != text:
+                text = next_text.strip()
+                changed = True
+
+        next_text = re.sub(r"\s{2,}", " ", text).strip(" ,;-")
+        if next_text != text:
+            text = next_text
+            changed = True
+
+    normalized = text.strip(" ,;-")
+    lowered = normalized.lower()
+    original_lower = original.lower()
+    if "youth" in original_lower and (
+        not normalized
+        or normalized.lower() in BAD_SOLO_HUNT_NAME_VALUES
+        or "any bull" in normalized.lower()
+        or "hunter's choice" in normalized.lower()
+        or "hunters choice" in normalized.lower()
+    ):
+        return "Youth"
+    if not normalized or lowered in BAD_SOLO_HUNT_NAME_VALUES:
+        if "sportsman" in original_lower:
+            return "Sportsman"
+        if "statewide" in original_lower:
+            return "Statewide"
+        return original
+
+    return normalized
 
 
 def choose_code_designs(rows: list[dict[str, str]]) -> dict[str, str]:
@@ -149,6 +306,20 @@ def normalize_rows(
         code = clean(row.get("hunt_code")).upper()
         record_type = clean(row.get("record_type"))
         species = clean(row.get("species"))
+        hunt_name = clean(row.get("hunt_name"))
+
+        if "hunt_name" in fieldnames and hunt_name:
+            normalized_hunt_name = normalize_hunt_name(hunt_name, row)
+            if normalized_hunt_name and normalized_hunt_name != hunt_name:
+                record_change(
+                    audit_rows,
+                    file_label,
+                    row,
+                    "hunt_name",
+                    hunt_name,
+                    normalized_hunt_name,
+                    "strip species/weapon/class artifacts from hunt_name",
+                )
 
         if code.startswith("BR") and species in BEAR_SPECIES_ARTIFACTS:
             fixes = BEAR_SPECIES_ARTIFACTS[species]

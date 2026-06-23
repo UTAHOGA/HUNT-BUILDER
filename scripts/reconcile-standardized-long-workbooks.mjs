@@ -88,6 +88,13 @@ function sumNumeric(values) {
   return found ? total : "";
 }
 
+function yearPermitValue(row, year, suffix) {
+  const explicit = clean(row[`permits_${year}_${suffix}`]);
+  if (explicit) return explicit;
+  const generic = clean(row[`permits_year_${suffix}`]);
+  return generic;
+}
+
 function readCsv(text) {
   const rows = [];
   let row = [];
@@ -362,9 +369,9 @@ function buildSummaryRows(rows, year) {
     ]), first);
     const drawPool = normalizeDrawPool(firstNonEmpty(sourceRows.map((row) => row.draw_pool)), first);
     const drawMethod = normalizeDrawMethod(huntType, first);
-    let permitsRes = numericOrBlank(firstNonEmpty(sourceRows.map((row) => row.permits_year_res)));
-    let permitsNr = numericOrBlank(firstNonEmpty(sourceRows.map((row) => row.permits_year_nr)));
-    let permitsTotal = numericOrBlank(firstNonEmpty(sourceRows.map((row) => row.permits_year_total)));
+    let permitsRes = numericOrBlank(firstNonEmpty(sourceRows.map((row) => yearPermitValue(row, year, "res"))));
+    let permitsNr = numericOrBlank(firstNonEmpty(sourceRows.map((row) => yearPermitValue(row, year, "nr"))));
+    let permitsTotal = numericOrBlank(firstNonEmpty(sourceRows.map((row) => yearPermitValue(row, year, "total"))));
     if (permitsTotal === "" && permitsRes !== "" && permitsNr !== "") {
       permitsTotal = Number(permitsRes) + Number(permitsNr);
     }
@@ -433,9 +440,9 @@ function buildLongRows(rows, year, summaryRows) {
       first.draw_design,
       summary["DRAW METHOD"],
     ]), first);
-    const permitsRes = numericOrBlank(firstNonEmpty(groupRows.map((row) => row.permits_year_res)) || summary[`PERMITS ${year} RES`] || "");
-    const permitsNr = numericOrBlank(firstNonEmpty(groupRows.map((row) => row.permits_year_nr)) || summary[`PERMITS ${year} NR`] || "");
-    let permitsTotal = numericOrBlank(firstNonEmpty(groupRows.map((row) => row.permits_year_total)) || summary[`PERMITS ${year} TOTAL`] || "");
+    const permitsRes = numericOrBlank(firstNonEmpty(groupRows.map((row) => yearPermitValue(row, year, "res"))) || summary[`PERMITS ${year} RES`] || "");
+    const permitsNr = numericOrBlank(firstNonEmpty(groupRows.map((row) => yearPermitValue(row, year, "nr"))) || summary[`PERMITS ${year} NR`] || "");
+    let permitsTotal = numericOrBlank(firstNonEmpty(groupRows.map((row) => yearPermitValue(row, year, "total"))) || summary[`PERMITS ${year} TOTAL`] || "");
     if (permitsTotal === "" && permitsRes !== "" && permitsNr !== "") {
       permitsTotal = Number(permitsRes) + Number(permitsNr);
     }

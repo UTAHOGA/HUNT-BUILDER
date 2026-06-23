@@ -323,10 +323,11 @@ def _forecast_applicant_ladder(
 ) -> dict[int, int]:
     prior_points = sorted(int(points) for points in latest_ladder.keys())
     max_points = max(prior_points) if prior_points else 0
+    tail_buffer = 4
     forecast: dict[int, int] = {}
     forecast[0] = _round_count(latest_ladder.get(0, {}).get("eligible", 0) * zero_growth)
 
-    for points in range(1, max_points + 2):
+    for points in range(1, max_points + tail_buffer + 1):
         unsuccessful_prior = max(
             int(latest_ladder.get(points - 1, {}).get("eligible", 0)) - int(latest_ladder.get(points - 1, {}).get("drawn", 0)),
             0,
@@ -335,8 +336,9 @@ def _forecast_applicant_ladder(
         switch_proxy = int(latest_ladder.get(points, {}).get("eligible", 0)) * 0.08
         forecast[points] = _round_count(retained + switch_proxy)
 
-    while forecast and forecast.get(max(forecast.keys()), 0) == 0:
-        forecast.pop(max(forecast.keys()))
+    # Preserve the zero-tail rows so the forecast keeps the same table shape as
+    # the official source PDFs. Dedicated Hunter pages frequently include upper
+    # point shells with zero permits that still need to survive row-key joins.
     return forecast
 
 
@@ -379,7 +381,7 @@ def build_preference_dedicated_hunter_predictions(
 
         for residency in ("Resident", "Nonresident"):
             available_years = sorted(year for year in set(years_by_key.get((lane, hunt_code, residency), [])) if year in history_year_set)
-            if latest_source_year not in available_years or len(available_years) < 2:
+            if latest_source_year not in available_years:
                 continue
 
             latest_ladder = ladders[(lane, latest_source_year, hunt_code, residency)]
@@ -399,10 +401,9 @@ def build_preference_dedicated_hunter_predictions(
             running_above = 0
             for points in sorted(forecast_ladder.keys(), reverse=True):
                 applicants_at_level = int(forecast_ladder.get(points, 0))
-                if applicants_at_level <= 0:
-                    continue
                 applicants_above = running_above
-                probability = _preference_probability(forecast_quota, applicants_above, applicants_at_level)
+                probability_applicant_count = max(applicants_at_level, 1)
+                probability = _preference_probability(forecast_quota, applicants_above, probability_applicant_count)
                 gap = (forecast_guaranteed - points) if forecast_guaranteed is not None else None
                 prior_gap = (prior_guaranteed - points) if prior_guaranteed is not None else None
                 delta_gap = None if gap is None or prior_gap is None else gap - prior_gap
@@ -431,6 +432,7 @@ def build_preference_dedicated_hunter_predictions(
                         "guaranteed_at_2026": "" if forecast_guaranteed is None else str(forecast_guaranteed),
                         "applicants_above": applicants_above,
                         "applicants_at_level": applicants_at_level,
+                        "probability_applicant_count": probability_applicant_count,
                         "p_preference_draw": f"{probability:.6f}",
                         "p_bonus_pool": "",
                         "p_random_pool": "",

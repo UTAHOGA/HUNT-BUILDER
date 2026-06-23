@@ -130,3 +130,65 @@ def test_build_preference_general_deer_predictions_returns_modeled_rows() -> Non
     assert all(row["preference_model_valid"] == "TRUE" for row in rows)
     assert all(is_modeled_general_deer_row(row) for row in rows)
     assert any(float(row["p_draw"]) == 1.0 for row in rows)
+
+
+def test_general_season_deer_emits_structural_zero_point_rows() -> None:
+    truth_rows = [
+        {
+            "hunt_code": "DB1501",
+            "hunt_name": "Box Elder",
+            "species": "Deer",
+            "sex_type": "Buck",
+            "hunt_type": "General Season",
+            "hunt_class": "Public",
+            "weapon": "Archery",
+            "year": "2025",
+            "draw_pool": "standard",
+            "residency": "Resident",
+            "points": "0",
+            "eligible_applicants": "100",
+            "total_permits": "80",
+        },
+        {
+            "hunt_code": "DB1501",
+            "hunt_name": "Box Elder",
+            "species": "Deer",
+            "sex_type": "Buck",
+            "hunt_type": "General Season",
+            "hunt_class": "Public",
+            "weapon": "Archery",
+            "year": "2025",
+            "draw_pool": "standard",
+            "residency": "Resident",
+            "points": "12",
+            "eligible_applicants": "0",
+            "total_permits": "0",
+        },
+    ]
+    db_rows = [
+        {
+            "hunt_code": "DB1501",
+            "hunt_name": "Box Elder",
+            "species": "Deer",
+            "sex_type": "Buck",
+            "hunt_type": "General Season",
+            "weapon": "Archery",
+            "permits_2026_total": "100",
+        }
+    ]
+
+    rows = build_preference_general_deer_predictions(
+        truth_rows=truth_rows,
+        db_rows=db_rows,
+        forecast_year=2026,
+        history_years=[2025],
+    )
+
+    structural_row = next(
+        row
+        for row in rows
+        if row["hunt_code"] == "DB1501" and row["residency"] == "Resident" and row["points"] == "12"
+    )
+    assert structural_row["model_strategy"] == MODEL_STRATEGY_NAME
+    assert structural_row["preference_model_valid"] == "TRUE"
+    assert structural_row["applicants_at_level"] == 1

@@ -17,6 +17,49 @@ HUNT_CODE_NAME_OVERRIDES = {
     "EB1012": "Uinta Basin",
 }
 
+SPORTSMAN_CODES = {
+    "BI1000",
+    "BR1000",
+    "CG1000",
+    "DB0007",
+    "DS1000",
+    "EB1000",
+    "GO1000",
+    "MB1000",
+    "PB1000",
+    "RS0001",
+    "TK0001",
+}
+
+HUNT_TYPE_MAP = {
+    "Antlerless Elk Control": "O.T.C.",
+    "General-Season": "General Season",
+    "General-season": "General Season",
+    "General Season - Archery": "General Season",
+    "General Season - Any Bull": "General Season",
+    "General Season - Spike Bull": "General Season",
+    "General Season - Youth": "General Season",
+    "Harvest Objective": "O.T.C.",
+    "Fall Management": "O.T.C.",
+    "Limited Entry - Fall": "Limited Entry",
+    "Limited Entry - Multiseason": "Limited Entry",
+    "Limited Entry - Spring": "Limited Entry",
+    "Limited Entry - Summer": "Limited Entry",
+    "Multiseason - Conservation": "Conservation",
+    "P.L.E.": "P.L.E.",
+    "PLE": "P.L.E.",
+    "Premium LE": "P.L.E.",
+    "Premium Le": "P.L.E.",
+    "Premium Limited Entry": "P.L.E.",
+    "Restricted Pursuit - Late Summer": "O.T.C.",
+    "Restricted Pursuit - Spring": "O.T.C.",
+    "Restricted Pursuit - Summer": "O.T.C.",
+    "Spot and Stalk": "O.T.C.",
+    "Spring General Season": "General Season",
+    "Pursuit": "O.T.C.",
+    "Extended Archery": "O.T.C.",
+}
+
 
 SPECIES_PREFIXES = (
     "Antlerless Deer",
@@ -79,6 +122,7 @@ WEAPON_WORDS = (
 )
 
 CLASS_SUFFIXES = (
+    "P.L.E.",
     "Premium Limited Entry",
     "Premium LE",
     "Premium Le",
@@ -98,6 +142,12 @@ CLASS_SUFFIXES = (
 
 PRIVATE_LAND_RE = re.compile(
     r"\s*[-,]\s*Private\s+Lands?\s+Only\s*$",
+    flags=re.I,
+)
+
+DATE_TOKEN_RE = re.compile(
+    r"(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|"
+    r"Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)(?:\.?)\s*\d{1,2}(?:,\s*\d{4})?",
     flags=re.I,
 )
 
@@ -145,7 +195,7 @@ def normalize_hunt_name(raw_value: object, hunt_code: object = "") -> str:
 
     # Remove leading species/draw labels when a real unit name follows after a separator.
     name = re.sub(rf"^(?:{SPECIES_ALT})\s*[-:]\s*", "", name, flags=re.I)
-    name = re.sub(r"^(?:Limited[- ]Entry|Premium Limited Entry|Once[- ]in[- ]a[- ]lifetime)\s*[-:]\s*", "", name, flags=re.I)
+    name = re.sub(r"^(?:Limited[- ]Entry|P\.L\.E\.|Premium Limited Entry|Once[- ]in[- ]a[- ]lifetime)\s*[-:]\s*", "", name, flags=re.I)
 
     # Remove classification-only parentheticals, but keep meaningful unit parentheticals.
     name = re.sub(r"\s*\((?:Conservation|Premium|Limited Entry|LE|OIL|Early|Mid|Late|Hunter'?s Choice)\)\s*$", "", name, flags=re.I)
@@ -212,7 +262,7 @@ def classify_change(old: str, new: str) -> str:
 
 def normalize_cwmu_fields(row: dict[str, str], old_hunt_name: str) -> tuple[str, str]:
     """Move displaced draw wording out of hunt_type before making hunt_type CWMU."""
-    hunt_type = compact(row.get("hunt_type"))
+    hunt_type = normalize_hunt_type(row.get("hunt_type"))
     hunt_class = compact(row.get("hunt_class"))
     if not re.search(r"\bCWMU\b$", old_hunt_name, re.I):
         return hunt_type, hunt_class
@@ -251,6 +301,81 @@ def normalize_private_land_fields(row: dict[str, str], old_hunt_name: str) -> tu
     return next_hunt_type, next_hunt_class
 
 
+def normalize_hunt_type(value: object) -> str:
+    hunt_type = normalize_spaces(compact(value))
+    if not hunt_type:
+        return hunt_type
+    return HUNT_TYPE_MAP.get(hunt_type, hunt_type)
+
+
+def infer_draw_design(row: dict[str, str], hunt_type: str) -> str:
+    code = compact(row.get("hunt_code")).upper()
+    text = " ".join(
+        [
+            code,
+            compact(row.get("hunt_name")),
+            hunt_type,
+            compact(row.get("hunt_class")),
+            compact(row.get("weapon")),
+            compact(row.get("season")),
+            compact(row.get("draw_2026_system_type")),
+        ]
+    ).lower()
+    system_type = compact(row.get("draw_2026_system_type")).upper()
+    hunt_class = compact(row.get("hunt_class")).lower()
+
+    if code in SPORTSMAN_CODES or system_type.startswith("SPORTSMAN") or "sportsman" in text:
+        return "Random"
+    if system_type.startswith("PREFERENCE_") or "dedicated hunter" in text or hunt_type == "General Season":
+        return "Preference"
+    if hunt_type == "O.T.C." or system_type == "PRIVATE_LANDS_ONLY_ANTLERLESS_ELK":
+        return "Capped Permits"
+    if hunt_type == "Conservation" or "conservation" in hunt_class:
+        return "Organizations"
+    if hunt_type in {"Limited Entry", "P.L.E.", "Once-in-a-lifetime"} or system_type.startswith("BONUS_") or system_type == "BEAR_DRAW":
+        return "Max/Weighted Split"
+    if hunt_type == "CWMU" or system_type.startswith("BONUS_CWMU"):
+        return "Max/Weighted Split"
+    if hunt_type == "Tribal":
+        return "Tribal"
+    if hunt_type == "Statewide":
+        return "Capped Permits"
+    if "youth" in text and "elk" in text:
+        return "Random"
+    return ""
+
+
+def normalize_season(value: object) -> str:
+    season = normalize_spaces(compact(value))
+    if not season:
+        return season
+    if season.lower() == "multiseason":
+        return "Multiseason"
+    # Compound season strings usually contain multiple explicit date ranges.
+    # Keep single season windows intact, but collapse true multi-date entries.
+    if len(DATE_TOKEN_RE.findall(season)) >= 4:
+        return "Multiseason"
+    return season
+
+
+DRAW_DESIGN_CLASSES = {
+    "Random",
+    "Preference",
+    "Max/Weighted Split",
+    "Capped Permits",
+    "Organizations",
+    "Tribal",
+}
+
+
+def normalize_hunt_class(row: dict[str, str], hunt_type: str) -> str:
+    hunt_class = normalize_spaces(compact(row.get("hunt_class")))
+    if hunt_class in DRAW_DESIGN_CLASSES:
+        return hunt_class
+    new_value = infer_draw_design(row, hunt_type)
+    return new_value if new_value in DRAW_DESIGN_CLASSES else ""
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--apply", action="store_true", help="Write DATABASE.csv updates.")
@@ -268,28 +393,47 @@ def main() -> None:
     changed = 0
     unchanged = 0
     categories: Counter[str] = Counter()
+    has_draw_design = "draw_design" in fieldnames
 
     for row_number, row in enumerate(rows, start=2):
         old = compact(row.get("hunt_name"))
         old_hunt_type = compact(row.get("hunt_type"))
         old_hunt_class = compact(row.get("hunt_class"))
+        old_season = compact(row.get("season"))
+        old_draw_design = compact(row.get("draw_design")) if has_draw_design else ""
         new = normalize_hunt_name(old, row.get("hunt_code"))
         if old != new and unsafe_clean_result(new):
             new = old
 
+        new_hunt_type = normalize_hunt_type(old_hunt_type)
         new_hunt_type, new_hunt_class = normalize_cwmu_fields(row, old)
         row_for_private_land = dict(row)
         row_for_private_land["hunt_type"] = new_hunt_type
         row_for_private_land["hunt_class"] = new_hunt_class
         new_hunt_type, new_hunt_class = normalize_private_land_fields(row_for_private_land, old)
+        new_hunt_class = normalize_hunt_class({**row, "hunt_type": new_hunt_type, "hunt_class": new_hunt_class}, new_hunt_type)
+        new_season = normalize_season(old_season)
+        new_draw_design = old_draw_design
+        if has_draw_design and not old_draw_design:
+            new_draw_design = infer_draw_design(row, new_hunt_type)
         field_changed = (
             old_hunt_type != new_hunt_type
             or old_hunt_class != new_hunt_class
+            or old_season != new_season
+            or (has_draw_design and old_draw_design != new_draw_design)
         )
 
         if old != new or field_changed:
             changed += 1
             category = classify_change(old, new)
+            if old == new and old_season != new_season:
+                category = "season_multiseason_normalized"
+            elif old_hunt_type != new_hunt_type:
+                category = "hunt_type_label_normalized"
+            elif old_hunt_class != new_hunt_class:
+                category = "hunt_class_normalized"
+            elif has_draw_design and old_draw_design != new_draw_design:
+                category = "draw_design_filled"
             categories[category] += 1
             audit_rows.append(
                 {
@@ -305,6 +449,10 @@ def main() -> None:
                     "new_hunt_type": new_hunt_type,
                     "old_hunt_class": old_hunt_class,
                     "new_hunt_class": new_hunt_class,
+                    "old_season": old_season,
+                    "new_season": new_season,
+                    "old_draw_design": old_draw_design if has_draw_design else "",
+                    "new_draw_design": new_draw_design if has_draw_design else "",
                     "change_category": category,
                     "applied": "yes" if args.apply else "no",
                 }
@@ -315,6 +463,10 @@ def main() -> None:
                     row["hunt_type"] = new_hunt_type
                 if "hunt_class" in row:
                     row["hunt_class"] = new_hunt_class
+                if "season" in row:
+                    row["season"] = new_season
+                if has_draw_design and "draw_design" in row:
+                    row["draw_design"] = new_draw_design
         else:
             unchanged += 1
 
@@ -335,6 +487,10 @@ def main() -> None:
                 "new_hunt_type",
                 "old_hunt_class",
                 "new_hunt_class",
+                "old_season",
+                "new_season",
+                "old_draw_design",
+                "new_draw_design",
                 "change_category",
                 "applied",
             ],

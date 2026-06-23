@@ -67,6 +67,70 @@ TARGET_HUNT_TOKENS = (
 )
 
 
+def _clean_cell(value: object) -> str:
+    return "" if value is None else str(value).strip()
+
+
+def expand_collapsed_truth_rows_for_engine(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    """Expand resident/nonresident display columns into engine-ready rows.
+
+    Canonical and long files may keep one row with resident_* and nonresident_*
+    fields. The model engines consume one residency/point row at a time, so this
+    expansion is runtime-only and does not mutate the source files.
+    """
+    expanded_rows: list[dict[str, str]] = []
+    for row in rows:
+        if _clean_cell(row.get("residency")):
+            out = dict(row)
+            if not _clean_cell(out.get("year")) and _clean_cell(out.get("actual_draw_year")):
+                out["year"] = _clean_cell(out.get("actual_draw_year"))
+            if not _clean_cell(out.get("draw_pool")):
+                out["draw_pool"] = "standard"
+            expanded_rows.append(out)
+            continue
+
+        emitted = False
+        for residency, prefix in (("Resident", "resident"), ("Nonresident", "nonresident")):
+            has_data = any(
+                _clean_cell(row.get(f"{prefix}_{field}"))
+                for field in (
+                    "eligible_applicants",
+                    "bonus_permits",
+                    "regular_permits",
+                    "total_permits",
+                    "success_ratio",
+                    "p_draw",
+                    "p_draw_percent",
+                )
+            )
+            if not has_data:
+                continue
+            out = dict(row)
+            out["residency"] = residency
+            out["eligible_applicants"] = _clean_cell(row.get(f"{prefix}_eligible_applicants"))
+            out["bonus_permits"] = _clean_cell(row.get(f"{prefix}_bonus_permits"))
+            out["regular_permits"] = _clean_cell(row.get(f"{prefix}_regular_permits"))
+            out["total_permits"] = _clean_cell(row.get(f"{prefix}_total_permits"))
+            out["success_ratio"] = _clean_cell(row.get(f"{prefix}_success_ratio"))
+            out["p_draw"] = _clean_cell(row.get(f"{prefix}_p_draw"))
+            out["p_draw_percent"] = _clean_cell(row.get(f"{prefix}_p_draw_percent"))
+            if not _clean_cell(out.get("year")) and _clean_cell(out.get("actual_draw_year")):
+                out["year"] = _clean_cell(out.get("actual_draw_year"))
+            if not _clean_cell(out.get("draw_pool")):
+                out["draw_pool"] = "standard"
+            expanded_rows.append(out)
+            emitted = True
+
+        if not emitted:
+            out = dict(row)
+            if not _clean_cell(out.get("year")) and _clean_cell(out.get("actual_draw_year")):
+                out["year"] = _clean_cell(out.get("actual_draw_year"))
+            if not _clean_cell(out.get("draw_pool")):
+                out["draw_pool"] = "standard"
+            expanded_rows.append(out)
+    return expanded_rows
+
+
 def status_from_probability(max_point_permits: int, random_permits: int, p_bonus_pool: float) -> str:
     if max_point_permits == 0 and random_permits > 0:
         return "RANDOM ONLY"
@@ -531,10 +595,10 @@ def _write_sportsman_artifacts(
 
 def _write_private_lands_antlerless_elk_artifacts(
     output_dir: Path,
-    prediction_rows: list[dict[str, object]],
+    private_lands_rows: list[dict[str, object]],
     report: dict[str, object],
 ) -> tuple[Path, Path]:
-    rows = [row for row in prediction_rows if str(row.get("draw_system_type", "")).strip() == PRIVATE_LANDS_ANTLERLESS_ELK_DRAW_SYSTEM_TYPE]
+    rows = [row for row in private_lands_rows if str(row.get("draw_system_type", "")).strip() == PRIVATE_LANDS_ANTLERLESS_ELK_DRAW_SYSTEM_TYPE]
     csv_path = output_dir / "private_lands_antlerless_elk_predictions_v1.csv"
     alias_csv_path = output_dir / "private_lands_antlerless_elk_allocations_v1.csv"
     fieldnames = list(dict.fromkeys(key for row in rows for key in row.keys())) if rows else [
@@ -835,6 +899,21 @@ def _eb3024_regression(truth_rows: list[dict[str, str]]) -> dict[str, object]:
             points[point_key]["bonus"] += int(float(row.get("bonus_permits") or 0))
             points[point_key]["regular"] += int(float(row.get("regular_permits") or 0))
 
+    required_permit_keys = [("2024", "Resident"), ("2025", "Resident"), ("2024", "Nonresident"), ("2025", "Nonresident")]
+    required_point_keys = [("2024", "Resident", "28"), ("2025", "Resident", "29")]
+    missing_permit_keys = [key for key in required_permit_keys if key not in permits]
+    missing_point_keys = [key for key in required_point_keys if key not in points]
+    if missing_permit_keys or missing_point_keys:
+        return {
+            "pass": False,
+            "skipped": True,
+            "reason": "EB3024 regression source rows were not present in the active truth input.",
+            "missing_permit_keys": ["/".join(key) for key in missing_permit_keys],
+            "missing_point_keys": ["/".join(key) for key in missing_point_keys],
+            "available_permit_keys": ["/".join(key) for key in sorted(permits)],
+            "available_point_keys": ["/".join(key) for key in sorted(points)],
+        }
+
     unsuccessful_2024_28 = points[("2024", "Resident", "28")]["eligible"] - points[("2024", "Resident", "28")]["bonus"] - points[("2024", "Resident", "28")]["regular"]
     retention = points[("2025", "Resident", "29")]["eligible"] / max(1, unsuccessful_2024_28)
     return {
@@ -1048,7 +1127,7 @@ def materialize_outputs(
         "audit_rows": RUNTIME_DRAFT_DIR / f"predictive_bonus_engine_{forecast_year}.audit.csv",
     }
 
-    truth_rows = read_csv(TRUTH_PATH)
+    truth_rows = expand_collapsed_truth_rows_for_engine(read_csv(TRUTH_PATH))
     permits, ladders, meta = build_truth_indexes(truth_rows)
     above_index = build_above_index(ladders)
 
@@ -1130,16 +1209,16 @@ def materialize_outputs(
     )
     if preference_general_deer_rows:
         preference_general_deer_rows = [sanitize_modeled_probability_fields(dict(row)) for row in preference_general_deer_rows]
-        prediction_rows.extend(preference_general_deer_rows)
-        successor_rows.extend(dict(row) for row in preference_general_deer_rows)
+        prediction_rows = _replace_rows_by_key(prediction_rows, preference_general_deer_rows)
+        successor_rows = _replace_rows_by_key(successor_rows, [dict(row) for row in preference_general_deer_rows])
     if preference_antlerless_rows:
         preference_antlerless_rows = [sanitize_modeled_probability_fields(dict(row)) for row in preference_antlerless_rows]
-        prediction_rows.extend(preference_antlerless_rows)
-        successor_rows.extend(dict(row) for row in preference_antlerless_rows)
+        prediction_rows = _replace_rows_by_key(prediction_rows, preference_antlerless_rows)
+        successor_rows = _replace_rows_by_key(successor_rows, [dict(row) for row in preference_antlerless_rows])
     if preference_dedicated_hunter_rows:
         preference_dedicated_hunter_rows = [sanitize_modeled_probability_fields(dict(row)) for row in preference_dedicated_hunter_rows]
-        prediction_rows.extend(preference_dedicated_hunter_rows)
-        successor_rows.extend(dict(row) for row in preference_dedicated_hunter_rows)
+        prediction_rows = _replace_rows_by_key(prediction_rows, preference_dedicated_hunter_rows)
+        successor_rows = _replace_rows_by_key(successor_rows, [dict(row) for row in preference_dedicated_hunter_rows])
     if phase6_bonus_special_rows:
         phase6_bonus_special_rows = [sanitize_modeled_probability_fields(dict(row)) for row in phase6_bonus_special_rows]
         prediction_rows = _replace_rows_by_key(prediction_rows, phase6_bonus_special_rows)
@@ -1196,6 +1275,7 @@ def materialize_outputs(
         "guaranteed_at_2026",
         "applicants_above",
         "applicants_at_level",
+        "probability_applicant_count",
         "p_draw_mean",
         "p_max_pool_mean",
         "p_random_mean",
@@ -1327,7 +1407,7 @@ def materialize_outputs(
         bear_draw_audit_summary,
     )
     sportsman_csv_path, sportsman_json_path = _write_sportsman_artifacts(output_dir, prediction_rows, sportsman_report)
-    private_lands_csv_path, private_lands_json_path = _write_private_lands_antlerless_elk_artifacts(output_dir, prediction_rows, private_lands_report)
+    private_lands_csv_path, private_lands_json_path = _write_private_lands_antlerless_elk_artifacts(output_dir, private_lands_rows, private_lands_report)
     youth_csv_path, youth_json_path = _write_youth_artifacts(output_dir, prediction_rows, youth_report)
     mountain_lion_csv_path, mountain_lion_json_path = _write_mountain_lion_artifacts(output_dir, prediction_rows, mountain_lion_report)
 

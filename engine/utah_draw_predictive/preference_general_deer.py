@@ -101,7 +101,18 @@ def _looks_like_general_buck_deer(row: Mapping[str, object]) -> bool:
 def _looks_like_standard_pool(row: Mapping[str, object]) -> bool:
     draw_pool = _clean_lower(row.get("draw_pool"))
     hunt_class = _clean_lower(row.get("hunt_class"))
-    return draw_pool in {"", "standard"} and hunt_class in {"", "public", "general season"}
+    if draw_pool not in {"", "standard"}:
+        return False
+    if hunt_class in {"", "public", "general season"}:
+        return True
+    # General-season buck deer rows are often stored with schema labels such as
+    # "Preference" or "GENERAL_SEASON_DEER" in the source tables. Keep those
+    # rows eligible for this lane so the engine can forecast the full family.
+    if "preference" in hunt_class:
+        return True
+    if "general season" in hunt_class or "general_season" in hunt_class:
+        return True
+    return False
 
 
 def is_modeled_general_deer_row(row: Mapping[str, object]) -> bool:
@@ -333,6 +344,11 @@ def _forecast_applicant_ladder(
     return forecast
 
 
+def _structural_point_levels(latest_ladder: Mapping[int, dict[str, int]]) -> list[int]:
+    """Return official point levels from the source table, including zero rows."""
+    return sorted({int(points) for points in latest_ladder.keys()})
+
+
 def build_preference_general_deer_predictions(
     truth_rows: Iterable[Mapping[str, object]],
     db_rows: Iterable[Mapping[str, object]],
@@ -369,7 +385,7 @@ def build_preference_general_deer_predictions(
 
         for residency in ("Resident", "Nonresident"):
             available_years = sorted(year for year in set(years_by_key.get((hunt_code, residency), [])) if year in history_year_set)
-            if latest_source_year not in available_years or len(available_years) < 2:
+            if latest_source_year not in available_years:
                 continue
 
             latest_ladder = ladders[(latest_source_year, hunt_code, residency)]
@@ -379,7 +395,8 @@ def build_preference_general_deer_predictions(
                 continue
 
             forecast_ladder = _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)
-            if not forecast_ladder:
+            structural_points = _structural_point_levels(latest_ladder)
+            if not forecast_ladder and not structural_points:
                 continue
 
             prior_applicant_ladder = {points: int(values["eligible"]) for points, values in latest_ladder.items()}
@@ -387,11 +404,13 @@ def build_preference_general_deer_predictions(
             forecast_guaranteed = _guaranteed_level(forecast_ladder, forecast_quota)
 
             running_above = 0
-            points_desc = sorted(forecast_ladder.keys(), reverse=True)
+            points_desc = sorted(set(forecast_ladder) | set(structural_points), reverse=True)
             for points in points_desc:
-                applicants_at_level = int(forecast_ladder.get(points, 0))
-                if applicants_at_level <= 0:
+                forecast_applicants_at_level = int(forecast_ladder.get(points, 0))
+                is_structural_zero_point = forecast_applicants_at_level <= 0 and points in structural_points
+                if forecast_applicants_at_level <= 0 and not is_structural_zero_point:
                     continue
+                applicants_at_level = forecast_applicants_at_level if forecast_applicants_at_level > 0 else 1
                 applicants_above = running_above
                 probability = _preference_probability(forecast_quota, applicants_above, applicants_at_level)
                 gap = (forecast_guaranteed - points) if forecast_guaranteed is not None else None
@@ -446,7 +465,8 @@ def build_preference_general_deer_predictions(
                         "weapon": weapon,
                     }
                 )
-                running_above += applicants_at_level
+                if forecast_applicants_at_level > 0:
+                    running_above += forecast_applicants_at_level
 
     return rows
 

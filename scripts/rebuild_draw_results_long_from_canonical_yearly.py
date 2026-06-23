@@ -61,6 +61,17 @@ FRONT_COLUMNS = [
     "total_p_draw_percent",
 ]
 
+DROP_COLUMNS = {
+    "source_year",
+    "year",
+    "model_year",
+    "truth_year",
+    "permits_year",
+    "permits_year_res",
+    "permits_year_nr",
+    "permits_year_total",
+}
+
 
 def canonical_files() -> list[Path]:
     return sorted(CANONICAL_DIR.glob("draw_results_*_for_*_canonical_yearly_draw_results.csv"))
@@ -86,6 +97,7 @@ def union_header(headers: list[list[str]]) -> list[str]:
             for column in header
             if column.startswith("permits_")
             and column.rsplit("_", 1)[-1] in {"res", "nr", "total"}
+            and column not in DROP_COLUMNS
         }
     )
     for column in permit_columns:
@@ -94,7 +106,7 @@ def union_header(headers: list[list[str]]) -> list[str]:
             seen.add(column)
     for header in headers:
         for column in header:
-            if column not in seen:
+            if column not in seen and column not in DROP_COLUMNS:
                 output.append(column)
                 seen.add(column)
     return output

@@ -51,11 +51,12 @@
     { folderId: "outfitters", title: "Utah Outfitters by Hunt Code / Hunt Name", subtitle: "Public outfitter workbook tied to hunt code and hunt name.", href: "./public/hard-copy/DISPLAY%20DATA/data/utah_outfitters_by_hunt_code_hunt_name.xlsx", type: "xlsx", year: "2026", sortOrder: 10 },
   ];
   const APPROVED_PUBLIC_EXTENSIONS = new Set(["pdf", "xlsx"]);
-  const APPROVED_PUBLIC_PATH_PREFIXES = [
-    "./public/hard-copy/",
-    "/public/hard-copy/",
-    "./hard-copy/",
-    "/hard-copy/",
+ const APPROVED_PUBLIC_PATH_PREFIXES = [
+  "./public/hard-copy/",
+  "/public/hard-copy/",
+  "./hard-copy/",
+  "/hard-copy/",
+  "https://json.uoga.workers.dev/",
   ];
   const BLOCKED_INTERNAL_PATTERNS = [
     /\bagents\b/i,

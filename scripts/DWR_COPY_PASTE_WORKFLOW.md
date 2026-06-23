@@ -28,7 +28,7 @@ Optional to include Expo/Conservation in the same pass:
 python scripts/reconcile-all-species-permits-2026.py --target-csv "<your file>.csv" --include-special --write
 ```
 
-## 2) Reconcile Expo + Conservation Hunt-Type/Hunt-Class/Hunt-Code
+## 2) Reconcile Expo + Conservation Hunt-Type/Hunt-Class/Hunt-Code/Boundary
 
 Script:
 
@@ -38,9 +38,11 @@ What it does:
 
 - confirms Expo/Conservation rows using database + conservation match table
 - fills missing `hunt_code` when confident
+- backfills `boundary_id` from `DATABASE.csv` when the hunt code is known
 - applies:
-  - conservation -> `hunt_type=conservation` (+ organization in `hunt_class` when available)
+  - conservation -> `hunt_type=Conservation` (+ organization in `hunt_class` when available)
   - expo -> `hunt_type=L.E.` and `hunt_class=expo`
+  - if the target file has `draw_design`, conservation rows are labeled `Organization` and expo rows are labeled `Expo`
 
 Run:
 

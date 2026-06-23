@@ -3,8 +3,9 @@
 Behavior:
 - Confirms rows as conservation/expo using DATABASE + conservation match table + text cues.
 - Fills missing hunt_code when a confident name/weapon match exists.
+- Backfills boundary_id from DATABASE.csv when the hunt_code is known.
 - Applies draw-class outputs:
-  - Conservation rows: hunt_type="conservation", hunt_class="<organization(s)>" when available
+  - Conservation rows: hunt_type="Conservation", hunt_class="<organization(s)>" when available
   - Expo rows: hunt_type="L.E.", hunt_class="expo"
 
 Conservation takes precedence over Expo when both are indicated.
@@ -60,6 +61,16 @@ def normalize_weapon(value: object) -> str:
 def contains_token(*values: str, token: str) -> bool:
     token_u = token.upper()
     return any(token_u in upper(value) for value in values)
+
+
+def set_if_present(row: dict[str, str], fieldnames: list[str], key: str, value: object) -> bool:
+    if key not in fieldnames:
+        return False
+    text = clean(value)
+    if row.get(key) == text:
+        return False
+    row[key] = text
+    return True
 
 
 def parse_args() -> argparse.Namespace:
@@ -152,8 +163,10 @@ def main() -> int:
     for line_no, row in enumerate(target_rows, start=2):
         before = {
             "hunt_code": clean(row.get("hunt_code")),
+            "boundary_id": clean(row.get("boundary_id")),
             "hunt_type": clean(row.get("hunt_type")),
             "hunt_class": clean(row.get("hunt_class")),
+            "draw_design": clean(row.get("draw_design")),
         }
 
         hunt_name = clean(row.get("hunt_name"))
@@ -173,6 +186,7 @@ def main() -> int:
         db_name = clean(db_row.get("hunt_name")) if db_row else ""
         db_hunt_type = clean(db_row.get("hunt_type")) if db_row else ""
         db_hunt_class = clean(db_row.get("hunt_class")) if db_row else ""
+        db_boundary_id = clean(db_row.get("boundary_id")) if db_row else ""
 
         is_conservation = (
             (code in cons_codes)
@@ -192,22 +206,28 @@ def main() -> int:
         if code and not clean(row.get("hunt_code")):
             row["hunt_code"] = code
             code_fills += 1
+        if db_boundary_id:
+            set_if_present(row, target_fields, "boundary_id", db_boundary_id)
 
         if is_conservation:
-            row["hunt_type"] = "conservation"
+            row["hunt_type"] = "Conservation"
             orgs = sorted(organizations_by_code.get(code, set())) if code else []
             if orgs:
                 row["hunt_class"] = ";".join(orgs)
+            set_if_present(row, target_fields, "draw_design", "Organization")
             cons_updates += 1
         elif is_expo:
             row["hunt_type"] = "L.E."
             row["hunt_class"] = "expo"
+            set_if_present(row, target_fields, "draw_design", "Expo")
             expo_updates += 1
 
         after = {
             "hunt_code": clean(row.get("hunt_code")),
+            "boundary_id": clean(row.get("boundary_id")),
             "hunt_type": clean(row.get("hunt_type")),
             "hunt_class": clean(row.get("hunt_class")),
+            "draw_design": clean(row.get("draw_design")),
         }
         if before != after:
             changes.append(

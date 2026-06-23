@@ -412,7 +412,7 @@ def cleanup_large_temp_truth_files(out_dir: Path, keep_temp_truth: bool) -> dict
     return summary
 
 
-def aggregate_rows(rows: list[dict[str, Any]], key_field: str) -> dict[tuple[str, str, str, str], dict[str, Any]]:
+def aggregate_prediction_rows(rows: list[dict[str, Any]], key_field: str) -> dict[tuple[str, str, str, str], dict[str, Any]]:
     grouped: dict[tuple[str, str, str, str], list[dict[str, Any]]] = defaultdict(list)
     for row in rows:
         grouped[row[key_field]].append(row)
@@ -428,6 +428,44 @@ def aggregate_rows(rows: list[dict[str, Any]], key_field: str) -> dict[tuple[str
         item["probability_min"] = min(probs)
         item["probability_max"] = max(probs)
         aggregated[key] = item
+    return aggregated
+
+
+def aggregate_actual_rows(rows: list[dict[str, Any]], key_field: str) -> dict[tuple[str, str, str, str], dict[str, Any]]:
+    grouped: dict[tuple[str, str, str, str], list[dict[str, Any]]] = defaultdict(list)
+    for row in rows:
+        grouped[row[key_field]].append(row)
+    aggregated: dict[tuple[str, str, str, str], dict[str, Any]] = {}
+    for key, group in grouped.items():
+        first = dict(group[0])
+        applicants = [parse_float(row.get("eligible_applicants")) for row in group]
+        permits = [parse_float(row.get("total_permits")) for row in group]
+        if all(value is not None for value in applicants) and all(value is not None for value in permits):
+            total_applicants = sum(value or 0.0 for value in applicants)
+            total_permits = sum(value or 0.0 for value in permits)
+            if total_applicants > 0:
+                first["probability"] = min(max(total_permits / total_applicants, 0.0), 1.0)
+                first["eligible_applicants"] = str(int(total_applicants)) if total_applicants.is_integer() else f"{total_applicants:.6f}"
+                first["total_permits"] = str(int(total_permits)) if total_permits.is_integer() else f"{total_permits:.6f}"
+            else:
+                probs = [row["probability"] for row in group if row.get("probability") is not None]
+                if not probs:
+                    continue
+                first["probability"] = sum(probs) / len(probs)
+        else:
+            probs = [row["probability"] for row in group if row.get("probability") is not None]
+            if not probs:
+                continue
+            weights = [parse_float(row.get("eligible_applicants")) or 0.0 for row in group]
+            total_weight = sum(weights)
+            if total_weight > 0:
+                first["probability"] = sum(float(row["probability"]) * weight for row, weight in zip(group, weights)) / total_weight
+            else:
+                first["probability"] = sum(probs) / len(probs)
+        first["row_count_aggregated"] = len(group)
+        first["probability_min"] = min(row["probability"] for row in group if row.get("probability") is not None)
+        first["probability_max"] = max(row["probability"] for row in group if row.get("probability") is not None)
+        aggregated[key] = first
     return aggregated
 
 
@@ -520,8 +558,8 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
 
     pred_dupes = Counter(row["key"] for row in prediction_rows)
     actual_dupes = Counter(row["key"] for row in actual_rows)
-    predictions = aggregate_rows(prediction_rows, "key")
-    actuals = aggregate_rows(actual_rows, "key")
+    predictions = aggregate_prediction_rows(prediction_rows, "key")
+    actuals = aggregate_actual_rows(actual_rows, "key")
 
     rowlevel: list[dict[str, Any]] = []
     errors: list[float] = []

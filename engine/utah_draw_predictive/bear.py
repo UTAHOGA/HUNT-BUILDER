@@ -47,6 +47,15 @@ EXCLUDED_BEAR_SUBTYPES = {
     CONSERVATION_OR_NON_PUBLIC,
 }
 
+# 2026 DWR JSON/hunt-planner rows split a few bear hunts onto new hunt codes
+# while the prior draw-results ladder still lives under the older code.
+BEAR_HISTORY_CODE_ALIASES_2026 = {
+    "BR7022": "BR7008",  # La Sal Mtns spring
+    "BR7127": "BR7108",  # La Sal Mtns summer
+    "BR7239": "BR7208",  # La Sal Mtns fall
+    "BR7326": "BR7307",  # La Sal Mtns multiseason
+}
+
 STRATEGY_SPECS = [
     StrategySpec(
         draw_system_type=BEAR_DRAW_SYSTEM_TYPE,
@@ -242,12 +251,14 @@ def classify_bear_subtype(row: Mapping[str, object]) -> str:
         or draw_pool == "sportsman"
     ):
         return CONSERVATION_OR_NON_PUBLIC
-    if "remaining permit" in text or " otc" in f" {text}" or "over the counter" in text:
-        return REMAINING_PERMIT_AVAILABILITY
     if "harvest objective" in text:
         return HARVEST_OBJECTIVE_AVAILABILITY
     if hunt_code in official_pursuit_codes:
         return RESTRICTED_BEAR_PURSUIT
+    if hunt_code in official_draw_codes:
+        return LIMITED_ENTRY_BEAR_HUNT
+    if "remaining permit" in text or " otc" in f" {text}" or "over the counter" in text:
+        return REMAINING_PERMIT_AVAILABILITY
     if "restricted pursuit" in text:
         return UNKNOWN_BEAR_SUBTYPE
     if hunt_code not in official_draw_codes and (hunt_type == "pursuit" or hunt_type.startswith("pursuit") or weapon == "pursuit only"):
@@ -416,18 +427,21 @@ def _forecast_applicant_ladder(
 ) -> dict[int, int]:
     prior_points = sorted(int(points) for points in latest_ladder.keys())
     max_points = max(prior_points) if prior_points else 0
+    tail_buffer = 4
     forecast: dict[int, int] = {}
     forecast[0] = _round_count(latest_ladder.get(0, {}).get("eligible", 0) * zero_growth)
 
-    for points in range(1, max_points + 2):
+    for points in range(1, max_points + tail_buffer + 1):
         prior_level = latest_ladder.get(points - 1, {})
         unsuccessful_prior = max(int(prior_level.get("eligible", 0)) - int(prior_level.get("bonus", 0)) - int(prior_level.get("regular", 0)), 0)
         retained = unsuccessful_prior * retention_by_band.get(_band_for_points(points - 1), 0.85)
         switch_proxy = int(latest_ladder.get(points, {}).get("eligible", 0)) * 0.08
         forecast[points] = _round_count(retained + switch_proxy)
 
-    while forecast and forecast.get(max(forecast.keys()), 0) == 0:
-        forecast.pop(max(forecast.keys()))
+    # Keep zero-tail ladder rows so the public PDF row structure stays aligned.
+    # The official tables often include upper point levels with zero permits or
+    # zero applicants, and dropping them creates row-key drift during blind
+    # comparison even though those rows are still part of the source truth.
     return forecast
 
 
@@ -735,6 +749,7 @@ def build_bear_bonus_predictions(
         hunt_code = _clean(db_row.get("hunt_code")).upper()
         if not hunt_code:
             continue
+        history_hunt_code = BEAR_HISTORY_CODE_ALIASES_2026.get(hunt_code, hunt_code)
         subtype = classify_bear_subtype(db_row)
         hunt_name = _clean(db_row.get("hunt_name")) or meta.get(hunt_code, {}).get("hunt_name", "")
         species = _clean(db_row.get("species")) or meta.get(hunt_code, {}).get("species", "Black Bear")
@@ -775,12 +790,12 @@ def build_bear_bonus_predictions(
                     residencies = ("Resident", "Nonresident")
 
         for residency in residencies:
-            available_years = sorted(set(years_by_subtype_code_res.get((subtype, hunt_code, residency), [])))
+            available_years = sorted(set(years_by_subtype_code_res.get((subtype, history_hunt_code, residency), [])))
             latest_year = available_years[-1] if available_years else default_latest_source_year
             earliest_source_year = available_years[0] if available_years else default_earliest_source_year
-            latest_ladder = ladders.get((subtype, latest_year, hunt_code, residency), {}) if available_years else {}
+            latest_ladder = ladders.get((subtype, latest_year, history_hunt_code, residency), {}) if available_years else {}
             prior_total = sum(int(values.get("total", 0)) for values in latest_ladder.values())
-            public_quota = _forecast_quota_for_residency(db_row, hunt_code, residency, latest_year, total_drawn_by_code_year)
+            public_quota = _forecast_quota_for_residency(db_row, history_hunt_code, residency, latest_year, total_drawn_by_code_year)
             base = _base_row(
                 forecast_year=forecast_year,
                 source_years_used_text=source_years_used_text,
@@ -920,6 +935,8 @@ def build_bear_bonus_predictions(
                 flags = []
                 if not available_years:
                     flags.append("MISSING_PROVEN_BEAR_DRAW_HISTORY")
+                elif history_hunt_code != hunt_code:
+                    flags.append("CURRENT_TO_HISTORICAL_CODE_ALIAS")
                 if public_quota <= 0:
                     flags.append("MISSING_FORECAST_QUOTA")
                 flags.append("FIRST_CHOICE_ONLY_MODEL")
@@ -979,6 +996,8 @@ def build_bear_bonus_predictions(
             forecast_guaranteed = _guaranteed_level(forecast_ladder, public_quota)
             total_applicants = sum(forecast_ladder.values())
             flags = _data_quality_flags(available_years, total_applicants, public_quota, max_point_permits, subtype)
+            if history_hunt_code != hunt_code:
+                flags.append("CURRENT_TO_HISTORICAL_CODE_ALIAS")
             for flag in flags:
                 data_quality_counter[flag] += 1
 

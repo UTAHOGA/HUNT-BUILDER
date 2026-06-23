@@ -1,9 +1,10 @@
 """Reconcile deer conservation rows into a target CSV.
 
 For rows that can be confirmed as conservation permits, this script:
-- sets hunt_type to "conservation"
+- sets hunt_type to "Conservation"
 - sets hunt_class to organization code(s) when available
 - fills hunt_code when missing and a confident match exists
+- backfills boundary_id from DATABASE.csv when a hunt_code is known
 
 Confirmation sources:
 1) 2026 deer buck conservation CSV (direct hunt_code list)
@@ -50,6 +51,16 @@ def normalize_weapon(value: object) -> str:
     if "MULTI" in text:
         return "MULTISEASON"
     return text
+
+
+def set_if_present(row: dict[str, str], fieldnames: list[str], key: str, value: object) -> bool:
+    if key not in fieldnames:
+        return False
+    text = clean(value)
+    if row.get(key) == text:
+        return False
+    row[key] = text
+    return True
 
 
 def parse_args() -> argparse.Namespace:
@@ -184,13 +195,18 @@ def main() -> int:
 
         before = {
             "hunt_code": clean(row.get("hunt_code")),
+            "boundary_id": clean(row.get("boundary_id")),
             "hunt_type": clean(row.get("hunt_type")),
             "hunt_class": clean(row.get("hunt_class")),
         }
 
+        db_boundary_id = clean(db_row.get("boundary_id"))
+        if db_boundary_id:
+            set_if_present(row, target_fields, "boundary_id", db_boundary_id)
+
         if not clean(row.get("hunt_code")):
             row["hunt_code"] = candidate_code
-        row["hunt_type"] = "conservation"
+        row["hunt_type"] = "Conservation"
 
         organizations = sorted(org_by_code.get(candidate_code, set()))
         if organizations:
@@ -198,6 +214,7 @@ def main() -> int:
 
         after = {
             "hunt_code": clean(row.get("hunt_code")),
+            "boundary_id": clean(row.get("boundary_id")),
             "hunt_type": clean(row.get("hunt_type")),
             "hunt_class": clean(row.get("hunt_class")),
         }

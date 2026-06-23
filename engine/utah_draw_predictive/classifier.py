@@ -171,6 +171,19 @@ TARGET_DRAW_SYSTEM_TYPES = {
     "UNKNOWN_TARGET",
 }
 
+TRUE_PLE_HUNT_CODES = {
+    "DB0009",
+    "DB1000",
+    "DB1001",
+    "DB1002",
+    "DB1003",
+    "DB1004",
+    "DB1005",
+    "DB1006",
+    "DB1007",
+    "DB1008",
+}
+
 
 def _clean(value: object) -> str:
     return str(value or "").strip()
@@ -240,6 +253,7 @@ def is_target_scope(row: Mapping[str, object]) -> bool:
 
 def classify_draw_system_type(row: Mapping[str, object]) -> str:
     text = _joined_text(row)
+    hunt_code = _clean(row.get("hunt_code")).upper()
     hunt_type = _clean_lower(row.get("hunt_type"))
     hunt_class = _clean_lower(row.get("hunt_class"))
     species = _clean_lower(row.get("species"))
@@ -247,6 +261,21 @@ def classify_draw_system_type(row: Mapping[str, object]) -> str:
     draw_pool = _clean_lower(row.get("draw_pool"))
     if is_out_of_scope_non_target(row):
         return "OUT_OF_SCOPE_NON_TARGET"
+
+    existing_draw_system_type = _clean(row.get("draw_system_type"))
+    if existing_draw_system_type and (
+        is_modeled_general_deer_row(row)
+        or is_modeled_antlerless_row(row)
+        or is_modeled_dedicated_hunter_row(row)
+        or is_modeled_phase6_bonus_row(row)
+        or is_modeled_turkey_row(row)
+        or is_modeled_bear_row(row)
+        or is_modeled_sportsman_row(row)
+    ):
+        return existing_draw_system_type
+
+    if is_modeled_private_lands_antlerless_elk_row(row):
+        return PRIVATE_LANDS_ANTLERLESS_ELK_DRAW_SYSTEM_TYPE
 
     if is_modeled_mountain_lion_row(row):
         return MOUNTAIN_LION_DRAW_SYSTEM_TYPE
@@ -295,6 +324,9 @@ def classify_draw_system_type(row: Mapping[str, object]) -> str:
     if "cwmu" in text:
         return "BONUS_CWMU_BIG_GAME"
 
+    if hunt_code in TRUE_PLE_HUNT_CODES:
+        return "BONUS_PLE_BIG_GAME"
+
     if draw_pool == "dedicated_hunter" or draw_pool == "youth_dedicated_hunter" or "dedicated hunter" in text:
         return "PREFERENCE_DEDICATED_HUNTER_DEER"
 
@@ -310,8 +342,11 @@ def classify_draw_system_type(row: Mapping[str, object]) -> str:
             return "PREFERENCE_GENERAL_SEASON_BUCK_DEER"
         return "GENERAL_BIG_GAME_OTHER"
 
-    if "premium limited entry" in text or "premium limited-entry" in text:
-        return "BONUS_PLE_BIG_GAME"
+    if "premium limited entry" in text or "premium limited-entry" in text or "p.l.e" in text:
+        if hunt_code in TRUE_PLE_HUNT_CODES:
+            return "BONUS_PLE_BIG_GAME"
+        if "deer" in text and "buck" in text:
+            return "BONUS_LE_BIG_GAME"
     if "once-in-a-lifetime" in text or "once in a lifetime" in text or "o.i.l." in text or "oial" in text:
         return "BONUS_OIL_BIG_GAME"
     if any(token in text for token in BIG_GAME_TOKENS):
