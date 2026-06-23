@@ -42,7 +42,13 @@ def norm(value: str | None) -> str:
 
 
 def draw_year(row: dict[str, str]) -> str:
-    return norm(row.get("year") or row.get("draw_year") or row.get("reported_hunt_year_inferred") or row.get("publish_year"))
+    return norm(
+        row.get("actual_draw_year")
+        or row.get("year")
+        or row.get("draw_year")
+        or row.get("reported_hunt_year_inferred")
+        or row.get("publish_year")
+    )
 
 
 def pct(numerator: int, denominator: int) -> str:
