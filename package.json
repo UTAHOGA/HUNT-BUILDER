@@ -41,7 +41,7 @@
         "publish:hard-copy-tables": "node scripts/publish-formatted-hunt-tables.js",
         "test:canonical": "node tests/validate-canonical-json.test.js && node tests/canonical-rebuild.test.js",
         "test": "node tests/validate-canonical-json.test.js && node tests/canonical-rebuild.test.js && npm run verify:permits-2026",
-        "build": "npm run build:library-page"
+        "build": "npm run build:pages"
     },
     "devDependencies": {
         "pdf-lib": "^1.17.1",
