@@ -1,5 +1,7 @@
 :root {
   --wallpaper: url("/assets/backgrounds/CABIN.png");
+  --library-wallpaper-size: max(118vw, 177.78vh) auto;
+  --library-wallpaper-position: center top;
   --ink: #2d180f;
   --accent: #d48635;
   --accent-dark: #8f4d18;
@@ -24,14 +26,11 @@ body {
   background-color: #110a05;
   background-image:
     linear-gradient(180deg, rgba(13, 7, 4, 0.05), rgba(13, 7, 4, 0.35)),
-    url("/assets/backgrounds/CABIN.png");
-  background-position: center top;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background:
-    linear-gradient(180deg, rgba(13, 7, 4, 0.05), rgba(13, 7, 4, 0.35)),
-    var(--wallpaper) center top / cover no-repeat fixed;
+    var(--wallpaper);
+  background-position: center top, var(--library-wallpaper-position);
+  background-size: auto, var(--library-wallpaper-size);
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: fixed, fixed;
   font-family: "Trebuchet MS", "Segoe UI", Tahoma, sans-serif;
 }
 
@@ -139,7 +138,7 @@ body {
 .public-library-controls {
   position: absolute;
   left: 50%;
-  top: 34%;
+  top: clamp(138px, 20vh, 192px);
   transform: translateX(-50%);
   width: min(820px, 68vw);
   display: flex;
@@ -186,7 +185,7 @@ body {
 .public-library-note {
   position: absolute;
   left: 50%;
-  top: 40%;
+  top: clamp(198px, 27vh, 252px);
   transform: translateX(-50%);
   margin: 0;
   width: min(840px, 80vw);
@@ -202,9 +201,9 @@ body {
 .public-library-folders {
   position: absolute !important;
   left: 50% !important;
-  top: 50% !important;
+  top: clamp(292px, 42vh, 392px) !important;
   transform: translateX(-50%) !important;
-  width: min(920px, 62%) !important;
+  width: min(1010px, 70vw) !important;
   margin: 0 !important;
   display: grid;
   grid-template-columns: repeat(4, minmax(150px, 1fr));
@@ -214,26 +213,27 @@ body {
 
 .public-folder {
   position: relative;
-  min-height: 182px;
-  padding: 20px 14px 16px;
-  border-radius: 8px;
-  border: 1px solid rgba(110, 65, 31, 0.7);
+  min-height: 188px;
+  padding: 24px 16px 16px;
+  border-radius: 5px 7px 6px 4px;
+  border: 1px solid rgba(93, 52, 22, 0.78);
   background:
-    radial-gradient(140% 90% at 8% 8%, rgba(255, 248, 226, 0.76), rgba(255, 248, 226, 0) 42%),
-    radial-gradient(115% 100% at 92% 90%, rgba(121, 73, 35, 0.16), rgba(121, 73, 35, 0) 46%),
+    radial-gradient(140% 90% at 8% 8%, rgba(255, 244, 209, 0.55), rgba(255, 244, 209, 0) 42%),
+    radial-gradient(115% 100% at 92% 90%, rgba(101, 57, 26, 0.20), rgba(101, 57, 26, 0) 46%),
     repeating-linear-gradient(
       38deg,
-      rgba(125, 85, 50, 0.05) 0,
-      rgba(125, 85, 50, 0.05) 2px,
-      rgba(245, 224, 184, 0.03) 2px,
-      rgba(245, 224, 184, 0.03) 6px
+      rgba(92, 54, 26, 0.07) 0,
+      rgba(92, 54, 26, 0.07) 2px,
+      rgba(238, 211, 160, 0.035) 2px,
+      rgba(238, 211, 160, 0.035) 6px
     ),
-    linear-gradient(180deg, #f2ddb2 0%, #e4c286 56%, #d5ae72 100%) !important;
+    linear-gradient(180deg, #e9c991 0%, #d8a965 56%, #bf8445 100%) !important;
   color: #2e1709 !important;
   box-shadow:
-    0 16px 30px rgba(0, 0, 0, 0.45),
-    inset 0 0 0 1px rgba(255, 245, 220, 0.62),
-    inset 0 0 22px rgba(80, 46, 20, 0.2);
+    0 16px 30px rgba(0, 0, 0, 0.48),
+    inset 0 0 0 1px rgba(255, 238, 201, 0.48),
+    inset 0 0 28px rgba(69, 39, 18, 0.28);
+  clip-path: polygon(2% 0, 98% 1%, 100% 4%, 99% 96%, 97% 100%, 4% 99%, 0 96%, 1% 5%);
   cursor: pointer;
   text-align: left;
   transition: transform 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
@@ -243,17 +243,16 @@ body {
 .public-folder::before {
   content: "";
   position: absolute;
-  top: -11px;
-  left: 18px;
-  width: 66px;
-  height: 20px;
-  border-radius: 7px 7px 0 0;
-  border: 1px solid rgba(103, 56, 24, 0.68);
-  border-bottom: 0;
+  top: -7px;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  border: 1px solid rgba(48, 24, 10, 0.75);
   background:
-    linear-gradient(180deg, rgba(255, 236, 186, 0.62), rgba(255, 236, 186, 0) 55%),
-    linear-gradient(180deg, #e3c07f, #b97833);
-  box-shadow: inset 0 1px 0 rgba(255, 247, 220, 0.5);
+    radial-gradient(circle at 35% 30%, rgba(255, 232, 163, 0.95), rgba(184, 104, 37, 0.8) 40%, rgba(45, 21, 9, 0.95) 100%);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 241, 205, 0.5);
 }
 
 .public-folder::after {
@@ -261,7 +260,7 @@ body {
   position: absolute;
   left: 10px;
   right: 10px;
-  bottom: 48px;
+  bottom: 46px;
   height: 1px;
   background: linear-gradient(90deg, rgba(110, 70, 36, 0), rgba(110, 70, 36, 0.42), rgba(110, 70, 36, 0));
 }
@@ -281,7 +280,7 @@ body {
   display: block;
   font-family: "Georgia", "Times New Roman", serif;
   font-weight: 800;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.18;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -291,11 +290,11 @@ body {
 
 .public-folder-description {
   display: block;
-  margin-top: 10px;
+  margin-top: 12px;
   min-height: 64px;
   font-size: 10px;
   line-height: 1.35;
-  color: #5a3218;
+  color: #4f2c15;
   font-weight: 700;
   text-shadow: 0 1px 0 rgba(255, 240, 210, 0.45);
 }
@@ -305,7 +304,7 @@ body {
   align-items: center;
   justify-content: center;
   min-width: 86px;
-  margin-top: 8px;
+  margin-top: 10px;
   padding: 5px 11px;
   font-size: 10px;
   color: #f6d59f;
@@ -490,14 +489,18 @@ body {
 }
 
 @media (max-width: 1100px) {
+  :root {
+    --library-wallpaper-size: auto 108vh;
+  }
+
   .public-library-controls {
     width: min(700px, 86vw);
-    top: 36%;
+    top: clamp(128px, 18vh, 170px);
   }
 
   .public-library-note {
     width: min(720px, 90vw);
-    top: 42%;
+    top: clamp(186px, 25vh, 228px);
     font-size: 13px;
   }
 
@@ -513,7 +516,7 @@ body {
   .public-library-folders {
     width: min(760px, 84vw);
     grid-template-columns: repeat(2, minmax(180px, 1fr));
-    top: 54% !important;
+    top: clamp(268px, 39vh, 350px) !important;
   }
 }
 

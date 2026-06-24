@@ -21,6 +21,8 @@
     : [fallbackR2('processed_data/hunt_research_2026_split')];
   const USE_SPLIT_DETAIL_DIRECT = window.UOGA_CONFIG?.HUNT_RESEARCH_USE_SPLIT_DETAIL_DIRECT === true;
   const HUNT_RESEARCH_DATA_VERSION = String(window.UOGA_CONFIG?.HUNT_RESEARCH_DATA_VERSION || '').trim();
+  const RESEARCH_RESULT_YEAR = String(window.UOGA_CONFIG?.HUNT_RESEARCH_RESULT_YEAR || '2025');
+  const RESEARCH_MODEL_YEAR = String(window.UOGA_CONFIG?.HUNT_RESEARCH_MODEL_YEAR || '2026');
   const CANONICAL_LADDER_SOURCES = (window.UOGA_CONFIG && Array.isArray(window.UOGA_CONFIG.HUNT_RESEARCH_CANONICAL_LADDER_SOURCES) && window.UOGA_CONFIG.HUNT_RESEARCH_CANONICAL_LADDER_SOURCES.length)
     ? window.UOGA_CONFIG.HUNT_RESEARCH_CANONICAL_LADDER_SOURCES
     : [fallbackR2('processed_data/hunt_research_2026_ladder.json')];
@@ -818,6 +820,7 @@
       const drawPool = normalizeDrawPool(row.draw_pool);
       const group = groupKey(row.hunt_code, residency, drawPool);
       const points = num(row.points);
+      if (points === null) return;
       const key = rowKey(row.hunt_code, residency, points, drawPool);
       const engineMatch = state.engineByKey.get(key);
       const masterPointMatch = state.masterPointByKey.get(key);
@@ -1171,15 +1174,15 @@
     if (displayedOdds.source === 'ml_hybrid') {
       const confidence = displayedOdds.confidence === null ? null : Number(displayedOdds.confidence);
       const confidenceLabel = Number.isFinite(confidence) ? ` (conf ${confidence.toFixed(2)})` : '';
-      return `2026 ML Hybrid Draw: ${displayedOdds.value}${confidenceLabel}`;
+      return `${RESEARCH_MODEL_YEAR} ML Hybrid Draw: ${displayedOdds.value}${confidenceLabel}`;
     }
     if (isPreferenceFamily(meta, row, referenceRow)) {
-      return `2026 Preference Draw: ${displayedOdds.value}`;
+      return `${RESEARCH_MODEL_YEAR} Preference Draw: ${displayedOdds.value}`;
     }
     if (isRandomOnlyBonusCase(meta, row, referenceRow)) {
-      return `2026 Random Draw: ${displayedOdds.value}`;
+      return `${RESEARCH_MODEL_YEAR} Random Draw: ${displayedOdds.value}`;
     }
-    return `2026 Random Draw: ${displayedOdds.value}`;
+    return `${RESEARCH_MODEL_YEAR} Random Draw: ${displayedOdds.value}`;
   }
 
   function getOutlookSignal(meta, row, referenceRow) {
@@ -1252,17 +1255,17 @@
   function setLadderHeaders(mode) {
     if (!els.ladderHeaderCol1 || !els.ladderHeaderCol2 || !els.ladderHeaderCol3 || !els.ladderHeaderCol4 || !els.ladderHeaderCol5) return;
     const headersByMode = {
-      [DRAW_MODE.PREFERENCE]: ['Points', '2025 Draw Results', '2026 Draw Odds', 'Point Status', 'Notes'],
+      [DRAW_MODE.PREFERENCE]: ['Points', `${RESEARCH_RESULT_YEAR} Draw Results`, `${RESEARCH_MODEL_YEAR} Draw Odds`, 'Point Status', 'Notes'],
       [DRAW_MODE.BONUS]: [
         'Points',
-        '2025 Draw Results',
-        { label: '2026 Max Point Draw', sublabel: '50% of Tags' },
-        { label: '2026 Random Draw', sublabel: '50% of Tags' },
+        `${RESEARCH_RESULT_YEAR} Draw Results`,
+        { label: `${RESEARCH_MODEL_YEAR} Max Point Draw`, sublabel: '50% of Tags' },
+        { label: `${RESEARCH_MODEL_YEAR} Random Draw`, sublabel: '50% of Tags' },
         'Notes',
       ],
-      [DRAW_MODE.YOUTH_RESERVE]: ['Points', '2025 Draw Results', '2026 Youth Reserve', '2026 Rollover', 'Notes'],
-      [DRAW_MODE.ALLOCATION_AVAILABILITY]: ['Status', 'Permit Availability', '2026 Allocation', 'Rule / Source', 'Notes'],
-      [DRAW_MODE.STATUS_ONLY]: ['Points', '2025 Draw Results', '2026 Status', 'Estimated Odds', 'Notes'],
+      [DRAW_MODE.YOUTH_RESERVE]: ['Points', `${RESEARCH_RESULT_YEAR} Draw Results`, `${RESEARCH_MODEL_YEAR} Youth Reserve`, `${RESEARCH_MODEL_YEAR} Rollover`, 'Notes'],
+      [DRAW_MODE.ALLOCATION_AVAILABILITY]: ['Status', 'Permit Availability', `${RESEARCH_MODEL_YEAR} Allocation`, 'Rule / Source', 'Notes'],
+      [DRAW_MODE.STATUS_ONLY]: ['Points', `${RESEARCH_RESULT_YEAR} Draw Results`, `${RESEARCH_MODEL_YEAR} Status`, 'Estimated Odds', 'Notes'],
     };
     const headers = headersByMode[mode] || headersByMode[DRAW_MODE.STATUS_ONLY];
     [
@@ -1647,16 +1650,16 @@
   function buildSourceBoxes(meta, row, referenceRow) {
     const quotaSourceStatus = String(row?.quota_source_status || referenceRow?.quota_source_status || '').trim();
     const quotaSourceDisplay = quotaSourceStatus
-      ? `2026 quota source: ${quotaSourceStatus}`
-      : '2026 quota source: Not available';
+      ? `${RESEARCH_MODEL_YEAR} quota source: ${quotaSourceStatus}`
+      : `${RESEARCH_MODEL_YEAR} quota source: Not available`;
     const boxes = [
-      ['2025 Draw Results', formatHistoricalDrawResult(row)
+      [`${RESEARCH_RESULT_YEAR} Draw Results`, formatHistoricalDrawResult(row)
         || (Number.isFinite(num(row?.odds_2025_actual))
           ? formatOddsAsOneInOrPercent(row?.odds_2025_actual)
           : (row?.odds_2025_actual || ''))],
-      ['2026 Draw Odds', getDisplayedOdds(meta, row, referenceRow).value],
-      ['2026 Quota Source', quotaSourceDisplay],
-      ['2025 Harvest Success', hasMeaningfulValue(referenceRow?.harvest_success_percent_2025)
+      [`${RESEARCH_MODEL_YEAR} Draw Odds`, getDisplayedOdds(meta, row, referenceRow).value],
+      [`${RESEARCH_MODEL_YEAR} Quota Source`, quotaSourceDisplay],
+      [`${RESEARCH_RESULT_YEAR} Harvest Success`, hasMeaningfulValue(referenceRow?.harvest_success_percent_2025)
         ? `${referenceRow.harvest_success_percent_2025}%`
         : (hasMeaningfulValue(meta?.success_percent) ? `${meta.success_percent}%` : 'Not available')],
       ['Harvest / Hunters', hasMeaningfulValue(referenceRow?.harvest_2025) || hasMeaningfulValue(referenceRow?.harvest_hunters_2025)
@@ -1664,8 +1667,8 @@
         : (hasMeaningfulValue(meta?.success_harvest) || hasMeaningfulValue(meta?.success_hunters)
           ? `${meta?.success_harvest || '0'} / ${meta?.success_hunters || '0'}`
           : 'Not available')],
-      ['2025 Public Permits', referenceRow?.permits_2025_total || meta?.public_permits_2025 || 'Not available'],
-      ['2026 Public Permits', referenceRow?.permits_2026_total || meta?.public_permits_2026 || 'Not available'],
+      [`${RESEARCH_RESULT_YEAR} Public Permits`, referenceRow?.permits_2025_total || meta?.public_permits_2025 || 'Not available'],
+      [`${RESEARCH_MODEL_YEAR} Public Permits`, referenceRow?.permits_2026_total || meta?.public_permits_2026 || 'Not available'],
       ['Odds Source', referenceRow?.has_bg_odds_page === 'TRUE'
         ? `Big Game Odds p. ${referenceRow.bg_odds_printed_page || referenceRow.bg_odds_pdf_page_index || ''}`.trim()
         : (referenceRow?.has_antlerless_odds_page === 'TRUE'
@@ -1715,7 +1718,7 @@
       ['Max Point Pool', maxPoolDisplay],
       ['Random Pool', randomDisplay],
       ['Last Draw Result', formatHistoricalDrawResult(row) || 'Not available'],
-      ['Permit Context', `${referenceRow?.permits_2026_total || meta?.public_permits_2026 || 'Not available'} total public permits in 2026`],
+      ['Permit Context', `${referenceRow?.permits_2026_total || meta?.public_permits_2026 || 'Not available'} total public permits in ${RESEARCH_MODEL_YEAR}`],
       ['Harvest Snapshot', getHarvestSnapshot(meta, referenceRow)],
       ['Plain-English Formula', getPlainFormulaText(meta, row, referenceRow), 'is-wide'],
       ['What I Would Do With This', getRecommendation(meta, row, referenceRow), 'is-wide'],
