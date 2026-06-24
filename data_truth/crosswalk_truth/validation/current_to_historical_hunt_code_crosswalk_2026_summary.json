@@ -1,0 +1,35 @@
+{
+  "artifact": "current_to_historical_hunt_code_crosswalk_2026",
+  "blocker_count": 0,
+  "blockers": [],
+  "database_crosscheck_missing_codes": [],
+  "database_crosscheck_missing_count": 0,
+  "database_source": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "duplicate_current_code_count": 0,
+  "duplicate_current_codes": [],
+  "notes": [
+    "This is a crosswalk truth/reference artifact only; it does not rewrite current hunt codes.",
+    "Current codes are sourced from DATABASE.csv plus permit overlay locks, then checked back against DATABASE.csv."
+  ],
+  "output_row_count": 169,
+  "prefix_counts": {
+    "BI": 2,
+    "CG": 1,
+    "DS": 7,
+    "EA": 5,
+    "EB": 2,
+    "EL": 126,
+    "EX": 1,
+    "LD": 6,
+    "LO": 8,
+    "LP": 6,
+    "RS": 5
+  },
+  "status_counts": {
+    "PROMOTED_EXACT_HISTORY": 17,
+    "PROMOTED_PARALLEL_PUBLIC_UNIT_REFERENCE": 10,
+    "PROMOTED_PREFIX_SWAP_CANDIDATE": 138,
+    "REVIEWED_CURRENT_REFERENCE": 4
+  },
+  "target_current_code_count": 169
+}

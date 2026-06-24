@@ -1,0 +1,35 @@
+{
+  "snapshot_utc": "2026-05-26T21:05:10+00:00",
+  "live_hunt_codes_url": "https://dwrapps.utah.gov/huntboundary/HaSetup?SE=Antlerless&SP=Elk",
+  "live_hunt_code_count": 1422,
+  "live_hunt_code_sha256": "831129c376c527d2885a74f0c579a5b4e4e2aff415583f3043b2bad37f38d4bf",
+  "live_selected_table_row_count": 227,
+  "live_selected_table_counts": {
+    "Elk|Antlerless": 204,
+    "Pronghorn|Doe": 23
+  },
+  "database_path": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "database_hunt_code_count": 1394,
+  "database_unique_hunt_code_count": 1394,
+  "database_codes_missing_from_live_count": 0,
+  "live_codes_not_in_database_count": 28,
+  "user_reported_missing_codes": [
+    "EA1007",
+    "EA1053",
+    "PD1039"
+  ],
+  "user_reported_missing_confirmed_absent": [],
+  "user_reported_missing_retired_from_database": [
+    "EA1007",
+    "EA1053",
+    "PD1039"
+  ],
+  "retired_ledger_path": "data_truth/crosswalk_truth/normalized/retired_current_hunt_codes_2026.csv",
+  "missing_codes_by_prefix": {},
+  "outputs": {
+    "live_snapshot_csv": "data_truth/crosswalk_truth/raw_inventory/live_dwr_hunt_planner_hunt_codes_snapshot_2026.csv",
+    "live_selected_tables_snapshot_csv": "data_truth/crosswalk_truth/raw_inventory/live_dwr_hunt_planner_selected_tables_snapshot_2026.csv",
+    "audit_csv": "data_truth/crosswalk_truth/validation/current_online_missing_hunt_codes_2026_review.csv",
+    "markdown_report": "processed_data/current_online_missing_hunt_codes_2026_review.md"
+  }
+}

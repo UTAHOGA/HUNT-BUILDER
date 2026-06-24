@@ -1,0 +1,18 @@
+{
+  "artifact": "database_boundary_id_fill_2026",
+  "blank_boundary_id_after": 0,
+  "blank_boundary_id_before": 0,
+  "blocker_count": 0,
+  "blockers": [],
+  "confirmed_count": 0,
+  "corrected_count": 0,
+  "database_source": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "duplicate_hunt_code_count": 0,
+  "duplicate_hunt_codes": [],
+  "match_method_counts": {},
+  "promoted_count": 0,
+  "remaining_blank_hunt_codes": [],
+  "review_target_count": 0,
+  "reviewed_count": 0,
+  "unresolved_count": 0
+}

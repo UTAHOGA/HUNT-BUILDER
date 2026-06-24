@@ -1,0 +1,15 @@
+{
+  "artifact": "current_reference_codes_2026_review",
+  "blocker_count": 0,
+  "blockers": [],
+  "database_source": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "no_quota_published_count": 3,
+  "reviewed_codes": [
+    "CG9999",
+    "EX1000",
+    "LO0008",
+    "LO0011"
+  ],
+  "reviewed_count": 4,
+  "unlimited_permit_count": 1
+}
