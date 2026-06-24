@@ -138,7 +138,7 @@ body {
 .public-library-controls {
   position: absolute;
   left: 50%;
-  top: clamp(138px, 20vh, 192px);
+  top: clamp(24px, 5vh, 56px);
   transform: translateX(-50%);
   width: min(820px, 68vw);
   display: flex;
@@ -185,7 +185,7 @@ body {
 .public-library-note {
   position: absolute;
   left: 50%;
-  top: clamp(198px, 27vh, 252px);
+  top: clamp(84px, 11vh, 124px);
   transform: translateX(-50%);
   margin: 0;
   width: min(840px, 80vw);
@@ -201,7 +201,7 @@ body {
 .public-library-folders {
   position: absolute !important;
   left: 50% !important;
-  top: clamp(292px, 42vh, 392px) !important;
+  top: clamp(332px, 45vh, 430px) !important;
   transform: translateX(-50%) !important;
   width: min(1010px, 70vw) !important;
   margin: 0 !important;
@@ -213,7 +213,7 @@ body {
 
 .public-folder {
   position: relative;
-  min-height: 188px;
+  min-height: 208px;
   padding: 24px 16px 16px;
   border-radius: 5px 7px 6px 4px;
   border: 1px solid rgba(93, 52, 22, 0.78);
@@ -290,13 +290,43 @@ body {
 
 .public-folder-description {
   display: block;
-  margin-top: 12px;
-  min-height: 64px;
+  margin-top: 8px;
+  min-height: 40px;
   font-size: 10px;
   line-height: 1.35;
   color: #4f2c15;
   font-weight: 700;
   text-shadow: 0 1px 0 rgba(255, 240, 210, 0.45);
+}
+
+.public-folder-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 58px;
+  margin: 10px auto 4px;
+  opacity: 0.86;
+  filter: sepia(0.35) saturate(0.78) contrast(1.05);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.public-folder-icon img {
+  display: block;
+  max-width: 82px;
+  max-height: 58px;
+  object-fit: contain;
+}
+
+.public-folder[data-folder="rules"] .public-folder-icon img {
+  max-width: 108px;
+}
+
+.public-folder[data-folder="draw"] .public-folder-icon img,
+.public-folder[data-folder="conservation"] .public-folder-icon img,
+.public-folder[data-folder="calendar"] .public-folder-icon img,
+.public-folder[data-folder="outfitters"] .public-folder-icon img {
+  max-height: 64px;
 }
 
 .public-folder-count {
@@ -495,12 +525,12 @@ body {
 
   .public-library-controls {
     width: min(700px, 86vw);
-    top: clamp(128px, 18vh, 170px);
+    top: clamp(22px, 5vh, 52px);
   }
 
   .public-library-note {
     width: min(720px, 90vw);
-    top: clamp(186px, 25vh, 228px);
+    top: clamp(80px, 11vh, 116px);
     font-size: 13px;
   }
 
@@ -516,7 +546,7 @@ body {
   .public-library-folders {
     width: min(760px, 84vw);
     grid-template-columns: repeat(2, minmax(180px, 1fr));
-    top: clamp(268px, 39vh, 350px) !important;
+    top: clamp(318px, 42vh, 390px) !important;
   }
 }
 

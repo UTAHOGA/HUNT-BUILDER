@@ -6,14 +6,14 @@
   ];
 
   const FOLDERS = [
-    { id: "rules", title: "UTAH DWR RULES & REGULATIONS", description: "Current-year/current-cycle public rules and regulation PDFs." },
-    { id: "harvest", title: "HARVEST DATA", description: "Public harvest reports and data across years." },
-    { id: "draw", title: "2026 HUNT DRAW RESULTS", description: "Public 2026 draw results and permit quota PDF documents." },
-    { id: "conservation", title: "CONSERVATION PERMITS", description: "Current-cycle conservation permit references." },
-    { id: "expo", title: "HUNT EXPO", description: "Current-year Hunt Expo permit number references." },
-    { id: "calendar", title: "SIGNIFICANT DATES / CALENDAR", description: "Application windows, deadlines, season dates, and calendar references." },
-    { id: "units2026", title: "2026 HUNT UNITS / PERMIT NUMBERS", description: "Current 2026 hunt code, hunt name, unit, and permit numbers." },
-    { id: "outfitters", title: "UTAH OUTFITTERS BY HUNT CODE/HUNT NAME", description: "Outfitter resources tied to hunt code and hunt name." },
+    { id: "rules", title: "UTAH DWR RULES & REGULATIONS", description: "Current-year/current-cycle public rules and regulation PDFs.", icon: "./assets/library-icons/mountain_goat.png" },
+    { id: "harvest", title: "HARVEST DATA", description: "Public harvest reports and data across years.", icon: "./assets/library-icons/elk.png" },
+    { id: "draw", title: "2026 HUNT DRAW RESULTS", description: "Public 2026 draw results and permit quota PDF documents.", icon: "./assets/library-icons/mule_deer.png" },
+    { id: "conservation", title: "CONSERVATION PERMITS", description: "Current-cycle conservation permit references.", icon: "./assets/library-icons/bison.png" },
+    { id: "expo", title: "HUNT EXPO", description: "Current-year Hunt Expo permit number references.", icon: "./assets/library-icons/bison.png" },
+    { id: "calendar", title: "SIGNIFICANT DATES / CALENDAR", description: "Application windows, deadlines, season dates, and calendar references.", icon: "./assets/library-icons/turkey.png" },
+    { id: "units2026", title: "2026 HUNT UNITS / PERMIT NUMBERS", description: "Current 2026 hunt code, hunt name, unit, and permit numbers.", icon: "./assets/library-icons/pronghorn.png" },
+    { id: "outfitters", title: "UTAH OUTFITTERS BY HUNT CODE/HUNT NAME", description: "Outfitter resources tied to hunt code and hunt name.", icon: "./assets/library-icons/cougar.png" },
   ];
 
   const RUNTIME_DENYLIST = [
@@ -421,6 +421,9 @@
       return `
         <button class="public-folder ${active}" type="button" data-folder="${esc(folder.id)}" aria-label="${esc(label)}">
           <span class="public-folder-title">${esc(folder.title)}</span>
+          <span class="public-folder-icon" aria-hidden="true">
+            <img src="${esc(folder.icon || "./assets/library-icons/mule_deer.png")}" alt="" loading="lazy" />
+          </span>
           <span class="public-folder-description">${esc(folder.description)}</span>
           <span class="public-folder-count">${count} file${count === 1 ? "" : "s"}</span>
         </button>
