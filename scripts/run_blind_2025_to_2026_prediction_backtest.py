@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import importlib.util
 import json
 import math
 import os
@@ -34,12 +35,19 @@ SOURCE_LONG = REPO / "data_truth" / "draw_results_truth" / "normalized" / "draw_
 ACTUAL_2026 = REPO / "outputs" / "2026 scorable draw results.csv"
 RUNTIME_DRAFT_DIR = REPO / "data_model" / "runtime_drafts"
 DEFAULT_OUT_ROOT = REPO / "audits" / "prediction_blind_backtests" / "2025_to_2026"
+BLACK_BEAR_CROSSWALK_2026 = REPO / "data_truth" / "crosswalk_truth" / "normalized" / "black_bear_BR_2024_2025_2026_crosswalk.csv"
 HISTORY_YEARS = [2021, 2022, 2023, 2024, 2025]
 SCORABLE_RECORD_TYPES = {
     "point_level_draw_result",
     "point_row",
     "sportsman_total_draw_result",
     "sportsman_total",
+}
+EXCLUDED_ACTUAL_DRAW_SYSTEM_TYPES = {
+    "RANDOM_ONLY_TARGET",
+    "OTC_OR_REMAINING_TARGET",
+    "YOUTH_OTC_OR_AVAILABILITY",
+    "YOUTH_DRAW_ONLY_ELK",
 }
 LEAN_TRUTH_COLUMNS = [
     "year",
@@ -289,6 +297,52 @@ def prepare_runtime_inputs(out_dir: Path) -> dict[str, Any]:
     return {"path": runtime_dir, "files": copied, "sha256": hashes}
 
 
+def rebuild_main_bonus_frozen_inputs(filtered_truth_path: Path, runtime_dir: Path) -> dict[str, Any]:
+    """Rebuild the main OIL/LE/PLE bonus draft inside the blind sandbox.
+
+    The production build script normally reads data_model/runtime_drafts. For a
+    blind audit, patch its input path to the through-2025 filtered truth file and
+    write outputs only into the audit runtime copy.
+    """
+    script_path = REPO / "scripts" / "build_predictive_bonus_engine_v1.py"
+    spec = importlib.util.spec_from_file_location("blind_build_predictive_bonus_engine_v1", script_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"Unable to load {script_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    original_input_draw = module.INPUT_DRAW_V2
+    original_argv = sys.argv[:]
+    module.INPUT_DRAW_V2 = filtered_truth_path
+    try:
+        sys.argv = [
+            str(script_path),
+            "--prediction-year",
+            "2026",
+            "--out-dir",
+            str(runtime_dir),
+        ]
+        exit_code = module.main()
+        if exit_code not in (0, None):
+            raise RuntimeError(f"Blind main bonus rebuild failed with exit code {exit_code}")
+    finally:
+        module.INPUT_DRAW_V2 = original_input_draw
+        sys.argv = original_argv
+
+    rebuilt_files = [
+        runtime_dir / "predictive_bonus_engine_2026.predictions.csv",
+        runtime_dir / "predictive_bonus_engine_2026.materialized.csv",
+        runtime_dir / "predictive_bonus_engine_2026.audit.csv",
+    ]
+    return {
+        "rebuilt": True,
+        "script": rel(script_path),
+        "input_truth": rel(filtered_truth_path),
+        "files": {path.name: rel(path) for path in rebuilt_files},
+        "sha256": {path.name: sha256(path) for path in rebuilt_files if path.exists()},
+    }
+
+
 def run_prediction_phase(out_dir: Path, filtered_truth_path: Path, runtime_dir: Path) -> dict[str, Any]:
     sys.path.insert(0, str(REPO))
     from engine.utah_bonus_predictive import materialize as materialize_mod  # pylint: disable=import-outside-toplevel
@@ -377,6 +431,65 @@ def actual_key(row: Mapping[str, Any], draw_system_type: str) -> tuple[str, str,
         norm_residency(row.get("residency")),
         norm_key_points(row.get("points"), draw_system_type),
         draw_system_type or "UNKNOWN",
+    )
+
+
+def build_history_code_years() -> dict[str, set[int]]:
+    """Index official pre-target history by hunt code only.
+
+    This is intentionally narrow: it uses only <=2025 truth to decide whether a
+    2026 unmatched actual row had any code-level history available to the blind
+    prediction phase. It does not infer from 2026 outcomes.
+    """
+    history: dict[str, set[int]] = defaultdict(set)
+    _, rows = read_csv(SOURCE_LONG)
+    for row in rows:
+        year = draw_year(row)
+        code = norm_code(row.get("hunt_code"))
+        if code and year is not None and year <= 2025:
+            history[code].add(year)
+    return history
+
+
+def load_current_only_bear_split_codes() -> set[str]:
+    if not BLACK_BEAR_CROSSWALK_2026.exists():
+        return set()
+    _, rows = read_csv(BLACK_BEAR_CROSSWALK_2026)
+    return {
+        norm_code(row.get("current_2026_code"))
+        for row in rows
+        if clean(row.get("mapping_status")) == "CURRENT_SPLIT_CHILD_NO_PRIOR_DRAW_ROW"
+    }
+
+
+def disposition_for_unmatched_actual(
+    row: Mapping[str, Any],
+    history_code_years: Mapping[str, set[int]],
+    current_only_bear_split_codes: set[str],
+) -> tuple[str, str]:
+    """Classify unmatched actual rows without using 2026 results as history."""
+    code = norm_code(row.get("hunt_code"))
+    draw_system_type = clean(row.get("draw_system_type"))
+    history_years = sorted(history_code_years.get(code, set()))
+
+    if code in current_only_bear_split_codes:
+        return (
+            "SOURCE_VERIFIED_PREDICTION_GAP_CURRENT_ONLY_BEAR_SPLIT_CHILD",
+            "Official bear crosswalk marks this 2026 code as a current split/addition with no prior draw row; resolve with an explicit source/crosswalk route before treating as fully modeled.",
+        )
+    if not history_years:
+        if draw_system_type == "BONUS_CWMU_BIG_GAME":
+            return (
+                "SOURCE_VERIFIED_PREDICTION_GAP_CWMU_NO_EXACT_HISTORY",
+                "No <=2025 exact-code draw history exists for this CWMU code in the blind history input; resolve with raw source/crosswalk evidence, not a synthetic baseline.",
+            )
+        return (
+            "SOURCE_VERIFIED_PREDICTION_GAP_NO_EXACT_HISTORY",
+            "No <=2025 exact-code draw history exists in the blind history input; resolve from raw PDF/canonical/crosswalk evidence before promoting as fully modeled.",
+        )
+    return (
+        "UNEXPECTED_ENGINE_OR_KEY_GAP",
+        f"Code has <=2025 history years {','.join(str(year) for year in history_years)} but did not join to a frozen prediction key.",
     )
 
 
@@ -494,6 +607,8 @@ def metric_summary(errors: list[float]) -> dict[str, Any]:
 
 
 def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
+    if str(REPO) not in sys.path:
+        sys.path.insert(0, str(REPO))
     pred_headers, pred_raw = read_csv(frozen_prediction)
     actual_headers, actual_raw = read_csv(ACTUAL_2026)
 
@@ -536,6 +651,8 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
             actual_without_probability += 1
             continue
         draw_system_type = classify_actual_row(row)
+        if draw_system_type in EXCLUDED_ACTUAL_DRAW_SYSTEM_TYPES:
+            continue
         key = actual_key(row, draw_system_type)
         if not key[0] or key[3] in {"UNKNOWN", "UNKNOWN_TARGET", "OUT_OF_SCOPE_NON_TARGET"}:
             continue
@@ -596,6 +713,26 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
 
     unmatched_predictions = [predictions[key] for key in sorted(set(predictions) - set(actuals))]
     unmatched_actuals = [actuals[key] for key in sorted(set(actuals) - set(predictions))]
+    history_code_years = build_history_code_years()
+    current_only_bear_split_codes = load_current_only_bear_split_codes()
+    source_verified_prediction_gaps: list[dict[str, Any]] = []
+    unexpected_unmatched_actuals: list[dict[str, Any]] = []
+    unmatched_disposition_counts: Counter[str] = Counter()
+    for row in unmatched_actuals:
+        disposition, disposition_reason = disposition_for_unmatched_actual(
+            row,
+            history_code_years,
+            current_only_bear_split_codes,
+        )
+        annotated = dict(row)
+        annotated["disposition"] = disposition
+        annotated["disposition_reason"] = disposition_reason
+        annotated["history_years_available"] = "|".join(str(year) for year in sorted(history_code_years.get(norm_code(row.get("hunt_code")), set())))
+        unmatched_disposition_counts[disposition] += 1
+        if disposition.startswith("SOURCE_VERIFIED_PREDICTION_GAP"):
+            source_verified_prediction_gaps.append(annotated)
+        else:
+            unexpected_unmatched_actuals.append(annotated)
     duplicate_pred_rows = [
         {
             "hunt_code": key[0],
@@ -650,6 +787,32 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
         ["hunt_code", "residency", "points", "draw_system_type", "species", "hunt_name", "probability", "eligible_applicants", "total_permits", "record_type", "row_count_aggregated"],
         unmatched_actuals,
     )
+    unmatched_actual_disposition_fields = [
+        "hunt_code",
+        "residency",
+        "points",
+        "draw_system_type",
+        "species",
+        "hunt_name",
+        "probability",
+        "eligible_applicants",
+        "total_permits",
+        "record_type",
+        "row_count_aggregated",
+        "disposition",
+        "history_years_available",
+        "disposition_reason",
+    ]
+    write_csv(
+        compare_dir / "source_verified_prediction_gaps_2026_actuals.csv",
+        unmatched_actual_disposition_fields,
+        source_verified_prediction_gaps,
+    )
+    write_csv(
+        compare_dir / "unexpected_unmatched_2026_actuals.csv",
+        unmatched_actual_disposition_fields,
+        unexpected_unmatched_actuals,
+    )
     write_csv(
         compare_dir / "duplicate_prediction_keys.csv",
         ["hunt_code", "residency", "points", "draw_system_type", "duplicate_count"],
@@ -688,6 +851,9 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
         "joined_keys": len(rowlevel),
         "unmatched_prediction_keys": len(unmatched_predictions),
         "unmatched_actual_keys": len(unmatched_actuals),
+        "source_verified_prediction_gap_actual_keys": len(source_verified_prediction_gaps),
+        "unexpected_unmatched_actual_keys": len(unexpected_unmatched_actuals),
+        "unmatched_actual_disposition_counts": dict(sorted(unmatched_disposition_counts.items())),
         "duplicate_prediction_key_groups": len(duplicate_pred_rows),
         "duplicate_actual_key_groups": len(duplicate_actual_rows),
         "join_key": "hunt_code + residency + points + draw_system_type",
@@ -697,6 +863,8 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
             "grouped": rel(compare_dir / "prediction_accuracy_grouped.csv"),
             "unmatched_predictions": rel(compare_dir / "unmatched_frozen_predictions.csv"),
             "unmatched_actuals": rel(compare_dir / "unmatched_2026_actuals.csv"),
+            "source_verified_prediction_gaps": rel(compare_dir / "source_verified_prediction_gaps_2026_actuals.csv"),
+            "unexpected_unmatched_actuals": rel(compare_dir / "unexpected_unmatched_2026_actuals.csv"),
             "duplicate_prediction_keys": rel(compare_dir / "duplicate_prediction_keys.csv"),
             "duplicate_actual_keys": rel(compare_dir / "duplicate_actual_keys.csv"),
         },
@@ -709,6 +877,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out-dir", default=str(DEFAULT_OUT_ROOT))
     parser.add_argument("--skip-prediction", action="store_true", help="Only rescore an existing frozen prediction in --out-dir.")
+    parser.add_argument("--rebuild-main-bonus", action="store_true", help="Rebuild the main OIL/LE/PLE bonus draft from the filtered through-2025 truth inside --out-dir before freezing predictions.")
     parser.add_argument("--keep-temp-truth", action="store_true", help="Keep large copied truth/runtime input files for debugging.")
     args = parser.parse_args()
 
@@ -733,6 +902,8 @@ def main() -> int:
     else:
         filtered_info = build_filtered_truth(out_dir)
         runtime_info = prepare_runtime_inputs(out_dir)
+        if args.rebuild_main_bonus:
+            runtime_info["main_bonus_rebuild"] = rebuild_main_bonus_frozen_inputs(filtered_info["path"], runtime_info["path"])
         prediction_info = run_prediction_phase(out_dir, filtered_info["path"], runtime_info["path"])
 
     locked_manifest = {
