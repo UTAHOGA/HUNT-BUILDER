@@ -1,0 +1,52 @@
+{
+  "generated_at": "2026-05-23",
+  "reported_hunt_year": 2021,
+  "model_target_year": 2022,
+  "input_files": [
+    "21_bg_report.pdf",
+    "21_black_bear_report.pdf"
+  ],
+  "input_file_sha256": {
+    "21_bg_report.pdf": "1553c2f74659f718c8ed0a5c943bed9e29495fb4de6e71794474e9bf03453458",
+    "21_black_bear_report.pdf": "cf3d10ad60d1bfcd0bb508c78aec78ac6273c7207a577c1348b3f1ff8e5bbfb4"
+  },
+  "total_normalized_rows": 1047,
+  "hunt_code_rows": 1012,
+  "unique_hunt_codes": 974,
+  "rows_by_species": {
+    "Deer": 344,
+    "Antlerless Elk": 186,
+    "Elk": 172,
+    "Black Bear": 126,
+    "Pronghorn": 85,
+    "Moose": 38,
+    "Antlerless Deer": 27,
+    "Desert Bighorn Sheep": 21,
+    "Rocky Mountain Bighorn Sheep": 18,
+    "Mountain Goat": 17,
+    "Bison": 13
+  },
+  "outputs": [
+    "harvest_results_2021_for_2022_all_long.csv",
+    "harvest_results_2021_for_2022_antlerless_deer.csv",
+    "harvest_results_2021_for_2022_antlerless_elk.csv",
+    "harvest_results_2021_for_2022_bison.csv",
+    "harvest_results_2021_for_2022_black_bear.csv",
+    "harvest_results_2021_for_2022_deer.csv",
+    "harvest_results_2021_for_2022_desert_bighorn_sheep.csv",
+    "harvest_results_2021_for_2022_elk.csv",
+    "harvest_results_2021_for_2022_moose.csv",
+    "harvest_results_2021_for_2022_mountain_goat.csv",
+    "harvest_results_2021_for_2022_pronghorn.csv",
+    "harvest_results_2021_for_2022_rocky_mountain_bighorn_sheep.csv",
+    "harvest_results_2021_for_2022_hunt_code_keyed.csv",
+    "harvest_quality_features_by_hunt_code_2021_for_2022.csv",
+    "harvest_results_2021_for_2022_summary.csv"
+  ],
+  "important_notes": [
+    "The uploaded files are 2021 annual reports and are labeled reported_hunt_year=2021, model_target_year=2022.",
+    "Rows are harvest quality/history inputs, not permit-quota or direct p_draw inputs.",
+    "Complex PDF table extraction is normalized with raw_line and metrics_json retained for audit.",
+    "Turkey is not present in these big game or black bear annual reports."
+  ]
+}

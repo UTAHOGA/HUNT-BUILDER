@@ -1,0 +1,117 @@
+{
+  "generated_at_utc": "2026-05-27T05:12:01+00:00",
+  "audit_scope": "2022_draw_odds_source_parity_for_2023_modeling",
+  "legacy_source_dir": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\pipeline\\RAW\\hunt_unit_database\\2023\\pdf\\draw_odds",
+  "active_source_dir": "pipeline\\RAW\\hunt_unit_database\\2023\\pdf\\draw_odds",
+  "expected_file_count": 15,
+  "active_source_file_count": 17,
+  "byte_match_count": 15,
+  "missing_legacy_source_files": 0,
+  "missing_active_source_files": 0,
+  "review_file_count": 0,
+  "active_extra_alias_count": 2,
+  "active_extra_aliases": [
+    {
+      "active_alias_file": "2022 _Youth antlerless big game draw results.pdf",
+      "active_alias_path": "pipeline\\RAW\\hunt_unit_database\\2023\\pdf\\draw_odds\\2022 _Youth antlerless big game draw results.pdf",
+      "active_alias_sha256": "dec85a133d57b0053474a184b719faa3111088afe51957bfa61d8cf414f3c897",
+      "matches_legacy_file_names": "22_youth_antlerless_drawing_odds_report.pdf",
+      "alias_status": "DUPLICATE_ALIAS_OF_LEGACY_SOURCE"
+    },
+    {
+      "active_alias_file": "2022 Dedicated Hunter deer draw results.pdf",
+      "active_alias_path": "pipeline\\RAW\\hunt_unit_database\\2023\\pdf\\draw_odds\\2022 Dedicated Hunter deer draw results.pdf",
+      "active_alias_sha256": "610d6af098d9d680aaa1a168a9ea427b86dfd49224e0bd9f34da583988b3d0e1",
+      "matches_legacy_file_names": "22_dh_odds.pdf",
+      "alias_status": "DUPLICATE_ALIAS_OF_LEGACY_SOURCE"
+    }
+  ],
+  "legacy_duplicate_hash_groups": [
+    {
+      "sha256": "beb5123415ccda77a2a8100937b1d35a36c07eeee01167991fb60b63abb8cd2a",
+      "files": [
+        "2022 Youth draw-only elk bonus point draw results.pdf",
+        "22_youth_bull_elk.pdf"
+      ],
+      "file_count": 2
+    }
+  ],
+  "active_duplicate_hash_groups": [
+    {
+      "sha256": "610d6af098d9d680aaa1a168a9ea427b86dfd49224e0bd9f34da583988b3d0e1",
+      "files": [
+        "2022 Dedicated Hunter deer draw results.pdf",
+        "22_dh_odds.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "beb5123415ccda77a2a8100937b1d35a36c07eeee01167991fb60b63abb8cd2a",
+      "files": [
+        "2022 Youth draw-only elk bonus point draw results.pdf",
+        "22_youth_bull_elk.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "dec85a133d57b0053474a184b719faa3111088afe51957bfa61d8cf414f3c897",
+      "files": [
+        "2022 _Youth antlerless big game draw results.pdf",
+        "22_youth_antlerless_drawing_odds_report.pdf"
+      ],
+      "file_count": 2
+    }
+  ],
+  "active_duplicate_hash_group_count": 3,
+  "model_target_year": "2023",
+  "source_draw_result_year": "2022",
+  "draw_truth_2022_rows": 18688,
+  "draw_truth_2022_unique_hunt_codes": 1024,
+  "draw_truth_2022_source_file_count": 15,
+  "draw_truth_2022_source_files": [
+    "2021 Antlerless Draw Results.pdf",
+    "2021 Bear Draw Results.pdf",
+    "2021 Big game limited-entry once-in-a-lifetime draw results.pdf",
+    "2021 General-season buck deer draw results.pdf",
+    "2021 Lifetime general-season deer draw results.pdf",
+    "2021 Youth Dedicated Hunter deer draw results.pdf",
+    "2021 Youth general-season deer draw results.pdf",
+    "21_bg-odds.pdf",
+    "21_deer_odds.pdf",
+    "21_dh_odds.pdf",
+    "21_lifetime_deer.pdf",
+    "21_youth_antlerless_drawing_odds_report.pdf",
+    "21_youth_bull_elk.pdf",
+    "21_youth_deer.pdf",
+    "21_youth_dh_odds.pdf"
+  ],
+  "draw_truth_2022_source_file_counts": {
+    "21_bg-odds.pdf": 6422,
+    "2021 Big game limited-entry once-in-a-lifetime draw results.pdf": 7798,
+    "2021 Bear Draw Results.pdf": 1335,
+    "2021 Antlerless Draw Results.pdf": 1598,
+    "21_youth_antlerless_drawing_odds_report.pdf": 235,
+    "21_youth_deer.pdf": 51,
+    "21_deer_odds.pdf": 432,
+    "2021 General-season buck deer draw results.pdf": 572,
+    "2021 Youth general-season deer draw results.pdf": 39,
+    "2021 Lifetime general-season deer draw results.pdf": 31,
+    "21_lifetime_deer.pdf": 32,
+    "21_dh_odds.pdf": 114,
+    "2021 Youth Dedicated Hunter deer draw results.pdf": 23,
+    "21_youth_dh_odds.pdf": 4,
+    "21_youth_bull_elk.pdf": 2
+  },
+  "draw_truth_source_label_status": "SOURCE_LABEL_LINEAGE_REVIEW",
+  "guardrails": [
+    "Source-anchor audit only; no PDF extraction or draw truth rewrite is performed.",
+    "2022 draw truth is native-year evidence and is not judged against the 2026 active hunt-code universe.",
+    "The current normalized source label is flagged for lineage review if it does not match this expected PDF source set.",
+    "Extra active PDFs with identical hashes are duplicate aliases, not extra source coverage."
+  ],
+  "outputs": {
+    "parity_csv": "data_truth\\draw_results_truth\\validation\\draw_2022_for_2023_source_parity.csv",
+    "summary_json": "data_truth\\draw_results_truth\\validation\\draw_2022_for_2023_source_parity_summary.json",
+    "summary_md": "processed_data\\draw_2022_for_2023_source_parity.md"
+  }
+}

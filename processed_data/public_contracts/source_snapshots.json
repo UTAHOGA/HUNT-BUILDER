@@ -1,0 +1,119 @@
+{
+  "generated_at": "2026-06-24T02:52:26.810Z",
+  "input_resolution": {
+    "predictive": "processed_data/draw_reality_engine_predictive_v2.csv",
+    "oddsHistory": "data_model/runtime_drafts/draw_reality_engine_v2.csv",
+    "outlook": "processed_data/research_page/hunt_application_outlook.json",
+    "outfittersPublic": "data/outfitters-public.json",
+    "huntUnitsLite": "data/hunt_boundaries.geojson"
+  },
+  "outputs": {
+    "hunt_predictions_rows": 22813,
+    "hunt_odds_history_rows": 426818,
+    "hunt_application_outlook_rows": 2898,
+    "outfitters_public_rows": 11,
+    "hunt_units_features": 683,
+    "unique_prediction_hunts": 911,
+    "unique_outlook_hunts": 1449,
+    "prediction_source_mode": "runtime_csv",
+    "odds_history_source_mode": "runtime_csv",
+    "outfitters_source_mode": "outfitters_public_json"
+  },
+  "source_notes": [
+    "Contracts are website-facing display products only.",
+    "Prediction math, p_draw, permit truth, and source truth files are not modified by this script.",
+    "hunt_units.geojson is copied from the existing lite boundary artifact for browser-safe delivery.",
+    "Technical source paths belong in collapsed source/freshness details, not primary hunter-facing panels.",
+    "When primary runtime CSVs are missing, this contract build uses the first available reviewed fallback input."
+  ],
+  "snapshots": [
+    {
+      "file_path": "processed_data/draw_reality_engine_predictive_v2.csv",
+      "role": "source_runtime_for_hunt_predictions",
+      "exists": true,
+      "size_bytes": 22355072,
+      "sha256": "0d95490b91305f27a57e08ebbd265f67b7428e824a40a48ebdb1a3b20c99fae7",
+      "row_count": 22813
+    },
+    {
+      "file_path": "data_model/runtime_drafts/draw_reality_engine_v2.csv",
+      "role": "source_runtime_for_hunt_odds_history",
+      "exists": true,
+      "size_bytes": 110117182,
+      "sha256": "a1d3b68b0e420d52f06af3bffe3ec017f41991fe471de7aae48a377b2e6f194c",
+      "row_count": 426818
+    },
+    {
+      "file_path": "processed_data/research_page/hunt_application_outlook.json",
+      "role": "source_contract_for_hunt_application_outlook",
+      "exists": true,
+      "size_bytes": 5543211,
+      "sha256": "7bf4b26f37a1013abae05afedc0981a815959d6cdda5a4359989a2f8252515a7",
+      "row_count": 2898
+    },
+    {
+      "file_path": "data/outfitters-public.json",
+      "role": "source_public_outfitter_records",
+      "exists": true,
+      "size_bytes": 7913,
+      "sha256": "c9df767c9a7b545576595417e61337ff3723c8acac03c8f9d568d5447ad8805d",
+      "row_count": 11
+    },
+    {
+      "file_path": "data/hunt_boundaries.geojson",
+      "role": "source_boundary_lite_geojson",
+      "exists": true,
+      "size_bytes": 4281467,
+      "sha256": "1b0417d1560252f2cccdc4fd93f2aaaffe9e82cff1bae72c1184bbb8591196ce",
+      "row_count": null
+    },
+    {
+      "file_path": "processed_data/public_contracts/hunt_predictions.json",
+      "role": "public_contract:hunt_predictions.json",
+      "exists": true,
+      "size_bytes": 21251610,
+      "sha256": "5b8f641a2b9022d16540b21f85c2a3925106c49e4c8e769abf6aa06a119d3dde",
+      "row_count": 22813
+    },
+    {
+      "file_path": "processed_data/public_contracts/hunt_odds_history.json",
+      "role": "public_contract:hunt_odds_history.json",
+      "exists": true,
+      "size_bytes": 304509482,
+      "sha256": "64cdfc1834dc0a3b4db9fdbb779ec5617e981e04f40dec59e4e4939eb8cd8012",
+      "row_count": 426818
+    },
+    {
+      "file_path": "processed_data/public_contracts/hunt_odds_history.csv",
+      "role": "public_contract:hunt_odds_history.csv",
+      "exists": true,
+      "size_bytes": 93713227,
+      "sha256": "9fb9e507ca6512e422dd1b8a8656d79cca868290f7052ebc0002360f361ec18a",
+      "row_count": 426818
+    },
+    {
+      "file_path": "processed_data/public_contracts/hunt_application_outlook.json",
+      "role": "public_contract:hunt_application_outlook.json",
+      "exists": true,
+      "size_bytes": 3366614,
+      "sha256": "73666d1e885d3abfe83441959947ec96c1eb6195d7e70d9b97591d59b3bfa607",
+      "row_count": 2898
+    },
+    {
+      "file_path": "processed_data/public_contracts/outfitters-public.json",
+      "role": "public_contract:outfitters-public.json",
+      "exists": true,
+      "size_bytes": 7913,
+      "sha256": "c9df767c9a7b545576595417e61337ff3723c8acac03c8f9d568d5447ad8805d",
+      "row_count": 11
+    },
+    {
+      "file_path": "processed_data/public_contracts/hunt_units.geojson",
+      "role": "public_contract:hunt_units.geojson",
+      "exists": true,
+      "size_bytes": 4281467,
+      "sha256": "1b0417d1560252f2cccdc4fd93f2aaaffe9e82cff1bae72c1184bbb8591196ce",
+      "row_count": null
+    }
+  ]
+}

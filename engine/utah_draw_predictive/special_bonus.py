@@ -221,18 +221,21 @@ def _forecast_applicant_ladder(
 ) -> dict[int, int]:
     prior_points = sorted(int(points) for points in latest_ladder.keys())
     max_points = max(prior_points) if prior_points else 0
+    tail_buffer = 4
     forecast: dict[int, int] = {}
     forecast[0] = _round_count(latest_ladder.get(0, {}).get("eligible", 0) * zero_growth)
 
-    for points in range(1, max_points + 2):
+    for points in range(1, max_points + tail_buffer + 1):
         prior_level = latest_ladder.get(points - 1, {})
         unsuccessful_prior = max(int(prior_level.get("eligible", 0)) - int(prior_level.get("bonus", 0)) - int(prior_level.get("regular", 0)), 0)
         retained = unsuccessful_prior * retention_by_band.get(_band_for_points(points - 1), 0.85)
         switch_proxy = int(latest_ladder.get(points, {}).get("eligible", 0)) * 0.08
         forecast[points] = _round_count(retained + switch_proxy)
 
-    while forecast and forecast.get(max(forecast.keys()), 0) == 0:
-        forecast.pop(max(forecast.keys()))
+    # Keep a small zero-applicant tail so blind scoring can compare official
+    # point rows that appear one or more levels above the prior-year ladder.
+    # These rows do not fabricate probability; they simply keep the key space
+    # stable when DWR prints sparse upper point levels.
     return forecast
 
 

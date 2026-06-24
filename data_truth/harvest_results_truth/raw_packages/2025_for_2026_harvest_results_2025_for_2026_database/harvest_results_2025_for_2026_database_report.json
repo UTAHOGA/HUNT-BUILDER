@@ -1,0 +1,64 @@
+{
+  "generated_at_utc": "2026-05-23T08:43:30.261027Z",
+  "input_file": "2026-03-06-2025-preliminary-bg-harvest.xlsx",
+  "reported_hunt_year": 2025,
+  "model_target_year": 2026,
+  "source_status": "preliminary",
+  "source_date": "2026-03-06",
+  "total_rows_processed": 1120,
+  "unique_hunt_codes": 1120,
+  "species_counts": {
+    "Bison": 18,
+    "Deer": 418,
+    "Desert Bighorn Sheep": 25,
+    "Elk": 455,
+    "Moose": 44,
+    "Mountain Goat": 18,
+    "Pronghorn": 121,
+    "Rocky Mountain Bighorn Sheep": 21
+  },
+  "hunt_type_counts": {
+    "OIAL": 81,
+    "Sportsman": 8,
+    "Antlerless": 146,
+    "CWMU Antlerless": 78,
+    "General Season": 140,
+    "Premium Limited Entry": 10,
+    "Management Buck": 4,
+    "Limited Entry": 247,
+    "Limited Entry on General Season": 31,
+    "Conservation": 18,
+    "Cactus Buck": 1,
+    "CWMU": 224,
+    "CWMU Management": 1,
+    "CWMU Cactus": 1,
+    "Limited Entry Landowner": 45,
+    "General Season Landowner": 49,
+    "Antlerless Elk Control": 1,
+    "Private Lands Only": 27,
+    "General Season Any Bull": 4,
+    "General Season Spike Bull": 3,
+    "General Season Youth Any Bull": 1
+  },
+  "total_permits": 156537.0,
+  "total_hunters_afield": 137497.0,
+  "total_harvest": 45764.0,
+  "outputs": {
+    "all_long_csv": "/mnt/data/harvest_reports_2025_for_2026_database/harvest_results_2025_for_2026_all_long.csv",
+    "hunt_code_keyed_csv": "/mnt/data/harvest_reports_2025_for_2026_database/harvest_results_2025_for_2026_hunt_code_keyed.csv",
+    "quality_features_csv": "/mnt/data/harvest_reports_2025_for_2026_database/harvest_quality_features_by_hunt_code_2025_for_2026.csv",
+    "summary_csv": "/mnt/data/harvest_reports_2025_for_2026_database/harvest_results_2025_for_2026_summary.csv",
+    "source_inventory_csv": "/mnt/data/harvest_reports_2025_for_2026_database/harvest_results_2025_for_2026_source_inventory.csv",
+    "sqlite": "/mnt/data/harvest_reports_2025_for_2026_database/utah_harvest_results_2025_for_2026.sqlite"
+  },
+  "safeguards": {
+    "do_not_use_for_permit_quota": true,
+    "do_not_use_directly_for_p_draw": true,
+    "trend_feature_eligible": true
+  },
+  "notes": [
+    "This is a preliminary 2025 harvest/results source used for 2026 modeling features.",
+    "Rows are hunt-code keyed and useful for harvest quality, satisfaction, effort, and demand-signal trends.",
+    "These values must not override official 2026 permit quotas or become direct draw probabilities."
+  ]
+}

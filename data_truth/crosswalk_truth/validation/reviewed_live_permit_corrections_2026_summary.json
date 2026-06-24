@@ -1,0 +1,36 @@
+{
+  "action_counts": {
+    "CWMU_TOTAL_ONLY_NORMALIZATION": 283,
+    "REVIEWED_LABEL_CORRECTION": 1,
+    "REVIEWED_NUMERIC_CORRECTION": 8
+  },
+  "artifact": "reviewed_live_permit_corrections_2026",
+  "audit_row_count": 292,
+  "changed_counts": {
+    "REVIEWED_LABEL_CORRECTION": 1
+  },
+  "cwmu_not_total_only_codes": [],
+  "cwmu_not_total_only_count": 0,
+  "cwmu_row_count": 283,
+  "guardrail": "Reviewed live DWR blocks are applied narrowly; CWMU rows publish permits_2026_total only.",
+  "missing_reviewed_codes": [],
+  "outputs": {
+    "audit_csv": "data_truth/crosswalk_truth/validation/reviewed_live_permit_corrections_2026.csv",
+    "report_md": "processed_data/reviewed_live_permit_corrections_2026.md",
+    "summary_json": "data_truth/crosswalk_truth/validation/reviewed_live_permit_corrections_2026_summary.json"
+  },
+  "reviewed_correction_codes": [
+    "BI6528",
+    "BI6532",
+    "BR7004",
+    "EB3010",
+    "EB3047",
+    "EB3088",
+    "EB3112",
+    "EB3185"
+  ],
+  "reviewed_label_correction_codes": [
+    "EB3135"
+  ],
+  "snapshot_utc": "2026-05-26T21:55:31+00:00"
+}

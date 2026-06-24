@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-05-23",
+  "correction": "Each conservation permit row is one permit per year for 2025, 2026, and 2027; do not divide by 3.",
+  "source_conservation_rows": 336,
+  "conservation_permits_per_year_2025": 336.0,
+  "conservation_permits_per_year_2026": 336.0,
+  "conservation_permits_per_year_2027": 336.0,
+  "conservation_permit_year_instances_2025_2027": 1008.0,
+  "selected_high_confidence_conservation_rows": 171,
+  "selected_high_confidence_conservation_2026_permits": 171.0,
+  "manual_review_conservation_rows": 165,
+  "manual_review_conservation_2026_permits": 165.0,
+  "statewide_conservation_rows": 10,
+  "public_rac_total_2026": 17231.0,
+  "cwmu_total_2026_deduped": 1645.0,
+  "sportsman_total_2026_one_per_species": 10.0,
+  "conservation_total_2026_per_row_annual": 336.0,
+  "known_all_class_2026_total": 19222.0,
+  "hunt_code_level_selected_total_in_joined_rows": 19057.0,
+  "note": "Aggregate 2026 conservation total reconciles at 336. Exact hunt-code distribution still depends on resolving manual review rows where area/condition maps to multiple hunt codes.",
+  "statewide_boundary_rule": "Statewide conservation permits use the same boundary concept as the sportsman statewide tag but remain separate conservation permits."
+}

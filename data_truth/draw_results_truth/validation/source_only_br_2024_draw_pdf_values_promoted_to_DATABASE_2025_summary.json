@@ -1,0 +1,30 @@
+{
+  "artifact": "source_only_br_2024_draw_pdf_values_promoted_to_DATABASE_2025",
+  "generated_at_utc": "2026-05-26T23:21:21+00:00",
+  "database_csv": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "source_audit_csv": "data_truth/draw_results_truth/validation/draw_odds_2024_model_target_2025_vs_DATABASE_2025_permits.csv",
+  "source_pdf": "pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/Bear/2024 Bear Draw Results.pdf",
+  "source_pdf_sha256": "518b6b257c35e326c1d8a9900067ebde2569c0f8231c29b5c1b502a1dd10447b",
+  "source_label": "2024_BEAR_DRAW_RESULTS_PDF_MODEL_TARGET_2025",
+  "guardrail": "Promotes only user-confirmed 2025 historical draw rows. All 2026 permit/allotment fields remain blank.",
+  "target_codes": [
+    "BR7008",
+    "BR7019",
+    "BR7108",
+    "BR7208"
+  ],
+  "inserted_row_count": 4,
+  "inserted_codes": [
+    "BR7008",
+    "BR7019",
+    "BR7108",
+    "BR7208"
+  ],
+  "skipped_existing_count": 0,
+  "skipped_existing_codes": [],
+  "outputs": {
+    "promotion_csv": "data_truth/draw_results_truth/validation/source_only_br_2024_draw_pdf_values_promoted_to_DATABASE_2025.csv",
+    "summary_json": "data_truth/draw_results_truth/validation/source_only_br_2024_draw_pdf_values_promoted_to_DATABASE_2025_summary.json",
+    "report_md": "processed_data/source_only_br_2024_draw_pdf_values_promoted_to_DATABASE_2025.md"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "artifact": "sheep_sex_type_normalization_2026",
+  "audit_row_count": 46,
+  "changed_rows": 0,
+  "database_path": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "guardrail": "Only RE1000 remains Ewe; desert bighorn sheep rows use Male Only and Rocky Mountain bighorn ram rows use Ram.",
+  "outputs": {
+    "audit_csv": "data_truth/crosswalk_truth/validation/sheep_sex_type_normalization_2026.csv",
+    "report_md": "processed_data/sheep_sex_type_normalization_2026.md",
+    "summary_json": "data_truth/crosswalk_truth/validation/sheep_sex_type_normalization_2026_summary.json"
+  },
+  "sex_type_counts": {
+    "Desert Bighorn Sheep|Male Only": 25,
+    "Rocky Mountain Bighorn Sheep|Ewe": 1,
+    "Rocky Mountain Bighorn Sheep|Ram": 20
+  },
+  "snapshot_utc": "2026-05-26T21:45:57+00:00"
+}

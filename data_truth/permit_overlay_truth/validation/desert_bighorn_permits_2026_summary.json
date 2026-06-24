@@ -1,0 +1,36 @@
+{
+  "artifact": "desert_bighorn_permits_2026_canonical",
+  "generated_at_utc": "2026-05-26T15:45:53+00:00",
+  "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026 Permits/2026 desert bighorn.csv",
+  "source_sha256": "c32bd1e71055f5034cb1242c1ddb11a48a92a61d3a1be630d2ce9c2d73df578a",
+  "rac_source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_oial_desert_bighorn_sheep_permits.csv",
+  "rac_source_sha256": "3f4bb789702c8db13a1c123ad1ebd15222f780f45899db1ff9ba34b5e9dcda31",
+  "source_rows": 18,
+  "unique_hunt_codes": 18,
+  "source_total_permits_2026": 85,
+  "status_counts": {
+    "FULL_SPLIT": 18
+  },
+  "database_mismatch_count": 0,
+  "database_mismatch_codes": [],
+  "rac_mismatch_count": 0,
+  "rac_mismatch_codes": [],
+  "parallel_conservation_row_count": 6,
+  "parallel_conservation_codes": [
+    "DS1002",
+    "DS1003",
+    "DS1004",
+    "DS1006",
+    "DS1007",
+    "DS6605"
+  ],
+  "outputs": {
+    "reviewed_export": "pipeline/RAW/hunt_unit_database/2026/csv/2026 Permits/2026 desert bighorn reviewed res-nr-total.csv",
+    "normalized": "data_truth/permit_overlay_truth/normalized/desert_bighorn_permits_2026_canonical.csv",
+    "database_comparison": "data_truth/permit_overlay_truth/validation/desert_bighorn_permits_2026_vs_DATABASE.csv",
+    "rac_comparison": "data_truth/permit_overlay_truth/validation/desert_bighorn_permits_2026_vs_RAC.csv",
+    "parallel_conservation": "data_truth/permit_overlay_truth/validation/desert_bighorn_public_vs_conservation_parallel_2026.csv",
+    "report": "processed_data/desert_bighorn_permits_2026_summary.md"
+  },
+  "guardrail": "No populated DATABASE.csv numeric cells were changed by this audit."
+}

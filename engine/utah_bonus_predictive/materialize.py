@@ -9,6 +9,7 @@ import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 
+from engine.utah_draw_predictive import append_reason_codes
 from engine.utah_draw_predictive.classifier import sanitize_modeled_probability_fields
 from engine.utah.current_year_allotments import apply_current_year_allotments_to_rows
 from engine.utah_draw_predictive.bear import (
@@ -717,6 +718,22 @@ def _replace_rows_by_draw_system_type(
     return filtered
 
 
+def _remove_no_hunt_code_rows(rows: list[dict[str, object]], source_label: str) -> tuple[list[dict[str, object]], list[dict[str, object]]]:
+    kept: list[dict[str, object]] = []
+    excluded: list[dict[str, object]] = []
+    for index, row in enumerate(rows, start=1):
+        if str(row.get("hunt_code", "")).strip():
+            kept.append(row)
+            continue
+        item = dict(row)
+        item["excluded_from"] = source_label
+        item["excluded_row_number"] = index
+        item["exclusion_reason"] = "MISSING_HUNT_CODE_NOT_ALLOWED_IN_ENGINE"
+        item["reason_codes"] = append_reason_codes(item.get("reason_codes", ""), "MISSING_HUNT_CODE_NOT_ALLOWED_IN_ENGINE")
+        excluded.append(item)
+    return kept, excluded
+
+
 def _quota_info(row: dict[str, str]) -> tuple[bool, bool]:
     raw_res = str(row.get("permit_allotment_2026_res") or row.get("permits_2026_res", "")).strip()
     raw_nr = str(row.get("permit_allotment_2026_nr") or row.get("permits_2026_nr", "")).strip()
@@ -1385,10 +1402,22 @@ def materialize_outputs(
         "modeled_by_engine",
         "reason",
     ]
+    prediction_rows, excluded_prediction_no_code_rows = _remove_no_hunt_code_rows(prediction_rows, "ml_draw_predictions_v1")
+    successor_rows, excluded_successor_no_code_rows = _remove_no_hunt_code_rows(successor_rows, "draw_reality_engine_predictive_v2")
+    excluded_no_code_rows = excluded_prediction_no_code_rows + excluded_successor_no_code_rows
+    excluded_no_code_fields = list(dict.fromkeys(
+        ["excluded_from", "excluded_row_number", "exclusion_reason", "hunt_code", "hunt_name", "species", "draw_system_type", "algorithm_status", "model_strategy", "reason_codes"]
+        + [key for row in excluded_no_code_rows for key in row.keys()]
+    ))
+    excluded_no_code_path = output_dir / "hunt_code_reconciliation_required_rows.csv"
+    write_csv(excluded_no_code_path, excluded_no_code_rows, excluded_no_code_fields)
+
     ml_predictions_path = output_dir / "ml_draw_predictions_v1.csv"
     write_csv(ml_predictions_path, prediction_rows, prediction_fields)
 
     report = build_report(prediction_rows, forecast_year, history_years, runtime_paths["materialized_rows"], command_used)
+    report["hunt_code_reconciliation_required_rows"] = len(excluded_no_code_rows)
+    report["hunt_code_reconciliation_required_report"] = _safe_relative(excluded_no_code_path)
     ml_report_path = output_dir / "ml_draw_predictions_v1_report.json"
     ml_report_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
 
@@ -1474,6 +1503,7 @@ def materialize_outputs(
     return {
         "ml_predictions": ml_predictions_path,
         "ml_report": ml_report_path,
+        "hunt_code_reconciliation_required_rows": excluded_no_code_path,
         "backtest_csv": backtest_csv_path,
         "backtest_report": backtest_report_path,
         "predictive_successor": successor_path,

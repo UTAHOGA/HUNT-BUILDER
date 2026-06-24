@@ -320,6 +320,14 @@ def _forecast_quota_for_residency(
     return max(0, forecast_total - resident_quota)
 
 
+def _explicit_quota_for_residency(row: Mapping[str, object], residency: str, forecast_year: int) -> int | None:
+    res_quota = _to_int(row.get(f"permits_{forecast_year}_res"))
+    nr_quota = _to_int(row.get(f"permits_{forecast_year}_nr"))
+    if res_quota <= 0 and nr_quota <= 0:
+        return None
+    return res_quota if residency == "Resident" else nr_quota
+
+
 def _forecast_applicant_ladder(
     latest_ladder: Mapping[int, dict[str, int]],
     retention_by_band: Mapping[str, float],
@@ -327,10 +335,11 @@ def _forecast_applicant_ladder(
 ) -> dict[int, int]:
     prior_points = sorted(int(points) for points in latest_ladder.keys())
     max_points = max(prior_points) if prior_points else 0
+    tail_buffer = 6
     forecast: dict[int, int] = {}
     forecast[0] = _round_count(latest_ladder.get(0, {}).get("eligible", 0) * zero_growth)
 
-    for points in range(1, max_points + 2):
+    for points in range(1, max_points + tail_buffer + 1):
         unsuccessful_prior = max(
             int(latest_ladder.get(points - 1, {}).get("eligible", 0)) - int(latest_ladder.get(points - 1, {}).get("drawn", 0)),
             0,
@@ -339,8 +348,8 @@ def _forecast_applicant_ladder(
         switch_proxy = int(latest_ladder.get(points, {}).get("eligible", 0)) * 0.10
         forecast[points] = _round_count(retained + switch_proxy)
 
-    while forecast and forecast.get(max(forecast.keys()), 0) == 0:
-        forecast.pop(max(forecast.keys()))
+    # Preserve a small zero-applicant tail so sparse official upper point rows
+    # remain joinable in blind scoring without using forecast-year results.
     return forecast
 
 
@@ -372,6 +381,13 @@ def build_preference_general_deer_predictions(
     years_by_key: dict[tuple[str, str], list[int]] = defaultdict(list)
     for year, hunt_code, residency in ladders:
         years_by_key[(hunt_code, residency)].append(year)
+    max_points_by_residency: dict[str, int] = defaultdict(int)
+    for (year, _hunt_code, residency), ladder in ladders.items():
+        if year == latest_source_year and ladder:
+            max_points_by_residency[residency] = max(
+                max_points_by_residency[residency],
+                max(int(points) for points in ladder.keys()),
+            )
 
     for hunt_code, db_row in sorted(current_codes.items()):
         forecast_total = _to_int(db_row.get("permits_2026_total"))
@@ -385,17 +401,31 @@ def build_preference_general_deer_predictions(
 
         for residency in ("Resident", "Nonresident"):
             available_years = sorted(year for year in set(years_by_key.get((hunt_code, residency), [])) if year in history_year_set)
-            if latest_source_year not in available_years:
+            explicit_quota = _explicit_quota_for_residency(db_row, residency, forecast_year)
+            has_latest_ladder = latest_source_year in available_years
+            if not has_latest_ladder and not (residency == "Nonresident" and explicit_quota and explicit_quota > 0):
                 continue
 
-            latest_ladder = ladders[(latest_source_year, hunt_code, residency)]
+            latest_ladder = ladders.get((latest_source_year, hunt_code, residency), {})
             prior_total = sum(int(values["drawn"]) for values in latest_ladder.values())
-            forecast_quota = _forecast_quota_for_residency(hunt_code, residency, forecast_total, latest_source_year, total_drawn_by_code_year)
+            forecast_quota = (
+                explicit_quota
+                if explicit_quota is not None
+                else _forecast_quota_for_residency(hunt_code, residency, forecast_total, latest_source_year, total_drawn_by_code_year)
+            )
             if forecast_quota <= 0:
                 continue
 
-            forecast_ladder = _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)
-            structural_points = _structural_point_levels(latest_ladder)
+            forecast_ladder = (
+                _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)
+                if latest_ladder
+                else {0: 1}
+            )
+            global_max_points = max_points_by_residency.get(residency, 0)
+            global_structural_points = set(range(0, global_max_points + 3))
+            for structural_point in global_structural_points:
+                forecast_ladder.setdefault(structural_point, 0)
+            structural_points = set(_structural_point_levels(latest_ladder)) | global_structural_points
             if not forecast_ladder and not structural_points:
                 continue
 
@@ -454,14 +484,18 @@ def build_preference_general_deer_predictions(
                         "status": _status(probability),
                         "trend": _trend(prior_guaranteed, forecast_guaranteed),
                         "draw_outlook": _draw_outlook(probability, gap),
-                        "source_years_used": ",".join(str(year) for year in available_years),
+                        "source_years_used": ",".join(str(year) for year in available_years) if available_years else "current_quota_seed",
                         "source_year_count": len(available_years),
                         "latest_source_year": latest_source_year,
-                        "earliest_source_year": min(available_years),
+                        "earliest_source_year": min(available_years) if available_years else "",
                         "source_dataset": "predictive",
                         "model_strategy": MODEL_STRATEGY_NAME,
                         "preference_model_valid": "TRUE",
-                        "preference_model_note": f"Forecasted from {latest_source_year} standard-pool ladder with residency quota split and preference carry-forward.",
+                        "preference_model_note": (
+                            f"Forecasted from {latest_source_year} standard-pool ladder with residency quota split and preference carry-forward."
+                            if available_years
+                            else "Seeded from explicit current-year nonresident quota where no prior nonresident ladder exists."
+                        ),
                         "weapon": weapon,
                     }
                 )

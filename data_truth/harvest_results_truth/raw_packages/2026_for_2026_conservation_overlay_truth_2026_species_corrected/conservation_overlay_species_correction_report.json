@@ -1,0 +1,113 @@
+{
+  "correction": "Normalized Bear to Black Bear and preserved Antlerless Elk as its own species/family instead of collapsing it into Elk.",
+  "raw_conservation_permits_2026": 336,
+  "grouped_conservation_permits_2026": 336,
+  "species_reconciled_after_normalization": true,
+  "remaining_species_mismatches": [],
+  "species_counts": [
+    {
+      "species": "Antlerless Elk",
+      "raw_rows": 20,
+      "raw_permit_count": 20,
+      "grouped_rows": 13,
+      "grouped_permit_count": 20,
+      "difference_raw_minus_grouped": 0,
+      "status": "RECONCILED"
+    },
+    {
+      "species": "Bison",
+      "raw_rows": 6,
+      "raw_permit_count": 6,
+      "grouped_rows": 6,
+      "grouped_permit_count": 6,
+      "difference_raw_minus_grouped": 0,
+      "status": "RECONCILED"
+    },
+    {
+      "species": "Black Bear",
+      "raw_rows": 44,
+      "raw_permit_count": 44,
+      "grouped_rows": 31,
+      "grouped_permit_count": 44,
+      "difference_raw_minus_grouped": 0,
+      "status": "RECONCILED"
+    },
+    {
+      "species": "Deer",
+      "raw_rows": 39,
+      "raw_permit_count": 39,
+      "grouped_rows": 36,
+      "grouped_permit_count": 39,
+      "difference_raw_minus_grouped": 0,
+      "status": "RECONCILED"
+    },
+    {
+      "species": "Desert Bighorn Sheep",
+      "raw_rows": 8,
+      "raw_permit_count": 8,
+      "grouped_rows": 8,
+      "grouped_permit_count": 8,
+      "difference_raw_minus_grouped": 0,
+      "status": "RECONCILED"
+    },
+    {
+      "species": "Elk",
+      "raw_rows": 91,
+      "raw_permit_count": 91,
+      "grouped_rows": 88,
+      "grouped_permit_count": 91,
+      "difference_raw_minus_grouped": 0,
+      "status": "RECONCILED"
+    },
+    {
+      "species": "Moose",
+      "raw_rows": 5,
+      "raw_permit_count": 5,
+      "grouped_rows": 5,
+      "grouped_permit_count": 5,
+      "difference_raw_minus_grouped": 0,
+      "status": "RECONCILED"
+    },
+    {
+      "species": "Mountain Goat",
+      "raw_rows": 7,
+      "raw_permit_count": 7,
+      "grouped_rows": 7,
+      "grouped_permit_count": 7,
+      "difference_raw_minus_grouped": 0,
+      "status": "RECONCILED"
+    },
+    {
+      "species": "Pronghorn",
+      "raw_rows": 69,
+      "raw_permit_count": 69,
+      "grouped_rows": 53,
+      "grouped_permit_count": 69,
+      "difference_raw_minus_grouped": 0,
+      "status": "RECONCILED"
+    },
+    {
+      "species": "Rocky Mountain Bighorn Sheep",
+      "raw_rows": 6,
+      "raw_permit_count": 6,
+      "grouped_rows": 6,
+      "grouped_permit_count": 6,
+      "difference_raw_minus_grouped": 0,
+      "status": "RECONCILED"
+    },
+    {
+      "species": "Turkey",
+      "raw_rows": 41,
+      "raw_permit_count": 41,
+      "grouped_rows": 18,
+      "grouped_permit_count": 41,
+      "difference_raw_minus_grouped": 0,
+      "status": "RECONCILED"
+    }
+  ],
+  "assignment_type_counts": {
+    "combined_unit_conservation_overlay": 191,
+    "selected_hunt_code": 70,
+    "statewide_conservation_overlay": 10
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "generated_at_utc": "2026-05-10T19:13:13.495545+00:00",
+  "input_pdf": "pipeline/RAW/hunt_unit_database/2026/pdf/harvest_report/2026-03-06-2025-preliminary-bg-harvest.pdf",
+  "input_database": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "source_class": "harvest_results",
+  "reported_hunt_year": 2025,
+  "model_target_year": 2026,
+  "misfiled_flags": [
+    {
+      "status": "MISFILED_HARVEST_REPORT",
+      "path": "pipeline/RAW/hunt_unit_database/2026/pdf/current_year_permit_numbers/Draw Odds/2026-03-06-2025-preliminary-bg-harvest.pdf"
+    }
+  ],
+  "total_pages_scanned": 19,
+  "total_parsed_rows": 1118,
+  "rejected_rows": 2,
+  "unique_hunt_codes": 1118,
+  "database_matched_rows": 1089,
+  "database_unmatched_rows": 29,
+  "blank_hunt_code_rows": 0,
+  "blank_harvest_metric_rows": 4,
+  "percent_success_validation_issues": 0,
+  "impossible_harvest_metrics_count": 0,
+  "duplicate_hunt_code_counts": {},
+  "do_not_use_for_2026_permits": true,
+  "outputs": {
+    "normalized_long": "data_truth/harvest_results_truth/normalized/harvest_results_2025_for_2026_long.csv",
+    "rejects": "data_truth/harvest_results_truth/normalized/harvest_results_2025_for_2026_rejects.csv",
+    "quality": "data_model/quality/harvest_quality_2025_for_2026.csv",
+    "quality_vs_database": "data_model/quality/harvest_quality_2025_for_2026_vs_database.csv"
+  },
+  "promotion_blockers": [],
+  "recommended_next_step": "Use this harvest-truth layer for 2026 model quality features only; keep current-year permit allocation sources separate."
+}

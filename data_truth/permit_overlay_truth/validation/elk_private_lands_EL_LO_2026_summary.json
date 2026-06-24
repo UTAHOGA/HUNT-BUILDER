@@ -1,0 +1,31 @@
+{
+  "database_missing_rows": 0,
+  "database_numeric_not_in_source_count": 0,
+  "database_status_counts": {
+    "SOURCE_AND_DATABASE_BLANK": 131
+  },
+  "date_context_counts": {
+    "CROSSES_2025_2026": 1,
+    "HAS_2025_DATE_ONLY": 125,
+    "HAS_2026_DATE": 5
+  },
+  "generated_at_utc": "2026-05-26T14:29:09.336458+00:00",
+  "outputs": {
+    "database_comparison": "data_truth\\permit_overlay_truth\\validation\\elk_private_lands_EL_LO_2026_vs_DATABASE.csv",
+    "normalized": "data_truth\\permit_overlay_truth\\normalized\\elk_private_lands_EL_LO_2026_source_audit.csv",
+    "rac_candidates": "data_truth\\permit_overlay_truth\\validation\\elk_private_lands_EL_LO_2026_rac_candidate_matches.csv",
+    "report": "processed_data\\elk_private_lands_EL_LO_2026_audit.md"
+  },
+  "prefix_counts": {
+    "EL": 126,
+    "LO": 5
+  },
+  "promotion_decision": "NO_NUMERIC_PROMOTION_FROM_ATTACHED_SOURCE",
+  "rac_candidate_rows": 126,
+  "rac_exact_code_matches": 0,
+  "rac_prefix_candidate_matches": 126,
+  "source_file": "pipeline\\RAW\\hunt_unit_database\\2026\\csv\\2026 Permits\\2026 l.e. elk.private lands  EL-2025 and LO-2026.csv",
+  "source_numeric_rows": 0,
+  "source_rows": 131,
+  "source_sha256": "fd973910f5a75c433d96e8b634c4e4f462843457f4f854848d338af094d786dd"
+}

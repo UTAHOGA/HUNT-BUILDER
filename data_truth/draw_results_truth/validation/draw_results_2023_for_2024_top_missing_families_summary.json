@@ -1,0 +1,55 @@
+{
+  "classification": "DRAW_RESULTS_2023_FOR_2024_TOP_MISSING_FAMILIES",
+  "timestamp_utc": "2026-05-27T07:13:18.649218+00:00",
+  "reported_draw_year": 2023,
+  "model_target_year": 2024,
+  "source_files": {
+    "2023 Antlerless big game draw results.pdf": "ANTLERLESS_BIG_GAME",
+    "2023 DEER ODDS.pdf": "LIMITED_ENTRY_DEER",
+    "23_drawing_odds.pdf": "BLACK_BEAR"
+  },
+  "long_rows": 23286,
+  "unique_hunt_codes": 489,
+  "permit_total_rows": 489,
+  "source_total_public_draw_permits": 6331,
+  "source_family_row_counts": {
+    "LIMITED_ENTRY_DEER": 11718,
+    "ANTLERLESS_BIG_GAME": 7344,
+    "BLACK_BEAR": 4224
+  },
+  "source_family_code_counts": {
+    "ANTLERLESS_BIG_GAME": 204,
+    "LIMITED_ENTRY_DEER": 189,
+    "BLACK_BEAR": 96
+  },
+  "source_family_total_public_draw_permits": {
+    "ANTLERLESS_BIG_GAME": 5458,
+    "BLACK_BEAR": 311,
+    "LIMITED_ENTRY_DEER": 562
+  },
+  "prefix_code_counts": {
+    "DB": 189,
+    "EA": 162,
+    "BR": 96,
+    "DA": 20,
+    "PD": 18,
+    "MA": 3,
+    "RE": 1
+  },
+  "duplicate_long_keys": 0,
+  "duplicate_permit_codes": 0,
+  "global_long_comparison": {
+    "global_file": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
+    "source_row_keys": 23286,
+    "matching_global_row_keys": 11222,
+    "missing_global_row_keys": 12064,
+    "source_codes_with_any_global_key_overlap": 181,
+    "source_codes_missing_all_global_keys": 308,
+    "source_codes_missing_all_global_keys_by_family": {
+      "ANTLERLESS_BIG_GAME": 204,
+      "BLACK_BEAR": 96,
+      "LIMITED_ENTRY_DEER": 8
+    }
+  },
+  "guardrail": "This artifact normalizes 2023 draw-result sources for 2024 modeling without modifying DATABASE.csv, runtime feeds, website files, or the ambiguous global draw_results_long.csv."
+}

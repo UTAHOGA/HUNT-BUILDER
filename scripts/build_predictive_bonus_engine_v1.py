@@ -330,7 +330,11 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
 
         rollover = roll_forward_applicant_stack(point_history_by_year, source_year)
         base_demand_by_point = dict(rollover.applicants_by_points)
-        points_desc = sorted(set(by_point_year.keys()) | set(base_demand_by_point.keys()), reverse=True)
+        structural_points = set(by_point_year.keys())
+        if structural_points:
+            max_structural_point = max(structural_points)
+            structural_points.update(range(max_structural_point + 1, max_structural_point + 5))
+        points_desc = sorted(structural_points | set(base_demand_by_point.keys()), reverse=True)
         if not points_desc:
             continue
 

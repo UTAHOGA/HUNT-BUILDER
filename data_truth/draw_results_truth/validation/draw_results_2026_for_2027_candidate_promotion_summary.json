@@ -1,0 +1,33 @@
+{
+  "generated_utc": "2026-05-27T09:09:16.542513+00:00",
+  "reported_draw_year": 2026,
+  "model_target_year": 2027,
+  "file_records_total": 1096,
+  "hunt_code_rollup_rows": 548,
+  "source_inventory_rows": 2,
+  "unique_hunt_codes": 548,
+  "record_kind_counts": {
+    "POINT_ROW": 1096
+  },
+  "source_dataset_counts": {
+    "draw_results_long_year_2026": 1096
+  },
+  "source_file_counts": {
+    "DATABASE.csv": 1074,
+    "SPORTSMAN_PERMIT_NO_DRAW_ODDS": 22
+  },
+  "missing_current_database_hunt_code_count": 0,
+  "missing_current_database_hunt_codes": [],
+  "blank_hunt_code_count": 0,
+  "duplicate_rollup_hunt_code_count": 0,
+  "duplicate_rollup_hunt_codes": [],
+  "validation_errors": [],
+  "validation_status": "PASS",
+  "outputs": {
+    "file_records": "data_truth\\draw_results_truth\\normalized\\draw_results_2026_for_2027_candidate_promotion_file_records.csv",
+    "hunt_code_rollup": "data_truth\\draw_results_truth\\normalized\\draw_results_2026_for_2027_candidate_promotion_hunt_code_rollup.csv",
+    "source_inventory": "data_truth\\draw_results_truth\\validation\\draw_results_2026_for_2027_candidate_promotion_source_inventory.csv",
+    "summary": "data_truth\\draw_results_truth\\validation\\draw_results_2026_for_2027_candidate_promotion_summary.json",
+    "report": "processed_data\\draw_results_2026_for_2027_candidate_promotion.md"
+  }
+}

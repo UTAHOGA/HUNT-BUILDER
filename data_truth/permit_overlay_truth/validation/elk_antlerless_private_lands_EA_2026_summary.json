@@ -1,0 +1,22 @@
+{
+  "artifact": "elk_antlerless_private_lands_EA_2026_canonical_validation",
+  "blocker_count": 0,
+  "blockers": [],
+  "database_file": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "database_mismatch_codes": [],
+  "database_mismatch_count": 0,
+  "database_missing_count": 0,
+  "guardrail": "This validation registers the supplied EA private-lands file as canonical source evidence. It does not overwrite populated DATABASE.csv values; differing protected cells require explicit review and promotion approval.",
+  "outputs": {
+    "comparison_csv": "data_truth/permit_overlay_truth/validation/elk_antlerless_private_lands_EA_2026_vs_DATABASE.csv",
+    "normalized_csv": "data_truth/permit_overlay_truth/normalized/elk_antlerless_private_lands_EA_2026_canonical.csv",
+    "summary_json": "data_truth/permit_overlay_truth/validation/elk_antlerless_private_lands_EA_2026_summary.json",
+    "summary_md": "processed_data/elk_antlerless_private_lands_EA_2026_summary.md"
+  },
+  "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026 Permits/elk antlerless private lands only EA.csv",
+  "source_rows": 27,
+  "source_sha256": "9dbca321aced7d3263b7be77324dc037d4327f0269ba88f5dbd62c37d06a52db",
+  "source_status": "CANONICAL_USER_SUPPLIED_DWR_HUNT_PLANNER_EVIDENCE",
+  "source_total_permits_2026": 9830,
+  "unique_hunt_codes": 27
+}

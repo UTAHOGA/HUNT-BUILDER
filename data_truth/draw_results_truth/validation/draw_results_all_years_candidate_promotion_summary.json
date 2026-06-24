@@ -1,0 +1,94 @@
+{
+  "generated_utc": "2026-05-27T09:09:16.545512+00:00",
+  "year_packages": 6,
+  "total_file_records": 201315,
+  "validation_status_counts": {
+    "PASS": 6
+  },
+  "packages": [
+    {
+      "reported_draw_year": 2021,
+      "model_target_year": 2022,
+      "file_records_total": 27519,
+      "hunt_code_rollup_rows": 550,
+      "source_inventory_rows": 1,
+      "unique_hunt_codes": 550,
+      "missing_current_database_hunt_code_count": 85,
+      "validation_status": "PASS",
+      "summary_file": "data_truth\\draw_results_truth\\validation\\draw_results_2021_for_2022_candidate_promotion_summary.json",
+      "file_records": "data_truth\\draw_results_truth\\normalized\\draw_results_2021_for_2022_candidate_promotion_file_records.csv",
+      "hunt_code_rollup": "data_truth\\draw_results_truth\\normalized\\draw_results_2021_for_2022_candidate_promotion_hunt_code_rollup.csv",
+      "source_inventory": "data_truth\\draw_results_truth\\validation\\draw_results_2021_for_2022_candidate_promotion_source_inventory.csv"
+    },
+    {
+      "reported_draw_year": 2022,
+      "model_target_year": 2023,
+      "file_records_total": 18688,
+      "hunt_code_rollup_rows": 1024,
+      "source_inventory_rows": 15,
+      "unique_hunt_codes": 1024,
+      "missing_current_database_hunt_code_count": 199,
+      "validation_status": "PASS",
+      "summary_file": "data_truth\\draw_results_truth\\validation\\draw_results_2022_for_2023_candidate_promotion_summary.json",
+      "file_records": "data_truth\\draw_results_truth\\normalized\\draw_results_2022_for_2023_candidate_promotion_file_records.csv",
+      "hunt_code_rollup": "data_truth\\draw_results_truth\\normalized\\draw_results_2022_for_2023_candidate_promotion_hunt_code_rollup.csv",
+      "source_inventory": "data_truth\\draw_results_truth\\validation\\draw_results_2022_for_2023_candidate_promotion_source_inventory.csv"
+    },
+    {
+      "reported_draw_year": 2023,
+      "model_target_year": 2024,
+      "file_records_total": 41201,
+      "hunt_code_rollup_rows": 1040,
+      "source_inventory_rows": 19,
+      "unique_hunt_codes": 1040,
+      "missing_current_database_hunt_code_count": 172,
+      "validation_status": "PASS",
+      "summary_file": "data_truth\\draw_results_truth\\validation\\draw_results_2023_for_2024_candidate_promotion_summary.json",
+      "file_records": "data_truth\\draw_results_truth\\normalized\\draw_results_2023_for_2024_candidate_promotion_file_records.csv",
+      "hunt_code_rollup": "data_truth\\draw_results_truth\\normalized\\draw_results_2023_for_2024_candidate_promotion_hunt_code_rollup.csv",
+      "source_inventory": "data_truth\\draw_results_truth\\validation\\draw_results_2023_for_2024_candidate_promotion_source_inventory.csv"
+    },
+    {
+      "reported_draw_year": 2024,
+      "model_target_year": 2025,
+      "file_records_total": 37224,
+      "hunt_code_rollup_rows": 676,
+      "source_inventory_rows": 5,
+      "unique_hunt_codes": 676,
+      "missing_current_database_hunt_code_count": 38,
+      "validation_status": "PASS",
+      "summary_file": "data_truth\\draw_results_truth\\validation\\draw_results_2024_for_2025_candidate_promotion_summary.json",
+      "file_records": "data_truth\\draw_results_truth\\normalized\\draw_results_2024_for_2025_candidate_promotion_file_records.csv",
+      "hunt_code_rollup": "data_truth\\draw_results_truth\\normalized\\draw_results_2024_for_2025_candidate_promotion_hunt_code_rollup.csv",
+      "source_inventory": "data_truth\\draw_results_truth\\validation\\draw_results_2024_for_2025_candidate_promotion_source_inventory.csv"
+    },
+    {
+      "reported_draw_year": 2025,
+      "model_target_year": 2026,
+      "file_records_total": 75587,
+      "hunt_code_rollup_rows": 1053,
+      "source_inventory_rows": 17,
+      "unique_hunt_codes": 1053,
+      "missing_current_database_hunt_code_count": 25,
+      "validation_status": "PASS",
+      "summary_file": "data_truth\\draw_results_truth\\validation\\draw_results_2025_for_2026_candidate_promotion_summary.json",
+      "file_records": "data_truth\\draw_results_truth\\normalized\\draw_results_2025_for_2026_candidate_promotion_file_records.csv",
+      "hunt_code_rollup": "data_truth\\draw_results_truth\\normalized\\draw_results_2025_for_2026_candidate_promotion_hunt_code_rollup.csv",
+      "source_inventory": "data_truth\\draw_results_truth\\validation\\draw_results_2025_for_2026_candidate_promotion_source_inventory.csv"
+    },
+    {
+      "reported_draw_year": 2026,
+      "model_target_year": 2027,
+      "file_records_total": 1096,
+      "hunt_code_rollup_rows": 548,
+      "source_inventory_rows": 2,
+      "unique_hunt_codes": 548,
+      "missing_current_database_hunt_code_count": 0,
+      "validation_status": "PASS",
+      "summary_file": "data_truth\\draw_results_truth\\validation\\draw_results_2026_for_2027_candidate_promotion_summary.json",
+      "file_records": "data_truth\\draw_results_truth\\normalized\\draw_results_2026_for_2027_candidate_promotion_file_records.csv",
+      "hunt_code_rollup": "data_truth\\draw_results_truth\\normalized\\draw_results_2026_for_2027_candidate_promotion_hunt_code_rollup.csv",
+      "source_inventory": "data_truth\\draw_results_truth\\validation\\draw_results_2026_for_2027_candidate_promotion_source_inventory.csv"
+    }
+  ]
+}

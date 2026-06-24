@@ -1,0 +1,92 @@
+{
+  "generated_at_utc": "2026-05-23T08:52:41.342219+00:00",
+  "source_file": "2023-24 turkey.pdf",
+  "reported_hunt_years": [
+    2023,
+    2024
+  ],
+  "model_target_year": 2025,
+  "species": "Turkey",
+  "source_status": "final",
+  "rows_all_long": 155,
+  "hunt_code_keyed_rows": 7,
+  "quality_feature_rows": 155,
+  "tables": [
+    {
+      "table_name": "fall_management_by_region_area_2023",
+      "harvest_family": "Turkey Fall Management",
+      "rows": 17,
+      "hunt_code_rows": 0,
+      "total_harvest_sum": 1764.0,
+      "unique_hunt_codes": 0
+    },
+    {
+      "table_name": "fall_management_statewide_history_2014_2023",
+      "harvest_family": "Turkey Fall Management Statewide History",
+      "rows": 10,
+      "hunt_code_rows": 0,
+      "total_harvest_sum": 13222.0,
+      "unique_hunt_codes": 0
+    },
+    {
+      "table_name": "general_season_statewide_history_2010_2024",
+      "harvest_family": "Turkey General Season Statewide History",
+      "rows": 15,
+      "hunt_code_rows": 0,
+      "total_harvest_sum": 27795.0,
+      "unique_hunt_codes": 0
+    },
+    {
+      "table_name": "spring_general_season_by_region_county_2024",
+      "harvest_family": "Turkey Spring General Season",
+      "rows": 36,
+      "hunt_code_rows": 0,
+      "total_harvest_sum": 6295.0,
+      "unique_hunt_codes": 0
+    },
+    {
+      "table_name": "spring_limited_entry_cwmu_by_hunt_2024",
+      "harvest_family": "Turkey Spring Limited Entry/CWMU",
+      "rows": 7,
+      "hunt_code_rows": 7,
+      "total_harvest_sum": 635.0,
+      "unique_hunt_codes": 7
+    },
+    {
+      "table_name": "spring_limited_entry_cwmu_statewide_history_1991_2024",
+      "harvest_family": "Turkey Spring Limited Entry/CWMU Statewide History",
+      "rows": 34,
+      "hunt_code_rows": 0,
+      "total_harvest_sum": 29430.0,
+      "unique_hunt_codes": 0
+    },
+    {
+      "table_name": "spring_youth_general_season_by_region_county_2024",
+      "harvest_family": "Turkey Spring Youth General Season",
+      "rows": 36,
+      "hunt_code_rows": 0,
+      "total_harvest_sum": 1444.0,
+      "unique_hunt_codes": 0
+    }
+  ],
+  "key_statewide_values": {
+    "fall_management_2023_total_harvest": 898,
+    "spring_limited_entry_cwmu_2024_total_harvest": 635,
+    "spring_youth_general_2024_total_harvest": 483,
+    "spring_general_2024_county_table_total_harvest": 2149,
+    "statewide_general_season_2024_total_harvest": 2632
+  },
+  "safeguards": {
+    "do_not_use_for_permit_quota": true,
+    "do_not_use_directly_for_p_draw": true,
+    "trend_feature_eligible": true,
+    "recommended_use": "harvest quality, hunter effort, success-rate trend, and demand-signal features only"
+  },
+  "outputs": {
+    "all_long_csv": "turkey_harvest_results_2023_24_for_2025_all_long.csv",
+    "hunt_code_keyed_csv": "turkey_hunt_code_keyed_2024_for_2025.csv",
+    "quality_features_csv": "turkey_quality_features_2023_24_for_2025.csv",
+    "summary_csv": "turkey_harvest_results_2023_24_for_2025_summary.csv",
+    "sqlite": "utah_turkey_harvest_2023_24_for_2025.sqlite"
+  }
+}

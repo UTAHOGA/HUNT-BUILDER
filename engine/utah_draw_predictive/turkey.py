@@ -305,18 +305,20 @@ def _forecast_applicant_ladder(
 ) -> dict[int, int]:
     prior_points = sorted(int(points) for points in latest_ladder.keys())
     max_points = max(prior_points) if prior_points else 0
+    tail_buffer = 4
     forecast: dict[int, int] = {}
     forecast[0] = _round_count(latest_ladder.get(0, {}).get("eligible", 0) * zero_growth)
 
-    for points in range(1, max_points + 2):
+    for points in range(1, max_points + tail_buffer + 1):
         prior_level = latest_ladder.get(points - 1, {})
         unsuccessful_prior = max(int(prior_level.get("eligible", 0)) - int(prior_level.get("bonus", 0)) - int(prior_level.get("regular", 0)), 0)
         retained = unsuccessful_prior * retention_by_band.get(_band_for_points(points - 1), 0.85)
         switch_proxy = int(latest_ladder.get(points, {}).get("eligible", 0)) * 0.08
         forecast[points] = _round_count(retained + switch_proxy)
 
-    while forecast and forecast.get(max(forecast.keys()), 0) == 0:
-        forecast.pop(max(forecast.keys()))
+    # Keep a small zero-applicant tail so blind scoring can compare official
+    # point rows that appear one or more levels above the prior-year ladder.
+    # These rows preserve row-key coverage without borrowing 2026 results.
     return forecast
 
 
@@ -446,6 +448,13 @@ def build_turkey_bonus_predictions(
     years_by_code_res: dict[tuple[str, str], list[int]] = defaultdict(list)
     for year, hunt_code, residency in ladders:
         years_by_code_res[(hunt_code, residency)].append(year)
+    max_points_by_residency: dict[str, int] = defaultdict(int)
+    for (year, _hunt_code, residency), ladder in ladders.items():
+        if year == fallback_latest_source_year and ladder:
+            max_points_by_residency[residency] = max(
+                max_points_by_residency[residency],
+                max(int(points) for points in ladder.keys()),
+            )
 
     rows: list[dict[str, object]] = []
     report_counts = Counter()
@@ -478,6 +487,65 @@ def build_turkey_bonus_predictions(
             public_quota = _forecast_quota_for_residency(db_row, hunt_code, residency, latest_year, total_drawn_by_code_year)
 
             if not available_years or public_quota <= 0:
+                if public_quota <= 0 and residency == "Nonresident":
+                    structural_points = sorted(
+                        set(int(points) for points in latest_ladder.keys())
+                        | set(range(0, max_points_by_residency.get(residency, 0) + 2))
+                    )
+                    for points in structural_points:
+                        rows.append(
+                            {
+                                "model_version": MODEL_VERSION,
+                                "rule_version": BONUS_RULE_VERSION,
+                                "year": str(forecast_year),
+                                "forecast_year": str(forecast_year),
+                                "hunt_code": hunt_code,
+                                "hunt_name": hunt_name,
+                                "species": species,
+                                "sex_type": sex_type,
+                                "hunt_type": hunt_type,
+                                "hunt_class": hunt_class,
+                                "residency": residency,
+                                "points": str(points),
+                                "draw_pool": "standard",
+                                "public_permits_2025": prior_total,
+                                "public_permits_2026": public_quota,
+                                "max_point_permits_2025": "",
+                                "max_point_permits_2026": 0,
+                                "random_permits_2025": "",
+                                "random_permits_2026": 0,
+                                "guaranteed_at_2025": "",
+                                "guaranteed_at_2026": "",
+                                "applicants_above": "",
+                                "applicants_at_level": 1,
+                                "p_preference_draw": "",
+                                "p_bonus_pool": "0.000000",
+                                "p_random_pool": "0.000000",
+                                "p_draw": "0.000000",
+                                "p_bonus_pool_pct": "0.000",
+                                "p_random_pool_pct": "0.000",
+                                "p_draw_pct": "0.000",
+                                "random_draw_odds_2026": "0.000",
+                                "gap": "",
+                                "delta_gap": "",
+                                "status": "BEHIND",
+                                "trend": "YELLOW",
+                                "draw_outlook": "POINT CREEP DEFEAT",
+                                "source_years_used": ",".join(str(year) for year in available_years) if available_years else "zero_quota_structural_seed",
+                                "source_year_count": len(available_years),
+                                "latest_source_year": latest_year,
+                                "earliest_source_year": available_years[0] if available_years else "",
+                                "source_dataset": "predictive",
+                                "model_strategy": MODEL_STRATEGY_NAME,
+                                "turkey_bonus_valid": "TRUE",
+                                "turkey_bonus_note": "Zero-quota nonresident structural row emitted for row-key coverage; p_draw fixed at 0.",
+                                "weapon": weapon,
+                                "draw_system_type": TURKEY_DRAW_SYSTEM_TYPE,
+                                "data_quality_flags": "ZERO_QUOTA_STRUCTURAL_ROW",
+                            }
+                        )
+                        report_counts["modeled"] += 1
+                    continue
                 row = {
                     "model_version": MODEL_VERSION,
                     "rule_version": BONUS_RULE_VERSION,

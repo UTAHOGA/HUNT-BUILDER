@@ -1,0 +1,31 @@
+{
+  "engine_version": "utah_predictive_v1_conservative",
+  "input_dir": "processed_data\\engine_feeds\\preference_draw_feed.csv",
+  "output_dir": "processed_data\\engine_outputs\\preference_draw_materialized",
+  "warnings": [
+    "missing_optional_file:draw_reality_engine.csv",
+    "missing_optional_file:draw_reality_view.csv",
+    "missing_optional_file:point_ladder_view.csv",
+    "missing_optional_file:historical_trend_2025.csv",
+    "missing_optional_file:projected_bonus_draw_2026_simulated.csv",
+    "missing_optional_file:recommended_permits_2026.csv",
+    "missing_optional_file:hunt_master_enriched.csv",
+    "missing_optional_file:harvest-metrics-2024-bg-report.csv",
+    "missing_optional_file:harvest-metrics-2025-prelim.csv",
+    "missing_optional_file:hunt-master-canonical-2026-source-of-truth.json"
+  ],
+  "counts": {
+    "allowed_hunt_codes": 0,
+    "draw_prediction_rows": 0,
+    "decision_rows": 0,
+    "point_creep_rows": 0
+  },
+  "validations": {
+    "draw_codes_ok": true,
+    "decision_codes_ok": true,
+    "point_creep_codes_ok": true,
+    "draw_code_issues": [],
+    "decision_code_issues": [],
+    "point_creep_code_issues": []
+  }
+}

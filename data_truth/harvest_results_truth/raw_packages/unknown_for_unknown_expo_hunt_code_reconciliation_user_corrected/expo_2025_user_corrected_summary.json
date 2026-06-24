@@ -1,0 +1,16 @@
+{
+  "expo_rows": 125,
+  "expo_permits": 200,
+  "rows_resolved_by_user_rule": 5,
+  "permits_resolved_by_user_rule": 7,
+  "boundary_overlay_rows": 3,
+  "boundary_overlay_permits": 5,
+  "normal_selected_hunt_code_rows": 122,
+  "normal_selected_hunt_code_permits": 195,
+  "remaining_unresolved_mapping_rows": 0,
+  "remaining_unresolved_mapping_permits": 0,
+  "db1004_rule": "80 public draw + 3 expo = 83 total for DB1004; conservation is separate and not used for that gap.",
+  "bison_book_cliffs_little_creek_south_selected": "BI6537",
+  "bison_henry_mtns_hc_early_selected": "BI6503",
+  "antlerless_elk_boundary_rule": "Manti, La Sal, and Fishlake/Thousand Lakes expo rows are boundary overlays, not single EA hunt codes."
+}

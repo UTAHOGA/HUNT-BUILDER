@@ -316,6 +316,14 @@ def _forecast_quota_for_residency(
     return max(0, forecast_total - resident_quota)
 
 
+def _explicit_quota_for_residency(row: Mapping[str, object], residency: str, forecast_year: int) -> int | None:
+    res_quota = _to_int(row.get(f"permits_{forecast_year}_res"))
+    nr_quota = _to_int(row.get(f"permits_{forecast_year}_nr"))
+    if res_quota <= 0 and nr_quota <= 0:
+        return None
+    return res_quota if residency == "Resident" else nr_quota
+
+
 def _forecast_applicant_ladder(
     latest_ladder: Mapping[int, dict[str, int]],
     retention_by_band: Mapping[str, float],
@@ -381,16 +389,27 @@ def build_preference_dedicated_hunter_predictions(
 
         for residency in ("Resident", "Nonresident"):
             available_years = sorted(year for year in set(years_by_key.get((lane, hunt_code, residency), [])) if year in history_year_set)
-            if latest_source_year not in available_years:
+            explicit_quota = _explicit_quota_for_residency(db_row, residency, forecast_year)
+            has_latest_ladder = latest_source_year in available_years
+            if not has_latest_ladder and not (residency == "Nonresident" and explicit_quota and explicit_quota > 0):
                 continue
 
-            latest_ladder = ladders[(lane, latest_source_year, hunt_code, residency)]
+            latest_ladder = ladders.get((lane, latest_source_year, hunt_code, residency), {})
             prior_total = sum(int(values["drawn"]) for values in latest_ladder.values())
-            forecast_quota = _forecast_quota_for_residency(lane, hunt_code, residency, forecast_total, latest_source_year, total_drawn_by_code_year)
+            use_explicit_quota = explicit_quota is not None and (residency == "Resident" or explicit_quota > 0 or not has_latest_ladder)
+            forecast_quota = (
+                explicit_quota
+                if use_explicit_quota
+                else _forecast_quota_for_residency(lane, hunt_code, residency, forecast_total, latest_source_year, total_drawn_by_code_year)
+            )
             if forecast_quota <= 0:
                 continue
 
-            forecast_ladder = _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)
+            forecast_ladder = (
+                _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)
+                if latest_ladder
+                else {0: 1}
+            )
             if not forecast_ladder:
                 continue
 
@@ -446,10 +465,10 @@ def build_preference_dedicated_hunter_predictions(
                         "status": _status(probability),
                         "trend": _trend(prior_guaranteed, forecast_guaranteed),
                         "draw_outlook": _draw_outlook(probability, gap),
-                        "source_years_used": ",".join(str(year) for year in available_years),
+                        "source_years_used": ",".join(str(year) for year in available_years) if available_years else "current_quota_seed",
                         "source_year_count": len(available_years),
                         "latest_source_year": latest_source_year,
-                        "earliest_source_year": min(available_years),
+                        "earliest_source_year": min(available_years) if available_years else "",
                         "source_dataset": "predictive",
                         "model_strategy": model_strategy,
                         "preference_model_valid": "TRUE",
@@ -457,7 +476,7 @@ def build_preference_dedicated_hunter_predictions(
                             f"Forecasted from {latest_source_year} {hunt_class.lower()} ladder with residency quota split and preference carry-forward."
                             if not is_youth_lane
                             else f"Forecasted from {latest_source_year} youth dedicated hunter ladder as a separate preference lane; no 20 percent youth-reserve rule applied."
-                        ),
+                        ) if available_years else "Seeded from explicit current-year nonresident quota where no prior nonresident ladder exists.",
                         "weapon": weapon,
                         "draw_system_type": "PREFERENCE_DEDICATED_HUNTER_DEER",
                     }

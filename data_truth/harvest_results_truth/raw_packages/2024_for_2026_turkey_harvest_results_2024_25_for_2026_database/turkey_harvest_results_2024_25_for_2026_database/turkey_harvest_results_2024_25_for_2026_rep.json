@@ -1,0 +1,38 @@
+{
+  "source_file": "2024-25 turkey.pdf",
+  "report_cycle": "2024-25",
+  "model_target_year": 2026,
+  "species": "Wild Turkey",
+  "source_status": "final_public_report",
+  "row_counts": {
+    "all_long": 157,
+    "hunt_code_keyed": 7,
+    "fall_management_2024_by_region_area": 16,
+    "fall_management_statewide_history_2014_2024": 11,
+    "spring_limited_entry_cwmu_2025_by_hunt": 7,
+    "limited_entry_cwmu_statewide_history_1991_2025": 35,
+    "youth_general_season_2025_by_region_county": 36,
+    "spring_general_season_2025_by_region_county": 36,
+    "general_season_statewide_history_2010_2025": 16,
+    "quality_features": 98
+  },
+  "unique_hunt_codes": 7,
+  "build_notes": [
+    "Fall management rows are reported_hunt_year=2024.",
+    "Spring limited-entry/CWMU, youth general-season, and spring general-season rows are reported_hunt_year=2025.",
+    "Turkey rows are quality/history/demand-signal inputs only and are not direct permit quota or p_draw inputs.",
+    "Regional/statewide totals are retained and marked with row_type to avoid accidental double-counting."
+  ],
+  "key_totals": {
+    "fall_management_2024_statewide_total_harvest": 1123,
+    "spring_limited_entry_cwmu_2025_statewide_total_harvest": 966,
+    "youth_general_2025_statewide_total_harvest": 376,
+    "spring_general_2025_statewide_total_harvest": 2920,
+    "general_season_2025_statewide_total_harvest": 3296
+  },
+  "safeguards": {
+    "do_not_use_for_permit_quota": true,
+    "do_not_use_directly_for_p_draw": true,
+    "trend_feature_eligible": true
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "classification": "TURKEY_BONUS_2023_DRAW_RESULTS_MODEL_TARGET_2024",
+  "timestamp_utc": "2026-05-27T07:46:53.465709+00:00",
+  "reported_draw_year": 2023,
+  "model_target_year": 2024,
+  "source_file": "2023 _turkey_2023_turkey_bonus_points_draw_results.pdf",
+  "source_sha256": "173678409a659135eff98438a06bbd1bda558d73b0b76d911ce28434bc529300",
+  "long_rows": 280,
+  "permit_rows": 7,
+  "unique_hunt_codes": 7,
+  "hunt_codes": [
+    "TK1003",
+    "TK1004",
+    "TK1005",
+    "TK1006",
+    "TK1007",
+    "TK1018",
+    "TK1021"
+  ],
+  "resident_total_permits": 1411,
+  "nonresident_total_permits": 44,
+  "source_total_public_draw_permits": 1455,
+  "source_total_applicants": 11408,
+  "duplicate_long_keys": 0,
+  "duplicate_permit_codes": 0,
+  "guardrail": "This normalizes turkey bonus draw-result source evidence only. It does not modify DATABASE.csv, runtime feeds, website files, or the global draw truth table."
+}

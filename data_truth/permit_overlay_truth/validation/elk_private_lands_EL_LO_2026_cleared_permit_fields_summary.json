@@ -1,0 +1,63 @@
+{
+  "generated_at_utc": "2026-05-26T14:29:46+00:00",
+  "target_code_count": 131,
+  "target_prefix_counts": {
+    "EL": 126,
+    "LO": 5
+  },
+  "source_audit": "data_truth/permit_overlay_truth/normalized/elk_private_lands_EL_LO_2026_source_audit.csv",
+  "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026 Permits/2026 l.e. elk.private lands  EL-2025 and LO-2026.csv",
+  "files_inspected": 12,
+  "files_changed": 0,
+  "target_rows": 18209,
+  "blanked_cells": 0,
+  "status_cells_set": 0,
+  "remaining_numeric_leak_cells": 0,
+  "file_summaries": {
+    "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv": {
+      "target_rows": 131,
+      "rows": 1411
+    },
+    "processed_data/hunt_master_enriched.csv": {
+      "target_rows": 262,
+      "rows": 54357
+    },
+    "processed_data/point_ladder_view.csv": {
+      "target_rows": 8646,
+      "rows": 92844
+    },
+    "processed_data/draw_reality_engine_predictive_v2.csv": {
+      "target_rows": 131,
+      "rows": 28346
+    },
+    "data_model/runtime_drafts/point_ladder_view_v2.csv": {
+      "target_rows": 8646,
+      "rows": 91588
+    },
+    "data_model/runtime_drafts/mixed_predictive_engine_2026.materialized.csv": {
+      "rows": 27940
+    },
+    "data_model/runtime_drafts/mixed_predictive_engine_2026.predictions.csv": {
+      "rows": 27940
+    },
+    "data_model/harvest_quality/draw_reality_engine_predictive_with_harvest_features.csv": {
+      "rows": 27940
+    },
+    "data_model/harvest_quality/ml_draw_predictions_with_harvest_features.csv": {
+      "rows": 27940
+    },
+    "data/hunt-master-canonical-2026-source-of-truth.csv": {
+      "target_rows": 131,
+      "rows": 1411
+    },
+    "data/hunt-master-canonical-2026-database-candidate.csv": {
+      "target_rows": 131,
+      "rows": 1411
+    },
+    "processed_data/hunt_master_canonical_2026_SOURCE_OF_TRUTH_FINAL_COMPLETE_NO_PARTIALS.csv": {
+      "target_rows": 131,
+      "rows": 1288
+    }
+  },
+  "audit_csv": "data_truth/permit_overlay_truth/validation/elk_private_lands_EL_LO_2026_cleared_permit_fields.csv"
+}

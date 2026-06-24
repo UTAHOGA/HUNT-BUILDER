@@ -1,0 +1,21 @@
+{
+  "artifact": "oil_2025_draw_pdf_values_promoted_to_DATABASE",
+  "database_csv": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "generated_at_utc": "2026-05-27T01:11:26+00:00",
+  "guardrail": "Promotes reviewed 2025 O.I.L. PDF draw-results values only. Does not populate or overwrite 2026 live permit/allotment fields.",
+  "inserted_codes": [],
+  "inserted_row_count": 0,
+  "outputs": {
+    "promotion_csv": "data_truth/draw_results_truth/validation/oil_2025_draw_pdf_values_promoted_to_DATABASE.csv",
+    "report_md": "processed_data/oil_2025_draw_pdf_values_promoted_to_DATABASE.md",
+    "summary_json": "data_truth/draw_results_truth/validation/oil_2025_draw_pdf_values_promoted_to_DATABASE_summary.json"
+  },
+  "promoted_row_count": 2,
+  "source_label": "2025_OIL_DRAW_RESULTS_PDF_HUNT_YEAR_2025",
+  "source_validation_csv": "data_truth/draw_results_truth/validation/oil_2025_draw_results_model_target_2026_vs_DATABASE.csv",
+  "updated_existing_codes": [
+    "MB6225",
+    "MB6257"
+  ],
+  "updated_existing_row_count": 2
+}

@@ -1,0 +1,43 @@
+{
+  "artifact": "buck_deer_permits_2026_canonical",
+  "generated_at_utc": "2026-05-26T16:13:51+00:00",
+  "limited_entry_source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026_deer_buck_limited_entry.csv",
+  "limited_entry_source_sha256": "ced94152a6136f2a3e023e1c1dbe566eb5346e0dee343b05cbc4477e220a1619",
+  "private_land_source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026_deer_buck_limited_entry_private_lands_only.csv",
+  "private_land_source_sha256": "38869a1c0264163b33644d92129778784abe2781c523e6ca9ae67ffc88c481d3",
+  "rac_source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_buck_deer_limited_entry_permits.csv",
+  "rac_source_sha256": "315ab533729eaebe73415e463dad494b86343229472c2ffcc5dc87a2a65203c8",
+  "limited_entry_rows": 67,
+  "private_land_rows": 9,
+  "unique_hunt_codes": 76,
+  "source_total_permits_2026": 1428,
+  "status_counts": {
+    "FULL_SPLIT": 67,
+    "NO_PUBLISHED_NUMERIC_PERMIT": 9
+  },
+  "database_mismatch_count": 0,
+  "database_mismatch_codes": [],
+  "rac_mismatch_count": 0,
+  "rac_mismatch_codes": [],
+  "semantic_review_count": 4,
+  "semantic_review_codes": [
+    "DB1090",
+    "DB1091",
+    "DB1105",
+    "DB1116"
+  ],
+  "private_source_omission_count": 1,
+  "private_source_omission_codes": [
+    "LO0010"
+  ],
+  "outputs": {
+    "reviewed_limited_entry": "pipeline/RAW/hunt_unit_database/2026/csv/2026 Permits/2026 buck deer limited entry reviewed res-nr-total.csv",
+    "reviewed_private_land": "pipeline/RAW/hunt_unit_database/2026/csv/2026 Permits/2026 buck deer private land reviewed res-nr-total.csv",
+    "normalized": "data_truth/permit_overlay_truth/normalized/buck_deer_permits_2026_canonical.csv",
+    "database_comparison": "data_truth/permit_overlay_truth/validation/buck_deer_permits_2026_vs_DATABASE.csv",
+    "rac_comparison": "data_truth/permit_overlay_truth/validation/buck_deer_limited_entry_2026_vs_RAC.csv",
+    "private_completeness": "data_truth/permit_overlay_truth/validation/buck_deer_private_land_2026_source_completeness.csv",
+    "report": "processed_data/buck_deer_permits_2026_summary.md"
+  },
+  "guardrail": "No populated DATABASE.csv numeric cells were changed by this audit."
+}

@@ -1,0 +1,206 @@
+{
+  "generated_at_utc": "2026-05-27T04:49:09+00:00",
+  "audit_scope": "read_only_draw_truth_year_by_year_hardening",
+  "database_path": "pipeline\\RAW\\hunt_unit_database\\2026\\csv\\DATABASE.csv",
+  "draw_long_path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+  "current_database_rows": 1449,
+  "current_database_unique_hunt_codes": 1449,
+  "draw_long_rows": 176753,
+  "unique_draw_years": [
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026"
+  ],
+  "unique_draw_hunt_codes_all_years": 1616,
+  "current_database_codes_covered_any_draw_year": 1446,
+  "current_database_codes_missing_all_draw_years": 3,
+  "historical_only_draw_codes_not_current_database": 170,
+  "draw_hunt_code_growth_note": "Unique draw hunt-code counts should generally increase slightly year over year, or the audit must explain the gap before draw data is combined into prediction features.",
+  "field_capture_status": [
+    {
+      "field": "eligible_applicants",
+      "captured_in_draw_truth": true,
+      "nonblank_rows": 175657
+    },
+    {
+      "field": "total_drawn",
+      "captured_in_draw_truth": true,
+      "nonblank_rows": 175657
+    },
+    {
+      "field": "bonus_permits",
+      "captured_in_draw_truth": true,
+      "nonblank_rows": 175657
+    },
+    {
+      "field": "regular_permits",
+      "captured_in_draw_truth": true,
+      "nonblank_rows": 175657
+    },
+    {
+      "field": "total_permits",
+      "captured_in_draw_truth": true,
+      "nonblank_rows": 175657
+    },
+    {
+      "field": "success_ratio",
+      "captured_in_draw_truth": true,
+      "nonblank_rows": 86164
+    },
+    {
+      "field": "p_draw_percent",
+      "captured_in_draw_truth": true,
+      "nonblank_rows": 110960
+    },
+    {
+      "field": "residency",
+      "captured_in_draw_truth": true,
+      "nonblank_rows": 176753
+    },
+    {
+      "field": "points",
+      "captured_in_draw_truth": true,
+      "nonblank_rows": 176753
+    },
+    {
+      "field": "draw_pool",
+      "captured_in_draw_truth": true,
+      "nonblank_rows": 176753
+    },
+    {
+      "field": "draw_method",
+      "captured_in_draw_truth": true,
+      "nonblank_rows": 113161
+    },
+    {
+      "field": "hunt_class",
+      "captured_in_draw_truth": true,
+      "nonblank_rows": 176753
+    },
+    {
+      "field": "source_file",
+      "captured_in_draw_truth": true,
+      "nonblank_rows": 176753
+    },
+    {
+      "field": "page_number",
+      "captured_in_draw_truth": true,
+      "nonblank_rows": 175071
+    }
+  ],
+  "year_rows": [
+    {
+      "draw_year": "2021",
+      "model_target_year": "2022",
+      "draw_rows": "27519",
+      "native_unique_draw_hunt_codes": "550",
+      "current_database_hunt_codes": "1449",
+      "current_database_codes_covered": "490",
+      "current_database_codes_missing": "959",
+      "current_database_coverage_pct": "33.82",
+      "current_database_comparison_use": "CROSS_REFERENCE_ONLY_NOT_YEAR_COMPLETENESS",
+      "historical_only_draw_codes": "60",
+      "residency_counts": "Nonresident:15318|Resident:12201",
+      "status_counts": "",
+      "draw_pool_counts": "standard:27519",
+      "draw_method_counts": "BONUS:27519"
+    },
+    {
+      "draw_year": "2022",
+      "model_target_year": "2023",
+      "draw_rows": "18688",
+      "native_unique_draw_hunt_codes": "1024",
+      "current_database_hunt_codes": "1449",
+      "current_database_codes_covered": "867",
+      "current_database_codes_missing": "582",
+      "current_database_coverage_pct": "59.83",
+      "current_database_comparison_use": "CROSS_REFERENCE_ONLY_NOT_YEAR_COMPLETENESS",
+      "historical_only_draw_codes": "157",
+      "residency_counts": "Nonresident:6276|Resident:12412",
+      "status_counts": "",
+      "draw_pool_counts": "standard:18688",
+      "draw_method_counts": "BONUS:50"
+    },
+    {
+      "draw_year": "2023",
+      "model_target_year": "2024",
+      "draw_rows": "17128",
+      "native_unique_draw_hunt_codes": "1010",
+      "current_database_hunt_codes": "1449",
+      "current_database_codes_covered": "883",
+      "current_database_codes_missing": "566",
+      "current_database_coverage_pct": "60.94",
+      "current_database_comparison_use": "CROSS_REFERENCE_ONLY_NOT_YEAR_COMPLETENESS",
+      "historical_only_draw_codes": "127",
+      "residency_counts": "Nonresident:5637|Resident:11491",
+      "status_counts": "",
+      "draw_pool_counts": "standard:17128",
+      "draw_method_counts": ""
+    },
+    {
+      "draw_year": "2024",
+      "model_target_year": "2025",
+      "draw_rows": "37128",
+      "native_unique_draw_hunt_codes": "580",
+      "current_database_hunt_codes": "1449",
+      "current_database_codes_covered": "580",
+      "current_database_codes_missing": "869",
+      "current_database_coverage_pct": "40.03",
+      "current_database_comparison_use": "CROSS_REFERENCE_ONLY_NOT_YEAR_COMPLETENESS",
+      "historical_only_draw_codes": "0",
+      "residency_counts": "Nonresident:18561|Resident:18567",
+      "status_counts": "",
+      "draw_pool_counts": "standard:37128",
+      "draw_method_counts": "BONUS:37128"
+    },
+    {
+      "draw_year": "2025",
+      "model_target_year": "2026",
+      "draw_rows": "75194",
+      "native_unique_draw_hunt_codes": "1053",
+      "current_database_hunt_codes": "1449",
+      "current_database_codes_covered": "1052",
+      "current_database_codes_missing": "397",
+      "current_database_coverage_pct": "72.60",
+      "current_database_comparison_use": "CROSS_REFERENCE_ONLY_NOT_YEAR_COMPLETENESS",
+      "historical_only_draw_codes": "1",
+      "residency_counts": "Nonresident:37597|Resident:37597",
+      "status_counts": "",
+      "draw_pool_counts": "dedicated_hunter:1302|lifetime:4326|standard:57222|youth:11032|youth_dedicated_hunter:966|youth_mature_bull:66|youth_turkey:280",
+      "draw_method_counts": "BONUS:17282|PREFERENCE:31182"
+    },
+    {
+      "draw_year": "2026",
+      "model_target_year": "2027",
+      "draw_rows": "1096",
+      "native_unique_draw_hunt_codes": "548",
+      "current_database_hunt_codes": "1449",
+      "current_database_codes_covered": "548",
+      "current_database_codes_missing": "901",
+      "current_database_coverage_pct": "37.82",
+      "current_database_comparison_use": "CROSS_REFERENCE_ONLY_NOT_YEAR_COMPLETENESS",
+      "historical_only_draw_codes": "0",
+      "residency_counts": "Nonresident:548|Resident:548",
+      "status_counts": "NO_DRAW_ODDS_SOURCE:1074|SPORTSMAN_NO_PUBLISHED_DRAW_DATA:22",
+      "draw_pool_counts": "standard:1096",
+      "draw_method_counts": ""
+    }
+  ],
+  "missing_code_rows": 4274,
+  "blocker_count": 0,
+  "guardrails": [
+    "Read-only audit: no draw truth rows, DATABASE.csv values, website feeds, or prediction files are modified.",
+    "Draw odds/results remain draw-domain evidence until a later feature-combine step.",
+    "Harvest and draw data must be hardened year by year before combined prediction features are published.",
+    "Do not judge historical draw years against the 2026 active hunt-code count as a completeness score; the 2026 database comparison is cross-reference evidence only."
+  ],
+  "outputs": {
+    "year_coverage_csv": "data_truth\\draw_results_truth\\validation\\draw_year_by_year_hardening_2026.csv",
+    "missing_codes_csv": "data_truth\\draw_results_truth\\validation\\draw_year_by_year_hardening_2026_missing_codes.csv",
+    "summary_json": "data_truth\\draw_results_truth\\validation\\draw_year_by_year_hardening_2026_summary.json",
+    "summary_md": "processed_data\\draw_year_by_year_hardening_2026.md"
+  }
+}

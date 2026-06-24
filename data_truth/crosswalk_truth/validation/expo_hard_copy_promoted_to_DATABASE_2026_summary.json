@@ -1,0 +1,15 @@
+{
+  "artifact": "expo_hard_copy_promoted_to_DATABASE_2026",
+  "changed_rows": 3,
+  "guardrail": "Expo hard-copy permit values are promoted as total-only permit totals; resident/nonresident splits are not invented.",
+  "missing_source_codes": [],
+  "outputs": {
+    "audit_csv": "data_truth/crosswalk_truth/validation/expo_hard_copy_promoted_to_DATABASE_2026.csv",
+    "report_md": "processed_data/expo_hard_copy_promoted_to_DATABASE_2026.md",
+    "summary_json": "data_truth/crosswalk_truth/validation/expo_hard_copy_promoted_to_DATABASE_2026_summary.json"
+  },
+  "promoted_row_count": 3,
+  "snapshot_utc": "2026-05-26T21:04:27+00:00",
+  "source_file": "pipeline/RAW/hunt_unit_database/2026/xlsx/expo permits 2026.xlsx",
+  "source_row_count": 3
+}

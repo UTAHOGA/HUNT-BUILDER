@@ -1,0 +1,785 @@
+{
+  "input_sources_used": [
+    {
+      "path": "/mnt/data/harvest_reports_2021_for_2022_database/harvest_results_2021_for_2022_hunt_code_keyed.csv",
+      "source_label": "2021_for_2022_hunt_code_keyed",
+      "universe": "harvest_hunt_code_keyed"
+    },
+    {
+      "path": "/mnt/data/harvest_reports_2022_for_2023_database/harvest_results_2022_for_2023_hunt_code_keyed.csv",
+      "source_label": "2022_for_2023_hunt_code_keyed",
+      "universe": "harvest_hunt_code_keyed"
+    },
+    {
+      "path": "/mnt/data/harvest_database_outputs_all_species_2023/harvest_results_2023_all_species_hunt_success_long.csv",
+      "source_label": "2023_hunt_success_long",
+      "universe": "harvest_hunt_code_keyed"
+    },
+    {
+      "path": "/mnt/data/harvest_reports_2024_for_2025_black_bear_supplement/harvest_results_2024_for_2025_all_long_enhanced_v3.csv",
+      "source_label": "2024_for_2025_enhanced_v3",
+      "universe": "harvest_long_enhanced"
+    },
+    {
+      "path": "/mnt/data/harvest_reports_2025_for_2026_database/harvest_results_2025_for_2026_hunt_code_keyed.csv",
+      "source_label": "2025_for_2026_preliminary_hunt_code_keyed",
+      "universe": "harvest_hunt_code_keyed"
+    },
+    {
+      "path": "/mnt/data/turkey_harvest_reports_2023_24_for_2025_database/turkey_harvest_results_2023_24_for_2025_all_long.csv",
+      "source_label": "turkey_2023_24_for_2025_all_long",
+      "universe": "turkey_harvest_long"
+    },
+    {
+      "path": "/mnt/data/turkey_harvest_reports_2024_25_for_2026_database/turkey_harvest_results_2024_25_for_2026_all_long.csv",
+      "source_label": "turkey_2024_25_for_2026_all_long",
+      "universe": "turkey_harvest_long"
+    }
+  ],
+  "normalized_rows": 8464,
+  "hunt_code_year_presence_rows": 4665,
+  "species_year_summary_rows": 168,
+  "target_2025_hunt_codes_for_2026_backcheck": 1127,
+  "backcheck_exact_code_history_count": 928,
+  "backcheck_possible_name_match_count": 109,
+  "backcheck_no_prior_history_count": 90,
+  "manual_review_rows": 199,
+  "species_year_counts": {
+    "Black Bear|Black Bear": {
+      "1967": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1968": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1969": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1970": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1971": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1972": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1973": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1974": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1975": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1976": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1977": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1978": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1979": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1980": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1981": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1982": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1983": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1984": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1985": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1986": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1987": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1988": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1989": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1990": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1991": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1992": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1993": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1994": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1995": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1996": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1997": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1998": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1999": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2000": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2001": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2002": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2003": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2004": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2005": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2006": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2007": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2008": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2009": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2010": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2011": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2012": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2013": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2014": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2015": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2016": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2017": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2018": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2019": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2020": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2021": {
+        "unique_hunt_codes": 91,
+        "harvest_sum_hunt_code_rows": 388.0
+      },
+      "2022": {
+        "unique_hunt_codes": 87,
+        "harvest_sum_hunt_code_rows": 362.0
+      },
+      "2023": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2024": {
+        "unique_hunt_codes": 87,
+        "harvest_sum_hunt_code_rows": 678.0
+      }
+    },
+    "Turkey|Turkey": {
+      "1991": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1992": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1993": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1994": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1995": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1996": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1997": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1998": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "1999": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2000": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2001": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2002": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2003": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2004": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2005": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2006": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2007": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2008": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2009": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2010": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2011": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2012": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2013": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2014": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2015": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2016": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2017": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2018": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2019": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2020": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2021": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2022": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2023": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2024": {
+        "unique_hunt_codes": 7,
+        "harvest_sum_hunt_code_rows": 635.0
+      },
+      "2025": {
+        "unique_hunt_codes": 7,
+        "harvest_sum_hunt_code_rows": 966.0
+      }
+    },
+    "Desert Bighorn Sheep|Desert Bighorn Sheep": {
+      "2015": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2016": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2017": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2018": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2019": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2020": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2021": {
+        "unique_hunt_codes": 21,
+        "harvest_sum_hunt_code_rows": 74.0
+      },
+      "2022": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2023": {
+        "unique_hunt_codes": 16,
+        "harvest_sum_hunt_code_rows": 67.0
+      },
+      "2024": {
+        "unique_hunt_codes": 22,
+        "harvest_sum_hunt_code_rows": 148.0
+      },
+      "2025": {
+        "unique_hunt_codes": 25,
+        "harvest_sum_hunt_code_rows": 87.0
+      }
+    },
+    "Mountain Goat|Mountain Goat": {
+      "2015": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2016": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2017": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2018": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2019": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2020": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2021": {
+        "unique_hunt_codes": 17,
+        "harvest_sum_hunt_code_rows": 108.0
+      },
+      "2022": {
+        "unique_hunt_codes": 0,
+        "harvest_sum_hunt_code_rows": 0.0
+      },
+      "2023": {
+        "unique_hunt_codes": 17,
+        "harvest_sum_hunt_code_rows": 85.0
+      },
+      "2024": {
+        "unique_hunt_codes": 17,
+        "harvest_sum_hunt_code_rows": 161.0
+      },
+      "2025": {
+        "unique_hunt_codes": 18,
+        "harvest_sum_hunt_code_rows": 98.0
+      }
+    },
+    "Antlerless Deer|Antlerless Deer": {
+      "2021": {
+        "unique_hunt_codes": 27,
+        "harvest_sum_hunt_code_rows": 444.0
+      },
+      "2022": {
+        "unique_hunt_codes": 20,
+        "harvest_sum_hunt_code_rows": 315.0
+      },
+      "2024": {
+        "unique_hunt_codes": 21,
+        "harvest_sum_hunt_code_rows": 400.0
+      }
+    },
+    "Antlerless Elk|Antlerless Elk": {
+      "2021": {
+        "unique_hunt_codes": 186,
+        "harvest_sum_hunt_code_rows": 4725.0
+      },
+      "2022": {
+        "unique_hunt_codes": 104,
+        "harvest_sum_hunt_code_rows": 2992.0
+      },
+      "2024": {
+        "unique_hunt_codes": 184,
+        "harvest_sum_hunt_code_rows": 21199.0
+      }
+    },
+    "Bison|Bison": {
+      "2021": {
+        "unique_hunt_codes": 13,
+        "harvest_sum_hunt_code_rows": 110.0
+      },
+      "2023": {
+        "unique_hunt_codes": 18,
+        "harvest_sum_hunt_code_rows": 123.0
+      },
+      "2024": {
+        "unique_hunt_codes": 17,
+        "harvest_sum_hunt_code_rows": 122.0
+      },
+      "2025": {
+        "unique_hunt_codes": 18,
+        "harvest_sum_hunt_code_rows": 141.0
+      }
+    },
+    "Deer|Deer": {
+      "2021": {
+        "unique_hunt_codes": 306,
+        "harvest_sum_hunt_code_rows": 24349.0
+      },
+      "2023": {
+        "unique_hunt_codes": 192,
+        "harvest_sum_hunt_code_rows": 2143.0
+      },
+      "2024": {
+        "unique_hunt_codes": 334,
+        "harvest_sum_hunt_code_rows": 45726.0
+      },
+      "2025": {
+        "unique_hunt_codes": 398,
+        "harvest_sum_hunt_code_rows": 27951.0
+      }
+    },
+    "Elk|Elk": {
+      "2021": {
+        "unique_hunt_codes": 172,
+        "harvest_sum_hunt_code_rows": 2646.0
+      },
+      "2023": {
+        "unique_hunt_codes": 211,
+        "harvest_sum_hunt_code_rows": 2722.0
+      },
+      "2024": {
+        "unique_hunt_codes": 215,
+        "harvest_sum_hunt_code_rows": 11732.0
+      },
+      "2025": {
+        "unique_hunt_codes": 251,
+        "harvest_sum_hunt_code_rows": 10109.0
+      }
+    },
+    "Moose|Black Bear": {
+      "2021": {
+        "unique_hunt_codes": 2,
+        "harvest_sum_hunt_code_rows": 4.0
+      },
+      "2023": {
+        "unique_hunt_codes": 2,
+        "harvest_sum_hunt_code_rows": 3.0
+      },
+      "2024": {
+        "unique_hunt_codes": 2,
+        "harvest_sum_hunt_code_rows": 3.0
+      },
+      "2025": {
+        "unique_hunt_codes": 2,
+        "harvest_sum_hunt_code_rows": 4.0
+      }
+    },
+    "Moose|Moose": {
+      "2021": {
+        "unique_hunt_codes": 36,
+        "harvest_sum_hunt_code_rows": 171.0
+      },
+      "2023": {
+        "unique_hunt_codes": 34,
+        "harvest_sum_hunt_code_rows": 159.0
+      },
+      "2024": {
+        "unique_hunt_codes": 35,
+        "harvest_sum_hunt_code_rows": 176.0
+      },
+      "2025": {
+        "unique_hunt_codes": 42,
+        "harvest_sum_hunt_code_rows": 186.0
+      }
+    },
+    "Pronghorn|Pronghorn": {
+      "2021": {
+        "unique_hunt_codes": 85,
+        "harvest_sum_hunt_code_rows": 1110.0
+      },
+      "2023": {
+        "unique_hunt_codes": 88,
+        "harvest_sum_hunt_code_rows": 1232.0
+      },
+      "2024": {
+        "unique_hunt_codes": 87,
+        "harvest_sum_hunt_code_rows": 2810.0
+      },
+      "2025": {
+        "unique_hunt_codes": 94,
+        "harvest_sum_hunt_code_rows": 1548.0
+      }
+    },
+    "Rocky Mountain Bighorn Sheep|Rocky Mountain Bighorn Sheep": {
+      "2021": {
+        "unique_hunt_codes": 18,
+        "harvest_sum_hunt_code_rows": 66.0
+      },
+      "2023": {
+        "unique_hunt_codes": 14,
+        "harvest_sum_hunt_code_rows": 53.0
+      },
+      "2024": {
+        "unique_hunt_codes": 20,
+        "harvest_sum_hunt_code_rows": 62.0
+      },
+      "2025": {
+        "unique_hunt_codes": 21,
+        "harvest_sum_hunt_code_rows": 62.0
+      }
+    },
+    "Antlerless Moose|Moose": {
+      "2022": {
+        "unique_hunt_codes": 3,
+        "harvest_sum_hunt_code_rows": 15.0
+      }
+    },
+    "CWMU Antlerless Deer|Antlerless Deer": {
+      "2022": {
+        "unique_hunt_codes": 3,
+        "harvest_sum_hunt_code_rows": 41.0
+      }
+    },
+    "CWMU Antlerless Elk|Antlerless Elk": {
+      "2022": {
+        "unique_hunt_codes": 57,
+        "harvest_sum_hunt_code_rows": 794.0
+      }
+    },
+    "CWMU Doe Pronghorn|Doe/Fawn Pronghorn": {
+      "2022": {
+        "unique_hunt_codes": 9,
+        "harvest_sum_hunt_code_rows": 53.0
+      }
+    },
+    "Doe Pronghorn|Doe/Fawn Pronghorn": {
+      "2022": {
+        "unique_hunt_codes": 16,
+        "harvest_sum_hunt_code_rows": 167.0
+      }
+    },
+    "Ewe Bighorn Sheep|Rocky Mountain Bighorn Sheep": {
+      "2022": {
+        "unique_hunt_codes": 1,
+        "harvest_sum_hunt_code_rows": 4.0
+      }
+    },
+    "Limited Entry Buck Deer|Deer": {
+      "2022": {
+        "unique_hunt_codes": 195,
+        "harvest_sum_hunt_code_rows": 2396.0
+      }
+    },
+    "Limited Entry Buck Pronghorn|Pronghorn": {
+      "2022": {
+        "unique_hunt_codes": 88,
+        "harvest_sum_hunt_code_rows": 1205.0
+      }
+    },
+    "Limited Entry Bull Elk|Elk": {
+      "2022": {
+        "unique_hunt_codes": 193,
+        "harvest_sum_hunt_code_rows": 2915.0
+      }
+    },
+    "Limited Entry Bull Moose|Black Bear": {
+      "2022": {
+        "unique_hunt_codes": 2,
+        "harvest_sum_hunt_code_rows": 3.0
+      }
+    },
+    "Limited Entry Bull Moose|Moose": {
+      "2022": {
+        "unique_hunt_codes": 38,
+        "harvest_sum_hunt_code_rows": 170.0
+      }
+    },
+    "Once-in-a-Lifetime Bison|Bison": {
+      "2022": {
+        "unique_hunt_codes": 19,
+        "harvest_sum_hunt_code_rows": 164.0
+      }
+    },
+    "Once-in-a-Lifetime Desert Bighorn Sheep|Desert Bighorn Sheep": {
+      "2022": {
+        "unique_hunt_codes": 24,
+        "harvest_sum_hunt_code_rows": 75.0
+      }
+    },
+    "Once-in-a-Lifetime Mountain Goat|Mountain Goat": {
+      "2022": {
+        "unique_hunt_codes": 18,
+        "harvest_sum_hunt_code_rows": 96.0
+      }
+    },
+    "Once-in-a-Lifetime Rocky Mountain Bighorn Sheep|Rocky Mountain Bighorn Sheep": {
+      "2022": {
+        "unique_hunt_codes": 22,
+        "harvest_sum_hunt_code_rows": 64.0
+      }
+    },
+    "Private-Lands Only Antlerless Elk|Private-Lands Antlerless Elk": {
+      "2022": {
+        "unique_hunt_codes": 25,
+        "harvest_sum_hunt_code_rows": 1518.0
+      }
+    },
+    "Deer|Antlerless Deer": {
+      "2025": {
+        "unique_hunt_codes": 20,
+        "harvest_sum_hunt_code_rows": 143.0
+      }
+    },
+    "Elk|Antlerless Elk": {
+      "2025": {
+        "unique_hunt_codes": 204,
+        "harvest_sum_hunt_code_rows": 5098.0
+      }
+    },
+    "Pronghorn|Doe/Fawn Pronghorn": {
+      "2025": {
+        "unique_hunt_codes": 27,
+        "harvest_sum_hunt_code_rows": 337.0
+      }
+    }
+  }
+}

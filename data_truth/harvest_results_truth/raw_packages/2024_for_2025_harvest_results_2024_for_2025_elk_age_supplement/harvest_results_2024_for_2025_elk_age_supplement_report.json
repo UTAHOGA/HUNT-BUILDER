@@ -1,0 +1,26 @@
+{
+  "generated_at_utc": "2026-05-23T08:30:17.298490+00:00",
+  "reported_hunt_year": 2024,
+  "model_target_year": 2025,
+  "source_files": [
+    "elk average age.pdf",
+    "Elk harvest data.pdf",
+    "big game OIL mainly.pdf"
+  ],
+  "elk_average_age_rows": 26,
+  "elk_average_age_rows_crosschecked_in_big_game_oil": 26,
+  "elk_general_season_supplement_rows": 120,
+  "big_game_oil_hunt_number_supplement_rows": 385,
+  "elk_age_quality_feature_rows": 26,
+  "enhanced_all_long_rows": 2913,
+  "safeguards": {
+    "do_not_use_for_permit_quota": true,
+    "do_not_use_directly_for_p_draw": true,
+    "trend_feature_eligible_where_unit_or_hunt_code_exists": true
+  },
+  "notes": [
+    "Average age of harvested bull elk is a quality/demand-signal feature, not a permit quota and not a direct draw probability.",
+    "The one-page elk average age file was used as the primary extraction source and cross-checked against the same table in the big game OIL PDF.",
+    "Elk harvest data PDF added five general-season elk harvest tables by management unit."
+  ]
+}

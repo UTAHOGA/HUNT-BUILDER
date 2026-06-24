@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-06-24T02:52:26.810Z",
+  "input_resolution": {
+    "predictive": "processed_data/draw_reality_engine_predictive_v2.csv",
+    "oddsHistory": "data_model/runtime_drafts/draw_reality_engine_v2.csv",
+    "outlook": "processed_data/research_page/hunt_application_outlook.json",
+    "outfittersPublic": "data/outfitters-public.json",
+    "huntUnitsLite": "data/hunt_boundaries.geojson"
+  },
+  "outputs": {
+    "hunt_predictions_rows": 22813,
+    "hunt_odds_history_rows": 426818,
+    "hunt_application_outlook_rows": 2898,
+    "outfitters_public_rows": 11,
+    "hunt_units_features": 683,
+    "unique_prediction_hunts": 911,
+    "unique_outlook_hunts": 1449,
+    "prediction_source_mode": "runtime_csv",
+    "odds_history_source_mode": "runtime_csv",
+    "outfitters_source_mode": "outfitters_public_json"
+  },
+  "source_notes": [
+    "Contracts are website-facing display products only.",
+    "Prediction math, p_draw, permit truth, and source truth files are not modified by this script.",
+    "hunt_units.geojson is copied from the existing lite boundary artifact for browser-safe delivery.",
+    "Technical source paths belong in collapsed source/freshness details, not primary hunter-facing panels.",
+    "When primary runtime CSVs are missing, this contract build uses the first available reviewed fallback input."
+  ]
+}

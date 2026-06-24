@@ -1,0 +1,50 @@
+{
+  "generated_at_utc": "2026-05-27T05:45:08+00:00",
+  "audit_scope": "2020_hashed_draw_odds_source_parity_for_2021_modeling",
+  "legacy_source_dir": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\pipeline\\RAW\\hunt_unit_database\\2020\\pdf\\draw_odds",
+  "active_source_dir": "pipeline\\RAW\\hunt_unit_database\\2020\\pdf\\draw_odds",
+  "named_2020_source_dir": "pipeline\\RAW\\hunt_unit_database\\2021\\pdf\\draw_odds",
+  "expected_file_count": 13,
+  "active_source_file_count": 13,
+  "byte_match_count": 13,
+  "missing_legacy_source_files": 0,
+  "missing_active_source_files": 0,
+  "review_file_count": 0,
+  "active_only_source_file_count": 0,
+  "active_only_source_files": [],
+  "legacy_duplicate_hash_groups": [],
+  "active_duplicate_hash_groups": [],
+  "active_duplicate_hash_group_count": 0,
+  "same_hash_named_2020_source_match_count": 10,
+  "hashed_sources_without_named_2020_match_count": 3,
+  "hashed_sources_without_named_2020_match": [
+    "5213601e__turkey_2020_turkey_bonus_points_draw_results.pdf",
+    "68991b97__turkey_2020_youth_turkey_draw_results.pdf",
+    "dff7fc92__cougar_Drawing odds.pdf"
+  ],
+  "source_draw_result_year": "2020",
+  "model_target_year": "2021",
+  "draw_truth_2020_rows": 0,
+  "draw_truth_2020_unique_hunt_codes": 0,
+  "draw_truth_2021_rows": 27519,
+  "draw_truth_2021_unique_hunt_codes": 550,
+  "draw_truth_2021_source_file_count": 1,
+  "draw_truth_2021_source_files": [
+    "21_bg-odds.pdf"
+  ],
+  "draw_truth_2021_source_file_counts": {
+    "21_bg-odds.pdf": 27519
+  },
+  "draw_truth_source_label_status": "SOURCE_LABEL_LINEAGE_REVIEW",
+  "guardrails": [
+    "Source-anchor audit only; no PDF extraction or draw truth rewrite is performed.",
+    "2020 hashed PDF sources are model-target-year 2021 source evidence.",
+    "Do not merge hashed-name and named `20_*` lineages without retaining both filename/hash evidence.",
+    "Do not compare this historical source package to the 2026 active hunt-code universe as a completeness score."
+  ],
+  "outputs": {
+    "parity_csv": "data_truth\\draw_results_truth\\validation\\draw_2020_hashed_for_2021_source_parity.csv",
+    "summary_json": "data_truth\\draw_results_truth\\validation\\draw_2020_hashed_for_2021_source_parity_summary.json",
+    "summary_md": "processed_data\\draw_2020_hashed_for_2021_source_parity.md"
+  }
+}

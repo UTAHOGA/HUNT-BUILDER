@@ -1,0 +1,26 @@
+{
+  "artifact": "br_rs_2024_draw_pdf_values_promoted_to_DATABASE_2025",
+  "generated_at_utc": "2026-05-26T23:05:01+00:00",
+  "database_csv": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "source_difference_csv": "data_truth/draw_results_truth/validation/br_rs_2024_model_target_2025_permit_differences.csv",
+  "source_label": "2024_DRAW_ODDS_PDF_VALUES_MODEL_TARGET_2025",
+  "guardrail": "Only active BR/RS rows with numeric DIFFERS status were promoted. Source-only missing DATABASE codes were not inserted.",
+  "promoted_row_count": 63,
+  "changed_cell_count": 572,
+  "prefix_counts": {
+    "BR": 55,
+    "RS": 8
+  },
+  "skipped_missing_database_count": 4,
+  "skipped_missing_database_codes": [
+    "BR7008",
+    "BR7019",
+    "BR7108",
+    "BR7208"
+  ],
+  "outputs": {
+    "promotion_csv": "data_truth/draw_results_truth/validation/br_rs_2024_draw_pdf_values_promoted_to_DATABASE_2025.csv",
+    "summary_json": "data_truth/draw_results_truth/validation/br_rs_2024_draw_pdf_values_promoted_to_DATABASE_2025_summary.json",
+    "report_md": "processed_data/br_rs_2024_draw_pdf_values_promoted_to_DATABASE_2025.md"
+  }
+}

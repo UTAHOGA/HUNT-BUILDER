@@ -1,0 +1,86 @@
+{
+  "generated_at": "2026-05-23",
+  "reported_hunt_year": 2022,
+  "model_target_year": 2023,
+  "input_files": [
+    {
+      "source_family": "antlerless",
+      "file": "FF6D4B3D__2022_antlerless_hr.pdf",
+      "sha256": "269b7fda3567b0d2d371a48e99b2841bd8fe585c863333af03a7ffb6ef61dab2"
+    },
+    {
+      "source_family": "cougar",
+      "file": "9cb7bd59__cougar_2022.pdf",
+      "sha256": "01a5685cba9cd0d5ee7bae701685c8fa32e192442878cc9c02c807da4ef7a880"
+    },
+    {
+      "source_family": "black_bear",
+      "file": "22_black_bear_report.pdf",
+      "sha256": "aa90fcb5456db4373d25c982542dcc680ecb86d61e0ac49730455c54c9c12df3"
+    },
+    {
+      "source_family": "le_oial_all",
+      "file": "968EFF87__2022_le_oial_all.pdf",
+      "sha256": "0702a54e809448d49b9d6a4b21a8af957ce8b361d103f765484bbdd3ae1d5b5a"
+    }
+  ],
+  "total_normalized_rows": 1023,
+  "hunt_code_rows": 924,
+  "unique_hunt_codes": 924,
+  "rows_by_source_family": {
+    "antlerless": 238,
+    "le_oial_all": 599,
+    "black_bear": 133,
+    "cougar": 53
+  },
+  "rows_by_species": {
+    "Antlerless Deer": 20,
+    "Antlerless Elk": 104,
+    "Antlerless Moose": 3,
+    "Black Bear": 133,
+    "CWMU Antlerless Deer": 3,
+    "CWMU Antlerless Elk": 57,
+    "CWMU Doe Pronghorn": 9,
+    "Cougar": 53,
+    "Doe Pronghorn": 16,
+    "Ewe Bighorn Sheep": 1,
+    "Limited Entry Buck Deer": 195,
+    "Limited Entry Buck Pronghorn": 88,
+    "Limited Entry Bull Elk": 193,
+    "Limited Entry Bull Moose": 40,
+    "Once-in-a-Lifetime Bison": 19,
+    "Once-in-a-Lifetime Desert Bighorn Sheep": 24,
+    "Once-in-a-Lifetime Mountain Goat": 18,
+    "Once-in-a-Lifetime Rocky Mountain Bighorn Sheep": 22,
+    "Private-Lands Only Antlerless Elk": 25
+  },
+  "unique_hunt_codes_by_source_family": {
+    "antlerless": 238,
+    "le_oial_all": 599,
+    "black_bear": 87,
+    "cougar": 0
+  },
+  "outputs": [
+    "harvest_quality_features_by_hunt_code_2022_for_2023.csv",
+    "harvest_results_2022_for_2023_all_long.csv",
+    "harvest_results_2022_for_2023_antlerless.csv",
+    "harvest_results_2022_for_2023_black_bear.csv",
+    "harvest_results_2022_for_2023_cougar.csv",
+    "harvest_results_2022_for_2023_database_report.json",
+    "harvest_results_2022_for_2023_database_report.md",
+    "harvest_results_2022_for_2023_hunt_code_keyed.csv",
+    "harvest_results_2022_for_2023_le_oial_all.csv",
+    "harvest_results_2022_for_2023_summary.csv",
+    "utah_harvest_results_2022_for_2023.sqlite"
+  ],
+  "safeguards": {
+    "do_not_use_for_permit_quota": true,
+    "do_not_use_directly_for_p_draw": true,
+    "trend_feature_eligible_when_hunt_code_exists": true
+  },
+  "notes": [
+    "2022 annual report data is labeled as reported_hunt_year=2022 and model_target_year=2023.",
+    "Cougar and black bear unit-summary/harvest-objective rows are included but do not always carry hunt_code.",
+    "All rows are harvest quality/history inputs, not quota or direct p_draw inputs."
+  ]
+}

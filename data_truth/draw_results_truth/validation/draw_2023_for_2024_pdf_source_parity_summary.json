@@ -1,0 +1,160 @@
+{
+  "generated_at_utc": "2026-05-27T05:36:57+00:00",
+  "audit_scope": "2023_draw_odds_pdf_source_parity_for_2024_modeling",
+  "legacy_source_dir": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\pipeline\\RAW\\hunt_unit_database\\2024\\pdf\\draw_odds",
+  "active_source_dir": "pipeline\\RAW\\hunt_unit_database\\2024\\pdf\\draw_odds",
+  "expected_file_count": 17,
+  "active_source_file_count": 17,
+  "byte_match_count": 17,
+  "missing_legacy_source_files": 0,
+  "missing_active_source_files": 0,
+  "review_file_count": 0,
+  "active_only_source_file_count": 0,
+  "active_duplicate_hash_group_count": 0,
+  "source_draw_result_year": "2023",
+  "model_target_year": "2024",
+  "csv_source_label_summary": {
+    "draw_results_2023_for_2024_long.csv": {
+      "row_count": 35960,
+      "source_file_count": 1,
+      "source_file_counts": {
+        "23_bg-odds.pdf": 35960
+      },
+      "represented_pdf_source_labels": [
+        "23_bg-odds.pdf"
+      ],
+      "represented_pdf_labels_matching_expected_set": [
+        "23_bg-odds.pdf"
+      ],
+      "expected_pdf_labels_not_represented": [
+        "2022-23 Sportsman draw odds report.pdf",
+        "2023 Antlerless big game draw results.pdf",
+        "2023 DEER ODDS.pdf",
+        "2023 ELK + OTHER BIG GAME.pdf",
+        "2023 Lifetime general-season deer draw results.pdf",
+        "2023 Youth antlerless big game draw results.pdf",
+        "2023 Youth draw-only elk bonus point draw results.pdf",
+        "2023 Youth general-season deer draw results.pdf",
+        "2023 _Dedicated Hunter deer draw results.pdf",
+        "2023 _turkey_2023_turkey_bonus_points_draw_results.pdf",
+        "2023 draw results General Season Deer Draw Odds.pdf",
+        "2023 turkey_2023_youth_turkey_draw_results.pdf",
+        "2023_cougar_odds_report.pdf",
+        "23_drawing_odds.pdf",
+        "23_youth_dh_odds.pdf"
+      ]
+    },
+    "draw_results_2023_for_2024_UPLOADED_COMBINED_long.csv": {
+      "row_count": 38682,
+      "source_file_count": 6,
+      "source_file_counts": {
+        "2023 DEER ODDS.pdf": 11718,
+        "2023 Youth general-season deer draw results.pdf": 4532,
+        "2023 Antlerless big game draw results.pdf": 7344,
+        "2023 Youth antlerless big game draw results.pdf": 6080,
+        "2023 draw results General Season Deer Draw Odds.pdf": 4784,
+        "23_drawing_odds.pdf": 4224
+      },
+      "represented_pdf_source_labels": [
+        "2023 Antlerless big game draw results.pdf",
+        "2023 DEER ODDS.pdf",
+        "2023 Youth antlerless big game draw results.pdf",
+        "2023 Youth general-season deer draw results.pdf",
+        "2023 draw results General Season Deer Draw Odds.pdf",
+        "23_drawing_odds.pdf"
+      ],
+      "represented_pdf_labels_matching_expected_set": [
+        "2023 Antlerless big game draw results.pdf",
+        "2023 DEER ODDS.pdf",
+        "2023 Youth antlerless big game draw results.pdf",
+        "2023 Youth general-season deer draw results.pdf",
+        "2023 draw results General Season Deer Draw Odds.pdf",
+        "23_drawing_odds.pdf"
+      ],
+      "expected_pdf_labels_not_represented": [
+        "2022-23 Sportsman draw odds report.pdf",
+        "2023 ELK + OTHER BIG GAME.pdf",
+        "2023 Lifetime general-season deer draw results.pdf",
+        "2023 Youth draw-only elk bonus point draw results.pdf",
+        "2023 _Dedicated Hunter deer draw results.pdf",
+        "2023 _turkey_2023_turkey_bonus_points_draw_results.pdf",
+        "2023 turkey_2023_youth_turkey_draw_results.pdf",
+        "2023_cougar_odds_report.pdf",
+        "23_bg-odds.pdf",
+        "23_youth_dh_odds.pdf"
+      ]
+    },
+    "combined_csv_pdf_label_coverage": {
+      "represented_source_labels_across_csvs": [
+        "2023 Antlerless big game draw results.pdf",
+        "2023 DEER ODDS.pdf",
+        "2023 Youth antlerless big game draw results.pdf",
+        "2023 Youth general-season deer draw results.pdf",
+        "2023 draw results General Season Deer Draw Odds.pdf",
+        "23_bg-odds.pdf",
+        "23_drawing_odds.pdf"
+      ],
+      "represented_expected_pdf_count": 7,
+      "expected_pdf_count": 17,
+      "expected_pdf_labels_not_represented_by_any_csv": [
+        "2022-23 Sportsman draw odds report.pdf",
+        "2023 ELK + OTHER BIG GAME.pdf",
+        "2023 Lifetime general-season deer draw results.pdf",
+        "2023 Youth draw-only elk bonus point draw results.pdf",
+        "2023 _Dedicated Hunter deer draw results.pdf",
+        "2023 _turkey_2023_turkey_bonus_points_draw_results.pdf",
+        "2023 turkey_2023_youth_turkey_draw_results.pdf",
+        "2023_cougar_odds_report.pdf",
+        "23_youth_dh_odds.pdf"
+      ]
+    }
+  },
+  "normalized_draw_truth_source_summary": {
+    "normalized_draw_year": "2024",
+    "normalized_rows": 37128,
+    "normalized_unique_hunt_codes": 580,
+    "normalized_source_file_count": 4,
+    "normalized_source_file_counts": {
+      "24_bg-draw-results.pdf": 36930,
+      "24_OIL_ALL.pdf": 84,
+      "24_le_deer.pdf": 22,
+      "24_le_bull_elk.pdf": 92
+    },
+    "normalized_source_labels_not_in_expected_pdf_set": [
+      "24_OIL_ALL.pdf",
+      "24_bg-draw-results.pdf",
+      "24_le_bull_elk.pdf",
+      "24_le_deer.pdf"
+    ],
+    "expected_pdf_labels_not_represented_in_normalized_truth": [
+      "2022-23 Sportsman draw odds report.pdf",
+      "2023 Antlerless big game draw results.pdf",
+      "2023 DEER ODDS.pdf",
+      "2023 ELK + OTHER BIG GAME.pdf",
+      "2023 Lifetime general-season deer draw results.pdf",
+      "2023 Youth antlerless big game draw results.pdf",
+      "2023 Youth draw-only elk bonus point draw results.pdf",
+      "2023 Youth general-season deer draw results.pdf",
+      "2023 _Dedicated Hunter deer draw results.pdf",
+      "2023 _turkey_2023_turkey_bonus_points_draw_results.pdf",
+      "2023 draw results General Season Deer Draw Odds.pdf",
+      "2023 turkey_2023_youth_turkey_draw_results.pdf",
+      "2023_cougar_odds_report.pdf",
+      "23_bg-odds.pdf",
+      "23_drawing_odds.pdf",
+      "23_youth_dh_odds.pdf"
+    ],
+    "source_label_status": "SOURCE_LABEL_LINEAGE_REVIEW"
+  },
+  "guardrails": [
+    "Source-anchor audit only; no PDF extraction or draw truth rewrite is performed.",
+    "2023 PDF sources are model-target-year 2024 source evidence.",
+    "Do not promote normalized draw truth from source-label comparisons without a reconciliation step.",
+    "Do not compare this historical source package to the 2026 active hunt-code universe as a completeness score."
+  ],
+  "outputs": {
+    "parity_csv": "data_truth\\draw_results_truth\\validation\\draw_2023_for_2024_pdf_source_parity.csv",
+    "summary_json": "data_truth\\draw_results_truth\\validation\\draw_2023_for_2024_pdf_source_parity_summary.json",
+    "summary_md": "processed_data\\draw_2023_for_2024_pdf_source_parity.md"
+  }
+}

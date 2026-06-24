@@ -1,0 +1,52 @@
+{
+  "already_promoted_code_count": 16,
+  "artifact": "same_code_2025_pdf_crosswalk_active_promotions",
+  "changed_codes": [
+    "DB1320",
+    "DB1324",
+    "DB1343",
+    "DB1344",
+    "DB1345",
+    "DB1348",
+    "MB6200",
+    "MB6207",
+    "MB6209",
+    "MB6217",
+    "MB6220",
+    "MB6223",
+    "MB6224",
+    "MB6240",
+    "MB6254",
+    "MB6259"
+  ],
+  "changed_row_count": 16,
+  "crosswalk_csv": "data_truth/crosswalk_truth/validation/hunt_code_crosswalk_2024_pdf_to_2025_pdf_dropped_review.csv",
+  "database_csv": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "generated_at_utc": "2026-05-27T00:03:47+00:00",
+  "guardrail": "Reclassifies same-code/name-matched 2025 PDF rows as active crosswalk rows. Does not populate or alter 2026 permit/allotment numbers.",
+  "outputs": {
+    "promotion_csv": "data_truth/crosswalk_truth/validation/same_code_2025_pdf_crosswalk_active_promotions.csv",
+    "report_md": "processed_data/same_code_2025_pdf_crosswalk_active_promotions.md",
+    "summary_json": "data_truth/crosswalk_truth/validation/same_code_2025_pdf_crosswalk_active_promotions_summary.json"
+  },
+  "target_code_count": 16,
+  "target_codes": [
+    "DB1320",
+    "DB1324",
+    "DB1343",
+    "DB1344",
+    "DB1345",
+    "DB1348",
+    "MB6200",
+    "MB6207",
+    "MB6209",
+    "MB6217",
+    "MB6220",
+    "MB6223",
+    "MB6224",
+    "MB6240",
+    "MB6254",
+    "MB6259"
+  ],
+  "target_codes_from_crosswalk_count": 0
+}

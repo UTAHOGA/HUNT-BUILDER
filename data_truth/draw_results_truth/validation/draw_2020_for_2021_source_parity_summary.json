@@ -1,0 +1,33 @@
+{
+  "generated_at_utc": "2026-05-27T04:59:40+00:00",
+  "audit_scope": "2020_draw_odds_source_parity_for_2021_modeling",
+  "legacy_source_dir": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\pipeline\\RAW\\hunt_unit_database\\2021\\pdf\\draw_odds",
+  "active_source_dir": "pipeline\\RAW\\hunt_unit_database\\2021\\pdf\\draw_odds",
+  "expected_file_count": 17,
+  "byte_match_count": 17,
+  "missing_legacy_source_files": 0,
+  "missing_active_source_files": 0,
+  "review_file_count": 0,
+  "model_target_year": "2021",
+  "source_draw_result_year": "2020",
+  "draw_truth_2021_rows": 27519,
+  "draw_truth_2021_unique_hunt_codes": 550,
+  "draw_truth_2021_source_file_count": 1,
+  "draw_truth_2021_source_files": [
+    "21_bg-odds.pdf"
+  ],
+  "draw_truth_2021_source_file_counts": {
+    "21_bg-odds.pdf": 27519
+  },
+  "draw_truth_source_label_status": "SOURCE_LABEL_LINEAGE_REVIEW",
+  "guardrails": [
+    "Source-anchor audit only; no PDF extraction or draw truth rewrite is performed.",
+    "2021 draw truth is native-year evidence and is not judged against the 2026 active hunt-code universe.",
+    "The current normalized source label is flagged for lineage review if it does not match this expected PDF source set."
+  ],
+  "outputs": {
+    "parity_csv": "data_truth\\draw_results_truth\\validation\\draw_2020_for_2021_source_parity.csv",
+    "summary_json": "data_truth\\draw_results_truth\\validation\\draw_2020_for_2021_source_parity_summary.json",
+    "summary_md": "processed_data\\draw_2020_for_2021_source_parity.md"
+  }
+}

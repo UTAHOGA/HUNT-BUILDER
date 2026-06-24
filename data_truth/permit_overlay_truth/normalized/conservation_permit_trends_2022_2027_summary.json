@@ -1,0 +1,271 @@
+{
+  "classification": "CONSERVATION_PERMIT_TREND_MODEL_2022_2027",
+  "generated_at_utc": "2026-05-25T00:33:19.390475+00:00",
+  "method": "deterministic_cycle_to_cycle_permit_count_trend",
+  "source_2022_2024": "data_truth/permit_overlay_truth/raw_sources/2022_2024_conservation_permits/source_files/2022_2024_conservation_permits_extracted.xlsx",
+  "source_2025_2027": "data/conservation-permit-hunt-table-2025-27.csv",
+  "guardrail": "TREND_MODEL_ONLY_DO_NOT_USE_AS_DRAW_ODDS_OR_HARVEST_RESULTS",
+  "cycle_totals": {
+    "2022_2024": 318,
+    "2025_2027": 336,
+    "cycle_change": 18,
+    "pct_change": 5.66,
+    "annual_avg_2022_2024": 106.0,
+    "annual_avg_2025_2027": 112.0
+  },
+  "largest_species_increases": [
+    {
+      "dimension": "species_family",
+      "key": "Elk",
+      "permits_2022_2024": 100,
+      "permits_2025_2027": 111,
+      "annual_avg_2022_2024": 33.33,
+      "annual_avg_2025_2027": 37.0,
+      "cycle_change": 11,
+      "annual_avg_change": 3.67,
+      "pct_change": 11.0,
+      "trend_direction": "UP"
+    },
+    {
+      "dimension": "species_family",
+      "key": "Pronghorn",
+      "permits_2022_2024": 60,
+      "permits_2025_2027": 69,
+      "annual_avg_2022_2024": 20.0,
+      "annual_avg_2025_2027": 23.0,
+      "cycle_change": 9,
+      "annual_avg_change": 3.0,
+      "pct_change": 15.0,
+      "trend_direction": "UP"
+    },
+    {
+      "dimension": "species_family",
+      "key": "Black Bear",
+      "permits_2022_2024": 41,
+      "permits_2025_2027": 44,
+      "annual_avg_2022_2024": 13.67,
+      "annual_avg_2025_2027": 14.67,
+      "cycle_change": 3,
+      "annual_avg_change": 1.0,
+      "pct_change": 7.32,
+      "trend_direction": "UP"
+    },
+    {
+      "dimension": "species_family",
+      "key": "Deer",
+      "permits_2022_2024": 38,
+      "permits_2025_2027": 39,
+      "annual_avg_2022_2024": 12.67,
+      "annual_avg_2025_2027": 13.0,
+      "cycle_change": 1,
+      "annual_avg_change": 0.33,
+      "pct_change": 2.63,
+      "trend_direction": "UP"
+    },
+    {
+      "dimension": "species_family",
+      "key": "Desert Bighorn Sheep",
+      "permits_2022_2024": 8,
+      "permits_2025_2027": 8,
+      "annual_avg_2022_2024": 2.67,
+      "annual_avg_2025_2027": 2.67,
+      "cycle_change": 0,
+      "annual_avg_change": 0.0,
+      "pct_change": 0.0,
+      "trend_direction": "FLAT"
+    }
+  ],
+  "largest_species_decreases": [
+    {
+      "dimension": "species_family",
+      "key": "Bison",
+      "permits_2022_2024": 8,
+      "permits_2025_2027": 6,
+      "annual_avg_2022_2024": 2.67,
+      "annual_avg_2025_2027": 2.0,
+      "cycle_change": -2,
+      "annual_avg_change": -0.67,
+      "pct_change": -25.0,
+      "trend_direction": "DOWN"
+    },
+    {
+      "dimension": "species_family",
+      "key": "Rocky Mountain Bighorn Sheep",
+      "permits_2022_2024": 8,
+      "permits_2025_2027": 6,
+      "annual_avg_2022_2024": 2.67,
+      "annual_avg_2025_2027": 2.0,
+      "cycle_change": -2,
+      "annual_avg_change": -0.67,
+      "pct_change": -25.0,
+      "trend_direction": "DOWN"
+    },
+    {
+      "dimension": "species_family",
+      "key": "Cougar",
+      "permits_2022_2024": 1,
+      "permits_2025_2027": 0,
+      "annual_avg_2022_2024": 0.33,
+      "annual_avg_2025_2027": 0.0,
+      "cycle_change": -1,
+      "annual_avg_change": -0.33,
+      "pct_change": -100.0,
+      "trend_direction": "DOWN"
+    },
+    {
+      "dimension": "species_family",
+      "key": "Moose",
+      "permits_2022_2024": 6,
+      "permits_2025_2027": 5,
+      "annual_avg_2022_2024": 2.0,
+      "annual_avg_2025_2027": 1.67,
+      "cycle_change": -1,
+      "annual_avg_change": -0.33,
+      "pct_change": -16.67,
+      "trend_direction": "DOWN"
+    },
+    {
+      "dimension": "species_family",
+      "key": "Desert Bighorn Sheep",
+      "permits_2022_2024": 8,
+      "permits_2025_2027": 8,
+      "annual_avg_2022_2024": 2.67,
+      "annual_avg_2025_2027": 2.67,
+      "cycle_change": 0,
+      "annual_avg_change": 0.0,
+      "pct_change": 0.0,
+      "trend_direction": "FLAT"
+    }
+  ],
+  "largest_group_increases": [
+    {
+      "dimension": "group",
+      "key": "SFW",
+      "permits_2022_2024": 97,
+      "permits_2025_2027": 134,
+      "annual_avg_2022_2024": 32.33,
+      "annual_avg_2025_2027": 44.67,
+      "cycle_change": 37,
+      "annual_avg_change": 12.33,
+      "pct_change": 38.14,
+      "trend_direction": "UP"
+    },
+    {
+      "dimension": "group",
+      "key": "DSC",
+      "permits_2022_2024": 0,
+      "permits_2025_2027": 6,
+      "annual_avg_2022_2024": 0.0,
+      "annual_avg_2025_2027": 2.0,
+      "cycle_change": 6,
+      "annual_avg_change": 2.0,
+      "pct_change": "",
+      "trend_direction": "UP"
+    },
+    {
+      "dimension": "group",
+      "key": "UHA",
+      "permits_2022_2024": 4,
+      "permits_2025_2027": 9,
+      "annual_avg_2022_2024": 1.33,
+      "annual_avg_2025_2027": 3.0,
+      "cycle_change": 5,
+      "annual_avg_change": 1.67,
+      "pct_change": 125.0,
+      "trend_direction": "UP"
+    },
+    {
+      "dimension": "group",
+      "key": "MDF",
+      "permits_2022_2024": 79,
+      "permits_2025_2027": 80,
+      "annual_avg_2022_2024": 26.33,
+      "annual_avg_2025_2027": 26.67,
+      "cycle_change": 1,
+      "annual_avg_change": 0.33,
+      "pct_change": 1.27,
+      "trend_direction": "UP"
+    },
+    {
+      "dimension": "group",
+      "key": "UAA",
+      "permits_2022_2024": 9,
+      "permits_2025_2027": 10,
+      "annual_avg_2022_2024": 3.0,
+      "annual_avg_2025_2027": 3.33,
+      "cycle_change": 1,
+      "annual_avg_change": 0.33,
+      "pct_change": 11.11,
+      "trend_direction": "UP"
+    }
+  ],
+  "largest_group_decreases": [
+    {
+      "dimension": "group",
+      "key": "SCI",
+      "permits_2022_2024": 27,
+      "permits_2025_2027": 11,
+      "annual_avg_2022_2024": 9.0,
+      "annual_avg_2025_2027": 3.67,
+      "cycle_change": -16,
+      "annual_avg_change": -5.33,
+      "pct_change": -59.26,
+      "trend_direction": "DOWN"
+    },
+    {
+      "dimension": "group",
+      "key": "RMEF",
+      "permits_2022_2024": 33,
+      "permits_2025_2027": 26,
+      "annual_avg_2022_2024": 11.0,
+      "annual_avg_2025_2027": 8.67,
+      "cycle_change": -7,
+      "annual_avg_change": -2.33,
+      "pct_change": -21.21,
+      "trend_direction": "DOWN"
+    },
+    {
+      "dimension": "group",
+      "key": "UWSF",
+      "permits_2022_2024": 20,
+      "permits_2025_2027": 13,
+      "annual_avg_2022_2024": 6.67,
+      "annual_avg_2025_2027": 4.33,
+      "cycle_change": -7,
+      "annual_avg_change": -2.33,
+      "pct_change": -35.0,
+      "trend_direction": "DOWN"
+    },
+    {
+      "dimension": "group",
+      "key": "WCF",
+      "permits_2022_2024": 17,
+      "permits_2025_2027": 14,
+      "annual_avg_2022_2024": 5.67,
+      "annual_avg_2025_2027": 4.67,
+      "cycle_change": -3,
+      "annual_avg_change": -1.0,
+      "pct_change": -17.65,
+      "trend_direction": "DOWN"
+    },
+    {
+      "dimension": "group",
+      "key": "NWTF",
+      "permits_2022_2024": 32,
+      "permits_2025_2027": 32,
+      "annual_avg_2022_2024": 10.67,
+      "annual_avg_2025_2027": 10.67,
+      "cycle_change": 0,
+      "annual_avg_change": 0.0,
+      "pct_change": 0.0,
+      "trend_direction": "FLAT"
+    }
+  ],
+  "validation": {
+    "status": "PASS",
+    "failures": [],
+    "detail_row_count": 589,
+    "species_trend_row_count": 11,
+    "group_trend_row_count": 11
+  }
+}

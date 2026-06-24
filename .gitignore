@@ -1093,3 +1093,7 @@ audits/prediction_accuracy_backtest/
 /audits*
 audits*
 /audits/**
+/processed_data/hunt_research_2026_ladder_preference.json
+/public/hunt-docs/latest/availability_only.json
+/public/hunt-docs/latest/preference_draw.json
+/public/hunt-docs/latest/public_all_hunts.json

@@ -1,0 +1,31 @@
+{
+  "artifact": "live_dwr_permit_numbers_vs_DATABASE_2026",
+  "comparison_row_count": 227,
+  "comparison_status_counts": {
+    "BOTH_BLANK": 6,
+    "LIVE_NO_QUOTA_DATABASE_PRESERVED": 4,
+    "MATCH": 217
+  },
+  "database_only_codes": [],
+  "database_only_count": 0,
+  "guardrail": "This pull snapshots live DWR permit numbers for reviewed HuntTableData endpoints only. It does not modify DATABASE.csv.",
+  "live_only_codes": [],
+  "live_only_count": 0,
+  "live_row_count": 227,
+  "numeric_mismatch_codes": [],
+  "numeric_mismatch_count": 0,
+  "outputs": {
+    "comparison_csv": "data_truth/crosswalk_truth/validation/live_dwr_permit_numbers_vs_DATABASE_2026.csv",
+    "raw_csv": "data_truth/crosswalk_truth/raw_inventory/live_dwr_hunt_planner_permit_numbers_2026.csv",
+    "report_md": "processed_data/live_dwr_permit_numbers_vs_DATABASE_2026.md",
+    "summary_json": "data_truth/crosswalk_truth/validation/live_dwr_permit_numbers_vs_DATABASE_2026_summary.json"
+  },
+  "presence_counts": {
+    "LIVE_AND_DATABASE": 227
+  },
+  "snapshot_utc": "2026-05-26T21:38:12+00:00",
+  "source_urls": {
+    "Elk|Antlerless": "https://dwrapps.utah.gov/huntboundary/HuntTableData?species=Elk&gender=Antlerless",
+    "Pronghorn|Doe": "https://dwrapps.utah.gov/huntboundary/HuntTableData?species=Pronghorn&gender=Doe"
+  }
+}

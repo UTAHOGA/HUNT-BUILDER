@@ -1,0 +1,219 @@
+{
+  "generated_at_utc": "2026-05-27T05:23:35+00:00",
+  "audit_scope": "2023_draw_results_csv_source_parity_for_2024_modeling",
+  "legacy_source_dir": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\pipeline\\RAW\\hunt_unit_database\\2024\\csv",
+  "active_source_dir": "pipeline\\RAW\\hunt_unit_database\\2024\\csv",
+  "expected_file_count": 2,
+  "byte_match_count": 2,
+  "row_content_match_count": 2,
+  "missing_legacy_source_files": 0,
+  "missing_active_source_files": 0,
+  "review_file_count": 0,
+  "source_draw_result_year": "2023",
+  "model_target_year": "2024",
+  "source_file_summaries": {
+    "draw_results_2023_for_2024_long.csv": {
+      "row_count": 35960,
+      "column_count": 27,
+      "columns": [
+        "reported_draw_year",
+        "model_target_year",
+        "hunt_code",
+        "boundary_id",
+        "hunt_name",
+        "species",
+        "sex_type",
+        "hunt_type",
+        "hunt_class",
+        "weapon",
+        "draw_pool",
+        "draw_method",
+        "source_file",
+        "source_sha256",
+        "source_pdf_page",
+        "source_report_page",
+        "source_row",
+        "canonical_match_status",
+        "validation_status",
+        "validation_notes",
+        "residency",
+        "points",
+        "eligible_applicants",
+        "bonus_permits",
+        "regular_permits",
+        "total_permits",
+        "success_ratio"
+      ],
+      "unique_hunt_codes": 580,
+      "unique_row_keys": 35960,
+      "reported_draw_year_counts": {
+        "2023": 35960
+      },
+      "model_target_year_counts": {
+        "2024": 35960
+      },
+      "source_file_count": 1,
+      "source_file_counts": {
+        "23_bg-odds.pdf": 35960
+      },
+      "draw_method_counts": {
+        "bonus": 35960
+      },
+      "residency_counts": {
+        "Resident": 17980,
+        "Nonresident": 17980
+      },
+      "file_name": "draw_results_2023_for_2024_long.csv"
+    },
+    "draw_results_2023_for_2024_UPLOADED_COMBINED_long.csv": {
+      "row_count": 38682,
+      "column_count": 28,
+      "columns": [
+        "reported_draw_year",
+        "model_target_year",
+        "hunt_code",
+        "boundary_id",
+        "hunt_name",
+        "species",
+        "sex_type",
+        "hunt_type",
+        "hunt_class",
+        "weapon",
+        "draw_pool",
+        "draw_method",
+        "residency",
+        "points",
+        "eligible_applicants",
+        "bonus_permits",
+        "regular_permits",
+        "total_permits",
+        "success_ratio",
+        "source_class",
+        "source_file",
+        "source_sha256",
+        "source_pdf_page",
+        "source_report_page",
+        "source_row",
+        "canonical_match_status",
+        "validation_status",
+        "validation_notes"
+      ],
+      "unique_hunt_codes": 593,
+      "unique_row_keys": 38682,
+      "reported_draw_year_counts": {
+        "2023": 38682
+      },
+      "model_target_year_counts": {
+        "2024": 38682
+      },
+      "source_file_count": 6,
+      "source_file_counts": {
+        "2023 DEER ODDS.pdf": 11718,
+        "2023 Youth general-season deer draw results.pdf": 4532,
+        "2023 Antlerless big game draw results.pdf": 7344,
+        "2023 Youth antlerless big game draw results.pdf": 6080,
+        "2023 draw results General Season Deer Draw Odds.pdf": 4784,
+        "23_drawing_odds.pdf": 4224
+      },
+      "draw_method_counts": {
+        "bonus": 16086,
+        "preference": 22596
+      },
+      "residency_counts": {
+        "Resident": 19341,
+        "Nonresident": 19341
+      },
+      "file_name": "draw_results_2023_for_2024_UPLOADED_COMBINED_long.csv"
+    }
+  },
+  "source_file_relationship": {
+    "row_key_overlap": 11718,
+    "standard_only_row_keys": 24242,
+    "combined_only_row_keys": 26964
+  },
+  "normalized_draw_year_2023_summary": {
+    "year": "2023",
+    "rows": 17128,
+    "unique_hunt_codes": 1010,
+    "unique_row_keys": 17128,
+    "source_file_count": 14,
+    "source_file_counts": {
+      "22_bg-odds.pdf": 12520,
+      "2022 _black_bear_22_drawing_odds.pdf": 1294,
+      "2022 cougar_Drawing odds.pdf": 96,
+      "2022 cougar_Drawing odds (2).pdf": 123,
+      "2022 Antlerless big game draw results.pdf": 1589,
+      "2022 _Youth antlerless big game draw results.pdf": 231,
+      "22_deer_odds.pdf": 857,
+      "22_youth_deer.pdf": 93,
+      "22_lifetime_deer.pdf": 68,
+      "2022 Dedicated Hunter deer draw results.pdf": 143,
+      "22_youth_dh_odds.pdf": 21,
+      "2022 Youth draw-only elk bonus point draw results.pdf": 2,
+      "2022 turkey_2022_turkey_bonus_points_draw_results.pdf": 89,
+      "2022 turkey_2022_youth_turkey_draw_results.pdf": 2
+    },
+    "draw_method_counts": {
+      "": 17128
+    }
+  },
+  "normalized_model_year_2024_summary": {
+    "year": "2024",
+    "rows": 37128,
+    "unique_hunt_codes": 580,
+    "unique_row_keys": 37128,
+    "source_file_count": 4,
+    "source_file_counts": {
+      "24_bg-draw-results.pdf": 36930,
+      "24_OIL_ALL.pdf": 84,
+      "24_le_deer.pdf": 22,
+      "24_le_bull_elk.pdf": 92
+    },
+    "draw_method_counts": {
+      "BONUS": 37128
+    }
+  },
+  "standard_vs_normalized_2024": {
+    "hunt_code_overlap": 558,
+    "source_only_hunt_codes": 22,
+    "normalized_only_hunt_codes": 22,
+    "row_key_overlap": 21416,
+    "source_only_row_keys": 14544,
+    "normalized_only_row_keys": 15712
+  },
+  "combined_vs_normalized_2024": {
+    "hunt_code_overlap": 181,
+    "source_only_hunt_codes": 412,
+    "normalized_only_hunt_codes": 399,
+    "row_key_overlap": 8011,
+    "source_only_row_keys": 30671,
+    "normalized_only_row_keys": 29117
+  },
+  "standard_vs_normalized_2023": {
+    "hunt_code_overlap": 513,
+    "source_only_hunt_codes": 67,
+    "normalized_only_hunt_codes": 497,
+    "row_key_overlap": 0,
+    "source_only_row_keys": 35960,
+    "normalized_only_row_keys": 17128
+  },
+  "combined_vs_normalized_2023": {
+    "hunt_code_overlap": 562,
+    "source_only_hunt_codes": 31,
+    "normalized_only_hunt_codes": 448,
+    "row_key_overlap": 0,
+    "source_only_row_keys": 38682,
+    "normalized_only_row_keys": 17128
+  },
+  "guardrails": [
+    "Source-anchor audit only; no CSV extraction rewrite or normalized draw truth rewrite is performed.",
+    "These reported-draw-year 2023 files are model-target-year 2024 source evidence.",
+    "Do not treat the uploaded combined CSV as promoted truth until a reconciliation step explains row-key differences.",
+    "Do not compare this source package to the 2026 active hunt-code universe as a completeness score."
+  ],
+  "outputs": {
+    "parity_csv": "data_truth\\draw_results_truth\\validation\\draw_2023_for_2024_csv_source_parity.csv",
+    "summary_json": "data_truth\\draw_results_truth\\validation\\draw_2023_for_2024_csv_source_parity_summary.json",
+    "summary_md": "processed_data\\draw_2023_for_2024_csv_source_parity.md"
+  }
+}

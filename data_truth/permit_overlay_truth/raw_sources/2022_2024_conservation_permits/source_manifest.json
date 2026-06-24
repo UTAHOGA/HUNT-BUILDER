@@ -1,0 +1,54 @@
+{
+  "classification": "CONSERVATION_PERMITS_2022_2024_SOURCE_VAULT_PACKAGE",
+  "generated_at_utc": "2026-05-25T00:30:34.325149+00:00",
+  "source_class": "permit_overlay_reference",
+  "source_authority": "Utah DWR",
+  "covered_permit_years": [
+    2022,
+    2023,
+    2024
+  ],
+  "storage_context_year": 2023,
+  "promotion_status": "VAULTED_REFERENCE_SOURCE",
+  "guardrail": "DO_NOT_USE_AS_HARVEST_RESULTS_OR_DRAW_ODDS",
+  "values_extracted_by_this_step": false,
+  "website_outputs_modified": false,
+  "files": [
+    {
+      "role": "source_pdf",
+      "status": "VAULTED_CANONICAL_COPY",
+      "source_path": "pipeline/RAW/hunt_unit_database/2023/pdf/regulation/9E134C35__2022-24_conservation_permits.pdf",
+      "vault_path": "data_truth/permit_overlay_truth/raw_sources/2022_2024_conservation_permits/source_files/2022-24_conservation_permits.pdf",
+      "file_name": "9E134C35__2022-24_conservation_permits.pdf",
+      "file_size_bytes": 292968,
+      "sha256": "a282526cd55ed21cf23c91a06e06203ca0306a888b0a1a9d71edf6a8c4e43964",
+      "note": "Canonical 2022-2024 conservation permits PDF from raw intake."
+    },
+    {
+      "role": "extracted_workbook",
+      "status": "VAULTED_CANONICAL_COPY",
+      "source_path": "pipeline/RAW/hunt_unit_database/2023/2022_2024_conservation_permits_extracted.xlsx",
+      "vault_path": "data_truth/permit_overlay_truth/raw_sources/2022_2024_conservation_permits/source_files/2022_2024_conservation_permits_extracted.xlsx",
+      "file_name": "2022_2024_conservation_permits_extracted.xlsx",
+      "file_size_bytes": 27280,
+      "sha256": "39f41da2d6cde967e2793fdfecf3e790b9ab19a53c1608390b95c091dee29376",
+      "note": "Canonical extracted workbook paired with the conservation permits PDF."
+    },
+    {
+      "role": "extracted_workbook_duplicate",
+      "status": "HELD_DUPLICATE_EXACT_SHA256",
+      "source_path": "pipeline/RAW/hunt_unit_database/2023/csv/2022_2024_conservation_permits_extracted.xlsx",
+      "vault_path": "",
+      "file_name": "2022_2024_conservation_permits_extracted.xlsx",
+      "file_size_bytes": 27280,
+      "sha256": "39f41da2d6cde967e2793fdfecf3e790b9ab19a53c1608390b95c091dee29376",
+      "note": "Exact SHA-256 duplicate of the vaulted extracted workbook; not copied twice."
+    }
+  ],
+  "validation": {
+    "status": "PASS",
+    "failures": [],
+    "vaulted_file_count": 2,
+    "held_duplicate_count": 1
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "reported_hunt_year": 2024,
+  "model_target_year": 2025,
+  "source_files": [
+    "Desert Sheep.pdf",
+    "Total nanny mountain goat harvest by management unit, Utah 2015\u20132024..pdf",
+    "Total billy mountain goat harvest by management unit, Utah 2015 to 2024.pdf",
+    "Total mountain goat harvest by hunt, Utah 2024.pdf",
+    "bison harvest data.pdf"
+  ],
+  "tables": {
+    "desert_bighorn_statewide_1967_2024.csv": 58,
+    "desert_bighorn_hunt_harvest_2024.csv": 22,
+    "desert_bighorn_ram_harvest_by_unit_2015_2024.csv": 170,
+    "desert_bighorn_trend_count_by_unit_2015_2024.csv": 150,
+    "mountain_goat_billy_harvest_by_unit_2015_2024.csv": 150,
+    "mountain_goat_nanny_harvest_by_unit_2015_2024.csv": 150,
+    "mountain_goat_hunt_harvest_2024.csv": 17,
+    "bison_statewide_1950_2024.csv": 75,
+    "bison_oial_hunt_harvest_2024.csv": 17
+  },
+  "extra_long_rows": 676,
+  "enhanced_v2_rows": 3589,
+  "quality_feature_rows": 32,
+  "safeguards": {
+    "do_not_use_for_permit_quota": true,
+    "do_not_use_directly_for_p_draw": true,
+    "trend_feature_eligible": true
+  },
+  "notes": "Supplement adds Desert bighorn sheep trend count/population data, mountain goat sex-specific unit trends, 2024 mountain goat hunt rows, and bison statewide/hunt rows."
+}

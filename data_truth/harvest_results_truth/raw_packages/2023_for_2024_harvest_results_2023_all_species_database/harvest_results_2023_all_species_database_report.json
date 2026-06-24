@@ -1,0 +1,228 @@
+{
+  "generated_at_utc": "2026-05-23T07:38:56.827581+00:00",
+  "source_files": [
+    "2023 Hunt Success.pdf",
+    "61FC0758__BIGHORN SHEEP 2023-harvest-data.pdf"
+  ],
+  "reported_hunt_year": 2023,
+  "model_target_year": 2024,
+  "all_species_hunt_success_rows": 592,
+  "unique_hunt_codes": 592,
+  "species_count": 8,
+  "species_summary": [
+    {
+      "reported_hunt_year": 2023,
+      "model_target_year": 2024,
+      "species": "Bison",
+      "hunt_code_rows": 18,
+      "unique_hunt_codes": 18,
+      "total_permits": 181.0,
+      "total_hunters_afield": 174.0,
+      "total_harvest": 123.0,
+      "weighted_success_percent_by_hunters": 70.69,
+      "mean_percent_success_unweighted": 69.439,
+      "mean_average_days_unweighted": 5.317,
+      "mean_hunter_satisfaction_unweighted": 3.717,
+      "quota_use_status": "DO_NOT_USE_FOR_PERMIT_QUOTA",
+      "draw_probability_use_status": "DO_NOT_USE_DIRECTLY_FOR_P_DRAW"
+    },
+    {
+      "reported_hunt_year": 2023,
+      "model_target_year": 2024,
+      "species": "Deer",
+      "hunt_code_rows": 192,
+      "unique_hunt_codes": 192,
+      "total_permits": 3061.0,
+      "total_hunters_afield": 2994.0,
+      "total_harvest": 2143.0,
+      "weighted_success_percent_by_hunters": 71.576,
+      "mean_percent_success_unweighted": 68.569,
+      "mean_average_days_unweighted": 4.98,
+      "mean_hunter_satisfaction_unweighted": 3.827,
+      "quota_use_status": "DO_NOT_USE_FOR_PERMIT_QUOTA",
+      "draw_probability_use_status": "DO_NOT_USE_DIRECTLY_FOR_P_DRAW"
+    },
+    {
+      "reported_hunt_year": 2023,
+      "model_target_year": 2024,
+      "species": "Desert Bighorn Sheep",
+      "hunt_code_rows": 16,
+      "unique_hunt_codes": 16,
+      "total_permits": 74.0,
+      "total_hunters_afield": 74.0,
+      "total_harvest": 67.0,
+      "weighted_success_percent_by_hunters": 90.541,
+      "mean_percent_success_unweighted": 88.7,
+      "mean_average_days_unweighted": 7.5,
+      "mean_hunter_satisfaction_unweighted": 4.475,
+      "quota_use_status": "DO_NOT_USE_FOR_PERMIT_QUOTA",
+      "draw_probability_use_status": "DO_NOT_USE_DIRECTLY_FOR_P_DRAW"
+    },
+    {
+      "reported_hunt_year": 2023,
+      "model_target_year": 2024,
+      "species": "Elk",
+      "hunt_code_rows": 211,
+      "unique_hunt_codes": 211,
+      "total_permits": 4481.0,
+      "total_hunters_afield": 4426.0,
+      "total_harvest": 2722.0,
+      "weighted_success_percent_by_hunters": 61.5,
+      "mean_percent_success_unweighted": 66.492,
+      "mean_average_days_unweighted": 6.841,
+      "mean_hunter_satisfaction_unweighted": 3.872,
+      "quota_use_status": "DO_NOT_USE_FOR_PERMIT_QUOTA",
+      "draw_probability_use_status": "DO_NOT_USE_DIRECTLY_FOR_P_DRAW"
+    },
+    {
+      "reported_hunt_year": 2023,
+      "model_target_year": 2024,
+      "species": "Moose",
+      "hunt_code_rows": 36,
+      "unique_hunt_codes": 36,
+      "total_permits": 171.0,
+      "total_hunters_afield": 170.0,
+      "total_harvest": 162.0,
+      "weighted_success_percent_by_hunters": 95.294,
+      "mean_percent_success_unweighted": 96.434,
+      "mean_average_days_unweighted": 5.321,
+      "mean_hunter_satisfaction_unweighted": 4.609,
+      "quota_use_status": "DO_NOT_USE_FOR_PERMIT_QUOTA",
+      "draw_probability_use_status": "DO_NOT_USE_DIRECTLY_FOR_P_DRAW"
+    },
+    {
+      "reported_hunt_year": 2023,
+      "model_target_year": 2024,
+      "species": "Mountain Goat",
+      "hunt_code_rows": 17,
+      "unique_hunt_codes": 17,
+      "total_permits": 99.0,
+      "total_hunters_afield": 99.0,
+      "total_harvest": 85.0,
+      "weighted_success_percent_by_hunters": 85.859,
+      "mean_percent_success_unweighted": 83.794,
+      "mean_average_days_unweighted": 4.294,
+      "mean_hunter_satisfaction_unweighted": 4.229,
+      "quota_use_status": "DO_NOT_USE_FOR_PERMIT_QUOTA",
+      "draw_probability_use_status": "DO_NOT_USE_DIRECTLY_FOR_P_DRAW"
+    },
+    {
+      "reported_hunt_year": 2023,
+      "model_target_year": 2024,
+      "species": "Pronghorn",
+      "hunt_code_rows": 88,
+      "unique_hunt_codes": 88,
+      "total_permits": 1538.0,
+      "total_hunters_afield": 1478.0,
+      "total_harvest": 1232.0,
+      "weighted_success_percent_by_hunters": 83.356,
+      "mean_percent_success_unweighted": 78.197,
+      "mean_average_days_unweighted": 2.98,
+      "mean_hunter_satisfaction_unweighted": 3.921,
+      "quota_use_status": "DO_NOT_USE_FOR_PERMIT_QUOTA",
+      "draw_probability_use_status": "DO_NOT_USE_DIRECTLY_FOR_P_DRAW"
+    },
+    {
+      "reported_hunt_year": 2023,
+      "model_target_year": 2024,
+      "species": "Rocky Mountain Bighorn Sheep",
+      "hunt_code_rows": 14,
+      "unique_hunt_codes": 14,
+      "total_permits": 53.0,
+      "total_hunters_afield": 53.0,
+      "total_harvest": 53.0,
+      "weighted_success_percent_by_hunters": 100.0,
+      "mean_percent_success_unweighted": 100.0,
+      "mean_average_days_unweighted": 6.386,
+      "mean_hunter_satisfaction_unweighted": 4.85,
+      "quota_use_status": "DO_NOT_USE_FOR_PERMIT_QUOTA",
+      "draw_probability_use_status": "DO_NOT_USE_DIRECTLY_FOR_P_DRAW"
+    }
+  ],
+  "species_files": [
+    {
+      "species": "Bison",
+      "file": "harvest_results_2023_BISON_hunt_success.csv",
+      "rows": 18,
+      "hunt_codes": 18
+    },
+    {
+      "species": "Deer",
+      "file": "harvest_results_2023_DEER_hunt_success.csv",
+      "rows": 192,
+      "hunt_codes": 192
+    },
+    {
+      "species": "Desert Bighorn Sheep",
+      "file": "harvest_results_2023_DESERT_BIGHORN_SHEEP_hunt_success.csv",
+      "rows": 16,
+      "hunt_codes": 16
+    },
+    {
+      "species": "Elk",
+      "file": "harvest_results_2023_ELK_hunt_success.csv",
+      "rows": 211,
+      "hunt_codes": 211
+    },
+    {
+      "species": "Moose",
+      "file": "harvest_results_2023_MOOSE_hunt_success.csv",
+      "rows": 36,
+      "hunt_codes": 36
+    },
+    {
+      "species": "Mountain Goat",
+      "file": "harvest_results_2023_MOUNTAIN_GOAT_hunt_success.csv",
+      "rows": 17,
+      "hunt_codes": 17
+    },
+    {
+      "species": "Pronghorn",
+      "file": "harvest_results_2023_PRONGHORN_hunt_success.csv",
+      "rows": 88,
+      "hunt_codes": 88
+    },
+    {
+      "species": "Rocky Mountain Bighorn Sheep",
+      "file": "harvest_results_2023_ROCKY_MOUNTAIN_BIGHORN_SHEEP_hunt_success.csv",
+      "rows": 14,
+      "hunt_codes": 14
+    }
+  ],
+  "supplemental_bighorn_files": [
+    "harvest_results_2023_bighorn_sheep_measurements_crosswalked.csv",
+    "harvest_location_hunt_code_crosswalk_2023_bighorn_sheep.csv",
+    "harvest_results_2023_bighorn_sheep_hunt_success_aggregate.csv",
+    "harvest_quality_features_bighorn_by_hunt_code_2023.csv"
+  ],
+  "outputs": [
+    "harvest_location_hunt_code_crosswalk_2023_bighorn_sheep.csv",
+    "harvest_quality_features_bighorn_by_hunt_code_2023.csv",
+    "harvest_quality_features_by_hunt_code_all_species_2023.csv",
+    "harvest_results_2023_BISON_hunt_success.csv",
+    "harvest_results_2023_DEER_hunt_success.csv",
+    "harvest_results_2023_DESERT_BIGHORN_SHEEP_hunt_success.csv",
+    "harvest_results_2023_ELK_hunt_success.csv",
+    "harvest_results_2023_MOOSE_hunt_success.csv",
+    "harvest_results_2023_MOUNTAIN_GOAT_hunt_success.csv",
+    "harvest_results_2023_PRONGHORN_hunt_success.csv",
+    "harvest_results_2023_ROCKY_MOUNTAIN_BIGHORN_SHEEP_hunt_success.csv",
+    "harvest_results_2023_all_species_hunt_success_long.csv",
+    "harvest_results_2023_bighorn_sheep_hunt_success_aggregate.csv",
+    "harvest_results_2023_bighorn_sheep_measurements_crosswalked.csv",
+    "harvest_results_2023_species_summary.csv",
+    "utah_harvest_results_2023_all_species.sqlite"
+  ],
+  "safeguards": {
+    "do_not_use_for_permit_quota": true,
+    "do_not_use_directly_for_p_draw": true,
+    "use_for_quality_trend_features": true,
+    "hunt_code_keyed_aggregate_rows": true,
+    "bighorn_measurement_crosswalk_requires_review_for_questionable_rows": true
+  },
+  "notes": [
+    "The 2023 Hunt Success PDF is the authoritative hunt-code aggregate harvest success source for these species.",
+    "The 2023 bighorn sheep measurement PDF is individual measurement/location data and is kept as a supplemental crosswalked layer.",
+    "The quality feature tables are trend/demand signal inputs only, not quota or direct draw-probability inputs."
+  ]
+}

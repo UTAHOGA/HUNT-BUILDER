@@ -1,0 +1,28 @@
+{
+  "artifact": "live_dwr_permit_numbers_promoted_to_DATABASE_2026",
+  "changed_cells": 0,
+  "changed_rows": 0,
+  "database_path": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+  "guardrail": "CWMU live QUOTA_RES values were promoted as total-only permits_2026_total; resident/nonresident splits were not invented for total-only rows.",
+  "live_row_count": 227,
+  "missing_database_codes": [],
+  "missing_database_count": 0,
+  "outputs": {
+    "audit_csv": "data_truth/crosswalk_truth/validation/live_dwr_permit_numbers_promoted_to_DATABASE_2026.csv",
+    "report_md": "processed_data/live_dwr_permit_numbers_promoted_to_DATABASE_2026.md",
+    "summary_json": "data_truth/crosswalk_truth/validation/live_dwr_permit_numbers_promoted_to_DATABASE_2026_summary.json"
+  },
+  "promoted_row_count": 227,
+  "promotion_status_counts": {
+    "PRESERVED_DATABASE_VALUE_NO_LIVE_DWR_QUOTA": 10,
+    "UNCHANGED_ALREADY_MATCHED_LIVE_DWR": 217
+  },
+  "shape_status_counts": {
+    "LIVE_DWR_CWMU_TOTAL_ONLY_FROM_QUOTA_RES": 67,
+    "LIVE_DWR_NO_QUOTA_PUBLISHED": 10,
+    "LIVE_DWR_RES_NR_SPLIT": 123,
+    "LIVE_DWR_TOTAL_ONLY": 27
+  },
+  "snapshot_utc": "2026-05-26T21:04:27+00:00",
+  "source_snapshot": "data_truth/crosswalk_truth/raw_inventory/live_dwr_hunt_planner_permit_numbers_2026.csv"
+}

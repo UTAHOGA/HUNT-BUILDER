@@ -1,0 +1,48 @@
+{
+  "classification": "SPORTSMAN_2022_23_NORMALIZATION_AND_COUGAR_PDF_AUDIT",
+  "timestamp_utc": "2026-05-27T07:31:49.506905+00:00",
+  "sportsman_source_file": "2022-23 Sportsman draw odds report.pdf",
+  "sportsman_source_sha256": "fc7c64978355dfaa859b884dcb66ab67c3c9daefa595d2e5cdbf3a5917a2000a",
+  "sportsman_rows": 11,
+  "sportsman_codes": [
+    "BI1000",
+    "BR1000",
+    "CG1000",
+    "DB0007",
+    "DS1000",
+    "EB1000",
+    "GO1000",
+    "MB1000",
+    "PB1000",
+    "RS0001",
+    "TK0001"
+  ],
+  "sportsman_total_applications": 57199,
+  "sportsman_total_quota": 11,
+  "sportsman_missing_database_count": 1,
+  "sportsman_missing_database_codes": [
+    "CG1000"
+  ],
+  "cougar_source_file": "2023_cougar_odds_report.pdf",
+  "cougar_source_sha256": "b7296b69abc2622f8418ea97da29b80341117c62216b70f9b612fb74943f0807",
+  "cougar_pdf_pages": 10,
+  "cougar_unique_codes": 9,
+  "cougar_codes": [
+    "CG1029",
+    "CG1034",
+    "CG7502",
+    "CG7506",
+    "CG7602",
+    "CG7603",
+    "CG7605",
+    "CG7610",
+    "CG7612"
+  ],
+  "cougar_prefix_counts": {
+    "CG": 9
+  },
+  "cougar_codes_already_in_global_long": 9,
+  "cougar_codes_in_database_2026": 0,
+  "cougar_year_status": "FILENAME_2023_BUT_PDF_TEXT_2022_DRAW_AND_COUGAR_2022_2023",
+  "guardrail": "Sportsman rows are normalized from reviewed table text into a source artifact only. Cougar PDF rows are lineage evidence only because the filename and report text disagree. No DATABASE.csv, runtime feed, website file, or global draw truth table was modified."
+}

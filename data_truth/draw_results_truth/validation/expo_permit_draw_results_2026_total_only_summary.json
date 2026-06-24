@@ -1,0 +1,30 @@
+{
+  "artifact": "expo_permit_draw_results_2026_total_only",
+  "guardrail": "Expo permits are published as permits_2026_total only; no resident or nonresident split fields are created.",
+  "mapping_status_counts": {
+    "AMBIGUOUS_DATABASE_MATCH": 47,
+    "MATCH_HIGH": 57,
+    "NO_DATABASE_MATCH": 21
+  },
+  "outputs": {
+    "normalized_csv": "data_truth/draw_results_truth/normalized/expo_permit_draw_results_2026_total_only.csv",
+    "report_md": "processed_data/expo_permit_draw_results_2026_total_only.md",
+    "summary_json": "data_truth/draw_results_truth/validation/expo_permit_draw_results_2026_total_only_summary.json"
+  },
+  "row_count": 125,
+  "snapshot_utc": "2026-05-26T21:45:57+00:00",
+  "source_file": "pipeline/RAW/hunt_unit_database/2026/xlsx/expo permits 2026.xlsx",
+  "species_counts": {
+    "Bison": 4,
+    "Black Bear": 9,
+    "Deer": 23,
+    "Desert Bighorn Sheep": 2,
+    "Elk": 58,
+    "Moose": 1,
+    "Mountain Goat": 2,
+    "Pronghorn": 19,
+    "Rocky Mountain Bighorn Sheep": 2,
+    "Turkey": 5
+  },
+  "total_expo_permits": 200
+}

@@ -512,6 +512,17 @@ async function ensureWallpaperAliases(missing) {
   await fs.copyFile(source, outUpper);
 }
 
+async function ensureHardCopyAliases(missing) {
+  const source = path.join(outDir, 'public', 'hard-copy');
+  const target = path.join(outDir, 'hard-copy');
+  if (!(await exists(source))) {
+    missing.push('pages-dist/public/hard-copy (hard-copy alias source missing)');
+    return;
+  }
+  await fs.rm(target, { recursive: true, force: true });
+  await fs.cp(source, target, { recursive: true });
+}
+
 async function main() {
   await fs.rm(outDir, { recursive: true, force: true });
   await fs.mkdir(outDir, { recursive: true });
@@ -538,6 +549,7 @@ async function main() {
   }
 
   await copyPublicRegulationPdfs(missing, skippedLargeByManifest, tooLarge, runtimeManifest);
+  await ensureHardCopyAliases(missing);
   await ensureWallpaperAliases(missing);
   await writeLargeAssetManifest(skippedLargeByManifest);
   await writeOptionalAuditReport(skippedLargeByManifest, tooLarge, skippedForPathRules);

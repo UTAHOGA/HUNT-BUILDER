@@ -1,0 +1,21 @@
+{
+  "action_counts": {
+    "PROMOTED_BLANK_2025_PERMIT_FIELDS": 2
+  },
+  "artifact": "draw_odds_2024_blank_2025_permits_promoted",
+  "candidate_count": 2,
+  "generated_at_utc": "2026-05-26T22:29:43+00:00",
+  "guardrail": "Only blank broad permits_2025 fields are filled. Populated historical 2025 values are never overwritten.",
+  "outputs": {
+    "audit_csv": "data_truth/draw_results_truth/validation/draw_odds_2024_blank_2025_permits_promoted.csv",
+    "report_md": "processed_data/draw_odds_2024_blank_2025_permits_promoted.md",
+    "summary_json": "data_truth/draw_results_truth/validation/draw_odds_2024_blank_2025_permits_promoted_summary.json"
+  },
+  "promoted_codes": [
+    "EB3168",
+    "MB6265"
+  ],
+  "promoted_row_count": 2,
+  "skipped_populated_count": 0,
+  "source_label": "2024_DRAW_ODDS_MODEL_TARGET_2025_BLANK_FILL"
+}

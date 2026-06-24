@@ -1,0 +1,42 @@
+{
+  "artifact": "rocky_bighorn_permits_2026_canonical",
+  "generated_at_utc": "2026-05-26T16:19:15+00:00",
+  "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026 Permits/2026 rocky mountain bighorn user verified.csv",
+  "source_sha256": "474ccf0ac90b62244d428c0a5d9d7b3acf935a11f7cd64460f180e60c9b1c147",
+  "rac_ram_source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_oial_rocky_mountain_bighorn_sheep_permits.csv",
+  "rac_ram_source_sha256": "ed6d151b5fdcaebbb19e534ac6df5c0b2bfcdc0d38df08ea97220d5a14b94552",
+  "rac_ewe_source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_ewe_rocky_mountain_bighorn_sheep_permits.csv",
+  "rac_ewe_source_sha256": "7cc993bbc695139ac8871d1633f5b730db89f5fe3303dfd5819613a82596e467",
+  "source_rows": 21,
+  "unique_hunt_codes": 21,
+  "source_total_permits_2026": 60,
+  "status_counts": {
+    "FULL_SPLIT": 20,
+    "NO_PUBLISHED_NUMERIC_PERMIT": 1
+  },
+  "database_mismatch_count": 0,
+  "database_mismatch_codes": [],
+  "rac_mismatch_count": 0,
+  "rac_mismatch_codes": [],
+  "semantic_review_count": 2,
+  "semantic_review_codes": [
+    "RS6700",
+    "RE1000"
+  ],
+  "parallel_conservation_row_count": 4,
+  "parallel_conservation_codes": [
+    "RS1000",
+    "RS1001",
+    "RS1003",
+    "RS1006"
+  ],
+  "outputs": {
+    "reviewed_export": "pipeline/RAW/hunt_unit_database/2026/csv/2026 Permits/2026 rocky mountain bighorn reviewed res-nr-total.csv",
+    "normalized": "data_truth/permit_overlay_truth/normalized/rocky_bighorn_permits_2026_canonical.csv",
+    "database_comparison": "data_truth/permit_overlay_truth/validation/rocky_bighorn_permits_2026_vs_DATABASE.csv",
+    "rac_comparison": "data_truth/permit_overlay_truth/validation/rocky_bighorn_permits_2026_vs_RAC.csv",
+    "parallel_conservation": "data_truth/permit_overlay_truth/validation/rocky_bighorn_public_vs_conservation_parallel_2026.csv",
+    "report": "processed_data/rocky_bighorn_permits_2026_summary.md"
+  },
+  "guardrail": "No populated DATABASE.csv numeric cells were changed by this audit."
+}

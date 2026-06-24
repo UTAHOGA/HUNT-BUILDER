@@ -1,6 +1,7 @@
 import csv
 import hashlib
 import json
+import argparse
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -21,6 +22,18 @@ OUT_COMPARE = OUT_DIR / "draw_reality_engine_v2_vs_current_report.json"
 OUT_ROWS_ADDED = OUT_DIR / "draw_reality_engine_v2_rows_added.csv"
 OUT_SCHEMA_CHANGES = OUT_DIR / "draw_reality_engine_v2_schema_changes.csv"
 OUT_COLLAPSED_DUPES = OUT_DIR / "draw_reality_engine_v2_collapsed_duplicate_scorable_rows.csv"
+
+
+def configure_output_dir(out_dir: Path) -> None:
+    global OUT_DIR, OUT_V2, OUT_MANIFEST, OUT_VALIDATION, OUT_COMPARE, OUT_ROWS_ADDED, OUT_SCHEMA_CHANGES, OUT_COLLAPSED_DUPES
+    OUT_DIR = out_dir
+    OUT_V2 = OUT_DIR / "draw_reality_engine_v2.csv"
+    OUT_MANIFEST = OUT_DIR / "draw_reality_engine_v2_manifest.json"
+    OUT_VALIDATION = OUT_DIR / "draw_reality_engine_v2_validation_report.json"
+    OUT_COMPARE = OUT_DIR / "draw_reality_engine_v2_vs_current_report.json"
+    OUT_ROWS_ADDED = OUT_DIR / "draw_reality_engine_v2_rows_added.csv"
+    OUT_SCHEMA_CHANGES = OUT_DIR / "draw_reality_engine_v2_schema_changes.csv"
+    OUT_COLLAPSED_DUPES = OUT_DIR / "draw_reality_engine_v2_collapsed_duplicate_scorable_rows.csv"
 
 REQUIRED_COLUMNS = [
     "hunt_code",
@@ -250,14 +263,49 @@ def is_scorable_truth_row(row):
     )
 
 
+def expanded_engine_rows(row):
+    if clean(row.get("residency")):
+        return [row]
+
+    expanded = []
+    for residency, prefix in (("Resident", "resident"), ("Nonresident", "nonresident")):
+        has_data = any(
+            clean(row.get(f"{prefix}_{field}"))
+            for field in (
+                "eligible_applicants",
+                "bonus_permits",
+                "regular_permits",
+                "total_permits",
+                "success_ratio",
+                "p_draw",
+                "p_draw_percent",
+            )
+        )
+        if not has_data:
+            continue
+        out = dict(row)
+        out["residency"] = residency
+        out["eligible_applicants"] = clean(row.get(f"{prefix}_eligible_applicants"))
+        out["bonus_permits"] = clean(row.get(f"{prefix}_bonus_permits"))
+        out["regular_permits"] = clean(row.get(f"{prefix}_regular_permits"))
+        out["total_permits"] = clean(row.get(f"{prefix}_total_permits"))
+        out["success_ratio"] = clean(row.get(f"{prefix}_success_ratio"))
+        out["p_draw"] = clean(row.get(f"{prefix}_p_draw"))
+        out["p_draw_percent"] = clean(row.get(f"{prefix}_p_draw_percent"))
+        expanded.append(out)
+    return expanded or [row]
+
+
 def load_truth_rows():
     long_rows = read_csv(INPUT_LONG)
-    scorable_rows = [row for row in long_rows if is_scorable_truth_row(row)]
+    expanded_long_rows = [expanded for row in long_rows for expanded in expanded_engine_rows(row)]
+    scorable_rows = [row for row in expanded_long_rows if is_scorable_truth_row(row)]
     replaced_2026_rows = 0
     source_note = str(INPUT_LONG.relative_to(REPO)).replace("\\", "/")
 
     if INPUT_2026_SCORABLE.exists():
-        scorable_2026_rows = [row for row in read_csv(INPUT_2026_SCORABLE) if is_scorable_truth_row(row)]
+        expanded_2026_rows = [expanded for row in read_csv(INPUT_2026_SCORABLE) for expanded in expanded_engine_rows(row)]
+        scorable_2026_rows = [row for row in expanded_2026_rows if is_scorable_truth_row(row)]
         replaced_2026_rows = len([row for row in scorable_rows if row_year(row) == "2026"])
         scorable_rows = [row for row in scorable_rows if row_year(row) != "2026"] + scorable_2026_rows
         source_note = (
@@ -268,7 +316,8 @@ def load_truth_rows():
     return scorable_rows, {
         "source_note": source_note,
         "long_input_rows": len(long_rows),
-        "long_scorable_rows_after_filter": len([row for row in long_rows if is_scorable_truth_row(row)]),
+        "long_expanded_rows": len(expanded_long_rows),
+        "long_scorable_rows_after_filter": len([row for row in expanded_long_rows if is_scorable_truth_row(row)]),
         "replaced_2026_scorable_rows": replaced_2026_rows,
         "input_2026_scorable_path": str(INPUT_2026_SCORABLE.relative_to(REPO)).replace("\\", "/")
         if INPUT_2026_SCORABLE.exists()
@@ -460,6 +509,12 @@ def choose_source_sha(source_sha_index, source_file, year):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--out-dir", default=None, help="Directory for generated runtime feed artifacts.")
+    args = parser.parse_args()
+    if args.out_dir:
+        configure_output_dir((REPO / args.out_dir).resolve() if not Path(args.out_dir).is_absolute() else Path(args.out_dir))
+
     if not INPUT_LONG.exists():
         raise FileNotFoundError(f"Missing draw truth input: {INPUT_LONG}")
     if not DATABASE_2026.exists():
