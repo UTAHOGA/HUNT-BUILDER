@@ -1,0 +1,14 @@
+engine_route,species,hunt_category,row_count,unique_hunt_codes
+AVAILABILITY_ONLY,Deer,CWMU,21358,109
+AVAILABILITY_ONLY,Deer,Conservation,3,3
+AVAILABILITY_ONLY,Elk,CWMU,23505,112
+AVAILABILITY_ONLY,Elk,Conservation,12,7
+AVAILABILITY_ONLY,Pronghorn,CWMU,4661,38
+PREFERENCE_DRAW,Deer,Dedicated Hunter,5474,36
+PREFERENCE_DRAW,Deer,General Season,48519,168
+PREFERENCE_DRAW,Deer,O.T.C.,14,1
+PREFERENCE_DRAW,Elk,General Season,11888,143
+PREFERENCE_DRAW,Elk,O.T.C.,2,1
+PREFERENCE_DRAW,Pronghorn,General Season,1257,20
+YOUTH_RANDOM,Elk,General Season,87,1
+YOUTH_RANDOM,Elk,O.T.C.,33,1
