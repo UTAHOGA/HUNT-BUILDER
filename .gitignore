@@ -1097,3 +1097,10 @@ audits*
 /public/hunt-docs/latest/availability_only.json
 /public/hunt-docs/latest/preference_draw.json
 /public/hunt-docs/latest/public_all_hunts.json
+processed_data/composite_hunt_unit_mapping_2026.geojson
+processed_data/hunt_research_2026.json
+processed_data/hunt_research_2026_ladder_bonus_max_random.json
+processed_data/statewide_composite_boundaries_2026.geojson
+processed_data/public_contracts/hunt_odds_history.json
+processed_data/hunt_research_2026_ladder.json
+processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson
