@@ -37,6 +37,13 @@ OUTPUT_DIR = ROOT / "outputs" / "yearly_canonical_workbooks"
 REPORT_PATH = OUTPUT_DIR / "yearly_canonical_workbooks_report.json"
 
 SCORABLE_RECORD_TYPES = {"point_level_draw_result", "sportsman_total"}
+NON_SCORABLE_RECORD_TYPES = {
+    "hunt_total_draw_result",
+    "permit_reference",
+    "allocation_reference",
+    "reference_only",
+    "permit_number_only_not_draw_result",
+}
 TEXT_COLUMNS = {
     "hunt_code",
     "conservation_code",
@@ -89,6 +96,41 @@ def clean(value: object) -> str:
     return " ".join(str(value).strip().split())
 
 
+def lower_clean(value: object) -> str:
+    return clean(value).lower()
+
+
+def is_conservation_or_reference(row: dict[str, str]) -> bool:
+    text = " ".join(
+        lower_clean(row.get(field))
+        for field in (
+            "record_type",
+            "row_type",
+            "hunt_type",
+            "draw_design",
+            "hunt_class",
+            "hunt_draw_class",
+            "source_scope",
+            "source_namespace",
+            "draw_source_namespace",
+            "source_file",
+            "notes",
+        )
+    )
+    source_scope = lower_clean(row.get("source_scope"))
+    return (
+        "permit_number_only_not_draw_result" in text
+        or "reference_only" in text
+        or "allocation_only" in text
+        or "allocation/reference" in text
+        or "point_purchase" in text
+        or "point-only" in text
+        or "point only" in text
+        or "conservation" in source_scope
+        or lower_clean(row.get("hunt_type")) == "conservation"
+    )
+
+
 def maybe_number(column: str, value: object) -> object:
     text = clean(value).replace(",", "")
     if not text or column in TEXT_COLUMNS:
@@ -136,7 +178,12 @@ def long_rows_for_year(year: int) -> tuple[list[str], list[dict[str, str]]]:
 
 
 def is_scorable(row: dict[str, str]) -> bool:
-    return clean(row.get("record_type")).lower() in SCORABLE_RECORD_TYPES
+    if is_conservation_or_reference(row):
+        return False
+    record_type = lower_clean(row.get("record_type"))
+    if record_type in NON_SCORABLE_RECORD_TYPES:
+        return False
+    return record_type in SCORABLE_RECORD_TYPES
 
 
 def first_nonblank(rows: Iterable[dict[str, str]], column: str) -> str:
