@@ -519,9 +519,9 @@ def _forecast_quota_for_residency(
     latest_year: int,
     total_drawn_by_code_year: Mapping[tuple[str, int], dict[str, int]],
 ) -> int:
-    res_specific = _to_int(db_row.get("permit_allotment_2026_res")) or _to_int(db_row.get("permits_2026_res"))
-    nr_specific = _to_int(db_row.get("permit_allotment_2026_nr")) or _to_int(db_row.get("permits_2026_nr"))
-    total = _to_int(db_row.get("permit_allotment_2026_total")) or _to_int(db_row.get("permits_2026_total"))
+    res_specific = _to_int(db_row.get("permits_2026_res"))
+    nr_specific = _to_int(db_row.get("permits_2026_nr"))
+    total = _to_int(db_row.get("permits_2026_total"))
     if res_specific or nr_specific:
         return res_specific if residency == "Resident" else nr_specific
     observed = total_drawn_by_code_year.get((hunt_code, latest_year), {})
@@ -531,8 +531,8 @@ def _forecast_quota_for_residency(
     if observed_total <= 0:
         return total if residency == "Resident" else 0
     resident_drawn = int(observed.get("Resident", 0))
-    resident_quota = max(0, min(total, round(total * (resident_drawn / max(observed_total, 1)))))
-    return resident_quota if residency == "Resident" else max(0, total - resident_quota)
+    resident_permits = max(0, min(total, round(total * (resident_drawn / max(observed_total, 1)))))
+    return resident_permits if residency == "Resident" else max(0, total - resident_permits)
 
 
 def _data_quality_flags(
@@ -722,12 +722,13 @@ def build_bear_bonus_predictions(
     forecast_year: int,
     history_years: list[int],
 ) -> tuple[list[dict[str, object]], dict[str, object]]:
+    truth_rows_list = list(truth_rows)
     history_year_set = {int(year) for year in history_years}
     source_years_used_text = ",".join(str(year) for year in history_years)
     source_year_count = len(history_years)
     default_earliest_source_year = min(history_years)
     default_latest_source_year = max(history_years)
-    ladders, meta, total_drawn_by_code_year = _build_truth_ladders(truth_rows, history_year_set)
+    ladders, meta, total_drawn_by_code_year = _build_truth_ladders(truth_rows_list, history_year_set)
     retention_by_band, zero_growth = _build_retention_and_zero_growth(ladders)
 
     years_by_subtype_code_res: dict[tuple[str, str, str], list[int]] = defaultdict(list)

@@ -91,12 +91,24 @@ def can_group_fit_quota(group_size: int, remaining_quota: int) -> bool:
     return remaining_quota >= group_size
 
 
+def _normalized_species(value: object) -> str:
+    text = _text(value).replace("-", " ")
+    if "pronghorn" in text:
+        return "pronghorn"
+    if "deer" in text:
+        return "deer"
+    if "elk" in text:
+        return "elk"
+    return text
+
+
 def derive_quota(quota: Quota, hunt: Hunt, config: UtahRuleConfig) -> Quota:
     total = max(int(quota.total_public_permits), 0)
     reserved = quota.reserved_quota
     random_quota = quota.random_quota
     preference_quota = quota.preference_quota
     youth_reserved = quota.youth_reserved_quota
+    species = _normalized_species(hunt.species)
 
     if hunt.rule_system == DrawSystem.BONUS:
         if reserved is None:
@@ -107,10 +119,10 @@ def derive_quota(quota: Quota, hunt: Hunt, config: UtahRuleConfig) -> Quota:
         if preference_quota is None:
             preference_quota = total
 
-    if youth_reserved is None and hunt.hunt_type == "general_season":
+    if youth_reserved is None and hunt.hunt_type == "general_season" and species == "deer":
         youth_reserved = int(total * config.general_deer_youth_reserved_fraction)
 
-    if youth_reserved is None and hunt.hunt_type == "antlerless":
+    if youth_reserved is None and hunt.hunt_type == "antlerless" and species in {"deer", "elk", "pronghorn"}:
         youth_reserved = int(total * config.antlerless_youth_reserved_fraction)
 
     return replace(

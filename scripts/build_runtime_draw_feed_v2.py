@@ -73,6 +73,7 @@ SCORABLE_RECORD_TYPES = {
 }
 
 NON_SCORABLE_RECORD_TYPES = {
+    "hunt_planner_permit_reference",
     "hunt_planner_permit_quota",
     "quota",
     "quota_row",
@@ -668,7 +669,7 @@ def main():
         row
         for row in out_rows
         if clean(row.get("validation_notes")).upper().startswith("NON_SCORABLE")
-        or clean(row.get("draw_pool")) in {"hunt_planner_permit_quota", "quota"}
+        or clean(row.get("draw_pool")) in {"hunt_planner_permit_reference", "hunt_planner_permit_quota", "quota"}
     ]
 
     db_matched_rows = [r for r in out_rows if "DATABASE_MATCHED" in clean(r["validation_notes"])]
@@ -857,7 +858,7 @@ def main():
         "collapsed_duplicate_rows_file": str(OUT_COLLAPSED_DUPES.relative_to(REPO)).replace("\\", "/"),
         "notes": [
             "V3 is used as draw-result truth source",
-            "Only scorable record types are admitted; quota/allotment/reference rows are excluded",
+            "Only scorable record types are admitted; permit-reference/allocation/reference rows are excluded",
             "Duplicate scorable keys are collapsed by summing applicant/permit counts for runtime use",
             "2026 scorable slice is loaded from outputs/2026 scorable draw results.csv when present",
             "No production processed_data runtime feeds were overwritten in this task",

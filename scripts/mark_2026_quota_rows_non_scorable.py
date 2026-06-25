@@ -18,8 +18,8 @@ CANONICAL = (
 )
 LONG = ROOT / "data_truth" / "draw_results_truth" / "normalized" / "draw_results_long.csv"
 AUDIT_DIR = ROOT / "audits" / "2026_canonical_reconciliation"
-AUDIT_JSON = AUDIT_DIR / "mark_2026_quota_rows_non_scorable_summary.json"
-AUDIT_CSV = AUDIT_DIR / "mark_2026_quota_rows_non_scorable_changes.csv"
+AUDIT_JSON = AUDIT_DIR / "mark_2026_permit_reference_rows_non_scorable_summary.json"
+AUDIT_CSV = AUDIT_DIR / "mark_2026_permit_reference_rows_non_scorable_changes.csv"
 
 DRAW_SUCCESS_FIELDS = [
     "points",
@@ -56,19 +56,22 @@ def write_csv(path: Path, fieldnames: list[str], rows: list[dict[str, str]]) -> 
 def process_file(path: Path, label: str) -> dict[str, object]:
     fieldnames, rows = read_csv(path)
     changed: list[dict[str, str]] = []
-    quota_rows = 0
-    contaminated_quota_rows = 0
+    permit_reference_rows = 0
+    contaminated_permit_reference_rows = 0
 
     for row_number, row in enumerate(rows, start=2):
         if clean(row.get("actual_draw_year") or row.get("year") or row.get("source_year")) != "2026":
             continue
-        if clean(row.get("record_type") or row.get("row_type")) != "hunt_planner_permit_quota":
+        if clean(row.get("record_type") or row.get("row_type")) not in {
+            "hunt_planner_permit_reference",
+            "hunt_planner_permit_quota",
+        }:
             continue
 
-        quota_rows += 1
+        permit_reference_rows += 1
         populated_success_fields = [field for field in DRAW_SUCCESS_FIELDS if clean(row.get(field))]
         if populated_success_fields:
-            contaminated_quota_rows += 1
+            contaminated_permit_reference_rows += 1
             for field in populated_success_fields:
                 old = row.get(field, "")
                 row[field] = ""
@@ -80,13 +83,17 @@ def process_file(path: Path, label: str) -> dict[str, object]:
                         "field": field,
                         "old_value": old,
                         "new_value": "",
-                        "reason": "quota/allotment row cannot carry draw-success/applicant/probability data",
+                        "reason": "permit-reference row cannot carry draw-success/applicant/probability data",
                     }
                 )
 
         for field, value in (
-            ("algorithm_status", "NON_SCORABLE_QUOTA_ALLOTMENT"),
-            ("qa_status", "quota_only_not_draw_result"),
+            ("record_type", "hunt_planner_permit_reference"),
+            ("page_kind", "PERMIT_REFERENCE_ROW"),
+            ("source_namespace", "2026_HUNT_PLANNER_PERMIT_REFERENCE"),
+            ("algorithm_status", "NON_SCORABLE_PERMIT_REFERENCE"),
+            ("qa_status", "permit_number_only_not_draw_result"),
+            ("notes", "2026 Hunt Planner antlerless/female-equivalent permit-number reference row; not a draw-result point row."),
         ):
             if field not in fieldnames:
                 continue
@@ -99,20 +106,20 @@ def process_file(path: Path, label: str) -> dict[str, object]:
                     "file": label,
                     "row_number": str(row_number),
                     "hunt_code": clean(row.get("hunt_code")),
-                    "field": field,
-                    "old_value": old,
-                    "new_value": value,
-                    "reason": "make quota rows explicitly non-scorable for engine/feed routing",
-                }
-            )
+                        "field": field,
+                        "old_value": old,
+                        "new_value": value,
+                        "reason": "make permit-reference rows explicitly non-scorable for engine/feed routing",
+                    }
+                )
 
     if changed:
         write_csv(path, fieldnames, rows)
 
     return {
         "path": str(path),
-        "quota_rows": quota_rows,
-        "contaminated_quota_rows_before_cleanup": contaminated_quota_rows,
+        "permit_reference_rows": permit_reference_rows,
+        "contaminated_permit_reference_rows_before_cleanup": contaminated_permit_reference_rows,
         "changes": changed,
     }
 
@@ -137,7 +144,7 @@ def main() -> None:
     summary = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "decision": (
-            "Quota/allotment rows are not draw-result rows. They retain permit quota columns but are "
+            "Permit-reference rows are not draw-result rows. They retain permit-number columns but are "
             "explicitly marked non-scorable and any draw-success fields are blanked if present."
         ),
         "draw_success_fields_checked": DRAW_SUCCESS_FIELDS,

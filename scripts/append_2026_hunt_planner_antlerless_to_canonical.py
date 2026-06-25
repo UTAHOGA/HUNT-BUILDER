@@ -124,17 +124,17 @@ def draw_design_for(raw_hunt_type, species, code):
 
 
 def permit_values(row):
-    quota_res = int(row.get("QUOTA_RES") or 0)
-    quota_nr = int(row.get("QUOTA_NRES") or 0)
-    quota = int(row.get("QUOTA") or 0)
+    permits_res = int(row.get("QUOTA_RES") or 0)
+    permits_nr = int(row.get("QUOTA_NRES") or 0)
+    permits_total = int(row.get("QUOTA") or 0)
 
-    if quota > 0 and quota_res == 0 and quota_nr == 0:
-        return "", "", str(quota)
-    total = quota_res + quota_nr
+    if permits_total > 0 and permits_res == 0 and permits_nr == 0:
+        return "", "", str(permits_total)
+    total = permits_res + permits_nr
     if total > 0:
-        return str(quota_res), str(quota_nr), str(total)
-    if quota > 0:
-        return "", "", str(quota)
+        return str(permits_res), str(permits_nr), str(total)
+    if permits_total > 0:
+        return "", "", str(permits_total)
     return "", "", "0"
 
 
@@ -157,10 +157,10 @@ def canonical_payload(source, db_row, canonical_fields):
             "actual_draw_year": "2026",
             "model_target_year": "2027",
             "source_scope": "DWR_HUNT_PLANNER_ANTLERLESS",
-            "source_namespace": "2026_HUNT_PLANNER_PERMIT_TABLE",
+            "source_namespace": "2026_HUNT_PLANNER_PERMIT_REFERENCE",
             "draw_source_namespace": "DWR_HUNT_PLANNER_2026",
             "source_file": source_url(species, sex),
-            "page_kind": "PERMIT_QUOTA_ROW",
+            "page_kind": "PERMIT_REFERENCE_ROW",
             "hunt_code": code,
             "hunt_name": clean(source.get("HUNT_NAME")),
             "species": species,
@@ -169,14 +169,14 @@ def canonical_payload(source, db_row, canonical_fields):
             "weapon": clean(source.get("WEAPON")),
             "hunt_type": normalize_hunt_type(raw_hunt_type),
             "season": clean(source.get("SEASON_DATE_TEXT")),
-            "record_type": "hunt_planner_permit_quota",
+            "record_type": "hunt_planner_permit_reference",
             "boundary_id": clean((db_row or {}).get("boundary_id")),
-            "algorithm_status": "NON_SCORABLE_PERMIT_QUOTA_ROW_HUNT_PLANNER",
+            "algorithm_status": "NON_SCORABLE_PERMIT_REFERENCE",
             "source_dataset": "DWR_HUNT_PLANNER_2026_ANTLERLESS_REFRESH_20260621",
             "extraction_status": "LIVE_DWR_HUNT_PLANNER_REFRESH",
             "parse_method": "DWR_HUNTBOUNDARY_HUNTTABLEDATA",
-            "qa_status": "LIVE_HUNT_PLANNER_2026_PERMIT_TABLE",
-            "notes": "2026 Hunt Planner antlerless/female-equivalent permit/quota row; not a draw-result point row.",
+            "qa_status": "permit_number_only_not_draw_result",
+            "notes": "2026 Hunt Planner antlerless/female-equivalent permit-number reference row; not a draw-result point row.",
             "permits_2026_res": permits_res,
             "permits_2026_nr": permits_nr,
             "permits_2026_total": permits_total,

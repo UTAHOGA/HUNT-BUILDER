@@ -64,6 +64,7 @@ def test_target_scope_pending_rows_are_not_incorrectly_marked_out_of_scope() -> 
             "YOUTH_ANTLERLESS_OR_DOE_RESERVE",
             "YOUTH_DRAW_ONLY_ELK",
             "YOUTH_OTC_OR_AVAILABILITY",
+            "YOUTH_TURKEY_SET_ASIDE",
         }
         and row.get("algorithm_status") == "OUT_OF_SCOPE_NON_TARGET"
     ]

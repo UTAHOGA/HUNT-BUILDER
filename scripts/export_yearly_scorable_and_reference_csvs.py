@@ -36,6 +36,7 @@ SCORABLE_RECORD_TYPES = {
 }
 
 NON_SCORABLE_RECORD_TYPES = {
+    "hunt_planner_permit_reference",
     "hunt_planner_permit_quota",
     "quota",
     "quota_row",
@@ -224,13 +225,13 @@ def split_year(year: int, write: bool, preserve_existing: bool) -> dict[str, Any
 
     scorable_rows: list[dict[str, str]] = []
     reference_rows: list[dict[str, str]] = []
-    quota_rows: list[dict[str, str]] = []
+    permit_reference_rows: list[dict[str, str]] = []
     normalized_sportsman_rows = 0
 
     for row in rows:
         kind = lower_clean(row.get("record_type") or row.get("row_type") or row.get("record_kind"))
-        if kind == "hunt_planner_permit_quota":
-            quota_rows.append(row)
+        if kind in {"hunt_planner_permit_reference", "hunt_planner_permit_quota"}:
+            permit_reference_rows.append(row)
 
         if is_scorable(row):
             normalized = normalize_scorable_output_row(row, fieldnames)
@@ -254,17 +255,17 @@ def split_year(year: int, write: bool, preserve_existing: bool) -> dict[str, Any
     outputs = {
         "scorable": OUTPUT_DIR / f"{year} scorable draw results.csv",
         "reference": OUTPUT_DIR / f"{year} non-scorable reference rows.csv",
-        "quota": OUTPUT_DIR / f"{year} quota allotment rows.csv",
+        "permit_reference": OUTPUT_DIR / f"{year} permit reference rows.csv",
     }
     rows_by_output = {
         "scorable": scorable_rows,
         "reference": reference_rows,
-        "quota": quota_rows,
+        "permit_reference": permit_reference_rows,
     }
     preserved_outputs: dict[str, str] = {}
     if write:
         for output_kind, output_path in outputs.items():
-            if preserve_existing and output_path.exists() and output_kind in {"scorable", "quota"}:
+            if preserve_existing and output_path.exists() and output_kind in {"scorable", "permit_reference"}:
                 preserved_outputs[output_kind] = str(output_path.relative_to(ROOT)).replace("\\", "/")
                 continue
             write_csv(output_path, fieldnames, rows_by_output[output_kind])
@@ -277,7 +278,7 @@ def split_year(year: int, write: bool, preserve_existing: bool) -> dict[str, Any
         "record_type_counts": count_by(rows, "record_type"),
         "scorable_rows": len(scorable_rows),
         "reference_rows": len(reference_rows),
-        "quota_rows": len(quota_rows),
+        "permit_reference_rows": len(permit_reference_rows),
         "normalized_legacy_sportsman_rows": normalized_sportsman_rows,
         "unique_hunt_codes_scorable": len({clean(row.get("hunt_code")).upper() for row in scorable_rows if clean(row.get("hunt_code"))}),
         "zero_applicant_scorable_rows": count_zero_applicants(scorable_rows),
@@ -308,7 +309,7 @@ def write_reports(results: list[dict[str, Any]], write: bool) -> None:
     report = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "write": write,
-        "rule": "Scorable outputs include point-level draw-result rows plus Sportsman total rows; quota/allocation/reference rows are excluded.",
+        "rule": "Scorable outputs include point-level draw-result rows plus Sportsman total rows; permit-reference/allocation/reference rows are excluded.",
         "years": results,
     }
     report_path = OUTPUT_DIR / "yearly_scorable_split_report.json"
@@ -323,7 +324,7 @@ def write_reports(results: list[dict[str, Any]], write: bool) -> None:
                 rows_key = {
                     "scorable": "scorable_rows",
                     "reference": "reference_rows",
-                    "quota": "quota_rows",
+                    "permit_reference": "permit_reference_rows",
                 }[kind]
                 audit_rows.append(
                     {

@@ -39,11 +39,11 @@ GRID = colors.HexColor("#8A704F")
 TEXT = colors.HexColor("#1E160F")
 
 ANTLERLESS_GROUPS = {
-    ("Deer", "Antlerless"): "ANTLERLESS DEER PERMIT QUOTA",
-    ("Elk", "Antlerless"): "ANTLERLESS ELK PERMIT QUOTA",
-    ("Moose", "Antlerless"): "ANTLERLESS MOOSE PERMIT QUOTA",
-    ("Pronghorn", "Doe"): "DOE PRONGHORN PERMIT QUOTA",
-    ("Rocky Mountain Bighorn Sheep", "Ewe"): "EWE ROCKY MTN SHEEP PERMIT QUOTA",
+    ("Deer", "Antlerless"): "ANTLERLESS DEER PERMIT NUMBERS",
+    ("Elk", "Antlerless"): "ANTLERLESS ELK PERMIT NUMBERS",
+    ("Moose", "Antlerless"): "ANTLERLESS MOOSE PERMIT NUMBERS",
+    ("Pronghorn", "Doe"): "DOE PRONGHORN PERMIT NUMBERS",
+    ("Rocky Mountain Bighorn Sheep", "Ewe"): "EWE ROCKY MTN SHEEP PERMIT NUMBERS",
 }
 
 
@@ -62,21 +62,21 @@ def as_int(value: str) -> int:
         return 0
 
 
-def load_quota_rows() -> list[dict[str, str]]:
+def load_permit_reference_rows() -> list[dict[str, str]]:
     with CANONICAL.open(newline="", encoding="utf-8-sig") as handle:
         rows = list(csv.DictReader(handle))
-    quota_rows = []
+    permit_reference_rows = []
     seen_codes = set()
     for row in rows:
-        if clean(row.get("record_type")) != "hunt_planner_permit_quota":
+        if clean(row.get("record_type")) not in {"hunt_planner_permit_reference", "hunt_planner_permit_quota"}:
             continue
         key = (clean(row.get("hunt_code")), clean(row.get("species")), clean(row.get("sex_type")))
         if key in seen_codes:
             continue
         seen_codes.add(key)
-        quota_rows.append(row)
+        permit_reference_rows.append(row)
     return sorted(
-        quota_rows,
+        permit_reference_rows,
         key=lambda row: (
             clean(row.get("species")),
             clean(row.get("sex_type")),
@@ -93,7 +93,7 @@ def group_rows(rows: list[dict[str, str]]) -> dict[str, list[dict[str, str]]]:
         if not title:
             continue
         grouped[title].append(row)
-    grouped["ANTLERLESS PERMIT QUOTA SUMMARY"] = rows
+    grouped["ANTLERLESS PERMIT NUMBER SUMMARY"] = rows
     return dict(grouped)
 
 
@@ -136,7 +136,7 @@ def draw_background(canvas, doc, title: str) -> None:
 
     canvas.setFillColor(colors.white)
     canvas.setFont("Helvetica-Bold", 13)
-    canvas.drawCentredString(PAGE_W / 2, PAGE_H - 54, "Utah DWR 2026 Permit Quota")
+    canvas.drawCentredString(PAGE_W / 2, PAGE_H - 54, "Utah DWR 2026 Permit Numbers")
     canvas.setFillColor(ORANGE)
     canvas.setFont("Helvetica-Bold", 9.5)
     canvas.drawCentredString(PAGE_W / 2, PAGE_H - 72, "Brought to you by Utah Outfitter and Guide Assn. (U.O.G.A)")
@@ -147,14 +147,14 @@ def draw_background(canvas, doc, title: str) -> None:
     canvas.setFont("Helvetica-Bold", 10)
     canvas.drawString(43, PAGE_H - 112, title.title().replace("Mtn", "Mtn."))
     canvas.setFont("Helvetica", 8.4)
-    canvas.drawString(43, PAGE_H - 127, "2026 Permit Quota | Hunt Planner | Non-scorable display/feed rows")
+    canvas.drawString(43, PAGE_H - 127, "2026 Permit Numbers | Hunt Planner | Non-scorable display/feed rows")
 
     canvas.setFillColor(ORANGE)
     canvas.setFont("Helvetica-Bold", 7)
     canvas.drawRightString(PAGE_W - 43, 30, "WILDLIFE ELEVATED")
     canvas.setFillColor(TEXT)
     canvas.setFont("Helvetica", 6.8)
-    canvas.drawString(43, 30, "Source: Utah DWR Hunt Planner permit quota data. Reconstructed for UOGA Hunt Builder research.")
+    canvas.drawString(43, 30, "Source: Utah DWR Hunt Planner permit-number data. Reconstructed for UOGA Hunt Builder research.")
     canvas.restoreState()
 
 
@@ -275,13 +275,13 @@ def render_pdf(title: str, rows: list[dict[str, str]], output_path: Path) -> Non
         textColor=colors.HexColor("#4D4030"),
     )
     story = [
-        Paragraph("Permit quota summary by hunt code. These rows are display/feed rows and are not point-level draw odds results.", subtitle_style),
+        Paragraph("Permit-number summary by hunt code. These rows are display/feed rows and are not point-level draw odds results.", subtitle_style),
         Spacer(1, 0.07 * inch),
         build_summary_cards(rows),
         Spacer(1, 0.09 * inch),
         build_table(rows),
         Spacer(1, 0.05 * inch),
-        Paragraph("Do not route these quota rows through the prediction engine as applicant point ladders.", note_style),
+        Paragraph("Do not route these permit-reference rows through the prediction engine as applicant point ladders.", note_style),
     ]
     doc.build(story, onFirstPage=lambda c, d: draw_background(c, d, title), onLaterPages=lambda c, d: draw_background(c, d, title))
 
@@ -339,7 +339,7 @@ def write_manifest(manifest: list[dict[str, object]], grouped: dict[str, list[di
 
 
 def main() -> None:
-    rows = load_quota_rows()
+    rows = load_permit_reference_rows()
     grouped = group_rows(rows)
     manifest: list[dict[str, object]] = []
     RAW_PDF_DIR.mkdir(parents=True, exist_ok=True)

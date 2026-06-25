@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Restore 2026 permit columns from preserved scorable/quota source rows."""
+"""Restore 2026 permit columns from preserved scorable/permit-reference source rows."""
 
 from __future__ import annotations
 
@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "data_truth" / "draw_results_truth" / "normalized" / "canonical_yearly" / "draw_results_2026_for_2027_canonical_yearly_draw_results.csv"
 LONG = ROOT / "data_truth" / "draw_results_truth" / "normalized" / "draw_results_long.csv"
 SCORABLE = ROOT / "outputs" / "2026 scorable draw results.csv"
-QUOTA = ROOT / "outputs" / "2026 quota allotment rows.csv"
+PERMIT_REFERENCE = ROOT / "outputs" / "2026 permit reference rows.csv"
 AUDIT_DIR = ROOT / "audits" / "2026_canonical_reconciliation"
 PERMIT_COLUMNS = ["permits_2026_res", "permits_2026_nr", "permits_2026_total"]
 
@@ -59,8 +59,8 @@ def key(row: dict[str, str]) -> tuple[str, ...]:
 
 def source_map() -> dict[tuple[str, ...], dict[str, str]]:
     _sf, scorable = read_csv(SCORABLE)
-    _qf, quota = read_csv(QUOTA)
-    return {key(row): row for row in [*scorable, *quota]}
+    _pf, permit_reference = read_csv(PERMIT_REFERENCE)
+    return {key(row): row for row in [*scorable, *permit_reference]}
 
 
 def restore(path: Path, source_by_key: dict[tuple[str, ...], dict[str, str]]) -> tuple[int, Counter[str]]:

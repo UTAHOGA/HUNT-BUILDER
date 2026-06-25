@@ -67,12 +67,15 @@ from .sportsman import STRATEGY_SPECS as SPORTSMAN_SPECS, SPORTSMAN_DRAW_SYSTEM_
 from .turkey import (
     STRATEGY_SPECS as TURKEY_SPECS,
     TURKEY_DRAW_SYSTEM_TYPE,
+    YOUTH_TURKEY_DRAW_SYSTEM_TYPE,
     is_general_season_turkey_row,
     is_modeled_turkey_row,
+    is_modeled_youth_turkey_row,
     is_nonpublic_turkey_row,
     is_remaining_turkey_row,
     is_supported_turkey_bonus_row,
     is_turkey_row,
+    is_youth_turkey_row,
 )
 from .youth import (
     STRATEGY_SPECS as YOUTH_SPECS,
@@ -164,6 +167,7 @@ TARGET_DRAW_SYSTEM_TYPES = {
     "YOUTH_ANTLERLESS_OR_DOE_RESERVE",
     "YOUTH_DRAW_ONLY_ELK",
     "YOUTH_OTC_OR_AVAILABILITY",
+    "YOUTH_TURKEY_SET_ASIDE",
     "RANDOM_ONLY_TARGET",
     "OTC_OR_REMAINING_TARGET",
     "LANDOWNER_BIG_GAME",
@@ -269,6 +273,7 @@ def classify_draw_system_type(row: Mapping[str, object]) -> str:
         or is_modeled_dedicated_hunter_row(row)
         or is_modeled_phase6_bonus_row(row)
         or is_modeled_turkey_row(row)
+        or is_modeled_youth_turkey_row(row)
         or is_modeled_bear_row(row)
         or is_modeled_sportsman_row(row)
     ):
@@ -310,6 +315,8 @@ def classify_draw_system_type(row: Mapping[str, object]) -> str:
         return "RANDOM_ONLY_TARGET"
 
     if is_turkey_row(row):
+        if is_youth_turkey_row(row):
+            return YOUTH_TURKEY_DRAW_SYSTEM_TYPE
         if is_supported_turkey_bonus_row(row):
             return TURKEY_DRAW_SYSTEM_TYPE
         if is_general_season_turkey_row(row) or is_remaining_turkey_row(row) or is_nonpublic_turkey_row(row) or "fall management" in text or "statewide" in text:
@@ -388,6 +395,8 @@ def resolve_algorithm_status(row: Mapping[str, object], draw_system_type: str | 
         return resolve_youth_algorithm_status(row, draw_system_type)
     if draw_system_type == TURKEY_DRAW_SYSTEM_TYPE:
         return ALGORITHM_STATUS_MODELED_BONUS if is_modeled_turkey_row(row) else ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING
+    if draw_system_type == YOUTH_TURKEY_DRAW_SYSTEM_TYPE:
+        return ALGORITHM_STATUS_MODELED_BONUS if is_modeled_youth_turkey_row(row) else ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING
     if draw_system_type == BEAR_DRAW_SYSTEM_TYPE:
         subtype = classify_bear_subtype(row)
         if is_modeled_bear_row(row):
@@ -455,6 +464,10 @@ def classification_reason(row: Mapping[str, object], draw_system_type: str | Non
         return "Draw-only youth elk stays in scope but remains pending until current-year quota and mechanics are source-proven."
     if draw_system_type == YOUTH_OTC_OR_AVAILABILITY_DRAW_SYSTEM_TYPE:
         return "Youth OTC or availability rows are purchase/availability rows, not predictive draw-odds rows."
+    if draw_system_type == YOUTH_TURKEY_DRAW_SYSTEM_TYPE:
+        if algorithm_status == ALGORITHM_STATUS_MODELED_BONUS:
+            return "Modeled by engine.utah_draw_predictive.turkey."
+        return "Youth limited-entry turkey is source-classified separately; raw source rows wait for the 15 percent set-aside materializer before receiving probabilities."
     spec = REGISTRY[draw_system_type]
     if modeled_by_engine(row, draw_system_type, algorithm_status):
         return f"Modeled by {spec.module_name}."

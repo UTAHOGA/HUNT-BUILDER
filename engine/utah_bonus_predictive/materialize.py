@@ -35,7 +35,12 @@ from engine.utah_draw_predictive.private_lands_antlerless_elk import (
 )
 from engine.utah_draw_predictive.special_bonus import PHASE6_DRAW_SYSTEM_TYPES, build_phase6_bonus_special_predictions
 from engine.utah_draw_predictive.sportsman import SPORTSMAN_DRAW_SYSTEM_TYPE, build_sportsman_predictions
-from engine.utah_draw_predictive.turkey import TURKEY_DRAW_SYSTEM_TYPE, build_turkey_bonus_predictions
+from engine.utah_draw_predictive.turkey import (
+    TURKEY_DRAW_SYSTEM_TYPE,
+    YOUTH_TURKEY_DRAW_SYSTEM_TYPE,
+    build_turkey_bonus_predictions,
+    build_youth_turkey_predictions,
+)
 from engine.utah_draw_predictive.youth import (
     YOUTH_DRAW_SYSTEM_TYPES,
     build_youth_predictions,
@@ -461,6 +466,53 @@ def _write_turkey_bonus_artifacts(
     )
     json_path = output_dir / "turkey_bonus_report.json"
     json_path.write_text(json.dumps(turkey_report, indent=2), encoding="utf-8")
+    return csv_path, json_path
+
+
+def _write_youth_turkey_artifacts(
+    output_dir: Path,
+    prediction_rows: list[dict[str, object]],
+    youth_turkey_report: dict[str, object],
+) -> tuple[Path, Path]:
+    rows = [row for row in prediction_rows if str(row.get("draw_system_type", "")).strip() == YOUTH_TURKEY_DRAW_SYSTEM_TYPE]
+    csv_path = output_dir / "youth_turkey_predictions_v1.csv"
+    fieldnames = list(dict.fromkeys(key for row in rows for key in row.keys())) if rows else [
+        "hunt_code",
+        "residency",
+        "points",
+        "draw_system_type",
+        "algorithm_status",
+        "draw_pool",
+        "public_permits_2026",
+        "p_bonus_pool",
+        "p_random_pool",
+        "p_draw",
+        "p_draw_pct",
+        "p_preference_draw",
+    ]
+    write_csv(csv_path, rows, fieldnames)
+    modeled_rows = [row for row in rows if str(row.get("algorithm_status", "")).strip() == "MODELED_BONUS"]
+    pending_rows = [row for row in rows if str(row.get("algorithm_status", "")).strip() == "IN_SCOPE_MODEL_PENDING"]
+    youth_turkey_report = dict(youth_turkey_report)
+    youth_turkey_report.update(
+        {
+            "youth_turkey_rows_seen_active_predictive": len(rows),
+            "youth_turkey_rows_seen_total": int(youth_turkey_report.get("youth_turkey_rows_seen_observed_history", 0)) + len(rows),
+            "youth_turkey_rows_forecast_eligible": len(rows),
+            "youth_turkey_modeled_rows": len(modeled_rows),
+            "youth_turkey_pending_rows": len(pending_rows),
+            "youth_turkey_modeled_hunt_codes": len({str(row.get("hunt_code", "")).strip() for row in modeled_rows if str(row.get("hunt_code", "")).strip()}),
+            "p_bonus_pool_non_null_count": _nonnull(rows, "p_bonus_pool"),
+            "p_random_pool_non_null_count": _nonnull(rows, "p_random_pool"),
+            "p_draw_non_null_count": _nonnull(rows, "p_draw"),
+            "p_draw_pct_non_null_count": _nonnull(rows, "p_draw_pct"),
+            "p_preference_draw_non_null_count": _nonnull(rows, "p_preference_draw"),
+            "duplicate_key_count": _duplicate_count(rows, ["hunt_code", "residency", "points", "draw_system_type"]),
+            "source_years_used_non_null_count": _nonnull(rows, "source_years_used"),
+        }
+    )
+    json_path = output_dir / "youth_turkey_report.json"
+    json_path.write_text(json.dumps(youth_turkey_report, indent=2), encoding="utf-8")
     return csv_path, json_path
 
 
@@ -982,7 +1034,7 @@ def _anomaly_counts(prediction_rows: list[dict[str, object]], backtest_rows: lis
         "status_max_pool_and_p_draw_pct_100": 0,
         "status_max_pool_and_p_draw_pct_lt_100": 0,
         "random_permits_gt_0_and_p_random_pool_0": 0,
-        "duplicate_key_count": _duplicate_count(prediction_rows, ["hunt_code", "residency", "points"]),
+        "duplicate_key_count": _duplicate_count(prediction_rows, ["hunt_code", "residency", "points", "draw_system_type"]),
     }
     for row in prediction_rows:
         p_draw = None
@@ -1070,6 +1122,8 @@ def _build_manifest(
         "phase6_bonus_special_report.json": output_dir / "phase6_bonus_special_report.json",
         "turkey_bonus_predictions_v1.csv": output_dir / "turkey_bonus_predictions_v1.csv",
         "turkey_bonus_report.json": output_dir / "turkey_bonus_report.json",
+        "youth_turkey_predictions_v1.csv": output_dir / "youth_turkey_predictions_v1.csv",
+        "youth_turkey_report.json": output_dir / "youth_turkey_report.json",
         "bear_draw_predictions_v1.csv": output_dir / "bear_draw_predictions_v1.csv",
         "bear_draw_report.json": output_dir / "bear_draw_report.json",
         "bear_predictions_v1.csv": output_dir / "bear_predictions_v1.csv",
@@ -1100,8 +1154,8 @@ def _build_manifest(
             "draw_reality_engine_v2.csv": len(read_csv(runtime_truth_copy)),
         },
         "duplicate_key_counts": {
-            "ml_draw_predictions_v1.csv": _duplicate_count(prediction_rows, ["hunt_code", "residency", "points"]),
-            "draw_reality_engine_predictive_v2.csv": _duplicate_count(successor_rows, ["hunt_code", "residency", "points"]),
+            "ml_draw_predictions_v1.csv": _duplicate_count(prediction_rows, ["hunt_code", "residency", "points", "draw_system_type"]),
+            "draw_reality_engine_predictive_v2.csv": _duplicate_count(successor_rows, ["hunt_code", "residency", "points", "draw_system_type"]),
         },
         "p_draw_non_null_count": _nonnull(prediction_rows, "p_draw"),
         "p_draw_pct_non_null_count": _nonnull(prediction_rows, "p_draw_pct"),
@@ -1193,6 +1247,12 @@ def materialize_outputs(
         forecast_year=forecast_year,
         history_years=history_years,
     )
+    youth_turkey_rows, youth_turkey_report = build_youth_turkey_predictions(
+        truth_rows=truth_rows,
+        db_rows=db_rows,
+        forecast_year=forecast_year,
+        history_years=history_years,
+    )
     bear_bonus_rows, bear_bonus_report = build_bear_bonus_predictions(
         truth_rows=truth_rows,
         db_rows=db_rows,
@@ -1244,6 +1304,10 @@ def materialize_outputs(
         turkey_bonus_rows = [sanitize_modeled_probability_fields(dict(row)) for row in turkey_bonus_rows]
         prediction_rows = _replace_rows_by_draw_system_type(prediction_rows, turkey_bonus_rows, {TURKEY_DRAW_SYSTEM_TYPE})
         successor_rows = _replace_rows_by_draw_system_type(successor_rows, [dict(row) for row in turkey_bonus_rows], {TURKEY_DRAW_SYSTEM_TYPE})
+    if youth_turkey_rows:
+        youth_turkey_rows = [sanitize_modeled_probability_fields(dict(row)) for row in youth_turkey_rows]
+        prediction_rows = _replace_rows_by_draw_system_type(prediction_rows, youth_turkey_rows, {YOUTH_TURKEY_DRAW_SYSTEM_TYPE})
+        successor_rows = _replace_rows_by_draw_system_type(successor_rows, [dict(row) for row in youth_turkey_rows], {YOUTH_TURKEY_DRAW_SYSTEM_TYPE})
     if bear_bonus_rows:
         bear_bonus_rows = [sanitize_modeled_probability_fields(dict(row)) for row in bear_bonus_rows]
         prediction_rows = _replace_rows_by_draw_system_type(prediction_rows, bear_bonus_rows, {BEAR_DRAW_SYSTEM_TYPE})
@@ -1264,9 +1328,9 @@ def materialize_outputs(
         mountain_lion_rows = [sanitize_modeled_probability_fields(dict(row)) for row in mountain_lion_rows]
         prediction_rows = _replace_rows_by_draw_system_type(prediction_rows, mountain_lion_rows, {MOUNTAIN_LION_DRAW_SYSTEM_TYPE})
         successor_rows = _replace_rows_by_draw_system_type(successor_rows, [dict(row) for row in mountain_lion_rows], {MOUNTAIN_LION_DRAW_SYSTEM_TYPE})
-    if preference_general_deer_rows or preference_antlerless_rows or preference_dedicated_hunter_rows or phase6_bonus_special_rows or turkey_bonus_rows or bear_bonus_rows or sportsman_rows or private_lands_rows or youth_rows or mountain_lion_rows:
-        prediction_rows.sort(key=lambda row: (str(row.get("hunt_code", "")), str(row.get("residency", "")), int(float(str(row.get("points", 0)) or 0))))
-        successor_rows.sort(key=lambda row: (str(row.get("hunt_code", "")), str(row.get("residency", "")), int(float(str(row.get("points", 0)) or 0))))
+    if preference_general_deer_rows or preference_antlerless_rows or preference_dedicated_hunter_rows or phase6_bonus_special_rows or turkey_bonus_rows or youth_turkey_rows or bear_bonus_rows or sportsman_rows or private_lands_rows or youth_rows or mountain_lion_rows:
+        prediction_rows.sort(key=lambda row: (str(row.get("hunt_code", "")), str(row.get("residency", "")), int(float(str(row.get("points", 0)) or 0)), str(row.get("draw_system_type", ""))))
+        successor_rows.sort(key=lambda row: (str(row.get("hunt_code", "")), str(row.get("residency", "")), int(float(str(row.get("points", 0)) or 0)), str(row.get("draw_system_type", ""))))
 
     prediction_fields = [
         "model_version",
@@ -1429,6 +1493,7 @@ def materialize_outputs(
     phase4_inventory_csv_path, phase4_inventory_json_path = _write_phase4_antlerless_inventory(output_dir, prediction_rows, forecast_year, history_years)
     phase6_bonus_csv_path, phase6_bonus_json_path = _write_phase6_bonus_special_artifacts(output_dir, prediction_rows, phase6_bonus_special_report)
     turkey_bonus_csv_path, turkey_bonus_json_path = _write_turkey_bonus_artifacts(output_dir, prediction_rows, turkey_bonus_report)
+    youth_turkey_csv_path, youth_turkey_json_path = _write_youth_turkey_artifacts(output_dir, prediction_rows, youth_turkey_report)
     bear_bonus_csv_path, bear_bonus_json_path = _write_bear_bonus_artifacts(output_dir, prediction_rows, bear_bonus_report)
     bear_draw_audit_csv_path, bear_draw_audit_json_path = _write_bear_draw_odds_source_audit_artifacts(
         output_dir,
@@ -1519,6 +1584,8 @@ def materialize_outputs(
         "phase6_bonus_special_report": phase6_bonus_json_path,
         "turkey_bonus_predictions": turkey_bonus_csv_path,
         "turkey_bonus_report": turkey_bonus_json_path,
+        "youth_turkey_predictions": youth_turkey_csv_path,
+        "youth_turkey_report": youth_turkey_json_path,
         "bear_draw_predictions": bear_bonus_csv_path,
         "bear_draw_report": bear_bonus_json_path,
         "bear_predictions": output_dir / "bear_predictions_v1.csv",

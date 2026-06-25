@@ -15,7 +15,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 FILES = [
     ROOT / "outputs" / "2026 scorable draw results.csv",
-    ROOT / "outputs" / "2026 quota allotment rows.csv",
+    ROOT / "outputs" / "2026 permit reference rows.csv",
     ROOT / "data_truth" / "draw_results_truth" / "normalized" / "canonical_yearly" / "draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
     ROOT / "data_truth" / "draw_results_truth" / "normalized" / "draw_results_long.csv",
 ]

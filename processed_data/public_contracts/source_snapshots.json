@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T04:39:48.280Z",
+  "generated_at": "2026-06-24T04:53:14.224Z",
   "input_resolution": {
     "predictive": "processed_data/draw_reality_engine_predictive_v2.csv",
     "oddsHistory": "data_model/runtime_drafts/draw_reality_engine_v2.csv",

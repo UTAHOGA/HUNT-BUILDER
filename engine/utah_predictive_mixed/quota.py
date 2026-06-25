@@ -17,12 +17,12 @@ def quota_for_row(row: dict[str, str]) -> tuple[dict[str, str], list[str]]:
     reasons = ["OFFICIAL_2026_QUOTA_USED"]
     residency = row.get("residency", "")
     if residency == "Resident":
-        quota = _first_float(row.get("permit_allotment_2026_res"), row.get("quota_2026_total"))
+        quota = _first_float(row.get("permits_2026_res"), row.get("quota_2026_total"))
     elif residency == "Nonresident":
-        quota = _first_float(row.get("permit_allotment_2026_nr"), row.get("quota_2026_total"))
+        quota = _first_float(row.get("permits_2026_nr"), row.get("quota_2026_total"))
     else:
-        quota = _first_float(row.get("permit_allotment_2026_total"), row.get("quota_2026_total"))
-    total = quota if quota is not None else _first_float(row.get("quota_2026_total"), row.get("permit_allotment_2026_total"))
+        quota = _first_float(row.get("permits_2026_total"), row.get("quota_2026_total"))
+    total = quota if quota is not None else _first_float(row.get("quota_2026_total"), row.get("permits_2026_total"))
     max_pool = to_float(row.get("quota_2026_max_pool"))
     random_pool = to_float(row.get("quota_2026_random_pool"))
     if quota is not None and max_pool is None:
@@ -30,7 +30,7 @@ def quota_for_row(row: dict[str, str]) -> tuple[dict[str, str], list[str]]:
         random_pool = quota - max_pool
     if quota is not None and quota <= 0:
         reasons.append("ZERO_QUOTA_NONPREDICTIVE")
-    if quota is None and total is not None and not row.get("permit_allotment_2026_res") and not row.get("permit_allotment_2026_nr"):
+    if quota is None and total is not None and not row.get("permits_2026_res") and not row.get("permits_2026_nr"):
         reasons.append("TOTAL_ONLY_QUOTA")
     return {
         "quota_2026_total": "" if total is None else str(int(total)),

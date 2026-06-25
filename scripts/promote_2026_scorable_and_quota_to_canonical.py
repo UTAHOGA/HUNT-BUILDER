@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Promote complete 2026 scorable/quota outputs back to yearly canonical.
+"""Promote complete 2026 scorable/permit-reference outputs back to yearly canonical.
 
 This restores the source-preserving 2026 shape:
 - point-level and Sportsman rows from outputs/2026 scorable draw results.csv
-- non-scorable quota rows from outputs/2026 quota allotment rows.csv
+- non-scorable permit-reference rows from outputs/2026 permit reference rows.csv
 
 It also replaces the 2026 slice in draw_results_long.csv with the promoted
 canonical rows, expanding the long schema when needed.
@@ -25,7 +25,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "data_truth" / "draw_results_truth" / "normalized" / "canonical_yearly" / "draw_results_2026_for_2027_canonical_yearly_draw_results.csv"
 LONG = ROOT / "data_truth" / "draw_results_truth" / "normalized" / "draw_results_long.csv"
 SCORABLE = ROOT / "outputs" / "2026 scorable draw results.csv"
-QUOTA = ROOT / "outputs" / "2026 quota allotment rows.csv"
+PERMIT_REFERENCE = ROOT / "outputs" / "2026 permit reference rows.csv"
 AUDIT_DIR = ROOT / "audits" / "2026_canonical_reconciliation"
 BACKUP_DIR = AUDIT_DIR / "backups"
 
@@ -87,14 +87,14 @@ def main() -> None:
     BACKUP_DIR.mkdir(parents=True, exist_ok=True)
 
     scorable_header, scorable_rows = read_csv(SCORABLE)
-    quota_header, quota_rows = read_csv(QUOTA)
+    permit_reference_header, permit_reference_rows = read_csv(PERMIT_REFERENCE)
     canonical_old_header, canonical_old_rows = read_csv(CANONICAL)
     long_header, long_rows = read_csv(LONG)
 
-    promoted_header = union_header(scorable_header, quota_header)
+    promoted_header = union_header(scorable_header, permit_reference_header)
     promoted_rows = [
         {column: row.get(column, "") for column in promoted_header}
-        for row in [*scorable_rows, *quota_rows]
+        for row in [*scorable_rows, *permit_reference_rows]
     ]
 
     duplicate_keys = [k for k, count in Counter(key(row) for row in promoted_rows).items() if count > 1]
@@ -137,7 +137,7 @@ def main() -> None:
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "canonical_source": str(CANONICAL.relative_to(ROOT)).replace("\\", "/"),
         "scorable_source": str(SCORABLE.relative_to(ROOT)).replace("\\", "/"),
-        "quota_source": str(QUOTA.relative_to(ROOT)).replace("\\", "/"),
+        "permit_reference_source": str(PERMIT_REFERENCE.relative_to(ROOT)).replace("\\", "/"),
         "canonical_backup": str(canonical_backup.relative_to(ROOT)).replace("\\", "/"),
         "long_backup": str(long_backup.relative_to(ROOT)).replace("\\", "/"),
         "old_canonical_rows": len(canonical_old_rows),
@@ -145,7 +145,7 @@ def main() -> None:
         "promoted_canonical_rows": len(promoted_rows),
         "promoted_canonical_columns": len(promoted_header),
         "scorable_rows": len(scorable_rows),
-        "quota_rows": len(quota_rows),
+        "permit_reference_rows": len(permit_reference_rows),
         "long_rows_before": len(long_rows),
         "long_rows_after": len(new_long_rows),
         "long_columns_before": len(long_header),
@@ -153,8 +153,8 @@ def main() -> None:
         "record_type_counts": dict(Counter(clean(row.get("record_type")) or "(blank)" for row in promoted_rows).most_common()),
         "blank_counts": {
             "hunt_code": count_blanks(promoted_rows, "hunt_code"),
-            "total_permits": count_blanks([row for row in promoted_rows if clean(row.get("record_type")) != "hunt_planner_permit_quota"], "total_permits"),
-            "eligible_applicants": count_blanks([row for row in promoted_rows if clean(row.get("record_type")) != "hunt_planner_permit_quota"], "eligible_applicants"),
+            "total_permits": count_blanks([row for row in promoted_rows if clean(row.get("record_type")) != "hunt_planner_permit_reference"], "total_permits"),
+            "eligible_applicants": count_blanks([row for row in promoted_rows if clean(row.get("record_type")) != "hunt_planner_permit_reference"], "eligible_applicants"),
             "permits_2026_res": count_blanks(promoted_rows, "permits_2026_res"),
             "permits_2026_nr": count_blanks(promoted_rows, "permits_2026_nr"),
             "permits_2026_total": count_blanks(promoted_rows, "permits_2026_total"),

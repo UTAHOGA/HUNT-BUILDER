@@ -9,7 +9,7 @@ TARGETS = [
     ROOT / "data_truth" / "draw_results_truth" / "normalized" / "draw_results_long.csv",
     ROOT / "audits" / "2026_live_source_comparison" / "appended_2026_hunt_planner_antlerless_rows.csv",
 ]
-SUMMARY = ROOT / "audits" / "2026_live_source_comparison" / "normalize_2026_hunt_planner_quota_draw_design_summary.json"
+SUMMARY = ROOT / "audits" / "2026_live_source_comparison" / "normalize_2026_hunt_planner_permit_reference_draw_design_summary.json"
 
 
 def normalize_file(path):
@@ -21,8 +21,11 @@ def normalize_file(path):
         rows = list(reader)
     changed = 0
     for row in rows:
-        is_quota_row = row.get("record_type") == "hunt_planner_permit_quota" or path.name == "appended_2026_hunt_planner_antlerless_rows.csv"
-        if is_quota_row and row.get("hunt_type") == "CWMU" and row.get("draw_design") == "CWMU Allocation":
+        is_permit_reference_row = (
+            row.get("record_type") in {"hunt_planner_permit_reference", "hunt_planner_permit_quota"}
+            or path.name == "appended_2026_hunt_planner_antlerless_rows.csv"
+        )
+        if is_permit_reference_row and row.get("hunt_type") == "CWMU" and row.get("draw_design") == "CWMU Allocation":
             row["draw_design"] = "Preference"
             changed += 1
     if changed:
