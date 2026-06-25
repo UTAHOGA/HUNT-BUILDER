@@ -1,0 +1,9 @@
+{
+  "generated_at": "2026-06-25T02:49:13",
+  "database_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2026\\csv\\DATABASE.csv",
+  "canonical_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2019_for_2020_canonical_yearly_draw_results.csv",
+  "rows_added": 62,
+  "added_rows_csv": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_cross_year\\final_yearly_canonical_audit\\2019_for_2020\\database_pair_audit\\2019_database_historical_rows_added.csv",
+  "backup": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_cross_year\\final_yearly_canonical_audit\\2019_for_2020\\database_pair_audit\\backups_before_2019_database_backfill\\DATABASE.csv",
+  "note": "Rows are retired/historical lookup rows for 2019 canonical coverage; not live/current 2026 permit rows."
+}

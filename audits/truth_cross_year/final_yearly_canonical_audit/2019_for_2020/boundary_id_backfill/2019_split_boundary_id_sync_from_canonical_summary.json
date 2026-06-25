@@ -1,0 +1,10 @@
+{
+  "generated_at": "2026-06-25T02:42:52",
+  "applied_rows_total": 2169,
+  "applied_csv": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_cross_year\\final_yearly_canonical_audit\\2019_for_2020\\boundary_id_backfill\\2019_split_boundary_id_sync_from_canonical.csv",
+  "remaining_blank_boundary_by_file": {
+    "scorable": {},
+    "reference": {}
+  },
+  "ambiguous_canonical_code_boundaries": {}
+}

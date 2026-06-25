@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-06-25T02:45:32",
+  "file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2019_for_2020_canonical_yearly_draw_results.csv",
+  "source_files_checked": [
+    "outputs/2019 standardized long.xlsx",
+    "outputs/2019 PERMITS.xlsx"
+  ],
+  "reason": "Align 2019 canonical Paunsaugunt premium deer hunt_type with year-specific 2019 workbook source and split truth outputs.",
+  "changes": [
+    {
+      "hunt_code": "DB1010",
+      "old_hunt_type": "Limited Entry",
+      "new_hunt_type": "Premium Limited Entry",
+      "rows_changed": 28
+    },
+    {
+      "hunt_code": "DB1001",
+      "old_hunt_type": "P.L.E.",
+      "new_hunt_type": "Premium Limited Entry",
+      "rows_changed": 28
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+hunt_code,points,old_hunt_type,new_hunt_type,hunt_name,weapon,record_type
+DB1010,0,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,1,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,10,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,11,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,12,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,13,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,14,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,15,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,16,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,17,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,18,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,19,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,2,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,20,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,21,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,22,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,23,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,24,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,25,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,26,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,3,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,4,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,5,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,6,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,7,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,8,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,9,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,point_level_draw_result
+DB1010,TOTAL,Limited Entry,Premium Limited Entry,Paunsaugunt,Any Legal Weapon,hunt_total_draw_result
+DB1001,0,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,1,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,10,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,11,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,12,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,13,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,14,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,15,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,16,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,17,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,18,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,19,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,2,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,20,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,21,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,22,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,23,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,24,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,25,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,26,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,3,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,4,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,5,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,6,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,7,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,8,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,9,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,point_level_draw_result
+DB1001,TOTAL,P.L.E.,Premium Limited Entry,Paunsaugunt,Archery,hunt_total_draw_result

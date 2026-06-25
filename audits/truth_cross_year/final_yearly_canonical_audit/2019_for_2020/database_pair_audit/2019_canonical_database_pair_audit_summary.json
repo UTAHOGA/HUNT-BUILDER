@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-06-25T02:49:55",
+  "canonical_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2019_for_2020_canonical_yearly_draw_results.csv",
+  "database_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2026\\csv\\DATABASE.csv",
+  "unique_canonical_pairs": 1054,
+  "resolved_by_database_boundary_id": 1048,
+  "resolved_by_database_boundary_id_2021": 6,
+  "code_present_boundary_mismatch": 0,
+  "hunt_code_missing_from_database": 0,
+  "gap_report": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\audits\\truth_cross_year\\final_yearly_canonical_audit\\2019_for_2020\\database_pair_audit\\2019_canonical_database_pair_gaps.csv",
+  "database_rows": 1779
+}

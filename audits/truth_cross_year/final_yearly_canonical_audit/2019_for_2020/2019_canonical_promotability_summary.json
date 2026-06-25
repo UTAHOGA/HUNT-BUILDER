@@ -1,0 +1,216 @@
+{
+  "year": 2019,
+  "model_target_year": 2020,
+  "generated_at": "2026-06-25T02:47:32",
+  "files": {
+    "canonical": {
+      "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2019_for_2020_canonical_yearly_draw_results.csv",
+      "size_mb": 20.888,
+      "rows": 33478,
+      "columns": 65,
+      "actual_model_year_pairs": [
+        [
+          [
+            "2019",
+            "2020"
+          ],
+          33478
+        ]
+      ],
+      "blank_boundary_id": 0,
+      "blank_hunt_code": 0,
+      "blank_hunt_name": 0,
+      "blank_sex_type": 0,
+      "blank_species": 0,
+      "blank_weapon": 0,
+      "unique_boundary_ids": 360,
+      "unique_hunt_codes": 1054,
+      "promotion_status": [
+        [
+          "REBUILT_FIXED_2019_READY_FOR_PROMOTION",
+          33478
+        ]
+      ],
+      "qa_status": [
+        [
+          "PENDING_REPO_VALIDATION",
+          33478
+        ]
+      ],
+      "quota_text_hits": 0,
+      "candidate_or_not_promoted_text_hits_outside_status": 0
+    },
+    "scorable": {
+      "path": "outputs\\2019 scorable draw results.csv",
+      "size_mb": 20.826,
+      "rows": 31939,
+      "columns": 73,
+      "actual_model_year_pairs": [
+        [
+          [
+            "2019",
+            "2020"
+          ],
+          31939
+        ]
+      ],
+      "blank_boundary_id": 0,
+      "blank_hunt_code": 0,
+      "blank_hunt_name": 0,
+      "blank_sex_type": 0,
+      "blank_species": 0,
+      "blank_weapon": 0,
+      "unique_boundary_ids": 359,
+      "unique_hunt_codes": 1052,
+      "promotion_status": [
+        [
+          "REBUILT_FIXED_2019_READY_FOR_PROMOTION",
+          31939
+        ]
+      ],
+      "qa_status": [
+        [
+          "PENDING_REPO_VALIDATION",
+          31939
+        ]
+      ],
+      "quota_text_hits": 0,
+      "candidate_or_not_promoted_text_hits_outside_status": 0
+    },
+    "reference": {
+      "path": "outputs\\2019 non-scorable reference rows.csv",
+      "size_mb": 1.101,
+      "rows": 1539,
+      "columns": 73,
+      "actual_model_year_pairs": [
+        [
+          [
+            "2019",
+            "2020"
+          ],
+          1539
+        ]
+      ],
+      "blank_boundary_id": 0,
+      "blank_hunt_code": 0,
+      "blank_hunt_name": 0,
+      "blank_sex_type": 0,
+      "blank_species": 0,
+      "blank_weapon": 0,
+      "unique_boundary_ids": 349,
+      "unique_hunt_codes": 1043,
+      "promotion_status": [
+        [
+          "REBUILT_FIXED_2019_READY_FOR_PROMOTION",
+          1539
+        ]
+      ],
+      "qa_status": [
+        [
+          "PENDING_REPO_VALIDATION",
+          1539
+        ]
+      ],
+      "quota_text_hits": 0,
+      "candidate_or_not_promoted_text_hits_outside_status": 0
+    },
+    "quota": {
+      "path": "outputs\\2019 quota allotment rows.csv",
+      "size_mb": 0.001,
+      "rows": 0,
+      "columns": 73,
+      "actual_model_year_pairs": [],
+      "blank_boundary_id": 0,
+      "blank_hunt_code": 0,
+      "blank_hunt_name": 0,
+      "blank_sex_type": 0,
+      "blank_species": 0,
+      "blank_weapon": 0,
+      "unique_boundary_ids": 0,
+      "unique_hunt_codes": 0,
+      "promotion_status": [],
+      "qa_status": [],
+      "quota_text_hits": 0,
+      "candidate_or_not_promoted_text_hits_outside_status": 0
+    }
+  },
+  "partition": {
+    "canonical_rows": 33478,
+    "scorable_plus_reference_rows": 33478,
+    "scorable_rows": 31939,
+    "reference_rows": 1539,
+    "quota_rows": 0,
+    "row_count_matches": true,
+    "signature_columns_used": [
+      "actual_draw_year",
+      "model_target_year",
+      "boundary_id",
+      "hunt_code",
+      "hunt_name",
+      "sex_type",
+      "species",
+      "hunt_type",
+      "weapon",
+      "season",
+      "draw_design",
+      "points",
+      "record_type",
+      "resident_eligible_applicants",
+      "resident_bonus_permits",
+      "resident_regular_permits",
+      "resident_total_permits",
+      "resident_success_ratio",
+      "resident_p_draw",
+      "resident_p_draw_percent",
+      "nonresident_eligible_applicants",
+      "nonresident_bonus_permits",
+      "nonresident_regular_permits",
+      "nonresident_total_permits",
+      "nonresident_success_ratio",
+      "nonresident_p_draw",
+      "nonresident_p_draw_percent",
+      "total_eligible_applicants",
+      "total_bonus_permits",
+      "total_regular_permits",
+      "total_permits",
+      "total_success_ratio",
+      "total_p_draw",
+      "total_p_draw_percent",
+      "permits_2019_res",
+      "permits_2019_nr",
+      "permits_2019_total",
+      "source_scope",
+      "source_namespace",
+      "draw_source_namespace",
+      "source_file",
+      "pdf_page",
+      "page_kind",
+      "algorithm_status",
+      "source_dataset",
+      "extraction_status",
+      "parse_method",
+      "qa_status",
+      "notes",
+      "source_residencies",
+      "source_row_count",
+      "collapse_conflict_count",
+      "draw_source_file",
+      "source_path",
+      "source_pdf",
+      "official_page",
+      "unit",
+      "sex",
+      "hunt_draw_class",
+      "hunt_class",
+      "row_type",
+      "successful_applicants",
+      "unsuccessful_applicants",
+      "candidate_promotion_status",
+      "qa_notes"
+    ],
+    "canonical_rows_missing_from_split_by_signature": 0,
+    "split_rows_missing_from_canonical_by_signature": 0
+  },
+  "blockers": [],
+  "promotable_recommendation": "PROMOTE_2019_CANONICAL"
+}
