@@ -21,6 +21,11 @@ SOURCE_FILES = [
     ("Bison", "Cow Only", "dwr_huntboundary_bison_cow_only.json"),
 ]
 
+HANUMBER_BOUNDARY_OVERRIDES_2026 = {
+    "EA1260": {"boundary_id": "874", "note": "Boundary verified by DWR HaNumber 2026 as West Ridge CWMU."},
+    "EA1261": {"boundary_id": "808", "note": "Boundary verified by DWR HaNumber 2026 as Blackhawk CWMU."},
+}
+
 
 def clean(value):
     return " ".join(str(value or "").replace("\r", "\n").split())
@@ -150,6 +155,10 @@ def canonical_payload(source, db_row, canonical_fields):
     sex = clean(source.get("GENDER"))
     raw_hunt_type = clean(source.get("HUNT_TYPE"))
     permits_res, permits_nr, permits_total = permit_values(source)
+    boundary_override = HANUMBER_BOUNDARY_OVERRIDES_2026.get(code, {})
+    notes = "2026 Hunt Planner antlerless/female-equivalent permit-number reference row; not a draw-result point row."
+    if boundary_override:
+        notes = f"{notes} {boundary_override['note']}"
 
     row = {field: "" for field in canonical_fields}
     row.update(
@@ -170,13 +179,13 @@ def canonical_payload(source, db_row, canonical_fields):
             "hunt_type": normalize_hunt_type(raw_hunt_type),
             "season": clean(source.get("SEASON_DATE_TEXT")),
             "record_type": "hunt_planner_permit_reference",
-            "boundary_id": clean((db_row or {}).get("boundary_id")),
+            "boundary_id": boundary_override.get("boundary_id") or clean((db_row or {}).get("boundary_id")),
             "algorithm_status": "NON_SCORABLE_PERMIT_REFERENCE",
             "source_dataset": "DWR_HUNT_PLANNER_2026_ANTLERLESS_REFRESH_20260621",
             "extraction_status": "LIVE_DWR_HUNT_PLANNER_REFRESH",
             "parse_method": "DWR_HUNTBOUNDARY_HUNTTABLEDATA",
             "qa_status": "permit_number_only_not_draw_result",
-            "notes": "2026 Hunt Planner antlerless/female-equivalent permit-number reference row; not a draw-result point row.",
+            "notes": notes,
             "permits_2026_res": permits_res,
             "permits_2026_nr": permits_nr,
             "permits_2026_total": permits_total,
