@@ -293,9 +293,27 @@ def fill_metric_columns(out: dict[str, object], row: dict[str, str], prefix: str
         "total_permits",
         "success_ratio",
     ]:
-        value = maybe_number(column, row.get(column))
+        source_column = "total_permits" if prefix == "total" and column == "total_permits" else f"{prefix}_{column}"
+        value = maybe_number(source_column, row.get(source_column))
+        if value == "" and source_column not in row:
+            value = maybe_number(column, row.get(column))
         if value != "":
-            out[f"{prefix}_{column}"] = value
+            out[source_column] = value
+
+
+def has_split_metric_columns(row: dict[str, str]) -> bool:
+    for prefix in ("resident", "nonresident", "total"):
+        for column in (
+            "eligible_applicants",
+            "bonus_permits",
+            "regular_permits",
+            "total_permits",
+            "success_ratio",
+        ):
+            source_column = "total_permits" if prefix == "total" and column == "total_permits" else f"{prefix}_{column}"
+            if clean(row.get(source_column)):
+                return True
+    return False
 
 
 def collapsed_yearly_database_rows(
@@ -357,7 +375,11 @@ def collapsed_yearly_database_rows(
             value = maybe_number(source_column, row.get(source_column))
             if value != "":
                 out[permit_column] = value
-        fill_metric_columns(out, row, residency_bucket(row))
+        if has_split_metric_columns(row):
+            for prefix in ("resident", "nonresident", "total"):
+                fill_metric_columns(out, row, prefix)
+        else:
+            fill_metric_columns(out, row, residency_bucket(row))
 
     def point_sort_value(value: object) -> tuple[int, float]:
         text = clean(value)
