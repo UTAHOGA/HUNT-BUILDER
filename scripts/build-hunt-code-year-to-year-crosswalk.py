@@ -63,6 +63,21 @@ REVIEWED_2021_TO_2022_SUCCESSORS = {
     "BR7236": ("BR7215", "2022 bear guide p20 confirms Plateau, Boulder/Kaiparowits fall limited-entry replacement row."),
 }
 
+REVIEWED_2021_TO_2022_IDENTITY_SUCCESSORS = {
+    "BR7209": (
+        "BR7020",
+        "Reviewed safe successor: same Monroe boundary/unit, species, sex, weapon, and later exact-code continuity under BR7020.",
+    ),
+    "DB1259": (
+        "DB1340",
+        "Reviewed safe successor: Tunnel Hollow/Lone Tree Tunnel Hollow CWMU name family, same boundary 569, buck deer, and any legal weapon. Canonical class/season shifts from CWMU contact-operator to Limited Entry blank-season in 2022 are treated as CWMU normalization artifacts, supported by later reviewed return from DB1340 to DB1259.",
+    ),
+    "EB3535": (
+        "EB3614",
+        "Reviewed safe successor: Tunnel Hollow/Lone Tree Tunnel Hollow CWMU name family, same boundary 569, bull elk, any legal weapon, and exact-code EB3614 continuity after 2022.",
+    ),
+}
+
 REVIEWED_2021_TO_2022_COUGAR_ACTIVE_CONTINUITY = {
     "CG7503": "Official 2021-22 cougar guide confirms Morgan-South Rich exact-code active continuity.",
 }
@@ -404,6 +419,11 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                 if from_year == 2021 and to_year == 2022
                 else None
             )
+            reviewed_2021_2022_identity_successor = (
+                REVIEWED_2021_TO_2022_IDENTITY_SUCCESSORS.get(code)
+                if from_year == 2021 and to_year == 2022
+                else None
+            )
             reviewed_2021_2022_cougar_active_continuity_note = (
                 REVIEWED_2021_TO_2022_COUGAR_ACTIVE_CONTINUITY.get(code)
                 if from_year == 2021 and to_year == 2022
@@ -474,6 +494,27 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                             "source_pages": "20",
                             "source_kinds": "regulations",
                         },
+                        note,
+                    )
+                )
+            elif reviewed_2021_2022_identity_successor:
+                to_code, note = reviewed_2021_2022_identity_successor
+                matched_added.add(to_code)
+                right = identities.get(to_year, {}).get(to_code, {"hunt_code": to_code, "prefix": prefix_of(to_code)})
+                crosswalk_rows.append(
+                    base_row(
+                        from_year,
+                        to_year,
+                        code,
+                        to_code,
+                        "REVIEWED_SUCCESSOR_BY_IDENTITY_AND_BOUNDARY",
+                        "REVIEWED_SUCCESSOR",
+                        1.0,
+                        "REVIEWED_SAME_BOUNDARY_NAME_FAMILY_WEAPON",
+                        left,
+                        right,
+                        hit_from,
+                        source_hits.get((to_code, to_year), {}),
                         note,
                     )
                 )
@@ -841,6 +882,11 @@ def summarize(crosswalk_rows: list[dict[str, object]], candidate_rows: list[dict
                 for row in crosswalk_rows
                 if row["crosswalk_status"] == "REVIEWED_SUCCESSOR_BY_2022_BEAR_GUIDE"
             ),
+            "reviewed_2021_to_2022_identity_successor_rows": sum(
+                1
+                for row in crosswalk_rows
+                if row["crosswalk_status"] == "REVIEWED_SUCCESSOR_BY_IDENTITY_AND_BOUNDARY"
+            ),
             "reviewed_2021_to_2022_antlerless_successor_rows": sum(
                 1
                 for row in crosswalk_rows
@@ -917,6 +963,7 @@ def write_report(summary: dict[str, object]) -> None:
         f"- Reviewed 2020->2021 discontinued/no-successor rows: `{summary['row_counts']['reviewed_2020_to_2021_discontinuation_rows']}`",
         f"- Reviewed 2020->2021 cougar active-continuity rows: `{summary['row_counts']['reviewed_2020_to_2021_cougar_active_continuity_rows']}`",
         f"- Reviewed 2021->2022 bear successor rows: `{summary['row_counts']['reviewed_2021_to_2022_successor_rows']}`",
+        f"- Reviewed 2021->2022 identity/boundary successor rows: `{summary['row_counts']['reviewed_2021_to_2022_identity_successor_rows']}`",
         f"- Reviewed 2021->2022 antlerless successor rows: `{summary['row_counts']['reviewed_2021_to_2022_antlerless_successor_rows']}`",
         f"- Reviewed 2021->2022 antlerless discontinued/no-successor rows: `{summary['row_counts']['reviewed_2021_to_2022_antlerless_discontinued_rows']}`",
         f"- Reviewed 2021->2022 cougar active-continuity rows: `{summary['row_counts']['reviewed_2021_to_2022_cougar_active_continuity_rows']}`",
