@@ -1,2 +1,42 @@
-#!/bin/sh
-python tools/git_size_guard.py
+#!/usr/bin/env sh
+set -eu
+
+LIMIT_MB=50
+LIMIT_BYTES=$((LIMIT_MB * 1024 * 1024))
+
+echo "Git size guard: checking staged files over ${LIMIT_MB} MB..."
+
+bad=0
+
+git diff --cached --name-only --diff-filter=ACMR -z | while IFS= read -r -d '' file; do
+  size=$(git cat-file -s ":$file" 2>/dev/null || echo 0)
+
+  if [ "$size" -gt "$LIMIT_BYTES" ]; then
+    mb=$(awk "BEGIN {printf \"%.2f\", $size/1024/1024}")
+    echo ""
+    echo "BLOCKED: $file is ${mb} MB"
+    echo "Large generated/data files must go to Cloudflare R2, not Git."
+    bad=1
+  fi
+done
+
+# Re-check using temp file because while loop may run in subshell on some shells.
+tmpfile="$(mktemp)"
+git diff --cached --name-only --diff-filter=ACMR -z | while IFS= read -r -d '' file; do
+  size=$(git cat-file -s ":$file" 2>/dev/null || echo 0)
+  if [ "$size" -gt "$LIMIT_BYTES" ]; then
+    echo "$file" >> "$tmpfile"
+  fi
+done
+
+if [ -s "$tmpfile" ]; then
+  echo ""
+  echo "Commit rejected. Move these files to Cloudflare R2 or add them to .gitignore:"
+  cat "$tmpfile"
+  rm -f "$tmpfile"
+  exit 1
+fi
+
+rm -f "$tmpfile"
+echo "Git size guard: PASS. No unsafe staged files."
+exit 0

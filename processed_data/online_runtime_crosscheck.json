@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-26T02:59:54.484994+00:00",
+  "generated_at": "2026-06-26T03:22:00.380476+00:00",
   "active_repo": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER",
   "source_files": {
     "engine": "processed_data/draw_reality_engine_predictive_v2.csv",
@@ -9,31 +9,31 @@
     "database": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
   },
   "rows": {
-    "engine": 43160,
-    "ladder": 92501,
-    "master": 53979,
-    "reference": 3777
+    "engine": 43184,
+    "ladder": 92436,
+    "master": 56153,
+    "reference": 3776
   },
-  "engine_group_count": 1958,
+  "engine_group_count": 1959,
   "engine_hunt_code_count": 1028,
   "missing_groups_before": {
-    "ladder": 0,
-    "master": 726,
-    "reference": 0,
+    "ladder": 2,
+    "master": 727,
+    "reference": 2,
     "draw_system_type_counts": {
-      "BONUS_LE_BIG_GAME": 19423,
+      "BONUS_LE_BIG_GAME": 19447,
       "BONUS_OIL_BIG_GAME": 3704,
       "BONUS_PLE_BIG_GAME": 592,
       "PREFERENCE_DEDICATED_HUNTER_DEER": 1475,
       "SPORTSMAN_PERMIT": 10,
-      "YOUTH_DRAW_ONLY_ELK": 2,
+      "YOUTH_GENERAL_ANY_BULL_ELK": 2,
       "YOUTH_TURKEY_SET_ASIDE": 312
     }
   },
   "appended_rows": {
-    "ladder": 0,
-    "master": 726,
-    "reference": 0
+    "ladder": 2,
+    "master": 727,
+    "reference": 2
   },
   "missing_groups_after": {
     "ladder": 0,
@@ -49,12 +49,23 @@
   "duplicate_keys": {
     "engine_hunt_residency_points": 312,
     "ladder_hunt_residency_points_draw_pool": 0,
-    "master_hunt_residency_points_draw_pool": 656,
+    "master_hunt_residency_points_draw_pool": 2831,
     "reference_hunt_residency_draw_pool": 0
   },
   "status": "PASS",
   "sample_groups_added": {
-    "ladder": [],
+    "ladder": [
+      [
+        "EB1007",
+        "Nonresident",
+        "youth"
+      ],
+      [
+        "EB1007",
+        "Resident",
+        "youth"
+      ]
+    ],
     "master": [
       [
         "BI1000",
@@ -107,6 +118,17 @@
         "max/weighted split"
       ]
     ],
-    "reference": []
+    "reference": [
+      [
+        "EB1007",
+        "Nonresident",
+        "youth"
+      ],
+      [
+        "EB1007",
+        "Resident",
+        "youth"
+      ]
+    ]
   }
 }

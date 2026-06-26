@@ -52,6 +52,13 @@ def _norm_draw_pool(value: object) -> str:
     return raw or "standard"
 
 
+def _norm_draw_system_type(value: object) -> str:
+    raw = _clean(value)
+    if raw in {"YOUTH_DRAW_ONLY_ELK", "YOUTH_RANDOM_ELK_GENERAL_BULL"}:
+        return "YOUTH_GENERAL_ANY_BULL_ELK"
+    return raw
+
+
 def _group_key(row: dict[str, str]) -> tuple[str, str, str]:
     return (
         _norm_code(row.get("hunt_code")),
@@ -109,6 +116,7 @@ def _synth_master_row(
     headers: list[str],
 ) -> dict[str, str]:
     row = {header: _clean(base.get(header)) for header in headers}
+    p_draw_pct = _prefer(engine_row.get("p_draw_pct"), engine_row.get("display_odds_pct"))
     row.update({
         "hunt_code": _clean(engine_row.get("hunt_code")),
         "boundary_id": _prefer(base.get("boundary_id"), db_row.get("boundary_id")),
@@ -125,7 +133,7 @@ def _synth_master_row(
         "projected_applicants_2026": _prefer(engine_row.get("projected_applicants_2026"), base.get("projected_applicants_2026")),
         "projected_applicants_2026_source": _prefer(engine_row.get("projected_applicants_2026_source"), base.get("projected_applicants_2026_source")),
         "odds_2025": _prefer(engine_row.get("odds_2025"), base.get("odds_2025")),
-        "odds_2026_projected": _prefer(engine_row.get("p_draw_pct"), engine_row.get("odds_2026_projected"), base.get("odds_2026_projected")),
+        "odds_2026_projected": _prefer(p_draw_pct, engine_row.get("odds_2026_projected"), base.get("odds_2026_projected")),
         "max_point_permits_2026": _prefer(engine_row.get("max_point_permits_2026"), base.get("max_point_permits_2026")),
         "random_permits_2026": _prefer(engine_row.get("random_permits_2026"), base.get("random_permits_2026")),
         "success_hunters": _prefer(base.get("success_hunters")),
@@ -144,6 +152,10 @@ def _synth_master_row(
         "permit_note": _prefer(engine_row.get("permit_note"), base.get("permit_note")),
         "permit_overlay_source": _prefer(engine_row.get("permit_overlay_source"), base.get("permit_overlay_source")),
         "data_status": _prefer(engine_row.get("data_status"), base.get("data_status")),
+        "draw_2026_system_type": _prefer(engine_row.get("draw_system_type"), base.get("draw_2026_system_type")),
+        "draw_system_type": _prefer(engine_row.get("draw_system_type"), base.get("draw_system_type")),
+        "algorithm_status": _prefer(engine_row.get("algorithm_status"), base.get("algorithm_status")),
+        "draw_routing_reason": _prefer(engine_row.get("reason"), base.get("draw_routing_reason")),
         "permits_2026_conservation": _prefer(base.get("permits_2026_conservation")),
         "permits_2026_expo": _prefer(base.get("permits_2026_expo")),
         "permits_2026_sportsman": _prefer(engine_row.get("sportsman_permit_count"), base.get("permits_2026_sportsman")),
@@ -262,6 +274,7 @@ def _synth_ladder_row(
         "gap": _prefer(engine_row.get("gap"), base.get("gap")),
         "delta_gap": _prefer(engine_row.get("delta_gap"), base.get("delta_gap")),
         "status": _prefer(engine_row.get("algorithm_status"), base.get("status")),
+        "algorithm_status": _prefer(engine_row.get("algorithm_status"), base.get("algorithm_status")),
         "trend": _prefer(engine_row.get("trend"), base.get("trend")),
         "draw_outlook": _prefer(engine_row.get("draw_outlook"), base.get("draw_outlook"), "MODEL PENDING"),
         "permits_2026_res": _prefer(engine_row.get("permits_2026_res"), base.get("permits_2026_res")),
@@ -283,8 +296,18 @@ def _synth_ladder_row(
         "special_permit_overlay_source": _prefer(base.get("special_permit_overlay_source")),
         "boundary_id": _prefer(base.get("boundary_id"), db_row.get("boundary_id")),
         "draw_pool": draw_pool,
+        "draw_2026_system_type": _prefer(engine_row.get("draw_system_type"), base.get("draw_2026_system_type")),
+        "draw_system_type": _prefer(engine_row.get("draw_system_type"), base.get("draw_system_type")),
+        "display_odds_text": _prefer(engine_row.get("display_odds_text"), base.get("display_odds_text")),
     })
     return row
+
+
+def _is_targeted_youth_any_bull_row(row: dict[str, str]) -> bool:
+    if _norm_code(row.get("hunt_code")) != "EB1007":
+        return False
+    draw_system_type = _norm_draw_system_type(row.get("draw_system_type") or row.get("draw_2026_system_type"))
+    return draw_system_type in {"", "YOUTH_GENERAL_ANY_BULL_ELK"}
 
 
 def main() -> None:
@@ -293,6 +316,13 @@ def main() -> None:
     master_rows, master_headers = _read_csv(MASTER_PATH)
     reference_rows, reference_headers = _read_csv(REFERENCE_PATH)
     database_rows, _ = _read_csv(DATABASE_PATH)
+
+    if "draw_pool" not in master_headers:
+        master_headers.append("draw_pool")
+
+    ladder_rows = [row for row in ladder_rows if not _is_targeted_youth_any_bull_row(row)]
+    master_rows = [row for row in master_rows if not _is_targeted_youth_any_bull_row(row)]
+    reference_rows = [row for row in reference_rows if not _is_targeted_youth_any_bull_row(row)]
 
     db_lookup = _build_database_lookup(database_rows)
 

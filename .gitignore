@@ -772,3 +772,18 @@ public/hunt-docs/latest/availability_only.json
 processed_data/draw_reality_engine_backup_before_2024_import.csv
 # Large clean-room rebuild artifacts
 audits/truth_rebuild_cleanroom_2021/
+# Large generated/audit/runtime artifacts - keep out of Git
+audits/prediction_accuracy_backtest/production_equivalent_outputs/
+audits/truth_organization_staging/
+audits/r2_verify/
+audits/draw_truth_rebuild/
+audits/git_large_file_cleanup/
+processed_data/audits/
+processed_data/dwr_huntplanner_hanumber_2026_raw_payloads.json
+# Archive / temporary extraction products
+**/*CLEANROOM*
+**/*raw_payloads*
+**/*runtime_drafts*
+**/*.zip
+**/*.7z
+**/*.rar

@@ -7,16 +7,13 @@
     2024,
     2025
   ],
-  "modeled_rows": 843,
+  "modeled_rows": 0,
   "modeled_hunt_codes_by_type": {
-    "PREFERENCE_ANTLERLESS_DEER": 14,
-    "PREFERENCE_DOE_PRONGHORN": 8,
-    "PREFERENCE_ANTLERLESS_ELK": 83
+    "PREFERENCE_DOE_PRONGHORN": 0,
+    "PREFERENCE_ANTLERLESS_ELK": 0,
+    "PREFERENCE_ANTLERLESS_DEER": 0
   },
-  "modeled_inventory_rows": 197,
-  "modeled_inventory_residency_counts": {
-    "Nonresident": 92,
-    "Resident": 105
-  },
+  "modeled_inventory_rows": 0,
+  "modeled_inventory_residency_counts": {},
   "csv": "processed_data\\phase4_antlerless_validation_inventory.csv"
 }

@@ -375,6 +375,8 @@ def classify_draw_system_type(row: Mapping[str, object]) -> str:
 
 def resolve_algorithm_status(row: Mapping[str, object], draw_system_type: str | None = None) -> str:
     draw_system_type = draw_system_type or classify_draw_system_type(row)
+    if draw_system_type in {"YOUTH_DRAW_ONLY_ELK", "YOUTH_RANDOM_ELK_GENERAL_BULL"}:
+        draw_system_type = YOUTH_GENERAL_ANY_BULL_ELK_DRAW_SYSTEM_TYPE
     if draw_system_type == "PREFERENCE_GENERAL_SEASON_BUCK_DEER":
         return ALGORITHM_STATUS_MODELED_PREFERENCE if is_modeled_general_deer_row(row) else ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING
     if draw_system_type in {"PREFERENCE_ANTLERLESS_DEER", "PREFERENCE_ANTLERLESS_ELK", "PREFERENCE_DOE_PRONGHORN"}:
@@ -414,11 +416,15 @@ def resolve_algorithm_status(row: Mapping[str, object], draw_system_type: str | 
 
 def target_scope_label(row: Mapping[str, object], draw_system_type: str | None = None) -> str:
     draw_system_type = draw_system_type or classify_draw_system_type(row)
+    if draw_system_type in {"YOUTH_DRAW_ONLY_ELK", "YOUTH_RANDOM_ELK_GENERAL_BULL"}:
+        draw_system_type = YOUTH_GENERAL_ANY_BULL_ELK_DRAW_SYSTEM_TYPE
     return REGISTRY[draw_system_type].target_scope
 
 
 def modeled_by_engine(row: Mapping[str, object], draw_system_type: str | None = None, algorithm_status: str | None = None) -> bool:
     draw_system_type = draw_system_type or classify_draw_system_type(row)
+    if draw_system_type in {"YOUTH_DRAW_ONLY_ELK", "YOUTH_RANDOM_ELK_GENERAL_BULL"}:
+        draw_system_type = YOUTH_GENERAL_ANY_BULL_ELK_DRAW_SYSTEM_TYPE
     algorithm_status = algorithm_status or resolve_algorithm_status(row, draw_system_type)
     if algorithm_status not in {
         ALGORITHM_STATUS_MODELED_ALLOCATION,
@@ -435,6 +441,8 @@ def modeled_by_engine(row: Mapping[str, object], draw_system_type: str | None = 
 
 def classification_reason(row: Mapping[str, object], draw_system_type: str | None = None, algorithm_status: str | None = None) -> str:
     draw_system_type = draw_system_type or classify_draw_system_type(row)
+    if draw_system_type in {"YOUTH_DRAW_ONLY_ELK", "YOUTH_RANDOM_ELK_GENERAL_BULL"}:
+        draw_system_type = YOUTH_GENERAL_ANY_BULL_ELK_DRAW_SYSTEM_TYPE
     algorithm_status = algorithm_status or resolve_algorithm_status(row, draw_system_type)
     if draw_system_type == BEAR_DRAW_SYSTEM_TYPE and algorithm_status != ALGORITHM_STATUS_MODELED_BONUS:
         subtype = classify_bear_subtype(row)

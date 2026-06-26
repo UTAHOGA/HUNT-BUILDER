@@ -1,0 +1,44 @@
+﻿name: Large File Guard
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  large-file-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Block files over 50 MB
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          LIMIT_MB=50
+          LIMIT_BYTES=$((LIMIT_MB * 1024 * 1024))
+
+          echo "Checking repository files over ${LIMIT_MB} MB..."
+
+          bad=0
+
+          while IFS= read -r -d '' file; do
+            size=$(stat -c%s "$file")
+            if [ "$size" -gt "$LIMIT_BYTES" ]; then
+              mb=$(awk "BEGIN {printf \"%.2f\", $size/1024/1024}")
+              echo "BLOCKED: $file is ${mb} MB"
+              bad=1
+            fi
+          done < <(find . -type f \
+            -not -path './.git/*' \
+            -not -path './node_modules/*' \
+            -print0)
+
+          if [ "$bad" -ne 0 ]; then
+            echo "Large files belong in Cloudflare R2, not Git."
+            exit 1
+          fi
+
+          echo "Large file guard passed."
