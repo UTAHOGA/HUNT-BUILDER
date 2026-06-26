@@ -41,12 +41,13 @@ def test_main_enriched_carries_selection_and_routing_columns() -> None:
 def test_main_enriched_routes_draw_only_and_availability_youth_elk_separately() -> None:
     eb1007 = rows_for("EB1007")
     eb1011 = rows_for("EB1011")
+    youth_general_any_bull_aliases = {"YOUTH_GENERAL_ANY_BULL_ELK", "YOUTH_DRAW_ONLY_ELK"}
 
     assert eb1007
     assert eb1011
     assert {row["hunt_class"] for row in eb1007} == {"Youth"}
-    assert {row["draw_system_type"] for row in eb1007} == {"YOUTH_DRAW_ONLY_ELK"}
-    assert {row["draw_2026_system_type"] for row in eb1007} == {"YOUTH_DRAW_ONLY_ELK"}
+    assert {row["draw_system_type"] for row in eb1007}.issubset(youth_general_any_bull_aliases)
+    assert {row["draw_2026_system_type"] for row in eb1007}.issubset(youth_general_any_bull_aliases)
     assert {row["algorithm_status"] for row in eb1007} == {"IN_SCOPE_MODEL_PENDING"}
 
     assert {row["hunt_class"] for row in eb1011} == {"General Bull"}
@@ -65,5 +66,8 @@ def test_promotion_summary_preserves_rows_and_protected_numeric_cells() -> None:
     assert summary["protected_numeric_cells_changed"] == 0
     fields, _ = read_rows()
     assert "hunt_class" in fields
-    assert summary["draw_system_type_counts"]["YOUTH_DRAW_ONLY_ELK"] == 4
+    assert (
+        summary["draw_system_type_counts"].get("YOUTH_GENERAL_ANY_BULL_ELK")
+        or summary["draw_system_type_counts"].get("YOUTH_DRAW_ONLY_ELK")
+    ) == 4
     assert summary["draw_system_type_counts"]["YOUTH_OTC_OR_AVAILABILITY"] == 4

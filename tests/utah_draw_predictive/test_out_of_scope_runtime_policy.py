@@ -62,7 +62,7 @@ def test_target_scope_pending_rows_are_not_incorrectly_marked_out_of_scope() -> 
         if row.get("draw_system_type") in {
             "YOUTH_GENERAL_DEER_RESERVE",
             "YOUTH_ANTLERLESS_OR_DOE_RESERVE",
-            "YOUTH_DRAW_ONLY_ELK",
+            "YOUTH_GENERAL_ANY_BULL_ELK",
             "YOUTH_OTC_OR_AVAILABILITY",
             "YOUTH_TURKEY_SET_ASIDE",
         }

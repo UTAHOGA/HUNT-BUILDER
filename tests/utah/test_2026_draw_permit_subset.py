@@ -31,7 +31,10 @@ def test_2026_draw_subset_is_built_from_engine_codes_and_database_values() -> No
     assert summary["engine_codes_missing_database_count"] == 0
     assert summary["nonnumeric_database_totals_count"] == 0
     assert summary["source_field_family_counts"] == {"permits_2026": 813}
-    assert summary["draw_system_type_counts"]["YOUTH_DRAW_ONLY_ELK"] == 1
+    assert (
+        summary["draw_system_type_counts"].get("YOUTH_GENERAL_ANY_BULL_ELK")
+        or summary["draw_system_type_counts"].get("YOUTH_DRAW_ONLY_ELK")
+    ) == 1
 
 
 def test_database_carries_explicit_2026_draw_subset_fields() -> None:

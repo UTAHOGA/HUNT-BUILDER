@@ -80,6 +80,7 @@ from .turkey import (
 from .youth import (
     STRATEGY_SPECS as YOUTH_SPECS,
     YOUTH_ANTLERLESS_OR_DOE_RESERVE_DRAW_SYSTEM_TYPE,
+    YOUTH_GENERAL_ANY_BULL_ELK_DRAW_SYSTEM_TYPE,
     YOUTH_DRAW_ONLY_ELK_DRAW_SYSTEM_TYPE,
     YOUTH_GENERAL_DEER_RESERVE_DRAW_SYSTEM_TYPE,
     YOUTH_OTC_OR_AVAILABILITY_DRAW_SYSTEM_TYPE,
@@ -165,7 +166,7 @@ TARGET_DRAW_SYSTEM_TYPES = {
     "PRIVATE_LANDS_ONLY_ANTLERLESS_ELK",
     "YOUTH_GENERAL_DEER_RESERVE",
     "YOUTH_ANTLERLESS_OR_DOE_RESERVE",
-    "YOUTH_DRAW_ONLY_ELK",
+    "YOUTH_GENERAL_ANY_BULL_ELK",
     "YOUTH_OTC_OR_AVAILABILITY",
     "YOUTH_TURKEY_SET_ASIDE",
     "RANDOM_ONLY_TARGET",
@@ -460,8 +461,10 @@ def classification_reason(row: Mapping[str, object], draw_system_type: str | Non
         return "Youth general deer reserve rows stay separate from the adult general-season deer model and remain pending until the active-year youth pool is source-proven."
     if draw_system_type == YOUTH_ANTLERLESS_OR_DOE_RESERVE_DRAW_SYSTEM_TYPE:
         return "Youth antlerless/doe reserve rows stay separate from adult antlerless/doe preference models until youth reserve mechanics are source-proven."
-    if draw_system_type == YOUTH_DRAW_ONLY_ELK_DRAW_SYSTEM_TYPE:
-        return "Draw-only youth elk stays in scope but remains pending until current-year quota and mechanics are source-proven."
+    if draw_system_type == YOUTH_GENERAL_ANY_BULL_ELK_DRAW_SYSTEM_TYPE:
+        if algorithm_status == ALGORITHM_STATUS_MODELED_RANDOM_ONLY:
+            return "Youth general any-bull elk uses a dedicated youth set-aside random lane when official source rows are available."
+        return "Youth general any-bull elk stays in scope, but future-year forecasting remains pending until the blind-tested EB1007 forecast lane is promoted."
     if draw_system_type == YOUTH_OTC_OR_AVAILABILITY_DRAW_SYSTEM_TYPE:
         return "Youth OTC or availability rows are purchase/availability rows, not predictive draw-odds rows."
     if draw_system_type == YOUTH_TURKEY_DRAW_SYSTEM_TYPE:

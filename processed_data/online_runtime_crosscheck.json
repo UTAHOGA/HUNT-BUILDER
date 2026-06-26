@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-23T08:07:46.478105+00:00",
-  "active_repo": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS",
+  "generated_at": "2026-06-26T02:59:54.484994+00:00",
+  "active_repo": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER",
   "source_files": {
     "engine": "processed_data/draw_reality_engine_predictive_v2.csv",
     "ladder": "processed_data/point_ladder_view.csv",
@@ -9,22 +9,30 @@
     "database": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
   },
   "rows": {
-    "engine": 27940,
-    "ladder": 92844,
-    "master": 54357,
-    "reference": 2997
+    "engine": 43160,
+    "ladder": 92501,
+    "master": 53979,
+    "reference": 3777
   },
-  "engine_group_count": 2005,
-  "engine_hunt_code_count": 1065,
+  "engine_group_count": 1958,
+  "engine_hunt_code_count": 1028,
   "missing_groups_before": {
     "ladder": 0,
-    "master": 0,
+    "master": 726,
     "reference": 0,
-    "draw_system_type_counts": {}
+    "draw_system_type_counts": {
+      "BONUS_LE_BIG_GAME": 19423,
+      "BONUS_OIL_BIG_GAME": 3704,
+      "BONUS_PLE_BIG_GAME": 592,
+      "PREFERENCE_DEDICATED_HUNTER_DEER": 1475,
+      "SPORTSMAN_PERMIT": 10,
+      "YOUTH_DRAW_ONLY_ELK": 2,
+      "YOUTH_TURKEY_SET_ASIDE": 312
+    }
   },
   "appended_rows": {
     "ladder": 0,
-    "master": 0,
+    "master": 726,
     "reference": 0
   },
   "missing_groups_after": {
@@ -35,19 +43,70 @@
   "families_promoted_online": {
     "sportsman_groups": 10,
     "mountain_lion_groups": 120,
-    "dedicated_hunter_groups": 41,
-    "youth_groups": 4
+    "dedicated_hunter_groups": 59,
+    "youth_groups": 2
   },
   "duplicate_keys": {
-    "engine_hunt_residency_points": 0,
+    "engine_hunt_residency_points": 312,
     "ladder_hunt_residency_points_draw_pool": 0,
-    "master_hunt_residency_points_draw_pool": 0,
+    "master_hunt_residency_points_draw_pool": 656,
     "reference_hunt_residency_draw_pool": 0
   },
   "status": "PASS",
   "sample_groups_added": {
     "ladder": [],
-    "master": [],
+    "master": [
+      [
+        "BI1000",
+        "Resident",
+        "sportsman"
+      ],
+      [
+        "BI6500",
+        "Resident",
+        "max/weighted split"
+      ],
+      [
+        "BI6503",
+        "Nonresident",
+        "max/weighted split"
+      ],
+      [
+        "BI6503",
+        "Resident",
+        "max/weighted split"
+      ],
+      [
+        "BI6504",
+        "Nonresident",
+        "max/weighted split"
+      ],
+      [
+        "BI6504",
+        "Resident",
+        "max/weighted split"
+      ],
+      [
+        "BI6505",
+        "Nonresident",
+        "max/weighted split"
+      ],
+      [
+        "BI6505",
+        "Resident",
+        "max/weighted split"
+      ],
+      [
+        "BI6506",
+        "Resident",
+        "max/weighted split"
+      ],
+      [
+        "BI6509",
+        "Resident",
+        "max/weighted split"
+      ]
+    ],
     "reference": []
   }
 }
