@@ -770,3 +770,5 @@ pages-dist/processed_data/composite_hunt_unit_mapping_2026.geojson
 pipeline/R2_OFFLOAD/incoming/processed_data/composite_hunt_unit_mapping_2026.geojson
 public/hunt-docs/latest/availability_only.json
 processed_data/draw_reality_engine_backup_before_2024_import.csv
+# Large clean-room rebuild artifacts
+audits/truth_rebuild_cleanroom_2021/
