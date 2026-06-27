@@ -91,6 +91,27 @@ def test_2026_ladder_uses_rolled_forward_applicant_stack_and_official_quota():
     assert "MIXED_MAX_POINT_CUTOFF" in row_29["reason_codes"]
 
 
+def test_eb3038_live_mixed_cutoff_contract_is_covered():
+    row_19 = _ladder_row("EB3038", "Resident", 19)
+    row_20 = _ladder_row("EB3038", "Resident", 20)
+    row_21 = _ladder_row("EB3038", "Resident", 21)
+
+    assert row_20["projected_2026_max_cutoff_point"] == "20.0"
+    assert row_20["projected_2026_random_pool_start_point"] == "19"
+    assert row_19["point_pool_zone"] == "random_pool"
+    assert row_20["point_pool_zone"] == "max_pool_cutoff_mixed"
+    assert row_21["point_pool_zone"] == "max_pool_guaranteed"
+    assert row_19["display_2026_max_point_pool"] == ""
+    assert row_19["display_2026_random_draw"].startswith("~1 in ")
+    assert row_20["display_2026_max_point_pool"].startswith("~1 in ")
+    assert row_20["display_2026_random_draw"].startswith("~1 in ")
+    assert row_21["display_2026_max_point_pool"] == "~1 in 1 or 100%"
+    assert row_21["display_2026_random_draw"] == ""
+    assert row_20["quota_source_status"] == "official"
+    assert "MIXED_MAX_POINT_CUTOFF" in row_20["reason_codes"]
+    assert "APPLICANT_STACK_ROLLED_FORWARD" in row_20["reason_codes"]
+
+
 def test_ladder_preserves_dwr_historical_result_fields():
     row = _ladder_row("EB3024", "Resident", 12)
     for field in (

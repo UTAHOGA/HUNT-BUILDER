@@ -310,7 +310,13 @@ def classify_draw_system_type(row: Mapping[str, object]) -> str:
         return "OTC_OR_REMAINING_TARGET"
     if "landowner" in text or "private land only" in text or hunt_class == "private":
         return "LANDOWNER_BIG_GAME"
-    if "remaining permit" in text or " otc" in f" {text}" or "over the counter" in text:
+    if (
+        "remaining permit" in text
+        or " otc" in f" {text}"
+        or "o.t.c" in text
+        or "over the counter" in text
+        or "capped permit" in text
+    ):
         return "OTC_OR_REMAINING_TARGET"
     if "restricted pursuit" in text or "extended archery" in text:
         return "RANDOM_ONLY_TARGET"

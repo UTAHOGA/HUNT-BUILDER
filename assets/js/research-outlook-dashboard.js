@@ -465,7 +465,7 @@
   }
 
   function getPermitTotal(meta, reference, selectedRow) {
-    return firstValue(meta, ["permits_2026_total", "permit_allotment_2026_total", "public_permits_2026"])
+    return firstValue(meta, ["permits_2026_total", "public_permits_2026"])
       || firstValue(reference, ["permits_2026_total", "public_permits_2026"])
       || firstValue(selectedRow, ["total_permits", "quota_2026_total"]);
   }

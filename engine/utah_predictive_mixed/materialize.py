@@ -100,6 +100,13 @@ REQUIRED_FIELDS = [
 ]
 
 NON_DRAW_STATUSES = {"MODELED_AVAILABILITY", "MODELED_ALLOCATION", "IN_SCOPE_MODEL_PENDING", "EXCLUDED_NOT_PREDICTIVE_DRAW"}
+PASSTHROUGH_PROBABILITY_STATUSES = {"MODELED_RANDOM_ONLY", "MODELED_SPORTSMAN_DRAW"}
+FAMILY_ENGINE_PROBABILITY_STATUSES = {
+    "MODELED_BONUS",
+    "MODELED_PREFERENCE",
+    "MODELED_RANDOM_ONLY",
+    "MODELED_SPORTSMAN_DRAW",
+}
 STALE_QUOTA_REASON_CODES = {
     "RAC_CURRENT_YEAR_ALLOTMENT_USED",
     "DATABASE_2026_PERMITS_USED",
@@ -137,6 +144,13 @@ def read_json(path: Path) -> dict[str, object]:
 def clean(value: object) -> str:
     text = str(value or "").strip()
     return "" if text.lower() == "nan" else text
+
+
+def normalize_draw_system_type(value: object) -> str:
+    text = clean(value)
+    if text in {"YOUTH_DRAW_ONLY_ELK", "YOUTH_RANDOM_ELK_GENERAL_BULL"}:
+        return "YOUTH_GENERAL_ANY_BULL_ELK"
+    return text
 
 
 def write_rows(path: Path, rows: list[dict[str, str]], fields: list[str]) -> None:
@@ -205,7 +219,7 @@ def load_database_permit_authority() -> dict[str, dict[str, str]]:
         status = clean(row.get("permit_allotment_2026_status"))
         if status:
             authority["permit_allotment_2026_status"] = status
-        draw_system = clean(row.get("draw_2026_system_type"))
+        draw_system = normalize_draw_system_type(row.get("draw_2026_system_type"))
         if draw_system:
             authority["draw_system_type"] = draw_system
         notes = clean(row.get("NOTES"))
@@ -292,7 +306,11 @@ def mixed_row(row: dict[str, str], prior: dict[str, str] | None, harvest: dict[s
     p_rollover, rollover_reasons = rollover_probability_from_pools(
         row.get("p_max_pool_mean"), row.get("p_random_mean"), row.get("p_preference_draw")
     )
-    if status == "MODELED_SPORTSMAN_DRAW":
+    p_family_engine = to_float(row.get("p_draw") or row.get("p_draw_mean"))
+    if p_rollover is None and status in FAMILY_ENGINE_PROBABILITY_STATUSES and p_family_engine is not None:
+        p_rollover = p_family_engine
+        rollover_reasons.append("FAMILY_ENGINE_PROBABILITY_USED")
+    if status in PASSTHROUGH_PROBABILITY_STATUSES:
         p_rollover = to_float(row.get("p_sportsman_draw") or row.get("p_draw") or row.get("p_draw_mean"))
     p_harvest, harvest_reasons = harvest_adjusted_probability(p_rollover, harvest or {})
     if no_published_no_quota:
@@ -305,9 +323,12 @@ def mixed_row(row: dict[str, str], prior: dict[str, str] | None, harvest: dict[s
         p_prior = p_quota = p_rollover = p_harvest = None
         reasons.append(f"{status}_NO_PUBLIC_DRAW_ODDS")
     p_draw, blend_reasons = blend_probability(p_prior, p_quota, p_rollover, p_harvest, weights)
-    if status == "MODELED_SPORTSMAN_DRAW":
+    if p_draw is None and status in FAMILY_ENGINE_PROBABILITY_STATUSES and p_family_engine is not None:
+        p_draw = p_family_engine
+        blend_reasons.append("FAMILY_ENGINE_PROBABILITY_PASSTHROUGH")
+    if status in PASSTHROUGH_PROBABILITY_STATUSES:
         p_draw = to_float(row.get("p_sportsman_draw") or row.get("p_draw") or row.get("p_draw_mean"))
-        blend_reasons.append("SPORTSMAN_SEPARATE_MODEL")
+        blend_reasons.append("SPORTSMAN_SEPARATE_MODEL" if status == "MODELED_SPORTSMAN_DRAW" else "RANDOM_ONLY_SEPARATE_MODEL")
     if row.get("probability_model") == "NONE" or row.get("draw_model_class") == "AVAILABILITY_ONLY":
         p_draw = None
     grade = (harvest or {}).get("harvest_feature_data_quality_grade") or row.get("data_quality_grade") or "C"
