@@ -787,3 +787,41 @@ processed_data/dwr_huntplanner_hanumber_2026_raw_payloads.json
 **/*.zip
 **/*.7z
 **/*.rar
+
+# Cloudflare R2 hard-copy/library artifacts - keep local copies, not Git blobs.
+/public/hard-copy/HUNT LIBRARY/
+/public/hard-copy/DISPLAY DATA/
+/public/hard-copy/data/
+/public/hard-copy/manifests/
+
+# Local blind-test workspaces.
+/blind_tests/
+
+# Generated prediction/materializer outputs that are regenerated or R2/local-only.
+/processed_data/backtest_utah_bonus_draw.csv
+/processed_data/bear_draw_predictions_v1.csv
+/processed_data/bear_draw_report.json
+/processed_data/bear_predictions_v1.csv
+/processed_data/bear_report.json
+/processed_data/dedicated_hunter_predictions_v1.csv
+/processed_data/dedicated_hunter_report.json
+/processed_data/dwr_huntplanner_hanumber_2026.csv
+/processed_data/dwr_huntplanner_hanumber_2026.json
+/processed_data/dwr_huntplanner_hanumber_2026_raw_payloads.json
+/processed_data/mixed_predictive_engine_2026_audit.csv
+/processed_data/ml_draw_predictions_v1_report.json
+/processed_data/phase6_bonus_special_predictions_v1.csv
+/processed_data/phase6_bonus_special_report.json
+/processed_data/predictive_coverage_report.csv
+/processed_data/predictive_coverage_report.json
+/processed_data/turkey_bonus_predictions_v1.csv
+/processed_data/turkey_bonus_report.json
+/processed_data/utah_bonus_predictive_manifest.json
+/processed_data/youth_turkey_report.json
+/processed_data/audits/dwr_huntplanner_hanumber_2026_audit.csv
+/processed_data/audits/dwr_huntplanner_hanumber_2026_audit.json
+
+# Legacy 2019 output surfaces are superseded by canonical_yearly truth files.
+/outputs/2019 non-scorable reference rows.csv
+/outputs/2019 quota allotment rows.csv
+/outputs/2019 scorable draw results.csv
