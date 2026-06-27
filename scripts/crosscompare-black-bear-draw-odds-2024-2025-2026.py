@@ -76,11 +76,11 @@ CROSSWALK_FIELDS = [
     "review_note",
 ]
 
-# High-confidence recodes supported by the 2025 draw PDF and 2026 permit source.
+# High-confidence code-reuse correction supported by the 2025 draw PDF and
+# 2026 permit source. La Sal (`BR7008`, `BR7108`, `BR7208`) continues as the
+# same official hunt codes in the live Hunt Planner and must not be collapsed
+# into the separate La Sal Mtns code family.
 CURRENT_RECODE_BY_2025_CODE = {
-    "BR7008": ("BR7022", "Old La Sal spring any-legal-weapon row now appears as La Sal Mtns spring."),
-    "BR7108": ("BR7127", "Old La Sal summer any-legal-weapon row now appears as La Sal Mtns summer."),
-    "BR7208": ("BR7239", "Old La Sal fall any-legal-weapon row now appears as La Sal Mtns fall."),
     "BR7307": ("BR7326", "Old La Sal limited-entry multiseason row moved; BR7307 is reused for conservation in 2026."),
 }
 
@@ -337,9 +337,6 @@ def build_report(summary: dict[str, object]) -> str:
             "",
             "Key recodes:",
             "",
-            "- `BR7008` -> `BR7022`: La Sal spring to La Sal Mtns spring.",
-            "- `BR7108` -> `BR7127`: La Sal summer to La Sal Mtns summer.",
-            "- `BR7208` -> `BR7239`: La Sal fall to La Sal Mtns fall.",
             "- `BR7307` -> `BR7326`: historical La Sal limited-entry multiseason; `BR7307` is reused for 2026 conservation.",
             "",
             "Current-only rows such as Dolores Triangle split children and conservation permits are preserved as current evidence, not forced historical draw matches.",
@@ -377,7 +374,7 @@ def main() -> None:
         raise RuntimeError(f"Expected 97 2025 black bear draw rows, got {len(rows_2025)}")
     if len(set(draw_2025)) != len(rows_2025):
         raise RuntimeError("Duplicate 2025 BR hunt codes found")
-    if set(exact_current_missing) != {"BR7008", "BR7108", "BR7208"}:
+    if exact_current_missing:
         raise RuntimeError(f"Unexpected 2025 draw codes missing exact current code: {exact_current_missing}")
     if len(mapped_2025_rows) != len(rows_2025):
         raise RuntimeError("Every 2025 draw row should map to a current code after reviewed recodes")

@@ -1,22 +1,22 @@
 # Mixed Predictive Engine 2026 Audit
 
-- generated_at_utc: 2026-05-23T15:33:48.999383+00:00
+- generated_at_utc: 2026-06-27T06:07:51.824274+00:00
 - model_version: mixed_predictive_v1.0.0
 - rule_version: utah_draw_model_v1.0.0
-- prediction_row_count: 27940
-- modeled_bonus_row_count: 25610
-- modeled_preference_row_count: 1605
-- modeled_sportsman_row_count: 10
-- availability_allocation_row_count: 178
-- prior_year_exact_matches: 27940
-- quota_adjusted_rows: 16145
-- rollover_adjusted_rows: 22719
-- harvest_adjusted_rows: 22719
-- rows_using_fallback_harvest_features: 120
+- prediction_row_count: 34882
+- modeled_bonus_row_count: 28027
+- modeled_preference_row_count: 6625
+- modeled_sportsman_row_count: 0
+- availability_allocation_row_count: 124
+- prior_year_exact_matches: 34882
+- quota_adjusted_rows: 12589
+- rollover_adjusted_rows: 30418
+- harvest_adjusted_rows: 30418
+- rows_using_fallback_harvest_features: 482
 - rows_with_no_harvest_history: 0
-- db1004_reconciliation: {'public_draw_2025_permits': '80', 'expo_permits': '3', 'all_class_total': '83', 'conservation_used': False, 'sample_display_odds_text': '~1 in 5313.0 or 0.0%'}
-- eb3024_pool_zone_verification: [{'points': '28', 'point_pool_zone': 'random_pool', 'p_max_pool_mean': '0.000000', 'p_random_mean': '0.006049', 'p_draw_mean': '0.001210', 'projected_applicants': '12'}, {'points': '29', 'point_pool_zone': 'max_pool_cutoff_mixed', 'p_max_pool_mean': '0.142857', 'p_random_mean': '0.006257', 'p_draw_mean': '0.645029', 'projected_applicants': '21'}, {'points': '30', 'point_pool_zone': 'max_pool_guaranteed', 'p_max_pool_mean': '1.000000', 'p_random_mean': '0.000000', 'p_draw_mean': '1.000000', 'projected_applicants': '2'}]
-- eb3022_quota_source_verification: {'quota_source_status': 'official', 'quota_2026_total': '130', 'quota_source_file': 'pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_limited_entry_bull_elk_permits.csv'}
+- db1004_reconciliation: {'public_draw_2025_permits': '80', 'expo_permits': '3', 'all_class_total': '83', 'conservation_used': False, 'sample_display_odds_text': '~1 in 5375.5 or 0.0%'}
+- eb3024_pool_zone_verification: [{'points': '28', 'point_pool_zone': 'random_pool', 'p_max_pool_mean': '0.000000', 'p_random_mean': '0.006316', 'p_draw_mean': '0.001263', 'projected_applicants': '13'}, {'points': '29', 'point_pool_zone': 'max_pool_cutoff_mixed', 'p_max_pool_mean': '0.157895', 'p_random_mean': '0.006533', 'p_draw_mean': '0.648064', 'projected_applicants': '19'}, {'points': '30', 'point_pool_zone': 'max_pool_guaranteed', 'p_max_pool_mean': '1.000000', 'p_random_mean': '0.000000', 'p_draw_mean': '1.000000', 'projected_applicants': '2'}]
+- eb3022_quota_source_verification: {'quota_source_status': 'official', 'quota_2026_total': '130', 'quota_source_file': 'pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv'}
 - duplicate_key_count: 0
 - probability_field_guardrail_result: PASS
 - quota_guardrail_result: PASS

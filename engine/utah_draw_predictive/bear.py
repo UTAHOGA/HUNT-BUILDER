@@ -47,14 +47,10 @@ EXCLUDED_BEAR_SUBTYPES = {
     CONSERVATION_OR_NON_PUBLIC,
 }
 
-# 2026 DWR JSON/hunt-planner rows split a few bear hunts onto new hunt codes
-# while the prior draw-results ladder still lives under the older code.
-BEAR_HISTORY_CODE_ALIASES_2026 = {
-    "BR7022": "BR7008",  # La Sal Mtns spring
-    "BR7127": "BR7108",  # La Sal Mtns summer
-    "BR7239": "BR7208",  # La Sal Mtns fall
-    "BR7326": "BR7307",  # La Sal Mtns multiseason
-}
+# Keep bear draw history keyed by the official hunt code.  Some La Sal and
+# La Sal Mtns rows have similar names/seasons, but DWR keeps both code families
+# live; they are not successor aliases for engine calibration.
+BEAR_HISTORY_CODE_ALIASES_2026: dict[str, str] = {}
 
 STRATEGY_SPECS = [
     StrategySpec(
@@ -535,6 +531,23 @@ def _forecast_quota_for_residency(
     return resident_permits if residency == "Resident" else max(0, total - resident_permits)
 
 
+def _has_published_permit_split(db_row: Mapping[str, object]) -> bool:
+    return any(
+        _clean(db_row.get(field))
+        for field in ("permits_2026_res", "permits_2026_nr", "permits_2026_total")
+    )
+
+
+def _has_known_zero_residency_quota(db_row: Mapping[str, object], residency: str) -> bool:
+    if not _has_published_permit_split(db_row):
+        return False
+    total = _to_int(db_row.get("permits_2026_total"))
+    if total <= 0:
+        return False
+    quota = _to_int(db_row.get("permits_2026_res" if residency == "Resident" else "permits_2026_nr"))
+    return quota <= 0
+
+
 def _data_quality_flags(
     available_years: list[int],
     total_applicants: int,
@@ -930,6 +943,36 @@ def build_bear_bonus_predictions(
                 data_quality_counter["BEAR_SUBTYPE_AMBIGUOUS"] += 1
                 rows.append(row)
                 report_counts["pending"] += 1
+                continue
+
+            if public_quota <= 0 and _has_known_zero_residency_quota(db_row, residency):
+                flags = ["KNOWN_ZERO_RESIDENCY_QUOTA", "FIRST_CHOICE_ONLY_MODEL"]
+                for flag in flags:
+                    data_quality_counter[flag] += 1
+                row = dict(base)
+                row.update(
+                    {
+                        "points": "",
+                        "p_preference_draw": "",
+                        "p_bonus_pool": "",
+                        "p_random_pool": "",
+                        "p_draw": "",
+                        "p_bonus_pool_pct": "",
+                        "p_random_pool_pct": "",
+                        "p_draw_pct": "",
+                        "draw_outlook": "NO PERMITS FOR RESIDENCY",
+                        "bear_bonus_valid": "FALSE",
+                        "bear_bonus_note": "Published 2026 permit split assigns zero permits to this residency.",
+                        "data_quality_flags": "|".join(flags),
+                        "reason_codes": append_reason_codes(
+                            row.get("reason_codes"),
+                            "KNOWN_ZERO_RESIDENCY_QUOTA",
+                            "NO_PUBLIC_DRAW_PROBABILITY_FOR_RESIDENCY",
+                        ),
+                    }
+                )
+                rows.append(row)
+                report_counts["excluded"] += 1
                 continue
 
             if not available_years or public_quota <= 0:

@@ -4,6 +4,8 @@ import math
 
 from engine.utah_predictive_mixed.prior_year import clamp, to_float
 
+OFFICIAL_2026_DATABASE_FILE = "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+
 
 def _first_float(*values: object) -> float | None:
     for value in values:
@@ -13,19 +15,76 @@ def _first_float(*values: object) -> float | None:
     return None
 
 
+def is_no_published_permit_authority(row: dict[str, str]) -> bool:
+    has_permits = bool(row.get("permits_2026_res") or row.get("permits_2026_nr") or row.get("permits_2026_total"))
+    if has_permits:
+        return False
+    status_text = "|".join(
+        str(row.get(field, "") or "").strip()
+        for field in (
+            "permits_2026_source",
+            "permit_allotment_2026_source",
+            "permit_allotment_2026_status",
+            "permit_status",
+            "permit_allocation_type",
+            "data_status",
+            "truth_source_status",
+            "availability_status",
+            "draw_2026_system_type",
+            "draw_system_type",
+            "reason_codes",
+            "NOTES",
+        )
+    ).upper()
+    return any(
+        marker in status_text
+        for marker in (
+            "NO_PUBLISHED_PERMIT",
+            "PERMIT_DATA_NOT_PUBLISHED",
+            "NO_QUOTA_PUBLISHED",
+            "NO_PUBLIC_DRAW_ODDS",
+        )
+    )
+
+
 def quota_for_row(row: dict[str, str]) -> tuple[dict[str, str], list[str]]:
+    if is_no_published_permit_authority(row):
+        return {
+            "quota_2026_total": "",
+            "quota_2026_max_pool": "",
+            "quota_2026_random_pool": "",
+            "quota_source_status": "no_published",
+            "quota_source_year": "2026",
+            "quota_source_file": OFFICIAL_2026_DATABASE_FILE,
+        }, [
+            "NO_PUBLISHED_PERMIT_AUTHORITY",
+            "NO_QUOTA_PUBLISHED",
+            "PUBLIC_DRAW_ODDS_EXCLUDED_NO_QUOTA",
+        ]
     reasons = ["OFFICIAL_2026_QUOTA_USED"]
+    has_published_permits = bool(row.get("permits_2026_res") or row.get("permits_2026_nr") or row.get("permits_2026_total"))
+    if has_published_permits:
+        reasons.append("DATABASE_2026_PUBLISHED_PERMITS_USED")
     residency = row.get("residency", "")
+    total_only_published = bool(row.get("permits_2026_total")) and not row.get("permits_2026_res") and not row.get("permits_2026_nr")
     if residency == "Resident":
-        quota = _first_float(row.get("permits_2026_res"), row.get("quota_2026_total"))
+        quota = None if total_only_published else _first_float(row.get("permits_2026_res"), row.get("quota_2026_total"))
     elif residency == "Nonresident":
-        quota = _first_float(row.get("permits_2026_nr"), row.get("quota_2026_total"))
+        quota = None if total_only_published else _first_float(row.get("permits_2026_nr"), row.get("quota_2026_total"))
     else:
         quota = _first_float(row.get("permits_2026_total"), row.get("quota_2026_total"))
-    total = quota if quota is not None else _first_float(row.get("quota_2026_total"), row.get("permits_2026_total"))
+    total = _first_float(row.get("permits_2026_total")) if total_only_published else quota
+    if total is None:
+        total = _first_float(row.get("quota_2026_total"), row.get("permits_2026_total"))
     max_pool = to_float(row.get("quota_2026_max_pool"))
     random_pool = to_float(row.get("quota_2026_random_pool"))
-    if quota is not None and max_pool is None:
+    if total_only_published and residency in {"Resident", "Nonresident"}:
+        reasons.append("TOTAL_ONLY_PERMIT_AUTHORITY")
+        reasons.append("NO_RESIDENCY_SPLIT_PUBLISHED")
+        reasons.append("NO_RESIDENCY_LANE_QUOTA")
+        max_pool = None
+        random_pool = None
+    elif quota is not None and max_pool is None:
         max_pool = math.ceil(quota * 0.50)
         random_pool = quota - max_pool
     if quota is not None and quota <= 0:
@@ -36,9 +95,9 @@ def quota_for_row(row: dict[str, str]) -> tuple[dict[str, str], list[str]]:
         "quota_2026_total": "" if total is None else str(int(total)),
         "quota_2026_max_pool": "" if max_pool is None else str(int(max_pool)),
         "quota_2026_random_pool": "" if random_pool is None else str(int(random_pool)),
-        "quota_source_status": row.get("quota_source_status") or "official",
-        "quota_source_year": row.get("quota_source_year") or "2026",
-        "quota_source_file": row.get("quota_source_file") or row.get("permit_allotment_2026_source_file", ""),
+        "quota_source_status": "official" if has_published_permits or total is not None else (row.get("quota_source_status") or "official"),
+        "quota_source_year": "2026",
+        "quota_source_file": OFFICIAL_2026_DATABASE_FILE if has_published_permits or total is not None else row.get("quota_source_file", ""),
     }, reasons
 
 

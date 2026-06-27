@@ -128,7 +128,24 @@ The existing UI still consumes processed CSVs keyed by `(hunt_code, residency, p
 - Dashes or blanks in prior-year permit columns are treated as zero for audit delta calculations only.
 - Dash normalization must not be used to fabricate a prior-year runtime row.
 - If a truth source provides only total permits, do not invent a resident/nonresident split.
+- For 2026 `DATABASE.csv`, a row with `permits_2026_total` populated and both `permits_2026_res` / `permits_2026_nr` blank is an intentional total-only permit authority row when the source/status says `LIVE_DWR_TOTAL_ONLY`, `LIVE_DWR_CWMU_TOTAL_ONLY_FROM_QUOTA_RES`, conservation/tribal/reference, or equivalent reviewed total-only wording.
+- Total-only rows should render as a single total permit value. Resident and nonresident permit cells remain blank unless DWR publishes an actual split.
+- Prediction engines must not use a total-only value as both the resident lane quota and the nonresident lane quota. If a runtime row is keyed to `Resident` or `Nonresident` and only `permits_2026_total` is populated, quota-ratio adjustment and max/random lane-pool creation are skipped for that residency lane.
+- Expected reason codes for this condition are `TOTAL_ONLY_PERMIT_AUTHORITY`, `NO_RESIDENCY_SPLIT_PUBLISHED`, `NO_RESIDENCY_LANE_QUOTA`, and `TOTAL_ONLY_QUOTA_RATIO_SKIPPED_NO_RESIDENCY_SPLIT`.
 - Private-lands-only antlerless elk is availability-only unless a source explicitly provides split-by-residency draw mechanics.
+
+## No-Published Permit Authority Rules
+
+- If DWR/Hunt Planner says permit data is not published for a 2026 row, keep `permits_2026_res`, `permits_2026_nr`, and `permits_2026_total` blank.
+- This is expected for confirmed private-land / landowner rows where the source does not publish public permit counts. The current 2026 confirmed bucket is primarily private-land elk (`EL*`), landowner/private-land deer (`LO*`), and limited-entry private-land deer (`LD*`).
+- A no-published row must not render a total permit count and must not be included in public prediction engines.
+- If retained in reference, audit, or ladder surfaces, mark it as:
+  - `permit_status = NO_QUOTA_PUBLISHED`
+  - `permit_allocation_type = NO_QUOTA_PUBLISHED`
+  - `data_status = SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED`
+  - `algorithm_status = EXCLUDED_NOT_PREDICTIVE_DRAW`
+- Prediction engines must skip quota-ratio adjustment, max/random pool creation, and preference quota exhaustion for these rows.
+- Expected reason codes are `NO_PUBLISHED_PERMIT_AUTHORITY`, `NO_QUOTA_PUBLISHED`, `PUBLIC_DRAW_ODDS_EXCLUDED_NO_QUOTA`, and `NO_PUBLISHED_QUOTA_RATIO_SKIPPED`.
 
 ## O.T.C. / Allotment Runtime Handling
 

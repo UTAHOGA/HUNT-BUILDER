@@ -180,7 +180,7 @@ def materialize_prediction_rows(
         random_pool_text = first_nonempty(row.get("quota_2026_random_pool"))
         max_point_permits_2026 = to_int(max_pool_text) if max_pool_text != "" else split.maxPointPermits
         random_permits_2026 = to_int(random_pool_text) if random_pool_text != "" else split.randomPermits
-        if forecast and (forecast["bonus"] > 0 or forecast["regular"] > 0):
+        if forecast_year <= latest_source_year and forecast and (forecast["bonus"] > 0 or forecast["regular"] > 0):
             max_point_permits_2026 = forecast["bonus"]
             random_permits_2026 = forecast["regular"]
         projected_cutoff = row.get("projected_2026_max_cutoff_point", "")
@@ -274,6 +274,15 @@ def materialize_prediction_rows(
             "applicant_rollover_source_year": row.get("applicant_rollover_source_year", ""),
             "retention_rate_raw": row.get("retention_rate_raw", ""),
             "retention_rate_smoothed": row.get("retention_rate_smoothed", ""),
+            "rollover_rule": row.get("rollover_rule", ""),
+            "rollover_cutoff_structure": row.get("rollover_cutoff_structure", ""),
+            "rollover_mixed_cutoff_point": row.get("rollover_mixed_cutoff_point", ""),
+            "rollover_anchor_next_point": row.get("rollover_anchor_next_point", ""),
+            "structure_retention_rate_raw": row.get("structure_retention_rate_raw", ""),
+            "structure_retention_rate_smoothed": row.get("structure_retention_rate_smoothed", ""),
+            "structure_retention_prior": row.get("structure_retention_prior", ""),
+            "structure_retention_matched_years": row.get("structure_retention_matched_years", ""),
+            "structure_retention_unsuccessful_total": row.get("structure_retention_unsuccessful_total", ""),
             "forecast_applicants_at_level": row.get("forecast_applicants_at_level", ""),
             "forecast_applicants_above": row.get("forecast_applicants_above", ""),
             "rolled_forward_total_applicants": row.get("rolled_forward_total_applicants", ""),
@@ -335,6 +344,15 @@ def materialize_prediction_rows(
                 "applicant_rollover_source_year": prediction_row["applicant_rollover_source_year"],
                 "retention_rate_raw": prediction_row["retention_rate_raw"],
                 "retention_rate_smoothed": prediction_row["retention_rate_smoothed"],
+                "rollover_rule": prediction_row["rollover_rule"],
+                "rollover_cutoff_structure": prediction_row["rollover_cutoff_structure"],
+                "rollover_mixed_cutoff_point": prediction_row["rollover_mixed_cutoff_point"],
+                "rollover_anchor_next_point": prediction_row["rollover_anchor_next_point"],
+                "structure_retention_rate_raw": prediction_row["structure_retention_rate_raw"],
+                "structure_retention_rate_smoothed": prediction_row["structure_retention_rate_smoothed"],
+                "structure_retention_prior": prediction_row["structure_retention_prior"],
+                "structure_retention_matched_years": prediction_row["structure_retention_matched_years"],
+                "structure_retention_unsuccessful_total": prediction_row["structure_retention_unsuccessful_total"],
                 "forecast_applicants_at_level": prediction_row["forecast_applicants_at_level"],
                 "forecast_applicants_above": prediction_row["forecast_applicants_above"],
                 "rolled_forward_total_applicants": prediction_row["rolled_forward_total_applicants"],

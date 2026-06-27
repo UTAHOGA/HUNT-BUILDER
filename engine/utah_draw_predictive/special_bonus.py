@@ -1,4 +1,8 @@
-"""Phase 6 bonus-family predictive helpers for CWMU public, antlerless moose, and ewe bighorn."""
+"""Phase 6 bonus-family predictive helpers for antlerless moose and ewe bighorn.
+
+CWMU rows are retained in database/permit reconciliation surfaces, but they do
+not feed public draw-odds materialization.
+"""
 
 from __future__ import annotations
 
@@ -69,15 +73,20 @@ def _joined_text(row: Mapping[str, object]) -> str:
 
 def _is_antlerless_moose(row: Mapping[str, object]) -> bool:
     text = _joined_text(row)
+    if "cwmu" in text or _clean_lower(row.get("hunt_type")) == "cwmu":
+        return False
     return "moose" in text and ("antlerless" in text or _clean_lower(row.get("sex_type")) in {"antlerless", "cow", "cow only"})
 
 
 def _is_ewe_bighorn(row: Mapping[str, object]) -> bool:
     text = _joined_text(row)
+    if "cwmu" in text or _clean_lower(row.get("hunt_type")) == "cwmu":
+        return False
     return "bighorn" in text and ("ewe" in text or _clean_lower(row.get("sex_type")) == "ewe")
 
 
 def _is_cwmu_public(row: Mapping[str, object]) -> bool:
+    return False
     text = _joined_text(row)
     if "cwmu" not in text:
         return False

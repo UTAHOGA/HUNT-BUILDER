@@ -25,6 +25,7 @@ TARGETS = [
         "allow_lfs_replacement": True,
         "replacement": CLOUDFARE_MASTER,
         "public_permits": True,
+        "legacy_allotment_fields": True,
     },
     {
         "label": "hunt_unit_reference_linked",
@@ -32,13 +33,7 @@ TARGETS = [
         "allow_lfs_replacement": False,
         "replacement": None,
         "public_permits": True,
-    },
-    {
-        "label": "draw_reality_engine",
-        "path": ROOT / "processed_data" / "draw_reality_engine.csv",
-        "allow_lfs_replacement": False,
-        "replacement": None,
-        "public_permits": True,
+        "legacy_allotment_fields": True,
     },
     {
         "label": "point_ladder_view",
@@ -46,32 +41,63 @@ TARGETS = [
         "allow_lfs_replacement": False,
         "replacement": None,
         "public_permits": True,
+        "legacy_allotment_fields": True,
+    },
+    {
+        "label": "point_ladder_runtime_actual_draw_v2026",
+        "path": ROOT / "data_model" / "runtime_drafts" / "point_ladder_runtime_actual_draw_v2026.csv",
+        "allow_lfs_replacement": False,
+        "replacement": None,
+        "public_permits": False,
+        "legacy_allotment_fields": False,
+    },
+    {
+        "label": "point_ladder_allocation_complete_v2026",
+        "path": ROOT / "data_model" / "runtime_drafts" / "point_ladder_allocation_complete_v2026.csv",
+        "allow_lfs_replacement": False,
+        "replacement": None,
+        "public_permits": True,
+        "legacy_allotment_fields": False,
+    },
+    {
+        "label": "point_ladder_unified_runtime_v2026",
+        "path": ROOT / "data_model" / "runtime_drafts" / "point_ladder_unified_runtime_v2026.csv",
+        "allow_lfs_replacement": False,
+        "replacement": None,
+        "public_permits": True,
+        "legacy_allotment_fields": False,
     },
 ]
 
-SYNC_FIELDS = [
+CURRENT_PERMIT_SYNC_FIELDS = [
     ("permits_2024_res", "permits_2024_res"),
     ("permits_2024_nr", "permits_2024_nr"),
     ("permits_2024_total", "permits_2024_total"),
     ("permits_2025_res", "permits_2025_res"),
     ("permits_2025_nr", "permits_2025_nr"),
     ("permits_2025_total", "permits_2025_total"),
+    ("permits_2026_res", "permits_2026_res"),
+    ("permits_2026_nr", "permits_2026_nr"),
+    ("permits_2026_total", "permits_2026_total"),
+]
+
+LEGACY_ALLOTMENT_SYNC_FIELDS = [
     ("permit_allotment_2026_res", "permit_allotment_2026_res"),
     ("permit_allotment_2026_nr", "permit_allotment_2026_nr"),
     ("permit_allotment_2026_total", "permit_allotment_2026_total"),
-    ("permits_2026_res", "permit_allotment_2026_res"),
-    ("permits_2026_nr", "permit_allotment_2026_nr"),
-    ("permits_2026_total", "permit_allotment_2026_total"),
 ]
 
-SOURCE_FIELDS = [
+CURRENT_SOURCE_FIELDS = [
     ("permits_2024_source", "permits_2024_source"),
     ("permits_2025_source", "permits_2025_source"),
-    ("permit_allotment_2026_source", "permit_allotment_2026_source"),
-    ("permits_2026_source", "permit_allotment_2026_source"),
+    ("permits_2026_source", "permits_2026_source"),
 ]
 
-SOURCE_LABEL_2026 = "DATABASE_2026_CURRENT_PERMIT_ALLOTMENT__2027_MODEL"
+LEGACY_SOURCE_FIELDS = [
+    ("permit_allotment_2026_source", "permit_allotment_2026_source"),
+]
+
+SOURCE_LABEL_2026 = "DATABASE_2026_PUBLISHED_PERMITS__2027_MODEL"
 
 
 def clean(value: Any) -> str:
@@ -122,7 +148,7 @@ def is_lfs_pointer(path: Path) -> bool:
 
 def load_database() -> dict[str, dict[str, str]]:
     fields, rows = read_csv(DATABASE)
-    required = {"hunt_code", "permit_allotment_2026_total"}
+    required = {"hunt_code", "permits_2026_total"}
     missing = required - set(fields)
     if missing:
         raise RuntimeError(f"DATABASE.csv missing required fields: {sorted(missing)}")
@@ -139,6 +165,9 @@ def load_database() -> dict[str, dict[str, str]]:
             "permits_2025_res",
             "permits_2025_nr",
             "permits_2025_total",
+            "permits_2026_res",
+            "permits_2026_nr",
+            "permits_2026_total",
             "permit_allotment_2026_res",
             "permit_allotment_2026_nr",
             "permit_allotment_2026_total",
@@ -150,14 +179,71 @@ def load_database() -> dict[str, dict[str, str]]:
 
 def public_permit_for(row: dict[str, str], db_row: dict[str, str]) -> str:
     residency = clean(row.get("residency")).lower()
-    res = first_nonempty(db_row.get("permit_allotment_2026_res", ""), db_row.get("permits_2026_res", ""))
-    nr = first_nonempty(db_row.get("permit_allotment_2026_nr", ""), db_row.get("permits_2026_nr", ""))
-    total = first_nonempty(db_row.get("permit_allotment_2026_total", ""), db_row.get("permits_2026_total", ""))
+    res = db_row.get("permits_2026_res", "")
+    nr = db_row.get("permits_2026_nr", "")
+    total = db_row.get("permits_2026_total", "")
+    total_only = bool(total) and not res and not nr
     if residency.startswith("non"):
-        return nr or total
+        return "" if total_only else nr
     if residency.startswith("res"):
-        return res or total
+        return "" if total_only else res
     return total or res or nr
+
+
+def is_no_published_permit_authority(db_row: dict[str, str]) -> bool:
+    has_permits = any(
+        db_row.get(field, "")
+        for field in (
+            "permits_2026_res",
+            "permits_2026_nr",
+            "permits_2026_total",
+        )
+    )
+    if has_permits:
+        return False
+    status_text = "|".join(
+        clean(db_row.get(field))
+        for field in (
+            "permits_2026_source",
+            "permit_allotment_2026_source",
+            "permit_allotment_2026_status",
+            "draw_2026_system_type",
+            "NOTES",
+        )
+    ).upper()
+    return any(
+        marker in status_text
+        for marker in (
+            "NO_PUBLISHED_PERMIT",
+            "PERMIT_DATA_NOT_PUBLISHED",
+            "NO_QUOTA_PUBLISHED",
+            "NO_PUBLIC_DRAW_ODDS",
+        )
+    )
+
+
+def no_published_runtime_updates(db_row: dict[str, str]) -> dict[str, str]:
+    if not is_no_published_permit_authority(db_row):
+        return {}
+    return {
+        "permit_status": "NO_QUOTA_PUBLISHED",
+        "permit_allocation_type": "NO_QUOTA_PUBLISHED",
+        "data_status": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED",
+        "truth_source_status": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED",
+        "availability_status": "NO_QUOTA_PUBLISHED",
+        "quota_source_status": "NO_QUOTA_PUBLISHED",
+        "algorithm_status": "EXCLUDED_NOT_PREDICTIVE_DRAW",
+    }
+
+
+def append_reason_codes(existing: str, *codes: str) -> str:
+    tokens: list[str] = []
+    for part in (existing, *codes):
+        for token in clean(part).replace(";", "|").split("|"):
+            token = clean(token)
+            if token and token not in tokens:
+                tokens.append(token)
+    return "|".join(tokens)
 
 
 def update_value(row: dict[str, str], field: str, value: str) -> tuple[bool, str, str]:
@@ -209,7 +295,12 @@ def sync_target(target: dict[str, Any], db: dict[str, dict[str, str]], stamp: st
 
     fieldnames, rows = read_csv(path)
     added_columns: list[str] = []
-    for field, _ in SYNC_FIELDS + SOURCE_FIELDS:
+    sync_fields = list(CURRENT_PERMIT_SYNC_FIELDS)
+    source_fields = list(CURRENT_SOURCE_FIELDS)
+    if target.get("legacy_allotment_fields"):
+        sync_fields.extend(LEGACY_ALLOTMENT_SYNC_FIELDS)
+        source_fields.extend(LEGACY_SOURCE_FIELDS)
+    for field, _ in sync_fields + source_fields:
         if field not in fieldnames:
             fieldnames.append(field)
             added_columns.append(field)
@@ -236,9 +327,17 @@ def sync_target(target: dict[str, Any], db: dict[str, dict[str, str]], stamp: st
             continue
         matched_rows += 1
         row_changed = False
-        for target_field, db_field in SYNC_FIELDS:
+        for target_field, db_field in sync_fields:
             value = normalize_number(db_row.get(db_field, ""))
-            if not value:
+            should_clear_current_2026 = db_field in {
+                "permits_2026_res",
+                "permits_2026_nr",
+                "permits_2026_total",
+                "permit_allotment_2026_res",
+                "permit_allotment_2026_nr",
+                "permit_allotment_2026_total",
+            }
+            if not value and not should_clear_current_2026:
                 continue
             changed, before, after = update_value(row, target_field, value)
             if changed:
@@ -256,13 +355,9 @@ def sync_target(target: dict[str, Any], db: dict[str, dict[str, str]], stamp: st
                         "action": "UPDATED_FROM_DATABASE",
                     }
                 )
-        for target_field, db_field in SOURCE_FIELDS:
+        for target_field, db_field in source_fields:
             value = db_row.get(db_field, "")
-            if target_field == "permits_2026_source" and (
-                db_row.get("permit_allotment_2026_res")
-                or db_row.get("permit_allotment_2026_nr")
-                or db_row.get("permit_allotment_2026_total")
-            ):
+            if target_field == "permits_2026_source" and db_row.get("permits_2026_total"):
                 value = SOURCE_LABEL_2026
             if not value:
                 continue
@@ -284,27 +379,70 @@ def sync_target(target: dict[str, Any], db: dict[str, dict[str, str]], stamp: st
                 )
         if target.get("public_permits"):
             public_value = public_permit_for(row, db_row)
-            if public_value:
-                for field, value in (
-                    ("public_permits_2026", public_value),
-                    ("public_permits_2026_source", SOURCE_LABEL_2026),
-                ):
-                    changed, before, after = update_value(row, field, value)
-                    if changed:
-                        row_changed = True
-                        changed_cells += 1
-                        audit_rows.append(
-                            {
-                                "feeder": target["label"],
-                                "row_number": index,
-                                "hunt_code": code,
-                                "field": field,
-                                "before": before,
-                                "after": after,
-                                "db_source_field": "permit_allotment_2026_*",
-                                "action": "UPDATED_PUBLIC_PERMIT_FROM_DATABASE",
-                            }
-                        )
+            for field, value in (
+                ("public_permits_2026", public_value),
+                ("public_permits_2026_source", SOURCE_LABEL_2026 if public_value else ""),
+            ):
+                changed, before, after = update_value(row, field, value)
+                if changed:
+                    row_changed = True
+                    changed_cells += 1
+                    audit_rows.append(
+                        {
+                            "feeder": target["label"],
+                            "row_number": index,
+                            "hunt_code": code,
+                            "field": field,
+                            "before": before,
+                            "after": after,
+                            "db_source_field": "permits_2026_*",
+                            "action": "UPDATED_PUBLIC_PERMIT_FROM_DATABASE",
+                        }
+                    )
+        no_published_updates = no_published_runtime_updates(db_row)
+        if no_published_updates:
+            for field, value in no_published_updates.items():
+                if field not in fieldnames:
+                    continue
+                changed, before, after = update_value(row, field, value)
+                if changed:
+                    row_changed = True
+                    changed_cells += 1
+                    audit_rows.append(
+                        {
+                            "feeder": target["label"],
+                            "row_number": index,
+                            "hunt_code": code,
+                            "field": field,
+                            "before": before,
+                            "after": after,
+                            "db_source_field": "permit_allotment_2026_status",
+                            "action": "UPDATED_NO_PUBLISHED_PERMIT_POLICY_FROM_DATABASE",
+                        }
+                    )
+            if "reason_codes" in fieldnames:
+                value = append_reason_codes(
+                    row.get("reason_codes", ""),
+                    "NO_PUBLISHED_PERMIT_AUTHORITY",
+                    "NO_QUOTA_PUBLISHED",
+                    "PUBLIC_DRAW_ODDS_EXCLUDED_NO_QUOTA",
+                )
+                changed, before, after = update_value(row, "reason_codes", value)
+                if changed:
+                    row_changed = True
+                    changed_cells += 1
+                    audit_rows.append(
+                        {
+                            "feeder": target["label"],
+                            "row_number": index,
+                            "hunt_code": code,
+                            "field": "reason_codes",
+                            "before": before,
+                            "after": after,
+                            "db_source_field": "permit_allotment_2026_status",
+                            "action": "APPENDED_NO_PUBLISHED_PERMIT_REASON_CODES",
+                        }
+                    )
         if row_changed:
             changed_rows += 1
 
@@ -361,7 +499,7 @@ def main() -> int:
         "",
         "## Scope",
         "",
-        "Synced the four Research feeder surfaces against cleaned `DATABASE.csv` permit fields. This pass did not change draw odds or probability math.",
+        "Synced the runtime/reference feeder surfaces against cleaned `DATABASE.csv` permit fields. This pass did not change draw odds or probability math.",
         "",
         "## Results",
         "",
@@ -379,7 +517,7 @@ def main() -> int:
             "",
             "- `processed_data/hunt_master_enriched.csv` was replaced from the real local Cloudfare copy only because the repo copy was a Git LFS pointer.",
             "- Existing machine fields were preserved for runtime compatibility.",
-            "- `permits_2026_*` in feeder files now mirrors current `DATABASE.csv` 2026 allotment values and is labeled as the 2026 draw-results/current-permit field for 2027 model use.",
+            "- `permits_2026_*` in feeder files now mirrors current `DATABASE.csv` published 2026 permit values and is labeled as the 2027-model current permit field.",
             "",
             "## Outputs",
             "",

@@ -109,9 +109,9 @@ def to_runtime_record(row: dict[str, str], generated_at: str) -> dict[str, objec
     boundary_id = first(row.get("boundary_id"), row.get("boundaryId"), row.get("BoundaryID"))
     hunt_name = first(row.get("hunt_name"), row.get("unit_name"), code)
     season = first(row.get("season"), row.get("season_dates"))
-    total_2026 = first(row.get("permit_allotment_2026_total"), row.get("permits_2026_total"))
-    res_2026 = first(row.get("permit_allotment_2026_res"), row.get("permits_2026_res"))
-    nr_2026 = first(row.get("permit_allotment_2026_nr"), row.get("permits_2026_nr"))
+    total_2026 = first(row.get("permits_2026_total"))
+    res_2026 = first(row.get("permits_2026_res"))
+    nr_2026 = first(row.get("permits_2026_nr"))
     record = {
         "hunt_code": code,
         "boundary_id": boundary_id,
@@ -135,7 +135,7 @@ def to_runtime_record(row: dict[str, str], generated_at: str) -> dict[str, objec
         "permits_2026_res": res_2026,
         "permits_2026_nr": nr_2026,
         "permits_2026_total": total_2026,
-        "permits_2026_source": first(row.get("permits_2026_source"), row.get("permit_allotment_2026_source")),
+        "permits_2026_source": first(row.get("permits_2026_source")),
         "permits_2026_draw_source": first(row.get("permits_2026_draw_source")),
         "permit_allotment_2026_res": res_2026,
         "permit_allotment_2026_nr": nr_2026,

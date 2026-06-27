@@ -297,13 +297,13 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
         if not is_target_bonus_hunt(raw_hunt_type):
             continue
 
-        # Quota per residency from RAC current-year allotment first, then DB fallback.
-        q_res = to_int(db.get("permit_allotment_2026_res") or db.get("permits_2026_res"), 0)
-        q_nr = to_int(db.get("permit_allotment_2026_nr") or db.get("permits_2026_nr"), 0)
-        q_total = to_int(db.get("permit_allotment_2026_total") or db.get("permits_2026_total"), q_res + q_nr)
+        # Published 2026 DB permit fields are the runtime quota source.
+        q_res = to_int(db.get("permits_2026_res"), 0)
+        q_nr = to_int(db.get("permits_2026_nr"), 0)
+        q_total = to_int(db.get("permits_2026_total"), q_res + q_nr)
         residency_quota = current_year_quota_for_residency(db, residency)
-        quota_source_file = clean(db.get("permit_allotment_2026_source_file")) or OFFICIAL_2026_QUOTA_SOURCE_FILE
-        quota_source_label = clean(db.get("permit_allotment_2026_source")) or "DATABASE_2026_PERMITS"
+        quota_source_file = OFFICIAL_2026_QUOTA_SOURCE_FILE
+        quota_source_label = clean(db.get("permits_2026_source")) or "DATABASE_2026_PERMITS"
         if residency_quota <= 0:
             # Resident-only or NR-only handling: skip empty lane
             continue
@@ -406,12 +406,16 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
                 "MAX_POINT_BOUNDARY_RECOMPUTED",
                 "OFFICIAL_2026_QUOTA_USED",
             ]
-            if quota_source_label == RAC_SOURCE_LABEL:
-                reasons.append("RAC_CURRENT_YEAR_ALLOTMENT_USED")
+            if quota_source_label:
+                reasons.append("DATABASE_2026_PERMITS_USED")
             if guaranteed_probability >= 0.999:
                 reasons.append("MODELED_100_CONFIRMED")
             if point_pool_zone == "max_pool_cutoff_mixed":
                 reasons.append("MIXED_MAX_POINT_CUTOFF")
+            if rollover.cutoff_structure:
+                reasons.append(f"ROLLOVER_CUTOFF_STRUCTURE_{rollover.cutoff_structure}")
+            if rollover.rollover_rule:
+                reasons.append(rollover.rollover_rule)
 
             prediction_rows.append(
                 {
@@ -443,8 +447,8 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
                     "permit_allotment_2026_res": clean(db.get("permit_allotment_2026_res")),
                     "permit_allotment_2026_nr": clean(db.get("permit_allotment_2026_nr")),
                     "permit_allotment_2026_total": clean(db.get("permit_allotment_2026_total")),
-                    "permit_allotment_2026_source": quota_source_label,
-                    "permit_allotment_2026_source_file": quota_source_file,
+                    "permit_allotment_2026_source": clean(db.get("permit_allotment_2026_source")),
+                    "permit_allotment_2026_source_file": clean(db.get("permit_allotment_2026_source_file")),
                     "permit_allotment_2026_status": clean(db.get("permit_allotment_2026_status")),
                     "projected_2026_max_cutoff_point": deterministic_cutoff if deterministic_cutoff is not None else "",
                     "projected_2026_random_pool_start_point": projected_random_pool_start_point,
@@ -463,6 +467,15 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
                     "applicant_rollover_source_year": source_year,
                     "retention_rate_raw": round(rollover.retention_rate_raw, 6),
                     "retention_rate_smoothed": round(rollover.retention_rate_smoothed, 6),
+                    "rollover_rule": rollover.rollover_rule,
+                    "rollover_cutoff_structure": rollover.cutoff_structure,
+                    "rollover_mixed_cutoff_point": rollover.mixed_cutoff_point if rollover.mixed_cutoff_point is not None else "",
+                    "rollover_anchor_next_point": rollover.anchor_next_point if rollover.anchor_next_point is not None else "",
+                    "structure_retention_rate_raw": "" if rollover.structure_retention_rate_raw is None else round(rollover.structure_retention_rate_raw, 6),
+                    "structure_retention_rate_smoothed": "" if rollover.structure_retention_rate_smoothed is None else round(rollover.structure_retention_rate_smoothed, 6),
+                    "structure_retention_prior": "" if rollover.structure_retention_prior is None else round(rollover.structure_retention_prior, 6),
+                    "structure_retention_matched_years": rollover.structure_retention_matched_years,
+                    "structure_retention_unsuccessful_total": rollover.structure_retention_unsuccessful_total,
                     "forecast_applicants_at_level": int(base_demand_by_point.get(p, 0)),
                     "forecast_applicants_above": sum(count for point, count in base_demand_by_point.items() if point > p),
                     "rolled_forward_total_applicants": rollover.total_projected_applicants,
@@ -489,6 +502,15 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
                 "applicant_rollover_source_year": source_year,
                 "retention_rate_raw": round(rollover.retention_rate_raw, 6),
                 "retention_rate_smoothed": round(rollover.retention_rate_smoothed, 6),
+                "rollover_rule": rollover.rollover_rule,
+                "rollover_cutoff_structure": rollover.cutoff_structure,
+                "rollover_mixed_cutoff_point": rollover.mixed_cutoff_point if rollover.mixed_cutoff_point is not None else "",
+                "rollover_anchor_next_point": rollover.anchor_next_point if rollover.anchor_next_point is not None else "",
+                "structure_retention_rate_raw": "" if rollover.structure_retention_rate_raw is None else round(rollover.structure_retention_rate_raw, 6),
+                "structure_retention_rate_smoothed": "" if rollover.structure_retention_rate_smoothed is None else round(rollover.structure_retention_rate_smoothed, 6),
+                "structure_retention_prior": "" if rollover.structure_retention_prior is None else round(rollover.structure_retention_prior, 6),
+                "structure_retention_matched_years": rollover.structure_retention_matched_years,
+                "structure_retention_unsuccessful_total": rollover.structure_retention_unsuccessful_total,
                 "rolled_forward_total_applicants": rollover.total_projected_applicants,
                 "rolled_forward_unsuccessful_applicants": rollover.total_unsuccessful_source_applicants,
                 "lower_point_additions": rollover.total_lower_point_additions,
@@ -570,6 +592,9 @@ def main() -> int:
         "model_version", "rule_version", "data_cutoff_date", "data_quality_grade",
         "reason_codes", "display_odds_pct", "status", "point_pool_zone",
         "applicant_rollover_source_year", "retention_rate_raw", "retention_rate_smoothed",
+        "rollover_rule", "rollover_cutoff_structure", "rollover_mixed_cutoff_point", "rollover_anchor_next_point",
+        "structure_retention_rate_raw", "structure_retention_rate_smoothed", "structure_retention_prior",
+        "structure_retention_matched_years", "structure_retention_unsuccessful_total",
         "forecast_applicants_at_level", "forecast_applicants_above", "rolled_forward_total_applicants",
     ]
     write_csv(predictions_path, pred_headers, predictions)
@@ -583,6 +608,9 @@ def main() -> int:
         "quota_residency", "reserved_quota", "random_quota", "quota_source_status", "quota_source_file",
         "permit_allotment_2026_source", "reserved_fraction",
         "applicant_rollover_source_year", "retention_rate_raw", "retention_rate_smoothed",
+        "rollover_rule", "rollover_cutoff_structure", "rollover_mixed_cutoff_point", "rollover_anchor_next_point",
+        "structure_retention_rate_raw", "structure_retention_rate_smoothed", "structure_retention_prior",
+        "structure_retention_matched_years", "structure_retention_unsuccessful_total",
         "rolled_forward_total_applicants", "rolled_forward_unsuccessful_applicants", "lower_point_additions",
         "points_modeled", "expected_cutoff_points", "iterations",
     ]

@@ -1,8 +1,8 @@
-"""Current-year permit allotment helpers.
+"""Current-year permit/allotment compatibility helpers.
 
-Direct hunt-code rows in normalized RAC files are the canonical current-year
-available permit/allotment source. Existing DATABASE/runtime 2026 permit fields
-are retained as fallback when no direct RAC row exists.
+Runtime quota authority is the published ``permits_2026_*`` fields in
+DATABASE.csv. Legacy ``permit_allotment_2026_*`` fields are carried for audit
+and compatibility only; they must not backfill public prediction quotas.
 """
 
 from __future__ import annotations
@@ -104,82 +104,22 @@ def _choose(existing: CurrentYearAllotment | None, candidate: CurrentYearAllotme
 def load_rac_current_year_allotments(
     truth_root: Path | str = DEFAULT_TRUTH_ROOT,
 ) -> dict[str, CurrentYearAllotment]:
-    root = Path(truth_root)
-    allotments: dict[str, CurrentYearAllotment] = {}
-    for path in sorted(root.glob("2026_rac_*.csv")):
-        if any(token in path.name for token in RAC_EXCLUDE_TOKENS):
-            continue
-        with path.open(newline="", encoding="utf-8-sig") as handle:
-            reader = csv.DictReader(handle)
-            if not reader.fieldnames or "hunt_code" not in reader.fieldnames:
-                continue
-            for row in reader:
-                hunt_code = clean(row.get("hunt_code")).upper()
-                if not hunt_code:
-                    continue
-                res = to_int_text(row.get("permits_2026_res"))
-                nr = to_int_text(row.get("permits_2026_nr"))
-                total = _row_total(row)
-                if not (res or nr or total):
-                    continue
-                candidate = CurrentYearAllotment(
-                    hunt_code=hunt_code,
-                    res=res,
-                    nr=nr,
-                    total=total,
-                    source_file=path.relative_to(REPO).as_posix() if path.is_relative_to(REPO) else path.as_posix(),
-                    has_split=bool(res or nr),
-                )
-                allotments[hunt_code] = _choose(allotments.get(hunt_code), candidate)
-    return allotments
+    del truth_root
+    return {}
 
 
 def apply_current_year_allotments_to_rows(
     rows: list[dict[str, str]],
     allotments: dict[str, CurrentYearAllotment] | None = None,
 ) -> list[dict[str, str]]:
-    source = allotments if allotments is not None else load_rac_current_year_allotments()
-    overlaid: list[dict[str, str]] = []
-    for row in rows:
-        next_row = dict(row)
-        hunt_code = clean(next_row.get("hunt_code")).upper()
-        allotment = source.get(hunt_code)
-        if allotment:
-            next_row["permit_allotment_2026_res"] = allotment.res
-            next_row["permit_allotment_2026_nr"] = allotment.nr
-            next_row["permit_allotment_2026_total"] = allotment.total
-            next_row["permit_allotment_2026_source"] = RAC_SOURCE_LABEL
-            next_row["permit_allotment_2026_source_file"] = allotment.source_file
-            next_row["permit_allotment_2026_status"] = (
-                "RAC_CURRENT_YEAR_SPLIT" if allotment.has_split else "RAC_CURRENT_YEAR_TOTAL_ONLY"
-            )
-        else:
-            res = to_int_text(next_row.get("permits_2026_res"))
-            nr = to_int_text(next_row.get("permits_2026_nr"))
-            total = _row_total(next_row)
-            if res or nr or total:
-                next_row["permit_allotment_2026_res"] = res
-                next_row["permit_allotment_2026_nr"] = nr
-                next_row["permit_allotment_2026_total"] = total
-                next_row["permit_allotment_2026_source"] = FALLBACK_SOURCE_LABEL
-                next_row["permit_allotment_2026_source_file"] = clean(next_row.get("permits_2026_source"))
-                next_row["permit_allotment_2026_status"] = "FALLBACK_EXISTING_2026_PERMITS"
-        overlaid.append(next_row)
-    return overlaid
+    del allotments
+    return [dict(row) for row in rows]
 
 
 def current_year_quota_for_residency(row: Mapping[str, str], residency: str) -> int:
     residency_text = clean(residency).lower()
-    source = clean(row.get("permit_allotment_2026_source"))
-    if source == RAC_SOURCE_LABEL:
-        if residency_text.startswith("non"):
-            return to_int(row.get("permit_allotment_2026_nr"))
-        if residency_text.startswith("res"):
-            return to_int(row.get("permit_allotment_2026_res"))
-        return to_int(row.get("permit_allotment_2026_total"))
-
     if residency_text.startswith("non"):
-        return to_int(first_nonempty(row.get("permit_allotment_2026_nr"), row.get("permits_2026_nr")))
+        return to_int(row.get("permits_2026_nr"))
     if residency_text.startswith("res"):
-        return to_int(first_nonempty(row.get("permit_allotment_2026_res"), row.get("permits_2026_res")))
-    return to_int(first_nonempty(row.get("permit_allotment_2026_total"), row.get("permits_2026_total")))
+        return to_int(row.get("permits_2026_res"))
+    return to_int(row.get("permits_2026_total"))

@@ -1,25 +1,26 @@
 # Comprehensive Live DWR Permit Numbers Vs DATABASE 2026
 
-- Snapshot UTC: `2026-06-04T03:35:32+00:00`
+- Snapshot UTC: `2026-06-26T14:31:55+00:00`
 - DWR endpoints queried: `19`
-- Live rows extracted: `1415`
-- Live unique hunt codes: `1413`
-- DATABASE rows compared: `1449`
-- Numeric mismatches: `40`
-- Live numeric / database blank: `0`
+- Live rows extracted: `1406`
+- Live unique hunt codes: `1404`
+- DATABASE rows compared: `1640`
+- Numeric mismatches: `276`
+- Live numeric / database blank: `1`
 - Database numeric / live blank: `0`
-- Database-only rows not exposed by queried DWR endpoints: `58`
-- Live-only rows not in DATABASE: `22`
+- Database-only rows not exposed by queried DWR endpoints: `241`
+- Live-only rows not in DATABASE: `5`
 
 ## Comparison Status Counts
 
-- `BOTH_BLANK`: `259`
-- `DATABASE_ONLY`: `58`
-- `LIVE_NO_QUOTA_DATABASE_PRESERVED`: `61`
-- `LIVE_ONLY`: `22`
-- `MATCH`: `754`
-- `NUMERIC_MISMATCH`: `40`
-- `TOTAL_MATCH_SPLIT_DIFFERS`: `277`
+- `BOTH_BLANK`: `254`
+- `DATABASE_ONLY`: `241`
+- `LIVE_HAS_NUMERIC_DATABASE_BLANK`: `1`
+- `LIVE_NO_QUOTA_DATABASE_PRESERVED`: `66`
+- `LIVE_ONLY`: `5`
+- `MATCH`: `503`
+- `NUMERIC_MISMATCH`: `276`
+- `TOTAL_MATCH_SPLIT_DIFFERS`: `299`
 
 ## Endpoint Row Counts
 
@@ -27,17 +28,17 @@
 - `Black Bear|Either Sex`: `106`
 - `Cougar|Either Sex`: `1`
 - `Deer|Antlerless`: `21`
-- `Deer|Buck`: `458`
+- `Deer|Buck`: `460`
 - `Deer|Hunters Choice`: `1`
 - `Desert Bighorn Sheep|Male Only`: `25`
-- `Elk|Antlerless`: `223`
+- `Elk|Antlerless`: `212`
 - `Elk|Bull`: `353`
 - `Elk|Hunters Choice`: `1`
-- `Moose|Antlerless`: `6`
+- `Moose|Antlerless`: `5`
 - `Moose|Bull`: `27`
 - `Mountain Goat|Hunters Choice`: `18`
-- `Pronghorn|Buck`: `94`
-- `Pronghorn|Doe`: `28`
+- `Pronghorn|Buck`: `98`
+- `Pronghorn|Doe`: `25`
 - `Rocky Mountain Bighorn Sheep|Ewe`: `1`
 - `Rocky Mountain Bighorn Sheep|Male Only`: `20`
 - `Turkey|Bearded`: `14`
@@ -45,43 +46,103 @@
 
 ## Numeric Mismatch Codes
 
-- `DA1009` Pine Valley, Enterprise: live `//20` vs database `//25`
-- `DA1018` Pine Valley, New Harmony: live `//15` vs database `//20`
-- `DA1033` San Juan, Monticello: live `//10` vs database `//5`
-- `EA1010` Cache, Rich: live `31/4/35` vs database `18/2/20`
-- `EA1011` Cache, Richards Hollow: live `18/2/20` vs database `9/1/10`
-- `EA1021` Nebo: live `252/28/280` vs database `207/23/230`
-- `EA1033` Kamas: live `90/10/100` vs database `112/13/125`
-- `EA1035` Kamas, Oakley: live `90/10/100` vs database `112/13/125`
-- `EA1054` Nine Mile, West Anthro: live `90/10/100` vs database `45/5/50`
-- `EA1063` Ogden: live `90/10/100` vs database `67/8/75`
-- `EA1069` Panguitch Lake: live `22/3/25` vs database `31/4/35`
-- `EA1129` Deseret CWMU: live `//360` vs database `425/0/425`
-- `EA1134` Ensign Ranches CWMU: live `//48` vs database `60/0/60`
-- `EA1139` Hardscrabble CWMU: live `//5` vs database `10/0/10`
-- `EA1149` Minnie Maud Ridge CWMU: live `//16` vs database `15/0/15`
-- `EA1193` Cache, Rich: live `31/4/35` vs database `18/2/20`
-- `EA1208` Nebo: live `292/33/325` vs database `247/28/275`
-- `EA1222` Beaver, East: live `36/4/40` vs database `27/3/30`
-- `EA1223` Beaver, East: live `36/4/40` vs database `27/3/30`
-- `EA1251` Southwest Desert, Burbank/Garrison: live `11/1/12` vs database `13/2/15`
-- `EA1266` Box Elder, Hansel Mtn: live `27/3/30` vs database `18/2/20`
-- `EA1267` Cache: live `180/20/200` vs database `81/9/90`
-- `EA1269` Ogden (excludes Hyrum): live `270/30/300` vs database `180/20/200`
-- `EA1284` Panguitch Lake: live `49/6/55` vs database `31/4/35`
-- `EA1285` Panguitch Lake: live `22/3/25` vs database `31/4/35`
-- `EA1286` Monroe: live `46/4/50` vs database `36/4/40`
-- `EA2033` Kamas: live `180/20/200` vs database `225/25/250`
-- `EA2036` Oquirrh-Stansbury, East: live `63/7/70` vs database `54/6/60`
-- `MA1005` Morgan-South Rich: live `2/1/3` vs database `6/1/7`
-- `MA1007` Morgan-South Rich: live `2/0/2` vs database `3/0/3`
-- `MA1008` Wasatch Mtns, Salt Lake-Timpanogos: live `2/0/2` vs database `4/1/5`
-- `PD1000` Box Elder, Snowville: live `36/4/40` vs database `72/8/80`
-- `PD1012` Box Elder, Promontory: live `18/2/20` vs database `22/3/25`
-- `PD1016` Zane CWMU: live `//6` vs database `4/0/4`
-- `PD1017` Box Elder, West: live `31/4/35` vs database `49/6/55`
-- `PD1026` Pahvant Ensign CWMU: live `//6` vs database `4/0/4`
-- `PD1044` Vernal-Ouray Valley: live `4/1/5` vs database `9/1/10`
-- `PD1056` Parker Mtn: live `63/4/67` vs database `36/4/40`
-- `PD1057` Parker Mtn, Highlands: live `27/3/30` vs database `31/4/35`
-- `PD1059` Parker Mtn, Plains: live `31/4/35` vs database `27/3/30`
+- `BI6503` Henry Mtns: live `4/2/6` vs database `3/2/5`
+- `BI6531` Book Cliffs, Little Creek/South: live `10/0/10` vs database `9/0/9`
+- `DA1012` Junction Valley: live `//15` vs database `0/0/0`
+- `DB0008` Deer Extended: live `//2000` vs database `//515`
+- `DB1001` Paunsaugunt: live `26/3/29` vs database `25/3/28`
+- `DB1003` Henry Mtns: live `24/3/27` vs database `23/3/26`
+- `DB1004` Paunsaugunt: live `75/8/83` vs database `73/7/80`
+- `DB1006` Paunsaugunt: live `26/3/29` vs database `25/3/28`
+- `DB1010` Paunsaugunt: live `30/3/33` vs database `29/3/32`
+- `DB1011` Book Cliffs: live `55/6/61` vs database `54/5/59`
+- `DB1015` Diamond Mtn: live `22/2/24` vs database `21/2/23`
+- `DB1016` West Desert, Vernon: live `46/5/51` vs database `44/4/48`
+- `DB1017` Book Cliffs, North: live `137/15/152` vs database `134/14/148`
+- `DB1018` Book Cliffs, South: live `34/4/38` vs database `32/3/35`
+- `DB1019` Fillmore, Oak Creek: live `33/4/37` vs database `31/4/35`
+- `DB1022` San Juan, Elk Ridge: live `42/5/47` vs database `41/4/45`
+- `DB1023` Diamond Mtn: live `61/7/68` vs database `59/6/65`
+- `DB1024` West Desert, Vernon: live `130/14/144` vs database `127/13/140`
+- `DB1025` Book Cliffs: live `55/6/61` vs database `53/5/58`
+- `DB1026` Cache, Crawford Mtn: live `8/1/9` vs database `7/1/8`
+- `DB1034` Pine Valley: live `13/2/15` vs database `12/2/14`
+- `DB1038` Diamond Mtn: live `22/2/24` vs database `21/2/23`
+- `DB1041` Wasatch Mtns, East: live `30/3/33` vs database `29/3/32`
+- `DB1042` West Desert, Vernon: live `46/5/51` vs database `45/4/49`
+- `DB1043` Zion: live `15/2/17` vs database `14/2/16`
+- `DB1079` Manti/San Rafael: live `40/5/45` vs database `39/5/44`
+- `DB1087` Wasatch Mtns, West: live `36/4/40` vs database `35/4/39`
+- `DB1501` Box Elder: live `//1040` vs database `//369`
+- `DB1502` Cache: live `//1160` vs database `//983`
+- `DB1503` Manti/San Rafael: live `//1800` vs database `//1319`
+- `DB1504` Nebo: live `//1060` vs database `//648`
+- `DB1506` Fillmore: live `//460` vs database `//333`
+- `DB1508` Kamas: live `//200` vs database `//145`
+- `DB1509` La Sal Mtns: live `//360` vs database `//265`
+- `DB1510` Monroe: live `//220` vs database `//177`
+- `DB1511` Mt Dutton: live `//80` vs database `//53`
+- `DB1512` Nine Mile: live `//280` vs database `//177`
+- `DB1513` North Slope: live `//620` vs database `//506`
+- `DB1514` Ogden: live `//540` vs database `//419`
+- `DB1516` Panguitch Lake: live `//500` vs database `//399`
+- `DB1517` Pine Valley: live `//600` vs database `//420`
+- `DB1518` Boulder/Kaiparowits: live `//720` vs database `//552`
+- `DB1519` Fishlake: live `//260` vs database `//189`
+- `DB1521` San Juan, Abajo Mtns: live `//560` vs database `//464`
+- `DB1522` Vernal/Bonanza: live `//420` vs database `//332`
+- `DB1523` Yellowstone: live `//280` vs database `//208`
+- `DB1524` Southwest Desert: live `//100` vs database `//75`
+- `DB1525` Wasatch Mtns, East: live `//1300` vs database `//941`
+- `DB1526` Wasatch Mtns, West: live `//1580` vs database `//1211`
+- `DB1529` Zion: live `//675` vs database `//464`
+- `DB1531` Box Elder: live `//2080` vs database `//2232`
+- `DB1533` Manti/San Rafael: live `//5400` vs database `//5047`
+- `DB1534` Nebo: live `//3180` vs database `//2916`
+- `DB1536` Fillmore: live `//920` vs database `//916`
+- `DB1538` Kamas: live `//400` vs database `//382`
+- `DB1539` La Sal Mtns: live `//1080` vs database `//1010`
+- `DB1540` Monroe: live `//660` vs database `//634`
+- `DB1541` Mt Dutton: live `//240` vs database `//243`
+- `DB1542` Nine Mile: live `//560` vs database `//541`
+- `DB1543` North Slope: live `//1240` vs database `//1176`
+- `DB1544` Ogden: live `//1620` vs database `//1635`
+- `DB1546` Panguitch Lake: live `//1000` vs database `//905`
+- `DB1547` Pine Valley: live `//1200` vs database `//1247`
+- `DB1549` Fishlake: live `//520` vs database `//502`
+- `DB1551` San Juan, Abajo Mtns: live `//1680` vs database `//1656`
+- `DB1552` Vernal/Bonanza: live `//700` vs database `//638`
+- `DB1553` Yellowstone: live `//840` vs database `//755`
+- `DB1554` Southwest Desert: live `//300` vs database `//285`
+- `DB1555` Wasatch Mtns, East: live `//3900` vs database `//3611`
+- `DB1556` Wasatch Mtns, West: live `//4740` vs database `//3804`
+- `DB1559` Zion: live `//1350` vs database `//1407`
+- `DB1561` Box Elder: live `//1040` vs database `//388`
+- `DB1563` Manti/San Rafael: live `//1800` vs database `//1335`
+- `DB1564` Nebo: live `//1060` vs database `//516`
+- `DB1566` Fillmore: live `//460` vs database `//349`
+- `DB1568` Kamas: live `//200` vs database `//141`
+- `DB1569` La Sal Mtns: live `//360` vs database `//284`
+- `DB1570` Monroe: live `//220` vs database `//207`
+- `DB1571` Mt Dutton: live `//80` vs database `//68`
+- `DB1572` Nine Mile: live `//280` vs database `//134`
+- `DB1573` North Slope: live `//620` vs database `//458`
+- `DB1574` Ogden: live `//540` vs database `//274`
+- `DB1576` Panguitch Lake: live `//500` vs database `//418`
+- `DB1577` Pine Valley: live `//600` vs database `//454`
+- `DB1579` Fishlake: live `//260` vs database `//227`
+- `DB1581` San Juan, Abajo Mtns: live `//560` vs database `//478`
+- `DB1582` Vernal/Bonanza: live `//280` vs database `//237`
+- `DB1583` Yellowstone: live `//280` vs database `//221`
+- `DB1584` Southwest Desert: live `//100` vs database `//83`
+- `DB1585` Wasatch Mtns, East: live `//1300` vs database `//976`
+- `DB1586` Wasatch Mtns, West: live `//1580` vs database `//525`
+- `DB1589` Zion: live `//675` vs database `//437`
+- `DB1591` Fillmore: live `//460` vs database `//401`
+- `DB1592` Kamas: live `//200` vs database `//180`
+- `DB1593` Nine Mile: live `//280` vs database `//242`
+- `DB1594` Panguitch Lake: live `//500` vs database `//454`
+- `DB1595` Pine Valley: live `//600` vs database `//533`
+- `DB1596` Fishlake: live `//260` vs database `//236`
+- `DB1597` Zion: live `//675` vs database `//577`
+- `DB1598` North Slope: live `//620` vs database `//589`

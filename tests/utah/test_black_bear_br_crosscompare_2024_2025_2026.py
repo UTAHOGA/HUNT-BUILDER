@@ -34,19 +34,21 @@ def test_black_bear_2025_draw_odds_extracts_expected_source_rows() -> None:
     assert summary["draw_2024_codes_missing_2025"] == ["BR7019"]
 
 
-def test_black_bear_la_sal_recodes_are_high_confidence_and_numeric_matches() -> None:
+def test_black_bear_la_sal_same_codes_are_preserved_and_not_crosswalked() -> None:
     run_script()
     rows = {(row["historical_2025_code"], row["current_2026_code"]): row for row in read_rows(CROSSWALK)}
 
-    assert rows[("BR7008", "BR7022")]["mapping_status"] == "HISTORICAL_CODE_RECODED_TO_CURRENT"
-    assert rows[("BR7008", "BR7022")]["permits_2025_total"] == "43"
-    assert rows[("BR7008", "BR7022")]["permits_2026_total"] == "43"
-    assert rows[("BR7008", "BR7022")]["numeric_comparison_2025_to_2026"] == "MATCH"
+    assert rows[("BR7008", "BR7008")]["mapping_status"] == "EXACT_CODE_CURRENT"
+    assert rows[("BR7008", "BR7008")]["permits_2025_total"] == "43"
+    assert rows[("BR7008", "BR7008")]["permits_2026_total"] == "54"
+    assert rows[("BR7008", "BR7008")]["numeric_comparison_2025_to_2026"] == "DIFFERS"
 
-    assert rows[("BR7108", "BR7127")]["permits_2025_total"] == "27"
-    assert rows[("BR7108", "BR7127")]["permits_2026_total"] == "27"
-    assert rows[("BR7208", "BR7239")]["permits_2025_total"] == "6"
-    assert rows[("BR7208", "BR7239")]["permits_2026_total"] == "6"
+    assert rows[("BR7108", "BR7108")]["mapping_status"] == "EXACT_CODE_CURRENT"
+    assert rows[("BR7108", "BR7108")]["permits_2025_total"] == "27"
+    assert rows[("BR7108", "BR7108")]["permits_2026_total"] == "27"
+    assert rows[("BR7208", "BR7208")]["mapping_status"] == "EXACT_CODE_CURRENT"
+    assert rows[("BR7208", "BR7208")]["permits_2025_total"] == "6"
+    assert rows[("BR7208", "BR7208")]["permits_2026_total"] == "6"
 
 
 def test_black_bear_br7307_code_reuse_is_preserved_not_collapsed() -> None:
@@ -79,4 +81,4 @@ def test_black_bear_current_only_and_retired_rows_are_explicit_review_evidence()
     assert by_current["BR7324"]["mapping_status"] == "CURRENT_CONSERVATION_NO_DRAW_SOURCE"
     assert by_2024["BR7019"]["mapping_status"] == "RETIRED_AFTER_2024_NO_2025_OR_2026_MATCH"
     assert summary["draw_2025_rows_mapped_to_current_after_crosswalk"] == 97
-    assert summary["high_confidence_recode_count"] == 4
+    assert summary["high_confidence_recode_count"] == 1

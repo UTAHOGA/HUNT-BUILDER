@@ -135,9 +135,8 @@ def _is_limited_entry_or_cwmu_turkey(row: Mapping[str, object]) -> bool:
         )
     )
     return (
-        hunt_type in {"limited entry", "cwmu"}
+        hunt_type == "limited entry"
         or "limited entry" in text
-        or "cwmu" in text
         or (draw_design == "max/weighted split" and _source_proves_bonus_turkey(row))
         or source_backed_adult_draw_result
     )
@@ -202,6 +201,7 @@ def _is_proven_bonus_turkey_truth_row(row: Mapping[str, object]) -> bool:
 def _is_modeled_turkey_db_row(row: Mapping[str, object]) -> bool:
     return (
         _is_turkey(row)
+        and "cwmu" not in _joined_text(row)
         and _is_limited_entry_or_cwmu_turkey(row)
         and not is_general_season_turkey_row(row)
         and not is_remaining_turkey_row(row)
@@ -920,6 +920,8 @@ def build_youth_turkey_predictions(
     for db_row in review_rows:
         hunt_code = _clean(db_row.get("hunt_code")).upper()
         if not hunt_code:
+            continue
+        if "cwmu" in _joined_text(db_row):
             continue
         if not (_is_turkey(db_row) and _is_limited_entry_or_cwmu_turkey(db_row)):
             continue

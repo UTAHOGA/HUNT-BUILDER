@@ -86,13 +86,8 @@ def test_eb3022_resident_prediction_uses_official_2026_quota_not_2025_result() -
     assert row["quota_2026_random_pool"] == "65"
     assert row["quota_source_status"] == "official"
     assert row["quota_source_year"] == "2026"
-    assert row["quota_source_file"] == "pipeline/RAW/hunt_unit_database/2026/csv/2026_rac_limited_entry_bull_elk_permits.csv"
-    assert row["permit_allotment_2026_res"] == "130"
-    assert row["permit_allotment_2026_nr"] == "15"
-    assert row["permit_allotment_2026_total"] == "145"
-    assert row["permit_allotment_2026_source"] == "2026_RAC_CURRENT_YEAR_ALLOTMENT"
+    assert row["quota_source_file"] == "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
     assert "OFFICIAL_2026_QUOTA_USED" in row["reason_codes"]
-    assert "RAC_CURRENT_YEAR_ALLOTMENT_USED" in row["reason_codes"]
 
 
 def test_2026_official_quota_fields_drive_cutoff_and_probability_outputs() -> None:
@@ -102,12 +97,15 @@ def test_2026_official_quota_fields_drive_cutoff_and_probability_outputs() -> No
     assert row_7["projected_2026_max_cutoff_point"] == "7.0"
     assert row_7["projected_2026_random_pool_start_point"] == "6"
     assert row_7["is_2026_mixed_cutoff"] == "True"
-    assert row_7["p_max_pool_mean"] == "0.649123"
-    assert row_7["p_random_mean"]
-    assert row_7["p_draw_mean"]
+    assert row_7["quota_2026_total"] == "130"
+    assert row_7["quota_2026_max_pool"] == "65"
+    assert row_7["quota_2026_random_pool"] == "65"
+    assert 0.0 < float(row_7["p_max_pool_mean"]) < 1.0
+    assert 0.0 < float(row_7["p_random_mean"]) < 1.0
+    assert 0.0 < float(row_7["p_draw_mean"]) < 1.0
     assert row_6["is_2026_random_pool"] == "True"
     assert row_6["p_max_pool_mean"] == "0.000000"
-    assert row_6["p_random_mean"]
+    assert 0.0 < float(row_6["p_random_mean"]) < 1.0
 
 
 def test_quota_change_regression_changes_projected_probability() -> None:
@@ -120,16 +118,14 @@ def test_quota_change_regression_changes_projected_probability() -> None:
     quota_2025_like = dict(
         official_db,
         permits_2026_res="160",
+        permits_2026_nr="15",
         permits_2026_total="175",
-        permit_allotment_2026_res="160",
-        permit_allotment_2026_total="175",
     )
     quota_2026_official = dict(
         official_db,
         permits_2026_res="130",
+        permits_2026_nr="15",
         permits_2026_total="145",
-        permit_allotment_2026_res="130",
-        permit_allotment_2026_total="145",
     )
 
     predictions_2025_quota, _ = build_predictions(

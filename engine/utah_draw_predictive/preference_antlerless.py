@@ -288,10 +288,11 @@ def _forecast_applicant_ladder(
 ) -> dict[int, int]:
     prior_points = sorted(int(points) for points in latest_ladder.keys())
     max_points = max(prior_points) if prior_points else 0
+    tail_buffer = 6
     forecast: dict[int, int] = {}
     forecast[0] = _round_count(latest_ladder.get(0, {}).get("eligible", 0) * zero_growth)
 
-    for points in range(1, max_points + 2):
+    for points in range(1, max_points + tail_buffer + 1):
         unsuccessful_prior = max(
             int(latest_ladder.get(points - 1, {}).get("eligible", 0)) - int(latest_ladder.get(points - 1, {}).get("drawn", 0)),
             0,
@@ -300,9 +301,12 @@ def _forecast_applicant_ladder(
         switch_proxy = int(latest_ladder.get(points, {}).get("eligible", 0)) * 0.08
         forecast[points] = _round_count(retained + switch_proxy)
 
-    while forecast and forecast.get(max(forecast.keys()), 0) == 0:
-        forecast.pop(max(forecast.keys()))
     return forecast
+
+
+def _structural_point_levels(latest_ladder: Mapping[int, dict[str, int]]) -> list[int]:
+    """Return official point levels from the source table, including zero rows."""
+    return sorted({int(points) for points in latest_ladder.keys()})
 
 
 def build_preference_antlerless_predictions(
@@ -327,6 +331,13 @@ def build_preference_antlerless_predictions(
     years_by_key: dict[tuple[str, str, str], list[int]] = defaultdict(list)
     for draw_system_type, year, hunt_code, residency in ladders:
         years_by_key[(draw_system_type, hunt_code, residency)].append(year)
+    max_points_by_type_residency: dict[tuple[str, str], int] = defaultdict(int)
+    for (draw_system_type, year, _hunt_code, residency), ladder in ladders.items():
+        if year == latest_source_year and ladder:
+            max_points_by_type_residency[(draw_system_type, residency)] = max(
+                max_points_by_type_residency[(draw_system_type, residency)],
+                max(int(points) for points in ladder.keys()),
+            )
 
     for (draw_system_type, hunt_code), db_row in sorted(current_codes.items()):
         forecast_total = _to_int(db_row.get("permits_2026_total"))
@@ -351,7 +362,12 @@ def build_preference_antlerless_predictions(
                 continue
 
             forecast_ladder = _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)
-            if not forecast_ladder:
+            global_max_points = max_points_by_type_residency.get((draw_system_type, residency), 0)
+            global_structural_points = set(range(0, global_max_points + 3))
+            for structural_point in global_structural_points:
+                forecast_ladder.setdefault(structural_point, 0)
+            structural_points = set(_structural_point_levels(latest_ladder)) | global_structural_points
+            if not forecast_ladder and not structural_points:
                 continue
 
             prior_applicant_ladder = {points: int(values["eligible"]) for points, values in latest_ladder.items()}
@@ -359,10 +375,12 @@ def build_preference_antlerless_predictions(
             forecast_guaranteed = _guaranteed_level(forecast_ladder, forecast_quota)
 
             running_above = 0
-            for points in sorted(forecast_ladder.keys(), reverse=True):
-                applicants_at_level = int(forecast_ladder.get(points, 0))
-                if applicants_at_level <= 0:
+            for points in sorted(set(forecast_ladder) | set(structural_points), reverse=True):
+                forecast_applicants_at_level = int(forecast_ladder.get(points, 0))
+                is_structural_zero_point = forecast_applicants_at_level <= 0 and points in structural_points
+                if forecast_applicants_at_level <= 0 and not is_structural_zero_point:
                     continue
+                applicants_at_level = forecast_applicants_at_level if forecast_applicants_at_level > 0 else 1
                 applicants_above = running_above
                 probability = _preference_probability(forecast_quota, applicants_above, applicants_at_level)
                 gap = (forecast_guaranteed - points) if forecast_guaranteed is not None else None
@@ -418,7 +436,8 @@ def build_preference_antlerless_predictions(
                         "draw_system_type": draw_system_type,
                     }
                 )
-                running_above += applicants_at_level
+                if forecast_applicants_at_level > 0:
+                    running_above += forecast_applicants_at_level
 
     return rows
 

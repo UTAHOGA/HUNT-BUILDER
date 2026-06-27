@@ -10,6 +10,14 @@ def clamp(value: float, lo: float, hi: float) -> float:
     return max(lo, min(hi, value))
 
 
+DEFAULT_RETENTION_PRIOR = 0.85
+STRUCTURE_RETENTION_PRIORS = {
+    "HAS_GUARANTEED_STACK_ABOVE_MIXED_CUTOFF": 0.8475305455097036,
+    "TOP_POINT_MIXED": 0.860091743119952,
+}
+STRUCTURE_RETENTION_EVIDENCE_STRENGTH = 200.0
+
+
 @dataclass(frozen=True)
 class CohortCarryForward:
     unsuccessful_at_level: int
@@ -25,12 +33,40 @@ class RolloverForecast:
     source_year: int
     retention_rate_raw: float
     retention_rate_smoothed: float
+    rollover_rule: str
+    cutoff_structure: str
+    mixed_cutoff_point: int | None
+    anchor_next_point: int | None
+    structure_retention_rate_raw: float | None
+    structure_retention_rate_smoothed: float | None
+    structure_retention_prior: float | None
+    structure_retention_matched_years: int
+    structure_retention_unsuccessful_total: int
     total_source_applicants: int
     total_unsuccessful_source_applicants: int
     total_rolled_forward_applicants: int
     total_lower_point_additions: int
     total_projected_applicants: int
     applicants_by_points: dict[int, int]
+
+
+@dataclass(frozen=True)
+class CutoffStructure:
+    structure: str
+    top_point: int | None
+    mixed_cutoff_point: int | None
+    mixed_cutoff_unsuccessful: int
+    guaranteed_stack_points: tuple[int, ...]
+
+
+@dataclass(frozen=True)
+class StructureRetentionCalibration:
+    structure: str
+    raw_rate: float
+    smoothed_rate: float
+    prior_rate: float
+    matched_years: int
+    unsuccessful_total: int
 
 
 def compute_unsuccessful(total_eligible: int, bonus_permits: int, regular_permits: int) -> int:
@@ -46,6 +82,20 @@ def smooth_retention_rate(raw: float, prior: float = 0.85, strength: float = 0.3
     return clamp(smoothed, 0.0, 1.25)
 
 
+def smooth_retention_rate_with_evidence(
+    raw: float,
+    *,
+    prior: float,
+    evidence_total: int,
+    prior_strength: float = STRUCTURE_RETENTION_EVIDENCE_STRENGTH,
+) -> float:
+    if evidence_total <= 0:
+        return clamp(prior, 0.0, 1.25)
+    evidence_weight = evidence_total / (evidence_total + max(prior_strength, 1.0))
+    smoothed = (evidence_weight * raw) + ((1.0 - evidence_weight) * prior)
+    return clamp(smoothed, 0.0, 1.25)
+
+
 def _eligible(row: Mapping[str, int]) -> int:
     return max(0, int(row.get("eligible", 0)))
 
@@ -55,6 +105,54 @@ def _unsuccessful(row: Mapping[str, int]) -> int:
         int(row.get("eligible", 0)),
         int(row.get("bonus", 0)),
         int(row.get("regular", 0)),
+    )
+
+
+def detect_cutoff_structure(point_map: Mapping[int, Mapping[str, int]]) -> CutoffStructure:
+    if not point_map:
+        return CutoffStructure(
+            structure="NO_POINT_HISTORY",
+            top_point=None,
+            mixed_cutoff_point=None,
+            mixed_cutoff_unsuccessful=0,
+            guaranteed_stack_points=(),
+        )
+
+    points_desc = sorted(point_map.keys(), reverse=True)
+    top_point = points_desc[0] if points_desc else None
+    guaranteed_stack: list[int] = []
+
+    for points in points_desc:
+        row = point_map[points]
+        if _eligible(row) > 0 and _unsuccessful(row) <= 0:
+            guaranteed_stack.append(points)
+            continue
+        break
+
+    mixed_cutoff_point: int | None = None
+    mixed_cutoff_unsuccessful = 0
+    for points in points_desc:
+        unsuccessful = _unsuccessful(point_map[points])
+        if unsuccessful > 0:
+            mixed_cutoff_point = points
+            mixed_cutoff_unsuccessful = unsuccessful
+            break
+
+    if mixed_cutoff_point is None:
+        structure = "ALL_APPLICANT_POINTS_GUARANTEED"
+    elif mixed_cutoff_point == top_point:
+        structure = "TOP_POINT_MIXED"
+    elif guaranteed_stack:
+        structure = "HAS_GUARANTEED_STACK_ABOVE_MIXED_CUTOFF"
+    else:
+        structure = "MIXED_CUTOFF_WITH_NONCONTIGUOUS_TOP_PATTERN"
+
+    return CutoffStructure(
+        structure=structure,
+        top_point=top_point,
+        mixed_cutoff_point=mixed_cutoff_point,
+        mixed_cutoff_unsuccessful=mixed_cutoff_unsuccessful,
+        guaranteed_stack_points=tuple(guaranteed_stack),
     )
 
 
@@ -83,6 +181,52 @@ def infer_group_retention_rate(point_history_by_year: Mapping[int, Mapping[int, 
 
     raw = infer_retention_rate(unsuccessful_prior, observed_next) if unsuccessful_prior > 0 else 0.85
     return raw, smooth_retention_rate(raw)
+
+
+def infer_structure_retention_rates(
+    point_history_by_year: Mapping[int, Mapping[int, Mapping[str, int]]],
+) -> dict[str, StructureRetentionCalibration]:
+    grouped: dict[str, dict[str, int]] = {}
+    years = sorted(point_history_by_year)
+
+    for year in years:
+        next_year = year + 1
+        if next_year not in point_history_by_year:
+            continue
+        current = point_history_by_year[year]
+        nxt = point_history_by_year[next_year]
+        structure = detect_cutoff_structure(current)
+        if structure.mixed_cutoff_point is None or structure.mixed_cutoff_unsuccessful <= 0:
+            continue
+
+        bucket = grouped.setdefault(
+            structure.structure,
+            {"matched_years": 0, "unsuccessful_total": 0, "observed_next_total": 0},
+        )
+        bucket["matched_years"] += 1
+        bucket["unsuccessful_total"] += structure.mixed_cutoff_unsuccessful
+        bucket["observed_next_total"] += _eligible(nxt.get(structure.mixed_cutoff_point + 1, {}))
+
+    calibrations: dict[str, StructureRetentionCalibration] = {}
+    for structure, sample in grouped.items():
+        unsuccessful_total = int(sample["unsuccessful_total"])
+        observed_next_total = int(sample["observed_next_total"])
+        raw_rate = infer_retention_rate(unsuccessful_total, observed_next_total) if unsuccessful_total > 0 else DEFAULT_RETENTION_PRIOR
+        prior_rate = STRUCTURE_RETENTION_PRIORS.get(structure, DEFAULT_RETENTION_PRIOR)
+        smoothed_rate = smooth_retention_rate_with_evidence(
+            raw_rate,
+            prior=prior_rate,
+            evidence_total=unsuccessful_total,
+        )
+        calibrations[structure] = StructureRetentionCalibration(
+            structure=structure,
+            raw_rate=raw_rate,
+            smoothed_rate=smoothed_rate,
+            prior_rate=prior_rate,
+            matched_years=int(sample["matched_years"]),
+            unsuccessful_total=unsuccessful_total,
+        )
+    return calibrations
 
 
 def estimate_lower_point_additions(
@@ -126,8 +270,23 @@ def roll_forward_applicant_stack(
         raise ValueError(f"source_year {source_year} is not present in point history")
 
     raw_retention, smoothed_retention = infer_group_retention_rate(point_history_by_year)
-    applied_retention = smoothed_retention if retention_rate is None else clamp(retention_rate, 0.0, 1.25)
     source = point_history_by_year[source_year]
+    source_structure = detect_cutoff_structure(source)
+    structure_calibrations = infer_structure_retention_rates(point_history_by_year)
+    structure_calibration = structure_calibrations.get(source_structure.structure)
+
+    if retention_rate is not None:
+        applied_retention = clamp(retention_rate, 0.0, 1.25)
+        rollover_rule = "EXPLICIT_RETENTION_OVERRIDE"
+    elif structure_calibration is not None:
+        applied_retention = structure_calibration.smoothed_rate
+        rollover_rule = "MIXED_CUTOFF_STRUCTURE_CALIBRATED"
+    elif source_structure.structure in STRUCTURE_RETENTION_PRIORS and source_structure.mixed_cutoff_point is not None:
+        applied_retention = STRUCTURE_RETENTION_PRIORS[source_structure.structure]
+        rollover_rule = "MIXED_CUTOFF_STRUCTURE_PRIOR"
+    else:
+        applied_retention = smoothed_retention
+        rollover_rule = "GROUP_WIDE_RETENTION_FALLBACK"
     additions = estimate_lower_point_additions(point_history_by_year, source_year, applied_retention)
 
     projected: dict[int, int] = {}
@@ -150,6 +309,15 @@ def roll_forward_applicant_stack(
         source_year=source_year,
         retention_rate_raw=raw_retention,
         retention_rate_smoothed=applied_retention,
+        rollover_rule=rollover_rule,
+        cutoff_structure=source_structure.structure,
+        mixed_cutoff_point=source_structure.mixed_cutoff_point,
+        anchor_next_point=None if source_structure.mixed_cutoff_point is None else source_structure.mixed_cutoff_point + 1,
+        structure_retention_rate_raw=None if structure_calibration is None else structure_calibration.raw_rate,
+        structure_retention_rate_smoothed=None if structure_calibration is None else structure_calibration.smoothed_rate,
+        structure_retention_prior=None if structure_calibration is None else structure_calibration.prior_rate,
+        structure_retention_matched_years=0 if structure_calibration is None else structure_calibration.matched_years,
+        structure_retention_unsuccessful_total=0 if structure_calibration is None else structure_calibration.unsuccessful_total,
         total_source_applicants=sum(_eligible(row) for row in source.values()),
         total_unsuccessful_source_applicants=total_unsuccessful,
         total_rolled_forward_applicants=total_rolled,

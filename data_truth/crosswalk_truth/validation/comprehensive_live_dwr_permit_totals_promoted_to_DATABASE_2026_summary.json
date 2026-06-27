@@ -1,13 +1,18 @@
 {
   "artifact": "comprehensive_live_dwr_permit_totals_promoted_to_DATABASE_2026",
-  "changed_rows": 164,
+  "changed_rows": 137,
   "database_path": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
   "guardrail": "Live DWR numeric 2026 permit totals supersede older allotment-derived values. DWR no-quota rows preserve reviewed database-entered values.",
-  "live_database_matched_row_count": 1389,
-  "live_row_count": 1389,
-  "missing_database_codes": [],
-  "missing_database_count": 0,
-  "numeric_promoted_rows": 1068,
+  "live_database_matched_row_count": 1400,
+  "live_row_count": 1406,
+  "missing_database_codes": [
+    "LP5042",
+    "LP5045",
+    "LP5052",
+    "LP5073"
+  ],
+  "missing_database_count": 4,
+  "numeric_promoted_rows": 1079,
   "outputs": {
     "audit_csv": "data_truth/crosswalk_truth/validation/comprehensive_live_dwr_permit_totals_promoted_to_DATABASE_2026.csv",
     "report_md": "processed_data/comprehensive_live_dwr_permit_totals_promoted_to_DATABASE_2026.md",
@@ -16,15 +21,15 @@
   "preserved_no_quota_rows": 321,
   "promotion_status_counts": {
     "PRESERVED_DATABASE_VALUE_NO_LIVE_DWR_QUOTA": 321,
-    "PROMOTED_LIVE_DWR_OVER_ALLOTMENT": 164,
-    "UNCHANGED_ALREADY_MATCHED_LIVE_DWR": 904
+    "PROMOTED_LIVE_DWR_OVER_ALLOTMENT": 137,
+    "UNCHANGED_ALREADY_MATCHED_LIVE_DWR": 942
   },
   "shape_status_counts": {
-    "LIVE_DWR_CWMU_TOTAL_ONLY_FROM_QUOTA_RES": 283,
+    "LIVE_DWR_CWMU_TOTAL_ONLY_FROM_QUOTA_RES": 282,
     "LIVE_DWR_NO_QUOTA_PUBLISHED": 321,
-    "LIVE_DWR_RES_NR_SPLIT": 594,
-    "LIVE_DWR_TOTAL_ONLY": 191
+    "LIVE_DWR_RES_NR_SPLIT": 605,
+    "LIVE_DWR_TOTAL_ONLY": 192
   },
-  "snapshot_utc": "2026-05-26T22:12:40+00:00",
+  "snapshot_utc": "2026-06-26T14:57:38+00:00",
   "source_snapshot": "data_truth/crosswalk_truth/raw_inventory/live_dwr_hunt_planner_permit_numbers_comprehensive_2026.csv"
 }

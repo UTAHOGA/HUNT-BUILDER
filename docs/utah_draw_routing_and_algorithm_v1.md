@@ -83,6 +83,8 @@ elif hunt_code is general-season youth elk:
     draw_system_type = YOUTH_OTC_OR_AVAILABILITY
 elif row is private-lands-only antlerless elk:
     draw_system_type = PRIVATE_LANDS_ONLY_ANTLERLESS_ELK
+elif DWR/Hunt Planner does not publish permit numbers for a private-land, landowner, or reviewed no-quota row:
+    draw_system_type = NO_PUBLIC_DRAW_ODDS_NO_PUBLISHED_PERMIT_DATA
 elif row is cougar/mountain lion O.T.C. / allotment:
     draw_system_type = MOUNTAIN_LION_OTC_ALLOTMENT
 else:
@@ -105,6 +107,9 @@ Rules:
 
 - If DWR publishes resident and nonresident values, keep the split.
 - If DWR publishes only total, keep it total-only. Do not invent a resident/nonresident split.
+- A total-only row displays the total permit value while resident and nonresident permit cells remain blank. This is expected for General Season preference totals, O.T.C. / capped rows, CWMU totals, conservation/reference rows, tribal/reference rows, and reviewed total-only turkey rows when the source does not publish a residency split.
+- When a runtime prediction row is keyed to `Resident` or `Nonresident`, total-only permit authority must not be copied into that lane as `Q_res` or `Q_nr`. The engine may preserve `Q_total` for display/audit, but it must not create lane max-pool/random-pool quotas from that value.
+- If DWR/Hunt Planner does not publish permit numbers at all, keep all 2026 permit columns blank, do not render a total, and exclude the row from public prediction odds.
 - CWMU and many private/overlay rows are total-only unless DWR publishes a split.
 - Conservation, landowner, mitigation, and expo overlays must not be merged into public draw quotas unless a source explicitly says they are public draw permits.
 
@@ -138,7 +143,8 @@ Interpretation:
 
 - `Q_max` is the permit allotment reserved for the highest-point pass.
 - `Q_random` is the remaining permit allotment assigned to the weighted random pass.
-- If the source publishes a total-only row, the same split is applied to the total for that residency lane.
+- If the source publishes a total-only row, preserve the total for display/audit, but do not split it into resident or nonresident lane quotas unless DWR publishes an actual residency split.
+- If the source publishes no permit count for a private-land, landowner, or reviewed no-quota row, no max-pool or random-pool quota is created.
 - The split happens per hunt code and residency lane, using the official published quota or allotment as the input.
 - If resident and nonresident allotments differ, each lane gets its own split instead of sharing a combined pool.
 
@@ -291,6 +297,7 @@ Guardrails:
 - `MAX POOL` is descriptive only. It does not force 100 percent odds.
 - If the row is an O.T.C. / allotment family, keep draw probability null and use status/allotment fields instead.
 - If the row has only total permits and no published residency split, do not fabricate resident/nonresident odds.
+- If the row has only total permits and the runtime surface is split into resident/nonresident rows, mark the row with total-only/no-split reason codes and skip quota-ratio adjustment for that residency lane.
 - If the row is historical-only, discontinued, or lacks a definite current crosswalk, do not route it to a current prediction model.
 
 ## Recommended Engine Changes

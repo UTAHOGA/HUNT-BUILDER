@@ -618,10 +618,10 @@ def _write_bear_draw_odds_source_audit_artifacts(
 
 def _write_sportsman_artifacts(
     output_dir: Path,
-    prediction_rows: list[dict[str, object]],
+    sportsman_rows: list[dict[str, object]],
     sportsman_report: dict[str, object],
 ) -> tuple[Path, Path]:
-    sportsman_rows = [row for row in prediction_rows if str(row.get("draw_system_type", "")).strip() == SPORTSMAN_DRAW_SYSTEM_TYPE]
+    sportsman_rows = [row for row in sportsman_rows if str(row.get("draw_system_type", "")).strip() == SPORTSMAN_DRAW_SYSTEM_TYPE]
     csv_path = output_dir / "sportsman_permit_predictions_v1.csv"
     fieldnames = list(dict.fromkeys(key for row in sportsman_rows for key in row.keys())) if sportsman_rows else [
         "hunt_code",
@@ -787,9 +787,9 @@ def _remove_no_hunt_code_rows(rows: list[dict[str, object]], source_label: str) 
 
 
 def _quota_info(row: dict[str, str]) -> tuple[bool, bool]:
-    raw_res = str(row.get("permit_allotment_2026_res") or row.get("permits_2026_res", "")).strip()
-    raw_nr = str(row.get("permit_allotment_2026_nr") or row.get("permits_2026_nr", "")).strip()
-    raw_total = str(row.get("permit_allotment_2026_total") or row.get("permits_2026_total", "")).strip()
+    raw_res = str(row.get("permits_2026_res", "")).strip()
+    raw_nr = str(row.get("permits_2026_nr", "")).strip()
+    raw_total = str(row.get("permits_2026_total", "")).strip()
     quota_blank = raw_res == "" and raw_nr == "" and raw_total == ""
     total = 0
     for value in (raw_res, raw_nr, raw_total):
@@ -1314,8 +1314,14 @@ def materialize_outputs(
         successor_rows = _replace_rows_by_draw_system_type(successor_rows, [dict(row) for row in bear_bonus_rows], {BEAR_DRAW_SYSTEM_TYPE})
     if sportsman_rows:
         sportsman_rows = [sanitize_modeled_probability_fields(dict(row)) for row in sportsman_rows]
-        prediction_rows = _replace_rows_by_draw_system_type(prediction_rows, sportsman_rows, {SPORTSMAN_DRAW_SYSTEM_TYPE})
-        successor_rows = _replace_rows_by_draw_system_type(successor_rows, [dict(row) for row in sportsman_rows], {SPORTSMAN_DRAW_SYSTEM_TYPE})
+        prediction_rows = [
+            row for row in prediction_rows
+            if str(row.get("draw_system_type", "")).strip() != SPORTSMAN_DRAW_SYSTEM_TYPE
+        ]
+        successor_rows = [
+            row for row in successor_rows
+            if str(row.get("draw_system_type", "")).strip() != SPORTSMAN_DRAW_SYSTEM_TYPE
+        ]
     if private_lands_rows:
         private_lands_rows = [sanitize_modeled_probability_fields(dict(row)) for row in private_lands_rows]
         prediction_rows = _replace_rows_by_draw_system_type(prediction_rows, private_lands_rows, {PRIVATE_LANDS_ANTLERLESS_ELK_DRAW_SYSTEM_TYPE})
@@ -1402,6 +1408,15 @@ def materialize_outputs(
         "applicant_rollover_source_year",
         "retention_rate_raw",
         "retention_rate_smoothed",
+        "rollover_rule",
+        "rollover_cutoff_structure",
+        "rollover_mixed_cutoff_point",
+        "rollover_anchor_next_point",
+        "structure_retention_rate_raw",
+        "structure_retention_rate_smoothed",
+        "structure_retention_prior",
+        "structure_retention_matched_years",
+        "structure_retention_unsuccessful_total",
         "forecast_applicants_at_level",
         "forecast_applicants_above",
         "rolled_forward_total_applicants",
@@ -1508,7 +1523,7 @@ def materialize_outputs(
         bear_draw_audit_rows,
         bear_draw_audit_summary,
     )
-    sportsman_csv_path, sportsman_json_path = _write_sportsman_artifacts(output_dir, prediction_rows, sportsman_report)
+    sportsman_csv_path, sportsman_json_path = _write_sportsman_artifacts(output_dir, sportsman_rows, sportsman_report)
     private_lands_csv_path, private_lands_json_path = _write_private_lands_antlerless_elk_artifacts(output_dir, private_lands_rows, private_lands_report)
     youth_csv_path, youth_json_path = _write_youth_artifacts(output_dir, prediction_rows, youth_report)
     mountain_lion_csv_path, mountain_lion_json_path = _write_mountain_lion_artifacts(output_dir, prediction_rows, mountain_lion_report)

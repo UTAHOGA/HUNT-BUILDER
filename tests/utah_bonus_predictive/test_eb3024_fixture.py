@@ -1,7 +1,10 @@
 from engine.utah_bonus_predictive.cohort_forecast import (
+    STRUCTURE_RETENTION_PRIORS,
     compute_unsuccessful,
+    detect_cutoff_structure,
     infer_retention_rate,
     roll_forward_applicant_stack,
+    smooth_retention_rate_with_evidence,
 )
 from engine.utah_bonus_predictive.monte_carlo import compute_bonus_pool_probability
 from scripts.build_predictive_bonus_engine_v1 import deterministic_pool_probabilities
@@ -63,4 +66,47 @@ def test_eb3024_2026_mixed_cutoff_probability_after_rollover() -> None:
     assert zones[29] == "max_pool_cutoff_mixed"
     assert zones[28] == "random_pool"
     assert p_draw[29] == p_max[29] + ((1 - p_max[29]) * p_random[29])
+
+
+def test_detect_cutoff_structure_marks_guaranteed_stack_above_mixed_cutoff() -> None:
+    point_map = {
+        30: {"eligible": 1, "bonus": 1, "regular": 0},
+        29: {"eligible": 5, "bonus": 4, "regular": 0},
+        28: {"eligible": 21, "bonus": 0, "regular": 0},
+    }
+    structure = detect_cutoff_structure(point_map)
+    assert structure.structure == "HAS_GUARANTEED_STACK_ABOVE_MIXED_CUTOFF"
+    assert structure.top_point == 30
+    assert structure.mixed_cutoff_point == 29
+    assert structure.mixed_cutoff_unsuccessful == 1
+    assert structure.guaranteed_stack_points == (30,)
+
+
+def test_roll_forward_uses_structure_calibrated_retention_when_available() -> None:
+    history = {
+        2023: {
+            30: {"eligible": 2, "bonus": 2, "regular": 0},
+            29: {"eligible": 100, "bonus": 40, "regular": 0},
+            28: {"eligible": 60, "bonus": 0, "regular": 0},
+        },
+        2024: {
+            31: {"eligible": 2, "bonus": 2, "regular": 0},
+            30: {"eligible": 50, "bonus": 40, "regular": 0},
+            29: {"eligible": 80, "bonus": 0, "regular": 0},
+        },
+    }
+    rollover = roll_forward_applicant_stack(history, 2024)
+    expected = smooth_retention_rate_with_evidence(
+        50 / 60,
+        prior=STRUCTURE_RETENTION_PRIORS["HAS_GUARANTEED_STACK_ABOVE_MIXED_CUTOFF"],
+        evidence_total=60,
+    )
+
+    assert rollover.rollover_rule == "MIXED_CUTOFF_STRUCTURE_CALIBRATED"
+    assert rollover.cutoff_structure == "HAS_GUARANTEED_STACK_ABOVE_MIXED_CUTOFF"
+    assert rollover.mixed_cutoff_point == 30
+    assert rollover.anchor_next_point == 31
+    assert round(rollover.structure_retention_rate_raw or 0.0, 6) == round(50 / 60, 6)
+    assert round(rollover.structure_retention_rate_smoothed or 0.0, 6) == round(expected, 6)
+    assert round(rollover.retention_rate_smoothed, 6) == round(expected, 6)
 

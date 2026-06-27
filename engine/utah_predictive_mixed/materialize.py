@@ -11,13 +11,14 @@ from engine.utah_predictive_mixed.harvest_features import harvest_adjusted_proba
 from engine.utah_predictive_mixed.mixed_probability import blend_probability, format_display_odds, uncertainty_bands
 from engine.utah_predictive_mixed.models import BlendWeights
 from engine.utah_predictive_mixed.prior_year import prior_year_baseline, to_float
-from engine.utah_predictive_mixed.quota import quota_adjusted_probability, quota_for_row
+from engine.utah_predictive_mixed.quota import is_no_published_permit_authority, quota_adjusted_probability, quota_for_row
 from engine.utah_predictive_mixed.rollover import rollover_probability_from_pools
 
 
 ROOT = Path(__file__).resolve().parents[2]
 RUNTIME_DRAFTS = ROOT / "data_model" / "runtime_drafts"
 PROCESSED = ROOT / "processed_data"
+DATABASE = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "DATABASE.csv"
 
 REQUIRED_FIELDS = [
     "prediction_year",
@@ -31,6 +32,10 @@ REQUIRED_FIELDS = [
     "draw_system_type",
     "algorithm_status",
     "public_permits_2025",
+    "permits_2026_res",
+    "permits_2026_nr",
+    "permits_2026_total",
+    "permits_2026_source",
     "permit_allotment_2026_res",
     "permit_allotment_2026_nr",
     "permit_allotment_2026_total",
@@ -95,6 +100,27 @@ REQUIRED_FIELDS = [
 ]
 
 NON_DRAW_STATUSES = {"MODELED_AVAILABILITY", "MODELED_ALLOCATION", "IN_SCOPE_MODEL_PENDING", "EXCLUDED_NOT_PREDICTIVE_DRAW"}
+STALE_QUOTA_REASON_CODES = {
+    "RAC_CURRENT_YEAR_ALLOTMENT_USED",
+    "DATABASE_2026_PERMITS_USED",
+    "DATABASE_2026_PUBLISHED_PERMITS_USED",
+    "QUOTA_ADJUSTED_COMPONENT_USED",
+    "QUOTA_RATIO_DEFAULTED",
+    "QUOTA_RATIO_CAPPED_LOW",
+    "QUOTA_RATIO_CAPPED_HIGH",
+    "QUOTA_INCREASE",
+    "QUOTA_DECREASE",
+    "QUOTA_UNCHANGED",
+    "TOTAL_ONLY_PERMIT_AUTHORITY",
+    "NO_RESIDENCY_SPLIT_PUBLISHED",
+    "NO_RESIDENCY_LANE_QUOTA",
+    "TOTAL_ONLY_QUOTA",
+    "TOTAL_ONLY_QUOTA_RATIO_SKIPPED_NO_RESIDENCY_SPLIT",
+    "NO_PUBLISHED_PERMIT_AUTHORITY",
+    "NO_QUOTA_PUBLISHED",
+    "PUBLIC_DRAW_ODDS_EXCLUDED_NO_QUOTA",
+    "NO_PUBLISHED_QUOTA_RATIO_SKIPPED",
+}
 
 
 def read_rows(path: Path) -> list[dict[str, str]]:
@@ -106,6 +132,11 @@ def read_json(path: Path) -> dict[str, object]:
     if not path.exists():
         return {}
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def clean(value: object) -> str:
+    text = str(value or "").strip()
+    return "" if text.lower() == "nan" else text
 
 
 def write_rows(path: Path, rows: list[dict[str, str]], fields: list[str]) -> None:
@@ -138,8 +169,87 @@ def merge_reason_codes(*parts: object) -> str:
     return "|".join(codes)
 
 
+def scrub_stale_quota_reason_codes(raw_codes: object) -> str:
+    return merge_reason_codes(
+        [
+            token
+            for token in str(raw_codes or "").replace(";", "|").split("|")
+            if token.strip() and token.strip() not in STALE_QUOTA_REASON_CODES
+        ]
+    )
+
+
 def row_key(row: dict[str, str]) -> tuple[str, str, str]:
     return (row.get("hunt_code", ""), row.get("residency", ""), str(row.get("points", "")))
+
+
+def load_database_permit_authority() -> dict[str, dict[str, str]]:
+    rows = read_rows(DATABASE)
+    out: dict[str, dict[str, str]] = {}
+    for row in rows:
+        code = clean(row.get("hunt_code"))
+        if not code:
+            continue
+        authority = {
+            "permits_2026_res": clean(row.get("permits_2026_res")),
+            "permits_2026_nr": clean(row.get("permits_2026_nr")),
+            "permits_2026_total": clean(row.get("permits_2026_total")),
+            "permits_2026_source": clean(row.get("permits_2026_source")),
+            "permit_allotment_2026_res": clean(row.get("permits_2026_res")),
+            "permit_allotment_2026_nr": clean(row.get("permits_2026_nr")),
+            "permit_allotment_2026_total": clean(row.get("permits_2026_total")),
+            "permit_allotment_2026_source": clean(row.get("permits_2026_source")),
+            "permit_allotment_2026_source_file": DATABASE.relative_to(ROOT).as_posix(),
+            "permit_allotment_2026_status": clean(row.get("permits_2026_status")),
+        }
+        status = clean(row.get("permit_allotment_2026_status"))
+        if status:
+            authority["permit_allotment_2026_status"] = status
+        draw_system = clean(row.get("draw_2026_system_type"))
+        if draw_system:
+            authority["draw_system_type"] = draw_system
+        notes = clean(row.get("NOTES"))
+        if notes:
+            authority["NOTES"] = notes
+        if is_no_published_permit_authority({**row, **authority}):
+            authority.update(
+                {
+                    "permit_status": "NO_QUOTA_PUBLISHED",
+                    "permit_allocation_type": "NO_QUOTA_PUBLISHED",
+                    "data_status": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED",
+                    "truth_source_status": "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED",
+                    "availability_status": "NO_QUOTA_PUBLISHED",
+                    "quota_source_status": "NO_QUOTA_PUBLISHED",
+                    "algorithm_status": "EXCLUDED_NOT_PREDICTIVE_DRAW",
+                }
+            )
+        out[code] = authority
+    return out
+
+
+def public_permit_for_residency(authority: dict[str, str], residency: str) -> str:
+    res = authority.get("permits_2026_res", "")
+    nr = authority.get("permits_2026_nr", "")
+    total = authority.get("permits_2026_total", "")
+    total_only = bool(total) and not res and not nr
+    if total_only and residency in {"Resident", "Nonresident"}:
+        return ""
+    if residency == "Resident":
+        return res
+    if residency == "Nonresident":
+        return nr
+    return total
+
+
+def apply_database_permit_authority(rows: list[dict[str, str]], authority_by_code: dict[str, dict[str, str]]) -> None:
+    for row in rows:
+        authority = authority_by_code.get(clean(row.get("hunt_code")))
+        if not authority:
+            continue
+        row.update(authority)
+        public_permits = public_permit_for_residency(authority, clean(row.get("residency")))
+        row["public_permits_2026"] = public_permits
+        row["public_permits_2026_source"] = authority["permits_2026_source"] if public_permits else ""
 
 
 def build_prior_lookup(ladder_rows: list[dict[str, str]], draw_rows: list[dict[str, str]]) -> dict[tuple[str, str, str], dict[str, str]]:
@@ -159,24 +269,36 @@ def mixed_row(row: dict[str, str], prior: dict[str, str] | None, harvest: dict[s
     prior_row = prior or row
     p_prior, prior_fields, prior_reasons = prior_year_baseline(prior_row)
     quota_fields, quota_reasons = quota_for_row(row)
+    total_only_no_lane_quota = "NO_RESIDENCY_LANE_QUOTA" in quota_reasons
+    no_published_no_quota = "NO_PUBLISHED_PERMIT_AUTHORITY" in quota_reasons
     zero_quota = to_float(quota_fields.get("quota_2026_total")) is not None and to_float(quota_fields.get("quota_2026_total")) <= 0
     if zero_quota:
         quota_reasons.append("ZERO_QUOTA_NO_PREDICTION")
-    current_quota = quota_fields.get("quota_2026_total")
-    if str(current_quota).strip() == "":
+    current_quota = "" if total_only_no_lane_quota else quota_fields.get("quota_2026_total")
+    if str(current_quota).strip() == "" and not total_only_no_lane_quota:
         current_quota = row.get("public_permits_2026")
-    p_quota, _, quota_adjust_reasons = quota_adjusted_probability(
-        p_prior,
-        row.get("public_permits_2025") or prior_fields.get("prior_year_total_permits"),
-        current_quota,
-    )
+    if no_published_no_quota:
+        p_quota = None
+        quota_adjust_reasons = ["NO_PUBLISHED_QUOTA_RATIO_SKIPPED"]
+    elif total_only_no_lane_quota:
+        p_quota = None
+        quota_adjust_reasons = ["TOTAL_ONLY_QUOTA_RATIO_SKIPPED_NO_RESIDENCY_SPLIT"]
+    else:
+        p_quota, _, quota_adjust_reasons = quota_adjusted_probability(
+            p_prior,
+            row.get("public_permits_2025") or prior_fields.get("prior_year_total_permits"),
+            current_quota,
+        )
     p_rollover, rollover_reasons = rollover_probability_from_pools(
         row.get("p_max_pool_mean"), row.get("p_random_mean"), row.get("p_preference_draw")
     )
     if status == "MODELED_SPORTSMAN_DRAW":
         p_rollover = to_float(row.get("p_sportsman_draw") or row.get("p_draw") or row.get("p_draw_mean"))
     p_harvest, harvest_reasons = harvest_adjusted_probability(p_rollover, harvest or {})
-    if zero_quota:
+    if no_published_no_quota:
+        p_prior = p_quota = p_rollover = p_harvest = None
+        reasons.append("NO_PUBLIC_DRAW_ODDS_NO_PUBLISHED_QUOTA")
+    elif zero_quota:
         p_prior = p_quota = p_rollover = p_harvest = None
         reasons.append("ZERO_QUOTA_NO_PREDICTION")
     elif not is_draw_modeled:
@@ -246,7 +368,7 @@ def mixed_row(row: dict[str, str], prior: dict[str, str] | None, harvest: dict[s
             "model_version": MODEL_VERSION,
             "rule_version": RULE_VERSION,
             "reason_codes": merge_reason_codes(
-                row.get("reason_codes") or row.get("reason"),
+                scrub_stale_quota_reason_codes(row.get("reason_codes") or row.get("reason")),
                 reasons,
                 prior_reasons,
                 quota_reasons,
@@ -258,7 +380,7 @@ def mixed_row(row: dict[str, str], prior: dict[str, str] | None, harvest: dict[s
             ),
         }
     )
-    if p_draw is None and status in NON_DRAW_STATUSES:
+    if p_draw is None and (status in NON_DRAW_STATUSES or no_published_no_quota):
         out["display_odds_text"] = "Not available"
     if status == "MODELED_PREFERENCE" and row.get("p_preference_draw"):
         out["p_draw"] = row.get("p_preference_draw", "")
@@ -281,6 +403,10 @@ def materialize() -> dict[str, object]:
     successor_rows = read_rows(successor_path)
     ladder_rows = read_rows(ladder_path)
     draw_rows = read_rows(draw_path)
+    permit_authority = load_database_permit_authority()
+    apply_database_permit_authority(ml_rows, permit_authority)
+    apply_database_permit_authority(successor_rows, permit_authority)
+    apply_database_permit_authority(ladder_rows, permit_authority)
     harvest_rows = {row["hunt_code"]: row for row in read_rows(harvest_path) if row.get("hunt_code")}
     harvest_audit = read_json(harvest_audit_path)
     prior_lookup = build_prior_lookup(ladder_rows, draw_rows)
@@ -302,7 +428,7 @@ def materialize() -> dict[str, object]:
     write_rows(successor_path, successor_materialized, successor_fields)
     write_rows(ladder_path, ladder_materialized, ladder_fields)
 
-    duplicate_keys = len(materialized) - len({(r.get("hunt_code"), r.get("residency"), r.get("points")) for r in materialized})
+    duplicate_keys = len(materialized) - len({(r.get("hunt_code"), r.get("residency"), r.get("points"), r.get("draw_pool")) for r in materialized})
     status_counts = Counter(row.get("algorithm_status", "") for row in materialized)
     audit_rows = []
     for row in materialized:
@@ -376,3 +502,7 @@ def materialize() -> dict[str, object]:
         md.append(f"- {key}: {value}")
     (PROCESSED / "mixed_predictive_engine_2026_audit.md").write_text("\n".join(md) + "\n", encoding="utf-8")
     return summary
+
+
+if __name__ == "__main__":
+    print(json.dumps(materialize(), indent=2))

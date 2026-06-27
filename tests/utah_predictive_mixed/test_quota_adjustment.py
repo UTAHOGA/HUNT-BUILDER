@@ -38,14 +38,55 @@ def test_quota_adjustment_caps_and_codes() -> None:
 def test_zero_quota_is_preserved_as_nonpredictive() -> None:
     row = {
         "residency": "Nonresident",
-        "permit_allotment_2026_nr": "0",
-        "permit_allotment_2026_total": "14",
+        "permits_2026_nr": "0",
+        "permits_2026_total": "14",
     }
     quota, reasons = quota_for_row(row)
     assert quota["quota_2026_total"] == "0"
     assert quota["quota_2026_max_pool"] == "0"
     assert quota["quota_2026_random_pool"] == "0"
     assert "ZERO_QUOTA_NONPREDICTIVE" in reasons
+
+
+def test_total_only_permits_do_not_create_residency_lane_quota() -> None:
+    row = {
+        "residency": "Resident",
+        "permits_2026_total": "1160",
+    }
+    quota, reasons = quota_for_row(row)
+    assert quota["quota_2026_total"] == "1160"
+    assert quota["quota_2026_max_pool"] == ""
+    assert quota["quota_2026_random_pool"] == ""
+    assert "TOTAL_ONLY_PERMIT_AUTHORITY" in reasons
+    assert "NO_RESIDENCY_SPLIT_PUBLISHED" in reasons
+    assert "NO_RESIDENCY_LANE_QUOTA" in reasons
+
+
+def test_total_only_permits_can_remain_total_scope_without_split() -> None:
+    row = {
+        "residency": "",
+        "permits_2026_total": "1160",
+    }
+    quota, reasons = quota_for_row(row)
+    assert quota["quota_2026_total"] == "1160"
+    assert quota["quota_2026_max_pool"] == "580"
+    assert quota["quota_2026_random_pool"] == "580"
+    assert "NO_RESIDENCY_LANE_QUOTA" not in reasons
+
+
+def test_no_published_permits_do_not_create_quota() -> None:
+    row = {
+        "residency": "Resident",
+        "permits_2026_source": "2026_HUNT_PLANNER_PERMIT_DATA_NOT_PUBLISHED",
+        "permit_allotment_2026_status": "PRIVATE_LAND_DEER_NO_PUBLISHED_PERMIT_COUNT",
+    }
+    quota, reasons = quota_for_row(row)
+    assert quota["quota_2026_total"] == ""
+    assert quota["quota_2026_max_pool"] == ""
+    assert quota["quota_2026_random_pool"] == ""
+    assert quota["quota_source_status"] == "no_published"
+    assert "NO_PUBLISHED_PERMIT_AUTHORITY" in reasons
+    assert "PUBLIC_DRAW_ODDS_EXCLUDED_NO_QUOTA" in reasons
 
 
 def test_zero_current_quota_defaults_probability_ratio() -> None:
