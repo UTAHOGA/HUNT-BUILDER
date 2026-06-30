@@ -70,11 +70,23 @@ def _joined_text(row: Mapping[str, object]) -> str:
     )
 
 
+def _has_private_lands_draw_marker(row: Mapping[str, object]) -> bool:
+    return any(
+        _clean(row.get(key)).upper() == DRAW_SYSTEM_TYPE
+        for key in ("draw_system_type", "draw_2026_system_type")
+    )
+
+
 def is_private_lands_antlerless_elk_row(row: Mapping[str, object]) -> bool:
     text = _joined_text(row)
-    return (
+    is_antlerless_elk = (
         "elk" in text
         and ("antlerless" in text or _clean_lower(row.get("sex_type")) in {"antlerless", "cow", "cow only"})
+    )
+    if is_antlerless_elk and _has_private_lands_draw_marker(row):
+        return True
+    return (
+        is_antlerless_elk
         and any(token in f" {text} " for token in PRIVATE_LANDS_TOKENS)
     )
 
@@ -184,6 +196,7 @@ def build_private_lands_antlerless_elk_predictions(
                     "latest_source_year": max(history_years),
                     "earliest_source_year": min(history_years),
                     "model_strategy": MODEL_STRATEGY_NAME,
+                    "algorithm_status": algorithm_status,
                     "weapon": _clean(db_row.get("weapon")),
                     "draw_system_type": DRAW_SYSTEM_TYPE,
                     "private_lands_allocation_valid": "TRUE" if permits_allotted > 0 else "FALSE",
