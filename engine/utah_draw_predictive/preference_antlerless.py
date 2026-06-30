@@ -109,8 +109,18 @@ def _band_for_points(points: int) -> str:
 
 def _target_draw_system_type(row: Mapping[str, object]) -> str | None:
     existing = _clean(row.get("draw_system_type"))
-    if existing in {"PREFERENCE_ANTLERLESS_DEER", "PREFERENCE_ANTLERLESS_ELK", "PREFERENCE_DOE_PRONGHORN"}:
-        return existing
+    if existing in {
+        "ANTLERLESS_ELK_CONTROL",
+        "AVAILABILITY_ONLY",
+        "CWMU_PRIVATE_VOUCHER",
+        "GUARANTEED_LIFETIME_PERMIT",
+        "OTC_CAPPED",
+        "OTC_UNLIMITED",
+        "PRIVATE_LANDS_ONLY",
+        "REFERENCE_ONLY",
+        "TRIBAL",
+    }:
+        return None
     text = " ".join(
         _clean_lower(row.get(key))
         for key in ("hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "draw_pool")
@@ -126,6 +136,8 @@ def _target_draw_system_type(row: Mapping[str, object]) -> str | None:
     )
     if any(token in text for token in ("youth", "cwmu", "dedicated hunter", "private land", "landowner", "conservation", "control", "mitigation", "depredation", "sportsman", "expo")):
         return None
+    if existing in {"PREFERENCE_ANTLERLESS_DEER", "PREFERENCE_ANTLERLESS_ELK", "PREFERENCE_DOE_PRONGHORN"}:
+        return existing
     if "pronghorn" in text and ("doe" in text or _clean_lower(row.get("sex_type")) in {"antlerless", "doe"}):
         return "PREFERENCE_DOE_PRONGHORN"
     if "deer" in text and ("antlerless" in text or _clean_lower(row.get("sex_type")) in {"antlerless", "doe"}):

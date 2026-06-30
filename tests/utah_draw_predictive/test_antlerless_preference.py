@@ -1,6 +1,7 @@
 from engine.utah_draw_predictive.preference_antlerless import (
     MODEL_STRATEGY_NAME,
     STRATEGY_SPECS,
+    _target_draw_system_type,
     build_preference_antlerless_predictions,
     is_modeled_antlerless_row,
 )
@@ -12,6 +13,24 @@ def test_antlerless_preference_strategies_are_promoted_to_modeled_preference() -
     assert mapped["PREFERENCE_ANTLERLESS_ELK"].algorithm_status == "MODELED_PREFERENCE"
     assert mapped["PREFERENCE_DOE_PRONGHORN"].algorithm_status == "MODELED_PREFERENCE"
     assert "preference-point model" in mapped["PREFERENCE_ANTLERLESS_DEER"].reason
+
+
+def test_cwmu_antlerless_row_with_stale_preference_label_is_excluded() -> None:
+    row = {
+        "hunt_code": "DA1011",
+        "hunt_name": "George Creek CWMU",
+        "species": "Deer",
+        "sex_type": "Antlerless",
+        "hunt_type": "CWMU",
+        "hunt_class": "CWMU",
+        "weapon": "Any Legal Weapon",
+        "draw_design": "Preference",
+        "draw_system_type": "PREFERENCE_ANTLERLESS_DEER",
+    }
+
+    assert _target_draw_system_type(row) is None
+    row["draw_system_type"] = "CWMU_PRIVATE_VOUCHER"
+    assert _target_draw_system_type(row) is None
 
 
 def test_build_preference_antlerless_predictions_returns_modeled_rows() -> None:

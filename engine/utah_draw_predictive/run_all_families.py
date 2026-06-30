@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+from functools import lru_cache
 from pathlib import Path
 from typing import Iterable, Mapping, Sequence
 
@@ -17,6 +18,7 @@ from .sportsman import build_sportsman_predictions
 
 REPO = Path(__file__).resolve().parents[2]
 TRUTH_PATH = REPO / "data_truth" / "draw_results_truth" / "normalized" / "draw_results_long.csv"
+AUTHORITY_PATH = REPO / "data_truth" / "crosswalk_truth" / "normalized" / "hunt_code_crosswalk_authority_2020_2026.csv"
 MODELED_FAMILIES = (
     "preference_general_deer",
     "dedicated_hunter",
@@ -24,6 +26,33 @@ MODELED_FAMILIES = (
     "preference_antlerless_elk",
     "preference_doe_pronghorn",
 )
+
+AUTHORITY_TO_FAMILY = {
+    "PREFERENCE_GENERAL_SEASON_BUCK_DEER": "preference_general_deer",
+    "PREFERENCE_DEDICATED_HUNTER_DEER": "preference_dedicated_hunter_deer",
+    "PREFERENCE_ANTLERLESS_DEER": "preference_antlerless_deer",
+    "PREFERENCE_ANTLERLESS_ELK": "preference_antlerless_elk",
+    "PREFERENCE_DOE_PRONGHORN": "preference_doe_pronghorn",
+}
+AUTHORITY_EXCLUDED_DRAW_SYSTEM_TYPES = {
+    "ANTLERLESS_ELK_CONTROL",
+    "AVAILABILITY_ONLY",
+    "BEAR_HARVEST_OBJECTIVE",
+    "BEAR_PURSUIT_ONLY",
+    "BEAR_RESTRICTED_PURSUIT",
+    "COUGAR_LICENSE_BASED",
+    "CWMU_PRIVATE_VOUCHER",
+    "FURBEARER_TAG_OR_LICENSE_ONLY",
+    "GUARANTEED_LIFETIME_PERMIT",
+    "OTC_CAPPED",
+    "OTC_UNLIMITED",
+    "PRIVATE_LANDS_ONLY",
+    "PTARMIGAN_FREE_AVAILABILITY",
+    "REFERENCE_ONLY",
+    "TURKEY_CONTROL_VOUCHER",
+    "TURKEY_CWMU",
+    "TURKEY_FALL_MANAGEMENT",
+}
 
 
 def _clean(value: object) -> str:
@@ -71,6 +100,64 @@ def _read_csv(path: Path) -> list[dict[str, str]]:
         return [dict(row) for row in csv.DictReader(handle)]
 
 
+@lru_cache(maxsize=1)
+def _crosswalk_authority_by_year_code() -> dict[tuple[int, str], dict[str, str]]:
+    if not AUTHORITY_PATH.exists():
+        return {}
+
+    priority = {
+        "GUIDEBOOK_AUTHORITY": 0,
+        "SOURCE_BACKED": 1,
+        "SOURCE_BACKED_NOT_IN_LEGACY_CROSSWALK": 2,
+        "AUDIT_DERIVED": 3,
+    }
+    authority: dict[tuple[int, str], dict[str, str]] = {}
+    with AUTHORITY_PATH.open("r", encoding="utf-8-sig", newline="") as handle:
+        for raw in csv.DictReader(handle):
+            hunt_code = _clean(raw.get("hunt_code")).upper()
+            draw_system_type = _clean(raw.get("draw_system_type")).upper()
+            if not hunt_code or not draw_system_type:
+                continue
+            year = None
+            for year_field in ("source_year", "actual_draw_year", "hunt_year"):
+                year = _to_int(raw.get(year_field))
+                if year is not None:
+                    break
+            if year is None:
+                continue
+            key = (year, hunt_code)
+            current = authority.get(key)
+            if current is None or priority.get(_clean(raw.get("authority_status")).upper(), 99) < priority.get(
+                _clean(current.get("authority_status")).upper(),
+                99,
+            ):
+                authority[key] = dict(raw)
+    return authority
+
+
+def _authority_row_for_legacy_row(row: Mapping[str, object]) -> dict[str, str] | None:
+    hunt_code = _clean(row.get("hunt_code")).upper()
+    year = _row_year(row)
+    if not hunt_code or year is None:
+        return None
+    return _crosswalk_authority_by_year_code().get((year, hunt_code))
+
+
+def _authority_family_for_legacy_row(row: Mapping[str, object]) -> str | None:
+    authority = _authority_row_for_legacy_row(row)
+    if not authority:
+        return None
+    draw_system_type = _clean(authority.get("draw_system_type")).upper()
+    if draw_system_type in AUTHORITY_EXCLUDED_DRAW_SYSTEM_TYPES:
+        return ""
+    return AUTHORITY_TO_FAMILY.get(draw_system_type)
+
+
+def _authority_draw_system_type_for_legacy_row(row: Mapping[str, object]) -> str:
+    authority = _authority_row_for_legacy_row(row)
+    return _clean(authority.get("draw_system_type")).upper() if authority else ""
+
+
 def _fieldnames(rows: Sequence[Mapping[str, object]]) -> list[str]:
     fields: list[str] = []
     for row in rows:
@@ -91,6 +178,10 @@ def _write_csv(path: Path, rows: Sequence[Mapping[str, object]]) -> None:
 
 
 def _family_for_legacy_row(row: Mapping[str, object]) -> str:
+    authority_family = _authority_family_for_legacy_row(row)
+    if authority_family is not None:
+        return authority_family
+
     model_strategy = _clean(row.get("model_strategy"))
     draw_system_type = _clean(row.get("draw_system_type"))
     hunt_code = _clean(row.get("hunt_code")).upper()
@@ -232,6 +323,12 @@ def _with_historical_target_metadata(
         family = _family_for_legacy_row(item)
         hunt_code = _clean(item.get("hunt_code")).upper()
         if not family or not hunt_code:
+            authority_draw_system_type = _authority_draw_system_type_for_legacy_row(item)
+            if authority_draw_system_type:
+                item["draw_system_type"] = authority_draw_system_type
+                item["authority_excluded_from_public_draw_odds"] = str(
+                    authority_draw_system_type in AUTHORITY_EXCLUDED_DRAW_SYSTEM_TYPES
+                ).upper()
             enriched.append(item)
             continue
 

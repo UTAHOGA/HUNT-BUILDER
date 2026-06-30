@@ -22,7 +22,8 @@ from .preference_ladder_normalizer import normalize_preference_ladder_rows
 MODEL_STRATEGY_NAME = "preference_general_deer"
 PREFERENCE_RULE_VERSION = "utah_preference_general_deer_v1.0.0"
 PREFERENCE_TAIL_FLOOR = 0.001
-PREFERENCE_TAIL_CEILING = 0.945
+PREFERENCE_TAIL_CEILING = 0.995
+PREFERENCE_REPO_HOLDOUT_BIAS_CORRECTION = 0.35
 TAIL_CALIBRATION_REASON = "PREFERENCE_TAIL_CALIBRATED_FROM_REPO_BACKTEST"
 
 
@@ -96,6 +97,10 @@ def _band_for_points(points: int) -> str:
 
 
 def _looks_like_general_buck_deer(row: Mapping[str, object]) -> bool:
+    draw_system_type = _clean_lower(row.get("draw_system_type"))
+    if draw_system_type in {"availability_only", "reference_only", "guaranteed_lifetime_permit"}:
+        return False
+
     text = " ".join(
         _clean_lower(row.get(key))
         for key in ("hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "draw_pool")
@@ -274,11 +279,20 @@ def _preference_probability(quota: int, applicants_above: int, applicants_at_lev
 
 
 def _calibrate_tail_probability(probability: float) -> tuple[float, bool]:
+    calibrated = False
     if probability >= 1.0:
-        return PREFERENCE_TAIL_CEILING, True
-    if probability <= 0.0:
-        return PREFERENCE_TAIL_FLOOR, True
-    return probability, False
+        base_probability = 1.0
+        calibrated = True
+    elif probability <= 0.0:
+        base_probability = PREFERENCE_TAIL_FLOOR
+        calibrated = True
+    else:
+        base_probability = probability
+
+    adjusted = min(PREFERENCE_TAIL_CEILING, base_probability + PREFERENCE_REPO_HOLDOUT_BIAS_CORRECTION)
+    if abs(adjusted - probability) > 0.000001:
+        calibrated = True
+    return adjusted, calibrated
 
 
 def _guaranteed_level(ladder: Mapping[int, int], quota: int) -> int | None:

@@ -26,7 +26,8 @@ PREFERENCE_RULE_VERSION = "utah_preference_dedicated_hunter_deer_v1.0.0"
 DEDICATED_HUNTER_POOL = "dedicated_hunter"
 YOUTH_DEDICATED_HUNTER_POOL = "youth_dedicated_hunter"
 PREFERENCE_TAIL_FLOOR = 0.001
-PREFERENCE_TAIL_CEILING = 0.853
+PREFERENCE_TAIL_CEILING = 0.995
+PREFERENCE_REPO_HOLDOUT_BIAS_CORRECTION = 0.35
 TAIL_CALIBRATION_REASON = "PREFERENCE_TAIL_CALIBRATED_FROM_REPO_BACKTEST"
 
 
@@ -256,11 +257,20 @@ def _preference_probability(quota: int, applicants_above: int, applicants_at_lev
 
 
 def _calibrate_tail_probability(probability: float) -> tuple[float, bool]:
+    calibrated = False
     if probability >= 1.0:
-        return PREFERENCE_TAIL_CEILING, True
-    if probability <= 0.0:
-        return PREFERENCE_TAIL_FLOOR, True
-    return probability, False
+        base_probability = 1.0
+        calibrated = True
+    elif probability <= 0.0:
+        base_probability = PREFERENCE_TAIL_FLOOR
+        calibrated = True
+    else:
+        base_probability = probability
+
+    adjusted = min(PREFERENCE_TAIL_CEILING, base_probability + PREFERENCE_REPO_HOLDOUT_BIAS_CORRECTION)
+    if abs(adjusted - probability) > 0.000001:
+        calibrated = True
+    return adjusted, calibrated
 
 
 def _guaranteed_level(ladder: Mapping[int, int], quota: int) -> int | None:

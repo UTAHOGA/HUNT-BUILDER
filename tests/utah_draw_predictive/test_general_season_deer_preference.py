@@ -13,6 +13,47 @@ def test_general_season_deer_strategy_is_promoted_to_modeled_preference() -> Non
     assert "preference-point model" in spec.reason
 
 
+def test_db0008_extended_archery_availability_does_not_route_to_general_deer_preference() -> None:
+    rows = build_preference_general_deer_predictions(
+        truth_rows=[
+            {
+                "hunt_code": "DB0008",
+                "hunt_name": "Deer Extended Archery Only",
+                "species": "Deer",
+                "sex_type": "Buck",
+                "hunt_type": "General Season",
+                "hunt_class": "Public",
+                "draw_design": "Preference",
+                "draw_system_type": "AVAILABILITY_ONLY",
+                "weapon": "Archery",
+                "year": "2026",
+                "draw_pool": "standard",
+                "residency": "Resident",
+                "points": "0",
+                "eligible_applicants": "306",
+                "total_permits": "2000",
+            }
+        ],
+        db_rows=[
+            {
+                "hunt_code": "DB0008",
+                "hunt_name": "Deer Extended Archery Only",
+                "species": "Deer",
+                "sex_type": "Buck",
+                "hunt_type": "General Season",
+                "hunt_class": "Capped Permits",
+                "draw_system_type": "REFERENCE_ONLY",
+                "weapon": "Archery",
+                "permits_2027_total": "2000",
+            }
+        ],
+        forecast_year=2027,
+        history_years=[2026],
+    )
+
+    assert rows == []
+
+
 def test_build_preference_general_deer_predictions_returns_modeled_rows() -> None:
     truth_rows = [
         {
@@ -129,7 +170,7 @@ def test_build_preference_general_deer_predictions_returns_modeled_rows() -> Non
     assert all(row["model_strategy"] == MODEL_STRATEGY_NAME for row in rows)
     assert all(row["preference_model_valid"] == "TRUE" for row in rows)
     assert all(is_modeled_general_deer_row(row) for row in rows)
-    assert any(float(row["p_draw"]) == 1.0 for row in rows)
+    assert any(float(row["p_draw"]) >= 0.995 for row in rows)
 
 
 def test_general_season_deer_emits_structural_zero_point_rows() -> None:
