@@ -54,6 +54,46 @@ def test_db0008_extended_archery_availability_does_not_route_to_general_deer_pre
     assert rows == []
 
 
+def test_db17_dedicated_hunter_does_not_route_to_general_deer_preference() -> None:
+    rows = build_preference_general_deer_predictions(
+        truth_rows=[
+            {
+                "hunt_code": "DB1770",
+                "hunt_name": "Box Elder Dedicated Hunter",
+                "species": "Deer",
+                "sex_type": "Buck",
+                "hunt_type": "Dedicated Hunter",
+                "hunt_class": "Dedicated Hunter",
+                "draw_system_type": "PREFERENCE_DEDICATED_HUNTER_DEER",
+                "weapon": "Dedicated Hunter",
+                "year": "2025",
+                "draw_pool": "dedicated_hunter",
+                "residency": "Resident",
+                "points": "0",
+                "eligible_applicants": "25",
+                "total_permits": "20",
+            }
+        ],
+        db_rows=[
+            {
+                "hunt_code": "DB1770",
+                "hunt_name": "Box Elder Dedicated Hunter",
+                "species": "Deer",
+                "sex_type": "Buck",
+                "hunt_type": "Dedicated Hunter",
+                "hunt_class": "Dedicated Hunter",
+                "draw_system_type": "PREFERENCE_DEDICATED_HUNTER_DEER",
+                "weapon": "Dedicated Hunter",
+                "permits_2026_total": "25",
+            }
+        ],
+        forecast_year=2026,
+        history_years=[2025],
+    )
+
+    assert rows == []
+
+
 def test_build_preference_general_deer_predictions_returns_modeled_rows() -> None:
     truth_rows = [
         {
@@ -234,3 +274,63 @@ def test_general_season_deer_emits_structural_zero_point_rows() -> None:
     assert structural_row["preference_model_valid"] == "TRUE"
     assert structural_row["applicants_at_level"] == 0
     assert structural_row["probability_applicant_count"] == 1
+
+
+def test_duplicate_general_deer_ladder_keys_are_aggregated_before_forecast() -> None:
+    truth_rows = [
+        {
+            "hunt_code": "DB1501",
+            "hunt_name": "Box Elder",
+            "species": "Deer",
+            "sex_type": "Buck",
+            "hunt_type": "General Season",
+            "hunt_class": "Public",
+            "weapon": "Archery",
+            "year": "2025",
+            "draw_pool": "standard",
+            "residency": "Resident",
+            "points": "0",
+            "eligible_applicants": "30",
+            "total_permits": "10",
+        },
+        {
+            "hunt_code": "DB1501",
+            "hunt_name": "Box Elder",
+            "species": "Deer",
+            "sex_type": "Buck",
+            "hunt_type": "General Season",
+            "hunt_class": "Public",
+            "weapon": "Archery",
+            "year": "2025",
+            "draw_pool": "standard",
+            "residency": "Resident",
+            "points": "0",
+            "eligible_applicants": "20",
+            "total_permits": "5",
+        },
+    ]
+    db_rows = [
+        {
+            "hunt_code": "DB1501",
+            "hunt_name": "Box Elder",
+            "species": "Deer",
+            "sex_type": "Buck",
+            "hunt_type": "General Season",
+            "weapon": "Archery",
+            "permits_2026_total": "50",
+        }
+    ]
+
+    rows = build_preference_general_deer_predictions(
+        truth_rows=truth_rows,
+        db_rows=db_rows,
+        forecast_year=2026,
+        history_years=[2025],
+    )
+
+    point_one = next(
+        row
+        for row in rows
+        if row["hunt_code"] == "DB1501" and row["residency"] == "Resident" and row["points"] == "1"
+    )
+    assert int(point_one["applicants_at_level"]) == 27

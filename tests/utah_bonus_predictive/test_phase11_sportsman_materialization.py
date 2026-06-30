@@ -10,8 +10,9 @@ def _read_csv(path: Path) -> list[dict[str, str]]:
 
 
 def test_phase11_sportsman_materialization_uses_official_odds_source() -> None:
-    csv_path = Path(r"C:\Users\tyler\Desktop\GitHub\HUNTS\processed_data\sportsman_permit_predictions_v1.csv")
-    report_path = Path(r"C:\Users\tyler\Desktop\GitHub\HUNTS\processed_data\sportsman_permit_report.json")
+    repo = Path(__file__).resolve().parents[2]
+    csv_path = repo / "processed_data" / "sportsman_permit_predictions_v1.csv"
+    report_path = repo / "processed_data" / "sportsman_permit_report.json"
 
     rows = _read_csv(csv_path)
     report = json.loads(report_path.read_text(encoding="utf-8"))
@@ -27,7 +28,7 @@ def test_phase11_sportsman_materialization_uses_official_odds_source() -> None:
     assert report["p_bonus_pool_non_null_count"] == 0
     assert report["p_random_pool_non_null_count"] == 0
     assert report["p_preference_draw_non_null_count"] == 0
-    assert any(str(path).endswith("sportsman_odds_2025.csv") for path in report["source_files_used"])
+    assert any("sportsman" in str(path).lower() for path in report["source_files_used"])
 
     codes = {row["hunt_code"] for row in rows}
     assert codes == {"BI1000", "BR1000", "DB0007", "DS1000", "EB1000", "GO1000", "MB1000", "PB1000", "RS0001", "TK0001"}

@@ -109,9 +109,17 @@ def _is_turkey(row: Mapping[str, object]) -> bool:
 def _is_youth_turkey(row: Mapping[str, object]) -> bool:
     source_file = _clean_lower(row.get("source_file"))
     draw_pool = _clean_lower(row.get("draw_pool"))
+    hunt_class = _clean_lower(row.get("hunt_class"))
+    draw_system_type = _clean(row.get("draw_system_type"))
     # Youth must be source-classified. Current hunt-table rows can mention
     # youth dates/set-asides while still representing the adult LE hunt code.
-    return draw_pool == "youth_turkey" or "youth turkey draw results" in source_file or "youth_turkey" in source_file
+    return (
+        draw_system_type == YOUTH_TURKEY_DRAW_SYSTEM_TYPE
+        or draw_pool == "youth_turkey"
+        or hunt_class == "youth"
+        or "youth turkey draw results" in source_file
+        or "youth_turkey" in source_file
+    )
 
 
 def _is_excluded_turkey_context(row: Mapping[str, object]) -> bool:

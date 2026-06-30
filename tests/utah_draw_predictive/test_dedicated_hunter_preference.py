@@ -106,6 +106,46 @@ def test_build_preference_dedicated_hunter_predictions_returns_modeled_rows() ->
     assert any(float(row["p_draw"]) > 0.0 for row in rows)
 
 
+def test_db15_general_deer_does_not_route_to_dedicated_hunter_preference() -> None:
+    rows = build_preference_dedicated_hunter_predictions(
+        truth_rows=[
+            {
+                "hunt_code": "DB1501",
+                "hunt_name": "Box Elder",
+                "species": "Deer",
+                "sex_type": "Buck",
+                "hunt_type": "General Season",
+                "hunt_class": "Public",
+                "draw_system_type": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+                "weapon": "Archery",
+                "year": "2025",
+                "draw_pool": "standard",
+                "residency": "Resident",
+                "points": "0",
+                "eligible_applicants": "50",
+                "total_permits": "40",
+            }
+        ],
+        db_rows=[
+            {
+                "hunt_code": "DB1501",
+                "hunt_name": "Box Elder",
+                "species": "Deer",
+                "sex_type": "Buck",
+                "hunt_type": "General Season",
+                "hunt_class": "Public",
+                "draw_system_type": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+                "weapon": "Archery",
+                "permits_2026_total": "50",
+            }
+        ],
+        forecast_year=2026,
+        history_years=[2025],
+    )
+
+    assert rows == []
+
+
 def test_youth_dedicated_hunter_is_separate_preference_lane() -> None:
     truth_rows = [
         {

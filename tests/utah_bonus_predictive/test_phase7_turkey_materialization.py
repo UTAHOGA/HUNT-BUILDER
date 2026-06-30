@@ -4,6 +4,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from engine.utah_draw_predictive.turkey import is_youth_turkey_row
+
 
 REPO = Path(__file__).resolve().parents[2]
 
@@ -11,6 +13,21 @@ REPO = Path(__file__).resolve().parents[2]
 def _read_csv(path: Path) -> list[dict[str, str]]:
     with path.open(encoding="utf-8-sig", newline="") as handle:
         return list(csv.DictReader(handle))
+
+
+def test_youth_hunt_class_turkey_truth_is_not_adult_bonus_scope() -> None:
+    assert is_youth_turkey_row(
+        {
+            "hunt_code": "TK1003",
+            "hunt_name": "Central Region",
+            "species": "Turkey",
+            "hunt_type": "Limited Entry",
+            "hunt_class": "Youth",
+            "draw_design": "Preference",
+            "draw_system_type": "REFERENCE_ONLY",
+            "source_file": "2020_turkey_bonus_points_draw_results(2).pdf",
+        }
+    )
 
 
 def test_phase7_turkey_artifacts_are_generated(tmp_path: Path) -> None:

@@ -28,7 +28,7 @@ def test_draw_system_coverage_report_generation(tmp_path: Path) -> None:
     assert report["answers"]["ple_big_game_engine_family_modeled"] is True
     assert "BONUS_TURKEY" in report["modeled_bonus_categories"]
     assert "BEAR_DRAW" in report["modeled_bonus_categories"]
-    assert report["answers"]["is_cwmu_public_modeled"] is True
+    assert report["answers"]["is_cwmu_public_modeled"] is False
     assert "BONUS_CWMU_BIG_GAME" in report["modeled_bonus_categories"]
     assert "PRIVATE_LANDS_ONLY_ANTLERLESS_ELK" in report["modeled_allocation_categories"]
     assert "MOUNTAIN_LION_DRAW" in report["modeled_availability_categories"]

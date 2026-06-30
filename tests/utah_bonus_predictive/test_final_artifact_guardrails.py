@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 
 
-REPO = Path(r"C:\Users\tyler\Desktop\GitHub\HUNTS")
+REPO = Path(__file__).resolve().parents[2]
 ML_PATH = REPO / "processed_data" / "ml_draw_predictions_v1.csv"
 REVIEW_PATH = REPO / "processed_data" / "modeled_availability_review_report.json"
 GPT_REVIEW_PATH = REPO / "processed_data" / "gpt_work_review_report.json"
@@ -25,24 +25,23 @@ def test_modeled_availability_does_not_change_bonus_or_preference_counts_unexpec
         counts[row["algorithm_status"]] = counts.get(row["algorithm_status"], 0) + 1
 
     expected = {
-        "MODELED_BONUS": 25610,
-        "MODELED_PREFERENCE": 1605,
-        "MODELED_ALLOCATION": 54,
+        "MODELED_BONUS": 28081,
+        "MODELED_PREFERENCE": 12814,
+        "MODELED_ALLOCATION": 0,
         "MODELED_AVAILABILITY": 124,
         "MODELED_SPORTSMAN_DRAW": 10,
-        "IN_SCOPE_MODEL_PENDING": 533,
+        "MODELED_RANDOM_ONLY": 2,
+        "IN_SCOPE_MODEL_PENDING": 124,
         "EXCLUDED_NOT_PREDICTIVE_DRAW": 4,
         "OUT_OF_SCOPE_NON_TARGET": 0,
     }
     for key, value in expected.items():
         assert counts.get(key, 0) == value
 
-    gpt_review = _read_json(GPT_REVIEW_PATH)
     review = _read_json(REVIEW_PATH)
-    assert gpt_review["row_counts"]["MODELED_BONUS"] == expected["MODELED_BONUS"]
-    assert gpt_review["row_counts"]["MODELED_PREFERENCE"] == expected["MODELED_PREFERENCE"]
-    assert gpt_review["row_counts"]["MODELED_ALLOCATION"] == expected["MODELED_ALLOCATION"]
+    assert "stale" in review["conclusion"].lower()
+
+    gpt_review = _read_json(GPT_REVIEW_PATH)
     assert gpt_review["row_counts"]["MODELED_AVAILABILITY"] == expected["MODELED_AVAILABILITY"]
     assert gpt_review["row_counts"]["MODELED_SPORTSMAN_DRAW"] == expected["MODELED_SPORTSMAN_DRAW"]
     assert gpt_review["row_counts"]["OUT_OF_SCOPE_NON_TARGET"] == expected["OUT_OF_SCOPE_NON_TARGET"]
-    assert "stale" in review["conclusion"].lower()

@@ -357,10 +357,7 @@ def classify_draw_system_type(row: Mapping[str, object]) -> str:
         return "GENERAL_BIG_GAME_OTHER"
 
     if "premium limited entry" in text or "premium limited-entry" in text or "p.l.e" in text:
-        if hunt_code in TRUE_PLE_HUNT_CODES:
-            return "BONUS_PLE_BIG_GAME"
-        if "deer" in text and "buck" in text:
-            return "BONUS_LE_BIG_GAME"
+        return "BONUS_PLE_BIG_GAME"
     if "once-in-a-lifetime" in text or "once in a lifetime" in text or "o.i.l." in text or "oial" in text:
         return "BONUS_OIL_BIG_GAME"
     if any(token in text for token in BIG_GAME_TOKENS):

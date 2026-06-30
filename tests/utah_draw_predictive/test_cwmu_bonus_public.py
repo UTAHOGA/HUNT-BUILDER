@@ -1,7 +1,7 @@
 from engine.utah_draw_predictive.special_bonus import build_phase6_bonus_special_predictions
 
 
-def test_public_cwmu_rows_can_be_modeled_bonus() -> None:
+def test_cwmu_private_voucher_rows_are_preserved_without_public_bonus_odds() -> None:
     truth_rows = [
         {
             "hunt_code": "DB1258",
@@ -76,9 +76,9 @@ def test_public_cwmu_rows_can_be_modeled_bonus() -> None:
         history_years=[2021, 2022, 2023, 2024, 2025],
     )
 
-    modeled = [row for row in rows if row["draw_system_type"] == "BONUS_CWMU_BIG_GAME" and row["bonus_special_valid"] == "TRUE"]
-    assert modeled
-    assert report["cwmu_public_modeled_row_count"] == len(modeled)
-    assert all(row["p_bonus_pool"] != "" for row in modeled)
-    assert all(row["p_draw"] != "" for row in modeled)
-    assert all(row["p_preference_draw"] == "" for row in modeled)
+    modeled = [row for row in rows if row.get("bonus_special_valid") == "TRUE"]
+    cwmu_rows = [row for row in rows if "CWMU" in row.get("hunt_name", "").upper() or row.get("hunt_type") == "CWMU"]
+
+    assert not modeled
+    assert report["cwmu_public_modeled_row_count"] == 0
+    assert cwmu_rows == []
