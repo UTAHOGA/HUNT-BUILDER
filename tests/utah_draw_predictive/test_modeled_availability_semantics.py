@@ -1,4 +1,4 @@
-import csv
+﻿import csv
 import json
 from pathlib import Path
 
@@ -76,7 +76,7 @@ def test_modeled_availability_total_count_matches_report() -> None:
 
 
 def test_mountain_lion_availability_accounts_for_120_rows() -> None:
-    rows = [row for row in _availability_rows() if row.get("draw_system_type") == "MOUNTAIN_LION_DRAW"]
+    rows = [row for row in _availability_rows() if row.get("draw_system_type") == "COUGAR_LICENSE_BASED"]
     report = _read_json(MOUNTAIN_LION_REPORT_PATH)
     assert len(rows) == 120
     assert _nonnull(rows, "p_draw") == 0
@@ -138,3 +138,4 @@ def test_availability_report_written() -> None:
     assert md_path.exists()
     review = _read_json(REVIEW_PATH)
     assert review["total_MODELED_AVAILABILITY_rows"] >= 0
+

@@ -1,4 +1,4 @@
-import json
+﻿import json
 from pathlib import Path
 
 
@@ -59,5 +59,6 @@ def test_draw_system_coverage_has_modeled_availability_section() -> None:
     coverage = _read_json(COVERAGE_PATH)
     section = coverage["modeled_availability"]
     assert section["modeled_availability_total_row_count"] >= 0
-    assert "MOUNTAIN_LION_DRAW" in section["modeled_availability_by_draw_system_type"]
+    assert "COUGAR_LICENSE_BASED" in section["modeled_availability_by_draw_system_type"]
     assert section["modeled_availability_pass"] is True
+

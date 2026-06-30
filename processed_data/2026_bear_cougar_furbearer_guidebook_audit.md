@@ -8,12 +8,12 @@
 - Expected pasted-data anchor checks: `55`
 - Anchor failures: `0`
 - Bear guidebook hunt codes: `99`
-- Current DATABASE bear codes: `106`
-- Current DATABASE reference codes not printed in hunt tables: `7`
-- Historical-only draw reality bear codes: `14`
+- Current DATABASE bear codes: `120`
+- Current DATABASE reference codes not printed in hunt tables: `21`
+- Historical-only draw reality bear codes: `0`
 - Bear codes missing DATABASE: `0`
 - Bear codes missing predictive v2: `0`
-- Current bear-code reconciliation failures: `0`
-- Blockers: `0`
+- Current bear-code reconciliation failures: `3`
+- Blockers: `1`
 
 This is a truth-source guidebook audit only; it does not invent draw odds or change prediction math.

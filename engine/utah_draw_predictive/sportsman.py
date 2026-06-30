@@ -36,6 +36,8 @@ SPORTSMAN_CODE_ALIASES: dict[str, list[str]] = {
     "RS0001": [],
     "TK0001": [],
 }
+HISTORICAL_COUGAR_SPORTSMAN_CODES = {"CG1000", "CG9999"}
+LAST_COUGAR_SPORTSMAN_SOURCE_YEAR = 2022
 
 STRATEGY_SPECS = [
     StrategySpec(
@@ -66,6 +68,14 @@ def _safe_int(value: object) -> int:
         return int(float(text))
     except Exception:
         return 0
+
+
+def _row_year(row: Mapping[str, object]) -> int:
+    for key in ("actual_draw_year", "draw_results_year", "source_year", "draw_year", "year"):
+        year = _safe_int(row.get(key))
+        if year:
+            return year
+    return 0
 
 
 def _safe_relative(path: Path) -> str:
@@ -180,6 +190,8 @@ def _canonical_sportsman_code(row: Mapping[str, object]) -> str:
 def is_sportsman_permit_row(row: Mapping[str, object]) -> bool:
     hunt_code = _canonical_sportsman_code(row)
     text = _joined_text(row)
+    if hunt_code in HISTORICAL_COUGAR_SPORTSMAN_CODES or "cougar" in text or "mountain lion" in text:
+        return hunt_code in HISTORICAL_COUGAR_SPORTSMAN_CODES and 0 < _row_year(row) <= LAST_COUGAR_SPORTSMAN_SOURCE_YEAR
     if hunt_code in sportsman_code_allowlist():
         return True
     if "sportsman" in text:

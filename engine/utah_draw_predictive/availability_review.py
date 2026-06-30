@@ -1,4 +1,4 @@
-"""Final consistency review for MODELED_AVAILABILITY rows."""
+﻿"""Final consistency review for MODELED_AVAILABILITY rows."""
 
 from __future__ import annotations
 
@@ -262,12 +262,12 @@ def build_modeled_availability_review(
     mountain_lion_report = json.loads(mountain_lion_report_path.read_text(encoding="utf-8")) if mountain_lion_report_path.exists() else {}
     bear_report = json.loads(bear_report_path.read_text(encoding="utf-8")) if bear_report_path.exists() else {}
 
-    mountain_lion_rows = [row for row in availability_rows if _clean(row.get("draw_system_type")) == "MOUNTAIN_LION_DRAW"]
+    mountain_lion_rows = [row for row in availability_rows if _clean(row.get("draw_system_type")) == "COUGAR_LICENSE_BASED"]
     bear_rows = [row for row in availability_rows if _clean(row.get("draw_system_type")) == "BEAR_DRAW"]
     other_rows = [
         row
         for row in availability_rows
-        if _clean(row.get("draw_system_type")) not in {"MOUNTAIN_LION_DRAW", "BEAR_DRAW"}
+        if _clean(row.get("draw_system_type")) not in {"COUGAR_LICENSE_BASED", "BEAR_DRAW"}
     ]
     missing_reason_codes = [row for row in availability_rows if not _clean(row.get("reason_codes"))]
     missing_signal = [row for row in availability_rows if not _has_availability_signal(row)]
@@ -403,3 +403,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

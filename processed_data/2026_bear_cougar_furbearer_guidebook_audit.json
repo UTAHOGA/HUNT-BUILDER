@@ -1,6 +1,6 @@
 {
   "classification": "REGULATION_AND_GUIDEBOOK_TRUTH_SOURCE_AUDIT",
-  "timestamp_utc": "2026-05-24T10:45:13.947577+00:00",
+  "timestamp_utc": "2026-06-30T15:21:48.454129+00:00",
   "source_pdf": "pipeline/RAW/hunt_unit_database/2026/pdf/regulations/2026 Bear Cougar Furbearer Guidebook.pdf",
   "source_sha256": "57a7a7c4b40196faf34251b260d30946aaaf23cbe0755e916508fc7d70b5b5f6",
   "expected_sha256": "57a7a7c4b40196faf34251b260d30946aaaf23cbe0755e916508fc7d70b5b5f6",
@@ -118,23 +118,17 @@
     "BR7325",
     "BR7326"
   ],
-  "bear_current_database_code_count": 106,
-  "bear_current_predictive_code_count": 106,
-  "bear_current_hunt_master_code_count": 106,
-  "bear_current_point_ladder_code_count": 106,
-  "bear_historical_draw_reality_code_count": 120,
-  "bear_database_reference_codes_not_printed_in_hunt_table_count": 7,
+  "bear_current_database_code_count": 120,
+  "bear_current_predictive_code_count": 117,
+  "bear_current_hunt_master_code_count": 120,
+  "bear_current_point_ladder_code_count": 120,
+  "bear_historical_draw_reality_code_count": 116,
+  "bear_database_reference_codes_not_printed_in_hunt_table_count": 21,
   "bear_database_reference_codes_not_printed_in_hunt_table": [
     "BR1000",
     "BR1001",
     "BR1007",
     "BR1018",
-    "BR7237",
-    "BR7307",
-    "BR7324"
-  ],
-  "bear_historical_only_draw_reality_code_count": 14,
-  "bear_historical_only_draw_reality_codes": [
     "BR7008",
     "BR7019",
     "BR7108",
@@ -148,12 +142,19 @@
     "BR7233",
     "BR7234",
     "BR7235",
-    "BR7236"
+    "BR7236",
+    "BR7237",
+    "BR7307",
+    "BR7324"
   ],
+  "bear_historical_only_draw_reality_code_count": 0,
+  "bear_historical_only_draw_reality_codes": [],
   "bear_codes_missing_database": [],
   "bear_codes_missing_predictive": [],
-  "bear_current_code_reconciliation_failures": 0,
-  "blockers": 0,
-  "blocker_reasons": [],
+  "bear_current_code_reconciliation_failures": 3,
+  "blockers": 1,
+  "blocker_reasons": [
+    "bear_current_code_reconciliation_failures"
+  ],
   "guardrail": "Guidebook text, numbers, hunt codes, seasons, fees, and rules are truth-source references; this audit does not model draw odds."
 }

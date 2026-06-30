@@ -1,4 +1,4 @@
-from engine.utah_draw_predictive.classifier import classify_draw_system_type
+﻿from engine.utah_draw_predictive.classifier import classify_draw_system_type
 
 
 def test_oil_le_ple_big_game_rows_continue_to_classify_as_bonus() -> None:
@@ -10,7 +10,7 @@ def test_oil_le_ple_big_game_rows_continue_to_classify_as_bonus() -> None:
 def test_turkey_bear_and_cougar_remain_target_scope() -> None:
     assert classify_draw_system_type({"hunt_type": "Limited Entry", "species": "Turkey", "sex_type": "Bearded"}) == "BONUS_TURKEY"
     assert classify_draw_system_type({"hunt_type": "Limited Entry - Fall", "species": "Black Bear", "sex_type": "Either Sex"}) == "BEAR_DRAW"
-    assert classify_draw_system_type({"hunt_type": "Limited Entry", "species": "Cougar", "sex_type": ""}) == "MOUNTAIN_LION_DRAW"
+    assert classify_draw_system_type({"hunt_type": "Limited Entry", "species": "Cougar", "sex_type": ""}) == "COUGAR_LICENSE_BASED"
 
 
 def test_antlerless_moose_and_ewe_bighorn_can_classify_as_bonus() -> None:
@@ -45,3 +45,4 @@ def test_bighorn_species_and_turkey_acquisition_methods_do_not_merge() -> None:
     assert classify_draw_system_type({"hunt_type": "Limited Entry", "species": "Turkey", "sex_type": "Bearded"}) == "BONUS_TURKEY"
     assert classify_draw_system_type({"hunt_type": "Spring General Season", "species": "Turkey", "sex_type": "Bearded"}) == "OTC_OR_REMAINING_TARGET"
     assert classify_draw_system_type({"hunt_type": "Fall Management", "species": "Turkey", "sex_type": "Either Sex"}) == "OTC_OR_REMAINING_TARGET"
+

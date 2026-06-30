@@ -49,8 +49,9 @@ UNLIMITED_PURSUIT_PERMIT = "UNLIMITED_PURSUIT_PERMIT"
 CONSERVATION_OR_NON_PUBLIC = "CONSERVATION_OR_NON_PUBLIC"
 UNKNOWN_BEAR_SUBTYPE = "UNKNOWN_BEAR_SUBTYPE"
 
-MODELED_BEAR_SUBTYPES = {LIMITED_ENTRY_BEAR_HUNT, RESTRICTED_BEAR_PURSUIT}
+MODELED_BEAR_SUBTYPES = {LIMITED_ENTRY_BEAR_HUNT}
 EXCLUDED_BEAR_SUBTYPES = {
+    RESTRICTED_BEAR_PURSUIT,
     HARVEST_OBJECTIVE_AVAILABILITY,
     REMAINING_PERMIT_AVAILABILITY,
     UNLIMITED_PURSUIT_PERMIT,
@@ -81,7 +82,7 @@ STRATEGY_SPECS = [
         module_name="engine.utah_draw_predictive.bear",
         algorithm_status=ALGORITHM_STATUS_MODELED_BONUS,
         target_scope=TARGET_SCOPE_TARGET,
-        reason="Public limited-entry and restricted-pursuit bear rows use the Utah bonus model only when the source history proves real draw status, valid quota, and modeled bonus probabilities.",
+        reason="Public limited-entry bear rows use the Utah bonus model only when the source history proves real draw status, valid quota, and modeled bonus probabilities; pursuit-only rows remain reference/allocation records without public harvest draw odds.",
         modeled_by_engine=True,
         legacy_logic_present=True,
     )
@@ -319,6 +320,7 @@ def is_modeled_bear_row(row: Mapping[str, object]) -> bool:
         _clean_lower(row.get("model_strategy")) == MODEL_STRATEGY_NAME
         and _clean_lower(row.get("bear_bonus_valid")) in {"1", "true", "yes", "y"}
         and _clean(row.get("draw_system_type")) == BEAR_DRAW_SYSTEM_TYPE
+        and classify_bear_subtype(row) in MODELED_BEAR_SUBTYPES
     )
 
 
@@ -597,6 +599,8 @@ def _permit_availability_type(subtype: str) -> str:
         return "HARVEST_OBJECTIVE"
     if subtype == UNLIMITED_PURSUIT_PERMIT:
         return "UNLIMITED_PURSUIT"
+    if subtype == RESTRICTED_BEAR_PURSUIT:
+        return "RESTRICTED_PURSUIT_REFERENCE"
     if subtype == REMAINING_PERMIT_AVAILABILITY:
         return "REMAINING_PERMIT"
     if subtype == CONSERVATION_OR_NON_PUBLIC:

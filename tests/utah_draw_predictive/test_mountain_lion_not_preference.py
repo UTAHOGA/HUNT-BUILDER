@@ -1,4 +1,4 @@
-import csv
+﻿import csv
 from pathlib import Path
 
 
@@ -20,4 +20,5 @@ def test_mountain_lion_rows_do_not_use_preference_fields() -> None:
     rows = _read_csv(Path(str(_repo_root() / "processed_data/mountain_lion_availability_predictions_v1.csv")))
     assert rows
     assert all((row.get("p_preference_draw") or "").strip() == "" for row in rows)
-    assert all((row.get("draw_system_type") or "").strip() == "MOUNTAIN_LION_DRAW" for row in rows)
+    assert all((row.get("draw_system_type") or "").strip() == "COUGAR_LICENSE_BASED" for row in rows)
+

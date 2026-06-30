@@ -18,6 +18,7 @@ BONUS_RULE_VERSION = "utah_turkey_bonus_v1.0.0"
 TURKEY_DRAW_SYSTEM_TYPE = "BONUS_TURKEY"
 YOUTH_TURKEY_DRAW_SYSTEM_TYPE = "YOUTH_TURKEY_SET_ASIDE"
 YOUTH_TURKEY_SET_ASIDE_RATIO = 0.15
+CONSERVATION_TURKEY_CODES = {"TK1012", "TK1013", "TK1014", "TK1015", "TK1016"}
 
 EXCLUDED_TURKEY_TOKENS = (
     "spring general season",
@@ -107,6 +108,9 @@ def _is_turkey(row: Mapping[str, object]) -> bool:
 
 
 def _is_youth_turkey(row: Mapping[str, object]) -> bool:
+    hunt_code = _clean(row.get("hunt_code")).upper()
+    if hunt_code in CONSERVATION_TURKEY_CODES:
+        return False
     source_file = _clean_lower(row.get("source_file"))
     draw_pool = _clean_lower(row.get("draw_pool"))
     hunt_class = _clean_lower(row.get("hunt_class"))
@@ -175,8 +179,11 @@ def is_remaining_turkey_row(row: Mapping[str, object]) -> bool:
 def is_nonpublic_turkey_row(row: Mapping[str, object]) -> bool:
     if not _is_turkey(row):
         return False
+    hunt_code = _clean(row.get("hunt_code")).upper()
+    if hunt_code in CONSERVATION_TURKEY_CODES:
+        return True
     text = _joined_text(row)
-    return any(token in text for token in ("private land only", "private land", "private", "sportsman", "conservation", "expo", "fall management"))
+    return any(token in text for token in ("private land only", "private land", "private", "sportsman", "conservation", "organization", "organizations", "expo", "fall management"))
 
 
 def _source_proves_bonus_turkey(row: Mapping[str, object]) -> bool:
