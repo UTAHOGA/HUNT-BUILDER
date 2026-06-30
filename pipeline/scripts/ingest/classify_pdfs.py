@@ -1,12 +1,21 @@
 import csv
 import re
 from pathlib import Path
+
+
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
 import warnings
 
 from pypdf import PdfReader
 
 
-REPO_ROOT = Path(r"D:\DOCUMENTS\GitHub\HUNTS")
+REPO_ROOT = Path(str(_repo_root()))
 CURATED_MANIFEST = REPO_ROOT / "pipeline" / "manifests" / "pdf_ingest_manifest_curated.csv"
 OUTPUT_INDEX = REPO_ROOT / "pipeline" / "manifests" / "pdf_search_index.csv"
 

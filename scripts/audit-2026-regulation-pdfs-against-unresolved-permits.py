@@ -10,6 +10,15 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
+
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
 import pdfplumber
 
 
@@ -20,9 +29,9 @@ AUDIT_CSV = OUT_DIR / "regulation_2026_unresolved_code_presence_audit.csv"
 SUMMARY_JSON = OUT_DIR / "regulation_2026_unresolved_code_presence_summary.json"
 
 PDFS = [
-    Path("C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2026/pdf/regulations/2026 Big Game Application.pdf"),
-    Path("C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2026/pdf/regulations/antlerless_guidebook.pdf"),
-    Path("C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2026/pdf/regulations/2026 Bear Cougar Furbearer Guidebook.pdf"),
+    Path(str(_repo_root() / "pipeline/RAW/hunt_unit_database/2026/pdf/regulations/2026 Big Game Application.pdf")),
+    Path(str(_repo_root() / "pipeline/RAW/hunt_unit_database/2026/pdf/regulations/antlerless_guidebook.pdf")),
+    Path(str(_repo_root() / "pipeline/RAW/hunt_unit_database/2026/pdf/regulations/2026 Bear Cougar Furbearer Guidebook.pdf")),
 ]
 
 OUTPUT_COLUMNS = [

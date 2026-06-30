@@ -14,12 +14,21 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
+
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
 from pypdf import PdfReader
 
 
 ROOT = Path(__file__).resolve().parents[1]
 LEGACY_PDF = Path(
-    r"C:\Users\tyler\Desktop\GitHub\HUNTS\pipeline\RAW\hunt_unit_database\2024\pdf\draw_odds\23_bg-odds.pdf"
+    str(_repo_root() / "pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/23_bg-odds.pdf")
 )
 ACTIVE_PDF = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2024" / "pdf" / "draw_odds" / "23_bg-odds.pdf"
 SOURCE_CSV = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2024" / "csv" / "draw_results_2023_for_2024_long.csv"

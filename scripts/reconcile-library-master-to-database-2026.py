@@ -14,8 +14,17 @@ from collections import Counter
 from pathlib import Path
 
 
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
+
 ROOT = Path(__file__).resolve().parents[1]
-TRUTH_DATABASE = Path(r"C:\Users\tyler\Desktop\GitHub\HUNTS\pipeline\RAW\hunt_unit_database\2026\csv\DATABASE.csv")
+TRUTH_DATABASE = Path(str(_repo_root() / "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"))
 LIBRARY_MASTER = ROOT / "pipeline/RAW/hunt_unit_database/library-master.csv"
 LIBRARY_MASTER_JSON = ROOT / "pipeline/RAW/hunt_unit_database/library-master.json"
 PUBLIC_DOCUMENTS = ROOT / "public/hard-copy/data/documents.json"

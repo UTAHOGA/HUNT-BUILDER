@@ -8,7 +8,16 @@ from http.cookiejar import CookieJar
 from pathlib import Path
 
 
-REPO = Path(r"D:\DOCUMENTS\GitHub\HUNTS")
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
+
+REPO = Path(str(_repo_root()))
 OUT_DIR = REPO / "pipeline" / "processed" / "canonical"
 MANIFEST_DIR = REPO / "pipeline" / "manifests"
 OUT_PERMITS = OUT_DIR / "utah_huntplanner_permits_raw.csv"

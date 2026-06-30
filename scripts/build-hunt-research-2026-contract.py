@@ -7,6 +7,15 @@ from collections import Counter, defaultdict
 from datetime import datetime
 from pathlib import Path
 
+
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
 ROOT = Path(__file__).resolve().parents[1]
 
 OUT_JSON = ROOT / "processed_data" / "hunt_research_2026.json"
@@ -25,7 +34,7 @@ MASTER_CANDIDATES = [
 LADDER_PATH = ROOT / "processed_data" / "point_ladder_view.csv"
 DRAW_HISTORY_CANDIDATES = [
     ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "Draw Odds" / "rebuilt_2025_draw_results_for_2026_modeling.csv",
-    Path(r"C:\Users\tyler\Desktop\GitHub\HUNTS\pipeline\RAW\hunt_unit_database\2026\csv\Draw Odds\rebuilt_2025_draw_results_for_2026_modeling.csv"),
+    Path(str(_repo_root() / "pipeline/RAW/hunt_unit_database/2026/csv/Draw Odds/rebuilt_2025_draw_results_for_2026_modeling.csv")),
     ROOT / "data_truth" / "draw_results_truth" / "normalized" / "draw_results_long.csv",
     ROOT / "processed_data" / "draw_reality_engine_v2.csv",
     ROOT / "processed_data" / "draw_reality_engine.csv",
@@ -46,7 +55,7 @@ DRAW_2025_PRIVATE_TOTALS_PATH = ROOT / "pipeline" / "RAW" / "hunt_unit_database"
 DRAW_2025_TRUTH_PATH = ROOT / "data_truth" / "draw_results_truth" / "normalized" / "draw_results_long.csv"
 DRAW_2025_REBUILT_CANDIDATES = [
     ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "Draw Odds" / "rebuilt_2025_draw_results_for_2026_modeling.csv",
-    Path(r"C:\Users\tyler\Desktop\GitHub\HUNTS\pipeline\RAW\hunt_unit_database\2026\csv\Draw Odds\rebuilt_2025_draw_results_for_2026_modeling.csv"),
+    Path(str(_repo_root() / "pipeline/RAW/hunt_unit_database/2026/csv/Draw Odds/rebuilt_2025_draw_results_for_2026_modeling.csv")),
     DRAW_2025_TRUTH_PATH,
 ]
 

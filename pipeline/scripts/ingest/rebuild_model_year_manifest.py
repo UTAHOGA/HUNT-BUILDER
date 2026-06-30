@@ -3,8 +3,17 @@ import re
 from pathlib import Path
 
 
-REPO = Path(r"D:\DOCUMENTS\GitHub\HUNTS")
-RAW_ROOT = REPO / "pipeline" / "raw"
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
+
+REPO = Path(str(_repo_root()))
+RAW_ROOT = REPO / "pipeline" / "RAW" / "hunt_unit_database"
 OUT = REPO / "pipeline" / "manifests" / "pdf_model_ready_manifest_with_target_year_v3.csv"
 
 
@@ -20,7 +29,7 @@ def infer_doc_type(path: Path) -> str:
 
 
 def infer_publish_year(path: Path) -> str:
-    # source of truth is year folder under pipeline/raw
+    # source of truth is the year folder under pipeline/RAW/hunt_unit_database
     parts = path.parts
     try:
         i = parts.index("raw")

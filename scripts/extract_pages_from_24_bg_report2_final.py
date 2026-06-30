@@ -5,13 +5,22 @@ import csv
 import json
 import re
 from pathlib import Path
+
+
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
 from typing import Iterable
 
 import pandas as pd
 import pdfplumber
 
 
-PDF_DEFAULT = r"C:\Users\tyler\Desktop\GitHub\HUNTS\pipeline\RAW\hunt_unit_database\2025\pdf\harvest_report\Pages from 24_bg_report-2.pdf"
+PDF_DEFAULT = str(_repo_root() / "pipeline/RAW/hunt_unit_database/2025/pdf/harvest_report/Pages from 24_bg_report-2.pdf")
 
 
 def clean_lines(text: str) -> list[str]:

@@ -26,6 +26,7 @@ HUNT-BUILDER/
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.pytest_tmp*/
 # Local-only agent/environment files
 .codex/
 # Local PDF ingest inbox / generated review artifacts

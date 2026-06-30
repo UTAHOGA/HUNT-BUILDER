@@ -15,6 +15,15 @@ from __future__ import annotations
 import csv
 import sys
 from pathlib import Path
+
+
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
 from typing import Dict, List, Optional, Tuple
 
 from openpyxl import load_workbook
@@ -97,7 +106,7 @@ def _read_csv(path: Path) -> Tuple[List[str], List[List[str]]]:
 
 
 def main() -> int:
-    base = Path(r"D:\DOCUMENTS\GitHub\HUNTS\pipeline\raw\2026")
+    base = Path(str(_repo_root() / "pipeline/RAW/hunt_unit_database/2026"))
     xlsx_dir = base / "xlsx"
     csv_dir = base / "csv"
 

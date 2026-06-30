@@ -20,8 +20,17 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
+
 DEFAULT_OUT_DIR = "audits/hunt_research_engine"
-DEFAULT_ZIP = "C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2026/csv/HARVEST REPORT/2025 HARVEST DATA.zip"
+DEFAULT_ZIP = str(_repo_root() / "pipeline/RAW/hunt_unit_database/2026/csv/HARVEST REPORT/2025 HARVEST DATA.zip")
 LOCAL_RAW_DIR = "pipeline/RAW/hunt_unit_database/2026/csv/harvest report"
 
 CURRENT_FILES = {

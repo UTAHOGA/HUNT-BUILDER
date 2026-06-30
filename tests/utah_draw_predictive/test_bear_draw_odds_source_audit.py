@@ -3,14 +3,23 @@ import json
 from pathlib import Path
 
 
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
+
 def _read_csv(path: Path) -> list[dict[str, str]]:
     with path.open(encoding="utf-8-sig", newline="") as handle:
         return list(csv.DictReader(handle))
 
 
 def test_bear_draw_odds_source_audit_records_pursuit_pdf_evidence() -> None:
-    csv_path = Path(r"C:\Users\tyler\Desktop\GitHub\HUNTS\processed_data\bear_draw_odds_source_audit.csv")
-    json_path = Path(r"C:\Users\tyler\Desktop\GitHub\HUNTS\processed_data\bear_draw_odds_source_audit.json")
+    csv_path = Path(str(_repo_root() / "processed_data/bear_draw_odds_source_audit.csv"))
+    json_path = Path(str(_repo_root() / "processed_data/bear_draw_odds_source_audit.json"))
     rows = _read_csv(csv_path)
     report = json.loads(json_path.read_text(encoding="utf-8"))
 
