@@ -477,8 +477,8 @@ def classification_reason(row: Mapping[str, object], draw_system_type: str | Non
         return "Youth antlerless/doe reserve rows stay separate from adult antlerless/doe preference models until youth reserve mechanics are source-proven."
     if draw_system_type == YOUTH_GENERAL_ANY_BULL_ELK_DRAW_SYSTEM_TYPE:
         if algorithm_status == ALGORITHM_STATUS_MODELED_RANDOM_ONLY:
-            return "Youth general any-bull elk uses a dedicated youth set-aside random lane when official source rows are available."
-        return "Youth general any-bull elk stays in scope, but future-year forecasting remains pending until the blind-tested EB1007 forecast lane is promoted."
+            return "Youth general any-bull elk uses the dedicated EB1007 youth set-aside random-only lane."
+        return "Youth general any-bull elk stays in scope, but remains pending when usable quota and applicant history are not both available."
     if draw_system_type == YOUTH_OTC_OR_AVAILABILITY_DRAW_SYSTEM_TYPE:
         return "Youth OTC or availability rows are purchase/availability rows, not predictive draw-odds rows."
     if draw_system_type == YOUTH_TURKEY_DRAW_SYSTEM_TYPE:
@@ -513,6 +513,10 @@ def sanitize_modeled_probability_fields(row: dict[str, object]) -> dict[str, obj
         for key in (
             "p_draw",
             "p_draw_pct",
+            "p_prior_year_baseline",
+            "p_quota_adjusted",
+            "p_rollover_adjusted",
+            "p_harvest_adjusted",
             "p_preference_draw",
             "p_bonus_pool",
             "p_random_pool",
@@ -527,7 +531,20 @@ def sanitize_modeled_probability_fields(row: dict[str, object]) -> dict[str, obj
         ALGORITHM_STATUS_OUT_OF_SCOPE_NON_TARGET,
         ALGORITHM_STATUS_UNKNOWN_TARGET_NEEDS_REVIEW,
     }:
-        for key in ("p_draw", "p_draw_pct", "p_preference_draw", "p_bonus_pool", "p_random_pool", "p_bonus_pool_pct", "p_random_pool_pct", "p_sportsman_draw"):
+        for key in (
+            "p_draw",
+            "p_draw_pct",
+            "p_prior_year_baseline",
+            "p_quota_adjusted",
+            "p_rollover_adjusted",
+            "p_harvest_adjusted",
+            "p_preference_draw",
+            "p_bonus_pool",
+            "p_random_pool",
+            "p_bonus_pool_pct",
+            "p_random_pool_pct",
+            "p_sportsman_draw",
+        ):
             row[key] = ""
         existing_outlook = _clean(row.get("draw_outlook"))
         if classification["algorithm_status"] == ALGORITHM_STATUS_OUT_OF_SCOPE_NON_TARGET:

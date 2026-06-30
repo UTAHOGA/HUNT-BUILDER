@@ -121,6 +121,43 @@ def test_youth_general_any_bull_elk_uses_official_target_year_truth_when_availab
     assert {row.get("youth_general_any_bull_elk_valid") for row in elk_rows} == {"TRUE"}
 
 
+def test_youth_general_any_bull_elk_derives_target_year_probability_from_quota_and_applicants() -> None:
+    truth_rows = [
+        {
+            "actual_draw_year": "2026",
+            "hunt_code": "EB1007",
+            "hunt_name": "Youth Any Bull/Hunter's Choice Elk",
+            "species": "Elk",
+            "sex_type": "Hunter's Choice",
+            "weapon": "Any Legal Weapon",
+            "residency": "Resident",
+            "points": "0",
+            "eligible_applicants": "100",
+            "total_permits": "10",
+        },
+    ]
+    db_rows = [
+        {
+            "hunt_code": "EB1007",
+            "hunt_name": "Draw-only Youth Any Bull/Hunters Choice Elk",
+            "species": "Elk",
+            "sex_type": "Bull",
+            "hunt_type": "General Season - Any Bull",
+            "hunt_class": "Youth",
+            "weapon": "Any Legal Weapon",
+            "season": "Sept 12 2026 - Sept 22 2026",
+            "permits_2026_total": "10",
+        }
+    ]
+
+    rows, _report = build_youth_predictions(truth_rows, db_rows, 2026, [2025])
+    resident = next(row for row in rows if row.get("residency") == "Resident")
+
+    assert resident["algorithm_status"] == "MODELED_RANDOM_ONLY"
+    assert resident["p_draw"] == "0.100000"
+    assert resident["p_draw_pct"] == "10.000"
+
+
 def test_youth_general_any_bull_elk_future_year_forecasts_from_history() -> None:
     truth_rows = [
         {

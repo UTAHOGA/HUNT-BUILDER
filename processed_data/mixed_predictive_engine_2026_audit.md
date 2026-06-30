@@ -1,18 +1,18 @@
 # Mixed Predictive Engine 2026 Audit
 
-- generated_at_utc: 2026-06-27T08:07:28.359752+00:00
+- generated_at_utc: 2026-06-29T23:44:51.198840+00:00
 - model_version: mixed_predictive_v1.0.0
 - rule_version: utah_draw_model_v1.0.0
-- prediction_row_count: 34882
-- modeled_bonus_row_count: 28027
-- modeled_preference_row_count: 6625
-- modeled_sportsman_row_count: 0
+- prediction_row_count: 41117
+- modeled_bonus_row_count: 28081
+- modeled_preference_row_count: 12770
+- modeled_sportsman_row_count: 10
 - availability_allocation_row_count: 124
-- prior_year_exact_matches: 34882
-- quota_adjusted_rows: 12589
-- rollover_adjusted_rows: 34654
-- harvest_adjusted_rows: 34654
-- rows_using_fallback_harvest_features: 482
+- prior_year_exact_matches: 41117
+- quota_adjusted_rows: 13828
+- rollover_adjusted_rows: 40863
+- harvest_adjusted_rows: 40863
+- rows_using_fallback_harvest_features: 700
 - rows_with_no_harvest_history: 0
 - db1004_reconciliation: {'public_draw_2025_permits': '80', 'expo_permits': '3', 'all_class_total': '83', 'conservation_used': False, 'sample_display_odds_text': '~1 in 5375.5 or 0.0%'}
 - eb3024_pool_zone_verification: [{'points': '28', 'point_pool_zone': 'random_pool', 'p_max_pool_mean': '0.000000', 'p_random_mean': '0.006316', 'p_draw_mean': '0.001263', 'projected_applicants': '13'}, {'points': '29', 'point_pool_zone': 'max_pool_cutoff_mixed', 'p_max_pool_mean': '0.157895', 'p_random_mean': '0.006533', 'p_draw_mean': '0.648064', 'projected_applicants': '19'}, {'points': '30', 'point_pool_zone': 'max_pool_guaranteed', 'p_max_pool_mean': '1.000000', 'p_random_mean': '0.000000', 'p_draw_mean': '1.000000', 'projected_applicants': '2'}]

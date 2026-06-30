@@ -44,7 +44,9 @@ REQUIRED_COLUMNS = [
     "hunt_type",
     "weapon",
     "hunt_class",
+    "source_draw_class",
     "draw_design",
+    "draw_subpool",
     "season",
     "year",
     "draw_pool",
@@ -224,6 +226,83 @@ def derive_draw_design(row):
     return ""
 
 
+def derive_source_draw_class(row):
+    raw_class = normalize_source_draw_class_label(
+        first_nonempty(row, "hunt_draw_class", "source_draw_class", "hunt_class", "source_scope")
+    )
+    source_scope = normalize_source_draw_class_label(row.get("source_scope"))
+    text = " ".join(
+        clean(row.get(field)).lower()
+        for field in ("source_scope", "source_file", "draw_source_file", "source_pdf", "qa_notes")
+    )
+    species = clean(row.get("species")).upper().replace(" ", "_")
+    sex_type = clean(row.get("sex_type")).upper().replace(" ", "_")
+
+    if source_scope in {"GS_DEER", "GENERAL_SEASON_DEER"}:
+        raw_class = "GENERAL_SEASON_DEER"
+    elif source_scope in {"LIFETIME_DEER", "LIFETIME_GENERAL_SEASON_DEER"}:
+        raw_class = "LIFETIME_GENERAL_SEASON_DEER"
+    elif source_scope in {"YOUTH_GS_DEER", "YOUTH_GENERAL_SEASON_DEER"}:
+        raw_class = "YOUTH_GENERAL_SEASON_DEER"
+    elif source_scope in {"DH_DEER", "DEDICATED_HUNTER", "DEDICATED_HUNTER_DEER"}:
+        raw_class = "DEDICATED_HUNTER"
+    elif source_scope in {"YOUTH_DH_DEER", "YOUTH_DEDICATED_HUNTER", "YOUTH_DEDICATED_HUNTER_DEER"}:
+        raw_class = "YOUTH_DEDICATED_HUNTER"
+
+    if "lifetime" in text:
+        if raw_class.startswith("LIFETIME_"):
+            return raw_class
+        if raw_class:
+            return f"LIFETIME_{raw_class}"
+        return "LIFETIME_GENERAL_SEASON_DEER"
+
+    if "youth" in text:
+        if raw_class and raw_class.startswith("YOUTH_"):
+            return raw_class
+        if raw_class:
+            return f"YOUTH_{raw_class}"
+        if "ANTLERLESS" in sex_type or "DOE" in sex_type:
+            return f"YOUTH_ANTLERLESS_{species}"
+        return f"YOUTH_{species}"
+
+    if raw_class.startswith("YOUTH_") and any(token in text for token in ("regular", "adult", "antlerless draw results")):
+        return raw_class.removeprefix("YOUTH_")
+
+    return raw_class
+
+
+def derive_draw_subpool(row):
+    text = " ".join(
+        clean(row.get(field)).lower()
+        for field in ("source_scope", "source_file", "draw_source_file", "source_pdf", "qa_notes", "notes")
+    )
+    if "lifetime" in text:
+        return "lifetime"
+    if "youth" in text:
+        return "youth"
+    return "standard"
+
+
+def normalize_source_draw_class_label(value):
+    text = clean(value).upper()
+    if not text:
+        return ""
+    normalized = "_".join(text.replace("-", " ").replace("/", " ").split())
+    aliases = {
+        "GENERAL_SEASON": "GENERAL_SEASON_DEER",
+        "GENERAL_DEER": "GENERAL_SEASON_DEER",
+        "GENERAL_SEASON_BUCK_DEER": "GENERAL_SEASON_DEER",
+        "PREFERENCE_GENERAL_SEASON_BUCK_DEER": "GENERAL_SEASON_DEER",
+        "LIFETIME_GENERAL_DEER": "LIFETIME_GENERAL_SEASON_DEER",
+        "DEDICATED_HUNTER_DEER": "DEDICATED_HUNTER",
+        "D_H_DEER": "DEDICATED_HUNTER",
+        "YOUTH_D_H_DEER": "YOUTH_DEDICATED_HUNTER",
+        "YOUTH_GENERAL_DEER": "YOUTH_GENERAL_SEASON_DEER",
+        "YOUTH_GENERAL_SEASON_BUCK_DEER": "YOUTH_GENERAL_SEASON_DEER",
+    }
+    return aliases.get(normalized, normalized)
+
+
 def is_scorable_truth_row(row):
     status = clean(row.get("algorithm_status")).upper()
     qa_status = clean(row.get("qa_status")).lower()
@@ -341,9 +420,12 @@ def collapse_duplicate_scorable_rows(rows):
             continue
 
         base = dict(group[0])
-        for field in ("eligible_applicants", "bonus_permits", "regular_permits", "total_permits"):
-            base[field] = str(sum(int(normalize_int(row.get(field)) or 0) for row in group))
-        base["success_ratio"] = success_ratio_from_counts(base["eligible_applicants"], base["total_permits"])
+        payload_identical = len({row_payload_key(row) for row in group}) == 1
+        collapse_kind = "SAFE_DEDUPLICATED_IDENTICAL_SCORABLE_ROWS" if payload_identical else "UNSAFE_SUMMED_CONFLICTING_SCORABLE_ROWS"
+        if not payload_identical:
+            for field in ("eligible_applicants", "bonus_permits", "regular_permits", "total_permits"):
+                base[field] = str(sum(int(normalize_int(row.get(field)) or 0) for row in group))
+            base["success_ratio"] = success_ratio_from_counts(base["eligible_applicants"], base["total_permits"])
 
         source_files = []
         for row in group:
@@ -354,16 +436,19 @@ def collapse_duplicate_scorable_rows(rows):
             base["source_file"] = "; ".join(source_files[:5])
 
         notes = clean(base.get("validation_notes"))
-        suffix = f"COLLAPSED_DUPLICATE_SCORABLE_ROWS={len(group)}"
+        suffix = f"{collapse_kind}={len(group)}"
         base["validation_notes"] = f"{notes};{suffix}" if notes else suffix
         collapsed.append(base)
         collapse_audit.append(
             {
                 "key": key,
+                "collapse_kind": collapse_kind,
                 "collapsed_row_count": len(group),
                 "hunt_code": base.get("hunt_code", ""),
                 "year": base.get("year", ""),
                 "draw_pool": base.get("draw_pool", ""),
+                "source_draw_class": base.get("source_draw_class", ""),
+                "draw_subpool": base.get("draw_subpool", ""),
                 "residency": base.get("residency", ""),
                 "points": base.get("points", ""),
                 "eligible_applicants_sum": base.get("eligible_applicants", ""),
@@ -373,6 +458,63 @@ def collapse_duplicate_scorable_rows(rows):
         )
 
     return collapsed, collapse_audit
+
+
+def row_payload_key(row):
+    return "|".join(
+        normalize_int(row.get(field)) if field != "success_ratio" else normalize_success_ratio(row.get(field))
+        for field in ("eligible_applicants", "bonus_permits", "regular_permits", "total_permits", "success_ratio")
+    )
+
+
+def subpool_base_key(row):
+    return "|".join(
+        [
+            clean(row.get("hunt_code")).upper(),
+            clean(row.get("year")),
+            clean(row.get("source_draw_class")).upper(),
+            clean(row.get("draw_subpool")).lower(),
+            clean(row.get("draw_pool")).lower(),
+            clean(row.get("residency")),
+            clean(row.get("points")),
+        ]
+    )
+
+
+def assign_reported_subpool_variants(rows):
+    grouped = defaultdict(list)
+    for row in rows:
+        grouped[subpool_base_key(row)].append(row)
+
+    for group in grouped.values():
+        if len(group) < 2:
+            continue
+        if len({row_payload_key(row) for row in group}) <= 1:
+            continue
+
+        sorted_group = sorted(
+            group,
+            key=lambda r: (
+                int(normalize_int(r.get("eligible_applicants")) or 0),
+                int(normalize_int(r.get("total_permits")) or 0),
+            ),
+            reverse=True,
+        )
+        for index, row in enumerate(sorted_group):
+            eligible = int(normalize_int(row.get("eligible_applicants")) or 0)
+            permits = int(normalize_int(row.get("total_permits")) or 0)
+            if index == 0:
+                suffix = "primary_reported_pool"
+            elif eligible > 0 and eligible == permits:
+                suffix = "guaranteed_reported_pool"
+            else:
+                suffix = f"secondary_reported_pool_{index + 1}"
+            row["draw_subpool"] = f"{clean(row.get('draw_subpool')).lower()}_{suffix}"
+            notes = clean(row.get("validation_notes"))
+            marker = "OFFICIAL_SAME_POINT_REPORTED_SUBPOOL_PRESERVED"
+            row["validation_notes"] = f"{notes};{marker}" if notes else marker
+
+    return rows
 
 
 DRAW_POOL_VALUES = {
@@ -452,6 +594,8 @@ def key_full(row):
         [
             clean(row.get("hunt_code")).upper(),
             clean(row.get("year")),
+            clean(row.get("source_draw_class")).upper(),
+            clean(row.get("draw_subpool")).lower(),
             clean(row.get("draw_pool")).lower(),
             clean(row.get("residency")),
             clean(row.get("points")),
@@ -464,6 +608,8 @@ def key_no_pool(row):
         [
             clean(row.get("hunt_code")).upper(),
             clean(row.get("year")),
+            clean(row.get("source_draw_class")).upper(),
+            clean(row.get("draw_subpool")).lower(),
             clean(row.get("residency")),
             clean(row.get("points")),
         ]
@@ -550,10 +696,22 @@ def main():
         year = row_year(row)
         draw_design = derive_draw_design(row)
         draw_pool = clean(first_nonempty(row, "draw_pool") or draw_design).lower()
+        source_draw_class = derive_source_draw_class(row)
+        draw_subpool = derive_draw_subpool(row)
         residency = normalize_residency(first_nonempty(row, "residency"))
         points = normalize_int(first_nonempty(row, "points"))
+        points_summary_row = False
         if points == "" and record_type(row) in {"sportsman_total", "sportsman_total_draw_result", "sportsman_random_total"}:
             points = "0"
+        elif points == "" and first_nonempty(
+            row,
+            "eligible_applicants",
+            "resident_eligible_applicants",
+            "nonresident_eligible_applicants",
+            "total_eligible_applicants",
+        ):
+            points = "ALL"
+            points_summary_row = True
         boundary_id = clean(row.get("boundary_id"))
 
         code_in_db = hunt_code in db_codes if hunt_code else False
@@ -588,6 +746,8 @@ def main():
         if points == "":
             status = "INVALID"
             notes.append("POINTS_BLANK")
+        elif points_summary_row:
+            notes.append("POINTS_ALL_SUMMARY_ROW_NOT_POINT_LADDER")
 
         source_file = clean(row.get("source_file"))
         source_pdf_page = normalize_int(first_nonempty(row, "source_pdf_page", "pdf_page"))
@@ -609,7 +769,9 @@ def main():
                 row.get("hunt_type"),
                 row.get("weapon"),
             ),
+            "source_draw_class": source_draw_class,
             "draw_design": clean(draw_design),
+            "draw_subpool": draw_subpool,
             "season": clean(row.get("season")),
             "year": year,
             "draw_pool": draw_pool,
@@ -629,15 +791,19 @@ def main():
         }
         out_rows.append(out_row)
 
+    out_rows = assign_reported_subpool_variants(out_rows)
     out_rows, collapsed_duplicate_rows = collapse_duplicate_scorable_rows(out_rows)
     write_csv(
         OUT_COLLAPSED_DUPES,
         [
             "key",
+            "collapse_kind",
             "collapsed_row_count",
             "hunt_code",
             "year",
             "draw_pool",
+            "source_draw_class",
+            "draw_subpool",
             "residency",
             "points",
             "eligible_applicants_sum",
@@ -648,6 +814,16 @@ def main():
     )
 
     write_csv(OUT_V2, REQUIRED_COLUMNS, out_rows)
+    unsafe_collapsed_duplicate_rows = [
+        row
+        for row in collapsed_duplicate_rows
+        if clean(row.get("collapse_kind")) != "SAFE_DEDUPLICATED_IDENTICAL_SCORABLE_ROWS"
+    ]
+    safe_deduplicated_duplicate_rows = [
+        row
+        for row in collapsed_duplicate_rows
+        if clean(row.get("collapse_kind")) == "SAFE_DEDUPLICATED_IDENTICAL_SCORABLE_ROWS"
+    ]
 
     # Validation
     row_count_v3 = len(v3_rows)
@@ -660,6 +836,8 @@ def main():
         "hunt_code_blank_count": sum(1 for r in out_rows if not clean(r["hunt_code"])),
         "year_blank_count": sum(1 for r in out_rows if not clean(r["year"])),
         "draw_pool_blank_count": sum(1 for r in out_rows if not clean(r["draw_pool"])),
+        "source_draw_class_blank_count": sum(1 for r in out_rows if not clean(r["source_draw_class"])),
+        "draw_subpool_blank_count": sum(1 for r in out_rows if not clean(r["draw_subpool"])),
         "residency_blank_count": sum(1 for r in out_rows if not clean(r["residency"])),
         "points_blank_count": sum(1 for r in out_rows if clean(r["points"]) == ""),
         "draw_design_blank_count": sum(1 for r in out_rows if not clean(r["draw_design"])),
@@ -780,6 +958,7 @@ def main():
         and all(v == 0 for v in blank_counts.values())
         and db_matched_missing_boundary == 0
         and len(non_scorable_leaks) == 0
+        and len(unsafe_collapsed_duplicate_rows) == 0
     )
 
     promotion_blockers = [
@@ -800,12 +979,13 @@ def main():
         "row_count_v2": row_count_v2,
         "row_count_equal": row_count_v3 == row_count_v2,
         "row_count_difference_reason": (
-            "runtime feed collapses duplicate scorable keys by summing applicant/permit fields"
+            "runtime feed preserves source_draw_class/draw_subpool after expanding resident/nonresident wide rows; exact duplicate mirrors are deduped"
             if row_count_v3 != row_count_v2
             else ""
         ),
         "corrected_key_duplicate_count": duplicate_keys,
-        "collapsed_duplicate_scorable_key_count": len(collapsed_duplicate_rows),
+        "collapsed_duplicate_scorable_key_count": len(unsafe_collapsed_duplicate_rows),
+        "safe_deduplicated_duplicate_scorable_key_count": len(safe_deduplicated_duplicate_rows),
         "blank_counts": blank_counts,
         "db_matched_rows_count": len(db_matched_rows),
         "db_matched_rows_missing_boundary_id_count": db_matched_missing_boundary,
@@ -849,7 +1029,7 @@ def main():
         "truth_source_sha256": sha256_file(INPUT_LONG),
         "truth_input_report": truth_input_report,
         "output_feed": str(OUT_V2.relative_to(REPO)).replace("\\", "/"),
-        "required_key": "hunt_code + year + draw_pool + residency + points",
+        "required_key": "hunt_code + year + source_draw_class + draw_subpool + draw_pool + residency + points",
         "required_columns": REQUIRED_COLUMNS,
         "validation_report": str(OUT_VALIDATION.relative_to(REPO)).replace("\\", "/"),
         "comparison_report": str(OUT_COMPARE.relative_to(REPO)).replace("\\", "/"),
@@ -859,7 +1039,7 @@ def main():
         "notes": [
             "V3 is used as draw-result truth source",
             "Only scorable record types are admitted; permit-reference/allocation/reference rows are excluded",
-            "Duplicate scorable keys are collapsed by summing applicant/permit counts for runtime use",
+            "Exact duplicate scorable mirrors are deduped; distinct same-point official pools are preserved with draw_subpool",
             "2026 scorable slice is loaded from outputs/2026 scorable draw results.csv when present",
             "No production processed_data runtime feeds were overwritten in this task",
             "Historical hunt codes not in 2026 DATABASE are preserved and flagged",
@@ -875,7 +1055,8 @@ def main():
             "row_count_v3": row_count_v3,
             "row_count_v2": row_count_v2,
             "corrected_key_duplicate_count": duplicate_keys,
-            "collapsed_duplicate_scorable_key_count": len(collapsed_duplicate_rows),
+            "collapsed_duplicate_scorable_key_count": len(unsafe_collapsed_duplicate_rows),
+            "safe_deduplicated_duplicate_scorable_key_count": len(safe_deduplicated_duplicate_rows),
             "non_scorable_leak_count": len(non_scorable_leaks),
             "rows_added_vs_current_feed": rows_added_vs_current,
             "current_runtime_has_draw_pool": current_has_draw_pool,

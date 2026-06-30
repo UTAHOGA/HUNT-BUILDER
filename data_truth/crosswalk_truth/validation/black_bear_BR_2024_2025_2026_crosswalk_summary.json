@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-06-27T04:21:00+00:00",
+  "generated_at_utc": "2026-06-27T15:13:28+00:00",
   "source_2024_file": "pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/24 bear draw odds complete.pdf",
   "source_2024_sha256": "50a7d2a6b7278e4bd526746655a560567f4bd7f0cc77bab844025956a5f32299",
   "source_2025_file": "pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/2025 Black Bear Draw odds.pdf",
@@ -21,19 +21,19 @@
   "draw_2024_to_2025_changed_total_count": 55,
   "draw_2025_codes_missing_exact_current": [],
   "draw_2025_rows_mapped_to_current_after_crosswalk": 97,
-  "draw_2025_to_2026_mapped_numeric_difference_count": 5,
+  "draw_2025_to_2026_mapped_numeric_difference_count": 4,
   "draw_2025_to_2026_mapped_numeric_difference_codes": [
     "BR7004->BR7004",
-    "BR7008->BR7008",
     "BR7210->BR7210",
     "BR7211->BR7211",
     "BR7317->BR7317"
   ],
-  "high_confidence_recode_count": 1,
+  "high_confidence_recode_count": 4,
   "mapping_status_counts": {
-    "CURRENT_ADMIN_OR_NON_DRAW_ROW": 7,
-    "EXACT_CODE_CURRENT": 94,
+    "CURRENT_ADMIN_OR_NON_DRAW_ROW": 4,
+    "EXACT_CODE_CURRENT": 91,
     "CURRENT_SPLIT_CHILD_NO_PRIOR_DRAW_ROW": 3,
+    "HISTORICAL_CODE_RECODED_TO_CURRENT": 3,
     "NEW_IN_2025_AND_CURRENT_2026": 2,
     "CURRENT_CODE_REUSED_FOR_CONSERVATION_PERMIT": 1,
     "CURRENT_CONSERVATION_NO_DRAW_SOURCE": 1,

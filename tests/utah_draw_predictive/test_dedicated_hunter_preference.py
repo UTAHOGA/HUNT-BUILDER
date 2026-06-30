@@ -182,7 +182,7 @@ def test_youth_dedicated_hunter_is_separate_preference_lane() -> None:
     assert all(is_modeled_dedicated_hunter_row(row) for row in youth_rows)
 
 
-def test_dedicated_hunter_uses_permit_allotment_fallback_for_current_quota() -> None:
+def test_dedicated_hunter_does_not_promote_legacy_allotment_to_current_quota() -> None:
     truth_rows = [
         {
             "hunt_code": "DB1770",
@@ -223,5 +223,4 @@ def test_dedicated_hunter_uses_permit_allotment_fallback_for_current_quota() -> 
         history_years=[2024, 2025],
     )
 
-    assert rows
-    assert {str(row["public_permits_2026"]) for row in rows} == {"12"}
+    assert rows == []

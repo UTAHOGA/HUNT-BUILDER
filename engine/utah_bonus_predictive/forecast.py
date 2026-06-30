@@ -59,6 +59,29 @@ def first_nonempty(*values: object) -> object:
     return ""
 
 
+DEPRECATED_QUOTA_REASON_CODES = {
+    "RAC_CURRENT_YEAR_ALLOTMENT_USED",
+    "DATABASE_2026_PERMITS_USED",
+}
+
+
+def normalize_quota_reason_codes(value: object) -> str:
+    seen: list[str] = []
+    for raw in str(value or "").replace(";", "|").split("|"):
+        code = raw.strip()
+        if not code or code in DEPRECATED_QUOTA_REASON_CODES or code in seen:
+            continue
+        seen.append(code)
+    return "|".join(seen)
+
+
+def probability_component(row: dict[str, str], field: str, fallback: float | None) -> str:
+    value = to_float(row.get(field))
+    if value is None:
+        value = fallback
+    return "" if value is None else f"{value:.6f}"
+
+
 def build_truth_indexes(
     truth_rows: list[dict[str, str]],
 ) -> tuple[
@@ -209,8 +232,12 @@ def materialize_prediction_rows(
         if p_draw_pct is None:
             p_draw_pct = to_float(row.get("display_odds_pct"))
         p_draw_pct_value = p_draw_pct if p_draw_pct is not None else (p_draw * 100.0 if p_draw is not None else None)
+        p_prior_year_baseline = probability_component(row, "p_prior_year_baseline", p_draw)
+        p_quota_adjusted = probability_component(row, "p_quota_adjusted", p_draw)
+        p_rollover_adjusted = probability_component(row, "p_rollover_adjusted", p_draw)
+        p_harvest_adjusted = probability_component(row, "p_harvest_adjusted", p_draw)
         status = row.get("status", "") or ("RANDOM ONLY" if max_point_permits_2026 == 0 and random_permits_2026 > 0 else "")
-        reason_codes = row.get("reason_codes", "")
+        reason_codes = normalize_quota_reason_codes(row.get("reason_codes", ""))
         if "OFFICIAL_2026_QUOTA_USED" not in str(reason_codes):
             reason_codes = f"{reason_codes}|OFFICIAL_2026_QUOTA_USED".strip("|")
 
@@ -236,6 +263,10 @@ def materialize_prediction_rows(
             "guaranteed_at_2026": "",
             "applicants_above": applicants_above,
             "applicants_at_level": applicants_at_level,
+            "p_prior_year_baseline": p_prior_year_baseline,
+            "p_quota_adjusted": p_quota_adjusted,
+            "p_rollover_adjusted": p_rollover_adjusted,
+            "p_harvest_adjusted": p_harvest_adjusted,
             "p_draw_mean": "" if p_draw is None else f"{p_draw:.6f}",
             "p_max_pool_mean": "" if p_bonus_pool is None else f"{p_bonus_pool:.6f}",
             "p_random_mean": "" if p_random_pool is None else f"{p_random_pool:.6f}",
@@ -314,6 +345,10 @@ def materialize_prediction_rows(
                 "random_permits_2026": random_permits_2026,
                 "applicants_above": applicants_above,
                 "applicants_at_level": applicants_at_level,
+                "p_prior_year_baseline": prediction_row["p_prior_year_baseline"],
+                "p_quota_adjusted": prediction_row["p_quota_adjusted"],
+                "p_rollover_adjusted": prediction_row["p_rollover_adjusted"],
+                "p_harvest_adjusted": prediction_row["p_harvest_adjusted"],
                 "p_bonus_pool": prediction_row["p_bonus_pool"],
                 "p_random_pool": prediction_row["p_random_pool"],
                 "p_draw_mean": prediction_row["p_draw_mean"],

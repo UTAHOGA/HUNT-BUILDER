@@ -191,4 +191,5 @@ def test_general_season_deer_emits_structural_zero_point_rows() -> None:
     )
     assert structural_row["model_strategy"] == MODEL_STRATEGY_NAME
     assert structural_row["preference_model_valid"] == "TRUE"
-    assert structural_row["applicants_at_level"] == 1
+    assert structural_row["applicants_at_level"] == 0
+    assert structural_row["probability_applicant_count"] == 1

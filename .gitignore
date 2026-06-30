@@ -825,3 +825,5 @@ processed_data/dwr_huntplanner_hanumber_2026_raw_payloads.json
 /outputs/2019 non-scorable reference rows.csv
 /outputs/2019 quota allotment rows.csv
 /outputs/2019 scorable draw results.csv
+INGEST/
+*.tmp_*

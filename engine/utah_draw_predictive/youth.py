@@ -143,6 +143,14 @@ def _format_odds_text(probability: float) -> str:
     return f"~1 in {1.0 / probability:.1f} or {probability * 100.0:.1f}%"
 
 
+def _format_probability(value: float | None) -> str:
+    return "" if value is None else f"{_clamp01(value):.6f}"
+
+
+def _format_probability_pct(value: float | None) -> str:
+    return "" if value is None else f"{_clamp01(value) * 100.0:.3f}"
+
+
 def _split_youth_reserve_permits(total_permits: int) -> tuple[int, int]:
     if total_permits <= 0:
         return 0, 0
@@ -162,6 +170,14 @@ def _row_probability(row: Mapping[str, object]) -> float | None:
         if 0.0 <= value <= 1.0:
             return value
     return None
+
+
+def _quota_applicant_probability(row: Mapping[str, object]) -> float | None:
+    quota = _to_int(row.get("total_permits") or row.get("quota"))
+    eligible = _to_int(row.get("eligible_applicants"))
+    if quota <= 0 or eligible <= 0:
+        return None
+    return _clamp01(quota / eligible)
 
 
 def _historical_youth_general_any_bull_elk_rows(
@@ -538,6 +554,8 @@ def build_youth_predictions(
             target_probability = _row_probability(truth_row)
             target_eligible = _to_int(truth_row.get("eligible_applicants"))
             target_quota = _to_int(truth_row.get("total_permits"))
+            if target_probability is None:
+                target_probability = _quota_applicant_probability(truth_row)
             has_actual_target_row = target_probability is not None and target_eligible > 0 and target_quota > 0
 
             if has_actual_target_row:
@@ -559,8 +577,9 @@ def build_youth_predictions(
                 latest_source_year = forecast_year
                 earliest_source_year = forecast_year
                 eligible_applicants = str(target_eligible)
-                p_draw = f"{_clamp01(target_probability):.6f}"
-                p_draw_pct = f"{_clamp01(target_probability) * 100.0:.3f}"
+                p_draw_probability = _clamp01(target_probability)
+                p_draw = _format_probability(p_draw_probability)
+                p_draw_pct = _format_probability_pct(p_draw_probability)
                 display_odds_text = _format_odds_text(target_probability)
                 probability_note = (
                     "Modeled from official target-year EB1007 youth set-aside random draw results; "
@@ -592,8 +611,9 @@ def build_youth_predictions(
                     latest_source_year = history_rows_for_residency[-1]["year"]
                     earliest_source_year = history_rows_for_residency[0]["year"]
                     eligible_applicants = str(projected_eligible)
-                    p_draw = f"{projected_probability:.6f}"
-                    p_draw_pct = f"{projected_probability * 100.0:.3f}"
+                    p_draw_probability = _clamp01(projected_probability)
+                    p_draw = _format_probability(p_draw_probability)
+                    p_draw_pct = _format_probability_pct(p_draw_probability)
                     display_odds_text = _format_odds_text(projected_probability)
                     probability_note = (
                         "Forecasted from historical EB1007 youth set-aside random applicants using the latest "
@@ -624,6 +644,7 @@ def build_youth_predictions(
                     )
                     projected_applicants = ""
                     projected_applicants_source = ""
+                    p_draw_probability = None
 
             for flag in flags:
                 data_quality_counter[flag] += 1
@@ -637,12 +658,15 @@ def build_youth_predictions(
                     "hunt_code": hunt_code,
                     "hunt_name": _clean(db_row.get("hunt_name")),
                     "species": _clean(db_row.get("species")) or "Elk",
-                    "sex_type": _clean(db_row.get("sex_type")) or "Bull",
-                    "hunt_type": _clean(db_row.get("hunt_type")) or "General Season - Youth",
-                    "hunt_class": _clean(db_row.get("hunt_class")) or "Public",
+                    "sex_type": "Hunter's Choice",
+                    "hunt_type": "General Season - Youth",
+                    "hunt_class": "Youth Random",
                     "residency": residency,
                     "points": "0",
                     "draw_pool": "youth",
+                    "draw_design": "Random",
+                    "draw_method": "Strict random",
+                    "point_system": "none",
                     "public_permits_2025": "",
                     "public_permits_2026": str(row_permits_total) if row_permits_total > 0 else "",
                     "source_years_used": source_years_used,
@@ -656,6 +680,8 @@ def build_youth_predictions(
                     "season_status": "SEASON DATES PRESENT" if season_dates else "SEASON DATES MISSING",
                     "draw_system_type": YOUTH_GENERAL_ANY_BULL_ELK_DRAW_SYSTEM_TYPE,
                     "algorithm_status": algorithm_status,
+                    "classification_status": algorithm_status,
+                    "reason_codes": "FAMILY_ENGINE_MODELED_YOUTH_GENERAL_ANY_BULL_RANDOM" if valid_flag == "TRUE" else "YOUTH_GENERAL_ANY_BULL_PENDING",
                     "draw_outlook": draw_outlook,
                     "availability_status": "",
                     "p_availability": "",
@@ -671,6 +697,10 @@ def build_youth_predictions(
                     "projected_applicants_2026": projected_applicants if forecast_year == 2026 else "",
                     "projected_applicants_2026_source": projected_applicants_source if forecast_year == 2026 else "",
                     "display_odds_text": display_odds_text,
+                    "p_draw_mean": _format_probability(p_draw_probability),
+                    "p_draw_p10": _format_probability(p_draw_probability),
+                    "p_draw_p50": _format_probability(p_draw_probability),
+                    "p_draw_p90": _format_probability(p_draw_probability),
                     "p_draw": p_draw,
                     "p_draw_pct": p_draw_pct,
                     "p_preference_draw": "",

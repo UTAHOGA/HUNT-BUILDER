@@ -76,13 +76,17 @@ CROSSWALK_FIELDS = [
     "review_note",
 ]
 
-# High-confidence code-reuse correction supported by the 2025 draw PDF and
-# 2026 permit source. La Sal (`BR7008`, `BR7108`, `BR7208`) continues as the
-# same official hunt codes in the live Hunt Planner and must not be collapsed
-# into the separate La Sal Mtns code family.
+# High-confidence 2025->2026 code corrections supported by hand-audited DWR
+# Hunt Planner / draw-odds evidence.  The old La Sal public draw codes do not
+# continue as 2026 public draw rows; the continuing public rows are the La Sal
+# Mtns codes below.  BR7307 is reused for conservation in 2026.
 CURRENT_RECODE_BY_2025_CODE = {
+    "BR7008": ("BR7022", "Historical La Sal spring limited-entry row moved to La Sal Mtns BR7022 for 2026."),
+    "BR7108": ("BR7127", "Historical La Sal summer limited-entry row moved to La Sal Mtns BR7127 for 2026."),
+    "BR7208": ("BR7239", "Historical La Sal fall limited-entry row moved to La Sal Mtns BR7239 for 2026."),
     "BR7307": ("BR7326", "Old La Sal limited-entry multiseason row moved; BR7307 is reused for conservation in 2026."),
 }
+SUPERSEDED_STALE_CURRENT_CODES = {"BR7008", "BR7108", "BR7208"}
 
 
 def sha256(path: Path) -> str:
@@ -313,6 +317,8 @@ def build_crosswalk(
         )
 
     for code in sorted(set(current_2026) - mapped_current_codes):
+        if code in SUPERSEDED_STALE_CURRENT_CODES:
+            continue
         if code in draw_2025 and code != "BR7307":
             continue
         status, note = current_only_status(code, current_2026[code])
@@ -337,6 +343,9 @@ def build_report(summary: dict[str, object]) -> str:
             "",
             "Key recodes:",
             "",
+            "- `BR7008` -> `BR7022`: historical La Sal spring limited-entry row now maps to La Sal Mtns.",
+            "- `BR7108` -> `BR7127`: historical La Sal summer limited-entry row now maps to La Sal Mtns.",
+            "- `BR7208` -> `BR7239`: historical La Sal fall limited-entry row now maps to La Sal Mtns.",
             "- `BR7307` -> `BR7326`: historical La Sal limited-entry multiseason; `BR7307` is reused for 2026 conservation.",
             "",
             "Current-only rows such as Dolores Triangle split children and conservation permits are preserved as current evidence, not forced historical draw matches.",

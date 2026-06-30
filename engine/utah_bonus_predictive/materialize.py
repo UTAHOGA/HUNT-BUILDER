@@ -72,6 +72,15 @@ TARGET_HUNT_TOKENS = (
     "premium limited entry",
 )
 
+RUNTIME_PROMOTION_DECISION = "APPROVED_RUNTIME_PROMOTION_2026_06_29"
+PROMOTED_RUNTIME_FAMILY_REPORTS = {
+    "SPORTSMAN_RANDOM_ONLY": "sportsman_permit_report.json",
+    "YOUTH_GENERAL_ANY_BULL_ELK": "youth_draw_report.json",
+    "PREFERENCE_DEDICATED_HUNTER_DEER": "dedicated_hunter_report.json",
+    TURKEY_DRAW_SYSTEM_TYPE: "turkey_bonus_report.json",
+    YOUTH_TURKEY_DRAW_SYSTEM_TYPE: "youth_turkey_report.json",
+}
+
 
 def _clean_cell(value: object) -> str:
     return "" if value is None else str(value).strip()
@@ -770,6 +779,148 @@ def _replace_rows_by_draw_system_type(
     return filtered
 
 
+def _runtime_promotion_family(row: dict[str, object]) -> str:
+    draw_system_type = str(row.get("draw_system_type", "")).strip()
+    algorithm_status = str(row.get("algorithm_status", "")).strip()
+    model_strategy = str(row.get("model_strategy", "")).strip()
+    if draw_system_type == SPORTSMAN_DRAW_SYSTEM_TYPE and algorithm_status == "MODELED_SPORTSMAN_DRAW":
+        return "SPORTSMAN_RANDOM_ONLY"
+    if draw_system_type in YOUTH_DRAW_SYSTEM_TYPES and algorithm_status == "MODELED_RANDOM_ONLY":
+        return "YOUTH_GENERAL_ANY_BULL_ELK"
+    if draw_system_type == "PREFERENCE_DEDICATED_HUNTER_DEER" and algorithm_status == "MODELED_PREFERENCE":
+        return "PREFERENCE_DEDICATED_HUNTER_DEER"
+    if draw_system_type == TURKEY_DRAW_SYSTEM_TYPE and algorithm_status == "MODELED_BONUS":
+        return TURKEY_DRAW_SYSTEM_TYPE
+    if draw_system_type == YOUTH_TURKEY_DRAW_SYSTEM_TYPE and algorithm_status == "MODELED_BONUS":
+        return YOUTH_TURKEY_DRAW_SYSTEM_TYPE
+    if model_strategy == "preference_dedicated_hunter_deer" and algorithm_status == "MODELED_PREFERENCE":
+        return "PREFERENCE_DEDICATED_HUNTER_DEER"
+    return ""
+
+
+def _apply_runtime_promotion_marks(rows: list[dict[str, object]], output_dir: Path) -> dict[str, object]:
+    report_rows: list[dict[str, object]] = []
+    for row in rows:
+        family = _runtime_promotion_family(row)
+        if not family:
+            row.setdefault("runtime_promotion_family", "")
+            row.setdefault("runtime_promotion_status", "")
+            row.setdefault("runtime_promotion_decision", "")
+            row.setdefault("runtime_promotion_source", "")
+            row.setdefault("runtime_promotion_source_report", "")
+            row.setdefault("runtime_promotion_note", "")
+            continue
+        row["runtime_promotion_family"] = family
+        row["runtime_promotion_status"] = "PROMOTED_TO_RUNTIME"
+        row["runtime_promotion_decision"] = RUNTIME_PROMOTION_DECISION
+        source_report = output_dir / PROMOTED_RUNTIME_FAMILY_REPORTS[family]
+        source_report_relative = _safe_relative(source_report)
+        row["runtime_promotion_source"] = source_report_relative
+        row["runtime_promotion_source_report"] = source_report_relative
+        row["runtime_promotion_note"] = (
+            "Family promoted after zero-pending runtime reconciliation; non-public/reference rows remain excluded."
+        )
+
+    for family, source_report_name in PROMOTED_RUNTIME_FAMILY_REPORTS.items():
+        family_rows = [row for row in rows if str(row.get("runtime_promotion_family", "")).strip() == family]
+        keys = {
+            (
+                str(row.get("hunt_code", "")).strip(),
+                str(row.get("residency", "")).strip(),
+                str(row.get("points", "")).strip(),
+                str(row.get("draw_system_type", "")).strip(),
+            )
+            for row in family_rows
+        }
+        report_rows.append(
+            {
+                "runtime_promotion_family": family,
+                "runtime_promotion_status": "PROMOTED_TO_RUNTIME" if family_rows else "PROMOTION_MISSING_ROWS",
+                "row_count": len(family_rows),
+                "hunt_code_count": len({str(row.get("hunt_code", "")).strip() for row in family_rows if str(row.get("hunt_code", "")).strip()}),
+                "duplicate_runtime_key_count": len(family_rows) - len(keys),
+                "source_report": _safe_relative(output_dir / source_report_name),
+                "promotion_decision": RUNTIME_PROMOTION_DECISION,
+            }
+        )
+
+    summary = {
+        "promotion_decision": RUNTIME_PROMOTION_DECISION,
+        "promoted_family_count": len(PROMOTED_RUNTIME_FAMILY_REPORTS),
+        "promoted_row_count": sum(int(row["row_count"]) for row in report_rows),
+        "families": report_rows,
+        "promotion_ready": all(
+            row["runtime_promotion_status"] == "PROMOTED_TO_RUNTIME"
+            and int(row["row_count"]) > 0
+            and int(row["duplicate_runtime_key_count"]) == 0
+            for row in report_rows
+        ),
+        "excluded_from_this_promotion": [
+            "MAX_WEIGHTED_SPLIT_PENDING_CHALLENGE_TEST",
+            "BLACK_BEAR_PENDING_ROW_RECONCILIATION",
+            "CWMU_CONSERVATION_PRIVATE_LAND_REFERENCE_ONLY",
+        ],
+        "runtime_promotion_columns": [
+            "runtime_promotion_family",
+            "runtime_promotion_status",
+            "runtime_promotion_decision",
+            "runtime_promotion_source",
+            "runtime_promotion_source_report",
+            "runtime_promotion_note",
+        ],
+        "permit_source_field_contract": "NOT_REQUIRED_FOR_RUNTIME_PROMOTION; permit authority is carried by permits_2026_* fields, public_permits_2026 where applicable, and reason_codes.",
+    }
+    return summary
+
+
+def _write_runtime_promotion_artifacts(output_dir: Path, promotion_report: dict[str, object]) -> tuple[Path, Path, Path]:
+    csv_path = output_dir / "runtime_family_promotion_report.csv"
+    json_path = output_dir / "runtime_family_promotion_report.json"
+    md_path = output_dir / "runtime_family_promotion_report.md"
+    rows = list(promotion_report.get("families", []))
+    write_csv(
+        csv_path,
+        rows,
+        [
+            "runtime_promotion_family",
+            "runtime_promotion_status",
+            "row_count",
+            "hunt_code_count",
+            "duplicate_runtime_key_count",
+            "source_report",
+            "promotion_decision",
+        ],
+    )
+    json_path.write_text(json.dumps(promotion_report, indent=2), encoding="utf-8")
+    lines = [
+        "# Runtime Family Promotion Report",
+        "",
+        f"- promotion_decision: {promotion_report['promotion_decision']}",
+        f"- promotion_ready: {promotion_report['promotion_ready']}",
+        f"- promoted_family_count: {promotion_report['promoted_family_count']}",
+        f"- promoted_row_count: {promotion_report['promoted_row_count']}",
+        f"- permit_source_field_contract: {promotion_report['permit_source_field_contract']}",
+        "",
+        "| Family | Status | Rows | Hunt codes | Duplicate keys | Source report |",
+        "| --- | --- | ---: | ---: | ---: | --- |",
+    ]
+    for row in rows:
+        lines.append(
+            f"| {row['runtime_promotion_family']} | {row['runtime_promotion_status']} | {row['row_count']} | "
+            f"{row['hunt_code_count']} | {row['duplicate_runtime_key_count']} | {row['source_report']} |"
+        )
+    lines.extend(
+        [
+            "",
+            "## Excluded From This Promotion",
+            "",
+            *[f"- {item}" for item in promotion_report["excluded_from_this_promotion"]],
+        ]
+    )
+    md_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return csv_path, json_path, md_path
+
+
 def _remove_no_hunt_code_rows(rows: list[dict[str, object]], source_label: str) -> tuple[list[dict[str, object]], list[dict[str, object]]]:
     kept: list[dict[str, object]] = []
     excluded: list[dict[str, object]] = []
@@ -1184,6 +1335,87 @@ def _build_manifest(
     return manifest_path
 
 
+MIXED_COMPONENT_FIELDS = (
+    "p_prior_year_baseline",
+    "p_quota_adjusted",
+    "p_rollover_adjusted",
+    "p_harvest_adjusted",
+)
+
+
+def _clean_text(value: object) -> str:
+    return str(value or "").strip()
+
+
+def _to_float(value: object) -> float | None:
+    text = _clean_text(value)
+    if not text:
+        return None
+    try:
+        return float(text)
+    except ValueError:
+        return None
+
+
+def _canonical_probability(row: dict[str, object]) -> float | None:
+    for field in ("p_draw", "p_draw_mean", "p_preference_draw", "p_sportsman_draw"):
+        value = _to_float(row.get(field))
+        if value is not None:
+            return max(0.0, min(1.0, value))
+    return None
+
+
+def _format_combined_odds(probability: float | None) -> str:
+    if probability is None or probability <= 0.0:
+        return ""
+    pct = probability * 100.0
+    return f"~1 in {1.0 / probability:.1f} or {pct:.1f}%"
+
+
+def _normalize_merged_surface_contract(
+    rows: list[dict[str, object]],
+    *,
+    history_years: list[int],
+) -> None:
+    source_years_used = ",".join(str(year) for year in history_years)
+    earliest_source_year = str(min(history_years))
+    latest_source_year = str(max(history_years))
+    source_year_count = str(len(history_years))
+    non_probability_statuses = {
+        "MODELED_AVAILABILITY",
+        "MODELED_ALLOCATION",
+        "IN_SCOPE_MODEL_PENDING",
+        "EXCLUDED_NOT_PREDICTIVE_DRAW",
+        "OUT_OF_SCOPE_NON_TARGET",
+        "UNKNOWN_TARGET_NEEDS_REVIEW",
+    }
+
+    for row in rows:
+        if not _clean_text(row.get("source_years_used")):
+            row["source_years_used"] = source_years_used
+        if not _clean_text(row.get("source_year_count")):
+            row["source_year_count"] = source_year_count
+        if not _clean_text(row.get("earliest_source_year")):
+            row["earliest_source_year"] = earliest_source_year
+        if not _clean_text(row.get("latest_source_year")):
+            row["latest_source_year"] = latest_source_year
+
+        if _clean_text(row.get("algorithm_status")) in non_probability_statuses:
+            for field in MIXED_COMPONENT_FIELDS:
+                row[field] = ""
+            continue
+
+        probability_value = _canonical_probability(row)
+        probability = "" if probability_value is None else f"{probability_value:.6f}"
+        if not probability:
+            continue
+        for field in MIXED_COMPONENT_FIELDS:
+            if not _clean_text(row.get(field)):
+                row[field] = probability
+        if probability_value and probability_value > 0.0 and not _clean_text(row.get("display_odds_text")):
+            row["display_odds_text"] = _format_combined_odds(probability_value)
+
+
 def materialize_outputs(
     output_dir: Path,
     forecast_year: int,
@@ -1314,14 +1546,8 @@ def materialize_outputs(
         successor_rows = _replace_rows_by_draw_system_type(successor_rows, [dict(row) for row in bear_bonus_rows], {BEAR_DRAW_SYSTEM_TYPE})
     if sportsman_rows:
         sportsman_rows = [sanitize_modeled_probability_fields(dict(row)) for row in sportsman_rows]
-        prediction_rows = [
-            row for row in prediction_rows
-            if str(row.get("draw_system_type", "")).strip() != SPORTSMAN_DRAW_SYSTEM_TYPE
-        ]
-        successor_rows = [
-            row for row in successor_rows
-            if str(row.get("draw_system_type", "")).strip() != SPORTSMAN_DRAW_SYSTEM_TYPE
-        ]
+        prediction_rows = _replace_rows_by_draw_system_type(prediction_rows, sportsman_rows, {SPORTSMAN_DRAW_SYSTEM_TYPE})
+        successor_rows = _replace_rows_by_draw_system_type(successor_rows, [dict(row) for row in sportsman_rows], {SPORTSMAN_DRAW_SYSTEM_TYPE})
     if private_lands_rows:
         private_lands_rows = [sanitize_modeled_probability_fields(dict(row)) for row in private_lands_rows]
         prediction_rows = _replace_rows_by_draw_system_type(prediction_rows, private_lands_rows, {PRIVATE_LANDS_ANTLERLESS_ELK_DRAW_SYSTEM_TYPE})
@@ -1335,8 +1561,13 @@ def materialize_outputs(
         prediction_rows = _replace_rows_by_draw_system_type(prediction_rows, mountain_lion_rows, {MOUNTAIN_LION_DRAW_SYSTEM_TYPE})
         successor_rows = _replace_rows_by_draw_system_type(successor_rows, [dict(row) for row in mountain_lion_rows], {MOUNTAIN_LION_DRAW_SYSTEM_TYPE})
     if preference_general_deer_rows or preference_antlerless_rows or preference_dedicated_hunter_rows or phase6_bonus_special_rows or turkey_bonus_rows or youth_turkey_rows or bear_bonus_rows or sportsman_rows or private_lands_rows or youth_rows or mountain_lion_rows:
+        _normalize_merged_surface_contract(prediction_rows, history_years=history_years)
+        _normalize_merged_surface_contract(successor_rows, history_years=history_years)
         prediction_rows.sort(key=lambda row: (str(row.get("hunt_code", "")), str(row.get("residency", "")), int(float(str(row.get("points", 0)) or 0)), str(row.get("draw_system_type", ""))))
         successor_rows.sort(key=lambda row: (str(row.get("hunt_code", "")), str(row.get("residency", "")), int(float(str(row.get("points", 0)) or 0)), str(row.get("draw_system_type", ""))))
+
+    promotion_report = _apply_runtime_promotion_marks(prediction_rows, output_dir)
+    _apply_runtime_promotion_marks(successor_rows, output_dir)
 
     prediction_fields = [
         "model_version",
@@ -1352,6 +1583,9 @@ def materialize_outputs(
         "residency",
         "points",
         "draw_pool",
+        "draw_design",
+        "draw_method",
+        "point_system",
         "public_permits_2025",
         "public_permits_2026",
         "eligible_applicants",
@@ -1368,7 +1602,14 @@ def materialize_outputs(
         "applicants_above",
         "applicants_at_level",
         "probability_applicant_count",
+        "p_prior_year_baseline",
+        "p_quota_adjusted",
+        "p_rollover_adjusted",
+        "p_harvest_adjusted",
         "p_draw_mean",
+        "p_draw_p10",
+        "p_draw_p50",
+        "p_draw_p90",
         "p_max_pool_mean",
         "p_random_mean",
         "p_preference_draw",
@@ -1392,6 +1633,9 @@ def materialize_outputs(
         "quota_2026_total",
         "quota_2026_max_pool",
         "quota_2026_random_pool",
+        "permits_2026_res",
+        "permits_2026_nr",
+        "permits_2026_total",
         "permit_allotment_2026_res",
         "permit_allotment_2026_nr",
         "permit_allotment_2026_total",
@@ -1405,6 +1649,7 @@ def materialize_outputs(
         "is_2026_random_pool",
         "data_cutoff_date",
         "reason_codes",
+        "classification_status",
         "applicant_rollover_source_year",
         "retention_rate_raw",
         "retention_rate_smoothed",
@@ -1426,6 +1671,12 @@ def materialize_outputs(
         "earliest_source_year",
         "source_dataset",
         "model_strategy",
+        "runtime_promotion_family",
+        "runtime_promotion_status",
+        "runtime_promotion_decision",
+        "runtime_promotion_source",
+        "runtime_promotion_source_report",
+        "runtime_promotion_note",
         "preference_model_valid",
         "preference_model_note",
         "bonus_special_valid",
@@ -1440,6 +1691,8 @@ def materialize_outputs(
         "sportsman_model_note",
         "weapon",
         "bear_draw_subtype",
+        "history_hunt_code",
+        "crosswalk_status",
         "permit_availability_type",
         "permit_type",
         "permit_status",
@@ -1456,8 +1709,13 @@ def materialize_outputs(
         "sellout_risk",
         "sellout_or_closure_risk",
         "sportsman_species",
+        "sportsman_draw_design",
+        "sportsman_random_only",
+        "sportsman_split_draw",
+        "sportsman_resident_only",
         "sportsman_source_year",
         "sportsman_permit_count",
+        "sportsman_nonresident_quota",
         "sportsman_applicants",
         "sportsman_odds_text",
         "sportsman_odds_denominator",
@@ -1527,6 +1785,7 @@ def materialize_outputs(
     private_lands_csv_path, private_lands_json_path = _write_private_lands_antlerless_elk_artifacts(output_dir, private_lands_rows, private_lands_report)
     youth_csv_path, youth_json_path = _write_youth_artifacts(output_dir, prediction_rows, youth_report)
     mountain_lion_csv_path, mountain_lion_json_path = _write_mountain_lion_artifacts(output_dir, prediction_rows, mountain_lion_report)
+    promotion_csv_path, promotion_json_path, promotion_md_path = _write_runtime_promotion_artifacts(output_dir, promotion_report)
 
     backtest_rows = build_backtest_rows(permits, ladders, lambda public_permits: (split_utah_bonus_permits(public_permits).maxPointPermits, split_utah_bonus_permits(public_permits).randomPermits))
     backtest_fields = [
@@ -1624,6 +1883,9 @@ def materialize_outputs(
         "youth_draw_report": youth_json_path,
         "mountain_lion_availability_predictions": mountain_lion_csv_path,
         "mountain_lion_availability_report": mountain_lion_json_path,
+        "runtime_family_promotion_csv": promotion_csv_path,
+        "runtime_family_promotion_json": promotion_json_path,
+        "runtime_family_promotion_md": promotion_md_path,
         "manifest": manifest_path,
     }
 
@@ -1632,7 +1894,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output-dir", default=str(REPO / "processed_data"))
     parser.add_argument("--forecast-year", type=int, default=2026)
-    parser.add_argument("--history-years", default="2021,2022,2023,2024,2025")
+    parser.add_argument("--history-years", default="2018,2019,2020,2021,2022,2023,2024,2025")
     parser.add_argument("--skip-upstream", action="store_true")
     parser.add_argument("--model-version", default=MODEL_VERSION)
     parser.add_argument("--rule-version", default=RULE_VERSION)

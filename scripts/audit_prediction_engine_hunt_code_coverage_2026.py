@@ -13,6 +13,7 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
 from engine.utah_draw_predictive.classifier import classify_runtime_row
+from engine.utah_draw_predictive.bear import BEAR_HISTORICAL_CODE_SUCCESSORS_2026
 
 DATABASE = REPO / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "DATABASE.csv"
 PROCESSED = REPO / "processed_data"
@@ -28,6 +29,11 @@ PREDICTION_SURFACES = [
     PROCESSED / "dedicated_hunter_predictions_v1.csv",
     PROCESSED / "mountain_lion_availability_predictions_v1.csv",
     PROCESSED / "private_lands_antlerless_elk_predictions_v1.csv",
+]
+
+ACCOUNTED_REFERENCE_SURFACES = [
+    PROCESSED / "2026_big_game_predictive_v2_guidebook_promotion.csv",
+    PROCESSED / "2026_elk_bull_reference_predictive_v2_reference_promotion.csv",
 ]
 
 PUBLIC_PROBABILITY_STATUSES = {
@@ -60,11 +66,31 @@ ACCOUNTED_NO_PUBLIC_TEXT = (
     "unlimited pursuit",
 )
 
+ACCOUNTED_PENDING_REASON_CODES = {
+    "ANTLERLESS_CURRENT_TARGET_NO_PRIOR_LADDER_NO_PUBLIC_P_DRAW",
+    "BEAR_CURRENT_TARGET_NO_PRIOR_LADDER_NO_PUBLIC_P_DRAW",
+}
+
 DRAW_SYSTEM_ALIASES = {
     "YOUTH_DRAW_ONLY_ELK": "YOUTH_GENERAL_ANY_BULL_ELK",
     "YOUTH_RANDOM_ELK_GENERAL_BULL": "YOUTH_GENERAL_ANY_BULL_ELK",
     "SPORTSMAN_RANDOM_ONLY": "SPORTSMAN_PERMIT",
 }
+
+
+def accounted_reference_index() -> dict[str, dict[str, str]]:
+    by_code: dict[str, dict[str, str]] = {}
+    for path in ACCOUNTED_REFERENCE_SURFACES:
+        for row in read_csv(path):
+            code = clean(row.get("hunt_code")).upper()
+            if not code:
+                continue
+            by_code[code] = {
+                "source_file": str(path.relative_to(REPO)),
+                "promotion_status": clean(row.get("status") or row.get("promotion_status")),
+                "reason": clean(row.get("reason")),
+            }
+    return by_code
 
 
 def clean(value: object) -> str:
@@ -139,6 +165,7 @@ def prediction_index() -> dict[str, dict[str, object]]:
             "prediction_sources": set(),
             "draw_system_types": Counter(),
             "algorithm_statuses": Counter(),
+            "reason_codes": Counter(),
             "residencies": set(),
             "points": set(),
             "p_draw_nonnull_rows": 0,
@@ -160,6 +187,9 @@ def prediction_index() -> dict[str, dict[str, object]]:
             item["prediction_sources"].add(path.name)
             item["draw_system_types"][norm_draw_system(row.get("draw_system_type"))] += 1
             item["algorithm_statuses"][clean(row.get("algorithm_status"))] += 1
+            for reason_code in clean(row.get("reason_codes")).split("|"):
+                if reason_code.strip():
+                    item["reason_codes"][reason_code.strip()] += 1
             if clean(row.get("residency")):
                 item["residencies"].add(clean(row.get("residency")))
             if clean(row.get("points")):
@@ -192,7 +222,13 @@ def dominant(counter: Counter[str]) -> str:
     return counter.most_common(1)[0][0]
 
 
-def decide_outcome(db_row: Mapping[str, object], classification: Mapping[str, object], pred: Mapping[str, object] | None) -> tuple[str, str, str]:
+def decide_outcome(
+    db_row: Mapping[str, object],
+    classification: Mapping[str, object],
+    pred: Mapping[str, object] | None,
+    pred_by_code: Mapping[str, Mapping[str, object]],
+    accounted_reference_by_code: Mapping[str, Mapping[str, str]],
+) -> tuple[str, str, str]:
     text = joined_text(db_row)
     total = to_int(db_row.get("permits_2026_total"))
     res = to_int(db_row.get("permits_2026_res"))
@@ -211,14 +247,34 @@ def decide_outcome(db_row: Mapping[str, object], classification: Mapping[str, ob
     non_public_text = any(token in text for token in ACCOUNTED_NO_PUBLIC_TEXT)
     db_status = clean(classification.get("algorithm_status"))
     pred_statuses = set((pred or {}).get("algorithm_statuses", Counter()).keys())
+    pred_reason_codes = set((pred or {}).get("reason_codes", Counter()).keys())
     p_rows = int((pred or {}).get("p_draw_nonnull_rows", 0))
     prediction_rows = int((pred or {}).get("prediction_rows", 0))
+    code = clean(db_row.get("hunt_code")).upper()
+
+    if code in BEAR_HISTORICAL_CODE_SUCCESSORS_2026:
+        successor = BEAR_HISTORICAL_CODE_SUCCESSORS_2026[code]
+        successor_pred = pred_by_code.get(successor)
+        successor_p_rows = int((successor_pred or {}).get("p_draw_nonnull_rows", 0))
+        successor_statuses = set((successor_pred or {}).get("algorithm_statuses", Counter()).keys())
+        if successor_p_rows > 0 and (successor_statuses & PUBLIC_PROBABILITY_STATUSES):
+            return (
+                "MODELED_PUBLIC_P_DRAW",
+                "crosswalk_successor_engine_output_present",
+                f"Historical bear code crosswalks to {successor}; public p_draw is emitted under the current successor code.",
+            )
 
     if p_rows > 0 and (pred_statuses & PUBLIC_PROBABILITY_STATUSES):
         return "MODELED_PUBLIC_P_DRAW", "engine_output_present", "Public probability rows are present."
     if prediction_rows > 0 and pred_statuses <= ACCOUNTED_NO_PUBLIC_ODDS_STATUSES:
         return "ACCOUNTED_NO_PUBLIC_P_DRAW", "non_probability_engine_surface", "Rows are represented by availability/allocation/exclusion logic."
     if prediction_rows > 0 and "IN_SCOPE_MODEL_PENDING" in pred_statuses:
+        if pred_reason_codes & ACCOUNTED_PENDING_REASON_CODES:
+            return (
+                "ACCOUNTED_NO_PUBLIC_P_DRAW",
+                "pending_current_target_no_prior_ladder",
+                "Engine emitted an explicit current-target accounting row, but public p_draw is blank because no prior applicant ladder or safe crosswalk exists.",
+            )
         if not has_permit_authority:
             return (
                 "ACCOUNTED_NO_PUBLIC_P_DRAW",
@@ -242,6 +298,13 @@ def decide_outcome(db_row: Mapping[str, object], classification: Mapping[str, ob
         return "ACCOUNTED_NO_PUBLIC_P_DRAW", "no_published_or_non_public_authority", "Source semantics indicate no public draw odds or no published quota."
     if non_public_text and clean(db_row.get("hunt_type")).lower() in {"conservation", "expo", "cwmu"}:
         return "ACCOUNTED_NO_PUBLIC_P_DRAW", "special_or_cwmu_not_public_odds", "Special permit/CWMU rows are not public draw odds."
+    accounted_reference = accounted_reference_by_code.get(code)
+    if accounted_reference:
+        return (
+            "ACCOUNTED_NO_PUBLIC_P_DRAW",
+            "reference_promotion_no_probability",
+            f"{accounted_reference.get('source_file', '')}: {accounted_reference.get('reason', '')}",
+        )
     if clean(classification.get("target_scope")) != "TARGET":
         return "ACCOUNTED_OUT_OF_SCOPE", "non_target_species_or_document", clean(classification.get("reason"))
     return "NO_ENGINE_OUTPUT_REVIEW_REQUIRED", "active_target_missing_output", "Target-scope hunt code has no prediction/accounting row."
@@ -250,12 +313,13 @@ def decide_outcome(db_row: Mapping[str, object], classification: Mapping[str, ob
 def main() -> None:
     db_rows = read_csv(DATABASE)
     pred_by_code = prediction_index()
+    accounted_reference_by_code = accounted_reference_index()
     out_rows: list[dict[str, object]] = []
     for row in db_rows:
         code = clean(row.get("hunt_code")).upper()
         classification = db_classification(row)
         pred = pred_by_code.get(code)
-        outcome, reason_code, reason = decide_outcome(row, classification, pred)
+        outcome, reason_code, reason = decide_outcome(row, classification, pred, pred_by_code, accounted_reference_by_code)
         pred_statuses = (pred or {}).get("algorithm_statuses", Counter())
         pred_families = (pred or {}).get("draw_system_types", Counter())
         out_rows.append(
