@@ -32,11 +32,16 @@ from typing import Any, Iterable, Mapping
 
 REPO = Path(__file__).resolve().parents[1]
 SOURCE_LONG = REPO / "data_truth" / "draw_results_truth" / "normalized" / "draw_results_long.csv"
-ACTUAL_2026 = REPO / "outputs" / "2026 scorable draw results.csv"
+ACTUAL_2026_CANDIDATES = [
+    REPO / "outputs" / "2026 scorable draw results.csv",
+    REPO / "outputs" / "2026" / "2026 scorable draw results.csv",
+]
+ACTUAL_2026 = next((path for path in ACTUAL_2026_CANDIDATES if path.exists()), ACTUAL_2026_CANDIDATES[0])
 RUNTIME_DRAFT_DIR = REPO / "data_model" / "runtime_drafts"
 DEFAULT_OUT_ROOT = REPO / "audits" / "prediction_blind_backtests" / "2025_to_2026"
 BLACK_BEAR_CROSSWALK_2026 = REPO / "data_truth" / "crosswalk_truth" / "normalized" / "black_bear_BR_2024_2025_2026_crosswalk.csv"
 HISTORY_YEARS = [2021, 2022, 2023, 2024, 2025]
+CWMU_TURKEY_CODES = {"TK1018", "TK1021"}
 SCORABLE_RECORD_TYPES = {
     "point_level_draw_result",
     "point_row",
@@ -473,17 +478,17 @@ def disposition_for_unmatched_actual(
     draw_system_type = clean(row.get("draw_system_type"))
     history_years = sorted(history_code_years.get(code, set()))
 
+    if draw_system_type == "BONUS_CWMU_BIG_GAME" or code in CWMU_TURKEY_CODES:
+        return (
+            "SOURCE_VERIFIED_NO_PUBLIC_ODDS_CWMU_EXCLUDED",
+            "CWMU rows have official draw-result ladders but are intentionally excluded from public probability scoring in the current production rule.",
+        )
     if code in current_only_bear_split_codes:
         return (
             "SOURCE_VERIFIED_PREDICTION_GAP_CURRENT_ONLY_BEAR_SPLIT_CHILD",
             "Official bear crosswalk marks this 2026 code as a current split/addition with no prior draw row; resolve with an explicit source/crosswalk route before treating as fully modeled.",
         )
     if not history_years:
-        if draw_system_type == "BONUS_CWMU_BIG_GAME":
-            return (
-                "SOURCE_VERIFIED_PREDICTION_GAP_CWMU_NO_EXACT_HISTORY",
-                "No <=2025 exact-code draw history exists for this CWMU code in the blind history input; resolve with raw source/crosswalk evidence, not a synthetic baseline.",
-            )
         return (
             "SOURCE_VERIFIED_PREDICTION_GAP_NO_EXACT_HISTORY",
             "No <=2025 exact-code draw history exists in the blind history input; resolve from raw PDF/canonical/crosswalk evidence before promoting as fully modeled.",
@@ -730,7 +735,7 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
         annotated["disposition_reason"] = disposition_reason
         annotated["history_years_available"] = "|".join(str(year) for year in sorted(history_code_years.get(norm_code(row.get("hunt_code")), set())))
         unmatched_disposition_counts[disposition] += 1
-        if disposition.startswith("SOURCE_VERIFIED_PREDICTION_GAP"):
+        if disposition.startswith("SOURCE_VERIFIED"):
             source_verified_prediction_gaps.append(annotated)
         else:
             unexpected_unmatched_actuals.append(annotated)

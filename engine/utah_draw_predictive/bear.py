@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import re
+import csv
+import json
 from collections import Counter, defaultdict
 from functools import lru_cache
 from pathlib import Path
@@ -25,10 +27,18 @@ from .sportsman import is_sportsman_permit_row
 MODEL_STRATEGY_NAME = "bear_bonus_phase8"
 BONUS_RULE_VERSION = "utah_bear_bonus_v1.0.0"
 BEAR_DRAW_SYSTEM_TYPE = "BEAR_DRAW"
+BEAR_NO_PRIOR_LADDER_REASON_CODE = "BEAR_CURRENT_TARGET_NO_PRIOR_LADDER_NO_PUBLIC_P_DRAW"
 REPO = Path(__file__).resolve().parents[2]
 BEAR_DRAW_ODDS_SOURCE_PDF = REPO / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "pdf" / "draw_odds" / "2025 Black Bear Draw odds.pdf"
 BEAR_DRAW_ODDS_SOURCE_YEAR = 2025
 BEAR_DRAW_ODDS_SOURCE_RELATIVE = "pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/2025 Black Bear Draw odds.pdf"
+BR7307_2025_SUPPLEMENTAL_LADDER = (
+    REPO
+    / "data_truth"
+    / "draw_results_truth"
+    / "validation"
+    / "black_bear_2025_BR7307_crosswalk_ladder_rows.json"
+)
 
 LIMITED_ENTRY_BEAR_HUNT = "LIMITED_ENTRY_BEAR_HUNT"
 RESTRICTED_BEAR_PURSUIT = "RESTRICTED_BEAR_PURSUIT"
@@ -47,10 +57,23 @@ EXCLUDED_BEAR_SUBTYPES = {
     CONSERVATION_OR_NON_PUBLIC,
 }
 
-# Keep bear draw history keyed by the official hunt code.  Some La Sal and
-# La Sal Mtns rows have similar names/seasons, but DWR keeps both code families
-# live; they are not successor aliases for engine calibration.
-BEAR_HISTORY_CODE_ALIASES_2026: dict[str, str] = {}
+# Keep bear draw history keyed by the official hunt code unless a reviewed
+# crosswalk proves the historical public draw row moved.  Hand-audited 2026
+# DWR/Hunt Planner evidence locks the La Sal public draw-code successors below:
+# the old BR7008/BR7108/BR7208 season rows do not continue as 2026 public draw
+# rows and move to the La Sal Mtns codes.  BR7307 is reused for conservation in
+# 2026 while the public limited-entry multiseason row moves to BR7326.
+BEAR_HISTORY_CODE_ALIASES_2026: dict[str, str] = {
+    "BR7022": "BR7008",
+    "BR7127": "BR7108",
+    "BR7239": "BR7208",
+    "BR7326": "BR7307",
+}
+BEAR_HISTORICAL_CODE_SUCCESSORS_2026 = {
+    "BR7008": "BR7022",
+    "BR7108": "BR7127",
+    "BR7208": "BR7239",
+}
 
 STRATEGY_SPECS = [
     StrategySpec(
@@ -729,6 +752,35 @@ def build_bear_draw_odds_source_audit(
     return audit_rows, summary
 
 
+def _read_br7307_2025_supplemental_ladder() -> list[dict[str, object]]:
+    if not BR7307_2025_SUPPLEMENTAL_LADDER.exists():
+        return []
+    if BR7307_2025_SUPPLEMENTAL_LADDER.suffix.lower() == ".json":
+        return list(json.loads(BR7307_2025_SUPPLEMENTAL_LADDER.read_text(encoding="utf-8")))
+    with BR7307_2025_SUPPLEMENTAL_LADDER.open("r", encoding="utf-8-sig", newline="") as handle:
+        return [dict(row) for row in csv.DictReader(handle)]
+
+
+def _with_supplemental_bear_truth_rows(
+    truth_rows: list[Mapping[str, object]],
+    history_year_set: set[int],
+) -> list[Mapping[str, object]]:
+    if 2025 not in history_year_set:
+        return truth_rows
+    has_scorable_br7307_2025 = any(
+        _to_int(row.get("actual_draw_year") or row.get("year")) == 2025
+        and _clean(row.get("hunt_code")).upper() == "BR7307"
+        and _is_proven_bonus_bear_truth_row(row)
+        for row in truth_rows
+    )
+    if has_scorable_br7307_2025:
+        return truth_rows
+    supplemental = _read_br7307_2025_supplemental_ladder()
+    if not supplemental:
+        return truth_rows
+    return [*truth_rows, *supplemental]
+
+
 def build_bear_bonus_predictions(
     truth_rows: Iterable[Mapping[str, object]],
     db_rows: Iterable[Mapping[str, object]],
@@ -737,6 +789,7 @@ def build_bear_bonus_predictions(
 ) -> tuple[list[dict[str, object]], dict[str, object]]:
     truth_rows_list = list(truth_rows)
     history_year_set = {int(year) for year in history_years}
+    truth_rows_list = _with_supplemental_bear_truth_rows(truth_rows_list, history_year_set)
     source_years_used_text = ",".join(str(year) for year in history_years)
     source_year_count = len(history_years)
     default_earliest_source_year = min(history_years)
@@ -762,6 +815,9 @@ def build_bear_bonus_predictions(
 
         hunt_code = _clean(db_row.get("hunt_code")).upper()
         if not hunt_code:
+            continue
+        if hunt_code in BEAR_HISTORICAL_CODE_SUCCESSORS_2026:
+            report_counts["historical_successor_skipped"] += 1
             continue
         history_hunt_code = BEAR_HISTORY_CODE_ALIASES_2026.get(hunt_code, hunt_code)
         subtype = classify_bear_subtype(db_row)
@@ -829,6 +885,8 @@ def build_bear_bonus_predictions(
                 subtype=subtype,
                 season_dates=season_dates,
             )
+            base["history_hunt_code"] = history_hunt_code
+            base["crosswalk_status"] = "DIRECT_HISTORICAL_TO_CURRENT_CODE" if history_hunt_code != hunt_code else ""
 
             if subtype == UNLIMITED_PURSUIT_PERMIT:
                 row = dict(base)
@@ -1001,6 +1059,10 @@ def build_bear_bonus_predictions(
                         "bear_bonus_valid": "FALSE",
                         "bear_bonus_note": "Missing proven bear history or usable 2026 public quota for this residency.",
                         "data_quality_flags": "|".join(flags),
+                        "reason_codes": append_reason_codes(
+                            row.get("reason_codes"),
+                            BEAR_NO_PRIOR_LADDER_REASON_CODE if "MISSING_PROVEN_BEAR_DRAW_HISTORY" in flags else "",
+                        ),
                     }
                 )
                 rows.append(row)
@@ -1100,6 +1162,7 @@ def build_bear_bonus_predictions(
             "IN_SCOPE_MODEL_PENDING": report_counts["pending"],
             "EXCLUDED_NOT_PREDICTIVE_DRAW": report_counts["excluded"],
         },
+        "historical_successor_current_rows_skipped": report_counts["historical_successor_skipped"],
         "bear_draw_active_predictive_row_count": len(rows),
         "bear_draw_modeled_row_count": report_counts["modeled"],
         "bear_draw_pending_row_count": report_counts["pending"],

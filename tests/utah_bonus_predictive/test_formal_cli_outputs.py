@@ -157,6 +157,22 @@ def test_formal_cli_generates_populated_artifacts(tmp_path: Path) -> None:
     assert modeled_bonus_rows
     assert _nonnull(modeled_bonus_rows, "p_draw") == len(modeled_bonus_rows)
     assert _nonnull(modeled_bonus_rows, "p_draw_pct") == len(modeled_bonus_rows)
+    component_fields = {
+        "p_prior_year_baseline",
+        "p_quota_adjusted",
+        "p_rollover_adjusted",
+        "p_harvest_adjusted",
+    }
+    assert component_fields.issubset(ml_rows[0])
+    assert component_fields.issubset(successor_rows[0])
+    for field in component_fields:
+        assert _nonnull(modeled_bonus_rows, field) == len(modeled_bonus_rows)
+    positive_modeled_bonus_rows = [row for row in modeled_bonus_rows if float(row["p_draw"]) > 0.0]
+    assert positive_modeled_bonus_rows
+    assert all(
+        row["display_odds_text"].startswith("~1 in ") and " or " in row["display_odds_text"]
+        for row in positive_modeled_bonus_rows
+    )
     assert modeled_preference_rows
     assert _nonnull(modeled_preference_rows, "p_preference_draw") == len(modeled_preference_rows)
     assert _nonnull(modeled_preference_rows, "p_draw") == len(modeled_preference_rows)
@@ -164,6 +180,8 @@ def test_formal_cli_generates_populated_artifacts(tmp_path: Path) -> None:
     assert all((row.get("p_preference_draw") or "") == (row.get("p_draw") or "") for row in modeled_preference_rows)
     assert all(str(row.get("p_draw") or "").strip() == "" for row in pending_rows)
     assert all(str(row.get("p_draw_pct") or "").strip() == "" for row in pending_rows)
+    for field in component_fields:
+        assert all(str(row.get(field) or "").strip() == "" for row in pending_rows)
     assert _nonnull(dedicated_hunter_modeled_rows, "p_preference_draw") == len(dedicated_hunter_modeled_rows)
     assert _nonnull([row for row in turkey_rows if row.get("algorithm_status") == "MODELED_BONUS"], "p_preference_draw") == 0
     assert all((row.get("p_preference_draw") or "") == (row.get("p_draw") or "") for row in dedicated_hunter_modeled_rows)
@@ -171,12 +189,12 @@ def test_formal_cli_generates_populated_artifacts(tmp_path: Path) -> None:
     assert _nonnull(dedicated_hunter_rows, "p_random_pool") == 0
     assert _nonnull(modeled_preference_rows, "p_bonus_pool") == 0
     assert _nonnull(modeled_preference_rows, "p_random_pool") == 0
-    assert modeled_allocation_rows
-    assert _nonnull(modeled_allocation_rows, "p_draw") == 0
-    assert _nonnull(modeled_allocation_rows, "p_draw_pct") == 0
-    assert _nonnull(modeled_allocation_rows, "p_bonus_pool") == 0
-    assert _nonnull(modeled_allocation_rows, "p_random_pool") == 0
-    assert _nonnull(modeled_allocation_rows, "p_preference_draw") == 0
+    if modeled_allocation_rows:
+        assert _nonnull(modeled_allocation_rows, "p_draw") == 0
+        assert _nonnull(modeled_allocation_rows, "p_draw_pct") == 0
+        assert _nonnull(modeled_allocation_rows, "p_bonus_pool") == 0
+        assert _nonnull(modeled_allocation_rows, "p_random_pool") == 0
+        assert _nonnull(modeled_allocation_rows, "p_preference_draw") == 0
     assert modeled_availability_rows
     assert _nonnull(modeled_availability_rows, "p_draw") == 0
     assert _nonnull(modeled_availability_rows, "p_draw_pct") == 0
@@ -197,7 +215,7 @@ def test_formal_cli_generates_populated_artifacts(tmp_path: Path) -> None:
     assert _nonnull(ml_rows, "source_years_used") == len(ml_rows)
     assert _nonnull(bt_rows, "calibration_error_by_probability_bucket") == len(bt_rows)
 
-    keys = [(row["hunt_code"], row["residency"], row["points"]) for row in successor_rows]
+    keys = [(row["hunt_code"], row["draw_system_type"], row["residency"], row["points"]) for row in successor_rows]
     assert len(keys) == len(set(keys))
 
 

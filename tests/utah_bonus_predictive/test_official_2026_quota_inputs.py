@@ -3,6 +3,7 @@ from __future__ import annotations
 import csv
 from pathlib import Path
 
+from engine.utah_bonus_predictive.forecast import normalize_quota_reason_codes
 from scripts.build_predictive_bonus_engine_v1 import build_predictions
 
 
@@ -88,6 +89,16 @@ def test_eb3022_resident_prediction_uses_official_2026_quota_not_2025_result() -
     assert row["quota_source_year"] == "2026"
     assert row["quota_source_file"] == "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
     assert "OFFICIAL_2026_QUOTA_USED" in row["reason_codes"]
+
+
+def test_deprecated_quota_reason_codes_are_scrubbed() -> None:
+    normalized = normalize_quota_reason_codes(
+        "BONUS_RULE_SIMULATED|RAC_CURRENT_YEAR_ALLOTMENT_USED|DATABASE_2026_PERMITS_USED|OFFICIAL_2026_QUOTA_USED"
+    )
+
+    assert "RAC_CURRENT_YEAR_ALLOTMENT_USED" not in normalized
+    assert "DATABASE_2026_PERMITS_USED" not in normalized
+    assert "OFFICIAL_2026_QUOTA_USED" in normalized
 
 
 def test_2026_official_quota_fields_drive_cutoff_and_probability_outputs() -> None:

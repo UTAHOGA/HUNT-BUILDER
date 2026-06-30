@@ -1,0 +1,42 @@
+{
+  "target_codes": [
+    "BR7021",
+    "BR7126",
+    "BR7238",
+    "BR7022",
+    "BR7127",
+    "BR7239",
+    "BR7326"
+  ],
+  "row_count": 7,
+  "engine_action_counts": {
+    "ALIAS_TO_HISTORICAL_CODE": 4,
+    "DO_NOT_ALIAS_CURRENT_SPLIT_CHILD": 3
+  },
+  "alias_rows": [
+    {
+      "current_2026_code": "BR7022",
+      "engine_history_code": "BR7008"
+    },
+    {
+      "current_2026_code": "BR7127",
+      "engine_history_code": "BR7108"
+    },
+    {
+      "current_2026_code": "BR7239",
+      "engine_history_code": "BR7208"
+    },
+    {
+      "current_2026_code": "BR7326",
+      "engine_history_code": "BR7307"
+    }
+  ],
+  "source_files": {
+    "database": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+    "draw_results_long": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
+    "bear_crosswalk": "data_truth/crosswalk_truth/normalized/black_bear_BR_2024_2025_2026_crosswalk.csv",
+    "hunt_planner_xlsx": "outputs/20260626_fresh_2026_source_species_docs/hunt_planner_xlsx/2026_HUNTPLANNER__black_bear.xlsx",
+    "draw_odds_xlsx": "outputs/20260626_fresh_2026_source_species_docs/draw_odds_xlsx/2026_DRAWDODDS__black_bear.xlsx"
+  },
+  "weapon_normalization_rule": "Any Legal Weapon and multiseason/multi-season rows normalize to any legal weapon for alignment; season family remains confidence metadata."
+}

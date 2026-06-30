@@ -1,0 +1,12 @@
+{
+  "generated_at_utc": "2026-06-27T12:12:48+00:00",
+  "source_pdf": "pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/2025 Black Bear Draw odds.pdf",
+  "source_sha256": "d123fe89987f373c246e1d5879f1c5e80f925909b25909c47ab64f29c3ae2797",
+  "output_csv": "data_truth/draw_results_truth/normalized/black_bear_2025_BR7307_crosswalk_ladder.csv",
+  "output_rows_json": "data_truth/draw_results_truth/validation/black_bear_2025_BR7307_crosswalk_ladder_rows.json",
+  "row_count": 46,
+  "resident_eligible_applicants": 307,
+  "resident_total_permits": 13,
+  "nonresident_eligible_applicants": 32,
+  "nonresident_total_permits": 1
+}

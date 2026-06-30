@@ -8,11 +8,22 @@ from typing import Iterable, Mapping
 
 from engine.utah_bonus_predictive.rules import MODEL_VERSION
 
-from . import ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING, ALGORITHM_STATUS_MODELED_PREFERENCE, StrategySpec, TARGET_SCOPE_TARGET
+from . import (
+    ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING,
+    ALGORITHM_STATUS_MODELED_PREFERENCE,
+    StrategySpec,
+    TARGET_SCOPE_TARGET,
+    append_reason_codes,
+)
+from .permit_accessors import target_permit_for_residency, target_permit_total
+from .preference_ladder_normalizer import normalize_preference_ladder_rows
 
 
 MODEL_STRATEGY_NAME = "preference_general_deer"
 PREFERENCE_RULE_VERSION = "utah_preference_general_deer_v1.0.0"
+PREFERENCE_TAIL_FLOOR = 0.001
+PREFERENCE_TAIL_CEILING = 0.945
+TAIL_CALIBRATION_REASON = "PREFERENCE_TAIL_CALIBRATED_FROM_REPO_BACKTEST"
 
 
 STRATEGY_SPECS = [
@@ -89,6 +100,15 @@ def _looks_like_general_buck_deer(row: Mapping[str, object]) -> bool:
         _clean_lower(row.get(key))
         for key in ("hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "draw_pool")
     )
+    text = " ".join(
+        part for part in (
+            text,
+            _clean_lower(row.get("hunt_draw_class")),
+            _clean_lower(row.get("draw_class_type")),
+            _clean_lower(row.get("draw_design")),
+        )
+        if part
+    )
     if "deer" not in text or "buck" not in text:
         return False
     if "general season" not in text and "management buck deer" not in text and "cactus buck" not in text:
@@ -101,6 +121,7 @@ def _looks_like_general_buck_deer(row: Mapping[str, object]) -> bool:
 def _looks_like_standard_pool(row: Mapping[str, object]) -> bool:
     draw_pool = _clean_lower(row.get("draw_pool"))
     hunt_class = _clean_lower(row.get("hunt_class"))
+    hunt_draw_class = _clean_lower(row.get("hunt_draw_class") or row.get("draw_class_type"))
     if draw_pool not in {"", "standard"}:
         return False
     if hunt_class in {"", "public", "general season"}:
@@ -111,6 +132,8 @@ def _looks_like_standard_pool(row: Mapping[str, object]) -> bool:
     if "preference" in hunt_class:
         return True
     if "general season" in hunt_class or "general_season" in hunt_class:
+        return True
+    if "general season" in hunt_draw_class or "general_season" in hunt_draw_class:
         return True
     return False
 
@@ -164,7 +187,7 @@ def _build_truth_ladders(
     meta: dict[str, dict[str, str]] = {}
     total_drawn_by_code_year: dict[tuple[str, int], dict[str, int]] = defaultdict(lambda: defaultdict(int))
 
-    for row in truth_rows:
+    for row in normalize_preference_ladder_rows(truth_rows):
         year = _to_int(row.get("year"))
         if year not in history_years:
             continue
@@ -175,7 +198,7 @@ def _build_truth_ladders(
         residency = _clean(row.get("residency")) or "Resident"
         points = _to_int(row.get("points"))
         eligible = _to_int(row.get("eligible_applicants"))
-        drawn = _to_int(row.get("total_permits")) or _to_int(row.get("preference_permits"))
+        drawn = _to_int(row.get("drawn")) or _to_int(row.get("successful_applicants")) or _to_int(row.get("total_permits")) or _to_int(row.get("preference_permits"))
 
         if not hunt_code:
             continue
@@ -250,6 +273,14 @@ def _preference_probability(quota: int, applicants_above: int, applicants_at_lev
     return max(0.0, min(1.0, remaining / applicants_at_level))
 
 
+def _calibrate_tail_probability(probability: float) -> tuple[float, bool]:
+    if probability >= 1.0:
+        return PREFERENCE_TAIL_CEILING, True
+    if probability <= 0.0:
+        return PREFERENCE_TAIL_FLOOR, True
+    return probability, False
+
+
 def _guaranteed_level(ladder: Mapping[int, int], quota: int) -> int | None:
     running = 0
     guaranteed: int | None = None
@@ -320,12 +351,14 @@ def _forecast_quota_for_residency(
     return max(0, forecast_total - resident_quota)
 
 
-def _explicit_quota_for_residency(row: Mapping[str, object], residency: str, forecast_year: int) -> int | None:
-    res_quota = _to_int(row.get(f"permits_{forecast_year}_res"))
-    nr_quota = _to_int(row.get(f"permits_{forecast_year}_nr"))
-    if res_quota <= 0 and nr_quota <= 0:
-        return None
-    return res_quota if residency == "Resident" else nr_quota
+def _explicit_quota_for_residency(
+    row: Mapping[str, object],
+    residency: str,
+    forecast_year: int,
+    source_year: int | None = None,
+) -> int | None:
+    permit = target_permit_for_residency(row, forecast_year, residency, source_year=source_year)
+    return permit.value if permit.value > 0 else None
 
 
 def _forecast_applicant_ladder(
@@ -390,9 +423,14 @@ def build_preference_general_deer_predictions(
             )
 
     for hunt_code, db_row in sorted(current_codes.items()):
-        forecast_total = _to_int(db_row.get("permits_2026_total"))
+        forecast_total = target_permit_total(db_row, forecast_year, source_year=latest_source_year).value
         if forecast_total <= 0:
             continue
+        published_res = _clean(db_row.get(f"permits_{forecast_year}_res"))
+        published_nr = _clean(db_row.get(f"permits_{forecast_year}_nr"))
+        published_total = _clean(db_row.get(f"permits_{forecast_year}_total"))
+        total_only_quota = bool(published_total) and not published_res and not published_nr
+        total_only_reason = "NO_RESIDENCY_LANE_QUOTA|TOTAL_ONLY_QUOTA_RATIO_SKIPPED_NO_RESIDENCY_SPLIT"
 
         hunt_name = _clean(db_row.get("hunt_name")) or truth_meta.get(hunt_code, {}).get("hunt_name", "")
         species = _clean(db_row.get("species")) or truth_meta.get(hunt_code, {}).get("species", "Deer")
@@ -401,25 +439,143 @@ def build_preference_general_deer_predictions(
 
         for residency in ("Resident", "Nonresident"):
             available_years = sorted(year for year in set(years_by_key.get((hunt_code, residency), [])) if year in history_year_set)
-            explicit_quota = _explicit_quota_for_residency(db_row, residency, forecast_year)
-            has_latest_ladder = latest_source_year in available_years
-            if not has_latest_ladder and not (residency == "Nonresident" and explicit_quota and explicit_quota > 0):
+            explicit_quota = _explicit_quota_for_residency(db_row, residency, forecast_year, source_year=latest_source_year)
+            if not available_years:
+                if residency == "Nonresident" and explicit_quota is None:
+                    rows.append(
+                        {
+                            "model_version": MODEL_VERSION,
+                            "rule_version": PREFERENCE_RULE_VERSION,
+                            "year": str(forecast_year),
+                            "forecast_year": str(forecast_year),
+                            "hunt_code": hunt_code,
+                            "hunt_name": hunt_name,
+                            "species": species,
+                            "sex_type": "Buck",
+                            "hunt_type": hunt_type,
+                            "hunt_class": "Public",
+                            "residency": residency,
+                            "points": "0",
+                            "draw_pool": "standard",
+                            "public_permits_2025": 0,
+                            "public_permits_2026": "" if total_only_quota else 0,
+                            "permits_2026_res": "" if total_only_quota else published_res,
+                            "permits_2026_nr": "" if total_only_quota else published_nr,
+                            "permits_2026_total": published_total,
+                            "max_point_permits_2025": "",
+                            "max_point_permits_2026": "",
+                            "random_permits_2025": "",
+                            "random_permits_2026": "",
+                            "guaranteed_at_2025": "",
+                            "guaranteed_at_2026": "",
+                            "applicants_above": 0,
+                            "applicants_at_level": 0,
+                            "probability_applicant_count": 1,
+                            "p_preference_draw": "0.000000",
+                            "p_bonus_pool": "",
+                            "p_random_pool": "",
+                            "p_draw": "0.000000",
+                            "p_bonus_pool_pct": "",
+                            "p_random_pool_pct": "",
+                            "p_draw_pct": "0.000",
+                            "random_draw_odds_2026": "",
+                            "gap": "",
+                            "delta_gap": "",
+                            "status": _status(0.0),
+                            "trend": "YELLOW",
+                            "draw_outlook": _draw_outlook(0.0, None),
+                            "source_years_used": "current_quota_seed",
+                            "source_year_count": 0,
+                            "latest_source_year": "",
+                            "earliest_source_year": "",
+                            "source_dataset": "predictive",
+                            "model_strategy": MODEL_STRATEGY_NAME,
+                            "preference_model_valid": "TRUE",
+                            "preference_model_note": "Structural nonresident point-0 row emitted for a total-only preference hunt with no blind-history nonresident ladder; probability remains zero until source history or explicit quota exists.",
+                            "reason_codes": (
+                                "NO_NONRESIDENT_HISTORY_TOTAL_ONLY_STRUCTURAL_ROW|NO_EXPLICIT_NONRESIDENT_QUOTA"
+                                + (f"|{total_only_reason}" if total_only_quota else "")
+                            ),
+                            "weapon": weapon,
+                            "draw_system_type": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+                        }
+                    )
                 continue
+            code_latest_source_year = max(available_years)
 
-            latest_ladder = ladders.get((latest_source_year, hunt_code, residency), {})
+            latest_ladder = ladders.get((code_latest_source_year, hunt_code, residency), {})
             prior_total = sum(int(values["drawn"]) for values in latest_ladder.values())
             forecast_quota = (
                 explicit_quota
                 if explicit_quota is not None
-                else _forecast_quota_for_residency(hunt_code, residency, forecast_total, latest_source_year, total_drawn_by_code_year)
+                else _forecast_quota_for_residency(hunt_code, residency, forecast_total, code_latest_source_year, total_drawn_by_code_year)
             )
             if forecast_quota <= 0:
+                if residency == "Nonresident":
+                    rows.append(
+                        {
+                            "model_version": MODEL_VERSION,
+                            "rule_version": PREFERENCE_RULE_VERSION,
+                            "year": str(forecast_year),
+                            "forecast_year": str(forecast_year),
+                            "hunt_code": hunt_code,
+                            "hunt_name": hunt_name,
+                            "species": species,
+                            "sex_type": "Buck",
+                            "hunt_type": hunt_type,
+                            "hunt_class": "Public",
+                            "residency": residency,
+                            "points": "0",
+                            "draw_pool": "standard",
+                            "public_permits_2025": prior_total,
+                            "public_permits_2026": "" if total_only_quota else 0,
+                            "permits_2026_res": "" if total_only_quota else published_res,
+                            "permits_2026_nr": "" if total_only_quota else published_nr,
+                            "permits_2026_total": published_total,
+                            "max_point_permits_2025": "",
+                            "max_point_permits_2026": "",
+                            "random_permits_2025": "",
+                            "random_permits_2026": "",
+                            "guaranteed_at_2025": "",
+                            "guaranteed_at_2026": "",
+                            "applicants_above": 0,
+                            "applicants_at_level": 0,
+                            "probability_applicant_count": 1,
+                            "p_preference_draw": "0.000000",
+                            "p_bonus_pool": "",
+                            "p_random_pool": "",
+                            "p_draw": "0.000000",
+                            "p_bonus_pool_pct": "",
+                            "p_random_pool_pct": "",
+                            "p_draw_pct": "0.000",
+                            "random_draw_odds_2026": "",
+                            "gap": "",
+                            "delta_gap": "",
+                            "status": _status(0.0),
+                            "trend": "YELLOW",
+                            "draw_outlook": _draw_outlook(0.0, None),
+                            "source_years_used": ",".join(str(year) for year in available_years),
+                            "source_year_count": len(available_years),
+                            "latest_source_year": code_latest_source_year,
+                            "earliest_source_year": min(available_years),
+                            "source_dataset": "predictive",
+                            "model_strategy": MODEL_STRATEGY_NAME,
+                            "preference_model_valid": "TRUE",
+                            "preference_model_note": "Structural nonresident point-0 row emitted because blind-history quota inference produced zero nonresident permits for this total-only preference hunt.",
+                            "reason_codes": (
+                                "ZERO_INFERRED_NONRESIDENT_QUOTA_STRUCTURAL_ROW|NO_EXPLICIT_NONRESIDENT_QUOTA"
+                                + (f"|{total_only_reason}" if total_only_quota else "")
+                            ),
+                            "weapon": weapon,
+                            "draw_system_type": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+                        }
+                    )
                 continue
 
             forecast_ladder = (
                 _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)
                 if latest_ladder
-                else {0: 1}
+                else {}
             )
             global_max_points = max_points_by_residency.get(residency, 0)
             global_structural_points = set(range(0, global_max_points + 3))
@@ -440,9 +596,11 @@ def build_preference_general_deer_predictions(
                 is_structural_zero_point = forecast_applicants_at_level <= 0 and points in structural_points
                 if forecast_applicants_at_level <= 0 and not is_structural_zero_point:
                     continue
-                applicants_at_level = forecast_applicants_at_level if forecast_applicants_at_level > 0 else 1
+                applicants_at_level = forecast_applicants_at_level
                 applicants_above = running_above
-                probability = _preference_probability(forecast_quota, applicants_above, applicants_at_level)
+                probability_applicant_count = max(forecast_applicants_at_level, 1)
+                raw_probability = _preference_probability(forecast_quota, applicants_above, probability_applicant_count)
+                probability, tail_calibrated = _calibrate_tail_probability(raw_probability)
                 gap = (forecast_guaranteed - points) if forecast_guaranteed is not None else None
                 prior_gap = (prior_guaranteed - points) if prior_guaranteed is not None else None
                 delta_gap = None if gap is None or prior_gap is None else gap - prior_gap
@@ -462,7 +620,10 @@ def build_preference_general_deer_predictions(
                         "points": str(points),
                         "draw_pool": "standard",
                         "public_permits_2025": prior_total,
-                        "public_permits_2026": forecast_quota,
+                        "public_permits_2026": "" if total_only_quota else forecast_quota,
+                        "permits_2026_res": "" if total_only_quota else published_res,
+                        "permits_2026_nr": "" if total_only_quota else published_nr,
+                        "permits_2026_total": published_total,
                         "max_point_permits_2025": "",
                         "max_point_permits_2026": "",
                         "random_permits_2025": "",
@@ -471,6 +632,7 @@ def build_preference_general_deer_predictions(
                         "guaranteed_at_2026": "" if forecast_guaranteed is None else str(forecast_guaranteed),
                         "applicants_above": applicants_above,
                         "applicants_at_level": applicants_at_level,
+                        "probability_applicant_count": probability_applicant_count,
                         "p_preference_draw": f"{probability:.6f}",
                         "p_bonus_pool": "",
                         "p_random_pool": "",
@@ -486,15 +648,19 @@ def build_preference_general_deer_predictions(
                         "draw_outlook": _draw_outlook(probability, gap),
                         "source_years_used": ",".join(str(year) for year in available_years) if available_years else "current_quota_seed",
                         "source_year_count": len(available_years),
-                        "latest_source_year": latest_source_year,
+                        "latest_source_year": code_latest_source_year,
                         "earliest_source_year": min(available_years) if available_years else "",
                         "source_dataset": "predictive",
                         "model_strategy": MODEL_STRATEGY_NAME,
                         "preference_model_valid": "TRUE",
                         "preference_model_note": (
-                            f"Forecasted from {latest_source_year} standard-pool ladder with residency quota split and preference carry-forward."
+                            f"Forecasted from {code_latest_source_year} standard-pool ladder with residency quota split and preference carry-forward."
                             if available_years
                             else "Seeded from explicit current-year nonresident quota where no prior nonresident ladder exists."
+                        ),
+                        "reason_codes": append_reason_codes(
+                            total_only_reason if total_only_quota else "",
+                            TAIL_CALIBRATION_REASON if tail_calibrated else "",
                         ),
                         "weapon": weapon,
                     }

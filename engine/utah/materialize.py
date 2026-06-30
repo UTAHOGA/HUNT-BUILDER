@@ -91,6 +91,25 @@ def _draw_outlook_for_row(row: Mapping[str, object]) -> str:
     return "POINT CREEP DEFEAT"
 
 
+def _format_pct(value: float) -> str:
+    text = f"{value:.1f}".rstrip("0").rstrip(".")
+    return text if text else "0"
+
+
+def _format_display_odds(p_draw: float | None) -> str:
+    if p_draw is None:
+        return ""
+    if p_draw <= 0:
+        return "No modeled chance"
+    capped = min(1.0, max(0.0, p_draw))
+    pct = capped * 100.0
+    if capped >= 0.999:
+        return f"~1 in 1 or {_format_pct(pct)}%"
+    denominator = 1.0 / capped
+    denominator_text = _format_pct(denominator) if denominator < 10 else str(round(denominator))
+    return f"~1 in {denominator_text} or {_format_pct(pct)}%"
+
+
 def _legacy_projection(row: Mapping[str, object], key: str, fallback: float | None) -> float | None:
     value = _num(row.get(key))
     if value is not None:
@@ -133,6 +152,17 @@ def materialize_row(
     display_odds_pct = _num(row.get("display_odds_pct"))
     if display_odds_pct is None:
         display_odds_pct = p_draw_mean * 100.0
+    projected_applicants = _first_nonempty(
+        row.get("projected_applicants"),
+        row.get("forecast_applicants_at_level"),
+        legacy_row.get("projected_applicants"),
+        legacy_row.get("forecast_applicants_at_level"),
+    )
+    display_odds_text = _first_nonempty(
+        row.get("display_odds_text"),
+        legacy_row.get("display_odds_text"),
+        _format_display_odds(p_draw_mean),
+    )
 
     materialized = {
         "prediction_year": int(row.get("draw_year") or prediction_year),
@@ -177,6 +207,13 @@ def materialize_row(
         "data_cutoff_date": str(row.get("data_cutoff_date") or legacy_row.get("data_cutoff_date") or ""),
         "data_quality_grade": str(row.get("data_quality_grade") or legacy_row.get("data_quality_grade") or "F"),
         "reason_codes": _normalize_reason_codes(row.get("reason_codes")),
+        "projected_applicants": projected_applicants,
+        "projected_applicants_2026": _first_nonempty(row.get("projected_applicants_2026"), projected_applicants),
+        "projected_applicants_source": _first_nonempty(row.get("projected_applicants_source"), row.get("applicant_pool_source"), "applicant_stack_rollover"),
+        "projected_applicants_2026_source": _first_nonempty(row.get("projected_applicants_2026_source"), row.get("applicant_pool_source"), "applicant_stack_rollover"),
+        "p_draw": f"{p_draw_mean:.6f}",
+        "p_draw_pct": f"{display_odds_pct:.3f}",
+        "display_odds_text": display_odds_text,
         "point_pool_zone": str(row.get("point_pool_zone") or legacy_row.get("point_pool_zone") or ""),
         "applicant_rollover_source_year": row.get("applicant_rollover_source_year") or legacy_row.get("applicant_rollover_source_year") or "",
         "retention_rate_raw": row.get("retention_rate_raw") or legacy_row.get("retention_rate_raw") or "",

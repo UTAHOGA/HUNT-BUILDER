@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-06-27T08:26:49.076616+00:00",
+  "generated_at_utc": "2026-06-27T13:06:20.404443+00:00",
   "database_rows": 1645,
   "database_hunt_codes": 1645,
   "prediction_surface_files_seen": [
@@ -15,27 +15,14 @@
     "processed_data\\private_lands_antlerless_elk_predictions_v1.csv"
   ],
   "engine_outcome_counts": {
-    "MODELED_PUBLIC_P_DRAW": 621,
-    "ACCOUNTED_NO_PUBLIC_P_DRAW": 848,
-    "NO_ENGINE_OUTPUT_REVIEW_REQUIRED": 169,
-    "ENGINE_INPUT_REVIEW_REQUIRED": 7
+    "MODELED_PUBLIC_P_DRAW": 767,
+    "ACCOUNTED_NO_PUBLIC_P_DRAW": 878
   },
-  "review_required_count": 176,
-  "review_required_by_draw_system_type": {
-    "BONUS_LE_BIG_GAME": 2,
-    "PREFERENCE_ANTLERLESS_DEER": 17,
-    "PREFERENCE_ANTLERLESS_ELK": 126,
-    "PREFERENCE_DOE_PRONGHORN": 16,
-    "BONUS_OIL_BIG_GAME": 1,
-    "BEAR_DRAW": 7,
-    "GENERAL_BIG_GAME_OTHER": 7
-  },
-  "review_required_by_reason_code": {
-    "active_target_missing_output": 169,
-    "pending_prediction_rows": 7
-  },
-  "modeled_public_p_draw_hunt_codes": 621,
-  "accounted_no_public_p_draw_hunt_codes": 848,
+  "review_required_count": 0,
+  "review_required_by_draw_system_type": {},
+  "review_required_by_reason_code": {},
+  "modeled_public_p_draw_hunt_codes": 767,
+  "accounted_no_public_p_draw_hunt_codes": 878,
   "accounted_out_of_scope_hunt_codes": 0,
   "detail_csv": "processed_data\\prediction_engine_hunt_code_line_audit_2026.csv",
   "unmodeled_review_csv": "processed_data\\prediction_engine_unmodeled_review_required_2026.csv"

@@ -313,7 +313,10 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
         point_history_by_year: Dict[int, Dict[int, Dict[str, int]]] = defaultdict(dict)
         for r in rows:
             yr = to_int(r.get("year"), 0)
-            pt = to_int(r.get("points"), 0)
+            points_text = clean(r.get("points"))
+            if not points_text.isdigit():
+                continue
+            pt = int(points_text)
             app = to_int(r.get("eligible_applicants"), 0)
             if yr > 0:
                 by_point_year[pt].append((yr, app))
@@ -407,7 +410,7 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
                 "OFFICIAL_2026_QUOTA_USED",
             ]
             if quota_source_label:
-                reasons.append("DATABASE_2026_PERMITS_USED")
+                reasons.append("DATABASE_2026_PUBLISHED_PERMITS_USED")
             if guaranteed_probability >= 0.999:
                 reasons.append("MODELED_100_CONFIRMED")
             if point_pool_zone == "max_pool_cutoff_mixed":

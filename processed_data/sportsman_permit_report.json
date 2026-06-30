@@ -1,6 +1,9 @@
 {
   "forecast_year": 2026,
   "source_years": [
+    2018,
+    2019,
+    2020,
     2021,
     2022,
     2023,
@@ -8,6 +11,13 @@
     2025
   ],
   "sportsman_source_year": 2025,
+  "sportsman_expected_code_count": 10,
+  "sportsman_source_code_count": 10,
+  "sportsman_code_count_guardrail": "PASS",
+  "sportsman_draw_design": "SPORTSMAN_RANDOM_ONLY",
+  "sportsman_random_only": true,
+  "sportsman_split_draw": false,
+  "sportsman_residency_scope": "RESIDENT_ONLY",
   "sportsman_rows_reviewed": 10,
   "total_sportsman_rows_reviewed": 10,
   "sportsman_rows_modeled": 10,
@@ -68,9 +78,12 @@
   "p_bonus_pool_non_null_count": 0,
   "p_random_pool_non_null_count": 0,
   "p_preference_draw_non_null_count": 0,
+  "nonresident_row_count": 0,
+  "nonresident_quota_total": 0,
+  "split_mechanics_guardrail": "PASS",
   "duplicate_key_count": 0,
   "source_files_used": [
-    "data\\utah\\sportsman\\sportsman_odds_2025.csv",
+    "processed_data\\audits\\sportsman_pdf_clean_script_feed.csv",
     "pipeline\\RAW\\hunt_unit_database\\2026\\xlsx\\24-25_sportsman_odds.xlsx"
   ]
 }
