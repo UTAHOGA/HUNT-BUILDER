@@ -12,11 +12,20 @@ from __future__ import annotations
 
 from pathlib import Path
 
+
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
 from openpyxl import load_workbook
 
 
-REPO = Path(r"D:\DOCUMENTS\GitHub\HUNTS")
-XLSX_DIR = REPO / "pipeline" / "raw" / "2026" / "xlsx"
+REPO = Path(str(_repo_root()))
+XLSX_DIR = REPO / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "xlsx"
 
 PERMIT_HEADERS = {
     "permits_res_2026",

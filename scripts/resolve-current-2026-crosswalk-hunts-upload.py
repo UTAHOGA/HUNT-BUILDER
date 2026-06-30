@@ -10,12 +10,21 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
+
 ROOT = Path(__file__).resolve().parents[1]
 UNRESOLVED_INPUT = (
     ROOT / "processed_data/audits/current_2026_permit_unresolved_split/remaining_unresolved_after_crosswalk_review_rule.csv"
 )
 CROSSWALK_PATH = Path(
-    "C:/Users/tyler/Desktop/GitHub/HUNTS/pages-dist/processed_data/current_to_historical_hunt_code_crosswalk_2026.csv"
+    str(_repo_root() / "pages-dist/processed_data/current_to_historical_hunt_code_crosswalk_2026.csv")
 )
 RESOLVED_OUTPUT = ROOT / "processed_data/audits/current_2026_permit_unresolved_split/resolved_crosswalk_hunts_upload_matches.csv"
 REMAINING_OUTPUT = ROOT / "processed_data/audits/current_2026_permit_unresolved_split/remaining_unresolved_after_crosswalk_hunts_upload_rule.csv"
@@ -59,7 +68,7 @@ def _resolved_row(row: dict[str, str], crosswalk: dict[str, str], status: str) -
     out["uploaded_historical_hunt_code"] = crosswalk.get("historical_hunt_code", "")
     out["uploaded_relationship_type"] = crosswalk.get("relationship_type", "")
     out["uploaded_recommended_model_behavior"] = crosswalk.get("recommended_model_behavior", "")
-    out["crosswalk_source_file"] = "C:/Users/tyler/Desktop/GitHub/HUNTS/pages-dist/processed_data/current_to_historical_hunt_code_crosswalk_2026.csv"
+    out["crosswalk_source_file"] = str(_repo_root() / "pages-dist/processed_data/current_to_historical_hunt_code_crosswalk_2026.csv")
     out["resolved_status"] = RESOLVABLE_STATUSES[status]
     out["resolved_matching_sources"] = "CURRENT_TO_HISTORICAL_CROSSWALK_FROM_HUNTS"
     out["resolved_matching_source_count"] = "1"
@@ -76,7 +85,7 @@ def _remaining_row(row: dict[str, str], crosswalk: dict[str, str]) -> dict[str, 
     out["uploaded_historical_hunt_code"] = crosswalk.get("historical_hunt_code", "")
     out["uploaded_relationship_type"] = crosswalk.get("relationship_type", "")
     out["uploaded_recommended_model_behavior"] = crosswalk.get("recommended_model_behavior", "")
-    out["crosswalk_source_file"] = "C:/Users/tyler/Desktop/GitHub/HUNTS/pages-dist/processed_data/current_to_historical_hunt_code_crosswalk_2026.csv"
+    out["crosswalk_source_file"] = str(_repo_root() / "pages-dist/processed_data/current_to_historical_hunt_code_crosswalk_2026.csv")
     return out
 
 

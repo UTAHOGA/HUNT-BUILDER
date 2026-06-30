@@ -10,6 +10,15 @@ from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
+
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
 from openpyxl import load_workbook
 
 
@@ -20,24 +29,24 @@ DATABASE = ROOT / "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
 OUT_DIR = ROOT / "processed_data/audits/current_2026_permit_unresolved_split"
 
 SOURCES = {
-    "retired_current": Path("C:/Users/tyler/Desktop/GitHub/HUNTS/data_truth/crosswalk_truth/normalized/retired_current_hunt_codes_2026.csv"),
-    "black_bear_primary": Path("C:/Users/tyler/Desktop/GitHub/HUNTS/data_truth/crosswalk_truth/normalized/black_bear_BR_2024_2025_2026_crosswalk.csv"),
-    "current_historical_primary": Path("C:/Users/tyler/Desktop/GitHub/HUNTS/data_truth/crosswalk_truth/normalized/current_to_historical_hunt_code_crosswalk_2026.csv"),
-    "current_historical_processed": Path("D:/DOCUMENTS/GitHub/HUNTS/HUNTS/processed_data/current_to_historical_hunt_code_crosswalk_2026.csv"),
-    "historical_le_to_eb": Path("D:/DOCUMENTS/GitHub/HUNTS/HUNTS/processed_data/historical_le_to_eb_crosswalk_2024.csv"),
-    "boundary_unit_fill": Path("D:/DOCUMENTS/GitHub/HUNTS/HUNTS/processed_data/hunt_boundary_crosswalk_2026_unit_fill_sources.csv"),
-    "historical_retired": Path("D:/DOCUMENTS/GitHub/HUNTS/HUNTS/processed_data/hunt_boundary_crosswalk_historical_retired_codes.csv"),
-    "boundary_xlsx": Path("D:/DOCUMENTS/GitHub/HUNTS/HUNTS/processed_data/hunt_boundary_crosswalk_2026.xlsx"),
-    "boundary_id_to_hunt_code": Path("D:/DOCUMENTS/GitHub/HUNTS/HUNTS/processed_data/audits/boundary_id_to_hunt_code_crosswalk_2026.csv"),
-    "same_code_promotions": Path("D:/DOCUMENTS/GitHub/HUNTS/HUNTS/data_truth/crosswalk_truth/validation/same_code_2025_pdf_crosswalk_active_promotions.csv"),
-    "model_year_crosswalk": Path("D:/DOCUMENTS/GitHub/HUNTS/HUNTS/data_truth/crosswalk_truth/validation/hunt_code_crosswalk_2024_pdf_to_2025_pdf_model_years.csv"),
-    "model_year_dropped_review": Path("D:/DOCUMENTS/GitHub/HUNTS/HUNTS/data_truth/crosswalk_truth/validation/hunt_code_crosswalk_2024_pdf_to_2025_pdf_dropped_review.csv"),
-    "remaining_boundary_closeout": Path("D:/DOCUMENTS/GitHub/HUNTS/HUNTS/data_truth/comparison_outputs/validation/remaining_2025_history_crosswalk_boundary_closeout.csv"),
-    "black_bear_secondary": Path("D:/DOCUMENTS/GitHub/HUNTS/HUNTS/data_truth/crosswalk_truth/normalized/black_bear_BR_2024_2025_2026_crosswalk.csv"),
-    "conservation_area": Path("D:/DOCUMENTS/GitHub/HUNTS/HUNTS/processed_data/conservation_area_crosswalk_2026.csv"),
-    "runtime_boundary_draft": Path("D:/DOCUMENTS/GitHub/HUNTS/HUNTS/data_model/runtime_drafts/hunt_boundary_crosswalk_v2.csv"),
-    "bighorn_location_crosswalk": Path("D:/DOCUMENTS/GitHub/HUNTS/HUNTS/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_location_hunt_code_crosswalk_2023_bighorn_sheep.csv"),
-    "bighorn_measurements_crosswalked": Path("D:/DOCUMENTS/GitHub/HUNTS/HUNTS/data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_bighorn_sheep_measurements_crosswalked.csv"),
+    "retired_current": Path(str(_repo_root() / "data_truth/crosswalk_truth/normalized/retired_current_hunt_codes_2026.csv")),
+    "black_bear_primary": Path(str(_repo_root() / "data_truth/crosswalk_truth/normalized/black_bear_BR_2024_2025_2026_crosswalk.csv")),
+    "current_historical_primary": Path(str(_repo_root() / "data_truth/crosswalk_truth/normalized/current_to_historical_hunt_code_crosswalk_2026.csv")),
+    "current_historical_processed": Path(str(_repo_root() / "processed_data/current_to_historical_hunt_code_crosswalk_2026.csv")),
+    "historical_le_to_eb": Path(str(_repo_root() / "processed_data/historical_le_to_eb_crosswalk_2024.csv")),
+    "boundary_unit_fill": Path(str(_repo_root() / "processed_data/hunt_boundary_crosswalk_2026_unit_fill_sources.csv")),
+    "historical_retired": Path(str(_repo_root() / "processed_data/hunt_boundary_crosswalk_historical_retired_codes.csv")),
+    "boundary_xlsx": Path(str(_repo_root() / "processed_data/hunt_boundary_crosswalk_2026.xlsx")),
+    "boundary_id_to_hunt_code": Path(str(_repo_root() / "processed_data/audits/boundary_id_to_hunt_code_crosswalk_2026.csv")),
+    "same_code_promotions": Path(str(_repo_root() / "data_truth/crosswalk_truth/validation/same_code_2025_pdf_crosswalk_active_promotions.csv")),
+    "model_year_crosswalk": Path(str(_repo_root() / "data_truth/crosswalk_truth/validation/hunt_code_crosswalk_2024_pdf_to_2025_pdf_model_years.csv")),
+    "model_year_dropped_review": Path(str(_repo_root() / "data_truth/crosswalk_truth/validation/hunt_code_crosswalk_2024_pdf_to_2025_pdf_dropped_review.csv")),
+    "remaining_boundary_closeout": Path(str(_repo_root() / "data_truth/comparison_outputs/validation/remaining_2025_history_crosswalk_boundary_closeout.csv")),
+    "black_bear_secondary": Path(str(_repo_root() / "data_truth/crosswalk_truth/normalized/black_bear_BR_2024_2025_2026_crosswalk.csv")),
+    "conservation_area": Path(str(_repo_root() / "processed_data/conservation_area_crosswalk_2026.csv")),
+    "runtime_boundary_draft": Path(str(_repo_root() / "data_model/runtime_drafts/hunt_boundary_crosswalk_v2.csv")),
+    "bighorn_location_crosswalk": Path(str(_repo_root() / "data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_location_hunt_code_crosswalk_2023_bighorn_sheep.csv")),
+    "bighorn_measurements_crosswalked": Path(str(_repo_root() / "data_truth/harvest_results_truth/raw_packages/2023_for_2024_harvest_results_2023_all_species_database/harvest_results_2023_bighorn_sheep_measurements_crosswalked.csv")),
 }
 
 MATCH_COLUMNS = [

@@ -3,7 +3,16 @@ import json
 from pathlib import Path
 
 
-REPO = Path(r"C:\Users\tyler\Desktop\GitHub\HUNTS")
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
+
+REPO = Path(str(_repo_root()))
 GAP_JSON_PATH = REPO / "processed_data" / "database_hunt_code_model_gap.json"
 GAP_CSV_PATH = REPO / "processed_data" / "database_hunt_code_model_gap.csv"
 COVERAGE_JSON_PATH = REPO / "processed_data" / "draw_system_coverage_report.json"

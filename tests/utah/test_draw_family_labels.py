@@ -4,7 +4,16 @@ from collections import Counter
 from pathlib import Path
 
 
-REPO = Path(r"C:\Users\tyler\Desktop\GitHub\HUNTS")
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
+
+REPO = Path(str(_repo_root()))
 CANONICAL_CSV = REPO / "data" / "hunt-master-canonical-2026-database-candidate.csv"
 CANONICAL_JSON = REPO / "canonical" / "hunt-planner-2026.json"
 REPORT = REPO / "processed_data" / "draw_family_label_normalization_report.json"

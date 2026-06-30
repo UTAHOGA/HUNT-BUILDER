@@ -5,9 +5,18 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
+
 REPO = Path(__file__).resolve().parents[1]
 SOURCE_ENHANCED = Path(
-    r"C:\Users\tyler\Desktop\GitHub\HUNTS\pipeline\RAW\hunt_unit_database\harvest_results_2024_for_2025_elk_age_supplement\harvest_reports_2024_for_2025_elk_age_supplement\harvest_results_2024_for_2025_all_long_enhanced.csv"
+    str(_repo_root() / "pipeline/RAW/hunt_unit_database/harvest_results_2024_for_2025_elk_age_supplement/harvest_reports_2024_for_2025_elk_age_supplement/harvest_results_2024_for_2025_all_long_enhanced.csv")
 )
 TARGET_FEATURES = REPO / "processed_data" / "harvest_quality_features_all_years_by_hunt_code.csv"
 

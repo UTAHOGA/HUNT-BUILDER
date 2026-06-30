@@ -5,8 +5,17 @@ import urllib.request
 from pathlib import Path
 
 
-REPO = Path(r"D:\DOCUMENTS\GitHub\HUNTS")
-RAW_ROOT = REPO / "pipeline" / "raw"
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
+
+REPO = Path(str(_repo_root()))
+RAW_ROOT = REPO / "pipeline" / "RAW" / "hunt_unit_database"
 MANIFEST = REPO / "pipeline" / "manifests" / "species_harvest_supplement_links.csv"
 LOG = REPO / "pipeline" / "manifests" / "species_harvest_supplement_download_log.csv"
 

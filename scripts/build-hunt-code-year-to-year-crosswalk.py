@@ -9,6 +9,15 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
+
 ROOT = Path(__file__).resolve().parents[1]
 AUDITS = ROOT / "processed_data" / "audits"
 DATABASE = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "DATABASE.csv"
@@ -134,7 +143,7 @@ REVIEWED_2022_TO_2023_SPORTSMAN_ENDED_OR_ROLLED = {
 }
 
 REVIEWED_2022_TO_2023_SPORTSMAN_SOURCE_FILES = {
-    "CG1000": "C:/Users/tyler/Desktop/BIBLE HUNT CODES/2023/2023_sportsman_hunt_codes_clean.csv|C:/Users/tyler/Desktop/BIBLE HUNT CODES/2023/2023_sportsman_hunt_codes_clean_notes.md|C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2022/pdf/regulations/guidebook_2022-23_cougar.pdf|C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2023/pdf/regulations/2023-24_cougar.pdf|C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2024/pdf/regulation/2024_cougar.pdf",
+    "CG1000": "C:/Users/tyler/Desktop/BIBLE HUNT CODES/2023/2023_sportsman_hunt_codes_clean.csv|C:/Users/tyler/Desktop/BIBLE HUNT CODES/2023/2023_sportsman_hunt_codes_clean_notes.md|repo:pipeline/RAW/hunt_unit_database/2022/pdf/regulations/guidebook_2022-23_cougar.pdf|repo:pipeline/RAW/hunt_unit_database/2023/pdf/regulations/2023-24_cougar.pdf|repo:pipeline/RAW/hunt_unit_database/2024/pdf/regulation/2024_cougar.pdf",
 }
 
 
@@ -490,7 +499,7 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                         right,
                         hit_from,
                         {
-                            "source_files": "C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2022/pdf/regulations/2022_bear.pdf",
+                            "source_files": str(_repo_root() / "pipeline/RAW/hunt_unit_database/2022/pdf/regulations/2022_bear.pdf"),
                             "source_pages": "20",
                             "source_kinds": "regulations",
                         },
@@ -569,7 +578,7 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                         right,
                         hit_from,
                         {
-                            "source_files": "C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2021/pdf/regulations/2020-21_cougar.pdf",
+                            "source_files": str(_repo_root() / "pipeline/RAW/hunt_unit_database/2021/pdf/regulations/2020-21_cougar.pdf"),
                             "source_pages": "18",
                             "source_kinds": "regulations",
                         },
@@ -593,7 +602,7 @@ def build_crosswalk() -> tuple[list[dict[str, object]], list[dict[str, object]],
                         right,
                         hit_from,
                         {
-                            "source_files": "C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2022/pdf/regulations/2021-22_cougar.pdf",
+                            "source_files": str(_repo_root() / "pipeline/RAW/hunt_unit_database/2022/pdf/regulations/2021-22_cougar.pdf"),
                             "source_pages": "19|20",
                             "source_kinds": "regulations",
                         },

@@ -15,11 +15,20 @@ import unicodedata
 from collections import Counter, defaultdict
 from pathlib import Path
 
+
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
 from pypdf import PdfReader
 
 
 ROOT = Path(__file__).resolve().parents[1]
-HUNTS_ROOT = Path(r"C:\Users\tyler\Desktop\GitHub\HUNTS")
+HUNTS_ROOT = Path(str(_repo_root()))
 GUIDEBOOK = HUNTS_ROOT / "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/2025_biggameapp.pdf"
 COMPARISON = ROOT / "processed_data/hunt_code_comparison_2025_to_2026.csv"
 

@@ -17,11 +17,20 @@ import zipfile
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
+
+
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
 from xml.etree import ElementTree
 
 
 ROOT = Path(__file__).resolve().parents[1]
-HUNTS_ROOT = Path(r"C:\Users\tyler\Desktop\GitHub\HUNTS")
+HUNTS_ROOT = Path(str(_repo_root()))
 
 SOURCE_LIBRARY = ROOT / "pipeline/RAW/hunt_unit_database/library-master.csv"
 RECONCILED_LIBRARY = ROOT / "pipeline/RAW/hunt_unit_database/library-master.reconciled.csv"

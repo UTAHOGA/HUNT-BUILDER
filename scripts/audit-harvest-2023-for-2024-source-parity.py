@@ -16,9 +16,18 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
+
 ROOT = Path(__file__).resolve().parents[1]
 LEGACY_SOURCE_DIR = Path(
-    r"C:\Users\tyler\Desktop\GitHub\HUNTS\pipeline\RAW\hunt_unit_database\2024\csv\Harvest Results"
+    str(_repo_root() / "pipeline/RAW/hunt_unit_database/2024/csv/Harvest Results")
 )
 ACTIVE_RAW_PACKAGES = ROOT / "data_truth" / "harvest_results_truth" / "raw_packages"
 HARVEST_BEST = ROOT / "data_truth" / "harvest_results_truth" / "normalized" / "harvest_quality_features_all_years_by_hunt_code.csv"

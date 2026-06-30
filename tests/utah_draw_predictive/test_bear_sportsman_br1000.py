@@ -2,13 +2,22 @@ import csv
 from pathlib import Path
 
 
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
+
 def _read_csv(path: Path) -> list[dict[str, str]]:
     with path.open(encoding="utf-8-sig", newline="") as handle:
         return list(csv.DictReader(handle))
 
 
 def test_br1000_is_sportsman_black_bear_not_bear_bonus() -> None:
-    ml_rows = _read_csv(Path(r"C:\Users\tyler\Desktop\GitHub\HUNTS\processed_data\ml_draw_predictions_v1.csv"))
+    ml_rows = _read_csv(Path(str(_repo_root() / "processed_data/ml_draw_predictions_v1.csv")))
     br1000 = [row for row in ml_rows if row.get("hunt_code") == "BR1000"]
     assert br1000
     assert all(row.get("draw_system_type") == "SPORTSMAN_PERMIT" for row in br1000)

@@ -2,8 +2,17 @@ import json
 from pathlib import Path
 
 
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
+
 def test_phase7_turkey_report_semantics_are_explicit() -> None:
-    report_path = Path(r"C:\Users\tyler\Desktop\GitHub\HUNTS\processed_data\turkey_bonus_report.json")
+    report_path = Path(str(_repo_root() / "processed_data/turkey_bonus_report.json"))
     report = json.loads(report_path.read_text(encoding="utf-8"))
 
     required_fields = {

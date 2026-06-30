@@ -6,9 +6,18 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
+
+def _repo_root() -> Path:
+    repo_root = Path(__file__).resolve()
+    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+        repo_root = repo_root.parent
+    if repo_root.name != "HUNT-BUILDER":
+        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
+    return repo_root
+
 import pdfplumber
 
-REPO = Path(r"C:/Users/tyler/Desktop/GitHub/HUNTS")
+REPO = Path(str(_repo_root()))
 PDF_PATH = REPO / "pipeline/RAW/hunt_unit_database/2026/pdf/current_year_permit_numbers/Draw Odds/2026 rac recommended permits.pdf"
 DB_PATH = REPO / "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
 OUT_DIR = REPO / "pipeline/RAW/hunt_unit_database/2026/csv/current_year_permit_numbers"
