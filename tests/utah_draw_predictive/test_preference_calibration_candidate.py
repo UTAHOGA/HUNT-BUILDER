@@ -185,3 +185,39 @@ def test_preference_calibration_candidate_does_not_calibrate_disallowed_rows_or_
     assert summary.applied_rows == 0
     assert summary.disallowed_applied_rows == 0
     assert summary.range_violations == 0
+
+
+def test_preference_calibration_candidate_chooses_valid_p_draw_over_empty_p_draw_mean() -> None:
+    rows = pd.DataFrame(
+        [
+            {
+                "hunt_code": "DA1001",
+                "draw_system_type": "PREFERENCE_ANTLERLESS_DEER",
+                "residency": "Resident",
+                "p_draw_mean": None,
+                "p_draw": 0.90,
+            }
+        ]
+    )
+
+    table = pd.DataFrame(
+        [
+            {
+                "draw_system_type": "PREFERENCE_ANTLERLESS_DEER",
+                "residency": "Resident",
+                "probability_bin": "80-100%",
+                "correction_probability_delta": -0.10,
+                "shrinkage_weight": 0.5,
+                "recommended_calibration_method": "family_residency_bucket_lookup",
+                "overfit_risk": "medium",
+                "calibration_value_type": "probability_delta",
+            }
+        ]
+    )
+
+    calibrated = apply_preference_calibration_candidate(rows, table)
+
+    assert calibrated.loc[0, "p_draw_original"] == 0.90
+    assert calibrated.loc[0, "p_draw_calibrated_candidate"] == 0.85
+    assert calibrated.loc[0, "calibration_applied_candidate"] is True
+

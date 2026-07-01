@@ -117,9 +117,36 @@ def load_calibration_table(path: str) -> pd.DataFrame:
 
 
 def _source_probability_column(frame: pd.DataFrame) -> str | None:
-    for column in ("p_draw_mean", "p_draw", "p_preference_draw"):
+    """Choose a source probability column that actually contains usable values.
+
+    Runtime surfaces can carry stale/empty helper columns such as p_draw_mean
+    alongside the real p_draw column. Do not select an empty probability source
+    just because its column exists.
+    """
+
+    candidates = ("p_draw", "p_draw_mean", "p_preference_draw")
+
+    best_column: str | None = None
+    best_valid_count = -1
+
+    for column in candidates:
+        if column not in frame.columns:
+            continue
+
+        numeric = pd.to_numeric(frame[column], errors="coerce")
+        valid_count = int(numeric.between(0, 1, inclusive="both").sum())
+
+        if valid_count > best_valid_count:
+            best_column = column
+            best_valid_count = valid_count
+
+    if best_column is not None and best_valid_count > 0:
+        return best_column
+
+    for column in candidates:
         if column in frame.columns:
             return column
+
     return None
 
 
