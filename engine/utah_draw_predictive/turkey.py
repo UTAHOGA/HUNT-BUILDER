@@ -27,6 +27,8 @@ EXCLUDED_TURKEY_TOKENS = (
     "remaining",
     "over the counter",
     " otc",
+    "o.t.c",
+    "o.t.c.",
     "sportsman",
     "conservation",
     "expo",
@@ -66,6 +68,10 @@ def _clean(value: object) -> str:
 
 def _clean_lower(value: object) -> str:
     return _clean(value).lower()
+
+
+def _clean_system(value: object) -> str:
+    return _clean(value).upper().replace(" ", "_").replace("/", "_").replace("-", "_")
 
 
 def _to_int(value: object) -> int:
@@ -135,6 +141,7 @@ def _is_limited_entry_or_cwmu_turkey(row: Mapping[str, object]) -> bool:
     text = _joined_text(row)
     hunt_type = _clean_lower(row.get("hunt_type"))
     draw_design = _clean_lower(row.get("draw_design") or row.get("hunt_class"))
+    draw_design_system = _clean_system(row.get("draw_design"))
     source_file = _clean_lower(row.get("source_file"))
     hunt_code = _clean(row.get("hunt_code")).upper()
     source_backed_adult_draw_result = (
@@ -150,6 +157,7 @@ def _is_limited_entry_or_cwmu_turkey(row: Mapping[str, object]) -> bool:
         hunt_type == "limited entry"
         or "limited entry" in text
         or (draw_design == "max/weighted split" and _source_proves_bonus_turkey(row))
+        or (draw_design_system in {TURKEY_DRAW_SYSTEM_TYPE, YOUTH_TURKEY_DRAW_SYSTEM_TYPE} and _source_proves_bonus_turkey(row))
         or source_backed_adult_draw_result
     )
 
@@ -173,7 +181,14 @@ def is_remaining_turkey_row(row: Mapping[str, object]) -> bool:
     if not _is_turkey(row):
         return False
     text = _joined_text(row)
-    return "remaining permit" in text or "remaining" in text or "over the counter" in text or " otc" in text
+    return (
+        "remaining permit" in text
+        or "remaining" in text
+        or "over the counter" in text
+        or " otc" in text
+        or "o.t.c" in text
+        or "fall management" in text
+    )
 
 
 def is_nonpublic_turkey_row(row: Mapping[str, object]) -> bool:

@@ -322,6 +322,10 @@ def infer_draw_design(row: dict[str, str], hunt_type: str) -> str:
         ]
     ).lower()
     system_type = compact(row.get("draw_2026_system_type")).upper()
+    if not system_type:
+        system_type = compact(row.get("draw_system_type")).upper()
+    if system_type:
+        return system_type
     hunt_class = compact(row.get("hunt_class")).lower()
 
     if code in SPORTSMAN_CODES or system_type.startswith("SPORTSMAN") or "sportsman" in text:

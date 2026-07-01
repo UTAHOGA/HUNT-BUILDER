@@ -174,6 +174,9 @@ def record_type(row):
 
 
 def derive_draw_design(row):
+    draw_system_type = first_nonempty(row, "draw_system_type", "draw_2026_system_type")
+    if draw_system_type:
+        return draw_system_type
     existing = first_nonempty(row, "draw_design", "draw_pool")
     if existing:
         return existing

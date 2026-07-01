@@ -9,16 +9,22 @@
   ],
   "total_private_lands_antlerless_elk_rows_reviewed": 27,
   "active_predictive_row_count": 54,
+  "otc_capped_permit_row_count": 54,
   "modeled_allocation_row_count": 54,
+  "modeled_availability_row_count": 54,
   "pending_allocation_row_count": 0,
+  "pending_capped_permit_row_count": 0,
   "excluded_row_count": 0,
   "hunt_code_count": 27,
   "unit_count": 27,
   "rows_by_algorithm_status": {
-    "MODELED_ALLOCATION": 54,
+    "MODELED_AVAILABILITY": 54,
     "IN_SCOPE_MODEL_PENDING": 0,
     "EXCLUDED_NOT_PREDICTIVE_DRAW": 0
   },
+  "classification": "OTC_CAPPED_PRIVATE_LANDS_PERMITS",
+  "draw_design": "Capped Permits",
+  "acquisition_method": "OTC_CAPPED_PRIVATE_LANDS_PERMITS",
   "permits_allotted_non_null_count": 54,
   "permits_remaining_non_null_count": 0,
   "p_availability_non_null_count": 0,
@@ -32,11 +38,10 @@
   "rows_with_availability_pct_outside_range": 0,
   "duplicate_key_count": 0,
   "source_files_used": [
-    "pipeline\\RAW\\hunt_unit_database\\2026\\csv\\2026 Permits\\elk antlerless private lands.csv"
+    "pipeline\\RAW\\hunt_unit_database\\2026\\csv\\2026 Permits\\elk antlerless private lands only EA.csv"
   ],
   "data_quality_flags_summary": {
-    "ALLOCATION_NOT_RESIDENCY_SPLIT": 27,
+    "OTC_CAPPED_PERMITS_NOT_RESIDENCY_SPLIT": 27,
     "REMAINING_PERMIT_STATUS_UNKNOWN": 27
-  },
-  "artifact_refresh_note": "Refreshed from repo-side private-lands antlerless elk source CSV; blank p_draw by design."
+  }
 }

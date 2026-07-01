@@ -34,6 +34,7 @@ AUTHORITY_TO_FAMILY = {
     "PREFERENCE_ANTLERLESS_ELK": "preference_antlerless_elk",
     "PREFERENCE_DOE_PRONGHORN": "preference_doe_pronghorn",
 }
+PREFERENCE_DRAW_SYSTEM_TYPES = set(AUTHORITY_TO_FAMILY)
 AUTHORITY_EXCLUDED_DRAW_SYSTEM_TYPES = {
     "ANTLERLESS_ELK_CONTROL",
     "AVAILABILITY_ONLY",
@@ -222,7 +223,8 @@ def _family_for_legacy_row(row: Mapping[str, object]) -> str:
     hunt_type = _clean(row.get("hunt_type")).lower()
     draw_design = _clean(row.get("draw_design")).lower()
 
-    is_preference = draw_design == "preference" or hunt_class == "PREFERENCE"
+    draw_design_system = draw_design.upper()
+    is_preference = draw_design == "preference" or draw_design_system in PREFERENCE_DRAW_SYSTEM_TYPES or hunt_class == "PREFERENCE"
     if not is_preference:
         return ""
     if effective_hunt_class == "GENERAL_SEASON_DEER" and species == "deer" and hunt_code.startswith("DB") and not hunt_code.startswith(("DB17", "DB18")):
@@ -379,7 +381,7 @@ def _with_run_fields(rows: Iterable[Mapping[str, object]], source_year: int, tar
         item["family"] = family
         item["engine_family"] = "SPORTSMAN_RANDOM_ONLY" if is_sportsman else family
         item["draw_system_type"] = _clean(item.get("draw_system_type")) or _family_draw_system(family)
-        item["draw_design"] = _clean(item.get("draw_design")) or ("Sportsman Random Only" if is_sportsman else "Preference")
+        item["draw_design"] = _clean(item.get("draw_design")) or item["draw_system_type"]
         item["draw_method"] = _clean(item.get("draw_method")) or ("Strict random" if is_sportsman else "Preference")
         item["point_system"] = _clean(item.get("point_system")) or ("none" if is_sportsman else "preference")
         item["algorithm_status"] = _clean(item.get("algorithm_status")) or ("MODELED_SPORTSMAN_DRAW" if is_sportsman else "MODELED_PREFERENCE")
@@ -500,7 +502,7 @@ def _prefix_family_guess(row: Mapping[str, object]) -> str:
     species = _clean(row.get("species")).lower()
     draw_design = _clean(row.get("draw_design")).lower()
     hunt_class = _clean(row.get("hunt_class")).upper()
-    if draw_design != "preference" and hunt_class != "PREFERENCE":
+    if draw_design != "preference" and draw_design.upper() not in PREFERENCE_DRAW_SYSTEM_TYPES and hunt_class != "PREFERENCE":
         return ""
     if hunt_code.startswith(("DB15", "DB16")) and species == "deer":
         return "preference_general_deer"

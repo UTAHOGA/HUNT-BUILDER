@@ -267,11 +267,14 @@ def normalize_year(year: int, *, write: bool) -> dict[str, object]:
         normalized_hunt_type = clean(row.get("hunt_type"))
         if "draw_design" in fieldnames:
             draw_design = clean(row.get("draw_design"))
-            mapped = DRAW_DESIGN_MAP.get(draw_design)
-            if mapped:
+            draw_system_type = clean(row.get("draw_system_type"))
+            if draw_system_type and draw_design != draw_system_type:
+                record_change(audit_rows, year, row_number, row, "draw_design", draw_system_type, "sync draw_design to draw_system_type")
+            elif draw_design in DRAW_DESIGN_MAP and "draw_system_type" not in fieldnames:
+                mapped = DRAW_DESIGN_MAP[draw_design]
                 record_change(audit_rows, year, row_number, row, "draw_design", mapped, "normalize legacy draw_design label")
             elif draw_design == "Black Bear":
-                inferred = "Capped Permits" if normalized_hunt_type == "O.T.C." else "Preference"
+                inferred = "OTC_CAPPED" if normalized_hunt_type == "O.T.C." else "BLACK_BEAR"
                 record_change(audit_rows, year, row_number, row, "draw_design", inferred, "normalize bear draw_design label")
             elif not draw_design:
                 inferred = infer_draw_design(row, normalized_hunt_type)

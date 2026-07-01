@@ -29,6 +29,7 @@ PREFERENCE_TAIL_CEILINGS = {
     "PREFERENCE_ANTLERLESS_ELK": 0.913,
     "PREFERENCE_DOE_PRONGHORN": 0.701,
 }
+PREFERENCE_ANTLERLESS_DRAW_SYSTEM_TYPES = set(PREFERENCE_TAIL_CEILINGS)
 TAIL_CALIBRATION_REASON = "PREFERENCE_TAIL_CALIBRATED_FROM_REPO_BACKTEST"
 
 
@@ -152,6 +153,7 @@ def _looks_like_standard_pool(row: Mapping[str, object]) -> bool:
     hunt_class = _clean_lower(row.get("hunt_class"))
     hunt_draw_class = _clean_lower(row.get("hunt_draw_class") or row.get("draw_class_type"))
     draw_design = _clean_lower(row.get("draw_design"))
+    draw_design_system = _clean(row.get("draw_design")).upper()
     draw_system_type = _clean(row.get("draw_system_type"))
     if (
         _clean_lower(row.get("model_strategy")) == MODEL_STRATEGY_NAME
@@ -164,7 +166,7 @@ def _looks_like_standard_pool(row: Mapping[str, object]) -> bool:
     return (
         draw_pool in {"", "standard"}
         and family_class in {"", "adult", "public", "preference", "antlerless_deer", "antlerless_elk", "doe_pronghorn"}
-        and draw_design in {"", "preference"}
+        and (draw_design in {"", "preference"} or draw_design_system in PREFERENCE_ANTLERLESS_DRAW_SYSTEM_TYPES)
     )
 
 

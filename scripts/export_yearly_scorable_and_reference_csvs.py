@@ -64,6 +64,10 @@ def lower_clean(value: Any) -> str:
     return clean(value).lower()
 
 
+def system_clean(value: Any) -> str:
+    return clean(value).upper().replace(" ", "_").replace("/", "_").replace("-", "_")
+
+
 def read_csv(path: Path) -> tuple[list[str], list[dict[str, str]]]:
     with path.open("r", encoding="utf-8-sig", newline="") as handle:
         reader = csv.DictReader(handle)
@@ -87,6 +91,7 @@ def canonical_path(year: int) -> Path:
 def is_conservation_or_reference(row: dict[str, str]) -> bool:
     hunt_type = lower_clean(row.get("hunt_type"))
     draw_design = lower_clean(row.get("draw_design") or row.get("draw_pool") or row.get("hunt_class"))
+    draw_system = system_clean(row.get("draw_system_type") or row.get("draw_design"))
     source_scope = lower_clean(row.get("source_scope"))
     text = " ".join(
         lower_clean(row.get(field))
@@ -107,6 +112,7 @@ def is_conservation_or_reference(row: dict[str, str]) -> bool:
     return (
         hunt_type == "conservation"
         or draw_design in {"organizations", "organization"}
+        or draw_system in {"REFERENCE_ONLY", "AVAILABILITY_ONLY", "TRIBAL", "GUARANTEED_LIFETIME_PERMIT"}
         or "conservation_auction_allocation" in text
         or "allocation/reference" in text
         or "allocation_only" in text
