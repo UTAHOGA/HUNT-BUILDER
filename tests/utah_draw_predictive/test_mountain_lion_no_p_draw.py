@@ -24,5 +24,4 @@ def test_mountain_lion_rows_do_not_receive_draw_odds_fields() -> None:
     assert all((row.get("p_bonus_pool") or "").strip() == "" for row in rows)
     assert all((row.get("p_random_pool") or "").strip() == "" for row in rows)
     assert all((row.get("p_preference_draw") or "").strip() == "" for row in rows)
-    assert all((row.get("p_availability") or "").strip() == "1.000000" for row in rows)
-
+    assert all((row.get("p_availability") or "").strip() == "" for row in rows)

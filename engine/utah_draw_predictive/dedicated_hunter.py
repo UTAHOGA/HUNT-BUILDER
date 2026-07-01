@@ -27,7 +27,9 @@ DEDICATED_HUNTER_POOL = "dedicated_hunter"
 YOUTH_DEDICATED_HUNTER_POOL = "youth_dedicated_hunter"
 PREFERENCE_TAIL_FLOOR = 0.001
 PREFERENCE_TAIL_CEILING = 0.995
-PREFERENCE_REPO_HOLDOUT_BIAS_CORRECTION = 0.35
+# Keep this at zero unless a future source-backed model change proves a
+# probability lift improves MAE. A broad +0.35 lift overpredicted this family.
+PREFERENCE_REPO_HOLDOUT_BIAS_CORRECTION = 0.0
 TAIL_CALIBRATION_REASON = "PREFERENCE_TAIL_CALIBRATED_FROM_REPO_BACKTEST"
 
 
@@ -50,6 +52,13 @@ def _clean(value: object) -> str:
 
 def _clean_lower(value: object) -> str:
     return _clean(value).lower()
+
+
+def _dedicated_hunter_weapon(value: object) -> str:
+    weapon = _clean(value)
+    if not weapon or _clean_lower(weapon) in {"dedicated hunter", "youth dedicated hunter"}:
+        return "Any Legal Weapon"
+    return weapon
 
 
 def _joined_text(row: Mapping[str, object]) -> str:
@@ -195,7 +204,7 @@ def _build_truth_ladders(
                 "hunt_name": _clean(row.get("hunt_name")),
                 "species": _clean(row.get("species")),
                 "hunt_type": _clean(row.get("hunt_type")) or "General Season",
-                "weapon": _clean(row.get("weapon")),
+                "weapon": _dedicated_hunter_weapon(row.get("weapon")),
             }
 
     return ladders, meta, total_drawn_by_code_year
@@ -410,11 +419,11 @@ def build_preference_dedicated_hunter_predictions(
         meta = truth_meta.get((lane, hunt_code), {})
         hunt_name = _clean(db_row.get("hunt_name")) or meta.get("hunt_name", "")
         species = _clean(db_row.get("species")) or meta.get("species", "Deer")
-        hunt_type = _clean(db_row.get("hunt_type")) or meta.get("hunt_type", "General Season")
-        weapon = _clean(db_row.get("weapon")) or meta.get("weapon", "Dedicated Hunter")
+        hunt_type = "General Season"
+        weapon = _dedicated_hunter_weapon(_clean(db_row.get("weapon")) or meta.get("weapon", ""))
         is_youth_lane = lane == YOUTH_DEDICATED_HUNTER_POOL
         model_strategy = YOUTH_MODEL_STRATEGY_NAME if is_youth_lane else MODEL_STRATEGY_NAME
-        hunt_class = "Youth Dedicated Hunter" if is_youth_lane else "Dedicated Hunter"
+        hunt_class = "Dedicated Hunter"
 
         for residency in ("Resident", "Nonresident"):
             available_years = sorted(year for year in set(years_by_key.get((lane, hunt_code, residency), [])) if year in history_year_set)

@@ -16,11 +16,11 @@ def _read_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
-def test_mountain_lion_rows_are_modeled_as_availability() -> None:
+def test_mountain_lion_rows_are_reference_license_based_no_draw() -> None:
     rows = _read_csv(Path(str(_repo_root() / "processed_data/mountain_lion_availability_predictions_v1.csv")))
     assert rows
     assert all(row.get("draw_system_type") == "COUGAR_LICENSE_BASED" for row in rows)
-    assert all(row.get("algorithm_status") == "MODELED_AVAILABILITY" for row in rows)
+    assert all(row.get("algorithm_status") == "REFERENCE_LICENSE_BASED_NO_DRAW" for row in rows)
     assert all((row.get("permit_availability_type") or "").strip() == "HUNTING_OR_COMBINATION_LICENSE" for row in rows)
     assert all((row.get("acquisition_method") or "").strip() == "HUNTING_OR_COMBINATION_LICENSE" for row in rows)
     assert all(
@@ -31,6 +31,9 @@ def test_mountain_lion_rows_are_modeled_as_availability() -> None:
     assert all((row.get("public_draw_odds_eligible") or "").strip() == "false" for row in rows)
     assert all((row.get("modeled_probability_allowed") or "").strip() == "false" for row in rows)
     assert all((row.get("exclusion_reason") or "").strip() == "license_based_no_public_draw_permit" for row in rows)
+    assert all((row.get("p_draw") or "").strip() == "" for row in rows)
+    assert all((row.get("p_availability") or "").strip() == "" for row in rows)
+    assert all((row.get("availability_pct") or "").strip() == "" for row in rows)
     assert all((row.get("permit_type") or "").strip() == "License-based cougar hunting opportunity" for row in rows)
     assert all((row.get("permit_status") or "").strip() == "AVAILABLE" for row in rows)
     assert all((row.get("availability_status") or "").strip() == "AVAILABLE YEAR-ROUND" for row in rows)

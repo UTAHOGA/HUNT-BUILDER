@@ -23,7 +23,9 @@ MODEL_STRATEGY_NAME = "preference_general_deer"
 PREFERENCE_RULE_VERSION = "utah_preference_general_deer_v1.0.0"
 PREFERENCE_TAIL_FLOOR = 0.001
 PREFERENCE_TAIL_CEILING = 0.995
-PREFERENCE_REPO_HOLDOUT_BIAS_CORRECTION = 0.35
+# Keep this at zero unless a future source-backed model change proves a
+# probability lift improves MAE. A broad +0.35 lift overpredicted this family.
+PREFERENCE_REPO_HOLDOUT_BIAS_CORRECTION = 0.0
 TAIL_CALIBRATION_REASON = "PREFERENCE_TAIL_CALIBRATED_FROM_REPO_BACKTEST"
 
 

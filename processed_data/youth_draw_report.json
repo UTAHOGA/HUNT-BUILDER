@@ -7,9 +7,9 @@
     2024,
     2025
   ],
-  "total_youth_rows_reviewed": 105691,
+  "total_youth_rows_reviewed": 105031,
   "youth_antlerless_or_doe_rows_reviewed": 68616,
-  "youth_general_deer_rows_reviewed": 36590,
+  "youth_general_deer_rows_reviewed": 35930,
   "youth_draw_only_elk_rows_reviewed": 485,
   "youth_general_any_bull_elk_rows_reviewed": 485,
   "active_predictive_youth_row_count": 2,
@@ -85,7 +85,6 @@
     "21_youth_antlerless_drawing_odds_report.pdf",
     "21_youth_bull_elk.pdf",
     "21_youth_deer.pdf",
-    "21_youth_dh_odds.pdf",
     "UtahDraws live DrawOddsData: Big Game:General Season Youth Any Bull",
     "pipeline\\RAW\\hunt_unit_database\\2026\\csv\\2026_elk_general_anybull_youth.csv",
     "processed_data\\eb1007_youth_general_bull_history.csv"

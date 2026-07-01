@@ -14,9 +14,10 @@
   "cougar_hunt_code_count": 60,
   "unit_count": 60,
   "rows_by_algorithm_status": {
-    "MODELED_AVAILABILITY": 120
+    "REFERENCE_LICENSE_BASED_NO_DRAW": 120
   },
-  "modeled_availability_row_count": 120,
+  "modeled_availability_row_count": 0,
+  "reference_license_based_no_draw_row_count": 120,
   "in_scope_model_pending_row_count": 0,
   "excluded_not_predictive_draw_row_count": 0,
   "unit_status_distribution": {
@@ -30,8 +31,8 @@
   "p_preference_draw_non_null_count": 0,
   "p_bonus_pool_non_null_count": 0,
   "p_random_pool_non_null_count": 0,
-  "p_availability_non_null_count": 120,
-  "availability_pct_non_null_count": 120,
+  "p_availability_non_null_count": 0,
+  "availability_pct_non_null_count": 0,
   "source_files_used": [
     "data\\cougar_hunt_table_official.json",
     "processed_data\\hard_data_exports\\source_pdfs\\regulations\\2026\\2026-bear-cougar-furbearer-guidebook.pdf"

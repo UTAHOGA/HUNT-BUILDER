@@ -20,6 +20,7 @@ from . import (
     ALGORITHM_STATUS_MODELED_RANDOM_ONLY,
     ALGORITHM_STATUS_MODELED_SPORTSMAN_DRAW,
     ALGORITHM_STATUS_OUT_OF_SCOPE_NON_TARGET,
+    ALGORITHM_STATUS_REFERENCE_LICENSE_BASED_NO_DRAW,
     ALGORITHM_STATUS_UNKNOWN_TARGET_NEEDS_REVIEW,
     TARGET_SCOPE_OUT_OF_SCOPE,
     TARGET_SCOPE_TARGET,
@@ -51,6 +52,7 @@ from .exclusions import STRATEGY_SPECS as EXCLUSION_SPECS
 from .mountain_lion import (
     STRATEGY_SPECS as MOUNTAIN_LION_SPECS,
     DRAW_SYSTEM_TYPE as MOUNTAIN_LION_DRAW_SYSTEM_TYPE,
+    is_mountain_lion_row,
     is_modeled_mountain_lion_row,
 )
 from .preference_antlerless import STRATEGY_SPECS as PREFERENCE_ANTLERLESS_SPECS, is_modeled_antlerless_row
@@ -389,7 +391,7 @@ def resolve_algorithm_status(row: Mapping[str, object], draw_system_type: str | 
     if draw_system_type == PRIVATE_LANDS_ANTLERLESS_ELK_DRAW_SYSTEM_TYPE:
         return ALGORITHM_STATUS_MODELED_ALLOCATION if is_modeled_private_lands_antlerless_elk_row(row) else ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING
     if draw_system_type == MOUNTAIN_LION_DRAW_SYSTEM_TYPE:
-        return ALGORITHM_STATUS_MODELED_AVAILABILITY if is_modeled_mountain_lion_row(row) else ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING
+        return ALGORITHM_STATUS_REFERENCE_LICENSE_BASED_NO_DRAW if is_mountain_lion_row(row) else ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING
     if draw_system_type == SPORTSMAN_DRAW_SYSTEM_TYPE:
         return ALGORITHM_STATUS_MODELED_SPORTSMAN_DRAW if is_modeled_sportsman_row(row) else ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING
     if draw_system_type in {
@@ -526,6 +528,7 @@ def sanitize_modeled_probability_fields(row: dict[str, object]) -> dict[str, obj
         ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING,
         ALGORITHM_STATUS_EXCLUDED_NOT_PREDICTIVE_DRAW,
         ALGORITHM_STATUS_OUT_OF_SCOPE_NON_TARGET,
+        ALGORITHM_STATUS_REFERENCE_LICENSE_BASED_NO_DRAW,
         ALGORITHM_STATUS_UNKNOWN_TARGET_NEEDS_REVIEW,
     }:
         for key in (
@@ -546,6 +549,8 @@ def sanitize_modeled_probability_fields(row: dict[str, object]) -> dict[str, obj
         existing_outlook = _clean(row.get("draw_outlook"))
         if classification["algorithm_status"] == ALGORITHM_STATUS_OUT_OF_SCOPE_NON_TARGET:
             row["draw_outlook"] = existing_outlook or "OUT OF SCOPE"
+        elif classification["algorithm_status"] == ALGORITHM_STATUS_REFERENCE_LICENSE_BASED_NO_DRAW:
+            row["draw_outlook"] = existing_outlook or "REFERENCE LICENSE-BASED; NO DRAW"
         else:
             row["draw_outlook"] = existing_outlook or ("MODEL PENDING" if classification["algorithm_status"] == ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING else "NOT MODELED")
     return row
@@ -1029,7 +1034,11 @@ def build_draw_system_coverage_report(
     )
     mountain_lion_summary = {
         "mountain_lion_cougar_in_scope": True,
-        "mountain_lion_cougar_modeled_availability": any(row["algorithm_status"] == ALGORITHM_STATUS_MODELED_AVAILABILITY for row in predictive_mountain_lion_rows),
+        "mountain_lion_cougar_modeled_availability": False,
+        "mountain_lion_cougar_reference_license_based_no_draw": any(
+            row["algorithm_status"] == ALGORITHM_STATUS_REFERENCE_LICENSE_BASED_NO_DRAW
+            for row in predictive_mountain_lion_rows
+        ),
         "mountain_lion_cougar_still_pending_availability": any(row["algorithm_status"] == ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING for row in predictive_mountain_lion_rows),
         "mountain_lion_cougar_active_predictive_row_count": len(predictive_mountain_lion_rows),
         "mountain_lion_cougar_hunt_code_count": _distinct_count(predictive_rows, lambda row: row["draw_system_type"] == MOUNTAIN_LION_DRAW_SYSTEM_TYPE),
@@ -1037,14 +1046,15 @@ def build_draw_system_coverage_report(
         "mountain_lion_cougar_unit_count": len({str(row.get("unit_name", "")).strip() for row in predictive_mountain_lion_rows if str(row.get("unit_name", "")).strip()}),
         "mountain_lion_cougar_p_draw_non_null_count": sum(1 for row in predictive_mountain_lion_rows if str(row.get("p_draw", "")).strip()),
         "mountain_lion_cougar_p_availability_non_null_count": sum(1 for row in predictive_mountain_lion_rows if str(row.get("p_availability", "")).strip()),
-        "mountain_lion_cougar_modeled": any(row["algorithm_status"] == ALGORITHM_STATUS_MODELED_AVAILABILITY for row in predictive_mountain_lion_rows),
+        "mountain_lion_cougar_modeled": False,
         "mountain_lion_cougar_still_pending": any(row["algorithm_status"] == ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING for row in predictive_mountain_lion_rows),
-        "mountain_lion_cougar_strategy_status": (
-            ALGORITHM_STATUS_MODELED_AVAILABILITY
-            if any(row["algorithm_status"] == ALGORITHM_STATUS_MODELED_AVAILABILITY for row in predictive_mountain_lion_rows)
-            else REGISTRY["COUGAR_LICENSE_BASED"].algorithm_status
+        "mountain_lion_cougar_strategy_status": ALGORITHM_STATUS_REFERENCE_LICENSE_BASED_NO_DRAW,
+        "mountain_lion_cougar_modeled_row_count": 0,
+        "mountain_lion_cougar_reference_row_count": sum(
+            1
+            for row in predictive_mountain_lion_rows
+            if row["algorithm_status"] == ALGORITHM_STATUS_REFERENCE_LICENSE_BASED_NO_DRAW
         ),
-        "mountain_lion_cougar_modeled_row_count": sum(1 for row in predictive_mountain_lion_rows if row["algorithm_status"] == ALGORITHM_STATUS_MODELED_AVAILABILITY),
         "mountain_lion_cougar_pending_row_count": sum(1 for row in predictive_mountain_lion_rows if row["algorithm_status"] == ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING),
         "mountain_lion_cougar_excluded_row_count": sum(1 for row in predictive_mountain_lion_rows if row["algorithm_status"] == ALGORITHM_STATUS_EXCLUDED_NOT_PREDICTIVE_DRAW),
     }

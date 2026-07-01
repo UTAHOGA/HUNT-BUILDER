@@ -22,7 +22,7 @@ def test_restricted_pursuit_black_bear_stays_in_bear_family() -> None:
     assert resolve_algorithm_status(row) != "MODELED_BONUS"
 
 
-def test_official_restricted_pursuit_bear_rows_do_not_enter_bonus_model() -> None:
+def test_official_restricted_pursuit_bear_rows_enter_bonus_model() -> None:
     hunt_code = sorted(official_bear_pursuit_hunt_codes())[0]
     row = {
         "hunt_code": hunt_code,
@@ -33,8 +33,8 @@ def test_official_restricted_pursuit_bear_rows_do_not_enter_bonus_model() -> Non
     }
 
     assert classify_bear_subtype(row) == RESTRICTED_BEAR_PURSUIT
-    assert is_supported_bear_bonus_row(row) is False
-    assert resolve_algorithm_status(row, "BEAR_DRAW") == "EXCLUDED_NOT_PREDICTIVE_DRAW"
+    assert is_supported_bear_bonus_row(row) is True
+    assert resolve_algorithm_status(row, "BEAR_DRAW") == "IN_SCOPE_MODEL_PENDING"
 
 
 def test_bear_name_in_non_bear_hunt_does_not_false_positive() -> None:

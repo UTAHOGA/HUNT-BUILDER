@@ -19,7 +19,7 @@ def _read_csv(path: Path) -> list[dict[str, str]]:
 def test_mountain_lion_rows_do_not_use_bonus_draw_fields() -> None:
     rows = _read_csv(Path(str(_repo_root() / "processed_data/mountain_lion_availability_predictions_v1.csv")))
     assert rows
-    assert all(row.get("algorithm_status") == "MODELED_AVAILABILITY" for row in rows)
+    assert all(row.get("algorithm_status") == "REFERENCE_LICENSE_BASED_NO_DRAW" for row in rows)
     assert all((row.get("p_bonus_pool") or "").strip() == "" for row in rows)
     assert all((row.get("p_random_pool") or "").strip() == "" for row in rows)
     assert all((row.get("p_draw") or "").strip() == "" for row in rows)

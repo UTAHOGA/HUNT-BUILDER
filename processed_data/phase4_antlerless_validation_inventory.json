@@ -9,14 +9,14 @@
   ],
   "modeled_rows": 6182,
   "modeled_hunt_codes_by_type": {
-    "PREFERENCE_DOE_PRONGHORN": 16,
     "PREFERENCE_ANTLERLESS_DEER": 17,
-    "PREFERENCE_ANTLERLESS_ELK": 114
+    "PREFERENCE_ANTLERLESS_ELK": 114,
+    "PREFERENCE_DOE_PRONGHORN": 16
   },
   "modeled_inventory_rows": 281,
   "modeled_inventory_residency_counts": {
     "Nonresident": 134,
     "Resident": 147
   },
-  "csv": "processed_data\\phase4_antlerless_validation_inventory.csv"
+  "csv": "D:\\HUNT-BUILDER-TEMP\\bear_restricted_20260701_032527\\phase4_antlerless_validation_inventory.csv"
 }

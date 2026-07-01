@@ -351,8 +351,10 @@ def _with_historical_target_metadata(
             "total_regular_permits|total_permits"
         )
         if family == "preference_dedicated_hunter_deer":
-            item["draw_pool"] = "dedicated_hunter"
-            item["weapon"] = "Dedicated Hunter"
+            item["draw_pool"] = _clean(item.get("draw_pool")) or "dedicated_hunter"
+            item["weapon"] = "Any Legal Weapon"
+            item["hunt_type"] = "General Season"
+            item["hunt_class"] = "Dedicated Hunter"
             item["sex_type"] = "Buck"
         elif family == "preference_general_deer":
             item["draw_pool"] = "standard"
