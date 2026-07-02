@@ -6,11 +6,14 @@ from pathlib import Path
 
 def _repo_root() -> Path:
     repo_root = Path(__file__).resolve()
-    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
-        repo_root = repo_root.parent
-    if repo_root.name != "HUNT-BUILDER":
-        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
-    return repo_root
+    for candidate in [repo_root, *repo_root.parents]:
+        if (
+            (candidate / "AGENTS.MD").exists()
+            and (candidate / "engine").is_dir()
+            and (candidate / "processed_data").is_dir()
+        ):
+            return candidate
+    raise RuntimeError("Could not locate HUNT-BUILDER repo root")
 
 
 REPO = Path(str(_repo_root()))
@@ -48,25 +51,52 @@ def test_draw_family_internal_bucket_labels_removed_from_canonical_json() -> Non
     assert labels.isdisjoint(OLD_INTERNAL_LABELS)
 
 
-def test_draw_family_bonus_random_hunts_are_limited_entry() -> None:
+def test_candidate_csv_uses_engine_family_labels_for_modeled_draws() -> None:
     rows = _csv_rows(CANONICAL_CSV)
-    for code in ["EB3024", "EB3022", "DB1004", "BI6500", "GO6800", "PB5025", "TK1003"]:
-        assert _by_code(rows, code)["draw_family"] == "Limited Entry"
+    expected = {
+        "EB3024": "BONUS_LE_BIG_GAME",
+        "EB3022": "BONUS_LE_BIG_GAME",
+        "DB1004": "BONUS_PLE_BIG_GAME",
+        "BI6500": "BONUS_OIL_BIG_GAME",
+        "GO6800": "BONUS_OIL_BIG_GAME",
+        "PB5025": "BONUS_LE_BIG_GAME",
+        "TK1018": "BONUS_TURKEY",
+        "DB1770": "PREFERENCE_DEDICATED_HUNTER_DEER",
+        "DB1009": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+        "EA2012": "PRIVATE_LANDS_ONLY_ANTLERLESS_ELK",
+        "BR7000": "BEAR_DRAW",
+        "EB1007": "YOUTH_DRAW_ONLY_ELK",
+    }
+    for code, draw_family in expected.items():
+        assert _by_code(rows, code)["draw_family"] == draw_family
 
 
-def test_draw_family_preference_style_public_draws_are_general() -> None:
+def test_public_canonical_json_keeps_display_family_labels() -> None:
+    rows = _json_rows(CANONICAL_JSON)
+    expected = {
+        "EB3024": "Limited Entry",
+        "EB3022": "Limited Entry",
+        "DB1004": "Limited Entry",
+        "BI6500": "Limited Entry",
+        "GO6800": "Limited Entry",
+        "PB5025": "Limited Entry",
+        "DA1001": "General",
+        "EA1267": "General",
+        "PD1012": "General",
+        "EA2012": "Allocation",
+        "BR1001": "Availability",
+        "BR1007": "O.T.C.",
+        "DB0008": "O.T.C.",
+        "DB0001": "Allocation",
+    }
+    for code, draw_family in expected.items():
+        assert _by_code(rows, code)["draw_family"] == draw_family
+
+
+def test_candidate_csv_leaves_reference_only_public_rows_unclassified() -> None:
     rows = _csv_rows(CANONICAL_CSV)
-    for code in ["DA1001", "EA1267", "PD1012"]:
-        assert _by_code(rows, code)["draw_family"] == "General"
-
-
-def test_draw_family_total_only_allocation_and_availability_are_not_generalized() -> None:
-    rows = _csv_rows(CANONICAL_CSV)
-    assert _by_code(rows, "EA2012")["draw_family"] == "Allocation"
-    assert _by_code(rows, "BR1001")["draw_family"] == "Availability"
-    assert _by_code(rows, "BR1007")["draw_family"] == "O.T.C."
-    assert _by_code(rows, "DB0008")["draw_family"] == "O.T.C."
-    assert _by_code(rows, "DB0001")["draw_family"] == "Allocation"
+    for code in ["DA1001", "EA1267", "PD1012", "BR1001", "BR1007", "DB0008", "DB0001"]:
+        assert _by_code(rows, code)["draw_family"] == ""
 
 
 def test_draw_family_normalization_report_written() -> None:
