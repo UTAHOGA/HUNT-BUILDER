@@ -1757,6 +1757,7 @@ def materialize_outputs(
         "target_scope",
         "modeled_by_engine",
         "reason",
+        "draw_design_contract_flags",
     ]
     prediction_rows, excluded_prediction_no_code_rows = _remove_no_hunt_code_rows(prediction_rows, "ml_draw_predictions_v1")
     successor_rows, excluded_successor_no_code_rows = _remove_no_hunt_code_rows(successor_rows, "draw_reality_engine_predictive_v2")

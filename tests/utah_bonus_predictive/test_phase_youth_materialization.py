@@ -54,7 +54,7 @@ def test_phase15_youth_artifacts_are_generated(tmp_path: Path) -> None:
     assert len(eb1007_rows) == 2
     assert {row["draw_system_type"] for row in eb1007_rows} == {"YOUTH_GENERAL_ANY_BULL_ELK"}
     assert {row["algorithm_status"] for row in eb1007_rows} == {"MODELED_RANDOM_ONLY"}
-    assert {row["draw_design"] for row in eb1007_rows} == {"Random"}
+    assert {row["draw_design"] for row in eb1007_rows} == {"YOUTH_GENERAL_ANY_BULL_ELK"}
     assert {row["draw_method"] for row in eb1007_rows} == {"Strict random"}
     assert {row["point_system"] for row in eb1007_rows} == {"none"}
     assert {row["sex_type"] for row in eb1007_rows} == {"Hunter's Choice"}

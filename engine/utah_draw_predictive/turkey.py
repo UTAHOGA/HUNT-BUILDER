@@ -9,6 +9,7 @@ from typing import Iterable, Mapping
 from engine.utah_bonus_predictive.monte_carlo import combine_probabilities, compute_bonus_pool_probability
 from engine.utah_bonus_predictive.rules import MODEL_VERSION
 from engine.utah_bonus_predictive.split import split_utah_bonus_permits
+from engine.utah_draw_predictive.taxonomy import effective_draw_design
 from . import ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING, ALGORITHM_STATUS_MODELED_BONUS, StrategySpec, TARGET_SCOPE_TARGET
 
 
@@ -140,8 +141,9 @@ def _is_excluded_turkey_context(row: Mapping[str, object]) -> bool:
 def _is_limited_entry_or_cwmu_turkey(row: Mapping[str, object]) -> bool:
     text = _joined_text(row)
     hunt_type = _clean_lower(row.get("hunt_type"))
-    draw_design = _clean_lower(row.get("draw_design") or row.get("hunt_class"))
-    draw_design_system = _clean_system(row.get("draw_design"))
+    draw_design_value = effective_draw_design(row)
+    draw_design = _clean_lower(draw_design_value)
+    draw_design_system = _clean_system(draw_design_value)
     source_file = _clean_lower(row.get("source_file"))
     hunt_code = _clean(row.get("hunt_code")).upper()
     source_backed_adult_draw_result = (
@@ -223,7 +225,7 @@ def _is_proven_bonus_turkey_truth_row(row: Mapping[str, object]) -> bool:
         and _is_limited_entry_or_cwmu_turkey(row)
         and not _is_excluded_turkey_context(row)
         and not _is_youth_turkey(row)
-        and _clean_lower(row.get("draw_pool")) in {"", "standard"}
+        and _clean_lower(row.get("draw_pool")) in {"", "standard", "preference_point", "preferrence_point"}
         and _source_proves_bonus_turkey(row)
     )
 
@@ -562,7 +564,7 @@ def build_turkey_bonus_predictions(
                                 "hunt_class": hunt_class,
                                 "residency": residency,
                                 "points": str(points),
-                                "draw_pool": "standard",
+                                "draw_pool": "preference_point",
                                 "public_permits_2025": prior_total,
                                 "public_permits_2026": public_quota,
                                 "max_point_permits_2025": "",
@@ -614,7 +616,7 @@ def build_turkey_bonus_predictions(
                     "hunt_class": hunt_class,
                     "residency": residency,
                     "points": "",
-                    "draw_pool": "standard",
+                    "draw_pool": "preference_point",
                     "public_permits_2025": prior_total,
                     "public_permits_2026": public_quota,
                     "p_preference_draw": "",
@@ -664,7 +666,7 @@ def build_turkey_bonus_predictions(
                     "hunt_class": hunt_class,
                     "residency": residency,
                     "points": "",
-                    "draw_pool": "standard",
+                    "draw_pool": "preference_point",
                     "public_permits_2025": prior_total,
                     "public_permits_2026": public_quota,
                     "p_preference_draw": "",
@@ -714,7 +716,7 @@ def build_turkey_bonus_predictions(
                     "hunt_class": hunt_class,
                     "residency": residency,
                     "points": str(points),
-                    "draw_pool": "standard",
+                    "draw_pool": "preference_point",
                     "public_permits_2025": prior_total,
                     "public_permits_2026": public_quota,
                     "max_point_permits_2025": "",

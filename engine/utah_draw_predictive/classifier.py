@@ -66,6 +66,7 @@ from .private_lands_antlerless_elk import (
 from .random_only import STRATEGY_SPECS as RANDOM_ONLY_SPECS
 from .special_bonus import PHASE6_DRAW_SYSTEM_TYPES, is_modeled_phase6_bonus_row
 from .sportsman import STRATEGY_SPECS as SPORTSMAN_SPECS, SPORTSMAN_DRAW_SYSTEM_TYPE, is_modeled_sportsman_row, is_sportsman_permit_row
+from .taxonomy import draw_design_contract_flags, effective_draw_design
 from .turkey import (
     STRATEGY_SPECS as TURKEY_SPECS,
     TURKEY_DRAW_SYSTEM_TYPE,
@@ -269,7 +270,7 @@ def classify_draw_system_type(row: Mapping[str, object]) -> str:
     if is_out_of_scope_non_target(row):
         return "OUT_OF_SCOPE_NON_TARGET"
 
-    existing_draw_system_type = _clean(row.get("draw_system_type"))
+    existing_draw_system_type = effective_draw_design(row)
     if existing_draw_system_type and (
         is_modeled_general_deer_row(row)
         or is_modeled_antlerless_row(row)
@@ -496,12 +497,14 @@ def classify_runtime_row(row: Mapping[str, object]) -> dict[str, object]:
     target_scope = target_scope_label(row, draw_system_type)
     is_modeled = modeled_by_engine(row, draw_system_type, algorithm_status)
     reason = classification_reason(row, draw_system_type, algorithm_status)
+    contract_flags = draw_design_contract_flags(row)
     return {
         "draw_system_type": draw_system_type,
         "algorithm_status": algorithm_status,
         "target_scope": target_scope,
         "modeled_by_engine": is_modeled,
         "reason": reason,
+        "draw_design_contract_flags": "|".join(contract_flags),
     }
 
 
@@ -573,6 +576,8 @@ def _coverage_rows() -> list[dict[str, object]]:
                     "residency": _clean(raw.get("residency")),
                     "year": _clean(raw.get("year")),
                     "draw_system_type": classification["draw_system_type"],
+                    "draw_design": _clean(raw.get("draw_design")),
+                    "draw_design_contract_flags": classification["draw_design_contract_flags"],
                     "algorithm_status": classification["algorithm_status"],
                     "target_scope": classification["target_scope"],
                     "modeled_by_engine": "True" if classification["modeled_by_engine"] else "False",
@@ -694,6 +699,8 @@ def build_draw_system_coverage_report(
             "residency",
             "year",
             "draw_system_type",
+            "draw_design",
+            "draw_design_contract_flags",
             "algorithm_status",
             "target_scope",
             "modeled_by_engine",

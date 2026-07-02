@@ -51,6 +51,7 @@ REQUIRED_COLUMNS = [
     "year",
     "draw_pool",
     "residency",
+    "metric_scope",
     "points",
     "eligible_applicants",
     "bonus_permits",
@@ -132,6 +133,15 @@ def normalize_residency(value):
     if t in {"nr", "nonresident", "non-resident", "non resident", "n"}:
         return "Nonresident"
     return clean(value)
+
+
+def metric_scope_for_residency(value):
+    t = clean(value).lower().replace("-", "").replace("_", "").replace(" ", "")
+    if t in {"res", "resident", "r"}:
+        return "resident"
+    if t in {"nr", "nonresident", "nonres", "n"}:
+        return "nonresident"
+    return "total"
 
 
 def normalize_success_ratio(value):
@@ -348,7 +358,9 @@ def is_scorable_truth_row(row):
 
 def expanded_engine_rows(row):
     if clean(row.get("residency")):
-        return [row]
+        out = dict(row)
+        out["metric_scope"] = clean(out.get("metric_scope")) or metric_scope_for_residency(out.get("residency"))
+        return [out]
 
     expanded = []
     for residency, prefix in (("Resident", "resident"), ("Nonresident", "nonresident")):
@@ -375,8 +387,13 @@ def expanded_engine_rows(row):
         out["success_ratio"] = clean(row.get(f"{prefix}_success_ratio"))
         out["p_draw"] = clean(row.get(f"{prefix}_p_draw"))
         out["p_draw_percent"] = clean(row.get(f"{prefix}_p_draw_percent"))
+        out["metric_scope"] = prefix
         expanded.append(out)
-    return expanded or [row]
+    if expanded:
+        return expanded
+    out = dict(row)
+    out["metric_scope"] = clean(out.get("metric_scope")) or "total"
+    return [out]
 
 
 def load_truth_rows():
@@ -779,6 +796,7 @@ def main():
             "year": year,
             "draw_pool": draw_pool,
             "residency": residency,
+            "metric_scope": clean(row.get("metric_scope")) or metric_scope_for_residency(residency),
             "points": points,
             "eligible_applicants": normalize_int(row.get("eligible_applicants")),
             "bonus_permits": normalize_int(row.get("bonus_permits")),

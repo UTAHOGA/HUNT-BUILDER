@@ -25,6 +25,7 @@ MODEL_STRATEGY_NAME = "private_lands_antlerless_elk_otc_capped_permits_phase14"
 RULE_VERSION = "utah_private_lands_antlerless_elk_otc_capped_permits_v1.2.0"
 DRAW_SYSTEM_TYPE = "PRIVATE_LANDS_ONLY_ANTLERLESS_ELK"
 ACQUISITION_METHOD = "OTC_CAPPED_PRIVATE_LANDS_PERMITS"
+HUNT_CLASS = "OTC Unit Quota"
 
 PRIVATE_LANDS_TOKENS = (
     "private lands only",
@@ -169,7 +170,7 @@ def build_private_lands_antlerless_elk_predictions(
                 "sex_type": source_row.get("sex_type", "Antlerless") or "Antlerless",
                 "weapon": source_row.get("weapon", "Any Legal Weapon") or "Any Legal Weapon",
                 "hunt_type": source_row.get("hunt_type", "Private Lands Only") or "Private Lands Only",
-                "hunt_class": "Capped Permits",
+                "hunt_class": HUNT_CLASS,
                 "draw_design": "Capped Permits",
                 "draw_system_type": DRAW_SYSTEM_TYPE,
                 "season": source_row.get("season_dates", ""),
@@ -219,10 +220,10 @@ def build_private_lands_antlerless_elk_predictions(
                     "species": _clean(db_row.get("species")),
                     "sex_type": _clean(db_row.get("sex_type")),
                     "hunt_type": _clean(db_row.get("hunt_type")),
-                    "hunt_class": "Public",
+                    "hunt_class": _clean(db_row.get("hunt_class")) or HUNT_CLASS,
                     "residency": residency,
                     "points": "",
-                    "draw_pool": "standard",
+                    "draw_pool": _clean(db_row.get("draw_pool")) or "private_lands_only_antlerless_elk",
                     "source_dataset": "predictive",
                     "source_years_used": ",".join(str(year) for year in history_years),
                     "source_year_count": len(history_years),

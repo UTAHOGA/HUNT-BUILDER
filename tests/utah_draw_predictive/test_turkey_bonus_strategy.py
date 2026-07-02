@@ -12,7 +12,7 @@ def test_limited_entry_turkey_rows_can_be_modeled_bonus() -> None:
             "hunt_class": "Public",
             "weapon": "Any Legal Weapon",
             "year": "2023",
-            "draw_pool": "standard",
+            "draw_pool": "preference_point",
             "residency": "Resident",
             "points": "0",
             "eligible_applicants": "120",
@@ -29,7 +29,7 @@ def test_limited_entry_turkey_rows_can_be_modeled_bonus() -> None:
             "hunt_class": "Public",
             "weapon": "Any Legal Weapon",
             "year": "2025",
-            "draw_pool": "standard",
+            "draw_pool": "preference_point",
             "residency": "Resident",
             "points": "1",
             "eligible_applicants": "80",
@@ -63,3 +63,4 @@ def test_limited_entry_turkey_rows_can_be_modeled_bonus() -> None:
     assert all(row["p_random_pool"] != "" for row in modeled)
     assert all(row["p_draw"] != "" for row in modeled)
     assert all(row["p_preference_draw"] == "" for row in modeled)
+    assert all(row["draw_pool"] == "preference_point" for row in modeled)

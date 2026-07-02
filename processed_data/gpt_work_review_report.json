@@ -1,5 +1,5 @@
 {
-  "active_repo": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS",
+  "active_repo": "D:\\DESKTOP\\GitHub\\HUNT-BUILDER",
   "forecast_year": 2026,
   "source_years": [
     2021,
@@ -8,7 +8,7 @@
     2024,
     2025
   ],
-  "generated_at": "2026-05-23T09:05:30.125376+00:00",
+  "generated_at": "2026-07-01T19:40:36.784486+00:00",
   "files_reviewed": [
     "engine/utah_draw_predictive/youth.py",
     "engine/utah_draw_predictive/classifier.py",
@@ -54,13 +54,13 @@
     "SPORTSMAN_PERMIT": "MODELED_SPORTSMAN_DRAW"
   },
   "row_counts": {
-    "total_predictive_rows": 27940,
-    "MODELED_BONUS": 25610,
-    "MODELED_PREFERENCE": 1605,
-    "MODELED_ALLOCATION": 54,
-    "MODELED_AVAILABILITY": 124,
+    "total_predictive_rows": 41159,
+    "MODELED_BONUS": 28081,
+    "MODELED_PREFERENCE": 12814,
+    "MODELED_ALLOCATION": 0,
+    "MODELED_AVAILABILITY": 4,
     "MODELED_SPORTSMAN_DRAW": 10,
-    "IN_SCOPE_MODEL_PENDING": 533,
+    "IN_SCOPE_MODEL_PENDING": 244,
     "EXCLUDED_NOT_PREDICTIVE_DRAW": 4,
     "OUT_OF_SCOPE_NON_TARGET": 0
   },
@@ -84,7 +84,7 @@
     "BR1007_BR1018_status_pass": true,
     "turkey_alignment_pass": true,
     "private_lands_antlerless_elk_separation_pass": true,
-    "mountain_lion_status_unchanged_pass": true,
+    "mountain_lion_status_unchanged_pass": false,
     "preference_field_contract_pass": true,
     "EB3024_pass": true,
     "one_permit_random_only_pass": true,
@@ -98,13 +98,13 @@
     "Youth general any-bull elk is now separated into its own in-scope family, but current source support is still insufficient to publish odds or allocation probabilities, so active 2026 rows remain model-pending with null draw fields."
   ],
   "recommended_next_phase": "Availability cleanup complete; remaining work is outside MODELED_AVAILABILITY semantics unless a new in-scope availability family is introduced.",
-  "recommended_next_codex_command_summary": "Current live predictive artifacts contain 124 MODELED_AVAILABILITY rows: 120 mountain lion/cougar rows, 4 bear availability rows, and 0 other availability rows. A prior review artifact referenced 139 availability rows; that older count is stale relative to the current live predictive artifacts and does not represent an unexplained hidden family.",
+  "recommended_next_codex_command_summary": "Current live predictive artifacts contain 4 MODELED_AVAILABILITY rows: 0 mountain lion/cougar rows, 4 bear availability rows, and 0 other availability rows. A prior review artifact referenced 139 availability rows; that older count is stale relative to the current live predictive artifacts and does not represent an unexplained hidden family.",
   "availability_review": {
-    "live_modeled_availability_rows": 124,
-    "mountain_lion_rows": 120,
+    "live_modeled_availability_rows": 4,
+    "mountain_lion_rows": 0,
     "bear_rows": 4,
     "other_rows": 0,
     "legacy_review_reference_modeled_availability_count": 124,
-    "legacy_review_reference_stale": false
+    "legacy_review_reference_stale": true
   }
 }

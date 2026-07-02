@@ -17,6 +17,7 @@ from . import (
     StrategySpec,
     TARGET_SCOPE_TARGET,
 )
+from .taxonomy import effective_draw_design
 
 
 REPO = Path(__file__).resolve().parents[2]
@@ -354,7 +355,7 @@ def is_youth_general_any_bull_elk_row(row: Mapping[str, object]) -> bool:
 
 
 def is_modeled_youth_general_any_bull_elk_row(row: Mapping[str, object]) -> bool:
-    if _clean(row.get("draw_system_type")) != YOUTH_GENERAL_ANY_BULL_ELK_DRAW_SYSTEM_TYPE:
+    if effective_draw_design(row) != YOUTH_GENERAL_ANY_BULL_ELK_DRAW_SYSTEM_TYPE:
         return False
     if _clean_lower(row.get("model_strategy")) != YOUTH_ELK_MODEL_STRATEGY_NAME.lower():
         return False
@@ -664,7 +665,7 @@ def build_youth_predictions(
                     "residency": residency,
                     "points": "0",
                     "draw_pool": "youth",
-                    "draw_design": "Random",
+                    "draw_design": YOUTH_GENERAL_ANY_BULL_ELK_DRAW_SYSTEM_TYPE,
                     "draw_method": "Strict random",
                     "point_system": "none",
                     "public_permits_2025": "",

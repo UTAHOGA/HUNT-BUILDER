@@ -21,6 +21,7 @@ SHARED_FIELDS = (
     "draw_pool",
     "draw_design",
     "draw_method",
+    "metric_scope",
     "points",
     "model_strategy",
     "preference_model_valid",
@@ -71,6 +72,15 @@ def _copy_shared(row: Mapping[str, object]) -> dict[str, object]:
     return out
 
 
+def _metric_scope_for_residency(residency: object) -> str:
+    value = _clean(residency).lower().replace("-", "").replace(" ", "")
+    if value in {"resident", "res", "r"}:
+        return "resident"
+    if value in {"nonresident", "nonres", "nr"}:
+        return "nonresident"
+    return "total"
+
+
 def _normalize_lane(row: Mapping[str, object], residency: str, prefix: str) -> dict[str, object]:
     drawn = row.get(f"{prefix}_regular_permits") if _has_value(row.get(f"{prefix}_regular_permits")) else row.get(f"{prefix}_total_permits")
     out = _copy_shared(row)
@@ -86,6 +96,7 @@ def _normalize_lane(row: Mapping[str, object], residency: str, prefix: str) -> d
             "p_draw": _clean(row.get(f"{prefix}_p_draw")),
             "p_draw_pct": _clean(row.get(f"{prefix}_p_draw_percent")),
             "p_draw_percent": _clean(row.get(f"{prefix}_p_draw_percent")),
+            "metric_scope": prefix,
             "source_column_mapping": prefix,
         }
     )
@@ -107,6 +118,7 @@ def _normalize_total_fallback(row: Mapping[str, object]) -> dict[str, object]:
             "p_draw": _clean(row.get("total_p_draw")),
             "p_draw_pct": _clean(row.get("total_p_draw_percent")),
             "p_draw_percent": _clean(row.get("total_p_draw_percent")),
+            "metric_scope": "total",
             "source_column_mapping": "total_fallback",
         }
     )
@@ -118,6 +130,7 @@ def normalize_preference_ladder_rows(rows: Iterable[Mapping[str, object]]) -> li
     for row in rows:
         if _clean(row.get("residency")) and _clean(row.get("eligible_applicants")):
             out = dict(row)
+            out["metric_scope"] = _clean(out.get("metric_scope")) or _metric_scope_for_residency(out.get("residency"))
             if not _clean(out.get("eligible")):
                 out["eligible"] = _clean(out.get("eligible_applicants"))
             drawn = out.get("drawn") or out.get("successful_applicants") or out.get("regular_permits") or out.get("total_permits")

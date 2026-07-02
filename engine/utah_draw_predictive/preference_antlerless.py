@@ -30,6 +30,21 @@ PREFERENCE_TAIL_CEILINGS = {
     "PREFERENCE_DOE_PRONGHORN": 0.701,
 }
 PREFERENCE_ANTLERLESS_DRAW_SYSTEM_TYPES = set(PREFERENCE_TAIL_CEILINGS)
+PREFERENCE_ANTLERLESS_DRAW_POOLS = {
+    "PREFERENCE_ANTLERLESS_DEER": {
+        "",
+        "standard",
+        "general_season_antlerless_deer",
+        "youth_antlerless_deer",
+    },
+    "PREFERENCE_ANTLERLESS_ELK": {"", "standard", "general_season_antlerless_elk", "youth_antlerless_elk"},
+    "PREFERENCE_DOE_PRONGHORN": {
+        "",
+        "standard",
+        "general_season_doe_pronghorn",
+        "youth_doe_pronghorn",
+    },
+}
 TAIL_CALIBRATION_REASON = "PREFERENCE_TAIL_CALIBRATED_FROM_REPO_BACKTEST"
 
 
@@ -72,6 +87,16 @@ def _clean_lower(value: object) -> str:
     return _clean(value).lower()
 
 
+def _residency_lane(row: Mapping[str, object]) -> str:
+    if _clean_lower(row.get("metric_scope")) == "total":
+        return "All"
+    return _clean(row.get("residency")) or "All"
+
+
+def _output_residency(residency: str) -> str:
+    return "" if residency == "All" else residency
+
+
 def _identity_token(value: object) -> str:
     return re.sub(r"[^a-z0-9]+", " ", _clean_lower(value)).strip()
 
@@ -88,6 +113,17 @@ def _to_int(value: object) -> int:
         return int(float(text))
     except Exception:
         return 0
+
+
+def _effective_draw_pool(row: Mapping[str, object], draw_system_type: str | None = None) -> str:
+    draw_pool = _clean_lower(row.get("draw_pool"))
+    if draw_pool and draw_pool != "standard":
+        return draw_pool
+    return {
+        "PREFERENCE_ANTLERLESS_DEER": "general_season_antlerless_deer",
+        "PREFERENCE_ANTLERLESS_ELK": "general_season_antlerless_elk",
+        "PREFERENCE_DOE_PRONGHORN": "general_season_doe_pronghorn",
+    }.get(draw_system_type or _clean(row.get("draw_system_type")), "standard")
 
 
 def _round_count(value: float) -> int:
@@ -155,16 +191,19 @@ def _looks_like_standard_pool(row: Mapping[str, object]) -> bool:
     draw_design = _clean_lower(row.get("draw_design"))
     draw_design_system = _clean(row.get("draw_design")).upper()
     draw_system_type = _clean(row.get("draw_system_type"))
+    allowed_pools = PREFERENCE_ANTLERLESS_DRAW_POOLS.get(draw_system_type, {"", "standard"})
     if (
         _clean_lower(row.get("model_strategy")) == MODEL_STRATEGY_NAME
         and draw_system_type in {"PREFERENCE_ANTLERLESS_DEER", "PREFERENCE_ANTLERLESS_ELK", "PREFERENCE_DOE_PRONGHORN"}
-        and draw_pool in {"", "standard"}
+        and draw_pool in allowed_pools
         and _clean_lower(row.get("preference_model_valid")) in {"1", "true", "yes", "y"}
     ):
         return True
     family_class = hunt_draw_class or hunt_class
+    target_draw_system_type = _target_draw_system_type(row)
+    allowed_pools = PREFERENCE_ANTLERLESS_DRAW_POOLS.get(target_draw_system_type or draw_system_type, {"", "standard"})
     return (
-        draw_pool in {"", "standard"}
+        draw_pool in allowed_pools
         and family_class in {"", "adult", "public", "preference", "antlerless_deer", "antlerless_elk", "doe_pronghorn"}
         and (draw_design in {"", "preference"} or draw_design_system in PREFERENCE_ANTLERLESS_DRAW_SYSTEM_TYPES)
     )
@@ -181,13 +220,13 @@ def _build_truth_ladders(
     truth_rows: Iterable[Mapping[str, object]],
     history_years: set[int],
 ) -> tuple[
-    dict[tuple[str, int, str, str], dict[int, dict[str, int]]],
-    dict[str, dict[str, str]],
-    dict[tuple[str, int], dict[str, int]],
+    dict[tuple[str, int, str, str, str], dict[int, dict[str, int]]],
+    dict[tuple[str, str], dict[str, str]],
+    dict[tuple[str, str, int], dict[str, int]],
 ]:
-    ladders: dict[tuple[str, int, str, str], dict[int, dict[str, int]]] = defaultdict(lambda: defaultdict(lambda: {"eligible": 0, "drawn": 0}))
-    meta: dict[str, dict[str, str]] = {}
-    total_drawn_by_code_year: dict[tuple[str, int], dict[str, int]] = defaultdict(lambda: defaultdict(int))
+    ladders: dict[tuple[str, int, str, str, str], dict[int, dict[str, int]]] = defaultdict(lambda: defaultdict(lambda: {"eligible": 0, "drawn": 0}))
+    meta: dict[tuple[str, str], dict[str, str]] = {}
+    total_drawn_by_code_year: dict[tuple[str, str, int], dict[str, int]] = defaultdict(lambda: defaultdict(int))
 
     for row in normalize_preference_ladder_rows(truth_rows):
         year = _to_int(row.get("year"))
@@ -198,23 +237,26 @@ def _build_truth_ladders(
             continue
 
         hunt_code = _clean(row.get("hunt_code")).upper()
-        residency = _clean(row.get("residency")) or "Resident"
+        residency = _residency_lane(row)
         points = _to_int(row.get("points"))
         eligible = _to_int(row.get("eligible_applicants"))
         drawn = _to_int(row.get("drawn")) or _to_int(row.get("successful_applicants")) or _to_int(row.get("total_permits")) or _to_int(row.get("preference_permits"))
 
         if not hunt_code:
             continue
+        draw_pool = _effective_draw_pool(row, draw_system_type)
 
-        ladders[(draw_system_type, year, hunt_code, residency)][points]["eligible"] += eligible
-        ladders[(draw_system_type, year, hunt_code, residency)][points]["drawn"] += drawn
-        total_drawn_by_code_year[(hunt_code, year)][residency] += drawn
+        ladders[(draw_system_type, year, hunt_code, draw_pool, residency)][points]["eligible"] += eligible
+        ladders[(draw_system_type, year, hunt_code, draw_pool, residency)][points]["drawn"] += drawn
+        total_drawn_by_code_year[(hunt_code, draw_pool, year)][residency] += drawn
 
-        if hunt_code not in meta:
-            meta[hunt_code] = {
+        if (hunt_code, draw_pool) not in meta:
+            meta[(hunt_code, draw_pool)] = {
                 "hunt_name": _clean(row.get("hunt_name")),
                 "species": _clean(row.get("species")),
                 "hunt_type": _clean(row.get("hunt_type")) or "General Season",
+                "hunt_class": _clean(row.get("hunt_class")) or "Public",
+                "draw_pool": draw_pool,
                 "weapon": _clean(row.get("weapon")),
                 "sex_type": _clean(row.get("sex_type")),
             }
@@ -223,22 +265,22 @@ def _build_truth_ladders(
 
 
 def _build_retention_and_zero_growth(
-    ladders: Mapping[tuple[str, int, str, str], dict[int, dict[str, int]]],
+    ladders: Mapping[tuple[str, int, str, str, str], dict[int, dict[str, int]]],
 ) -> tuple[dict[str, float], float]:
     retention_samples: dict[str, list[float]] = defaultdict(list)
     zero_growth_samples: list[float] = []
-    keys_by_type_code_res: dict[tuple[str, str, str], list[int]] = defaultdict(list)
-    for draw_system_type, year, hunt_code, residency in ladders:
-        keys_by_type_code_res[(draw_system_type, hunt_code, residency)].append(year)
+    keys_by_type_code_pool_res: dict[tuple[str, str, str, str], list[int]] = defaultdict(list)
+    for draw_system_type, year, hunt_code, draw_pool, residency in ladders:
+        keys_by_type_code_pool_res[(draw_system_type, hunt_code, draw_pool, residency)].append(year)
 
-    for key, years in keys_by_type_code_res.items():
-        draw_system_type, hunt_code, residency = key
+    for key, years in keys_by_type_code_pool_res.items():
+        draw_system_type, hunt_code, draw_pool, residency = key
         for prior_year in sorted(years):
             next_year = prior_year + 1
             if next_year not in years:
                 continue
-            prior = ladders[(draw_system_type, prior_year, hunt_code, residency)]
-            nxt = ladders[(draw_system_type, next_year, hunt_code, residency)]
+            prior = ladders[(draw_system_type, prior_year, hunt_code, draw_pool, residency)]
+            nxt = ladders[(draw_system_type, next_year, hunt_code, draw_pool, residency)]
             prior_zero = prior.get(0, {}).get("eligible", 0)
             next_zero = nxt.get(0, {}).get("eligible", 0)
             if prior_zero > 0:
@@ -337,12 +379,15 @@ def _status(probability: float) -> str:
 
 def _forecast_quota_for_residency(
     hunt_code: str,
+    draw_pool: str,
     residency: str,
     forecast_total: int,
     latest_year: int,
-    total_drawn_by_code_year: Mapping[tuple[str, int], dict[str, int]],
+    total_drawn_by_code_year: Mapping[tuple[str, str, int], dict[str, int]],
 ) -> int:
-    observed = total_drawn_by_code_year.get((hunt_code, latest_year), {})
+    if residency == "All":
+        return forecast_total
+    observed = total_drawn_by_code_year.get((hunt_code, draw_pool, latest_year), {})
     res_total = sum(int(value) for value in observed.values())
     if forecast_total <= 0:
         return 0
@@ -406,6 +451,8 @@ def _pending_current_target_row(
     forecast_year: int,
     residency: str,
     forecast_quota: int,
+    draw_pool: str,
+    hunt_class: str,
 ) -> dict[str, object]:
     hunt_code = _clean(db_row.get("hunt_code")).upper()
     return {
@@ -418,10 +465,10 @@ def _pending_current_target_row(
         "species": _clean(db_row.get("species")),
         "sex_type": _clean(db_row.get("sex_type")),
         "hunt_type": _clean(db_row.get("hunt_type")) or "General Season",
-        "hunt_class": "Public",
-        "residency": residency,
+        "hunt_class": hunt_class,
+        "residency": _output_residency(residency),
         "points": "",
-        "draw_pool": "standard",
+        "draw_pool": draw_pool,
         "public_permits_2025": "",
         "public_permits_2026": str(forecast_quota),
         "p_preference_draw": "",
@@ -468,61 +515,76 @@ def build_preference_antlerless_predictions(
         draw_system_type = _target_draw_system_type(row)
         if draw_system_type and _looks_like_standard_pool(row) and _clean(row.get("hunt_code")):
             current_target_rows.append((draw_system_type, row))
-    current_codes = {(draw_system_type, _clean(row.get("hunt_code")).upper()): row for draw_system_type, row in current_target_rows}
+    current_codes = {
+        (draw_system_type, _clean(row.get("hunt_code")).upper(), _effective_draw_pool(row, draw_system_type)): row
+        for draw_system_type, row in current_target_rows
+    }
     active_current_hunt_codes = {_clean(row.get("hunt_code")).upper() for _draw_system_type, row in current_target_rows}
 
-    years_by_key: dict[tuple[str, str, str], list[int]] = defaultdict(list)
-    for draw_system_type, year, hunt_code, residency in ladders:
-        years_by_key[(draw_system_type, hunt_code, residency)].append(year)
+    years_by_key: dict[tuple[str, str, str, str], list[int]] = defaultdict(list)
+    for draw_system_type, year, hunt_code, draw_pool, residency in ladders:
+        years_by_key[(draw_system_type, hunt_code, draw_pool, residency)].append(year)
 
-    history_codes_by_identity: dict[tuple[str, tuple[str, str], str], set[str]] = defaultdict(set)
-    for draw_system_type, _year, hunt_code, residency in ladders:
-        identity = _history_identity(truth_meta.get(hunt_code, {}))
+    history_codes_by_identity: dict[tuple[str, str, tuple[str, str], str], set[str]] = defaultdict(set)
+    for draw_system_type, _year, hunt_code, draw_pool, residency in ladders:
+        identity = _history_identity(truth_meta.get((hunt_code, draw_pool), {}))
         if all(identity):
-            history_codes_by_identity[(draw_system_type, identity, residency)].add(hunt_code)
+            history_codes_by_identity[(draw_system_type, draw_pool, identity, residency)].add(hunt_code)
 
     max_points_by_type_residency: dict[tuple[str, str], int] = defaultdict(int)
-    for (draw_system_type, year, _hunt_code, residency), ladder in ladders.items():
+    for (draw_system_type, year, _hunt_code, _draw_pool, residency), ladder in ladders.items():
         if year == latest_source_year and ladder:
             max_points_by_type_residency[(draw_system_type, residency)] = max(
                 max_points_by_type_residency[(draw_system_type, residency)],
                 max(int(points) for points in ladder.keys()),
             )
 
-    for (draw_system_type, hunt_code), db_row in sorted(current_codes.items()):
+    for (draw_system_type, hunt_code, draw_pool), db_row in sorted(current_codes.items()):
         forecast_total = target_permit_total(db_row, forecast_year, source_year=latest_source_year).value
         if forecast_total <= 0:
             continue
 
-        hunt_name = _clean(db_row.get("hunt_name")) or truth_meta.get(hunt_code, {}).get("hunt_name", "")
-        species = _clean(db_row.get("species")) or truth_meta.get(hunt_code, {}).get("species", "")
-        hunt_type = _clean(db_row.get("hunt_type")) or truth_meta.get(hunt_code, {}).get("hunt_type", "General Season")
-        weapon = _clean(db_row.get("weapon")) or truth_meta.get(hunt_code, {}).get("weapon", "")
-        sex_type = _clean(db_row.get("sex_type")) or truth_meta.get(hunt_code, {}).get("sex_type", "")
+        meta = truth_meta.get((hunt_code, draw_pool), {})
+        hunt_name = _clean(db_row.get("hunt_name")) or meta.get("hunt_name", "")
+        species = _clean(db_row.get("species")) or meta.get("species", "")
+        hunt_type = _clean(db_row.get("hunt_type")) or meta.get("hunt_type", "General Season")
+        hunt_class = _clean(db_row.get("hunt_class")) or meta.get("hunt_class", "Public")
+        weapon = _clean(db_row.get("weapon")) or meta.get("weapon", "")
+        sex_type = _clean(db_row.get("sex_type")) or meta.get("sex_type", "")
         modeled_residencies: set[str] = set()
 
-        for residency in ("Resident", "Nonresident"):
-            available_years = sorted(year for year in set(years_by_key.get((draw_system_type, hunt_code, residency), [])) if year in history_year_set)
+        available_residencies = sorted(
+            residency
+            for available_type, code, pool, residency in years_by_key
+            if available_type == draw_system_type and code == hunt_code and pool == draw_pool
+        )
+        if "All" in available_residencies:
+            residencies_to_model = ["All"]
+        else:
+            residencies_to_model = available_residencies or ["Resident", "Nonresident"]
+
+        for residency in residencies_to_model:
+            available_years = sorted(year for year in set(years_by_key.get((draw_system_type, hunt_code, draw_pool, residency), [])) if year in history_year_set)
             history_source_hunt_code = hunt_code
             if not available_years:
                 identity = _history_identity(db_row)
                 source_candidates = {
                     source_code
-                    for source_code in history_codes_by_identity.get((draw_system_type, identity, residency), set())
+                    for source_code in history_codes_by_identity.get((draw_system_type, draw_pool, identity, residency), set())
                     if source_code == hunt_code or source_code not in active_current_hunt_codes
                 }
                 if len(source_candidates) == 1:
                     history_source_hunt_code = next(iter(source_candidates))
                     available_years = sorted(
-                        year for year in set(years_by_key.get((draw_system_type, history_source_hunt_code, residency), [])) if year in history_year_set
+                        year for year in set(years_by_key.get((draw_system_type, history_source_hunt_code, draw_pool, residency), [])) if year in history_year_set
                     )
             if not available_years:
                 continue
 
             code_latest_source_year = max(available_years)
-            latest_ladder = ladders[(draw_system_type, code_latest_source_year, history_source_hunt_code, residency)]
+            latest_ladder = ladders[(draw_system_type, code_latest_source_year, history_source_hunt_code, draw_pool, residency)]
             prior_total = sum(int(values["drawn"]) for values in latest_ladder.values())
-            forecast_quota = _forecast_quota_for_residency(history_source_hunt_code, residency, forecast_total, code_latest_source_year, total_drawn_by_code_year)
+            forecast_quota = _forecast_quota_for_residency(history_source_hunt_code, draw_pool, residency, forecast_total, code_latest_source_year, total_drawn_by_code_year)
             if forecast_quota <= 0:
                 continue
             modeled_residencies.add(residency)
@@ -565,10 +627,10 @@ def build_preference_antlerless_predictions(
                         "species": species,
                         "sex_type": sex_type,
                         "hunt_type": hunt_type,
-                        "hunt_class": "Public",
-                        "residency": residency,
+                        "hunt_class": hunt_class,
+                        "residency": _output_residency(residency),
                         "points": str(points),
-                        "draw_pool": "standard",
+                        "draw_pool": draw_pool,
                         "public_permits_2025": prior_total,
                         "public_permits_2026": forecast_quota,
                         "max_point_permits_2025": "",
@@ -603,7 +665,7 @@ def build_preference_antlerless_predictions(
                         "preference_model_note": (
                             f"Forecasted from {code_latest_source_year} standard-pool ladder"
                             f"{'' if history_source_hunt_code == hunt_code else f' for historical hunt code {history_source_hunt_code}'}"
-                            " with residency quota split and preference carry-forward."
+                            " with residency split and preference carry-forward."
                         ),
                         "weapon": weapon,
                         "draw_system_type": draw_system_type,
@@ -625,6 +687,8 @@ def build_preference_antlerless_predictions(
                         forecast_year=forecast_year,
                         residency=residency,
                         forecast_quota=forecast_quota,
+                        draw_pool=draw_pool,
+                        hunt_class=hunt_class,
                     )
                 )
 
