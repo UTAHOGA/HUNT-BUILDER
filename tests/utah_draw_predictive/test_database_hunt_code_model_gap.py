@@ -5,9 +5,9 @@ from pathlib import Path
 
 def _repo_root() -> Path:
     repo_root = Path(__file__).resolve()
-    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+    while not ((repo_root / "AGENTS.MD").exists() and (repo_root / "engine").is_dir() and (repo_root / "processed_data").is_dir()) and repo_root.parent != repo_root:
         repo_root = repo_root.parent
-    if repo_root.name != "HUNT-BUILDER":
+    if not ((repo_root / "AGENTS.MD").exists() and (repo_root / "engine").is_dir() and (repo_root / "processed_data").is_dir()):
         raise RuntimeError("Could not locate HUNT-BUILDER repo root")
     return repo_root
 
@@ -81,4 +81,3 @@ def test_no_pending_or_non_probability_row_is_counted_as_draw_odds_modeled() -> 
     pending_rows = [row for row in rows if row.get("algorithm_status") in non_probability_statuses]
     assert pending_rows
     assert all(row.get("algorithm_status") not in draw_odds_statuses for row in pending_rows)
-

@@ -4,9 +4,9 @@ from pathlib import Path
 
 def _repo_root() -> Path:
     repo_root = Path(__file__).resolve()
-    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+    while not ((repo_root / "AGENTS.MD").exists() and (repo_root / "engine").is_dir() and (repo_root / "processed_data").is_dir()) and repo_root.parent != repo_root:
         repo_root = repo_root.parent
-    if repo_root.name != "HUNT-BUILDER":
+    if not ((repo_root / "AGENTS.MD").exists() and (repo_root / "engine").is_dir() and (repo_root / "processed_data").is_dir()):
         raise RuntimeError("Could not locate HUNT-BUILDER repo root")
     return repo_root
 
