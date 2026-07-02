@@ -1,282 +1,135 @@
 draw_system_type,hunt_code,hunt_name,species,residency,points_modeled,min_points,max_points,public_permits_2026,source_years_used,model_strategy
-PREFERENCE_ANTLERLESS_DEER,DA1001,"Box Elder, West Bear River",Deer,Resident,22,0,21,30,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1002,"Box Elder, West Bear River",Deer,Resident,22,0,21,30,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1003,"Monroe/Plateau, Sevier Valley",Deer,Nonresident,22,0,21,1,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1003,"Monroe/Plateau, Sevier Valley",Deer,Resident,22,0,21,14,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1009,"Pine Valley, Enterprise",Deer,Resident,22,0,21,20,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1018,"Pine Valley, New Harmony",Deer,Nonresident,22,0,21,1,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1018,"Pine Valley, New Harmony",Deer,Resident,22,0,21,14,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1027,"East Canyon, Davis-North Salt Lake",Deer,Resident,22,0,21,30,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1030,"Nine Mile, Price River Valley",Deer,Nonresident,22,0,21,2,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1030,"Nine Mile, Price River Valley",Deer,Resident,22,0,21,23,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1031,"Oquirrh-Stansbury, Settlement Cyn",Deer,Resident,22,0,21,20,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1033,"San Juan, Monticello",Deer,Resident,22,0,21,10,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1041,"Nine Mile, Green River Valley",Deer,Nonresident,22,0,21,1,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1041,"Nine Mile, Green River Valley",Deer,Resident,22,0,21,14,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1042,"San Juan, Monticello",Deer,Resident,22,0,21,5,"2021,2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1044,Myton,Deer,Nonresident,22,0,21,1,"2022,2023,2024",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1044,Myton,Deer,Resident,22,0,21,23,"2022,2023,2024",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1045,"Fillmore, Oak City",Deer,Resident,22,0,21,20,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1046,"Nine Mile, Price River Valley",Deer,Resident,22,0,21,25,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1047,Vernal-Ouray Valley,Deer,Nonresident,22,0,21,4,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1047,Vernal-Ouray Valley,Deer,Resident,22,0,21,21,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1048,"Fillmore, Fillmore City",Deer,Resident,22,0,21,15,"2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1049,"Vernal, Ashley Valley",Deer,Nonresident,22,0,21,2,"2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_DEER,DA1049,"Vernal, Ashley Valley",Deer,Resident,22,0,21,33,"2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1007,"Box Elder, Grouse Creek",Elk,Nonresident,22,0,21,6,2022,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1007,"Box Elder, Grouse Creek",Elk,Resident,22,0,21,24,2022,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1010,"Cache, Rich",Elk,Nonresident,22,0,21,4,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1010,"Cache, Rich",Elk,Resident,22,0,21,31,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1011,"Cache, Richards Hollow",Elk,Nonresident,22,0,21,2,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1011,"Cache, Richards Hollow",Elk,Resident,22,0,21,18,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1012,"Cache, Richmond-Hyde Park",Elk,Nonresident,22,0,21,1,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1012,"Cache, Richmond-Hyde Park",Elk,Resident,22,0,21,4,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1013,"Manti, Central",Elk,Nonresident,22,0,21,7,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1013,"Manti, Central",Elk,Resident,22,0,21,63,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1015,"Manti, Ferron Canyon",Elk,Nonresident,22,0,21,6,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1015,"Manti, Ferron Canyon",Elk,Resident,22,0,21,64,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1017,"Manti, Gordon Creek-Price Canyon",Elk,Nonresident,22,0,21,21,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1017,"Manti, Gordon Creek-Price Canyon",Elk,Resident,22,0,21,79,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1018,"Manti, Horn Mtn",Elk,Nonresident,22,0,21,6,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1018,"Manti, Horn Mtn",Elk,Resident,22,0,21,54,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1020,"Manti, Morhland Stump Flat",Elk,Nonresident,22,0,21,23,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1020,"Manti, Morhland Stump Flat",Elk,Resident,22,0,21,97,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1021,Nebo,Elk,Nonresident,22,0,21,44,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1021,Nebo,Elk,Resident,22,0,21,236,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1022,"Manti, North",Elk,Nonresident,22,0,21,44,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1022,"Manti, North",Elk,Resident,22,0,21,256,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1023,"Manti, South",Elk,Nonresident,22,0,21,14,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1023,"Manti, South",Elk,Resident,22,0,21,86,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1024,"Manti, South",Elk,Nonresident,22,0,21,42,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1024,"Manti, South",Elk,Resident,22,0,21,58,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1025,"Manti, West",Elk,Nonresident,22,0,21,16,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1025,"Manti, West",Elk,Resident,22,0,21,104,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1026,Chalk Creek,Elk,Nonresident,22,0,21,33,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1026,Chalk Creek,Elk,Resident,22,0,21,317,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1030,"Fillmore, Pahvant",Elk,Nonresident,22,0,21,22,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1030,"Fillmore, Pahvant",Elk,Resident,22,0,21,28,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1031,"Fillmore, Pahvant",Elk,Nonresident,22,0,21,8,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1031,"Fillmore, Pahvant",Elk,Resident,22,0,21,42,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1033,Kamas,Elk,Nonresident,22,0,21,16,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1033,Kamas,Elk,Resident,22,0,21,84,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1035,"Kamas, Oakley",Elk,Nonresident,22,0,21,12,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1035,"Kamas, Oakley",Elk,Resident,22,0,21,88,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1037,Dolores Triangle,Elk,Nonresident,22,0,21,5,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1037,Dolores Triangle,Elk,Resident,22,0,21,45,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1038,La Sal Mtns,Elk,Nonresident,22,0,21,49,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1038,La Sal Mtns,Elk,Resident,22,0,21,151,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1039,La Sal Mtns,Elk,Nonresident,22,0,21,30,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1039,La Sal Mtns,Elk,Resident,22,0,21,120,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1040,"Monroe, Koosharem Valley",Elk,Nonresident,22,0,21,1,"2022,2023,2024",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1040,"Monroe, Koosharem Valley",Elk,Resident,22,0,21,4,"2022,2023,2024",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1044,"Morgan-South Rich, South Rich",Elk,Nonresident,22,0,21,5,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1044,"Morgan-South Rich, South Rich",Elk,Resident,22,0,21,30,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1049,"Mt Dutton, Deep Creek",Elk,Nonresident,22,0,21,28,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1049,"Mt Dutton, Deep Creek",Elk,Resident,22,0,21,47,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1054,"Nine Mile, West Anthro",Elk,Nonresident,22,0,21,40,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1054,"Nine Mile, West Anthro",Elk,Resident,22,0,21,60,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1056,"North Slope, Greendale",Elk,Resident,22,0,21,5,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1058,"North Slope, Henrys Fork-Burnt Fork",Elk,Nonresident,22,0,21,12,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1058,"North Slope, Henrys Fork-Burnt Fork",Elk,Resident,22,0,21,88,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1060,"North Slope, West Daggett",Elk,Nonresident,22,0,21,1,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1060,"North Slope, West Daggett",Elk,Resident,22,0,21,19,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1061,"North Slope, West Daggett",Elk,Nonresident,22,0,21,4,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1061,"North Slope, West Daggett",Elk,Resident,22,0,21,16,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1063,Ogden,Elk,Nonresident,22,0,21,8,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1063,Ogden,Elk,Resident,22,0,21,92,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1064,Ogden,Elk,Resident,22,0,21,75,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1069,Panguitch Lake,Elk,Nonresident,22,0,21,3,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1069,Panguitch Lake,Elk,Resident,22,0,21,22,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1073,Paunsaugunt,Elk,Nonresident,22,0,21,2,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1073,Paunsaugunt,Elk,Resident,22,0,21,18,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1074,Pine Valley,Elk,Nonresident,22,0,21,1,"2022,2023,2024",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1074,Pine Valley,Elk,Resident,22,0,21,2,"2022,2023,2024",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1075,Boulder East,Elk,Nonresident,22,0,21,7,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1075,Boulder East,Elk,Resident,22,0,21,43,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1076,Boulder West,Elk,Nonresident,22,0,21,20,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1076,Boulder West,Elk,Resident,22,0,21,30,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1077,Boulder-Circle Cliffs,Elk,Nonresident,22,0,21,3,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1077,Boulder-Circle Cliffs,Elk,Resident,22,0,21,27,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1078,Fishlake/Thousand Lakes,Elk,Nonresident,22,0,21,77,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1078,Fishlake/Thousand Lakes,Elk,Resident,22,0,21,193,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1079,Fishlake/Thousand Lakes East,Elk,Nonresident,22,0,21,7,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1079,Fishlake/Thousand Lakes East,Elk,Resident,22,0,21,58,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1080,Fishlake/Thousand Lakes West,Elk,Nonresident,22,0,21,14,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1080,Fishlake/Thousand Lakes West,Elk,Resident,22,0,21,46,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1081,San Juan,Elk,Nonresident,22,0,21,13,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1081,San Juan,Elk,Resident,22,0,21,112,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1082,San Juan,Elk,Nonresident,22,0,21,63,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1082,San Juan,Elk,Resident,22,0,21,62,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1084,"San Rafael, North",Elk,Resident,22,0,21,5,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1085,Vernal/Bonanza,Elk,Nonresident,22,0,21,23,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1085,Vernal/Bonanza,Elk,Resident,22,0,21,77,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1087,Vernal/Bonanza,Elk,Nonresident,22,0,21,42,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1087,Vernal/Bonanza,Elk,Resident,22,0,21,58,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1089,Diamond Mtn,Elk,Nonresident,22,0,21,7,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1089,Diamond Mtn,Elk,Resident,22,0,21,43,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1090,Diamond Mtn,Elk,Nonresident,22,0,21,10,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1090,Diamond Mtn,Elk,Resident,22,0,21,40,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1094,"Vernal, Mosby Mtn",Elk,Nonresident,22,0,21,15,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1094,"Vernal, Mosby Mtn",Elk,Resident,22,0,21,85,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1101,Southwest Desert,Elk,Nonresident,22,0,21,10,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1101,Southwest Desert,Elk,Resident,22,0,21,90,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1106,"Wasatch Mtns, Avintaquin A",Elk,Nonresident,22,0,21,46,"2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1106,"Wasatch Mtns, Avintaquin A",Elk,Resident,22,0,21,154,"2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1110,"Wasatch Mtns, Salt Lake",Elk,Nonresident,22,0,21,5,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1110,"Wasatch Mtns, Salt Lake",Elk,Resident,22,0,21,40,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1111,"Wasatch Mtns, Wallsburg",Elk,Nonresident,22,0,21,2,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1111,"Wasatch Mtns, Wallsburg",Elk,Resident,22,0,21,33,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1112,"Wasatch Mtns, Wallsburg",Elk,Nonresident,22,0,21,15,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1112,"Wasatch Mtns, Wallsburg",Elk,Resident,22,0,21,40,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1113,"Wasatch Mtns, West Heber",Elk,Nonresident,22,0,21,3,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1113,"Wasatch Mtns, West Heber",Elk,Resident,22,0,21,27,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1114,"Wasatch Mtns, Timpanogos B",Elk,Nonresident,22,0,21,3,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1114,"Wasatch Mtns, Timpanogos B",Elk,Resident,22,0,21,22,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1116,Zion,Elk,Nonresident,22,0,21,1,"2022,2023,2024",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1116,Zion,Elk,Resident,22,0,21,7,"2022,2023,2024",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1117,Zion,Elk,Nonresident,22,0,21,82,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1117,Zion,Elk,Resident,22,0,21,138,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1187,"Paunsaugunt, Hatch Bench",Elk,Nonresident,22,0,21,3,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1187,"Paunsaugunt, Hatch Bench",Elk,Resident,22,0,21,12,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1189,"Wasatch Mtns, West-Central",Elk,Nonresident,22,0,21,81,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1189,"Wasatch Mtns, West-Central",Elk,Resident,22,0,21,344,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1193,"Cache, Rich",Elk,Nonresident,22,0,21,4,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1193,"Cache, Rich",Elk,Resident,22,0,21,31,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1196,"North Slope, Summit",Elk,Nonresident,22,0,21,8,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1196,"North Slope, Summit",Elk,Resident,22,0,21,67,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1203,"Box Elder, Pilot Mtn",Elk,Nonresident,22,0,21,1,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1203,"Box Elder, Pilot Mtn",Elk,Resident,22,0,21,4,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1204,"Box Elder, Pilot Mtn",Elk,Nonresident,22,0,21,1,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1204,"Box Elder, Pilot Mtn",Elk,Resident,22,0,21,4,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1206,"Cache, Richmond-Hyde Park",Elk,Nonresident,22,0,21,1,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1206,"Cache, Richmond-Hyde Park",Elk,Resident,22,0,21,9,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1207,"Nebo, Moroni Hills",Elk,Nonresident,22,0,21,1,"2021,2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1207,"Nebo, Moroni Hills",Elk,Resident,22,0,21,9,"2021,2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1208,Nebo,Elk,Nonresident,22,0,21,149,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1208,Nebo,Elk,Resident,22,0,21,176,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1209,"Fillmore, Oak Creek",Elk,Nonresident,22,0,21,6,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1209,"Fillmore, Oak Creek",Elk,Resident,22,0,21,44,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1217,"Wasatch Mtns, Avintaquin A",Elk,Nonresident,22,0,21,14,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1217,"Wasatch Mtns, Avintaquin A",Elk,Resident,22,0,21,136,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1222,"Beaver, East",Elk,Nonresident,22,0,21,17,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1222,"Beaver, East",Elk,Resident,22,0,21,23,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1223,"Beaver, East",Elk,Nonresident,22,0,21,13,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1223,"Beaver, East",Elk,Resident,22,0,21,27,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1224,"Book Cliffs, Bitter Creek/South",Elk,Nonresident,22,0,21,25,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1224,"Book Cliffs, Bitter Creek/South",Elk,Resident,22,0,21,105,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1225,"Book Cliffs, Bitter Creek/South",Elk,Nonresident,22,0,21,81,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1225,"Book Cliffs, Bitter Creek/South",Elk,Resident,22,0,21,82,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1226,"Nebo, Moroni Hills",Elk,Nonresident,22,0,21,1,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1226,"Nebo, Moroni Hills",Elk,Resident,22,0,21,9,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1228,Morgan-South Rich,Elk,Nonresident,22,0,21,29,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1228,Morgan-South Rich,Elk,Resident,22,0,21,46,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1229,Morgan-South Rich,Elk,Nonresident,22,0,21,25,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1229,Morgan-South Rich,Elk,Resident,22,0,21,135,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1231,"West Desert, Tintic Valley",Elk,Nonresident,22,0,21,5,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1231,"West Desert, Tintic Valley",Elk,Resident,22,0,21,45,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1236,East Canyon,Elk,Nonresident,22,0,21,28,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1236,East Canyon,Elk,Resident,22,0,21,122,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1237,"LaSal, Mtns-North",Elk,Nonresident,22,0,21,78,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1237,"LaSal, Mtns-North",Elk,Resident,22,0,21,97,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1239,"Nine Mile, Range Creek",Elk,Nonresident,22,0,21,10,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1239,"Nine Mile, Range Creek",Elk,Resident,22,0,21,40,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1240,"Nine Mile, Range Creek",Elk,Nonresident,22,0,21,58,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1240,"Nine Mile, Range Creek",Elk,Resident,22,0,21,92,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1242,"Vernal, Buckskin Hills-Jensen",Elk,Nonresident,22,0,21,29,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1242,"Vernal, Buckskin Hills-Jensen",Elk,Resident,22,0,21,71,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1243,"Vernal, Buckskin Hills-Jensen",Elk,Nonresident,22,0,21,47,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1243,"Vernal, Buckskin Hills-Jensen",Elk,Resident,22,0,21,53,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1244,Yellowstone,Elk,Nonresident,22,0,21,29,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1244,Yellowstone,Elk,Resident,22,0,21,71,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1245,Yellowstone,Elk,Nonresident,22,0,21,6,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1245,Yellowstone,Elk,Resident,22,0,21,44,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1250,"North Slope, West Daggett",Elk,Nonresident,22,0,21,6,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1250,"North Slope, West Daggett",Elk,Resident,22,0,21,24,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1251,"Southwest Desert, Burbank/Garrison",Elk,Nonresident,22,0,21,2,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1251,"Southwest Desert, Burbank/Garrison",Elk,Resident,22,0,21,10,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1252,"Southwest Desert, Burbank/Garrison",Elk,Nonresident,22,0,21,1,"2022,2023,2024",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1252,"Southwest Desert, Burbank/Garrison",Elk,Resident,22,0,21,2,"2022,2023,2024",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1254,Pine Valley,Elk,Nonresident,22,0,21,6,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1254,Pine Valley,Elk,Resident,22,0,21,24,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1264,"Wasatch Mtns, Rabbit Gulch",Elk,Nonresident,22,0,21,5,"2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1264,"Wasatch Mtns, Rabbit Gulch",Elk,Resident,22,0,21,45,"2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1265,"Wasatch Mtns, Tabby Mtn",Elk,Nonresident,22,0,21,13,"2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1265,"Wasatch Mtns, Tabby Mtn",Elk,Resident,22,0,21,87,"2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1266,"Box Elder, Hansel Mtn",Elk,Nonresident,22,0,21,6,"2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1266,"Box Elder, Hansel Mtn",Elk,Resident,22,0,21,24,"2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1267,Cache,Elk,Nonresident,22,0,21,20,"2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1267,Cache,Elk,Resident,22,0,21,180,"2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1268,"North Slope, Summit",Elk,Nonresident,22,0,21,19,"2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1268,"North Slope, Summit",Elk,Resident,22,0,21,181,"2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1269,Ogden (excludes Hyrum),Elk,Nonresident,22,0,21,94,"2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1269,Ogden (excludes Hyrum),Elk,Resident,22,0,21,206,"2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1272,"East Canyon, East",Elk,Nonresident,22,0,21,21,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1272,"East Canyon, East",Elk,Resident,22,0,21,129,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1273,"North Slope, Three Corners",Elk,Nonresident,22,0,21,1,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1273,"North Slope, Three Corners",Elk,Resident,22,0,21,24,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1274,"North Slope, Three Corners",Elk,Nonresident,22,0,21,3,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1274,"North Slope, Three Corners",Elk,Resident,22,0,21,22,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1276,"Wasatch Mtns, Box Elder Peak",Elk,Nonresident,22,0,21,7,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1276,"Wasatch Mtns, Box Elder Peak",Elk,Resident,22,0,21,38,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1277,"North Slope, Three Corners",Elk,Nonresident,22,0,21,2,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1277,"North Slope, Three Corners",Elk,Resident,22,0,21,23,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1278,"Manti, Ferron-Nelson Mtn",Elk,Nonresident,22,0,21,4,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1278,"Manti, Ferron-Nelson Mtn",Elk,Resident,22,0,21,46,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1279,"Manti, Ferron-Nelson Mtn",Elk,Nonresident,22,0,21,12,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1279,"Manti, Ferron-Nelson Mtn",Elk,Resident,22,0,21,38,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1280,"LaSal, Mtns-North",Elk,Nonresident,22,0,21,87,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1280,"LaSal, Mtns-North",Elk,Resident,22,0,21,88,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1281,"Mt Dutton, Deep Creek",Elk,Nonresident,22,0,21,13,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1281,"Mt Dutton, Deep Creek",Elk,Resident,22,0,21,62,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1282,"Ogden, North",Elk,Nonresident,22,0,21,50,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1282,"Ogden, North",Elk,Resident,22,0,21,150,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1283,Panguitch Lake,Elk,Nonresident,22,0,21,11,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1283,Panguitch Lake,Elk,Resident,22,0,21,24,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1284,Panguitch Lake,Elk,Nonresident,22,0,21,9,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1284,Panguitch Lake,Elk,Resident,22,0,21,46,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1285,Panguitch Lake,Elk,Nonresident,22,0,21,13,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1285,Panguitch Lake,Elk,Resident,22,0,21,12,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1286,Monroe,Elk,Nonresident,22,0,21,11,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA1286,Monroe,Elk,Resident,22,0,21,39,2025,preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA2033,Kamas,Elk,Nonresident,22,0,21,30,"2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA2033,Kamas,Elk,Resident,22,0,21,170,"2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA2034,"Nine Mile, Anthro",Elk,Nonresident,22,0,21,100,"2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA2034,"Nine Mile, Anthro",Elk,Resident,22,0,21,100,"2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA2036,"Oquirrh-Stansbury, East",Elk,Nonresident,22,0,21,18,"2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA2036,"Oquirrh-Stansbury, East",Elk,Resident,22,0,21,52,"2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA2037,Yellowstone,Elk,Nonresident,22,0,21,88,"2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA2037,Yellowstone,Elk,Resident,22,0,21,112,"2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA2038,Wasatch Mtns,Elk,Nonresident,22,0,21,360,"2023,2024,2025",preference_antlerless
-PREFERENCE_ANTLERLESS_ELK,EA2038,Wasatch Mtns,Elk,Resident,22,0,21,840,"2023,2024,2025",preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1000,"Box Elder, Snowville",Pronghorn,Nonresident,22,0,21,15,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1000,"Box Elder, Snowville",Pronghorn,Resident,22,0,21,25,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1006,Plateau,Pronghorn,Nonresident,22,0,21,2,2024,preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1006,Plateau,Pronghorn,Resident,22,0,21,12,2024,preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1012,"Box Elder, Promontory",Pronghorn,Nonresident,22,0,21,3,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1012,"Box Elder, Promontory",Pronghorn,Resident,22,0,21,17,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1017,"Box Elder, West",Pronghorn,Nonresident,22,0,21,5,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1017,"Box Elder, West",Pronghorn,Resident,22,0,21,30,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1033,"San Rafael, Poison Springs Bench",Pronghorn,Nonresident,22,0,21,2,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1033,"San Rafael, Poison Springs Bench",Pronghorn,Resident,22,0,21,13,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1034,"Fillmore, Oak Creek South",Pronghorn,Nonresident,22,0,21,5,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1034,"Fillmore, Oak Creek South",Pronghorn,Resident,22,0,21,25,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1035,"Fillmore, Oak Creek South",Pronghorn,Nonresident,22,0,21,3,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1035,"Fillmore, Oak Creek South",Pronghorn,Resident,22,0,21,27,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1043,"Nine Mile, Anthro Pleasant Valley",Pronghorn,Nonresident,22,0,21,1,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1043,"Nine Mile, Anthro Pleasant Valley",Pronghorn,Resident,22,0,21,9,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1044,Vernal-Ouray Valley,Pronghorn,Nonresident,22,0,21,1,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1044,Vernal-Ouray Valley,Pronghorn,Resident,22,0,21,4,"2022,2023,2024,2025",preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1054,Parker Mtn,Pronghorn,Nonresident,22,0,21,4,2025,preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1054,Parker Mtn,Pronghorn,Resident,22,0,21,26,2025,preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1055,Parker Mtn,Pronghorn,Nonresident,22,0,21,5,2025,preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1055,Parker Mtn,Pronghorn,Resident,22,0,21,30,2025,preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1056,Parker Mtn,Pronghorn,Nonresident,22,0,21,14,2025,preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1056,Parker Mtn,Pronghorn,Resident,22,0,21,53,2025,preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1057,"Parker Mtn, Highlands",Pronghorn,Nonresident,22,0,21,4,2025,preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1057,"Parker Mtn, Highlands",Pronghorn,Resident,22,0,21,26,2025,preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1058,"Parker Mtn, Highlands",Pronghorn,Nonresident,22,0,21,5,2025,preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1058,"Parker Mtn, Highlands",Pronghorn,Resident,22,0,21,35,2025,preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1059,"Parker Mtn, Plains",Pronghorn,Nonresident,22,0,21,4,2025,preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1059,"Parker Mtn, Plains",Pronghorn,Resident,22,0,21,31,2025,preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1060,"Parker Mtn, Plains",Pronghorn,Nonresident,22,0,21,8,2025,preference_antlerless
-PREFERENCE_DOE_PRONGHORN,PD1060,"Parker Mtn, Plains",Pronghorn,Resident,22,0,21,32,2025,preference_antlerless
+PREFERENCE_ANTLERLESS_DEER,DA1001,"Box Elder, West Bear River",Deer,,20,0,19,30,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_DEER,DA1002,"Box Elder, West Bear River",Deer,,20,0,19,30,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_DEER,DA1003,"Monroe/Plateau, Sevier Valley",Deer,,20,0,19,15,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_DEER,DA1009,"Pine Valley, Enterprise",Deer,,20,0,19,20,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_DEER,DA1018,"Pine Valley, New Harmony",Deer,,20,0,19,15,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_DEER,DA1027,"East Canyon, Davis-North Salt Lake",Deer,,20,0,19,30,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_DEER,DA1030,"Nine Mile, Price River Valley",Deer,,20,0,19,25,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_DEER,DA1031,"Oquirrh-Stansbury, Settlement Cyn",Deer,,20,0,19,20,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_DEER,DA1033,"San Juan, Monticello",Deer,,20,0,19,10,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_DEER,DA1041,"Nine Mile, Green River Valley",Deer,,20,0,19,15,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_DEER,DA1042,"San Juan, Monticello",Deer,,20,0,19,5,"2019,2020,2021,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_DEER,DA1045,"Fillmore, Oak City",Deer,,20,0,19,20,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_DEER,DA1046,"Nine Mile, Price River Valley",Deer,,20,0,19,25,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_DEER,DA1047,Vernal-Ouray Valley,Deer,,20,0,19,25,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_DEER,DA1048,"Fillmore, Fillmore City",Deer,,20,0,19,15,"2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_DEER,DA1049,"Vernal, Ashley Valley",Deer,,20,0,19,35,"2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1007,"Box Elder, Grouse Creek",Elk,,17,0,16,30,"2018,2019,2020,2022",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1010,"Cache, Rich",Elk,,20,0,19,35,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1011,"Cache, Richards Hollow",Elk,,20,0,19,20,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1013,"Manti, Central",Elk,,20,0,19,70,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1015,"Manti, Ferron Canyon",Elk,,20,0,19,70,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1017,"Manti, Gordon Creek-Price Canyon",Elk,,20,0,19,100,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1018,"Manti, Horn Mtn",Elk,,20,0,19,60,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1020,"Manti, Morhland Stump Flat",Elk,,20,0,19,120,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1021,Nebo,Elk,,20,0,19,280,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1022,"Manti, North",Elk,,20,0,19,300,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1023,"Manti, South",Elk,,20,0,19,100,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1024,"Manti, South",Elk,,20,0,19,100,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1025,"Manti, West",Elk,,20,0,19,120,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1026,Chalk Creek,Elk,,20,0,19,350,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1030,"Fillmore, Pahvant",Elk,,20,0,19,50,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1031,"Fillmore, Pahvant",Elk,,20,0,19,50,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1033,Kamas,Elk,,20,0,19,100,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1035,"Kamas, Oakley",Elk,,20,0,19,100,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1037,Dolores Triangle,Elk,,20,0,19,50,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1038,La Sal Mtns,Elk,,20,0,19,200,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1039,La Sal Mtns,Elk,,20,0,19,150,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1044,"Morgan-South Rich, South Rich",Elk,,20,0,19,35,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1049,"Mt Dutton, Deep Creek",Elk,,20,0,19,75,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1054,"Nine Mile, West Anthro",Elk,,20,0,19,100,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1056,"North Slope, Greendale",Elk,,20,0,19,5,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1058,"North Slope, Henrys Fork-Burnt Fork",Elk,,20,0,19,100,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1060,"North Slope, West Daggett",Elk,,20,0,19,20,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1061,"North Slope, West Daggett",Elk,,20,0,19,20,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1063,Ogden,Elk,,20,0,19,100,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1064,Ogden,Elk,,20,0,19,75,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1069,Panguitch Lake,Elk,,20,0,19,25,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1073,Paunsaugunt,Elk,,20,0,19,20,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1075,Boulder East,Elk,,20,0,19,50,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1076,Boulder West,Elk,,20,0,19,50,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1077,Boulder-Circle Cliffs,Elk,,20,0,19,30,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1078,Fishlake/Thousand Lakes,Elk,,20,0,19,270,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1079,Fishlake/Thousand Lakes East,Elk,,20,0,19,65,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1080,Fishlake/Thousand Lakes West,Elk,,20,0,19,60,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1081,San Juan,Elk,,20,0,19,125,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1082,San Juan,Elk,,20,0,19,125,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1084,"San Rafael, North",Elk,,20,0,19,5,"2018,2019,2020,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1085,Vernal/Bonanza,Elk,,20,0,19,100,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1087,Vernal/Bonanza,Elk,,20,0,19,100,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1089,Diamond Mtn,Elk,,20,0,19,50,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1090,Diamond Mtn,Elk,,20,0,19,50,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1094,"Vernal, Mosby Mtn",Elk,,20,0,19,100,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1101,Southwest Desert,Elk,,20,0,19,100,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1106,"Wasatch Mtns, Avintaquin A",Elk,,20,0,19,200,"2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1110,"Wasatch Mtns, Salt Lake",Elk,,20,0,19,45,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1111,"Wasatch Mtns, Wallsburg",Elk,,20,0,19,35,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1112,"Wasatch Mtns, Wallsburg",Elk,,20,0,19,55,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1113,"Wasatch Mtns, West Heber",Elk,,20,0,19,30,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1114,"Wasatch Mtns, Timpanogos B",Elk,,20,0,19,25,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1117,Zion,Elk,,20,0,19,220,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1189,"Wasatch Mtns, West-Central",Elk,,20,0,19,425,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1193,"Cache, Rich",Elk,,20,0,19,35,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1196,"North Slope, Summit",Elk,,20,0,19,75,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1203,"Box Elder, Pilot Mtn",Elk,,20,0,19,5,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1204,"Box Elder, Pilot Mtn",Elk,,20,0,19,5,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1207,"Nebo, Moroni Hills",Elk,,20,0,19,10,"2019,2020,2021,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1208,Nebo,Elk,,20,0,19,325,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1209,"Fillmore, Oak Creek",Elk,,20,0,19,50,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1217,"Wasatch Mtns, Avintaquin A",Elk,,20,0,19,150,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1222,"Beaver, East",Elk,,20,0,19,40,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1223,"Beaver, East",Elk,,20,0,19,40,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1224,"Book Cliffs, Bitter Creek/South",Elk,,20,0,19,130,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1225,"Book Cliffs, Bitter Creek/South",Elk,,20,0,19,163,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1226,"Nebo, Moroni Hills",Elk,,20,0,19,10,"2020,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1228,Morgan-South Rich,Elk,,20,0,19,75,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1229,Morgan-South Rich,Elk,,20,0,19,160,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1231,"West Desert, Tintic Valley",Elk,,20,0,19,50,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1236,East Canyon,Elk,,20,0,19,150,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1237,"LaSal, Mtns-North",Elk,,20,0,19,175,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1239,"Nine Mile, Range Creek",Elk,,20,0,19,50,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1240,"Nine Mile, Range Creek",Elk,,20,0,19,150,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1242,"Vernal, Buckskin Hills-Jensen",Elk,,20,0,19,100,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1243,"Vernal, Buckskin Hills-Jensen",Elk,,20,0,19,100,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1244,Yellowstone,Elk,,20,0,19,100,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1245,Yellowstone,Elk,,20,0,19,50,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1250,"North Slope, West Daggett",Elk,,20,0,19,30,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1251,"Southwest Desert, Burbank/Garrison",Elk,,20,0,19,12,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1254,Pine Valley,Elk,,20,0,19,30,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1264,"Wasatch Mtns, Rabbit Gulch",Elk,,20,0,19,50,"2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1265,"Wasatch Mtns, Tabby Mtn",Elk,,20,0,19,100,"2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1266,"Box Elder, Hansel Mtn",Elk,,20,0,19,30,"2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1267,Cache,Elk,,20,0,19,200,"2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1268,"North Slope, Summit",Elk,,20,0,19,200,"2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1269,Ogden (excludes Hyrum),Elk,,20,0,19,300,"2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1272,"East Canyon, East",Elk,,20,0,19,150,2025,preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1273,"North Slope, Three Corners",Elk,,20,0,19,25,2025,preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1274,"North Slope, Three Corners",Elk,,20,0,19,25,2025,preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1276,"Wasatch Mtns, Box Elder Peak",Elk,,20,0,19,45,2025,preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1277,"North Slope, Three Corners",Elk,,20,0,19,25,2025,preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1281,"Mt Dutton, Deep Creek",Elk,,20,0,19,75,2025,preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1283,Panguitch Lake,Elk,,20,0,19,35,2025,preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1284,Panguitch Lake,Elk,,20,0,19,55,2025,preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1285,Panguitch Lake,Elk,,20,0,19,25,2025,preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA1286,Monroe,Elk,,20,0,19,50,2025,preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA2033,Kamas,Elk,,20,0,19,200,"2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA2034,"Nine Mile, Anthro",Elk,,20,0,19,200,"2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA2036,"Oquirrh-Stansbury, East",Elk,,20,0,19,70,"2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA2037,Yellowstone,Elk,,20,0,19,200,"2023,2024,2025",preference_antlerless
+PREFERENCE_ANTLERLESS_ELK,EA2038,Wasatch Mtns,Elk,,20,0,19,1200,"2023,2024,2025",preference_antlerless
+PREFERENCE_DOE_PRONGHORN,PD1000,"Box Elder, Snowville",Pronghorn,,20,0,19,40,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_DOE_PRONGHORN,PD1012,"Box Elder, Promontory",Pronghorn,,20,0,19,20,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_DOE_PRONGHORN,PD1017,"Box Elder, West",Pronghorn,,20,0,19,35,"2018,2022,2023,2024,2025",preference_antlerless
+PREFERENCE_DOE_PRONGHORN,PD1033,"San Rafael, Poison Springs Bench",Pronghorn,,20,0,19,15,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_DOE_PRONGHORN,PD1034,"Fillmore, Oak Creek South",Pronghorn,,20,0,19,30,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_DOE_PRONGHORN,PD1035,"Fillmore, Oak Creek South",Pronghorn,,20,0,19,30,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_DOE_PRONGHORN,PD1043,"Nine Mile, Anthro Pleasant Valley",Pronghorn,,20,0,19,10,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_DOE_PRONGHORN,PD1044,Vernal-Ouray Valley,Pronghorn,,20,0,19,5,"2022,2023,2024,2025",preference_antlerless
+PREFERENCE_DOE_PRONGHORN,PD1054,Parker Mtn,Pronghorn,,20,0,19,30,2025,preference_antlerless
+PREFERENCE_DOE_PRONGHORN,PD1055,Parker Mtn,Pronghorn,,20,0,19,35,2025,preference_antlerless
+PREFERENCE_DOE_PRONGHORN,PD1056,Parker Mtn,Pronghorn,,20,0,19,67,2025,preference_antlerless
+PREFERENCE_DOE_PRONGHORN,PD1057,"Parker Mtn, Highlands",Pronghorn,,20,0,19,30,2025,preference_antlerless
+PREFERENCE_DOE_PRONGHORN,PD1058,"Parker Mtn, Highlands",Pronghorn,,20,0,19,40,2025,preference_antlerless
+PREFERENCE_DOE_PRONGHORN,PD1059,"Parker Mtn, Plains",Pronghorn,,20,0,19,35,2025,preference_antlerless
+PREFERENCE_DOE_PRONGHORN,PD1060,"Parker Mtn, Plains",Pronghorn,,20,0,19,40,2025,preference_antlerless

@@ -1,11 +1,15 @@
 {
-  "forecast_year": 2026,
+  "forecast_year": 2027,
   "source_years": [
+    2018,
+    2019,
+    2020,
     2021,
     2022,
     2023,
     2024,
-    2025
+    2025,
+    2026
   ],
   "total_private_lands_antlerless_elk_rows_reviewed": 27,
   "active_predictive_row_count": 54,
@@ -18,7 +22,7 @@
   "hunt_code_count": 27,
   "unit_count": 27,
   "rows_by_algorithm_status": {
-    "MODELED_AVAILABILITY": 54,
+    "MODELED_ALLOCATION": 54,
     "IN_SCOPE_MODEL_PENDING": 0,
     "EXCLUDED_NOT_PREDICTIVE_DRAW": 0
   },
@@ -38,6 +42,7 @@
   "rows_with_availability_pct_outside_range": 0,
   "duplicate_key_count": 0,
   "source_files_used": [
+    "https://dwrapps.utah.gov/huntboundary/HuntTableData?species=Elk&gender=Antlerless",
     "pipeline\\RAW\\hunt_unit_database\\2026\\csv\\2026 Permits\\elk antlerless private lands only EA.csv"
   ],
   "data_quality_flags_summary": {

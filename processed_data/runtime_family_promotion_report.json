@@ -1,7 +1,7 @@
 {
   "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29",
   "promoted_family_count": 5,
-  "promoted_row_count": 1914,
+  "promoted_row_count": 1151,
   "families": [
     {
       "runtime_promotion_family": "SPORTSMAN_RANDOM_ONLY",
@@ -9,7 +9,7 @@
       "row_count": 10,
       "hunt_code_count": 10,
       "duplicate_runtime_key_count": 0,
-      "source_report": "D:\\HUNT-BUILDER-TEMP\\bear_restricted_20260701_032527\\sportsman_permit_report.json",
+      "source_report": "processed_data\\sportsman_permit_report.json",
       "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
     },
     {
@@ -18,25 +18,25 @@
       "row_count": 2,
       "hunt_code_count": 1,
       "duplicate_runtime_key_count": 0,
-      "source_report": "D:\\HUNT-BUILDER-TEMP\\bear_restricted_20260701_032527\\youth_draw_report.json",
+      "source_report": "processed_data\\youth_draw_report.json",
       "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
     },
     {
       "runtime_promotion_family": "PREFERENCE_DEDICATED_HUNTER_DEER",
       "runtime_promotion_status": "PROMOTED_TO_RUNTIME",
-      "row_count": 1430,
+      "row_count": 775,
       "hunt_code_count": 31,
       "duplicate_runtime_key_count": 0,
-      "source_report": "D:\\HUNT-BUILDER-TEMP\\bear_restricted_20260701_032527\\dedicated_hunter_report.json",
+      "source_report": "processed_data\\dedicated_hunter_report.json",
       "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
     },
     {
       "runtime_promotion_family": "BONUS_TURKEY",
       "runtime_promotion_status": "PROMOTED_TO_RUNTIME",
-      "row_count": 240,
+      "row_count": 132,
       "hunt_code_count": 5,
       "duplicate_runtime_key_count": 0,
-      "source_report": "D:\\HUNT-BUILDER-TEMP\\bear_restricted_20260701_032527\\turkey_bonus_report.json",
+      "source_report": "processed_data\\turkey_bonus_report.json",
       "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
     },
     {
@@ -45,7 +45,7 @@
       "row_count": 232,
       "hunt_code_count": 5,
       "duplicate_runtime_key_count": 0,
-      "source_report": "D:\\HUNT-BUILDER-TEMP\\bear_restricted_20260701_032527\\youth_turkey_report.json",
+      "source_report": "processed_data\\youth_turkey_report.json",
       "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
     }
   ],

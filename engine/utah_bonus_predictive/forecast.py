@@ -82,6 +82,36 @@ def probability_component(row: dict[str, str], field: str, fallback: float | Non
     return "" if value is None else f"{value:.6f}"
 
 
+def public_permit_authority_for_row(row: dict[str, str], year: str, residency: str) -> int | None:
+    """Return hunt-level published permits when source truth carries them.
+
+    Point-row ``total_permits`` is a drawn/successful count at that point level.
+    When canonical truth has explicit ``permits_<year>_*`` columns, those are the
+    hunt-level public permit authority and should not be replaced by a sum of
+    point-row successful applicants.
+    """
+    suffix = ""
+    if residency == "Resident":
+        suffix = "res"
+    elif residency == "Nonresident":
+        suffix = "nr"
+    elif residency in {"All", "Total", "total"}:
+        suffix = "total"
+
+    candidates: list[object] = []
+    if year:
+        if suffix:
+            candidates.append(row.get(f"permits_{year}_{suffix}"))
+        candidates.append(row.get(f"public_permits_{year}"))
+    if suffix:
+        candidates.append(row.get(f"public_permits_{suffix}"))
+
+    value = first_nonempty(*candidates)
+    if value == "":
+        return None
+    return to_int(value)
+
+
 def build_truth_indexes(
     truth_rows: list[dict[str, str]],
 ) -> tuple[
@@ -90,6 +120,7 @@ def build_truth_indexes(
     dict[str, dict[str, str]],
 ]:
     permits: dict[tuple[str, str, str], dict[str, int]] = defaultdict(lambda: {"public": 0, "bonus": 0, "regular": 0})
+    public_authority_keys: set[tuple[str, str, str]] = set()
     ladders: dict[tuple[str, str, str], dict[int, dict[str, int]]] = defaultdict(
         lambda: defaultdict(lambda: {"eligible": 0, "bonus": 0, "regular": 0, "total": 0})
     )
@@ -106,9 +137,15 @@ def build_truth_indexes(
         regular = to_int(row.get("regular_permits"))
         total = to_int(row.get("total_permits"))
 
-        permits[(year, hunt_code, residency)]["public"] += total
-        permits[(year, hunt_code, residency)]["bonus"] += bonus
-        permits[(year, hunt_code, residency)]["regular"] += regular
+        permit_key = (year, hunt_code, residency)
+        public_authority = public_permit_authority_for_row(row, year, residency)
+        if public_authority is not None:
+            permits[permit_key]["public"] = public_authority
+            public_authority_keys.add(permit_key)
+        elif permit_key not in public_authority_keys:
+            permits[permit_key]["public"] += total
+        permits[permit_key]["bonus"] += bonus
+        permits[permit_key]["regular"] += regular
 
         if points_text.isdigit():
             points = int(points_text)
@@ -184,6 +221,10 @@ def materialize_prediction_rows(
     prior_year = forecast_year - 1
     forecast_year_text = str(forecast_year)
     prior_year_text = str(prior_year)
+    # The runtime contract still carries fixed 2025/2026 quota comparison
+    # fields. Keep those fields anchored even when the forecast target moves
+    # forward; ladder/applicant history can still use forecast_year - 1 below.
+    legacy_prior_permit_year_text = "2025" if forecast_year >= 2026 else prior_year_text
 
     for row in ml_rows:
         hunt_code = (row.get("hunt_code") or "").upper().strip()
@@ -193,11 +234,16 @@ def materialize_prediction_rows(
             continue
         points = int(points_text)
 
-        prior = permits.get((prior_year_text, hunt_code, residency), {"public": 0, "bonus": 0, "regular": 0})
+        prior = permits.get((legacy_prior_permit_year_text, hunt_code, residency), {"public": 0, "bonus": 0, "regular": 0})
         forecast = permits.get((forecast_year_text, hunt_code, residency))
         row_quota_text = first_nonempty(row.get("quota_2026_total"), row.get("public_permits_2026"))
         row_quota_total = to_int(row_quota_text) if row_quota_text != "" else None
         public_permits_2026 = row_quota_total if row_quota_total is not None else (forecast["public"] if forecast and forecast["public"] > 0 else prior["public"])
+        quota_source_year = first_nonempty(row.get("quota_source_year"))
+        if row_quota_text != "":
+            quota_source_year = "2026"
+        elif quota_source_year == "":
+            quota_source_year = forecast_year_text
         split = split_utah_bonus_permits(public_permits_2026)
         max_pool_text = first_nonempty(row.get("quota_2026_max_pool"))
         random_pool_text = first_nonempty(row.get("quota_2026_random_pool"))
@@ -284,7 +330,7 @@ def materialize_prediction_rows(
             "draw_outlook": row.get("draw_outlook", ""),
             "point_pool_zone": point_pool_zone,
             "quota_source_status": row.get("quota_source_status", "official"),
-            "quota_source_year": row.get("quota_source_year", forecast_year_text) or forecast_year_text,
+            "quota_source_year": quota_source_year,
             "quota_source_file": row.get("quota_source_file", OFFICIAL_2026_QUOTA_SOURCE_FILE) or OFFICIAL_2026_QUOTA_SOURCE_FILE,
             "quota_2026_total": public_permits_2026,
             "quota_2026_max_pool": max_point_permits_2026,

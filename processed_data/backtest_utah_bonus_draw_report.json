@@ -15,8 +15,8 @@
   "nonnull_counts": {
     "mean_absolute_error_applicants_at_level": 17356,
     "mean_absolute_error_applicants_above": 17356,
-    "bonus_pool_cutoff_error": 14692,
-    "guaranteed_at_error": 14692,
+    "bonus_pool_cutoff_error": 14687,
+    "guaranteed_at_error": 14687,
     "quota_split_error": 17356,
     "brier_score_by_point_level": 17356,
     "calibration_error_by_probability_bucket": 17356

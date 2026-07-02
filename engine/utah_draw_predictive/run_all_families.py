@@ -448,7 +448,13 @@ def _family_for_legacy_row(row: Mapping[str, object]) -> str:
     if not is_preference:
         return ""
     if effective_hunt_class == "GENERAL_SEASON_DEER" and species == "deer" and hunt_code.startswith("DB") and not hunt_code.startswith(("DB17", "DB18")):
-        return "preference_general_deer"
+        if str(row.get("draw_system_type") or "").strip().upper() == "REFERENCE_ONLY":
+            return ""
+    if str(row.get("draw_design") or "").strip().upper() == "REFERENCE_ONLY":
+        return ""
+    if str(row.get("hunt_class") or row.get("hunt_draw_class") or "").strip().upper() in {"LIFETIME_DEER", "LIFETIME_GENERAL_SEASON_DEER", "LIFETIME_GS_DEER"}:
+        return ""
+    return "preference_general_deer"
     if hunt_code.startswith(("DB15", "DB16")) and species == "deer":
         return "preference_general_deer"
     if effective_hunt_class == "DEDICATED_HUNTER_DEER" and species == "deer" and sex_type == "buck":
@@ -833,6 +839,15 @@ def _joined_target_rows(
 
 
 def _prefix_family_guess(row: Mapping[str, object]) -> str:
+    # REFERENCE_ONLY_PREFIX_GUARD_FORCE
+    draw_system_type = str(row.get("draw_system_type") or "").strip().upper()
+    draw_design = str(row.get("draw_design") or "").strip().upper()
+    hunt_class = str(row.get("hunt_class") or row.get("hunt_draw_class") or "").strip().upper()
+    if draw_system_type == "REFERENCE_ONLY" or draw_design == "REFERENCE_ONLY":
+        return ""
+    if hunt_class in {"LIFETIME_DEER", "LIFETIME_GENERAL_SEASON_DEER", "LIFETIME_GS_DEER"}:
+        return ""
+    # END_REFERENCE_ONLY_PREFIX_GUARD_FORCE
     if _draw_system(row).upper() in {"REFERENCE_ONLY", "AVAILABILITY_ONLY", "TRIBAL"}:
         return ""
     hunt_code = _clean(row.get("hunt_code")).upper()

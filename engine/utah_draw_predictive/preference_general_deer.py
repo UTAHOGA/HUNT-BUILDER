@@ -62,6 +62,8 @@ def _output_residency(residency: str) -> str:
 
 def _effective_draw_pool(row: Mapping[str, object]) -> str:
     draw_pool = _clean_lower(row.get("draw_pool"))
+    if draw_pool == "preference_general_season_buck_deer":
+        return "adult_general_deer"
     source_text = " ".join(
         _clean_lower(row.get(key))
         for key in ("hunt_class", "hunt_draw_class", "draw_class_type", "source_file")
@@ -164,7 +166,7 @@ def _looks_like_standard_pool(row: Mapping[str, object]) -> bool:
     hunt_draw_class = _clean_lower(row.get("hunt_draw_class") or row.get("draw_class_type"))
     if _is_youth_general_deer_preference(row):
         return True
-    if draw_pool not in {"", "standard", "adult_general_deer"}:
+    if draw_pool not in {"", "standard", "adult_general_deer", "preference_general_season_buck_deer"}:
         return False
     if hunt_class in {"", "public", "general season"}:
         return True

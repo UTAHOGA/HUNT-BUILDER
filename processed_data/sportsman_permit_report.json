@@ -1,13 +1,17 @@
 {
-  "forecast_year": 2026,
+  "forecast_year": 2027,
   "source_years": [
+    2018,
+    2019,
+    2020,
     2021,
     2022,
     2023,
     2024,
-    2025
+    2025,
+    2026
   ],
-  "sportsman_source_year": 2025,
+  "sportsman_source_year": 2026,
   "sportsman_expected_code_count": 10,
   "sportsman_source_code_count": 10,
   "sportsman_code_count_guardrail": "PASS",

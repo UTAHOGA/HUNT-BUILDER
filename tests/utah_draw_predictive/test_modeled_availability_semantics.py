@@ -18,6 +18,7 @@ DRE_PATH = REPO / "processed_data" / "draw_reality_engine_predictive_v2.csv"
 REVIEW_PATH = REPO / "processed_data" / "modeled_availability_review_report.json"
 COVERAGE_PATH = REPO / "processed_data" / "draw_system_coverage_report.json"
 MOUNTAIN_LION_REPORT_PATH = REPO / "processed_data" / "mountain_lion_availability_report.json"
+MOUNTAIN_LION_PREDICTIONS_PATH = REPO / "processed_data" / "mountain_lion_availability_predictions_v1.csv"
 BEAR_REPORT_PATH = REPO / "processed_data" / "bear_report.json"
 GPT_REVIEW_PATH = REPO / "processed_data" / "gpt_work_review_report.json"
 
@@ -76,16 +77,18 @@ def test_modeled_availability_total_count_matches_report() -> None:
 
 
 def test_mountain_lion_availability_accounts_for_120_rows() -> None:
-    rows = [row for row in _availability_rows() if row.get("draw_system_type") == "COUGAR_LICENSE_BASED"]
+    rows = [row for row in _read_csv(MOUNTAIN_LION_PREDICTIONS_PATH) if row.get("draw_system_type") == "COUGAR_LICENSE_BASED"]
     report = _read_json(MOUNTAIN_LION_REPORT_PATH)
     assert len(rows) == 120
     assert _nonnull(rows, "p_draw") == 0
-    assert _nonnull(rows, "p_availability") == 120
-    assert _nonnull(rows, "availability_pct") == 120
-    assert report["modeled_availability_row_count"] == 120
+    assert _nonnull(rows, "p_availability") == 0
+    assert _nonnull(rows, "availability_pct") == 0
+    assert all(row.get("algorithm_status") == "REFERENCE_LICENSE_BASED_NO_DRAW" for row in rows)
+    assert report["modeled_availability_row_count"] == 0
+    assert report["reference_license_based_no_draw_row_count"] == 120
     assert report["p_draw_non_null_count"] == 0
-    assert report["p_availability_non_null_count"] == 120
-    assert report["availability_pct_non_null_count"] == 120
+    assert report["p_availability_non_null_count"] == 0
+    assert report["availability_pct_non_null_count"] == 0
 
 
 def test_bear_availability_rows_are_not_draw_odds() -> None:

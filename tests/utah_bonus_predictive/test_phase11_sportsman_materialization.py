@@ -18,7 +18,8 @@ def test_phase11_sportsman_materialization_uses_official_odds_source() -> None:
     report = json.loads(report_path.read_text(encoding="utf-8"))
 
     assert len(rows) == 10
-    assert report["sportsman_source_year"] == 2025
+    assert report["sportsman_source_year"] == 2026
+    assert {row["sportsman_source_year"] for row in rows} == {"2026"}
     assert report["sportsman_rows_reviewed"] == 10
     assert report["sportsman_rows_modeled"] == 10
     assert report["sportsman_rows_pending"] == 0

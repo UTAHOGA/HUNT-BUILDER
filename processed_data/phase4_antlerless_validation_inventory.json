@@ -1,22 +1,25 @@
 {
-  "forecast_year": 2026,
+  "forecast_year": 2027,
   "source_years": [
+    2018,
+    2019,
+    2020,
     2021,
     2022,
     2023,
     2024,
-    2025
+    2025,
+    2026
   ],
-  "modeled_rows": 6182,
+  "modeled_rows": 2677,
   "modeled_hunt_codes_by_type": {
-    "PREFERENCE_ANTLERLESS_DEER": 17,
-    "PREFERENCE_ANTLERLESS_ELK": 114,
-    "PREFERENCE_DOE_PRONGHORN": 16
+    "PREFERENCE_ANTLERLESS_ELK": 103,
+    "PREFERENCE_DOE_PRONGHORN": 15,
+    "PREFERENCE_ANTLERLESS_DEER": 16
   },
-  "modeled_inventory_rows": 281,
+  "modeled_inventory_rows": 134,
   "modeled_inventory_residency_counts": {
-    "Nonresident": 134,
-    "Resident": 147
+    "": 134
   },
-  "csv": "D:\\HUNT-BUILDER-TEMP\\bear_restricted_20260701_032527\\phase4_antlerless_validation_inventory.csv"
+  "csv": "processed_data\\phase4_antlerless_validation_inventory.csv"
 }

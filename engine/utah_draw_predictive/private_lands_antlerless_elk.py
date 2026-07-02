@@ -9,7 +9,7 @@ from typing import Iterable, Mapping
 from engine.utah_bonus_predictive.rules import MODEL_VERSION
 
 from . import (
-    ALGORITHM_STATUS_MODELED_AVAILABILITY,
+    ALGORITHM_STATUS_MODELED_ALLOCATION,
     StrategySpec,
     TARGET_SCOPE_TARGET,
 )
@@ -41,7 +41,7 @@ STRATEGY_SPECS = [
     StrategySpec(
         draw_system_type=DRAW_SYSTEM_TYPE,
         module_name="engine.utah_draw_predictive.private_lands_antlerless_elk",
-        algorithm_status=ALGORITHM_STATUS_MODELED_AVAILABILITY,
+        algorithm_status=ALGORITHM_STATUS_MODELED_ALLOCATION,
         target_scope=TARGET_SCOPE_TARGET,
         reason="Private-lands-only antlerless elk is an O.T.C. capped-permit stream, not preference or bonus draw odds.",
         modeled_by_engine=True,
@@ -194,8 +194,8 @@ def build_private_lands_antlerless_elk_predictions(
         source_file = _clean(source_meta.get("source_file")) or _clean(truth_meta.get("source_file")) or "DATABASE.csv"
         source_files.add(source_file)
 
-        algorithm_status = "MODELED_AVAILABILITY" if permits_allotted > 0 else "IN_SCOPE_MODEL_PENDING"
-        capped_permit_status = "OTC CAPPED PERMITS KNOWN / REMAINING UNKNOWN" if permits_allotted > 0 else "SOURCE MISSING"
+        algorithm_status = "MODELED_ALLOCATION" if permits_allotted > 0 else "IN_SCOPE_MODEL_PENDING"
+        capped_permit_status = "ALLOCATION KNOWN / REMAINING UNKNOWN" if permits_allotted > 0 else "SOURCE MISSING"
         availability_status = capped_permit_status
         season_status = "SEASON DATES PRESENT" if season_dates else "SEASON DATES MISSING"
         data_quality_flags = []
@@ -283,7 +283,7 @@ def build_private_lands_antlerless_elk_predictions(
         "hunt_code_count": len({row.get("hunt_code", "") for row in rows if _clean(row.get("hunt_code"))}),
         "unit_count": len({row.get("unit", "") for row in rows if _clean(row.get("unit"))}),
         "rows_by_algorithm_status": {
-            "MODELED_AVAILABILITY": len(modeled_rows),
+            "MODELED_ALLOCATION": len(modeled_rows),
             "IN_SCOPE_MODEL_PENDING": len(pending_rows),
             "EXCLUDED_NOT_PREDICTIVE_DRAW": 0,
         },

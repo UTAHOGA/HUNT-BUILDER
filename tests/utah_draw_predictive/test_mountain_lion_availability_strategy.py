@@ -40,6 +40,10 @@ def test_mountain_lion_rows_are_reference_license_based_no_draw() -> None:
     assert all((row.get("season_status") or "").strip() == "YEAR_ROUND_OPEN" for row in rows)
     assert all((row.get("rule_status") or "").strip() == "STATEWIDE_OTC_YEAR_ROUND" for row in rows)
     assert all((row.get("unit_status") or "").strip() == "OPEN" for row in rows)
-    assert all((row.get("season_start") or "").strip() == "2026-01-01" for row in rows)
-    assert all((row.get("season_end") or "").strip() == "2026-12-31" for row in rows)
+    forecast_years = {(row.get("forecast_year") or row.get("year") or "").strip() for row in rows}
+    assert len(forecast_years) == 1
+    forecast_year = forecast_years.pop()
+    assert forecast_year
+    assert all((row.get("season_start") or "").strip() == f"{forecast_year}-01-01" for row in rows)
+    assert all((row.get("season_end") or "").strip() == f"{forecast_year}-12-31" for row in rows)
 

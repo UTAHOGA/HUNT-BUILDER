@@ -59,6 +59,8 @@ def test_draw_system_coverage_has_modeled_availability_section() -> None:
     coverage = _read_json(COVERAGE_PATH)
     section = coverage["modeled_availability"]
     assert section["modeled_availability_total_row_count"] >= 0
-    assert "COUGAR_LICENSE_BASED" in section["modeled_availability_by_draw_system_type"]
+    assert "COUGAR_LICENSE_BASED" not in section["modeled_availability_by_draw_system_type"]
+    assert section["mountain_lion_cougar_modeled_availability_row_count"] == 0
+    assert coverage["phase10_mountain_lion"]["mountain_lion_cougar_reference_license_based_no_draw"] is True
     assert section["modeled_availability_pass"] is True
 
