@@ -1,7 +1,7 @@
 {
   "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29",
-  "promoted_family_count": 5,
-  "promoted_row_count": 1914,
+  "promoted_family_count": 6,
+  "promoted_row_count": 3546,
   "families": [
     {
       "runtime_promotion_family": "SPORTSMAN_RANDOM_ONLY",
@@ -24,17 +24,26 @@
     {
       "runtime_promotion_family": "PREFERENCE_DEDICATED_HUNTER_DEER",
       "runtime_promotion_status": "PROMOTED_TO_RUNTIME",
-      "row_count": 1430,
+      "row_count": 503,
       "hunt_code_count": 31,
       "duplicate_runtime_key_count": 0,
       "source_report": "processed_data\\dedicated_hunter_report.json",
       "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
     },
     {
+      "runtime_promotion_family": "BEAR_DRAW",
+      "runtime_promotion_status": "PROMOTED_TO_RUNTIME",
+      "row_count": 2615,
+      "hunt_code_count": 100,
+      "duplicate_runtime_key_count": 0,
+      "source_report": "processed_data\\bear_report.json",
+      "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
+    },
+    {
       "runtime_promotion_family": "BONUS_TURKEY",
       "runtime_promotion_status": "PROMOTED_TO_RUNTIME",
-      "row_count": 240,
-      "hunt_code_count": 5,
+      "row_count": 184,
+      "hunt_code_count": 9,
       "duplicate_runtime_key_count": 0,
       "source_report": "processed_data\\turkey_bonus_report.json",
       "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
@@ -52,7 +61,6 @@
   "promotion_ready": true,
   "excluded_from_this_promotion": [
     "MAX_WEIGHTED_SPLIT_PENDING_CHALLENGE_TEST",
-    "BLACK_BEAR_PENDING_ROW_RECONCILIATION",
     "CWMU_CONSERVATION_PRIVATE_LAND_REFERENCE_ONLY"
   ],
   "runtime_promotion_columns": [
@@ -63,5 +71,9 @@
     "runtime_promotion_source_report",
     "runtime_promotion_note"
   ],
-  "permit_source_field_contract": "NOT_REQUIRED_FOR_RUNTIME_PROMOTION; permit authority is carried by permits_2026_* fields, public_permits_2026 where applicable, and reason_codes."
+  "permit_source_field_contract": "NOT_REQUIRED_FOR_RUNTIME_PROMOTION; permit authority is carried by permits_2026_* fields, public_permits_2026 where applicable, and reason_codes.",
+  "active_runtime_output_dir": "processed_data",
+  "promotion_source_audit": "audits/scorable_engine_rows/20260702_bear_pending_reconciled_2027",
+  "promotion_gate_audit": "audits/runtime_production_gate/20260702_133421_bear_reconciled_candidate_gate",
+  "promoted_to_active_runtime_at": "2026-07-02T19:36:04+00:00"
 }

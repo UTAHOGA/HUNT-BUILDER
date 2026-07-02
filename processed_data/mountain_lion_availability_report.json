@@ -1,5 +1,5 @@
 {
-  "forecast_year": 2026,
+  "forecast_year": 2027,
   "source_years": [
     2018,
     2019,
@@ -8,7 +8,8 @@
     2022,
     2023,
     2024,
-    2025
+    2025,
+    2026
   ],
   "total_mountain_lion_cougar_rows_reviewed": 120,
   "active_predictive_cougar_rows": 120,
@@ -26,7 +27,7 @@
     "OPEN": 120
   },
   "season_date_coverage_distribution": {
-    "2026-01-01 to 2026-12-31": 120
+    "2027-01-01 to 2027-12-31": 120
   },
   "p_draw_non_null_count": 0,
   "p_draw_pct_non_null_count": 0,

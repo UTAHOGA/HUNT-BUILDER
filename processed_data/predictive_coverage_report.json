@@ -1,0 +1,25 @@
+{
+  "total_historical_backtest_hunt_codes": 1452,
+  "total_forecast_hunt_codes": 878,
+  "total_active_2027_forecast_eligible_hunt_codes": 473,
+  "count_excluded_not_OIL_LE_PLE": 536,
+  "count_excluded_not_active_in_2027": 0,
+  "count_excluded_missing_forecast_quota": 280,
+  "count_excluded_missing_required_metadata": 0,
+  "count_excluded_hunt_code_changed_or_not_crosswalked": 157,
+  "count_excluded_other_reason": 3,
+  "count_excluded_missing_model_input_or_not_in_predictive_draft": 3,
+  "forecast_codes_match_active_eligible_universe": false,
+  "active_eligible_codes_missing_from_forecast": 0,
+  "forecast_codes_outside_active_eligible_universe": 405,
+  "reason_counts": {
+    "included_forecast": 878,
+    "not_OIL_LE_PLE": 536,
+    "not_active_in_2027": 0,
+    "missing_forecast_quota": 280,
+    "missing_required_metadata": 0,
+    "hunt_code_changed_or_not_crosswalked": 157,
+    "other_missing_model_input": 3
+  },
+  "source_csv": "audits\\scorable_engine_rows\\20260702_bear_pending_reconciled_2027\\predictive_coverage_report.csv"
+}

@@ -1,0 +1,14 @@
+{
+  "rows": 38647,
+  "unique_hunt_codes": 878,
+  "years": [
+    "2027"
+  ],
+  "forecast_year": 2027,
+  "source_years": "2018-2026",
+  "source_years_used_nonnull": 38647,
+  "source": "data_model\\runtime_drafts\\predictive_bonus_engine_2027.materialized.csv",
+  "command_used": "python -m engine.utah_bonus_predictive.materialize --output-dir audits\\scorable_engine_rows\\20260702_bear_pending_reconciled_2027 --forecast-year 2027 --history-years 2018,2019,2020,2021,2022,2023,2024,2025,2026 --skip-upstream",
+  "hunt_code_reconciliation_required_rows": 0,
+  "hunt_code_reconciliation_required_report": "audits\\scorable_engine_rows\\20260702_bear_pending_reconciled_2027\\hunt_code_reconciliation_required_rows.csv"
+}
