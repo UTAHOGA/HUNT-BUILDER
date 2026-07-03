@@ -190,7 +190,7 @@ def _report_lines(audit_dir: Path, counts: Sequence[Mapping[str, str]], leakage:
         "- Normalized historical split-residency ladder columns without fake eligibility defaults.",
         "- Added an actual source-year/target-year runner for historical preference-family validation.",
         "- Runs Sportsman as its own resident-only random draw stream from yearly Sportsman draw-result sources.",
-        "- Classifies/deferred bear and youth families until their separate target-year runners are promoted.",
+        "- Runs bear, youth turkey, and youth draw through deduped historical target adapters.",
         "",
         "## Result",
         "",

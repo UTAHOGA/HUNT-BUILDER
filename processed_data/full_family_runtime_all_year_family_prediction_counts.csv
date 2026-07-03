@@ -1,82 +1,82 @@
 source_year,target_year,family,readiness_status,input_truth_rows,current_target_rows,normalized_ladder_rows,permit_accessor_rows_ok,joined_source_target_rows,prediction_rows,output_path,status,blocker_if_failed
-2018,2019,preference_general_deer,READY_TRUTH_AND_RAW_FILES,2068,2068,4136,2068,2068,4324,audits\full_family_runtime_prediction_20260703_024059\runs\2019\predictions\2018_2019_preference_general_deer.csv,PASS,
-2018,2019,dedicated_hunter,READY_TRUTH_AND_RAW_FILES,638,638,1276,638,638,1138,audits\full_family_runtime_prediction_20260703_024059\runs\2019\predictions\2018_2019_dedicated_hunter.csv,PASS,
-2018,2019,preference_antlerless_deer,READY_TRUTH_AND_RAW_FILES,561,561,1122,561,561,954,audits\full_family_runtime_prediction_20260703_024059\runs\2019\predictions\2018_2019_preference_antlerless_deer.csv,PASS,
-2018,2019,preference_antlerless_elk,READY_TRUTH_AND_RAW_FILES,2771,2771,5542,2771,2771,4734,audits\full_family_runtime_prediction_20260703_024059\runs\2019\predictions\2018_2019_preference_antlerless_elk.csv,PASS,
-2018,2019,preference_doe_pronghorn,READY_TRUTH_AND_RAW_FILES,493,493,986,493,493,846,audits\full_family_runtime_prediction_20260703_024059\runs\2019\predictions\2018_2019_preference_doe_pronghorn.csv,PASS,
-2018,2019,sportsman,READY_TRUTH_AND_RAW_FILES,11,11,11,11,11,11,audits\full_family_runtime_prediction_20260703_024059\runs\2019\predictions\2018_2019_sportsman.csv,PASS,
-2018,2019,bonus_bear,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: bear target-year source selection is still under repair
-2018,2019,youth_turkey,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: youth turkey historical target-year runner wiring is not promoted
-2018,2019,youth_draw,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: youth draw historical target-year runner wiring is not promoted
-2019,2020,preference_general_deer,READY_TRUTH_AND_RAW_FILES,1628,1628,3256,1628,1628,3404,audits\full_family_runtime_prediction_20260703_024059\runs\2020\predictions\2019_2020_preference_general_deer.csv,PASS,
-2019,2020,dedicated_hunter,READY_TRUTH_AND_RAW_FILES,638,638,1276,638,638,1822,audits\full_family_runtime_prediction_20260703_024059\runs\2020\predictions\2019_2020_dedicated_hunter.csv,PASS,
-2019,2020,preference_antlerless_deer,READY_TRUTH_AND_RAW_FILES,629,629,1258,629,629,774,audits\full_family_runtime_prediction_20260703_024059\runs\2020\predictions\2019_2020_preference_antlerless_deer.csv,PASS,
-2019,2020,preference_antlerless_elk,READY_TRUTH_AND_RAW_FILES,2975,2975,5950,2975,2975,2088,audits\full_family_runtime_prediction_20260703_024059\runs\2020\predictions\2019_2020_preference_antlerless_elk.csv,PASS,
-2019,2020,preference_doe_pronghorn,READY_TRUTH_AND_RAW_FILES,578,578,1156,578,578,900,audits\full_family_runtime_prediction_20260703_024059\runs\2020\predictions\2019_2020_preference_doe_pronghorn.csv,PASS,
-2019,2020,sportsman,READY_TRUTH_AND_RAW_FILES,11,11,11,11,11,11,audits\full_family_runtime_prediction_20260703_024059\runs\2020\predictions\2019_2020_sportsman.csv,PASS,
-2019,2020,bonus_bear,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: bear target-year source selection is still under repair
-2019,2020,youth_turkey,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: youth turkey historical target-year runner wiring is not promoted
-2019,2020,youth_draw,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: youth draw historical target-year runner wiring is not promoted
-2020,2021,preference_general_deer,READY_TRUTH_AND_RAW_FILES,1628,6248,3256,6248,4862,3404,audits\full_family_runtime_prediction_20260703_024059\runs\2021\predictions\2020_2021_preference_general_deer.csv,PASS,
-2020,2021,dedicated_hunter,READY_TRUTH_AND_RAW_FILES,638,1144,1276,968,968,1426,audits\full_family_runtime_prediction_20260703_024059\runs\2021\predictions\2020_2021_dedicated_hunter.csv,PASS,
-2020,2021,preference_antlerless_deer,READY_TRUTH_AND_RAW_FILES,476,884,952,884,884,414,audits\full_family_runtime_prediction_20260703_024059\runs\2021\predictions\2020_2021_preference_antlerless_deer.csv,PASS,
-2020,2021,preference_antlerless_elk,READY_TRUTH_AND_RAW_FILES,2705,4490,5406,4490,4490,1458,audits\full_family_runtime_prediction_20260703_024059\runs\2021\predictions\2020_2021_preference_antlerless_elk.csv,PASS,
-2020,2021,preference_doe_pronghorn,READY_TRUTH_AND_RAW_FILES,493,969,986,969,799,828,audits\full_family_runtime_prediction_20260703_024059\runs\2021\predictions\2020_2021_preference_doe_pronghorn.csv,PASS,
-2020,2021,sportsman,READY_TRUTH_AND_RAW_FILES,11,11,11,11,11,11,audits\full_family_runtime_prediction_20260703_024059\runs\2021\predictions\2020_2021_sportsman.csv,PASS,
-2020,2021,bonus_bear,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: bear target-year source selection is still under repair
-2020,2021,youth_turkey,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: youth turkey historical target-year runner wiring is not promoted
-2020,2021,youth_draw,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: youth draw historical target-year runner wiring is not promoted
-2021,2022,preference_general_deer,READY_TRUTH_AND_RAW_FILES,1725,6438,3450,6438,5033,3600,audits\full_family_runtime_prediction_20260703_024059\runs\2022\predictions\2021_2022_preference_general_deer.csv,PASS,
-2021,2022,dedicated_hunter,READY_TRUTH_AND_RAW_FILES,1056,1056,2112,1056,1056,2108,audits\full_family_runtime_prediction_20260703_024059\runs\2022\predictions\2021_2022_dedicated_hunter.csv,PASS,
-2021,2022,preference_antlerless_deer,READY_TRUTH_AND_RAW_FILES,68,799,136,799,102,54,audits\full_family_runtime_prediction_20260703_024059\runs\2022\predictions\2021_2022_preference_antlerless_deer.csv,PASS,
-2021,2022,preference_antlerless_elk,READY_TRUTH_AND_RAW_FILES,408,3604,816,3604,578,468,audits\full_family_runtime_prediction_20260703_024059\runs\2022\predictions\2021_2022_preference_antlerless_elk.csv,PASS,
-2021,2022,preference_doe_pronghorn,READY_TRUTH_AND_RAW_FILES,17,680,34,680,34,36,audits\full_family_runtime_prediction_20260703_024059\runs\2022\predictions\2021_2022_preference_doe_pronghorn.csv,PASS,
-2021,2022,sportsman,READY_TRUTH_AND_RAW_FILES,12,12,12,12,12,12,audits\full_family_runtime_prediction_20260703_024059\runs\2022\predictions\2021_2022_sportsman.csv,PASS,
-2021,2022,bonus_bear,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: bear target-year source selection is still under repair
-2021,2022,youth_turkey,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: youth turkey historical target-year runner wiring is not promoted
-2021,2022,youth_draw,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: youth draw historical target-year runner wiring is not promoted
-2022,2023,preference_general_deer,READY_TRUTH_AND_RAW_FILES,2304,6602,4608,6602,6602,4800,audits\full_family_runtime_prediction_20260703_024059\runs\2023\predictions\2022_2023_preference_general_deer.csv,PASS,
-2022,2023,dedicated_hunter,READY_TRUTH_AND_RAW_FILES,638,1100,1276,1100,1100,2140,audits\full_family_runtime_prediction_20260703_024059\runs\2023\predictions\2022_2023_dedicated_hunter.csv,PASS,
-2022,2023,preference_antlerless_deer,READY_TRUTH_AND_RAW_FILES,414,754,828,754,754,551,audits\full_family_runtime_prediction_20260703_024059\runs\2023\predictions\2022_2023_preference_antlerless_deer.csv,PASS,
-2022,2023,preference_antlerless_elk,READY_TRUTH_AND_RAW_FILES,2844,4544,5688,4544,4544,3914,audits\full_family_runtime_prediction_20260703_024059\runs\2023\predictions\2022_2023_preference_antlerless_elk.csv,PASS,
-2022,2023,preference_doe_pronghorn,READY_TRUTH_AND_RAW_FILES,414,686,828,686,686,665,audits\full_family_runtime_prediction_20260703_024059\runs\2023\predictions\2022_2023_preference_doe_pronghorn.csv,PASS,
-2022,2023,sportsman,READY_TRUTH_AND_RAW_FILES,10,10,10,10,10,10,audits\full_family_runtime_prediction_20260703_024059\runs\2023\predictions\2022_2023_sportsman.csv,PASS,
-2022,2023,bonus_bear,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: bear target-year source selection is still under repair
-2022,2023,youth_turkey,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: youth turkey historical target-year runner wiring is not promoted
-2022,2023,youth_draw,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: youth draw historical target-year runner wiring is not promoted
-2023,2024,preference_general_deer,READY_TRUTH_AND_RAW_FILES,2392,4555,4784,4555,4555,5200,audits\full_family_runtime_prediction_20260703_024059\runs\2024\predictions\2023_2024_preference_general_deer.csv,PASS,
-2023,2024,dedicated_hunter,READY_TRUTH_AND_RAW_FILES,651,1113,1302,1113,1113,2242,audits\full_family_runtime_prediction_20260703_024059\runs\2024\predictions\2023_2024_dedicated_hunter.csv,PASS,
-2023,2024,preference_antlerless_deer,READY_TRUTH_AND_RAW_FILES,360,4296,720,4296,904,4680,audits\full_family_runtime_prediction_20260703_024059\runs\2024\predictions\2023_2024_preference_antlerless_deer.csv,PASS,
-2023,2024,preference_antlerless_elk,READY_TRUTH_AND_RAW_FILES,2880,2880,5760,2880,2880,4080,audits\full_family_runtime_prediction_20260703_024059\runs\2024\predictions\2023_2024_preference_antlerless_elk.csv,PASS,
-2023,2024,preference_doe_pronghorn,READY_TRUTH_AND_RAW_FILES,288,288,576,288,288,460,audits\full_family_runtime_prediction_20260703_024059\runs\2024\predictions\2023_2024_preference_doe_pronghorn.csv,PASS,
-2023,2024,sportsman,READY_TRUTH_AND_RAW_FILES,10,10,10,10,10,10,audits\full_family_runtime_prediction_20260703_024059\runs\2024\predictions\2023_2024_sportsman.csv,PASS,
-2023,2024,bonus_bear,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: bear target-year source selection is still under repair
-2023,2024,youth_turkey,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: youth turkey historical target-year runner wiring is not promoted
-2023,2024,youth_draw,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: youth draw historical target-year runner wiring is not promoted
-2024,2025,preference_general_deer,READY_TRUTH_AND_RAW_FILES,2392,6842,4784,6842,6842,5176,audits\full_family_runtime_prediction_20260703_024059\runs\2025\predictions\2024_2025_preference_general_deer.csv,PASS,
-2024,2025,dedicated_hunter,READY_TRUTH_AND_RAW_FILES,651,1176,1302,1176,1176,2440,audits\full_family_runtime_prediction_20260703_024059\runs\2025\predictions\2024_2025_dedicated_hunter.csv,PASS,
-2024,2025,preference_antlerless_deer,READY_TRUTH_AND_RAW_FILES,323,595,646,595,595,525,audits\full_family_runtime_prediction_20260703_024059\runs\2025\predictions\2024_2025_preference_antlerless_deer.csv,PASS,
-2024,2025,preference_antlerless_elk,READY_TRUTH_AND_RAW_FILES,1881,3369,3762,3369,3369,3969,audits\full_family_runtime_prediction_20260703_024059\runs\2025\predictions\2024_2025_preference_antlerless_elk.csv,PASS,
-2024,2025,preference_doe_pronghorn,READY_TRUTH_AND_RAW_FILES,171,315,342,315,315,378,audits\full_family_runtime_prediction_20260703_024059\runs\2025\predictions\2024_2025_preference_doe_pronghorn.csv,PASS,
-2024,2025,sportsman,READY_TRUTH_AND_RAW_FILES,10,10,10,10,10,10,audits\full_family_runtime_prediction_20260703_024059\runs\2025\predictions\2024_2025_sportsman.csv,PASS,
-2024,2025,bonus_bear,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: bear target-year source selection is still under repair
-2024,2025,youth_turkey,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: youth turkey historical target-year runner wiring is not promoted
-2024,2025,youth_draw,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: youth draw historical target-year runner wiring is not promoted
-2025,2026,preference_general_deer,READY_TRUTH_AND_RAW_FILES,2503,6867,5006,6867,6867,5202,audits\full_family_runtime_prediction_20260703_024059\runs\2026\predictions\2025_2026_preference_general_deer.csv,PASS,
-2025,2026,dedicated_hunter,READY_TRUTH_AND_RAW_FILES,651,1134,1302,1134,1134,2532,audits\full_family_runtime_prediction_20260703_024059\runs\2026\predictions\2025_2026_dedicated_hunter.csv,PASS,
-2025,2026,preference_antlerless_deer,READY_TRUTH_AND_RAW_FILES,400,656,800,656,656,484,audits\full_family_runtime_prediction_20260703_024059\runs\2026\predictions\2025_2026_preference_antlerless_deer.csv,PASS,
-2025,2026,preference_antlerless_elk,READY_TRUTH_AND_RAW_FILES,3360,4992,6720,4992,4992,4730,audits\full_family_runtime_prediction_20260703_024059\runs\2026\predictions\2025_2026_preference_antlerless_elk.csv,PASS,
-2025,2026,preference_doe_pronghorn,READY_TRUTH_AND_RAW_FILES,460,684,920,684,684,660,audits\full_family_runtime_prediction_20260703_024059\runs\2026\predictions\2025_2026_preference_doe_pronghorn.csv,PASS,
-2025,2026,sportsman,READY_TRUTH_AND_RAW_FILES,10,10,10,10,10,10,audits\full_family_runtime_prediction_20260703_024059\runs\2026\predictions\2025_2026_sportsman.csv,PASS,
-2025,2026,bonus_bear,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: bear target-year source selection is still under repair
-2025,2026,youth_turkey,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: youth turkey historical target-year runner wiring is not promoted
-2025,2026,youth_draw,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: youth draw historical target-year runner wiring is not promoted
-2026,2027,preference_general_deer,READY_TRUTH_AND_RAW_FILES,2520,2520,2520,2520,2520,4810,audits\full_family_runtime_prediction_20260703_024059\runs\2027\predictions\2026_2027_preference_general_deer.csv,PASS,
-2026,2027,dedicated_hunter,READY_TRUTH_AND_RAW_FILES,421,421,421,421,421,375,audits\full_family_runtime_prediction_20260703_024059\runs\2027\predictions\2026_2027_dedicated_hunter.csv,PASS,
-2026,2027,preference_antlerless_deer,HELD_OUT_UNRELEASED_ACTUALS,21,21,0,21,0,0,audits\full_family_runtime_prediction_20260703_024059\runs\2027\predictions\2026_2027_preference_antlerless_deer.csv,CLASSIFIED,HELD_OUT_UNRELEASED_2027_ANTLERLESS_DOE_RESULTS
-2026,2027,preference_antlerless_elk,HELD_OUT_UNRELEASED_ACTUALS,210,210,0,201,0,0,audits\full_family_runtime_prediction_20260703_024059\runs\2027\predictions\2026_2027_preference_antlerless_elk.csv,CLASSIFIED,HELD_OUT_UNRELEASED_2027_ANTLERLESS_DOE_RESULTS
-2026,2027,preference_doe_pronghorn,HELD_OUT_UNRELEASED_ACTUALS,25,25,0,25,0,0,audits\full_family_runtime_prediction_20260703_024059\runs\2027\predictions\2026_2027_preference_doe_pronghorn.csv,CLASSIFIED,HELD_OUT_UNRELEASED_2027_ANTLERLESS_DOE_RESULTS
-2026,2027,sportsman,READY_TRUTH_AND_RAW_FILES,10,10,10,10,10,10,audits\full_family_runtime_prediction_20260703_024059\runs\2027\predictions\2026_2027_sportsman.csv,PASS,
-2026,2027,bonus_bear,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: bear target-year source selection is still under repair
-2026,2027,youth_turkey,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: youth turkey historical target-year runner wiring is not promoted
-2026,2027,youth_draw,DEFERRED_WITH_REASON,0,0,,,,0,,CLASSIFIED,DEFERRED_WITH_REASON: youth draw historical target-year runner wiring is not promoted
+2018,2019,preference_general_deer,READY_TRUTH_AND_RAW_FILES,2068,2068,4136,2068,2068,4324,audits\full_family_runtime_prediction_wired_20260703\runs\2019\predictions\2018_2019_preference_general_deer.csv,PASS,
+2018,2019,dedicated_hunter,READY_TRUTH_AND_RAW_FILES,638,638,1276,638,638,1138,audits\full_family_runtime_prediction_wired_20260703\runs\2019\predictions\2018_2019_dedicated_hunter.csv,PASS,
+2018,2019,preference_antlerless_deer,READY_TRUTH_AND_RAW_FILES,561,561,1122,561,561,954,audits\full_family_runtime_prediction_wired_20260703\runs\2019\predictions\2018_2019_preference_antlerless_deer.csv,PASS,
+2018,2019,preference_antlerless_elk,READY_TRUTH_AND_RAW_FILES,2771,2771,5542,2771,2771,4734,audits\full_family_runtime_prediction_wired_20260703\runs\2019\predictions\2018_2019_preference_antlerless_elk.csv,PASS,
+2018,2019,preference_doe_pronghorn,READY_TRUTH_AND_RAW_FILES,493,493,986,493,493,846,audits\full_family_runtime_prediction_wired_20260703\runs\2019\predictions\2018_2019_preference_doe_pronghorn.csv,PASS,
+2018,2019,sportsman,READY_TRUTH_AND_RAW_FILES,11,11,11,11,11,11,audits\full_family_runtime_prediction_wired_20260703\runs\2019\predictions\2018_2019_sportsman.csv,PASS,
+2018,2019,bonus_bear,READY_TRUTH_AND_RAW_FILES,1912,92,1912,92,92,2200,audits\full_family_runtime_prediction_wired_20260703\runs\2019\predictions\2018_2019_bonus_bear.csv,PASS,
+2018,2019,youth_turkey,NO_SOURCE_ROWS_NOT_SCORABLE,0,0,0,0,0,0,audits\full_family_runtime_prediction_wired_20260703\runs\2019\predictions\2018_2019_youth_turkey.csv,PASS,
+2018,2019,youth_draw,READY_TRUTH_AND_RAW_FILES,27,1,27,1,1,2,audits\full_family_runtime_prediction_wired_20260703\runs\2019\predictions\2018_2019_youth_draw.csv,PASS,
+2019,2020,preference_general_deer,READY_TRUTH_AND_RAW_FILES,1628,1628,3256,1628,1628,3404,audits\full_family_runtime_prediction_wired_20260703\runs\2020\predictions\2019_2020_preference_general_deer.csv,PASS,
+2019,2020,dedicated_hunter,READY_TRUTH_AND_RAW_FILES,638,638,1276,638,638,1822,audits\full_family_runtime_prediction_wired_20260703\runs\2020\predictions\2019_2020_dedicated_hunter.csv,PASS,
+2019,2020,preference_antlerless_deer,READY_TRUTH_AND_RAW_FILES,629,629,1258,629,629,774,audits\full_family_runtime_prediction_wired_20260703\runs\2020\predictions\2019_2020_preference_antlerless_deer.csv,PASS,
+2019,2020,preference_antlerless_elk,READY_TRUTH_AND_RAW_FILES,2975,2975,5950,2975,2975,2088,audits\full_family_runtime_prediction_wired_20260703\runs\2020\predictions\2019_2020_preference_antlerless_elk.csv,PASS,
+2019,2020,preference_doe_pronghorn,READY_TRUTH_AND_RAW_FILES,578,578,1156,578,578,900,audits\full_family_runtime_prediction_wired_20260703\runs\2020\predictions\2019_2020_preference_doe_pronghorn.csv,PASS,
+2019,2020,sportsman,READY_TRUTH_AND_RAW_FILES,11,11,11,11,11,11,audits\full_family_runtime_prediction_wired_20260703\runs\2020\predictions\2019_2020_sportsman.csv,PASS,
+2019,2020,bonus_bear,READY_TRUTH_AND_RAW_FILES,3951,98,3951,98,98,2327,audits\full_family_runtime_prediction_wired_20260703\runs\2020\predictions\2019_2020_bonus_bear.csv,PASS,
+2019,2020,youth_turkey,READY_TRUTH_AND_RAW_FILES,252,6,252,6,6,280,audits\full_family_runtime_prediction_wired_20260703\runs\2020\predictions\2019_2020_youth_turkey.csv,PASS,
+2019,2020,youth_draw,READY_TRUTH_AND_RAW_FILES,55,1,55,1,1,2,audits\full_family_runtime_prediction_wired_20260703\runs\2020\predictions\2019_2020_youth_draw.csv,PASS,
+2020,2021,preference_general_deer,READY_TRUTH_AND_RAW_FILES,1628,6248,3256,6248,4862,3404,audits\full_family_runtime_prediction_wired_20260703\runs\2021\predictions\2020_2021_preference_general_deer.csv,PASS,
+2020,2021,dedicated_hunter,READY_TRUTH_AND_RAW_FILES,638,1144,1276,968,968,1426,audits\full_family_runtime_prediction_wired_20260703\runs\2021\predictions\2020_2021_dedicated_hunter.csv,PASS,
+2020,2021,preference_antlerless_deer,READY_TRUTH_AND_RAW_FILES,476,884,952,884,884,414,audits\full_family_runtime_prediction_wired_20260703\runs\2021\predictions\2020_2021_preference_antlerless_deer.csv,PASS,
+2020,2021,preference_antlerless_elk,READY_TRUTH_AND_RAW_FILES,2705,4490,5406,4490,4490,1458,audits\full_family_runtime_prediction_wired_20260703\runs\2021\predictions\2020_2021_preference_antlerless_elk.csv,PASS,
+2020,2021,preference_doe_pronghorn,READY_TRUTH_AND_RAW_FILES,493,969,986,969,799,828,audits\full_family_runtime_prediction_wired_20260703\runs\2021\predictions\2020_2021_preference_doe_pronghorn.csv,PASS,
+2020,2021,sportsman,READY_TRUTH_AND_RAW_FILES,11,11,11,11,11,11,audits\full_family_runtime_prediction_wired_20260703\runs\2021\predictions\2020_2021_sportsman.csv,PASS,
+2020,2021,bonus_bear,READY_TRUTH_AND_RAW_FILES,6053,101,6053,101,101,2333,audits\full_family_runtime_prediction_wired_20260703\runs\2021\predictions\2020_2021_bonus_bear.csv,PASS,
+2020,2021,youth_turkey,READY_TRUTH_AND_RAW_FILES,504,6,504,6,6,276,audits\full_family_runtime_prediction_wired_20260703\runs\2021\predictions\2020_2021_youth_turkey.csv,PASS,
+2020,2021,youth_draw,READY_TRUTH_AND_RAW_FILES,84,1,84,1,1,2,audits\full_family_runtime_prediction_wired_20260703\runs\2021\predictions\2020_2021_youth_draw.csv,PASS,
+2021,2022,preference_general_deer,READY_TRUTH_AND_RAW_FILES,1725,6438,3450,6438,5033,3600,audits\full_family_runtime_prediction_wired_20260703\runs\2022\predictions\2021_2022_preference_general_deer.csv,PASS,
+2021,2022,dedicated_hunter,READY_TRUTH_AND_RAW_FILES,1056,1056,2112,1056,1056,2108,audits\full_family_runtime_prediction_wired_20260703\runs\2022\predictions\2021_2022_dedicated_hunter.csv,PASS,
+2021,2022,preference_antlerless_deer,READY_TRUTH_AND_RAW_FILES,68,799,136,799,102,54,audits\full_family_runtime_prediction_wired_20260703\runs\2022\predictions\2021_2022_preference_antlerless_deer.csv,PASS,
+2021,2022,preference_antlerless_elk,READY_TRUTH_AND_RAW_FILES,408,3604,816,3604,578,468,audits\full_family_runtime_prediction_wired_20260703\runs\2022\predictions\2021_2022_preference_antlerless_elk.csv,PASS,
+2021,2022,preference_doe_pronghorn,READY_TRUTH_AND_RAW_FILES,17,680,34,680,34,36,audits\full_family_runtime_prediction_wired_20260703\runs\2022\predictions\2021_2022_preference_doe_pronghorn.csv,PASS,
+2021,2022,sportsman,READY_TRUTH_AND_RAW_FILES,12,12,12,12,12,12,audits\full_family_runtime_prediction_wired_20260703\runs\2022\predictions\2021_2022_sportsman.csv,PASS,
+2021,2022,bonus_bear,READY_TRUTH_AND_RAW_FILES,8154,101,8154,101,101,2333,audits\full_family_runtime_prediction_wired_20260703\runs\2022\predictions\2021_2022_bonus_bear.csv,PASS,
+2021,2022,youth_turkey,READY_TRUTH_AND_RAW_FILES,756,6,756,6,6,284,audits\full_family_runtime_prediction_wired_20260703\runs\2022\predictions\2021_2022_youth_turkey.csv,PASS,
+2021,2022,youth_draw,READY_TRUTH_AND_RAW_FILES,114,1,114,1,1,2,audits\full_family_runtime_prediction_wired_20260703\runs\2022\predictions\2021_2022_youth_draw.csv,PASS,
+2022,2023,preference_general_deer,READY_TRUTH_AND_RAW_FILES,2304,6602,4608,6602,6602,4800,audits\full_family_runtime_prediction_wired_20260703\runs\2023\predictions\2022_2023_preference_general_deer.csv,PASS,
+2022,2023,dedicated_hunter,READY_TRUTH_AND_RAW_FILES,638,1100,1276,1100,1100,2140,audits\full_family_runtime_prediction_wired_20260703\runs\2023\predictions\2022_2023_dedicated_hunter.csv,PASS,
+2022,2023,preference_antlerless_deer,READY_TRUTH_AND_RAW_FILES,414,754,828,754,754,551,audits\full_family_runtime_prediction_wired_20260703\runs\2023\predictions\2022_2023_preference_antlerless_deer.csv,PASS,
+2022,2023,preference_antlerless_elk,READY_TRUTH_AND_RAW_FILES,2844,4544,5688,4544,4544,3914,audits\full_family_runtime_prediction_wired_20260703\runs\2023\predictions\2022_2023_preference_antlerless_elk.csv,PASS,
+2022,2023,preference_doe_pronghorn,READY_TRUTH_AND_RAW_FILES,414,686,828,686,686,665,audits\full_family_runtime_prediction_wired_20260703\runs\2023\predictions\2022_2023_preference_doe_pronghorn.csv,PASS,
+2022,2023,sportsman,READY_TRUTH_AND_RAW_FILES,10,10,10,10,10,10,audits\full_family_runtime_prediction_wired_20260703\runs\2023\predictions\2022_2023_sportsman.csv,PASS,
+2022,2023,bonus_bear,READY_TRUTH_AND_RAW_FILES,10267,97,10267,97,97,2346,audits\full_family_runtime_prediction_wired_20260703\runs\2023\predictions\2022_2023_bonus_bear.csv,PASS,
+2022,2023,youth_turkey,READY_TRUTH_AND_RAW_FILES,1008,7,1008,6,7,240,audits\full_family_runtime_prediction_wired_20260703\runs\2023\predictions\2022_2023_youth_turkey.csv,PASS,
+2022,2023,youth_draw,READY_TRUTH_AND_RAW_FILES,145,1,145,1,1,2,audits\full_family_runtime_prediction_wired_20260703\runs\2023\predictions\2022_2023_youth_draw.csv,PASS,
+2023,2024,preference_general_deer,READY_TRUTH_AND_RAW_FILES,2392,4555,4784,4555,4555,5200,audits\full_family_runtime_prediction_wired_20260703\runs\2024\predictions\2023_2024_preference_general_deer.csv,PASS,
+2023,2024,dedicated_hunter,READY_TRUTH_AND_RAW_FILES,651,1113,1302,1113,1113,2242,audits\full_family_runtime_prediction_wired_20260703\runs\2024\predictions\2023_2024_dedicated_hunter.csv,PASS,
+2023,2024,preference_antlerless_deer,READY_TRUTH_AND_RAW_FILES,360,4296,720,4296,904,4680,audits\full_family_runtime_prediction_wired_20260703\runs\2024\predictions\2023_2024_preference_antlerless_deer.csv,PASS,
+2023,2024,preference_antlerless_elk,READY_TRUTH_AND_RAW_FILES,2880,2880,5760,2880,2880,4080,audits\full_family_runtime_prediction_wired_20260703\runs\2024\predictions\2023_2024_preference_antlerless_elk.csv,PASS,
+2023,2024,preference_doe_pronghorn,READY_TRUTH_AND_RAW_FILES,288,288,576,288,288,460,audits\full_family_runtime_prediction_wired_20260703\runs\2024\predictions\2023_2024_preference_doe_pronghorn.csv,PASS,
+2023,2024,sportsman,READY_TRUTH_AND_RAW_FILES,10,10,10,10,10,10,audits\full_family_runtime_prediction_wired_20260703\runs\2024\predictions\2023_2024_sportsman.csv,PASS,
+2023,2024,bonus_bear,READY_TRUTH_AND_RAW_FILES,12380,97,12380,97,97,2436,audits\full_family_runtime_prediction_wired_20260703\runs\2024\predictions\2023_2024_bonus_bear.csv,PASS,
+2023,2024,youth_turkey,READY_TRUTH_AND_RAW_FILES,1248,7,1248,5,7,312,audits\full_family_runtime_prediction_wired_20260703\runs\2024\predictions\2023_2024_youth_turkey.csv,PASS,
+2023,2024,youth_draw,READY_TRUTH_AND_RAW_FILES,176,1,176,1,1,2,audits\full_family_runtime_prediction_wired_20260703\runs\2024\predictions\2023_2024_youth_draw.csv,PASS,
+2024,2025,preference_general_deer,READY_TRUTH_AND_RAW_FILES,2392,6842,4784,6842,6842,5176,audits\full_family_runtime_prediction_wired_20260703\runs\2025\predictions\2024_2025_preference_general_deer.csv,PASS,
+2024,2025,dedicated_hunter,READY_TRUTH_AND_RAW_FILES,651,1176,1302,1176,1176,2440,audits\full_family_runtime_prediction_wired_20260703\runs\2025\predictions\2024_2025_dedicated_hunter.csv,PASS,
+2024,2025,preference_antlerless_deer,READY_TRUTH_AND_RAW_FILES,323,595,646,595,595,525,audits\full_family_runtime_prediction_wired_20260703\runs\2025\predictions\2024_2025_preference_antlerless_deer.csv,PASS,
+2024,2025,preference_antlerless_elk,READY_TRUTH_AND_RAW_FILES,1881,3369,3762,3369,3369,3969,audits\full_family_runtime_prediction_wired_20260703\runs\2025\predictions\2024_2025_preference_antlerless_elk.csv,PASS,
+2024,2025,preference_doe_pronghorn,READY_TRUTH_AND_RAW_FILES,171,315,342,315,315,378,audits\full_family_runtime_prediction_wired_20260703\runs\2025\predictions\2024_2025_preference_doe_pronghorn.csv,PASS,
+2024,2025,sportsman,READY_TRUTH_AND_RAW_FILES,10,10,10,10,10,10,audits\full_family_runtime_prediction_wired_20260703\runs\2025\predictions\2024_2025_sportsman.csv,PASS,
+2024,2025,bonus_bear,READY_TRUTH_AND_RAW_FILES,14493,97,14493,97,97,2436,audits\full_family_runtime_prediction_wired_20260703\runs\2025\predictions\2024_2025_bonus_bear.csv,PASS,
+2024,2025,youth_turkey,READY_TRUTH_AND_RAW_FILES,1488,7,1488,5,7,316,audits\full_family_runtime_prediction_wired_20260703\runs\2025\predictions\2024_2025_youth_turkey.csv,PASS,
+2024,2025,youth_draw,READY_TRUTH_AND_RAW_FILES,208,1,208,1,1,2,audits\full_family_runtime_prediction_wired_20260703\runs\2025\predictions\2024_2025_youth_draw.csv,PASS,
+2025,2026,preference_general_deer,READY_TRUTH_AND_RAW_FILES,2503,6867,5006,6867,6867,5202,audits\full_family_runtime_prediction_wired_20260703\runs\2026\predictions\2025_2026_preference_general_deer.csv,PASS,
+2025,2026,dedicated_hunter,READY_TRUTH_AND_RAW_FILES,651,1134,1302,1134,1134,2532,audits\full_family_runtime_prediction_wired_20260703\runs\2026\predictions\2025_2026_dedicated_hunter.csv,PASS,
+2025,2026,preference_antlerless_deer,READY_TRUTH_AND_RAW_FILES,400,656,800,656,656,484,audits\full_family_runtime_prediction_wired_20260703\runs\2026\predictions\2025_2026_preference_antlerless_deer.csv,PASS,
+2025,2026,preference_antlerless_elk,READY_TRUTH_AND_RAW_FILES,3360,4992,6720,4992,4992,4730,audits\full_family_runtime_prediction_wired_20260703\runs\2026\predictions\2025_2026_preference_antlerless_elk.csv,PASS,
+2025,2026,preference_doe_pronghorn,READY_TRUTH_AND_RAW_FILES,460,684,920,684,684,660,audits\full_family_runtime_prediction_wired_20260703\runs\2026\predictions\2025_2026_preference_doe_pronghorn.csv,PASS,
+2025,2026,sportsman,READY_TRUTH_AND_RAW_FILES,10,10,10,10,10,10,audits\full_family_runtime_prediction_wired_20260703\runs\2026\predictions\2025_2026_sportsman.csv,PASS,
+2025,2026,bonus_bear,READY_TRUTH_AND_RAW_FILES,16801,98,16801,97,98,2528,audits\full_family_runtime_prediction_wired_20260703\runs\2026\predictions\2025_2026_bonus_bear.csv,PASS,
+2025,2026,youth_turkey,READY_TRUTH_AND_RAW_FILES,1728,7,1728,5,7,240,audits\full_family_runtime_prediction_wired_20260703\runs\2026\predictions\2025_2026_youth_turkey.csv,PASS,
+2025,2026,youth_draw,READY_TRUTH_AND_RAW_FILES,241,1,241,1,1,2,audits\full_family_runtime_prediction_wired_20260703\runs\2026\predictions\2025_2026_youth_draw.csv,PASS,
+2026,2027,preference_general_deer,READY_TRUTH_AND_RAW_FILES,2520,2520,2520,2520,2520,4810,audits\full_family_runtime_prediction_wired_20260703\runs\2027\predictions\2026_2027_preference_general_deer.csv,PASS,
+2026,2027,dedicated_hunter,READY_TRUTH_AND_RAW_FILES,421,421,421,421,421,375,audits\full_family_runtime_prediction_wired_20260703\runs\2027\predictions\2026_2027_dedicated_hunter.csv,PASS,
+2026,2027,preference_antlerless_deer,HELD_OUT_UNRELEASED_ACTUALS,21,21,0,21,0,0,audits\full_family_runtime_prediction_wired_20260703\runs\2027\predictions\2026_2027_preference_antlerless_deer.csv,CLASSIFIED,HELD_OUT_UNRELEASED_2027_ANTLERLESS_DOE_RESULTS
+2026,2027,preference_antlerless_elk,HELD_OUT_UNRELEASED_ACTUALS,210,210,0,201,0,0,audits\full_family_runtime_prediction_wired_20260703\runs\2027\predictions\2026_2027_preference_antlerless_elk.csv,CLASSIFIED,HELD_OUT_UNRELEASED_2027_ANTLERLESS_DOE_RESULTS
+2026,2027,preference_doe_pronghorn,HELD_OUT_UNRELEASED_ACTUALS,25,25,0,25,0,0,audits\full_family_runtime_prediction_wired_20260703\runs\2027\predictions\2026_2027_preference_doe_pronghorn.csv,CLASSIFIED,HELD_OUT_UNRELEASED_2027_ANTLERLESS_DOE_RESULTS
+2026,2027,sportsman,READY_TRUTH_AND_RAW_FILES,10,10,10,10,10,10,audits\full_family_runtime_prediction_wired_20260703\runs\2027\predictions\2026_2027_sportsman.csv,PASS,
+2026,2027,bonus_bear,READY_TRUTH_AND_RAW_FILES,19617,100,19617,100,100,2586,audits\full_family_runtime_prediction_wired_20260703\runs\2027\predictions\2026_2027_bonus_bear.csv,PASS,
+2026,2027,youth_turkey,READY_TRUTH_AND_RAW_FILES,1862,5,1862,5,5,132,audits\full_family_runtime_prediction_wired_20260703\runs\2027\predictions\2026_2027_youth_turkey.csv,PASS,
+2026,2027,youth_draw,READY_TRUTH_AND_RAW_FILES,243,1,243,1,1,2,audits\full_family_runtime_prediction_wired_20260703\runs\2027\predictions\2026_2027_youth_draw.csv,PASS,

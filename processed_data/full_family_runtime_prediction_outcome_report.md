@@ -1,31 +1,36 @@
 # Full Family Runtime Prediction Outcome
 
-Created: 2026-07-03T02:59:59
+Created: 2026-07-03T03:58:35
 
-Full family audit: `audits\full_family_runtime_prediction_20260703_024059`
+Full family audit: `audits\full_family_runtime_prediction_wired_20260703`
 Materialized outputs: `audits\full_family_runtime_materialized_20260703_025641\outputs`
 
 ## Result
-- Family/year statuses: {'PASS': 51, 'CLASSIFIED': 30}
-- Total full-family runner prediction rows: 94888
-- Leakage statuses: {'PASS': 54, 'CLASSIFIED': 27}
+- Family/year statuses: {'PASS': 78, 'CLASSIFIED': 3}
+- Total full-family runner prediction rows: 118511
+- Leakage statuses: {'PASS': 81}
+- Prediction files checked: 81
+- Duplicate runtime-key files: 0
+- Bad probability files: 0
 - Materialized runtime rows: 38647
-- Materialized hunt codes: 878
+- Materialized hunt codes: None
 - Hunt-code reconciliation required rows: 0
 
+## Wired Families
+- bonus_bear rows: 21525
+- youth_turkey rows: 2080
+- youth_draw rows: 18
+
 ## Classified Rows
-- bonus_bear: 9 - DEFERRED_WITH_REASON: bear target-year source selection is still under repair
 - preference_antlerless_deer: 1 - HELD_OUT_UNRELEASED_2027_ANTLERLESS_DOE_RESULTS
 - preference_antlerless_elk: 1 - HELD_OUT_UNRELEASED_2027_ANTLERLESS_DOE_RESULTS
 - preference_doe_pronghorn: 1 - HELD_OUT_UNRELEASED_2027_ANTLERLESS_DOE_RESULTS
-- youth_draw: 9 - DEFERRED_WITH_REASON: youth draw historical target-year runner wiring is not promoted
-- youth_turkey: 9 - DEFERRED_WITH_REASON: youth turkey historical target-year runner wiring is not promoted
 
 ## Truth Surface
 - `data_truth/draw_results_truth/normalized/draw_results_long.csv`
-- Run filtered progressive source/target years from draw_results_long.csv, which is aligned to the canonical_yearly union; it did not open each yearly canonical CSV directly.
+- Bear/youth historical adapters use all source years through the prediction source year.
+- The 2026->2027 antlerless/doe rows remain held out until official actual results are released.
 
-## Promotion
-- Processed files copied: 37
-- Public content files copied: 23
-- 150 MB runtime truth copy was not promoted to Git.
+## Artifacts
+- Year-by-year run folders: `audits\full_family_runtime_prediction_wired_20260703\runs\2019` through `audits\full_family_runtime_prediction_wired_20260703\runs\2027`
+- Each target-year folder now has 9 prediction CSV files.

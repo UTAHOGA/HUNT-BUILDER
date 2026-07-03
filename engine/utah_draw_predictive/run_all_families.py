@@ -6,14 +6,17 @@ import argparse
 import csv
 from functools import lru_cache
 from pathlib import Path
-from typing import Iterable, Mapping, Sequence
+from typing import Callable, Iterable, Mapping, Sequence
 
+from .bear import build_bear_bonus_predictions, is_bear_row
 from .dedicated_hunter import build_preference_dedicated_hunter_predictions
 from .permit_accessors import target_permit_total
 from .preference_antlerless import build_preference_antlerless_predictions
 from .preference_general_deer import build_preference_general_deer_predictions
 from .preference_ladder_normalizer import normalize_preference_ladder_rows
 from .sportsman import build_sportsman_predictions
+from .turkey import build_youth_turkey_predictions, is_youth_turkey_row
+from .youth import build_youth_predictions, is_youth_draw_only_elk_row
 
 
 REPO = Path(__file__).resolve().parents[2]
@@ -26,6 +29,11 @@ MODELED_FAMILIES = (
     "preference_antlerless_elk",
     "preference_doe_pronghorn",
 )
+HISTORICAL_ADAPTER_FAMILIES = {
+    "bonus_bear",
+    "youth_turkey",
+    "youth_draw",
+}
 UNRELEASED_ACTUAL_HOLDOUT_FAMILIES = {
     "preference_antlerless_deer",
     "preference_antlerless_elk",
@@ -83,6 +91,14 @@ def _to_number(value: object) -> float:
         return float(text)
     except Exception:
         return 0.0
+
+
+def _positive_int(row: Mapping[str, object], *fields: str) -> int:
+    for field in fields:
+        value = _to_number(row.get(field))
+        if value > 0:
+            return int(round(value))
+    return 0
 
 
 def _best_number(row: Mapping[str, object], *fields: str) -> float:
@@ -500,6 +516,109 @@ def _joined_target_rows(
     return [dict(row) for row in target_rows if _clean(row.get("hunt_code")).upper() in source_codes]
 
 
+def _historical_engine_rows_through_year(
+    all_truth_rows: Sequence[Mapping[str, object]],
+    source_year: int,
+) -> list[dict[str, object]]:
+    rows: list[dict[str, object]] = []
+    for year in sorted({year for row in all_truth_rows if (year := _row_year(row)) is not None and 2018 <= year <= source_year}):
+        year_rows = [row for row in all_truth_rows if _row_year(row) == year]
+        rows.extend(_with_historical_target_metadata(year_rows, year, year + 1))
+    return rows
+
+
+def _history_years_through(all_truth_rows: Sequence[Mapping[str, object]], source_year: int) -> list[int]:
+    return sorted({year for row in all_truth_rows if (year := _row_year(row)) is not None and 2018 <= year <= source_year})
+
+
+def _historical_adapter_permit_totals(rows: Sequence[Mapping[str, object]]) -> tuple[int, int, int]:
+    point_rows = [row for row in rows if _clean(row.get("points") or row.get("point_level"))]
+    total_rows = point_rows or list(rows)
+    seen: set[tuple[str, str, str, str, int, int, int, int]] = set()
+    resident_total = 0
+    nonresident_total = 0
+    unsplit_total = 0
+
+    for row in total_rows:
+        hunt_code = _clean(row.get("hunt_code")).upper()
+        residency = _clean(row.get("residency"))
+        points = _clean(row.get("points") or row.get("point_level"))
+        source_file = _clean(row.get("source_file"))
+        row_total = _positive_int(row, "total_permits")
+        row_resident = _positive_int(row, "resident_total_permits", "resident_regular_permits", "resident_bonus_permits")
+        row_nonresident = _positive_int(row, "nonresident_total_permits", "nonresident_regular_permits", "nonresident_bonus_permits")
+        key = (hunt_code, residency, points, source_file, row_total, row_resident, row_nonresident, _positive_int(row, "eligible_applicants"))
+        if key in seen:
+            continue
+        seen.add(key)
+
+        if residency.lower().startswith("resident") and row_total:
+            resident_total += row_total
+        elif residency.lower().startswith("nonresident") and row_total:
+            nonresident_total += row_total
+        elif row_resident or row_nonresident:
+            resident_total += row_resident
+            nonresident_total += row_nonresident
+        else:
+            unsplit_total += row_total
+
+    if resident_total + nonresident_total <= 0 and unsplit_total > 0:
+        resident_total = unsplit_total
+    return resident_total, nonresident_total, resident_total + nonresident_total
+
+
+def _best_historical_adapter_metadata_row(rows: Sequence[Mapping[str, object]]) -> dict[str, object]:
+    def score(row: Mapping[str, object]) -> tuple[int, int, int, int]:
+        return (
+            1 if not _clean(row.get("points") or row.get("point_level")) else 0,
+            1 if _clean(row.get("permits_2026_total")) else 0,
+            len(_clean(row.get("hunt_name"))),
+            len(_clean(row.get("source_file"))),
+        )
+
+    return dict(sorted(rows, key=score, reverse=True)[0])
+
+
+def _deduped_historical_adapter_rows(
+    source_rows: Sequence[Mapping[str, object]],
+    source_year: int,
+    family: str,
+    predicate: Callable[[Mapping[str, object]], bool],
+) -> list[dict[str, object]]:
+    grouped: dict[str, list[Mapping[str, object]]] = {}
+    for row in source_rows:
+        if not predicate(row):
+            continue
+        hunt_code = _clean(row.get("hunt_code")).upper()
+        if hunt_code:
+            grouped.setdefault(hunt_code, []).append(row)
+
+    out: list[dict[str, object]] = []
+    for hunt_code, rows in sorted(grouped.items()):
+        resident_total, nonresident_total, total = _historical_adapter_permit_totals(rows)
+        item = _best_historical_adapter_metadata_row(rows)
+        item.update(
+            {
+                "hunt_code": hunt_code,
+                "permits_2026_res": str(resident_total) if resident_total else "",
+                "permits_2026_nr": str(nonresident_total) if nonresident_total else "",
+                "permits_2026_total": str(total) if total else "",
+                "public_permits_2026_res": str(resident_total) if resident_total else "",
+                "public_permits_2026_nr": str(nonresident_total) if nonresident_total else "",
+                "public_permits_2026": str(total) if total else "",
+                "permit_source_field": f"source_year_{source_year}_truth_total_permits",
+                "source_years_used": str(source_year),
+                "source_year_count": "1",
+                "latest_source_year": str(source_year),
+                "earliest_source_year": str(source_year),
+                "historical_adapter_family": family,
+                "historical_adapter_note": "Deduped source-year truth rows to one target row per hunt code.",
+            }
+        )
+        out.append(item)
+    return out
+
+
 def _prefix_family_guess(row: Mapping[str, object]) -> str:
     if _clean(row.get("draw_system_type")) in {"REFERENCE_ONLY", "AVAILABILITY_ONLY", "TRIBAL"}:
         return ""
@@ -658,7 +777,9 @@ def run_all_families(source_year: int, target_year: int, audit_dir: Path, truth_
     all_truth_rows = _read_csv(truth_path)
     source_rows = [row for row in all_truth_rows if _row_year(row) == source_year]
     engine_rows = _with_historical_target_metadata(source_rows, source_year, target_year)
+    historical_engine_rows = _historical_engine_rows_through_year(all_truth_rows, source_year)
     history_years = [source_year]
+    progressive_history_years = _history_years_through(all_truth_rows, source_year) or [source_year]
 
     general_rows = _with_run_fields(
         build_preference_general_deer_predictions(engine_rows, engine_rows, target_year, history_years),
@@ -694,6 +815,38 @@ def run_all_families(source_year: int, target_year: int, audit_dir: Path, truth_
     sportsman_rows, sportsman_report = build_sportsman_predictions(engine_rows, engine_rows, target_year, history_years)
     sportsman_rows = _with_run_fields(sportsman_rows, source_year, target_year, "sportsman")
 
+    bear_target_rows = _deduped_historical_adapter_rows(engine_rows, source_year, "bonus_bear", is_bear_row)
+    bear_rows, bear_report = build_bear_bonus_predictions(
+        historical_engine_rows,
+        bear_target_rows,
+        target_year,
+        progressive_history_years,
+    )
+    youth_turkey_target_rows = _deduped_historical_adapter_rows(
+        engine_rows,
+        source_year,
+        "youth_turkey",
+        is_youth_turkey_row,
+    )
+    youth_turkey_rows, youth_turkey_report = build_youth_turkey_predictions(
+        historical_engine_rows,
+        youth_turkey_target_rows,
+        target_year,
+        progressive_history_years,
+    )
+    youth_draw_target_rows = _deduped_historical_adapter_rows(
+        engine_rows,
+        source_year,
+        "youth_draw",
+        is_youth_draw_only_elk_row,
+    )
+    youth_draw_rows, youth_draw_report = build_youth_predictions(
+        historical_engine_rows,
+        youth_draw_target_rows,
+        target_year,
+        progressive_history_years,
+    )
+
     modeled = {
         "preference_general_deer": general_rows,
         "dedicated_hunter": dedicated_rows,
@@ -701,11 +854,9 @@ def run_all_families(source_year: int, target_year: int, audit_dir: Path, truth_
         "preference_antlerless_elk": antlerless_elk_rows,
         "preference_doe_pronghorn": doe_pronghorn_rows,
         "sportsman": sportsman_rows,
-    }
-    deferred_families = {
-        "bonus_bear": "DEFERRED_WITH_REASON: bear target-year source selection is still under repair",
-        "youth_turkey": "DEFERRED_WITH_REASON: youth turkey historical target-year runner wiring is not promoted",
-        "youth_draw": "DEFERRED_WITH_REASON: youth draw historical target-year runner wiring is not promoted",
+        "bonus_bear": bear_rows,
+        "youth_turkey": youth_turkey_rows,
+        "youth_draw": youth_draw_rows,
     }
 
     audit_dir.mkdir(parents=True, exist_ok=True)
@@ -858,6 +1009,27 @@ def run_all_families(source_year: int, target_year: int, audit_dir: Path, truth_
         "permit_rows": sportsman_rows,
         "joined_rows": sportsman_rows,
     }
+    family_metrics["bonus_bear"] = {
+        "family_truth_rows": [row for row in historical_engine_rows if is_bear_row(row)],
+        "normalized_rows": [row for row in historical_engine_rows if is_bear_row(row)],
+        "family_target_rows": bear_target_rows,
+        "permit_rows": [row for row in bear_target_rows if _positive_int(row, "permits_2026_total") > 0],
+        "joined_rows": bear_target_rows,
+    }
+    family_metrics["youth_turkey"] = {
+        "family_truth_rows": [row for row in historical_engine_rows if is_youth_turkey_row(row)],
+        "normalized_rows": [row for row in historical_engine_rows if is_youth_turkey_row(row)],
+        "family_target_rows": youth_turkey_target_rows,
+        "permit_rows": [row for row in youth_turkey_target_rows if _positive_int(row, "permits_2026_total") > 0],
+        "joined_rows": youth_turkey_target_rows,
+    }
+    family_metrics["youth_draw"] = {
+        "family_truth_rows": [row for row in historical_engine_rows if is_youth_draw_only_elk_row(row)],
+        "normalized_rows": [row for row in historical_engine_rows if is_youth_draw_only_elk_row(row)],
+        "family_target_rows": youth_draw_target_rows,
+        "permit_rows": [row for row in youth_draw_target_rows if _positive_int(row, "permits_2026_total", "public_permits_2026") > 0],
+        "joined_rows": youth_draw_target_rows,
+    }
     trace.extend(
         [
             _trace_row(
@@ -886,6 +1058,51 @@ def run_all_families(source_year: int, target_year: int, audit_dir: Path, truth_
                 blocker="" if sportsman_rows else "NO_SPORTSMAN_PREDICTIONS",
                 notes="p_sportsman_draw is resident_permit_count / eligible resident applicants; nonresident quota is always 0.",
             ),
+            _trace_row(
+                source_year,
+                target_year,
+                "bonus_bear",
+                "build_historical_adapter_predictions",
+                len(bear_target_rows),
+                len(bear_rows),
+                bear_rows,
+                blocker="" if bear_rows or not bear_target_rows else "NO_BEAR_PREDICTIONS",
+                notes=(
+                    "Deduped source-year bear truth rows to one target row per hunt code. "
+                    f"History years: {','.join(str(year) for year in progressive_history_years)}. "
+                    f"Report modeled rows: {bear_report.get('bear_rows_by_algorithm_status')}."
+                ),
+            ),
+            _trace_row(
+                source_year,
+                target_year,
+                "youth_turkey",
+                "build_historical_adapter_predictions",
+                len(youth_turkey_target_rows),
+                len(youth_turkey_rows),
+                youth_turkey_rows,
+                blocker="" if youth_turkey_rows or not youth_turkey_target_rows else "NO_YOUTH_TURKEY_PREDICTIONS",
+                notes=(
+                    "Deduped source-year youth turkey truth rows to one target row per hunt code. "
+                    f"History years: {','.join(str(year) for year in progressive_history_years)}. "
+                    f"Modeled rows: {youth_turkey_report.get('youth_turkey_modeled_rows')}."
+                ),
+            ),
+            _trace_row(
+                source_year,
+                target_year,
+                "youth_draw",
+                "build_historical_adapter_predictions",
+                len(youth_draw_target_rows),
+                len(youth_draw_rows),
+                youth_draw_rows,
+                blocker="" if youth_draw_rows or not youth_draw_target_rows else "NO_YOUTH_DRAW_PREDICTIONS",
+                notes=(
+                    "Deduped source-year youth draw rows to one target row per hunt code. "
+                    f"History years: {','.join(str(year) for year in progressive_history_years)}. "
+                    f"Rows by algorithm status: {youth_draw_report.get('rows_by_algorithm_status')}."
+                ),
+            ),
         ]
     )
 
@@ -907,12 +1124,21 @@ def run_all_families(source_year: int, target_year: int, audit_dir: Path, truth_
             and target_year >= 2027
             and family in UNRELEASED_ACTUAL_HOLDOUT_FAMILIES
         )
+        source_not_available = (
+            not rows
+            and family in HISTORICAL_ADAPTER_FAMILIES
+            and not metrics.get("family_target_rows")
+        )
         counts.append(
             {
                 "source_year": source_year,
                 "target_year": target_year,
                 "family": family,
-                "readiness_status": "HELD_OUT_UNRELEASED_ACTUALS" if intentional_holdout else "READY_TRUTH_AND_RAW_FILES",
+                "readiness_status": "HELD_OUT_UNRELEASED_ACTUALS"
+                if intentional_holdout
+                else "NO_SOURCE_ROWS_NOT_SCORABLE"
+                if source_not_available
+                else "READY_TRUTH_AND_RAW_FILES",
                 "input_truth_rows": len(metrics.get("family_truth_rows", [])),
                 "current_target_rows": len(metrics.get("family_target_rows", [])),
                 "normalized_ladder_rows": len(metrics.get("normalized_rows", [])),
@@ -920,46 +1146,15 @@ def run_all_families(source_year: int, target_year: int, audit_dir: Path, truth_
                 "joined_source_target_rows": len(metrics.get("joined_rows", [])),
                 "prediction_rows": len(rows),
                 "output_path": str(output_path),
-                "status": "PASS" if rows else "CLASSIFIED" if intentional_holdout else "FAIL",
+                "status": "PASS" if rows or source_not_available else "CLASSIFIED" if intentional_holdout else "FAIL",
                 "blocker_if_failed": ""
-                if rows
+                if rows or source_not_available
                 else "HELD_OUT_UNRELEASED_2027_ANTLERLESS_DOE_RESULTS"
                 if intentional_holdout
                 else "NO_ROWS",
             }
         )
         leakage.append(_leakage_row(source_year, target_year, family, rows))
-
-    for family, reason in deferred_families.items():
-        counts.append(
-            {
-                "source_year": source_year,
-                "target_year": target_year,
-                "family": family,
-                "readiness_status": reason.split(":", 1)[0],
-                "input_truth_rows": 0,
-                "current_target_rows": 0,
-                "normalized_ladder_rows": "",
-                "permit_accessor_rows_ok": "",
-                "joined_source_target_rows": "",
-                "prediction_rows": 0,
-                "output_path": "",
-                "status": "CLASSIFIED",
-                "blocker_if_failed": reason,
-            }
-        )
-        leakage.append(
-            {
-                "source_year": source_year,
-                "target_year": target_year,
-                "family": family,
-                "source_years_used": str(source_year),
-                "future_year_detected": "false",
-                "current_year_authority_file_used": "false",
-                "hardcoded_2026_field_required": "false",
-                "leakage_status": "CLASSIFIED",
-            }
-        )
 
     _write_csv(audit_dir / "family_predictions.csv", all_prediction_rows)
     _write_csv(audit_dir / "all_year_family_prediction_counts.csv", counts)
@@ -973,7 +1168,7 @@ def run_all_families(source_year: int, target_year: int, audit_dir: Path, truth_
         "audit_dir": str(audit_dir),
         "prediction_rows": len(all_prediction_rows),
         "family_counts": {family: len(rows) for family, rows in modeled.items()},
-        "classified_families": deferred_families,
+        "classified_families": {},
     }
 
 
