@@ -3,8 +3,8 @@
 - Lock codes: `7`
 - No-quota conservation codes: `5`
 - Total-only conservation codes: `2`
-- Runtime update rows: `504`
-- Blockers: `0`
+- Runtime update rows: `469`
+- Blockers: `21`
 
 ## Locked Codes
 - `EA1180` La Sal (Conservation) - NO_QUOTA_PUBLISHED - no quota published

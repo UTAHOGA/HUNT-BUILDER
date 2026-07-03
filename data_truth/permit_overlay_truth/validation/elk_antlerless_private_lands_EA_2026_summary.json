@@ -15,7 +15,7 @@
   },
   "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026 Permits/elk antlerless private lands only EA.csv",
   "source_rows": 27,
-  "source_sha256": "9dbca321aced7d3263b7be77324dc037d4327f0269ba88f5dbd62c37d06a52db",
+  "source_sha256": "f30a8201b95e5eed9769082438a4687e03f376f494ad3dbf98e7ea96cb53f75f",
   "source_status": "CANONICAL_USER_SUPPLIED_DWR_HUNT_PLANNER_EVIDENCE",
   "source_total_permits_2026": 9830,
   "unique_hunt_codes": 27

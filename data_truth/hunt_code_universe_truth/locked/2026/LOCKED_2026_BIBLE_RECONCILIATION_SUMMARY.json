@@ -1,0 +1,64 @@
+{
+  "comparisons": [
+    {
+      "left": "locked_2025_model_workbook",
+      "right": "bible_2025",
+      "left_count": 1064,
+      "right_count": 1053,
+      "intersection": 1053,
+      "left_only": 11,
+      "right_only": 0,
+      "left_only_sample": "BI1000 BR1000 CG9999 DB0007 DS1000 EB1000 GO1000 MB1000 PB1000 RS0001 TK0001",
+      "right_only_sample": ""
+    },
+    {
+      "left": "locked_2026_model_workbook",
+      "right": "bible_2026",
+      "left_count": 1097,
+      "right_count": 31,
+      "intersection": 31,
+      "left_only": 1066,
+      "right_only": 0,
+      "left_only_sample": "BI1000 BI6500 BI6503 BI6504 BI6505 BI6506 BI6509 BI6516 BI6528 BI6529 BI6531 BI6532 BI6534 BI6535 BI6536 BI6537 BI6539 BR1000 BR1008 BR1009 BR1010 BR1011 BR1012 BR1013 BR1015 BR1016 BR1017 BR7000 BR7001 BR7003 BR7004 BR7005 BR7007 BR7009 BR7010 BR7011 BR7012 BR7013 BR7014 BR7015 BR7016 BR7017 BR7018 BR7020 BR7021 BR7022 BR7100 BR7101 BR7102 BR7104",
+      "right_only_sample": ""
+    },
+    {
+      "left": "locked_2026_model_workbook",
+      "right": "bible_2025",
+      "left_count": 1097,
+      "right_count": 1053,
+      "intersection": 1012,
+      "left_only": 85,
+      "right_only": 41,
+      "left_only_sample": "BI1000 BI6539 BR1000 BR7021 BR7022 BR7126 BR7127 BR7238 BR7239 BR7326 DA1051 DB0007 DB1109 DB1121 DB1351 DS1000 EA1007 EA1053 EA1107 EA1180 EA1220 EA1221 EA1258 EA1270 EA1271 EA1288 EA1289 EA1290 EA1291 EA1292 EA1293 EA1294 EA1295 EA1296 EA1297 EA1298 EA1299 EA1300 EA1301 EA2000 EA2002 EA2003 EA2004 EA2005 EA2006 EA2008 EA2009 EA2010 EA2011 EA2012",
+      "right_only_sample": "BR7008 BR7108 BR7208 BR7237 BR7307 DB1320 DB1324 DB1343 DB1344 DB1345 EA1012 EA1049 EA1174 EA1187 EA1206 EA1234 EA1259 EA1278 EA1279 EA1280 EA1282 EB3561 EB3609 EB3617 MA1009 MB6200 MB6207 MB6209 MB6217 MB6220 MB6223 MB6224 MB6225 MB6240 MB6254 MB6257 MB6259 PB5343 PD1049 PD1051 PD1052"
+    },
+    {
+      "left": "matrix_2026",
+      "right": "bible_2026",
+      "left_count": 1394,
+      "right_count": 31,
+      "intersection": 31,
+      "left_only": 1363,
+      "right_only": 0,
+      "left_only_sample": "BI1000 BI6500 BI6503 BI6504 BI6505 BI6506 BI6509 BI6516 BI6527 BI6528 BI6529 BI6531 BI6532 BI6534 BI6535 BI6536 BI6537 BI6538 BI6539 BR1000 BR1001 BR1007 BR1008 BR1009 BR1010 BR1011 BR1012 BR1013 BR1015 BR1016 BR1017 BR1018 BR7000 BR7001 BR7003 BR7004 BR7005 BR7007 BR7009 BR7010 BR7011 BR7012 BR7013 BR7014 BR7015 BR7016 BR7017 BR7018 BR7020 BR7021",
+      "right_only_sample": ""
+    },
+    {
+      "left": "matrix_2026",
+      "right": "bible_2025",
+      "left_count": 1394,
+      "right_count": 1053,
+      "intersection": 1028,
+      "left_only": 366,
+      "right_only": 25,
+      "left_only_sample": "BI1000 BI6527 BI6538 BI6539 BR1000 BR1001 BR1007 BR1018 BR7021 BR7022 BR7126 BR7127 BR7238 BR7239 BR7324 BR7326 CG9999 DB0001 DB0002 DB0003 DB0004 DB0005 DB0006 DB0007 DB0009 DB0010 DB0011 DB0012 DB0013 DB1056 DB1075 DB1076 DB1109 DB1118 DB1121 DB1351 DS1000 DS1002 DS1003 DS1004 DS1006 DS1007 DS6605 EA1180 EA1220 EA1221 EA1258 EA1270 EA1271 EA2000",
+      "right_only_sample": "BR7008 BR7108 BR7208 DB1320 DB1324 DB1343 DB1344 DB1345 DB1348 EB3561 EB3609 EB3617 MB6200 MB6207 MB6209 MB6217 MB6220 MB6223 MB6224 MB6225 MB6240 MB6254 MB6257 MB6259 PB5343"
+    }
+  ],
+  "detail_file": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\hunt_code_universe_truth\\locked\\2026\\LOCKED_2026_BIBLE_RECONCILIATION_DELTAS_WITH_BOUNDARY_ID.csv",
+  "notes": [
+    "BIBLE year documents are source-library year documents and are reconciled as source flags, not as the sole current active universe authority.",
+    "Deltas include boundary_id for review/crosswalk work."
+  ]
+}
