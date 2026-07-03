@@ -23,7 +23,7 @@ def test_phase9_private_lands_coverage_matches_predictive_artifact() -> None:
     section = coverage["phase9_private_lands_antlerless_elk"]
 
     assert section["private_lands_only_antlerless_elk_in_scope"] is True
-    assert section["private_lands_only_antlerless_elk_modeled_allocation"] is True
+    assert section["private_lands_only_antlerless_elk_modeled_capped_permits"] is True
     assert section["private_lands_only_antlerless_elk_row_count"] == len(rows)
     assert section["private_lands_only_antlerless_elk_p_draw_count"] == 0
     assert section["private_lands_only_antlerless_elk_incorrectly_classified_as_preference_antlerless_elk_count"] == 0

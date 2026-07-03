@@ -71,6 +71,15 @@ def test_crosswalk_authority_overrides_legacy_preference_routing(tmp_path, monke
                 "draw_system_type": "CWMU_PRIVATE_VOUCHER",
             }
         )
+        writer.writerow(
+            {
+                "authority_status": "GUIDEBOOK_AUTHORITY",
+                "source_year": "2023",
+                "hunt_year": "2024",
+                "hunt_code": "PD1031",
+                "draw_system_type": "CWMU_PRIVATE_VOUCHER",
+            }
+        )
 
     monkeypatch.setattr(runner, "AUTHORITY_PATH", authority_path)
     runner._crosswalk_authority_by_year_code.cache_clear()
@@ -108,3 +117,14 @@ def test_crosswalk_authority_overrides_legacy_preference_routing(tmp_path, monke
             "draw_design": "Preference",
         }
     ) == ""
+    assert runner._family_for_legacy_row(
+        {
+            "actual_draw_year": "2023",
+            "hunt_code": "PD1031",
+            "species": "Pronghorn",
+            "sex_type": "Doe",
+            "hunt_class": "",
+            "draw_design": "Preference",
+            "draw_system_type": "PREFERENCE_DOE_PRONGHORN",
+        }
+    ) == "preference_doe_pronghorn"

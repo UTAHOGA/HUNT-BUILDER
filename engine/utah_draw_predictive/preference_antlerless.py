@@ -117,6 +117,7 @@ def _target_draw_system_type(row: Mapping[str, object]) -> str | None:
         "OTC_CAPPED",
         "OTC_UNLIMITED",
         "PRIVATE_LANDS_ONLY",
+        "PRIVATE_LANDS_ONLY_ANTLERLESS_ELK",
         "REFERENCE_ONLY",
         "TRIBAL",
     }:

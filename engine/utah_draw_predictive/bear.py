@@ -1031,7 +1031,7 @@ def build_bear_bonus_predictions(
                 row = dict(base)
                 row.update(
                     {
-                        "points": "",
+                        "points": "0",
                         "p_preference_draw": "",
                         "p_bonus_pool": "",
                         "p_random_pool": "",

@@ -1,4 +1,4 @@
-"""Private-lands-only antlerless elk allocation and availability helpers."""
+"""Private-lands-only antlerless elk OTC capped-quota helpers."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ from typing import Iterable, Mapping
 from engine.utah_bonus_predictive.rules import MODEL_VERSION
 
 from . import (
-    ALGORITHM_STATUS_MODELED_ALLOCATION,
+    ALGORITHM_STATUS_MODELED_AVAILABILITY,
     StrategySpec,
     TARGET_SCOPE_TARGET,
 )
@@ -18,9 +18,10 @@ from . import (
 REPO = Path(__file__).resolve().parents[2]
 PRIVATE_LANDS_SOURCE_PATH = REPO / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "2026 Permits" / "elk antlerless private lands.csv"
 
-MODEL_STRATEGY_NAME = "private_lands_antlerless_elk_allocation_phase14"
-RULE_VERSION = "utah_private_lands_antlerless_elk_allocation_v1.1.0"
+MODEL_STRATEGY_NAME = "private_lands_antlerless_elk_otc_capped_quota_phase14"
+RULE_VERSION = "utah_private_lands_antlerless_elk_otc_capped_permits_v1.2.0"
 DRAW_SYSTEM_TYPE = "PRIVATE_LANDS_ONLY_ANTLERLESS_ELK"
+ACQUISITION_METHOD = "OTC_CAPPED_PRIVATE_LANDS_PERMITS"
 
 PRIVATE_LANDS_TOKENS = (
     "private lands only",
@@ -36,9 +37,9 @@ STRATEGY_SPECS = [
     StrategySpec(
         draw_system_type=DRAW_SYSTEM_TYPE,
         module_name="engine.utah_draw_predictive.private_lands_antlerless_elk",
-        algorithm_status=ALGORITHM_STATUS_MODELED_ALLOCATION,
+        algorithm_status=ALGORITHM_STATUS_MODELED_AVAILABILITY,
         target_scope=TARGET_SCOPE_TARGET,
-        reason="Private-lands-only antlerless elk uses an allocation/availability strategy, not preference or bonus draw odds.",
+        reason="Private-lands-only antlerless elk is an O.T.C. capped-permit stream, not preference or bonus draw odds.",
         modeled_by_engine=True,
         legacy_logic_present=True,
     ),
@@ -160,13 +161,14 @@ def build_private_lands_antlerless_elk_predictions(
         source_file = _clean(source_meta.get("source_file")) or _clean(truth_meta.get("source_file")) or "DATABASE.csv"
         source_files.add(source_file)
 
-        algorithm_status = "MODELED_ALLOCATION" if permits_allotted > 0 else "IN_SCOPE_MODEL_PENDING"
-        allocation_status = "ALLOCATION KNOWN / REMAINING UNKNOWN" if permits_allotted > 0 else "SOURCE MISSING"
-        availability_status = "ALLOCATION KNOWN / REMAINING UNKNOWN" if permits_allotted > 0 else "SOURCE MISSING"
+        algorithm_status = "MODELED_AVAILABILITY" if permits_allotted > 0 else "IN_SCOPE_MODEL_PENDING"
+        capped_permit_status = "OTC CAPPED PERMITS KNOWN / REMAINING UNKNOWN" if permits_allotted > 0 else "SOURCE MISSING"
+        allocation_status = capped_permit_status
+        availability_status = capped_permit_status
         season_status = "SEASON DATES PRESENT" if season_dates else "SEASON DATES MISSING"
         data_quality_flags = []
         if permits_allotted > 0:
-            data_quality_flags.extend(["REMAINING_PERMIT_STATUS_UNKNOWN", "ALLOCATION_NOT_RESIDENCY_SPLIT"])
+            data_quality_flags.extend(["REMAINING_PERMIT_STATUS_UNKNOWN", "OTC_CAPPED_QUOTA_NOT_RESIDENCY_SPLIT"])
             if not season_dates:
                 data_quality_flags.append("SEASON_DATES_MISSING")
         else:
@@ -199,13 +201,19 @@ def build_private_lands_antlerless_elk_predictions(
                     "algorithm_status": algorithm_status,
                     "weapon": _clean(db_row.get("weapon")),
                     "draw_system_type": DRAW_SYSTEM_TYPE,
+                    "draw_design": "Capped Permits",
+                    "acquisition_method": ACQUISITION_METHOD,
                     "private_lands_allocation_valid": "TRUE" if permits_allotted > 0 else "FALSE",
                     "private_lands_allocation_note": allocation_status,
+                    "private_lands_capped_permit_valid": "TRUE" if permits_allotted > 0 else "FALSE",
+                    "private_lands_capped_permit_note": capped_permit_status,
+                    "capped_permit_count": str(permits_allotted) if permits_allotted > 0 else "",
                     "permits_allotted": str(permits_allotted) if permits_allotted > 0 else "",
                     "permits_remaining": "",
                     "permits_sold": "",
                     "permits_sold_or_used": "",
                     "allocation_status": allocation_status,
+                    "capped_permit_status": capped_permit_status,
                     "availability_status": availability_status,
                     "p_availability": "",
                     "availability_pct": "",
@@ -234,16 +242,21 @@ def build_private_lands_antlerless_elk_predictions(
         "source_years": history_years,
         "total_private_lands_antlerless_elk_rows_reviewed": len(reviewed_rows),
         "active_predictive_row_count": len(rows),
+        "otc_capped_permit_row_count": len(modeled_rows),
         "modeled_allocation_row_count": len(modeled_rows),
         "pending_allocation_row_count": len(pending_rows),
+        "pending_capped_permit_row_count": len(pending_rows),
         "excluded_row_count": 0,
         "hunt_code_count": len({row.get("hunt_code", "") for row in rows if _clean(row.get("hunt_code"))}),
         "unit_count": len({row.get("unit", "") for row in rows if _clean(row.get("unit"))}),
         "rows_by_algorithm_status": {
-            "MODELED_ALLOCATION": len(modeled_rows),
+            "MODELED_AVAILABILITY": len(modeled_rows),
             "IN_SCOPE_MODEL_PENDING": len(pending_rows),
             "EXCLUDED_NOT_PREDICTIVE_DRAW": 0,
         },
+        "classification": "OTC_CAPPED_PRIVATE_LANDS_PERMITS",
+        "draw_design": "Capped Permits",
+        "acquisition_method": ACQUISITION_METHOD,
         "permits_allotted_non_null_count": sum(1 for row in rows if _clean(row.get("permits_allotted"))),
         "permits_remaining_non_null_count": sum(1 for row in rows if _clean(row.get("permits_remaining"))),
         "p_availability_non_null_count": sum(1 for row in rows if _clean(row.get("p_availability"))),

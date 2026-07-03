@@ -26,6 +26,11 @@ MODELED_FAMILIES = (
     "preference_antlerless_elk",
     "preference_doe_pronghorn",
 )
+UNRELEASED_ACTUAL_HOLDOUT_FAMILIES = {
+    "preference_antlerless_deer",
+    "preference_antlerless_elk",
+    "preference_doe_pronghorn",
+}
 
 AUTHORITY_TO_FAMILY = {
     "PREFERENCE_GENERAL_SEASON_BUCK_DEER": "preference_general_deer",
@@ -47,6 +52,7 @@ AUTHORITY_EXCLUDED_DRAW_SYSTEM_TYPES = {
     "OTC_CAPPED",
     "OTC_UNLIMITED",
     "PRIVATE_LANDS_ONLY",
+    "PRIVATE_LANDS_ONLY_ANTLERLESS_ELK",
     "PTARMIGAN_FREE_AVAILABILITY",
     "REFERENCE_ONLY",
     "TURKEY_CONTROL_VOUCHER",
@@ -178,15 +184,26 @@ def _write_csv(path: Path, rows: Sequence[Mapping[str, object]]) -> None:
 
 
 def _family_for_legacy_row(row: Mapping[str, object]) -> str:
+    draw_system_type = _clean(row.get("draw_system_type"))
+    if draw_system_type in AUTHORITY_EXCLUDED_DRAW_SYSTEM_TYPES or draw_system_type == "TRIBAL":
+        return ""
+    if draw_system_type:
+        mapped_draw_system = {
+            "PREFERENCE_GENERAL_SEASON_BUCK_DEER": "preference_general_deer",
+            "PREFERENCE_DEDICATED_HUNTER_DEER": "preference_dedicated_hunter_deer",
+            "PREFERENCE_ANTLERLESS_DEER": "preference_antlerless_deer",
+            "PREFERENCE_ANTLERLESS_ELK": "preference_antlerless_elk",
+            "PREFERENCE_DOE_PRONGHORN": "preference_doe_pronghorn",
+        }.get(draw_system_type, "")
+        if mapped_draw_system:
+            return mapped_draw_system
+
     authority_family = _authority_family_for_legacy_row(row)
     if authority_family is not None:
         return authority_family
 
     model_strategy = _clean(row.get("model_strategy"))
-    draw_system_type = _clean(row.get("draw_system_type"))
     hunt_code = _clean(row.get("hunt_code")).upper()
-    if draw_system_type in {"REFERENCE_ONLY", "AVAILABILITY_ONLY", "TRIBAL"}:
-        return ""
     if model_strategy in {
         "preference_general_deer",
         "preference_antlerless_deer",
@@ -203,16 +220,6 @@ def _family_for_legacy_row(row: Mapping[str, object]) -> str:
         }.get(draw_system_type, "")
     if model_strategy == "preference_dedicated_hunter_deer":
         return "preference_dedicated_hunter_deer"
-    if draw_system_type:
-        mapped_draw_system = {
-            "PREFERENCE_GENERAL_SEASON_BUCK_DEER": "preference_general_deer",
-            "PREFERENCE_DEDICATED_HUNTER_DEER": "preference_dedicated_hunter_deer",
-            "PREFERENCE_ANTLERLESS_DEER": "preference_antlerless_deer",
-            "PREFERENCE_ANTLERLESS_ELK": "preference_antlerless_elk",
-            "PREFERENCE_DOE_PRONGHORN": "preference_doe_pronghorn",
-        }.get(draw_system_type, "")
-        if mapped_draw_system:
-            return mapped_draw_system
 
     hunt_class = _clean(row.get("hunt_class")).upper()
     hunt_draw_class = _clean(row.get("hunt_draw_class") or row.get("draw_class_type")).upper()
@@ -894,12 +901,18 @@ def run_all_families(source_year: int, target_year: int, audit_dir: Path, truth_
         _write_csv(output_path, rows)
         all_prediction_rows.extend(rows)
         metrics = family_metrics.get(family, {})
+        intentional_holdout = (
+            not rows
+            and source_year >= 2026
+            and target_year >= 2027
+            and family in UNRELEASED_ACTUAL_HOLDOUT_FAMILIES
+        )
         counts.append(
             {
                 "source_year": source_year,
                 "target_year": target_year,
                 "family": family,
-                "readiness_status": "READY_TRUTH_AND_RAW_FILES",
+                "readiness_status": "HELD_OUT_UNRELEASED_ACTUALS" if intentional_holdout else "READY_TRUTH_AND_RAW_FILES",
                 "input_truth_rows": len(metrics.get("family_truth_rows", [])),
                 "current_target_rows": len(metrics.get("family_target_rows", [])),
                 "normalized_ladder_rows": len(metrics.get("normalized_rows", [])),
@@ -907,8 +920,12 @@ def run_all_families(source_year: int, target_year: int, audit_dir: Path, truth_
                 "joined_source_target_rows": len(metrics.get("joined_rows", [])),
                 "prediction_rows": len(rows),
                 "output_path": str(output_path),
-                "status": "PASS" if rows else "FAIL",
-                "blocker_if_failed": "" if rows else "NO_ROWS",
+                "status": "PASS" if rows else "CLASSIFIED" if intentional_holdout else "FAIL",
+                "blocker_if_failed": ""
+                if rows
+                else "HELD_OUT_UNRELEASED_2027_ANTLERLESS_DOE_RESULTS"
+                if intentional_holdout
+                else "NO_ROWS",
             }
         )
         leakage.append(_leakage_row(source_year, target_year, family, rows))
