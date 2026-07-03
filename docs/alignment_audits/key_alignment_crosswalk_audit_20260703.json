@@ -1,0 +1,1438 @@
+{
+  "created_at": "2026-07-03T02:32:57",
+  "key_sets": {
+    "display_reference_key": [
+      "hunt_code"
+    ],
+    "database_boundary_reference_key": [
+      "hunt_code",
+      "boundary_id"
+    ],
+    "crosswalk_authority_lookup_key": [
+      "hunt_year|target_year|permit_draw_year|source_year",
+      "hunt_code"
+    ],
+    "current_to_historical_crosswalk_key": [
+      "current_hunt_code",
+      "historical_hunt_code",
+      "historical_year"
+    ],
+    "wide_canonical_truth_key": [
+      "actual_draw_year",
+      "model_target_year",
+      "hunt_code",
+      "draw_system_type",
+      "points",
+      "record_type"
+    ],
+    "long_truth_probability_key": [
+      "actual_draw_year",
+      "model_target_year",
+      "hunt_code",
+      "draw_system_type",
+      "residency",
+      "points",
+      "draw_pool(default=standard)"
+    ],
+    "predictive_runtime_key": [
+      "forecast_year|year",
+      "hunt_code",
+      "draw_system_type",
+      "residency",
+      "points",
+      "draw_pool(default=standard)"
+    ],
+    "research_runtime_selection_key": [
+      "hunt_code",
+      "forecast_year",
+      "runtime_promotion_family",
+      "residency",
+      "points",
+      "draw_pool(default=standard)"
+    ]
+  },
+  "summaries": {
+    "DATABASE.csv": {
+      "path": "pipeline\\RAW\\hunt_unit_database\\2026\\csv\\DATABASE.csv",
+      "rows": 1645,
+      "field_count": 76,
+      "fields_first_30": [
+        "hunt_code",
+        "boundary_id",
+        "boundary_id_2024",
+        "boundary_id_2023",
+        "boundary_id_2021",
+        "boundary_id_2022",
+        "hunt_name",
+        "hunt_name_2024",
+        "hunt_name_2023",
+        "hunt_name_2021",
+        "hunt_name_2022",
+        "sex_type",
+        "species",
+        "weapon",
+        "hunt_type",
+        "hunt_class",
+        "draw_design",
+        "season",
+        "NOTES",
+        "draw_2025_bg_pdf_page",
+        "draw_2025_bg_report_page",
+        "draw_2025_type",
+        "permits_2025_res",
+        "permits_2025_nr",
+        "permits_2025_total",
+        "permits_2025_source",
+        "permits_2026_source",
+        "permits_2026_draw_source",
+        "draw_2026_system_type",
+        "permit_allotment_2026_res"
+      ],
+      "unique_hunt_codes": 1645,
+      "years_detected": [],
+      "top_draw_system_or_family": [
+        [
+          "MAX_WEIGHTED_SPLIT",
+          1021
+        ],
+        [
+          "PREFERENCE_ANTLERLESS_ELK",
+          164
+        ],
+        [
+          "REFERENCE_ONLY",
+          159
+        ],
+        [
+          "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+          128
+        ],
+        [
+          "PREFERENCE_DEDICATED_HUNTER_DEER",
+          37
+        ],
+        [
+          "PREFERENCE_DOE_PRONGHORN",
+          34
+        ],
+        [
+          "PREFERENCE_ANTLERLESS_DEER",
+          28
+        ],
+        [
+          "PRIVATE_LANDS_ONLY_ANTLERLESS_ELK",
+          27
+        ],
+        [
+          "BLACK_BEAR",
+          13
+        ],
+        [
+          "SPORTSMAN_RANDOM_ONLY",
+          11
+        ],
+        [
+          "TRIBAL",
+          10
+        ],
+        [
+          "YOUTH_TURKEY_SET_ASIDE",
+          5
+        ]
+      ],
+      "unique_operational_keys": 1645,
+      "duplicate_operational_key_rows": 0,
+      "missing_required_operational_key_rows": 0
+    },
+    "draw_results_long.csv": {
+      "path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
+      "rows": 313506,
+      "field_count": 97,
+      "fields_first_30": [
+        "actual_draw_year",
+        "model_target_year",
+        "boundary_id",
+        "hunt_code",
+        "hunt_name",
+        "raw_hunt_name",
+        "species",
+        "sex",
+        "sex_type",
+        "hunt_type",
+        "weapon",
+        "season",
+        "draw_design",
+        "hunt_draw_class",
+        "hunt_class",
+        "points",
+        "residency",
+        "row_type",
+        "record_type",
+        "resident_eligible_applicants",
+        "resident_bonus_permits",
+        "resident_regular_permits",
+        "resident_total_permits",
+        "resident_success_ratio",
+        "resident_p_draw",
+        "resident_p_draw_percent",
+        "nonresident_eligible_applicants",
+        "nonresident_bonus_permits",
+        "nonresident_regular_permits",
+        "nonresident_total_permits"
+      ],
+      "unique_hunt_codes": 1508,
+      "years_detected": [
+        "2018",
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "top_draw_system_or_family": [
+        [
+          "MAX_WEIGHTED_SPLIT",
+          188515
+        ],
+        [
+          "REFERENCE_ONLY",
+          54759
+        ],
+        [
+          "PREFERENCE_ANTLERLESS_ELK",
+          20034
+        ],
+        [
+          "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+          19160
+        ],
+        [
+          "GUARANTEED_LIFETIME_PERMIT",
+          16916
+        ],
+        [
+          "PREFERENCE_DEDICATED_HUNTER_DEER",
+          5982
+        ],
+        [
+          "PREFERENCE_ANTLERLESS_DEER",
+          3252
+        ],
+        [
+          "PREFERENCE_DOE_PRONGHORN",
+          2939
+        ],
+        [
+          "BLACK_BEAR",
+          1517
+        ],
+        [
+          "YOUTH_GENERAL_ANY_BULL_ELK",
+          243
+        ],
+        [
+          "SPORTSMAN_RANDOM_ONLY",
+          127
+        ],
+        [
+          "AVAILABILITY_ONLY",
+          59
+        ]
+      ],
+      "unique_operational_keys": 295744,
+      "duplicate_operational_key_rows": 17762,
+      "missing_required_operational_key_rows": 0
+    },
+    "predictive_v2": {
+      "path": "processed_data\\draw_reality_engine_predictive_v2.csv",
+      "rows": 38653,
+      "field_count": 181,
+      "fields_first_30": [
+        "year",
+        "forecast_year",
+        "hunt_code",
+        "hunt_name",
+        "species",
+        "sportsman_species",
+        "sex_type",
+        "hunt_type",
+        "hunt_class",
+        "residency",
+        "points",
+        "draw_pool",
+        "draw_design",
+        "sportsman_draw_design",
+        "sportsman_random_only",
+        "sportsman_split_draw",
+        "sportsman_resident_only",
+        "sportsman_source_year",
+        "sportsman_permit_count",
+        "sportsman_applicants",
+        "sportsman_nonresident_quota",
+        "sportsman_odds_text",
+        "sportsman_odds_denominator",
+        "p_sportsman_draw",
+        "p_draw",
+        "p_draw_pct",
+        "p_bonus_pool",
+        "p_random_pool",
+        "p_preference_draw",
+        "source_years_used"
+      ],
+      "unique_hunt_codes": 884,
+      "years_detected": [
+        "2026",
+        "2027"
+      ],
+      "top_draw_system_or_family": [
+        [
+          "BONUS_LE_BIG_GAME",
+          19531
+        ],
+        [
+          "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+          5534
+        ],
+        [
+          "PREFERENCE_ANTLERLESS_ELK",
+          4334
+        ],
+        [
+          "BONUS_OIL_BIG_GAME",
+          3727
+        ],
+        [
+          "BEAR_DRAW",
+          2706
+        ],
+        [
+          "PREFERENCE_DOE_PRONGHORN",
+          600
+        ],
+        [
+          "BONUS_PLE_BIG_GAME",
+          592
+        ],
+        [
+          "PREFERENCE_DEDICATED_HUNTER_DEER",
+          503
+        ],
+        [
+          "PREFERENCE_ANTLERLESS_DEER",
+          440
+        ],
+        [
+          "YOUTH_TURKEY_SET_ASIDE",
+          232
+        ],
+        [
+          "BONUS_TURKEY",
+          184
+        ],
+        [
+          "MOUNTAIN_LION_DRAW",
+          120
+        ]
+      ],
+      "unique_operational_keys": 38653,
+      "duplicate_operational_key_rows": 0,
+      "missing_required_operational_key_rows": 0
+    },
+    "ml_predictions": {
+      "path": "processed_data\\ml_draw_predictions_v1.csv",
+      "rows": 38647,
+      "field_count": 181,
+      "fields_first_30": [
+        "model_version",
+        "rule_version",
+        "year",
+        "forecast_year",
+        "hunt_code",
+        "hunt_name",
+        "species",
+        "sex_type",
+        "hunt_type",
+        "hunt_class",
+        "residency",
+        "points",
+        "draw_pool",
+        "draw_design",
+        "draw_method",
+        "point_system",
+        "public_permits_2025",
+        "public_permits_2026",
+        "eligible_applicants",
+        "projected_applicants",
+        "projected_applicants_source",
+        "projected_applicants_2026",
+        "projected_applicants_2026_source",
+        "max_point_permits_2025",
+        "max_point_permits_2026",
+        "random_permits_2025",
+        "random_permits_2026",
+        "guaranteed_at_2025",
+        "guaranteed_at_2026",
+        "applicants_above"
+      ],
+      "unique_hunt_codes": 878,
+      "years_detected": [
+        "2027"
+      ],
+      "top_draw_system_or_family": [
+        [
+          "BONUS_LE_BIG_GAME",
+          19531
+        ],
+        [
+          "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+          5534
+        ],
+        [
+          "PREFERENCE_ANTLERLESS_ELK",
+          4334
+        ],
+        [
+          "BONUS_OIL_BIG_GAME",
+          3727
+        ],
+        [
+          "BEAR_DRAW",
+          2706
+        ],
+        [
+          "PREFERENCE_DOE_PRONGHORN",
+          600
+        ],
+        [
+          "BONUS_PLE_BIG_GAME",
+          592
+        ],
+        [
+          "PREFERENCE_DEDICATED_HUNTER_DEER",
+          503
+        ],
+        [
+          "PREFERENCE_ANTLERLESS_DEER",
+          440
+        ],
+        [
+          "YOUTH_TURKEY_SET_ASIDE",
+          232
+        ],
+        [
+          "BONUS_TURKEY",
+          184
+        ],
+        [
+          "MOUNTAIN_LION_DRAW",
+          120
+        ]
+      ],
+      "unique_operational_keys": 38647,
+      "duplicate_operational_key_rows": 0,
+      "missing_required_operational_key_rows": 0
+    },
+    "crosswalk_authority": {
+      "path": "data_truth\\crosswalk_truth\\normalized\\hunt_code_crosswalk_authority_2020_2026.csv",
+      "rows": 15747,
+      "field_count": 69,
+      "fields_first_30": [
+        "authority_id",
+        "authority_status",
+        "source_year",
+        "target_year",
+        "hunt_year",
+        "permit_draw_year",
+        "source_document",
+        "source_document_year",
+        "source_page",
+        "source_table",
+        "source_row_number",
+        "source_label",
+        "source_label_type",
+        "hunt_code",
+        "historical_hunt_code",
+        "current_hunt_code",
+        "crosswalk_action",
+        "crosswalk_reason",
+        "species",
+        "sex",
+        "animal_class",
+        "hunt_name",
+        "unit_name",
+        "unit_name_normalized",
+        "old_unit_name",
+        "new_unit_name",
+        "unit_alias_group",
+        "weapon",
+        "weapon_normalized",
+        "season_name"
+      ],
+      "unique_hunt_codes": 1723,
+      "years_detected": [
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026",
+        "2027"
+      ],
+      "top_draw_system_or_family": [
+        [
+          "CWMU_PRIVATE_VOUCHER",
+          3314
+        ],
+        [
+          "BONUS_LIMITED_ENTRY_ELK",
+          1856
+        ],
+        [
+          "PREFERENCE_ANTLERLESS_ELK",
+          1661
+        ],
+        [
+          "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+          1425
+        ],
+        [
+          "BONUS_LIMITED_ENTRY_DEER",
+          1364
+        ],
+        [
+          "PRIVATE_LANDS_ONLY",
+          1036
+        ],
+        [
+          "BONUS_LIMITED_ENTRY_PRONGHORN",
+          924
+        ],
+        [
+          "BEAR_LIMITED_ENTRY",
+          911
+        ],
+        [
+          "PREFERENCE_DEDICATED_HUNTER_DEER",
+          421
+        ],
+        [
+          "PREFERENCE_ANTLERLESS_DEER",
+          391
+        ],
+        [
+          "BEAR_MULTI_SEASON_LIMITED_ENTRY",
+          310
+        ],
+        [
+          "PREFERENCE_DOE_PRONGHORN",
+          257
+        ]
+      ],
+      "unique_operational_keys": 9259,
+      "duplicate_operational_key_rows": 6488,
+      "missing_required_operational_key_rows": 0
+    },
+    "current_to_historical_crosswalk": {
+      "path": "data_truth\\crosswalk_truth\\normalized\\current_to_historical_hunt_code_crosswalk_2026.csv",
+      "rows": 169,
+      "field_count": 31,
+      "fields_first_30": [
+        "current_hunt_code",
+        "current_prefix",
+        "current_hunt_name",
+        "species",
+        "sex_type",
+        "weapon",
+        "hunt_type",
+        "season",
+        "in_database_2026",
+        "database_permits_2026_res",
+        "database_permits_2026_nonres",
+        "database_permits_2026_total",
+        "overlay_source_files",
+        "historical_hunt_code",
+        "historical_prefix",
+        "candidate_historical_codes",
+        "historical_years",
+        "relationship_type",
+        "crosswalk_status",
+        "mapping_confidence",
+        "mapping_method",
+        "data_quality_grade",
+        "backcheck_best_match_method",
+        "backcheck_reason_code",
+        "backcheck_candidates",
+        "full_joined_name_match_codes",
+        "full_joined_exact_history_years",
+        "full_joined_name_match_years",
+        "recommended_model_behavior",
+        "source_files"
+      ],
+      "unique_hunt_codes": 169,
+      "years_detected": [],
+      "top_draw_system_or_family": [],
+      "unique_operational_keys": 169,
+      "duplicate_operational_key_rows": 0,
+      "missing_required_operational_key_rows": 0
+    },
+    "canonical_yearly": [
+      {
+        "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2018_for_2019_canonical_yearly_draw_results.csv",
+        "rows": 31031,
+        "field_count": 68,
+        "fields_first_30": [
+          "actual_draw_year",
+          "model_target_year",
+          "boundary_id",
+          "hunt_code",
+          "hunt_name",
+          "sex_type",
+          "species",
+          "hunt_type",
+          "weapon",
+          "season",
+          "draw_design",
+          "points",
+          "record_type",
+          "resident_eligible_applicants",
+          "resident_bonus_permits",
+          "resident_regular_permits",
+          "resident_total_permits",
+          "resident_success_ratio",
+          "resident_p_draw",
+          "resident_p_draw_percent",
+          "nonresident_eligible_applicants",
+          "nonresident_bonus_permits",
+          "nonresident_regular_permits",
+          "nonresident_total_permits",
+          "nonresident_success_ratio",
+          "nonresident_p_draw",
+          "nonresident_p_draw_percent",
+          "total_eligible_applicants",
+          "total_bonus_permits",
+          "total_regular_permits"
+        ],
+        "unique_hunt_codes": 1010,
+        "years_detected": [
+          "2018",
+          "2019"
+        ],
+        "top_draw_system_or_family": [
+          [
+            "MAX_WEIGHTED_SPLIT",
+            15978
+          ],
+          [
+            "REFERENCE_ONLY",
+            6416
+          ],
+          [
+            "PREFERENCE_ANTLERLESS_ELK",
+            2771
+          ],
+          [
+            "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+            2068
+          ],
+          [
+            "GUARANTEED_LIFETIME_PERMIT",
+            2068
+          ],
+          [
+            "PREFERENCE_DEDICATED_HUNTER_DEER",
+            638
+          ],
+          [
+            "PREFERENCE_ANTLERLESS_DEER",
+            561
+          ],
+          [
+            "PREFERENCE_DOE_PRONGHORN",
+            493
+          ],
+          [
+            "YOUTH_GENERAL_ANY_BULL_ELK",
+            27
+          ],
+          [
+            "SPORTSMAN_RANDOM_ONLY",
+            11
+          ]
+        ],
+        "unique_operational_keys": 31031,
+        "duplicate_operational_key_rows": 0,
+        "missing_required_operational_key_rows": 0
+      },
+      {
+        "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2019_for_2020_canonical_yearly_draw_results.csv",
+        "rows": 33478,
+        "field_count": 68,
+        "fields_first_30": [
+          "actual_draw_year",
+          "model_target_year",
+          "boundary_id",
+          "hunt_code",
+          "hunt_name",
+          "sex_type",
+          "species",
+          "hunt_type",
+          "weapon",
+          "season",
+          "draw_design",
+          "points",
+          "record_type",
+          "resident_eligible_applicants",
+          "resident_bonus_permits",
+          "resident_regular_permits",
+          "resident_total_permits",
+          "resident_success_ratio",
+          "resident_p_draw",
+          "resident_p_draw_percent",
+          "nonresident_eligible_applicants",
+          "nonresident_bonus_permits",
+          "nonresident_regular_permits",
+          "nonresident_total_permits",
+          "nonresident_success_ratio",
+          "nonresident_p_draw",
+          "nonresident_p_draw_percent",
+          "total_eligible_applicants",
+          "total_bonus_permits",
+          "total_regular_permits"
+        ],
+        "unique_hunt_codes": 1054,
+        "years_detected": [
+          "2019",
+          "2020"
+        ],
+        "top_draw_system_or_family": [
+          [
+            "MAX_WEIGHTED_SPLIT",
+            14980
+          ],
+          [
+            "REFERENCE_ONLY",
+            9774
+          ],
+          [
+            "PREFERENCE_ANTLERLESS_ELK",
+            2975
+          ],
+          [
+            "GUARANTEED_LIFETIME_PERMIT",
+            2090
+          ],
+          [
+            "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+            1628
+          ],
+          [
+            "PREFERENCE_DEDICATED_HUNTER_DEER",
+            638
+          ],
+          [
+            "PREFERENCE_ANTLERLESS_DEER",
+            629
+          ],
+          [
+            "PREFERENCE_DOE_PRONGHORN",
+            578
+          ],
+          [
+            "BLACK_BEAR",
+            147
+          ],
+          [
+            "YOUTH_GENERAL_ANY_BULL_ELK",
+            28
+          ],
+          [
+            "SPORTSMAN_RANDOM_ONLY",
+            11
+          ]
+        ],
+        "unique_operational_keys": 32805,
+        "duplicate_operational_key_rows": 673,
+        "missing_required_operational_key_rows": 0
+      },
+      {
+        "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2020_for_2021_canonical_yearly_draw_results.csv",
+        "rows": 33370,
+        "field_count": 69,
+        "fields_first_30": [
+          "actual_draw_year",
+          "model_target_year",
+          "boundary_id",
+          "hunt_code",
+          "hunt_name",
+          "sex_type",
+          "species",
+          "hunt_type",
+          "weapon",
+          "season",
+          "draw_design",
+          "points",
+          "record_type",
+          "resident_eligible_applicants",
+          "resident_bonus_permits",
+          "resident_regular_permits",
+          "resident_total_permits",
+          "resident_success_ratio",
+          "resident_p_draw",
+          "resident_p_draw_percent",
+          "nonresident_eligible_applicants",
+          "nonresident_bonus_permits",
+          "nonresident_regular_permits",
+          "nonresident_total_permits",
+          "nonresident_success_ratio",
+          "nonresident_p_draw",
+          "nonresident_p_draw_percent",
+          "total_eligible_applicants",
+          "total_bonus_permits",
+          "total_regular_permits"
+        ],
+        "unique_hunt_codes": 1028,
+        "years_detected": [
+          "2020",
+          "2021"
+        ],
+        "top_draw_system_or_family": [
+          [
+            "MAX_WEIGHTED_SPLIT",
+            15805
+          ],
+          [
+            "REFERENCE_ONLY",
+            9285
+          ],
+          [
+            "PREFERENCE_ANTLERLESS_ELK",
+            2705
+          ],
+          [
+            "GUARANTEED_LIFETIME_PERMIT",
+            2090
+          ],
+          [
+            "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+            1628
+          ],
+          [
+            "PREFERENCE_DEDICATED_HUNTER_DEER",
+            638
+          ],
+          [
+            "PREFERENCE_DOE_PRONGHORN",
+            493
+          ],
+          [
+            "PREFERENCE_ANTLERLESS_DEER",
+            476
+          ],
+          [
+            "BLACK_BEAR",
+            210
+          ],
+          [
+            "YOUTH_GENERAL_ANY_BULL_ELK",
+            29
+          ],
+          [
+            "SPORTSMAN_RANDOM_ONLY",
+            11
+          ]
+        ],
+        "unique_operational_keys": 32690,
+        "duplicate_operational_key_rows": 680,
+        "missing_required_operational_key_rows": 0
+      },
+      {
+        "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2021_for_2022_canonical_yearly_draw_results.csv",
+        "rows": 33788,
+        "field_count": 68,
+        "fields_first_30": [
+          "actual_draw_year",
+          "model_target_year",
+          "boundary_id",
+          "hunt_code",
+          "hunt_name",
+          "sex_type",
+          "species",
+          "hunt_type",
+          "weapon",
+          "season",
+          "draw_design",
+          "points",
+          "record_type",
+          "resident_eligible_applicants",
+          "resident_bonus_permits",
+          "resident_regular_permits",
+          "resident_total_permits",
+          "resident_success_ratio",
+          "resident_p_draw",
+          "resident_p_draw_percent",
+          "nonresident_eligible_applicants",
+          "nonresident_bonus_permits",
+          "nonresident_regular_permits",
+          "nonresident_total_permits",
+          "nonresident_success_ratio",
+          "nonresident_p_draw",
+          "nonresident_p_draw_percent",
+          "total_eligible_applicants",
+          "total_bonus_permits",
+          "total_regular_permits"
+        ],
+        "unique_hunt_codes": 1022,
+        "years_detected": [
+          "2021",
+          "2022"
+        ],
+        "top_draw_system_or_family": [
+          [
+            "MAX_WEIGHTED_SPLIT",
+            18432
+          ],
+          [
+            "REFERENCE_ONLY",
+            9763
+          ],
+          [
+            "GUARANTEED_LIFETIME_PERMIT",
+            2068
+          ],
+          [
+            "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+            1725
+          ],
+          [
+            "PREFERENCE_DEDICATED_HUNTER_DEER",
+            1056
+          ],
+          [
+            "PREFERENCE_ANTLERLESS_ELK",
+            408
+          ],
+          [
+            "BLACK_BEAR",
+            210
+          ],
+          [
+            "PREFERENCE_ANTLERLESS_DEER",
+            68
+          ],
+          [
+            "YOUTH_GENERAL_ANY_BULL_ELK",
+            30
+          ],
+          [
+            "PREFERENCE_DOE_PRONGHORN",
+            17
+          ],
+          [
+            "SPORTSMAN_RANDOM_ONLY",
+            11
+          ]
+        ],
+        "unique_operational_keys": 29554,
+        "duplicate_operational_key_rows": 4234,
+        "missing_required_operational_key_rows": 0
+      },
+      {
+        "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2022_for_2023_canonical_yearly_draw_results.csv",
+        "rows": 34876,
+        "field_count": 69,
+        "fields_first_30": [
+          "actual_draw_year",
+          "model_target_year",
+          "boundary_id",
+          "hunt_code",
+          "hunt_name",
+          "sex_type",
+          "species",
+          "hunt_type",
+          "weapon",
+          "season",
+          "draw_design",
+          "points",
+          "record_type",
+          "resident_eligible_applicants",
+          "resident_bonus_permits",
+          "resident_regular_permits",
+          "resident_total_permits",
+          "resident_success_ratio",
+          "resident_p_draw",
+          "resident_p_draw_percent",
+          "nonresident_eligible_applicants",
+          "nonresident_bonus_permits",
+          "nonresident_regular_permits",
+          "nonresident_total_permits",
+          "nonresident_success_ratio",
+          "nonresident_p_draw",
+          "nonresident_p_draw_percent",
+          "total_eligible_applicants",
+          "total_bonus_permits",
+          "total_regular_permits"
+        ],
+        "unique_hunt_codes": 1020,
+        "years_detected": [
+          "2022",
+          "2023"
+        ],
+        "top_draw_system_or_family": [
+          [
+            "MAX_WEIGHTED_SPLIT",
+            19532
+          ],
+          [
+            "REFERENCE_ONLY",
+            6400
+          ],
+          [
+            "PREFERENCE_ANTLERLESS_ELK",
+            2844
+          ],
+          [
+            "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+            2304
+          ],
+          [
+            "GUARANTEED_LIFETIME_PERMIT",
+            2090
+          ],
+          [
+            "PREFERENCE_DEDICATED_HUNTER_DEER",
+            638
+          ],
+          [
+            "PREFERENCE_ANTLERLESS_DEER",
+            414
+          ],
+          [
+            "PREFERENCE_DOE_PRONGHORN",
+            414
+          ],
+          [
+            "BLACK_BEAR",
+            198
+          ],
+          [
+            "YOUTH_GENERAL_ANY_BULL_ELK",
+            31
+          ],
+          [
+            "SPORTSMAN_RANDOM_ONLY",
+            11
+          ]
+        ],
+        "unique_operational_keys": 34678,
+        "duplicate_operational_key_rows": 198,
+        "missing_required_operational_key_rows": 0
+      },
+      {
+        "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2023_for_2024_canonical_yearly_draw_results.csv",
+        "rows": 35834,
+        "field_count": 68,
+        "fields_first_30": [
+          "actual_draw_year",
+          "model_target_year",
+          "boundary_id",
+          "hunt_code",
+          "hunt_name",
+          "sex_type",
+          "species",
+          "hunt_type",
+          "weapon",
+          "season",
+          "draw_design",
+          "points",
+          "record_type",
+          "resident_eligible_applicants",
+          "resident_bonus_permits",
+          "resident_regular_permits",
+          "resident_total_permits",
+          "resident_success_ratio",
+          "resident_p_draw",
+          "resident_p_draw_percent",
+          "nonresident_eligible_applicants",
+          "nonresident_bonus_permits",
+          "nonresident_regular_permits",
+          "nonresident_total_permits",
+          "nonresident_success_ratio",
+          "nonresident_p_draw",
+          "nonresident_p_draw_percent",
+          "total_eligible_applicants",
+          "total_bonus_permits",
+          "total_regular_permits"
+        ],
+        "unique_hunt_codes": 1034,
+        "years_detected": [
+          "2023",
+          "2024"
+        ],
+        "top_draw_system_or_family": [
+          [
+            "MAX_WEIGHTED_SPLIT",
+            21270
+          ],
+          [
+            "REFERENCE_ONLY",
+            5590
+          ],
+          [
+            "PREFERENCE_ANTLERLESS_ELK",
+            2880
+          ],
+          [
+            "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+            2392
+          ],
+          [
+            "GUARANTEED_LIFETIME_PERMIT",
+            2163
+          ],
+          [
+            "PREFERENCE_DEDICATED_HUNTER_DEER",
+            651
+          ],
+          [
+            "PREFERENCE_ANTLERLESS_DEER",
+            360
+          ],
+          [
+            "PREFERENCE_DOE_PRONGHORN",
+            288
+          ],
+          [
+            "BLACK_BEAR",
+            198
+          ],
+          [
+            "YOUTH_GENERAL_ANY_BULL_ELK",
+            31
+          ],
+          [
+            "SPORTSMAN_RANDOM_ONLY",
+            10
+          ],
+          [
+            "COUGAR_LICENSE_BASED",
+            1
+          ]
+        ],
+        "unique_operational_keys": 33534,
+        "duplicate_operational_key_rows": 2300,
+        "missing_required_operational_key_rows": 0
+      },
+      {
+        "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2024_for_2025_canonical_yearly_draw_results.csv",
+        "rows": 43175,
+        "field_count": 69,
+        "fields_first_30": [
+          "actual_draw_year",
+          "model_target_year",
+          "boundary_id",
+          "hunt_code",
+          "hunt_name",
+          "sex_type",
+          "species",
+          "hunt_type",
+          "weapon",
+          "season",
+          "draw_design",
+          "points",
+          "record_type",
+          "resident_eligible_applicants",
+          "resident_bonus_permits",
+          "resident_regular_permits",
+          "resident_total_permits",
+          "resident_success_ratio",
+          "resident_p_draw",
+          "resident_p_draw_percent",
+          "nonresident_eligible_applicants",
+          "nonresident_bonus_permits",
+          "nonresident_regular_permits",
+          "nonresident_total_permits",
+          "nonresident_success_ratio",
+          "nonresident_p_draw",
+          "nonresident_p_draw_percent",
+          "total_eligible_applicants",
+          "total_bonus_permits",
+          "total_regular_permits"
+        ],
+        "unique_hunt_codes": 1028,
+        "years_detected": [
+          "2024",
+          "2025"
+        ],
+        "top_draw_system_or_family": [
+          [
+            "MAX_WEIGHTED_SPLIT",
+            30580
+          ],
+          [
+            "REFERENCE_ONLY",
+            4752
+          ],
+          [
+            "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+            2392
+          ],
+          [
+            "GUARANTEED_LIFETIME_PERMIT",
+            2184
+          ],
+          [
+            "PREFERENCE_ANTLERLESS_ELK",
+            1881
+          ],
+          [
+            "PREFERENCE_DEDICATED_HUNTER_DEER",
+            651
+          ],
+          [
+            "PREFERENCE_ANTLERLESS_DEER",
+            323
+          ],
+          [
+            "BLACK_BEAR",
+            198
+          ],
+          [
+            "PREFERENCE_DOE_PRONGHORN",
+            171
+          ],
+          [
+            "YOUTH_GENERAL_ANY_BULL_ELK",
+            32
+          ],
+          [
+            "SPORTSMAN_RANDOM_ONLY",
+            10
+          ],
+          [
+            "COUGAR_LICENSE_BASED",
+            1
+          ]
+        ],
+        "unique_operational_keys": 34539,
+        "duplicate_operational_key_rows": 8636,
+        "missing_required_operational_key_rows": 0
+      },
+      {
+        "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2025_for_2026_canonical_yearly_draw_results.csv",
+        "rows": 38120,
+        "field_count": 57,
+        "fields_first_30": [
+          "actual_draw_year",
+          "model_target_year",
+          "boundary_id",
+          "hunt_code",
+          "hunt_name",
+          "sex_type",
+          "species",
+          "hunt_type",
+          "weapon",
+          "season",
+          "draw_design",
+          "points",
+          "record_type",
+          "resident_eligible_applicants",
+          "resident_bonus_permits",
+          "resident_regular_permits",
+          "resident_total_permits",
+          "resident_success_ratio",
+          "resident_p_draw",
+          "resident_p_draw_percent",
+          "nonresident_eligible_applicants",
+          "nonresident_bonus_permits",
+          "nonresident_regular_permits",
+          "nonresident_total_permits",
+          "nonresident_success_ratio",
+          "nonresident_p_draw",
+          "nonresident_p_draw_percent",
+          "total_eligible_applicants",
+          "total_bonus_permits",
+          "total_regular_permits"
+        ],
+        "unique_hunt_codes": 1064,
+        "years_detected": [
+          "2025",
+          "2026"
+        ],
+        "top_draw_system_or_family": [
+          [
+            "MAX_WEIGHTED_SPLIT",
+            22302
+          ],
+          [
+            "REFERENCE_ONLY",
+            5952
+          ],
+          [
+            "PREFERENCE_ANTLERLESS_ELK",
+            3360
+          ],
+          [
+            "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+            2503
+          ],
+          [
+            "GUARANTEED_LIFETIME_PERMIT",
+            2163
+          ],
+          [
+            "PREFERENCE_DEDICATED_HUNTER_DEER",
+            651
+          ],
+          [
+            "PREFERENCE_DOE_PRONGHORN",
+            460
+          ],
+          [
+            "PREFERENCE_ANTLERLESS_DEER",
+            400
+          ],
+          [
+            "BLACK_BEAR",
+            240
+          ],
+          [
+            "AVAILABILITY_ONLY",
+            45
+          ],
+          [
+            "YOUTH_GENERAL_ANY_BULL_ELK",
+            33
+          ],
+          [
+            "SPORTSMAN_RANDOM_ONLY",
+            10
+          ]
+        ],
+        "unique_operational_keys": 37868,
+        "duplicate_operational_key_rows": 252,
+        "missing_required_operational_key_rows": 0
+      },
+      {
+        "path": "data_truth\\draw_results_truth\\normalized\\canonical_yearly\\draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+        "rows": 29812,
+        "field_count": 39,
+        "fields_first_30": [
+          "actual_draw_year",
+          "model_target_year",
+          "source_scope",
+          "source_namespace",
+          "draw_source_namespace",
+          "source_file",
+          "pdf_page",
+          "page_kind",
+          "hunt_code",
+          "hunt_name",
+          "species",
+          "sex_type",
+          "draw_design",
+          "weapon",
+          "hunt_type",
+          "season",
+          "residency",
+          "points",
+          "eligible_applicants",
+          "bonus_permits",
+          "regular_permits",
+          "total_permits",
+          "success_ratio",
+          "p_draw",
+          "p_draw_percent",
+          "record_type",
+          "boundary_id",
+          "algorithm_status",
+          "source_dataset",
+          "extraction_status"
+        ],
+        "unique_hunt_codes": 1097,
+        "years_detected": [
+          "2026",
+          "2027"
+        ],
+        "top_draw_system_or_family": [
+          [
+            "MAX_WEIGHTED_SPLIT",
+            26460
+          ],
+          [
+            "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+            2520
+          ],
+          [
+            "PREFERENCE_DEDICATED_HUNTER_DEER",
+            421
+          ],
+          [
+            "PREFERENCE_ANTLERLESS_ELK",
+            210
+          ],
+          [
+            "BLACK_BEAR",
+            116
+          ],
+          [
+            "PREFERENCE_DOE_PRONGHORN",
+            25
+          ],
+          [
+            "PREFERENCE_ANTLERLESS_DEER",
+            21
+          ],
+          [
+            "SPORTSMAN_RANDOM_ONLY",
+            20
+          ],
+          [
+            "AVAILABILITY_ONLY",
+            14
+          ],
+          [
+            "REFERENCE_ONLY",
+            3
+          ],
+          [
+            "YOUTH_GENERAL_ANY_BULL_ELK",
+            2
+          ]
+        ],
+        "unique_operational_keys": 14654,
+        "duplicate_operational_key_rows": 15158,
+        "missing_required_operational_key_rows": 0
+      }
+    ]
+  },
+  "hunt_code_overlap": {
+    "database_codes": 1645,
+    "canonical_yearly_union_codes": 1508,
+    "long_codes": 1508,
+    "predictive_v2_codes": 884,
+    "ml_prediction_codes": 878,
+    "database_and_canonical_union": 1337,
+    "database_not_in_canonical_union": 308,
+    "canonical_union_not_in_database": 171,
+    "long_not_in_canonical_union": 0,
+    "canonical_union_not_in_long": 0,
+    "predictive_v2_not_in_database": 52,
+    "ml_not_in_database": 52,
+    "canonical_codes_by_file": {
+      "draw_results_2018_for_2019_canonical_yearly_draw_results.csv": 1010,
+      "draw_results_2019_for_2020_canonical_yearly_draw_results.csv": 1054,
+      "draw_results_2020_for_2021_canonical_yearly_draw_results.csv": 1028,
+      "draw_results_2021_for_2022_canonical_yearly_draw_results.csv": 1022,
+      "draw_results_2022_for_2023_canonical_yearly_draw_results.csv": 1020,
+      "draw_results_2023_for_2024_canonical_yearly_draw_results.csv": 1034,
+      "draw_results_2024_for_2025_canonical_yearly_draw_results.csv": 1028,
+      "draw_results_2025_for_2026_canonical_yearly_draw_results.csv": 1064,
+      "draw_results_2026_for_2027_canonical_yearly_draw_results.csv": 1097
+    }
+  }
+}
