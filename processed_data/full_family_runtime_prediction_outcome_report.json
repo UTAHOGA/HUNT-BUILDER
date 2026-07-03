@@ -1,0 +1,458 @@
+{
+  "created_at": "2026-07-03T02:59:59",
+  "full_family_audit_dir": "audits\\full_family_runtime_prediction_20260703_024059",
+  "materialized_output_dir": "audits\\full_family_runtime_materialized_20260703_025641\\outputs",
+  "progressive_year_pairs": [
+    "2018->2019",
+    "2019->2020",
+    "2020->2021",
+    "2021->2022",
+    "2022->2023",
+    "2023->2024",
+    "2024->2025",
+    "2025->2026",
+    "2026->2027"
+  ],
+  "truth_surface_used": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
+  "note_on_yearly_canonicals": "Run filtered progressive source/target years from draw_results_long.csv, which is aligned to the canonical_yearly union; it did not open each yearly canonical CSV directly.",
+  "family_year_status_counts": {
+    "PASS": 51,
+    "CLASSIFIED": 30
+  },
+  "classified_breakdown": [
+    {
+      "family": "bonus_bear",
+      "reason": "DEFERRED_WITH_REASON: bear target-year source selection is still under repair",
+      "count": 9
+    },
+    {
+      "family": "preference_antlerless_deer",
+      "reason": "HELD_OUT_UNRELEASED_2027_ANTLERLESS_DOE_RESULTS",
+      "count": 1
+    },
+    {
+      "family": "preference_antlerless_elk",
+      "reason": "HELD_OUT_UNRELEASED_2027_ANTLERLESS_DOE_RESULTS",
+      "count": 1
+    },
+    {
+      "family": "preference_doe_pronghorn",
+      "reason": "HELD_OUT_UNRELEASED_2027_ANTLERLESS_DOE_RESULTS",
+      "count": 1
+    },
+    {
+      "family": "youth_draw",
+      "reason": "DEFERRED_WITH_REASON: youth draw historical target-year runner wiring is not promoted",
+      "count": 9
+    },
+    {
+      "family": "youth_turkey",
+      "reason": "DEFERRED_WITH_REASON: youth turkey historical target-year runner wiring is not promoted",
+      "count": 9
+    }
+  ],
+  "prediction_rows_by_family": {
+    "bonus_bear": 0,
+    "dedicated_hunter": 16223,
+    "preference_antlerless_deer": 8436,
+    "preference_antlerless_elk": 25441,
+    "preference_doe_pronghorn": 4773,
+    "preference_general_deer": 39920,
+    "sportsman": 95,
+    "youth_draw": 0,
+    "youth_turkey": 0
+  },
+  "total_prediction_rows_full_family_runner": 94888,
+  "leakage_status_counts": {
+    "PASS": 54,
+    "CLASSIFIED": 27
+  },
+  "materialized_runtime_rows": 38647,
+  "materialized_runtime_hunt_codes": 878,
+  "materialized_forecast_year": 2027,
+  "materialized_source_years": "2018-2026",
+  "hunt_code_reconciliation_required_rows": 0,
+  "runtime_family_promotion": {
+    "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29",
+    "promoted_family_count": 6,
+    "promoted_row_count": 3546,
+    "families": [
+      {
+        "runtime_promotion_family": "SPORTSMAN_RANDOM_ONLY",
+        "runtime_promotion_status": "PROMOTED_TO_RUNTIME",
+        "row_count": 10,
+        "hunt_code_count": 10,
+        "duplicate_runtime_key_count": 0,
+        "source_report": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\sportsman_permit_report.json",
+        "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
+      },
+      {
+        "runtime_promotion_family": "YOUTH_GENERAL_ANY_BULL_ELK",
+        "runtime_promotion_status": "PROMOTED_TO_RUNTIME",
+        "row_count": 2,
+        "hunt_code_count": 1,
+        "duplicate_runtime_key_count": 0,
+        "source_report": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\youth_draw_report.json",
+        "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
+      },
+      {
+        "runtime_promotion_family": "PREFERENCE_DEDICATED_HUNTER_DEER",
+        "runtime_promotion_status": "PROMOTED_TO_RUNTIME",
+        "row_count": 503,
+        "hunt_code_count": 31,
+        "duplicate_runtime_key_count": 0,
+        "source_report": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\dedicated_hunter_report.json",
+        "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
+      },
+      {
+        "runtime_promotion_family": "BEAR_DRAW",
+        "runtime_promotion_status": "PROMOTED_TO_RUNTIME",
+        "row_count": 2615,
+        "hunt_code_count": 100,
+        "duplicate_runtime_key_count": 0,
+        "source_report": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\bear_report.json",
+        "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
+      },
+      {
+        "runtime_promotion_family": "BONUS_TURKEY",
+        "runtime_promotion_status": "PROMOTED_TO_RUNTIME",
+        "row_count": 184,
+        "hunt_code_count": 9,
+        "duplicate_runtime_key_count": 0,
+        "source_report": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\turkey_bonus_report.json",
+        "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
+      },
+      {
+        "runtime_promotion_family": "YOUTH_TURKEY_SET_ASIDE",
+        "runtime_promotion_status": "PROMOTED_TO_RUNTIME",
+        "row_count": 232,
+        "hunt_code_count": 5,
+        "duplicate_runtime_key_count": 0,
+        "source_report": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\youth_turkey_report.json",
+        "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
+      }
+    ],
+    "promotion_ready": true,
+    "excluded_from_this_promotion": [
+      "MAX_WEIGHTED_SPLIT_PENDING_CHALLENGE_TEST",
+      "CWMU_CONSERVATION_PRIVATE_LAND_REFERENCE_ONLY"
+    ],
+    "runtime_promotion_columns": [
+      "runtime_promotion_family",
+      "runtime_promotion_status",
+      "runtime_promotion_decision",
+      "runtime_promotion_source",
+      "runtime_promotion_source_report",
+      "runtime_promotion_note"
+    ],
+    "permit_source_field_contract": "NOT_REQUIRED_FOR_RUNTIME_PROMOTION; permit authority is carried by permits_2026_* fields, public_permits_2026 where applicable, and reason_codes."
+  },
+  "processed_data_copied": [
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\backtest_utah_bonus_draw.csv",
+      "destination": "processed_data\\backtest_utah_bonus_draw.csv",
+      "bytes": 1304046
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\backtest_utah_bonus_draw_report.json",
+      "destination": "processed_data\\backtest_utah_bonus_draw_report.json",
+      "bytes": 608
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\bear_draw_odds_source_audit.csv",
+      "destination": "processed_data\\bear_draw_odds_source_audit.csv",
+      "bytes": 28613
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\bear_draw_odds_source_audit.json",
+      "destination": "processed_data\\bear_draw_odds_source_audit.json",
+      "bytes": 102024
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\bear_draw_predictions_v1.csv",
+      "destination": "processed_data\\bear_draw_predictions_v1.csv",
+      "bytes": 2721952
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\bear_draw_report.json",
+      "destination": "processed_data\\bear_draw_report.json",
+      "bytes": 2955
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\bear_predictions_v1.csv",
+      "destination": "processed_data\\bear_predictions_v1.csv",
+      "bytes": 2721952
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\bear_report.json",
+      "destination": "processed_data\\bear_report.json",
+      "bytes": 2955
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\dedicated_hunter_predictions_v1.csv",
+      "destination": "processed_data\\dedicated_hunter_predictions_v1.csv",
+      "bytes": 538682
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\dedicated_hunter_report.json",
+      "destination": "processed_data\\dedicated_hunter_report.json",
+      "bytes": 690
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\draw_reality_engine_predictive_v2.csv",
+      "destination": "processed_data\\draw_reality_engine_predictive_v2.csv",
+      "bytes": 42430953
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\hunt_code_reconciliation_required_rows.csv",
+      "destination": "processed_data\\hunt_code_reconciliation_required_rows.csv",
+      "bytes": 142
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\ml_draw_predictions_v1.csv",
+      "destination": "processed_data\\ml_draw_predictions_v1.csv",
+      "bytes": 43100750
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\ml_draw_predictions_v1_report.json",
+      "destination": "processed_data\\ml_draw_predictions_v1_report.json",
+      "bytes": 727
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\mountain_lion_availability_predictions_v1.csv",
+      "destination": "processed_data\\mountain_lion_availability_predictions_v1.csv",
+      "bytes": 108849
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\mountain_lion_availability_report.json",
+      "destination": "processed_data\\mountain_lion_availability_report.json",
+      "bytes": 1333
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\phase4_antlerless_validation_inventory.csv",
+      "destination": "processed_data\\phase4_antlerless_validation_inventory.csv",
+      "bytes": 33629
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\phase4_antlerless_validation_inventory.json",
+      "destination": "processed_data\\phase4_antlerless_validation_inventory.json",
+      "bytes": 586
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\phase6_bonus_special_predictions_v1.csv",
+      "destination": "processed_data\\phase6_bonus_special_predictions_v1.csv",
+      "bytes": 46473
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\phase6_bonus_special_report.json",
+      "destination": "processed_data\\phase6_bonus_special_report.json",
+      "bytes": 1308
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\predictive_coverage_report.csv",
+      "destination": "processed_data\\predictive_coverage_report.csv",
+      "bytes": 386823
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\predictive_coverage_report.json",
+      "destination": "processed_data\\predictive_coverage_report.json",
+      "bytes": 1066
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\private_lands_antlerless_elk_allocations_v1.csv",
+      "destination": "processed_data\\private_lands_antlerless_elk_allocations_v1.csv",
+      "bytes": 49341
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\private_lands_antlerless_elk_predictions_v1.csv",
+      "destination": "processed_data\\private_lands_antlerless_elk_predictions_v1.csv",
+      "bytes": 49341
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\private_lands_antlerless_elk_report.json",
+      "destination": "processed_data\\private_lands_antlerless_elk_report.json",
+      "bytes": 1509
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\runtime_family_promotion_report.csv",
+      "destination": "processed_data\\runtime_family_promotion_report.csv",
+      "bytes": 1202
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\runtime_family_promotion_report.json",
+      "destination": "processed_data\\runtime_family_promotion_report.json",
+      "bytes": 3247
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\runtime_family_promotion_report.md",
+      "destination": "processed_data\\runtime_family_promotion_report.md",
+      "bytes": 1527
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\sportsman_permit_predictions_v1.csv",
+      "destination": "processed_data\\sportsman_permit_predictions_v1.csv",
+      "bytes": 11653
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\sportsman_permit_report.json",
+      "destination": "processed_data\\sportsman_permit_report.json",
+      "bytes": 2035
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\turkey_bonus_predictions_v1.csv",
+      "destination": "processed_data\\turkey_bonus_predictions_v1.csv",
+      "bytes": 170707
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\turkey_bonus_report.json",
+      "destination": "processed_data\\turkey_bonus_report.json",
+      "bytes": 1123
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\utah_bonus_predictive_manifest.json",
+      "destination": "processed_data\\utah_bonus_predictive_manifest.json",
+      "bytes": 9076
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\youth_draw_predictions_v1.csv",
+      "destination": "processed_data\\youth_draw_predictions_v1.csv",
+      "bytes": 4110
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\youth_draw_report.json",
+      "destination": "processed_data\\youth_draw_report.json",
+      "bytes": 4331
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\youth_turkey_predictions_v1.csv",
+      "destination": "processed_data\\youth_turkey_predictions_v1.csv",
+      "bytes": 249352
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\youth_turkey_report.json",
+      "destination": "processed_data\\youth_turkey_report.json",
+      "bytes": 1152
+    }
+  ],
+  "public_processed_data_copied": [
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\bear_draw_predictions_v1.csv",
+      "destination": "public\\processed_data\\bear_draw_predictions_v1.csv",
+      "bytes": 2721952
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\bear_draw_report.json",
+      "destination": "public\\processed_data\\bear_draw_report.json",
+      "bytes": 2955
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\bear_report.json",
+      "destination": "public\\processed_data\\bear_report.json",
+      "bytes": 2955
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\dedicated_hunter_predictions_v1.csv",
+      "destination": "public\\processed_data\\dedicated_hunter_predictions_v1.csv",
+      "bytes": 538682
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\dedicated_hunter_report.json",
+      "destination": "public\\processed_data\\dedicated_hunter_report.json",
+      "bytes": 690
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\ml_draw_predictions_v1_report.json",
+      "destination": "public\\processed_data\\ml_draw_predictions_v1_report.json",
+      "bytes": 727
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\mountain_lion_availability_predictions_v1.csv",
+      "destination": "public\\processed_data\\mountain_lion_availability_predictions_v1.csv",
+      "bytes": 108849
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\mountain_lion_availability_report.json",
+      "destination": "public\\processed_data\\mountain_lion_availability_report.json",
+      "bytes": 1333
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\phase6_bonus_special_predictions_v1.csv",
+      "destination": "public\\processed_data\\phase6_bonus_special_predictions_v1.csv",
+      "bytes": 46473
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\phase6_bonus_special_report.json",
+      "destination": "public\\processed_data\\phase6_bonus_special_report.json",
+      "bytes": 1308
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\predictive_coverage_report.json",
+      "destination": "public\\processed_data\\predictive_coverage_report.json",
+      "bytes": 1066
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\private_lands_antlerless_elk_predictions_v1.csv",
+      "destination": "public\\processed_data\\private_lands_antlerless_elk_predictions_v1.csv",
+      "bytes": 49341
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\private_lands_antlerless_elk_report.json",
+      "destination": "public\\processed_data\\private_lands_antlerless_elk_report.json",
+      "bytes": 1509
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\runtime_family_promotion_report.csv",
+      "destination": "public\\processed_data\\runtime_family_promotion_report.csv",
+      "bytes": 1202
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\runtime_family_promotion_report.json",
+      "destination": "public\\processed_data\\runtime_family_promotion_report.json",
+      "bytes": 3247
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\sportsman_permit_predictions_v1.csv",
+      "destination": "public\\processed_data\\sportsman_permit_predictions_v1.csv",
+      "bytes": 11653
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\sportsman_permit_report.json",
+      "destination": "public\\processed_data\\sportsman_permit_report.json",
+      "bytes": 2035
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\turkey_bonus_predictions_v1.csv",
+      "destination": "public\\processed_data\\turkey_bonus_predictions_v1.csv",
+      "bytes": 170707
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\turkey_bonus_report.json",
+      "destination": "public\\processed_data\\turkey_bonus_report.json",
+      "bytes": 1123
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\youth_draw_predictions_v1.csv",
+      "destination": "public\\processed_data\\youth_draw_predictions_v1.csv",
+      "bytes": 4110
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\youth_draw_report.json",
+      "destination": "public\\processed_data\\youth_draw_report.json",
+      "bytes": 4331
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\youth_turkey_predictions_v1.csv",
+      "destination": "public\\processed_data\\youth_turkey_predictions_v1.csv",
+      "bytes": 249352
+    },
+    {
+      "source": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\youth_turkey_report.json",
+      "destination": "public\\processed_data\\youth_turkey_report.json",
+      "bytes": 1152
+    }
+  ],
+  "excluded_from_git_runtime_copy": [
+    "audits/full_family_runtime_materialized_20260703_025641/outputs/draw_reality_engine_v2.csv (150 MB runtime truth copy; not promoted to Git)"
+  ],
+  "hardening_audit_note": "Broader hardening audit reported blockers from old audit artifacts and pytest collection under audits/pytest_deps; focused engine tests and runtime gate should be used for promotion decision."
+}

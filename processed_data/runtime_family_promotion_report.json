@@ -9,7 +9,7 @@
       "row_count": 10,
       "hunt_code_count": 10,
       "duplicate_runtime_key_count": 0,
-      "source_report": "audits\\runtime_refresh_canonical_yearly\\20260702_231414\\outputs\\sportsman_permit_report.json",
+      "source_report": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\sportsman_permit_report.json",
       "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
     },
     {
@@ -18,7 +18,7 @@
       "row_count": 2,
       "hunt_code_count": 1,
       "duplicate_runtime_key_count": 0,
-      "source_report": "audits\\runtime_refresh_canonical_yearly\\20260702_231414\\outputs\\youth_draw_report.json",
+      "source_report": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\youth_draw_report.json",
       "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
     },
     {
@@ -27,7 +27,7 @@
       "row_count": 503,
       "hunt_code_count": 31,
       "duplicate_runtime_key_count": 0,
-      "source_report": "audits\\runtime_refresh_canonical_yearly\\20260702_231414\\outputs\\dedicated_hunter_report.json",
+      "source_report": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\dedicated_hunter_report.json",
       "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
     },
     {
@@ -36,7 +36,7 @@
       "row_count": 2615,
       "hunt_code_count": 100,
       "duplicate_runtime_key_count": 0,
-      "source_report": "audits\\runtime_refresh_canonical_yearly\\20260702_231414\\outputs\\bear_report.json",
+      "source_report": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\bear_report.json",
       "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
     },
     {
@@ -45,7 +45,7 @@
       "row_count": 184,
       "hunt_code_count": 9,
       "duplicate_runtime_key_count": 0,
-      "source_report": "audits\\runtime_refresh_canonical_yearly\\20260702_231414\\outputs\\turkey_bonus_report.json",
+      "source_report": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\turkey_bonus_report.json",
       "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
     },
     {
@@ -54,7 +54,7 @@
       "row_count": 232,
       "hunt_code_count": 5,
       "duplicate_runtime_key_count": 0,
-      "source_report": "audits\\runtime_refresh_canonical_yearly\\20260702_231414\\outputs\\youth_turkey_report.json",
+      "source_report": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\youth_turkey_report.json",
       "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
     }
   ],
