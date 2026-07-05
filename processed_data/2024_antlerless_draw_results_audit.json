@@ -1,6 +1,6 @@
 {
   "classification": "ANTLERLESS_DRAW_RESULTS_TRUTH_SOURCE_AUDIT",
-  "timestamp_utc": "2026-07-05T06:41:40.144249+00:00",
+  "timestamp_utc": "2026-07-03T05:18:05.340639+00:00",
   "source_pdf": "pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/2024 antlerless draw results.pdf",
   "source_sha256": "21ea12abd24abb29b074520eccae1ab1b689d6e969d622803f220c0ca4664789",
   "expected_sha256": "21ea12abd24abb29b074520eccae1ab1b689d6e969d622803f220c0ca4664789",

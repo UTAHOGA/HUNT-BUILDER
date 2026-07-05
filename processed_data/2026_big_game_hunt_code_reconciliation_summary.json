@@ -1,14 +1,13 @@
 {
   "guidebook_hunt_codes": 728,
-  "codes_present_in_all_required_surfaces": 726,
-  "required_surface_blocker_count": 2,
+  "codes_present_in_all_required_surfaces": 728,
+  "required_surface_blocker_count": 0,
   "required_surface_status_counts": {
-    "PASS": 726,
-    "BLOCKER": 2
+    "PASS": 728
   },
   "required_missing_by_surface": {
     "DATABASE": 0,
-    "hunt_master_enriched": 2,
+    "hunt_master_enriched": 0,
     "hunt_unit_reference_linked": 0,
     "point_ladder_view": 0,
     "draw_reality_engine": 0
@@ -21,16 +20,16 @@
     "draw_reality_engine_predictive_v2": 0
   },
   "required_surface_code_counts": {
-    "DATABASE": 1645,
-    "hunt_master_enriched": 1218,
-    "hunt_unit_reference_linked": 1531,
-    "point_ladder_view": 1541,
-    "draw_reality_engine": 1433
+    "DATABASE": 1411,
+    "hunt_master_enriched": 1471,
+    "hunt_unit_reference_linked": 1471,
+    "point_ladder_view": 1471,
+    "draw_reality_engine": 1623
   },
   "optional_surface_code_counts": {
-    "draw_reality_engine_predictive_v2": 1128
+    "draw_reality_engine_predictive_v2": 1109
   },
-  "extra_database_codes_not_in_guidebook": 917,
+  "extra_database_codes_not_in_guidebook": 683,
   "extra_database_code_note": "Expected: DATABASE includes antlerless, other current-year rows, and broader active references not printed in the big-game application hunt tables.",
   "classification": "BIG_GAME_HUNT_CODE_RECONCILIATION",
   "modeling_guardrail": "DO_NOT_CHANGE_PREDICTION_MATH_OR_PERMIT_VALUES"

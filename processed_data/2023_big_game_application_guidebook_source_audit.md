@@ -8,16 +8,16 @@ This audit locks the file identity as the revised May 2023 Big Game Application 
 
 - Expected title: `2023 Utah Big Game Application Guidebook`
 - Expected source year: `2023`
-- SHA-256: ``
-- PDF pages: `0`
-- Extracted text lines: `0`
-- Extracted number/date/citation tokens: `0`
-- Hunt-table reference rows: `0`
-- Unique hunt codes: `0`
+- SHA-256: `7357df71939b084d5e6807a1bc01670bb6f1c04369e550946b1363c57ed2082b`
+- PDF pages: `80`
+- Extracted text lines: `3915`
+- Extracted number/date/citation tokens: `3422`
+- Hunt-table reference rows: `719`
+- Unique hunt codes: `719`
 - Expected pasted-text checks: `66`
-- Expected pasted-text failures: `66`
+- Expected pasted-text failures: `0`
 - Database reconciliation effect: `NO_DRAW_OR_PREDICTION_ROWS_PROMOTED`
-- Audit blockers: `71`
+- Audit blockers: `0`
 
 ## Outputs
 
@@ -30,11 +30,11 @@ This audit locks the file identity as the revised May 2023 Big Game Application 
 
 | check | status |
 |---|---:|
-| source_pdf_exists | REVIEW |
+| source_pdf_exists | PASS |
 | source_path_is_2023_folder | PASS |
-| source_hash_matches_expected | REVIEW |
-| source_size_matches_expected | REVIEW |
-| text_mentions_2023_application_guidebook | REVIEW |
-| text_mentions_revised_may_2023 | REVIEW |
+| source_hash_matches_expected | PASS |
+| source_size_matches_expected | PASS |
+| text_mentions_2023_application_guidebook | PASS |
+| text_mentions_revised_may_2023 | PASS |
 | text_does_not_identify_as_draw_odds | PASS |
 | not_promoted_by_quality_or_draw_audit | PASS |

@@ -5,25 +5,24 @@
   "guidebook_rows": 728,
   "matched_database_hunt_codes": 728,
   "missing_database_hunt_codes": 0,
-  "name_review_warnings": 8,
+  "name_review_warnings": 6,
   "season_review_warnings": 0,
   "blockers": 0,
-  "warnings": 8,
+  "warnings": 6,
   "post_publication_correction_count": 4,
-  "post_publication_correction_review_count": 2,
+  "post_publication_correction_review_count": 0,
   "post_publication_correction_status_counts": {
-    "REVIEW": 2,
-    "PASS": 2
+    "PASS": 4
   },
   "status_counts": {
-    "OK": 720,
-    "WARNING": 8
+    "OK": 722,
+    "WARNING": 6
   },
   "name_status_counts": {
     "SPORTSMAN_STATEWIDE_LABEL_VARIANT": 10,
-    "MATCH": 697,
+    "MATCH": 699,
     "MULTI_COLUMN_TEXT_NOT_COMPARABLE": 13,
-    "REVIEW": 8
+    "REVIEW": 6
   },
   "season_status_counts": {
     "MATCH": 457,
