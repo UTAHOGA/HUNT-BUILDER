@@ -48,6 +48,11 @@ RUNTIME_MATERIALIZER_FAMILIES = (
     "youth_turkey",
     "youth_draw",
 )
+UNRELEASED_ACTUAL_HOLDOUT_FAMILIES = {
+    "preference_antlerless_deer",
+    "preference_antlerless_elk",
+    "preference_doe_pronghorn",
+}
 BIG_GAME_BONUS_RUNTIME_FAMILIES = {
     "bonus_le_big_game",
     "bonus_ple_big_game",
@@ -1412,6 +1417,15 @@ def run_all_families(source_year: int, target_year: int, audit_dir: Path, truth_
         all_prediction_rows.extend(rows)
         metrics = family_metrics.get(family, {})
         status, blocker = _family_prediction_status(family, rows, runtime_family_reports.get(family, {}))
+        intentional_holdout = (
+            not rows
+            and source_year >= 2026
+            and target_year >= 2027
+            and family in UNRELEASED_ACTUAL_HOLDOUT_FAMILIES
+        )
+        if intentional_holdout:
+            status = "CLASSIFIED"
+            blocker = "HELD_OUT_UNRELEASED_2027_ANTLERLESS_DOE_RESULTS"
         counts.append(
             {
                 "source_year": source_year,

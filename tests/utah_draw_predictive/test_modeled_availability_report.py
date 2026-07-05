@@ -1,4 +1,4 @@
-﻿import json
+import json
 from pathlib import Path
 
 
@@ -63,4 +63,3 @@ def test_draw_system_coverage_has_modeled_availability_section() -> None:
     assert section["mountain_lion_cougar_modeled_availability_row_count"] == 0
     assert coverage["phase10_mountain_lion"]["mountain_lion_cougar_reference_license_based_no_draw"] is True
     assert section["modeled_availability_pass"] is True
-

@@ -1,4 +1,4 @@
-﻿import csv
+import csv
 import json
 from pathlib import Path
 
@@ -141,4 +141,3 @@ def test_availability_report_written() -> None:
     assert md_path.exists()
     review = _read_json(REVIEW_PATH)
     assert review["total_MODELED_AVAILABILITY_rows"] >= 0
-

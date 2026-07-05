@@ -1,4 +1,4 @@
-﻿import pandas as pd
+import pandas as pd
 
 from engine.utah_draw_predictive.preference_calibration import (
     apply_preference_calibration_candidate,
@@ -220,4 +220,3 @@ def test_preference_calibration_candidate_chooses_valid_p_draw_over_empty_p_draw
     assert calibrated.loc[0, "p_draw_original"] == 0.90
     assert calibrated.loc[0, "p_draw_calibrated_candidate"] == 0.85
     assert calibrated.loc[0, "calibration_applied_candidate"] is True
-

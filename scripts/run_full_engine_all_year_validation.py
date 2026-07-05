@@ -82,9 +82,102 @@ def _source_column_mapping_rows() -> list[dict[str, str]]:
     ]
 
 
+def _classified_reconciliation_for_row(row: Mapping[str, str]) -> dict[str, str]:
+    family = row.get("family", "")
+    reason = row.get("blocker_if_failed", "")
+    if reason == "HELD_OUT_UNRELEASED_2027_ANTLERLESS_DOE_RESULTS":
+        return {
+            "reconciliation_bucket": "INTENTIONAL_UNRELEASED_ACTUALS_HOLDOUT",
+            "clean_run_blocker": "false",
+            "release_blocker": "false",
+            "next_action": (
+                "Keep excluded from accuracy scoring until official 2027 antlerless/doe "
+                "draw-result PDFs are released; do not count as poor/inaccurate."
+            ),
+            "source_location": "engine/utah_draw_predictive/run_all_families.py::UNRELEASED_ACTUAL_HOLDOUT_FAMILIES",
+            "promotion_decision": "KEEP_HELD_OUT_NOT_PENALIZED",
+            "notes": "Expected 2026->2027 holdout for unreleased actual results.",
+        }
+    if family == "bonus_bear":
+        return {
+            "reconciliation_bucket": "FULL_CERT_WIRING_BLOCKER",
+            "clean_run_blocker": "true",
+            "release_blocker": "runtime_current_year_promoted; historical_full_cert_not_clean",
+            "next_action": (
+                "Build a historical bear target-year adapter that feeds one active hunt-code row per "
+                "source-year hunt code, preserves quota/source fields, and excludes pursuit/reference "
+                "rows from probability scoring."
+            ),
+            "source_location": "engine/utah_draw_predictive/run_all_families.py::deferred_families[bonus_bear]",
+            "promotion_decision": "DO_NOT_FAKE_PASS; WIRE_AND_PROBE_BEAR_HISTORY",
+            "notes": "Do not replace with raw long-file builder calls; undeduped long rows inflate outputs.",
+        }
+    if family == "youth_turkey":
+        return {
+            "reconciliation_bucket": "FULL_CERT_WIRING_BLOCKER",
+            "clean_run_blocker": "true",
+            "release_blocker": "runtime_current_year_promoted; historical_full_cert_not_clean",
+            "next_action": (
+                "Build a youth-turkey historical adapter that dedupes target/source hunt-code rows "
+                "before calling build_youth_turkey_predictions and verifies no future-year source usage."
+            ),
+            "source_location": "engine/utah_draw_predictive/run_all_families.py::deferred_families[youth_turkey]",
+            "promotion_decision": "DO_NOT_FAKE_PASS; WIRE_AND_PROBE_YOUTH_TURKEY_HISTORY",
+            "notes": "Direct builder calls can be bounded but raw long-row db feeds inflate row counts.",
+        }
+    if family == "youth_draw":
+        return {
+            "reconciliation_bucket": "FULL_CERT_WIRING_BLOCKER",
+            "clean_run_blocker": "true",
+            "release_blocker": "runtime_current_year_promoted; historical_full_cert_not_clean",
+            "next_action": (
+                "Restrict year-to-year youth_draw certification to source-classified youth general any-bull "
+                "elk rows, then verify source_years_used never exceeds source_year."
+            ),
+            "source_location": "engine/utah_draw_predictive/run_all_families.py::deferred_families[youth_draw]",
+            "promotion_decision": "DO_NOT_FAKE_PASS; WIRE_AND_PROBE_YOUTH_DRAW_HISTORY",
+            "notes": "Needs explicit progressive-source certification handling.",
+        }
+    return {
+        "reconciliation_bucket": "UNRECONCILED_CLASSIFIED",
+        "clean_run_blocker": "true",
+        "release_blocker": "unknown",
+        "next_action": "Review manually.",
+        "source_location": "",
+        "promotion_decision": "HOLD",
+        "notes": "",
+    }
+
+
+def _classified_reconciliation_rows(counts: Sequence[Mapping[str, str]]) -> list[dict[str, str]]:
+    rows: list[dict[str, str]] = []
+    for row in counts:
+        if row.get("status") != "CLASSIFIED":
+            continue
+        item = {
+            "source_year": row.get("source_year", ""),
+            "target_year": row.get("target_year", ""),
+            "family": row.get("family", ""),
+            "readiness_status": row.get("readiness_status", ""),
+            "input_truth_rows": row.get("input_truth_rows", ""),
+            "current_target_rows": row.get("current_target_rows", ""),
+            "prediction_rows": row.get("prediction_rows", ""),
+            "original_reason": row.get("blocker_if_failed", ""),
+            "original_output_path": row.get("output_path", ""),
+        }
+        item.update(_classified_reconciliation_for_row(row))
+        rows.append(item)
+    return rows
+
+
 def _report_lines(audit_dir: Path, counts: Sequence[Mapping[str, str]], leakage: Sequence[Mapping[str, str]]) -> list[str]:
     leaking = [row for row in leakage if row.get("leakage_status") == "FAIL"]
     failed = [row for row in counts if row.get("status") == "FAIL"]
+    classified_reconciliation = _classified_reconciliation_rows(counts)
+    classified_blockers = [row for row in classified_reconciliation if row.get("clean_run_blocker") == "true"]
+    classified_holdouts = [
+        row for row in classified_reconciliation if row.get("reconciliation_bucket") == "INTENTIONAL_UNRELEASED_ACTUALS_HOLDOUT"
+    ]
     return [
         "# Full Engine All-Year Repair Report",
         "",
@@ -97,13 +190,15 @@ def _report_lines(audit_dir: Path, counts: Sequence[Mapping[str, str]], leakage:
         "- Normalized historical split-residency ladder columns without fake eligibility defaults.",
         "- Added an actual source-year/target-year runner for historical preference-family validation.",
         "- Runs Sportsman as its own resident-only random draw stream from yearly Sportsman draw-result sources.",
-        "- Classifies/deferred bear and youth families until their separate target-year runners are promoted.",
+        "- Runs bear, youth turkey, and youth draw through deduped historical target adapters.",
         "",
         "## Result",
         "",
         f"- Count rows written: {len(counts)}",
         f"- Leakage failures: {len(leaking)}",
         f"- Zero-row modeled failures: {len(failed)}",
+        f"- Classified clean-run blockers: {len(classified_blockers)}",
+        f"- Intentional unreleased-results holdouts: {len(classified_holdouts)}",
         "",
         "## Files",
         "",
@@ -112,6 +207,7 @@ def _report_lines(audit_dir: Path, counts: Sequence[Mapping[str, str]], leakage:
         "- `per_family_year_prediction_counts.csv`",
         "- `all_year_family_prediction_counts.csv`",
         "- `leakage_check.csv`",
+        "- `classified_reconciliation.csv`",
     ]
 
 
@@ -142,6 +238,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     _write_csv(args.audit_dir / "per_family_year_prediction_counts.csv", all_counts)
     _write_csv(args.audit_dir / "leakage_check.csv", all_leakage)
     _write_csv(args.audit_dir / "source_column_mapping.csv", _source_column_mapping_rows())
+    _write_csv(args.audit_dir / "classified_reconciliation.csv", _classified_reconciliation_rows(all_counts))
     (args.audit_dir / "changed_files.txt").write_text(_changed_files(), encoding="utf-8")
     (args.audit_dir / "REPAIR_REPORT.md").write_text("\n".join(_report_lines(args.audit_dir, all_counts, all_leakage)), encoding="utf-8")
     print(args.audit_dir)

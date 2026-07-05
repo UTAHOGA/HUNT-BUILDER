@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-05-26T14:29:46+00:00",
+  "generated_at_utc": "2026-07-03T05:24:23+00:00",
   "target_code_count": 131,
   "target_prefix_counts": {
     "EL": 126,
@@ -8,51 +8,54 @@
   "source_audit": "data_truth/permit_overlay_truth/normalized/elk_private_lands_EL_LO_2026_source_audit.csv",
   "source_file": "pipeline/RAW/hunt_unit_database/2026/csv/2026 Permits/2026 l.e. elk.private lands  EL-2025 and LO-2026.csv",
   "files_inspected": 12,
-  "files_changed": 0,
-  "target_rows": 18209,
-  "blanked_cells": 0,
-  "status_cells_set": 0,
+  "files_changed": 4,
+  "target_rows": 17816,
+  "blanked_cells": 25938,
+  "status_cells_set": 43754,
   "remaining_numeric_leak_cells": 0,
   "file_summaries": {
     "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv": {
       "target_rows": 131,
-      "rows": 1411
+      "status_cells_set": 262,
+      "rows": 1645
     },
     "processed_data/hunt_master_enriched.csv": {
-      "target_rows": 262,
-      "rows": 54357
+      "rows": 56153
     },
     "processed_data/point_ladder_view.csv": {
       "target_rows": 8646,
-      "rows": 92844
+      "blanked_cells": 25938,
+      "status_cells_set": 43230,
+      "rows": 92436
     },
     "processed_data/draw_reality_engine_predictive_v2.csv": {
-      "target_rows": 131,
-      "rows": 28346
+      "rows": 38653
     },
     "data_model/runtime_drafts/point_ladder_view_v2.csv": {
       "target_rows": 8646,
       "rows": 91588
     },
     "data_model/runtime_drafts/mixed_predictive_engine_2026.materialized.csv": {
-      "rows": 27940
+      "rows": 41117
     },
     "data_model/runtime_drafts/mixed_predictive_engine_2026.predictions.csv": {
-      "rows": 27940
+      "rows": 41117
     },
     "data_model/harvest_quality/draw_reality_engine_predictive_with_harvest_features.csv": {
-      "rows": 27940
+      "rows": 26389
     },
     "data_model/harvest_quality/ml_draw_predictions_with_harvest_features.csv": {
       "rows": 27940
     },
     "data/hunt-master-canonical-2026-source-of-truth.csv": {
       "target_rows": 131,
-      "rows": 1411
+      "status_cells_set": 131,
+      "rows": 1471
     },
     "data/hunt-master-canonical-2026-database-candidate.csv": {
       "target_rows": 131,
-      "rows": 1411
+      "status_cells_set": 131,
+      "rows": 1471
     },
     "processed_data/hunt_master_canonical_2026_SOURCE_OF_TRUTH_FINAL_COMPLETE_NO_PARTIALS.csv": {
       "target_rows": 131,

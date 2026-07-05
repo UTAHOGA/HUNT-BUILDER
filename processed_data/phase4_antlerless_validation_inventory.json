@@ -1,5 +1,5 @@
 {
-  "forecast_year": 2027,
+  "forecast_year": 2026,
   "source_years": [
     2018,
     2019,
@@ -8,18 +8,17 @@
     2022,
     2023,
     2024,
-    2025,
-    2026
+    2025
   ],
-  "modeled_rows": 2677,
+  "modeled_rows": 3014,
   "modeled_hunt_codes_by_type": {
-    "PREFERENCE_ANTLERLESS_ELK": 103,
+    "PREFERENCE_ANTLERLESS_DEER": 16,
     "PREFERENCE_DOE_PRONGHORN": 15,
-    "PREFERENCE_ANTLERLESS_DEER": 16
+    "PREFERENCE_ANTLERLESS_ELK": 106
   },
-  "modeled_inventory_rows": 134,
+  "modeled_inventory_rows": 137,
   "modeled_inventory_residency_counts": {
-    "": 134
+    "": 137
   },
   "csv": "processed_data\\phase4_antlerless_validation_inventory.csv"
 }

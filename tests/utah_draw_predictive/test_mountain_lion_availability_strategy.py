@@ -1,4 +1,4 @@
-﻿import csv
+import csv
 from pathlib import Path
 
 
@@ -49,4 +49,3 @@ def test_mountain_lion_rows_are_reference_license_based_no_draw() -> None:
     assert forecast_year
     assert all((row.get("season_start") or "").strip() == f"{forecast_year}-01-01" for row in rows)
     assert all((row.get("season_end") or "").strip() == f"{forecast_year}-12-31" for row in rows)
-

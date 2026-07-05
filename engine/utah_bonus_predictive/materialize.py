@@ -77,6 +77,7 @@ PROMOTED_RUNTIME_FAMILY_REPORTS = {
     "SPORTSMAN_RANDOM_ONLY": "sportsman_permit_report.json",
     "YOUTH_GENERAL_ANY_BULL_ELK": "youth_draw_report.json",
     "PREFERENCE_DEDICATED_HUNTER_DEER": "dedicated_hunter_report.json",
+    BEAR_DRAW_SYSTEM_TYPE: "bear_report.json",
     TURKEY_DRAW_SYSTEM_TYPE: "turkey_bonus_report.json",
     YOUTH_TURKEY_DRAW_SYSTEM_TYPE: "youth_turkey_report.json",
 }
@@ -789,6 +790,8 @@ def _runtime_promotion_family(row: dict[str, object]) -> str:
         return "YOUTH_GENERAL_ANY_BULL_ELK"
     if draw_system_type == "PREFERENCE_DEDICATED_HUNTER_DEER" and algorithm_status == "MODELED_PREFERENCE":
         return "PREFERENCE_DEDICATED_HUNTER_DEER"
+    if draw_system_type == BEAR_DRAW_SYSTEM_TYPE and algorithm_status == "MODELED_BONUS":
+        return BEAR_DRAW_SYSTEM_TYPE
     if draw_system_type == TURKEY_DRAW_SYSTEM_TYPE and algorithm_status == "MODELED_BONUS":
         return TURKEY_DRAW_SYSTEM_TYPE
     if draw_system_type == YOUTH_TURKEY_DRAW_SYSTEM_TYPE and algorithm_status == "MODELED_BONUS":
@@ -800,6 +803,17 @@ def _runtime_promotion_family(row: dict[str, object]) -> str:
 
 def _apply_runtime_promotion_marks(rows: list[dict[str, object]], output_dir: Path) -> dict[str, object]:
     report_rows: list[dict[str, object]] = []
+    excluded_from_promotion = [
+        "MAX_WEIGHTED_SPLIT_PENDING_CHALLENGE_TEST",
+        "CWMU_CONSERVATION_PRIVATE_LAND_REFERENCE_ONLY",
+    ]
+    if any(
+        str(row.get("draw_system_type", "")).strip() == BEAR_DRAW_SYSTEM_TYPE
+        and str(row.get("algorithm_status", "")).strip() == "IN_SCOPE_MODEL_PENDING"
+        for row in rows
+    ):
+        excluded_from_promotion.insert(1, "BLACK_BEAR_PENDING_ROW_RECONCILIATION")
+
     for row in rows:
         family = _runtime_promotion_family(row)
         if not family:
@@ -855,11 +869,7 @@ def _apply_runtime_promotion_marks(rows: list[dict[str, object]], output_dir: Pa
             and int(row["duplicate_runtime_key_count"]) == 0
             for row in report_rows
         ),
-        "excluded_from_this_promotion": [
-            "MAX_WEIGHTED_SPLIT_PENDING_CHALLENGE_TEST",
-            "BLACK_BEAR_PENDING_ROW_RECONCILIATION",
-            "CWMU_CONSERVATION_PRIVATE_LAND_REFERENCE_ONLY",
-        ],
+        "excluded_from_this_promotion": excluded_from_promotion,
         "runtime_promotion_columns": [
             "runtime_promotion_family",
             "runtime_promotion_status",

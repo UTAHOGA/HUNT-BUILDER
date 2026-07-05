@@ -1,4 +1,4 @@
-﻿import math
+import math
 
 from engine.utah_draw_predictive.classifier import classify_draw_system_type
 from engine.utah_draw_predictive.sportsman import build_sportsman_predictions
@@ -102,4 +102,3 @@ def test_historical_cougar_sportsman_rows_remain_historical_truth_only() -> None
     }
 
     assert classify_draw_system_type(historical_row) == "SPORTSMAN_PERMIT"
-

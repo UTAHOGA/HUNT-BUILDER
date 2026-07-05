@@ -28,6 +28,12 @@ MODEL_STRATEGY_NAME = "bear_bonus_phase8"
 BONUS_RULE_VERSION = "utah_bear_bonus_v1.0.0"
 BEAR_DRAW_SYSTEM_TYPE = "BEAR_DRAW"
 BEAR_NO_PRIOR_LADDER_REASON_CODE = "BEAR_CURRENT_TARGET_NO_PRIOR_LADDER_NO_PUBLIC_P_DRAW"
+BEAR_NO_PUBLIC_PROBABILITY_REASON_CODES = {
+    "KNOWN_ZERO_RESIDENCY_QUOTA",
+    "NO_PUBLIC_DRAW_PROBABILITY_FOR_RESIDENCY",
+    BEAR_NO_PRIOR_LADDER_REASON_CODE,
+}
+BEAR_NO_PUBLIC_PROBABILITY_FLAGS = {"MISSING_FORECAST_QUOTA"}
 REPO = Path(__file__).resolve().parents[2]
 BEAR_DRAW_ODDS_SOURCE_PDF = REPO / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "pdf" / "draw_odds" / "2025 Black Bear Draw odds.pdf"
 BEAR_DRAW_ODDS_SOURCE_YEAR = 2025
@@ -305,7 +311,22 @@ def is_harvest_objective_bear_row(row: Mapping[str, object]) -> bool:
     return classify_bear_subtype(row) == HARVEST_OBJECTIVE_AVAILABILITY
 
 
+def _pipe_tokens(value: object) -> set[str]:
+    return {part.strip().upper() for part in _clean(value).split("|") if part.strip()}
+
+
+def _has_no_public_bear_probability_path(row: Mapping[str, object]) -> bool:
+    reason_codes = _pipe_tokens(row.get("reason_codes"))
+    flags = _pipe_tokens(row.get("data_quality_flags"))
+    return bool(
+        reason_codes & BEAR_NO_PUBLIC_PROBABILITY_REASON_CODES
+        or flags & BEAR_NO_PUBLIC_PROBABILITY_FLAGS
+    )
+
+
 def is_excluded_bear_row(row: Mapping[str, object]) -> bool:
+    if _clean(row.get("draw_system_type")) == BEAR_DRAW_SYSTEM_TYPE and _has_no_public_bear_probability_path(row):
+        return True
     subtype = classify_bear_subtype(row)
     if subtype == STATEWIDE_BEAR_PERMIT:
         text = _joined_text(row)
@@ -1029,7 +1050,7 @@ def build_bear_bonus_predictions(
                 row = dict(base)
                 row.update(
                     {
-                        "points": "",
+                        "points": "0",
                         "p_preference_draw": "",
                         "p_bonus_pool": "",
                         "p_random_pool": "",
@@ -1083,6 +1104,7 @@ def build_bear_bonus_predictions(
                         "reason_codes": append_reason_codes(
                             row.get("reason_codes"),
                             BEAR_NO_PRIOR_LADDER_REASON_CODE if "MISSING_PROVEN_BEAR_DRAW_HISTORY" in flags else "",
+                            "NO_PUBLIC_DRAW_PROBABILITY_FOR_RESIDENCY" if public_quota <= 0 else "",
                         ),
                     }
                 )

@@ -1,4 +1,4 @@
-﻿import json
+import json
 from pathlib import Path
 
 from engine.utah_draw_predictive.classifier import build_draw_system_coverage_report
@@ -41,4 +41,3 @@ def test_draw_system_coverage_report_generation(tmp_path: Path) -> None:
     assert report["modeled_availability"]["modeled_availability_pass"] is True
     assert "BONUS_OIL_BIG_GAME" in report["modeled_bonus_categories"]
     assert "OUT_OF_SCOPE_NON_TARGET" in report["out_of_scope_non_target_categories"]
-

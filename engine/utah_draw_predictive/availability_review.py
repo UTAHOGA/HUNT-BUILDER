@@ -1,4 +1,4 @@
-﻿"""Final consistency review for MODELED_AVAILABILITY rows."""
+"""Final consistency review for MODELED_AVAILABILITY rows."""
 
 from __future__ import annotations
 
@@ -403,4 +403,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

@@ -1,0 +1,50 @@
+{
+  "created_at_utc": "2026-07-02T21:18:31+00:00",
+  "lock_status": "LOCKED_2026_UNTIL_NEXT_YEAR_DATA_ADDED",
+  "output_dir": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\hunt_code_universe_truth\\locked\\2026",
+  "locked_files": {
+    "full_union": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\hunt_code_universe_truth\\locked\\2026\\LOCKED_2026_HUNT_CODE_UNIVERSE_WITH_BOUNDARY_ID.csv",
+    "matrix_mapped_searchable": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\hunt_code_universe_truth\\locked\\2026\\LOCKED_2026_MATRIX_MAPPED_SEARCHABLE_WITH_BOUNDARY_ID.csv",
+    "model_workbook": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER\\data_truth\\hunt_code_universe_truth\\locked\\2026\\LOCKED_2026_MODEL_WORKBOOK_WITH_BOUNDARY_ID.csv"
+  },
+  "source_counts": {
+    "database": 1645,
+    "matrix": 1394,
+    "long": 1615,
+    "built_demoted": 1289,
+    "normalized_2025_for_2026": 1064,
+    "bible_2026": 31,
+    "bible_2025": 1053,
+    "workbook_2026_for_2027": 1097,
+    "workbook_2025_for_2026": 1064,
+    "boundary_index": 1471
+  },
+  "locked_counts": {
+    "full_union_unique_hunt_codes": 1646,
+    "matrix_mapped_searchable_unique_hunt_codes": 1394,
+    "model_workbook_unique_hunt_codes": 1097,
+    "database_superset_unique_hunt_codes": 1645,
+    "bible_2026_unique_hunt_codes": 31,
+    "bible_2025_unique_hunt_codes": 1053,
+    "rows_with_boundary_id": 1641,
+    "rows_with_geojson": 1535
+  },
+  "primary_universe_bucket_counts": {
+    "MODEL_WORKBOOK_2026_PERMITS_2027_MODEL": 1097,
+    "DATABASE_BOUNDARY_SUPPORT_REFERENCE": 115,
+    "MATRIX_MAPPED_SEARCHABLE_NOT_WORKBOOK": 322,
+    "SUPPORT_REFERENCE_REVIEW": 111,
+    "BIBLE_HISTORICAL_OR_SOURCE_REFERENCE": 1
+  },
+  "scoring_bucket_counts": {
+    "CANDIDATE_MODEL_SCORABLE_REQUIRES_ENGINE_GATES": 1097,
+    "SUPPORT_ONLY_REVIEW": 203,
+    "MAPPED_SEARCHABLE_NOT_AUTOMATICALLY_SCORABLE": 322,
+    "BIBLE_REFERENCE_NOT_CURRENT_SCORING_AUTHORITY": 24
+  },
+  "notes": [
+    "This is a locked audit/truth ledger only. It is not runtime promotion and does not modify website delivery files.",
+    "boundary_id column is explicit and sourced by DATABASE first, then boundary index, then BIBLE resolved boundary, then long/matrix fallback.",
+    "Mapped/searchable and prediction-scorable are intentionally separate buckets."
+  ]
+}

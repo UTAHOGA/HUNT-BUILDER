@@ -1,4 +1,4 @@
-﻿"""Target-scope draw-system classifier and coverage audit for Utah predictive draws."""
+"""Target-scope draw-system classifier and coverage audit for Utah predictive draws."""
 
 from __future__ import annotations
 
@@ -116,6 +116,7 @@ ALL_SPECS = (
 REGISTRY = {spec.draw_system_type: spec for spec in ALL_SPECS}
 DRAW_SYSTEM_ORDER = [spec.draw_system_type for spec in ALL_SPECS]
 DRAW_SYSTEM_ORDER = list(dict.fromkeys(DRAW_SYSTEM_ORDER))
+LEGACY_BONUS_DRAW_DESIGNS = {"MAX_WEIGHTED_SPLIT"}
 
 OUT_OF_SCOPE_TOKENS = (
     "swan",
@@ -191,6 +192,25 @@ TRUE_PLE_HUNT_CODES = {
     "DB1007",
     "DB1008",
 }
+
+
+def _canonical_big_game_bonus_draw_system(row: Mapping[str, object]) -> str:
+    text = _joined_text(row)
+    hunt_code = _clean(row.get("hunt_code")).upper()
+    species = _clean_lower(row.get("species"))
+    if hunt_code in TRUE_PLE_HUNT_CODES:
+        return "BONUS_PLE_BIG_GAME"
+    if "premium limited entry" in text or "premium limited-entry" in text or "p.l.e" in text:
+        return "BONUS_PLE_BIG_GAME"
+    if "once-in-a-lifetime" in text or "once in a lifetime" in text or "o.i.l." in text or "oial" in text:
+        return "BONUS_OIL_BIG_GAME"
+    if species in {"bison", "mountain goat"}:
+        return "BONUS_OIL_BIG_GAME"
+    if "bighorn sheep" in text and "ewe" not in text:
+        return "BONUS_OIL_BIG_GAME"
+    if species == "moose" and "antlerless" not in text:
+        return "BONUS_OIL_BIG_GAME"
+    return "BONUS_LE_BIG_GAME"
 
 
 def _clean(value: object) -> str:
@@ -271,6 +291,8 @@ def classify_draw_system_type(row: Mapping[str, object]) -> str:
         return "OUT_OF_SCOPE_NON_TARGET"
 
     existing_draw_system_type = effective_draw_design(row)
+    if existing_draw_system_type in LEGACY_BONUS_DRAW_DESIGNS:
+        return _canonical_big_game_bonus_draw_system(row)
     if existing_draw_system_type and (
         is_modeled_general_deer_row(row)
         or is_modeled_antlerless_row(row)
@@ -381,6 +403,8 @@ def classify_draw_system_type(row: Mapping[str, object]) -> str:
 
 def resolve_algorithm_status(row: Mapping[str, object], draw_system_type: str | None = None) -> str:
     draw_system_type = draw_system_type or classify_draw_system_type(row)
+    if draw_system_type in LEGACY_BONUS_DRAW_DESIGNS:
+        draw_system_type = _canonical_big_game_bonus_draw_system(row)
     if draw_system_type in {"YOUTH_DRAW_ONLY_ELK", "YOUTH_RANDOM_ELK_GENERAL_BULL"}:
         draw_system_type = YOUTH_GENERAL_ANY_BULL_ELK_DRAW_SYSTEM_TYPE
     if draw_system_type == "PREFERENCE_GENERAL_SEASON_BUCK_DEER":
@@ -422,6 +446,8 @@ def resolve_algorithm_status(row: Mapping[str, object], draw_system_type: str | 
 
 def target_scope_label(row: Mapping[str, object], draw_system_type: str | None = None) -> str:
     draw_system_type = draw_system_type or classify_draw_system_type(row)
+    if draw_system_type in LEGACY_BONUS_DRAW_DESIGNS:
+        draw_system_type = _canonical_big_game_bonus_draw_system(row)
     if draw_system_type in {"YOUTH_DRAW_ONLY_ELK", "YOUTH_RANDOM_ELK_GENERAL_BULL"}:
         draw_system_type = YOUTH_GENERAL_ANY_BULL_ELK_DRAW_SYSTEM_TYPE
     return REGISTRY[draw_system_type].target_scope
@@ -429,6 +455,8 @@ def target_scope_label(row: Mapping[str, object], draw_system_type: str | None =
 
 def modeled_by_engine(row: Mapping[str, object], draw_system_type: str | None = None, algorithm_status: str | None = None) -> bool:
     draw_system_type = draw_system_type or classify_draw_system_type(row)
+    if draw_system_type in LEGACY_BONUS_DRAW_DESIGNS:
+        draw_system_type = _canonical_big_game_bonus_draw_system(row)
     if draw_system_type in {"YOUTH_DRAW_ONLY_ELK", "YOUTH_RANDOM_ELK_GENERAL_BULL"}:
         draw_system_type = YOUTH_GENERAL_ANY_BULL_ELK_DRAW_SYSTEM_TYPE
     algorithm_status = algorithm_status or resolve_algorithm_status(row, draw_system_type)
@@ -1281,4 +1309,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

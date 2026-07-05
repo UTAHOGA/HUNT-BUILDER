@@ -2,8 +2,8 @@
 
 - Lock codes: `7`
 - Predictive reference codes locked: `6`
-- Runtime update rows: `506`
-- Blockers: `0`
+- Runtime update rows: `538`
+- Blockers: `11`
 
 ## Locked Codes
 - `DS1000` Desert Bighorn Sheep - Statewide Permit - FULL_SPLIT - Res `1`, Non Res `0`, Total `1`

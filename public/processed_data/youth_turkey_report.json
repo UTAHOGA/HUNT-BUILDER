@@ -1,0 +1,38 @@
+{
+  "forecast_year": 2026,
+  "source_years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "youth_turkey_rows_seen_observed_history": 1890,
+  "youth_turkey_rows_seen_active_predictive": 232,
+  "youth_turkey_rows_seen_total": 2122,
+  "youth_turkey_rows_forecast_eligible": 232,
+  "youth_turkey_modeled_rows": 232,
+  "youth_turkey_pending_rows": 0,
+  "youth_turkey_modeled_hunt_codes": 5,
+  "set_aside_ratio": 0.15,
+  "p_bonus_pool_non_null_count": 232,
+  "p_random_pool_non_null_count": 232,
+  "p_draw_non_null_count": 232,
+  "p_draw_pct_non_null_count": 232,
+  "source_years_used_non_null_count": 232,
+  "data_quality_flags_summary": {
+    "YOUTH_TURKEY_SOURCE_CLASSIFIED": 48,
+    "YOUTH_TURKEY_15_PERCENT_SET_ASIDE_APPLIED": 48,
+    "YOUTH_TURKEY_SEPARATE_FROM_ADULT_TURKEY": 48,
+    "YOUTH_TURKEY_QUOTA_SOURCE_HARD_PERMITS_2026_TOTAL_YOUTH_SET_ASIDE": 48,
+    "PROVEN_YOUTH_TURKEY_SOURCE": 48,
+    "LOW_APPLICANT_COUNT": 42,
+    "ONE_PERMIT_RANDOM_ONLY": 1,
+    "NO_MAX_POINT_POOL": 1
+  },
+  "p_preference_draw_non_null_count": 0,
+  "duplicate_key_count": 0
+}
