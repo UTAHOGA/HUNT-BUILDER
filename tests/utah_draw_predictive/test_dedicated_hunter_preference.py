@@ -218,7 +218,10 @@ def test_youth_dedicated_hunter_is_separate_preference_lane() -> None:
     youth_rows = [row for row in rows if row["draw_pool"] == "youth_dedicated_hunter"]
     assert youth_rows
     assert all(row["model_strategy"] == "preference_youth_dedicated_hunter_deer" for row in youth_rows)
-    assert all(row["hunt_class"] == "Youth Dedicated Hunter" for row in youth_rows)
+    assert all(row["draw_pool"] == "youth_dedicated_hunter" for row in youth_rows)
+    assert all(row["hunt_class"] == "Dedicated Hunter" for row in youth_rows)
+    assert all(row["hunt_type"] == "General Season" for row in youth_rows)
+    assert all(row["weapon"] == "Any Legal Weapon" for row in youth_rows)
     assert all(is_modeled_dedicated_hunter_row(row) for row in youth_rows)
 
 

@@ -10,7 +10,7 @@ def test_oil_le_ple_big_game_rows_continue_to_classify_as_bonus() -> None:
 def test_turkey_bear_and_cougar_remain_target_scope() -> None:
     assert classify_draw_system_type({"hunt_type": "Limited Entry", "species": "Turkey", "sex_type": "Bearded"}) == "BONUS_TURKEY"
     assert classify_draw_system_type({"hunt_type": "Limited Entry - Fall", "species": "Black Bear", "sex_type": "Either Sex"}) == "BEAR_DRAW"
-    assert classify_draw_system_type({"hunt_type": "Limited Entry", "species": "Cougar", "sex_type": ""}) == "MOUNTAIN_LION_DRAW"
+    assert classify_draw_system_type({"hunt_type": "Limited Entry", "species": "Cougar", "sex_type": ""}) == "COUGAR_LICENSE_BASED"
 
 
 def test_antlerless_moose_and_ewe_bighorn_can_classify_as_bonus() -> None:

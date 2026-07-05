@@ -27,7 +27,9 @@ DEDICATED_HUNTER_POOL = "dedicated_hunter"
 YOUTH_DEDICATED_HUNTER_POOL = "youth_dedicated_hunter"
 PREFERENCE_TAIL_FLOOR = 0.001
 PREFERENCE_TAIL_CEILING = 0.995
-PREFERENCE_REPO_HOLDOUT_BIAS_CORRECTION = 0.35
+# Keep this at zero unless a future source-backed model change proves a
+# probability lift improves MAE. A broad +0.35 lift overpredicted this family.
+PREFERENCE_REPO_HOLDOUT_BIAS_CORRECTION = 0.0
 TAIL_CALIBRATION_REASON = "PREFERENCE_TAIL_CALIBRATED_FROM_REPO_BACKTEST"
 
 
@@ -50,6 +52,23 @@ def _clean(value: object) -> str:
 
 def _clean_lower(value: object) -> str:
     return _clean(value).lower()
+
+
+def _residency_lane(row: Mapping[str, object]) -> str:
+    if _clean_lower(row.get("metric_scope")) == "total":
+        return "All"
+    return _clean(row.get("residency")) or "All"
+
+
+def _output_residency(residency: str) -> str:
+    return "" if residency == "All" else residency
+
+
+def _dedicated_hunter_weapon(value: object) -> str:
+    weapon = _clean(value)
+    if not weapon or _clean_lower(weapon) in {"dedicated hunter", "youth dedicated hunter"}:
+        return "Any Legal Weapon"
+    return weapon
 
 
 def _joined_text(row: Mapping[str, object]) -> str:
@@ -176,7 +195,7 @@ def _build_truth_ladders(
             continue
 
         hunt_code = _clean(row.get("hunt_code")).upper()
-        residency = _clean(row.get("residency")) or "Resident"
+        residency = _residency_lane(row)
         points = _to_int(row.get("points"))
         eligible = _to_int(row.get("eligible_applicants"))
         drawn = _to_int(row.get("drawn")) or _to_int(row.get("successful_applicants")) or _to_int(row.get("total_permits")) or _to_int(row.get("preference_permits"))
@@ -195,7 +214,7 @@ def _build_truth_ladders(
                 "hunt_name": _clean(row.get("hunt_name")),
                 "species": _clean(row.get("species")),
                 "hunt_type": _clean(row.get("hunt_type")) or "General Season",
-                "weapon": _clean(row.get("weapon")),
+                "weapon": _dedicated_hunter_weapon(row.get("weapon")),
             }
 
     return ladders, meta, total_drawn_by_code_year
@@ -330,6 +349,8 @@ def _forecast_quota_for_residency(
     latest_year: int,
     total_drawn_by_code_year: Mapping[tuple[str, str, int], dict[str, int]],
 ) -> int:
+    if residency == "All":
+        return forecast_total
     observed = total_drawn_by_code_year.get((lane, hunt_code, latest_year), {})
     res_total = sum(int(value) for value in observed.values())
     if forecast_total <= 0:
@@ -349,6 +370,9 @@ def _explicit_quota_for_residency(
     forecast_year: int,
     source_year: int | None = None,
 ) -> int | None:
+    if residency == "All":
+        permit = target_permit_total(row, forecast_year, source_year=source_year)
+        return permit.value if permit.value > 0 else None
     permit = target_permit_for_residency(row, forecast_year, residency, source_year=source_year)
     return permit.value if permit.value > 0 else None
 
@@ -410,13 +434,23 @@ def build_preference_dedicated_hunter_predictions(
         meta = truth_meta.get((lane, hunt_code), {})
         hunt_name = _clean(db_row.get("hunt_name")) or meta.get("hunt_name", "")
         species = _clean(db_row.get("species")) or meta.get("species", "Deer")
-        hunt_type = _clean(db_row.get("hunt_type")) or meta.get("hunt_type", "General Season")
-        weapon = _clean(db_row.get("weapon")) or meta.get("weapon", "Dedicated Hunter")
+        hunt_type = "General Season"
+        weapon = _dedicated_hunter_weapon(_clean(db_row.get("weapon")) or meta.get("weapon", ""))
         is_youth_lane = lane == YOUTH_DEDICATED_HUNTER_POOL
         model_strategy = YOUTH_MODEL_STRATEGY_NAME if is_youth_lane else MODEL_STRATEGY_NAME
-        hunt_class = "Youth Dedicated Hunter" if is_youth_lane else "Dedicated Hunter"
+        hunt_class = "Dedicated Hunter"
 
-        for residency in ("Resident", "Nonresident"):
+        available_residencies = sorted(
+            residency
+            for available_lane, code, residency in years_by_key
+            if available_lane == lane and code == hunt_code
+        )
+        if "All" in available_residencies:
+            residencies_to_model = ["All"]
+        else:
+            residencies_to_model = available_residencies or ["Resident", "Nonresident"]
+
+        for residency in residencies_to_model:
             available_years = sorted(year for year in set(years_by_key.get((lane, hunt_code, residency), [])) if year in history_year_set)
             explicit_quota = _explicit_quota_for_residency(db_row, residency, forecast_year, source_year=latest_source_year)
             if not available_years:
@@ -433,7 +467,7 @@ def build_preference_dedicated_hunter_predictions(
                             "sex_type": "Buck",
                             "hunt_type": hunt_type,
                             "hunt_class": hunt_class,
-                            "residency": residency,
+                            "residency": _output_residency(residency),
                             "points": "0",
                             "draw_pool": lane,
                             "public_permits_2025": 0,
@@ -498,7 +532,7 @@ def build_preference_dedicated_hunter_predictions(
                             "sex_type": "Buck",
                             "hunt_type": hunt_type,
                             "hunt_class": hunt_class,
-                            "residency": residency,
+                            "residency": _output_residency(residency),
                             "points": "0",
                             "draw_pool": lane,
                             "public_permits_2025": prior_total,
@@ -574,7 +608,7 @@ def build_preference_dedicated_hunter_predictions(
                         "sex_type": "Buck",
                         "hunt_type": hunt_type,
                         "hunt_class": hunt_class,
-                        "residency": residency,
+                        "residency": _output_residency(residency),
                         "points": str(points),
                         "draw_pool": lane,
                         "public_permits_2025": prior_total,

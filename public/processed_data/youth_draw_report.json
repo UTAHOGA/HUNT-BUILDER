@@ -1,5 +1,5 @@
 {
-  "forecast_year": 2027,
+  "forecast_year": 2026,
   "source_years": [
     2018,
     2019,
@@ -8,12 +8,11 @@
     2022,
     2023,
     2024,
-    2025,
-    2026
+    2025
   ],
-  "total_youth_rows_reviewed": 105691,
-  "youth_antlerless_or_doe_rows_reviewed": 68616,
-  "youth_general_deer_rows_reviewed": 36590,
+  "total_youth_rows_reviewed": 107037,
+  "youth_antlerless_or_doe_rows_reviewed": 70622,
+  "youth_general_deer_rows_reviewed": 35930,
   "youth_draw_only_elk_rows_reviewed": 485,
   "youth_general_any_bull_elk_rows_reviewed": 485,
   "active_predictive_youth_row_count": 2,
@@ -89,18 +88,17 @@
     "21_youth_antlerless_drawing_odds_report.pdf",
     "21_youth_bull_elk.pdf",
     "21_youth_deer.pdf",
-    "21_youth_dh_odds.pdf",
     "UtahDraws live DrawOddsData: Big Game:General Season Youth Any Bull",
     "pipeline\\RAW\\hunt_unit_database\\2026\\csv\\2026_elk_general_anybull_youth.csv",
     "processed_data\\eb1007_youth_general_bull_history.csv"
   ],
   "data_quality_flags_summary": {
-    "APPLICANT_FORECAST_DAMPED_TREND_LAST2_DELTA_25": 2,
-    "FORECASTED_FROM_HISTORY": 2,
     "NOT_HARVEST_DERIVED": 2,
     "NOT_MAX_WEIGHTED": 2,
     "NOT_PREFERENCE": 2,
+    "OFFICIAL_DRAW_RESULT_USED": 2,
     "POINT_0_ONLY": 2,
+    "SET_ASIDE_20_PERCENT": 2,
     "YOUTH_DEER_ACTIVE_2026_SOURCE_MISSING_OR_SHARED_POOL_AMBIGUOUS": 1,
     "YOUTH_RESERVE_MODEL_INPUTS_MISSING": 1,
     "YOUTH_SET_ASIDE_RANDOM_DRAW": 2

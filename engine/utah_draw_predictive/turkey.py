@@ -9,6 +9,7 @@ from typing import Iterable, Mapping
 from engine.utah_bonus_predictive.monte_carlo import combine_probabilities, compute_bonus_pool_probability
 from engine.utah_bonus_predictive.rules import MODEL_VERSION
 from engine.utah_bonus_predictive.split import split_utah_bonus_permits
+from engine.utah_draw_predictive.taxonomy import effective_draw_design
 from . import ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING, ALGORITHM_STATUS_MODELED_BONUS, StrategySpec, TARGET_SCOPE_TARGET
 
 
@@ -18,6 +19,7 @@ BONUS_RULE_VERSION = "utah_turkey_bonus_v1.0.0"
 TURKEY_DRAW_SYSTEM_TYPE = "BONUS_TURKEY"
 YOUTH_TURKEY_DRAW_SYSTEM_TYPE = "YOUTH_TURKEY_SET_ASIDE"
 YOUTH_TURKEY_SET_ASIDE_RATIO = 0.15
+CONSERVATION_TURKEY_CODES = {"TK1012", "TK1013", "TK1014", "TK1015", "TK1016"}
 
 EXCLUDED_TURKEY_TOKENS = (
     "spring general season",
@@ -26,6 +28,8 @@ EXCLUDED_TURKEY_TOKENS = (
     "remaining",
     "over the counter",
     " otc",
+    "o.t.c",
+    "o.t.c.",
     "sportsman",
     "conservation",
     "expo",
@@ -65,6 +69,10 @@ def _clean(value: object) -> str:
 
 def _clean_lower(value: object) -> str:
     return _clean(value).lower()
+
+
+def _clean_system(value: object) -> str:
+    return _clean(value).upper().replace(" ", "_").replace("/", "_").replace("-", "_")
 
 
 def _to_int(value: object) -> int:
@@ -107,6 +115,9 @@ def _is_turkey(row: Mapping[str, object]) -> bool:
 
 
 def _is_youth_turkey(row: Mapping[str, object]) -> bool:
+    hunt_code = _clean(row.get("hunt_code")).upper()
+    if hunt_code in CONSERVATION_TURKEY_CODES:
+        return False
     source_file = _clean_lower(row.get("source_file"))
     draw_pool = _clean_lower(row.get("draw_pool"))
     hunt_class = _clean_lower(row.get("hunt_class"))
@@ -130,7 +141,9 @@ def _is_excluded_turkey_context(row: Mapping[str, object]) -> bool:
 def _is_limited_entry_or_cwmu_turkey(row: Mapping[str, object]) -> bool:
     text = _joined_text(row)
     hunt_type = _clean_lower(row.get("hunt_type"))
-    draw_design = _clean_lower(row.get("draw_design") or row.get("hunt_class"))
+    draw_design_value = effective_draw_design(row)
+    draw_design = _clean_lower(draw_design_value)
+    draw_design_system = _clean_system(draw_design_value)
     source_file = _clean_lower(row.get("source_file"))
     hunt_code = _clean(row.get("hunt_code")).upper()
     source_backed_adult_draw_result = (
@@ -146,6 +159,7 @@ def _is_limited_entry_or_cwmu_turkey(row: Mapping[str, object]) -> bool:
         hunt_type == "limited entry"
         or "limited entry" in text
         or (draw_design == "max/weighted split" and _source_proves_bonus_turkey(row))
+        or (draw_design_system in {TURKEY_DRAW_SYSTEM_TYPE, YOUTH_TURKEY_DRAW_SYSTEM_TYPE} and _source_proves_bonus_turkey(row))
         or source_backed_adult_draw_result
     )
 
@@ -169,14 +183,24 @@ def is_remaining_turkey_row(row: Mapping[str, object]) -> bool:
     if not _is_turkey(row):
         return False
     text = _joined_text(row)
-    return "remaining permit" in text or "remaining" in text or "over the counter" in text or " otc" in text
+    return (
+        "remaining permit" in text
+        or "remaining" in text
+        or "over the counter" in text
+        or " otc" in text
+        or "o.t.c" in text
+        or "fall management" in text
+    )
 
 
 def is_nonpublic_turkey_row(row: Mapping[str, object]) -> bool:
     if not _is_turkey(row):
         return False
+    hunt_code = _clean(row.get("hunt_code")).upper()
+    if hunt_code in CONSERVATION_TURKEY_CODES:
+        return True
     text = _joined_text(row)
-    return any(token in text for token in ("private land only", "private land", "private", "sportsman", "conservation", "expo", "fall management"))
+    return any(token in text for token in ("private land only", "private land", "private", "sportsman", "conservation", "organization", "organizations", "expo", "fall management"))
 
 
 def _source_proves_bonus_turkey(row: Mapping[str, object]) -> bool:
@@ -201,7 +225,7 @@ def _is_proven_bonus_turkey_truth_row(row: Mapping[str, object]) -> bool:
         and _is_limited_entry_or_cwmu_turkey(row)
         and not _is_excluded_turkey_context(row)
         and not _is_youth_turkey(row)
-        and _clean_lower(row.get("draw_pool")) in {"", "standard"}
+        and _clean_lower(row.get("draw_pool")) in {"", "standard", "preference_point", "preferrence_point"}
         and _source_proves_bonus_turkey(row)
     )
 
@@ -540,7 +564,7 @@ def build_turkey_bonus_predictions(
                                 "hunt_class": hunt_class,
                                 "residency": residency,
                                 "points": str(points),
-                                "draw_pool": "standard",
+                                "draw_pool": "preference_point",
                                 "public_permits_2025": prior_total,
                                 "public_permits_2026": public_quota,
                                 "max_point_permits_2025": "",
@@ -592,7 +616,7 @@ def build_turkey_bonus_predictions(
                     "hunt_class": hunt_class,
                     "residency": residency,
                     "points": "",
-                    "draw_pool": "standard",
+                    "draw_pool": "preference_point",
                     "public_permits_2025": prior_total,
                     "public_permits_2026": public_quota,
                     "p_preference_draw": "",
@@ -642,7 +666,7 @@ def build_turkey_bonus_predictions(
                     "hunt_class": hunt_class,
                     "residency": residency,
                     "points": "",
-                    "draw_pool": "standard",
+                    "draw_pool": "preference_point",
                     "public_permits_2025": prior_total,
                     "public_permits_2026": public_quota,
                     "p_preference_draw": "",
@@ -692,7 +716,7 @@ def build_turkey_bonus_predictions(
                     "hunt_class": hunt_class,
                     "residency": residency,
                     "points": str(points),
-                    "draw_pool": "standard",
+                    "draw_pool": "preference_point",
                     "public_permits_2025": prior_total,
                     "public_permits_2026": public_quota,
                     "max_point_permits_2025": "",

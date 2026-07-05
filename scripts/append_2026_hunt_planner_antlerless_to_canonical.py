@@ -113,18 +113,26 @@ def draw_design_for(raw_hunt_type, species, code):
     folded = clean(raw_hunt_type).lower()
     code = clean(code).upper()
     species = clean(species).lower()
+    if species == "deer":
+        preference_system = "PREFERENCE_ANTLERLESS_DEER"
+    elif species == "elk":
+        preference_system = "PREFERENCE_ANTLERLESS_ELK"
+    elif species == "pronghorn":
+        preference_system = "PREFERENCE_DOE_PRONGHORN"
+    else:
+        preference_system = "MAX_WEIGHTED_SPLIT"
     if folded in {"general season", "general-season", "general-season"}:
-        return "Preference"
+        return preference_system
     if folded in {"private lands only", "antlerless elk control"}:
-        return "Capped Permits"
+        return "PRIVATE_LANDS_ONLY_ANTLERLESS_ELK" if folded == "private lands only" else "ANTLERLESS_ELK_CONTROL"
     if folded == "conservation":
-        return "Organizations"
+        return "REFERENCE_ONLY"
     if folded == "cwmu":
-        return "Preference"
+        return "REFERENCE_ONLY"
     if folded == "limited entry":
-        return "Max/Weighted Split" if species in {"moose", "rocky mountain bighorn sheep", "bison"} else "Preference"
+        return "MAX_WEIGHTED_SPLIT" if species in {"moose", "rocky mountain bighorn sheep", "bison"} else preference_system
     if code.startswith(("DA", "EA", "PD")):
-        return "Preference"
+        return preference_system
     return ""
 
 
@@ -161,6 +169,7 @@ def canonical_payload(source, db_row, canonical_fields):
         notes = f"{notes} {boundary_override['note']}"
 
     row = {field: "" for field in canonical_fields}
+    draw_design = draw_design_for(raw_hunt_type, species, code)
     row.update(
         {
             "actual_draw_year": "2026",
@@ -174,7 +183,8 @@ def canonical_payload(source, db_row, canonical_fields):
             "hunt_name": clean(source.get("HUNT_NAME")),
             "species": species,
             "sex_type": sex,
-            "draw_design": draw_design_for(raw_hunt_type, species, code),
+            "draw_design": draw_design,
+            "draw_system_type": draw_design,
             "weapon": clean(source.get("WEAPON")),
             "hunt_type": normalize_hunt_type(raw_hunt_type),
             "season": clean(source.get("SEASON_DATE_TEXT")),

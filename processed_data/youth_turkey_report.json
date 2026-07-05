@@ -1,5 +1,5 @@
 {
-  "forecast_year": 2027,
+  "forecast_year": 2026,
   "source_years": [
     2018,
     2019,
@@ -8,12 +8,11 @@
     2022,
     2023,
     2024,
-    2025,
-    2026
+    2025
   ],
-  "youth_turkey_rows_seen_observed_history": 2646,
+  "youth_turkey_rows_seen_observed_history": 1890,
   "youth_turkey_rows_seen_active_predictive": 232,
-  "youth_turkey_rows_seen_total": 2878,
+  "youth_turkey_rows_seen_total": 2122,
   "youth_turkey_rows_forecast_eligible": 232,
   "youth_turkey_modeled_rows": 232,
   "youth_turkey_pending_rows": 0,

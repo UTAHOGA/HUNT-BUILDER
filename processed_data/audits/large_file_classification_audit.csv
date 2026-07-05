@@ -1,39 +1,39 @@
 path,size_bytes,current_storage_mode,classification,served_live,used_by_frontend,recommended_target,notes
-processed_data/display-boundary-index-2026.json,889508,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Builder/map boundary manifest JSON.
-processed_data/statewide_composite_boundaries_2026.geojson,87146863,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Primary composite boundaries runtime source for Builder.; large_file>5242880
-processed_data/composite_hunt_unit_mapping_2026.geojson,54914353,GIT_BLOB,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Direct unit boundary fallback map used by Builder.; large_file>5242880
-processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson,87146863,GIT_BLOB,R2_PUBLIC,no,no,CLOUDFLARE_R2_PUBLIC,Canonical locked reference; publish only when intentionally pinned.; large_file>5242880; not_public_even_though_r2_classification
-data/hunt-master-canonical-2026-foundation.json,4076238,GIT_BLOB,REPO_SMALL,yes,yes,GITHUB_REPO,Builder first-load canonical hunt master; rebuilt from DATABASE.csv.
-data/hunt-master-canonical-2026-source-of-truth.json,4076238,GIT_BLOB,REPO_SMALL,yes,yes,GITHUB_REPO,Builder fallback hunt master; kept aligned with first-load master.
-processed_data/hunt-master-canonical-2026-source-of-truth.json,4076138,GIT_BLOB,REPO_SMALL,yes,yes,GITHUB_REPO,Processed mirror of current hunt master for public/reference consumers.
-processed_data/hunt-master-canonical-2026-source-of-truth.csv,1315638,GIT_BLOB,REPO_SMALL,yes,no,GITHUB_REPO,Processed CSV mirror of current hunt master for public/reference consumers.
-processed_data/hunt_research_2026.json,198207659,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research summary contract feed.; large_file>5242880
-processed_data/hunt_research_2026_summary.json,8664097,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Compact Research summary contract feed.; large_file>5242880
-processed_data/hunt_research_2026_ladder.json,198207659,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Full Research ladder JSON contract.; large_file>5242880
-processed_data/hunt_research_2026_ladder_preference.json,47341008,GIT_BLOB,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Preference-point Research ladder JSON contract.; large_file>5242880
-processed_data/hunt_research_2026_ladder_bonus_max_random.json,110232489,GIT_BLOB,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Bonus/max-random Research ladder JSON contract.; large_file>5242880
-processed_data/hunt_research_2026_split/hunt_research_2026.index.json,965908,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Split Research index aligned to DATABASE.csv for legacy/detail consumers.
-processed_data/draw_reality_engine.csv,95041150,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Observed draw runtime engine feed.; large_file>5242880
-processed_data/draw_reality_engine_v2.csv,44863034,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Observed draw engine fallback feed.; large_file>5242880
-processed_data/draw_reality_engine_predictive_v2.csv,22355072,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Predictive mode feed; published to R2 for browser/runtime compatibility.; large_file>5242880
-processed_data/point_ladder_view.csv,143562099,R2_OBJECT,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research ladder runtime feed.; large_file>5242880
-processed_data/hunt_master_enriched.csv,28913318,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research enriched hunt reference runtime feed.; large_file>5242880
-processed_data/hunt_unit_reference_linked.csv,2729910,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research unit reference runtime feed.
+processed_data/display-boundary-index-2026.json,890990,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Builder/map boundary manifest JSON.
+processed_data/statewide_composite_boundaries_2026.geojson,,MISSING,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Primary composite boundaries runtime source for Builder.; missing_file
+processed_data/composite_hunt_unit_mapping_2026.geojson,,MISSING,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Direct unit boundary fallback map used by Builder.; missing_file
+processed_data/statewide_composite_boundaries_2026_FINAL_LOCKED.geojson,,MISSING,R2_PUBLIC,no,no,CLOUDFLARE_R2_PUBLIC,Canonical locked reference; publish only when intentionally pinned.; missing_file; not_public_even_though_r2_classification
+data/hunt-master-canonical-2026-foundation.json,4073434,GIT_BLOB,REPO_SMALL,yes,yes,GITHUB_REPO,Builder first-load canonical hunt master; rebuilt from DATABASE.csv.
+data/hunt-master-canonical-2026-source-of-truth.json,4073434,GIT_BLOB,REPO_SMALL,yes,yes,GITHUB_REPO,Builder fallback hunt master; kept aligned with first-load master.
+processed_data/hunt-master-canonical-2026-source-of-truth.json,4073417,GIT_BLOB,REPO_SMALL,yes,yes,GITHUB_REPO,Processed mirror of current hunt master for public/reference consumers.
+processed_data/hunt-master-canonical-2026-source-of-truth.csv,1311591,GIT_BLOB,REPO_SMALL,yes,no,GITHUB_REPO,Processed CSV mirror of current hunt master for public/reference consumers.
+processed_data/hunt_research_2026.json,,MISSING,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research summary contract feed.; missing_file
+processed_data/hunt_research_2026_summary.json,10543729,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Compact Research summary contract feed.; large_file>5242880
+processed_data/hunt_research_2026_ladder.json,,MISSING,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Full Research ladder JSON contract.; missing_file
+processed_data/hunt_research_2026_ladder_preference.json,56637238,GIT_BLOB,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Preference-point Research ladder JSON contract.; large_file>5242880
+processed_data/hunt_research_2026_ladder_bonus_max_random.json,,MISSING,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Bonus/max-random Research ladder JSON contract.; missing_file
+processed_data/hunt_research_2026_split/hunt_research_2026.index.json,963187,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Split Research index aligned to DATABASE.csv for legacy/detail consumers.
+processed_data/draw_reality_engine.csv,95052624,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Observed draw runtime engine feed.; large_file>5242880
+processed_data/draw_reality_engine_v2.csv,157717682,R2_OBJECT,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Observed draw engine fallback feed.; large_file>5242880
+processed_data/draw_reality_engine_predictive_v2.csv,76393701,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Predictive mode feed; published to R2 for browser/runtime compatibility.; large_file>5242880
+processed_data/point_ladder_view.csv,161948225,R2_OBJECT,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research ladder runtime feed.; large_file>5242880
+processed_data/hunt_master_enriched.csv,50070375,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research enriched hunt reference runtime feed.; large_file>5242880
+processed_data/hunt_unit_reference_linked.csv,3545905,GIT_BLOB,R2_PUBLIC,yes,yes,CLOUDFLARE_R2_PUBLIC,Research unit reference runtime feed.
 processed_data/public_contracts/outfitters-public.json,7913,GIT_BLOB,REPO_SMALL,yes,yes,GITHUB_REPO,Verify directory contract feed (small).
-processed_data/public_contracts/hunt_odds_history.json,113951774,R2_OBJECT,R2_PUBLIC,no,no,CLOUDFLARE_R2_PUBLIC,Large public contract artifact; not direct page dependency today.; large_file>5242880
+processed_data/public_contracts/hunt_odds_history.json,,R2_OBJECT,R2_PUBLIC,no,no,CLOUDFLARE_R2_PUBLIC,Large public contract artifact; not direct page dependency today.; missing_file
 data/hunt_odds_history.json,113970739,R2_OBJECT,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Large site odds-history JSON skipped from pages-dist and served from R2.; large_file>5242880
-processed_data/ml_draw_predictions_v1.csv,23148826,GIT_BLOB,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Large ML model output; public/download runtime artifact served from R2.; large_file>5242880
+processed_data/ml_draw_predictions_v1.csv,77512240,GIT_BLOB,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Large ML model output; public/download runtime artifact served from R2.; large_file>5242880
 processed_data/draw_reality_view.csv,14072342,GIT_BLOB,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Display-only draw reality view; public/download artifact served from R2.; large_file>5242880
 data_truth/finalized_draw_truth_ALL.csv,129267681,R2_OBJECT,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,"Unified PDF-derived draw truth artifact; large CSV served from R2, not Git.; large_file>5242880"
-data_truth/finalized_point_distribution.csv,141634716,R2_OBJECT,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,"PDF-derived point distribution truth artifact; large CSV served from R2, not Git.; large_file>5242880"
+data_truth/finalized_point_distribution.csv,160016732,R2_OBJECT,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,"PDF-derived point distribution truth artifact; large CSV served from R2, not Git.; large_file>5242880"
 data_truth/draw_results_truth/normalized/draw_results_long.csv.gz,,R2_OBJECT,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Compressed canonical draw_results_long handoff; gzip R2 object because raw CSV exceeds Wrangler upload size.; missing_file
 engine_rebuild_from_truth/engine/draw_engine_input_point_rows_with_totals.csv,174540958,R2_OBJECT,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Truth-first engine input point rows joined to hunt totals; large CSV served from R2.; large_file>5242880
 engine_rebuild_from_truth/engine/draw_engine_input_point_rows.csv,141634716,R2_OBJECT,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Truth-first engine input point rows; large CSV served from R2.; large_file>5242880
 engine_rebuild_from_truth/engine/prediction_outputs.csv,121507527,R2_OBJECT,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Truth-first rebuilt prediction output CSV; large runtime/download artifact served from R2.; large_file>5242880
 engine_rebuild_from_truth/engine/odds_tables.csv,76853190,R2_OBJECT,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,Truth-first rebuilt odds table CSV; large runtime/download artifact served from R2.; large_file>5242880
 processed_data/hunt_master_enriched_2026_draw_subset.csv,,MISSING,REVIEW_REQUIRED,no,no,REVIEW_REQUIRED,Missing in repo; requires lineage review before use.; missing_file; manual_review_required; review_required
-data_truth/draw_results_truth/normalized/draw_results_long.csv,339107986,GIT_BLOB,LFS_REFERENCE_ONLY,no,no,GIT_LFS_REFERENCE,Truth-source long-form draw rows; not a direct browser runtime feed.; large_file>5242880
+data_truth/draw_results_truth/normalized/draw_results_long.csv,254504841,GIT_BLOB,LFS_REFERENCE_ONLY,no,no,GIT_LFS_REFERENCE,Truth-source long-form draw rows; not a direct browser runtime feed.; large_file>5242880
 processed_data/hunt_truth_from_json.sqlite,85475328,GIT_BLOB,INTERNAL_ONLY,no,no,LOCAL_INTERNAL_ONLY,Internal SQLite build/reference artifact.; large_file>5242880
-processed_data/draw_system_coverage_report.csv,78555708,GIT_BLOB,INTERNAL_ONLY,no,no,LOCAL_INTERNAL_ONLY,Internal QA/audit report artifact.; large_file>5242880
+processed_data/draw_system_coverage_report.csv,252852771,R2_OBJECT,R2_PUBLIC,yes,no,CLOUDFLARE_R2_PUBLIC,"QA/audit coverage report artifact; large CSV served from R2, not Git.; large_file>5242880"
 processed_data/draw_reality_engine_backup_before_2024_import.csv,52620090,GIT_BLOB,LFS_REFERENCE_ONLY,no,no,GIT_LFS_REFERENCE,Historical backup/reference dataset.; large_file>5242880
 processed_data/backups/**/point_ladder_view.csv,,GLOB_PATTERN,INTERNAL_ONLY,no,no,LOCAL_INTERNAL_ONLY,Backup copies only; never publish directly.

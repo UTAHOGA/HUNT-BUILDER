@@ -87,7 +87,7 @@ STRATEGY_SPECS = [
         module_name="engine.utah_draw_predictive.bear",
         algorithm_status=ALGORITHM_STATUS_MODELED_BONUS,
         target_scope=TARGET_SCOPE_TARGET,
-        reason="Public limited-entry and restricted-pursuit bear rows use the Utah bonus model only when the source history proves real draw status, valid quota, and modeled bonus probabilities.",
+        reason="Public limited-entry bear rows use the Utah bonus model only when the source history proves real draw status, valid quota, and modeled bonus probabilities; pursuit-only rows remain reference/allocation records without public harvest draw odds.",
         modeled_by_engine=True,
         legacy_logic_present=True,
     )
@@ -340,6 +340,7 @@ def is_modeled_bear_row(row: Mapping[str, object]) -> bool:
         _clean_lower(row.get("model_strategy")) == MODEL_STRATEGY_NAME
         and _clean_lower(row.get("bear_bonus_valid")) in {"1", "true", "yes", "y"}
         and _clean(row.get("draw_system_type")) == BEAR_DRAW_SYSTEM_TYPE
+        and classify_bear_subtype(row) in MODELED_BEAR_SUBTYPES
     )
 
 
@@ -359,7 +360,7 @@ def _is_proven_bonus_bear_truth_row(row: Mapping[str, object]) -> bool:
         return False
     if classify_bear_subtype(row) not in MODELED_BEAR_SUBTYPES:
         return False
-    if _clean_lower(row.get("draw_pool")) not in {"", "standard"}:
+    if _clean_lower(row.get("draw_pool")) not in {"", "standard", "black_bear", "max_weighted_split"}:
         return False
     source_file = _clean_lower(row.get("source_file"))
     if source_file in {"database.csv", "sportsman_permit_no_draw_odds"}:
@@ -387,7 +388,10 @@ def _build_truth_ladders(
             continue
         subtype = classify_bear_subtype(row)
         hunt_code = _clean(row.get("hunt_code")).upper()
-        residency = _clean(row.get("residency")) or "Resident"
+        metric_scope = _clean_lower(row.get("metric_scope"))
+        residency = _clean(row.get("residency"))
+        if metric_scope == "total" or not residency:
+            residency = "All"
         points = _to_int(row.get("points"))
         if not hunt_code:
             continue
@@ -618,6 +622,8 @@ def _permit_availability_type(subtype: str) -> str:
         return "HARVEST_OBJECTIVE"
     if subtype == UNLIMITED_PURSUIT_PERMIT:
         return "UNLIMITED_PURSUIT"
+    if subtype == RESTRICTED_BEAR_PURSUIT:
+        return "RESTRICTED_PURSUIT_BONUS_DRAW"
     if subtype == REMAINING_PERMIT_AVAILABILITY:
         return "REMAINING_PERMIT"
     if subtype == CONSERVATION_OR_NON_PUBLIC:
@@ -822,6 +828,19 @@ def build_bear_bonus_predictions(
     for subtype, year, hunt_code, residency in ladders:
         years_by_subtype_code_res[(subtype, hunt_code, residency)].append(year)
 
+    def history_context(
+        subtype: str,
+        hunt_code: str,
+        residency: str,
+    ) -> tuple[str, list[int], str]:
+        exact_years = sorted(set(years_by_subtype_code_res.get((subtype, hunt_code, residency), [])))
+        if exact_years:
+            return residency, exact_years, ""
+        total_years = sorted(set(years_by_subtype_code_res.get((subtype, hunt_code, "All"), [])))
+        if total_years:
+            return "All", total_years, "TOTAL_SCOPE_HISTORY_USED_FOR_RESIDENCY"
+        return residency, [], ""
+
     rows: list[dict[str, object]] = []
     report_counts = Counter()
     data_quality_counter: Counter[str] = Counter()
@@ -881,10 +900,10 @@ def build_bear_bonus_predictions(
                     residencies = ("Resident", "Nonresident")
 
         for residency in residencies:
-            available_years = sorted(set(years_by_subtype_code_res.get((subtype, history_hunt_code, residency), [])))
+            history_residency, available_years, history_scope_flag = history_context(subtype, history_hunt_code, residency)
             latest_year = available_years[-1] if available_years else default_latest_source_year
             earliest_source_year = available_years[0] if available_years else default_earliest_source_year
-            latest_ladder = ladders.get((subtype, latest_year, history_hunt_code, residency), {}) if available_years else {}
+            latest_ladder = ladders.get((subtype, latest_year, history_hunt_code, history_residency), {}) if available_years else {}
             prior_total = sum(int(values.get("total", 0)) for values in latest_ladder.values())
             public_quota = _forecast_quota_for_residency(db_row, history_hunt_code, residency, latest_year, total_drawn_by_code_year)
             base = _base_row(
@@ -1062,6 +1081,8 @@ def build_bear_bonus_predictions(
                     flags.append("CURRENT_TO_HISTORICAL_CODE_ALIAS")
                 if public_quota <= 0:
                     flags.append("MISSING_FORECAST_QUOTA")
+                if history_scope_flag:
+                    flags.append(history_scope_flag)
                 flags.append("FIRST_CHOICE_ONLY_MODEL")
                 for flag in flags:
                     data_quality_counter[flag] += 1
@@ -1126,6 +1147,8 @@ def build_bear_bonus_predictions(
             flags = _data_quality_flags(available_years, total_applicants, public_quota, max_point_permits, subtype)
             if history_hunt_code != hunt_code:
                 flags.append("CURRENT_TO_HISTORICAL_CODE_ALIAS")
+            if history_scope_flag:
+                flags.append(history_scope_flag)
             for flag in flags:
                 data_quality_counter[flag] += 1
 

@@ -23,7 +23,9 @@ MODEL_STRATEGY_NAME = "preference_general_deer"
 PREFERENCE_RULE_VERSION = "utah_preference_general_deer_v1.0.0"
 PREFERENCE_TAIL_FLOOR = 0.001
 PREFERENCE_TAIL_CEILING = 0.995
-PREFERENCE_REPO_HOLDOUT_BIAS_CORRECTION = 0.35
+# Keep this at zero unless a future source-backed model change proves a
+# probability lift improves MAE. A broad +0.35 lift overpredicted this family.
+PREFERENCE_REPO_HOLDOUT_BIAS_CORRECTION = 0.0
 TAIL_CALIBRATION_REASON = "PREFERENCE_TAIL_CALIBRATED_FROM_REPO_BACKTEST"
 
 
@@ -46,6 +48,29 @@ def _clean(value: object) -> str:
 
 def _clean_lower(value: object) -> str:
     return _clean(value).lower()
+
+
+def _residency_lane(row: Mapping[str, object]) -> str:
+    if _clean_lower(row.get("metric_scope")) == "total":
+        return "All"
+    return _clean(row.get("residency")) or "All"
+
+
+def _output_residency(residency: str) -> str:
+    return "" if residency == "All" else residency
+
+
+def _effective_draw_pool(row: Mapping[str, object]) -> str:
+    draw_pool = _clean_lower(row.get("draw_pool"))
+    if draw_pool == "preference_general_season_buck_deer":
+        return "adult_general_deer"
+    source_text = " ".join(
+        _clean_lower(row.get(key))
+        for key in ("hunt_class", "hunt_draw_class", "draw_class_type", "source_file")
+    )
+    if draw_pool in {"", "standard"} and "youth" in source_text and "general" in source_text and "deer" in source_text:
+        return "youth_general_deer"
+    return draw_pool or "standard"
 
 
 def _to_int(value: object) -> int:
@@ -118,16 +143,30 @@ def _looks_like_general_buck_deer(row: Mapping[str, object]) -> bool:
         return False
     if "general season" not in text and "management buck deer" not in text and "cactus buck" not in text:
         return False
-    if any(token in text for token in ("dedicated hunter", "youth", "lifetime", "cwmu", "private land only", "private", "tribal")):
+    if any(token in text for token in ("dedicated hunter", "lifetime", "cwmu", "private land only", "private", "tribal")):
+        return False
+    if "youth" in text and not _is_youth_general_deer_preference(row):
         return False
     return True
+
+
+def _is_youth_general_deer_preference(row: Mapping[str, object]) -> bool:
+    hunt_class = _clean_lower(row.get("hunt_class"))
+    hunt_draw_class = _clean_lower(row.get("hunt_draw_class") or row.get("draw_class_type"))
+    draw_system_type = _clean_lower(row.get("draw_system_type") or row.get("draw_design"))
+    return (
+        ("youth_general_deer" in hunt_class or "youth_general_deer" in hunt_draw_class)
+        and draw_system_type == "preference_general_season_buck_deer"
+    )
 
 
 def _looks_like_standard_pool(row: Mapping[str, object]) -> bool:
     draw_pool = _clean_lower(row.get("draw_pool"))
     hunt_class = _clean_lower(row.get("hunt_class"))
     hunt_draw_class = _clean_lower(row.get("hunt_draw_class") or row.get("draw_class_type"))
-    if draw_pool not in {"", "standard"}:
+    if _is_youth_general_deer_preference(row):
+        return True
+    if draw_pool not in {"", "standard", "adult_general_deer", "preference_general_season_buck_deer"}:
         return False
     if hunt_class in {"", "public", "general season"}:
         return True
@@ -184,13 +223,13 @@ def _build_truth_ladders(
     truth_rows: Iterable[Mapping[str, object]],
     history_years: set[int],
 ) -> tuple[
-    dict[tuple[int, str, str], dict[int, dict[str, int]]],
-    dict[str, dict[str, str]],
-    dict[tuple[str, int], dict[str, int]],
+    dict[tuple[int, str, str, str], dict[int, dict[str, int]]],
+    dict[tuple[str, str], dict[str, str]],
+    dict[tuple[str, str, int], dict[str, int]],
 ]:
-    ladders: dict[tuple[int, str, str], dict[int, dict[str, int]]] = defaultdict(lambda: defaultdict(lambda: {"eligible": 0, "drawn": 0}))
-    meta: dict[str, dict[str, str]] = {}
-    total_drawn_by_code_year: dict[tuple[str, int], dict[str, int]] = defaultdict(lambda: defaultdict(int))
+    ladders: dict[tuple[int, str, str, str], dict[int, dict[str, int]]] = defaultdict(lambda: defaultdict(lambda: {"eligible": 0, "drawn": 0}))
+    meta: dict[tuple[str, str], dict[str, str]] = {}
+    total_drawn_by_code_year: dict[tuple[str, str, int], dict[str, int]] = defaultdict(lambda: defaultdict(int))
 
     for row in normalize_preference_ladder_rows(truth_rows):
         year = _to_int(row.get("year"))
@@ -200,23 +239,26 @@ def _build_truth_ladders(
             continue
 
         hunt_code = _clean(row.get("hunt_code")).upper()
-        residency = _clean(row.get("residency")) or "Resident"
+        residency = _residency_lane(row)
         points = _to_int(row.get("points"))
         eligible = _to_int(row.get("eligible_applicants"))
         drawn = _to_int(row.get("drawn")) or _to_int(row.get("successful_applicants")) or _to_int(row.get("total_permits")) or _to_int(row.get("preference_permits"))
 
         if not hunt_code:
             continue
+        draw_pool = _effective_draw_pool(row)
 
-        ladders[(year, hunt_code, residency)][points]["eligible"] += eligible
-        ladders[(year, hunt_code, residency)][points]["drawn"] += drawn
-        total_drawn_by_code_year[(hunt_code, year)][residency] += drawn
+        ladders[(year, hunt_code, draw_pool, residency)][points]["eligible"] += eligible
+        ladders[(year, hunt_code, draw_pool, residency)][points]["drawn"] += drawn
+        total_drawn_by_code_year[(hunt_code, draw_pool, year)][residency] += drawn
 
-        if hunt_code not in meta:
-            meta[hunt_code] = {
+        if (hunt_code, draw_pool) not in meta:
+            meta[(hunt_code, draw_pool)] = {
                 "hunt_name": _clean(row.get("hunt_name")),
                 "species": _clean(row.get("species")),
                 "hunt_type": _clean(row.get("hunt_type")) or "General Season",
+                "hunt_class": _clean(row.get("hunt_class")) or "Public",
+                "draw_pool": draw_pool,
                 "weapon": _clean(row.get("weapon")),
             }
 
@@ -224,21 +266,21 @@ def _build_truth_ladders(
 
 
 def _build_retention_and_zero_growth(
-    ladders: Mapping[tuple[int, str, str], dict[int, dict[str, int]]],
+    ladders: Mapping[tuple[int, str, str, str], dict[int, dict[str, int]]],
 ) -> tuple[dict[str, float], float]:
     retention_samples: dict[str, list[float]] = defaultdict(list)
     zero_growth_samples: list[float] = []
-    keys_by_code_res: dict[tuple[str, str], list[int]] = defaultdict(list)
-    for year, hunt_code, residency in ladders:
-        keys_by_code_res[(hunt_code, residency)].append(year)
+    keys_by_code_pool_res: dict[tuple[str, str, str], list[int]] = defaultdict(list)
+    for year, hunt_code, draw_pool, residency in ladders:
+        keys_by_code_pool_res[(hunt_code, draw_pool, residency)].append(year)
 
-    for (hunt_code, residency), years in keys_by_code_res.items():
+    for (hunt_code, draw_pool, residency), years in keys_by_code_pool_res.items():
         for prior_year in sorted(years):
             next_year = prior_year + 1
             if next_year not in years:
                 continue
-            prior = ladders[(prior_year, hunt_code, residency)]
-            nxt = ladders[(next_year, hunt_code, residency)]
+            prior = ladders[(prior_year, hunt_code, draw_pool, residency)]
+            nxt = ladders[(next_year, hunt_code, draw_pool, residency)]
             prior_zero = prior.get(0, {}).get("eligible", 0)
             next_zero = nxt.get(0, {}).get("eligible", 0)
             if prior_zero > 0:
@@ -346,12 +388,15 @@ def _status(probability: float) -> str:
 
 def _forecast_quota_for_residency(
     hunt_code: str,
+    draw_pool: str,
     residency: str,
     forecast_total: int,
     latest_year: int,
-    total_drawn_by_code_year: Mapping[tuple[str, int], dict[str, int]],
+    total_drawn_by_code_year: Mapping[tuple[str, str, int], dict[str, int]],
 ) -> int:
-    observed = total_drawn_by_code_year.get((hunt_code, latest_year), {})
+    if residency == "All":
+        return forecast_total
+    observed = total_drawn_by_code_year.get((hunt_code, draw_pool, latest_year), {})
     res_total = sum(int(value) for value in observed.values())
     if forecast_total <= 0:
         return 0
@@ -371,6 +416,9 @@ def _explicit_quota_for_residency(
     forecast_year: int,
     source_year: int | None = None,
 ) -> int | None:
+    if residency == "All":
+        permit = target_permit_total(row, forecast_year, source_year=source_year)
+        return permit.value if permit.value > 0 else None
     permit = target_permit_for_residency(row, forecast_year, residency, source_year=source_year)
     return permit.value if permit.value > 0 else None
 
@@ -423,20 +471,23 @@ def build_preference_general_deer_predictions(
         and _looks_like_standard_pool(row)
         and _clean(row.get("hunt_code"))
     ]
-    current_codes = { _clean(row.get("hunt_code")).upper(): row for row in current_general_rows }
+    current_codes = {
+        (_clean(row.get("hunt_code")).upper(), _effective_draw_pool(row)): row
+        for row in current_general_rows
+    }
 
-    years_by_key: dict[tuple[str, str], list[int]] = defaultdict(list)
-    for year, hunt_code, residency in ladders:
-        years_by_key[(hunt_code, residency)].append(year)
+    years_by_key: dict[tuple[str, str, str], list[int]] = defaultdict(list)
+    for year, hunt_code, draw_pool, residency in ladders:
+        years_by_key[(hunt_code, draw_pool, residency)].append(year)
     max_points_by_residency: dict[str, int] = defaultdict(int)
-    for (year, _hunt_code, residency), ladder in ladders.items():
+    for (year, _hunt_code, _draw_pool, residency), ladder in ladders.items():
         if year == latest_source_year and ladder:
             max_points_by_residency[residency] = max(
                 max_points_by_residency[residency],
                 max(int(points) for points in ladder.keys()),
             )
 
-    for hunt_code, db_row in sorted(current_codes.items()):
+    for (hunt_code, draw_pool), db_row in sorted(current_codes.items()):
         forecast_total = target_permit_total(db_row, forecast_year, source_year=latest_source_year).value
         if forecast_total <= 0:
             continue
@@ -446,13 +497,25 @@ def build_preference_general_deer_predictions(
         total_only_quota = bool(published_total) and not published_res and not published_nr
         total_only_reason = "NO_RESIDENCY_LANE_QUOTA|TOTAL_ONLY_QUOTA_RATIO_SKIPPED_NO_RESIDENCY_SPLIT"
 
-        hunt_name = _clean(db_row.get("hunt_name")) or truth_meta.get(hunt_code, {}).get("hunt_name", "")
-        species = _clean(db_row.get("species")) or truth_meta.get(hunt_code, {}).get("species", "Deer")
-        hunt_type = _clean(db_row.get("hunt_type")) or truth_meta.get(hunt_code, {}).get("hunt_type", "General Season")
-        weapon = _clean(db_row.get("weapon")) or truth_meta.get(hunt_code, {}).get("weapon", "")
+        meta = truth_meta.get((hunt_code, draw_pool), {}) or truth_meta.get((hunt_code, "standard"), {})
+        hunt_name = _clean(db_row.get("hunt_name")) or meta.get("hunt_name", "")
+        species = _clean(db_row.get("species")) or meta.get("species", "Deer")
+        hunt_type = _clean(db_row.get("hunt_type")) or meta.get("hunt_type", "General Season")
+        hunt_class = _clean(db_row.get("hunt_class")) or meta.get("hunt_class", "Public")
+        weapon = _clean(db_row.get("weapon")) or meta.get("weapon", "")
 
-        for residency in ("Resident", "Nonresident"):
-            available_years = sorted(year for year in set(years_by_key.get((hunt_code, residency), [])) if year in history_year_set)
+        available_residencies = sorted(
+            residency
+            for code, pool, residency in years_by_key
+            if code == hunt_code and pool == draw_pool
+        )
+        if "All" in available_residencies:
+            residencies_to_model = ["All"]
+        else:
+            residencies_to_model = available_residencies or ["Resident", "Nonresident"]
+
+        for residency in residencies_to_model:
+            available_years = sorted(year for year in set(years_by_key.get((hunt_code, draw_pool, residency), [])) if year in history_year_set)
             explicit_quota = _explicit_quota_for_residency(db_row, residency, forecast_year, source_year=latest_source_year)
             if not available_years:
                 if residency == "Nonresident" and explicit_quota is None:
@@ -467,10 +530,10 @@ def build_preference_general_deer_predictions(
                             "species": species,
                             "sex_type": "Buck",
                             "hunt_type": hunt_type,
-                            "hunt_class": "Public",
-                            "residency": residency,
+                            "hunt_class": hunt_class,
+                            "residency": _output_residency(residency),
                             "points": "0",
-                            "draw_pool": "standard",
+                            "draw_pool": draw_pool,
                             "public_permits_2025": 0,
                             "public_permits_2026": "" if total_only_quota else 0,
                             "permits_2026_res": "" if total_only_quota else published_res,
@@ -517,12 +580,12 @@ def build_preference_general_deer_predictions(
                 continue
             code_latest_source_year = max(available_years)
 
-            latest_ladder = ladders.get((code_latest_source_year, hunt_code, residency), {})
+            latest_ladder = ladders.get((code_latest_source_year, hunt_code, draw_pool, residency), {})
             prior_total = sum(int(values["drawn"]) for values in latest_ladder.values())
             forecast_quota = (
                 explicit_quota
                 if explicit_quota is not None
-                else _forecast_quota_for_residency(hunt_code, residency, forecast_total, code_latest_source_year, total_drawn_by_code_year)
+                else _forecast_quota_for_residency(hunt_code, draw_pool, residency, forecast_total, code_latest_source_year, total_drawn_by_code_year)
             )
             if forecast_quota <= 0:
                 if residency == "Nonresident":
@@ -537,10 +600,10 @@ def build_preference_general_deer_predictions(
                             "species": species,
                             "sex_type": "Buck",
                             "hunt_type": hunt_type,
-                            "hunt_class": "Public",
-                            "residency": residency,
+                            "hunt_class": hunt_class,
+                            "residency": _output_residency(residency),
                             "points": "0",
-                            "draw_pool": "standard",
+                            "draw_pool": draw_pool,
                             "public_permits_2025": prior_total,
                             "public_permits_2026": "" if total_only_quota else 0,
                             "permits_2026_res": "" if total_only_quota else published_res,
@@ -629,10 +692,10 @@ def build_preference_general_deer_predictions(
                         "species": species,
                         "sex_type": "Buck",
                         "hunt_type": hunt_type,
-                        "hunt_class": "Public",
-                        "residency": residency,
+                        "hunt_class": hunt_class,
+                        "residency": _output_residency(residency),
                         "points": str(points),
-                        "draw_pool": "standard",
+                        "draw_pool": draw_pool,
                         "public_permits_2025": prior_total,
                         "public_permits_2026": "" if total_only_quota else forecast_quota,
                         "permits_2026_res": "" if total_only_quota else published_res,

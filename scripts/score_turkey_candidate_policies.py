@@ -23,11 +23,10 @@ DESIRED_DRAW_SYSTEM = {
 PRED_PROB_COLS = ("p_draw_mean", "p_draw", "p_preference_draw", "p_bonus_pool", "p_random_pool")
 ACTUAL_PROB_COLS = ("p_draw", "total_p_draw", "resident_p_draw", "nonresident_p_draw")
 
-# Turkey scoring must keep adult and youth pools separate.  Do not add
+# Turkey scoring must keep adult and youth pools separate. Do not add
 # diagnostic policies here that omit draw_pool; those collapse adult/youth rows
 # with the same hunt code and point level.
 KEY_POLICIES = {
-    "turkey_pool_identity": ("hunt_code", "points", "draw_system_type", "draw_pool", "weapon", "hunt_type"),
     "turkey_pool_identity_with_residency": (
         "hunt_code",
         "residency",
@@ -37,6 +36,7 @@ KEY_POLICIES = {
         "weapon",
         "hunt_type",
     ),
+    "turkey_pool_identity": ("hunt_code", "points", "draw_system_type", "draw_pool", "weapon", "hunt_type"),
     "turkey_pool_minimal": ("hunt_code", "points", "draw_system_type", "draw_pool"),
 }
 
@@ -79,7 +79,7 @@ def write_csv(path: Path, rows: list[dict[str, object]], fieldnames: Iterable[st
 
 
 def draw_system(row: dict[str, str]) -> str:
-    return clean(row.get("draw_system_type") or row.get("draw_design") or row.get("hunt_draw_class")).upper()
+    return clean(row.get("draw_design") or row.get("draw_system_type")).upper()
 
 
 def value_for_key(row: dict[str, str], key: str) -> str:
@@ -124,18 +124,47 @@ def family_actual(row: dict[str, str], family: str) -> bool:
     return True
 
 
+def expand_actual_residency_lanes(row: dict[str, str]) -> list[dict[str, str]]:
+    """Convert canonical total rows with resident/nonresident probability columns to lane rows."""
+
+    expanded: list[dict[str, str]] = []
+    resident_p, _ = probability(row, ("resident_p_draw",))
+    nonresident_p, _ = probability(row, ("nonresident_p_draw",))
+    if resident_p is not None:
+        resident_row = dict(row)
+        resident_row["residency"] = "Resident"
+        resident_row["p_draw"] = f"{resident_p:.12g}"
+        expanded.append(resident_row)
+    if nonresident_p is not None:
+        nonresident_row = dict(row)
+        nonresident_row["residency"] = "Nonresident"
+        nonresident_row["p_draw"] = f"{nonresident_p:.12g}"
+        expanded.append(nonresident_row)
+    if expanded:
+        return expanded
+
+    total_p, _ = probability(row, ("total_p_draw", "p_draw"))
+    if total_p is None:
+        return []
+    total_row = dict(row)
+    if not clean(total_row.get("residency")):
+        total_row["residency"] = "Total"
+    total_row["p_draw"] = f"{total_p:.12g}"
+    return [total_row]
+
+
 def family_prediction(row: dict[str, str]) -> bool:
-    p, _ = probability(row, PRED_PROB_COLS)
-    return p is not None
+    predicted, _ = probability(row, PRED_PROB_COLS)
+    return predicted is not None
 
 
 def index_rows(rows: list[dict[str, str]], keys: tuple[str, ...], cols: Iterable[str]) -> dict[tuple[str, ...], list[tuple[float, dict[str, str], str]]]:
     out: dict[tuple[str, ...], list[tuple[float, dict[str, str], str]]] = defaultdict(list)
     for row in rows:
-        p, p_col = probability(row, cols)
-        if p is None:
+        predicted, probability_col = probability(row, cols)
+        if predicted is None:
             continue
-        out[row_key(row, keys)].append((p, row, p_col))
+        out[row_key(row, keys)].append((predicted, row, probability_col))
     return out
 
 
@@ -160,7 +189,7 @@ def complete_key_columns(rows: list[dict[str, str]], keys: tuple[str, ...]) -> b
     available = set(rows[0])
     for key in keys:
         if key == "draw_system_type":
-            if not {"draw_system_type", "draw_design", "hunt_draw_class"} & available:
+            if not {"draw_design", "draw_system_type"} & available:
                 return False
         elif key not in available:
             return False
@@ -168,6 +197,7 @@ def complete_key_columns(rows: list[dict[str, str]], keys: tuple[str, ...]) -> b
 
 
 def score(rolling_dir: Path, output_dir: Path) -> dict[str, object]:
+    output_dir = output_dir.resolve()
     run_dirs = sorted(path for path in rolling_dir.iterdir() if path.is_dir() and re.match(r"\d{4}_to_\d{4}", path.name))
     policy_rows: list[dict[str, object]] = []
     summary_pairs: dict[tuple[str, str], list[tuple[float, float]]] = defaultdict(list)
@@ -183,7 +213,7 @@ def score(rolling_dir: Path, output_dir: Path) -> dict[str, object]:
         for family in FAMILIES:
             prediction_rows = [row for row in read_csv(pred_dir / f"{source_year}_{target_year}_{family}.csv") if family_prediction(row)]
             actual_rows = [row for row in actual_all if family_actual(row, family)]
-            actual_numeric_rows = [row for row in actual_rows if probability(row, ACTUAL_PROB_COLS)[0] is not None]
+            actual_numeric_rows = [lane for row in actual_rows for lane in expand_actual_residency_lanes(row)]
 
             for policy, keys in KEY_POLICIES.items():
                 if "draw_pool" not in keys:
@@ -200,7 +230,7 @@ def score(rolling_dir: Path, output_dir: Path) -> dict[str, object]:
                     )
                     continue
                 prediction_index = index_rows(prediction_rows, keys, PRED_PROB_COLS)
-                actual_index = index_rows(actual_rows, keys, ACTUAL_PROB_COLS)
+                actual_index = index_rows(actual_numeric_rows, keys, ("p_draw",))
                 pairs: list[tuple[float, float]] = []
                 ambiguous_prediction_rows = 0
                 ambiguous_actual_rows = 0
@@ -217,7 +247,7 @@ def score(rolling_dir: Path, output_dir: Path) -> dict[str, object]:
                         ambiguous_actual_rows += len(actual_values)
                         continue
                     predicted, prediction_row, prediction_col = prediction_values[0]
-                    actual, actual_row, actual_col = actual_values[0]
+                    actual, _actual_row, actual_col = actual_values[0]
                     pairs.append((predicted, actual))
                     summary_pairs[(family, policy)].append((predicted, actual))
                     if len(samples) < 250:
@@ -286,8 +316,8 @@ def score(rolling_dir: Path, output_dir: Path) -> dict[str, object]:
         "runs_reviewed": len(run_dirs),
         "families_reviewed": len(FAMILIES),
         "all_policies_require_draw_pool": all("draw_pool" in keys for keys in KEY_POLICIES.values()),
-        "default_key_policy": "turkey_pool_identity",
-        "default_key_columns": ";".join(KEY_POLICIES["turkey_pool_identity"]),
+        "default_key_policy": "turkey_pool_identity_with_residency",
+        "default_key_columns": ";".join(KEY_POLICIES["turkey_pool_identity_with_residency"]),
         "best_bonus_turkey_policy": best_bonus,
         "best_youth_turkey_policy": best_youth,
         "runtime_updated": False,
@@ -314,7 +344,7 @@ def main() -> int:
     parser.add_argument("--output-dir", type=Path)
     args = parser.parse_args()
 
-    output_dir = args.output_dir or REPO / "audits" / f"turkey_pool_key_scorer_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+    output_dir = (args.output_dir or REPO / "audits" / f"turkey_pool_key_scorer_{datetime.now().strftime('%Y%m%d_%H%M%S')}").resolve()
     summary = score(args.rolling_dir, output_dir)
     print(json.dumps(summary, indent=2))
     return 0

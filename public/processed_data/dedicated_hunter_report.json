@@ -1,5 +1,5 @@
 {
-  "forecast_year": 2027,
+  "forecast_year": 2026,
   "source_years": [
     2018,
     2019,
@@ -8,20 +8,19 @@
     2022,
     2023,
     2024,
-    2025,
-    2026
+    2025
   ],
   "exists": true,
-  "total_rows": 503,
-  "modeled_preference_row_count": 503,
+  "total_rows": 775,
+  "modeled_preference_row_count": 775,
   "in_scope_model_pending_row_count": 0,
   "modeled_hunt_code_count": 31,
-  "p_preference_draw_non_null_count": 503,
-  "p_draw_non_null_count": 503,
-  "p_draw_pct_non_null_count": 503,
+  "p_preference_draw_non_null_count": 775,
+  "p_draw_non_null_count": 775,
+  "p_draw_pct_non_null_count": 775,
   "p_bonus_pool_non_null_count": 0,
   "p_random_pool_non_null_count": 0,
   "p_draw_outside_0_1_count": 0,
   "p_draw_pct_outside_0_100_count": 0,
-  "csv": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\dedicated_hunter_predictions_v1.csv"
+  "csv": "processed_data\\dedicated_hunter_predictions_v1.csv"
 }

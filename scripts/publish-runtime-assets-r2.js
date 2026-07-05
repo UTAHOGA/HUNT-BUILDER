@@ -20,7 +20,7 @@ const verbose = args.includes('--verbose');
 const R2_PUBLIC_BASE = String(process.env.UOGA_R2_PUBLIC_BASE || process.env.CLOUDFLARE_OBJECT_BASE || process.env.CLOUDFLARE_BASE || 'https://json.uoga.workers.dev').trim().replace(/\/+$/, '');
 const R2_ENDPOINT = String(process.env.UOGA_R2_S3_ENDPOINT || '').trim();
 const R2_BUCKET = String(process.env.UOGA_R2_BUCKET || '').trim();
-const R2_PREFIX = String(process.env.UOGA_R2_PREFIX || '').trim().replace(/^\/+|\/+$/g, '');
+const R2_PREFIX = String(process.env.UOGA_R2_PREFIX || 'hunt-builder').trim().replace(/^\/+|\/+$/g, '');
 const AWS_PROFILE = String(process.env.UOGA_AWS_PROFILE || process.env.AWS_PROFILE || '').trim();
 
 const FRONTEND_REFERENCE_FILES = [
@@ -192,6 +192,7 @@ const CATALOG = [
     source_type: 'processed_data',
     classification: 'R2_PUBLIC',
     update_mode: 'AUTO_PUBLIC_R2',
+    current_storage_mode: 'R2_OBJECT',
     public_use: true,
     served_live: true,
     notes: 'Observed draw engine fallback feed.',
@@ -401,11 +402,12 @@ const CATALOG = [
     key: 'internal_draw_system_coverage_report_csv',
     relPath: 'processed_data/draw_system_coverage_report.csv',
     source_type: 'processed_data',
-    classification: 'INTERNAL_ONLY',
-    update_mode: 'INTERNAL_ONLY',
-    public_use: false,
-    served_live: false,
-    notes: 'Internal QA/audit report artifact.',
+    classification: 'R2_PUBLIC',
+    update_mode: 'AUTO_PUBLIC_R2',
+    current_storage_mode: 'R2_OBJECT',
+    public_use: true,
+    served_live: true,
+    notes: 'QA/audit coverage report artifact; large CSV served from R2, not Git.',
   },
   {
     key: 'reference_draw_reality_engine_backup_before_2024_import_csv',
@@ -524,7 +526,10 @@ function toRecommendedTarget(classification) {
 function canonicalUrlFor(entry) {
   if (!entry.public_use) return '';
   if (entry.classification === 'REPO_SMALL') return `/${toPosix(entry.relPath)}`;
-  if (entry.classification === 'R2_PUBLIC') return `${R2_PUBLIC_BASE}/${toPosix(entry.relPath)}`;
+  if (entry.classification === 'R2_PUBLIC') {
+    const key = R2_PREFIX ? `${R2_PREFIX}/${toPosix(entry.relPath)}` : toPosix(entry.relPath);
+    return `${R2_PUBLIC_BASE}/${key}`;
+  }
   return '';
 }
 

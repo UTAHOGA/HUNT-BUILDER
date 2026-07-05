@@ -4,11 +4,14 @@ from pathlib import Path
 
 def _repo_root() -> Path:
     repo_root = Path(__file__).resolve()
-    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
-        repo_root = repo_root.parent
-    if repo_root.name != "HUNT-BUILDER":
-        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
-    return repo_root
+    for candidate in [repo_root, *repo_root.parents]:
+        if (
+            (candidate / "AGENTS.MD").exists()
+            and (candidate / "engine").is_dir()
+            and (candidate / "processed_data").is_dir()
+        ):
+            return candidate
+    raise RuntimeError("Could not locate HUNT-BUILDER repo root")
 
 
 def _read_csv(path: Path) -> list[dict[str, str]]:
@@ -20,4 +23,4 @@ def test_mountain_lion_rows_do_not_use_preference_fields() -> None:
     rows = _read_csv(Path(str(_repo_root() / "processed_data/mountain_lion_availability_predictions_v1.csv")))
     assert rows
     assert all((row.get("p_preference_draw") or "").strip() == "" for row in rows)
-    assert all((row.get("draw_system_type") or "").strip() == "MOUNTAIN_LION_DRAW" for row in rows)
+    assert all((row.get("draw_system_type") or "").strip() == "COUGAR_LICENSE_BASED" for row in rows)

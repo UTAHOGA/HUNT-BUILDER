@@ -12,6 +12,7 @@ from . import (
     StrategySpec,
     TARGET_SCOPE_TARGET,
 )
+from .taxonomy import effective_draw_design
 
 
 MODEL_STRATEGY_NAME = "SPORTSMAN_RANDOM_ONLY"
@@ -36,6 +37,8 @@ SPORTSMAN_CODE_ALIASES: dict[str, list[str]] = {
     "RS0001": [],
     "TK0001": [],
 }
+HISTORICAL_COUGAR_SPORTSMAN_CODES = {"CG1000", "CG9999"}
+LAST_COUGAR_SPORTSMAN_SOURCE_YEAR = 2022
 
 STRATEGY_SPECS = [
     StrategySpec(
@@ -66,6 +69,14 @@ def _safe_int(value: object) -> int:
         return int(float(text))
     except Exception:
         return 0
+
+
+def _row_year(row: Mapping[str, object]) -> int:
+    for key in ("actual_draw_year", "draw_results_year", "source_year", "draw_year", "year"):
+        year = _safe_int(row.get(key))
+        if year:
+            return year
+    return 0
 
 
 def _safe_relative(path: Path) -> str:
@@ -180,6 +191,8 @@ def _canonical_sportsman_code(row: Mapping[str, object]) -> str:
 def is_sportsman_permit_row(row: Mapping[str, object]) -> bool:
     hunt_code = _canonical_sportsman_code(row)
     text = _joined_text(row)
+    if hunt_code in HISTORICAL_COUGAR_SPORTSMAN_CODES or "cougar" in text or "mountain lion" in text:
+        return hunt_code in HISTORICAL_COUGAR_SPORTSMAN_CODES and 0 < _row_year(row) <= LAST_COUGAR_SPORTSMAN_SOURCE_YEAR
     if hunt_code in sportsman_code_allowlist():
         return True
     if "sportsman" in text:
@@ -195,7 +208,7 @@ def sportsman_species(row: Mapping[str, object]) -> str:
 
 def is_modeled_sportsman_row(row: Mapping[str, object]) -> bool:
     return (
-        _clean(row.get("draw_system_type")) == SPORTSMAN_DRAW_SYSTEM_TYPE
+        effective_draw_design(row) == SPORTSMAN_DRAW_SYSTEM_TYPE
         and _clean_lower(row.get("model_strategy")) in {MODEL_STRATEGY_NAME.lower(), "sportsman_draw"}
         and _clean_lower(row.get("sportsman_valid")) in {"1", "true", "yes", "y"}
         and _clean(row.get("residency")).lower() == "resident"
@@ -242,7 +255,7 @@ def build_sportsman_predictions(
             "residency": "Resident",
             "points": "",
             "draw_pool": "sportsman",
-            "draw_design": "Random",
+            "draw_design": SPORTSMAN_DRAW_SYSTEM_TYPE,
             "sportsman_draw_design": "SPORTSMAN_RANDOM_ONLY",
             "sportsman_random_only": "TRUE",
             "sportsman_split_draw": "FALSE",

@@ -203,7 +203,16 @@ def is_scorable_history_row(row: Mapping[str, Any]) -> bool:
 def expanded_engine_rows(row: Mapping[str, Any]) -> list[dict[str, Any]]:
     """Return engine-ready rows, exploding collapsed resident/nonresident rows."""
     if clean(row.get("residency")):
-        return [dict(row)]
+        out = dict(row)
+        residency = clean(out.get("residency")).lower().replace("-", "").replace(" ", "")
+        if not clean(out.get("metric_scope")):
+            if residency in {"resident", "res", "r"}:
+                out["metric_scope"] = "resident"
+            elif residency in {"nonresident", "nonres", "nr"}:
+                out["metric_scope"] = "nonresident"
+            else:
+                out["metric_scope"] = "total"
+        return [out]
 
     expanded: list[dict[str, Any]] = []
     for residency, prefix in (("Resident", "resident"), ("Nonresident", "nonresident")):
@@ -230,8 +239,13 @@ def expanded_engine_rows(row: Mapping[str, Any]) -> list[dict[str, Any]]:
         out["success_ratio"] = clean(row.get(f"{prefix}_success_ratio"))
         out["p_draw"] = clean(row.get(f"{prefix}_p_draw"))
         out["p_draw_percent"] = clean(row.get(f"{prefix}_p_draw_percent"))
+        out["metric_scope"] = prefix
         expanded.append(out)
-    return expanded or [dict(row)]
+    if expanded:
+        return expanded
+    out = dict(row)
+    out["metric_scope"] = clean(out.get("metric_scope")) or "total"
+    return [out]
 
 
 def build_filtered_truth(out_dir: Path) -> dict[str, Any]:

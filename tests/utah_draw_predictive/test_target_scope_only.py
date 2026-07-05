@@ -10,7 +10,7 @@ def test_target_scope_keeps_turkey_bear_and_cougar() -> None:
     assert is_target_scope(cougar) is True
     assert classify_draw_system_type(turkey) == "BONUS_TURKEY"
     assert classify_draw_system_type(bear) == "BEAR_DRAW"
-    assert classify_draw_system_type(cougar) == "MOUNTAIN_LION_DRAW"
+    assert classify_draw_system_type(cougar) == "COUGAR_LICENSE_BASED"
 
 
 def test_target_scope_keeps_private_lands_only_antlerless_elk() -> None:

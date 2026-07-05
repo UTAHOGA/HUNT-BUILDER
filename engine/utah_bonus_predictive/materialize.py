@@ -1375,6 +1375,16 @@ def _canonical_probability(row: dict[str, object]) -> float | None:
     return None
 
 
+def _draw_system_type_for_model_strategy(model_strategy: str) -> str:
+    return {
+        "preference_general_deer": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+        "preference_dedicated_hunter_deer": "PREFERENCE_DEDICATED_HUNTER_DEER",
+        "preference_antlerless_deer": "PREFERENCE_ANTLERLESS_DEER",
+        "preference_antlerless_elk": "PREFERENCE_ANTLERLESS_ELK",
+        "preference_doe_pronghorn": "PREFERENCE_DOE_PRONGHORN",
+    }.get(model_strategy, "")
+
+
 def _format_combined_odds(probability: float | None) -> str:
     if probability is None or probability <= 0.0:
         return ""
@@ -1401,6 +1411,26 @@ def _normalize_merged_surface_contract(
     }
 
     for row in rows:
+        model_strategy = _clean_text(row.get("model_strategy"))
+        strategy_draw_system_type = _draw_system_type_for_model_strategy(model_strategy)
+        if strategy_draw_system_type and not _clean_text(row.get("draw_system_type")):
+            row["draw_system_type"] = strategy_draw_system_type
+        if strategy_draw_system_type and not _clean_text(row.get("draw_design")):
+            row["draw_design"] = strategy_draw_system_type
+        probability_value = _canonical_probability(row)
+        if (
+            strategy_draw_system_type.startswith("PREFERENCE_")
+            and probability_value is not None
+            and not _clean_text(row.get("algorithm_status"))
+        ):
+            row["algorithm_status"] = "MODELED_PREFERENCE"
+        if strategy_draw_system_type and not _clean_text(row.get("target_scope")):
+            row["target_scope"] = "TARGET"
+        if strategy_draw_system_type and not _clean_text(row.get("engine_family")):
+            row["engine_family"] = strategy_draw_system_type
+        if strategy_draw_system_type and not _clean_text(row.get("modeled_by_engine")):
+            row["modeled_by_engine"] = "True" if probability_value is not None else "False"
+
         if not _clean_text(row.get("source_years_used")):
             row["source_years_used"] = source_years_used
         if not _clean_text(row.get("source_year_count")):
@@ -1415,7 +1445,6 @@ def _normalize_merged_surface_contract(
                 row[field] = ""
             continue
 
-        probability_value = _canonical_probability(row)
         probability = "" if probability_value is None else f"{probability_value:.6f}"
         if not probability:
             continue
@@ -1680,6 +1709,7 @@ def materialize_outputs(
         "latest_source_year",
         "earliest_source_year",
         "source_dataset",
+        "engine_family",
         "model_strategy",
         "runtime_promotion_family",
         "runtime_promotion_status",
@@ -1704,6 +1734,11 @@ def materialize_outputs(
         "history_hunt_code",
         "crosswalk_status",
         "permit_availability_type",
+        "acquisition_method",
+        "trapping_acquisition_method",
+        "public_draw_odds_eligible",
+        "modeled_probability_allowed",
+        "exclusion_reason",
         "permit_type",
         "permit_status",
         "availability_status",
@@ -1761,6 +1796,7 @@ def materialize_outputs(
         "target_scope",
         "modeled_by_engine",
         "reason",
+        "draw_design_contract_flags",
     ]
     prediction_rows, excluded_prediction_no_code_rows = _remove_no_hunt_code_rows(prediction_rows, "ml_draw_predictions_v1")
     successor_rows, excluded_successor_no_code_rows = _remove_no_hunt_code_rows(successor_rows, "draw_reality_engine_predictive_v2")

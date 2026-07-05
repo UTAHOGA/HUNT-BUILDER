@@ -1,28 +1,28 @@
 {
   "classification": "REGULATION_AND_GUIDEBOOK_TRUTH_SOURCE_AUDIT",
-  "timestamp_utc": "2026-05-24T10:23:28.098635+00:00",
+  "timestamp_utc": "2026-06-30T17:06:50.239987+00:00",
   "source_pdf": "pipeline/RAW/hunt_unit_database/2026/pdf/regulations/2026 Turkey.pdf",
   "guidebook_title": "2025-26 Utah Upland Game and Turkey Guidebook",
-  "source_sha256": "c2d54eff8304c6b93d549cc59cba17a5df2cb0fcc22cb723d3befc088beab149",
+  "source_sha256": "513951a6990b44de9af85c597a96b552f22cf0ec83f16d22f02398e14bc461ae",
   "expected_sha256": "c2d54eff8304c6b93d549cc59cba17a5df2cb0fcc22cb723d3befc088beab149",
-  "source_size_bytes": 1645889,
+  "source_size_bytes": 6395849,
   "expected_size_bytes": 1645889,
   "pdf_pages": 45,
-  "text_lines": 2521,
-  "number_tokens": 1968,
+  "text_lines": 3261,
+  "number_tokens": 2331,
   "token_type_counts": {
-    "code_citation": 106,
-    "date": 60,
-    "number_money_code": 1802
+    "code_citation": 118,
+    "date": 86,
+    "number_money_code": 2127
   },
   "expected_text_checks": 53,
-  "expected_text_anchor_failures": 0,
+  "expected_text_anchor_failures": 4,
   "guidebook_printed_hunt_code_count": 7,
   "guidebook_bonus_point_codes": [
     "TKY"
   ],
   "database_name_resolved_hunt_code_count": 7,
-  "hunt_code_reconciliation_failures": 0,
+  "hunt_code_reconciliation_failures": 2,
   "extra_database_turkey_codes_not_printed_in_guidebook_code_list": [
     "TK0001",
     "TK1000",
@@ -36,7 +36,12 @@
     "TK1020",
     "TK1022"
   ],
-  "blockers": 0,
-  "blocker_reasons": [],
+  "blockers": 4,
+  "blocker_reasons": [
+    "source_sha256_mismatch",
+    "source_size_mismatch",
+    "expected_text_anchor_failures",
+    "hunt_code_name_reconciliation_failures"
+  ],
   "guardrail": "Turkey guidebook text, dates, fees, printed hunt codes, and bonus-point codes are truth-source references; this audit does not model draw odds."
 }

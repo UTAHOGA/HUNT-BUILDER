@@ -120,7 +120,7 @@ def row_year(row: Mapping[str, Any]) -> int | None:
 
 
 def probability_columns(fields: Sequence[str]) -> list[str]:
-    excluded = re.compile(r"(percent|pct|odds|count|applicant|denominator|display|text)", re.I)
+    excluded = re.compile(r"(percent|pct|odds|count|applicant|denominator|display|text|allowed|eligible|flag|status)", re.I)
     return [
         field
         for field in fields

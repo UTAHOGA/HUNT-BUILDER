@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 from collections import Counter, defaultdict
@@ -410,15 +411,24 @@ def mixed_row(row: dict[str, str], prior: dict[str, str] | None, harvest: dict[s
     return out
 
 
-def materialize() -> dict[str, object]:
+def materialize(
+    *,
+    input_dir: Path = PROCESSED,
+    output_dir: Path = PROCESSED,
+    runtime_drafts_dir: Path = RUNTIME_DRAFTS,
+    harvest_path: Path | None = None,
+) -> dict[str, object]:
     weights = BlendWeights()
     weights.validate()
-    ml_path = PROCESSED / "ml_draw_predictions_v1.csv"
-    successor_path = PROCESSED / "draw_reality_engine_predictive_v2.csv"
-    ladder_path = PROCESSED / "point_ladder_view.csv"
-    draw_path = PROCESSED / "draw_reality_engine.csv"
-    harvest_path = ROOT / "data_model" / "harvest_quality" / "harvest_feature_model_by_hunt_code_2026.csv"
-    harvest_audit_path = PROCESSED / "harvest_results_database_final_audit.json"
+    input_dir = Path(input_dir)
+    output_dir = Path(output_dir)
+    runtime_drafts_dir = Path(runtime_drafts_dir)
+    ml_path = input_dir / "ml_draw_predictions_v1.csv"
+    successor_path = input_dir / "draw_reality_engine_predictive_v2.csv"
+    ladder_path = input_dir / "point_ladder_view.csv"
+    draw_path = input_dir / "draw_reality_engine.csv"
+    harvest_path = harvest_path or (ROOT / "data_model" / "harvest_quality" / "harvest_feature_model_by_hunt_code_2026.csv")
+    harvest_audit_path = input_dir / "harvest_results_database_final_audit.json"
 
     ml_rows = read_rows(ml_path)
     successor_rows = read_rows(successor_path)
@@ -442,12 +452,13 @@ def materialize() -> dict[str, object]:
     fields = list(ml_rows[0].keys()) + [field for field in REQUIRED_FIELDS if field not in ml_rows[0]]
     successor_fields = list(successor_rows[0].keys()) + [field for field in REQUIRED_FIELDS if field not in successor_rows[0]]
     ladder_fields = list(ladder_rows[0].keys()) + [field for field in REQUIRED_FIELDS if field not in ladder_rows[0]]
-    RUNTIME_DRAFTS.mkdir(parents=True, exist_ok=True)
-    write_rows(RUNTIME_DRAFTS / "mixed_predictive_engine_2026.predictions.csv", materialized, fields)
-    write_rows(RUNTIME_DRAFTS / "mixed_predictive_engine_2026.materialized.csv", successor_materialized, successor_fields)
-    write_rows(ml_path, materialized, fields)
-    write_rows(successor_path, successor_materialized, successor_fields)
-    write_rows(ladder_path, ladder_materialized, ladder_fields)
+    runtime_drafts_dir.mkdir(parents=True, exist_ok=True)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    write_rows(runtime_drafts_dir / "mixed_predictive_engine_2026.predictions.csv", materialized, fields)
+    write_rows(runtime_drafts_dir / "mixed_predictive_engine_2026.materialized.csv", successor_materialized, successor_fields)
+    write_rows(output_dir / "ml_draw_predictions_v1.csv", materialized, fields)
+    write_rows(output_dir / "draw_reality_engine_predictive_v2.csv", successor_materialized, successor_fields)
+    write_rows(output_dir / "point_ladder_view.csv", ladder_materialized, ladder_fields)
 
     duplicate_keys = len(materialized) - len({(r.get("hunt_code"), r.get("residency"), r.get("points"), r.get("draw_pool")) for r in materialized})
     status_counts = Counter(row.get("algorithm_status", "") for row in materialized)
@@ -464,8 +475,8 @@ def materialize() -> dict[str, object]:
                 "reason_codes": row.get("reason_codes", ""),
             }
         )
-    write_rows(RUNTIME_DRAFTS / "mixed_predictive_engine_2026.audit.csv", audit_rows, list(audit_rows[0].keys()))
-    write_rows(PROCESSED / "mixed_predictive_engine_2026_audit.csv", audit_rows, list(audit_rows[0].keys()))
+    write_rows(runtime_drafts_dir / "mixed_predictive_engine_2026.audit.csv", audit_rows, list(audit_rows[0].keys()))
+    write_rows(output_dir / "mixed_predictive_engine_2026_audit.csv", audit_rows, list(audit_rows[0].keys()))
     db1004 = next((r for r in materialized if r.get("hunt_code") == "DB1004" and r.get("residency") == "Resident"), {})
     eb3024 = [r for r in materialized if r.get("hunt_code") == "EB3024" and r.get("residency") == "Resident" and r.get("points") in {"28", "29", "30"}]
     eb3022 = next((r for r in materialized if r.get("hunt_code") == "EB3022" and r.get("residency") == "Resident" and r.get("points") == "7"), {})
@@ -516,14 +527,38 @@ def materialize() -> dict[str, object]:
         "publish_ready_for_mixed_predictive_engine": duplicate_keys == 0,
         "weights": weights.__dict__,
     }
-    (RUNTIME_DRAFTS / "mixed_predictive_engine_2026.summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
-    (PROCESSED / "mixed_predictive_engine_2026_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
+    summary["input_dir"] = str(input_dir)
+    summary["output_dir"] = str(output_dir)
+    summary["runtime_drafts_dir"] = str(runtime_drafts_dir)
+    (runtime_drafts_dir / "mixed_predictive_engine_2026.summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
+    (output_dir / "mixed_predictive_engine_2026_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     md = ["# Mixed Predictive Engine 2026 Audit", ""]
     for key, value in summary.items():
         md.append(f"- {key}: {value}")
-    (PROCESSED / "mixed_predictive_engine_2026_audit.md").write_text("\n".join(md) + "\n", encoding="utf-8")
+    (output_dir / "mixed_predictive_engine_2026_audit.md").write_text("\n".join(md) + "\n", encoding="utf-8")
     return summary
 
 
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Materialize mixed predictive overlay outputs.")
+    parser.add_argument("--input-dir", type=Path, default=PROCESSED)
+    parser.add_argument("--output-dir", type=Path, default=PROCESSED)
+    parser.add_argument("--runtime-drafts-dir", type=Path, default=RUNTIME_DRAFTS)
+    parser.add_argument("--harvest-path", type=Path, default=None)
+    args = parser.parse_args()
+    print(
+        json.dumps(
+            materialize(
+                input_dir=args.input_dir,
+                output_dir=args.output_dir,
+                runtime_drafts_dir=args.runtime_drafts_dir,
+                harvest_path=args.harvest_path,
+            ),
+            indent=2,
+        )
+    )
+    return 0
+
+
 if __name__ == "__main__":
-    print(json.dumps(materialize(), indent=2))
+    raise SystemExit(main())

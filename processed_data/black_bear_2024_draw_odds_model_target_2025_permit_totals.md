@@ -5,8 +5,8 @@
 - Model target year: `2025`
 - Hunt-code rows extracted: `96`
 - Total public permits in source: `943`
-- DATABASE missing codes: `4`
-- DATABASE 2025 permit matches: `37`
-- DATABASE 2025 permit differences requiring review: `55`
+- DATABASE missing codes: `0`
+- DATABASE 2025 permit matches: `40`
+- DATABASE 2025 permit differences requiring review: `56`
 
 This is a historical draw-results source. It is not promoted into 2026 current availability fields.

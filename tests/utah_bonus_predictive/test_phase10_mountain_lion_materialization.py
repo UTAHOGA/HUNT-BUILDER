@@ -43,4 +43,10 @@ def test_phase10_mountain_lion_artifacts_are_generated(tmp_path: Path) -> None:
     assert report["total_mountain_lion_rows_produced"] == len(rows)
     assert report["p_draw_non_null_count"] == 0
     assert report["p_draw_pct_non_null_count"] == 0
-    assert report["p_availability_non_null_count"] == len(rows)
+    assert report["modeled_availability_row_count"] == 0
+    assert report["reference_license_based_no_draw_row_count"] == len(rows)
+    assert report["p_availability_non_null_count"] == 0
+    assert report["availability_pct_non_null_count"] == 0
+    assert {row["algorithm_status"] for row in rows} == {"REFERENCE_LICENSE_BASED_NO_DRAW"}
+    assert all((row.get("p_availability") or "").strip() == "" for row in rows)
+    assert all((row.get("availability_pct") or "").strip() == "" for row in rows)

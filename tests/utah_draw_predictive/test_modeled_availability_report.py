@@ -4,9 +4,9 @@ from pathlib import Path
 
 def _repo_root() -> Path:
     repo_root = Path(__file__).resolve()
-    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
+    while not ((repo_root / "AGENTS.MD").exists() and (repo_root / "engine").is_dir() and (repo_root / "processed_data").is_dir()) and repo_root.parent != repo_root:
         repo_root = repo_root.parent
-    if repo_root.name != "HUNT-BUILDER":
+    if not ((repo_root / "AGENTS.MD").exists() and (repo_root / "engine").is_dir() and (repo_root / "processed_data").is_dir()):
         raise RuntimeError("Could not locate HUNT-BUILDER repo root")
     return repo_root
 
@@ -59,5 +59,7 @@ def test_draw_system_coverage_has_modeled_availability_section() -> None:
     coverage = _read_json(COVERAGE_PATH)
     section = coverage["modeled_availability"]
     assert section["modeled_availability_total_row_count"] >= 0
-    assert "MOUNTAIN_LION_DRAW" in section["modeled_availability_by_draw_system_type"]
+    assert "COUGAR_LICENSE_BASED" not in section["modeled_availability_by_draw_system_type"]
+    assert section["mountain_lion_cougar_modeled_availability_row_count"] == 0
+    assert coverage["phase10_mountain_lion"]["mountain_lion_cougar_reference_license_based_no_draw"] is True
     assert section["modeled_availability_pass"] is True

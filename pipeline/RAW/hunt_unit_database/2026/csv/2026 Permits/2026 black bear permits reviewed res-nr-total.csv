@@ -1,107 +1,107 @@
-hunt_name,hunt_code,boundary_id,hunt_code_mapping_status,boundary_id_mapping_status,candidate_hunt_code,candidate_boundary_id,sex_type,species,weapon,hunt_type,season,permits_2026_res,permits_2026_nr,permits_2026_total,permit_count_status,source_file,source_row_number
-Black Bear - Statewide Permit,BR1000,5001,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR1000,5001,Either Sex,Black Bear,Any Legal Weapon,Statewide,,,,1,TOTAL_ONLY,2026 BLACK BEAR DRAW.xlsx,2
-Black Bear Harvest Objective Units,BR1001,5002,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR1001,5002,Either Sex,Black Bear,Any Legal Weapon,Harvest Objective,,,,,NO_PUBLISHED_NUMERIC_PERMIT,2026 BLACK BEAR DRAW.xlsx,3
-Black Bear Pursuit - Resident,BR1007,5003,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR1007,5003,Either Sex,Black Bear,Pursuit Only,Pursuit,"Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026",,,,NO_PUBLISHED_NUMERIC_PERMIT,2026 BLACK BEAR DRAW.xlsx,4
-Book Cliffs,BR1008,7,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR1008,7,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Summer,"July 5 - 16, 2026",26,2,28,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,5
-La Sal,BR1009,684,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR1009,684,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Summer,"July 5 - 16, 2026",14,1,15,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,6
-San Juan,BR1010,710,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR1010,710,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Summer,"July 5 - 16, 2026",14,1,15,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,7
-Book Cliffs,BR1011,7,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR1011,7,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Late Summer,"July 18 - July 31, 2026",26,2,28,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,8
-La Sal,BR1012,684,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR1012,684,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Late Summer,"July 18 - July 31, 2026",14,1,15,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,9
-San Juan,BR1013,710,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR1013,710,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Late Summer,"July 18 - July 31, 2026",14,1,15,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,10
-Book Cliffs,BR1015,7,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR1015,7,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Spring,"March 28 - May 25, 2026",0,2,2,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,11
-San Juan,BR1016,710,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR1016,710,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Spring,"March 28 - May 25, 2026",0,2,2,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,12
-La Sal,BR1017,684,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR1017,684,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Spring,"March 28 - May 25, 2026",0,2,2,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,13
-Black Bear Pursuit - Nonresident,BR1018,5013,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR1018,5013,Either Sex,Black Bear,Pursuit Only,Pursuit,"Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026",,,,NO_PUBLISHED_NUMERIC_PERMIT,2026 BLACK BEAR DRAW.xlsx,14
-Beaver,BR7000,628,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7000,628,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",9,1,10,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,15
-Book Cliffs Bitter Creek/South,BR7001,449,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7001,449,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",49,5,54,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,16
-Manti North,BR7003,52,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7003,52,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",17,2,19,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,17
-Manti South/San Rafael North,BR7004,744,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7004,744,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",18,0,18,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,18
-Nebo,BR7005,616,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7005,616,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",7,0,7,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,19
-Fillmore Pahvant,BR7007,88,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7007,88,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",1,0,1,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,20
-Mt Dutton,BR7009,630,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7009,630,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",4,0,4,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,21
-Panguitch Lake/Zion,BR7010,462,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7010,462,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",9,0,9,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,22
-Paunsaugunt,BR7011,163,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7011,163,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",4,0,4,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,23
-Boulder/Kaiparowits,BR7012,455,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7012,455,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",20,2,22,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,24
-Fishlake/Thousand Lakes,BR7013,175,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7013,175,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",7,0,7,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,25
-San Juan,BR7014,710,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7014,710,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",35,3,38,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,26
-Diamond Mtn/Vernal/Bonanza,BR7015,444,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7015,444,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",7,0,7,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,27
-Wasatch Mtns West-Central,BR7016,845,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7016,845,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",36,4,40,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,28
-Cache/Ogden,BR7017,92,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7017,92,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",2,0,2,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,29
-Kamas/North Slope Summit,BR7018,251,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7018,251,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",5,0,5,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,30
-Monroe,BR7020,629,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7020,629,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",1,0,1,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,31
-Dolores Triangle,BR7021,108,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7021,108,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",2,0,2,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,32
-La Sal Mtns,BR7022,617,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7022,617,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",40,3,43,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,33
-Beaver,BR7100,628,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7100,628,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",9,1,10,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,34
-Book Cliffs Bitter Creek/South,BR7101,449,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7101,449,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",14,1,15,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,35
-Book Cliffs Little Creek Roadless,BR7102,12,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7102,12,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",5,0,5,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,36
-Manti North,BR7104,52,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7104,52,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",17,1,18,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,37
-Manti South/San Rafael North,BR7105,744,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7105,744,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",18,2,20,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,38
-Nebo,BR7106,616,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7106,616,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",8,0,8,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,39
-Mt Dutton,BR7109,630,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7109,630,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",3,0,3,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,40
-Nine Mile,BR7110,615,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7110,615,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",18,2,20,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,41
-North Slope Three Corners/West Daggett,BR7111,289,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7111,289,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",1,0,1,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,42
-Panguitch Lake/Zion,BR7112,462,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7112,462,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",5,0,5,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,43
-Paunsaugunt,BR7113,163,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7113,163,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",3,0,3,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,44
-Boulder/Kaiparowits,BR7114,455,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7114,455,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",13,1,14,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,45
-Fishlake/Thousand Lakes,BR7115,175,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7115,175,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",7,0,7,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,46
-San Juan,BR7116,710,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7116,710,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",22,2,24,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,47
-Diamond Mtn/Vernal/Bonanza,BR7117,444,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7117,444,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",5,0,5,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,48
-Yellowstone,BR7118,613,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7118,613,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",5,0,5,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,49
-Wasatch Mtns Avintaquin/Currant Creek,BR7119,463,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7119,463,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",5,0,5,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,50
-Wasatch Mtns West-Central,BR7120,448,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7120,448,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",22,1,23,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,51
-Cache/Ogden,BR7121,92,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7121,92,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",4,0,4,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,52
-Chalk Creek/East Canyon/Morgan-South Rich,BR7122,93,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7122,93,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",7,0,7,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,53
-Kamas/North Slope Summit,BR7123,5053,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7123,5053,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",6,0,6,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,54
-Fillmore Pahvant,BR7124,88,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7124,88,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",2,0,2,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,55
-Monroe,BR7125,629,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7125,629,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",1,0,1,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,56
-Dolores Triangle,BR7126,108,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7126,108,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",6,0,6,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,57
-La Sal Mtns,BR7127,617,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7127,617,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",25,2,27,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,58
-Beaver,BR7200,628,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7200,628,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",9,1,10,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,59
-Book Cliffs Bitter Creek/South,BR7201,449,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7201,449,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 14, 2026 & Oct. 2 - Nov. 8, 2026",18,2,20,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,60
-Manti North,BR7203,52,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7203,52,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",10,1,11,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,61
-Manti South/San Rafael North,BR7204,744,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7204,744,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",18,2,20,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,62
-Nebo,BR7205,616,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7205,616,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",5,0,5,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,63
-Fillmore Pahvant,BR7207,88,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7207,88,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",1,0,1,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,64
-Mt Dutton,BR7210,630,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7210,630,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",3,0,3,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,65
-Nine Mile,BR7211,615,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7211,615,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",26,3,29,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,66
-North Slope Three Corners/West Daggett,BR7212,289,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7212,289,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",2,0,2,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,67
-Panguitch Lake/Zion,BR7213,462,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7213,462,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",9,0,9,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,68
-Paunsaugunt,BR7214,163,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7214,163,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",4,0,4,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,69
-Boulder/Kaiparowits,BR7215,455,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7215,455,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",9,1,10,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,70
-Fishlake/Thousand Lakes,BR7216,175,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7216,175,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",5,0,5,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,71
-San Juan,BR7217,710,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7217,710,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",6,0,6,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,72
-Diamond Mtn/Vernal/Bonanza,BR7218,444,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7218,444,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",7,0,7,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,73
-Yellowstone,BR7219,613,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7219,613,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",4,0,4,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,74
-Wasatch Mtns Avintaquin/Currant Creek,BR7220,463,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7220,463,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",9,0,9,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,75
-Wasatch Mtns West-Central,BR7221,448,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7221,448,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",18,2,20,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,76
-Book Cliffs Little Creek Roadless,BR7224,12,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7224,12,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",14,1,15,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,77
-Book Cliffs Little Creek Roadless,BR7225,12,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7225,12,Either Sex,Black Bear,Any Legal Weapon,Spot and Stalk,"Sept. 1 - Nov. 8, 2026",5,0,5,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,78
-Cache/Ogden,BR7228,92,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7228,92,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",1,0,1,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,79
-Kamas/North Slope Summit,BR7229,5079,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7229,5079,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",4,0,4,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,80
-Monroe,BR7237,629,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7237,629,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",1,0,1,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,81
-Dolores Triangle,BR7238,108,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7238,108,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",2,0,2,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,82
-La Sal Mtns,BR7239,617,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7239,617,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",6,0,6,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,83
-Book Cliffs Bitter Creek/South,BR7300,449,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7300,449,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 14 & Aug. 15 - Oct. 1 & Oct. 2 - Nov. 8, 2026",9,1,10,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,84
-Book Cliffs Little Creek Roadless,BR7301,12,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7301,12,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Sept. 1 - Nov. 8, 2026",5,0,5,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,85
-Manti North,BR7303,52,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7303,52,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",13,1,14,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,86
-Manti South/San Rafael North,BR7304,744,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7304,744,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",18,2,20,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,87
-Nebo,BR7305,616,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7305,616,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",5,0,5,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,88
-La Sal,BR7307,684,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7307,684,Either Sex,Black Bear,Multiseason,Multiseason - Conservation,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Nov 2 - Nov. 8, 2026",,,,NO_PUBLISHED_NUMERIC_PERMIT,2026 BLACK BEAR DRAW.xlsx,89
-North Slope Three Corners/West Daggett,BR7308,289,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7308,289,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",1,0,1,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,90
-Panguitch Lake/Zion,BR7309,462,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7309,462,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",4,0,4,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,91
-Boulder/Kaiparowits,BR7310,455,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7310,455,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",10,1,11,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,92
-Fishlake/Thousand Lakes,BR7311,175,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7311,175,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",3,0,3,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,93
-San Juan,BR7312,710,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7312,710,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",11,1,12,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,94
-Diamond Mtn/Vernal/Bonanza,BR7313,444,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7313,444,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",5,0,5,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,95
-Yellowstone,BR7314,613,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7314,613,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",3,0,3,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,96
-Wasatch Mtns Avintaquin/Currant Creek,BR7315,463,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7315,463,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",3,0,3,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,97
-Wasatch Mtns West-Central,BR7316,448,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7316,448,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",14,1,15,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,98
-Nine Mile,BR7317,615,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7317,615,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",9,1,10,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,99
-Beaver,BR7318,628,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7318,628,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",1,0,1,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,100
-Cache/Ogden,BR7320,92,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7320,92,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",4,0,4,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,101
-Kamas/North Slope Summit,BR7321,5101,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7321,5101,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",5,0,5,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,102
-Mt Dutton,BR7322,630,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7322,630,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",1,0,1,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,103
-Paunsaugunt,BR7323,163,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7323,163,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Nov 2 - Nov. 8, 2026",1,0,1,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,104
-Chalk Creek/East Canyon/Morgan-South Rich,BR7324,610,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7324,610,Either Sex,Black Bear,Multiseason,Conservation,"March 29 - May 26, 2025 | Jul 5 - 31, 2025 | Aug 1 - 31, 2025 | Sept 1 - Oct 26, 2025 | Nov 3 - 9, 2025 | Sept 1 - Oct 26, 2025",,,,NO_PUBLISHED_NUMERIC_PERMIT,2026 BLACK BEAR DRAW.xlsx,105
-Chalk Creek/East Canyon/Morgan-South Rich,BR7325,610,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7325,610,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",1,0,1,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,106
-La Sal Mtns,BR7326,617,REVIEWED_CURRENT_HUNT_CODE,DATABASE_BOUNDARY_ID,BR7326,617,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",13,1,14,FULL_SPLIT,2026 BLACK BEAR DRAW.xlsx,107
+hunt_name,hunt_code,sex_type,species,weapon,hunt_type,season,permits_2026_res,permits_2026_nr,permits_2026_total
+Black Bear - Statewide Permit,BR1000,Either Sex,Black Bear,Any Legal Weapon,Statewide,Any open season on any open bear unit during the 2026 season. See 2026 Black Bear Guidebook for season dates take methods.,,,
+Black Bear Harvest Objective Units,BR1001,Either Sex,Black Bear,Any Legal Weapon,Harvest Objective,Visit wildlife.utah.gov/bearharvest for units & closures. You are required to complete the annual bear orientation course & carry proof while hunting bear. Visit wildlife.utah.gov/bear for details.,,,
+Black Bear Pursuit - Resident,BR1007,Either Sex,Black Bear,Pursuit Only,Pursuit,"Spring: Mar 28-May 25, 2026 | Summer: July 5-July 31, 2026 | Fall: Nov 2-8, 2026",,,
+Book Cliffs,BR1008,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Summer,"July 5 - 16, 2026",,,
+La Sal,BR1009,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Summer,"July 5 - 16, 2026",,,
+San Juan,BR1010,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Summer,"July 5 - 16, 2026",,,
+Book Cliffs,BR1011,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Late Summer,"July 18 - July 31, 2026",,,
+La Sal,BR1012,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Late Summer,"July 18 - July 31, 2026",,,
+San Juan,BR1013,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Late Summer,"July 18 - July 31, 2026",,,
+Book Cliffs,BR1015,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Spring,"March 28 - May 25, 2026",,,
+San Juan,BR1016,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Spring,"March 28 - May 25, 2026",,,
+La Sal,BR1017,Either Sex,Black Bear,Pursuit Only,Restricted Pursuit - Spring,"March 28 - May 25, 2026",,,
+Black Bear Pursuit - Nonresident,BR1018,Either Sex,Black Bear,Pursuit Only,Pursuit,"Spring: Mar 29-May 26, 2025 | Summer: July 5 - Aug 3, 2025 | Fall: Nov 3-9, 2025",,,
+Beaver,BR7000,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+"Book Cliffs, Bitter Creek/South",BR7001,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+"Manti, North",BR7003,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+"Manti, South/San Rafael, North",BR7004,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+Nebo,BR7005,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+"Fillmore, Pahvant",BR7007,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+Mt Dutton,BR7009,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+Panguitch Lake/Zion,BR7010,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+Paunsaugunt,BR7011,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+Boulder/Kaiparowits,BR7012,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+Fishlake/Thousand Lakes,BR7013,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+San Juan,BR7014,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+Diamond Mtn/Vernal/Bonanza,BR7015,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+"Wasatch Mtns, West-Central",BR7016,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+Cache/Ogden,BR7017,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+"Kamas/North Slope, Summit",BR7018,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+Monroe,BR7020,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+Dolores Triangle,BR7021,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+La Sal Mtns,BR7022,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+Beaver,BR7100,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+"Book Cliffs, Bitter Creek/South",BR7101,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+"Book Cliffs, Little Creek Roadless",BR7102,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+"Manti, North",BR7104,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+"Manti, South/San Rafael, North",BR7105,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+Nebo,BR7106,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+Mt Dutton,BR7109,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+Nine Mile,BR7110,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+"North Slope, Three Corners/West Daggett",BR7111,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+Panguitch Lake/Zion,BR7112,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+Paunsaugunt,BR7113,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+Boulder/Kaiparowits,BR7114,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+Fishlake/Thousand Lakes,BR7115,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+San Juan,BR7116,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+Diamond Mtn/Vernal/Bonanza,BR7117,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+Yellowstone,BR7118,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+"Wasatch Mtns, Avintaquin/Currant Creek",BR7119,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+"Wasatch Mtns, West-Central",BR7120,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+Cache/Ogden,BR7121,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+Chalk Creek/East Canyon/Morgan-South Rich,BR7122,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+"Kamas/North Slope, Summit",BR7123,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+"Fillmore, Pahvant",BR7124,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+Monroe,BR7125,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+Dolores Triangle,BR7126,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+La Sal Mtns,BR7127,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Summer,"May 25 - June 28, 2026",,,
+Beaver,BR7200,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+"Book Cliffs, Bitter Creek/South",BR7201,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 14, 2026 & Oct. 2 - Nov. 8, 2026",,,
+"Manti, North",BR7203,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+"Manti, South/San Rafael, North",BR7204,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+Nebo,BR7205,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+"Fillmore, Pahvant",BR7207,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+Mt Dutton,BR7210,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+Nine Mile,BR7211,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+"North Slope, Three Corners/West Daggett",BR7212,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+Panguitch Lake/Zion,BR7213,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+Paunsaugunt,BR7214,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+Boulder/Kaiparowits,BR7215,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+Fishlake/Thousand Lakes,BR7216,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+San Juan,BR7217,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+Diamond Mtn/Vernal/Bonanza,BR7218,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+Yellowstone,BR7219,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+"Wasatch Mtns, Avintaquin/Currant Creek",BR7220,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+"Wasatch Mtns, West-Central",BR7221,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+"Book Cliffs, Little Creek Roadless",BR7224,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Spring,"March 28 - May 25, 2026",,,
+"Book Cliffs, Little Creek Roadless",BR7225,Either Sex,Black Bear,Any Legal Weapon,Spot and Stalk,"Sept. 1 - Nov. 8, 2026",,,
+Cache/Ogden,BR7228,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+"Kamas/North Slope, Summit",BR7229,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+Monroe,BR7237,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+Dolores Triangle,BR7238,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+La Sal Mtns,BR7239,Either Sex,Black Bear,Any Legal Weapon,Limited Entry - Fall,"Aug. 1 - Aug. 31, 2026 & Nov 2 - Nov. 8, 2026",,,
+"Book Cliffs, Bitter Creek/South",BR7300,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 14 & Aug. 15 - Oct. 1 & Oct. 2 - Nov. 8, 2026",,,
+"Book Cliffs, Little Creek Roadless",BR7301,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Sept. 1 - Nov. 8, 2026",,,
+"Manti, North",BR7303,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",,,
+"Manti, South/San Rafael, North",BR7304,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",,,
+Nebo,BR7305,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",,,
+La Sal,BR7307,Either Sex,Black Bear,Multiseason,Multiseason - Conservation,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Nov 2 - Nov. 8, 2026",,,4
+"North Slope, Three Corners/West Daggett",BR7308,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",,,
+Panguitch Lake/Zion,BR7309,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",,,
+Boulder/Kaiparowits,BR7310,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",,,
+Fishlake/Thousand Lakes,BR7311,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",,,
+San Juan,BR7312,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",,,
+Diamond Mtn/Vernal/Bonanza,BR7313,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",,,
+Yellowstone,BR7314,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",,,
+"Wasatch Mtns, Avintaquin/Currant Creek",BR7315,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",,,
+"Wasatch Mtns, West-Central",BR7316,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",,,
+Nine Mile,BR7317,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",,,
+Beaver,BR7318,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",,,
+Cache/Ogden,BR7320,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",,,
+"Kamas/North Slope, Summit",BR7321,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",,,
+Mt Dutton,BR7322,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",,,
+Paunsaugunt,BR7323,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Nov 2 - Nov. 8, 2026",,,
+Chalk Creek/East Canyon/Morgan-South Rich,BR7324,Either Sex,Black Bear,Multiseason,Conservation,"March 29 - May 26, 2025 | Jul 5 - 31, 2025 | Aug 1 - 31, 2025 | Sept 1 - Oct 26, 2025 | Nov 3 - 9, 2025 | Sept 1 - Oct 26, 2025",,,
+Chalk Creek/East Canyon/Morgan-South Rich,BR7325,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & July 5 - 31 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",,,
+La Sal Mtns,BR7326,Either Sex,Black Bear,Multiseason,Limited Entry - Multiseason,"Mar. 28 - May 25 & May 25 - June 28 & Aug. 1 - Aug. 31 & Sept. 1 - Oct. 25 & Nov 2 - Nov. 8, 2026",,,

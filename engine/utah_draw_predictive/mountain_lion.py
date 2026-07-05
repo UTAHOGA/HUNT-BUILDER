@@ -13,7 +13,7 @@ from pypdf import PdfReader
 from engine.utah_bonus_predictive.rules import MODEL_VERSION
 
 from . import (
-    ALGORITHM_STATUS_MODELED_AVAILABILITY,
+    ALGORITHM_STATUS_REFERENCE_LICENSE_BASED_NO_DRAW,
     StrategySpec,
     TARGET_SCOPE_TARGET,
     append_reason_codes,
@@ -24,10 +24,11 @@ REPO = Path(__file__).resolve().parents[2]
 COUGAR_TABLE_PATH = REPO / "data" / "cougar_hunt_table_official.json"
 COUGAR_GUIDEBOOK_PATH = REPO / "processed_data" / "hard_data_exports" / "source_pdfs" / "regulations" / "2026" / "2026-bear-cougar-furbearer-guidebook.pdf"
 
-MODEL_STRATEGY_NAME = "mountain_lion_rule_status_phase13"
+MODEL_STRATEGY_NAME = "COUGAR_LICENSE_BASED_CLASSIFIER"
 RULE_VERSION = "utah_mountain_lion_availability_v1.1.0"
-DRAW_SYSTEM_TYPE = "MOUNTAIN_LION_DRAW"
-PERMIT_AVAILABILITY_TYPE = "UNLIMITED_OTC_STATEWIDE_REPORTING_UNIT"
+DRAW_SYSTEM_TYPE = "COUGAR_LICENSE_BASED"
+PERMIT_AVAILABILITY_TYPE = "HUNTING_OR_COMBINATION_LICENSE"
+TRAPPING_ACQUISITION_METHOD = "HUNTING_OR_COMBINATION_LICENSE_PLUS_TRAP_REGISTRATION"
 
 _EXCLUDED_NAME_TOKENS = ("conservation", "pursuit", "statewide", "control")
 _UNIT_ALIAS_NORMALIZATIONS = {
@@ -41,10 +42,10 @@ STRATEGY_SPECS = [
     StrategySpec(
         draw_system_type=DRAW_SYSTEM_TYPE,
         module_name="engine.utah_draw_predictive.mountain_lion",
-        algorithm_status=ALGORITHM_STATUS_MODELED_AVAILABILITY,
+        algorithm_status=ALGORITHM_STATUS_REFERENCE_LICENSE_BASED_NO_DRAW,
         target_scope=TARGET_SCOPE_TARGET,
-        reason="Mountain lion/cougar is represented as statewide OTC rule-status and availability, not draw odds.",
-        modeled_by_engine=True,
+        reason="Cougar is license-based availability/reference after the May 3, 2023 rule change, not draw odds.",
+        modeled_by_engine=False,
         legacy_logic_present=True,
     ),
 ]
@@ -160,8 +161,9 @@ def build_mountain_lion_availability_predictions(
             "hunt_code_count": 0,
             "cougar_hunt_code_count": 0,
             "unit_count": 0,
-            "rows_by_algorithm_status": {"IN_SCOPE_MODEL_PENDING": 0},
+            "rows_by_algorithm_status": {ALGORITHM_STATUS_REFERENCE_LICENSE_BASED_NO_DRAW: 0},
             "modeled_availability_row_count": 0,
+            "reference_license_based_no_draw_row_count": 0,
             "in_scope_model_pending_row_count": 0,
             "excluded_not_predictive_draw_row_count": 0,
             "unit_status_distribution": {},
@@ -211,10 +213,16 @@ def build_mountain_lion_availability_predictions(
                     "latest_source_year": max(history_years),
                     "earliest_source_year": min(history_years),
                     "model_strategy": MODEL_STRATEGY_NAME,
+                    "engine_family": "COUGAR_LICENSE_BASED_CLASSIFIER",
                     "weapon": "Any Legal Weapon",
                     "draw_system_type": DRAW_SYSTEM_TYPE,
                     "permit_availability_type": PERMIT_AVAILABILITY_TYPE,
-                    "permit_type": "Statewide OTC Cougar Permit",
+                    "acquisition_method": "HUNTING_OR_COMBINATION_LICENSE",
+                    "trapping_acquisition_method": TRAPPING_ACQUISITION_METHOD,
+                    "public_draw_odds_eligible": "false",
+                    "modeled_probability_allowed": "false",
+                    "exclusion_reason": "license_based_no_public_draw_permit",
+                    "permit_type": "License-based cougar hunting opportunity",
                     "permit_status": "AVAILABLE" if has_year_round_rule else "UNKNOWN",
                     "availability_status": "AVAILABLE YEAR-ROUND" if has_year_round_rule else "UNKNOWN",
                     "availability_reason": "Statewide OTC cougar rule-status / reporting-unit availability",
@@ -226,15 +234,16 @@ def build_mountain_lion_availability_predictions(
                     "unit_status": "OPEN" if has_year_round_rule else "UNKNOWN",
                     "closure_reason": "",
                     "rule_status": "STATEWIDE_OTC_YEAR_ROUND" if has_year_round_rule else "RULE_STATUS_UNKNOWN",
-                    "p_availability": "1.000000" if has_year_round_rule else "",
-                    "availability_pct": "100.000" if has_year_round_rule else "",
+                    "p_availability": "",
+                    "availability_pct": "",
                     "closure_risk": "NONE" if has_year_round_rule else "",
                     "draw_outlook": "AVAILABLE YEAR-ROUND WITH VALID LICENSE" if has_year_round_rule else "RULE STATUS SOURCE MISSING",
                     "data_quality_flags": "|".join(flags),
                     "reason_codes": append_reason_codes(
                         "",
                         "AVAILABILITY_ONLY_NO_DRAW_PROBABILITY",
-                        "MOUNTAIN_LION_RULE_STATUS",
+                        "COUGAR_LICENSE_BASED",
+                        "LICENSE_BASED_NO_PUBLIC_DRAW_PERMIT",
                         "STATEWIDE_OTC_YEAR_ROUND" if has_year_round_rule else "RULE_STATUS_SOURCE_MISSING",
                     ),
                     "p_draw": "",
@@ -262,8 +271,9 @@ def build_mountain_lion_availability_predictions(
         "hunt_code_count": len({row["hunt_code"] for row in rows}),
         "cougar_hunt_code_count": len({row["hunt_code"] for row in rows}),
         "unit_count": len({row["unit_name"] for row in rows}),
-        "rows_by_algorithm_status": {"MODELED_AVAILABILITY": len(rows)},
-        "modeled_availability_row_count": len(rows),
+        "rows_by_algorithm_status": {ALGORITHM_STATUS_REFERENCE_LICENSE_BASED_NO_DRAW: len(rows)},
+        "modeled_availability_row_count": 0,
+        "reference_license_based_no_draw_row_count": len(rows),
         "in_scope_model_pending_row_count": 0,
         "excluded_not_predictive_draw_row_count": 0,
         "unit_status_distribution": dict(sorted(unit_status_distribution.items())),

@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-26T03:22:00.380476+00:00",
-  "active_repo": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNT-BUILDER",
+  "generated_at": "2026-07-05T04:02:18.350482+00:00",
+  "active_repo": "D:\\DESKTOP\\GitHub\\HUNT-BUILDER",
   "source_files": {
     "engine": "processed_data/draw_reality_engine_predictive_v2.csv",
     "ladder": "processed_data/point_ladder_view.csv",
@@ -9,31 +9,30 @@
     "database": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
   },
   "rows": {
-    "engine": 43184,
-    "ladder": 92436,
-    "master": 56153,
-    "reference": 3776
+    "engine": 34772,
+    "ladder": 93422,
+    "master": 57139,
+    "reference": 4762
   },
-  "engine_group_count": 1959,
-  "engine_hunt_code_count": 1028,
+  "engine_group_count": 1401,
+  "engine_hunt_code_count": 884,
   "missing_groups_before": {
-    "ladder": 2,
-    "master": 727,
-    "reference": 2,
+    "ladder": 988,
+    "master": 988,
+    "reference": 988,
     "draw_system_type_counts": {
-      "BONUS_LE_BIG_GAME": 19447,
-      "BONUS_OIL_BIG_GAME": 3704,
-      "BONUS_PLE_BIG_GAME": 592,
-      "PREFERENCE_DEDICATED_HUNTER_DEER": 1475,
-      "SPORTSMAN_PERMIT": 10,
-      "YOUTH_GENERAL_ANY_BULL_ELK": 2,
-      "YOUTH_TURKEY_SET_ASIDE": 312
+      "MAX_WEIGHTED_SPLIT": 24129,
+      "PREFERENCE_ANTLERLESS_DEER": 353,
+      "PREFERENCE_ANTLERLESS_ELK": 2416,
+      "PREFERENCE_DOE_PRONGHORN": 332,
+      "PREFERENCE_GENERAL_SEASON_BUCK_DEER": 2625,
+      "YOUTH_GENERAL_ANY_BULL_ELK": 2
     }
   },
   "appended_rows": {
-    "ladder": 2,
-    "master": 727,
-    "reference": 2
+    "ladder": 988,
+    "master": 988,
+    "reference": 988
   },
   "missing_groups_after": {
     "ladder": 0,
@@ -41,13 +40,13 @@
     "reference": 0
   },
   "families_promoted_online": {
-    "sportsman_groups": 10,
+    "sportsman_groups": 0,
     "mountain_lion_groups": 120,
-    "dedicated_hunter_groups": 59,
+    "dedicated_hunter_groups": 31,
     "youth_groups": 2
   },
   "duplicate_keys": {
-    "engine_hunt_residency_points": 312,
+    "engine_hunt_residency_points": 232,
     "ladder_hunt_residency_points_draw_pool": 0,
     "master_hunt_residency_points_draw_pool": 2831,
     "reference_hunt_residency_draw_pool": 0
@@ -56,78 +55,158 @@
   "sample_groups_added": {
     "ladder": [
       [
-        "EB1007",
-        "Nonresident",
-        "youth"
-      ],
-      [
-        "EB1007",
-        "Resident",
-        "youth"
-      ]
-    ],
-    "master": [
-      [
-        "BI1000",
-        "Resident",
-        "sportsman"
-      ],
-      [
         "BI6500",
         "Resident",
-        "max/weighted split"
+        "max_weighted_split"
       ],
       [
         "BI6503",
         "Nonresident",
-        "max/weighted split"
+        "max_weighted_split"
       ],
       [
         "BI6503",
         "Resident",
-        "max/weighted split"
+        "max_weighted_split"
       ],
       [
         "BI6504",
         "Nonresident",
-        "max/weighted split"
+        "max_weighted_split"
       ],
       [
         "BI6504",
         "Resident",
-        "max/weighted split"
+        "max_weighted_split"
       ],
       [
         "BI6505",
         "Nonresident",
-        "max/weighted split"
+        "max_weighted_split"
       ],
       [
         "BI6505",
         "Resident",
-        "max/weighted split"
+        "max_weighted_split"
       ],
       [
         "BI6506",
         "Resident",
-        "max/weighted split"
+        "max_weighted_split"
       ],
       [
         "BI6509",
         "Resident",
-        "max/weighted split"
+        "max_weighted_split"
+      ],
+      [
+        "BI6516",
+        "Resident",
+        "max_weighted_split"
+      ]
+    ],
+    "master": [
+      [
+        "BI6500",
+        "Resident",
+        "max_weighted_split"
+      ],
+      [
+        "BI6503",
+        "Nonresident",
+        "max_weighted_split"
+      ],
+      [
+        "BI6503",
+        "Resident",
+        "max_weighted_split"
+      ],
+      [
+        "BI6504",
+        "Nonresident",
+        "max_weighted_split"
+      ],
+      [
+        "BI6504",
+        "Resident",
+        "max_weighted_split"
+      ],
+      [
+        "BI6505",
+        "Nonresident",
+        "max_weighted_split"
+      ],
+      [
+        "BI6505",
+        "Resident",
+        "max_weighted_split"
+      ],
+      [
+        "BI6506",
+        "Resident",
+        "max_weighted_split"
+      ],
+      [
+        "BI6509",
+        "Resident",
+        "max_weighted_split"
+      ],
+      [
+        "BI6516",
+        "Resident",
+        "max_weighted_split"
       ]
     ],
     "reference": [
       [
-        "EB1007",
-        "Nonresident",
-        "youth"
+        "BI6500",
+        "Resident",
+        "max_weighted_split"
       ],
       [
-        "EB1007",
+        "BI6503",
+        "Nonresident",
+        "max_weighted_split"
+      ],
+      [
+        "BI6503",
         "Resident",
-        "youth"
+        "max_weighted_split"
+      ],
+      [
+        "BI6504",
+        "Nonresident",
+        "max_weighted_split"
+      ],
+      [
+        "BI6504",
+        "Resident",
+        "max_weighted_split"
+      ],
+      [
+        "BI6505",
+        "Nonresident",
+        "max_weighted_split"
+      ],
+      [
+        "BI6505",
+        "Resident",
+        "max_weighted_split"
+      ],
+      [
+        "BI6506",
+        "Resident",
+        "max_weighted_split"
+      ],
+      [
+        "BI6509",
+        "Resident",
+        "max_weighted_split"
+      ],
+      [
+        "BI6516",
+        "Resident",
+        "max_weighted_split"
       ]
     ]
   }

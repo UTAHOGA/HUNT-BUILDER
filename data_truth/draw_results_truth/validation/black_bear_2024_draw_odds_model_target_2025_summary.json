@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-05-26T14:30:10+00:00",
+  "generated_at_utc": "2026-06-30T15:22:10+00:00",
   "source_file": "pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/24 bear draw odds complete.pdf",
   "source_sha256": "50a7d2a6b7278e4bd526746655a560567f4bd7f0cc77bab844025956a5f32299",
   "reported_draw_year": 2024,
@@ -14,13 +14,12 @@
     "TRUE_BEAR_BONUS_DRAW": 87
   },
   "database_comparison_status_counts": {
-    "MATCH_DATABASE_2025_PERMITS": 37,
-    "DIFFERS_FROM_DATABASE_2025_PERMITS": 55,
-    "MISSING_DATABASE_ROW": 4
+    "MATCH_DATABASE_2025_PERMITS": 40,
+    "DIFFERS_FROM_DATABASE_2025_PERMITS": 56
   },
-  "database_missing_codes": 4,
-  "database_match_count": 37,
-  "database_difference_count": 55,
+  "database_missing_codes": 0,
+  "database_match_count": 40,
+  "database_difference_count": 56,
   "database_blank_count": 0,
   "normalized_csv": "data_truth/draw_results_truth/normalized/black_bear_2024_draw_odds_model_target_2025_permit_totals.csv",
   "validation_csv": "data_truth/draw_results_truth/validation/black_bear_2024_draw_odds_model_target_2025_vs_DATABASE.csv"

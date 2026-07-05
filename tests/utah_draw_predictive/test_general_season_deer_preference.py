@@ -54,7 +54,7 @@ def test_db0008_extended_archery_availability_does_not_route_to_general_deer_pre
     assert rows == []
 
 
-def test_db17_dedicated_hunter_does_not_route_to_general_deer_preference() -> None:
+def test_db17_and_db18_dedicated_hunter_do_not_route_to_general_deer_preference() -> None:
     rows = build_preference_general_deer_predictions(
         truth_rows=[
             {
@@ -92,6 +92,44 @@ def test_db17_dedicated_hunter_does_not_route_to_general_deer_preference() -> No
     )
 
     assert rows == []
+
+    db18_rows = build_preference_general_deer_predictions(
+        truth_rows=[
+            {
+                "hunt_code": "DB1800",
+                "hunt_name": "East Canyon Dedicated Hunter",
+                "species": "Deer",
+                "sex_type": "Buck",
+                "hunt_type": "General Season",
+                "hunt_class": "Dedicated Hunter",
+                "draw_system_type": "PREFERENCE_DEDICATED_HUNTER_DEER",
+                "weapon": "Any Legal Weapon",
+                "year": "2026",
+                "draw_pool": "dedicated_hunter",
+                "residency": "Resident",
+                "points": "0",
+                "eligible_applicants": "25",
+                "total_permits": "20",
+            }
+        ],
+        db_rows=[
+            {
+                "hunt_code": "DB1800",
+                "hunt_name": "East Canyon",
+                "species": "Deer",
+                "sex_type": "Buck",
+                "hunt_type": "General Season",
+                "hunt_class": "Dedicated Hunter",
+                "draw_system_type": "PREFERENCE_DEDICATED_HUNTER_DEER",
+                "weapon": "Any Legal Weapon",
+                "permits_2026_total": "186",
+            }
+        ],
+        forecast_year=2027,
+        history_years=[2026],
+    )
+
+    assert db18_rows == []
 
 
 def test_build_preference_general_deer_predictions_returns_modeled_rows() -> None:

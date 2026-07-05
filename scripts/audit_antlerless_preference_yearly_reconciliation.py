@@ -100,7 +100,15 @@ def looks_like_standard_pool(row: dict[str, object]) -> bool:
     draw_pool = clean_lower(row.get("draw_pool"))
     hunt_class = clean_lower(row.get("hunt_class"))
     draw_design = clean_lower(row.get("draw_design"))
-    return draw_pool in {"", "standard"} and hunt_class in {"", "adult", "public", "preference"} and draw_design in {"", "preference"}
+    draw_design_system = clean(row.get("draw_design")).upper()
+    return (
+        draw_pool in {"", "standard"}
+        and hunt_class in {"", "adult", "public", "preference"}
+        and (
+            draw_design in {"", "preference"}
+            or draw_design_system in {"PREFERENCE_ANTLERLESS_DEER", "PREFERENCE_ANTLERLESS_ELK", "PREFERENCE_DOE_PRONGHORN"}
+        )
+    )
 
 
 def is_antlerless_engine_truth(row: dict[str, object]) -> bool:

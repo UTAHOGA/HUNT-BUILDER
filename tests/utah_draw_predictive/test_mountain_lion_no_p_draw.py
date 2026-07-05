@@ -4,11 +4,14 @@ from pathlib import Path
 
 def _repo_root() -> Path:
     repo_root = Path(__file__).resolve()
-    while repo_root.name != "HUNT-BUILDER" and repo_root.parent != repo_root:
-        repo_root = repo_root.parent
-    if repo_root.name != "HUNT-BUILDER":
-        raise RuntimeError("Could not locate HUNT-BUILDER repo root")
-    return repo_root
+    for candidate in [repo_root, *repo_root.parents]:
+        if (
+            (candidate / "AGENTS.MD").exists()
+            and (candidate / "engine").is_dir()
+            and (candidate / "processed_data").is_dir()
+        ):
+            return candidate
+    raise RuntimeError("Could not locate HUNT-BUILDER repo root")
 
 
 def _read_csv(path: Path) -> list[dict[str, str]]:
@@ -24,5 +27,4 @@ def test_mountain_lion_rows_do_not_receive_draw_odds_fields() -> None:
     assert all((row.get("p_bonus_pool") or "").strip() == "" for row in rows)
     assert all((row.get("p_random_pool") or "").strip() == "" for row in rows)
     assert all((row.get("p_preference_draw") or "").strip() == "" for row in rows)
-    assert all((row.get("p_availability") or "").strip() == "1.000000" for row in rows)
-
+    assert all((row.get("p_availability") or "").strip() == "" for row in rows)

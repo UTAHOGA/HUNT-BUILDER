@@ -1,0 +1,33 @@
+{
+    "promoted_at":  "2026-07-01T05:04:15",
+    "source_audit_dir":  "D:\\DESKTOP\\GitHub\\HUNT-BUILDER\\audits\\prediction_engine_full_audit_20260701_045017",
+    "source_artifact":  "D:\\DESKTOP\\GitHub\\HUNT-BUILDER\\audits\\prediction_engine_full_audit_20260701_045017\\runs\\2027\\family_predictions.csv",
+    "production_artifact":  "D:\\DESKTOP\\GitHub\\HUNT-BUILDER\\processed_data\\full_prediction_engine_2027_family_predictions.csv",
+    "target_year":  2027,
+    "source_year":  2026,
+    "row_count":  5973,
+    "column_count":  87,
+    "size_bytes":  4645993,
+    "size_mb":  4.431,
+    "family_counts":  [
+                          {
+                              "family":  "preference_general_deer",
+                              "prediction_rows":  5460
+                          },
+                          {
+                              "family":  "dedicated_hunter",
+                              "prediction_rows":  503
+                          },
+                          {
+                              "family":  "SPORTSMAN_RANDOM_ONLY",
+                              "prediction_rows":  10
+                          }
+                      ],
+    "replaces_merged_runtime_surfaces":  false,
+    "merged_runtime_surfaces_preserved":  [
+                                              "processed_data/ml_draw_predictions_v1.csv",
+                                              "processed_data/draw_reality_engine_predictive_v2.csv",
+                                              "processed_data/draw_reality_engine_v2.csv"
+                                          ],
+    "production_role":  "audit-derived 2027 family prediction artifact; not a replacement for merged runtime surfaces"
+}

@@ -1,7 +1,7 @@
 {
   "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29",
   "promoted_family_count": 6,
-  "promoted_row_count": 3546,
+  "promoted_row_count": 4931,
   "families": [
     {
       "runtime_promotion_family": "SPORTSMAN_RANDOM_ONLY",
@@ -9,7 +9,7 @@
       "row_count": 10,
       "hunt_code_count": 10,
       "duplicate_runtime_key_count": 0,
-      "source_report": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\sportsman_permit_report.json",
+      "source_report": "processed_data\\sportsman_permit_report.json",
       "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
     },
     {
@@ -18,34 +18,34 @@
       "row_count": 2,
       "hunt_code_count": 1,
       "duplicate_runtime_key_count": 0,
-      "source_report": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\youth_draw_report.json",
+      "source_report": "processed_data\\youth_draw_report.json",
       "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
     },
     {
       "runtime_promotion_family": "PREFERENCE_DEDICATED_HUNTER_DEER",
       "runtime_promotion_status": "PROMOTED_TO_RUNTIME",
-      "row_count": 503,
+      "row_count": 775,
       "hunt_code_count": 31,
       "duplicate_runtime_key_count": 0,
-      "source_report": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\dedicated_hunter_report.json",
+      "source_report": "processed_data\\dedicated_hunter_report.json",
       "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
     },
     {
       "runtime_promotion_family": "BEAR_DRAW",
       "runtime_promotion_status": "PROMOTED_TO_RUNTIME",
-      "row_count": 2615,
-      "hunt_code_count": 100,
+      "row_count": 3672,
+      "hunt_code_count": 97,
       "duplicate_runtime_key_count": 0,
-      "source_report": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\bear_report.json",
+      "source_report": "processed_data\\bear_report.json",
       "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
     },
     {
       "runtime_promotion_family": "BONUS_TURKEY",
       "runtime_promotion_status": "PROMOTED_TO_RUNTIME",
-      "row_count": 184,
-      "hunt_code_count": 9,
+      "row_count": 240,
+      "hunt_code_count": 5,
       "duplicate_runtime_key_count": 0,
-      "source_report": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\turkey_bonus_report.json",
+      "source_report": "processed_data\\turkey_bonus_report.json",
       "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
     },
     {
@@ -54,7 +54,7 @@
       "row_count": 232,
       "hunt_code_count": 5,
       "duplicate_runtime_key_count": 0,
-      "source_report": "audits\\full_family_runtime_materialized_20260703_025641\\outputs\\youth_turkey_report.json",
+      "source_report": "processed_data\\youth_turkey_report.json",
       "promotion_decision": "APPROVED_RUNTIME_PROMOTION_2026_06_29"
     }
   ],

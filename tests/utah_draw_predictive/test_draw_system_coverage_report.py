@@ -22,7 +22,12 @@ def test_draw_system_coverage_report_generation(tmp_path: Path) -> None:
     assert "PREFERENCE_DOE_PRONGHORN" in report["modeled_preference_categories"]
     assert report["answers"]["is_bear_modeled"] is True
     assert report["answers"]["is_turkey_modeled"] is True
-    assert report["answers"]["is_mountain_lion_cougar_modeled"] is True
+    # Cougar is intentionally in scope as a license-based reference/no-draw
+    # surface after the 2023 rule change, not as modeled availability odds.
+    assert report["answers"]["is_mountain_lion_cougar_modeled"] is False
+    assert report["phase10_mountain_lion"]["mountain_lion_cougar_in_scope"] is True
+    assert report["phase10_mountain_lion"]["mountain_lion_cougar_reference_license_based_no_draw"] is True
+    assert report["phase10_mountain_lion"]["mountain_lion_cougar_modeled_availability"] is False
     assert report["answers"]["oil_big_game_engine_family_modeled"] is True
     assert report["answers"]["le_big_game_engine_family_modeled"] is True
     assert report["answers"]["ple_big_game_engine_family_modeled"] is True
@@ -31,7 +36,7 @@ def test_draw_system_coverage_report_generation(tmp_path: Path) -> None:
     assert report["answers"]["is_cwmu_public_modeled"] is False
     assert "BONUS_CWMU_BIG_GAME" in report["modeled_bonus_categories"]
     assert "PRIVATE_LANDS_ONLY_ANTLERLESS_ELK" in report["modeled_allocation_categories"]
-    assert "MOUNTAIN_LION_DRAW" in report["modeled_availability_categories"]
+    assert "COUGAR_LICENSE_BASED" not in report["modeled_availability_categories"]
     assert report["modeled_availability"]["modeled_availability_total_row_count"] >= 0
     assert report["modeled_availability"]["modeled_availability_pass"] is True
     assert "BONUS_OIL_BIG_GAME" in report["modeled_bonus_categories"]

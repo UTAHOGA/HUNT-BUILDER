@@ -42,7 +42,8 @@ def test_phase13_mountain_lion_artifacts_are_generated_with_rule_status_fields(t
     assert report["forecast_year"] == 2026
     assert report["total_mountain_lion_cougar_rows_reviewed"] == len(rows)
     assert report["active_predictive_cougar_rows"] == len(rows)
-    assert report["modeled_availability_row_count"] == len(rows)
+    assert report["modeled_availability_row_count"] == 0
+    assert report["reference_license_based_no_draw_row_count"] == len(rows)
     assert report["in_scope_model_pending_row_count"] == 0
     assert report["excluded_not_predictive_draw_row_count"] == 0
     assert report["p_draw_non_null_count"] == 0
@@ -50,6 +51,9 @@ def test_phase13_mountain_lion_artifacts_are_generated_with_rule_status_fields(t
     assert report["p_preference_draw_non_null_count"] == 0
     assert report["p_bonus_pool_non_null_count"] == 0
     assert report["p_random_pool_non_null_count"] == 0
-    assert report["p_availability_non_null_count"] == len(rows)
-    assert report["availability_pct_non_null_count"] == len(rows)
+    assert report["p_availability_non_null_count"] == 0
+    assert report["availability_pct_non_null_count"] == 0
+    assert {row["algorithm_status"] for row in rows} == {"REFERENCE_LICENSE_BASED_NO_DRAW"}
+    assert all((row.get("p_availability") or "").strip() == "" for row in rows)
+    assert all((row.get("availability_pct") or "").strip() == "" for row in rows)
     assert report["duplicate_key_count"] == 0
