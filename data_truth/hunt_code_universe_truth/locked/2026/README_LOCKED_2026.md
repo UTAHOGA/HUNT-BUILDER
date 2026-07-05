@@ -1,38 +1,46 @@
-# Locked 2026 Hunt-Code Universe With Boundary IDs
+# Locked 2026 Hunt-Code Universe
 
 Status: `LOCKED_2026_UNTIL_NEXT_YEAR_DATA_ADDED`
 
-This folder freezes the reconciled 2026 hunt-code universe counts across the model workbook, 2026 DWR hunt matrix, DATABASE, long file, boundary index/GeoJSON assets, and BIBLE year documents.
+No runtime, engine, website, or prediction-output files are changed by this lock.
 
-No runtime or website files are changed by this lock.
+## Counts
 
-## Locked Count Policy
+- Official active hunt-code count: `1097`
+- Active prediction-scorable codes: `834`
+- Active reference-only codes: `263`
+- Full ledger rows, including support/appendix rows: `1646`
+- Active-year truth codes: `1097`
+- Canonical yearly codes: `1097`
+- Long-file codes: `1097`
+- Canonical/long aligned codes: `1097`
+- Regulation reference-review codes: `0`
+- Draw-result review codes: `0`
+- DATABASE next-year support codes: `0`
+- DATABASE non-scorable reference appendix codes: `546`
+- Codes with boundary_id: `1640`
+- Active-year truth codes with boundary_id: `1097`
+- Excluded prefix rows: `12`
+- Duplicate PDFs skipped: `1`
 
-- `1097` = 2026 permits => 2027 model workbook universe.
-- `1394` = 2026 structured mapped/searchable hunt matrix universe.
-- `1645` = DATABASE superset, including support/historical/reference rows.
-- `1289` = demoted legacy/derived built master, not a current count authority.
+## Policy
 
-## Files
+- Official year truth is `active_year_truth_codes`; support and appendix rows do not count as official current hunt codes.
+- DATABASE next-year support rows are retained only when confirmed by next-year canonical truth and excluded from active-year prediction accuracy.
+- DATABASE non-scorable reference appendix rows are retained for lookup/review only and must not feed scoring, public odds, or official count totals.
+- Regulation-only rows are reference-review active truth unless canonicalized as scorable draw-result rows.
+- Waterfowl/swan TS codes are excluded from this big-game hunt-code universe lock.
 
-- `LOCKED_2026_HUNT_CODE_UNIVERSE_WITH_BOUNDARY_ID.csv` - full union ledger with explicit `boundary_id` column.
-- `LOCKED_2026_MATRIX_MAPPED_SEARCHABLE_WITH_BOUNDARY_ID.csv` - the 1394 matrix/search/map universe.
-- `LOCKED_2026_MODEL_WORKBOOK_WITH_BOUNDARY_ID.csv` - the 1097 model workbook universe.
-- `LOCKED_2026_BIBLE_RECONCILIATION_COMPARISONS.csv` - workbook/matrix vs BIBLE year-document comparison counts.
-- `LOCKED_2026_BIBLE_RECONCILIATION_DELTAS_WITH_BOUNDARY_ID.csv` - row-level BIBLE deltas with `boundary_id`.
-- `LOCKED_2026_HUNT_CODE_UNIVERSE_SUMMARY.json` - machine-readable count summary.
+## Outputs
 
-## BIBLE Reconciliation
+- `LOCKED_2026_HUNT_CODE_UNIVERSE_WITH_BOUNDARY_ID.csv`
+- `LOCKED_2026_ACTIVE_YEAR_TRUTH_WITH_BOUNDARY_ID.csv`
+- `LOCKED_2026_DATABASE_NEXT_YEAR_PERMIT_SUPPORT.csv`
+- `LOCKED_2026_DATABASE_NONSCORABLE_REFERENCE_APPENDIX.csv`
+- `LOCKED_2026_SOURCE_YEAR_ARTIFACT_ROWS.csv`
+- `LOCKED_2026_EXCLUDED_WATERFOWL_UPLAND_PREFIX_ROWS.csv`
+- `LOCKED_2026_CANONICAL_LONG_RECONCILIATION.csv`
+- `LOCKED_2026_HUNT_CODE_UNIVERSE_SUMMARY.json`
+- `README_LOCKED_2026.md`
 
-- 2025 BIBLE year document: `1053`
-- 2025 permits => 2026 model workbook: `1064`
-- Difference: `11` workbook-only Sportsman/statewide-family codes:
-  `BI1000 BR1000 CG9999 DB0007 DS1000 EB1000 GO1000 MB1000 PB1000 RS0001 TK0001`
-- 2026 BIBLE year document currently structured: `31`
-- 2026 permits => 2027 model workbook: `1097`
-
-BIBLE year documents are retained as source-library truth/reference, not the sole current active universe authority.
-
-## Rule
-
-Do not change these locked 2026 counts until another year of source data is intentionally added and a new lock folder is created.
+Do not change these locked counts until another year of source data is intentionally added and a new lock folder is created.

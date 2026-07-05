@@ -1,0 +1,152 @@
+{
+  "generated_at": "2026-07-05T07:41:23",
+  "locked_year": 2024,
+  "model_target_year": 2025,
+  "classification": "LOCKED_2024_CANONICAL_LONG_HUNT_CODE_UNIVERSE_RECONCILED",
+  "source_audit": "audits\\hunt_code_universe_truth\\2024\\20260705_063439\\2024_HUNT_CODE_UNIVERSE_AUDIT.csv",
+  "pdf_source_scope": "all",
+  "duplicate_pdf_count": 0,
+  "excluded_prefixes": [
+    "SC",
+    "SG",
+    "ST",
+    "TS"
+  ],
+  "excluded_prefix_rows": 12,
+  "total_union_hunt_codes": 1218,
+  "official_active_hunt_code_count": 1030,
+  "active_year_truth_codes": 1030,
+  "active_year_prediction_scorable_codes": 1027,
+  "active_year_reference_only_codes": 3,
+  "canonical_yearly_codes": 1028,
+  "long_file_codes": 1028,
+  "canonical_long_aligned_codes": 1028,
+  "canonical_minus_long_codes": [],
+  "long_minus_canonical_codes": [],
+  "regulation_reference_review_codes": 2,
+  "draw_result_review_codes": 0,
+  "source_year_artifact_codes": 0,
+  "database_next_year_permit_support_codes": 91,
+  "database_nonscorable_reference_appendix_codes": 97,
+  "codes_with_boundary_id": 1218,
+  "active_year_codes_with_boundary_id": 1030,
+  "locked_bucket_counts": {
+    "ACTIVE_YEAR_CANONICAL_TRUTH": 1028,
+    "ACTIVE_YEAR_REGULATION_REFERENCE_REVIEW": 2,
+    "DATABASE_NEXT_YEAR_PERMIT_SUPPORT": 91,
+    "DATABASE_NONSCORABLE_REFERENCE_APPENDIX": 97
+  },
+  "outputs": [
+    "LOCKED_2024_HUNT_CODE_UNIVERSE_WITH_BOUNDARY_ID.csv",
+    "LOCKED_2024_ACTIVE_YEAR_TRUTH_WITH_BOUNDARY_ID.csv",
+    "LOCKED_2024_DATABASE_NEXT_YEAR_PERMIT_SUPPORT.csv",
+    "LOCKED_2024_DATABASE_NONSCORABLE_REFERENCE_APPENDIX.csv",
+    "LOCKED_2024_SOURCE_YEAR_ARTIFACT_ROWS.csv",
+    "LOCKED_2024_EXCLUDED_WATERFOWL_UPLAND_PREFIX_ROWS.csv",
+    "LOCKED_2024_CANONICAL_LONG_RECONCILIATION.csv",
+    "LOCKED_2024_HUNT_CODE_UNIVERSE_SUMMARY.json",
+    "README_LOCKED_2024.md"
+  ],
+  "policy": {
+    "OFFICIAL_HUNT_CODE_COUNT": "Use official_active_hunt_code_count / active_year_truth_codes for the locked year's hunt-code truth count.",
+    "DATABASE_NEXT_YEAR_PERMIT_SUPPORT": "Retain only when the code is confirmed by next-year canonical truth; exclude from active-year truth counts and prediction accuracy for the locked year.",
+    "DATABASE_NONSCORABLE_REFERENCE_APPENDIX": "Retain only as a non-scorable appendix when same-year and next-year canonical truth do not confirm the code. Do not use for official counts, scoring, public odds, or prediction accuracy.",
+    "excluded_prefixes": "SC, SG, ST, and TS are excluded from this big-game hunt-code universe lock; waterfowl is out of scope.",
+    "active_truth_rule": "Active-year truth requires same-year canonical, long/PDF draw evidence, or same-year regulation/guidebook evidence. Hunt-code-only DATABASE permit carry-forward is not sufficient."
+  },
+  "source_summary_counts": {
+    "generated_at": "2026-07-05T06:38:35",
+    "year": 2024,
+    "model_target_year": 2025,
+    "audit_dir": "D:\\DESKTOP\\GitHub\\HUNT-BUILDER\\audits\\hunt_code_universe_truth\\2024\\20260705_063439",
+    "total_union_hunt_codes": 1218,
+    "primary_universe_bucket_counts": {
+      "DATABASE_NONSCORABLE_REFERENCE_APPENDIX": 188,
+      "MODEL_WORKBOOK_2024_PERMITS_2025_MODEL": 1028,
+      "REGULATION_PDF_ONLY_REVIEW": 2
+    },
+    "scoring_bucket_counts": {
+      "CANDIDATE_MODEL_SCORABLE_REQUIRES_ENGINE_GATES": 1027,
+      "REFERENCE_ONLY_REVIEW": 1,
+      "REGULATION_SOURCE_REVIEW_NOT_IN_CANONICAL": 2,
+      "SUPPORT_ONLY_REVIEW": 188
+    },
+    "prefix_counts": {
+      "BI": 17,
+      "BR": 99,
+      "CG": 1,
+      "DA": 21,
+      "DB": 365,
+      "DS": 20,
+      "EA": 174,
+      "EB": 214,
+      "EL": 44,
+      "GO": 18,
+      "LD": 5,
+      "LO": 42,
+      "LP": 6,
+      "MA": 6,
+      "MB": 40,
+      "PB": 91,
+      "PD": 30,
+      "RE": 1,
+      "RS": 16,
+      "TK": 8
+    },
+    "source_counts": {
+      "regulation_pdf_codes": 821,
+      "draw_result_pdf_codes": 1027,
+      "canonical_yearly_codes": 1028,
+      "database_year_support_codes": 1217,
+      "long_file_codes": 1028,
+      "codes_with_boundary_id": 1218
+    },
+    "pdf_file_count": 28,
+    "pdf_source_scope": "all",
+    "duplicate_pdf_count": 0,
+    "duplicate_pdfs": [],
+    "excluded_prefixes": [
+      "SC",
+      "SG",
+      "ST",
+      "TS"
+    ],
+    "excluded_code_count": 12,
+    "excluded_codes": [
+      "SC1000",
+      "SC1001",
+      "SC1002",
+      "SC1006",
+      "SC1007",
+      "SC1008",
+      "SG1000",
+      "SG1001",
+      "SG1002",
+      "SG1003",
+      "ST1000",
+      "ST1001"
+    ],
+    "pdf_inventory_errors": [
+      {
+        "source_role": "REGULATION_OTHER",
+        "source_file": "pipeline\\RAW\\hunt_unit_database\\2024\\pdf\\regulation\\76E828EE__Hunting Guide and Outfitter Definition, Rules and Regulations..pdf",
+        "bytes": 28178,
+        "sha256": "6d61d89054a4dfffc0eb9249e0d75f90b1a1d5199d07c4000f14a083965e4001",
+        "page_count": 0,
+        "status": "ERROR",
+        "error": "No /Root object! - Is this really a PDF?",
+        "unique_hunt_codes": 0,
+        "evidence_rows": 0
+      }
+    ],
+    "outputs": [
+      "2024_HUNT_CODE_UNIVERSE_AUDIT.csv",
+      "2024_PDF_HUNT_CODE_EVIDENCE.csv",
+      "2024_SOURCE_PDF_INVENTORY.csv",
+      "2024_REVIEW_CODES.csv",
+      "2024_MODEL_SCORABLE_CODES.csv",
+      "2024_HUNT_CODE_UNIVERSE_SUMMARY.json",
+      "2024_HUNT_CODE_UNIVERSE_SUMMARY.md"
+    ]
+  }
+}

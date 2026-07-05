@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+from collections import defaultdict
 from functools import lru_cache
 from pathlib import Path
 from typing import Iterable, Mapping, Sequence
@@ -92,6 +93,10 @@ def _clean(value: object) -> str:
     return str(value or "").strip()
 
 
+def _text(value: object) -> str:
+    return str(value if value is not None else "").strip()
+
+
 def _draw_system(row: Mapping[str, object]) -> str:
     return effective_draw_design(row)
 
@@ -124,6 +129,23 @@ def _to_number(value: object) -> float:
         return float(text)
     except Exception:
         return 0.0
+
+
+def _to_probability(value: object) -> float | None:
+    text = _text(value).replace(",", "").replace("%", "")
+    if text.upper() in {"N/A", "NA", "NONE", "NULL"}:
+        return None
+    if not text:
+        return None
+    try:
+        number = float(text)
+    except Exception:
+        return None
+    if number > 1.0 and number <= 100.0:
+        number = number / 100.0
+    if 0.0 <= number <= 1.0:
+        return number
+    return None
 
 
 def _family_prediction_status(
@@ -531,6 +553,156 @@ def _family_draw_system(family: str) -> str:
     return _draw_system_for_family(family)
 
 
+def _source_backed_family_for_row(row: Mapping[str, object]) -> str:
+    hunt_code = _clean(row.get("hunt_code")).upper()
+    prefix = "".join(ch for ch in hunt_code if ch.isalpha())
+    species = _clean(row.get("species")).lower()
+    text = _joined_lower(row, "hunt_code", "hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "draw_design", "draw_pool", "source_file")
+    draw_system = _draw_system(row).upper()
+
+    if prefix == "BR" or "black bear" in text:
+        return "bonus_bear"
+    if prefix == "CG" or "cougar" in species or "mountain lion" in text:
+        return "cougar"
+    if "turkey" in species or prefix == "TK":
+        return "youth_turkey" if "youth" in text else "bonus_turkey"
+    if prefix in {"DA"}:
+        return "preference_antlerless_deer"
+    if prefix in {"EA"}:
+        return "preference_antlerless_elk"
+    if prefix in {"PD"}:
+        return "preference_doe_pronghorn"
+    if prefix in {"PB"}:
+        return "bonus_ple_big_game"
+    if prefix in {"BI", "GO", "MA", "MB", "RS", "DS"}:
+        return "bonus_oil_big_game"
+    if prefix in {"EB", "EL", "LO", "LP"}:
+        return "bonus_le_big_game"
+    if prefix == "DB":
+        if draw_system in {"MAX_WEIGHTED_SPLIT", "BONUS_LE_BIG_GAME", "BONUS_CWMU_BIG_GAME"} or "limited entry" in text or "cwmu" in text:
+            return "bonus_le_big_game"
+        if "deer" in species and "buck" in text:
+            return "preference_general_deer"
+    return ""
+
+
+def _source_backed_probability_values(row: Mapping[str, object]) -> list[tuple[str, float]]:
+    if _clean(row.get("residency")):
+        probability = _to_probability(row.get("p_draw") or row.get("p_draw_percent") or row.get("success_ratio"))
+        if probability is None:
+            return []
+        return [(_clean(row.get("residency")), probability)]
+
+    values: list[tuple[str, float]] = []
+    for residency, fields in (
+        ("Resident", ("resident_p_draw", "resident_p_draw_percent", "resident_success_ratio")),
+        ("Nonresident", ("nonresident_p_draw", "nonresident_p_draw_percent", "nonresident_success_ratio")),
+    ):
+        probability = None
+        for field in fields:
+            probability = _to_probability(row.get(field))
+            if probability is not None:
+                break
+        if probability is not None:
+            values.append((residency, probability))
+    return values
+
+
+def _source_backed_probability_rows(
+    source_rows: Sequence[Mapping[str, object]],
+    modeled: Mapping[str, Sequence[Mapping[str, object]]],
+    source_year: int,
+    target_year: int,
+) -> dict[str, list[dict[str, object]]]:
+    existing_keys = {
+        (
+            family,
+            _clean(row.get("hunt_code")).upper(),
+            _metric_scope_for_residency(row.get("residency") or row.get("metric_scope")),
+            _text(row.get("points")),
+        )
+        for family, rows in modeled.items()
+        for row in rows
+        if _clean(row.get("hunt_code"))
+    }
+    rows_by_family: dict[str, list[dict[str, object]]] = defaultdict(list)
+    added_keys: set[tuple[str, str, str, str]] = set()
+
+    for source_row in source_rows:
+        if "POINT" not in _clean(source_row.get("record_type") or source_row.get("row_type")).upper():
+            continue
+        family = _source_backed_family_for_row(source_row)
+        if not family:
+            continue
+        hunt_code = _clean(source_row.get("hunt_code")).upper()
+        points = _text(source_row.get("points"))
+        if not hunt_code or not points:
+            continue
+        for residency, probability in _source_backed_probability_values(source_row):
+            metric_scope = _metric_scope_for_residency(residency)
+            key = (family, hunt_code, metric_scope, points)
+            if key in existing_keys or key in added_keys:
+                continue
+            added_keys.add(key)
+            rows_by_family[family].append(
+                {
+                    "model_version": "source_backed_roll_forward_v1",
+                    "rule_version": "published_point_probability_roll_forward_v1",
+                    "year": str(target_year),
+                    "forecast_year": str(target_year),
+                    "hunt_code": hunt_code,
+                    "hunt_name": _clean(source_row.get("hunt_name")),
+                    "species": _clean(source_row.get("species")),
+                    "sex_type": _clean(source_row.get("sex_type")),
+                    "hunt_type": _clean(source_row.get("hunt_type")),
+                    "hunt_class": _clean(source_row.get("hunt_class")) or ("CWMU" if "cwmu" in _joined_lower(source_row, "hunt_type", "hunt_name", "source_file") else ""),
+                    "residency": residency,
+                    "points": points,
+                    "draw_pool": _effective_draw_pool_for_family(source_row, family),
+                    "public_permits_2025": _clean(source_row.get("total_permits") or source_row.get("resident_total_permits") or source_row.get("nonresident_total_permits")),
+                    "public_permits_2026": _clean(source_row.get("total_permits") or source_row.get("resident_total_permits") or source_row.get("nonresident_total_permits")),
+                    "p_preference_draw": f"{probability:.6f}" if family.startswith("preference_") else "",
+                    "p_bonus_pool": "" if family.startswith("preference_") else f"{probability:.6f}",
+                    "p_random_pool": "",
+                    "p_draw": f"{probability:.6f}",
+                    "p_bonus_pool_pct": "" if family.startswith("preference_") else f"{probability * 100.0:.3f}",
+                    "p_random_pool_pct": "",
+                    "p_draw_pct": f"{probability * 100.0:.3f}",
+                    "p_draw_mean": f"{probability:.6f}",
+                    "p_draw_p10": f"{max(0.0, probability - 0.05):.6f}",
+                    "p_draw_p50": f"{probability:.6f}",
+                    "p_draw_p90": f"{min(1.0, probability + 0.05):.6f}",
+                    "display_odds_pct": f"{probability * 100.0:.3f}",
+                    "display_odds_text": _render_odds_text(probability),
+                    "draw_outlook": _render_odds_text(probability),
+                    "source_years_used": str(source_year),
+                    "source_year_count": "1",
+                    "latest_source_year": str(source_year),
+                    "earliest_source_year": str(source_year),
+                    "source_dataset": "predictive",
+                    "model_strategy": f"{family}_source_backed_roll_forward",
+                    "reason_codes": "SOURCE_BACKED_PUBLISHED_POINT_PROBABILITY_ROLL_FORWARD",
+                    "weapon": _clean(source_row.get("weapon")),
+                    "source_file": _clean(source_row.get("source_file") or source_row.get("draw_source_file") or source_row.get("source_scope")),
+                    "source_year": str(source_year),
+                    "target_year": str(target_year),
+                    "prediction_year": str(target_year),
+                    "family": family,
+                    "draw_system_type": _family_draw_system(family) or _draw_system(source_row),
+                    "engine_family": _family_draw_system(family) or _draw_system(source_row),
+                    "metric_scope": metric_scope,
+                    "draw_method": _default_draw_method_for_family(family),
+                    "point_system": _default_point_system_for_family(family),
+                    "algorithm_status": "MODELED_SOURCE_BACKED_ROLL_FORWARD",
+                    "prediction_status": "MODELED",
+                    "classification_status": "MODELED_SOURCE_BACKED_ROLL_FORWARD",
+                    "public_permits_target": _clean(source_row.get("total_permits") or source_row.get("resident_total_permits") or source_row.get("nonresident_total_permits")),
+                    "public_permits_source": f"source_year_{source_year}_published_point_probability",
+                }
+            )
+    return rows_by_family
+
+
 def _engine_family_for_row(family: str, row: Mapping[str, object]) -> str:
     if family == "sportsman":
         return "SPORTSMAN_RANDOM_ONLY"
@@ -734,6 +906,26 @@ def _with_run_fields(rows: Iterable[Mapping[str, object]], source_year: int, tar
         item["prediction_status"] = _clean(item.get("prediction_status")) or "MODELED"
         item["classification_status"] = _clean(item.get("classification_status")) or item["algorithm_status"]
         item["reason_codes"] = _clean(item.get("reason_codes")) or _default_reason_code_for_family(family, item["algorithm_status"])
+        status_text = _joined_lower(item, "algorithm_status", "classification_status", "reason_codes", "data_quality_flags", "bear_bonus_note", "turkey_bonus_note")
+        if (
+            family in {"bonus_bear", "bonus_turkey"}
+            and not _clean(item.get("p_draw") or item.get("p_draw_mean") or item.get("p_bonus_pool") or item.get("p_random_pool"))
+            and any(
+                token in status_text
+                for token in (
+                    "no_public_draw_probability",
+                    "missing_forecast_quota",
+                    "missing proven",
+                    "missing_proven",
+                    "missing_latest",
+                    "missing_multiple_years",
+                    "low_applicant_count",
+                )
+            )
+        ):
+            item["algorithm_status"] = "SOURCE_DATA_INCOMPLETE_NO_PUBLIC_DRAW_PROBABILITY"
+            item["classification_status"] = item["algorithm_status"]
+            item["prediction_status"] = "NOT_SCORED"
         probability_source = _clean(item.get("p_draw") or item.get("p_preference_draw") or item.get("p_draw_mean"))
         if probability_source:
             probability = _to_number(probability_source)
@@ -981,7 +1173,14 @@ def _runtime_authority_source_status(
     permit_source_field: str,
 ) -> tuple[bool, bool, str]:
     if family not in BIG_GAME_BONUS_RUNTIME_FAMILIES:
-        current_authority = target_year != 2026 and ("2026" in source_file or permit_source_field.startswith("permits_2026"))
+        source_year_authority = source_year == 2026 and (
+            "2026" in source_file or permit_source_field.startswith("permits_2026")
+        )
+        current_authority = (
+            target_year != 2026
+            and not source_year_authority
+            and ("2026" in source_file or permit_source_field.startswith("permits_2026"))
+        )
         return current_authority, current_authority, "not_runtime_bonus_authority"
 
     if not source_file and not permit_source_field:
@@ -1129,13 +1328,20 @@ def run_all_families(source_year: int, target_year: int, audit_dir: Path, truth_
         "youth_turkey": youth_turkey_rows,
         "youth_draw": youth_rows,
     }
+    source_backed_rows_by_family = _source_backed_probability_rows(source_rows, modeled, source_year, target_year)
+    for family, source_backed_rows in source_backed_rows_by_family.items():
+        if not source_backed_rows:
+            continue
+        modeled.setdefault(family, [])
+        modeled[family].extend(source_backed_rows)
     runtime_family_reports = {
         "bonus_le_big_game": {
             "forecast_year": target_year,
             "source_years": runtime_history_years,
             "big_game_bonus_db_rows": len(big_game_bonus_db_by_code),
             "big_game_bonus_audit_rows": len(big_game_bonus_audit_rows),
-            "prediction_rows": len(big_game_bonus_rows_by_family["bonus_le_big_game"]),
+            "prediction_rows": len(modeled["bonus_le_big_game"]),
+            "source_backed_roll_forward_rows": len(source_backed_rows_by_family.get("bonus_le_big_game", [])),
             "draw_system_type": "BONUS_LE_BIG_GAME",
         },
         "bonus_ple_big_game": {
@@ -1143,7 +1349,8 @@ def run_all_families(source_year: int, target_year: int, audit_dir: Path, truth_
             "source_years": runtime_history_years,
             "big_game_bonus_db_rows": len(big_game_bonus_db_by_code),
             "big_game_bonus_audit_rows": len(big_game_bonus_audit_rows),
-            "prediction_rows": len(big_game_bonus_rows_by_family["bonus_ple_big_game"]),
+            "prediction_rows": len(modeled["bonus_ple_big_game"]),
+            "source_backed_roll_forward_rows": len(source_backed_rows_by_family.get("bonus_ple_big_game", [])),
             "draw_system_type": "BONUS_PLE_BIG_GAME",
         },
         "bonus_oil_big_game": {
@@ -1151,7 +1358,8 @@ def run_all_families(source_year: int, target_year: int, audit_dir: Path, truth_
             "source_years": runtime_history_years,
             "big_game_bonus_db_rows": len(big_game_bonus_db_by_code),
             "big_game_bonus_audit_rows": len(big_game_bonus_audit_rows),
-            "prediction_rows": len(big_game_bonus_rows_by_family["bonus_oil_big_game"]),
+            "prediction_rows": len(modeled["bonus_oil_big_game"]),
+            "source_backed_roll_forward_rows": len(source_backed_rows_by_family.get("bonus_oil_big_game", [])),
             "draw_system_type": "BONUS_OIL_BIG_GAME",
         },
         "sportsman": sportsman_report,

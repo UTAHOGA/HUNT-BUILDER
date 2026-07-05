@@ -1,0 +1,128 @@
+{
+  "generated_at": "2026-07-05T07:41:20",
+  "locked_year": 2020,
+  "model_target_year": 2021,
+  "classification": "LOCKED_2020_CANONICAL_LONG_HUNT_CODE_UNIVERSE_RECONCILED",
+  "source_audit": "audits\\hunt_code_universe_truth\\2020\\20260705_073048\\2020_HUNT_CODE_UNIVERSE_AUDIT.csv",
+  "pdf_source_scope": "all",
+  "duplicate_pdf_count": 1,
+  "excluded_prefixes": [
+    "SC",
+    "SG",
+    "ST",
+    "TS"
+  ],
+  "excluded_prefix_rows": 0,
+  "total_union_hunt_codes": 1145,
+  "official_active_hunt_code_count": 1067,
+  "active_year_truth_codes": 1067,
+  "active_year_prediction_scorable_codes": 1028,
+  "active_year_reference_only_codes": 39,
+  "canonical_yearly_codes": 1028,
+  "long_file_codes": 1028,
+  "canonical_long_aligned_codes": 1028,
+  "canonical_minus_long_codes": [],
+  "long_minus_canonical_codes": [],
+  "regulation_reference_review_codes": 39,
+  "draw_result_review_codes": 0,
+  "source_year_artifact_codes": 0,
+  "database_next_year_permit_support_codes": 78,
+  "database_nonscorable_reference_appendix_codes": 0,
+  "codes_with_boundary_id": 1106,
+  "active_year_codes_with_boundary_id": 1028,
+  "locked_bucket_counts": {
+    "ACTIVE_YEAR_CANONICAL_TRUTH": 1028,
+    "ACTIVE_YEAR_REGULATION_REFERENCE_REVIEW": 39,
+    "DATABASE_NEXT_YEAR_PERMIT_SUPPORT": 78
+  },
+  "outputs": [
+    "LOCKED_2020_HUNT_CODE_UNIVERSE_WITH_BOUNDARY_ID.csv",
+    "LOCKED_2020_ACTIVE_YEAR_TRUTH_WITH_BOUNDARY_ID.csv",
+    "LOCKED_2020_DATABASE_NEXT_YEAR_PERMIT_SUPPORT.csv",
+    "LOCKED_2020_DATABASE_NONSCORABLE_REFERENCE_APPENDIX.csv",
+    "LOCKED_2020_SOURCE_YEAR_ARTIFACT_ROWS.csv",
+    "LOCKED_2020_EXCLUDED_WATERFOWL_UPLAND_PREFIX_ROWS.csv",
+    "LOCKED_2020_CANONICAL_LONG_RECONCILIATION.csv",
+    "LOCKED_2020_HUNT_CODE_UNIVERSE_SUMMARY.json",
+    "README_LOCKED_2020.md"
+  ],
+  "policy": {
+    "OFFICIAL_HUNT_CODE_COUNT": "Use official_active_hunt_code_count / active_year_truth_codes for the locked year's hunt-code truth count.",
+    "DATABASE_NEXT_YEAR_PERMIT_SUPPORT": "Retain only when the code is confirmed by next-year canonical truth; exclude from active-year truth counts and prediction accuracy for the locked year.",
+    "DATABASE_NONSCORABLE_REFERENCE_APPENDIX": "Retain only as a non-scorable appendix when same-year and next-year canonical truth do not confirm the code. Do not use for official counts, scoring, public odds, or prediction accuracy.",
+    "excluded_prefixes": "SC, SG, ST, and TS are excluded from this big-game hunt-code universe lock; waterfowl is out of scope.",
+    "active_truth_rule": "Active-year truth requires same-year canonical, long/PDF draw evidence, or same-year regulation/guidebook evidence. Hunt-code-only DATABASE permit carry-forward is not sufficient."
+  },
+  "source_summary_counts": {
+    "generated_at": "2026-07-05T07:32:10",
+    "year": 2020,
+    "model_target_year": 2021,
+    "audit_dir": "D:\\DESKTOP\\GitHub\\HUNT-BUILDER\\audits\\hunt_code_universe_truth\\2020\\20260705_073048",
+    "total_union_hunt_codes": 1145,
+    "primary_universe_bucket_counts": {
+      "DATABASE_NONSCORABLE_REFERENCE_APPENDIX": 78,
+      "MODEL_WORKBOOK_2020_PERMITS_2021_MODEL": 1028,
+      "REGULATION_PDF_ONLY_REVIEW": 39
+    },
+    "scoring_bucket_counts": {
+      "CANDIDATE_MODEL_SCORABLE_REQUIRES_ENGINE_GATES": 1028,
+      "REGULATION_SOURCE_REVIEW_NOT_IN_CANONICAL": 39,
+      "SUPPORT_ONLY_REVIEW": 78
+    },
+    "prefix_counts": {
+      "BI": 18,
+      "BR": 101,
+      "CG": 54,
+      "DA": 30,
+      "DB": 315,
+      "DS": 19,
+      "EA": 173,
+      "EB": 223,
+      "GO": 18,
+      "MA": 5,
+      "MB": 41,
+      "PB": 89,
+      "PD": 35,
+      "RE": 1,
+      "RS": 16,
+      "TK": 7
+    },
+    "source_counts": {
+      "regulation_pdf_codes": 823,
+      "draw_result_pdf_codes": 1028,
+      "permit_quota_pdf_codes": 0,
+      "canonical_yearly_codes": 1028,
+      "database_year_support_codes": 1022,
+      "long_file_codes": 1028,
+      "codes_with_boundary_id": 1106
+    },
+    "pdf_file_count": 33,
+    "pdf_source_scope": "all",
+    "duplicate_pdf_count": 1,
+    "duplicate_pdfs": [
+      {
+        "kept_source_file": "pipeline\\RAW\\hunt_unit_database\\2020\\pdf\\draw_odds\\2020_PERMITS=2021_MODEL__O.I.L. DESERT BIGHORN SHEEP DRAW RESULTS.pdf",
+        "duplicate_source_file": "pipeline\\RAW\\hunt_unit_database\\2020\\pdf\\draw_odds\\2020_PERMITS=2021_MODEL__O.I.L. DESERT BIGHORN SHEEP.pdf",
+        "sha256": "c8b567039288616669d18accdbc4c60cfa85ca9390d7f61805b7fc30bbdab893"
+      }
+    ],
+    "excluded_prefixes": [
+      "SC",
+      "SG",
+      "ST",
+      "TS"
+    ],
+    "excluded_code_count": 0,
+    "excluded_codes": [],
+    "pdf_inventory_errors": [],
+    "outputs": [
+      "2020_HUNT_CODE_UNIVERSE_AUDIT.csv",
+      "2020_PDF_HUNT_CODE_EVIDENCE.csv",
+      "2020_SOURCE_PDF_INVENTORY.csv",
+      "2020_REVIEW_CODES.csv",
+      "2020_MODEL_SCORABLE_CODES.csv",
+      "2020_HUNT_CODE_UNIVERSE_SUMMARY.json",
+      "2020_HUNT_CODE_UNIVERSE_SUMMARY.md"
+    ]
+  }
+}

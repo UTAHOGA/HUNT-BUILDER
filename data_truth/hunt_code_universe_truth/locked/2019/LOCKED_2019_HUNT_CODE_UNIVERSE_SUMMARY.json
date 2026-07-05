@@ -1,0 +1,115 @@
+{
+  "generated_at": "2026-07-05T07:41:19",
+  "locked_year": 2019,
+  "model_target_year": 2020,
+  "classification": "LOCKED_2019_CANONICAL_LONG_HUNT_CODE_UNIVERSE_RECONCILED",
+  "source_audit": "audits\\hunt_code_universe_truth\\2019\\20260705_043851\\2019_HUNT_CODE_UNIVERSE_AUDIT.csv",
+  "pdf_source_scope": "",
+  "duplicate_pdf_count": 0,
+  "excluded_prefixes": [
+    "SC",
+    "SG",
+    "ST"
+  ],
+  "excluded_prefix_rows": 0,
+  "total_union_hunt_codes": 1134,
+  "official_active_hunt_code_count": 1084,
+  "active_year_truth_codes": 1084,
+  "active_year_prediction_scorable_codes": 1054,
+  "active_year_reference_only_codes": 30,
+  "canonical_yearly_codes": 1054,
+  "long_file_codes": 1054,
+  "canonical_long_aligned_codes": 1054,
+  "canonical_minus_long_codes": [],
+  "long_minus_canonical_codes": [],
+  "regulation_reference_review_codes": 30,
+  "draw_result_review_codes": 0,
+  "source_year_artifact_codes": 0,
+  "database_next_year_permit_support_codes": 50,
+  "database_nonscorable_reference_appendix_codes": 0,
+  "codes_with_boundary_id": 1104,
+  "active_year_codes_with_boundary_id": 1054,
+  "locked_bucket_counts": {
+    "ACTIVE_YEAR_CANONICAL_TRUTH": 1054,
+    "ACTIVE_YEAR_REGULATION_REFERENCE_REVIEW": 30,
+    "DATABASE_NEXT_YEAR_PERMIT_SUPPORT": 50
+  },
+  "outputs": [
+    "LOCKED_2019_HUNT_CODE_UNIVERSE_WITH_BOUNDARY_ID.csv",
+    "LOCKED_2019_ACTIVE_YEAR_TRUTH_WITH_BOUNDARY_ID.csv",
+    "LOCKED_2019_DATABASE_NEXT_YEAR_PERMIT_SUPPORT.csv",
+    "LOCKED_2019_DATABASE_NONSCORABLE_REFERENCE_APPENDIX.csv",
+    "LOCKED_2019_SOURCE_YEAR_ARTIFACT_ROWS.csv",
+    "LOCKED_2019_EXCLUDED_WATERFOWL_UPLAND_PREFIX_ROWS.csv",
+    "LOCKED_2019_CANONICAL_LONG_RECONCILIATION.csv",
+    "LOCKED_2019_HUNT_CODE_UNIVERSE_SUMMARY.json",
+    "README_LOCKED_2019.md"
+  ],
+  "policy": {
+    "OFFICIAL_HUNT_CODE_COUNT": "Use official_active_hunt_code_count / active_year_truth_codes for the locked year's hunt-code truth count.",
+    "DATABASE_NEXT_YEAR_PERMIT_SUPPORT": "Retain only when the code is confirmed by next-year canonical truth; exclude from active-year truth counts and prediction accuracy for the locked year.",
+    "DATABASE_NONSCORABLE_REFERENCE_APPENDIX": "Retain only as a non-scorable appendix when same-year and next-year canonical truth do not confirm the code. Do not use for official counts, scoring, public odds, or prediction accuracy.",
+    "excluded_prefixes": "SC, SG, ST, and TS are excluded from this big-game hunt-code universe lock; waterfowl is out of scope.",
+    "active_truth_rule": "Active-year truth requires same-year canonical, long/PDF draw evidence, or same-year regulation/guidebook evidence. Hunt-code-only DATABASE permit carry-forward is not sufficient."
+  },
+  "source_summary_counts": {
+    "generated_at": "2026-07-05T04:42:40",
+    "year": 2019,
+    "model_target_year": 2020,
+    "audit_dir": "D:\\DESKTOP\\GitHub\\HUNT-BUILDER\\audits\\hunt_code_universe_truth\\2019\\20260705_043851",
+    "total_union_hunt_codes": 1134,
+    "primary_universe_bucket_counts": {
+      "DATABASE_NONSCORABLE_REFERENCE_APPENDIX": 50,
+      "MODEL_WORKBOOK_2019_PERMITS_2020_MODEL": 1054,
+      "REGULATION_PDF_ONLY_REVIEW": 30
+    },
+    "scoring_bucket_counts": {
+      "CANDIDATE_MODEL_SCORABLE_REQUIRES_ENGINE_GATES": 1054,
+      "REGULATION_SOURCE_REVIEW_NOT_IN_CANONICAL": 30,
+      "SUPPORT_ONLY_REVIEW": 50
+    },
+    "prefix_counts": {
+      "BI": 19,
+      "BR": 101,
+      "CG": 55,
+      "DA": 38,
+      "DB": 308,
+      "DS": 19,
+      "EA": 184,
+      "EB": 194,
+      "GO": 20,
+      "MA": 6,
+      "MB": 41,
+      "PB": 85,
+      "PD": 40,
+      "RE": 1,
+      "RS": 16,
+      "TK": 7
+    },
+    "source_counts": {
+      "regulation_pdf_codes": 811,
+      "draw_result_pdf_codes": 1054,
+      "canonical_yearly_codes": 1054,
+      "database_year_support_codes": 951,
+      "long_file_codes": 1054,
+      "codes_with_boundary_id": 1104
+    },
+    "pdf_file_count": 66,
+    "excluded_prefixes": [
+      "SC",
+      "SG",
+      "ST"
+    ],
+    "excluded_code_count": 0,
+    "pdf_inventory_errors": [],
+    "outputs": [
+      "2019_HUNT_CODE_UNIVERSE_AUDIT.csv",
+      "2019_PDF_HUNT_CODE_EVIDENCE.csv",
+      "2019_SOURCE_PDF_INVENTORY.csv",
+      "2019_REVIEW_CODES.csv",
+      "2019_MODEL_SCORABLE_CODES.csv",
+      "2019_HUNT_CODE_UNIVERSE_SUMMARY.json",
+      "2019_HUNT_CODE_UNIVERSE_SUMMARY.md"
+    ]
+  }
+}

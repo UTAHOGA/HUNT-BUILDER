@@ -1,0 +1,139 @@
+{
+  "generated_at": "2026-07-05T07:41:20",
+  "locked_year": 2021,
+  "model_target_year": 2022,
+  "classification": "LOCKED_2021_CANONICAL_LONG_HUNT_CODE_UNIVERSE_RECONCILED",
+  "source_audit": "audits\\hunt_code_universe_truth\\2021\\20260705_073620\\2021_HUNT_CODE_UNIVERSE_AUDIT.csv",
+  "pdf_source_scope": "all",
+  "duplicate_pdf_count": 0,
+  "excluded_prefixes": [
+    "SC",
+    "SG",
+    "ST",
+    "TS"
+  ],
+  "excluded_prefix_rows": 13,
+  "total_union_hunt_codes": 1117,
+  "official_active_hunt_code_count": 1070,
+  "active_year_truth_codes": 1070,
+  "active_year_prediction_scorable_codes": 1022,
+  "active_year_reference_only_codes": 48,
+  "canonical_yearly_codes": 1022,
+  "long_file_codes": 1022,
+  "canonical_long_aligned_codes": 1022,
+  "canonical_minus_long_codes": [],
+  "long_minus_canonical_codes": [],
+  "regulation_reference_review_codes": 47,
+  "draw_result_review_codes": 1,
+  "source_year_artifact_codes": 0,
+  "database_next_year_permit_support_codes": 47,
+  "database_nonscorable_reference_appendix_codes": 0,
+  "codes_with_boundary_id": 1074,
+  "active_year_codes_with_boundary_id": 1027,
+  "locked_bucket_counts": {
+    "ACTIVE_YEAR_CANONICAL_TRUTH": 1022,
+    "ACTIVE_YEAR_DRAW_RESULT_REFERENCE_REVIEW": 1,
+    "ACTIVE_YEAR_REGULATION_REFERENCE_REVIEW": 47,
+    "DATABASE_NEXT_YEAR_PERMIT_SUPPORT": 47
+  },
+  "outputs": [
+    "LOCKED_2021_HUNT_CODE_UNIVERSE_WITH_BOUNDARY_ID.csv",
+    "LOCKED_2021_ACTIVE_YEAR_TRUTH_WITH_BOUNDARY_ID.csv",
+    "LOCKED_2021_DATABASE_NEXT_YEAR_PERMIT_SUPPORT.csv",
+    "LOCKED_2021_DATABASE_NONSCORABLE_REFERENCE_APPENDIX.csv",
+    "LOCKED_2021_SOURCE_YEAR_ARTIFACT_ROWS.csv",
+    "LOCKED_2021_EXCLUDED_WATERFOWL_UPLAND_PREFIX_ROWS.csv",
+    "LOCKED_2021_CANONICAL_LONG_RECONCILIATION.csv",
+    "LOCKED_2021_HUNT_CODE_UNIVERSE_SUMMARY.json",
+    "README_LOCKED_2021.md"
+  ],
+  "policy": {
+    "OFFICIAL_HUNT_CODE_COUNT": "Use official_active_hunt_code_count / active_year_truth_codes for the locked year's hunt-code truth count.",
+    "DATABASE_NEXT_YEAR_PERMIT_SUPPORT": "Retain only when the code is confirmed by next-year canonical truth; exclude from active-year truth counts and prediction accuracy for the locked year.",
+    "DATABASE_NONSCORABLE_REFERENCE_APPENDIX": "Retain only as a non-scorable appendix when same-year and next-year canonical truth do not confirm the code. Do not use for official counts, scoring, public odds, or prediction accuracy.",
+    "excluded_prefixes": "SC, SG, ST, and TS are excluded from this big-game hunt-code universe lock; waterfowl is out of scope.",
+    "active_truth_rule": "Active-year truth requires same-year canonical, long/PDF draw evidence, or same-year regulation/guidebook evidence. Hunt-code-only DATABASE permit carry-forward is not sufficient."
+  },
+  "source_summary_counts": {
+    "generated_at": "2026-07-05T07:38:17",
+    "year": 2021,
+    "model_target_year": 2022,
+    "audit_dir": "D:\\DESKTOP\\GitHub\\HUNT-BUILDER\\audits\\hunt_code_universe_truth\\2021\\20260705_073620",
+    "total_union_hunt_codes": 1117,
+    "primary_universe_bucket_counts": {
+      "DATABASE_NONSCORABLE_REFERENCE_APPENDIX": 47,
+      "DRAW_RESULT_PDF_ONLY_REVIEW": 1,
+      "MODEL_WORKBOOK_2021_PERMITS_2022_MODEL": 1022,
+      "REGULATION_PDF_ONLY_REVIEW": 47
+    },
+    "scoring_bucket_counts": {
+      "CANDIDATE_MODEL_SCORABLE_REQUIRES_ENGINE_GATES": 1022,
+      "DRAW_RESULT_SOURCE_REVIEW_NOT_IN_CANONICAL": 1,
+      "REGULATION_SOURCE_REVIEW_NOT_IN_CANONICAL": 47,
+      "SUPPORT_ONLY_REVIEW": 47
+    },
+    "prefix_counts": {
+      "BI": 25,
+      "BR": 107,
+      "CG": 55,
+      "DA": 28,
+      "DB": 317,
+      "DS": 18,
+      "EA": 166,
+      "EB": 193,
+      "GO": 18,
+      "MA": 5,
+      "MB": 41,
+      "PB": 88,
+      "PD": 32,
+      "RE": 1,
+      "RS": 15,
+      "TK": 8
+    },
+    "source_counts": {
+      "regulation_pdf_codes": 838,
+      "draw_result_pdf_codes": 1023,
+      "permit_quota_pdf_codes": 0,
+      "canonical_yearly_codes": 1022,
+      "database_year_support_codes": 1071,
+      "long_file_codes": 1022,
+      "codes_with_boundary_id": 1074
+    },
+    "pdf_file_count": 29,
+    "pdf_source_scope": "all",
+    "duplicate_pdf_count": 0,
+    "duplicate_pdfs": [],
+    "excluded_prefixes": [
+      "SC",
+      "SG",
+      "ST",
+      "TS"
+    ],
+    "excluded_code_count": 13,
+    "excluded_codes": [
+      "SC1000",
+      "SC1001",
+      "SC1002",
+      "SC1006",
+      "SC1007",
+      "SC1008",
+      "SG1000",
+      "SG1001",
+      "SG1002",
+      "SG1003",
+      "ST1000",
+      "ST1001",
+      "TS1000"
+    ],
+    "pdf_inventory_errors": [],
+    "outputs": [
+      "2021_HUNT_CODE_UNIVERSE_AUDIT.csv",
+      "2021_PDF_HUNT_CODE_EVIDENCE.csv",
+      "2021_SOURCE_PDF_INVENTORY.csv",
+      "2021_REVIEW_CODES.csv",
+      "2021_MODEL_SCORABLE_CODES.csv",
+      "2021_HUNT_CODE_UNIVERSE_SUMMARY.json",
+      "2021_HUNT_CODE_UNIVERSE_SUMMARY.md"
+    ]
+  }
+}
