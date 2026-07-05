@@ -17,6 +17,14 @@ from scripts.build_predictive_bonus_engine_v1 import (
 )
 
 from .bear import BEAR_DRAW_SYSTEM_TYPE, build_bear_bonus_predictions
+from .calibration import (
+    CALIBRATION_FAMILY,
+    CALIBRATION_GUARDRAIL_VERSION,
+    CALIBRATION_INTERCEPT,
+    CALIBRATION_METHOD,
+    CALIBRATION_SLOPE,
+    apply_family_calibration,
+)
 from .classifier import classify_draw_system_type
 from .taxonomy import effective_draw_design
 from .dedicated_hunter import build_preference_dedicated_hunter_predictions
@@ -543,6 +551,73 @@ def _render_odds_text(probability: float) -> str:
     denominator_text = f"{denominator:.1f}".rstrip("0").rstrip(".") if denominator < 10 else str(round(denominator))
     pct_text = f"{pct:.1f}".rstrip("0").rstrip(".")
     return f"~1 in {denominator_text} or {pct_text}%"
+
+
+def _apply_antlerless_deer_production_calibration(
+    rows: Iterable[Mapping[str, object]],
+    *,
+    enabled: bool = False,
+    mode: str = "off",
+    calibrate_family: str = CALIBRATION_FAMILY,
+) -> list[dict[str, object]]:
+    out: list[dict[str, object]] = []
+    for row in rows:
+        item = dict(row)
+        out.append(item)
+        if not enabled:
+            continue
+        if mode != "production":
+            raise ValueError("Antlerless Deer calibration can only write active probabilities in production mode.")
+        raw_value = _clean(item.get("p_draw") or item.get("p_preference_draw") or item.get("p_draw_mean"))
+        raw_probability = _to_probability(raw_value)
+        calibrated = apply_family_calibration(
+            item,
+            raw_value,
+            enabled=True,
+            mode=mode,
+            calibrate_family=calibrate_family,
+        )
+        calibrated_probability = _to_probability(calibrated)
+        family_matches = _clean(item.get("draw_system_type")).upper() == CALIBRATION_FAMILY
+
+        item["p_draw_raw"] = raw_value
+        item["p_draw_calibrated"] = "" if calibrated_probability is None else f"{calibrated_probability:.6f}"
+        item["calibration_family"] = CALIBRATION_FAMILY if family_matches else ""
+        item["calibration_method"] = CALIBRATION_METHOD if family_matches else ""
+        item["calibration_applied"] = (
+            "true"
+            if family_matches
+            and raw_probability is not None
+            and calibrated_probability is not None
+            and raw_probability > 0
+            and calibrated_probability != raw_probability
+            else "false"
+        )
+        item["calibration_zero_preserved"] = (
+            "true"
+            if family_matches
+            and raw_probability is not None
+            and raw_probability <= 0
+            and calibrated_probability == 0.0
+            else "false"
+        )
+        item["calibration_intercept"] = CALIBRATION_INTERCEPT if family_matches else ""
+        item["calibration_slope"] = CALIBRATION_SLOPE if family_matches else ""
+        item["calibration_guardrail_version"] = CALIBRATION_GUARDRAIL_VERSION if family_matches else ""
+
+        if not family_matches or calibrated_probability is None:
+            continue
+
+        item["p_draw"] = f"{calibrated_probability:.6f}"
+        item["p_preference_draw"] = f"{calibrated_probability:.6f}"
+        item["p_draw_mean"] = f"{calibrated_probability:.6f}"
+        item["p_draw_p10"] = f"{max(0.0, calibrated_probability - 0.05):.6f}"
+        item["p_draw_p50"] = f"{calibrated_probability:.6f}"
+        item["p_draw_p90"] = f"{min(1.0, calibrated_probability + 0.05):.6f}"
+        item["p_draw_pct"] = f"{calibrated_probability * 100.0:.3f}"
+        item["display_odds_pct"] = f"{calibrated_probability * 100.0:.3f}"
+        item["display_odds_text"] = _render_odds_text(calibrated_probability)
+    return out
 
 
 def _family_draw_system(family: str) -> str:
@@ -1244,7 +1319,23 @@ def _leakage_row(source_year: int, target_year: int, family: str, rows: Sequence
     }
 
 
-def run_all_families(source_year: int, target_year: int, audit_dir: Path, truth_path: Path = TRUTH_PATH) -> dict[str, object]:
+def run_all_families(
+    source_year: int,
+    target_year: int,
+    audit_dir: Path,
+    truth_path: Path = TRUTH_PATH,
+    *,
+    enable_antlerless_deer_calibration: bool = False,
+    calibration_mode: str = "off",
+    calibrate_family: str = CALIBRATION_FAMILY,
+) -> dict[str, object]:
+    if enable_antlerless_deer_calibration and (
+        calibration_mode != "production" or _clean(calibrate_family).upper() != CALIBRATION_FAMILY
+    ):
+        raise ValueError(
+            "Active calibration requires --calibration-mode production and "
+            "--calibrate-family PREFERENCE_ANTLERLESS_DEER."
+        )
     all_truth_rows = _read_csv(truth_path)
     source_rows = [row for row in all_truth_rows if _row_year(row) == source_year]
     engine_rows = _with_historical_target_metadata(source_rows, source_year, target_year)
@@ -1334,6 +1425,12 @@ def run_all_families(source_year: int, target_year: int, audit_dir: Path, truth_
             continue
         modeled.setdefault(family, [])
         modeled[family].extend(source_backed_rows)
+    modeled["preference_antlerless_deer"] = _apply_antlerless_deer_production_calibration(
+        modeled["preference_antlerless_deer"],
+        enabled=enable_antlerless_deer_calibration,
+        mode=calibration_mode,
+        calibrate_family=calibrate_family,
+    )
     runtime_family_reports = {
         "bonus_le_big_game": {
             "forecast_year": target_year,
@@ -1701,6 +1798,8 @@ def run_all_families(source_year: int, target_year: int, audit_dir: Path, truth_
         "prediction_rows": len(all_prediction_rows),
         "family_counts": {family: len(rows) for family, rows in modeled.items()},
         "classified_families": deferred_families,
+        "antlerless_deer_calibration_enabled": enable_antlerless_deer_calibration,
+        "antlerless_deer_calibration_mode": calibration_mode,
     }
 
 
@@ -1710,12 +1809,23 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--target-year", type=int, required=True)
     parser.add_argument("--audit-dir", type=Path, required=True)
     parser.add_argument("--truth-path", type=Path, default=TRUTH_PATH)
+    parser.add_argument("--enable-antlerless-deer-calibration", action="store_true")
+    parser.add_argument("--calibration-mode", choices=["off", "production"], default="off")
+    parser.add_argument("--calibrate-family", default=CALIBRATION_FAMILY)
     return parser
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    result = run_all_families(args.source_year, args.target_year, args.audit_dir, args.truth_path)
+    result = run_all_families(
+        args.source_year,
+        args.target_year,
+        args.audit_dir,
+        args.truth_path,
+        enable_antlerless_deer_calibration=args.enable_antlerless_deer_calibration,
+        calibration_mode=args.calibration_mode,
+        calibrate_family=args.calibrate_family,
+    )
     print(result)
     return 0
 
