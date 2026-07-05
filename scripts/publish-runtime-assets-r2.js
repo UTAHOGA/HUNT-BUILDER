@@ -20,7 +20,7 @@ const verbose = args.includes('--verbose');
 const R2_PUBLIC_BASE = String(process.env.UOGA_R2_PUBLIC_BASE || process.env.CLOUDFLARE_OBJECT_BASE || process.env.CLOUDFLARE_BASE || 'https://json.uoga.workers.dev').trim().replace(/\/+$/, '');
 const R2_ENDPOINT = String(process.env.UOGA_R2_S3_ENDPOINT || '').trim();
 const R2_BUCKET = String(process.env.UOGA_R2_BUCKET || '').trim();
-const R2_PREFIX = String(process.env.UOGA_R2_PREFIX || 'hunt-builder').trim().replace(/^\/+|\/+$/g, '');
+const R2_PREFIX = String(process.env.UOGA_R2_PREFIX || '').trim().replace(/^\/+|\/+$/g, '');
 const AWS_PROFILE = String(process.env.UOGA_AWS_PROFILE || process.env.AWS_PROFILE || '').trim();
 
 const FRONTEND_REFERENCE_FILES = [

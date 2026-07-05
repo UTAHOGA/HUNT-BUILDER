@@ -822,6 +822,17 @@ processed_data/dwr_huntplanner_hanumber_2026_raw_payloads.json
 /processed_data/audits/dwr_huntplanner_hanumber_2026_audit.csv
 /processed_data/audits/dwr_huntplanner_hanumber_2026_audit.json
 
+# Cloudflare R2 runtime artifacts - keep local copies, not Git blobs.
+/processed_data/draw_reality_engine.csv
+/processed_data/draw_reality_engine_v2.csv
+/processed_data/draw_reality_engine_predictive_v2.csv
+/processed_data/point_ladder_view.csv
+/processed_data/hunt_master_enriched.csv
+/processed_data/ml_draw_predictions_v1.csv
+/processed_data/draw_system_coverage_report.csv
+/processed_data/public_contracts/hunt_odds_history.csv
+/processed_data/public_contracts/hunt_odds_history.json
+
 # Legacy 2019 output surfaces are superseded by canonical_yearly truth files.
 /outputs/2019 non-scorable reference rows.csv
 /outputs/2019 quota allotment rows.csv

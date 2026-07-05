@@ -87,6 +87,7 @@ const processedFiles = [
   'processed_data/draw_reality_engine_v2.csv',
   'processed_data/draw_reality_engine_predictive_v2.csv',
   'processed_data/ml_draw_predictions_v1.csv',
+  'processed_data/hunt_research_2026_summary.json',
   'processed_data/point_ladder_view.csv',
   'processed_data/hunt_master_enriched.csv',
   'processed_data/hunt_unit_reference_linked.csv',
@@ -118,6 +119,7 @@ const processedFiles = [
 
 const dirsToCopy = [
   'assets',
+  'contracts',
   'data/boundaries',
   'processed_data/boundaries',
   'processed_data/hard_data_exports',
@@ -125,6 +127,7 @@ const dirsToCopy = [
   'processed_data/management_context',
   'processed_data/production',
   'processed_data/public_contracts',
+  'processed_data/hunt_research_2026_split',
   'processed_data/research_page',
   'public/data',
   'public/hard-copy',
