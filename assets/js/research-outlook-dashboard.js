@@ -458,10 +458,91 @@
       || firstValue(selectedRow, ["current_age_3yr_average"]);
   }
 
-  function getSelectedOdds(selectedRow, ladderPoint, meta) {
-    return firstValue(selectedRow, ["p_draw_pct", "random_draw_odds_2026", "odds_2026_projected", "success_ratio"])
-      || firstValue(ladderPoint, ["random_draw_odds_2026", "p_draw_pct", "success_ratio"])
-      || firstValue(meta, ["odds_2026_projected", "odds_2025"]);
+  function formatOddsAsOneInOrPercent(percentValue) {
+    const parsed = num(percentValue);
+    if (parsed === null) return "Not available";
+    const pct = Math.max(0, Math.min(100, parsed));
+    if (pct <= 0) return "No modeled chance";
+    const percentText = pct >= 10 ? `${pct.toFixed(1)}%` : `${pct.toFixed(1)}%`;
+    if (pct >= 99.95) return `~1 in 1 or ${percentText}`;
+    const denominator = 100 / pct;
+    const denominatorText = denominator < 10 ? Number(denominator.toFixed(1)).toString() : Math.round(denominator).toString();
+    return `~1 in ${denominatorText} or ${percentText}`;
+  }
+
+  function firstNumericValue(source, keys) {
+    if (!source) return null;
+    for (const key of keys) {
+      const parsed = num(source[key]);
+      if (parsed !== null) return parsed;
+    }
+    return null;
+  }
+
+  function unitOrPercentToPercent(value) {
+    const parsed = num(value);
+    if (parsed === null) return null;
+    return parsed <= 1 && parsed > 0 ? parsed * 100 : parsed;
+  }
+
+  function isPreferencePointRow(row, meta) {
+    const text = [
+      row?.draw_system_type,
+      row?.draw_2026_system_type,
+      row?.draw_system,
+      row?.draw_design,
+      meta?.draw_system_type,
+      meta?.draw_2026_system_type,
+      meta?.draw_design,
+    ].filter(Boolean).join(" ").toUpperCase();
+    return text.includes("PREFERENCE");
+  }
+
+  function preferenceLineMetPercent(row, meta) {
+    if (!isPreferencePointRow(row, meta)) return null;
+    const selected = num(row?.points);
+    const guaranteed = num(firstValue(row, ["guaranteed_at_2026", "projected_2026_max_cutoff_point", "guaranteed_line"])
+      || firstValue(meta, ["guaranteed_at_2026", "projected_2026_max_cutoff_point", "guaranteed_line"]));
+    if (selected !== null && guaranteed !== null && selected > guaranteed) return 100;
+    return null;
+  }
+
+  function getSelectedOddsInfo(selectedRow, ladderPoint, meta, contract) {
+    const sourceRows = [selectedRow, ladderPoint, meta].filter(Boolean);
+    for (const row of sourceRows) {
+      const display = firstValue(row, ["display_2026_random_draw", "display_2026_max_point_pool", "display_odds_pct"]);
+      if (hasValue(display) && /[0-9]/.test(String(display))) {
+        const displayPercent = firstNumericValue(row, ["random_draw_odds_2026", "p_random_pool_pct", "p_max_pool_pct", "p_draw_pct", "odds_2026_projected"]);
+        const unitPercent = unitOrPercentToPercent(firstValue(row, ["p_draw_mean", "success_ratio"]));
+        return { display: String(display), percent: displayPercent ?? unitPercent };
+      }
+
+      const percent = firstNumericValue(row, ["random_draw_odds_2026", "p_random_pool_pct", "p_max_pool_pct", "p_draw_pct", "odds_2026_projected"]);
+      if (percent !== null && percent > 0) return { display: formatOddsAsOneInOrPercent(percent), percent };
+
+      const unitPercent = unitOrPercentToPercent(firstValue(row, ["p_draw_mean", "success_ratio"]));
+      if (unitPercent !== null && unitPercent > 0) return { display: formatOddsAsOneInOrPercent(unitPercent), percent: unitPercent };
+
+      const lineMetPercent = preferenceLineMetPercent(row, meta);
+      if (lineMetPercent !== null) return { display: formatOddsAsOneInOrPercent(lineMetPercent), percent: lineMetPercent };
+    }
+
+    const contractPercent = unitOrPercentToPercent(firstValue(contract, ["modeled_draw_probability"]));
+    if (contractPercent !== null) return { display: formatPercent(contractPercent), percent: contractPercent };
+    return { display: "Not available", percent: null };
+  }
+
+  function getPointStatusLabel(selection, selectedRow, meta) {
+    const selected = num(selection?.points);
+    const guaranteed = num(getGuaranteedLine(selectedRow, meta));
+    if (selected !== null && guaranteed !== null) {
+      const delta = guaranteed - selected;
+      if (delta > 0) return `${delta} pts short of guaranteed`;
+      if (delta === 0) return "At guaranteed";
+      return `${Math.abs(delta)} pts above guaranteed`;
+    }
+    return firstValue(selectedRow, ["status", "draw_outlook", "point_status"])
+      || firstValue(meta, ["status", "draw_outlook", "point_status"]);
   }
 
   function getPermitTotal(meta, reference, selectedRow) {
@@ -553,10 +634,11 @@
   function renderComparableCards(rows) {
     if (!rows.length) return `<p class="uoga-outlook-muted">No comparable rows loaded for this species/type/residency slice.</p>`;
     return `
+      <p class="uoga-outlook-muted">Hunt-level comparison only. Confirm point-rung odds in the ladder before using these as substitutes.</p>
       <div class="uoga-comparable-grid">
         <table class="uoga-comparable-table">
           <thead>
-            <tr><th>Hunt</th><th>Odds / Status</th><th>Quality Signal</th><th>Why similar</th></tr>
+            <tr><th>Hunt</th><th>Hunt-Level Odds / Status</th><th>Quality Signal</th><th>Why similar</th></tr>
           </thead>
           <tbody>
             ${rows.slice(0, 3).map((row) => `
@@ -596,18 +678,22 @@
     `);
   }
 
+  function hasPersonaData(contract) {
+    return pipeList(contract.persona_tags).length > 0
+      || num(contract.sleeper_score) !== null
+      || hasValue(firstValue(contract, ["sleeper_reasons"]));
+  }
+
   function renderPersonaPanel(contract) {
     const tags = pipeList(contract.persona_tags);
     const sleeperScore = num(contract.sleeper_score);
     const sleeperReasons = firstValue(contract, ["sleeper_reasons"]);
-    const tagBadges = tags.length
-      ? tags.slice(0, 8).map((tag) => badge(tag.replace(/_/g, " "), "modeled")).join("")
-      : badge("No persona tags loaded", "limited");
+    const tagBadges = tags.slice(0, 8).map((tag) => badge(tag.replace(/_/g, " "), "modeled")).join("");
     return `
       <div class="uoga-badge-row">${tagBadges}</div>
       ${listRows([
         metricRow("Sleeper score", sleeperScore === null ? "Not available" : formatValue(sleeperScore)),
-        metricRow("Sleeper rationale", formatValue(sleeperReasons, "No sleeper rationale loaded.")),
+        metricRow("Sleeper rationale", formatValue(sleeperReasons)),
         metricRow("How to use this", "Use these as comparison hints only; they do not override draw odds."),
       ])}
     `;
@@ -648,32 +734,39 @@
   function dashboardHtml(selection, context) {
     const { meta, reference, ladderPoint, selectedRow, managementRows, outlookRow, comparable } = context;
     const contract = outlookRow || {};
-    const title = contract.hunt_name || meta?.hunt_name || selectedRow?.hunt_name || reference?.hunt_name || selection.huntCode || "Selected hunt";
-    const odds = getSelectedOdds(selectedRow, ladderPoint, meta) || firstValue(contract, ["modeled_draw_probability"]);
-    const averageAge = firstValue(contract, ["average_harvest_age"]) || getAge(meta, reference, selectedRow);
-    const currentAge = firstValue(contract, ["current_age_3yr_average"]) || getCurrentAge(meta, reference, selectedRow);
-    const harvestSuccess = firstValue(contract, ["harvest_success_pct"]) || getHarvestSuccess(meta, reference, selectedRow);
-    const avgDays = firstValue(contract, ["average_days_hunted"]) || getAverageDays(meta, reference);
-    const permitTotal = firstValue(contract, ["permits_2026_total"]) || getPermitTotal(meta, reference, selectedRow);
-    const huntType = firstValue(contract, ["hunt_type"]) || firstValue(meta, ["hunt_type"]) || firstValue(reference, ["hunt_type"]) || firstValue(selectedRow, ["hunt_type"]);
+    const title = meta?.hunt_name || selectedRow?.hunt_name || reference?.hunt_name || contract.hunt_name || selection.huntCode || "Selected hunt";
+    const oddsInfo = getSelectedOddsInfo(selectedRow, ladderPoint, meta, contract);
+    const odds = oddsInfo.percent;
+    const oddsDisplay = oddsInfo.display;
+    const averageAge = getAge(meta, reference, selectedRow) || firstValue(contract, ["average_harvest_age"]);
+    const currentAge = getCurrentAge(meta, reference, selectedRow) || firstValue(contract, ["current_age_3yr_average"]);
+    const harvestSuccess = getHarvestSuccess(meta, reference, selectedRow) || firstValue(contract, ["harvest_success_pct"]);
+    const avgDays = getAverageDays(meta, reference) || firstValue(contract, ["average_days_hunted"]);
+    const permitTotal = getPermitTotal(meta, reference, selectedRow) || firstValue(contract, ["permits_2026_total"]);
+    const huntType = firstValue(meta, ["hunt_type"]) || firstValue(reference, ["hunt_type"]) || firstValue(selectedRow, ["hunt_type"]) || firstValue(contract, ["hunt_type"]);
     const drawDesign = normalizeDrawDesignLabel(
       firstValue(contract, ["draw_design"])
       || firstValue(meta, ["draw_design", "draw_system_type", "draw_2026_system_type", "draw_family"])
       || firstValue(reference, ["draw_design", "draw_system_type", "draw_2026_system_type", "draw_family"])
       || firstValue(selectedRow, ["draw_design", "draw_system_type", "draw_2026_system_type", "draw_family"])
     );
-    const guaranteedLine = firstValue(contract, ["guaranteed_line_points"]) || getGuaranteedLine(selectedRow, meta);
-    const pointTrend = firstValue(contract, ["point_creep_1yr"]) || getPointTrend(selectedRow, meta);
-    const pointStatus = firstValue(selectedRow, ["status", "draw_outlook", "point_status"])
-      || firstValue(meta, ["status", "draw_outlook", "point_status"]);
+    const guaranteedLine = getGuaranteedLine(selectedRow, meta) || firstValue(contract, ["guaranteed_line_points"]);
+    const pointTrend = getPointTrend(selectedRow, meta) || firstValue(contract, ["point_creep_1yr"]);
+    const pointStatus = getPointStatusLabel(selection, selectedRow, meta);
     const percentFivePlus = firstValue(contract, ["percent_5plus"]) || getPercentFivePlus(meta, reference, selectedRow);
-    const statusOnly = pipeList(contract.source_badges).some((item) => item.toLowerCase().includes("status"))
-      || isStatusOnlyContext(meta, reference, selectedRow);
+    const hasSelectedPointRow = selectedRow && hasValue(selectedRow.hunt_code) && num(selectedRow.points) !== null;
+    const sourceBadges = pipeList(contract.source_badges)
+      .filter((label) => !(hasSelectedPointRow && label.toLowerCase().includes("status")));
+    const statusOnly = isStatusOnlyContext(meta, reference, selectedRow)
+      || (!hasSelectedPointRow && pipeList(contract.source_badges).some((item) => item.toLowerCase().includes("status")));
     const highQuality = (num(harvestSuccess) ?? 0) >= 50 || (num(averageAge) ?? 0) >= 5;
-    const decision = firstValue(contract, ["decision_label"]) || decisionLabel(odds, { statusOnly, highQuality });
-    const recommendation = firstValue(contract, ["recommended_action"]) || recommendationSentence(odds, permitTotal, decision);
-    const limitedData = !hasValue(odds) || !hasValue(harvestSuccess) || !hasValue(averageAge);
-    const sourceBadges = pipeList(contract.source_badges);
+    const decision = odds !== null
+      ? decisionLabel(odds, { statusOnly, highQuality })
+      : (firstValue(contract, ["decision_label"]) || decisionLabel(odds, { statusOnly, highQuality }));
+    const recommendation = odds !== null
+      ? recommendationSentence(odds, permitTotal, decision)
+      : (firstValue(contract, ["recommended_action"]) || recommendationSentence(odds, permitTotal, decision));
+    const limitedData = odds === null || !hasValue(harvestSuccess) || !hasValue(averageAge);
     const managementRow = {
       management_objective_type: contract.management_objective_type,
       management_objective_min: "",
@@ -711,7 +804,7 @@
             </div>
           </div>
           ${metricRow("Decision", decision)}
-          ${metricRow("Estimated odds", formatPercent(odds))}
+          ${metricRow("Estimated odds", oddsDisplay)}
           ${metricRow("2026 permits", formatInteger(permitTotal))}
           <p class="uoga-outlook-recommendation">${escapeHtml(recommendation)}</p>
         </section>
@@ -719,7 +812,7 @@
           ${panel("Model-Generated Draw Outlook", `
             ${panelKicker("Model-generated fields")}
             ${listRows([
-            metricRow("Estimated draw odds", formatPercent(odds)),
+            metricRow("Estimated draw odds", oddsDisplay),
             metricRow("Point status", formatValue(pointStatus)),
             metricRow("Guaranteed line", formatValue(guaranteedLine)),
             metricRow("Point creep / trend", formatValue(pointTrend)),
@@ -740,10 +833,11 @@
           `, "is-official")}
           ${renderManagementPanel(effectiveManagementRows)}
         </div>
+        ${hasPersonaData(contract) ? `
         <details class="uoga-outlook-panel is-compact uoga-outlook-wide uoga-collapsed-panel">
           <summary>Hunter-Fit Signals</summary>
           <div class="uoga-collapsed-panel-body">${renderPersonaPanel(contract)}</div>
-        </details>
+        </details>` : ""}
         <details class="uoga-outlook-panel is-compact uoga-outlook-wide uoga-collapsed-panel">
           <summary>Comparable Hunts</summary>
           <div class="uoga-collapsed-panel-body">${renderComparableCards(comparable)}</div>

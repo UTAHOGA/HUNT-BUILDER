@@ -370,6 +370,18 @@
     return `${Math.abs(parsed)} pts above guaranteed`;
   }
 
+  function formatGuaranteedLineStatus(row, selectedPoints) {
+    const selected = num(selectedPoints);
+    const guaranteed = num(firstAvailable(row, ['guaranteed_at_2026', 'projected_2026_max_cutoff_point', 'guaranteed_line']));
+    if (selected !== null && guaranteed !== null) {
+      const delta = guaranteed - selected;
+      if (delta > 0) return `${delta} pts short of guaranteed`;
+      if (delta === 0) return 'At guaranteed';
+      return `${Math.abs(delta)} pts above guaranteed`;
+    }
+    return formatGapStatus(row?.gap);
+  }
+
   const ML_OPTIONS = {
     enabled: false,
     useMlForOddsWhenConfidenceGte: null,
@@ -1020,6 +1032,12 @@
     const p50Pct = p50 !== null ? toProbabilityPercent(p50) : null;
     if (p50Pct !== null && p50Pct > 0) return { percent: clamp(p50Pct, 0, 100), source: 'p50' };
 
+    const selectedPoints = num(row.points);
+    const guaranteedLine = num(firstAvailable(row, ['guaranteed_at_2026', 'projected_2026_max_cutoff_point', 'guaranteed_line']));
+    if (selectedPoints !== null && guaranteedLine !== null && selectedPoints > guaranteedLine) {
+      return { percent: 100, source: 'guaranteed_line_met' };
+    }
+
     if (displayOddsPct !== null) return { percent: clamp(displayOddsPct, 0, 100), source: 'display_odds_pct' };
     if (pDrawMeanPct !== null) return { percent: clamp(pDrawMeanPct, 0, 100), source: 'p_draw_mean' };
     if (oddsProjected !== null) return { percent: clamp(oddsProjected, 0, 100), source: 'odds_2026_projected' };
@@ -1146,7 +1164,7 @@
 
     if (isPreferenceFamily(meta, row, referenceRow)) {
       const selectedOdds = selectPreferenceOddsPercent(row);
-      if ((selectedOdds.percent !== null && selectedOdds.percent >= 99.9) || num(row.gap) === 0) {
+      if ((selectedOdds.percent !== null && selectedOdds.percent >= 99.9) || (num(row.gap) !== null && num(row.gap) <= 0)) {
         return 'This hunt is currently inside the preference-point line at your selected point level.';
       }
       if (row.draw_outlook === 'POINT CREEP DEFEAT') {
@@ -1190,6 +1208,7 @@
     if (guaranteedProbability !== null && guaranteedProbability >= 0.999) return 'green';
 
     const selectedOdds = selectModeOddsPercent(meta, row, referenceRow);
+    if (isPreferenceFamily(meta, row, referenceRow) && num(row?.gap) !== null && num(row.gap) <= 0) return 'green';
     if (selectedOdds.percent !== null) {
       if (selectedOdds.percent >= 99.9) return 'green';
       if (selectedOdds.percent >= 25) return 'yellow';
@@ -1433,6 +1452,7 @@
     }
 
     const selectedOdds = selectModeOddsPercent(meta, row, referenceRow);
+    if (isPreferenceFamily(meta, row, referenceRow) && num(row?.gap) !== null && num(row.gap) <= 0) return 'green';
     if (selectedOdds.percent !== null) {
       if (selectedOdds.percent >= 99.9) {
         return {
@@ -1597,7 +1617,7 @@
     if (els.summaryStatus) {
       els.summaryStatus.textContent = isRandomOnlyBonusCase(meta, row, referenceRow)
         ? 'Random draw only'
-        : formatGapStatus(row.gap);
+        : formatGuaranteedLineStatus(row, filters.points);
     }
 
     if (els.summaryOdds) {
@@ -1975,7 +1995,9 @@
       const oddsDisplay = formatOddsAsOneInOrPercent(odds.percent);
 
       if (mode === DRAW_MODE.PREFERENCE) {
-        const pointStatus = hasMeaningfulValue(row?.gap) ? formatGapStatus(row.gap) : '';
+        const pointStatus = hasMeaningfulValue(row?.guaranteed_at_2026) || hasMeaningfulValue(row?.projected_2026_max_cutoff_point) || hasMeaningfulValue(row?.guaranteed_line)
+          ? formatGuaranteedLineStatus(row, row?.points)
+          : (hasMeaningfulValue(row?.gap) ? formatGapStatus(row.gap) : '');
         return [
           formatInteger(row.points),
           actual2025Display,
