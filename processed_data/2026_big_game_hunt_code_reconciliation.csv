@@ -15,7 +15,7 @@ BI6534,65,BISON_HUNT_TABLES,Bison,"Book Cliffs, Bitter Creek",PASS,,PASS,,true,t
 BI6535,65,BISON_HUNT_TABLES,Bison,"Book Cliffs, Bitter Creek",PASS,,PASS,,true,true,true,true,true,true
 BI6536,65,BISON_HUNT_TABLES,Bison,"Book Cliffs, Bitter Creek",PASS,,PASS,,true,true,true,true,true,true
 BI6537,65,BISON_HUNT_TABLES,Bison,"Book Cliffs, Little Creek/South",PASS,,PASS,,true,true,true,true,true,true
-BI6539,65,BISON_HUNT_TABLES,Bison,Henry Mtns (new),PASS,,PASS,,true,true,true,true,true,true
+BI6539,65,BISON_HUNT_TABLES,Bison,Henry Mtns (new),BLOCKER,hunt_master_enriched,PASS,,true,false,true,true,true,true
 BR1000,10,SPORTSMAN_AND_STATEWIDE_CONSERVATION_DATES,Black Bear,Black bear,PASS,,PASS,,true,true,true,true,true,true
 DB0007,10,SPORTSMAN_AND_STATEWIDE_CONSERVATION_DATES,Deer,Buck deer,PASS,,PASS,,true,true,true,true,true,true
 DB0008,44,BUCK_DEER_HUNT_TABLES,Deer,Deer extended archery only,PASS,,PASS,,true,true,true,true,true,true
@@ -100,7 +100,7 @@ DB1115,51,BUCK_DEER_HUNT_TABLES,Deer,Little Rockies,PASS,,PASS,,true,true,true,t
 DB1116,53,BUCK_DEER_HUNT_TABLES,Deer,"San Juan, Mancos Mesa",PASS,,PASS,,true,true,true,true,true,true
 DB1119,51,BUCK_DEER_HUNT_TABLES,Deer,Moab Valley,PASS,,PASS,,true,true,true,true,true,true
 DB1120,51,BUCK_DEER_HUNT_TABLES,Deer,Castle Valley,PASS,,PASS,,true,true,true,true,true,true
-DB1121,50,BUCK_DEER_HUNT_TABLES,Deer,Antelope Island (any legal weapon) (new),PASS,,PASS,,true,true,true,true,true,true
+DB1121,50,BUCK_DEER_HUNT_TABLES,Deer,Antelope Island (any legal weapon) (new),BLOCKER,hunt_master_enriched,PASS,,true,false,true,true,true,true
 DB1200,69,CWMU_HUNT_TABLES,Deer,Alton,PASS,,PASS,,true,true,true,true,true,true
 DB1201,69,CWMU_HUNT_TABLES,Deer,Alton (management buck),PASS,,PASS,,true,true,true,true,true,true
 DB1202,70,CWMU_HUNT_TABLES,Deer,Antelope Creek,PASS,,PASS,,true,true,true,true,true,true

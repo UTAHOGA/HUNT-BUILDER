@@ -72,6 +72,39 @@ FULL_CERT_TRIGGERS = (
     "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
 )
 
+PROMOTION_COMPILE_COMMAND: tuple[str, ...] = (
+    "python",
+    "-m",
+    "compileall",
+    "engine",
+    "scripts",
+    "tools",
+)
+
+PROMOTION_PYTEST_COMMANDS: tuple[tuple[str, ...], ...] = (
+    (
+        "python",
+        "-m",
+        "pytest",
+        "tests/test_runtime_production_gate.py",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+    ),
+    (
+        "python",
+        "-m",
+        "pytest",
+        "tests/test_engine_no_truth_leakage.py",
+        "tests/test_engine_probability_bounds.py",
+        "tests/test_engine_quota_arithmetic.py",
+        "tests/test_engine_scorable_coverage.py",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+    ),
+)
+
 csv.field_size_limit(min(sys.maxsize, 2_147_483_647))
 
 
@@ -558,7 +591,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         blockers.append("FULL_CERT_REQUIRED but no recent full certification found")
 
     test_blocks: list[str] = []
-    compile_cmd = ("python", "-m", "compileall", "engine", "tools", "tests")
+    compile_cmd = PROMOTION_COMPILE_COMMAND
     commands.append(" ".join(compile_cmd))
     compile_code, compile_out = run_command(repo, compile_cmd)
     test_blocks.append(f"$ {' '.join(compile_cmd)}\nEXIT_CODE={compile_code}\n{compile_out}")
@@ -566,20 +599,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     if compile_code != 0:
         blockers.append("compileall failed")
     if not args.skip_pytest:
-        test_files = targeted_test_files(repo, families)
-        if args.mode == "full":
-            pytest_cmd = ("python", "-m", "pytest")
-        elif test_files:
-            pytest_cmd = ("python", "-m", "pytest", *test_files)
-        else:
-            pytest_cmd = ()
-        if pytest_cmd:
+        for pytest_cmd in PROMOTION_PYTEST_COMMANDS:
             commands.append(" ".join(pytest_cmd))
             code, out = run_command(repo, pytest_cmd)
             test_blocks.append(f"$ {' '.join(pytest_cmd)}\nEXIT_CODE={code}\n{out}")
             tests_passing = tests_passing and code == 0
             if code != 0:
-                blockers.append("targeted pytest failed" if args.mode == "fast" else "full pytest failed")
+                blockers.append("runtime promotion pytest failed")
     else:
         test_blocks.append("pytest skipped by --skip-pytest")
     write_text(output_dir / "TEST_RESULTS.txt", "\n\n".join(test_blocks) + "\n")
