@@ -1,6 +1,6 @@
 # hunt_research_2026 Rebuild Notes
 
-Generated: 2026-06-04T02:41:28.271656
+Generated: 2026-07-05T19:13:08.942195
 
 ## Contract rebuild goal
 - Rebuilt canonical Hunt Research contracts from canonical sources with full 2026 hunt-code coverage and runtime-aligned field set:
@@ -8,7 +8,7 @@ Generated: 2026-06-04T02:41:28.271656
   - `processed_data/hunt_research_2026_summary.json` (group-level summary)
   - `processed_data/hunt_research_2026_ladder.json` (point-level ladder)
   - `processed_data/hunt_research_2026_ladder_preference.json` (preference ladder rows)
-  - `processed_data/hunt_research_2026_ladder_bonus_max_random.json` (max/weighted split ladder rows)
+  - `processed_data/hunt_research_2026_ladder_bonus_max_random.json` (max/weighted split engine rows)
 
 ## Sources used
 - DATABASE truth: `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
@@ -20,13 +20,13 @@ Generated: 2026-06-04T02:41:28.271656
 - Management context: `processed_data/management_context/hunt_management_objective_context.json`
 
 ## Coverage summary
-- Contract rows: 91734
-- Summary rows: 3009
-- Preference ladder rows: 17820
-- Bonus/max-random ladder rows: 43164
-- Unclassified ladder rows (kept in full ladder): 30750
-- Unique contract hunt codes: 1471
-- DATABASE hunt codes: 1471
+- Contract rows: 101840
+- Summary rows: 5124
+- Preference ladder rows: 22375
+- Max/weighted split ladder rows: 677
+- Unclassified ladder rows (kept in full ladder): 78788
+- Unique contract hunt codes: 1697
+- DATABASE hunt codes: 1645
 - Missing hunt codes vs DATABASE: 0
 - Missing runtime fields with zero population: 0
 

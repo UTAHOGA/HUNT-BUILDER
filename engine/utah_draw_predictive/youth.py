@@ -123,6 +123,14 @@ def _to_int(value: object) -> int:
         return 0
 
 
+def _history_years_or_bootstrap(history_years: list[int], truth_rows: list[Mapping[str, object]]) -> list[int]:
+    if history_years:
+        return [int(year) for year in history_years]
+    inferred = sorted({_to_int(row.get("actual_draw_year") or row.get("source_year") or row.get("draw_year") or row.get("year")) for row in truth_rows})
+    inferred = [year for year in inferred if year > 0]
+    return [inferred[-1]] if inferred else []
+
+
 def _to_float_optional(value: object) -> float | None:
     text = _clean(value).replace("%", "")
     if not text:
@@ -188,26 +196,56 @@ def _historical_youth_general_any_bull_elk_rows(
     history_by_residency: dict[str, dict[int, dict[str, object]]] = {"Resident": {}, "Nonresident": {}}
     source_files_used: list[str] = []
 
+    def add_history(
+        residency: str,
+        year: int,
+        eligible: int,
+        quota: int,
+        source_file: str,
+    ) -> None:
+        if residency not in history_by_residency or year <= 0 or year >= forecast_year:
+            return
+        if eligible <= 0 or quota <= 0:
+            return
+        history_by_residency[residency][year] = {
+            "year": year,
+            "eligible_applicants": eligible,
+            "quota": quota,
+            "source_file": source_file,
+        }
+        if source_file:
+            source_files_used.append(source_file)
+
     for raw in truth_rows:
         row = dict(raw)
         if _clean(row.get("hunt_code")).upper() != "EB1007":
             continue
         residency = _clean(row.get("residency"))
         year = _to_int(row.get("actual_draw_year") or row.get("year"))
-        eligible = _to_int(row.get("eligible_applicants"))
-        quota = _to_int(row.get("total_permits"))
-        if residency not in history_by_residency or year <= 0 or year >= forecast_year:
+        source_file = _clean(row.get("source_file"))
+        if residency:
+            add_history(
+                residency,
+                year,
+                _to_int(row.get("eligible_applicants")),
+                _to_int(row.get("total_permits")),
+                source_file,
+            )
             continue
-        if eligible <= 0 or quota <= 0:
-            continue
-        history_by_residency[residency][year] = {
-            "year": year,
-            "eligible_applicants": eligible,
-            "quota": quota,
-            "source_file": _clean(row.get("source_file")),
-        }
-        if _clean(row.get("source_file")):
-            source_files_used.append(_clean(row.get("source_file")))
+        add_history(
+            "Resident",
+            year,
+            _to_int(row.get("resident_eligible_applicants")),
+            _to_int(row.get("resident_total_permits")),
+            source_file,
+        )
+        add_history(
+            "Nonresident",
+            year,
+            _to_int(row.get("nonresident_eligible_applicants")),
+            _to_int(row.get("nonresident_total_permits")),
+            source_file,
+        )
 
     if YOUTH_ELK_HISTORY_PATH.exists():
         with YOUTH_ELK_HISTORY_PATH.open("r", encoding="utf-8-sig", newline="") as handle:
@@ -257,7 +295,10 @@ def _youth_general_any_bull_elk_quota_for_residency(
     db_row: Mapping[str, object],
     residency: str,
     history_rows_for_residency: list[dict[str, object]],
+    forecast_year: int,
 ) -> int:
+    if history_rows_for_residency and forecast_year < 2026:
+        return int(history_rows_for_residency[-1]["quota"])
     if residency == "Resident":
         explicit = _to_int(db_row.get("permits_2026_res")) or _to_int(db_row.get("public_permits_2026_res"))
     else:
@@ -394,6 +435,9 @@ def build_youth_predictions(
     history_years: list[int],
 ) -> tuple[list[dict[str, object]], dict[str, object]]:
     truth_rows = [dict(row) for row in truth_rows]
+    history_years = _history_years_or_bootstrap(history_years, truth_rows)
+    latest_history_year = max(history_years) if history_years else forecast_year - 1
+    earliest_history_year = min(history_years) if history_years else forecast_year - 1
     youth_deer_history = [dict(row) for row in truth_rows if is_youth_general_deer_row(row)]
     youth_antlerless_history = [dict(row) for row in truth_rows if is_youth_antlerless_or_doe_row(row)]
     youth_elk_history = [dict(row) for row in truth_rows if is_youth_draw_only_elk_row(row)]
@@ -477,8 +521,8 @@ def build_youth_predictions(
                     "public_permits_2026": str(permits_total) if permits_total > 0 else "",
                     "source_years_used": _clean(row.get("source_years_used")) or ",".join(str(year) for year in history_years),
                     "source_year_count": _clean(row.get("source_year_count")) or len(history_years),
-                    "latest_source_year": _clean(row.get("latest_source_year")) or max(history_years),
-                    "earliest_source_year": _clean(row.get("earliest_source_year")) or min(history_years),
+                    "latest_source_year": _clean(row.get("latest_source_year")) or latest_history_year,
+                    "earliest_source_year": _clean(row.get("earliest_source_year")) or earliest_history_year,
                     "source_dataset": "predictive",
                     "model_strategy": strategy_name,
                     "draw_system_type": draw_system_type,
@@ -590,7 +634,7 @@ def build_youth_predictions(
                 projected_applicants_source = "official_target_year_draw_results"
             else:
                 history_rows_for_residency = youth_elk_history_by_residency.get(residency, [])
-                forecast_quota = _youth_general_any_bull_elk_quota_for_residency(db_row, residency, history_rows_for_residency)
+                forecast_quota = _youth_general_any_bull_elk_quota_for_residency(db_row, residency, history_rows_for_residency, forecast_year)
                 projected_eligible = _forecast_youth_general_any_bull_elk_applicants(history_rows_for_residency)
                 if projected_eligible > 0 and forecast_quota > 0:
                     projected_probability = _clamp01(forecast_quota / projected_eligible)
@@ -633,8 +677,8 @@ def build_youth_predictions(
                     row_permits_total = forecast_quota or permits_total
                     source_years_used = ",".join(str(year) for year in history_years)
                     source_year_count = len(history_years)
-                    latest_source_year = max(history_years)
-                    earliest_source_year = min(history_years)
+                    latest_source_year = latest_history_year
+                    earliest_source_year = earliest_history_year
                     eligible_applicants = ""
                     p_draw = ""
                     p_draw_pct = ""

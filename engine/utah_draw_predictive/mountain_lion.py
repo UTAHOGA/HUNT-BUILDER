@@ -145,6 +145,8 @@ def build_mountain_lion_availability_predictions(
     rows: list[dict[str, object]] = []
     data_quality_counter: Counter[str] = Counter()
     source_files_used: list[str] = []
+    latest_history_year = max(history_years) if history_years else forecast_year - 1
+    earliest_history_year = min(history_years) if history_years else forecast_year - 1
 
     has_year_round_rule, guidebook_sources = _extract_year_round_context()
     reporting_units, table_sources = _load_reporting_units()
@@ -210,8 +212,8 @@ def build_mountain_lion_availability_predictions(
                     "source_dataset": "predictive",
                     "source_years_used": ",".join(str(year) for year in history_years),
                     "source_year_count": len(history_years),
-                    "latest_source_year": max(history_years),
-                    "earliest_source_year": min(history_years),
+                    "latest_source_year": latest_history_year,
+                    "earliest_source_year": earliest_history_year,
                     "model_strategy": MODEL_STRATEGY_NAME,
                     "engine_family": "COUGAR_LICENSE_BASED_CLASSIFIER",
                     "weapon": "Any Legal Weapon",

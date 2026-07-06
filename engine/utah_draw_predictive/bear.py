@@ -112,6 +112,31 @@ def _to_int(value: object) -> int:
         return 0
 
 
+def _history_years_or_bootstrap(history_years: list[int], truth_rows: list[Mapping[str, object]]) -> list[int]:
+    if history_years:
+        return [int(year) for year in history_years]
+    inferred = sorted({_to_int(row.get("actual_draw_year") or row.get("source_year") or row.get("draw_year") or row.get("year")) for row in truth_rows})
+    inferred = [year for year in inferred if year > 0]
+    return [inferred[-1]] if inferred else []
+
+
+def _skipped_no_history_report(forecast_year: int) -> dict[str, object]:
+    return {
+        "forecast_year": forecast_year,
+        "status": "SKIPPED_NO_HISTORY",
+        "blocker": True,
+        "production_ready": False,
+        "calibration_ready": False,
+        "source_years": [],
+        "total_bear_rows_reviewed": 0,
+        "bear_rows_seen_active_predictive": 0,
+        "bear_draw_active_predictive_row_count": 0,
+        "bear_draw_modeled_row_count": 0,
+        "reason_codes": ["SKIPPED_NO_HISTORY"],
+        "note": "No source history rows were available for bonus bear; no probability rows were fabricated.",
+    }
+
+
 def _round_count(value: float) -> int:
     return max(0, int(round(value)))
 
@@ -815,6 +840,9 @@ def build_bear_bonus_predictions(
     history_years: list[int],
 ) -> tuple[list[dict[str, object]], dict[str, object]]:
     truth_rows_list = list(truth_rows)
+    history_years = _history_years_or_bootstrap(history_years, truth_rows_list)
+    if not history_years:
+        return [], _skipped_no_history_report(forecast_year)
     history_year_set = {int(year) for year in history_years}
     truth_rows_list = _with_supplemental_bear_truth_rows(truth_rows_list, history_year_set)
     source_years_used_text = ",".join(str(year) for year in history_years)

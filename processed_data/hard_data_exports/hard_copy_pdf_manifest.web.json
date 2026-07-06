@@ -3904,19 +3904,6 @@
   {
     "group": "regulation",
     "type": "pdf",
-    "year": "2026",
-    "title": "2026 Waterfowl Guidebook",
-    "subtitle": "Official Utah DWR waterfowl regulation guidebook.",
-    "href": "./processed_data/hard_data_exports/source_pdfs/regulations/2026/2026-waterfowl-guidebook.pdf",
-    "source_authority": "Utah Division of Wildlife Resources",
-    "source_year": "2026",
-    "model_year_folder": "2026",
-    "source_role": "official_source",
-    "parent_title": null
-  },
-  {
-    "group": "regulation",
-    "type": "pdf",
     "year": "2025",
     "title": "2025-26 Upland Game Turkey Guidebook",
     "subtitle": "Official Utah DWR upland game and turkey regulation guidebook.",

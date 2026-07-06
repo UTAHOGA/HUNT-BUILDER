@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 from collections import defaultdict
 from functools import lru_cache
 from pathlib import Path
@@ -635,6 +636,8 @@ def _source_backed_family_for_row(row: Mapping[str, object]) -> str:
     text = _joined_lower(row, "hunt_code", "hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "draw_design", "draw_pool", "source_file")
     draw_system = _draw_system(row).upper()
 
+    if "youth" in text:
+        return "youth_draw"
     if prefix == "BR" or "black bear" in text:
         return "bonus_bear"
     if prefix == "CG" or "cougar" in species or "mountain lion" in text:
@@ -649,7 +652,7 @@ def _source_backed_family_for_row(row: Mapping[str, object]) -> str:
         return "preference_doe_pronghorn"
     if prefix in {"PB"}:
         return "bonus_ple_big_game"
-    if prefix in {"BI", "GO", "MA", "MB", "RS", "DS"}:
+    if prefix in {"BI", "GO", "MA", "MB", "RE", "RS", "DS"}:
         return "bonus_oil_big_game"
     if prefix in {"EB", "EL", "LO", "LP"}:
         return "bonus_le_big_game"
@@ -664,20 +667,24 @@ def _source_backed_family_for_row(row: Mapping[str, object]) -> str:
 def _source_backed_probability_values(row: Mapping[str, object]) -> list[tuple[str, float]]:
     if _clean(row.get("residency")):
         probability = _to_probability(row.get("p_draw") or row.get("p_draw_percent") or row.get("success_ratio"))
+        if probability is None and _to_number(row.get("eligible_applicants")) == 0:
+            probability = 0.0
         if probability is None:
             return []
         return [(_clean(row.get("residency")), probability)]
 
     values: list[tuple[str, float]] = []
-    for residency, fields in (
-        ("Resident", ("resident_p_draw", "resident_p_draw_percent", "resident_success_ratio")),
-        ("Nonresident", ("nonresident_p_draw", "nonresident_p_draw_percent", "nonresident_success_ratio")),
+    for residency, fields, eligible_field in (
+        ("Resident", ("resident_p_draw", "resident_p_draw_percent", "resident_success_ratio"), "resident_eligible_applicants"),
+        ("Nonresident", ("nonresident_p_draw", "nonresident_p_draw_percent", "nonresident_success_ratio"), "nonresident_eligible_applicants"),
     ):
         probability = None
         for field in fields:
             probability = _to_probability(row.get(field))
             if probability is not None:
                 break
+        if probability is None and _to_number(row.get(eligible_field)) == 0:
+            probability = 0.0
         if probability is not None:
             values.append((residency, probability))
     return values
@@ -1339,10 +1346,15 @@ def run_all_families(
     all_truth_rows = _read_csv(truth_path)
     source_rows = [row for row in all_truth_rows if _row_year(row) == source_year]
     engine_rows = _with_historical_target_metadata(source_rows, source_year, target_year)
-    history_years = list(range(2018, source_year + 1))
+    first_year_bootstrap = source_year == 2017 and target_year == 2018
+    if first_year_bootstrap and source_rows:
+        history_years = [source_year]
+    else:
+        history_years = list(range(2018, source_year + 1))
     history_year_set = set(history_years)
     history_rows = [row for row in all_truth_rows if (_row_year(row) or 0) in history_year_set]
     history_engine_rows = _with_historical_target_metadata(history_rows, source_year, target_year)
+    limited_history = len(history_years) <= 1
     runtime_db_rows = _read_runtime_database_rows()
     runtime_history_years = history_years
     runtime_truth_rows = [row for row in all_truth_rows if (_row_year(row) or 0) in set(runtime_history_years)]
@@ -1468,6 +1480,20 @@ def run_all_families(
     deferred_families: dict[str, str] = {}
 
     audit_dir.mkdir(parents=True, exist_ok=True)
+    run_metadata = {
+        "source_year": source_year,
+        "target_year": target_year,
+        "truth_path": str(truth_path),
+        "first_year_bootstrap": first_year_bootstrap,
+        "limited_history": limited_history,
+        "source_years_available": history_years,
+        "source_rows": len(source_rows),
+        "history_rows": len(history_rows),
+        "calibration_applied": bool(enable_antlerless_deer_calibration),
+        "calibration_mode": calibration_mode,
+        "calibrate_family": calibrate_family,
+    }
+    (audit_dir / "run_metadata.json").write_text(json.dumps(run_metadata, indent=2), encoding="utf-8")
     predictions_dir = audit_dir / "predictions"
     counts: list[dict[str, object]] = []
     leakage: list[dict[str, object]] = []
@@ -1798,6 +1824,9 @@ def run_all_families(
         "prediction_rows": len(all_prediction_rows),
         "family_counts": {family: len(rows) for family, rows in modeled.items()},
         "classified_families": deferred_families,
+        "first_year_bootstrap": first_year_bootstrap,
+        "limited_history": limited_history,
+        "source_years_available": history_years,
         "antlerless_deer_calibration_enabled": enable_antlerless_deer_calibration,
         "antlerless_deer_calibration_mode": calibration_mode,
     }

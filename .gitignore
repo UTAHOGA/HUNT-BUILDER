@@ -839,3 +839,9 @@ processed_data/dwr_huntplanner_hanumber_2026_raw_payloads.json
 /outputs/2019 scorable draw results.csv
 INGEST/
 *.tmp_*
+processed_data/hunt_research_2026.json
+processed_data/hunt_research_2026_ladder.json
+processed_data/hunt_research_2026_ladder_bonus_max_random.json
+data_truth/hunt_code_universe_truth/locked/LOCKED_HUNT_CODE_YEAR_CODE_ROSTER_2017_2026.jsonl
+pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv
+pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv

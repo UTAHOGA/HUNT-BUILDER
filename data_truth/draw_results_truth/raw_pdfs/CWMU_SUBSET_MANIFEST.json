@@ -1,0 +1,226 @@
+﻿[
+    {
+        "year_folder":  "2017_PERMITS=2018_MODEL",
+        "file_name":  "2017_PERMITS=2018_MODEL__CWMU ANTLERLESS DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2017_PERMITS=2018_MODEL\\CWMU\\2017_PERMITS=2018_MODEL__CWMU ANTLERLESS DRAW RESULTS.pdf",
+        "bytes":  288563,
+        "sha256":  "29FF1AADA9F957445673E6BEB25793FE6292E4833710E55203A17106EA588BBD"
+    },
+    {
+        "year_folder":  "2017_PERMITS=2018_MODEL",
+        "file_name":  "2017_PERMITS=2018_MODEL__CWMU BIG GAME DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2017_PERMITS=2018_MODEL\\CWMU\\2017_PERMITS=2018_MODEL__CWMU BIG GAME DRAW RESULTS.pdf",
+        "bytes":  774004,
+        "sha256":  "15E32FB547348FC1A0C82A109AEB5FE211F5226D338E90FC3DC05C19EE071691"
+    },
+    {
+        "year_folder":  "2017_PERMITS=2018_MODEL",
+        "file_name":  "2017_PERMITS=2018_MODEL__CWMU YOUTH ANTLERLESS DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2017_PERMITS=2018_MODEL\\CWMU\\2017_PERMITS=2018_MODEL__CWMU YOUTH ANTLERLESS DRAW RESULTS.pdf",
+        "bytes":  260904,
+        "sha256":  "6139668EB371AAA256C4F13060964251A446EA6EB8C70F6E8D6CA07C1973EB4B"
+    },
+    {
+        "year_folder":  "2018_PERMITS=2019_MODEL",
+        "file_name":  "2018_PERMITS=2019_MODEL__CWMU ANTLERLESS DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2018_PERMITS=2019_MODEL\\CWMU\\2018_PERMITS=2019_MODEL__CWMU ANTLERLESS DRAW RESULTS.pdf",
+        "bytes":  291988,
+        "sha256":  "B4BB9E52AF2E92A5A459F7EE5EDCA0543462B4C93B9B4AA018B6143552CC2B9B"
+    },
+    {
+        "year_folder":  "2018_PERMITS=2019_MODEL",
+        "file_name":  "2018_PERMITS=2019_MODEL__CWMU BIG GAME DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2018_PERMITS=2019_MODEL\\CWMU\\2018_PERMITS=2019_MODEL__CWMU BIG GAME DRAW RESULTS.pdf",
+        "bytes":  769723,
+        "sha256":  "D602FF6FC16A618596B8BDBFD206051549A201C1DA8B8E4A9DDB1EFADC9E22FB"
+    },
+    {
+        "year_folder":  "2018_PERMITS=2019_MODEL",
+        "file_name":  "2018_PERMITS=2019_MODEL__CWMU YOUTH ANTLERLESS DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2018_PERMITS=2019_MODEL\\CWMU\\2018_PERMITS=2019_MODEL__CWMU YOUTH ANTLERLESS DRAW RESULTS.pdf",
+        "bytes":  268834,
+        "sha256":  "34E96A3291484C120EFE616E1642F015B6BF0A9A17499858A6FA456BD244ABA7"
+    },
+    {
+        "year_folder":  "2019_PERMITS=2020_MODEL",
+        "file_name":  "2019_PERMITS=2020_MODEL__CWMU ANTLERLESS DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2019_PERMITS=2020_MODEL\\CWMU\\2019_PERMITS=2020_MODEL__CWMU ANTLERLESS DRAW RESULTS.pdf",
+        "bytes":  303790,
+        "sha256":  "CCD41BC2BD2874D9F3301C808E621FF400B41E8B4575B09419EF361809980E78"
+    },
+    {
+        "year_folder":  "2019_PERMITS=2020_MODEL",
+        "file_name":  "2019_PERMITS=2020_MODEL__CWMU BIG GAME DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2019_PERMITS=2020_MODEL\\CWMU\\2019_PERMITS=2020_MODEL__CWMU BIG GAME DRAW RESULTS.pdf",
+        "bytes":  795144,
+        "sha256":  "71B464FDDD458E7804900F4454C014FF7E1D01BA37E3590DBFE729FBC1B3F96B"
+    },
+    {
+        "year_folder":  "2019_PERMITS=2020_MODEL",
+        "file_name":  "2019_PERMITS=2020_MODEL__CWMU YOUTH ANTLERLESS DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2019_PERMITS=2020_MODEL\\CWMU\\2019_PERMITS=2020_MODEL__CWMU YOUTH ANTLERLESS DRAW RESULTS.pdf",
+        "bytes":  277016,
+        "sha256":  "5ED4AA549CE64C6B1E0D7FFFD5FD60C220F29CDFFA82579265E8523CA68B7CFE"
+    },
+    {
+        "year_folder":  "2020_PERMITS=2021_MODEL",
+        "file_name":  "2020_PERMITS=2021_MODEL__CWMU ANTLERLESS DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2020_PERMITS=2021_MODEL\\CWMU\\2020_PERMITS=2021_MODEL__CWMU ANTLERLESS DRAW RESULTS.pdf",
+        "bytes":  356231,
+        "sha256":  "291ACE52D2551512089470BFC5FDB68AFA10DE99EBFE21187FE0BF944251C186"
+    },
+    {
+        "year_folder":  "2020_PERMITS=2021_MODEL",
+        "file_name":  "2020_PERMITS=2021_MODEL__CWMU L.E. BIG GAME DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2020_PERMITS=2021_MODEL\\CWMU\\2020_PERMITS=2021_MODEL__CWMU L.E. BIG GAME DRAW RESULTS.pdf",
+        "bytes":  1257679,
+        "sha256":  "EE5CA6915B2B00A517CB6E398DF0419D463601A7E1A9AA61863111FE7379CF7D"
+    },
+    {
+        "year_folder":  "2020_PERMITS=2021_MODEL",
+        "file_name":  "2020_PERMITS=2021_MODEL__CWMU YOUTH ANTLERLESS DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2020_PERMITS=2021_MODEL\\CWMU\\2020_PERMITS=2021_MODEL__CWMU YOUTH ANTLERLESS DRAW RESULTS.pdf",
+        "bytes":  332994,
+        "sha256":  "50F6AB1047A5FDDD5A801F34D60AC9EDD14170B43BA7EA2D89D8C1B6274E424A"
+    },
+    {
+        "year_folder":  "2021_PERMITS=2022_MODEL",
+        "file_name":  "2021_PERMITS=2022_MODEL__CWMU ANTLERLESS DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2021_PERMITS=2022_MODEL\\CWMU\\2021_PERMITS=2022_MODEL__CWMU ANTLERLESS DRAW RESULTS.pdf",
+        "bytes":  365444,
+        "sha256":  "AEF5C15FC9C44418D4B965EB99BBAFE87EFE1D6B879BA2D6ADE6573C402E6E29"
+    },
+    {
+        "year_folder":  "2021_PERMITS=2022_MODEL",
+        "file_name":  "2021_PERMITS=2022_MODEL__CWMU L.E. BIG GAME DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2021_PERMITS=2022_MODEL\\CWMU\\2021_PERMITS=2022_MODEL__CWMU L.E. BIG GAME DRAW RESULTS.pdf",
+        "bytes":  1360662,
+        "sha256":  "0201ECF67C8BC22502C769C4515D2FCB99F958F04A55B7F379F145AEC0613185"
+    },
+    {
+        "year_folder":  "2021_PERMITS=2022_MODEL",
+        "file_name":  "2021_PERMITS=2022_MODEL__CWMU YOUTH ANTLERLESS DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2021_PERMITS=2022_MODEL\\CWMU\\2021_PERMITS=2022_MODEL__CWMU YOUTH ANTLERLESS DRAW RESULTS.pdf",
+        "bytes":  333480,
+        "sha256":  "B75ACC3830E13EA35FE493C1168EEA2996189700CE53E175350CF6099B728BCF"
+    },
+    {
+        "year_folder":  "2022_PERMITS=2023_MODEL",
+        "file_name":  "2022_PERMITS=2023_MODEL__CWMU ANTLERLESS DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2022_PERMITS=2023_MODEL\\CWMU\\2022_PERMITS=2023_MODEL__CWMU ANTLERLESS DRAW RESULTS.pdf",
+        "bytes":  381713,
+        "sha256":  "CA80CC2FD2FDCD52AC4660C366666B41DD9C5A54C53E8F9301CFE03B631A7C39"
+    },
+    {
+        "year_folder":  "2022_PERMITS=2023_MODEL",
+        "file_name":  "2022_PERMITS=2023_MODEL__CWMU L.E. AND O.I.L. BIG GAME DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2022_PERMITS=2023_MODEL\\CWMU\\2022_PERMITS=2023_MODEL__CWMU L.E. AND O.I.L. BIG GAME DRAW RESULTS.pdf",
+        "bytes":  1136202,
+        "sha256":  "7C155679A805784ED32219907810300B4501CC0C2F22DEC4E1F08B7BEFA582A1"
+    },
+    {
+        "year_folder":  "2022_PERMITS=2023_MODEL",
+        "file_name":  "2022_PERMITS=2023_MODEL__CWMU YOUTH ANTLERLESS DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2022_PERMITS=2023_MODEL\\CWMU\\2022_PERMITS=2023_MODEL__CWMU YOUTH ANTLERLESS DRAW RESULTS.pdf",
+        "bytes":  342305,
+        "sha256":  "89866165B982EB07768283914013FCD6FA80BD17410ACB7884AE1F86C91E1649"
+    },
+    {
+        "year_folder":  "2023_PERMITS=2024_MODEL",
+        "file_name":  "2023_PERMITS=2024_MODEL__CWMU BIG GAME DEER DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2023_PERMITS=2024_MODEL\\CWMU\\2023_PERMITS=2024_MODEL__CWMU BIG GAME DEER DRAW RESULTS.pdf",
+        "bytes":  626844,
+        "sha256":  "921CF4C8F6E38AF558A051C1730547594872C40A3D57721CC08A4FC7A5D6BA2F"
+    },
+    {
+        "year_folder":  "2023_PERMITS=2024_MODEL",
+        "file_name":  "2023_PERMITS=2024_MODEL__CWMU BIG GAME ELK OTHER DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2023_PERMITS=2024_MODEL\\CWMU\\2023_PERMITS=2024_MODEL__CWMU BIG GAME ELK OTHER DRAW RESULTS.pdf",
+        "bytes":  605168,
+        "sha256":  "2E4AD99ABA3944B97CDF28C597CD8C25FC44E849D5953A311289453D5E6F6530"
+    },
+    {
+        "year_folder":  "2024_PERMITS=2025_MODEL",
+        "file_name":  "2024_PERMITS=2025_MODEL__CWMU ANTLERLESS DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2024_PERMITS=2025_MODEL\\CWMU\\2024_PERMITS=2025_MODEL__CWMU ANTLERLESS DRAW RESULTS.pdf",
+        "bytes":  303154,
+        "sha256":  "5F8F96D910C782CAAF4D36438DD744D97228ACD2BC566A75A1BC58A9948989B1"
+    },
+    {
+        "year_folder":  "2024_PERMITS=2025_MODEL",
+        "file_name":  "2024_PERMITS=2025_MODEL__CWMU L.E. BIG GAME DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2024_PERMITS=2025_MODEL\\CWMU\\2024_PERMITS=2025_MODEL__CWMU L.E. BIG GAME DRAW RESULTS.pdf",
+        "bytes":  1186540,
+        "sha256":  "48BA3A72916CAF73B0AB8215B5C99E44633C4A375FAC9B7C74A34928B396E87B"
+    },
+    {
+        "year_folder":  "2024_PERMITS=2025_MODEL",
+        "file_name":  "2024_PERMITS=2025_MODEL__CWMU YOUTH ANTLERLESS DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2024_PERMITS=2025_MODEL\\CWMU\\2024_PERMITS=2025_MODEL__CWMU YOUTH ANTLERLESS DRAW RESULTS.pdf",
+        "bytes":  277754,
+        "sha256":  "395C0118232CB8CBA04D93639AEA93D8D0D3678F8B8A8895BE816F8B652A4F33"
+    },
+    {
+        "year_folder":  "2025_PERMITS=2026_MODEL",
+        "file_name":  "2025_PERMITS=2026_MODEL__CWMU ANTLERLESS DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2025_PERMITS=2026_MODEL\\CWMU\\2025_PERMITS=2026_MODEL__CWMU ANTLERLESS DRAW RESULTS.pdf",
+        "bytes":  496415,
+        "sha256":  "237EACF34FF02C9C5FBF28CE96B83982B49328B32B40BE248AB835B5CCC21CAD"
+    },
+    {
+        "year_folder":  "2025_PERMITS=2026_MODEL",
+        "file_name":  "2025_PERMITS=2026_MODEL__CWMU BIG GAME BONUS POINT DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2025_PERMITS=2026_MODEL\\CWMU\\2025_PERMITS=2026_MODEL__CWMU BIG GAME BONUS POINT DRAW RESULTS.pdf",
+        "bytes":  1367874,
+        "sha256":  "F1DABCE4131E092B3B448783DABDD0D8859A176DA858B32293E119B99D2881FF"
+    },
+    {
+        "year_folder":  "2025_PERMITS=2026_MODEL",
+        "file_name":  "2025_PERMITS=2026_MODEL__CWMU L.E. BIG GAME DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2025_PERMITS=2026_MODEL\\CWMU\\2025_PERMITS=2026_MODEL__CWMU L.E. BIG GAME DRAW RESULTS.pdf",
+        "bytes":  1527711,
+        "sha256":  "4A8077D45B2426C5141B9A5C3D5E85D94E08F4891C4FC5DB5B6B43E246F857DE"
+    },
+    {
+        "year_folder":  "2025_PERMITS=2026_MODEL",
+        "file_name":  "2025_PERMITS=2026_MODEL__CWMU O.I.L. BIG GAME DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2025_PERMITS=2026_MODEL\\CWMU\\2025_PERMITS=2026_MODEL__CWMU O.I.L. BIG GAME DRAW RESULTS.pdf",
+        "bytes":  217396,
+        "sha256":  "A57A6024865ABE0024741E21ADF9AC9F6C42734AADB9644379D1F47613708F3B"
+    },
+    {
+        "year_folder":  "2025_PERMITS=2026_MODEL",
+        "file_name":  "2025_PERMITS=2026_MODEL__CWMU YOUTH ANTLERLESS DRAW RESULTS.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2025_PERMITS=2026_MODEL\\CWMU\\2025_PERMITS=2026_MODEL__CWMU YOUTH ANTLERLESS DRAW RESULTS.pdf",
+        "bytes":  425787,
+        "sha256":  "FA8CC94EA3EC7F8C64A31A16DFB628C3DB36509A1243280647CD0652BC45E64B"
+    },
+    {
+        "year_folder":  "2026_PERMITS=2027_MODEL",
+        "file_name":  "2026_PERMITS=2027_MODEL__CWMU ANTLERLESS DEER PERMIT QUOTA.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2026_PERMITS=2027_MODEL\\CWMU\\2026_PERMITS=2027_MODEL__CWMU ANTLERLESS DEER PERMIT QUOTA.pdf",
+        "bytes":  4033092,
+        "sha256":  "0DCD461C35B84F2AD833DB09A0B85CE289957BB30F70DDDB8C888C134B0E54A0"
+    },
+    {
+        "year_folder":  "2026_PERMITS=2027_MODEL",
+        "file_name":  "2026_PERMITS=2027_MODEL__CWMU ANTLERLESS MOOSE PERMIT QUOTA.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2026_PERMITS=2027_MODEL\\CWMU\\2026_PERMITS=2027_MODEL__CWMU ANTLERLESS MOOSE PERMIT QUOTA.pdf",
+        "bytes":  4028945,
+        "sha256":  "B4F4CB49EACC6894D3C315F7E96F6A52998D55B38CF97F2E9680CAE804E1494B"
+    },
+    {
+        "year_folder":  "2026_PERMITS=2027_MODEL",
+        "file_name":  "2026_PERMITS=2027_MODEL__CWMU ANTLERLESS PERMIT QUOTA SUMMARY.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2026_PERMITS=2027_MODEL\\CWMU\\2026_PERMITS=2027_MODEL__CWMU ANTLERLESS PERMIT QUOTA SUMMARY.pdf",
+        "bytes":  4071392,
+        "sha256":  "9A378694E4EB5F0D065F4696E199B4BC68F91380FF6A48EA5E356FB58C02CD9A"
+    },
+    {
+        "year_folder":  "2026_PERMITS=2027_MODEL",
+        "file_name":  "2026_PERMITS=2027_MODEL__CWMU COMPREHENSIVE SPECIES HUNT FAMILY UOGA FORMAT.pdf",
+        "relative_path":  "data_truth\\draw_results_truth\\raw_pdfs\\2026_PERMITS=2027_MODEL\\CWMU\\2026_PERMITS=2027_MODEL__CWMU COMPREHENSIVE SPECIES HUNT FAMILY UOGA FORMAT.pdf",
+        "bytes":  1774683,
+        "sha256":  "6E33E5A8BBAC773A0E08E474D2CFA43270A1CE5209A4726236E1D2935D78E55E"
+    }
+]

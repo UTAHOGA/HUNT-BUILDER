@@ -390,9 +390,9 @@ Current report:
 
 Rules:
 
-- O.T.C., capped availability, private-land-only, landowner, no-published-quota, CWMU/contact-operator/reference rows do not receive public `p_draw`.
+- O.T.C., capped availability, private-land-only, landowner, no-published-quota, CWMU contact-operator, CWMU quota-only, and CWMU reference rows do not receive public `p_draw`.
 - Total-only permit rows render total only and do not fabricate resident/nonresident probabilities.
-- Conservation, Expo, Sportsman, CWMU, landowner, mitigation, and private overlays must not inflate public draw quotas.
+- Conservation, Expo, Sportsman, CWMU overlay/reference, landowner, mitigation, and private rows must not inflate public draw quotas.
 
 ## Known Corrections / Follow-Up
 
@@ -423,4 +423,4 @@ official historical truth through N-1
 -> patch only the family-specific engine that fails
 ```
 
-Do not merge Sportsman, EB1007 youth elk, CWMU, Conservation, Expo, OTC, private-land/no-quota, or allocation/reference rows into public draw odds.
+Do not merge Sportsman, EB1007 youth elk, CWMU overlay/reference/contact/quota-only, Conservation, Expo, OTC, private-land/no-quota, or allocation/reference rows into public draw odds. CWMU point-level draw-result rows with published probabilities are scoreable under the CWMU policy.

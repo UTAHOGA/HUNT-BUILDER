@@ -337,7 +337,7 @@ def family_from_truth_row(row: dict[str, str]) -> str:
         return "preference_antlerless_elk"
     if prefix in {"PD"} or ("DOE" in text and "PRONGHORN" in text):
         return "preference_doe_pronghorn"
-    if prefix in {"BI", "GO", "MA", "MB", "RS", "DS"}:
+    if prefix in {"BI", "GO", "MA", "MB", "RE", "RS", "DS"}:
         return "bonus_oil_big_game"
     if prefix in {"PB"}:
         return "bonus_ple_big_game"
@@ -369,6 +369,17 @@ def canonical_workbook_path(repo: Path, year: int) -> Path:
 
 
 def canonical_rows_for_year(repo: Path, year: int) -> tuple[str, list[dict[str, str]]]:
+    normalized_path = (
+        repo
+        / "data_truth"
+        / "draw_results_truth"
+        / "normalized"
+        / "canonical_yearly"
+        / f"draw_results_{year}_for_{year + 1}_canonical_yearly_draw_results.csv"
+    )
+    if normalized_path.exists():
+        return rel(repo, normalized_path), read_csv(normalized_path)
+
     csv_path = repo / "outputs" / str(year) / f"{year}_draw_results_canonical.csv"
     if csv_path.exists():
         return rel(repo, csv_path), read_csv(csv_path)
@@ -404,6 +415,9 @@ def source_reference_only(row: dict[str, str], family: str) -> tuple[bool, str]:
             "hunt_type",
             "hunt_class",
             "hunt_draw_class",
+            "draw_design",
+            "draw_system_type",
+            "draw_pool",
             "algorithm_status",
             "qa_status",
             "notes",
@@ -418,7 +432,15 @@ def source_reference_only(row: dict[str, str], family: str) -> tuple[bool, str]:
         return True, "ALLOCATION_OR_CONSERVATION_REFERENCE_ONLY"
     if "BONUS POINT" in text and "PURCHASE" in text:
         return True, "BONUS_POINT_PURCHASE_ONLY"
-    if "GUARANTEED" in text or "LIFETIME" in text:
+    oil_lifetime_draw = "ONCE-IN-A-LIFETIME" in text or "ONCE IN A LIFETIME" in text or "O.I.L" in text or "OIL" in text
+    lifetime_reference = (
+        "LIFETIME LICENSE" in text
+        or "GUARANTEED LIFETIME" in text
+        or "LIFETIME_DEER" in text
+        or "LIFETIME_GENERAL_SEASON_DEER" in text
+        or "LIFETIME GS DEER" in text
+    )
+    if "GUARANTEED" in text or (lifetime_reference and not oil_lifetime_draw):
         return True, "GUARANTEED_OR_LIFETIME_REFERENCE_ONLY"
     if "REFERENCE_ONLY" in text or "NOT A PREDICTIVE" in text:
         return True, "REFERENCE_ONLY"
@@ -471,6 +493,60 @@ def add_obligation(
     )
 
 
+def source_residency_candidates(row: dict[str, str]) -> list[str]:
+    explicit = clean(row.get("residency"))
+    if explicit:
+        return [explicit]
+
+    source_residencies = upper(row.get("source_residencies"))
+    candidates: list[str] = []
+    if source_residencies:
+        tokens = {token for token in re.split(r"[^A-Z]+", source_residencies) if token}
+        if tokens & {"R", "RES", "RESIDENT"}:
+            candidates.append("Resident")
+        if tokens & {"NR", "NONRES", "NONRESIDENT"} or "NONRESIDENT" in source_residencies or "NONRESIDENT" in "".join(tokens):
+            candidates.append("Nonresident")
+
+    if not candidates:
+        if any(clean(row.get(field)) for field in ("resident_eligible_applicants", "resident_total_permits", "resident_success_ratio", "resident_p_draw", "resident_p_draw_percent")):
+            candidates.append("Resident")
+        if any(clean(row.get(field)) for field in ("nonresident_eligible_applicants", "nonresident_total_permits", "nonresident_success_ratio", "nonresident_p_draw", "nonresident_p_draw_percent")):
+            candidates.append("Nonresident")
+
+    if not candidates:
+        candidates.append("")
+    return candidates
+
+
+def add_unique_obligation(
+    obligations: list[dict[str, Any]],
+    seen: set[tuple[str, str, str, str]],
+    row: dict[str, str],
+    source_year: int,
+    target_year: int,
+    source_path: str,
+    family: str,
+    residency: str,
+    probability_field: str,
+    probability_value: str,
+) -> None:
+    key = (norm_code(row.get("hunt_code")), family, norm_residency(residency), norm_points(row.get("points")))
+    if key in seen:
+        return
+    seen.add(key)
+    add_obligation(
+        obligations,
+        row,
+        source_year,
+        target_year,
+        source_path,
+        family,
+        residency,
+        probability_field,
+        probability_value,
+    )
+
+
 def canonical_prediction_obligations(
     repo: Path,
     source_year: int,
@@ -508,35 +584,34 @@ def canonical_prediction_obligations(
 
         if clean(row.get("residency")):
             if has_number(row, "p_draw", "p_draw_percent", "success_ratio"):
-                key = (code, family, norm_residency(row.get("residency")), norm_points(row.get("points")))
-                if key not in seen:
-                    seen.add(key)
-                    add_obligation(
-                        obligations,
-                        row,
-                        source_year,
-                        target_year,
-                        source_path,
-                        family,
-                        clean(row.get("residency")),
-                        "p_draw",
-                        clean(row.get("p_draw") or row.get("p_draw_percent") or row.get("success_ratio")),
-                    )
+                add_unique_obligation(
+                    obligations,
+                    seen,
+                    row,
+                    source_year,
+                    target_year,
+                    source_path,
+                    family,
+                    clean(row.get("residency")),
+                    "p_draw",
+                    clean(row.get("p_draw") or row.get("p_draw_percent") or row.get("success_ratio")),
+                )
             else:
-                skipped_rows.append(
-                    {
-                        "source_year": source_year,
-                        "target_year": target_year,
-                        "hunt_code": code,
-                        "hunt_name": clean(row.get("hunt_name")),
-                        "species": clean(row.get("species")),
-                        "engine_family": family,
-                        "prediction_final_classification": "PREDICTION_SOURCE_DATA_INCOMPLETE",
-                        "audit_note": "Canonical point row has no numeric published probability; not used as accuracy obligation.",
-                    }
+                add_unique_obligation(
+                    obligations,
+                    seen,
+                    row,
+                    source_year,
+                    target_year,
+                    source_path,
+                    family,
+                    clean(row.get("residency")),
+                    "SOURCE_PROBABILITY_MISSING",
+                    "",
                 )
             continue
 
+        added_probability_obligation = False
         for residency, prob_field, percent_field in (
             ("Resident", "resident_p_draw", "resident_p_draw_percent"),
             ("Nonresident", "nonresident_p_draw", "nonresident_p_draw_percent"),
@@ -545,12 +620,9 @@ def canonical_prediction_obligations(
             if not has_number(row, prob_field, percent_field, success_field):
                 continue
             used_field = next(field for field in (prob_field, percent_field, success_field) if has_number(row, field))
-            key = (code, family, norm_residency(residency), norm_points(row.get("points")))
-            if key in seen:
-                continue
-            seen.add(key)
-            add_obligation(
+            add_unique_obligation(
                 obligations,
+                seen,
                 row,
                 source_year,
                 target_year,
@@ -560,33 +632,22 @@ def canonical_prediction_obligations(
                 used_field,
                 clean(row.get(used_field)),
             )
+            added_probability_obligation = True
 
-        if not any(
-            has_number(row, field)
-            for field in (
-                "resident_p_draw",
-                "resident_p_draw_percent",
-                "resident_success_ratio",
-                "nonresident_p_draw",
-                "nonresident_p_draw_percent",
-                "nonresident_success_ratio",
-                "p_draw",
-                "p_draw_percent",
-                "success_ratio",
-            )
-        ):
-            skipped_rows.append(
-                {
-                    "source_year": source_year,
-                    "target_year": target_year,
-                    "hunt_code": code,
-                    "hunt_name": clean(row.get("hunt_name")),
-                    "species": clean(row.get("species")),
-                    "engine_family": family,
-                    "prediction_final_classification": "PREDICTION_SOURCE_DATA_INCOMPLETE",
-                    "audit_note": "Canonical point row has no numeric published probability; not used as accuracy obligation.",
-                }
-            )
+        if not added_probability_obligation:
+            for residency in source_residency_candidates(row):
+                add_unique_obligation(
+                    obligations,
+                    seen,
+                    row,
+                    source_year,
+                    target_year,
+                    source_path,
+                    family,
+                    residency,
+                    "SOURCE_PROBABILITY_MISSING",
+                    "",
+                )
 
     return obligations, skipped_rows, source_path
 
@@ -595,7 +656,15 @@ def prediction_files_for_year(audit_dirs_by_target_year: dict[int, Path], target
     audit_dir = audit_dirs_by_target_year.get(target_year)
     if audit_dir is None:
         return []
-    return sorted((audit_dir / "runs" / str(target_year) / "predictions").glob("*.csv"))
+    progressive_dir = audit_dir / "runs" / str(target_year) / "predictions"
+    if progressive_dir.exists():
+        return sorted(progressive_dir.glob("*.csv"))
+    bootstrap_dir = audit_dir / "predictions"
+    if bootstrap_dir.exists():
+        metadata = load_json(audit_dir / "run_metadata.json") if (audit_dir / "run_metadata.json").exists() else {}
+        if str(metadata.get("target_year", "")) == str(target_year):
+            return sorted(bootstrap_dir.glob("*.csv"))
+    return []
 
 
 def select_audit_dirs_by_target_year(audit_dirs: Sequence[Path], target_years: Sequence[int]) -> dict[int, Path]:
@@ -606,13 +675,23 @@ def select_audit_dirs_by_target_year(audit_dirs: Sequence[Path], target_years: S
             if prediction_dir.exists() and any(prediction_dir.glob("*.csv")):
                 selected[target_year] = audit_dir
                 break
+            bootstrap_prediction_dir = audit_dir / "predictions"
+            bootstrap_metadata = audit_dir / "run_metadata.json"
+            if bootstrap_prediction_dir.exists() and bootstrap_metadata.exists() and any(bootstrap_prediction_dir.glob("*.csv")):
+                metadata = load_json(bootstrap_metadata)
+                if str(metadata.get("target_year", "")) == str(target_year):
+                    selected[target_year] = audit_dir
+                    break
     return selected
 
 
 def selected_rows_by_target_year(audit_dirs_by_target_year: dict[int, Path], file_name: str) -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
     for target_year, audit_dir in sorted(audit_dirs_by_target_year.items()):
-        for row in read_csv(audit_dir / file_name):
+        candidate = audit_dir / file_name
+        if not candidate.exists():
+            candidate = audit_dir / "runs" / str(target_year) / file_name
+        for row in read_csv(candidate):
             if clean(row.get("target_year")) == str(target_year):
                 rows.append(row)
     return rows
@@ -967,7 +1046,8 @@ def write_summary(
         "",
         "- `ENGINE_CERTIFIED_PREDICTION_TRUTH_PASS` requires zero missing scorable predictions, zero duplicate prediction keys, zero probability failures, zero leakage failures, and no failed family/year runs.",
         "- The known 2018->2019 youth turkey row is allowed only as `SOURCE_NOT_AVAILABLE_NO_PROVEN_YOUTH_TURKEY_HISTORY` because no proven source history exists for that starting step.",
-        "- 2027 antlerless/doe actuals are held out and not penalized.",
+        "- The default certification window ends at target year 2026 because 2027 antlerless/doe actual draw results are not publicly released.",
+        "- 2026->2027 forward predictions must be audited separately, with unreleased antlerless/doe rows excluded or held out.",
         "",
         "## Outputs",
         "",
@@ -994,8 +1074,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Certify progressive prediction artifacts against locked hunt-code truth.")
     parser.add_argument("--repo", default=str(REPO))
     parser.add_argument("--progressive-audit-dir", type=Path, action="append")
-    parser.add_argument("--target-start", type=int, default=2019)
-    parser.add_argument("--target-end", type=int, default=2027)
+    parser.add_argument("--target-start", type=int, default=2018)
+    parser.add_argument("--target-end", type=int, default=2026)
     parser.add_argument("--timestamp", default=datetime.now().strftime("%Y%m%d_%H%M%S"))
     return parser
 

@@ -83,6 +83,49 @@ def _to_int(value: object) -> int:
         return 0
 
 
+def _to_int_optional(value: object) -> int | None:
+    text = _clean(value)
+    if not text:
+        return None
+    try:
+        return int(float(text))
+    except Exception:
+        return None
+
+
+def _row_year(row: Mapping[str, object]) -> int | None:
+    for key in ("actual_draw_year", "source_year", "draw_year", "year"):
+        year = _to_int_optional(row.get(key))
+        if year is not None:
+            return year
+    return None
+
+
+def _history_year_set_or_bootstrap(history_years: list[int], truth_rows: list[Mapping[str, object]]) -> set[int]:
+    history_year_set = {int(year) for year in history_years}
+    if history_year_set:
+        return history_year_set
+    inferred_years = sorted({year for row in truth_rows if (year := _row_year(row)) is not None})
+    return {inferred_years[-1]} if inferred_years else set()
+
+
+def _skipped_no_history_row(forecast_year: int) -> dict[str, object]:
+    return {
+        "family": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+        "draw_system_type": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+        "forecast_year": str(forecast_year),
+        "year": str(forecast_year),
+        "status": "SKIPPED_NO_HISTORY",
+        "blocker": "true",
+        "production_ready": "false",
+        "calibration_ready": "false",
+        "model_strategy": MODEL_STRATEGY_NAME,
+        "preference_model_valid": "FALSE",
+        "reason_codes": "SKIPPED_NO_HISTORY",
+        "preference_model_note": "No source history rows were available for preference general deer; no probability rows were fabricated.",
+    }
+
+
 def _to_float(value: object) -> float:
     text = _clean(value)
     if not text:
@@ -459,9 +502,12 @@ def build_preference_general_deer_predictions(
     forecast_year: int,
     history_years: list[int],
 ) -> list[dict[str, object]]:
-    history_year_set = set(int(year) for year in history_years)
+    truth_rows_list = list(truth_rows)
+    history_year_set = _history_year_set_or_bootstrap(history_years, truth_rows_list)
+    if not history_year_set:
+        return [_skipped_no_history_row(forecast_year)]
     latest_source_year = max(history_year_set)
-    ladders, truth_meta, total_drawn_by_code_year = _build_truth_ladders(truth_rows, history_year_set)
+    ladders, truth_meta, total_drawn_by_code_year = _build_truth_ladders(truth_rows_list, history_year_set)
     retention_by_band, zero_growth = _build_retention_and_zero_growth(ladders)
 
     rows: list[dict[str, object]] = []

@@ -50,6 +50,28 @@ def _round_count(value: float) -> int:
     return max(0, int(round(value)))
 
 
+def _history_years_or_bootstrap(history_years: list[int], truth_rows: list[Mapping[str, object]]) -> list[int]:
+    if history_years:
+        return [int(year) for year in history_years]
+    inferred = sorted({_to_int(row.get("actual_draw_year") or row.get("source_year") or row.get("draw_year") or row.get("year")) for row in truth_rows})
+    inferred = [year for year in inferred if year > 0]
+    return [inferred[-1]] if inferred else []
+
+
+def _skipped_no_history_report(forecast_year: int) -> dict[str, object]:
+    return {
+        "forecast_year": forecast_year,
+        "status": "SKIPPED_NO_HISTORY",
+        "blocker": True,
+        "production_ready": False,
+        "calibration_ready": False,
+        "source_years": [],
+        "total_phase6_rows": 0,
+        "reason_codes": ["SKIPPED_NO_HISTORY"],
+        "note": "No source history rows were available for phase-6 special bonus families; no probability rows were fabricated.",
+    }
+
+
 def _band_for_points(points: int) -> str:
     if points <= 0:
         return "0"
@@ -356,6 +378,9 @@ def build_phase6_bonus_special_predictions(
     history_years: list[int],
 ) -> tuple[list[dict[str, object]], dict[str, object]]:
     truth_rows_list = list(truth_rows)
+    history_years = _history_years_or_bootstrap(history_years, truth_rows_list)
+    if not history_years:
+        return [], _skipped_no_history_report(forecast_year)
     history_year_set = set(int(year) for year in history_years)
     latest_source_year = max(history_year_set)
     source_years_used_text = ",".join(str(year) for year in history_years)

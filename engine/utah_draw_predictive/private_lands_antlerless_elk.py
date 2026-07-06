@@ -113,6 +113,8 @@ def build_private_lands_antlerless_elk_predictions(
     forecast_year: int,
     history_years: list[int],
 ) -> tuple[list[dict[str, object]], dict[str, object]]:
+    latest_history_year = max(history_years) if history_years else forecast_year - 1
+    earliest_history_year = min(history_years) if history_years else forecast_year - 1
     source_rows: dict[str, dict[str, str]] = {}
     for private_lands_source_path in PRIVATE_LANDS_SOURCE_PATHS:
         if not private_lands_source_path.exists() or private_lands_source_path.stat().st_size <= 3:
@@ -227,8 +229,8 @@ def build_private_lands_antlerless_elk_predictions(
                     "source_dataset": "predictive",
                     "source_years_used": ",".join(str(year) for year in history_years),
                     "source_year_count": len(history_years),
-                    "latest_source_year": max(history_years),
-                    "earliest_source_year": min(history_years),
+                    "latest_source_year": latest_history_year,
+                    "earliest_source_year": earliest_history_year,
                     "model_strategy": MODEL_STRATEGY_NAME,
                     "algorithm_status": algorithm_status,
                     "weapon": _clean(db_row.get("weapon")),

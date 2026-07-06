@@ -94,7 +94,8 @@ The existing UI still consumes processed CSVs keyed by `(hunt_code, residency, p
 
 ## Special Permit Overlay Guardrails
 
-- Expo, Conservation, Sportsman, CWMU, landowner, mitigation, private, and boundary overlay permits are not public draw odds quota.
+- Expo, Conservation, Sportsman, CWMU overlay/reference/contact/quota-only, landowner, mitigation, private, and boundary overlay permits are not public draw odds quota.
+- CWMU point-level draw-result rows with published probability evidence are scoreable prediction rows and are governed by `docs/cwmu_prediction_scoring_policy.md`.
 - Special permit overlays may be used for total-permit reconciliation, source metadata, explanatory display, and audit traceability.
 - Special permit overlays must not increase `p_draw_mean`.
 - Special permit overlays must not enter max-point-pool or random-pool quota.

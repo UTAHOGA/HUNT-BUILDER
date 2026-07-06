@@ -85,6 +85,28 @@ def _to_int(value: object) -> int:
         return 0
 
 
+def _history_years_or_bootstrap(history_years: list[int], truth_rows: list[Mapping[str, object]]) -> list[int]:
+    if history_years:
+        return [int(year) for year in history_years]
+    inferred = sorted({_to_int(row.get("actual_draw_year") or row.get("source_year") or row.get("draw_year") or row.get("year")) for row in truth_rows})
+    inferred = [year for year in inferred if year > 0]
+    return [inferred[-1]] if inferred else []
+
+
+def _skipped_no_history_report(forecast_year: int, family: str) -> dict[str, object]:
+    return {
+        "forecast_year": forecast_year,
+        "family": family,
+        "status": "SKIPPED_NO_HISTORY",
+        "blocker": True,
+        "production_ready": False,
+        "calibration_ready": False,
+        "source_years": [],
+        "reason_codes": ["SKIPPED_NO_HISTORY"],
+        "note": f"No source history rows were available for {family}; no probability rows were fabricated.",
+    }
+
+
 def _round_count(value: float) -> int:
     return max(0, int(round(value)))
 
@@ -494,6 +516,9 @@ def build_turkey_bonus_predictions(
     history_years: list[int],
 ) -> tuple[list[dict[str, object]], dict[str, object]]:
     truth_rows_list = list(truth_rows)
+    history_years = _history_years_or_bootstrap(history_years, truth_rows_list)
+    if not history_years:
+        return [], _skipped_no_history_report(forecast_year, TURKEY_DRAW_SYSTEM_TYPE)
     history_year_set = {int(year) for year in history_years}
     source_years_used_text = ",".join(str(year) for year in history_years)
     source_year_count = len(history_years)
@@ -924,6 +949,9 @@ def build_youth_turkey_predictions(
     history_years: list[int],
 ) -> tuple[list[dict[str, object]], dict[str, object]]:
     truth_rows_list = list(truth_rows)
+    history_years = _history_years_or_bootstrap(history_years, truth_rows_list)
+    if not history_years:
+        return [], _skipped_no_history_report(forecast_year, YOUTH_TURKEY_DRAW_SYSTEM_TYPE)
     history_year_set = {int(year) for year in history_years}
     source_years_used_text = ",".join(str(year) for year in history_years)
     source_year_count = len(history_years)

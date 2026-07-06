@@ -84,11 +84,13 @@ highest-weighted public signal. Harvest quality is a capped demand-pressure
 nudge only; it must not directly create `p_draw`, `p_random_mean`,
 `p_max_pool_mean`, or `p_preference_draw`.
 
-Special permit overlays such as Expo, Conservation, Sportsman, CWMU,
-landowner, mitigation, and private/boundary overlays are retained for total
-permit reconciliation and source traceability only. They must not be merged into
-public draw quotas, max-pool quotas, random-pool quotas, or public `p_draw`
-math. Sportsman permits use the separate sportsman model.
+Special permit overlays such as Expo, Conservation, Sportsman, CWMU
+contact/operator, CWMU quota-only, CWMU reference, landowner, mitigation, and
+private/boundary overlays are retained for total permit reconciliation and
+source traceability only. They must not be merged into public draw quotas,
+max-pool quotas, random-pool quotas, or public `p_draw` math. CWMU point-level
+draw-result rows with published probabilities are scoreable under the CWMU
+policy. Sportsman permits use the separate sportsman model.
 
 ## Current limitations
 
