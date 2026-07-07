@@ -1358,6 +1358,12 @@ def run_all_families(
     runtime_db_rows = _read_runtime_database_rows()
     runtime_history_years = history_years
     runtime_truth_rows = [row for row in all_truth_rows if (_row_year(row) or 0) in set(runtime_history_years)]
+    suppressed_runtime_families: set[str] = set()
+    if source_year == 2017:
+        suppressed_runtime_families.add("youth_turkey")
+    runtime_materializer_families = tuple(
+        family for family in RUNTIME_MATERIALIZER_FAMILIES if family not in suppressed_runtime_families
+    )
     big_game_bonus_db_by_code = _big_game_bonus_db_by_code(runtime_db_rows)
     big_game_bonus_raw_rows, big_game_bonus_audit_rows = build_big_game_bonus_predictions(
         history_rows=_prepare_big_game_bonus_history_rows(runtime_truth_rows),
@@ -1411,8 +1417,27 @@ def run_all_families(
     bear_rows = _with_run_fields(bear_rows, source_year, target_year, "bonus_bear")
     turkey_rows, turkey_report = build_turkey_bonus_predictions(runtime_truth_rows, runtime_db_rows, target_year, runtime_history_years)
     turkey_rows = _with_run_fields(turkey_rows, source_year, target_year, "bonus_turkey")
-    youth_turkey_rows, youth_turkey_report = build_youth_turkey_predictions(runtime_truth_rows, runtime_db_rows, target_year, runtime_history_years)
-    youth_turkey_rows = _with_run_fields(youth_turkey_rows, source_year, target_year, "youth_turkey")
+    if "youth_turkey" in suppressed_runtime_families:
+        youth_turkey_rows = []
+        youth_turkey_report = {
+            "forecast_year": target_year,
+            "family": "youth_turkey",
+            "status": "SUPPRESSED_NO_2017_SOURCE",
+            "blocker": False,
+            "production_ready": False,
+            "calibration_ready": False,
+            "source_years": [],
+            "reason_codes": ["SUPPRESSED_NO_2017_SOURCE"],
+            "note": "2017 has no proven youth turkey hunt rows; the lane is omitted from the 2017 run.",
+        }
+    else:
+        youth_turkey_rows, youth_turkey_report = build_youth_turkey_predictions(
+            runtime_truth_rows,
+            runtime_db_rows,
+            target_year,
+            runtime_history_years,
+        )
+        youth_turkey_rows = _with_run_fields(youth_turkey_rows, source_year, target_year, "youth_turkey")
     youth_rows, youth_report = build_youth_predictions(runtime_truth_rows, runtime_db_rows, target_year, runtime_history_years)
     youth_rows = _with_run_fields(youth_rows, source_year, target_year, "youth_draw")
 
@@ -1428,9 +1453,10 @@ def run_all_families(
         "sportsman": sportsman_rows,
         "bonus_bear": bear_rows,
         "bonus_turkey": turkey_rows,
-        "youth_turkey": youth_turkey_rows,
         "youth_draw": youth_rows,
     }
+    if "youth_turkey" not in suppressed_runtime_families:
+        modeled["youth_turkey"] = youth_turkey_rows
     source_backed_rows_by_family = _source_backed_probability_rows(source_rows, modeled, source_year, target_year)
     for family, source_backed_rows in source_backed_rows_by_family.items():
         if not source_backed_rows:
@@ -1474,9 +1500,10 @@ def run_all_families(
         "sportsman": sportsman_report,
         "bonus_bear": bear_report,
         "bonus_turkey": turkey_report,
-        "youth_turkey": youth_turkey_report,
         "youth_draw": youth_report,
     }
+    if "youth_turkey" not in suppressed_runtime_families:
+        runtime_family_reports["youth_turkey"] = youth_turkey_report
     deferred_families: dict[str, str] = {}
 
     audit_dir.mkdir(parents=True, exist_ok=True)
@@ -1643,7 +1670,7 @@ def run_all_families(
         "permit_rows": sportsman_rows,
         "joined_rows": sportsman_rows,
     }
-    for family in RUNTIME_MATERIALIZER_FAMILIES:
+    for family in runtime_materializer_families:
         rows = modeled.get(family, [])
         family_metrics[family] = {
             "family_truth_rows": [
@@ -1693,7 +1720,7 @@ def run_all_families(
             ),
         ]
     )
-    for family in RUNTIME_MATERIALIZER_FAMILIES:
+    for family in runtime_materializer_families:
         rows = modeled.get(family, [])
         report = runtime_family_reports.get(family, {})
         status, blocker = _family_prediction_status(family, rows, report)

@@ -102,3 +102,20 @@ def test_historical_cougar_sportsman_rows_remain_historical_truth_only() -> None
     }
 
     assert classify_draw_system_type(historical_row) == "SPORTSMAN_PERMIT"
+
+
+def test_2017_sportsman_pdf_source_emits_cougar_code_for_2018_forecast() -> None:
+    rows, report = build_sportsman_predictions([], [], 2018, [2017])
+    by_code = {row["hunt_code"]: row for row in rows}
+
+    assert len(rows) == 11
+    assert report["sportsman_source_year"] == 2017
+    assert report["sportsman_source_code_count"] == 11
+    assert {"CG1000", "DB1045", "RS1000", "TK1000"} <= set(by_code)
+    assert "DB0007" not in by_code
+
+    cougar = by_code["CG1000"]
+    assert cougar["sportsman_source_file"] == "2017_sportsman_odds.pdf"
+    assert cougar["sportsman_applicants"] == "1240"
+    assert cougar["sportsman_permit_count"] == "1"
+    assert math.isclose(float(cougar["p_sportsman_draw"]), 1 / 1240, rel_tol=0, abs_tol=1e-6)

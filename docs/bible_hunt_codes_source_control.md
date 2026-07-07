@@ -77,6 +77,12 @@ Examples:
 
 Do not create alternate naming variants once a preferred name exists.
 
+For 2017 draw-result hygiene, apply the stricter collision policy in:
+
+```text
+docs/2017_draw_result_naming_and_collision_policy.md
+```
+
 ## File Family Logic
 
 Expected L.E. subsection families:

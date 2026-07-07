@@ -22,8 +22,10 @@ SPORTSMAN_EXPECTED_CODE_COUNT = 10
 
 REPO = Path(__file__).resolve().parents[2]
 SPORTSMAN_SOURCE_CSV = REPO / "data" / "utah" / "sportsman" / "sportsman_odds_2025.csv"
+SPORTSMAN_SOURCE_DIR = SPORTSMAN_SOURCE_CSV.parent
 SPORTSMAN_HISTORICAL_FEED_CSV = REPO / "processed_data" / "audits" / "sportsman_pdf_clean_script_feed.csv"
 SPORTSMAN_SOURCE_XLSX = REPO / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "xlsx" / "24-25_sportsman_odds.xlsx"
+CANONICAL_YEARLY_DIR = REPO / "data_truth" / "draw_results_truth" / "normalized" / "canonical_yearly"
 
 SPORTSMAN_CODE_ALIASES: dict[str, list[str]] = {
     "BI1000": [],
@@ -89,7 +91,81 @@ def _safe_relative(path: Path) -> str:
 @lru_cache(maxsize=1)
 def _read_sportsman_source_rows() -> tuple[dict[str, str], ...]:
     with SPORTSMAN_SOURCE_CSV.open("r", encoding="utf-8-sig", newline="") as handle:
-        return tuple(dict(row) for row in csv.DictReader(handle))
+        rows = []
+        for row in csv.DictReader(handle):
+            normalized = dict(row)
+            normalized["_source_file"] = _safe_relative(SPORTSMAN_SOURCE_CSV)
+            rows.append(normalized)
+        return tuple(rows)
+
+
+def _sportsman_source_csv_for_year(source_year: int) -> Path:
+    return SPORTSMAN_SOURCE_DIR / f"sportsman_odds_{source_year}.csv"
+
+
+def _canonical_yearly_path(source_year: int) -> Path:
+    return CANONICAL_YEARLY_DIR / f"draw_results_{source_year}_for_{source_year + 1}_canonical_yearly_draw_results.csv"
+
+
+def _is_canonical_sportsman_row(row: Mapping[str, object]) -> bool:
+    return (
+        _clean_lower(row.get("record_type") or row.get("row_type")).startswith("sportsman")
+        or "sportsman" in _clean_lower(row.get("hunt_type"))
+        or "SPORTSMAN" in _clean(row.get("draw_design") or row.get("draw_system_type")).upper()
+    )
+
+
+@lru_cache(maxsize=None)
+def _read_canonical_yearly_sportsman_rows(source_year: int) -> tuple[dict[str, str], ...]:
+    source_csv = _canonical_yearly_path(source_year)
+    if not source_csv.exists():
+        return ()
+    rows: list[dict[str, str]] = []
+    seen: set[str] = set()
+    with source_csv.open("r", encoding="utf-8-sig", newline="") as handle:
+        for raw in csv.DictReader(handle):
+            if not _is_canonical_sportsman_row(raw):
+                continue
+            hunt_code = _clean(raw.get("hunt_code")).upper()
+            if not hunt_code or hunt_code in seen:
+                continue
+            seen.add(hunt_code)
+            resident_quota = _safe_int(raw.get("resident_total_permits")) or _safe_int(raw.get("total_permits"))
+            resident_apps = _safe_int(raw.get("resident_eligible_applicants")) or _safe_int(raw.get("total_eligible_applicants"))
+            source_file = _clean(raw.get("source_file") or raw.get("draw_source_file") or raw.get("source_pdf"))
+            rows.append(
+                {
+                    "year": str(source_year),
+                    "hunt_code": hunt_code,
+                    "hunt_name": _clean(raw.get("hunt_name")),
+                    "species": _clean(raw.get("species")),
+                    "resident_quota": str(resident_quota),
+                    "nonresident_quota": "0",
+                    "total_quota": str(resident_quota),
+                    "resident_apps": str(resident_apps),
+                    "nonresident_apps": "0",
+                    "total_apps": str(resident_apps),
+                    "odds_text": _clean(raw.get("resident_success_ratio") or raw.get("total_success_ratio")),
+                    "odds_denominator": str(resident_apps),
+                    "source_file": source_file or _safe_relative(source_csv),
+                    "_source_file": _safe_relative(source_csv),
+                }
+            )
+    return tuple(rows)
+
+
+@lru_cache(maxsize=None)
+def _read_year_sportsman_source_rows(source_year: int) -> tuple[dict[str, str], ...]:
+    source_csv = _sportsman_source_csv_for_year(source_year)
+    if not source_csv.exists():
+        return ()
+    rows: list[dict[str, str]] = []
+    with source_csv.open("r", encoding="utf-8-sig", newline="") as handle:
+        for row in csv.DictReader(handle):
+            normalized = dict(row)
+            normalized["_source_file"] = _safe_relative(source_csv)
+            rows.append(normalized)
+    return tuple(rows)
 
 
 @lru_cache(maxsize=None)
@@ -133,6 +209,20 @@ def _read_historical_sportsman_rows(source_year: int) -> tuple[dict[str, str], .
 
 @lru_cache(maxsize=None)
 def _sportsman_source_by_code(source_year: int | None = None) -> dict[str, dict[str, str]]:
+    canonical_rows = _read_canonical_yearly_sportsman_rows(source_year) if source_year is not None else ()
+    if canonical_rows:
+        return {
+            _clean(row.get("hunt_code")).upper(): row
+            for row in canonical_rows
+            if _clean(row.get("hunt_code"))
+        }
+    year_rows = _read_year_sportsman_source_rows(source_year) if source_year is not None else ()
+    if year_rows:
+        return {
+            _clean(row.get("hunt_code")).upper(): row
+            for row in year_rows
+            if _clean(row.get("hunt_code"))
+        }
     historical_rows = _read_historical_sportsman_rows(source_year) if source_year is not None else ()
     if historical_rows:
         return {
@@ -150,6 +240,14 @@ def _sportsman_source_by_code(source_year: int | None = None) -> dict[str, dict[
 @lru_cache(maxsize=1)
 def sportsman_code_allowlist() -> set[str]:
     codes = set(_sportsman_source_by_code().keys())
+    if CANONICAL_YEARLY_DIR.exists():
+        for path in CANONICAL_YEARLY_DIR.glob("draw_results_*_for_*_canonical_yearly_draw_results.csv"):
+            with path.open("r", encoding="utf-8-sig", newline="") as handle:
+                for row in csv.DictReader(handle):
+                    if _is_canonical_sportsman_row(row):
+                        code = _clean(row.get("hunt_code")).upper()
+                        if code:
+                            codes.add(code)
     if SPORTSMAN_HISTORICAL_FEED_CSV.exists():
         with SPORTSMAN_HISTORICAL_FEED_CSV.open("r", encoding="utf-8-sig", newline="") as handle:
             for row in csv.DictReader(handle):
@@ -254,7 +352,7 @@ def build_sportsman_predictions(
             "hunt_class": "Public",
             "residency": "Resident",
             "points": "",
-            "draw_pool": "sportsman",
+            "draw_pool": "sportsman_random_only",
             "draw_design": SPORTSMAN_DRAW_SYSTEM_TYPE,
             "sportsman_draw_design": "SPORTSMAN_RANDOM_ONLY",
             "sportsman_random_only": "TRUE",
@@ -283,7 +381,7 @@ def build_sportsman_predictions(
             "sportsman_model_note": "Resident-only random odds: resident permit count divided by eligible resident applicants.",
             "draw_outlook": "STATEWIDE DRAW",
             "sportsman_residency_scope": "RESIDENT_ONLY",
-            "sportsman_source_file": _clean(source_row.get("source_file")) or _safe_relative(SPORTSMAN_SOURCE_CSV),
+            "sportsman_source_file": _clean(source_row.get("source_file")) or _clean(source_row.get("_source_file")) or _safe_relative(SPORTSMAN_SOURCE_CSV),
             "season_dates": season,
             "weapon": _clean(db_row.get("weapon")),
         }
@@ -320,9 +418,6 @@ def build_sportsman_predictions(
         "nonresident_quota_total": sum(_safe_int(row.get("sportsman_nonresident_quota")) for row in rows),
         "split_mechanics_guardrail": "PASS",
         "duplicate_key_count": len(rows) - len({(row["hunt_code"], row["residency"], row["points"]) for row in rows}),
-        "source_files_used": [
-            _safe_relative(SPORTSMAN_HISTORICAL_FEED_CSV) if SPORTSMAN_HISTORICAL_FEED_CSV.exists() else _safe_relative(SPORTSMAN_SOURCE_CSV),
-            _safe_relative(SPORTSMAN_SOURCE_XLSX),
-        ],
+        "source_files_used": sorted({str(row.get("sportsman_source_file") or "") for row in rows if row.get("sportsman_source_file")}),
     }
     return rows, report
