@@ -1348,6 +1348,211 @@ def extra_prediction_rows(
     return extras
 
 
+OFFICIAL_SCORE_KEY_V2_REQUIRED_COLUMNS = (
+    "target_year",
+    "source_family",
+    "draw_system_type",
+    "draw_pool",
+    "hunt_code",
+    "score_scope",
+    "residency",
+    "points",
+    "probability_metric",
+    "official_score_key_v2",
+)
+
+OFFICIAL_SCORE_KEY_V2_JOIN_FIELDS = (
+    "official_score_key_v2",
+    "target_year",
+    "source_family",
+    "draw_system_type",
+    "draw_pool",
+    "hunt_code",
+    "score_scope",
+    "residency",
+    "points",
+    "probability_metric",
+)
+
+OFFICIAL_SCORE_KEY_V2_OUTPUT_FIELDS = (
+    "official_score_key_v2",
+    "target_year",
+    "source_family",
+    "draw_system_type",
+    "draw_pool",
+    "hunt_code",
+    "score_scope",
+    "residency",
+    "points",
+    "probability_metric",
+    "prediction_row_number",
+    "truth_row_number",
+    "prediction_probability_field",
+    "truth_probability_field",
+    "predicted_probability",
+    "actual_probability",
+    "error",
+    "absolute_error",
+    "match_status",
+)
+
+
+class OfficialScoreKeyV2ValidationError(RuntimeError):
+    pass
+
+
+def _score_scope_from_residency(value: Any) -> tuple[str, str]:
+    text = clean(value).lower().replace("-", "").replace("_", "").replace(" ", "")
+    if text in {"resident", "res", "r"}:
+        return "RESIDENT", "Resident"
+    if text in {"nonresident", "nonres", "nr", "n"}:
+        return "NONRESIDENT", "Nonresident"
+    return "TOTAL", ""
+
+
+def _probability_metric_from_row(row: Mapping[str, Any]) -> str:
+    explicit = clean(row.get("probability_metric")).strip()
+    if explicit:
+        return explicit
+    for field in ("p_draw", "p_preference_draw", "p_sportsman_draw", "p_bonus_pool", "p_random_pool", "p_availability"):
+        if clean(row.get(field)) != "":
+            return field
+    return "p_draw"
+
+
+def _probability_for_official_row(row: Mapping[str, Any]) -> tuple[float | None, str]:
+    metric = _probability_metric_from_row(row)
+    candidate_fields = [metric, "p_draw", "actual_probability", "predicted_probability", "p_preference_draw", "p_sportsman_draw", "p_bonus_pool", "p_random_pool", "p_availability"]
+    seen: set[str] = set()
+    for field in candidate_fields:
+        if field in seen:
+            continue
+        seen.add(field)
+        value = bounded_probability(row.get(field), field)
+        if value is not None:
+            return value, field
+    return None, ""
+
+
+def _validate_official_score_key_v2_rows(rows: list[dict[str, str]], *, role: str) -> dict[str, dict[str, Any]]:
+    keyed: dict[str, dict[str, Any]] = {}
+    duplicate_counts: Counter[str] = Counter()
+    for row_number, row in enumerate(rows, start=2):
+        key = clean(row.get("official_score_key_v2"))
+        if not key:
+            raise OfficialScoreKeyV2ValidationError(f"{role} row {row_number} is missing official_score_key_v2")
+        if key in keyed:
+            duplicate_counts[key] += 1
+            continue
+        keyed[key] = {
+            "row_number": row_number,
+            "row": row,
+            "probability": None,
+            "probability_field": "",
+        }
+    if duplicate_counts:
+        sample = "; ".join(f"{key} (+{count})" for key, count in duplicate_counts.most_common(5))
+        raise OfficialScoreKeyV2ValidationError(f"{role} duplicate official_score_key_v2 keys: {len(duplicate_counts)} key(s); {sample}")
+    return keyed
+
+
+def _official_key_join_row(
+    key: str,
+    prediction_entry: dict[str, Any] | None,
+    truth_entry: dict[str, Any] | None,
+    *,
+    target_year: int,
+) -> dict[str, Any]:
+    prediction_row = prediction_entry["row"] if prediction_entry else {}
+    truth_row = truth_entry["row"] if truth_entry else {}
+    base = prediction_row if prediction_row else truth_row
+    predicted_probability, predicted_field = (None, "") if prediction_entry is None else _probability_for_official_row(prediction_row)
+    actual_probability, actual_field = (None, "") if truth_entry is None else _probability_for_official_row(truth_row)
+    error = None
+    if predicted_probability is not None and actual_probability is not None:
+        error = predicted_probability - actual_probability
+    return {
+        "official_score_key_v2": key,
+        "target_year": clean(base.get("target_year")) or str(target_year),
+        "source_family": clean(base.get("source_family")),
+        "draw_system_type": clean(base.get("draw_system_type")),
+        "draw_pool": clean(base.get("draw_pool")),
+        "hunt_code": clean(base.get("hunt_code")).upper(),
+        "score_scope": clean(base.get("score_scope")).upper(),
+        "residency": clean(base.get("residency")),
+        "points": clean(base.get("points")),
+        "probability_metric": clean(base.get("probability_metric")),
+        "prediction_row_number": "" if prediction_entry is None else prediction_entry["row_number"],
+        "truth_row_number": "" if truth_entry is None else truth_entry["row_number"],
+        "prediction_probability_field": predicted_field,
+        "truth_probability_field": actual_field,
+        "predicted_probability": "" if predicted_probability is None else f"{predicted_probability:.10f}",
+        "actual_probability": "" if actual_probability is None else f"{actual_probability:.10f}",
+        "error": "" if error is None else f"{error:.10f}",
+        "absolute_error": "" if error is None else f"{abs(error):.10f}",
+        "match_status": "matched" if prediction_entry and truth_entry else ("missing_prediction" if truth_entry else "extra_prediction"),
+    }
+
+
+def run_official_score_key_v2_mode(args: argparse.Namespace, prediction_rows: list[dict[str, str]], truth_rows: list[dict[str, str]]) -> dict[str, Any]:
+    prediction_by_key = _validate_official_score_key_v2_rows(prediction_rows, role="prediction")
+    truth_by_key = _validate_official_score_key_v2_rows(truth_rows, role="truth")
+
+    all_keys = sorted(set(prediction_by_key) | set(truth_by_key))
+    joined_rows: list[dict[str, Any]] = []
+    unmatched_prediction_rows: list[dict[str, Any]] = []
+    unmatched_truth_rows: list[dict[str, Any]] = []
+    errors: list[float] = []
+
+    for key in all_keys:
+        prediction_entry = prediction_by_key.get(key)
+        truth_entry = truth_by_key.get(key)
+        row = _official_key_join_row(key, prediction_entry, truth_entry, target_year=args.target_year)
+        if prediction_entry and truth_entry:
+            joined_rows.append(row)
+            predicted_probability = parse_float(row.get("predicted_probability"))
+            actual_probability = parse_float(row.get("actual_probability"))
+            if predicted_probability is not None and actual_probability is not None:
+                errors.append(predicted_probability - actual_probability)
+        elif prediction_entry:
+            unmatched_prediction_rows.append(row)
+        else:
+            unmatched_truth_rows.append(row)
+
+    if not joined_rows and all_keys:
+        raise OfficialScoreKeyV2ValidationError("No matched official_score_key_v2 rows were produced")
+
+    mae = rmse = bias = ""
+    if errors:
+        mae = f"{sum(abs(error) for error in errors) / len(errors):.10f}"
+        rmse = f"{math.sqrt(sum(error * error for error in errors) / len(errors)):.10f}"
+        bias = f"{sum(errors) / len(errors):.10f}"
+
+    summary = {
+        "scoring_mode": "official_score_key_v2",
+        "target_year": args.target_year,
+        "prediction_rows": len(prediction_rows),
+        "truth_rows": len(truth_rows),
+        "joined_rows": len(joined_rows),
+        "unmatched_prediction_rows": len(unmatched_prediction_rows),
+        "unmatched_truth_rows": len(unmatched_truth_rows),
+        "duplicate_prediction_keys": 0,
+        "duplicate_truth_keys": 0,
+        "scored_rows": len(errors),
+        "mae": mae,
+        "rmse": rmse,
+        "bias": bias,
+        "calibration_applied": False,
+    }
+
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    write_csv(args.output_dir / "official_score_key_v2_joined_rows.csv", joined_rows, list(OFFICIAL_SCORE_KEY_V2_OUTPUT_FIELDS))
+    write_csv(args.output_dir / "official_score_key_v2_unmatched_prediction_rows.csv", unmatched_prediction_rows, list(OFFICIAL_SCORE_KEY_V2_OUTPUT_FIELDS))
+    write_csv(args.output_dir / "official_score_key_v2_unmatched_truth_rows.csv", unmatched_truth_rows, list(OFFICIAL_SCORE_KEY_V2_OUTPUT_FIELDS))
+    write_json(args.output_dir / "official_score_key_v2_summary.json", summary)
+    return summary
+
+
 def run(args: argparse.Namespace) -> dict[str, Any]:
     global HUNT_CODE_CROSSWALK, ACTIVE_SCORING_HUNT_CODE_ALIASES
     crosswalk_dirs = [DEFAULT_HUNT_CODE_CROSSWALK_DIR] + list(args.hunt_code_crosswalk_dir or [])
@@ -1359,10 +1564,12 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     HUNT_CODE_CROSSWALK = load_hunt_code_crosswalk(crosswalk_files)
     ACTIVE_SCORING_HUNT_CODE_ALIASES = dict(BASE_SCORING_HUNT_CODE_ALIASES)
     ACTIVE_SCORING_HUNT_CODE_ALIASES.update(
-        YEAR_SCOPED_SCORING_HUNT_CODE_ALIASES.get((clean(args.source_year), clean(args.target_year)), {})
+        YEAR_SCOPED_SCORING_HUNT_CODE_ALIASES.get((clean(args.source_year), clean(args.target_year)), {}) if args.source_year is not None else {}
     )
     prediction_header, prediction_rows = read_csv(args.prediction_file)
     actual_header, actual_rows = read_csv(args.truth_file)
+    if args.source_year is None or ("official_score_key_v2" in prediction_header and "official_score_key_v2" in actual_header):
+        return run_official_score_key_v2_mode(args, prediction_rows, actual_rows)
     ladders, actual_draw_years, actual_model_targets = build_ladders(actual_rows)
 
     rowlevel: list[dict[str, Any]] = []
@@ -1515,12 +1722,12 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     return summary
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--prediction-file", type=Path, required=True)
-    parser.add_argument("--truth-file", type=Path, required=True)
+    parser.add_argument("--predictions", "--prediction-file", dest="prediction_file", type=Path, required=True)
+    parser.add_argument("--truth", "--truth-file", dest="truth_file", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
-    parser.add_argument("--source-year", type=int, required=True)
+    parser.add_argument("--source-year", type=int)
     parser.add_argument("--target-year", type=int, required=True)
     parser.add_argument(
         "--hunt-code-crosswalk-file",
@@ -1546,12 +1753,41 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Exit nonzero unless every possible actual ladder row has a prediction probability.",
     )
-    return parser.parse_args()
+    return parser.parse_args(argv)
 
 
-def main() -> int:
-    args = parse_args()
-    summary = run(args)
+def main(argv: Sequence[str] | None = None) -> int:
+    args = parse_args(argv)
+    try:
+        summary = run(args)
+    except OfficialScoreKeyV2ValidationError as exc:
+        print(str(exc))
+        return 2
+
+    if summary.get("scoring_mode") == "official_score_key_v2":
+        print(
+            json.dumps(
+                {
+                    "prediction_rows": summary["prediction_rows"],
+                    "truth_rows": summary["truth_rows"],
+                    "joined_rows": summary["joined_rows"],
+                    "unmatched_prediction_rows": summary["unmatched_prediction_rows"],
+                    "unmatched_truth_rows": summary["unmatched_truth_rows"],
+                    "duplicate_prediction_keys": summary["duplicate_prediction_keys"],
+                    "duplicate_truth_keys": summary["duplicate_truth_keys"],
+                    "scored_rows": summary["scored_rows"],
+                    "mae": summary["mae"],
+                    "rmse": summary["rmse"],
+                    "bias": summary["bias"],
+                    "calibration_applied": summary["calibration_applied"],
+                    "output_dir": rel(args.output_dir),
+                },
+                indent=2,
+                sort_keys=True,
+            )
+        )
+        return 0
+
     print(
         json.dumps(
             {

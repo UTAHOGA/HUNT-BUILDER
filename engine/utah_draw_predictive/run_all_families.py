@@ -164,10 +164,6 @@ def _family_prediction_status(
 ) -> tuple[str, str]:
     if rows:
         return "PASS", ""
-    if family == "youth_turkey":
-        observed_history = _to_int((report or {}).get("youth_turkey_rows_seen_observed_history")) or 0
-        if observed_history <= 0:
-            return "CLASSIFIED", "SOURCE_NOT_AVAILABLE_NO_PROVEN_YOUTH_TURKEY_HISTORY"
     return "FAIL", "NO_ROWS"
 
 
@@ -859,7 +855,7 @@ def _effective_draw_pool_for_family(row: Mapping[str, object], family: str) -> s
     if draw_pool and draw_pool.lower() != "standard":
         return draw_pool
     return {
-        "sportsman": "sportsman_random_only",
+        "sportsman": "random",
         "bonus_bear": "black_bear",
         "bonus_le_big_game": "max_weighted_split",
         "bonus_ple_big_game": "max_weighted_split",
@@ -883,6 +879,101 @@ def _metric_scope_for_residency(value: object) -> str:
     if text in {"nonresident", "nonres", "nr", "n"}:
         return "nonresident"
     return "total"
+
+
+def _score_scope_and_residency(value: object) -> tuple[str, str]:
+    text = _clean(value).lower().replace("-", "").replace("_", "").replace(" ", "")
+    if text in {"resident", "res", "r"}:
+        return "RESIDENT", "Resident"
+    if text in {"nonresident", "nonres", "nr", "n"}:
+        return "NONRESIDENT", "Nonresident"
+    return "TOTAL", ""
+
+
+def _probability_metric_for_output_row(row: Mapping[str, object]) -> str:
+    if _clean(row.get("p_draw")):
+        return "p_draw"
+    if _clean(row.get("p_preference_draw")):
+        return "p_preference_draw"
+    if _clean(row.get("p_sportsman_draw")):
+        return "p_sportsman_draw"
+    if _clean(row.get("p_bonus_pool")):
+        return "p_bonus_pool"
+    if _clean(row.get("p_random_pool")):
+        return "p_random_pool"
+    if _clean(row.get("p_availability")):
+        return "p_availability"
+    return "p_draw"
+
+
+def _source_family_for_output_row(family: str, row: Mapping[str, object]) -> str:
+    existing = _clean(row.get("source_family")).upper()
+    if existing:
+        return existing
+
+    draw_system_type = _clean(row.get("draw_system_type")).upper()
+    draw_pool = _clean(row.get("draw_pool")).lower()
+    text = _joined_lower(row, "hunt_code", "hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "draw_design", "draw_pool", "source_file")
+
+    if family == "sportsman":
+        return "SPORTSMAN"
+    if family == "bonus_bear":
+        return "BEAR_DRAW_RESULTS"
+    if family == "bonus_turkey":
+        return "TURKEY"
+    if family == "cougar":
+        return "COUGAR"
+    if family == "bonus_oil_big_game":
+        return "OIL_BIG_GAME"
+    if family in {"bonus_le_big_game", "bonus_ple_big_game"}:
+        return "LE_BIG_GAME"
+    if family == "dedicated_hunter":
+        return "DEDICATED_HUNTER_DEER"
+    if family == "preference_general_deer":
+        if "youth" in text or draw_pool.startswith("youth_") or draw_system_type.startswith("YOUTH_"):
+            return "YOUTH_GENERAL_SEASON_DEER"
+        return "GENERAL_SEASON_DEER"
+    if family in {"preference_antlerless_deer", "preference_antlerless_elk", "preference_doe_pronghorn"}:
+        if "youth" in text or draw_pool.startswith("youth_") or draw_system_type.startswith("YOUTH_"):
+            return "YOUTH_ANTLERLESS"
+        return "ADULT_ANTLERLESS"
+    if family == "youth_turkey":
+        return "TURKEY"
+    if family == "youth_draw":
+        if (
+            draw_system_type == "YOUTH_GENERAL_ANY_BULL_ELK"
+            or "ANY BULL ELK" in text
+            or draw_pool == "youth_general_any_bull_elk"
+        ):
+            return "YOUTH_ANY_BULL_ELK"
+        if "ANTLERLESS" in draw_system_type or "DOE_PRONGHORN" in draw_system_type or draw_pool.startswith("youth_antlerless"):
+            return "YOUTH_ANTLERLESS"
+        return "YOUTH_GENERAL_SEASON_DEER"
+    return _clean(row.get("source_scope")).upper() or family.upper()
+
+
+def _official_score_key_v2(row: Mapping[str, object]) -> str:
+    target_year = _clean(row.get("target_year") or row.get("prediction_year"))
+    source_family = _source_family_for_output_row(_clean(row.get("family")), row)
+    draw_system_type = _clean(row.get("draw_system_type")).upper()
+    draw_pool = _clean(row.get("draw_pool")).lower()
+    hunt_code = _clean(row.get("hunt_code")).upper()
+    score_scope, residency = _score_scope_and_residency(row.get("residency"))
+    points = _clean(row.get("points")).upper()
+    probability_metric = _probability_metric_for_output_row(row)
+    return "|".join(
+        [
+            target_year,
+            source_family,
+            draw_system_type,
+            draw_pool,
+            hunt_code,
+            score_scope,
+            residency,
+            points,
+            probability_metric,
+        ]
+    )
 
 
 def _aggregate_target_permits(rows: Sequence[Mapping[str, object]]) -> dict[tuple[str, str, str], dict[str, float]]:
@@ -972,16 +1063,20 @@ def _with_run_fields(rows: Iterable[Mapping[str, object]], source_year: int, tar
     for row in rows:
         item = dict(row)
         is_sportsman = family == "sportsman"
+        score_scope, normalized_residency = _score_scope_and_residency(item.get("residency") or item.get("metric_scope"))
         item["source_year"] = source_year
         item["target_year"] = target_year
         item["prediction_year"] = target_year
         item["family"] = family
+        item["source_family"] = _source_family_for_output_row(family, item)
         item["draw_system_type"] = _family_draw_system(family) or _draw_system(item)
         item["engine_family"] = _engine_family_for_row(family, item)
         if "draw_design" in item:
             item["draw_design"] = item["draw_system_type"]
         item["draw_pool"] = _effective_draw_pool_for_family(item, family)
         item["metric_scope"] = _clean(item.get("metric_scope")) or _metric_scope_for_residency(item.get("residency"))
+        item["score_scope"] = score_scope
+        item["residency"] = normalized_residency
         item["draw_method"] = _clean(item.get("draw_method")) or _default_draw_method_for_family(family)
         item["point_system"] = _clean(item.get("point_system")) or _default_point_system_for_family(family)
         item["algorithm_status"] = _default_algorithm_status_for_family(family, item)
@@ -1017,6 +1112,8 @@ def _with_run_fields(rows: Iterable[Mapping[str, object]], source_year: int, tar
             item["p_draw_p90"] = _clean(item.get("p_draw_p90")) or f"{probability if is_sportsman else min(1.0, probability + 0.05):.6f}"
             item["display_odds_pct"] = _clean(item.get("display_odds_pct")) or f"{probability * 100.0:.3f}"
             item["display_odds_text"] = _clean(item.get("display_odds_text")) or (_clean(item.get("sportsman_odds_text")) if is_sportsman else _render_odds_text(probability))
+        item["probability_metric"] = _probability_metric_for_output_row(item)
+        item["official_score_key_v2"] = _official_score_key_v2(item)
         item["public_permits_target"] = _clean(item.get("public_permits_target")) or _clean(item.get("public_permits_2026"))
         item["public_permits_source"] = _clean(item.get("public_permits_source")) or (
             f"source_year_{source_year}_sportsman_raw_draw_results" if is_sportsman else f"source_year_{source_year}_split_truth_columns_for_target_{target_year}"

@@ -965,6 +965,7 @@ def write_summary(
     probability_rows: list[dict[str, Any]],
     leakage_rows: list[dict[str, Any]],
 ) -> dict[str, Any]:
+    output_dir.mkdir(parents=True, exist_ok=True)
     count_status = Counter(row.get("status") for row in counts_rows)
     classified_rows = [row for row in counts_rows if row.get("status") == "CLASSIFIED"]
     failed_counts = [row for row in counts_rows if row.get("status") == "FAIL"]
@@ -981,7 +982,7 @@ def write_summary(
         and not probability_failures
         and not leakage_failures
         and not progressive_leakage_failures
-        and all(row.get("blocker_if_failed") == "SOURCE_NOT_AVAILABLE_NO_PROVEN_YOUTH_TURKEY_HISTORY" for row in classified_rows)
+        and not classified_rows
     )
     classification = "ENGINE_CERTIFIED_PREDICTION_TRUTH_PASS" if pass_condition else "ENGINE_CERTIFIED_PREDICTION_TRUTH_BLOCKED"
     summary = {
@@ -1044,8 +1045,7 @@ def write_summary(
         "",
         "## Classification Rule",
         "",
-        "- `ENGINE_CERTIFIED_PREDICTION_TRUTH_PASS` requires zero missing scorable predictions, zero duplicate prediction keys, zero probability failures, zero leakage failures, and no failed family/year runs.",
-        "- The known 2018->2019 youth turkey row is allowed only as `SOURCE_NOT_AVAILABLE_NO_PROVEN_YOUTH_TURKEY_HISTORY` because no proven source history exists for that starting step.",
+        "- `ENGINE_CERTIFIED_PREDICTION_TRUTH_PASS` requires zero missing scorable predictions, zero duplicate prediction keys, zero probability failures, zero leakage failures, zero classified rows, and no failed family/year runs.",
         "- The default certification window ends at target year 2026 because 2027 antlerless/doe actual draw results are not publicly released.",
         "- 2026->2027 forward predictions must be audited separately, with unreleased antlerless/doe rows excluded or held out.",
         "",
@@ -1061,7 +1061,7 @@ def write_summary(
         "- `PROMOTION_READINESS.json`",
     ]
     if classified_rows:
-        lines.extend(["", "## Classified Exemptions", ""])
+        lines.extend(["", "## Classified Rows", ""])
         for row in classified_rows:
             lines.append(
                 f"- `{row.get('source_year')}->{row.get('target_year')} {row.get('family')}`: `{row.get('blocker_if_failed')}`"
