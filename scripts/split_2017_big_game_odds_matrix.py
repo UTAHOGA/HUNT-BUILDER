@@ -152,9 +152,15 @@ def sex_class(row: Dict[str, str]) -> str:
     return norm(row.get("sex")) or "UNKNOWN"
 
 
-def adult_or_youth(row: Dict[str, str]) -> str:
+def youth_set_aside_overlay_flag(row: Dict[str, str]) -> str:
     text = norm(" ".join([row.get("raw_hunt_name", ""), row.get("hunt_name", ""), row.get("hunt_class", ""), row.get("source_file", "")]))
-    return "YOUTH" if "YOUTH" in text else "ADULT"
+    return "TRUE" if "YOUTH" in text else "FALSE"
+
+
+def youth_overlay_status(row: Dict[str, str]) -> str:
+    if youth_set_aside_overlay_flag(row) == "TRUE":
+        return "SOURCE_PROVEN_YOUTH_SET_ASIDE_QUOTA_OVERLAY"
+    return "ADULT_BASE_HUNT_NO_YOUTH_OVERLAY_IN_SOURCE"
 
 
 def route_status(program: str, bucket: str) -> str:
@@ -191,11 +197,13 @@ def main() -> int:
                 "matrix_program_bucket": program,
                 "matrix_species_path": f"BIG_GAME/{program}/{bucket}" if status == "PASS_ROUTED" else "BIG_GAME/REVIEW/{bucket}",
                 "cwmu_flag": cwmu_flag(row),
-                "adult_or_youth": adult_or_youth(row),
+                "base_hunt_layer": "ADULT_BASE_HUNT",
+                "youth_set_aside_overlay_flag": youth_set_aside_overlay_flag(row),
+                "youth_overlay_status": youth_overlay_status(row),
                 "sex_class_matrix": sex_class(row),
                 "source_row_id": f"2017_BIG_GAME_MATRIX-{idx:06d}",
                 "routing_status": status,
-                "routing_notes": "P.L.E. deer-only; L.E. deer/elk/pronghorn; O.I.L. bison/sheep/moose/goat. CWMU retained as overlay flag.",
+                "routing_notes": "P.L.E. deer-only; L.E. deer/elk/pronghorn; O.I.L. bison/sheep/moose/goat. CWMU and youth set-aside quota retained as overlays.",
                 "source_pdf_page": pdf_page,
             }
         )
@@ -209,7 +217,9 @@ def main() -> int:
         "matrix_program_bucket",
         "matrix_species_path",
         "cwmu_flag",
-        "adult_or_youth",
+        "base_hunt_layer",
+        "youth_set_aside_overlay_flag",
+        "youth_overlay_status",
         "sex_class_matrix",
         "source_row_id",
         "routing_status",
@@ -310,30 +320,32 @@ def main() -> int:
         ],
     )
 
-    overlay_manifest_rows = []
-    overlay_groups: Dict[tuple, List[Dict[str, object]]] = defaultdict(list)
+    quota_overlay_manifest_rows = []
+    quota_overlay_groups: Dict[tuple, List[Dict[str, object]]] = defaultdict(list)
     for row in routed_rows:
         cwmu_partition = "CWMU" if row.get("cwmu_flag") == "TRUE" else "NON_CWMU"
-        overlay_groups[
+        quota_layer = "YOUTH_SET_ASIDE_QUOTA_OVERLAY" if row.get("youth_set_aside_overlay_flag") == "TRUE" else "ADULT_BASE_HUNT"
+        quota_overlay_groups[
             (
                 clean(row["matrix_program_bucket"]),
                 clean(row["big_game_species_bucket"]),
-                clean(row["adult_or_youth"]),
                 cwmu_partition,
+                quota_layer,
             )
         ].append(row)
-    overlay_root = OUT_DIR / "split_rows_by_overlay" / "BIG_GAME"
-    for (program, bucket, age_bucket, cwmu_partition), group in sorted(overlay_groups.items()):
-        out_path = overlay_root / program / bucket / age_bucket / cwmu_partition / f"2017_BIG_GAME_{program}_{bucket}_{age_bucket}_{cwmu_partition}_ROWS.csv"
+    overlay_root = OUT_DIR / "split_rows_by_quota_overlay" / "BIG_GAME"
+    for (program, bucket, cwmu_partition, quota_layer), group in sorted(quota_overlay_groups.items()):
+        out_path = overlay_root / program / bucket / cwmu_partition / quota_layer / f"2017_BIG_GAME_{program}_{bucket}_{cwmu_partition}_{quota_layer}_ROWS.csv"
         write_csv(out_path, group, fields)
         pages = sorted({int(clean(row.get("pdf_page")) or 0) for row in group if clean(row.get("pdf_page")).isdigit()})
-        overlay_manifest_rows.append(
+        quota_overlay_manifest_rows.append(
             {
                 "matrix_program_bucket": program,
                 "big_game_species_bucket": bucket,
-                "adult_or_youth": age_bucket,
                 "cwmu_partition": cwmu_partition,
-                "matrix_overlay_path": f"BIG_GAME/{program}/{bucket}/{age_bucket}/{cwmu_partition}",
+                "quota_layer": quota_layer,
+                "youth_set_aside_overlay_flag": "TRUE" if quota_layer == "YOUTH_SET_ASIDE_QUOTA_OVERLAY" else "FALSE",
+                "matrix_overlay_path": f"BIG_GAME/{program}/{bucket}/{cwmu_partition}/{quota_layer}",
                 "output_path": rel(out_path),
                 "row_count": len(group),
                 "unique_hunt_codes": len({clean(row.get("hunt_code")) for row in group if clean(row.get("hunt_code"))}),
@@ -344,15 +356,16 @@ def main() -> int:
                 "routing_status": "PASS_ROUTED" if all(row.get("routing_status") == "PASS_ROUTED" for row in group) else "REVIEW_REQUIRED",
             }
         )
-    overlay_manifest_path = OUT_DIR / "2017_BIG_GAME_ODDS_ADULT_YOUTH_CWMU_SPLIT_MANIFEST.csv"
+    overlay_manifest_path = OUT_DIR / "2017_BIG_GAME_ODDS_YOUTH_SET_ASIDE_CWMU_OVERLAY_MANIFEST.csv"
     write_csv(
         overlay_manifest_path,
-        overlay_manifest_rows,
+        quota_overlay_manifest_rows,
         [
             "matrix_program_bucket",
             "big_game_species_bucket",
-            "adult_or_youth",
             "cwmu_partition",
+            "quota_layer",
+            "youth_set_aside_overlay_flag",
             "matrix_overlay_path",
             "output_path",
             "row_count",
@@ -365,27 +378,29 @@ def main() -> int:
         ],
     )
     overlay_count_rows = []
-    for (program, bucket, age_bucket, cwmu_partition), group in sorted(overlay_groups.items()):
+    for (program, bucket, cwmu_partition, quota_layer), group in sorted(quota_overlay_groups.items()):
         overlay_count_rows.append(
             {
                 "matrix_program_bucket": program,
                 "big_game_species_bucket": bucket,
-                "adult_or_youth": age_bucket,
                 "cwmu_partition": cwmu_partition,
+                "quota_layer": quota_layer,
+                "youth_set_aside_overlay_flag": "TRUE" if quota_layer == "YOUTH_SET_ASIDE_QUOTA_OVERLAY" else "FALSE",
                 "row_count": len(group),
                 "unique_hunt_codes": len({clean(row.get("hunt_code")) for row in group if clean(row.get("hunt_code"))}),
                 "routing_review_rows": sum(1 for row in group if row.get("routing_status") != "PASS_ROUTED"),
             }
         )
-    overlay_counts_path = OUT_DIR / "2017_BIG_GAME_ODDS_ADULT_YOUTH_CWMU_SPLIT_COUNTS.csv"
+    overlay_counts_path = OUT_DIR / "2017_BIG_GAME_ODDS_YOUTH_SET_ASIDE_CWMU_OVERLAY_COUNTS.csv"
     write_csv(
         overlay_counts_path,
         overlay_count_rows,
         [
             "matrix_program_bucket",
             "big_game_species_bucket",
-            "adult_or_youth",
             "cwmu_partition",
+            "quota_layer",
+            "youth_set_aside_overlay_flag",
             "row_count",
             "unique_hunt_codes",
             "routing_review_rows",
@@ -398,8 +413,8 @@ def main() -> int:
     ple_species_count = len({clean(row["big_game_species_bucket"]) for row in routed_rows if clean(row["matrix_program_bucket"]) == "PREMIUM_LIMITED_ENTRY"})
     le_species_count = len({clean(row["big_game_species_bucket"]) for row in routed_rows if clean(row["matrix_program_bucket"]) == "LIMITED_ENTRY"})
     unexpected_ple_non_deer = sum(1 for row in routed_rows if row["matrix_program_bucket"] == "PREMIUM_LIMITED_ENTRY" and row["big_game_species_bucket"] != "DEER")
-    youth_row_count = sum(1 for row in routed_rows if row["adult_or_youth"] == "YOUTH")
-    adult_row_count = sum(1 for row in routed_rows if row["adult_or_youth"] == "ADULT")
+    youth_overlay_row_count = sum(1 for row in routed_rows if row["youth_set_aside_overlay_flag"] == "TRUE")
+    adult_base_row_count = sum(1 for row in routed_rows if row["base_hunt_layer"] == "ADULT_BASE_HUNT")
     cwmu_row_count = sum(1 for row in routed_rows if row["cwmu_flag"] == "TRUE")
     non_cwmu_row_count = sum(1 for row in routed_rows if row["cwmu_flag"] != "TRUE")
     taxonomy_status = "PASS_BIG_GAME_MATRIX_ROUTED" if not unexpected_ple_non_deer and route_status_counts.get("PASS_ROUTED", 0) == len(routed_rows) else "PASS_WITH_REVIEW_REQUIRED"
@@ -427,7 +442,7 @@ def main() -> int:
                 "LE_BIG_GAME_SPECIES_BUCKET_COUNT=3",
                 "PLE_DEER_ONLY=TRUE",
                 "",
-                "P.L.E. routes deer only. L.E. routes deer, elk, and pronghorn. O.I.L. routes bison, Rocky Mountain bighorn sheep, Desert bighorn sheep, moose, and mountain goat. CWMU is preserved as an overlay flag.",
+                "P.L.E. routes deer only. L.E. routes deer, elk, and pronghorn. O.I.L. routes bison, Rocky Mountain bighorn sheep, Desert bighorn sheep, moose, and mountain goat. CWMU is preserved as an overlay flag. Youth is a set-aside quota overlay on adult/base hunts where source-proven, not a peer split against adult.",
                 "",
                 "## Counts",
                 "",
@@ -438,8 +453,8 @@ def main() -> int:
                 f"LE species count: {le_species_count}",
                 f"OIL species count: {oil_species_count}",
                 f"unexpected PLE non-deer rows: {unexpected_ple_non_deer}",
-                f"adult rows: {adult_row_count}",
-                f"youth rows: {youth_row_count}",
+                f"adult base rows: {adult_base_row_count}",
+                f"youth set-aside overlay rows: {youth_overlay_row_count}",
                 f"CWMU rows: {cwmu_row_count}",
                 f"non-CWMU rows: {non_cwmu_row_count}",
                 "",
@@ -448,8 +463,8 @@ def main() -> int:
                 f"- routed rows: {rel(routed_path)}",
                 f"- split manifest: {rel(manifest_path)}",
                 f"- split counts: {rel(counts_path)}",
-                f"- adult/youth/CWMU overlay manifest: {rel(overlay_manifest_path)}",
-                f"- adult/youth/CWMU overlay counts: {rel(overlay_counts_path)}",
+                f"- youth set-aside/CWMU overlay manifest: {rel(overlay_manifest_path)}",
+                f"- youth set-aside/CWMU overlay counts: {rel(overlay_counts_path)}",
                 "",
                 "## Routing Status Counts",
                 "",
@@ -470,12 +485,12 @@ def main() -> int:
             f"SPLIT_MANIFEST={manifest_path}",
             f"SPLIT_COUNTS={counts_path}",
             f"SPLIT_REPORT={report_path}",
-            f"ADULT_YOUTH_CWMU_SPLIT_MANIFEST={overlay_manifest_path}",
-            f"ADULT_YOUTH_CWMU_SPLIT_COUNTS={overlay_counts_path}",
+            f"YOUTH_SET_ASIDE_CWMU_OVERLAY_MANIFEST={overlay_manifest_path}",
+            f"YOUTH_SET_ASIDE_CWMU_OVERLAY_COUNTS={overlay_counts_path}",
             f"BIG_GAME_SOURCE_ROWS={len(routed_rows)}",
             f"BIG_GAME_UNIQUE_HUNT_CODES={len({clean(row.get('hunt_code')) for row in routed_rows if clean(row.get('hunt_code'))})}",
-            f"ADULT_ROWS={adult_row_count}",
-            f"YOUTH_ROWS={youth_row_count}",
+            f"ADULT_BASE_ROWS={adult_base_row_count}",
+            f"YOUTH_SET_ASIDE_OVERLAY_ROWS={youth_overlay_row_count}",
             f"CWMU_ROWS={cwmu_row_count}",
             f"NON_CWMU_ROWS={non_cwmu_row_count}",
             "BIG_GAME_SPECIES_BUCKET_COUNT=8",
