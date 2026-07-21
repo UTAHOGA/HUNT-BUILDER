@@ -215,6 +215,81 @@ body {
   align-items: flex-start;
 }
 
+.library-wall-map {
+  position: absolute;
+  left: clamp(430px, 25vw, 520px);
+  top: clamp(156px, 17vh, 200px);
+  z-index: 4;
+  width: clamp(150px, 10vw, 196px);
+  aspect-ratio: 554 / 711;
+  margin: 0;
+  padding: 9px;
+  transform: rotate(-1.8deg);
+  transform-origin: 50% 10%;
+  border: 1px solid rgba(75, 43, 20, 0.74);
+  border-radius: 3px 7px 5px 8px;
+  background:
+    radial-gradient(circle at 18% 14%, rgba(255, 228, 157, 0.28), transparent 20%),
+    radial-gradient(circle at 82% 86%, rgba(58, 29, 11, 0.38), transparent 24%),
+    repeating-linear-gradient(
+      38deg,
+      rgba(86, 48, 23, 0.1) 0,
+      rgba(86, 48, 23, 0.1) 2px,
+      rgba(232, 187, 111, 0.08) 2px,
+      rgba(232, 187, 111, 0.08) 7px
+    ),
+    linear-gradient(180deg, #b27b42 0%, #875129 48%, #5f351a 100%);
+  box-shadow:
+    0 13px 26px rgba(0, 0, 0, 0.48),
+    inset 0 0 0 1px rgba(255, 224, 168, 0.18),
+    inset 0 0 18px rgba(27, 13, 6, 0.46);
+  pointer-events: none;
+}
+
+.library-wall-map::before,
+.library-wall-map::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.library-wall-map::before {
+  z-index: 3;
+  background:
+    radial-gradient(circle at 11% 10%, #3b2414 0 3px, #a15d28 3px 6px, #321608 7px, transparent 8px),
+    radial-gradient(circle at 89% 10%, #3b2414 0 3px, #a15d28 3px 6px, #321608 7px, transparent 8px),
+    radial-gradient(circle at 12% 90%, #3b2414 0 2px, #8d4e23 3px 5px, #2d1408 6px, transparent 7px),
+    radial-gradient(circle at 88% 90%, #3b2414 0 2px, #8d4e23 3px 5px, #2d1408 6px, transparent 7px);
+  filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.55));
+}
+
+.library-wall-map::after {
+  z-index: 2;
+  border: 9px solid rgba(70, 36, 15, 0.34);
+  box-shadow:
+    inset 0 0 22px rgba(62, 28, 10, 0.72),
+    inset 0 0 0 1px rgba(255, 227, 170, 0.24);
+  background:
+    radial-gradient(circle at 4% 3%, rgba(58, 26, 9, 0.58), transparent 14%),
+    radial-gradient(circle at 96% 7%, rgba(58, 26, 9, 0.5), transparent 15%),
+    radial-gradient(circle at 6% 96%, rgba(48, 20, 8, 0.62), transparent 16%),
+    radial-gradient(circle at 94% 94%, rgba(48, 20, 8, 0.55), transparent 14%);
+}
+
+.library-wall-map img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 2px 5px 4px 6px;
+  object-fit: cover;
+  filter: sepia(0.28) saturate(0.78) contrast(0.88) brightness(0.86);
+  opacity: 0.88;
+  mix-blend-mode: multiply;
+  clip-path: polygon(2% 0, 99% 2%, 100% 20%, 98% 46%, 100% 74%, 97% 100%, 4% 98%, 0 92%, 2% 65%, 0 38%);
+}
+
 .public-library-controls {
   position: absolute;
   left: 50%;
@@ -735,6 +810,12 @@ body {
     top: clamp(250px, 40vh, 356px);
   }
 
+  .library-wall-map {
+    left: clamp(190px, 21vw, 260px);
+    top: clamp(138px, 18vh, 196px);
+    width: clamp(118px, 14vw, 154px);
+  }
+
   .public-library-note {
     width: min(720px, 90vw);
     top: clamp(306px, 48vh, 420px);
@@ -771,6 +852,10 @@ body {
     transform: none;
     width: min(420px, 94vw);
     margin: 8px auto 0;
+  }
+
+  .library-wall-map {
+    display: none;
   }
 
   .public-library-note {
