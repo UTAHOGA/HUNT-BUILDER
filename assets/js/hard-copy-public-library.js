@@ -763,6 +763,7 @@
     if (!panel || !panelTitle || !panelCount || !chips || !grid) return;
 
     if (!shouldShowResults(state)) {
+      document.body.classList.remove("library-results-open");
       panel.hidden = true;
       panel.setAttribute("aria-hidden", "true");
       chips.innerHTML = "";
@@ -773,6 +774,7 @@
       return;
     }
 
+    document.body.classList.add("library-results-open");
     panel.hidden = false;
     panel.setAttribute("aria-hidden", "false");
     panel.setAttribute("tabindex", "-1");
