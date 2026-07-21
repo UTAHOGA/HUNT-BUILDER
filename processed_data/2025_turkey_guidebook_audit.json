@@ -1,7 +1,7 @@
 {
   "classification": "PRIOR_YEAR_TURKEY_GUIDEBOOK_TRUTH_SOURCE_AUDIT",
   "timestamp_utc": "2026-05-24T11:09:17.710661+00:00",
-  "source_pdf": "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/2024-25_upland_turkey.pdf",
+  "source_pdf": "pipeline/RAW/hunt_unit_database/2024/pdf/regulations/2024_REGULATIONS__UPLAND_TURKEY.pdf",
   "guidebook_title": "2024-25 Utah Upland Game and Turkey Guidebook",
   "source_sha256": "5d6af291900a3c790c1673ad0e520d38d2ddc0ddbb2392f67426b1a45bc2e8a3",
   "expected_sha256": "5d6af291900a3c790c1673ad0e520d38d2ddc0ddbb2392f67426b1a45bc2e8a3",

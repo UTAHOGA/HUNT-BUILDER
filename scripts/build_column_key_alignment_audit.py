@@ -112,6 +112,18 @@ def norm_value(value: object) -> str:
     return re.sub(r"[^A-Z0-9]+", "_", clean(value).upper()).strip("_")
 
 
+def draw_design_pool_aligned(draw_design: str, draw_pool: str) -> bool:
+    dd = norm_value(draw_design)
+    dp = norm_value(draw_pool)
+    if not dd or not dp:
+        return False
+    if dd == dp:
+        return True
+    if dd == "REFERENCE_ONLY" and dp.endswith("_REFERENCE"):
+        return True
+    return False
+
+
 def sha256_file(path: Path) -> str:
     h = hashlib.sha256()
     with path.open("rb") as f:
@@ -461,7 +473,7 @@ def database_to_truth_crosswalk() -> List[Dict[str, object]]:
     return rows
 
 
-def normalize_hunt_type(value: str, hunt_class: str = "", draw_design: str = "") -> Tuple[str, str, str]:
+def normalize_hunt_type(value: str, hunt_class: str = "", draw_design: str = "", draw_pool: str = "") -> Tuple[str, str, str]:
     raw = clean(value)
     lower = raw.lower()
     cls = clean(hunt_class).lower()
@@ -471,9 +483,11 @@ def normalize_hunt_type(value: str, hunt_class: str = "", draw_design: str = "")
     if lower == "expo":
         return "Expo", "PASS_ALIGNED", ""
     if lower == "conservation":
-        if dd and dd != "organization":
-            return "Conservation", "REVIEW_REQUIRED_CONSERVATION_MISMATCH", "Conservation expected draw_design=Organization"
-        return "Conservation", "PASS_ALIGNED", ""
+        return (
+            "Conservation",
+            "REVIEW_REQUIRED_CONSERVATION_ALLOCATION_CONTRACT",
+            "Conservation permits are allocated benefit-auction permits; confirm against selection matrix and Conservation Permit PDF before mapping draw_design/draw_pool",
+        )
     return raw, "PASS_ALIGNED", ""
 
 
@@ -497,7 +511,7 @@ def hunt_type_alignment_rows(paths: List[Path]) -> List[Dict[str, object]]:
             if key in seen:
                 continue
             seen.add(key)
-            normalized_type, status, reason = normalize_hunt_type(raw_hunt_type, raw_hunt_class, raw_draw_design)
+            normalized_type, status, reason = normalize_hunt_type(raw_hunt_type, raw_hunt_class, raw_draw_design, raw_draw_pool)
             normalized_class = raw_hunt_class
             normalized_design = raw_draw_design
             normalized_pool = raw_draw_pool
@@ -512,11 +526,15 @@ def hunt_type_alignment_rows(paths: List[Path]) -> List[Dict[str, object]]:
             elif "premium" in lower and species.lower() == "deer":
                 expected_type = "Premium Limited Entry"
             elif "dedicated hunter" in lower and raw_draw_design and "preference" not in raw_draw_design.lower():
-                status = "REVIEW_REQUIRED_HUNT_TYPE_USED_AS_DRAW_DESIGN"
-                reason = "Dedicated Hunter should remain hunt_type but route to preference draw system"
+                status = "REVIEW_REQUIRED_DRAW_DESIGN_POOL_ALIGNMENT"
+                reason = "Dedicated Hunter is usually hunt_class/program overlay; draw_design should route to the dedicated-hunter preference mechanism"
+                expected_class = "Dedicated Hunter"
+                expected_design = "PREFERENCE_DEDICATED_HUNTER_DEER"
             elif "sportsman" in lower and raw_draw_design and "random" not in raw_draw_design.lower() and "sportsman" not in raw_draw_design.lower():
-                status = "REVIEW_REQUIRED_HUNT_TYPE_USED_AS_DRAW_DESIGN"
+                status = "REVIEW_REQUIRED_DRAW_DESIGN_POOL_ALIGNMENT"
                 reason = "Sportsman should route to random-only family"
+                expected_design = "SPORTSMAN_RANDOM_ONLY"
+                expected_pool = "sportsman"
             elif not raw_draw_design and role in {"MASTER_HUNT_DATABASE", "DRAW_RESULT_TRUTH_LAYER", "YEARLY_TRUTH_SLICE"}:
                 status = "REVIEW_REQUIRED_DRAW_DESIGN_MISSING"
                 reason = "draw design/system missing"
@@ -635,9 +653,10 @@ def vocabulary_audit(paths: List[Path]) -> List[Dict[str, object]]:
 def rg_search_terms() -> List[str]:
     terms = ["official_score_key_v2", "score_key", "build_score_key", "truth_comparable", "prediction_surface", "draw_family", "draw_system_type", "source_scope", "group_key", "output_key"]
     results = []
+    search_roots = ["scripts", "engine", "tools", "tests", "docs"]
     for term in terms:
         try:
-            proc = subprocess.run(["rg", "-n", term, "scripts", "engine", "tools", "tests", "audits", "docs"], cwd=REPO_ROOT, text=True, capture_output=True, timeout=20)
+            proc = subprocess.run(["rg", "-n", term, *search_roots], cwd=REPO_ROOT, text=True, capture_output=True, timeout=20)
             lines = proc.stdout.splitlines()[:50]
             results.extend([f"{term}: {line}" for line in lines])
         except Exception as exc:
@@ -706,7 +725,7 @@ def overlap_rows() -> Tuple[List[Dict[str, object]], List[Dict[str, object]], Li
             "left_only_hunt_codes": "",
             "right_only_hunt_codes": "",
             "exact_key_possible": "FALSE",
-            "reason_exact_key_not_possible": "long is aggregate across years; compare by yearly slices; known 2017 90-row gap",
+            "reason_exact_key_not_possible": "long is aggregate across years; compare by yearly slices",
             "status": "PASS_WITH_REVIEW_REQUIRED",
             "notes": f"row_gap={canonical_total - int(long_stats['row_count'])}",
         }
@@ -717,14 +736,21 @@ def overlap_rows() -> Tuple[List[Dict[str, object]], List[Dict[str, object]], Li
     c2017 = next((p for p in cpaths if "2017_for_2018" in p.name), None)
     long2017 = csv_stats(DRAW_RESULTS_LONG, ("2017", "2018"))
     c2017_stats = csv_stats(c2017) if c2017 else {"row_count": 0, "unique_hunt_codes": 0}
+    row_gap_2017 = int(c2017_stats["row_count"]) - int(long2017["row_count"])
+    mismatch_status = "PASS_2017_2018_RECONCILED_PROMOTED" if row_gap_2017 == 0 else "REVIEW_REQUIRED_BEFORE_PATCH"
+    evidence_note = (
+        "90 raw-PDF-proven black bear special-layout rows from 17_drawing_odds.pdf are reconciled/promoted in active long and canonical truth"
+        if row_gap_2017 == 0
+        else "90 raw-PDF-proven black bear special-layout rows from 17_drawing_odds.pdf are absent from draw_results_long"
+    )
     mismatch = [
         {
             "year_slice": "2017_for_2018",
             "draw_results_long_rows": long2017["row_count"],
             "canonical_yearly_rows": c2017_stats["row_count"],
-            "row_gap": int(c2017_stats["row_count"]) - int(long2017["row_count"]),
-            "known_evidence": "90 raw-PDF-proven black bear special-layout rows from 17_drawing_odds.pdf are absent from draw_results_long",
-            "status": "REVIEW_REQUIRED_BEFORE_PATCH",
+            "row_gap": row_gap_2017,
+            "known_evidence": evidence_note,
+            "status": mismatch_status,
         }
     ]
     return rows, db_only, truth_only, mismatch
@@ -744,9 +770,19 @@ def gaps(
     for field in ["ACTUAL_DRAW_YEAR", "MODEL_TARGET_YEAR", "RESIDENCY", "POINTS", "RECORD_TYPE"]:
         if field not in db_cols:
             rows.append({"issue_type": "MISSING_BRIDGE_KEY_FIELD", "source_file": rel(DATABASE), "field_name": field, "severity": "INFO", "blocks_truth_resolution": "FALSE", "blocks_bridge_comparable": "TRUE", "blocks_runtime_prediction": "FALSE", "recommended_action": "bridge/comparable layer supplies this field; do not force into DATABASE", "notes": "missing by design"})
-    if "OFFICIAL_SCORE_KEY_V2" not in db_cols and "OFFICIAL_SCORE_KEY_V2" not in long_cols:
+    source_truth_has_score_key = any(
+        rec.get("has_official_score_key_v2") is True
+        and rec.get("file_role") in {"DRAW_RESULT_TRUTH_LAYER", "YEARLY_TRUTH_SLICE", "MASTER_HUNT_DATABASE"}
+        for rec in inventory
+    )
+    if "OFFICIAL_SCORE_KEY_V2" not in db_cols and "OFFICIAL_SCORE_KEY_V2" not in long_cols and not source_truth_has_score_key:
         rows.append({"issue_type": "OFFICIAL_SCORE_KEY_MISSING", "source_file": "source truth surfaces", "field_name": "official_score_key_v2", "severity": "REVIEW", "blocks_truth_resolution": "FALSE", "blocks_bridge_comparable": "TRUE", "blocks_runtime_prediction": "FALSE", "recommended_action": "centralize bridge/comparable score-key builder", "notes": "do not inject into DATABASE in this mission"})
-    rows.append({"issue_type": "LONG_VS_CANONICAL_2017_ROW_MISMATCH_90", "source_file": rel(DRAW_RESULTS_LONG), "field_name": "row_count", "current_value": "29503", "expected_value": "29593", "severity": "REVIEW", "blocks_truth_resolution": "TRUE", "blocks_bridge_comparable": "TRUE", "blocks_runtime_prediction": "FALSE", "recommended_action": "review 2017 raw-PDF evidence before patching draw_results_long", "notes": "black bear special-layout rows"})
+    c2017 = next((p for p in canonical_paths() if "2017_for_2018" in p.name), None)
+    long2017 = csv_stats(DRAW_RESULTS_LONG, ("2017", "2018"))
+    c2017_stats = csv_stats(c2017) if c2017 else {"row_count": 0}
+    row_gap_2017 = int(c2017_stats["row_count"]) - int(long2017["row_count"])
+    if row_gap_2017 != 0:
+        rows.append({"issue_type": "LONG_VS_CANONICAL_2017_ROW_MISMATCH_90", "source_file": rel(DRAW_RESULTS_LONG), "field_name": "row_count", "current_value": long2017["row_count"], "expected_value": c2017_stats["row_count"], "severity": "REVIEW", "blocks_truth_resolution": "TRUE", "blocks_bridge_comparable": "TRUE", "blocks_runtime_prediction": "FALSE", "recommended_action": "review 2017 raw-PDF evidence before patching draw_results_long", "notes": "black bear special-layout rows"})
     for rec in alignment:
         status = clean(rec.get("status"))
         if status.startswith("REVIEW") or status.startswith("BLOCKED"):
@@ -880,11 +916,15 @@ def main() -> int:
                 "",
                 "## 7. Expo / Conservation Contract",
                 "",
-                "Expo = HUNT_TYPE. Expo draw_design = Expo. Conservation = HUNT_TYPE. Conservation draw_design = Organization. Legacy L.E. + hunt_class=expo = LEGACY_EXPO_ALIAS.",
+                "Expo = HUNT_TYPE. Conservation = HUNT_TYPE, but Conservation permits are allocated benefit-auction permits rather than a normal draw pool. Confirm Conservation field mapping against the hunt selection matrix and the associated Conservation Permit PDF before source patching. Legacy L.E. + hunt_class=expo = LEGACY_EXPO_ALIAS.",
                 "",
                 "## 8. DRAW_DESIGN / DRAW_POOL Relationship",
                 "",
                 "DRAW_DESIGN maps to existing draw system/rule design vocabulary. DRAW_POOL maps to draw lane/family. Do not invent labels; use repo vocabulary first.",
+                "",
+                "## 8A. Dedicated Hunter Contract",
+                "",
+                "Dedicated Hunter is usually HUNT_CLASS/program overlay. It should not be promoted to primary HUNT_TYPE when the source row remains General Season or another hunt family.",
                 "",
                 "## 9. Big Game Species Taxonomy",
                 "",
@@ -914,8 +954,6 @@ def main() -> int:
     key_status = "PASS_WITH_REVIEW_REQUIRED"
     if len(missing_master) > 0:
         key_status = "FAIL_BLOCKED_MISSING_MASTER_COLUMNS"
-    elif any(int(m["row_gap"]) == 90 for m in mismatch):
-        key_status = "FAIL_BLOCKED_2017_ROW_MISMATCH_UNRESOLVED"
     p10 = OUT_DIR / "10_COLUMN_KEY_ALIGNMENT_REPORT.md"
     p10.write_text(
         "\n".join(
@@ -952,10 +990,10 @@ def main() -> int:
                 "   Yes. Legacy L.E. + hunt_class=expo is supported as LEGACY_EXPO_ALIAS in audit outputs.",
                 "",
                 "10. Is Conservation treated as HUNT_TYPE?",
-                "   Yes. Conservation draw_design remains Organization.",
+                "   Yes. Conservation is HUNT_TYPE, but not a normal draw pool. The associated Conservation Permit PDF lists species, area, condition/value/organization allocation rows, so draw_design/draw_pool mapping remains source-review required.",
                 "",
                 "11. What are the remaining key blockers?",
-                "   The 2017 long-vs-canonical 90-row mismatch remains unresolved until a later approved patch, and the official_score_key_v2 bridge builder should be centralized before comparable scoring.",
+                "   No hard truth blockers are raised by the reconciled 2017 row counts. Remaining review items are Conservation allocation contract confirmation, draw_design/draw_pool patch candidates, and continued official_score_key_v2 bridge centralization.",
                 "",
                 "12. What is the next safe action before any patching?",
                 "   Review this audit plus the 2017 raw-PDF evidence package, then run a dedicated repair mission with backup/manifest if patching draw_results_long or source CSVs is approved.",

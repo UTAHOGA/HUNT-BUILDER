@@ -1604,7 +1604,7 @@
       {
         "sha256": "be5da034dd02a1453f5bc220101b9cf7b7ae8a5e6566043b3606fe3d72cda5ee",
         "paths": [
-          "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/2025 Bear and Cougar.pdf",
+          "pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__BEAR_COUGAR.pdf",
           "pipeline/RAW/hunt_unit_database/_quarantine/duplicates/exact_hash/9830D239__black-bear-and-cougar-guidebook (2025_12_24 23_43_27 UTC).pdf"
         ],
         "count": 2
@@ -1612,7 +1612,7 @@
       {
         "sha256": "cb738da88b18dbeae39e8f6053411ea520d12f6acd3fea57400681bd6634765f",
         "paths": [
-          "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/2025 Cougar.pdf",
+          "pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__COUGAR.pdf",
           "pipeline/RAW/hunt_unit_database/_quarantine/duplicates/exact_hash/379A9E5E__cougar_guidebook (2025_12_24 23_43_27 UTC).pdf"
         ],
         "count": 2
@@ -1620,8 +1620,8 @@
       {
         "sha256": "513951a6990b44de9af85c597a96b552f22cf0ec83f16d22f02398e14bc461ae",
         "paths": [
-          "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/2025-26 Upland Game Turkey.pdf",
-          "pipeline/RAW/hunt_unit_database/2026/pdf/regulations/2025-26 Upland Game Turkey.pdf",
+          "pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__UPLAND_TURKEY.pdf",
+          "pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__UPLAND_TURKEY.pdf",
           "pipeline/RAW/hunt_unit_database/2026/pdf/regulations/2026 Turkey.pdf",
           "pipeline/RAW/hunt_unit_database/_quarantine/duplicates/exact_hash/A8D807AA__upland_turkey_guidebook (2025_12_24 23_43_27 UTC).pdf"
         ],
@@ -2565,7 +2565,7 @@
     ],
     "unknown_report_type_count": 735,
     "unknown_report_type_paths": [
-      "pipeline/RAW/hunt_unit_database/2022/pdf/regulations/guidebook_2022-23_cougar.pdf",
+      "pipeline/RAW/hunt_unit_database/2022/pdf/regulations/2022_REGULATIONS__COUGAR.pdf",
       "pipeline/RAW/hunt_unit_database/2024/geojson/LOA_2024_ GEO PRIVATE LOA.geojson",
       "pipeline/RAW/hunt_unit_database/2024/geojson/LOA_2024_gdb_-2965368397397759606.geojson",
       "pipeline/RAW/hunt_unit_database/2024/pdf/regulation/76E828EE__Hunting Guide and Outfitter Definition, Rules and Regulations..pdf",
@@ -2673,10 +2673,10 @@
       "pipeline/RAW/hunt_unit_database/2025/formatted_tables/pages_from_24_bg_report_2_final_extract/final_extract_manifest.xlsx",
       "pipeline/RAW/hunt_unit_database/2025/formatted_tables/truth_source_2024/2024_ENGINE_HARD_DATA_TRUTH_SOURCE.csv",
       "pipeline/RAW/hunt_unit_database/2025/formatted_tables/truth_source_2024/2024_ENGINE_HARD_DATA_TRUTH_SOURCE_report.json",
-      "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/2025 Bear and Cougar.pdf",
-      "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/2025 Big Game.pdf",
-      "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/2025 Cougar.pdf",
-      "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/2025-26 Upland Game Turkey.pdf",
+      "pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__BEAR_COUGAR.pdf",
+      "pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__FIELD_REGS.pdf",
+      "pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__COUGAR.pdf",
+      "pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__UPLAND_TURKEY.pdf",
       "pipeline/RAW/hunt_unit_database/2026/arcgis/udwr_boundaries_layer0.geojson",
       "pipeline/RAW/hunt_unit_database/2026/arcgis/udwr_huntnumber_boundary_table1.csv",
       "pipeline/RAW/hunt_unit_database/2026/arcgis/udwr_huntnumber_boundary_table1.json",
@@ -2938,7 +2938,7 @@
       "pipeline/RAW/hunt_unit_database/2026/pdf/hunt units printouts/EB1011.pdf",
       "pipeline/RAW/hunt_unit_database/2026/pdf/hunt units printouts/EX1000 Print.pdf",
       "pipeline/RAW/hunt_unit_database/2026/pdf/hunt units printouts/black bear pursuit.pdf",
-      "pipeline/RAW/hunt_unit_database/2026/pdf/regulations/2025-26 Upland Game Turkey.pdf",
+      "pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__UPLAND_TURKEY.pdf",
       "pipeline/RAW/hunt_unit_database/2026/pdf/regulations/2026 Bear Cougar Furbearer Guidebook.pdf",
       "pipeline/RAW/hunt_unit_database/2026/pdf/regulations/2026 Big Game Application.pdf",
       "pipeline/RAW/hunt_unit_database/2026/pdf/regulations/2026 Fishing.pdf",

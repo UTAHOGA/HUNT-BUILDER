@@ -6225,7 +6225,7 @@
     "example_values": [
       "2025 Preliminary Big Game Harvest Report",
       "2026 Waterfowl Guidebook",
-      "2025-26 Upland Game Turkey Guidebook",
+      "2025 Upland Turkey Guidebook",
       "2026 Bear Cougar Furbearer Guidebook"
     ],
     "fallback_behavior": "Displayed as card title; falls back to hunt_code or filename where the current UI allows it.",

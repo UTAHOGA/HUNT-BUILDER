@@ -8587,7 +8587,7 @@ Commit:
 ## 2025 Guidebook Code Lookup For 2026 Gaps
 - Timestamp (UTC): 2026-05-26T01:00:00Z
 - Scope:
-  - Extracted hunt-code lines from `HUNTS/pipeline/RAW/hunt_unit_database/2025/pdf/regulation/2025_biggameapp.pdf`.
+  - Extracted hunt-code lines from `HUNTS/pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__BIGGAMEAPP.pdf`.
   - Compared extracted 2025 guidebook codes to the 102 unresolved rows from the 2025-to-2026 hunt-code comparison (`101` current 2026 populated codes with no mapped 2025 history plus `1` 2025 historical code without populated 2026 permits).
   - Classified evidence as exact current-code hits, same-number prefix swaps, name/species candidates, or no guidebook code found.
   - Kept name-only candidates as review evidence only; no source CSV values, `DATABASE.csv`, website feeds, runtime files, materializer code, or prediction surfaces were changed.
@@ -9130,7 +9130,7 @@ Commit:
 ## 2025 Big Game Field Regulations Source Label Audit
 - Timestamp (UTC): 2026-05-24T10:45:00Z
 - Scope:
-  - Added a repeatable source-label audit for `pipeline/RAW/hunt_unit_database/2025/pdf/regulation/field_regs 2025.pdf`.
+  - Added a repeatable source-label audit for `pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__FIELD_REGS.pdf`.
   - Confirmed the PDF is the `2025 Utah Big Game Field Regulations` source, with SHA-256 `05a87b5babd0a22af62c993bd3fe0ba106fb18f7029ed60fc75f6babe4dbdaa7`.
   - Confirmed no Hunting Bible/hard-copy manifest entry currently labels this PDF as `2026 Field Regulations`.
   - Confirmed the source is not exported to the Hunting Bible yet and is not present in the quality raw PDF inventory/promoted source manifests.
@@ -9144,7 +9144,7 @@ Commit:
 ## 2025 Big Game Field Regulations Comprehensive Text Audit
 - Timestamp (UTC): 2026-05-24T09:35:00Z
 - Scope:
-  - Expanded the 2025 field-regulations audit into a page/line/token cross-check against `pipeline/RAW/hunt_unit_database/2025/pdf/regulation/field_regs 2025.pdf`.
+  - Expanded the 2025 field-regulations audit into a page/line/token cross-check against `pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__FIELD_REGS.pdf`.
   - Materialized every extracted PDF text line with source file, PDF page, printed page, line number, and text.
   - Materialized every extracted date, number/money, phone/code, and Utah Admin./Code citation token with page and line traceability.
   - Added 50 pasted-data anchor checks covering contents, season dates, license/application fees, over-the-counter dates, youth elk updates, CWD/reporting rules, weapon restrictions, special restrictions, donation/Red Butte removals, antlerless/CWMU sections, and definitions.
@@ -15544,9 +15544,9 @@ o_table=0).
   - `C:/Users/tyler/Desktop/BIBLE HUNT CODES/2023/2023_sportsman_hunt_codes_clean.csv`
   - `C:/Users/tyler/Desktop/BIBLE HUNT CODES/2023/2023_sportsman_hunt_codes_clean_notes.md`
   - `C:/Users/tyler/Desktop/BIBLE HUNT CODES/2024/2024_sportsman_hunt_codes_clean.csv`
-  - `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2022/pdf/regulations/guidebook_2022-23_cougar.pdf`
+  - `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2022/pdf/regulations/2022_REGULATIONS__COUGAR.pdf`
   - `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2023/pdf/regulations/2023-24_cougar.pdf`
-  - `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2024/pdf/regulation/2024_cougar.pdf`
+  - `C:/Users/tyler/Desktop/GitHub/HUNTS/pipeline/RAW/hunt_unit_database/2024/pdf/regulations/2024_REGULATIONS__COUGAR.pdf`
 
 - Files changed:
   - `scripts/build-hunt-code-year-to-year-crosswalk.py`

@@ -29,7 +29,7 @@ from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[1]
 HUNTS_ROOT = Path(str(_repo_root()))
-GUIDEBOOK = HUNTS_ROOT / "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/2025_biggameapp.pdf"
+GUIDEBOOK = HUNTS_ROOT / "pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__BIGGAMEAPP.pdf"
 COMPARISON = ROOT / "processed_data/hunt_code_comparison_2025_to_2026.csv"
 
 OUTPUT = ROOT / "processed_data/guidebook_2025_codes_for_2026_gaps.csv"

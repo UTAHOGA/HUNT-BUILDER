@@ -143,7 +143,7 @@ REVIEWED_2022_TO_2023_SPORTSMAN_ENDED_OR_ROLLED = {
 }
 
 REVIEWED_2022_TO_2023_SPORTSMAN_SOURCE_FILES = {
-    "CG1000": "C:/Users/tyler/Desktop/BIBLE HUNT CODES/2023/2023_sportsman_hunt_codes_clean.csv|C:/Users/tyler/Desktop/BIBLE HUNT CODES/2023/2023_sportsman_hunt_codes_clean_notes.md|repo:pipeline/RAW/hunt_unit_database/2022/pdf/regulations/guidebook_2022-23_cougar.pdf|repo:pipeline/RAW/hunt_unit_database/2023/pdf/regulations/2023-24_cougar.pdf|repo:pipeline/RAW/hunt_unit_database/2024/pdf/regulation/2024_cougar.pdf",
+    "CG1000": "C:/Users/tyler/Desktop/BIBLE HUNT CODES/2023/2023_sportsman_hunt_codes_clean.csv|C:/Users/tyler/Desktop/BIBLE HUNT CODES/2023/2023_sportsman_hunt_codes_clean_notes.md|repo:pipeline/RAW/hunt_unit_database/2022/pdf/regulations/2022_REGULATIONS__COUGAR.pdf|repo:pipeline/RAW/hunt_unit_database/2023/pdf/regulations/2023-24_cougar.pdf|repo:pipeline/RAW/hunt_unit_database/2024/pdf/regulations/2024_REGULATIONS__COUGAR.pdf",
 }
 
 

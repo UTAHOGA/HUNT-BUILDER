@@ -196,7 +196,7 @@ top_folder,relative_path,filename,doc_type,reported_year_inferred,year_inference
 2022,2022/pdf/harvest_report/d6cae860__Antlerless big game.pdf,d6cae860__Antlerless big game.pdf,harvest,,none,,review_needed_no_year_in_name,215731,2026-05-01T05:49:41
 2022,2022/pdf/harvest_report/ECBBF5FB__2022-san-rafael-dirty-devil.pdf,ECBBF5FB__2022-san-rafael-dirty-devil.pdf,harvest,2022,yyyy,2023,year_mismatch,75005,2026-04-22T17:24:39
 2022,2022/pdf/harvest_report/FF6D4B3D__2022_antlerless_hr.pdf,FF6D4B3D__2022_antlerless_hr.pdf,harvest,2022,yyyy,2023,year_mismatch,215731,2026-04-22T17:24:39
-2022,2022/pdf/other_hunt/guidebook_2022-23_cougar.pdf,guidebook_2022-23_cougar.pdf,regulation,2022,yyyy,2022,aligned,5831658,2026-05-01T03:43:43
+2022,2022/pdf/other_hunt/guidebook_2022_REGULATIONS__COUGAR.pdf,guidebook_2022_REGULATIONS__COUGAR.pdf,regulation,2022,yyyy,2022,aligned,5831658,2026-05-01T03:43:43
 2023,2023/pdf/draw_odds/17ed709a__Youth draw-only elk bonus point draw results.pdf,17ed709a__Youth draw-only elk bonus point draw results.pdf,draw_results,2017,yy,2018,year_mismatch,76712,2026-05-01T05:44:46
 2023,2023/pdf/draw_odds/22-23_sportsman_odds.pdf,22-23_sportsman_odds.pdf,draw_results,2022,yy,2023,aligned,123222,2026-05-03T02:57:31
 2023,2023/pdf/draw_odds/22_antlerless_drawing_odds_report.pdf,22_antlerless_drawing_odds_report.pdf,draw_results,2022,yy,2023,aligned,2903402,2026-05-03T02:56:19

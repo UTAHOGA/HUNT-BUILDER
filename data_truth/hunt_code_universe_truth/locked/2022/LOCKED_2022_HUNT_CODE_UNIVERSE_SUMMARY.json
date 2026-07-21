@@ -115,8 +115,8 @@
     "duplicate_pdf_count": 5,
     "duplicate_pdfs": [
       {
-        "kept_source_file": "pipeline\\RAW\\hunt_unit_database\\2022\\pdf\\regulations\\2022-23_cougar.pdf",
-        "duplicate_source_file": "pipeline\\RAW\\hunt_unit_database\\2022\\pdf\\Rules Regs\\2022-23_cougar.pdf",
+        "kept_source_file": "pipeline\\RAW\\hunt_unit_database\\2022\\pdf\\regulations\\2022_REGULATIONS__COUGAR.pdf",
+        "duplicate_source_file": "pipeline\\RAW\\hunt_unit_database\\2022\\pdf\\Rules Regs\\2022_REGULATIONS__COUGAR.pdf",
         "sha256": "00d7f16ab6938cdfde83449c5db98fa1e9d39eede1c5ac06fba71958dc324682"
       },
       {

@@ -12,7 +12,7 @@ import pdfplumber
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE_PDF = ROOT / "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/field_regs 2025.pdf"
+SOURCE_PDF = ROOT / "pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__FIELD_REGS.pdf"
 RAW_INVENTORY = ROOT / "data_model/quality/raw_pdf_inventory.csv"
 RAW_AUDIT = ROOT / "data_model/quality/raw_pdf_inventory_audit.csv"
 HARD_COPY_MANIFEST = ROOT / "processed_data/hard_data_exports/hard_copy_pdf_manifest.web.json"
@@ -27,7 +27,7 @@ TEXT_LINES_CSV = OUT_DIR / "2025_big_game_field_regulations_text_lines.csv"
 NUMBER_TOKENS_CSV = OUT_DIR / "2025_big_game_field_regulations_number_tokens.csv"
 EXPECTED_TEXT_CHECKS_CSV = OUT_DIR / "2025_big_game_field_regulations_expected_text_checks.csv"
 
-SOURCE_PATH = "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/field_regs 2025.pdf"
+SOURCE_PATH = "pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__FIELD_REGS.pdf"
 EXPECTED_SHA256 = "05a87b5babd0a22af62c993bd3fe0ba106fb18f7029ed60fc75f6babe4dbdaa7"
 EXPECTED_SIZE_BYTES = 3_432_415
 

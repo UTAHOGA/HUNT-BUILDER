@@ -14,7 +14,7 @@ import pdfplumber
 
 ROOT = Path(__file__).resolve().parents[1]
 
-PRIOR_GUIDEBOOK_PDF = ROOT / "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/2024-25_upland_turkey.pdf"
+PRIOR_GUIDEBOOK_PDF = ROOT / "pipeline/RAW/hunt_unit_database/2024/pdf/regulations/2024_REGULATIONS__UPLAND_TURKEY.pdf"
 DATABASE = ROOT / "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
 HUNT_MASTER = ROOT / "processed_data/hunt_master_enriched.csv"
 POINT_LADDER = ROOT / "processed_data/point_ladder_view.csv"
@@ -38,7 +38,7 @@ FULL_REPORT_MD = REPORT_DIR / "2026_turkey_full_hunt_code_reconciliation.md"
 PROMOTION_DETAIL = REPORT_DIR / "2026_turkey_predictive_v2_reference_promotion.csv"
 PROMOTION_SUMMARY = REPORT_DIR / "2026_turkey_predictive_v2_reference_promotion_summary.json"
 
-PRIOR_SOURCE_PATH = "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/2024-25_upland_turkey.pdf"
+PRIOR_SOURCE_PATH = "pipeline/RAW/hunt_unit_database/2024/pdf/regulations/2024_REGULATIONS__UPLAND_TURKEY.pdf"
 PRIOR_EXPECTED_SHA256 = "5d6af291900a3c790c1673ad0e520d38d2ddc0ddbb2392f67426b1a45bc2e8a3"
 PRIOR_EXPECTED_SIZE_BYTES = 7_607_742
 PRIOR_EXPECTED_PDF_PAGES = 63

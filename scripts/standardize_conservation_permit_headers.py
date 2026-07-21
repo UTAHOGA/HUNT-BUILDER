@@ -21,8 +21,8 @@ FINAL_HEADERS = [
     "No.",
     "Species",
     "HUNT NAME",
-    "SEX TYPE",
     "WEAPON",
+    "SEASON",
     "Value",
     "Organization",
     "HUNT CODE",
@@ -48,6 +48,34 @@ def first_nonblank(*values: object) -> object:
         if clean(value):
             return value
     return None
+
+
+def split_condition(value: object) -> tuple[str, str]:
+    text = clean(value)
+    lower = text.lower()
+    weapon = ""
+    season = ""
+    if "archery" in lower:
+        weapon = "Archery"
+    elif "muzzleloader" in lower:
+        weapon = "Muzzleloader"
+    elif "any legal weapon" in lower or "any weapon" in lower or "alw" in lower:
+        weapon = "Any Legal Weapon"
+
+    if "hunter's choice" in lower or "choice of alw season" in lower:
+        weapon = "Any Legal Weapon"
+        season = "Hunter's Choice of ALW season"
+    elif "late" in lower:
+        season = "Late"
+    elif "multiseason" in lower or "multi-season" in lower:
+        season = "Multiseason"
+    elif "season variance" in lower:
+        season = "Season Variance"
+    elif "statewide" in lower:
+        season = "Statewide"
+    elif "discontinued" in lower:
+        season = "Discontinued"
+    return weapon, season
 
 
 def main() -> None:
@@ -93,13 +121,14 @@ def main() -> None:
 
     rows = []
     for row_idx in source_rows:
+        weapon, season = split_condition(ws.cell(row_idx, cols["Condition"]).value)
         rows.append(
             {
                 "No.": ws.cell(row_idx, cols["No."]).value,
                 "Species": ws.cell(row_idx, cols["Species"]).value,
                 "HUNT NAME": ws.cell(row_idx, cols["Area"]).value,
-                "SEX TYPE": first_nonblank(ws.cell(row_idx, cols.get("SEX", 0)).value if "SEX" in cols else None),
-                "WEAPON": ws.cell(row_idx, cols["Condition"]).value,
+                "WEAPON": weapon,
+                "SEASON": season,
                 "Value": ws.cell(row_idx, cols["Value"]).value,
                 "Organization": ws.cell(row_idx, cols["Organization"]).value,
                 "HUNT CODE": ws.cell(row_idx, cols["HUNT CODE"]).value,

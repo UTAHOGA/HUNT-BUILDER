@@ -28,7 +28,7 @@ def test_2025_field_regulations_source_label_audit_passes() -> None:
     _run_audit()
 
     summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
-    assert summary["source_file"] == "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/field_regs 2025.pdf"
+    assert summary["source_file"] == "pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__FIELD_REGS.pdf"
     assert summary["expected_title"] == "2025 Utah Big Game Field Regulations"
     assert summary["expected_source_year"] == "2025"
     assert summary["actual_sha256"] == "05a87b5babd0a22af62c993bd3fe0ba106fb18f7029ed60fc75f6babe4dbdaa7"

@@ -29,12 +29,12 @@ const pdfs = [
     subtitle: 'Official Utah DWR waterfowl regulation guidebook.'
   },
   {
-    source: path.join(repo, 'pipeline', 'RAW', 'hunt_unit_database', '2026', 'pdf', 'regulations', '2025-26 Upland Game Turkey.pdf'),
+    source: path.join(repo, 'pipeline', 'RAW', 'hunt_unit_database', '2026', 'pdf', 'regulations', '2025_REGULATIONS__UPLAND_TURKEY.pdf'),
     group: 'regulation',
     publicDir: path.join('source_pdfs', 'regulations', '2025-26'),
     fileName: '2025-26-upland-game-turkey-guidebook.pdf',
     year: '2025',
-    title: '2025-26 Upland Game Turkey Guidebook',
+    title: '2025 Upland Turkey Guidebook',
     subtitle: 'Official Utah DWR upland game and turkey regulation guidebook.'
   },
   {

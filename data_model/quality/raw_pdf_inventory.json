@@ -4275,8 +4275,8 @@
     ]
   },
   {
-    "path": "pipeline/RAW/hunt_unit_database/2022/pdf/regulations/guidebook_2022-23_cougar.pdf",
-    "filename": "guidebook_2022-23_cougar.pdf",
+    "path": "pipeline/RAW/hunt_unit_database/2022/pdf/regulations/2022_REGULATIONS__COUGAR.pdf",
+    "filename": "guidebook_2022_REGULATIONS__COUGAR.pdf",
     "inferred_species": "Cougar",
     "inferred_year": "2022",
     "inferred_report_type": "unknown",
@@ -9734,8 +9734,8 @@
     ]
   },
   {
-    "path": "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/2025 Bear and Cougar.pdf",
-    "filename": "2025 Bear and Cougar.pdf",
+    "path": "pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__BEAR_COUGAR.pdf",
+    "filename": "2025_REGULATIONS__BEAR_COUGAR.pdf",
     "inferred_species": "Black Bear",
     "inferred_year": "2025",
     "inferred_report_type": "unknown",
@@ -9747,8 +9747,8 @@
     "likely_metric_families": []
   },
   {
-    "path": "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/2025 Big Game.pdf",
-    "filename": "2025 Big Game.pdf",
+    "path": "pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__FIELD_REGS.pdf",
+    "filename": "2025_REGULATIONS__FIELD_REGS.pdf",
     "inferred_species": "Unknown",
     "inferred_year": "2025",
     "inferred_report_type": "unknown",
@@ -9760,8 +9760,8 @@
     "likely_metric_families": []
   },
   {
-    "path": "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/2025 Cougar.pdf",
-    "filename": "2025 Cougar.pdf",
+    "path": "pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__COUGAR.pdf",
+    "filename": "2025_REGULATIONS__COUGAR.pdf",
     "inferred_species": "Cougar",
     "inferred_year": "2025",
     "inferred_report_type": "unknown",
@@ -9773,8 +9773,8 @@
     "likely_metric_families": []
   },
   {
-    "path": "pipeline/RAW/hunt_unit_database/2025/pdf/regulation/2025-26 Upland Game Turkey.pdf",
-    "filename": "2025-26 Upland Game Turkey.pdf",
+    "path": "pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__UPLAND_TURKEY.pdf",
+    "filename": "2025_REGULATIONS__UPLAND_TURKEY.pdf",
     "inferred_species": "Turkey",
     "inferred_year": "2025",
     "inferred_report_type": "unknown",
@@ -14395,8 +14395,8 @@
     "likely_metric_families": []
   },
   {
-    "path": "pipeline/RAW/hunt_unit_database/2026/pdf/regulations/2025-26 Upland Game Turkey.pdf",
-    "filename": "2025-26 Upland Game Turkey.pdf",
+    "path": "pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__UPLAND_TURKEY.pdf",
+    "filename": "2025_REGULATIONS__UPLAND_TURKEY.pdf",
     "inferred_species": "Turkey",
     "inferred_year": "2026",
     "inferred_report_type": "unknown",

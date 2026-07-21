@@ -1,6 +1,6 @@
 # 2025 Big Game Field Regulations Source Label Audit
 
-Source PDF: `pipeline/RAW/hunt_unit_database/2025/pdf/regulation/field_regs 2025.pdf`
+Source PDF: `pipeline/RAW/hunt_unit_database/2025/pdf/regulations/2025_REGULATIONS__FIELD_REGS.pdf`
 
 This audit locks the file identity as 2025 field regulations only. It does not promote the file into draw odds, harvest features, quota math, or prediction math.
 
