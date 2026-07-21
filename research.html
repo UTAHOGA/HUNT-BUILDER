@@ -358,6 +358,52 @@
       color: #178a3b !important;
     }
 
+    .otc-hunt-card[hidden] {
+      display: none;
+    }
+
+    .otc-hunt-card {
+      margin-top: 14px;
+    }
+
+    .otc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      padding: 14px;
+    }
+
+    .otc-field {
+      min-height: 74px;
+      border: 1px solid rgba(106, 64, 29, 0.16);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.42);
+      padding: 10px;
+      display: grid;
+      align-content: center;
+      gap: 4px;
+    }
+
+    .otc-field span {
+      color: #7a3f0c;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .otc-field strong {
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+
+    .detail-is-otc .summary-card.signal-card,
+    .detail-is-otc #pointLadderAccordion {
+      display: none;
+    }
+
     .signal-list strong.signal-word-yellow {
       color: #9a5b00 !important;
     }
@@ -1369,6 +1415,7 @@
       .table-grid,
       .chip-grid,
       .summary-grid,
+      .otc-grid,
       .helper-grid,
       .quick-grid,
       .proof-grid,
@@ -1382,6 +1429,7 @@
       .control-grid,
       .chip-grid,
       .summary-grid,
+      .otc-grid,
       .quick-grid,
       .proof-grid {
         grid-template-columns: 1fr;
@@ -1763,6 +1811,38 @@
                   </div>
                 </div>
               </div>
+
+              <section id="otcHuntCard" class="report-info-card otc-hunt-card" hidden>
+                <div class="report-info-head">
+                  <h3>Over the Counter Hunts</h3>
+                </div>
+                <div class="otc-grid">
+                  <div class="otc-field">
+                    <span>Hunt Code</span>
+                    <strong id="otcHuntCode">Not available</strong>
+                  </div>
+                  <div class="otc-field">
+                    <span>Unit</span>
+                    <strong id="otcUnit">Not available</strong>
+                  </div>
+                  <div class="otc-field">
+                    <span>Species / Sex</span>
+                    <strong id="otcSpeciesSex">Not available</strong>
+                  </div>
+                  <div class="otc-field">
+                    <span>Access</span>
+                    <strong id="otcAccess">Species / Sex / Land Specific Allotment</strong>
+                  </div>
+                  <div class="otc-field">
+                    <span>Odds</span>
+                    <strong id="otcOdds">First come, first served</strong>
+                  </div>
+                  <div class="otc-field">
+                    <span>Allotment</span>
+                    <strong id="otcAllotment">Not available</strong>
+                  </div>
+                </div>
+              </section>
 
               <section class="report-info-card">
                 <div class="report-info-head">

@@ -132,6 +132,14 @@
     summaryTrendText: document.getElementById('summaryTrendText'),
     summaryRecommendation: document.getElementById('summaryRecommendation'),
 
+    otcHuntCard: document.getElementById('otcHuntCard'),
+    otcHuntCode: document.getElementById('otcHuntCode'),
+    otcUnit: document.getElementById('otcUnit'),
+    otcSpeciesSex: document.getElementById('otcSpeciesSex'),
+    otcAccess: document.getElementById('otcAccess'),
+    otcOdds: document.getElementById('otcOdds'),
+    otcAllotment: document.getElementById('otcAllotment'),
+
     ladderTableEmpty: document.getElementById('ladderTableEmpty'),
     ladderTableWrap: document.getElementById('ladderTableWrap'),
     ladderTableBody: document.getElementById('ladderTableBody'),
@@ -1417,6 +1425,154 @@
     return total ? `${total} total` : 'Not available';
   }
 
+  function firstAvailableAcross(rows, keys) {
+    for (const row of rows) {
+      const value = firstAvailable(row, keys);
+      if (value !== null) return value;
+    }
+    return null;
+  }
+
+  function combinedRowText(rows, keys) {
+    return rows
+      .filter(Boolean)
+      .flatMap((row) => keys.map((key) => row?.[key]))
+      .map((value) => String(value || '').trim())
+      .filter(Boolean)
+      .join(' | ');
+  }
+
+  function isOtcReferenceHunt(meta, row, referenceRow) {
+    const rows = [row, referenceRow, meta].filter(Boolean);
+    if (!rows.length) return false;
+
+    const species = String(firstAvailableAcross(rows, ['species', 'species_name']) || '').trim().toUpperCase();
+    const sex = String(firstAvailableAcross(rows, ['sex_type', 'sex', 'sex_class']) || '').trim().toUpperCase();
+    const text = combinedRowText(rows, [
+      'hunt_code',
+      'hunt_name',
+      'unit',
+      'unit_name',
+      'species',
+      'sex_type',
+      'sex',
+      'weapon',
+      'season',
+      'hunt_category',
+      'hunt_type',
+      'hunt_class',
+      'draw_design',
+      'draw_method',
+      'point_system',
+      'draw_pool',
+      'engine_route',
+      'draw_system_type',
+      'draw_2026_system_type',
+      'algorithm_status',
+      'model_strategy',
+      'acquisition_method',
+      'permit_type',
+      'permit_status',
+      'private_lands_allocation_note',
+      'private_lands_capped_permit_note',
+      'data_quality_flags',
+      'reason',
+      'reason_codes',
+    ]).toUpperCase();
+
+    const hasExplicitOtc = /\bOTC\b|OTC[_ -]|O\.T\.C|OVER THE COUNTER|OVER-THE-COUNTER/.test(text);
+    const hasPrivateLandOnly = text.includes('PRIVATE LANDS ONLY') || text.includes('PRIVATE LAND ONLY') || text.includes('PRIVATE_LANDS_ONLY');
+    const isCwmu = text.includes('CWMU') || text.includes('COOPERATIVE WILDLIFE MANAGEMENT UNIT');
+
+    if (hasExplicitOtc) return true;
+    if (hasPrivateLandOnly) return true;
+    if (isCwmu) return false;
+    if (text.includes('LAND SPECIFIC ALLOTMENT') || text.includes('UNIT QUOTA') || text.includes('CAPPED PERMITS')) return true;
+    if (text.includes('GENERAL_SEASON_SPIKE_ELK') || text.includes('GENERAL SEASON SPIKE ELK') || text.includes('SPIKE BULL')) return true;
+    if (text.includes('GENERAL_SEASON_GENERAL_BULL_ELK') || text.includes('GENERAL SEASON GENERAL BULL ELK')) return true;
+    if (species === 'ELK' && sex === 'BULL' && !text.includes('YOUTH') && (text.includes('GENERAL BULL') || text.includes('ANY BULL'))) return true;
+    if (species === 'COUGAR' && (text.includes('HARVEST OBJECTIVE') || text.includes('HARVEST_OBJECTIVE') || text.includes('PURSUIT'))) return true;
+    return false;
+  }
+
+  function getOtcAllotmentDisplay(meta, row, referenceRow) {
+    const total = firstAvailableAcross([referenceRow, row, meta], [
+      'permit_allotment_2026_total',
+      'permits_2026_total',
+      'public_permits_2026',
+      'capped_permit_count',
+      'permits_allotted',
+      'total_permits',
+    ]);
+    const resident = firstAvailableAcross([referenceRow, row, meta], [
+      'permit_allotment_2026_res',
+      'permits_2026_res',
+      'public_resident_permits',
+    ]);
+    const nonresident = firstAvailableAcross([referenceRow, row, meta], [
+      'permit_allotment_2026_nr',
+      'permits_2026_nr',
+      'public_nonresident_permits',
+    ]);
+
+    if (resident !== null || nonresident !== null) {
+      return `Res ${resident || '0'} / Non-Res ${nonresident || '0'}${total !== null ? ` / Total ${total}` : ''}`;
+    }
+    return total !== null ? `${total} total` : 'Not available';
+  }
+
+  function renderOtcHunt(meta, row, filters, referenceRow) {
+    if (els.detailContent) els.detailContent.classList.add('detail-is-otc');
+    if (els.otcHuntCard) els.otcHuntCard.hidden = false;
+
+    const displayRow = referenceRow || row || meta || {};
+    const huntCode = firstAvailableAcross([displayRow, meta, row], ['hunt_code', 'huntCode', 'code']) || filters.huntCode || 'Not available';
+    const huntName = firstAvailableAcross([displayRow, meta, row], ['hunt_name', 'unit_name', 'unit', 'title']) || 'Not available';
+    const species = firstAvailableAcross([displayRow, meta, row], ['species', 'species_name']) || 'Species not available';
+    const sex = firstAvailableAcross([displayRow, meta, row], ['sex_type', 'sex', 'sex_class']) || 'Sex not available';
+
+    if (els.verdictBadge) {
+      els.verdictBadge.className = 'verdict-badge is-green';
+      els.verdictBadge.textContent = 'Over the Counter';
+    }
+    if (els.verdictMessage) {
+      els.verdictMessage.textContent = 'First come, first served.';
+    }
+
+    if (els.selectedHuntCodeRead) els.selectedHuntCodeRead.textContent = huntCode;
+    if (els.selectedHarvestSuccess) els.selectedHarvestSuccess.textContent = 'Not applicable';
+    if (els.selectedResidentPermits) els.selectedResidentPermits.textContent = getResidentPermitsDisplay(meta, referenceRow || row);
+    if (els.selectedNonresidentPermits) els.selectedNonresidentPermits.textContent = getNonresidentPermitsDisplay(meta, referenceRow || row);
+
+    if (els.summaryGuaranteedTop) els.summaryGuaranteedTop.textContent = 'Not applicable';
+    if (els.summaryPointsTop) els.summaryPointsTop.textContent = 'Not applicable';
+    if (els.summaryOddsTop) els.summaryOddsTop.textContent = 'First come, first served';
+    if (els.summaryGuaranteed) els.summaryGuaranteed.textContent = 'Not applicable';
+    if (els.summaryPoints) els.summaryPoints.textContent = 'Not applicable';
+    if (els.summaryStatus) els.summaryStatus.textContent = 'Over the Counter Hunts';
+    if (els.summaryOdds) els.summaryOdds.textContent = 'First come, first served';
+    renderOutlookLight('green');
+    renderTrendLight('green');
+    if (els.summaryTrendText) els.summaryTrendText.textContent = 'Not applicable';
+    if (els.summaryRecommendation) els.summaryRecommendation.textContent = 'First come, first served.';
+
+    if (els.otcHuntCode) els.otcHuntCode.textContent = huntCode;
+    if (els.otcUnit) els.otcUnit.textContent = huntName;
+    if (els.otcSpeciesSex) els.otcSpeciesSex.textContent = `${species} / ${sex}`;
+    if (els.otcAccess) els.otcAccess.textContent = 'Species / Sex / Land Specific Allotment';
+    if (els.otcOdds) els.otcOdds.textContent = 'First come, first served';
+    if (els.otcAllotment) els.otcAllotment.textContent = getOtcAllotmentDisplay(meta, row, referenceRow);
+
+    if (els.ladderTableWrap) els.ladderTableWrap.hidden = true;
+    if (els.ladderTableEmpty) els.ladderTableEmpty.hidden = true;
+    if (els.ladderTableBody) els.ladderTableBody.innerHTML = '';
+  }
+
+  function hideOtcHunt() {
+    if (els.detailContent) els.detailContent.classList.remove('detail-is-otc');
+    if (els.otcHuntCard) els.otcHuntCard.hidden = true;
+  }
+
   function getVerdictState(meta, row, filters, coverageMessage, referenceRow) {
     if (!row) {
       return {
@@ -2130,6 +2286,7 @@
   }
 
   function renderEmpty(filters, coverageMessage) {
+    hideOtcHunt();
     if (els.detailEmpty) els.detailEmpty.hidden = false;
     if (els.detailContent) els.detailContent.hidden = true;
     renderSummary(null, null, filters, coverageMessage, null);
@@ -2188,6 +2345,7 @@
     // engine group row before falling back to the ladder row.
     const summaryRow = engineRow || engineGroupFallbackRow || ladderPointRow || null;
     const referenceRow = getReferenceRow(filters.huntCode, filters.residency, filters.drawPool);
+    const isOtcMode = isOtcReferenceHunt(meta, summaryRow, referenceRow);
     const onlyOutOfScopeRowsHidden = !SHOW_AUDIT_ONLY_ROWS && rawEngineRows.length > 0 && engineRows.length === 0;
     const coverageMessage = onlyOutOfScopeRowsHidden
       ? 'This category is outside the approved target prediction universe and is hidden from the standard Hunt Research view.'
@@ -2195,7 +2353,7 @@
         ? getOutOfScopeAuditLabel()
         : getModeledCoverageStatus(meta, engineRows.length > 0 || ladderRows.length > 0));
 
-    if (!filters.huntCode || onlyOutOfScopeRowsHidden || (!meta && !engineRows.length)) {
+    if (!filters.huntCode || onlyOutOfScopeRowsHidden || (!isOtcMode && !meta && !engineRows.length)) {
       renderEmpty(filters, coverageMessage || 'Type a hunt code or load one from Hunt Backpack.');
       return;
     }
@@ -2203,13 +2361,17 @@
     if (els.detailEmpty) els.detailEmpty.hidden = true;
     if (els.detailContent) els.detailContent.hidden = false;
 
+    const displayMeta = meta || referenceRow || summaryRow || {};
+
     if (els.detailTitle) {
-      els.detailTitle.textContent = meta ? `${meta.hunt_code} | ${meta.hunt_name}` : filters.huntCode;
+      const titleCode = displayMeta.hunt_code || filters.huntCode;
+      const titleName = displayMeta.hunt_name || displayMeta.unit_name || displayMeta.unit || displayMeta.title || '';
+      els.detailTitle.textContent = titleName ? `${titleCode} | ${titleName}` : titleCode;
     }
 
     if (els.detailSubtitle) {
-      els.detailSubtitle.textContent = meta
-        ? `${meta.species || 'Unknown'} | ${meta.weapon || 'Unknown weapon'} | ${filters.residency}`
+      els.detailSubtitle.textContent = displayMeta.species
+        ? `${displayMeta.species || 'Unknown'} | ${displayMeta.weapon || 'Unknown weapon'} | ${filters.residency}`
         : `${filters.residency} | ${formatInteger(filters.points)} points`;
     }
 
@@ -2226,8 +2388,13 @@
       }
     }
 
-    renderSummary(meta, summaryRow, filters, coverageMessage, referenceRow);
-    renderLadder(meta, filters.huntCode, filters.residency, filters.points, filters.drawPool);
+    if (isOtcMode) {
+      renderOtcHunt(meta, summaryRow, filters, referenceRow);
+    } else {
+      hideOtcHunt();
+      renderSummary(meta, summaryRow, filters, coverageMessage, referenceRow);
+      renderLadder(meta, filters.huntCode, filters.residency, filters.points, filters.drawPool);
+    }
 
     state.selectedMeta = meta;
     state.selectedFilters = filters;
@@ -2243,6 +2410,7 @@
       referenceRows: state.referenceRows,
       loadedSources: state.loadedSources,
       engineMode: state.engineMode,
+      displayMode: isOtcMode ? 'otc_reference' : 'draw_research',
     };
     window.dispatchEvent(new CustomEvent('uoga:hunt-research-rendered', {
       detail: window.UOGA_HUNT_RESEARCH_SNAPSHOT,

@@ -5,7 +5,7 @@
     { href: './', label: 'HUNT BUILDER', tip: 'FIND YOUR\nDREAM HUNT' },
     { href: './research.html', label: 'HUNT RESEARCH', tip: 'MATCH\nHUNT = POINTS' },
     { href: './verify.html', label: 'OUTFITTERS', tip: 'OPTIMIZE\nYOUR ODDS' },
-    { href: './hard-copy.html', label: 'HUNTING BIBLE', tip: 'YOUR BIBLE\nSOURCE DOCS' },
+    { href: './hard-copy.html', label: 'HUNT LIBRARY', tip: 'SOURCE PDFS\nHUNT DOCS' },
     { href: 'https://www.uoga.org/membership-sign-up', label: 'MEMBERSHIP', tip: 'HOW MEMBERSHIP\nWORKS' },
     { href: 'https://www.uoga.org/pricing-plans/member-dues', label: 'JOIN US', tip: 'JOIN U.O.G.A.' },
   ];
@@ -145,8 +145,8 @@
   function normalizeHeaderNavLabel(text) {
     const label = String(text || '').replace(/\s+/g, ' ').trim();
     if (!label) return '';
-    if (label.toUpperCase() === 'HARD COPIES') return 'HUNTING BIBLE';
-    if (label.toUpperCase() === 'HUNT LIBRARY') return 'HUNTING BIBLE';
+    if (label.toUpperCase() === 'HARD COPIES') return 'HUNT LIBRARY';
+    if (label.toUpperCase() === 'HUNTING BIBLE') return 'HUNT LIBRARY';
     return label.toUpperCase();
   }
 

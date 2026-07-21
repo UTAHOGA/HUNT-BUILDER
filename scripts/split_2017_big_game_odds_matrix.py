@@ -230,6 +230,43 @@ def main() -> int:
 
     routed_path = OUT_DIR / "2017_BIG_GAME_ODDS_MATRIX_ROUTED_ROWS.csv"
     write_csv(routed_path, routed_rows, fields)
+    website_reference_path = OUT_DIR / "2017_BIG_GAME_WEBSITE_MATRIX_REFERENCE.md"
+    website_reference_path.write_text(
+        "\n".join(
+            [
+                "# 2017 Big Game Website Matrix Reference",
+                "",
+                "authoritative_matrix_source: https://huntbuilder.uoga.org/",
+                "repo_matrix_source: app.js refreshSelectionMatrix()",
+                "",
+                "## Live Filter Fields",
+                "",
+                "- Species",
+                "- Sex",
+                "- Hunt Type",
+                "- Weapon Type",
+                "- Hunt Class",
+                "- DWR Hunt Units",
+                "",
+                "## Output Column Alignment",
+                "",
+                "- Species -> existing `species` column",
+                "- Sex -> existing `sex` column",
+                "- Hunt Type -> existing `hunt_type` column",
+                "- Weapon Type -> existing `weapon` column",
+                "- Hunt Class -> existing `hunt_class` column",
+                "- CWMU -> cwmu_flag / cwmu_partition overlay",
+                "- Youth set-aside quota -> youth_set_aside_overlay_flag / quota_layer overlay",
+                "",
+                "## Rule",
+                "",
+                "Youth is not a peer split against adult. Youth is a source-proven set-aside quota overlay on adult/base hunts where it applies.",
+                "CWMU is also preserved as an overlay/partition so website-facing hunt type/class can be reviewed separately from raw PDF source structure.",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
 
     path_groups: Dict[tuple, List[Dict[str, object]]] = defaultdict(list)
     for row in routed_rows:
@@ -407,6 +444,76 @@ def main() -> int:
         ],
     )
 
+    cwmu_manifest_rows = []
+    cwmu_counts_rows = []
+    cwmu_groups: Dict[tuple, List[Dict[str, object]]] = defaultdict(list)
+    for row in routed_rows:
+        partition = "CWMU" if row.get("cwmu_flag") == "TRUE" else "NON_CWMU"
+        cwmu_groups[(partition, clean(row["matrix_program_bucket"]), clean(row["big_game_species_bucket"]))].append(row)
+    cwmu_root = OUT_DIR / "split_rows_cwmu" / "BIG_GAME"
+    for (partition, program, bucket), group in sorted(cwmu_groups.items()):
+        out_path = cwmu_root / partition / program / bucket / f"2017_BIG_GAME_{partition}_{program}_{bucket}_ROWS.csv"
+        write_csv(out_path, group, fields)
+        pages = sorted({int(clean(row.get("pdf_page")) or 0) for row in group if clean(row.get("pdf_page")).isdigit()})
+        hunt_codes = {clean(row.get("hunt_code")) for row in group if clean(row.get("hunt_code"))}
+        manifest_row = {
+            "cwmu_partition": partition,
+            "matrix_program_bucket": program,
+            "big_game_species_bucket": bucket,
+            "split_path": f"BIG_GAME/{partition}/{program}/{bucket}",
+            "output_path": rel(out_path),
+            "row_count": len(group),
+            "unique_hunt_codes": len(hunt_codes),
+            "source_page_min": min(pages) if pages else "",
+            "source_page_max": max(pages) if pages else "",
+            "source_page_count": len(pages),
+            "sha256": sha256_file(out_path),
+            "routing_status": "PASS_ROUTED" if all(row.get("routing_status") == "PASS_ROUTED" for row in group) else "REVIEW_REQUIRED",
+        }
+        cwmu_manifest_rows.append(manifest_row)
+        cwmu_counts_rows.append(
+            {
+                "cwmu_partition": partition,
+                "matrix_program_bucket": program,
+                "big_game_species_bucket": bucket,
+                "row_count": len(group),
+                "unique_hunt_codes": len(hunt_codes),
+                "routing_review_rows": sum(1 for row in group if row.get("routing_status") != "PASS_ROUTED"),
+            }
+        )
+    cwmu_manifest_path = OUT_DIR / "2017_BIG_GAME_CWMU_SPLIT_MANIFEST.csv"
+    write_csv(
+        cwmu_manifest_path,
+        cwmu_manifest_rows,
+        [
+            "cwmu_partition",
+            "matrix_program_bucket",
+            "big_game_species_bucket",
+            "split_path",
+            "output_path",
+            "row_count",
+            "unique_hunt_codes",
+            "source_page_min",
+            "source_page_max",
+            "source_page_count",
+            "sha256",
+            "routing_status",
+        ],
+    )
+    cwmu_counts_path = OUT_DIR / "2017_BIG_GAME_CWMU_SPLIT_COUNTS.csv"
+    write_csv(
+        cwmu_counts_path,
+        cwmu_counts_rows,
+        [
+            "cwmu_partition",
+            "matrix_program_bucket",
+            "big_game_species_bucket",
+            "row_count",
+            "unique_hunt_codes",
+            "routing_review_rows",
+        ],
+    )
+
     route_status_counts = Counter(clean(row["routing_status"]) for row in routed_rows)
     species_count = len({clean(row["big_game_species_bucket"]) for row in routed_rows if clean(row["big_game_species_bucket"]) in BIG_GAME_SPECIES})
     oil_species_count = len({clean(row["big_game_species_bucket"]) for row in routed_rows if clean(row["matrix_program_bucket"]) == "ONCE_IN_A_LIFETIME"})
@@ -463,8 +570,11 @@ def main() -> int:
                 f"- routed rows: {rel(routed_path)}",
                 f"- split manifest: {rel(manifest_path)}",
                 f"- split counts: {rel(counts_path)}",
+                f"- website matrix reference: {rel(website_reference_path)}",
                 f"- youth set-aside/CWMU overlay manifest: {rel(overlay_manifest_path)}",
                 f"- youth set-aside/CWMU overlay counts: {rel(overlay_counts_path)}",
+                f"- CWMU split manifest: {rel(cwmu_manifest_path)}",
+                f"- CWMU split counts: {rel(cwmu_counts_path)}",
                 "",
                 "## Routing Status Counts",
                 "",
@@ -485,8 +595,11 @@ def main() -> int:
             f"SPLIT_MANIFEST={manifest_path}",
             f"SPLIT_COUNTS={counts_path}",
             f"SPLIT_REPORT={report_path}",
+            f"WEBSITE_MATRIX_REFERENCE={website_reference_path}",
             f"YOUTH_SET_ASIDE_CWMU_OVERLAY_MANIFEST={overlay_manifest_path}",
             f"YOUTH_SET_ASIDE_CWMU_OVERLAY_COUNTS={overlay_counts_path}",
+            f"CWMU_SPLIT_MANIFEST={cwmu_manifest_path}",
+            f"CWMU_SPLIT_COUNTS={cwmu_counts_path}",
             f"BIG_GAME_SOURCE_ROWS={len(routed_rows)}",
             f"BIG_GAME_UNIQUE_HUNT_CODES={len({clean(row.get('hunt_code')) for row in routed_rows if clean(row.get('hunt_code'))})}",
             f"ADULT_BASE_ROWS={adult_base_row_count}",

@@ -1,5 +1,5 @@
 :root {
-  --wallpaper: url("/assets/backgrounds/CABIN.png");
+  --wallpaper: url("/assets/backgrounds/LIBRARY-WALLPAPERS.png");
   --library-wallpaper-size: cover;
   --library-wallpaper-position: center center;
   --ink: #2d180f;
@@ -32,6 +32,86 @@ body {
   background-repeat: no-repeat, no-repeat;
   background-attachment: fixed, fixed;
   font-family: "Trebuchet MS", "Segoe UI", Tahoma, sans-serif;
+}
+
+.hard-copy-page::before,
+.hard-copy-page::after {
+  content: "";
+  position: fixed;
+  left: clamp(12px, 2.7vw, 46px);
+  bottom: clamp(82px, 12.2vh, 122px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hard-copy-page::before {
+  width: clamp(74px, 7.8vw, 132px);
+  height: clamp(112px, 16vh, 168px);
+  transform-origin: 50% 100%;
+  background:
+    radial-gradient(ellipse at 50% 82%, rgba(255, 54, 0, 0.82) 0 12%, rgba(255, 98, 0, 0.45) 25%, transparent 58%),
+    radial-gradient(ellipse at 38% 74%, rgba(255, 184, 42, 0.9) 0 9%, rgba(255, 103, 0, 0.48) 26%, transparent 56%),
+    radial-gradient(ellipse at 61% 68%, rgba(255, 222, 78, 0.86) 0 8%, rgba(255, 115, 0, 0.5) 24%, transparent 54%),
+    linear-gradient(11deg, transparent 0 34%, rgba(255, 235, 111, 0.94) 42%, rgba(255, 103, 0, 0.56) 58%, transparent 76%),
+    linear-gradient(-14deg, transparent 0 34%, rgba(255, 192, 50, 0.86) 43%, rgba(219, 56, 0, 0.5) 61%, transparent 78%);
+  filter: blur(2px) saturate(1.55);
+  mix-blend-mode: screen;
+  opacity: 0.72;
+  animation: uogaFireFlicker 820ms infinite alternate ease-in-out;
+}
+
+.hard-copy-page::after {
+  width: clamp(118px, 12vw, 210px);
+  height: clamp(116px, 15vh, 178px);
+  transform: translate(-22%, 13%);
+  background:
+    radial-gradient(ellipse at 42% 70%, rgba(255, 116, 22, 0.42), transparent 54%),
+    radial-gradient(ellipse at 58% 88%, rgba(255, 54, 0, 0.32), transparent 62%);
+  filter: blur(10px);
+  mix-blend-mode: screen;
+  opacity: 0.64;
+  animation: uogaFireGlow 1.65s infinite alternate ease-in-out;
+}
+
+@keyframes uogaFireFlicker {
+  0% {
+    opacity: 0.58;
+    transform: translate3d(-2px, 3px, 0) scale(0.94, 0.98) skewX(-2deg);
+  }
+
+  34% {
+    opacity: 0.82;
+    transform: translate3d(2px, -4px, 0) scale(1.02, 1.08) skewX(3deg);
+  }
+
+  67% {
+    opacity: 0.68;
+    transform: translate3d(-1px, -1px, 0) scale(0.98, 1.04) skewX(-4deg);
+  }
+
+  100% {
+    opacity: 0.9;
+    transform: translate3d(3px, -6px, 0) scale(1.05, 1.12) skewX(2deg);
+  }
+}
+
+@keyframes uogaFireGlow {
+  from {
+    opacity: 0.42;
+    transform: translate(-24%, 15%) scale(0.96);
+  }
+
+  to {
+    opacity: 0.76;
+    transform: translate(-20%, 10%) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hard-copy-page::before,
+  .hard-copy-page::after {
+    animation: none;
+  }
 }
 
 .topbar:not(.hard-copy-topbar) {
@@ -487,6 +567,145 @@ body {
   cursor: pointer;
 }
 
+.public-pdf-research {
+  margin-top: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(122, 76, 38, 0.22);
+  background: rgba(245, 229, 199, 0.6);
+  overflow: hidden;
+}
+
+.public-pdf-research > summary,
+.pdf-research-category > summary {
+  min-height: 42px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  color: #2d180f;
+  font-weight: 950;
+  list-style: none;
+}
+
+.public-pdf-research > summary::-webkit-details-marker,
+.pdf-research-category > summary::-webkit-details-marker {
+  display: none;
+}
+
+.public-pdf-research > summary span,
+.pdf-research-category > summary span {
+  margin: 0;
+  color: #2d180f;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.public-pdf-research > summary b,
+.pdf-research-category > summary b {
+  border-radius: 999px;
+  border: 1px solid rgba(122, 76, 38, 0.22);
+  background: rgba(255, 252, 246, 0.82);
+  color: #7a3f0c;
+  padding: 5px 9px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.pdf-parent-row {
+  margin: 0 12px 10px;
+  padding: 10px 11px;
+  display: grid;
+  gap: 3px;
+  border-radius: 10px;
+  background: rgba(255, 253, 248, 0.76);
+  border: 1px solid rgba(122, 76, 38, 0.16);
+}
+
+.pdf-parent-row span {
+  margin: 0;
+  color: #7a3f0c;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pdf-parent-row strong {
+  font-size: 14px;
+}
+
+.pdf-research-groups {
+  display: grid;
+  gap: 8px;
+  padding: 0 12px 12px;
+}
+
+.pdf-research-category {
+  border-radius: 10px;
+  border: 1px solid rgba(122, 76, 38, 0.18);
+  background: rgba(255, 253, 248, 0.74);
+  overflow: hidden;
+}
+
+.pdf-hunt-list {
+  display: grid;
+  gap: 8px;
+  padding: 0 10px 10px;
+}
+
+.pdf-hunt-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(122, 76, 38, 0.13);
+}
+
+.pdf-hunt-row strong,
+.pdf-hunt-row span,
+.pdf-hunt-row em {
+  margin: 0;
+}
+
+.pdf-hunt-row strong {
+  font-size: 13px;
+  color: #24150c;
+}
+
+.pdf-hunt-row span {
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.pdf-hunt-row em {
+  font-size: 11px;
+}
+
+.pdf-hunt-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.pdf-hunt-actions .public-file-action {
+  padding: 6px 10px;
+  font-size: 11px;
+}
+
+.pdf-hunt-more {
+  color: #6a3a17;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 2px 0;
+}
+
 .public-file-card strong {
   display: block;
   color: #24150c;
@@ -589,6 +808,14 @@ body {
     width: min(420px, 94vw);
     grid-template-columns: 1fr;
     margin-top: 14px;
+  }
+
+  .pdf-hunt-row {
+    grid-template-columns: 1fr;
+  }
+
+  .pdf-hunt-actions {
+    justify-content: flex-start;
   }
 }
 

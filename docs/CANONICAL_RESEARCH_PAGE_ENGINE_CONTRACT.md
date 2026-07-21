@@ -88,6 +88,16 @@ Every row must resolve to one of:
 
 Availability-only and OTC-unlimited rows must not receive fake draw odds.
 
+## Over The Counter Hunts Display
+
+Research Page rows that are reference-only OTC, capped-permit, private-lands-only, harvest-objective cougar, cougar pursuit, general-season spike elk, or general-season general bull elk opportunities are displayed as:
+
+- label: `Over the Counter Hunts`
+- odds: `First come, first served`
+- access: `Species / Sex / Land Specific Allotment`
+
+These rows keep their hunt-code entry point from Hunt Builder / Hunt Planner. They do not render a point ladder, guaranteed line, point-creep signal, or fake draw probability unless a future approved source proves a true point-level draw-odds family.
+
 ## 2027 Holdout Rule
 
 Unreleased 2027 actual results for these families must be held out from scoring until official public results exist:

@@ -4,6 +4,15 @@
     "./hard-copy/data/documents.json",
     "./public/hard-copy/data/documents.json",
   ];
+  const HUNT_INDEX_URLS = [
+    "./public/hard-copy/data/library_page_data.json",
+    "./public/data/library_page_data.json",
+  ];
+  const BASKET_KEY = "uoga_hunt_basket_v1";
+  const SELECTED_HUNT_KEY = "selected_hunt_code";
+  const SELECTED_RESIDENCY_KEY = "selected_hunt_research_residency";
+  const SELECTED_POINTS_KEY = "selected_hunt_research_points";
+  const SELECTED_DRAW_POOL_KEY = "selected_hunt_research_draw_pool";
 
   const FOLDERS = [
     { id: "rules", title: "UTAH DWR RULES & REGULATIONS", description: "Current-year/current-cycle public rules and regulation PDFs.", icon: "./assets/library-icons/mountain_goat.png" },
@@ -50,6 +59,50 @@
     { folderId: "units2026", title: "2026 Hunt Units / Permit Numbers", subtitle: "Current 2026 hunt code, hunt unit, and permit workbook.", href: "./public/hard-copy/DISPLAY%20DATA/data/2026_hunt_units_permit_numbers.xlsx", type: "xlsx", year: "2026", sortOrder: 10 },
     { folderId: "outfitters", title: "Utah Outfitters by Hunt Code / Hunt Name", subtitle: "Public outfitter workbook tied to hunt code and hunt name.", href: "./public/hard-copy/DISPLAY%20DATA/data/utah_outfitters_by_hunt_code_hunt_name.xlsx", type: "xlsx", year: "2026", sortOrder: 10 },
   ];
+  const PUBLIC_HUNT_LIBRARY_PDF_PATHS = [
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/ANTLERLESS_DEER_PERMIT_QUOTA__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/ANTLERLESS_ELK_PERMIT_QUOTA__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/ANTLERLESS_MOOSE_PERMIT_QUOTA__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/ANTLERLESS_PERMIT_QUOTA_SUMMARY__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/BEAR_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/BEAR_RESTRICTED_PURSUIT_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/DOE_PRONGHORN_PERMIT_QUOTA__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/D_H_DEER_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/EWE_ROCKY_MTN_SHEEP_PERMIT_QUOTA__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/G_S_BUCK_DEER_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/L_E_BUCK_DEER_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/L_E_BUCK_PRONGHORN_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/L_E_BULL_ELK_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/O_I_L_BISON_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/O_I_L_BULL_MOOSE_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/O_I_L_DESERT_BIGHORN_SHEEP_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/O_I_L_MTN_GOAT_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/O_I_L_ROCKY_MTN_SHEEP_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/SPORTSMAN_DRAW_RESULTS_CONSOLIDATED_FIXED_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/YOUTH_ELK_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 PERMITS/EXPO PERMITS/2026 EXPO DRAW RESULTS.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 PERMITS/PERMIT QUOTAS = HUNT NAME + HUNT CODE/ANTLERLESS_DEER_PERMIT_QUOTA__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 PERMITS/PERMIT QUOTAS = HUNT NAME + HUNT CODE/ANTLERLESS_ELK_PERMIT_QUOTA__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 PERMITS/PERMIT QUOTAS = HUNT NAME + HUNT CODE/ANTLERLESS_MOOSE_PERMIT_QUOTA__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 PERMITS/PERMIT QUOTAS = HUNT NAME + HUNT CODE/ANTLERLESS_PERMIT_QUOTA_SUMMARY__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 PERMITS/PERMIT QUOTAS = HUNT NAME + HUNT CODE/DOE_PRONGHORN_PERMIT_QUOTA__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/2026 PERMITS/PERMIT QUOTAS = HUNT NAME + HUNT CODE/EWE_ROCKY_MTN_SHEEP_PERMIT_QUOTA__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/HUNT LIBRARY/regulations/2026.antlerless.guidebook.pdf",
+    "public/hard-copy/HUNT LIBRARY/regulations/2026.bear.cougar.regulations.pdf",
+    "public/hard-copy/HUNT LIBRARY/regulations/2026.big.game.application.guidebook.pdf",
+    "public/hard-copy/HUNT LIBRARY/regulations/2026.big.game.field.guidebook.pdf",
+    "public/hard-copy/HUNT LIBRARY/regulations/2026.fishing.regulations.pdf",
+    "public/hard-copy/HUNT LIBRARY/regulations/2026.turkey.regualtions.pdf",
+  ];
+  const PUBLIC_HUNT_LIBRARY_ITEMS = PUBLIC_HUNT_LIBRARY_PDF_PATHS.map((rel, index) => ({
+    folderId: folderIdForLibraryPdfPath(rel),
+    title: titleFromLibraryPdfPath(rel),
+    subtitle: subtitleForLibraryPdfPath(rel),
+    href: `./${rel}`,
+    type: "pdf",
+    year: "2026",
+    sortOrder: 100 + index,
+  }));
   const APPROVED_PUBLIC_EXTENSIONS = new Set(["pdf", "xlsx"]);
  const APPROVED_PUBLIC_PATH_PREFIXES = [
   "./public/hard-copy/",
@@ -125,6 +178,38 @@
     } catch {
       return String(value || "");
     }
+  }
+
+  function titleFromLibraryPdfPath(rel) {
+    const fileName = String(rel || "").split("/").pop() || "";
+    return fileName
+      .replace(/\.pdf$/i, "")
+      .replace(/__FIXED_DROPDOWN_NARROW_DROPDOWN$/i, "")
+      .replace(/_FIXED_NARROW_DROPDOWN$/i, "")
+      .replace(/_/g, " ")
+      .replace(/\bO I L\b/g, "O.I.L.")
+      .replace(/\bL E\b/g, "L.E.")
+      .replace(/\bD H\b/g, "D.H.")
+      .replace(/\bG S\b/g, "G.S.")
+      .replace(/\s+/g, " ")
+      .trim()
+      .replace(/\b\w/g, (match) => match.toUpperCase());
+  }
+
+  function folderIdForLibraryPdfPath(rel) {
+    const lower = String(rel || "").toLowerCase();
+    if (lower.includes("/regulations/")) return "rules";
+    if (lower.includes("expo permits")) return "expo";
+    if (lower.includes("permit quotas")) return "units2026";
+    return "draw";
+  }
+
+  function subtitleForLibraryPdfPath(rel) {
+    const lower = String(rel || "").toLowerCase();
+    if (lower.includes("/regulations/")) return "Parent rules PDF.";
+    if (lower.includes("expo permits")) return "Parent Expo permit PDF.";
+    if (lower.includes("permit quotas")) return "Parent permit-quota PDF by hunt code and hunt name.";
+    return "Parent draw-results PDF.";
   }
 
   function hasBlockedInternalToken(value) {
@@ -233,6 +318,26 @@
     } catch {
       return [];
     }
+  }
+
+  async function fetchHuntIndex(url) {
+    try {
+      const response = await fetch(url, { cache: "no-store" });
+      if (!response.ok) return [];
+      const text = await response.text();
+      const parsed = JSON.parse(String(text || "").replace(/^\uFEFF/, ""));
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+
+  async function loadHuntIndex() {
+    for (const url of HUNT_INDEX_URLS) {
+      const rows = await fetchHuntIndex(url);
+      if (rows.length) return rows;
+    }
+    return [];
   }
 
   function resolveHrefCandidates(href) {
@@ -448,7 +553,208 @@
     return Boolean(state.activeFolder) || state.query.trim().length > 0;
   }
 
-  function renderResults(items, state) {
+  function normalizeHuntCode(value) {
+    return String(value || "").trim().toUpperCase().replace(/\s+/g, "").replace(/[^A-Z0-9]/g, "");
+  }
+
+  function rowText(row) {
+    return [
+      row?.hunt_code,
+      row?.species,
+      row?.hunt_name,
+      row?.unit,
+      row?.weapon,
+      row?.classification,
+      row?.final_state,
+      row?.model_version,
+    ].map((value) => String(value || "")).join(" ").toLowerCase();
+  }
+
+  function pdfScope(item) {
+    const raw = `${item.title || ""} ${item.subtitle || ""} ${item.href || ""} ${item.folderId || ""}`.toLowerCase();
+    const hay = raw.replace(/[_./-]+/g, " ").replace(/\s+/g, " ").trim();
+    const bigGameSpecies = ["bison", "deer", "elk", "moose", "mountain goat", "pronghorn", "rocky mountain bighorn sheep", "desert bighorn sheep", "bighorn sheep"];
+    if (hay.includes("antlerless deer")) return { species: ["deer"], include: ["antlerless", "da"] };
+    if (hay.includes("antlerless elk")) return { species: ["elk"], include: ["antlerless", "ea"] };
+    if (hay.includes("antlerless moose")) return { species: ["moose"], include: ["antlerless", "cow", "moose"] };
+    if (hay.includes("doe pronghorn")) return { species: ["pronghorn"], include: ["doe", "antlerless", "pd"] };
+    if (hay.includes("ewe rocky")) return { species: ["rocky mountain bighorn sheep", "bighorn sheep"], include: ["ewe", "rs"] };
+    if (hay.includes("bear restricted pursuit")) return { species: ["black bear"], include: ["pursuit"] };
+    if (hay.includes("bear draw")) return { species: ["black bear"], exclude: ["pursuit"] };
+    if (hay.includes("youth elk")) return { species: ["elk"], include: ["youth"] };
+    if (hay.includes("sportsman")) return { species: [...bigGameSpecies, "black bear", "cougar", "turkey"], include: ["sportsman"] };
+    if (hay.includes("d h deer")) return { species: ["deer"], include: ["dedicated", "d h"] };
+    if (hay.includes("g s buck deer")) return { species: ["deer"], include: ["general", "buck", "g s"] };
+    if (hay.includes("l e buck deer")) return { species: ["deer"], include: ["limited", "premium", "buck", "db"] };
+    if (hay.includes("l e bull elk")) return { species: ["elk"], include: ["limited", "bull", "eb"] };
+    if (hay.includes("l e buck pronghorn")) return { species: ["pronghorn"], include: ["limited", "buck", "pb"] };
+    if (hay.includes("o i l bison")) return { species: ["bison"] };
+    if (hay.includes("o i l bull moose")) return { species: ["moose"], include: ["bull", "moose"] };
+    if (hay.includes("o i l desert bighorn sheep")) return { species: ["desert bighorn sheep"] };
+    if (hay.includes("o i l mtn goat")) return { species: ["mountain goat"] };
+    if (hay.includes("o i l rocky mtn sheep")) return { species: ["rocky mountain bighorn sheep"] };
+    if (hay.includes("antlerless guidebook")) return { species: ["deer", "elk", "moose", "pronghorn", "rocky mountain bighorn sheep", "bighorn sheep"], include: ["antlerless", "doe", "ewe", "cow"] };
+    if (hay.includes("turkey")) return { species: ["turkey"] };
+    if (hay.includes("cougar") || hay.includes("bear")) return { species: ["cougar", "black bear"] };
+    if (hay.includes("big game")) return { species: bigGameSpecies };
+    if (hay.includes("permit quota summary")) return { species: ["deer", "elk", "moose", "pronghorn", "rocky mountain bighorn sheep", "bighorn sheep"], include: ["antlerless", "doe", "ewe", "cow"] };
+    if (hay.includes("permit") || hay.includes("unit") || hay.includes("draw")) return { species: [...bigGameSpecies, "black bear", "cougar", "turkey"] };
+    return { species: [] };
+  }
+
+  function matchesPdfScope(item, row) {
+    const scope = pdfScope(item);
+    if (!scope.species.length) return false;
+    const species = String(row?.species || "").trim().toLowerCase();
+    if (!scope.species.includes(species)) return false;
+    const text = rowText(row);
+    const code = normalizeHuntCode(row?.hunt_code).toLowerCase();
+    const searchable = `${text} ${code}`;
+    if (Array.isArray(scope.include) && scope.include.length && !scope.include.some((term) => searchable.includes(term))) return false;
+    if (Array.isArray(scope.exclude) && scope.exclude.length && scope.exclude.some((term) => searchable.includes(term))) return false;
+    return true;
+  }
+
+  function inferMatrixBucket(row) {
+    const code = normalizeHuntCode(row?.hunt_code);
+    const species = String(row?.species || "").trim();
+    const lowerSpecies = species.toLowerCase();
+    const text = rowText(row).toUpperCase();
+    if (text.includes("CWMU")) return "CWMU";
+    if (text.includes("PRIVATE LAND") || text.includes("PRIVATE_LANDS") || text.includes("OTC") || text.includes("HARVEST OBJECTIVE") || text.includes("PURSUIT")) return "OVER THE COUNTER";
+    if (text.includes("ANTLERLESS") || /^EA|^DA|^PD/.test(code)) return "ANTLERLESS";
+    if (lowerSpecies === "turkey") return text.includes("YOUTH") ? "TURKEY YOUTH" : "TURKEY";
+    if (lowerSpecies === "cougar") return "COUGAR";
+    if (lowerSpecies === "black bear") return text.includes("PURSUIT") ? "BEAR PURSUIT" : "BEAR";
+    if (["bison", "moose", "mountain goat", "rocky mountain bighorn sheep", "desert bighorn sheep", "bighorn sheep"].includes(lowerSpecies)) return "O.I.L.";
+    if (lowerSpecies === "deer" && (text.includes("PREMIUM") || /^DB1/.test(code))) return "P.L.E. / L.E. DEER";
+    if (["deer", "elk", "pronghorn"].includes(lowerSpecies)) return "L.E. BIG GAME";
+    return "MATRIX REVIEW";
+  }
+
+  function buildPdfResearchGroups(item, huntRows) {
+    if (item.type !== "pdf" || !huntRows.length) return [];
+    const rows = huntRows
+      .filter((row) => normalizeHuntCode(row?.hunt_code) && matchesPdfScope(item, row))
+      .sort((a, b) => inferMatrixBucket(a).localeCompare(inferMatrixBucket(b)) || String(a.species || "").localeCompare(String(b.species || "")) || normalizeHuntCode(a.hunt_code).localeCompare(normalizeHuntCode(b.hunt_code)));
+    const grouped = new Map();
+    rows.forEach((row) => {
+      const bucket = inferMatrixBucket(row);
+      if (!grouped.has(bucket)) grouped.set(bucket, []);
+      grouped.get(bucket).push(row);
+    });
+    return Array.from(grouped.entries()).map(([bucket, bucketRows]) => ({ bucket, rows: bucketRows }));
+  }
+
+  function researchUrlFor(row) {
+    const params = new URLSearchParams({
+      hunt_code: normalizeHuntCode(row?.hunt_code),
+      residency: "Resident",
+      points: "12",
+      draw_pool: "standard",
+    });
+    return `./research.html?${params.toString()}`;
+  }
+
+  function builderUrlFor(row) {
+    return `./builder.html?hunt_code=${encodeURIComponent(normalizeHuntCode(row?.hunt_code))}`;
+  }
+
+  function renderHuntMiniRow(row) {
+    const code = normalizeHuntCode(row?.hunt_code);
+    const title = [row?.species, row?.hunt_name || row?.unit].filter(Boolean).join(" | ") || "Hunt";
+    const meta = [row?.weapon, row?.permits_2026 ? `${row.permits_2026} permits` : "", row?.final_state].filter(Boolean).join(" | ");
+    return `
+      <div class="pdf-hunt-row">
+        <div>
+          <strong>${esc(code)}</strong>
+          <span>${esc(title)}</span>
+          ${meta ? `<em>${esc(meta)}</em>` : ""}
+        </div>
+        <div class="pdf-hunt-actions">
+          <button class="public-file-action" type="button" data-action="backpack" data-hunt-code="${esc(code)}">Backpack</button>
+          <a class="public-file-action" href="${esc(researchUrlFor(row))}">Research</a>
+          <a class="public-file-action" href="${esc(builderUrlFor(row))}">Builder</a>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderPdfResearchDrawer(item, huntRows) {
+    const groups = buildPdfResearchGroups(item, huntRows);
+    if (!groups.length) return "";
+    const total = groups.reduce((sum, group) => sum + group.rows.length, 0);
+    const groupHtml = groups.map((group, groupIndex) => {
+      const visibleRows = group.rows.slice(0, 18);
+      const overflow = group.rows.length - visibleRows.length;
+      return `
+        <details class="pdf-research-category"${groupIndex === 0 ? " open" : ""}>
+          <summary>
+            <span>${esc(group.bucket)}</span>
+            <b>${group.rows.length} hunt${group.rows.length === 1 ? "" : "s"}</b>
+          </summary>
+          <div class="pdf-hunt-list">
+            ${visibleRows.map(renderHuntMiniRow).join("")}
+            ${overflow > 0 ? `<div class="pdf-hunt-more">${overflow} more. Use search to narrow.</div>` : ""}
+          </div>
+        </details>
+      `;
+    }).join("");
+
+    return `
+      <details class="public-pdf-research">
+        <summary>
+          <span>PDF Research</span>
+          <b>${total} linked hunt${total === 1 ? "" : "s"}</b>
+        </summary>
+        <div class="pdf-parent-row">
+          <span>Parent PDF</span>
+          <strong>${esc(item.title)}</strong>
+        </div>
+        <div class="pdf-research-groups">${groupHtml}</div>
+      </details>
+    `;
+  }
+
+  function loadBackpack() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(BASKET_KEY) || "[]");
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function saveHuntToBackpack(row) {
+    const code = normalizeHuntCode(row?.hunt_code);
+    if (!code) return false;
+    const payload = {
+      hunt_code: code,
+      hunt_name: row?.hunt_name || row?.unit || "",
+      species: row?.species || "",
+      weapon: row?.weapon || "",
+      residency: "Resident",
+      draw_pool: "standard",
+      selected_points: 12,
+      updated_at: Date.now(),
+    };
+    try {
+      localStorage.setItem("selectedHuntForResearch", JSON.stringify(payload));
+      sessionStorage.setItem("selectedHuntForResearch", JSON.stringify(payload));
+      localStorage.setItem(SELECTED_HUNT_KEY, code);
+      localStorage.setItem(SELECTED_RESIDENCY_KEY, "Resident");
+      localStorage.setItem(SELECTED_DRAW_POOL_KEY, "standard");
+      localStorage.setItem(SELECTED_POINTS_KEY, "12");
+      const next = loadBackpack().filter((item) => normalizeHuntCode(item?.hunt_code) !== code);
+      next.unshift(payload);
+      localStorage.setItem(BASKET_KEY, JSON.stringify(next.slice(0, 24)));
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  function renderResults(items, state, huntRows, huntByCode) {
     const panel = byId("uogaResultsPanel");
     const panelTitle = byId("uogaResultsTitle");
     const panelCount = byId("uogaLibraryCount");
@@ -509,6 +815,7 @@
 
       if (item.type === "pdf") {
         const originalHref = safeUrl(item.href);
+        const pdfResearch = renderPdfResearchDrawer(item, huntRows);
         return `
           <div class="public-file-card">
             ${base}
@@ -516,6 +823,7 @@
               <button class="public-file-action" type="button" data-action="flip" data-index="${idx}">View Preview</button>
               <a class="public-file-action" href="${esc(originalHref)}" target="_blank" rel="noopener noreferrer">Download Original</a>
             </div>
+            ${pdfResearch}
           </div>
         `;
       }
@@ -556,11 +864,28 @@
       });
     });
 
+    grid.querySelectorAll("[data-action='backpack']").forEach((button) => {
+      button.addEventListener("click", () => {
+        const code = normalizeHuntCode(button.getAttribute("data-hunt-code"));
+        const row = huntByCode.get(code);
+        if (!row) return;
+        if (saveHuntToBackpack(row)) {
+          button.textContent = "Saved";
+          button.setAttribute("aria-label", `${code} saved to Hunt Backpack`);
+        }
+      });
+    });
+
     panel.focus({ preventScroll: true });
   }
 
-  function start(items) {
+  function start(items, huntRows) {
     const state = { activeFolder: "", query: "" };
+    const huntByCode = new Map();
+    huntRows.forEach((row) => {
+      const code = normalizeHuntCode(row?.hunt_code);
+      if (code && !huntByCode.has(code)) huntByCode.set(code, row);
+    });
     const search = byId("uogaLibrarySearch");
     const clear = byId("uogaLibraryClear");
     bindStaticControls();
@@ -570,7 +895,7 @@
         state.activeFolder = state.activeFolder === folderId ? "" : folderId;
         renderAll();
       });
-      renderResults(items, state);
+      renderResults(items, state, huntRows, huntByCode);
     };
 
     if (search) {
@@ -604,15 +929,15 @@
     renderAll();
   }
 
-  Promise.all(MANIFEST_URLS.map(fetchManifest))
-    .then((allSets) => allSets.flat().map(toPublicItem).filter(Boolean))
-    .then((items) => {
-      const fixed = FIXED_PUBLIC_ITEMS.map(toPublicItem).filter(Boolean);
-      return dedupe([...items, ...fixed]);
+  Promise.all([Promise.all(MANIFEST_URLS.map(fetchManifest)), loadHuntIndex()])
+    .then(([allSets, huntRows]) => {
+      const items = allSets.flat().map(toPublicItem).filter(Boolean);
+      const fixed = [...FIXED_PUBLIC_ITEMS, ...PUBLIC_HUNT_LIBRARY_ITEMS].map(toPublicItem).filter(Boolean);
+      return { items: dedupe([...items, ...fixed]), huntRows };
     })
-    .then((items) => enforceConservationSingleItem(items))
-    .then((items) => filterAvailableItems(items))
-    .then(start)
+    .then(({ items, huntRows }) => ({ items: enforceConservationSingleItem(items), huntRows }))
+    .then(({ items, huntRows }) => filterAvailableItems(items).then((availableItems) => ({ items: availableItems, huntRows })))
+    .then(({ items, huntRows }) => start(items, huntRows))
     .catch((error) => {
       const panel = byId("uogaResultsPanel");
       const grid = byId("uogaLibrarySections");
