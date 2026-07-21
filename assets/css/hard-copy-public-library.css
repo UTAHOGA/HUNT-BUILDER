@@ -1,6 +1,6 @@
 :root {
-  --wallpaper: url("/assets/backgrounds/LIBRARY-WALLPAPERS.png");
-  --library-wallpaper-size: cover;
+  --wallpaper: url("/assets/backgrounds/LIBRARY.png");
+  --library-wallpaper-size: min(1920px, 100vw) min(1080px, 56.25vw);
   --library-wallpaper-position: center center;
   --ink: #2d180f;
   --accent: #d48635;
@@ -218,7 +218,7 @@ body {
 .public-library-controls {
   position: absolute;
   left: 50%;
-  top: clamp(24px, 5vh, 56px);
+  top: clamp(280px, 42vh, 460px);
   transform: translateX(-50%);
   width: min(820px, 68vw);
   display: flex;
@@ -265,7 +265,7 @@ body {
 .public-library-note {
   position: absolute;
   left: 50%;
-  top: clamp(84px, 11vh, 124px);
+  top: clamp(344px, 50vh, 532px);
   transform: translateX(-50%);
   margin: 0;
   width: min(840px, 80vw);
@@ -281,7 +281,7 @@ body {
 .public-library-folders {
   position: absolute !important;
   left: 50% !important;
-  top: clamp(332px, 45vh, 430px) !important;
+  top: clamp(448px, 62vh, 664px) !important;
   transform: translateX(-50%) !important;
   width: min(1010px, 70vw) !important;
   margin: 0 !important;
@@ -739,17 +739,17 @@ body {
 
 @media (max-width: 1100px) {
   :root {
-    --library-wallpaper-size: cover;
+    --library-wallpaper-size: 100vw 56.25vw;
   }
 
   .public-library-controls {
     width: min(700px, 86vw);
-    top: clamp(22px, 5vh, 52px);
+    top: clamp(250px, 40vh, 356px);
   }
 
   .public-library-note {
     width: min(720px, 90vw);
-    top: clamp(80px, 11vh, 116px);
+    top: clamp(306px, 48vh, 420px);
     font-size: 13px;
   }
 
@@ -765,7 +765,7 @@ body {
   .public-library-folders {
     width: min(760px, 84vw);
     grid-template-columns: repeat(2, minmax(180px, 1fr));
-    top: clamp(318px, 42vh, 390px) !important;
+    top: clamp(414px, 62vh, 548px) !important;
   }
 }
 
