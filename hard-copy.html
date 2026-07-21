@@ -7,7 +7,7 @@
   <title>U.O.G.A. Hunt Library</title>
   <script src="./embed-mode.js?v=20260422-embed-1"></script>
   <link rel="stylesheet" href="./style.css?v=20260606-runtime-ladder-mask-1" />
-  <link rel="stylesheet" href="./assets/css/hard-copy-public-library.css?v=20260721-library-map-backdrop-1" />
+  <link rel="stylesheet" href="./assets/css/hard-copy-public-library.css?v=20260721-library-map-backpack-1" />
   <script src="https://js.sentry-cdn.com/26137c5576f01423efc85f47076f9548.min.js" crossorigin="anonymous"></script>
   <script src="./sentry-browser-init.js"></script>
 </head>
@@ -26,7 +26,7 @@
 
   <header class="topbar topbar-planner hard-copy-topbar" aria-label="Hunt Library navigation">
     <div class="topbar-left"></div>
-    <div class="topbar-right"></div>
+    <div class="topbar-right" data-backpack-host="true"></div>
   </header>
 
   <main class="public-library-shell" aria-label="U.O.G.A. Hunt-Builder public resource library">
@@ -64,7 +64,6 @@
           <div class="uoga-pdf-flip-head">
             <strong id="uogaPdfFlipTitle">PDF Viewer</strong>
             <div class="uoga-pdf-flip-actions">
-              <a id="uogaPdfDownload" href="#" target="_blank" rel="noopener noreferrer">Download Original</a>
               <button type="button" id="uogaPdfFlipClose">Close</button>
             </div>
           </div>
@@ -87,6 +86,7 @@
   </main>
 
   <script src="./header-layout.js?v=20260606-runtime-ladder-mask-1"></script>
-  <script src="./assets/js/hard-copy-public-library.js?v=20260530-library-render-fix-3"></script>
+  <script src="./ui.js?v=20260721-library-resource-backpack-1"></script>
+  <script src="./assets/js/hard-copy-public-library.js?v=20260721-library-preview-backpack-1"></script>
 </body>
 </html>

@@ -452,13 +452,11 @@
     const panel = byId("uogaPdfFlipPanel");
     const book = byId("uogaPdfFlipbook");
     const status = byId("uogaPdfStatus");
-    const download = byId("uogaPdfDownload");
-    if (!panel || !book || !status || !download) return;
+    if (!panel || !book || !status) return;
     book.innerHTML = "";
     panel.hidden = true;
     document.body.classList.remove("uoga-modal-open");
     status.textContent = "Loading...";
-    download.href = "#";
   }
 
   async function openPdfFlipbook(item) {
@@ -467,14 +465,12 @@
     const title = byId("uogaPdfFlipTitle");
     const status = byId("uogaPdfStatus");
     const book = byId("uogaPdfFlipbook");
-    const download = byId("uogaPdfDownload");
-    if (!panel || !title || !status || !book || !download) return;
+    if (!panel || !title || !status || !book) return;
     const viewerHref = item.viewerHref || item.href;
 
     panel.hidden = false;
     document.body.classList.add("uoga-modal-open");
     title.textContent = item.title || "PDF Viewer";
-    download.href = safeUrl(viewerHref);
     status.textContent = "In-browser PDF preview";
     const prev = byId("uogaPdfPrev");
     const next = byId("uogaPdfNext");
@@ -492,7 +488,7 @@
       book.appendChild(frame);
     } catch (error) {
       document.body.classList.remove("uoga-modal-open");
-      status.textContent = "Could not load PDF preview. Use Download Original.";
+      status.textContent = "Could not load PDF preview.";
       book.innerHTML = `<div class="public-empty">${esc(error.message || "PDF preview failed to load")}</div>`;
     }
   }
@@ -754,6 +750,49 @@
     }
   }
 
+  function resourceKeyFor(item) {
+    const raw = `${item?.title || ""} ${item?.href || ""}`.toUpperCase();
+    const slug = raw.replace(/[^A-Z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 56);
+    return `LIBRARY:${slug || "RESOURCE"}`;
+  }
+
+  function saveLibraryResourceToBackpack(item) {
+    if (!item?.href) return false;
+    const key = resourceKeyFor(item);
+    const payload = {
+      hunt_code: key,
+      huntCode: key,
+      hunt_name: item.title || "Hunt Library Resource",
+      unit: item.subtitle || "",
+      species: item.type === "pdf" ? "Library PDF" : "Library Resource",
+      weapon: item.year ? `${item.year}` : "",
+      hunt_type: "Hunt Library",
+      hunt_class: "Reference",
+      draw_pool: "library",
+      source: "hunt-library",
+      resource_type: item.type === "pdf" ? "library_pdf_map" : "library_file",
+      resource_title: item.title || "Hunt Library Resource",
+      resource_href: item.viewerHref || item.href,
+      resource_file_type: item.type || "",
+      updated_at: Date.now(),
+    };
+    try {
+      if (window.UOGA_UI?.getBasket && window.UOGA_UI?.setBasket) {
+        const current = window.UOGA_UI.getBasket();
+        const next = current.filter((entry) => String(entry?.hunt_code || "").toUpperCase() !== key);
+        window.UOGA_UI.setBasket([payload, ...next]);
+      } else {
+        const next = loadBackpack().filter((entry) => String(entry?.hunt_code || "").toUpperCase() !== key);
+        next.unshift(payload);
+        localStorage.setItem(BASKET_KEY, JSON.stringify(next.slice(0, 24)));
+        document.dispatchEvent(new CustomEvent("uoga:backpack-changed"));
+      }
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   function renderResults(items, state, huntRows, huntByCode) {
     const panel = byId("uogaResultsPanel");
     const panelTitle = byId("uogaResultsTitle");
@@ -816,14 +855,13 @@
       `;
 
       if (item.type === "pdf") {
-        const originalHref = safeUrl(item.href);
         const pdfResearch = renderPdfResearchDrawer(item, huntRows);
         return `
           <div class="public-file-card">
             ${base}
             <div class="public-file-actions">
-              <button class="public-file-action" type="button" data-action="flip" data-index="${idx}">View Preview</button>
-              <a class="public-file-action" href="${esc(originalHref)}" target="_blank" rel="noopener noreferrer">Download Original</a>
+              <button class="public-file-action" type="button" data-action="flip" data-index="${idx}">Open PDF Preview</button>
+              <button class="public-file-action" type="button" data-action="backpack-resource" data-index="${idx}">Backpack Map</button>
             </div>
             ${pdfResearch}
           </div>
@@ -841,12 +879,11 @@
         `;
       }
 
-      const href = safeUrl(item.href);
       return `
         <div class="public-file-card">
           ${base}
           <div class="public-file-actions">
-            <a class="public-file-action" href="${esc(href)}" target="_blank" rel="noopener noreferrer">Open File</a>
+            <button class="public-file-action public-file-action--disabled" type="button" disabled>PDF Preview Only</button>
           </div>
         </div>
       `;
@@ -863,6 +900,17 @@
       button.addEventListener("click", () => {
         const idx = Number(button.getAttribute("data-index"));
         if (Number.isFinite(idx) && filtered[idx]) openEmbed(filtered[idx]);
+      });
+    });
+
+    grid.querySelectorAll("[data-action='backpack-resource']").forEach((button) => {
+      button.addEventListener("click", () => {
+        const idx = Number(button.getAttribute("data-index"));
+        if (!Number.isFinite(idx) || !filtered[idx]) return;
+        if (saveLibraryResourceToBackpack(filtered[idx])) {
+          button.textContent = "Saved";
+          button.setAttribute("aria-label", `${filtered[idx].title || "Library resource"} saved to Hunt Backpack`);
+        }
       });
     });
 

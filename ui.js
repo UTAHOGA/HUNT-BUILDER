@@ -46,6 +46,9 @@ window.UOGA_UI = (() => {
   }
 
   function getBackpackHost() {
+    const explicitHost = document.querySelector('[data-backpack-host]');
+    if (explicitHost) return explicitHost;
+
     if (isBuilderPage()) {
       const existingHost = document.querySelector('[data-backpack-host]') || document.querySelector('.topbar-right');
       if (existingHost) return existingHost;
@@ -189,7 +192,12 @@ window.UOGA_UI = (() => {
     return parts.join(' · ');
   }
 
+  function isLibraryResource(item) {
+    return Boolean(item?.resource_type) || normalizeKey(item?.hunt_code).startsWith('LIBRARY:');
+  }
+
   function itemSubvalue(item) {
+    if (isLibraryResource(item)) return item.resource_href || item.unit || 'Saved from Hunt Library';
     return item.projected_total_probability_pct === null || item.projected_total_probability_pct === undefined
       ? (item.unit || 'No projected read saved yet')
       : `${formatProbability(item.projected_total_probability_pct)}${item.unit ? ` · ${item.unit}` : ''}`;
@@ -265,6 +273,29 @@ window.UOGA_UI = (() => {
       </div>
       <div class="uoga-backpack-list">
         ${items.map((item) => {
+          if (isLibraryResource(item)) {
+            const fileType = safeText(item.resource_file_type || item.species || 'Library file').trim().toUpperCase();
+            return `
+          <article class="uoga-backpack-item" data-hunt-code="${escapeHtml(item.hunt_code)}">
+            <div class="uoga-backpack-item-top">
+              <div>
+                <p class="uoga-backpack-kicker">Saved resource</p>
+                <h4>${escapeHtml(fileType || 'LIBRARY')}</h4>
+              </div>
+              <a class="uoga-backpack-chip" href="./hard-copy.html">Library</a>
+            </div>
+            <div class="uoga-backpack-name">${escapeHtml(item.resource_title || item.hunt_name || item.hunt_code)}</div>
+            <div class="uoga-backpack-meta">${escapeHtml(itemMeta(item) || 'Hunt Library map/PDF reference')}</div>
+            <div class="uoga-backpack-subvalue">${escapeHtml(itemSubvalue(item))}</div>
+            <div class="uoga-backpack-actions">
+              <a href="./hard-copy.html">Open Library</a>
+              ${sectionType === 'saved'
+                ? `<button type="button" data-backpack-remove="${escapeHtml(item.hunt_code)}">Remove</button>`
+                : '<span class="uoga-backpack-ghost">Recent</span>'}
+            </div>
+          </article>
+        `;
+          }
           const itemResearchHref = researchHref(item);
           const dataHref = huntDataHref(item);
           return `
