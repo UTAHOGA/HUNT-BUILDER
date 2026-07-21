@@ -61,16 +61,7 @@ def _output_residency(residency: str) -> str:
 
 
 def _effective_draw_pool(row: Mapping[str, object]) -> str:
-    draw_pool = _clean_lower(row.get("draw_pool"))
-    if draw_pool == "preference_general_season_buck_deer":
-        return "adult_general_deer"
-    source_text = " ".join(
-        _clean_lower(row.get(key))
-        for key in ("hunt_class", "hunt_draw_class", "draw_class_type", "source_file")
-    )
-    if draw_pool in {"", "standard"} and "youth" in source_text and "general" in source_text and "deer" in source_text:
-        return "youth_general_deer"
-    return draw_pool or "standard"
+    return "adult_general_deer"
 
 
 def _to_int(value: object) -> int:
@@ -188,7 +179,7 @@ def _looks_like_general_buck_deer(row: Mapping[str, object]) -> bool:
         return False
     if any(token in text for token in ("dedicated hunter", "lifetime", "cwmu", "private land only", "private", "tribal")):
         return False
-    if "youth" in text and not _is_youth_general_deer_preference(row):
+    if "youth" in text:
         return False
     return True
 
@@ -207,8 +198,6 @@ def _looks_like_standard_pool(row: Mapping[str, object]) -> bool:
     draw_pool = _clean_lower(row.get("draw_pool"))
     hunt_class = _clean_lower(row.get("hunt_class"))
     hunt_draw_class = _clean_lower(row.get("hunt_draw_class") or row.get("draw_class_type"))
-    if _is_youth_general_deer_preference(row):
-        return True
     if draw_pool not in {"", "standard", "adult_general_deer", "preference_general_season_buck_deer"}:
         return False
     if hunt_class in {"", "public", "general season"}:

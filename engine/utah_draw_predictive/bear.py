@@ -35,9 +35,9 @@ BEAR_NO_PUBLIC_PROBABILITY_REASON_CODES = {
 }
 BEAR_NO_PUBLIC_PROBABILITY_FLAGS = {"MISSING_FORECAST_QUOTA"}
 REPO = Path(__file__).resolve().parents[2]
-BEAR_DRAW_ODDS_SOURCE_PDF = REPO / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "pdf" / "draw_odds" / "2025 Black Bear Draw odds.pdf"
+BEAR_DRAW_ODDS_SOURCE_PDF = REPO / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "pdf" / "draw_odds" / "2025_PERMITS=2026_MODEL__BLACK_BEAR_DRAW_ODDS.pdf"
 BEAR_DRAW_ODDS_SOURCE_YEAR = 2025
-BEAR_DRAW_ODDS_SOURCE_RELATIVE = "pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/2025 Black Bear Draw odds.pdf"
+BEAR_DRAW_ODDS_SOURCE_RELATIVE = "pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/2025_PERMITS=2026_MODEL__BLACK_BEAR_DRAW_ODDS.pdf"
 BR7307_2025_SUPPLEMENTAL_LADDER = (
     REPO
     / "data_truth"

@@ -47,7 +47,6 @@ NON_PROBABILITY_DRAW_DESIGNS = {"REFERENCE_ONLY"}
 NON_PROBABILITY_DRAW_POOLS = {
     "reference_only",
     "lifetime_general_deer",
-    "preference_point",
 }
 
 DRAW_DESIGN_ALIASES = {
@@ -788,7 +787,10 @@ def actual_points_from_row(row: Mapping[str, Any]) -> list[ActualPoint]:
         return []
     draw_design_key = norm_draw_design(row.get("draw_design"))
     draw_pool = norm_draw_pool(row.get("draw_pool"))
-    if draw_design_key in NON_PROBABILITY_DRAW_DESIGNS or draw_pool in NON_PROBABILITY_DRAW_POOLS:
+    draw_pool_is_scoreable_exception = draw_design_key == "PREFERENCE_GENERAL_SEASON_BUCK_DEER" and draw_pool == "lifetime_general_deer"
+    if draw_design_key in NON_PROBABILITY_DRAW_DESIGNS or (
+        draw_pool in NON_PROBABILITY_DRAW_POOLS and not draw_pool_is_scoreable_exception
+    ):
         return []
     points = norm_points(row.get("points"))
     if family == "sportsman":
@@ -796,7 +798,7 @@ def actual_points_from_row(row: Mapping[str, Any]) -> list[ActualPoint]:
         points = ""
     elif not points:
         points = ""
-    if (not points and family != "sportsman") or (points == "TOTAL" and family != "sportsman"):
+    if not points and family != "sportsman":
         return []
     output: list[ActualPoint] = []
     resident_applicants = parse_float(row.get("resident_eligible_applicants")) or 0.0
@@ -1422,7 +1424,7 @@ def _probability_metric_from_row(row: Mapping[str, Any]) -> str:
 
 def _probability_for_official_row(row: Mapping[str, Any]) -> tuple[float | None, str]:
     metric = _probability_metric_from_row(row)
-    candidate_fields = [metric, "p_draw", "actual_probability", "predicted_probability", "p_preference_draw", "p_sportsman_draw", "p_bonus_pool", "p_random_pool", "p_availability"]
+    candidate_fields = [metric, "p_draw", "actual_probability", "p_draw_normalized", "p_draw_mean", "predicted_probability", "p_preference_draw", "p_sportsman_draw", "p_bonus_pool", "p_random_pool", "p_availability"]
     seen: set[str] = set()
     for field in candidate_fields:
         if field in seen:
@@ -1543,6 +1545,12 @@ def run_official_score_key_v2_mode(args: argparse.Namespace, prediction_rows: li
         "rmse": rmse,
         "bias": bias,
         "calibration_applied": False,
+        "zero_score_false_pass_blocked": (
+            not args.summary_only
+            and len(prediction_rows) > 0
+            and len(truth_rows) > 0
+            and len(errors) == 0
+        ),
     }
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
@@ -1765,6 +1773,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 2
 
     if summary.get("scoring_mode") == "official_score_key_v2":
+        zero_score_false_pass = (
+            not args.summary_only
+            and summary["prediction_rows"] > 0
+            and summary["truth_rows"] > 0
+            and summary["scored_rows"] == 0
+        )
         print(
             json.dumps(
                 {
@@ -1780,12 +1794,15 @@ def main(argv: Sequence[str] | None = None) -> int:
                     "rmse": summary["rmse"],
                     "bias": summary["bias"],
                     "calibration_applied": summary["calibration_applied"],
+                    "zero_score_false_pass_blocked": zero_score_false_pass,
                     "output_dir": rel(args.output_dir),
                 },
                 indent=2,
                 sort_keys=True,
             )
         )
+        if zero_score_false_pass:
+            return 2
         return 0
 
     print(

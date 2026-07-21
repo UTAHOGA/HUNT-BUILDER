@@ -1,39 +1,116 @@
 {
   "active_database_coverage_by_draw_year": {
-    "2021": 23261,
-    "2022": 15553,
-    "2023": 14683,
-    "2024": 34952,
-    "2025": 73604,
-    "2026": 1096
+    "2017": 24937,
+    "2018": 26736,
+    "2019": 29566,
+    "2020": 31082,
+    "2021": 33788,
+    "2022": 34876,
+    "2023": 35834,
+    "2024": 43175,
+    "2025": 38087,
+    "2026": 28795
   },
-  "active_database_hunt_codes": 1394,
+  "active_database_hunt_codes": 1645,
   "artifact": "draw_results_all_years_cumulative_truth",
   "blank_hunt_code_rows": 0,
-  "blocker_count": 0,
-  "blockers": [],
-  "crosswalk_current_code_count": 169,
-  "crosswalk_current_codes_present_in_draw_rows": 169,
+  "blocker_count": 1,
+  "blockers": [
+    "DUPLICATE_DRAW_RESULT_KEYS"
+  ],
+  "crosswalk_current_code_count": 174,
+  "crosswalk_current_codes_present_in_draw_rows": 10,
   "database_truth_match_counts": {
-    "": 64697,
-    "NO": 7167,
-    "YES": 104889
+    "": 341970
   },
   "draw_method_counts": {
-    "": 63592,
-    "BONUS": 81979,
-    "PREFERENCE": 31182
+    "": 341970
   },
   "draw_year_counts": {
-    "2021": 27519,
-    "2022": 18688,
-    "2023": 17128,
-    "2024": 37128,
-    "2025": 75194,
-    "2026": 1096
+    "2017": 29503,
+    "2018": 31031,
+    "2019": 33478,
+    "2020": 33370,
+    "2021": 33788,
+    "2022": 34876,
+    "2023": 35834,
+    "2024": 43175,
+    "2025": 38120,
+    "2026": 28795
   },
-  "duplicate_key_count": 0,
-  "duplicate_key_examples": [],
+  "duplicate_key_count": 39667,
+  "duplicate_key_examples": [
+    {
+      "draw_pool": "preference_antlerless_deer",
+      "hunt_code": "DA1000",
+      "points": "0",
+      "residency": "",
+      "year": "2017"
+    },
+    {
+      "draw_pool": "preference_antlerless_deer",
+      "hunt_code": "DA1000",
+      "points": "1",
+      "residency": "",
+      "year": "2017"
+    },
+    {
+      "draw_pool": "preference_antlerless_deer",
+      "hunt_code": "DA1000",
+      "points": "2",
+      "residency": "",
+      "year": "2017"
+    },
+    {
+      "draw_pool": "preference_antlerless_deer",
+      "hunt_code": "DA1000",
+      "points": "3",
+      "residency": "",
+      "year": "2017"
+    },
+    {
+      "draw_pool": "preference_antlerless_deer",
+      "hunt_code": "DA1000",
+      "points": "4",
+      "residency": "",
+      "year": "2017"
+    },
+    {
+      "draw_pool": "preference_antlerless_deer",
+      "hunt_code": "DA1000",
+      "points": "5",
+      "residency": "",
+      "year": "2017"
+    },
+    {
+      "draw_pool": "preference_antlerless_deer",
+      "hunt_code": "DA1000",
+      "points": "6",
+      "residency": "",
+      "year": "2017"
+    },
+    {
+      "draw_pool": "preference_antlerless_deer",
+      "hunt_code": "DA1000",
+      "points": "7",
+      "residency": "",
+      "year": "2017"
+    },
+    {
+      "draw_pool": "preference_antlerless_deer",
+      "hunt_code": "DA1000",
+      "points": "8",
+      "residency": "",
+      "year": "2017"
+    },
+    {
+      "draw_pool": "preference_antlerless_deer",
+      "hunt_code": "DA1000",
+      "points": "9",
+      "residency": "",
+      "year": "2017"
+    }
+  ],
   "duplicate_key_fields": [
     "hunt_code",
     "year",
@@ -48,14 +125,18 @@
   ],
   "invalid_year_rows": 0,
   "model_target_year_counts": {
-    "2022": 27519,
-    "2023": 18688,
-    "2024": 17128,
-    "2025": 37128,
-    "2026": 75194,
-    "2027": 1096
+    "2018": 29503,
+    "2019": 31031,
+    "2020": 33478,
+    "2021": 33370,
+    "2022": 33788,
+    "2023": 34876,
+    "2024": 35834,
+    "2025": 43175,
+    "2026": 38120,
+    "2027": 28795
   },
-  "normalized_long_rows": 176753,
+  "normalized_long_rows": 341970,
   "outputs": {
     "long_csv": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
     "processed_source_audit_csv": "processed_data/draw_results_all_years_source_audit.csv",
@@ -66,33 +147,44 @@
     "summary_md": "data_truth/draw_results_truth/normalized/draw_results_all_years_summary.md"
   },
   "publish_year_counts": {
-    "2021": 27519,
-    "2022": 18688,
-    "2023": 17128,
-    "2024": 37128,
-    "2025": 75194,
-    "2026": 1096
+    "2017": 29503,
+    "2018": 31031,
+    "2019": 33478,
+    "2020": 33370,
+    "2021": 33788,
+    "2022": 34876,
+    "2023": 35834,
+    "2024": 43175,
+    "2025": 38120,
+    "2026": 28795
   },
   "reported_hunt_year_inferred_counts": {
-    "2021": 27519,
-    "2022": 18688,
-    "2023": 17128,
-    "2024": 37128,
-    "2025": 75194,
-    "2026": 1096
+    "2017": 29503,
+    "2018": 31031,
+    "2019": 33478,
+    "2020": 33370,
+    "2021": 33788,
+    "2022": 34876,
+    "2023": 35834,
+    "2024": 43175,
+    "2025": 38120,
+    "2026": 28795
   },
   "residency_counts": {
-    "Nonresident": 83937,
-    "Resident": 92816
+    "": 313438,
+    "Nonresident": 14262,
+    "Resident": 14270
   },
-  "source_audit_rows": 50,
+  "source_audit_rows": 201,
   "source_long_csv": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
   "status_counts": {
-    "": 175657,
-    "NO_DRAW_ODDS_SOURCE": 1074,
-    "SPORTSMAN_NO_PUBLISHED_DRAW_DATA": 22
+    "": 341970
   },
   "unique_draw_years": [
+    "2017",
+    "2018",
+    "2019",
+    "2020",
     "2021",
     "2022",
     "2023",
@@ -100,6 +192,6 @@
     "2025",
     "2026"
   ],
-  "unique_hunt_codes_all_years": 1616,
-  "unique_sources": 49
+  "unique_hunt_codes_all_years": 1544,
+  "unique_sources": 201
 }

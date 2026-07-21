@@ -74,6 +74,14 @@ def safe_int(value: str) -> int | None:
         return None
 
 
+def row_year(row: dict[str, str]) -> str:
+    for field in ("actual_draw_year", "year", "draw_year", "model_target_year"):
+        value = str(row.get(field) or "").strip()
+        if value:
+            return value
+    return ""
+
+
 def read_database_codes() -> set[str]:
     if not DATABASE.exists():
         return set()
@@ -89,7 +97,7 @@ def read_crosswalk_current_codes() -> set[str]:
 def build_source_audit(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     grouped: dict[tuple[str, str], list[dict[str, str]]] = defaultdict(list)
     for row in rows:
-        grouped[(row.get("source_file", ""), row.get("year", ""))].append(row)
+        grouped[(row.get("source_file", ""), row_year(row))].append(row)
 
     audit_rows: list[dict[str, str]] = []
     for (source_file, year), group in sorted(grouped.items()):
@@ -130,7 +138,7 @@ def build_summary(rows: list[dict[str, str]], source_audit_rows: list[dict[str, 
     seen_keys: set[tuple[str, str, str, str, str]] = set()
 
     for row in rows:
-        year = row.get("year", "")
+        year = row_year(row)
         year_counts[year] += 1
         parsed_year = safe_int(year)
         if parsed_year is None:
@@ -147,11 +155,25 @@ def build_summary(rows: list[dict[str, str]], source_audit_rows: list[dict[str, 
             blank_hunt_code_rows += 1
         if hunt_code in database_codes:
             database_coverage_by_year[year] += 1
-        key = tuple(row.get(field, "") for field in KEY_FIELDS)
+        key = (
+            year,
+            row.get("hunt_code", ""),
+            row.get("draw_pool", ""),
+            row.get("residency", ""),
+            row.get("points", ""),
+        )
         if key in seen_keys:
             duplicate_key_count += 1
             if len(duplicate_examples) < 10:
-                duplicate_examples.append(dict(zip(KEY_FIELDS, key)))
+                duplicate_examples.append(
+                    {
+                        "year": key[0],
+                        "hunt_code": key[1],
+                        "draw_pool": key[2],
+                        "residency": key[3],
+                        "points": key[4],
+                    }
+                )
         else:
             seen_keys.add(key)
 

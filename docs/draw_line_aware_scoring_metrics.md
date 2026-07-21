@@ -117,6 +117,19 @@ scorer evaluates real PDF ladder rows only.
 Do not count generated prediction points outside the PDF ladder as official
 accuracy misses. They are cleanup diagnostics.
 
+Important distinction:
+
+- `actual_ladder` / draw-line-authority rows are official PDF ladder rungs.
+  This includes zero-applicant rungs when the PDF prints them under a real draw
+  design and real draw pool.
+- Probability-scoreable rows are the subset of those ladder rungs with a real
+  actual probability and nonzero actual applicants.
+
+Zero-applicant PDF ladder rows are therefore not accuracy-error rows, but they
+are not disposable. They define the ladder structure, prevent generated
+prediction rows from being mistaken for outside-ladder rows, and help anchor the
+draw line better than trying to infer missing ladder rungs from predictions.
+
 ## Structural Join Keys
 
 The structural ladder key is:
@@ -366,7 +379,14 @@ or:
 
 ## Actual Ladder Construction
 
-The actual ladder is built only from official, scorable truth rows.
+The actual ladder is built only from official PDF draw-result ladder rows that
+belong to a real draw design and source-classified draw pool.
+
+In this section, "scorable truth" means source-approved draw-line authority, not
+necessarily MAE/RMSE eligibility. A zero-applicant point row with no actual
+probability can still be an official ladder rung. It stays in the actual ladder
+as structural draw-line authority and later receives
+`scoreability_status = impossible_zero_actual_applicants`.
 
 Allowed point record types:
 
@@ -389,13 +409,18 @@ Excluded draw pools:
 
 Rows with `scoring_allowed = false` are excluded.
 
-`TOTAL` as a point value is only a literal source label. It is not a draw pool,
-not a draw design, and not a sportsman point bucket. The scorer must not use
-`TOTAL` as sportsman scoring semantics.
+`TOTAL` is permit inventory language. It belongs in permit/allotment fields such
+as `year_permits_total`, not in the score-key `points` dimension.
 
-Sportsman is strictly random and has no bonus/preference point key. When an
-official sportsman source row uses a blank, `TOTAL`, or similar summary label,
-the scorer drops that label for sportsman joining and scoring.
+When an official preference-style draw result publishes a bottom total row, that
+row is permit/summary metadata, not a point-ladder rung. It must not be
+converted into a fake numeric point or a fake resident/nonresident lane, and it
+must not be emitted as `points=TOTAL` in `official_score_key_v2`.
+
+Sportsman is strictly random and has no bonus/preference point key. The scoring
+contract represents sportsman as `points=0` only for key-shape compatibility;
+source `TOTAL` labels remain permit totals/summary labels and are not point
+tokens.
 
 Sportsman permits are resident-only for scoring. Nonresidents cannot apply or
 draw for those permits, so nonresident sportsman rows with `N/A`, blank values,
@@ -484,6 +509,9 @@ The goal for a complete engine coverage run is:
 and:
 
 `actual_ladder_possible_missing_prediction_probability_rows = 0`
+
+Zero-applicant structural ladder rows are resolved before this coverage test.
+They are neither prediction misses nor probability-denominator rows.
 
 ## Scoring Decisions
 
@@ -627,6 +655,10 @@ Never fabricate accuracy from:
 These rows can still appear as diagnostics when they explain coverage or source
 classification, but they do not enter MAE/RMSE.
 
+This list does not remove official zero-applicant point-ladder rows from the
+draw-line ladder. A zero-applicant row under a real draw design is structural
+draw-line authority; a reference/quota/allocation/conservation row is not.
+
 ## Youth Reserve Rules
 
 Youth rows are separate source-classified draw pools, not adult preference rows
@@ -681,10 +713,17 @@ For preference draws:
 - zero-applicant rows do not consume permits
 - zero-applicant rows do not roll forward
 - zero-applicant rows are not scored for accuracy
+- official total-pool probability rows can be scored as non-point summary rows
+  when the source publishes a real combined applicant pool instead of separate
+  resident/nonresident pools
 
 Preference rows can still have a mixed-success line when the official ladder
 shows partial success at a point level, but that does not make every preference
 draw a max/weighted split model.
+
+Youth Dedicated Hunter deer is a real preference-style draw family when the
+official source publishes draw prediction/probability rows for it. It should not
+be left in `REFERENCE_ONLY` merely because it is youth-scoped.
 
 ## Sportsman Rules
 
@@ -701,6 +740,26 @@ prints the deer row as `DB1045`, while later canonical sportsman truth uses
 `DB0007`. `DB1045` is also a real limited-entry Fillmore/Oak Creek deer code in
 other contexts, so `DB0007 -> DB1045` must never be a global alias. It is valid
 only for the reviewed 2017 sportsman scoring context.
+
+## Bear And Cougar Rules
+
+Bear draw-result rows are scoreable when they are true limited-entry bear draw
+rows. Bear pursuit-only, harvest-objective/status, O.T.C. availability, and
+conservation/benefit-auction rows remain reference or availability diagnostics
+and do not enter draw-probability accuracy.
+
+Private-lands-only antlerless elk is O.T.C. permit availability, not a draw
+pool. It is excluded as `PRIVATE_LANDS_ONLY_ANTLERLESS_ELK_OTC_NOT_DRAW`.
+
+Antlerless moose is not ordinary antlerless preference elk/deer/pronghorn and
+is not generic O.I.L. bull moose. It is a special bonus-style draw keyed as
+`source_family=ADULT_ANTLERLESS`, `draw_design=BONUS_ANTLERLESS_MOOSE`, and
+`draw_pool=bonus_antlerless_moose`.
+
+Cougar/mountain-lion handling is year-specific. The 2019 actual draw-result
+surface is still a draw-probability source and should be classified as
+`COUGAR_LICENSE_BASED` for scoring. The later license-only/O.T.C. treatment does
+not apply retroactively to 2019 draw-result probability rows.
 
 ## Extra Prediction Diagnostics
 

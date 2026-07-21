@@ -5,7 +5,9 @@ from __future__ import annotations
 import argparse
 import csv
 import json
-from collections import defaultdict
+import re
+from collections import Counter, defaultdict
+from decimal import Decimal, InvalidOperation
 from functools import lru_cache
 from pathlib import Path
 from typing import Iterable, Mapping, Sequence
@@ -35,7 +37,13 @@ from .preference_general_deer import build_preference_general_deer_predictions
 from .preference_ladder_normalizer import normalize_preference_ladder_rows
 from .sportsman import build_sportsman_predictions
 from .turkey import TURKEY_DRAW_SYSTEM_TYPE, YOUTH_TURKEY_DRAW_SYSTEM_TYPE, build_turkey_bonus_predictions, build_youth_turkey_predictions
-from .youth import build_youth_predictions
+from .youth import (
+    build_youth_predictions,
+    is_youth_antlerless_or_doe_row,
+    is_youth_draw_only_elk_row,
+    is_youth_general_any_bull_elk_row,
+    is_youth_general_deer_row,
+)
 
 
 REPO = Path(__file__).resolve().parents[2]
@@ -48,8 +56,10 @@ MODELED_FAMILIES = (
     "preference_antlerless_deer",
     "preference_antlerless_elk",
     "preference_doe_pronghorn",
+    "bonus_cwmu_big_game",
 )
 RUNTIME_MATERIALIZER_FAMILIES = (
+    "bonus_cwmu_big_game",
     "bonus_le_big_game",
     "bonus_ple_big_game",
     "bonus_oil_big_game",
@@ -58,15 +68,36 @@ RUNTIME_MATERIALIZER_FAMILIES = (
     "youth_turkey",
     "youth_draw",
 )
+
+FAMILY_PREDICTION_REQUIRED_FIELDS = (
+    "target_year",
+    "source_family",
+    "draw_system_type",
+    "draw_pool",
+    "draw_pool_key",
+    "hunt_code",
+    "score_scope",
+    "residency",
+    "points",
+    "probability_metric",
+    "official_score_key_v2",
+)
 UNRELEASED_ACTUAL_HOLDOUT_FAMILIES = {
     "preference_antlerless_deer",
     "preference_antlerless_elk",
     "preference_doe_pronghorn",
 }
 BIG_GAME_BONUS_RUNTIME_FAMILIES = {
+    "bonus_cwmu_big_game",
     "bonus_le_big_game",
     "bonus_ple_big_game",
     "bonus_oil_big_game",
+}
+QUALIFIED_DRAW_POOL_SOURCE_FAMILIES = {
+    "LE_BIG_GAME",
+    "PLE_BIG_GAME",
+    "OIL_BIG_GAME",
+    "CWMU_BIG_GAME",
 }
 
 AUTHORITY_TO_FAMILY = {
@@ -90,6 +121,7 @@ AUTHORITY_EXCLUDED_DRAW_SYSTEM_TYPES = {
     "OTC_CAPPED",
     "OTC_UNLIMITED",
     "PRIVATE_LANDS_ONLY",
+    "PRIVATE_LANDS_ONLY_ANTLERLESS_ELK",
     "PTARMIGAN_FREE_AVAILABILITY",
     "REFERENCE_ONLY",
     "TURKEY_CONTROL_VOUCHER",
@@ -196,6 +228,253 @@ def _read_runtime_database_rows() -> list[dict[str, str]]:
 
 def _joined_lower(row: Mapping[str, object], *fields: str) -> str:
     return " ".join(_clean(row.get(field)).lower() for field in fields)
+
+
+def _source_file_name(row: Mapping[str, object]) -> str:
+    raw = _clean(row.get("source_file") or row.get("draw_source_file") or row.get("source_pdf"))
+    if not raw:
+        return ""
+    return Path(raw).name.lower()
+
+
+def _source_file_route(row: Mapping[str, object]) -> dict[str, str]:
+    source_text = " ".join(
+        _clean(row.get(field)).lower().replace("\\", "/")
+        for field in ("source_file", "draw_source_file", "source_pdf", "source_path")
+    )
+    compact = re.sub(r"[^a-z0-9]+", "_", source_text).strip("_")
+    if not compact:
+        return {}
+
+    def route(engine_family: str, source_family: str, draw_system_type: str, draw_pool: str) -> dict[str, str]:
+        return {
+            "engine_family": engine_family,
+            "source_family": source_family,
+            "draw_system_type": draw_system_type,
+            "draw_pool": draw_pool,
+        }
+
+    if "cwmu" in compact:
+        if "youth_antlerless_elk" in compact:
+            draw_pool = "cwmu_youth_antlerless_elk"
+        elif "youth_antlerless_deer" in compact:
+            draw_pool = "cwmu_youth_antlerless_deer"
+        elif "youth_antlerless_pronghorn" in compact or "youth_doe_pronghorn" in compact:
+            draw_pool = "cwmu_youth_doe_pronghorn"
+        elif "antlerless_elk" in compact:
+            draw_pool = "cwmu_antlerless_elk"
+        elif "antlerless_deer" in compact:
+            draw_pool = "cwmu_antlerless_deer"
+        elif "doe_pronghorn" in compact or "antlerless_pronghorn" in compact:
+            draw_pool = "cwmu_doe_pronghorn"
+        elif "deer_buck" in compact:
+            draw_pool = "cwmu_big_game_deer_buck"
+        elif "elk_bull" in compact:
+            draw_pool = "cwmu_big_game_elk_bull"
+        elif "pronghorn_buck" in compact:
+            draw_pool = "cwmu_big_game_pronghorn_buck"
+        elif "moose_bull" in compact:
+            draw_pool = "cwmu_big_game_moose_bull"
+        else:
+            draw_pool = "cwmu_big_game"
+        return route("bonus_cwmu_big_game", "CWMU_BIG_GAME", "BONUS_CWMU_BIG_GAME", draw_pool)
+    if "sportsman" in compact:
+        return route("sportsman", "SPORTSMAN", "SPORTSMAN_RANDOM_ONLY", "random")
+    if "youth_turkey" in compact:
+        return route("youth_turkey", "TURKEY", YOUTH_TURKEY_DRAW_SYSTEM_TYPE, "youth_turkey")
+    if "turkey" in compact:
+        return route("bonus_turkey", "TURKEY", "BONUS_TURKEY", "preference_point")
+    if "black_bear" in compact or compact.endswith("bear_draw_results"):
+        return route("bonus_bear", "BEAR_DRAW_RESULTS", "BLACK_BEAR", "black_bear")
+    if "cougar" in compact:
+        return route("cougar", "COUGAR", "COUGAR", "cougar")
+    if "youth_any_bull_elk" in compact:
+        return route("youth_draw", "YOUTH_ANY_BULL_ELK", "YOUTH_GENERAL_ANY_BULL_ELK", "youth_general_any_bull_elk")
+    if "youth_d_h_deer" in compact or "youth_dedicated_hunter_deer" in compact:
+        return route(
+            "dedicated_hunter",
+            "YOUTH_DEDICATED_HUNTER_DEER",
+            "PREFERENCE_DEDICATED_HUNTER_DEER",
+            "youth_dedicated_hunter",
+        )
+    if "d_h_deer" in compact or "dedicated_hunter_deer" in compact:
+        return route("dedicated_hunter", "DEDICATED_HUNTER_DEER", "PREFERENCE_DEDICATED_HUNTER_DEER", "dedicated_hunter")
+    if "youth_g_s_deer" in compact or "youth_general_deer" in compact:
+        return route("youth_draw", "YOUTH_GENERAL_SEASON_DEER", "PREFERENCE_GENERAL_SEASON_BUCK_DEER", "youth_general_deer")
+    if "lifetime_g_s_deer" in compact or "lifetime_general_deer" in compact:
+        return route("", "LIFETIME_GENERAL_SEASON_DEER", "REFERENCE_ONLY", "lifetime_general_deer")
+    if "g_s_buck_deer" in compact or "general_deer" in compact:
+        return route(
+            "preference_general_deer",
+            "GENERAL_SEASON_DEER",
+            "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+            "adult_general_deer",
+        )
+    if "youth_antlerless_elk" in compact:
+        return route("youth_draw", "YOUTH_ANTLERLESS", "PREFERENCE_ANTLERLESS_ELK", "youth_antlerless_elk")
+    if "youth_antlerless_deer" in compact:
+        return route("youth_draw", "YOUTH_ANTLERLESS", "PREFERENCE_ANTLERLESS_DEER", "youth_antlerless_deer")
+    if "youth_antlerless_pronghorn" in compact or "youth_doe_pronghorn" in compact:
+        return route("youth_draw", "YOUTH_ANTLERLESS", "PREFERENCE_DOE_PRONGHORN", "youth_doe_pronghorn")
+    if "antlerless_elk" in compact:
+        return route("preference_antlerless_elk", "ADULT_ANTLERLESS", "PREFERENCE_ANTLERLESS_ELK", "general_season_antlerless_elk")
+    if "antlerless_deer" in compact:
+        return route("preference_antlerless_deer", "ADULT_ANTLERLESS", "PREFERENCE_ANTLERLESS_DEER", "general_season_antlerless_deer")
+    if "doe_pronghorn" in compact or "antlerless_pronghorn" in compact:
+        return route("preference_doe_pronghorn", "ADULT_ANTLERLESS", "PREFERENCE_DOE_PRONGHORN", "general_season_doe_pronghorn")
+    if "p_l_e_deer" in compact or "premium_limited_entry_deer" in compact:
+        return route("bonus_ple_big_game", "PLE_BIG_GAME", "BONUS_PLE_BIG_GAME", "max_weighted_split")
+    if "management_deer" in compact or "cactus_deer" in compact:
+        return route("bonus_le_big_game", "LE_BIG_GAME", "BONUS_LE_BIG_GAME", "limited_entry_deer")
+    if "l_e_elk" in compact or "limited_entry_elk" in compact:
+        return route("bonus_le_big_game", "LE_BIG_GAME", "BONUS_LE_BIG_GAME", "limited_entry_elk")
+    if "l_e_deer" in compact or "limited_entry_deer" in compact:
+        return route("bonus_le_big_game", "LE_BIG_GAME", "BONUS_LE_BIG_GAME", "limited_entry_deer")
+    if "l_e_pronghorn" in compact or "l_e_proghorn" in compact or "limited_entry_pronghorn" in compact:
+        return route("bonus_le_big_game", "LE_BIG_GAME", "BONUS_LE_BIG_GAME", "limited_entry_pronghorn")
+    if "o_i_l" in compact or "once_in_a_lifetime" in compact:
+        return route("bonus_oil_big_game", "OIL_BIG_GAME", "BONUS_OIL_BIG_GAME", "max_weighted_split")
+    return {}
+
+
+REBUILT_BUCKET_TO_ENGINE_FAMILY = {
+    "ANTLERLESS_DEER": "preference_antlerless_deer",
+    "ANTLERLESS_ELK": "preference_antlerless_elk",
+    "ANTLERLESS_PRONGHORN": "preference_doe_pronghorn",
+    "YOUTH_ANTLERLESS_DEER": "youth_draw",
+    "YOUTH_ANTLERLESS_ELK": "youth_draw",
+    "YOUTH_ANTLERLESS_PRONGHORN": "youth_draw",
+    "GENERAL_SEASON_DEER": "preference_general_deer",
+    "YOUTH_DEER": "youth_draw",
+    "DEDICATED_HUNTER_DEER": "dedicated_hunter",
+    "YOUTH_DEDICATED_HUNTER_DEER": "dedicated_hunter",
+    "TURKEY": "bonus_turkey",
+    "YOUTH_TURKEY": "youth_turkey",
+    "BIG_GAME_LIMITED_ENTRY_DEER": "bonus_le_big_game",
+    "BIG_GAME_LIMITED_ENTRY_ELK": "bonus_le_big_game",
+    "BIG_GAME_LIMITED_ENTRY_PRONGHORN": "bonus_le_big_game",
+    "BIG_GAME_MOOSE": "bonus_oil_big_game",
+    "BIG_GAME_BISON": "bonus_oil_big_game",
+    "BIG_GAME_DESERT_BIGHORN_SHEEP": "bonus_oil_big_game",
+    "BIG_GAME_ROCKY_MTN_SHEEP": "bonus_oil_big_game",
+    "BIG_GAME_MTN_GOAT": "bonus_oil_big_game",
+}
+
+REBUILT_BUCKET_TO_SOURCE_FAMILY = {
+    "ANTLERLESS_DEER": "ADULT_ANTLERLESS",
+    "ANTLERLESS_ELK": "ADULT_ANTLERLESS",
+    "ANTLERLESS_PRONGHORN": "ADULT_ANTLERLESS",
+    "YOUTH_ANTLERLESS_DEER": "YOUTH_ANTLERLESS",
+    "YOUTH_ANTLERLESS_ELK": "YOUTH_ANTLERLESS",
+    "YOUTH_ANTLERLESS_PRONGHORN": "YOUTH_ANTLERLESS",
+    "GENERAL_SEASON_DEER": "GENERAL_SEASON_DEER",
+    "YOUTH_DEER": "YOUTH_GENERAL_SEASON_DEER",
+    "DEDICATED_HUNTER_DEER": "DEDICATED_HUNTER_DEER",
+    "YOUTH_DEDICATED_HUNTER_DEER": "YOUTH_DEDICATED_HUNTER_DEER",
+    "LIFETIME_DEER": "LIFETIME_GENERAL_SEASON_DEER",
+    "TURKEY": "TURKEY",
+    "YOUTH_TURKEY": "TURKEY",
+    "BIG_GAME_LIMITED_ENTRY_DEER": "LE_BIG_GAME",
+    "BIG_GAME_LIMITED_ENTRY_ELK": "LE_BIG_GAME",
+    "BIG_GAME_LIMITED_ENTRY_PRONGHORN": "LE_BIG_GAME",
+    "BIG_GAME_MOOSE": "OIL_BIG_GAME",
+    "BIG_GAME_BISON": "OIL_BIG_GAME",
+    "BIG_GAME_DESERT_BIGHORN_SHEEP": "OIL_BIG_GAME",
+    "BIG_GAME_ROCKY_MTN_SHEEP": "OIL_BIG_GAME",
+    "BIG_GAME_MTN_GOAT": "OIL_BIG_GAME",
+}
+
+REBUILT_BUCKET_TO_DRAW_POOL = {
+    "ANTLERLESS_DEER": "general_season_antlerless_deer",
+    "ANTLERLESS_ELK": "general_season_antlerless_elk",
+    "ANTLERLESS_PRONGHORN": "general_season_doe_pronghorn",
+    "YOUTH_ANTLERLESS_DEER": "youth_antlerless_deer",
+    "YOUTH_ANTLERLESS_ELK": "youth_antlerless_elk",
+    "YOUTH_ANTLERLESS_PRONGHORN": "youth_doe_pronghorn",
+    "GENERAL_SEASON_DEER": "adult_general_deer",
+    "YOUTH_DEER": "youth_general_deer",
+    "DEDICATED_HUNTER_DEER": "dedicated_hunter",
+    "YOUTH_DEDICATED_HUNTER_DEER": "youth_dedicated_hunter",
+    "TURKEY": "preference_point",
+    "YOUTH_TURKEY": "youth_turkey",
+    "BIG_GAME_LIMITED_ENTRY_DEER": "limited_entry_deer",
+    "BIG_GAME_LIMITED_ENTRY_ELK": "limited_entry_elk",
+    "BIG_GAME_LIMITED_ENTRY_PRONGHORN": "limited_entry_pronghorn",
+}
+
+
+def _rebuilt_bucket(row: Mapping[str, object]) -> str:
+    for token in _clean(row.get("qa_notes")).split(";"):
+        name, separator, value = token.strip().partition("=")
+        if separator and name.strip().lower() == "rebuilt_bucket":
+            return value.strip().upper()
+    return ""
+
+
+def _is_lifetime_general_deer_row(row: Mapping[str, object]) -> bool:
+    source_name = _source_file_name(row)
+    draw_pool = _clean(row.get("draw_pool")).lower()
+    hunt_class = _clean(row.get("hunt_class") or row.get("hunt_draw_class")).lower()
+    hunt_type = _clean(row.get("hunt_type")).lower()
+    text = _joined_lower(row, "hunt_code", "hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "draw_design", "draw_pool", "source_file")
+    if "reference_only" in text or "reference_only" in _clean(row.get("draw_design")).lower():
+        return False
+    if any(token in source_name for token in ("lifetime_general_deer", "lifetime deer")):
+        return True
+    if "lifetime" in source_name and "deer" in source_name:
+        return True
+    if draw_pool.startswith("lifetime_"):
+        return True
+    if "lifetime" in hunt_class or "lifetime" in hunt_type:
+        return "deer" in text and "buck" in text
+    return False
+
+
+def _youth_draw_pool_for_row(row: Mapping[str, object]) -> str:
+    if is_youth_general_any_bull_elk_row(row):
+        return "youth_general_any_bull_elk"
+    if is_youth_antlerless_or_doe_row(row):
+        text = _joined_lower(row, "hunt_code", "hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "draw_design", "draw_pool", "source_file")
+        species = _clean(row.get("species")).lower()
+        if "elk" in species or "elk" in text:
+            return "youth_antlerless_elk"
+        if "pronghorn" in species or "pronghorn" in text or "doe" in text:
+            return "youth_doe_pronghorn"
+        return "youth_antlerless_deer"
+    if is_youth_general_deer_row(row):
+        return "youth_general_deer"
+    draw_pool = _clean(row.get("draw_pool")).lower()
+    if draw_pool.startswith("youth_"):
+        return draw_pool
+    return "youth_general_deer"
+
+
+def _le_draw_pool_for_row(row: Mapping[str, object]) -> str:
+    source_name = _source_file_name(row)
+    hunt_code = _clean(row.get("hunt_code")).upper()
+    text = _joined_lower(row, "hunt_code", "hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "draw_design", "draw_pool", "source_file")
+    species = _clean(row.get("species")).lower()
+    sex_type = _clean(row.get("sex_type")).lower()
+    if hunt_code.startswith("PB") or species == "pronghorn":
+        return "limited_entry_pronghorn"
+    if hunt_code.startswith("EB") or species == "elk":
+        return "limited_entry_elk"
+    if hunt_code.startswith("DB") or species == "deer":
+        return "limited_entry_deer"
+    if "pronghorn" in source_name or "pronghorn" in text:
+        return "limited_entry_pronghorn"
+    if "elk" in source_name or "elk" in text or "bull" in sex_type:
+        return "limited_entry_elk"
+    if "deer" in source_name or "deer" in text or "buck" in sex_type:
+        return "limited_entry_deer"
+    if "limited entry" in _clean(row.get("hunt_type")).lower() or "limited entry" in _clean(row.get("hunt_class")).lower():
+        if "bull" in sex_type or "elk" in text:
+            return "limited_entry_elk"
+        if "buck" in sex_type or "deer" in text:
+            return "limited_entry_deer"
+        if "doe" in sex_type or "pronghorn" in text:
+            return "limited_entry_pronghorn"
+    return "max_weighted_split"
 
 
 BIG_GAME_BONUS_DB_DRAW_SYSTEM_TYPES = {
@@ -428,15 +707,38 @@ def _write_csv(path: Path, rows: Sequence[Mapping[str, object]]) -> None:
 
 
 def _family_for_legacy_row(row: Mapping[str, object]) -> str:
-    draw_system_type = _draw_system(row).upper()
+    draw_system_type = _clean(row.get("draw_system_type")).upper() or _draw_system(row).upper()
     if draw_system_type in AUTHORITY_EXCLUDED_DRAW_SYSTEM_TYPES:
         return ""
-    if draw_system_type in AUTHORITY_TO_FAMILY:
-        return AUTHORITY_TO_FAMILY[draw_system_type]
+
+    draw_pool = _clean(row.get("draw_pool")).lower()
+    source_file = _clean(row.get("source_file") or row.get("draw_source_file") or row.get("source_pdf")).lower()
+    hunt_class = _hunt_class(row).lower()
+    hunt_draw_class = _clean(row.get("hunt_draw_class")).lower()
+    hunt_type = _clean(row.get("hunt_type")).lower()
+    species = _clean(row.get("species")).lower()
+    if "youth" in source_file or draw_pool.startswith("youth_") or "youth" in hunt_class or "youth" in hunt_draw_class:
+        if "turkey" in hunt_type or "turkey" in _joined_lower(row, "hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "source_file"):
+            return "youth_turkey"
+        return "youth_draw"
+    if "lifetime" in source_file or draw_pool.startswith("lifetime_") or "lifetime" in hunt_class or "lifetime" in hunt_draw_class:
+        if str(row.get("draw_system_type") or "").strip().upper() == "REFERENCE_ONLY":
+            return ""
+        if species == "deer" and "buck" in _joined_lower(row, "hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "source_file"):
+            return "preference_general_deer"
+        return ""
+    if _clean(hunt_type) == "cwmu" or _clean(hunt_class) == "cwmu" or "cwmu" in _joined_lower(row, "hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "draw_design", "draw_pool", "source_file"):
+        text = _joined_lower(row, "hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "draw_design", "draw_pool", "source_file")
+        if any(token in text for token in ("private", "landowner", "voucher")):
+            return ""
+        return "bonus_cwmu_big_game"
 
     authority_family = _authority_family_for_legacy_row(row)
     if authority_family is not None:
-        return authority_family
+        if authority_family:
+            return authority_family
+        if _clean(row.get("draw_system_type")).upper() not in AUTHORITY_TO_FAMILY:
+            return ""
 
     model_strategy = _clean(row.get("model_strategy"))
     hunt_code = _clean(row.get("hunt_code")).upper()
@@ -471,20 +773,18 @@ def _family_for_legacy_row(row: Mapping[str, object]) -> str:
 
     hunt_class = _hunt_class(row).upper()
     effective_hunt_class = hunt_class
-    species = _clean(row.get("species")).lower()
     sex_type = _clean(row.get("sex_type")).lower()
-    hunt_type = _clean(row.get("hunt_type")).lower()
     draw_system = _draw_system(row)
     draw_system_lower = draw_system.lower()
     is_preference = draw_system_lower == "preference" or draw_system.upper() in PREFERENCE_DRAW_SYSTEM_TYPES or hunt_class == "PREFERENCE"
     if not is_preference:
         return ""
+    if draw_system_type in AUTHORITY_TO_FAMILY:
+        return AUTHORITY_TO_FAMILY[draw_system_type]
     if effective_hunt_class == "GENERAL_SEASON_DEER" and species == "deer" and hunt_code.startswith("DB") and not hunt_code.startswith(("DB17", "DB18")):
         if str(row.get("draw_system_type") or "").strip().upper() == "REFERENCE_ONLY":
             return ""
     if str(row.get("draw_design") or "").strip().upper() == "REFERENCE_ONLY":
-        return ""
-    if str(row.get("hunt_class") or row.get("hunt_draw_class") or "").strip().upper() in {"LIFETIME_DEER", "LIFETIME_GENERAL_SEASON_DEER", "LIFETIME_GS_DEER"}:
         return ""
     return "preference_general_deer"
     if hunt_code.startswith(("DB15", "DB16")) and species == "deer":
@@ -515,9 +815,15 @@ def _family_match(row: Mapping[str, object], family: str) -> bool:
     return legacy_family == family
 
 
+def _suppress_youth_turkey_for_source_year(source_year: int) -> bool:
+    return source_year <= 2018
+
+
 def _draw_system_for_family(family: str) -> str:
     return {
         "bonus_bear": BEAR_DRAW_SYSTEM_TYPE,
+        "bonus_cwmu_big_game": "BONUS_CWMU_BIG_GAME",
+        "bonus_antlerless_moose": "BONUS_ANTLERLESS_MOOSE",
         "bonus_le_big_game": "BONUS_LE_BIG_GAME",
         "bonus_oil_big_game": "BONUS_OIL_BIG_GAME",
         "bonus_ple_big_game": "BONUS_PLE_BIG_GAME",
@@ -632,8 +938,25 @@ def _source_backed_family_for_row(row: Mapping[str, object]) -> str:
     text = _joined_lower(row, "hunt_code", "hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "draw_design", "draw_pool", "source_file")
     draw_system = _draw_system(row).upper()
 
+    if "cwmu" in text and not any(token in text for token in ("private", "landowner", "voucher")):
+        return "bonus_cwmu_big_game"
+
+    source_route = _source_file_route(row)
+    if source_route:
+        return source_route["engine_family"]
+
+    bucket_family = REBUILT_BUCKET_TO_ENGINE_FAMILY.get(_rebuilt_bucket(row))
+    if bucket_family:
+        return bucket_family
+
     if "youth" in text:
+        if "turkey" in text:
+            return "youth_turkey"
         return "youth_draw"
+    if "lifetime" in text and species == "deer" and "buck" in text:
+        return ""
+    if draw_system == "BONUS_ANTLERLESS_MOOSE" or (species == "moose" and any(token in text for token in ("antlerless", "female", "cow"))):
+        return "bonus_antlerless_moose"
     if prefix == "BR" or "black bear" in text:
         return "bonus_bear"
     if prefix == "CG" or "cougar" in species or "mountain lion" in text:
@@ -646,14 +969,18 @@ def _source_backed_family_for_row(row: Mapping[str, object]) -> str:
         return "preference_antlerless_elk"
     if prefix in {"PD"}:
         return "preference_doe_pronghorn"
+    if prefix == "MA" and species == "moose" and any(token in text for token in ("antlerless", "female", "cow")):
+        return "bonus_antlerless_moose"
     if prefix in {"PB"}:
-        return "bonus_ple_big_game"
+        return "bonus_le_big_game"
     if prefix in {"BI", "GO", "MA", "MB", "RE", "RS", "DS"}:
         return "bonus_oil_big_game"
     if prefix in {"EB", "EL", "LO", "LP"}:
         return "bonus_le_big_game"
     if prefix == "DB":
-        if draw_system in {"MAX_WEIGHTED_SPLIT", "BONUS_LE_BIG_GAME", "BONUS_CWMU_BIG_GAME"} or "limited entry" in text or "cwmu" in text:
+        if draw_system == "BONUS_CWMU_BIG_GAME" or ("cwmu" in text and not any(token in text for token in ("private", "landowner", "voucher"))):
+            return "bonus_cwmu_big_game"
+        if draw_system in {"MAX_WEIGHTED_SPLIT", "BONUS_LE_BIG_GAME"} or "limited entry" in text:
             return "bonus_le_big_game"
         if "deer" in species and "buck" in text:
             return "preference_general_deer"
@@ -679,10 +1006,20 @@ def _source_backed_probability_values(row: Mapping[str, object]) -> list[tuple[s
             probability = _to_probability(row.get(field))
             if probability is not None:
                 break
-        if probability is None and _to_number(row.get(eligible_field)) == 0:
+        if probability is None and _clean(row.get(eligible_field)) and _to_number(row.get(eligible_field)) == 0:
             probability = 0.0
         if probability is not None:
             values.append((residency, probability))
+    total_probability = None
+    for field in ("p_draw", "p_draw_percent", "success_ratio", "total_p_draw", "total_p_draw_percent", "total_success_ratio"):
+        total_probability = _to_probability(row.get(field))
+        if total_probability is not None:
+            break
+    total_eligible = row.get("eligible_applicants") or row.get("total_eligible_applicants")
+    if total_probability is None and _clean(total_eligible) and _to_number(total_eligible) == 0:
+        total_probability = 0.0
+    if total_probability is not None:
+        values.append(("", total_probability))
     return values
 
 
@@ -696,12 +1033,15 @@ def _source_backed_probability_rows(
         (
             family,
             _clean(row.get("hunt_code")).upper(),
+            _effective_draw_pool_for_family(row, family),
             _metric_scope_for_residency(row.get("residency") or row.get("metric_scope")),
             _text(row.get("points")),
         )
         for family, rows in modeled.items()
         for row in rows
         if _clean(row.get("hunt_code"))
+        and _clean(row.get("draw_system_type")).upper() != "REFERENCE_ONLY"
+        and _source_family_for_output_row(family, row) != "LIFETIME_GENERAL_SEASON_DEER"
     }
     rows_by_family: dict[str, list[dict[str, object]]] = defaultdict(list)
     added_keys: set[tuple[str, str, str, str]] = set()
@@ -712,13 +1052,18 @@ def _source_backed_probability_rows(
         family = _source_backed_family_for_row(source_row)
         if not family:
             continue
+        if _draw_system(source_row).upper() == "REFERENCE_ONLY" or _source_family_for_output_row(family, source_row) == "LIFETIME_GENERAL_SEASON_DEER":
+            continue
         hunt_code = _clean(source_row.get("hunt_code")).upper()
         points = _text(source_row.get("points"))
         if not hunt_code or not points:
             continue
+        if points.upper() == "TOTAL":
+            continue
+        draw_pool = _effective_draw_pool_for_family(source_row, family)
         for residency, probability in _source_backed_probability_values(source_row):
             metric_scope = _metric_scope_for_residency(residency)
-            key = (family, hunt_code, metric_scope, points)
+            key = (family, hunt_code, draw_pool, metric_scope, points)
             if key in existing_keys or key in added_keys:
                 continue
             added_keys.add(key)
@@ -736,7 +1081,7 @@ def _source_backed_probability_rows(
                     "hunt_class": _clean(source_row.get("hunt_class")) or ("CWMU" if "cwmu" in _joined_lower(source_row, "hunt_type", "hunt_name", "source_file") else ""),
                     "residency": residency,
                     "points": points,
-                    "draw_pool": _effective_draw_pool_for_family(source_row, family),
+                    "draw_pool": draw_pool,
                     "public_permits_2025": _clean(source_row.get("total_permits") or source_row.get("resident_total_permits") or source_row.get("nonresident_total_permits")),
                     "public_permits_2026": _clean(source_row.get("total_permits") or source_row.get("resident_total_permits") or source_row.get("nonresident_total_permits")),
                     "p_preference_draw": f"{probability:.6f}" if family.startswith("preference_") else "",
@@ -761,6 +1106,7 @@ def _source_backed_probability_rows(
                     "model_strategy": f"{family}_source_backed_roll_forward",
                     "reason_codes": "SOURCE_BACKED_PUBLISHED_POINT_PROBABILITY_ROLL_FORWARD",
                     "weapon": _clean(source_row.get("weapon")),
+                    "qa_notes": _clean(source_row.get("qa_notes")),
                     "source_file": _clean(source_row.get("source_file") or source_row.get("draw_source_file") or source_row.get("source_scope")),
                     "source_year": str(source_year),
                     "target_year": str(target_year),
@@ -794,7 +1140,7 @@ def _default_draw_method_for_family(family: str) -> str:
         return "Strict random"
     if family == "youth_draw":
         return "Youth draw"
-    if family in {"bonus_bear", "bonus_turkey", "youth_turkey", "bonus_le_big_game", "bonus_ple_big_game", "bonus_oil_big_game"}:
+    if family in {"bonus_bear", "bonus_cwmu_big_game", "bonus_antlerless_moose", "bonus_turkey", "youth_turkey", "bonus_le_big_game", "bonus_ple_big_game", "bonus_oil_big_game"}:
         return "Bonus"
     return "Preference"
 
@@ -804,7 +1150,7 @@ def _default_point_system_for_family(family: str) -> str:
         return "none"
     if family == "youth_draw":
         return "none"
-    if family in {"bonus_bear", "bonus_turkey", "youth_turkey", "bonus_le_big_game", "bonus_ple_big_game", "bonus_oil_big_game"}:
+    if family in {"bonus_bear", "bonus_cwmu_big_game", "bonus_antlerless_moose", "bonus_turkey", "youth_turkey", "bonus_le_big_game", "bonus_ple_big_game", "bonus_oil_big_game"}:
         return "bonus"
     return "preference"
 
@@ -818,7 +1164,7 @@ def _default_algorithm_status_for_family(family: str, row: Mapping[str, object])
         return "MODELED_SPORTSMAN_DRAW"
     if family == "youth_draw":
         return "MODELED_RANDOM_ONLY" if has_probability else "IN_SCOPE_MODEL_PENDING"
-    if family in {"bonus_turkey", "youth_turkey", "bonus_le_big_game", "bonus_ple_big_game", "bonus_oil_big_game"}:
+    if family in {"bonus_turkey", "youth_turkey", "bonus_cwmu_big_game", "bonus_antlerless_moose", "bonus_le_big_game", "bonus_ple_big_game", "bonus_oil_big_game"}:
         return "MODELED_BONUS" if has_probability else "IN_SCOPE_MODEL_PENDING"
     if family == "bonus_bear":
         if has_probability:
@@ -837,6 +1183,10 @@ def _default_reason_code_for_family(family: str, algorithm_status: str) -> str:
         return "FAMILY_ENGINE_MODELED_SPORTSMAN_RANDOM_ONLY"
     if family == "bonus_bear":
         return "FAMILY_ENGINE_BEAR_DRAW"
+    if family == "bonus_cwmu_big_game":
+        return "FAMILY_ENGINE_MODELED_BONUS_CWMU_BIG_GAME"
+    if family == "bonus_antlerless_moose":
+        return "FAMILY_ENGINE_MODELED_BONUS_ANTLERLESS_MOOSE"
     if family in {"bonus_le_big_game", "bonus_ple_big_game", "bonus_oil_big_game"}:
         return f"FAMILY_ENGINE_MODELED_{_family_draw_system(family)}"
     if family == "bonus_turkey":
@@ -851,13 +1201,36 @@ def _default_reason_code_for_family(family: str, algorithm_status: str) -> str:
 
 
 def _effective_draw_pool_for_family(row: Mapping[str, object], family: str) -> str:
+    source_route = _source_file_route(row)
+    if source_route.get("draw_pool"):
+        return source_route["draw_pool"]
+
+    bucket_pool = REBUILT_BUCKET_TO_DRAW_POOL.get(_rebuilt_bucket(row))
+    if bucket_pool and family != "bonus_cwmu_big_game":
+        return bucket_pool
+
     draw_pool = _clean(row.get("draw_pool"))
+    if family == "preference_general_deer":
+        if _is_lifetime_general_deer_row(row):
+            return "lifetime_general_deer"
+        if is_youth_general_deer_row(row):
+            return "youth_general_deer"
+        return "adult_general_deer"
+    if family == "youth_draw":
+        return _youth_draw_pool_for_row(row)
+    if family == "bonus_le_big_game":
+        return _le_draw_pool_for_row(row)
+    if family == "bonus_antlerless_moose":
+        return "bonus_antlerless_moose"
     if draw_pool and draw_pool.lower() != "standard":
+        if family == "bonus_cwmu_big_game" and draw_pool.lower().endswith("_reference"):
+            return draw_pool[:-10]
         return draw_pool
     return {
         "sportsman": "random",
         "bonus_bear": "black_bear",
-        "bonus_le_big_game": "max_weighted_split",
+        "bonus_cwmu_big_game": "cwmu_big_game",
+        "bonus_antlerless_moose": "bonus_antlerless_moose",
         "bonus_ple_big_game": "max_weighted_split",
         "bonus_oil_big_game": "max_weighted_split",
         "bonus_turkey": "preference_point",
@@ -906,6 +1279,101 @@ def _probability_metric_for_output_row(row: Mapping[str, object]) -> str:
     return "p_draw"
 
 
+def _canonical_numeric_text(value: object) -> str:
+    text = _clean(value)
+    if not text:
+        return ""
+    normalized = text.replace(",", "")
+    try:
+        decimal = Decimal(normalized)
+    except (InvalidOperation, ValueError):
+        return text
+    if decimal == decimal.to_integral():
+        return format(decimal.to_integral(), "f")
+    return format(decimal.normalize(), "f").rstrip("0").rstrip(".")
+
+
+def _canonical_target_year_text(value: object) -> str:
+    return _canonical_numeric_text(value)
+
+
+def _canonical_points_text(value: object) -> str:
+    text = _clean(value)
+    if not text:
+        return ""
+    canonical = _canonical_numeric_text(text)
+    if canonical:
+        return canonical
+    return text
+
+
+def _canonical_score_key_row_value(field: str, value: object) -> str:
+    if field == "target_year":
+        return _canonical_target_year_text(value)
+    if field == "points":
+        return _canonical_points_text(value)
+    if field in {"draw_system_type", "score_scope", "source_family"}:
+        return _clean(value).upper()
+    if field == "draw_pool":
+        return _clean(value).lower()
+    if field == "hunt_code":
+        return _clean(value).upper()
+    if field == "residency":
+        return _clean(value)
+    if field == "probability_metric":
+        return _clean(value)
+    if field.startswith("p_"):
+        return _canonical_numeric_text(value)
+    return _clean(value)
+
+
+def _pool_key_token(value: object) -> str:
+    text = _clean(value).lower()
+    text = re.sub(r"[^a-z0-9]+", "_", text).strip("_")
+    return text or "na"
+
+
+def _qualified_draw_pool_key(row: Mapping[str, object]) -> str:
+    source_family = _clean(row.get("source_family")).upper()
+    draw_pool = _canonical_score_key_row_value("draw_pool", row.get("draw_pool"))
+    if source_family not in QUALIFIED_DRAW_POOL_SOURCE_FAMILIES:
+        return draw_pool
+    draw_design = _clean(row.get("draw_design") or row.get("draw_system_type"))
+    hunt_draw_class = _clean(row.get("hunt_draw_class") or row.get("hunt_class"))
+    parts = [
+        ("design", draw_design),
+        ("class", hunt_draw_class),
+        ("pool", draw_pool),
+        ("species", row.get("species")),
+        ("hunt", row.get("hunt_type")),
+        ("sex", row.get("sex_type")),
+    ]
+    return "__".join(f"{name}_{_pool_key_token(value)}" for name, value in parts)
+
+
+OFFICIAL_SCORE_KEY_V2_DUPLICATE_COMPARE_FIELDS = (
+    "p_draw",
+    "p_draw_mean",
+    "p_preference_draw",
+    "p_sportsman_draw",
+    "p_bonus_pool",
+    "p_random_pool",
+    "p_availability",
+    "draw_system_type",
+    "draw_pool",
+    "hunt_code",
+    "score_scope",
+    "residency",
+    "points",
+    "probability_metric",
+    "source_family",
+)
+
+
+def _official_score_key_v2_duplicate_signature(row: Mapping[str, object]) -> tuple[str, ...]:
+    return tuple(_canonical_score_key_row_value(field, row.get(field)) for field in OFFICIAL_SCORE_KEY_V2_DUPLICATE_COMPARE_FIELDS)
+
+
 def _source_family_for_output_row(family: str, row: Mapping[str, object]) -> str:
     existing = _clean(row.get("source_family")).upper()
     if existing:
@@ -919,18 +1387,38 @@ def _source_family_for_output_row(family: str, row: Mapping[str, object]) -> str
         return "SPORTSMAN"
     if family == "bonus_bear":
         return "BEAR_DRAW_RESULTS"
+    if family == "bonus_cwmu_big_game":
+        return "CWMU_BIG_GAME"
+    if draw_system_type == "BONUS_CWMU_BIG_GAME":
+        return "CWMU_BIG_GAME"
+    source_route = _source_file_route(row)
+    if source_route.get("source_family"):
+        return source_route["source_family"]
+    bucket_source_family = REBUILT_BUCKET_TO_SOURCE_FAMILY.get(_rebuilt_bucket(row))
+    if bucket_source_family:
+        return bucket_source_family
+    if family == "bonus_antlerless_moose":
+        return "ADULT_ANTLERLESS"
     if family == "bonus_turkey":
         return "TURKEY"
     if family == "cougar":
         return "COUGAR"
     if family == "bonus_oil_big_game":
         return "OIL_BIG_GAME"
-    if family in {"bonus_le_big_game", "bonus_ple_big_game"}:
+    if family == "bonus_le_big_game":
         return "LE_BIG_GAME"
+    if family == "bonus_ple_big_game":
+        return "PLE_BIG_GAME"
     if family == "dedicated_hunter":
+        if _rebuilt_bucket(row) == "YOUTH_DEDICATED_HUNTER_DEER" or "youth_dedicated" in draw_pool or (
+            "youth" in text and "dedicated" in text
+        ):
+            return "YOUTH_DEDICATED_HUNTER_DEER"
         return "DEDICATED_HUNTER_DEER"
     if family == "preference_general_deer":
-        if "youth" in text or draw_pool.startswith("youth_") or draw_system_type.startswith("YOUTH_"):
+        if _is_lifetime_general_deer_row(row):
+            return "LIFETIME_GENERAL_SEASON_DEER"
+        if is_youth_general_deer_row(row):
             return "YOUTH_GENERAL_SEASON_DEER"
         return "GENERAL_SEASON_DEER"
     if family in {"preference_antlerless_deer", "preference_antlerless_elk", "preference_doe_pronghorn"}:
@@ -940,6 +1428,12 @@ def _source_family_for_output_row(family: str, row: Mapping[str, object]) -> str
     if family == "youth_turkey":
         return "TURKEY"
     if family == "youth_draw":
+        if is_youth_general_any_bull_elk_row(row):
+            return "YOUTH_ANY_BULL_ELK"
+        if is_youth_antlerless_or_doe_row(row):
+            return "YOUTH_ANTLERLESS"
+        if is_youth_general_deer_row(row):
+            return "YOUTH_GENERAL_SEASON_DEER"
         if (
             draw_system_type == "YOUTH_GENERAL_ANY_BULL_ELK"
             or "ANY BULL ELK" in text
@@ -949,18 +1443,18 @@ def _source_family_for_output_row(family: str, row: Mapping[str, object]) -> str
         if "ANTLERLESS" in draw_system_type or "DOE_PRONGHORN" in draw_system_type or draw_pool.startswith("youth_antlerless"):
             return "YOUTH_ANTLERLESS"
         return "YOUTH_GENERAL_SEASON_DEER"
-    return _clean(row.get("source_scope")).upper() or family.upper()
+    raise ValueError(f"Unmapped source_family for prediction family {family!r}")
 
 
 def _official_score_key_v2(row: Mapping[str, object]) -> str:
-    target_year = _clean(row.get("target_year") or row.get("prediction_year"))
+    target_year = _canonical_target_year_text(row.get("target_year") or row.get("prediction_year"))
     source_family = _source_family_for_output_row(_clean(row.get("family")), row)
-    draw_system_type = _clean(row.get("draw_system_type")).upper()
-    draw_pool = _clean(row.get("draw_pool")).lower()
-    hunt_code = _clean(row.get("hunt_code")).upper()
+    draw_system_type = _canonical_score_key_row_value("draw_system_type", row.get("draw_system_type"))
+    draw_pool = _canonical_score_key_row_value("draw_pool", row.get("draw_pool_key") or _qualified_draw_pool_key(row))
+    hunt_code = _canonical_score_key_row_value("hunt_code", row.get("hunt_code"))
     score_scope, residency = _score_scope_and_residency(row.get("residency"))
-    points = _clean(row.get("points")).upper()
-    probability_metric = _probability_metric_for_output_row(row)
+    points = _canonical_points_text(row.get("points"))
+    probability_metric = _canonical_score_key_row_value("probability_metric", _probability_metric_for_output_row(row))
     return "|".join(
         [
             target_year,
@@ -974,6 +1468,220 @@ def _official_score_key_v2(row: Mapping[str, object]) -> str:
             probability_metric,
         ]
     )
+
+
+def _finalize_prediction_output_row(row: Mapping[str, object]) -> dict[str, object]:
+    item = dict(row)
+    family = _clean(item.get("family"))
+    if not family:
+        raise ValueError("Prediction row is missing family")
+    score_scope, normalized_residency = _score_scope_and_residency(item.get("residency"))
+    item["target_year"] = _canonical_target_year_text(item.get("target_year") or item.get("prediction_year"))
+    item["source_family"] = _source_family_for_output_row(family, item)
+    item["draw_system_type"] = _canonical_score_key_row_value(
+        "draw_system_type", _clean(item.get("draw_system_type")) or _family_draw_system(family) or _draw_system(item)
+    )
+    item["draw_pool"] = _canonical_score_key_row_value(
+        "draw_pool", _clean(item.get("draw_pool")) or _effective_draw_pool_for_family(item, family)
+    )
+    item["draw_pool_key"] = _qualified_draw_pool_key(item)
+    item["hunt_code"] = _canonical_score_key_row_value("hunt_code", item.get("hunt_code"))
+    item["score_scope"] = score_scope
+    item["residency"] = normalized_residency
+    item["points"] = _canonical_points_text(item.get("points"))
+    if item["source_family"] == "SPORTSMAN" and item["points"].upper() == "TOTAL":
+        item["points"] = ""
+    item["probability_metric"] = _probability_metric_for_output_row(item)
+    item["official_score_key_v2"] = _official_score_key_v2(item)
+    for field in FAMILY_PREDICTION_REQUIRED_FIELDS:
+        if field not in item:
+            item[field] = ""
+    return item
+
+
+def _dedupe_final_family_prediction_rows(rows: Sequence[Mapping[str, object]]) -> tuple[list[dict[str, object]], dict[str, object]]:
+    grouped: dict[str, list[tuple[int, dict[str, object], tuple[str, ...]]]] = defaultdict(list)
+    for row_number, row in enumerate(rows, start=1):
+        key = _clean(row.get("official_score_key_v2"))
+        if not key:
+            raise ValueError(f"Prediction row {row_number} is missing official_score_key_v2")
+        grouped[key].append((row_number, dict(row), _official_score_key_v2_duplicate_signature(row)))
+
+    deduped_rows: list[dict[str, object]] = []
+    duplicate_groups: list[dict[str, object]] = []
+    conflict_groups: list[dict[str, object]] = []
+    dropped_exact_duplicate_rows = 0
+
+    for key, entries in grouped.items():
+        if len(entries) == 1:
+            deduped_rows.append(entries[0][1])
+            continue
+
+        signatures: dict[tuple[str, ...], list[tuple[int, dict[str, object]]]] = defaultdict(list)
+        for row_number, row, signature in entries:
+            signatures[signature].append((row_number, row))
+
+        group_record = {
+            "official_score_key_v2": key,
+            "row_count": len(entries),
+            "signature_count": len(signatures),
+            "row_numbers": ";".join(str(row_number) for row_number, _, _ in entries),
+        }
+
+        if len(signatures) == 1:
+            kept_row = entries[0][1]
+            deduped_rows.append(kept_row)
+            dropped_count = len(entries) - 1
+            dropped_exact_duplicate_rows += dropped_count
+            duplicate_groups.append(
+                {
+                    **group_record,
+                    "dropped_exact_duplicate_rows": dropped_count,
+                    "kept_row_number": entries[0][0],
+                    "duplicate_type": "exact_duplicate_payload",
+                }
+            )
+            continue
+
+        conflict_payloads = []
+        for signature, signature_entries in signatures.items():
+            sample_row = signature_entries[0][1]
+            conflict_payloads.append(
+                {
+                    "payload_signature": json.dumps(signature, ensure_ascii=False),
+                    "payload_row_count": len(signature_entries),
+                    "sample_row_number": signature_entries[0][0],
+                    "sample_source_family": _clean(sample_row.get("source_family")),
+                    "sample_draw_system_type": _clean(sample_row.get("draw_system_type")),
+                    "sample_draw_pool": _clean(sample_row.get("draw_pool")),
+                    "sample_hunt_code": _clean(sample_row.get("hunt_code")),
+                    "sample_score_scope": _clean(sample_row.get("score_scope")),
+                    "sample_residency": _clean(sample_row.get("residency")),
+                    "sample_points": _clean(sample_row.get("points")),
+                    "sample_probability_metric": _clean(sample_row.get("probability_metric")),
+                }
+            )
+        conflict_groups.append({**group_record, "duplicate_type": "conflicting_payload", "payloads": conflict_payloads})
+
+    report = {
+        "input_rows": len(rows),
+        "deduped_rows": len(deduped_rows),
+        "duplicate_key_count": len(duplicate_groups) + len(conflict_groups),
+        "exact_duplicate_key_count": len(duplicate_groups),
+        "conflict_key_count": len(conflict_groups),
+        "exact_duplicate_rows_dropped": dropped_exact_duplicate_rows,
+        "duplicate_groups": duplicate_groups,
+        "conflict_groups": conflict_groups,
+    }
+    return deduped_rows, report
+
+
+def _drop_broad_partitioned_rows_when_source_backed(rows: Sequence[Mapping[str, object]]) -> tuple[list[dict[str, object]], int]:
+    specific_keys = {
+        (
+            _clean(row.get("source_family")).upper(),
+            _clean(row.get("hunt_code")).upper(),
+        )
+        for row in rows
+        if _clean(row.get("source_family")).upper() in QUALIFIED_DRAW_POOL_SOURCE_FAMILIES
+        and _clean(row.get("source_file"))
+    }
+    if not specific_keys:
+        return [dict(row) for row in rows], 0
+
+    out: list[dict[str, object]] = []
+    dropped = 0
+    for row in rows:
+        source_family = _clean(row.get("source_family")).upper()
+        hunt_code = _clean(row.get("hunt_code")).upper()
+        model_strategy = _clean(row.get("model_strategy")).lower()
+        has_specific_key = (source_family, hunt_code) in specific_keys
+        is_broad_partitioned_model = (
+            source_family in QUALIFIED_DRAW_POOL_SOURCE_FAMILIES
+            and not _clean(row.get("source_file"))
+            and model_strategy in {"generic_big_game_bonus", "generic_cwmu_big_game_bonus"}
+        )
+        if has_specific_key and is_broad_partitioned_model:
+            dropped += 1
+            continue
+        out.append(dict(row))
+    return out, dropped
+
+
+def _write_csv_with_fieldnames(path: Path, rows: Sequence[Mapping[str, object]], fieldnames: Sequence[str]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=list(fieldnames), extrasaction="ignore")
+        writer.writeheader()
+        for row in rows:
+            writer.writerow(dict(row))
+
+
+def _write_duplicate_official_score_key_v2_report(audit_dir: Path, report: Mapping[str, object]) -> None:
+    audit_dir.mkdir(parents=True, exist_ok=True)
+    summary_path = audit_dir / "family_predictions_duplicate_official_score_key_v2_summary.json"
+    markdown_path = audit_dir / "family_predictions_duplicate_official_score_key_v2_report.md"
+    exact_path = audit_dir / "family_predictions_duplicate_official_score_key_v2_exact_groups.csv"
+    conflict_path = audit_dir / "family_predictions_duplicate_official_score_key_v2_conflicts.csv"
+
+    summary = {
+        "input_rows": report["input_rows"],
+        "deduped_rows": report["deduped_rows"],
+        "duplicate_key_count": report["duplicate_key_count"],
+        "exact_duplicate_key_count": report["exact_duplicate_key_count"],
+        "conflict_key_count": report["conflict_key_count"],
+        "exact_duplicate_rows_dropped": report["exact_duplicate_rows_dropped"],
+    }
+    summary_path.write_text(json.dumps({**summary, "duplicate_groups": report["duplicate_groups"], "conflict_groups": report["conflict_groups"]}, indent=2) + "\n", encoding="utf-8")
+
+    exact_rows = [
+        {
+            "official_score_key_v2": group["official_score_key_v2"],
+            "row_count": group["row_count"],
+            "dropped_exact_duplicate_rows": group["dropped_exact_duplicate_rows"],
+            "kept_row_number": group["kept_row_number"],
+            "row_numbers": group["row_numbers"],
+            "duplicate_type": group["duplicate_type"],
+        }
+        for group in report["duplicate_groups"]
+    ]
+    conflict_rows = [
+        {
+            "official_score_key_v2": group["official_score_key_v2"],
+            "row_count": group["row_count"],
+            "signature_count": group["signature_count"],
+            "row_numbers": group["row_numbers"],
+            "duplicate_type": group["duplicate_type"],
+            "payloads_json": json.dumps(group["payloads"], indent=2, sort_keys=True),
+        }
+        for group in report["conflict_groups"]
+    ]
+    _write_csv_with_fieldnames(
+        exact_path,
+        exact_rows,
+        ["official_score_key_v2", "row_count", "dropped_exact_duplicate_rows", "kept_row_number", "row_numbers", "duplicate_type"],
+    )
+    _write_csv_with_fieldnames(
+        conflict_path,
+        conflict_rows,
+        ["official_score_key_v2", "row_count", "signature_count", "row_numbers", "duplicate_type", "payloads_json"],
+    )
+
+    md_lines = [
+        "# Family Predictions Duplicate Report",
+        "",
+        f"- input_rows: {summary['input_rows']}",
+        f"- deduped_rows: {summary['deduped_rows']}",
+        f"- duplicate_key_count: {summary['duplicate_key_count']}",
+        f"- exact_duplicate_key_count: {summary['exact_duplicate_key_count']}",
+        f"- conflict_key_count: {summary['conflict_key_count']}",
+        f"- exact_duplicate_rows_dropped: {summary['exact_duplicate_rows_dropped']}",
+        "",
+        f"- summary_json: `{summary_path.name}`",
+        f"- exact_groups_csv: `{exact_path.name}`",
+        f"- conflicts_csv: `{conflict_path.name}`",
+    ]
+    markdown_path.write_text("\n".join(md_lines) + "\n", encoding="utf-8")
 
 
 def _aggregate_target_permits(rows: Sequence[Mapping[str, object]]) -> dict[tuple[str, str, str], dict[str, float]]:
@@ -1456,7 +2164,7 @@ def run_all_families(
     runtime_history_years = history_years
     runtime_truth_rows = [row for row in all_truth_rows if (_row_year(row) or 0) in set(runtime_history_years)]
     suppressed_runtime_families: set[str] = set()
-    if source_year == 2017:
+    if _suppress_youth_turkey_for_source_year(source_year):
         suppressed_runtime_families.add("youth_turkey")
     runtime_materializer_families = tuple(
         family for family in RUNTIME_MATERIALIZER_FAMILIES if family not in suppressed_runtime_families
@@ -1519,13 +2227,13 @@ def run_all_families(
         youth_turkey_report = {
             "forecast_year": target_year,
             "family": "youth_turkey",
-            "status": "SUPPRESSED_NO_2017_SOURCE",
+            "status": "SUPPRESSED_PRE_2019_PROGRAM_START",
             "blocker": False,
             "production_ready": False,
             "calibration_ready": False,
             "source_years": [],
-            "reason_codes": ["SUPPRESSED_NO_2017_SOURCE"],
-            "note": "2017 has no proven youth turkey hunt rows; the lane is omitted from the 2017 run.",
+            "reason_codes": ["YOUTH_TURKEY_PROGRAM_NOT_STARTED_BEFORE_2019"],
+            "note": "Utah youth turkey hunt rows did not exist before 2019; pre-2019 source-year lanes are omitted.",
         }
     else:
         youth_turkey_rows, youth_turkey_report = build_youth_turkey_predictions(
@@ -1559,7 +2267,7 @@ def run_all_families(
         if not source_backed_rows:
             continue
         modeled.setdefault(family, [])
-        modeled[family].extend(source_backed_rows)
+        modeled[family].extend(_with_run_fields(source_backed_rows, source_year, target_year, family))
     modeled["preference_antlerless_deer"] = _apply_antlerless_deer_production_calibration(
         modeled["preference_antlerless_deer"],
         enabled=enable_antlerless_deer_calibration,
@@ -1935,6 +2643,15 @@ def run_all_families(
             }
         )
 
+    all_prediction_rows = [_finalize_prediction_output_row(row) for row in all_prediction_rows]
+    all_prediction_rows, broad_partitioned_rows_dropped = _drop_broad_partitioned_rows_when_source_backed(all_prediction_rows)
+    all_prediction_rows, duplicate_report = _dedupe_final_family_prediction_rows(all_prediction_rows)
+    _write_duplicate_official_score_key_v2_report(audit_dir, duplicate_report)
+    if duplicate_report["conflict_key_count"]:
+        raise ValueError(
+            "Conflicting official_score_key_v2 duplicate payloads detected; see "
+            "family_predictions_duplicate_official_score_key_v2_conflicts.csv"
+        )
     _write_csv(audit_dir / "family_predictions.csv", all_prediction_rows)
     _write_csv(audit_dir / "all_year_family_prediction_counts.csv", counts)
     _write_csv(audit_dir / "per_family_year_prediction_counts.csv", counts)
@@ -1946,6 +2663,9 @@ def run_all_families(
         "target_year": target_year,
         "audit_dir": str(audit_dir),
         "prediction_rows": len(all_prediction_rows),
+        "family_predictions_duplicate_exact_rows_dropped": duplicate_report["exact_duplicate_rows_dropped"],
+        "family_predictions_duplicate_conflict_key_count": duplicate_report["conflict_key_count"],
+        "broad_partitioned_rows_dropped": broad_partitioned_rows_dropped,
         "family_counts": {family: len(rows) for family, rows in modeled.items()},
         "classified_families": deferred_families,
         "first_year_bootstrap": first_year_bootstrap,

@@ -85,6 +85,8 @@ def _source_column_mapping_rows() -> list[dict[str, str]]:
 def _classified_reconciliation_for_row(row: Mapping[str, str]) -> dict[str, str]:
     family = row.get("family", "")
     reason = row.get("blocker_if_failed", "")
+    source_year = int(row.get("source_year") or 0)
+    target_year = int(row.get("target_year") or 0)
     if reason == "HELD_OUT_UNRELEASED_2027_ANTLERLESS_DOE_RESULTS":
         return {
             "reconciliation_bucket": "INTENTIONAL_UNRELEASED_ACTUALS_HOLDOUT",
@@ -97,6 +99,16 @@ def _classified_reconciliation_for_row(row: Mapping[str, str]) -> dict[str, str]
             "source_location": "engine/utah_draw_predictive/run_all_families.py::UNRELEASED_ACTUAL_HOLDOUT_FAMILIES",
             "promotion_decision": "KEEP_HELD_OUT_NOT_PENALIZED",
             "notes": "Expected 2026->2027 holdout for unreleased actual results.",
+        }
+    if family == "youth_turkey" and source_year <= 2018 and target_year <= 2019:
+        return {
+            "reconciliation_bucket": "PRE_PROGRAM_START_NOT_APPLICABLE",
+            "clean_run_blocker": "false",
+            "release_blocker": "false",
+            "next_action": "Keep pre-2019 youth turkey lanes out of scoring; Utah youth turkey starts in 2019.",
+            "source_location": "engine/utah_draw_predictive/run_all_families.py::_suppress_youth_turkey_for_source_year",
+            "promotion_decision": "CLASSIFY_AS_NOT_APPLICABLE_NOT_FAILURE",
+            "notes": "2018 source year cannot provide youth turkey history because the hunt did not exist until 2019.",
         }
     if family == "bonus_bear":
         return {
@@ -111,19 +123,6 @@ def _classified_reconciliation_for_row(row: Mapping[str, str]) -> dict[str, str]
             "source_location": "engine/utah_draw_predictive/run_all_families.py::deferred_families[bonus_bear]",
             "promotion_decision": "DO_NOT_FAKE_PASS; WIRE_AND_PROBE_BEAR_HISTORY",
             "notes": "Do not replace with raw long-file builder calls; undeduped long rows inflate outputs.",
-        }
-    if family == "youth_turkey":
-        return {
-            "reconciliation_bucket": "FULL_CERT_WIRING_BLOCKER",
-            "clean_run_blocker": "true",
-            "release_blocker": "runtime_current_year_promoted; historical_full_cert_not_clean",
-            "next_action": (
-                "Build a youth-turkey historical adapter that dedupes target/source hunt-code rows "
-                "before calling build_youth_turkey_predictions and verifies no future-year source usage."
-            ),
-            "source_location": "engine/utah_draw_predictive/run_all_families.py::deferred_families[youth_turkey]",
-            "promotion_decision": "DO_NOT_FAKE_PASS; WIRE_AND_PROBE_YOUTH_TURKEY_HISTORY",
-            "notes": "Direct builder calls can be bounded but raw long-row db feeds inflate row counts.",
         }
     if family == "youth_draw":
         return {
