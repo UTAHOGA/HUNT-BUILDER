@@ -450,6 +450,7 @@ function writeReports(report) {
 }
 
 function main() {
+  const writeReportFiles = !process.argv.includes('--no-write');
   const db = loadDatabase();
   const lastSync = fs.existsSync(abs(LAST_SYNC_FILE)) ? JSON.parse(fs.readFileSync(abs(LAST_SYNC_FILE), 'utf8')) : null;
   const skippedMissingTargets = [];
@@ -511,7 +512,7 @@ function main() {
     promotion_blocker_count: blockers.length,
     promotion_blockers: blockers.map((item) => ({ file: item.file, issues: item.sample_issues })),
   };
-  writeReports(report);
+  if (writeReportFiles) writeReports(report);
   console.log(JSON.stringify({
     ok: report.promotion_blocker_count === 0,
     source_file: SOURCE_FILE,
@@ -520,8 +521,8 @@ function main() {
     mismatches_before_sync: report.totals.mismatches_before_sync,
     mismatches_after_sync: report.totals.mismatches_after_sync,
     promotion_blockers: report.promotion_blocker_count,
-    report_json: 'canonical/permit-allocation-2026-integrity-report.json',
-    report_md: 'docs/permit-allocation-2026-integrity-report.md',
+    report_json: writeReportFiles ? 'canonical/permit-allocation-2026-integrity-report.json' : null,
+    report_md: writeReportFiles ? 'docs/permit-allocation-2026-integrity-report.md' : null,
   }, null, 2));
   if (report.promotion_blocker_count) process.exitCode = 1;
 }
