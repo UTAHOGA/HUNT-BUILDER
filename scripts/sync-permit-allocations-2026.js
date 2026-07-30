@@ -465,8 +465,9 @@ function main() {
   const db = loadDatabase();
   const skippedMissingTargets = [];
   const existingTargets = (targets) => targets.filter((target) => {
-    if (fs.existsSync(abs(target))) return true;
-    skippedMissingTargets.push(target);
+    const file = typeof target === 'string' ? target : target.file;
+    if (fs.existsSync(abs(file))) return true;
+    skippedMissingTargets.push(file);
     return false;
   });
   const fileReports = [
