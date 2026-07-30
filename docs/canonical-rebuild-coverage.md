@@ -1,6 +1,6 @@
 # Canonical Rebuild Coverage
 
-Generated: 2026-05-08T15:30:28.008Z
+Generated: 2026-07-30T11:12:00.203Z
 
 ## Scope
 
@@ -13,38 +13,35 @@ Generated: 2026-05-08T15:30:28.008Z
 
 | File | Kind | Rows/Bytes | Fields |
 | --- | --- | --- | --- |
-| index.html | html | 24545 |  |
-| research.html | html | 39855 |  |
-| hard-copy.html | html | 22342 |  |
-| verify.html | html | 19165 |  |
-| config.js | js | 21282 |  |
-| app.js | js | 221675 |  |
-| data.js | js | 20854 |  |
-| boundary-resolver.js | js | 13702 |  |
-| hunt-research.js | js | 48484 |  |
-| ui.js | js | 31335 |  |
-| header-layout.js | js | 28147 |  |
-| google-basemap.js | js | 7106 |  |
+| index.html | html | 30920 |  |
+| research.html | html | 56600 |  |
+| hard-copy.html | html | 4663 |  |
+| verify.html | html | 32405 |  |
+| config.js | js | 26174 |  |
+| app.js | js | 290875 |  |
+| data.js | js | 23353 |  |
+| boundary-resolver.js | js | 13756 |  |
+| hunt-research.js | js | 128608 |  |
+| ui.js | js | 38233 |  |
+| header-layout.js | js | 56607 |  |
+| google-basemap.js | js | 7131 |  |
 | map-engine.js | js | 10290 |  |
-| style.css | css | 36718 |  |
-| data/hunt-master-canonical-2026-foundation.json | json | 1394 | NOTES, access_type, avg_days_2025, avg_points_2025, boundaryId, boundary_id, boundary_id_numeric, boundary_token, code, data_status, draw_2025_bg_pdf_page, draw_2025_bg_report_page, draw_2025_species_section, draw_2025_type, draw_family, eligibility_class, harvest_2025, has_antlerless_draw, has_bonus_draw, has_harvest, huntCode, hunt_class, hunt_code, hunt_name |
-| data/hunt-master-canonical-2026-database-candidate.json | json | 1394 | NOTES, access_type, avg_days_2025, avg_points_2025, boundaryId, boundary_id, boundary_id_numeric, boundary_token, code, data_status, draw_2025_bg_pdf_page, draw_2025_bg_report_page, draw_2025_species_section, draw_2025_type, draw_family, eligibility_class, harvest_2025, has_antlerless_draw, has_bonus_draw, has_harvest, huntCode, hunt_class, hunt_code, hunt_name |
-| data/hunt-master-canonical-2026-source-of-truth.json | json | 1394 | NOTES, access_type, avg_days_2025, avg_points_2025, boundaryId, boundary_id, boundary_id_numeric, boundary_token, code, data_status, draw_2025_bg_pdf_page, draw_2025_bg_report_page, draw_2025_species_section, draw_2025_type, draw_family, eligibility_class, harvest_2025, has_antlerless_draw, has_bonus_draw, has_harvest, huntCode, hunt_class, hunt_code, hunt_name |
-| processed_data/draw_reality_engine.csv | csv | 141516 | hunt_code, year, residency, points, eligible_applicants, total_drawn, bonus_permits, regular_permits, total_permits, status, success_ratio, hunt_name, source_file, page_number, p_draw_percent |
-| processed_data/point_ladder_view.csv | csv | 91588 | hunt_code, residency, points, public_permits_2025, public_permits_2026, public_permits_2026_source, max_point_permits_2025, max_point_permits_2026, random_permits_2025, random_permits_2026, guaranteed_at_2025, guaranteed_at_2026, permit_delta_2025_to_2026, projected_applicants_2026_source, guaranteed_delta_2025_to_2026, applicants_above, applicants_at_level, random_draw_odds_2026, gap, delta_gap, status, trend, draw_outlook, permits_2026_res |
-| processed_data/hunt_master_enriched.csv | csv | 53060 | hunt_code, species, hunt_name, weapon, hunt_type, access_type, residency, points, public_permits_2025, public_permits_2026, public_permits_2026_source, applicants_2025, projected_applicants_2026, projected_applicants_2026_source, odds_2025, odds_2026_projected, max_point_permits_2026, random_permits_2026, success_hunters, success_harvest, success_percent, missing_draw_data, missing_projection, missing_permits |
-| processed_data/hunt_unit_reference_linked.csv | csv | 2788 | hunt_code, residency, hunt_name, species, weapon, hunt_type, access_type, public_permits_2025, public_permits_2026, permits_2025_res, permits_2025_nr, permits_2025_total, permits_2026_res, permits_2026_nr, permits_2026_total, applicants_2025, projected_applicants_2026, max_point_permits_2026, random_permits_2026, guaranteed_at_2026, delta_gap, trend, coverage_status, coverage_reason |
-| processed_data/display-boundary-index-2026.json | json | 1394 | boundary_geojson_path, boundary_geometry_type, boundary_id, boundary_kml_path, boundary_kmz_path, boundary_source_authority, boundary_source_file, dwr_boundary_link, geometry_status, hunt_code, member_boundary_count, member_boundary_ids, merged_boundary_id, source_boundary_ids |
+| style.css | css | 56739 |  |
+| data/hunt-master-canonical-2026-foundation.json | json | 1471 | BoundaryID, Weapon, access_type, average_harvest_age, average_harvest_age_review_status, average_harvest_age_source_file, boundaryID, boundaryId, boundaryLink, boundary_id, boundary_id_numeric, category, code, conservation_permits_2026_source, conservation_permits_2026_total, current_age_3yr_average, data_status, dates, draw_2025_bg_pdf_page, draw_2025_bg_report_page, draw_2025_type, draw_2026_system_type, draw_family, dwr_huntplanner_age_objective |
+| data/hunt-master-canonical-2026-database-candidate.json | json | 1471 | BoundaryID, Weapon, access_type, average_harvest_age, average_harvest_age_review_status, average_harvest_age_source_file, boundaryID, boundaryId, boundaryLink, boundary_id, boundary_id_numeric, category, code, conservation_permits_2026_source, conservation_permits_2026_total, current_age_3yr_average, data_status, dates, draw_2025_bg_pdf_page, draw_2025_bg_report_page, draw_2025_type, draw_2026_system_type, draw_family, dwr_huntplanner_age_objective |
+| data/hunt-master-canonical-2026-source-of-truth.json | json | 1471 | BoundaryID, Weapon, access_type, average_harvest_age, average_harvest_age_review_status, average_harvest_age_source_file, boundaryID, boundaryId, boundaryLink, boundary_id, boundary_id_numeric, category, code, conservation_permits_2026_source, conservation_permits_2026_total, current_age_3yr_average, data_status, dates, draw_2025_bg_pdf_page, draw_2025_bg_report_page, draw_2025_type, draw_2026_system_type, draw_family, dwr_huntplanner_age_objective |
+| processed_data/hunt_unit_reference_linked.csv | csv | 4762 | hunt_code, residency, hunt_name, species, weapon, hunt_type, access_type, public_permits_2025, public_permits_2026, permits_2025_res, permits_2025_nr, permits_2025_total, permits_2026_res, permits_2026_nr, permits_2026_total, applicants_2025, projected_applicants_2026, max_point_permits_2026, random_permits_2026, guaranteed_at_2026, delta_gap, trend, coverage_status, coverage_reason |
+| processed_data/display-boundary-index-2026.json | json | 1471 | boundary_geojson_path, boundary_geometry_type, boundary_id, boundary_kml_path, boundary_kmz_path, boundary_source_authority, boundary_source_file, dwr_boundary_link, geometry_status, hunt_code, member_boundary_count, member_boundary_ids, merged_boundary_id, source_boundary_ids |
 | processed_data/boundary-manifest-2026.json | json | 27 | boundary_geojson_path, boundary_geometry_type, boundary_id, boundary_kml_path, boundary_kmz_path, geometry_status, hunt_code, member_boundary_count, member_boundary_ids, merged_boundary_id, notes, placemark_count, sha256, source_filename |
-| processed_data/hard_data_exports/hard_copy_pdf_manifest.web.json | json | 405 | companion_href, companion_type, group, href, model_year_folder, parent_title, source_authority, source_role, source_year, subtitle, title, type, year |
-| data/outfitters-public.json | json | 0 |  |
+| processed_data/hard_data_exports/hard_copy_pdf_manifest.web.json | json | 458 | companion_href, companion_type, group, href, model_year_folder, parent_title, source_authority, source_role, source_year, subtitle, title, type, year |
+| data/outfitters-public.json | json | 11 | blmDistricts, certLevel, city, email, listingName, listingType, logoUrl, notes, ownerName, phone, region, speciesServed, unitsServed, usfsForests, verificationStatus, website |
 | data/outfitters.json | json | 11 | blmDistricts, certLevel, city, email, listingName, listingType, logoUrl, notes, ownerName, phone, region, speciesServed, unitsServed, usfsForests, verificationStatus, website |
 | processed_data/outfitter-federal-unit-coverage-review.json | json | 761 | BlmAuthoritySource, BlmPermitMatchedOutfitterCount, BlmPermitMatchedOutfitters, ExampleHuntCodes, ExclusionReason, FederalCoverageEligible, FederalPermitMatchedOutfitterCount, FederalPermitMatchedOutfitters, HuntCount, Notes, PrimaryBlmDistrictId, PrimaryBlmDistrictName, PrimaryUsfsForestId, PrimaryUsfsForestName, Species, UnitCode, UnitName, UsfsAuthoritySource, UsfsPermitMatchedOutfitterCount, UsfsPermitMatchedOutfitters |
 
 ## Fields Discovered
 
-- Total discovered field entries: 518
-- Mapped: 518
+- Total discovered field entries: 532
+- Mapped: 532
 - Intentionally unmapped: 0
 - Deprecated: 0
 
@@ -92,4 +89,4 @@ None.
 
 ## Test Results
 
-Passed: npm run test
+Pending until validation commands are run after generation.

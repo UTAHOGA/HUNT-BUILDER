@@ -1,7 +1,7 @@
 {
   "metadata": {
     "id": "outfitter-verification-2026",
-    "generated_at": "2026-05-08T15:30:09.850Z",
+    "generated_at": "2026-07-30T11:12:00.203Z",
     "route": "./verify.html",
     "source_page": "verify.html"
   },
@@ -33,6 +33,8 @@
       "title": "Outfitter Verification",
       "ids": [
         "dwr-registration-floor",
+        "outfitterDirectoryStatus",
+        "verifiedOutfitterGrid",
         "dwrOutfitterModal",
         "dwrOutfitterModalTitle",
         "dwrOutfitterCloseBtn",
@@ -42,12 +44,15 @@
       "data_attributes": [],
       "links": [
         "./assets/logos/favicon.ico.png",
-        "./style.css?v=20260423-planner-header-refine-1",
-        "./index.html#google-maps",
+        "./style.css?v=20260606-runtime-ladder-mask-1",
+        "./",
         "./research.html",
         "./verify.html",
         "./hard-copy.html",
-        "https://wildlife.utah.gov/"
+        "https://wildlife.utah.gov/",
+        "tel:${escapeHtml(item.phone.replace(/[^0-9+]/g, ''))}",
+        "mailto:${escapeHtml(item.email)}",
+        "${escapeHtml(item.website)}"
       ],
       "options": []
     }
@@ -191,6 +196,12 @@
         "Not an agency authorization",
         "Not a legal determination"
       ]
+    },
+    {
+      "id": "public-directory",
+      "kicker": "Public Directory",
+      "title": "Verified Outfitter Records",
+      "bullets": []
     }
   ],
   "modal": {
@@ -200,7 +211,385 @@
     "dwr_url": "https://wildlife.utah.gov/guide/outfitter.html"
   },
   "outfitters": {
-    "public_records": [],
+    "public_records": [
+      {
+        "listingName": "Wild Eyez Outfitters",
+        "listingType": "Outfitter",
+        "certLevel": "CPO",
+        "verificationStatus": "Vetted",
+        "website": "https://www.wildeyez.net",
+        "logoUrl": "https://static.wixstatic.com/media/43f827_182f1744babc4ce393b4d1d2358018a3~mv2.png",
+        "phone": [
+          "4358516480"
+        ],
+        "email": [
+          "tyler@wildeyez.net"
+        ],
+        "region": "Utah",
+        "city": "Manti",
+        "ownerName": [
+          "Tyler Miller"
+        ],
+        "speciesServed": [
+          "Elk",
+          "Deer"
+        ],
+        "unitsServed": [
+          "Beaver, East",
+          "Fishlake/Thousand Lakes",
+          "Fillmore, Pahvant",
+          "Manti",
+          "Manti/San Rafael",
+          "Monroe",
+          "Nebo",
+          "Nebo/San Pitch Mtns"
+        ],
+        "blmDistricts": [
+          "Richfield"
+        ],
+        "usfsForests": [
+          "Fishlake NF - Richfield",
+          "Manti-La Sal NF - Sanpete"
+        ],
+        "notes": "Known-good trial row"
+      },
+      {
+        "listingName": "Albrecht Outfitters",
+        "listingType": "Outfitter",
+        "certLevel": "",
+        "verificationStatus": "Vetted",
+        "website": "https://albrechtoutfitting.com/",
+        "phone": [
+          "435-979-7227"
+        ],
+        "email": [
+          "tayloralbrecht@hotmail.com"
+        ],
+        "region": "Utah",
+        "city": "",
+        "ownerName": [
+          "Taylor Albrecht"
+        ],
+        "speciesServed": [
+          "Deer"
+        ],
+        "unitsServed": [
+          "Fishlake",
+          "Boulder/Kaiparowits",
+          "Henry Mtns",
+          "Fillmore",
+          "Mt Dutton",
+          "Monroe",
+          "Beaver, East"
+        ],
+        "blmDistricts": [],
+        "usfsForests": [
+          "Fishlake"
+        ],
+        "notes": "First-pass normalization only"
+      },
+      {
+        "listingName": "All Out Outfitters",
+        "listingType": "Outfitter",
+        "certLevel": "",
+        "verificationStatus": "Vetted",
+        "website": "https://alloutoutfitters.net/",
+        "phone": [],
+        "email": [
+          "alloutoutfitters@gmail.com",
+          "alan.wood@ipsc.com"
+        ],
+        "region": "Utah",
+        "city": "",
+        "ownerName": [
+          "Alan Wood",
+          "J.T. Robbins",
+          "Breanna Robbins"
+        ],
+        "speciesServed": [
+          "Deer"
+        ],
+        "unitsServed": [
+          "Fishlake",
+          "Boulder/Kaiparowits",
+          "Henry Mtns",
+          "Fillmore, Oak Creek LE",
+          "Mt Dutton",
+          "Monroe",
+          "Beaver, East"
+        ],
+        "blmDistricts": [],
+        "usfsForests": [
+          "Fishlake"
+        ],
+        "notes": "First-pass normalization only"
+      },
+      {
+        "listingName": "Alpha Outfitters",
+        "listingType": "Outfitter",
+        "certLevel": "",
+        "verificationStatus": "Vetted",
+        "website": "",
+        "phone": [],
+        "email": [
+          "thealphaoutfitter@gmail.com"
+        ],
+        "region": "Utah",
+        "city": "",
+        "ownerName": [
+          "Garrett Smith"
+        ],
+        "speciesServed": [
+          "Deer"
+        ],
+        "unitsServed": [
+          "Fishlake",
+          "Thousand Lakes",
+          "Boulder/Kaiparowits",
+          "Henry Mtns",
+          "Fillmore, Oak Creek LE",
+          "Mt Dutton",
+          "Monroe",
+          "Beaver, East",
+          "Manti/San Rafael"
+        ],
+        "blmDistricts": [
+          "Grand Staircase Kanab"
+        ],
+        "usfsForests": [
+          "Duschene Dixie - Lake Powell Manti LaSal Fishlake"
+        ],
+        "notes": "First-pass normalization only"
+      },
+      {
+        "listingName": "Apex Outfitters",
+        "listingType": "Outfitter",
+        "certLevel": "",
+        "verificationStatus": "Vetted",
+        "website": "https://apexoutfitters.net/",
+        "phone": [
+          "435-749-0060"
+        ],
+        "email": [
+          "brettguymon77@gmail.com"
+        ],
+        "region": "Utah",
+        "city": "",
+        "ownerName": [
+          "Brett Guymon"
+        ],
+        "speciesServed": [
+          "Deer"
+        ],
+        "unitsServed": [
+          "Manti/San Rafael",
+          "La Sal Mtns",
+          "Dolores Triangle"
+        ],
+        "blmDistricts": [],
+        "usfsForests": [
+          "Manti LaSal"
+        ],
+        "notes": "First-pass normalization only"
+      },
+      {
+        "listingName": "Apex Outfitters",
+        "listingType": "Outfitter",
+        "certLevel": "",
+        "verificationStatus": "Vetted",
+        "website": "https://apexoutfitters.net/",
+        "phone": [
+          "435-749-0060"
+        ],
+        "email": [
+          "brettguymon77@gmail.com"
+        ],
+        "region": "Utah",
+        "city": "",
+        "ownerName": [
+          "Brett Guymon"
+        ],
+        "speciesServed": [
+          "Elk"
+        ],
+        "unitsServed": [
+          "Manti",
+          "San Juan",
+          "La Sal Mtns",
+          "La Sal, Dolores Triangle"
+        ],
+        "blmDistricts": [],
+        "usfsForests": [
+          "Manti LaSal"
+        ],
+        "notes": "First-pass normalization only"
+      },
+      {
+        "listingName": "Battleground G/O",
+        "listingType": "Outfitter",
+        "certLevel": "",
+        "verificationStatus": "Vetted",
+        "website": "",
+        "phone": [
+          "801-647-5661"
+        ],
+        "email": [
+          "freedomrv@hotmail.com"
+        ],
+        "region": "Utah",
+        "city": "",
+        "ownerName": [
+          "JL Larsen"
+        ],
+        "speciesServed": [
+          "Deer"
+        ],
+        "unitsServed": [
+          "Fishlake",
+          "Thousand Lakes",
+          "Boulder/Kaiparowits",
+          "Henry Mtns",
+          "Fillmore, Oak Creek LE",
+          "Mt Dutton",
+          "Monroe"
+        ],
+        "blmDistricts": [],
+        "usfsForests": [
+          "Fishlake"
+        ],
+        "notes": "First-pass normalization only"
+      },
+      {
+        "listingName": "Beaver Mountain Outfitters",
+        "listingType": "Outfitter",
+        "certLevel": "",
+        "verificationStatus": "Vetted",
+        "website": "https://www.facebook.com/profile.php?id=61576620110758#",
+        "phone": [
+          "435-421-1850"
+        ],
+        "email": [
+          "edwardsslade@gmail.com",
+          "aust4.ab@gmail.com"
+        ],
+        "region": "Utah",
+        "city": "",
+        "ownerName": [
+          "Slade Edwards"
+        ],
+        "speciesServed": [
+          "Deer"
+        ],
+        "unitsServed": [
+          "Fishlake",
+          "Thousand Lakes",
+          "Boulder/Kaiparowits",
+          "Henry Mtns",
+          "Fillmore, Oak Creek LE",
+          "Mt Dutton",
+          "Monroe",
+          "Beaver, East"
+        ],
+        "blmDistricts": [],
+        "usfsForests": [
+          "Fishlake Dixie-Lake Powell"
+        ],
+        "notes": "First-pass normalization only"
+      },
+      {
+        "listingName": "Book Cliff Outfitters",
+        "listingType": "Outfitter",
+        "certLevel": "",
+        "verificationStatus": "Vetted",
+        "website": "https://www.bookcliffoutfitters.com/",
+        "phone": [
+          "970.327.4787"
+        ],
+        "email": [
+          "tjpilling@gmail.com",
+          "bookcliffoutfitters77@gmail.com"
+        ],
+        "region": "Utah",
+        "city": "",
+        "ownerName": [
+          "Tim Pilling"
+        ],
+        "speciesServed": [
+          "Deer"
+        ],
+        "unitsServed": [],
+        "blmDistricts": [
+          "Grand Staircase Kanab"
+        ],
+        "usfsForests": [
+          "UWC"
+        ],
+        "notes": "First-pass normalization only"
+      },
+      {
+        "listingName": "Cisco Outfitting Travis Kruckenberg Outfitting",
+        "listingType": "Outfitter",
+        "certLevel": "",
+        "verificationStatus": "Vetted",
+        "website": "https://www.traviskruckenbergoutfitting.com/",
+        "phone": [
+          "(970) 216-9694"
+        ],
+        "email": [
+          "traviskruckenberg@live.com"
+        ],
+        "region": "Utah",
+        "city": "",
+        "ownerName": [
+          "Travis Kruckenberg"
+        ],
+        "speciesServed": [
+          "Deer"
+        ],
+        "unitsServed": [
+          "Manti/San Rafael",
+          "La Sal Mtns",
+          "Dolores Triangle"
+        ],
+        "blmDistricts": [],
+        "usfsForests": [
+          "Manti LaSal"
+        ],
+        "notes": "First-pass normalization only"
+      },
+      {
+        "listingName": "Cisco Outfitting Travis Kruckenberg Outfitting",
+        "listingType": "Outfitter",
+        "certLevel": "",
+        "verificationStatus": "Vetted",
+        "website": "https://www.traviskruckenbergoutfitting.com/",
+        "phone": [
+          "(970) 216-9694"
+        ],
+        "email": [
+          "traviskruckenberg@live.com"
+        ],
+        "region": "Utah",
+        "city": "",
+        "ownerName": [
+          "Travis Kruckenberg"
+        ],
+        "speciesServed": [
+          "Elk"
+        ],
+        "unitsServed": [
+          "Manti",
+          "San Juan",
+          "La Sal Mtns",
+          "La Sal, Dolores Triangle"
+        ],
+        "blmDistricts": [],
+        "usfsForests": [
+          "Manti LaSal"
+        ],
+        "notes": "First-pass normalization only"
+      }
+    ],
     "internal_records": [
       {
         "listingName": "Wild Eyez Outfitters",

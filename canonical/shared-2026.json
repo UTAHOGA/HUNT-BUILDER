@@ -1,7 +1,7 @@
 {
   "metadata": {
     "id": "shared-2026",
-    "generated_at": "2026-05-08T15:30:09.850Z",
+    "generated_at": "2026-07-30T11:12:00.203Z",
     "scope": [
       "Hunt Planner",
       "Hunt Research",
@@ -38,8 +38,8 @@
           "speciesFilter",
           "sexFilter",
           "huntTypeFilter",
-          "huntCategoryFilter",
           "weaponFilter",
+          "huntCategoryFilter",
           "unitFilter",
           "applyFiltersBtn",
           "clearFiltersBtn",
@@ -48,6 +48,8 @@
           "selectedHuntPanel",
           "huntBasket",
           "ownershipDock",
+          "ownershipToggleBtn",
+          "ownershipLayerPanel",
           "toggleDwrUnits",
           "federalLayersSummary",
           "toggleUSFS",
@@ -60,14 +62,18 @@
           "privateLayersSummary",
           "togglePrivate",
           "toggleCwmu",
+          "earthDirectionControls",
           "map",
           "dwrMapFrame",
+          "googleEarthFrame",
           "mapChooser",
           "mapChooserKicker",
           "mapChooserTitle",
           "closeMapChooserBtn",
           "mapChooserBody",
           "selectedHuntFloat",
+          "mapProgressNav",
+          "mapProgressResearchBtn",
           "basemapPopover",
           "basemapToggleBtn",
           "globeBasemapPanel",
@@ -85,21 +91,26 @@
           "data-map-mode-value",
           "data-uoga-page-nav",
           "data-backpack-host",
+          "data-earth-heading",
+          "data-hover-label",
           "data-google-basemap"
         ],
         "links": [
           "./assets/logos/favicon.ico.png",
-          "./style.css?v=20260506-ownership-basemap-fix-1",
+          "./style.css?v=20260606-runtime-ladder-mask-1",
           "./",
           "./research.html",
           "./verify.html",
           "./hard-copy.html",
+          "https://www.uoga.org",
+          "https://www.uoga.org/membership-sign-up",
+          "https://www.uoga.org/pricing-plans/member-dues",
           "#"
         ],
         "options": [
           {
             "value": "dwr",
-            "label": "DWR Map"
+            "label": "DWR Hunt Planner"
           },
           {
             "value": "earth",
@@ -171,16 +182,28 @@
           "summaryStatus",
           "summaryOdds",
           "selectedOutlook",
+          "selectedOutlookText",
           "summaryTrend",
           "summaryTrendText",
+          "otcHuntCard",
+          "otcHuntCode",
+          "otcUnit",
+          "otcSpeciesSex",
+          "otcAccess",
+          "otcOdds",
+          "otcAllotment",
           "summaryRecommendation",
+          "pointLadderAccordion",
           "ladderRange",
           "jumpToPointsBtn",
           "ladderTableEmpty",
           "ladderTableWrap",
           "ladderHeaderRow",
-          "ladderPrimaryHeader",
-          "ladderSecondaryHeader",
+          "ladderHeaderCol1",
+          "ladderHeaderCol2",
+          "ladderHeaderCol3",
+          "ladderHeaderCol4",
+          "ladderHeaderCol5",
           "ladderTableBody",
           "sourceModal",
           "sourceModalTitle",
@@ -191,7 +214,7 @@
         "data_attributes": [],
         "links": [
           "./assets/logos/favicon.ico.png",
-          "./style.css?v=20260423-planner-header-refine-1",
+          "./style.css?v=20260606-runtime-ladder-mask-1",
           "./",
           "./research.html",
           "./verify.html",
@@ -205,6 +228,34 @@
           {
             "value": "Nonresident",
             "label": "Nonresident"
+          },
+          {
+            "value": "standard",
+            "label": "standard"
+          },
+          {
+            "value": "youth",
+            "label": "youth"
+          },
+          {
+            "value": "lifetime",
+            "label": "lifetime"
+          },
+          {
+            "value": "dedicated_hunter",
+            "label": "dedicated_hunter"
+          },
+          {
+            "value": "youth_dedicated_hunter",
+            "label": "youth_dedicated_hunter"
+          },
+          {
+            "value": "youth_mature_bull",
+            "label": "youth_mature_bull"
+          },
+          {
+            "value": "youth_turkey",
+            "label": "youth_turkey"
           }
         ]
       }
@@ -214,54 +265,49 @@
       "label": "Hard Copies",
       "path": "./hard-copy.html",
       "source_file": "hard-copy.html",
-      "title": "U.O.G.A. Hard Data",
+      "title": "U.O.G.A. Hunt Library",
       "seo": {
-        "title": "U.O.G.A. Hard Data",
+        "title": "U.O.G.A. Hunt Library",
         "description": "Hard Copies page in the UOGA hunt tool site."
       },
       "ui_contract": {
-        "title": "U.O.G.A. Hard Data",
+        "title": "U.O.G.A. Hunt Library",
         "ids": [
-          "librarySearch",
-          "libraryCount",
-          "libraryClearFilters",
-          "libraryTypeFilter",
-          "libraryYearFilter",
-          "libraryChips",
-          "activeFilterChips",
-          "librarySections"
+          "uogaLibrarySearch",
+          "uogaLibraryClear",
+          "uogaFolderWall",
+          "uogaResultsPanel",
+          "uogaResultsTitle",
+          "uogaLibraryCount",
+          "uogaResultsClose",
+          "uogaActiveFilters",
+          "uogaLibrarySections",
+          "uogaPdfFlipPanel",
+          "uogaPdfFlipTitle",
+          "uogaPdfFlipClose",
+          "uogaPdfPrev",
+          "uogaPdfStatus",
+          "uogaPdfNext",
+          "uogaPdfFlipbook",
+          "uogaEmbedPanel",
+          "uogaEmbedTitle",
+          "uogaEmbedClose",
+          "uogaEmbedFrame"
         ],
         "data_attributes": [
-          "data-group",
-          "data-clear"
+          "data-backpack-host",
+          "data-action"
         ],
         "links": [
           "./assets/logos/favicon.ico.png",
-          "./style.css?v=20260423-planner-header-refine-1",
+          "./style.css?v=20260606-runtime-ladder-mask-1",
+          "./assets/css/hard-copy-public-library.css?v=20260721-library-backwall-1",
           "./",
           "./research.html",
           "./verify.html",
-          "./hard-copy.html",
-          "${escapeHtml(item.href)}"
+          "./hard-copy.html"
         ],
-        "options": [
-          {
-            "value": "all",
-            "label": "All document types"
-          },
-          {
-            "value": "all",
-            "label": "All years"
-          },
-          {
-            "value": "${escapeHtml(type)}",
-            "label": "${escapeHtml(type === 'all' ? 'All file types' : type.toUpperCase())}"
-          },
-          {
-            "value": "${escapeHtml(year)}",
-            "label": "${escapeHtml(year === 'all' ? 'All years' : year)}"
-          }
-        ]
+        "options": []
       }
     },
     {
@@ -278,6 +324,8 @@
         "title": "Outfitter Verification",
         "ids": [
           "dwr-registration-floor",
+          "outfitterDirectoryStatus",
+          "verifiedOutfitterGrid",
           "dwrOutfitterModal",
           "dwrOutfitterModalTitle",
           "dwrOutfitterCloseBtn",
@@ -287,12 +335,15 @@
         "data_attributes": [],
         "links": [
           "./assets/logos/favicon.ico.png",
-          "./style.css?v=20260423-planner-header-refine-1",
+          "./style.css?v=20260606-runtime-ladder-mask-1",
           "./",
           "./research.html",
           "./verify.html",
           "./hard-copy.html",
-          "https://wildlife.utah.gov/"
+          "https://wildlife.utah.gov/",
+          "tel:${escapeHtml(item.phone.replace(/[^0-9+]/g, ''))}",
+          "mailto:${escapeHtml(item.email)}",
+          "${escapeHtml(item.website)}"
         ],
         "options": []
       }
@@ -396,6 +447,7 @@
       "name": "OUTFITTERS_DATA_SOURCES",
       "declared_in": "config.js",
       "consumed_by": [
+        "verify.html",
         "config.js",
         "app.js"
       ]
@@ -550,18 +602,6 @@
     },
     {
       "file": "data/hunt-master-canonical-2026-source-of-truth.json",
-      "role": "implementation_inventory_source"
-    },
-    {
-      "file": "processed_data/draw_reality_engine.csv",
-      "role": "implementation_inventory_source"
-    },
-    {
-      "file": "processed_data/point_ladder_view.csv",
-      "role": "implementation_inventory_source"
-    },
-    {
-      "file": "processed_data/hunt_master_enriched.csv",
       "role": "implementation_inventory_source"
     },
     {

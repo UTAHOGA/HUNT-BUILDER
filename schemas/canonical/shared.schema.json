@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Shared 2026 Canonical Schema",
+  "type": "object",
+  "required": [
+    "metadata",
+    "versioning",
+    "routes",
+    "navigation",
+    "assets",
+    "provenance"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "metadata": {},
+    "versioning": {},
+    "routes": {},
+    "navigation": {},
+    "assets": {},
+    "provenance": {}
+  }
+}

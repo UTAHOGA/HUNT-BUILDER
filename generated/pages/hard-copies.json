@@ -5,54 +5,49 @@
     "label": "Hard Copies",
     "path": "./hard-copy.html",
     "source_file": "hard-copy.html",
-    "title": "U.O.G.A. Hard Data",
+    "title": "U.O.G.A. Hunt Library",
     "seo": {
-      "title": "U.O.G.A. Hard Data",
+      "title": "U.O.G.A. Hunt Library",
       "description": "Hard Copies page in the UOGA hunt tool site."
     },
     "ui_contract": {
-      "title": "U.O.G.A. Hard Data",
+      "title": "U.O.G.A. Hunt Library",
       "ids": [
-        "librarySearch",
-        "libraryCount",
-        "libraryClearFilters",
-        "libraryTypeFilter",
-        "libraryYearFilter",
-        "libraryChips",
-        "activeFilterChips",
-        "librarySections"
+        "uogaLibrarySearch",
+        "uogaLibraryClear",
+        "uogaFolderWall",
+        "uogaResultsPanel",
+        "uogaResultsTitle",
+        "uogaLibraryCount",
+        "uogaResultsClose",
+        "uogaActiveFilters",
+        "uogaLibrarySections",
+        "uogaPdfFlipPanel",
+        "uogaPdfFlipTitle",
+        "uogaPdfFlipClose",
+        "uogaPdfPrev",
+        "uogaPdfStatus",
+        "uogaPdfNext",
+        "uogaPdfFlipbook",
+        "uogaEmbedPanel",
+        "uogaEmbedTitle",
+        "uogaEmbedClose",
+        "uogaEmbedFrame"
       ],
       "data_attributes": [
-        "data-group",
-        "data-clear"
+        "data-backpack-host",
+        "data-action"
       ],
       "links": [
         "./assets/logos/favicon.ico.png",
-        "./style.css?v=20260423-planner-header-refine-1",
+        "./style.css?v=20260606-runtime-ladder-mask-1",
+        "./assets/css/hard-copy-public-library.css?v=20260721-library-backwall-1",
         "./",
         "./research.html",
         "./verify.html",
-        "./hard-copy.html",
-        "${escapeHtml(href)}"
+        "./hard-copy.html"
       ],
-      "options": [
-        {
-          "value": "all",
-          "label": "All document types"
-        },
-        {
-          "value": "all",
-          "label": "All years"
-        },
-        {
-          "value": "${escapeHtml(type)}",
-          "label": "${escapeHtml(type === 'all' ? 'All file types' : type.toUpperCase())}"
-        },
-        {
-          "value": "${escapeHtml(year)}",
-          "label": "${escapeHtml(year === 'all' ? 'All years' : year)}"
-        }
-      ]
+      "options": []
     }
   },
   "group_labels": {
@@ -86,290 +81,884 @@
   "library": {
     "items": [
       {
-        "group": "harvest_report",
-        "type": "pdf",
-        "year": "2025",
-        "title": "2025 Preliminary Big Game Harvest Report",
-        "subtitle": "Official Utah DWR preliminary big-game harvest report published March 6, 2026.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/harvest_report/2025/2025-preliminary-big-game-harvest-report.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2025",
-        "model_year_folder": "2026",
-        "source_role": "official_source",
-        "parent_title": null
-      },
-      {
-        "group": "regulation",
+        "group": "hunt_tables",
         "type": "pdf",
         "year": "2026",
-        "title": "2026 Waterfowl Guidebook",
-        "subtitle": "Official Utah DWR waterfowl regulation guidebook.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/regulations/2026/2026-waterfowl-guidebook.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "official_source",
-        "parent_title": null
+        "title": "2026 ANTLERLESS ELK GENERAL SEASON",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ANTLERLESS_ELK_GENERAL_SEASON.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ANTLERLESS_ELK_GENERAL_SEASON.xlsx"
       },
       {
-        "group": "regulation",
-        "type": "pdf",
-        "year": "2025",
-        "title": "2025 Upland Turkey Guidebook",
-        "subtitle": "Official Utah DWR upland game and turkey regulation guidebook.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/regulations/2025-26/2025-26-upland-game-turkey-guidebook.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2025",
-        "model_year_folder": "2026",
-        "source_role": "official_source",
-        "parent_title": null
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 ANTLERLESS ELK GENERAL SEASON",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ANTLERLESS_ELK_GENERAL_SEASON.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ANTLERLESS_ELK_GENERAL_SEASON.pdf"
       },
       {
-        "group": "regulation",
+        "group": "hunt_tables",
         "type": "pdf",
         "year": "2026",
-        "title": "2026 Bear Cougar Furbearer Guidebook",
-        "subtitle": "Official Utah DWR bear, cougar, and furbearer regulation guidebook.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/regulations/2026/2026-bear-cougar-furbearer-guidebook.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "official_source",
-        "parent_title": null
+        "title": "2026 BISON COW",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BISON_COW.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BISON_COW.xlsx"
       },
       {
-        "group": "regulation",
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 BISON COW",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BISON_COW.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BISON_COW.pdf"
+      },
+      {
+        "group": "hunt_tables",
         "type": "pdf",
         "year": "2026",
-        "title": "2026 Big Game Application Guidebook",
-        "subtitle": "Official Utah DWR big-game application guidebook.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/regulations/2026/2026-big-game-application-guidebook.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "official_source",
-        "parent_title": null
+        "title": "2026 BISON HUNTER CHOICE",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BISON_HUNTER_CHOICE.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BISON_HUNTER_CHOICE.xlsx"
       },
       {
-        "group": "regulation",
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 BISON HUNTER CHOICE",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BISON_HUNTER_CHOICE.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BISON_HUNTER_CHOICE.pdf"
+      },
+      {
+        "group": "hunt_tables",
         "type": "pdf",
         "year": "2026",
-        "title": "2026 Fishing Guidebook",
-        "subtitle": "Official Utah DWR fishing regulation guidebook.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/regulations/2026/2026-fishing-guidebook.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "official_source",
-        "parent_title": null
+        "title": "2026 BLACK BEAR",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BLACK_BEAR.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BLACK_BEAR.xlsx"
       },
       {
-        "group": "regulation",
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 BLACK BEAR",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BLACK_BEAR.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BLACK_BEAR.pdf"
+      },
+      {
+        "group": "hunt_tables",
         "type": "pdf",
         "year": "2026",
-        "title": "2026 Turkey Guidebook",
-        "subtitle": "Official Utah DWR turkey regulation guidebook.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/regulations/2026/2026-turkey-guidebook.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "official_source",
-        "parent_title": null
+        "title": "2026 COUGAR",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_COUGAR.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_COUGAR.xlsx"
       },
       {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2025",
-        "title": "2025 Turkey Bonus Point Purchase Results",
-        "subtitle": "Official Utah DWR turkey bonus-point purchase source PDF used for the 2026 model-year data library.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-turkey-bonus-point-purchase-results.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2025",
-        "model_year_folder": "2026",
-        "source_role": "official_source",
-        "parent_title": null
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 COUGAR",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_COUGAR.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_COUGAR.pdf"
       },
       {
-        "group": "draw_odds",
+        "group": "hunt_tables",
         "type": "pdf",
-        "year": "2025",
-        "title": "2025 Youth Dedicated Hunter Draw Results",
-        "subtitle": "Official Utah DWR youth Dedicated Hunter draw-results source PDF.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-youth-dedicated-hunter-draw-results.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2025",
-        "model_year_folder": "2026",
-        "source_role": "official_source",
-        "parent_title": null
+        "year": "2026",
+        "title": "2026 DEER ANTLERLESS",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ANTLERLESS.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ANTLERLESS.xlsx"
       },
       {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2025",
-        "title": "2025 Youth G.S. Mature Bull Draw Results",
-        "subtitle": "Official Utah DWR youth general-season mature bull elk draw-results source PDF.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-youth-general-season-mature-bull-draw-results.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2025",
-        "model_year_folder": "2026",
-        "source_role": "official_source",
-        "parent_title": null
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 DEER ANTLERLESS",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ANTLERLESS.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ANTLERLESS.pdf"
       },
       {
-        "group": "draw_odds",
+        "group": "hunt_tables",
         "type": "pdf",
-        "year": "2025",
-        "title": "2025 Youth G.S. Deer Draw Results",
-        "subtitle": "Official Utah DWR youth general-season deer draw-results source PDF.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-youth-general-season-deer-draw-results.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2025",
-        "model_year_folder": "2026",
-        "source_role": "official_source",
-        "parent_title": null
+        "year": "2026",
+        "title": "2026 DEER ANTLERLESS CWMU",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ANTLERLESS_CWMU.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ANTLERLESS_CWMU.xlsx"
       },
       {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2025",
-        "title": "2025 Youth Antlerless Draw Results",
-        "subtitle": "Official Utah DWR youth antlerless draw-results source PDF.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-youth-antlerless-draw-results.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2025",
-        "model_year_folder": "2026",
-        "source_role": "official_source",
-        "parent_title": null
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 DEER ANTLERLESS CWMU",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ANTLERLESS_CWMU.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ANTLERLESS_CWMU.pdf"
       },
       {
-        "group": "draw_odds",
+        "group": "hunt_tables",
         "type": "pdf",
-        "year": "2025",
-        "title": "2025 Antlerless Draw Results",
-        "subtitle": "Official Utah DWR antlerless draw-results source PDF.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-antlerless-draw-results.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2025",
-        "model_year_folder": "2026",
-        "source_role": "official_source",
-        "parent_title": null
+        "year": "2026",
+        "title": "2026 DEER ARCHERY EXTENDED",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ARCHERY_EXTENDED.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ARCHERY_EXTENDED.xlsx"
       },
       {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2025",
-        "title": "2025 Black Bear Draw Odds",
-        "subtitle": "Official Utah DWR black bear draw odds/results source PDF used for the 2026 model-year data library.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-black-bear-draw-odds.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2025",
-        "model_year_folder": "2026",
-        "source_role": "official_source",
-        "parent_title": null
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 DEER ARCHERY EXTENDED",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ARCHERY_EXTENDED.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ARCHERY_EXTENDED.pdf"
       },
       {
-        "group": "draw_odds",
+        "group": "hunt_tables",
         "type": "pdf",
-        "year": "2025",
-        "title": "2025 Buck Deer General Season Draw Results",
-        "subtitle": "Official Utah DWR general-season buck deer draw-results source PDF used for preference-point draw review.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-buck-deer-general-season-draw-results.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2025",
-        "model_year_folder": "2026",
-        "source_role": "official_source",
-        "parent_title": null
+        "year": "2026",
+        "title": "2026 DEER BUCK CACTUS",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_CACTUS.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_CACTUS.xlsx"
       },
       {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2025",
-        "title": "2025 Dedicated Hunter Draw Results",
-        "subtitle": "Official Utah DWR Dedicated Hunter draw-results source PDF.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-dedicated-hunter-draw-results.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2025",
-        "model_year_folder": "2026",
-        "source_role": "official_source",
-        "parent_title": null
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 DEER BUCK CACTUS",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_CACTUS.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_CACTUS.pdf"
       },
       {
-        "group": "draw_odds",
+        "group": "hunt_tables",
         "type": "pdf",
-        "year": "2025",
-        "title": "2025 Turkey Draw Results",
-        "subtitle": "Official Utah DWR turkey draw-results source PDF.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-turkey-draw-results.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2025",
-        "model_year_folder": "2026",
-        "source_role": "official_source",
-        "parent_title": null
+        "year": "2026",
+        "title": "2026 DEER BUCK CONSERVATION",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_CONSERVATION.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_CONSERVATION.xlsx"
       },
       {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2025",
-        "title": "2025 Big Game Draw Results",
-        "subtitle": "Official Utah DWR parent source PDF for 2025 big-game limited-entry draw results. Sub-files below are split from this source for easier review.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-big-game-draw-results.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2025",
-        "model_year_folder": "2026",
-        "source_role": "parent_source",
-        "parent_title": null
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 DEER BUCK CONSERVATION",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_CONSERVATION.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_CONSERVATION.pdf"
       },
       {
-        "group": "draw_odds",
+        "group": "hunt_tables",
         "type": "pdf",
-        "year": "2025",
-        "title": "2025 LE Deer Draw Results",
-        "subtitle": "Official Utah DWR limited-entry deer draw-results sub-file derived from the 2025 Big Game Draw Results source.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-le-deer-draw-results.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2025",
-        "model_year_folder": "2026",
-        "source_role": "derived_subfile",
-        "parent_title": "2025 Big Game Draw Results"
+        "year": "2026",
+        "title": "2026 DEER BUCK CWMU",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_CWMU.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_CWMU.xlsx"
       },
       {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2025",
-        "title": "2025 LE Elk Draw Results",
-        "subtitle": "Official Utah DWR limited-entry elk draw-results sub-file derived from the 2025 Big Game Draw Results source.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-le-elk-draw-results.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2025",
-        "model_year_folder": "2026",
-        "source_role": "derived_subfile",
-        "parent_title": "2025 Big Game Draw Results"
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 DEER BUCK CWMU",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_CWMU.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_CWMU.pdf"
       },
       {
-        "group": "draw_odds",
+        "group": "hunt_tables",
         "type": "pdf",
-        "year": "2025",
-        "title": "2025 LE Pronghorn Draw Results",
-        "subtitle": "Official Utah DWR limited-entry pronghorn draw-results sub-file derived from the 2025 Big Game Draw Results source.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-le-pronghorn-draw-results.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2025",
-        "model_year_folder": "2026",
-        "source_role": "derived_subfile",
-        "parent_title": "2025 Big Game Draw Results"
+        "year": "2026",
+        "title": "2026 DEER BUCK DRAW",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_DRAW.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_DRAW.xlsx"
       },
       {
-        "group": "draw_odds",
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 DEER BUCK DRAW",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_DRAW.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_DRAW.pdf"
+      },
+      {
+        "group": "hunt_tables",
         "type": "pdf",
-        "year": "2025",
-        "title": "2025 O.I.L. Draw Results",
-        "subtitle": "Official Utah DWR once-in-a-lifetime draw-results sub-file derived from the 2025 Big Game Draw Results source.",
-        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-oil-draw-results.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2025",
-        "model_year_folder": "2026",
-        "source_role": "derived_subfile",
-        "parent_title": "2025 Big Game Draw Results"
+        "year": "2026",
+        "title": "2026 DEER BUCK LIMITED ENTRY",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_LIMITED_ENTRY.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_LIMITED_ENTRY.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 DEER BUCK LIMITED ENTRY",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_LIMITED_ENTRY.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_LIMITED_ENTRY.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 DEER BUCK LIMITED ENTRY MANAGEMENT BUCK",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_LIMITED_ENTRY_MANAGEMENT_BUCK.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_LIMITED_ENTRY_MANAGEMENT_BUCK.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 DEER BUCK LIMITED ENTRY MANAGEMENT BUCK",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_LIMITED_ENTRY_MANAGEMENT_BUCK.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_LIMITED_ENTRY_MANAGEMENT_BUCK.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 DEER BUCK LIMITED ENTRY PRIVATE LANDS ONLY",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_LIMITED_ENTRY_PRIVATE_LANDS_ONLY.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_LIMITED_ENTRY_PRIVATE_LANDS_ONLY.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 DEER BUCK LIMITED ENTRY PRIVATE LANDS ONLY",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_LIMITED_ENTRY_PRIVATE_LANDS_ONLY.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_LIMITED_ENTRY_PRIVATE_LANDS_ONLY.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 DEER BUCK PREMIUM LIMITED ENTRY",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_PREMIUM_LIMITED_ENTRY.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_PREMIUM_LIMITED_ENTRY.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 DEER BUCK PREMIUM LIMITED ENTRY",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_PREMIUM_LIMITED_ENTRY.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_PREMIUM_LIMITED_ENTRY.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 DEER BUCK STATEWIDE",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_STATEWIDE.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_STATEWIDE.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 DEER BUCK STATEWIDE",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_STATEWIDE.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK_STATEWIDE.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 DEER GENERAL SEASON",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_GENERAL_SEASON.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_GENERAL_SEASON.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 DEER GENERAL SEASON",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_GENERAL_SEASON.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_GENERAL_SEASON.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 DEER GENERAL SEASON PRIVATE LANDS",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_GENERAL_SEASON_PRIVATE_LANDS.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_GENERAL_SEASON_PRIVATE_LANDS.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 DEER GENERAL SEASON PRIVATE LANDS",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_GENERAL_SEASON_PRIVATE_LANDS.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_GENERAL_SEASON_PRIVATE_LANDS.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 DEER HUNTER CHOICE",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_HUNTER_CHOICE.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_HUNTER_CHOICE.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 DEER HUNTER CHOICE",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_HUNTER_CHOICE.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_HUNTER_CHOICE.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 DESERT BIGHORN RAM",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DESERT_BIGHORN_RAM.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DESERT_BIGHORN_RAM.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 DESERT BIGHORN RAM",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DESERT_BIGHORN_RAM.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DESERT_BIGHORN_RAM.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 ELK ANTLERLESS",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 ELK ANTLERLESS",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 ELK ANTLERLESS CONSERVATION",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS_CONSERVATION.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS_CONSERVATION.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 ELK ANTLERLESS CONSERVATION",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS_CONSERVATION.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS_CONSERVATION.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 ELK ANTLERLESS CWMU",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS_CWMU.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS_CWMU.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 ELK ANTLERLESS CWMU",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS_CWMU.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS_CWMU.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 ELK ANTLERLESS PRIVATE LANDS ONLY",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS_PRIVATE_LANDS_ONLY.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS_PRIVATE_LANDS_ONLY.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 ELK ANTLERLESS PRIVATE LANDS ONLY",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS_PRIVATE_LANDS_ONLY.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS_PRIVATE_LANDS_ONLY.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 ELK ARCHERY EXTENDED",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ARCHERY_EXTENDED.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ARCHERY_EXTENDED.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 ELK ARCHERY EXTENDED",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ARCHERY_EXTENDED.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ARCHERY_EXTENDED.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 ELK BULL ALL",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_ALL.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_ALL.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 ELK BULL ALL",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_ALL.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_ALL.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 ELK BULL CONSERVATION PERMIT",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_CONSERVATION_PERMIT.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_CONSERVATION_PERMIT.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 ELK BULL CONSERVATION PERMIT",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_CONSERVATION_PERMIT.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_CONSERVATION_PERMIT.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 ELK BULL CWMU",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_CWMU.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_CWMU.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 ELK BULL CWMU",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_CWMU.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_CWMU.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 ELK BULL GENERAL ANY BULL",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_GENERAL_ANY_BULL.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_GENERAL_ANY_BULL.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 ELK BULL GENERAL ANY BULL",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_GENERAL_ANY_BULL.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_GENERAL_ANY_BULL.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 ELK GENERAL ANY BULL YOUTH",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_GENERAL_ANY_BULL_YOUTH.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_GENERAL_ANY_BULL_YOUTH.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 ELK GENERAL ANY BULL YOUTH",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_GENERAL_ANY_BULL_YOUTH.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_GENERAL_ANY_BULL_YOUTH.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 ELK GENERAL ARCHERY",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_GENERAL_ARCHERY.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_GENERAL_ARCHERY.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 ELK GENERAL ARCHERY",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_GENERAL_ARCHERY.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_GENERAL_ARCHERY.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 ELK GENERAL SPIKE ONLY",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_GENERAL_SPIKE_ONLY.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_GENERAL_SPIKE_ONLY.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 ELK GENERAL SPIKE ONLY",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_GENERAL_SPIKE_ONLY.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_GENERAL_SPIKE_ONLY.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 ELK LIMITED ENTRY MATUREBULL",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_LIMITED_ENTRY_MATUREBULL.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_LIMITED_ENTRY_MATUREBULL.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 ELK LIMITED ENTRY MATUREBULL",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_LIMITED_ENTRY_MATUREBULL.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_LIMITED_ENTRY_MATUREBULL.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 ELK LIMITED ENTRY MATUREBULL PRIVATE LANDS",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_LIMITED_ENTRY_MATUREBULL_PRIVATE_LANDS.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_LIMITED_ENTRY_MATUREBULL_PRIVATE_LANDS.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 ELK LIMITED ENTRY MATUREBULL PRIVATE LANDS",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_LIMITED_ENTRY_MATUREBULL_PRIVATE_LANDS.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_LIMITED_ENTRY_MATUREBULL_PRIVATE_LANDS.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 ELK LIMITED ENTRY STATEWIDE",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_LIMITED_ENTRY_STATEWIDE.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_LIMITED_ENTRY_STATEWIDE.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 ELK LIMITED ENTRY STATEWIDE",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_LIMITED_ENTRY_STATEWIDE.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_LIMITED_ENTRY_STATEWIDE.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 GOAT HUNTER CHOICE",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_GOAT_HUNTER_CHOICE.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_GOAT_HUNTER_CHOICE.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 GOAT HUNTER CHOICE",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_GOAT_HUNTER_CHOICE.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_GOAT_HUNTER_CHOICE.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 MOOSE BULL",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_MOOSE_BULL.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_MOOSE_BULL.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 MOOSE BULL",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_MOOSE_BULL.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_MOOSE_BULL.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 MOOSE COW",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_MOOSE_COW.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_MOOSE_COW.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 MOOSE COW",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_MOOSE_COW.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_MOOSE_COW.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 SHEEP DESERT RAM",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_DESERT_RAM.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_DESERT_RAM.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 SHEEP DESERT RAM",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_DESERT_RAM.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_DESERT_RAM.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 SHEEP ROCKY MOUNTAIN EWE",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_ROCKY_MOUNTAIN_EWE.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_ROCKY_MOUNTAIN_EWE.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 SHEEP ROCKY MOUNTAIN EWE",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_ROCKY_MOUNTAIN_EWE.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_ROCKY_MOUNTAIN_EWE.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 SHEEP ROCKY MOUNTAIN RAM",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_ROCKY_MOUNTAIN_RAM.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_ROCKY_MOUNTAIN_RAM.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 SHEEP ROCKY MOUNTAIN RAM",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_ROCKY_MOUNTAIN_RAM.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_ROCKY_MOUNTAIN_RAM.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 TURKEY BEARDED",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_TURKEY_BEARDED.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_TURKEY_BEARDED.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 TURKEY BEARDED",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_TURKEY_BEARDED.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_TURKEY_BEARDED.pdf"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 TURKEY EITHER SEX",
+        "subtitle": "Formatted visitor hunt table PDF for review/download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_TURKEY_EITHER_SEX.pdf",
+        "companion_type": "xlsx",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_TURKEY_EITHER_SEX.xlsx"
+      },
+      {
+        "group": "hunt_tables",
+        "type": "xlsx",
+        "year": "2026",
+        "title": "2026 TURKEY EITHER SEX",
+        "subtitle": "Editable formatted hunt table workbook for download.",
+        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_TURKEY_EITHER_SEX.xlsx",
+        "companion_type": "pdf",
+        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_TURKEY_EITHER_SEX.pdf"
       },
       {
         "group": "draw_odds",
@@ -447,14 +1036,6 @@
         "group": "draw_odds",
         "type": "pdf",
         "year": "2026",
-        "title": "black bear 25 drawing odds",
-        "subtitle": "Utah draw results/odds source PDF (model year folder 2026).",
-        "href": "./pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/2025__black_bear_25_drawing_odds.pdf"
-      },
-      {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2026",
         "title": "Dedicated Hunter deer draw results",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2026).",
         "href": "./pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/2025__Dedicated Hunter deer draw results.pdf"
@@ -466,22 +1047,6 @@
         "title": "General season buck deer draw results",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2026).",
         "href": "./pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/2025__General-season buck deer draw results.pdf"
-      },
-      {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2026",
-        "title": "turkey 2025 turkey bonus points draw results",
-        "subtitle": "Utah draw results/odds source PDF (model year folder 2026).",
-        "href": "./pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/turkey_2025_turkey_bonus_points_draw_results.pdf"
-      },
-      {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2026",
-        "title": "turkey 2025 youth turkey draw results",
-        "subtitle": "Utah draw results/odds source PDF (model year folder 2026).",
-        "href": "./pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/2025__turkey_2025_youth_turkey_draw_results.pdf"
       },
       {
         "group": "draw_odds",
@@ -506,6 +1071,225 @@
         "title": "Youth general season deer draw results",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2026).",
         "href": "./pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/2025__Youth general-season deer draw results.pdf"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2026",
+        "title": "black bear 25 drawing odds",
+        "subtitle": "Utah draw results/odds source PDF (model year folder 2026).",
+        "href": "./pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/2025__black_bear_25_drawing_odds.pdf"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2026",
+        "title": "turkey 2025 turkey bonus points draw results",
+        "subtitle": "Utah draw results/odds source PDF (model year folder 2026).",
+        "href": "./pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/turkey_2025_turkey_bonus_points_draw_results.pdf"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2026",
+        "title": "turkey 2025 youth turkey draw results",
+        "subtitle": "Utah draw results/odds source PDF (model year folder 2026).",
+        "href": "./pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/2025__turkey_2025_youth_turkey_draw_results.pdf"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2025",
+        "title": "2025 Antlerless Draw Results",
+        "subtitle": "Official Utah DWR antlerless draw-results source PDF.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-antlerless-draw-results.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2025",
+        "model_year_folder": "2026",
+        "source_role": "official_source",
+        "parent_title": null
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2025",
+        "title": "2025 Big Game Draw Results",
+        "subtitle": "Official Utah DWR parent source PDF for 2025 big-game limited-entry draw results. Sub-files below are split from this source for easier review.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-big-game-draw-results.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2025",
+        "model_year_folder": "2026",
+        "source_role": "parent_source",
+        "parent_title": null
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2025",
+        "title": "2025 Black Bear Draw Odds",
+        "subtitle": "Official Utah DWR black bear draw odds/results source PDF used for the 2026 model-year data library.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-black-bear-draw-odds.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2025",
+        "model_year_folder": "2026",
+        "source_role": "official_source",
+        "parent_title": null
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2025",
+        "title": "2025 Buck Deer General Season Draw Results",
+        "subtitle": "Official Utah DWR general-season buck deer draw-results source PDF used for preference-point draw review.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-buck-deer-general-season-draw-results.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2025",
+        "model_year_folder": "2026",
+        "source_role": "official_source",
+        "parent_title": null
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2025",
+        "title": "2025 Dedicated Hunter Draw Results",
+        "subtitle": "Official Utah DWR Dedicated Hunter draw-results source PDF.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-dedicated-hunter-draw-results.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2025",
+        "model_year_folder": "2026",
+        "source_role": "official_source",
+        "parent_title": null
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2025",
+        "title": "2025 LE Deer Draw Results",
+        "subtitle": "Official Utah DWR limited-entry deer draw-results sub-file derived from the 2025 Big Game Draw Results source.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-le-deer-draw-results.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2025",
+        "model_year_folder": "2026",
+        "source_role": "derived_subfile",
+        "parent_title": "2025 Big Game Draw Results"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2025",
+        "title": "2025 LE Elk Draw Results",
+        "subtitle": "Official Utah DWR limited-entry elk draw-results sub-file derived from the 2025 Big Game Draw Results source.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-le-elk-draw-results.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2025",
+        "model_year_folder": "2026",
+        "source_role": "derived_subfile",
+        "parent_title": "2025 Big Game Draw Results"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2025",
+        "title": "2025 LE Pronghorn Draw Results",
+        "subtitle": "Official Utah DWR limited-entry pronghorn draw-results sub-file derived from the 2025 Big Game Draw Results source.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-le-pronghorn-draw-results.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2025",
+        "model_year_folder": "2026",
+        "source_role": "derived_subfile",
+        "parent_title": "2025 Big Game Draw Results"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2025",
+        "title": "2025 O.I.L. Draw Results",
+        "subtitle": "Official Utah DWR once-in-a-lifetime draw-results sub-file derived from the 2025 Big Game Draw Results source.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-oil-draw-results.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2025",
+        "model_year_folder": "2026",
+        "source_role": "derived_subfile",
+        "parent_title": "2025 Big Game Draw Results"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2025",
+        "title": "2025 Turkey Bonus Point Purchase Results",
+        "subtitle": "Official Utah DWR turkey bonus-point purchase source PDF used for the 2026 model-year data library.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-turkey-bonus-point-purchase-results.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2025",
+        "model_year_folder": "2026",
+        "source_role": "official_source",
+        "parent_title": null
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2025",
+        "title": "2025 Turkey Draw Results",
+        "subtitle": "Official Utah DWR turkey draw-results source PDF.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-turkey-draw-results.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2025",
+        "model_year_folder": "2026",
+        "source_role": "official_source",
+        "parent_title": null
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2025",
+        "title": "2025 Youth Antlerless Draw Results",
+        "subtitle": "Official Utah DWR youth antlerless draw-results source PDF.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-youth-antlerless-draw-results.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2025",
+        "model_year_folder": "2026",
+        "source_role": "official_source",
+        "parent_title": null
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2025",
+        "title": "2025 Youth Dedicated Hunter Draw Results",
+        "subtitle": "Official Utah DWR youth Dedicated Hunter draw-results source PDF.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-youth-dedicated-hunter-draw-results.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2025",
+        "model_year_folder": "2026",
+        "source_role": "official_source",
+        "parent_title": null
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2025",
+        "title": "2025 Youth G.S. Deer Draw Results",
+        "subtitle": "Official Utah DWR youth general-season deer draw-results source PDF.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-youth-general-season-deer-draw-results.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2025",
+        "model_year_folder": "2026",
+        "source_role": "official_source",
+        "parent_title": null
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2025",
+        "title": "2025 Youth G.S. Mature Bull Draw Results",
+        "subtitle": "Official Utah DWR youth general-season mature bull elk draw-results source PDF.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/draw_odds/2025/2025-youth-general-season-mature-bull-draw-results.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2025",
+        "model_year_folder": "2026",
+        "source_role": "official_source",
+        "parent_title": null
       },
       {
         "group": "draw_odds",
@@ -607,14 +1391,6 @@
         "group": "draw_odds",
         "type": "pdf",
         "year": "2024",
-        "title": "2023 cougar odds report",
-        "subtitle": "Utah draw results/odds source PDF (model year folder 2024).",
-        "href": "./pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/2023_cougar_odds_report.pdf"
-      },
-      {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2024",
         "title": "2023 DEER ODDS",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2024).",
         "href": "./pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/2023 DEER ODDS.pdf"
@@ -623,17 +1399,25 @@
         "group": "draw_odds",
         "type": "pdf",
         "year": "2024",
-        "title": "2023 draw results General Season Deer Draw Odds",
+        "title": "2023 ELK + OTHER BIG GAME",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2024).",
-        "href": "./pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/2023 draw results General Season Deer Draw Odds.pdf"
+        "href": "./pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/2023 ELK + OTHER BIG GAME.pdf"
       },
       {
         "group": "draw_odds",
         "type": "pdf",
         "year": "2024",
-        "title": "2023 ELK + OTHER BIG GAME",
+        "title": "2023 cougar odds report",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2024).",
-        "href": "./pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/2023 ELK + OTHER BIG GAME.pdf"
+        "href": "./pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/2023_cougar_odds_report.pdf"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2024",
+        "title": "2023 draw results General Season Deer Draw Odds",
+        "subtitle": "Utah draw results/odds source PDF (model year folder 2024).",
+        "href": "./pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/2023 draw results General Season Deer Draw Odds.pdf"
       },
       {
         "group": "draw_odds",
@@ -863,14 +1647,6 @@
         "group": "draw_odds",
         "type": "pdf",
         "year": "2023",
-        "title": "cougar Drawing odds",
-        "subtitle": "Utah draw results/odds source PDF (model year folder 2023).",
-        "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/draw_odds/41c98e7e__cougar_Drawing odds.pdf"
-      },
-      {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2023",
         "title": "Dedicated Hunter deer draw results",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2023).",
         "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/draw_odds/d15e7b03__Dedicated Hunter deer draw results.pdf"
@@ -903,17 +1679,9 @@
         "group": "draw_odds",
         "type": "pdf",
         "year": "2023",
-        "title": "turkey 2023 turkey bonus points draw results",
+        "title": "Youth Dedicated Hunter deer draw results",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2023).",
-        "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/draw_odds/88bceb9e__turkey_2023_turkey_bonus_points_draw_results.pdf"
-      },
-      {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2023",
-        "title": "turkey 2023 youth turkey draw results",
-        "subtitle": "Utah draw results/odds source PDF (model year folder 2023).",
-        "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/draw_odds/e91f282e__turkey_2023_youth_turkey_draw_results.pdf"
+        "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/draw_odds/685de6db__Youth Dedicated Hunter deer draw results.pdf"
       },
       {
         "group": "draw_odds",
@@ -922,14 +1690,6 @@
         "title": "Youth antlerless big game draw results",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2023).",
         "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/draw_odds/72649cd3__Youth antlerless big game draw results.pdf"
-      },
-      {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2023",
-        "title": "Youth Dedicated Hunter deer draw results",
-        "subtitle": "Utah draw results/odds source PDF (model year folder 2023).",
-        "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/draw_odds/685de6db__Youth Dedicated Hunter deer draw results.pdf"
       },
       {
         "group": "draw_odds",
@@ -946,6 +1706,30 @@
         "title": "Youth general season deer draw results",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2023).",
         "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/draw_odds/6dc7c678__Youth general-season deer draw results.pdf"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2023",
+        "title": "cougar Drawing odds",
+        "subtitle": "Utah draw results/odds source PDF (model year folder 2023).",
+        "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/draw_odds/41c98e7e__cougar_Drawing odds.pdf"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2023",
+        "title": "turkey 2023 turkey bonus points draw results",
+        "subtitle": "Utah draw results/odds source PDF (model year folder 2023).",
+        "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/draw_odds/88bceb9e__turkey_2023_turkey_bonus_points_draw_results.pdf"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2023",
+        "title": "turkey 2023 youth turkey draw results",
+        "subtitle": "Utah draw results/odds source PDF (model year folder 2023).",
+        "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/draw_odds/e91f282e__turkey_2023_youth_turkey_draw_results.pdf"
       },
       {
         "group": "draw_odds",
@@ -1055,22 +1839,6 @@
         "group": "draw_odds",
         "type": "pdf",
         "year": "2022",
-        "title": "black bear 22 drawing odds",
-        "subtitle": "Utah draw results/odds source PDF (model year folder 2022).",
-        "href": "./pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/eff53094__black_bear_22_drawing_odds.pdf"
-      },
-      {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2022",
-        "title": "cougar Drawing odds",
-        "subtitle": "Utah draw results/odds source PDF (model year folder 2022).",
-        "href": "./pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/7cfe81c3__cougar_Drawing odds.pdf"
-      },
-      {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2022",
         "title": "Dedicated Hunter deer draw results",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2022).",
         "href": "./pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/c9f1b779__Dedicated Hunter deer draw results.pdf"
@@ -1103,17 +1871,9 @@
         "group": "draw_odds",
         "type": "pdf",
         "year": "2022",
-        "title": "turkey 2022 turkey bonus points draw results",
+        "title": "Youth Dedicated Hunter deer draw results",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2022).",
-        "href": "./pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/d534ae44__turkey_2022_turkey_bonus_points_draw_results.pdf"
-      },
-      {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2022",
-        "title": "turkey 2022 youth turkey draw results",
-        "subtitle": "Utah draw results/odds source PDF (model year folder 2022).",
-        "href": "./pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/85ebe309__turkey_2022_youth_turkey_draw_results.pdf"
+        "href": "./pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/4d3103f2__Youth Dedicated Hunter deer draw results.pdf"
       },
       {
         "group": "draw_odds",
@@ -1122,14 +1882,6 @@
         "title": "Youth antlerless big game draw results",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2022).",
         "href": "./pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/96724720__Youth antlerless big game draw results.pdf"
-      },
-      {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2022",
-        "title": "Youth Dedicated Hunter deer draw results",
-        "subtitle": "Utah draw results/odds source PDF (model year folder 2022).",
-        "href": "./pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/4d3103f2__Youth Dedicated Hunter deer draw results.pdf"
       },
       {
         "group": "draw_odds",
@@ -1146,6 +1898,38 @@
         "title": "Youth general season deer draw results",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2022).",
         "href": "./pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/91fa9658__Youth general-season deer draw results.pdf"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2022",
+        "title": "black bear 22 drawing odds",
+        "subtitle": "Utah draw results/odds source PDF (model year folder 2022).",
+        "href": "./pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/eff53094__black_bear_22_drawing_odds.pdf"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2022",
+        "title": "cougar Drawing odds",
+        "subtitle": "Utah draw results/odds source PDF (model year folder 2022).",
+        "href": "./pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/7cfe81c3__cougar_Drawing odds.pdf"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2022",
+        "title": "turkey 2022 turkey bonus points draw results",
+        "subtitle": "Utah draw results/odds source PDF (model year folder 2022).",
+        "href": "./pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/d534ae44__turkey_2022_turkey_bonus_points_draw_results.pdf"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2022",
+        "title": "turkey 2022 youth turkey draw results",
+        "subtitle": "Utah draw results/odds source PDF (model year folder 2022).",
+        "href": "./pipeline/RAW/hunt_unit_database/2022/pdf/draw_odds/85ebe309__turkey_2022_youth_turkey_draw_results.pdf"
       },
       {
         "group": "draw_odds",
@@ -1255,30 +2039,6 @@
         "group": "draw_odds",
         "type": "pdf",
         "year": "2021",
-        "title": "black bear 20 drawing odds",
-        "subtitle": "Utah draw results/odds source PDF (model year folder 2021).",
-        "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/97ffae94__black_bear_20_drawing_odds.pdf"
-      },
-      {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2021",
-        "title": "black bear 21 drawing odds",
-        "subtitle": "Utah draw results/odds source PDF (model year folder 2021).",
-        "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/b4710a7f__black_bear_21_drawing_odds.pdf"
-      },
-      {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2021",
-        "title": "cougar Drawing odds",
-        "subtitle": "Utah draw results/odds source PDF (model year folder 2021).",
-        "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/80165f60__cougar_Drawing odds.pdf"
-      },
-      {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2021",
         "title": "Dedicated Hunter deer draw results",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2021).",
         "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/85bae871__Dedicated Hunter deer draw results.pdf"
@@ -1311,17 +2071,9 @@
         "group": "draw_odds",
         "type": "pdf",
         "year": "2021",
-        "title": "turkey 2021 turkey bonus points draw results",
+        "title": "Youth Dedicated Hunter deer draw results",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2021).",
-        "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/baa2fb5d__turkey_2021_turkey_bonus_points_draw_results.pdf"
-      },
-      {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2021",
-        "title": "turkey 2021 youth turkey draw results",
-        "subtitle": "Utah draw results/odds source PDF (model year folder 2021).",
-        "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/3deb930b__turkey_2021_youth_turkey_draw_results.pdf"
+        "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/3b691218__Youth Dedicated Hunter deer draw results.pdf"
       },
       {
         "group": "draw_odds",
@@ -1330,14 +2082,6 @@
         "title": "Youth antlerless big game draw results",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2021).",
         "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/897696d1__Youth antlerless big game draw results.pdf"
-      },
-      {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2021",
-        "title": "Youth Dedicated Hunter deer draw results",
-        "subtitle": "Utah draw results/odds source PDF (model year folder 2021).",
-        "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/3b691218__Youth Dedicated Hunter deer draw results.pdf"
       },
       {
         "group": "draw_odds",
@@ -1358,6 +2102,46 @@
       {
         "group": "draw_odds",
         "type": "pdf",
+        "year": "2021",
+        "title": "black bear 20 drawing odds",
+        "subtitle": "Utah draw results/odds source PDF (model year folder 2021).",
+        "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/97ffae94__black_bear_20_drawing_odds.pdf"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2021",
+        "title": "black bear 21 drawing odds",
+        "subtitle": "Utah draw results/odds source PDF (model year folder 2021).",
+        "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/b4710a7f__black_bear_21_drawing_odds.pdf"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2021",
+        "title": "cougar Drawing odds",
+        "subtitle": "Utah draw results/odds source PDF (model year folder 2021).",
+        "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/80165f60__cougar_Drawing odds.pdf"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2021",
+        "title": "turkey 2021 turkey bonus points draw results",
+        "subtitle": "Utah draw results/odds source PDF (model year folder 2021).",
+        "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/baa2fb5d__turkey_2021_turkey_bonus_points_draw_results.pdf"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2021",
+        "title": "turkey 2021 youth turkey draw results",
+        "subtitle": "Utah draw results/odds source PDF (model year folder 2021).",
+        "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/3deb930b__turkey_2021_youth_turkey_draw_results.pdf"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
         "year": "2020",
         "title": "Antlerless big game draw results",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2020).",
@@ -1370,14 +2154,6 @@
         "title": "Big game limited entry &amp; once in a lifetime draw results",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2020).",
         "href": "./pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/f4467d08__Big game limited-entry &amp; once-in-a-lifetime draw results.pdf"
-      },
-      {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2020",
-        "title": "cougar Drawing odds",
-        "subtitle": "Utah draw results/odds source PDF (model year folder 2020).",
-        "href": "./pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/dff7fc92__cougar_Drawing odds.pdf"
       },
       {
         "group": "draw_odds",
@@ -1415,17 +2191,9 @@
         "group": "draw_odds",
         "type": "pdf",
         "year": "2020",
-        "title": "turkey 2020 turkey bonus points draw results",
+        "title": "Youth Dedicated Hunter deer draw results",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2020).",
-        "href": "./pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/5213601e__turkey_2020_turkey_bonus_points_draw_results.pdf"
-      },
-      {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2020",
-        "title": "turkey 2020 youth turkey draw results",
-        "subtitle": "Utah draw results/odds source PDF (model year folder 2020).",
-        "href": "./pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/68991b97__turkey_2020_youth_turkey_draw_results.pdf"
+        "href": "./pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/b6518e1c__Youth Dedicated Hunter deer draw results.pdf"
       },
       {
         "group": "draw_odds",
@@ -1434,14 +2202,6 @@
         "title": "Youth antlerless big game draw results",
         "subtitle": "Utah draw results/odds source PDF (model year folder 2020).",
         "href": "./pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/c4a9d67b__Youth antlerless big game draw results.pdf"
-      },
-      {
-        "group": "draw_odds",
-        "type": "pdf",
-        "year": "2020",
-        "title": "Youth Dedicated Hunter deer draw results",
-        "subtitle": "Utah draw results/odds source PDF (model year folder 2020).",
-        "href": "./pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/b6518e1c__Youth Dedicated Hunter deer draw results.pdf"
       },
       {
         "group": "draw_odds",
@@ -1460,12 +2220,49 @@
         "href": "./pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/e7b234c1__Youth general-season deer draw results.pdf"
       },
       {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2020",
+        "title": "cougar Drawing odds",
+        "subtitle": "Utah draw results/odds source PDF (model year folder 2020).",
+        "href": "./pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/dff7fc92__cougar_Drawing odds.pdf"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2020",
+        "title": "turkey 2020 turkey bonus points draw results",
+        "subtitle": "Utah draw results/odds source PDF (model year folder 2020).",
+        "href": "./pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/5213601e__turkey_2020_turkey_bonus_points_draw_results.pdf"
+      },
+      {
+        "group": "draw_odds",
+        "type": "pdf",
+        "year": "2020",
+        "title": "turkey 2020 youth turkey draw results",
+        "subtitle": "Utah draw results/odds source PDF (model year folder 2020).",
+        "href": "./pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/68991b97__turkey_2020_youth_turkey_draw_results.pdf"
+      },
+      {
         "group": "harvest_report",
         "type": "pdf",
         "year": "2026",
         "title": "2026 03 06 2025 preliminary bg harvest",
         "subtitle": "Utah harvest/source report PDF (model year folder 2026).",
         "href": "./pipeline/RAW/hunt_unit_database/2026/pdf/harvest_report/2026-03-06-2025-preliminary-bg-harvest.pdf"
+      },
+      {
+        "group": "harvest_report",
+        "type": "pdf",
+        "year": "2025",
+        "title": "2025 Preliminary Big Game Harvest Report",
+        "subtitle": "Official Utah DWR preliminary big-game harvest report published March 6, 2026.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/harvest_report/2025/2025-preliminary-big-game-harvest-report.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2025",
+        "model_year_folder": "2026",
+        "source_role": "official_source",
+        "parent_title": null
       },
       {
         "group": "harvest_report",
@@ -1527,6 +2324,14 @@
         "group": "harvest_report",
         "type": "pdf",
         "year": "2023",
+        "title": "2023 Hunt Success",
+        "subtitle": "Utah harvest/source report PDF (model year folder 2023).",
+        "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/harvest_report/2023 Hunt Success.pdf"
+      },
+      {
+        "group": "harvest_report",
+        "type": "pdf",
+        "year": "2023",
         "title": "2023 antelope island",
         "subtitle": "Utah harvest/source report PDF (model year folder 2023).",
         "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/harvest_report/EF4D3BAC__2023-antelope-island.pdf"
@@ -1570,14 +2375,6 @@
         "title": "2023 harvest data",
         "subtitle": "Utah harvest/source report PDF (model year folder 2023).",
         "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/harvest_report/4E8E024C__2023-harvest-data.pdf"
-      },
-      {
-        "group": "harvest_report",
-        "type": "pdf",
-        "year": "2023",
-        "title": "2023 Hunt Success",
-        "subtitle": "Utah harvest/source report PDF (model year folder 2023).",
-        "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/harvest_report/2023 Hunt Success.pdf"
       },
       {
         "group": "harvest_report",
@@ -1695,25 +2492,9 @@
         "group": "harvest_report",
         "type": "pdf",
         "year": "2023",
-        "title": "bear 2023",
-        "subtitle": "Utah harvest/source report PDF (model year folder 2023).",
-        "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/harvest_report/295db9e8__bear_2023.pdf"
-      },
-      {
-        "group": "harvest_report",
-        "type": "pdf",
-        "year": "2023",
         "title": "BIGHORN SHEEP 2023 harvest data",
         "subtitle": "Utah harvest/source report PDF (model year folder 2023).",
         "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/harvest_report/61FC0758__BIGHORN SHEEP 2023-harvest-data.pdf"
-      },
-      {
-        "group": "harvest_report",
-        "type": "pdf",
-        "year": "2023",
-        "title": "cougar 2023",
-        "subtitle": "Utah harvest/source report PDF (model year folder 2023).",
-        "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/harvest_report/dbd8a659__cougar_2023.pdf"
       },
       {
         "group": "harvest_report",
@@ -1730,6 +2511,22 @@
         "title": "Limited entry and once in a lifetime species",
         "subtitle": "Utah harvest/source report PDF (model year folder 2023).",
         "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/harvest_report/ba50f481__Limited-entry and once-in-a-lifetime species.pdf"
+      },
+      {
+        "group": "harvest_report",
+        "type": "pdf",
+        "year": "2023",
+        "title": "bear 2023",
+        "subtitle": "Utah harvest/source report PDF (model year folder 2023).",
+        "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/harvest_report/295db9e8__bear_2023.pdf"
+      },
+      {
+        "group": "harvest_report",
+        "type": "pdf",
+        "year": "2023",
+        "title": "cougar 2023",
+        "subtitle": "Utah harvest/source report PDF (model year folder 2023).",
+        "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/harvest_report/dbd8a659__cougar_2023.pdf"
       },
       {
         "group": "harvest_report",
@@ -1847,6 +2644,22 @@
         "group": "harvest_report",
         "type": "pdf",
         "year": "2022",
+        "title": "General season buck deer",
+        "subtitle": "Utah harvest/source report PDF (model year folder 2022).",
+        "href": "./pipeline/RAW/hunt_unit_database/2022/pdf/harvest_report/442a70d8__General-season buck deer.pdf"
+      },
+      {
+        "group": "harvest_report",
+        "type": "pdf",
+        "year": "2022",
+        "title": "Limited entry and once in a lifetime species",
+        "subtitle": "Utah harvest/source report PDF (model year folder 2022).",
+        "href": "./pipeline/RAW/hunt_unit_database/2022/pdf/harvest_report/19275c81__Limited-entry and once-in-a-lifetime species.pdf"
+      },
+      {
+        "group": "harvest_report",
+        "type": "pdf",
+        "year": "2022",
         "title": "bear 2022",
         "subtitle": "Utah harvest/source report PDF (model year folder 2022).",
         "href": "./pipeline/RAW/hunt_unit_database/2022/pdf/harvest_report/99d034bd__bear_2022.pdf"
@@ -1866,22 +2679,6 @@
         "title": "cougar 2022",
         "subtitle": "Utah harvest/source report PDF (model year folder 2022).",
         "href": "./pipeline/RAW/hunt_unit_database/2022/pdf/harvest_report/9cb7bd59__cougar_2022.pdf"
-      },
-      {
-        "group": "harvest_report",
-        "type": "pdf",
-        "year": "2022",
-        "title": "General season buck deer",
-        "subtitle": "Utah harvest/source report PDF (model year folder 2022).",
-        "href": "./pipeline/RAW/hunt_unit_database/2022/pdf/harvest_report/442a70d8__General-season buck deer.pdf"
-      },
-      {
-        "group": "harvest_report",
-        "type": "pdf",
-        "year": "2022",
-        "title": "Limited entry and once in a lifetime species",
-        "subtitle": "Utah harvest/source report PDF (model year folder 2022).",
-        "href": "./pipeline/RAW/hunt_unit_database/2022/pdf/harvest_report/19275c81__Limited-entry and once-in-a-lifetime species.pdf"
       },
       {
         "group": "harvest_report",
@@ -2079,22 +2876,6 @@
         "group": "harvest_report",
         "type": "pdf",
         "year": "2021",
-        "title": "bear 2021",
-        "subtitle": "Utah harvest/source report PDF (model year folder 2021).",
-        "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/62474ddf__bear_2021.pdf"
-      },
-      {
-        "group": "harvest_report",
-        "type": "pdf",
-        "year": "2021",
-        "title": "cougar 2021",
-        "subtitle": "Utah harvest/source report PDF (model year folder 2021).",
-        "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/8817544e__cougar_2021.pdf"
-      },
-      {
-        "group": "harvest_report",
-        "type": "pdf",
-        "year": "2021",
         "title": "General season buck deer",
         "subtitle": "Utah harvest/source report PDF (model year folder 2021).",
         "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/5a118f11__General-season buck deer.pdf"
@@ -2106,6 +2887,22 @@
         "title": "Limited entry and once in a lifetime species",
         "subtitle": "Utah harvest/source report PDF (model year folder 2021).",
         "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/5a24be8c__Limited-entry and once-in-a-lifetime species.pdf"
+      },
+      {
+        "group": "harvest_report",
+        "type": "pdf",
+        "year": "2021",
+        "title": "bear 2021",
+        "subtitle": "Utah harvest/source report PDF (model year folder 2021).",
+        "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/62474ddf__bear_2021.pdf"
+      },
+      {
+        "group": "harvest_report",
+        "type": "pdf",
+        "year": "2021",
+        "title": "cougar 2021",
+        "subtitle": "Utah harvest/source report PDF (model year folder 2021).",
+        "href": "./pipeline/RAW/hunt_unit_database/2021/pdf/harvest_report/8817544e__cougar_2021.pdf"
       },
       {
         "group": "harvest_report",
@@ -2263,6 +3060,22 @@
         "group": "harvest_report",
         "type": "pdf",
         "year": "2020",
+        "title": "General season buck deer",
+        "subtitle": "Utah harvest/source report PDF (model year folder 2020).",
+        "href": "./pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/e38eeb18__General-season buck deer.pdf"
+      },
+      {
+        "group": "harvest_report",
+        "type": "pdf",
+        "year": "2020",
+        "title": "Limited entry and once in a lifetime species",
+        "subtitle": "Utah harvest/source report PDF (model year folder 2020).",
+        "href": "./pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/0b5ca51c__Limited-entry and once-in-a-lifetime species.pdf"
+      },
+      {
+        "group": "harvest_report",
+        "type": "pdf",
+        "year": "2020",
         "title": "bear 2020",
         "subtitle": "Utah harvest/source report PDF (model year folder 2020).",
         "href": "./pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/a34306f2__bear_2020.pdf"
@@ -2282,22 +3095,6 @@
         "title": "cougar 2020",
         "subtitle": "Utah harvest/source report PDF (model year folder 2020).",
         "href": "./pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/a7d1d7ba__cougar_2020.pdf"
-      },
-      {
-        "group": "harvest_report",
-        "type": "pdf",
-        "year": "2020",
-        "title": "General season buck deer",
-        "subtitle": "Utah harvest/source report PDF (model year folder 2020).",
-        "href": "./pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/e38eeb18__General-season buck deer.pdf"
-      },
-      {
-        "group": "harvest_report",
-        "type": "pdf",
-        "year": "2020",
-        "title": "Limited entry and once in a lifetime species",
-        "subtitle": "Utah harvest/source report PDF (model year folder 2020).",
-        "href": "./pipeline/RAW/hunt_unit_database/2020/pdf/harvest_report/0b5ca51c__Limited-entry and once-in-a-lifetime species.pdf"
       },
       {
         "group": "harvest_report",
@@ -2535,30 +3332,6 @@
         "group": "harvest_report",
         "type": "pdf",
         "year": "2017",
-        "title": "2017 antlerless hr",
-        "subtitle": "Utah harvest/source report PDF (model year folder 2017).",
-        "href": "./pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/DA57FA0D__2017_antlerless_hr.pdf"
-      },
-      {
-        "group": "harvest_report",
-        "type": "pdf",
-        "year": "2017",
-        "title": "2017 bighorn harvest",
-        "subtitle": "Utah harvest/source report PDF (model year folder 2017).",
-        "href": "./pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/6AECF376__2017-bighorn_harvest.pdf"
-      },
-      {
-        "group": "harvest_report",
-        "type": "pdf",
-        "year": "2017",
-        "title": "2017 gs deer hr",
-        "subtitle": "Utah harvest/source report PDF (model year folder 2017).",
-        "href": "./pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/0FE6BFCA__2017_gs_deer_hr.pdf"
-      },
-      {
-        "group": "harvest_report",
-        "type": "pdf",
-        "year": "2017",
         "title": "2017 KaiparowitsEscalante bighorn",
         "subtitle": "Utah harvest/source report PDF (model year folder 2017).",
         "href": "./pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/B37EDE43__2017-KaiparowitsEscalante_bighorn.pdf"
@@ -2570,14 +3343,6 @@
         "title": "2017 LaSalPotash bighorn",
         "subtitle": "Utah harvest/source report PDF (model year folder 2017).",
         "href": "./pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/17E33C4D__2017-LaSalPotash_bighorn.pdf"
-      },
-      {
-        "group": "harvest_report",
-        "type": "pdf",
-        "year": "2017",
-        "title": "2017 le oial hr",
-        "subtitle": "Utah harvest/source report PDF (model year folder 2017).",
-        "href": "./pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/043488DC__2017_le_oial_hr.pdf"
       },
       {
         "group": "harvest_report",
@@ -2618,6 +3383,38 @@
         "title": "2017 SanJuanSouth bighorn",
         "subtitle": "Utah harvest/source report PDF (model year folder 2017).",
         "href": "./pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/E58C632D__2017-SanJuanSouth_bighorn.pdf"
+      },
+      {
+        "group": "harvest_report",
+        "type": "pdf",
+        "year": "2017",
+        "title": "2017 antlerless hr",
+        "subtitle": "Utah harvest/source report PDF (model year folder 2017).",
+        "href": "./pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/DA57FA0D__2017_antlerless_hr.pdf"
+      },
+      {
+        "group": "harvest_report",
+        "type": "pdf",
+        "year": "2017",
+        "title": "2017 bighorn harvest",
+        "subtitle": "Utah harvest/source report PDF (model year folder 2017).",
+        "href": "./pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/6AECF376__2017-bighorn_harvest.pdf"
+      },
+      {
+        "group": "harvest_report",
+        "type": "pdf",
+        "year": "2017",
+        "title": "2017 gs deer hr",
+        "subtitle": "Utah harvest/source report PDF (model year folder 2017).",
+        "href": "./pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/0FE6BFCA__2017_gs_deer_hr.pdf"
+      },
+      {
+        "group": "harvest_report",
+        "type": "pdf",
+        "year": "2017",
+        "title": "2017 le oial hr",
+        "subtitle": "Utah harvest/source report PDF (model year folder 2017).",
+        "href": "./pipeline/RAW/hunt_unit_database/2017/pdf/harvest_report/043488DC__2017_le_oial_hr.pdf"
       },
       {
         "group": "harvest_report",
@@ -2743,17 +3540,17 @@
         "group": "harvest_report",
         "type": "pdf",
         "year": "2015",
-        "title": "2015 antlerless hr",
+        "title": "2015 BHS Data",
         "subtitle": "Utah harvest/source report PDF (model year folder 2015).",
-        "href": "./pipeline/RAW/hunt_unit_database/2015/pdf/harvest_report/23C2211D__2015_antlerless_hr.pdf"
+        "href": "./pipeline/RAW/hunt_unit_database/2015/pdf/harvest_report/2CB58436__2015_BHS_Data.pdf"
       },
       {
         "group": "harvest_report",
         "type": "pdf",
         "year": "2015",
-        "title": "2015 BHS Data",
+        "title": "2015 antlerless hr",
         "subtitle": "Utah harvest/source report PDF (model year folder 2015).",
-        "href": "./pipeline/RAW/hunt_unit_database/2015/pdf/harvest_report/2CB58436__2015_BHS_Data.pdf"
+        "href": "./pipeline/RAW/hunt_unit_database/2015/pdf/harvest_report/23C2211D__2015_antlerless_hr.pdf"
       },
       {
         "group": "harvest_report",
@@ -3108,6 +3905,97 @@
         "href": "./processed_data/hard_data_exports/source_pdfs/regulations/2025/2025-27-conservation-permits.pdf"
       },
       {
+        "group": "conservation_permits",
+        "type": "csv",
+        "year": "2025",
+        "title": "Conservation Permit Hunt Table 2025-27 (CSV)",
+        "subtitle": "Structured conservation permit table for download and review.",
+        "href": "./data/conservation-permit-hunt-table-2025-27.csv",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2025",
+        "model_year_folder": "2026",
+        "source_role": "official_source",
+        "parent_title": null
+      },
+      {
+        "group": "conservation_permits",
+        "type": "json",
+        "year": "2025",
+        "title": "Conservation Permit Hunt Table 2025-27 (JSON)",
+        "subtitle": "Machine-readable conservation permit dataset.",
+        "href": "./data/conservation-permit-hunt-table-2025-27.json",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2025",
+        "model_year_folder": "2026",
+        "source_role": "official_source",
+        "parent_title": null
+      },
+      {
+        "group": "regulation",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 Bear Cougar Furbearer Guidebook",
+        "subtitle": "Official Utah DWR bear, cougar, and furbearer regulation guidebook.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/regulations/2026/2026-bear-cougar-furbearer-guidebook.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2026",
+        "model_year_folder": "2026",
+        "source_role": "official_source",
+        "parent_title": null
+      },
+      {
+        "group": "regulation",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 Big Game Application Guidebook",
+        "subtitle": "Official Utah DWR big-game application guidebook.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/regulations/2026/2026-big-game-application-guidebook.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2026",
+        "model_year_folder": "2026",
+        "source_role": "official_source",
+        "parent_title": null
+      },
+      {
+        "group": "regulation",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 Fishing Guidebook",
+        "subtitle": "Official Utah DWR fishing regulation guidebook.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/regulations/2026/2026-fishing-guidebook.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2026",
+        "model_year_folder": "2026",
+        "source_role": "official_source",
+        "parent_title": null
+      },
+      {
+        "group": "regulation",
+        "type": "pdf",
+        "year": "2026",
+        "title": "2026 Turkey Guidebook",
+        "subtitle": "Official Utah DWR turkey regulation guidebook.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/regulations/2026/2026-turkey-guidebook.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2026",
+        "model_year_folder": "2026",
+        "source_role": "official_source",
+        "parent_title": null
+      },
+      {
+        "group": "regulation",
+        "type": "pdf",
+        "year": "2025",
+        "title": "2025 Upland Turkey Guidebook",
+        "subtitle": "Official Utah DWR upland game and turkey regulation guidebook.",
+        "href": "./processed_data/hard_data_exports/source_pdfs/regulations/2025-26/2025-26-upland-game-turkey-guidebook.pdf",
+        "source_authority": "Utah Division of Wildlife Resources",
+        "source_year": "2025",
+        "model_year_folder": "2026",
+        "source_role": "official_source",
+        "parent_title": null
+      },
+      {
         "group": "regulation",
         "type": "pdf",
         "year": "2025",
@@ -3146,482 +4034,6 @@
         "title": "2022-24 Conservation Permits",
         "subtitle": "Archived Utah DWR conservation permit source PDF (prior cycle).",
         "href": "./pipeline/RAW/hunt_unit_database/2023/pdf/regulation/9E134C35__2022-24_conservation_permits.pdf"
-      },
-      {
-        "group": "conservation_permits",
-        "type": "csv",
-        "year": "2025",
-        "title": "Conservation Permit Hunt Table 2025-27 (CSV)",
-        "subtitle": "Structured conservation permit table for download and review.",
-        "href": "./data/conservation-permit-hunt-table-2025-27.csv",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2025",
-        "model_year_folder": "2026",
-        "source_role": "official_source",
-        "parent_title": null
-      },
-      {
-        "group": "conservation_permits",
-        "type": "json",
-        "year": "2025",
-        "title": "Conservation Permit Hunt Table 2025-27 (JSON)",
-        "subtitle": "Machine-readable conservation permit dataset.",
-        "href": "./data/conservation-permit-hunt-table-2025-27.json",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2025",
-        "model_year_folder": "2026",
-        "source_role": "official_source",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "pdf",
-        "year": "2026",
-        "title": "2026 BISON COW",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE PDF FOR REVIEW/DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BISON_COW.pdf",
-        "companion_type": "xlsx",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BISON_COW.xlsx",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "xlsx",
-        "year": "2026",
-        "title": "2026 BISON COW",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE WORKBOOK FOR DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BISON_COW.xlsx",
-        "companion_type": "pdf",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BISON_COW.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "pdf",
-        "year": "2026",
-        "title": "2026 BISON HUNTER CHOICE",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE PDF FOR REVIEW/DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BISON_HUNTER_CHOICE.pdf",
-        "companion_type": "xlsx",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BISON_HUNTER_CHOICE.xlsx",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "xlsx",
-        "year": "2026",
-        "title": "2026 BISON HUNTER CHOICE",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE WORKBOOK FOR DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BISON_HUNTER_CHOICE.xlsx",
-        "companion_type": "pdf",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BISON_HUNTER_CHOICE.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "pdf",
-        "year": "2026",
-        "title": "2026 BLACK BEAR",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE PDF FOR REVIEW/DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BLACK_BEAR.pdf",
-        "companion_type": "xlsx",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BLACK_BEAR.xlsx",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "xlsx",
-        "year": "2026",
-        "title": "2026 BLACK BEAR",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE WORKBOOK FOR DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BLACK_BEAR.xlsx",
-        "companion_type": "pdf",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_BLACK_BEAR.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "pdf",
-        "year": "2026",
-        "title": "2026 DEER ANTLERLESS",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE PDF FOR REVIEW/DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ANTLERLESS.pdf",
-        "companion_type": "xlsx",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ANTLERLESS.xlsx",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "xlsx",
-        "year": "2026",
-        "title": "2026 DEER ANTLERLESS",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE WORKBOOK FOR DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ANTLERLESS.xlsx",
-        "companion_type": "pdf",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ANTLERLESS.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "pdf",
-        "year": "2026",
-        "title": "2026 DEER ARCHERY EXTENDED",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE PDF FOR REVIEW/DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ARCHERY_EXTENDED.pdf",
-        "companion_type": "xlsx",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ARCHERY_EXTENDED.xlsx",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "xlsx",
-        "year": "2026",
-        "title": "2026 DEER ARCHERY EXTENDED",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE WORKBOOK FOR DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ARCHERY_EXTENDED.xlsx",
-        "companion_type": "pdf",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_ARCHERY_EXTENDED.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "pdf",
-        "year": "2026",
-        "title": "2026 DEER BUCK",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE PDF FOR REVIEW/DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK.pdf",
-        "companion_type": "xlsx",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK.xlsx",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "xlsx",
-        "year": "2026",
-        "title": "2026 DEER BUCK",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE WORKBOOK FOR DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK.xlsx",
-        "companion_type": "pdf",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_DEER_BUCK.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "pdf",
-        "year": "2026",
-        "title": "2026 ELK ANTLERLESS",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE PDF FOR REVIEW/DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS.pdf",
-        "companion_type": "xlsx",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS.xlsx",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "xlsx",
-        "year": "2026",
-        "title": "2026 ELK ANTLERLESS",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE WORKBOOK FOR DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS.xlsx",
-        "companion_type": "pdf",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_ANTLERLESS.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "pdf",
-        "year": "2026",
-        "title": "2026 ELK BULL ALL",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE PDF FOR REVIEW/DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_ALL.pdf",
-        "companion_type": "xlsx",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_ALL.xlsx",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "xlsx",
-        "year": "2026",
-        "title": "2026 ELK BULL ALL",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE WORKBOOK FOR DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_ALL.xlsx",
-        "companion_type": "pdf",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_ELK_BULL_ALL.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "pdf",
-        "year": "2026",
-        "title": "2026 GOAT HUNTER CHOICE",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE PDF FOR REVIEW/DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_GOAT_HUNTER_CHOICE.pdf",
-        "companion_type": "xlsx",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_GOAT_HUNTER_CHOICE.xlsx",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "xlsx",
-        "year": "2026",
-        "title": "2026 GOAT HUNTER CHOICE",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE WORKBOOK FOR DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_GOAT_HUNTER_CHOICE.xlsx",
-        "companion_type": "pdf",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_GOAT_HUNTER_CHOICE.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "pdf",
-        "year": "2026",
-        "title": "2026 MOOSE BULL",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE PDF FOR REVIEW/DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_MOOSE_BULL.pdf",
-        "companion_type": "xlsx",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_MOOSE_BULL.xlsx",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "xlsx",
-        "year": "2026",
-        "title": "2026 MOOSE BULL",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE WORKBOOK FOR DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_MOOSE_BULL.xlsx",
-        "companion_type": "pdf",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_MOOSE_BULL.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "pdf",
-        "year": "2026",
-        "title": "2026 SHEEP DESERT RAM",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE PDF FOR REVIEW/DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_DESERT_RAM.pdf",
-        "companion_type": "xlsx",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_DESERT_RAM.xlsx",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "xlsx",
-        "year": "2026",
-        "title": "2026 SHEEP DESERT RAM",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE WORKBOOK FOR DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_DESERT_RAM.xlsx",
-        "companion_type": "pdf",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_DESERT_RAM.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "pdf",
-        "year": "2026",
-        "title": "2026 SHEEP ROCKY MOUNTAIN EWE",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE PDF FOR REVIEW/DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_ROCKY_MOUNTAIN_EWE.pdf",
-        "companion_type": "xlsx",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_ROCKY_MOUNTAIN_EWE.xlsx",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "xlsx",
-        "year": "2026",
-        "title": "2026 SHEEP ROCKY MOUNTAIN EWE",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE WORKBOOK FOR DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_ROCKY_MOUNTAIN_EWE.xlsx",
-        "companion_type": "pdf",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_ROCKY_MOUNTAIN_EWE.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "pdf",
-        "year": "2026",
-        "title": "2026 SHEEP ROCKY MOUNTAIN RAM",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE PDF FOR REVIEW/DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_ROCKY_MOUNTAIN_RAM.pdf",
-        "companion_type": "xlsx",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_ROCKY_MOUNTAIN_RAM.xlsx",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "xlsx",
-        "year": "2026",
-        "title": "2026 SHEEP ROCKY MOUNTAIN RAM",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE WORKBOOK FOR DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_ROCKY_MOUNTAIN_RAM.xlsx",
-        "companion_type": "pdf",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_SHEEP_ROCKY_MOUNTAIN_RAM.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "pdf",
-        "year": "2026",
-        "title": "2026 TURKEY BEARDED",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE PDF FOR REVIEW/DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_TURKEY_BEARDED.pdf",
-        "companion_type": "xlsx",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_TURKEY_BEARDED.xlsx",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "xlsx",
-        "year": "2026",
-        "title": "2026 TURKEY BEARDED",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE WORKBOOK FOR DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_TURKEY_BEARDED.xlsx",
-        "companion_type": "pdf",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_TURKEY_BEARDED.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "pdf",
-        "year": "2026",
-        "title": "2026 TURKEY EITHER SEX",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE PDF FOR REVIEW/DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_TURKEY_EITHER_SEX.pdf",
-        "companion_type": "xlsx",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_TURKEY_EITHER_SEX.xlsx",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
-      },
-      {
-        "group": "hunt_tables",
-        "type": "xlsx",
-        "year": "2026",
-        "title": "2026 TURKEY EITHER SEX",
-        "subtitle": "FORMATTED PRIMARY HUNT TABLE WORKBOOK FOR DOWNLOAD.",
-        "href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_TURKEY_EITHER_SEX.xlsx",
-        "companion_type": "pdf",
-        "companion_href": "./processed_data/hard_data_exports/hunt_tables/2026/2026_TURKEY_EITHER_SEX.pdf",
-        "source_authority": "Utah Division of Wildlife Resources",
-        "source_year": "2026",
-        "model_year_folder": "2026",
-        "source_role": "derived_formatted_table",
-        "parent_title": null
       }
     ]
   }

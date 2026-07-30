@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Hunt Research 2026 Canonical Schema",
+  "type": "object",
+  "required": [
+    "metadata",
+    "provenance",
+    "route",
+    "input_controls",
+    "odds_selection_policy",
+    "datasets"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "metadata": {},
+    "provenance": {},
+    "route": {},
+    "input_controls": {},
+    "odds_selection_policy": {},
+    "datasets": {}
+  }
+}

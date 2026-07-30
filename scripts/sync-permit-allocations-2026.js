@@ -463,10 +463,16 @@ function writeReports(report) {
 
 function main() {
   const db = loadDatabase();
+  const skippedMissingTargets = [];
+  const existingTargets = (targets) => targets.filter((target) => {
+    if (fs.existsSync(abs(target))) return true;
+    skippedMissingTargets.push(target);
+    return false;
+  });
   const fileReports = [
-    ...CSV_TARGETS.map((target) => syncCsvTarget(target, db)),
-    ...JSON_ROW_TARGETS.map((file) => syncJsonRows(file, db)),
-    ...JSON_METADATA_TARGETS.map((file) => syncJsonMetadata(file)),
+    ...existingTargets(CSV_TARGETS).map((target) => syncCsvTarget(target, db)),
+    ...existingTargets(JSON_ROW_TARGETS).map((file) => syncJsonRows(file, db)),
+    ...existingTargets(JSON_METADATA_TARGETS).map((file) => syncJsonMetadata(file)),
   ];
   const promotionBlockers = fileReports.filter((item) => item.mismatches_after_sync > 0);
   const report = {
@@ -495,6 +501,7 @@ function main() {
     ],
     status_counts: statusCounts(db),
     backup_dir: BACKUP_DIR,
+    skipped_missing_targets: skippedMissingTargets,
     files: fileReports,
     files_changed: fileReports.filter((item) => item.changed_rows || item.changed_cells || item.fields_added.length).map((item) => item.file),
     totals: {

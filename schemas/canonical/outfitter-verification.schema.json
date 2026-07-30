@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Outfitter Verification 2026 Canonical Schema",
+  "type": "object",
+  "required": [
+    "metadata",
+    "provenance",
+    "route",
+    "designation_levels",
+    "standards",
+    "modal",
+    "outfitters"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "metadata": {},
+    "provenance": {},
+    "route": {},
+    "designation_levels": {},
+    "standards": {},
+    "modal": {},
+    "outfitters": {}
+  }
+}

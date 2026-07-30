@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Hard Copies 2026 Canonical Schema",
+  "type": "object",
+  "required": [
+    "metadata",
+    "provenance",
+    "route",
+    "manifest_url",
+    "group_labels",
+    "filters",
+    "library"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "metadata": {},
+    "provenance": {},
+    "route": {},
+    "manifest_url": {},
+    "group_labels": {},
+    "filters": {},
+    "library": {}
+  }
+}
