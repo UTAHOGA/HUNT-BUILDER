@@ -267,7 +267,7 @@
     const href = safeUrl(value);
     if (href === "#") return href;
     const url = new URL(href);
-    url.hash = "zoom=200";
+    url.hash = "zoom=150";
     return url.href;
   }
 

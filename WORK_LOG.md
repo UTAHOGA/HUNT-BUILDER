@@ -19521,6 +19521,14 @@ Production state:
 - The 2018 PDF supplies `1,820` official combined point keys, but the normal 2018 canonical does not contain the black-bear draw scope. This is recorded as `OFFICIAL_PDF_EXTRACTED_CANONICAL_BEAR_SCOPE_NOT_FROZEN`, not as an official-source disagreement. It must be frozen into canonical lineage before the 2017→2018 bear fold can use residency lanes.
 - Added a regression test that regenerates the output and requires all canonical-covered years to reconcile exactly while preserving the explicit 2018 canonical-freeze blocker. No canonical value, long file, `DATABASE.csv`, runtime artifact, R2 object, deployment, staging, commit, or push was changed.
 
+## 2026-08-28 - 2018 official black-bear canonical scope freeze
+
+- Located the 2018 canonical lineage gap: the generic 2018 PDF extractor's source list omitted the retained official `official_dwr_archive/black_bear/18_drawing_odds.pdf` parent. The file is now a declared `BLACK_BEAR` bonus-draw source in the report-year configuration.
+- Reconstructed all ten official 2018 source reports in an isolated audit candidate. The source audit passed with `30,338` rows, `977` hunt codes, zero unparsed hunt pages, and zero duplicate source identities. The previously omitted Bear report accounts for `1,911` rows: `1,820` point rows and `91` hunt totals.
+- Compared the candidate to the pre-repair canonical before promotion: all `28,426` non-Bear rows were byte-for-byte identical, the existing `BR1000` Sportsman row was unchanged, and the only addition was the verified Black Bear scope. A rollback copy of the old canonical is retained at `audits/2018_black_bear_canonical_freeze_candidate_20260828/draw_results_2018_for_2019_canonical_yearly_draw_results.before_black_bear_scope_freeze.csv`, SHA-256 `23f24fa39c6a92fc8b384edd567c8ce31d766a41c152cc6afed19c2ebbb5972e`.
+- Promoted the verified candidate to the 2018 canonical with SHA-256 `8d30d5ff353be61a120d0579b8d081b7b2aeefdfec3d984ff49ac9f0a6268b05`. Rebuilt `draw_results_long.csv` solely from all nine canonical yearly inputs; its new SHA-256 is `61b55d24dd0e72ec0550890292fb72b01687ee3e46231fbd421d154692d530be`, with a timestamped rollback copy in `audits/dwr_table_shape_canonical_rebuild/backups/`.
+- The 2018–2022 extracted resident/nonresident ladders now recombine exactly to all canonical years: `9,776` combined point keys, zero missing keys, and zero numeric mismatches. The 2018 source-extraction regression suite passed (`5 passed`); the full five-year regeneration completed without an extraction or parity error. No `DATABASE.csv`, runtime artifact, R2 object, deployment, staging, commit, or push was changed.
+
 ## 2026-08-28 - Current statewide cougar correction in the public permit register
 
 - Confirmed the current official 2026 DWR guidebook describes cougar hunting as a statewide, year-round license-based opportunity with no separate cougar permit required.
@@ -19535,3 +19543,11 @@ Production state:
 - Removed the duplicate comprehensive register from `Conservation Permits`, leaving only the readable UOGA conservation guide and authoritative DWR working list there.
 - Moved the 26-code Draw + EXPO reconciliation into `2026 Hunt Draw Results`, where its draw-specific scope is clear.
 - Updated folder descriptions and public titles without changing wall-card positions, dimensions, ordering, search placement, cabin artwork, or PDF files.
+
+## 2026-08-28 - Hunt Library 150-percent PDF zoom and mobile optimization
+
+- Changed every in-library PDF preview from a 200-percent default to 150 percent while retaining direct-open behavior for single-file folders.
+- Rebuilt the phone wall as a compact, scrollable two-column grid with smaller square folders, contained search controls, readable labels, and complete page-height accounting; narrow landscape phones use three columns and wider landscape devices use four.
+- Centered the tablet wall and search row so the first folder column no longer clips at intermediate widths, while leaving the approved 1440-pixel desktop placement and 200-by-200 folder sizing unchanged.
+- Improved mobile folder-result panels, filter chips, file cards, 44-pixel touch targets, embedded resources, and the PDF viewer. Long PDF titles now truncate without hiding the Close button, and the viewer uses nearly the full mobile screen.
+- Verified the built page at 320x568, 390x844, 568x320, 768x1024, 844x390, and 1440x900 with no page-level horizontal overflow or browser warnings. The full production build passed with a temporary larger Node heap because this checkout contains locally hydrated large runtime datasets.
