@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T04:53:14.224Z",
+  "generated_at": "2026-08-28T01:36:40.527Z",
   "input_resolution": {
     "predictive": "processed_data/draw_reality_engine_predictive_v2.csv",
     "oddsHistory": "data_model/runtime_drafts/draw_reality_engine_v2.csv",
@@ -8,12 +8,12 @@
     "huntUnitsLite": "data/hunt_boundaries.geojson"
   },
   "outputs": {
-    "hunt_predictions_rows": 22813,
-    "hunt_odds_history_rows": 426818,
+    "hunt_predictions_rows": 40642,
+    "hunt_odds_history_rows": 442549,
     "hunt_application_outlook_rows": 2898,
     "outfitters_public_rows": 11,
     "hunt_units_features": 683,
-    "unique_prediction_hunts": 911,
+    "unique_prediction_hunts": 978,
     "unique_outlook_hunts": 1449,
     "prediction_source_mode": "runtime_csv",
     "odds_history_source_mode": "runtime_csv",

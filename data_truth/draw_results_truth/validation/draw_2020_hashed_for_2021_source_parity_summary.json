@@ -1,39 +1,248 @@
 {
-  "generated_at_utc": "2026-05-27T05:45:08+00:00",
+  "generated_at_utc": "2026-08-27T05:34:53+00:00",
   "audit_scope": "2020_hashed_draw_odds_source_parity_for_2021_modeling",
-  "legacy_source_dir": "C:\\Users\\tyler\\Desktop\\GitHub\\HUNTS\\pipeline\\RAW\\hunt_unit_database\\2020\\pdf\\draw_odds",
+  "legacy_source_dir": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2020\\pdf\\draw_odds",
   "active_source_dir": "pipeline\\RAW\\hunt_unit_database\\2020\\pdf\\draw_odds",
   "named_2020_source_dir": "pipeline\\RAW\\hunt_unit_database\\2021\\pdf\\draw_odds",
-  "expected_file_count": 13,
-  "active_source_file_count": 13,
-  "byte_match_count": 13,
+  "expected_file_count": 24,
+  "active_source_file_count": 24,
+  "byte_match_count": 24,
   "missing_legacy_source_files": 0,
   "missing_active_source_files": 0,
   "review_file_count": 0,
   "active_only_source_file_count": 0,
   "active_only_source_files": [],
-  "legacy_duplicate_hash_groups": [],
-  "active_duplicate_hash_groups": [],
-  "active_duplicate_hash_group_count": 0,
-  "same_hash_named_2020_source_match_count": 10,
-  "hashed_sources_without_named_2020_match_count": 3,
+  "legacy_duplicate_hash_groups": [
+    {
+      "sha256": "2a7590e1caab9640764a26e9af2f71cc0519d71c98889352713af98b08ce0367",
+      "files": [
+        "20_youth_bull_elk.pdf",
+        "3f05ae15__Youth draw-only elk bonus point draw results.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "2efb7b6dcb5c2ef996feddf442ea7f2ba15f42b168c85e371843512564dc7d04",
+      "files": [
+        "20_antlerless_drawing_odds_report.pdf",
+        "d30a80bb__Antlerless big game draw results.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "3172d5b67a5385346a28f713b90f1d37698eb2a3ca0d99bf9f796e2ce3164a68",
+      "files": [
+        "20_deer_odds.pdf",
+        "fddbc9d7__General-season buck deer draw results.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "3c4056bbd3952a4dfb6ce80326f94a58bba0d2262ff4cc008b613c76c50d4b15",
+      "files": [
+        "20-21_sportsman_odds.pdf",
+        "fd3c3903__Sportsman draw odds report.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "707d2e7f874e784dcc9076cafc61e339317eed4ae86466cb8516cc0eeabbeaef",
+      "files": [
+        "20_bg-odds.pdf",
+        "f4467d08__Big game limited-entry &amp; once-in-a-lifetime draw results.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "830174af465b1b07dbf734f06205d5abbcdd63ad7e6383a764caf98f2cea344b",
+      "files": [
+        "20_youth_dh_odds.pdf",
+        "b6518e1c__Youth Dedicated Hunter deer draw results.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "a4467e998c6baa97722784dd1fdbc9e5e82dbec2ea972ccb37397e9460142771",
+      "files": [
+        "20_dh_odds.pdf",
+        "a0ccd01f__Dedicated Hunter deer draw results.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "ceac587ed5dd11fc547e98c6ed3f68692cfa4f04e911eed3362fb548eded769b",
+      "files": [
+        "20_youth_deer.pdf",
+        "e7b234c1__Youth general-season deer draw results.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "e21172f8e14bf73fea1907a0af99f8cb8b3e8a27926f7a1814cef838b4f17a08",
+      "files": [
+        "20_lifetime_deer.pdf",
+        "24b2f6b3__Lifetime general-season deer draw results.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "f88f0b41e96cfcbf758a8661eaa65847e844202f8097a63ca061b40c0bc4c6a2",
+      "files": [
+        "20_youth_antlerless_drawing_odds_report.pdf",
+        "c4a9d67b__Youth antlerless big game draw results.pdf"
+      ],
+      "file_count": 2
+    }
+  ],
+  "active_duplicate_hash_groups": [
+    {
+      "sha256": "2a7590e1caab9640764a26e9af2f71cc0519d71c98889352713af98b08ce0367",
+      "files": [
+        "20_youth_bull_elk.pdf",
+        "3f05ae15__Youth draw-only elk bonus point draw results.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "2efb7b6dcb5c2ef996feddf442ea7f2ba15f42b168c85e371843512564dc7d04",
+      "files": [
+        "20_antlerless_drawing_odds_report.pdf",
+        "d30a80bb__Antlerless big game draw results.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "3172d5b67a5385346a28f713b90f1d37698eb2a3ca0d99bf9f796e2ce3164a68",
+      "files": [
+        "20_deer_odds.pdf",
+        "fddbc9d7__General-season buck deer draw results.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "3c4056bbd3952a4dfb6ce80326f94a58bba0d2262ff4cc008b613c76c50d4b15",
+      "files": [
+        "20-21_sportsman_odds.pdf",
+        "fd3c3903__Sportsman draw odds report.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "707d2e7f874e784dcc9076cafc61e339317eed4ae86466cb8516cc0eeabbeaef",
+      "files": [
+        "20_bg-odds.pdf",
+        "f4467d08__Big game limited-entry &amp; once-in-a-lifetime draw results.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "830174af465b1b07dbf734f06205d5abbcdd63ad7e6383a764caf98f2cea344b",
+      "files": [
+        "20_youth_dh_odds.pdf",
+        "b6518e1c__Youth Dedicated Hunter deer draw results.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "a4467e998c6baa97722784dd1fdbc9e5e82dbec2ea972ccb37397e9460142771",
+      "files": [
+        "20_dh_odds.pdf",
+        "a0ccd01f__Dedicated Hunter deer draw results.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "ceac587ed5dd11fc547e98c6ed3f68692cfa4f04e911eed3362fb548eded769b",
+      "files": [
+        "20_youth_deer.pdf",
+        "e7b234c1__Youth general-season deer draw results.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "e21172f8e14bf73fea1907a0af99f8cb8b3e8a27926f7a1814cef838b4f17a08",
+      "files": [
+        "20_lifetime_deer.pdf",
+        "24b2f6b3__Lifetime general-season deer draw results.pdf"
+      ],
+      "file_count": 2
+    },
+    {
+      "sha256": "f88f0b41e96cfcbf758a8661eaa65847e844202f8097a63ca061b40c0bc4c6a2",
+      "files": [
+        "20_youth_antlerless_drawing_odds_report.pdf",
+        "c4a9d67b__Youth antlerless big game draw results.pdf"
+      ],
+      "file_count": 2
+    }
+  ],
+  "active_duplicate_hash_group_count": 10,
+  "same_hash_named_2020_source_match_count": 0,
+  "hashed_sources_without_named_2020_match_count": 24,
   "hashed_sources_without_named_2020_match": [
+    "20-21_sportsman_odds.pdf",
+    "20_antlerless_drawing_odds_report.pdf",
+    "20_bg-odds.pdf",
+    "20_deer_odds.pdf",
+    "20_dh_odds.pdf",
+    "20_lifetime_deer.pdf",
+    "20_youth_antlerless_drawing_odds_report.pdf",
+    "20_youth_bull_elk.pdf",
+    "20_youth_deer.pdf",
+    "20_youth_dh_odds.pdf",
+    "24b2f6b3__Lifetime general-season deer draw results.pdf",
+    "3f05ae15__Youth draw-only elk bonus point draw results.pdf",
     "5213601e__turkey_2020_turkey_bonus_points_draw_results.pdf",
     "68991b97__turkey_2020_youth_turkey_draw_results.pdf",
-    "dff7fc92__cougar_Drawing odds.pdf"
+    "97ffae94__black_bear_20_drawing_odds.pdf",
+    "a0ccd01f__Dedicated Hunter deer draw results.pdf",
+    "b6518e1c__Youth Dedicated Hunter deer draw results.pdf",
+    "c4a9d67b__Youth antlerless big game draw results.pdf",
+    "d30a80bb__Antlerless big game draw results.pdf",
+    "dff7fc92__cougar_Drawing odds.pdf",
+    "e7b234c1__Youth general-season deer draw results.pdf",
+    "f4467d08__Big game limited-entry &amp; once-in-a-lifetime draw results.pdf",
+    "fd3c3903__Sportsman draw odds report.pdf",
+    "fddbc9d7__General-season buck deer draw results.pdf"
   ],
   "source_draw_result_year": "2020",
   "model_target_year": "2021",
-  "draw_truth_2020_rows": 0,
-  "draw_truth_2020_unique_hunt_codes": 0,
-  "draw_truth_2021_rows": 27519,
-  "draw_truth_2021_unique_hunt_codes": 550,
-  "draw_truth_2021_source_file_count": 1,
+  "draw_truth_2020_rows": 33069,
+  "draw_truth_2020_unique_hunt_codes": 1014,
+  "draw_truth_2021_rows": 33788,
+  "draw_truth_2021_unique_hunt_codes": 1022,
+  "draw_truth_2021_source_file_count": 14,
   "draw_truth_2021_source_files": [
-    "21_bg-odds.pdf"
+    "2021 Antlerless Draw Results.pdf",
+    "2021 Bear Draw Results.pdf",
+    "2021_PERMITS=2022_MODEL__COUGAR DRAW RESULTS.pdf",
+    "2021_PERMITS=2022_MODEL__TURKEY DRAW RESULTS.pdf",
+    "2021_PERMITS=2022_MODEL__YOUTH TURKEY DRAW RESULTS.pdf",
+    "21-22_sportsman_odds.pdf",
+    "21_bg-odds.pdf",
+    "21_deer_odds.pdf",
+    "21_dh_odds.pdf",
+    "21_lifetime_deer.pdf",
+    "21_youth_antlerless_drawing_odds_report.pdf",
+    "21_youth_bull_elk.pdf",
+    "21_youth_deer.pdf",
+    "21_youth_dh_odds.pdf"
   ],
   "draw_truth_2021_source_file_counts": {
-    "21_bg-odds.pdf": 27519
+    "2021 Antlerless Draw Results.pdf": 3723,
+    "21_youth_antlerless_drawing_odds_report.pdf": 3468,
+    "2021 Bear Draw Results.pdf": 2100,
+    "21_bg-odds.pdf": 16500,
+    "2021_PERMITS=2022_MODEL__COUGAR DRAW RESULTS.pdf": 210,
+    "21_dh_odds.pdf": 638,
+    "21_deer_odds.pdf": 2208,
+    "21_lifetime_deer.pdf": 2068,
+    "21-22_sportsman_odds.pdf": 11,
+    "2021_PERMITS=2022_MODEL__TURKEY DRAW RESULTS.pdf": 126,
+    "2021_PERMITS=2022_MODEL__YOUTH TURKEY DRAW RESULTS.pdf": 126,
+    "21_youth_bull_elk.pdf": 30,
+    "21_youth_dh_odds.pdf": 418,
+    "21_youth_deer.pdf": 2162
   },
   "draw_truth_source_label_status": "SOURCE_LABEL_LINEAGE_REVIEW",
   "guardrails": [

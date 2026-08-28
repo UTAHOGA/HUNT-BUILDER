@@ -8,11 +8,17 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const DATABASE_CSV = path.join(ROOT, 'pipeline', 'RAW', 'hunt_unit_database', '2026', 'csv', 'DATABASE.csv');
-const OUT_CSV = path.join(ROOT, 'processed_data', 'dwr_huntplanner_hanumber_2026.csv');
-const OUT_JSON = path.join(ROOT, 'processed_data', 'dwr_huntplanner_hanumber_2026.json');
-const OUT_RAW_JSON = path.join(ROOT, 'processed_data', 'dwr_huntplanner_hanumber_2026_raw_payloads.json');
-const AUDIT_JSON = path.join(ROOT, 'processed_data', 'audits', 'dwr_huntplanner_hanumber_2026_audit.json');
-const AUDIT_CSV = path.join(ROOT, 'processed_data', 'audits', 'dwr_huntplanner_hanumber_2026_audit.csv');
+const OUTPUT_DIR_ARG_INDEX = process.argv.indexOf('--output-dir');
+const HUNT_TABLE_DIR_ARG_INDEX = process.argv.indexOf('--hunt-table-dir');
+const outputDirArg = OUTPUT_DIR_ARG_INDEX >= 0 ? process.argv[OUTPUT_DIR_ARG_INDEX + 1] : '';
+const huntTableDirArg = HUNT_TABLE_DIR_ARG_INDEX >= 0 ? process.argv[HUNT_TABLE_DIR_ARG_INDEX + 1] : '';
+const OUTPUT_DIR = outputDirArg ? path.resolve(ROOT, outputDirArg) : path.join(ROOT, 'processed_data');
+const HUNT_TABLE_DIR = huntTableDirArg ? path.resolve(ROOT, huntTableDirArg) : '';
+const OUT_CSV = path.join(OUTPUT_DIR, 'dwr_huntplanner_hanumber_2026.csv');
+const OUT_JSON = path.join(OUTPUT_DIR, 'dwr_huntplanner_hanumber_2026.json');
+const OUT_RAW_JSON = path.join(OUTPUT_DIR, 'dwr_huntplanner_hanumber_2026_raw_payloads.json');
+const AUDIT_JSON = path.join(OUTPUT_DIR, 'dwr_huntplanner_hanumber_2026_audit.json');
+const AUDIT_CSV = path.join(OUTPUT_DIR, 'dwr_huntplanner_hanumber_2026_audit.csv');
 const BASE_URL = 'https://dwrapps.utah.gov/huntboundary/HaNumber?roles=&hn=';
 const CONCURRENCY = Number(process.env.HUNTPLANNER_CONCURRENCY || 8);
 const TIMEOUT_MS = Number(process.env.HUNTPLANNER_TIMEOUT_MS || 20000);
@@ -156,6 +162,23 @@ function parseCsv(text) {
     headers.forEach((h, i) => { out[h] = r[i] || ''; });
     return out;
   });
+}
+
+function loadCurrentHuntTableCodes(directory) {
+  if (!directory) return [];
+  if (!fs.existsSync(directory)) throw new Error(`Missing Hunt Planner table directory: ${directory}`);
+  const codes = new Set();
+  for (const name of fs.readdirSync(directory).sort()) {
+    if (!/^dwr_huntboundary_.+\.json$/i.test(name) || /hasetup/i.test(name)) continue;
+    const filePath = path.join(directory, name);
+    const payload = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    if (!Array.isArray(payload)) continue;
+    for (const row of payload) {
+      const code = normalizeCode(row && (row.HUNT_NBR || row.hunt_code || row.huntCode));
+      if (code) codes.add(code);
+    }
+  }
+  return [...codes].sort();
 }
 
 function csvEscape(value) {
@@ -371,9 +394,11 @@ async function main() {
     const code = normalizeCode(row.hunt_code || row.HUNT_NBR);
     if (code) dbByCode.set(code, row);
   }
-  const codes = [...dbByCode.keys()].sort();
+  const codes = HUNT_TABLE_DIR ? loadCurrentHuntTableCodes(HUNT_TABLE_DIR) : [...dbByCode.keys()].sort();
+  if (!codes.length) throw new Error('No Hunt Planner popup codes were found.');
   const retrievedAt = new Date().toISOString();
-  console.log(`Fetching ${codes.length} DWR Hunt Planner popup records with concurrency=${CONCURRENCY}`);
+  const inputLabel = HUNT_TABLE_DIR ? `official HuntTableData matrix ${HUNT_TABLE_DIR}` : 'DATABASE.csv code list';
+  console.log(`Fetching ${codes.length} DWR Hunt Planner popup records from ${inputLabel} with concurrency=${CONCURRENCY}`);
   const pulled = await mapLimit(codes, CONCURRENCY, async (code) => {
     const url = BASE_URL + encodeURIComponent(code);
     const result = await fetchJson(url);
@@ -403,7 +428,10 @@ async function main() {
     created_at: new Date().toISOString(),
     source: 'https://dwrapps.utah.gov/huntboundary/HaNumber?hn={hunt_code}&roles=',
     input_database_csv: path.relative(ROOT, DATABASE_CSV).replace(/\\/g, '/'),
-    current_hunt_codes_from_database: codes.length,
+    hunt_code_source: HUNT_TABLE_DIR ? 'OFFICIAL_DWR_HUNTTABLEDATA_MATRIX' : 'DATABASE_CSV_LEGACY_DEFAULT',
+    hunt_table_dir: HUNT_TABLE_DIR ? path.relative(ROOT, HUNT_TABLE_DIR).replace(/\\/g, '/') : '',
+    current_hunt_codes_requested: codes.length,
+    current_hunt_codes_from_database: dbByCode.size,
     rows_written: rows.length,
     fetch_ok: rows.filter(r => r.fetch_status === 'OK').length,
     fetch_error: rows.filter(r => r.fetch_status !== 'OK').length,
@@ -434,6 +462,7 @@ async function main() {
     },
     notes: [
       'current_age_3yr_average is DWR Hunt Planner current age context, not prior-year average harvest age.',
+      'When --hunt-table-dir is used, the popup code universe comes from official current HuntTableData, not DATABASE.csv.',
       'This extract is source evidence only and does not modify DATABASE.csv or prediction outputs.'
     ]
   };

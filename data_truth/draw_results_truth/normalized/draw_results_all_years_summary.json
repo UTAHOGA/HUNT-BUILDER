@@ -1,36 +1,8 @@
 {
   "active_database_coverage_by_draw_year": {
-    "2017": 24937,
-    "2018": 26736,
-    "2019": 29566,
-    "2020": 31082,
-    "2021": 33788,
-    "2022": 34876,
-    "2023": 35834,
-    "2024": 43175,
-    "2025": 38087,
-    "2026": 28795
-  },
-  "active_database_hunt_codes": 1645,
-  "artifact": "draw_results_all_years_cumulative_truth",
-  "blank_hunt_code_rows": 0,
-  "blocker_count": 1,
-  "blockers": [
-    "DUPLICATE_DRAW_RESULT_KEYS"
-  ],
-  "crosswalk_current_code_count": 174,
-  "crosswalk_current_codes_present_in_draw_rows": 10,
-  "database_truth_match_counts": {
-    "": 341970
-  },
-  "draw_method_counts": {
-    "": 341970
-  },
-  "draw_year_counts": {
-    "2017": 29503,
-    "2018": 31031,
+    "2018": 28400,
     "2019": 33478,
-    "2020": 33370,
+    "2020": 33069,
     "2021": 33788,
     "2022": 34876,
     "2023": 35834,
@@ -38,97 +10,50 @@
     "2025": 38120,
     "2026": 28795
   },
-  "duplicate_key_count": 39667,
-  "duplicate_key_examples": [
-    {
-      "draw_pool": "preference_antlerless_deer",
-      "hunt_code": "DA1000",
-      "points": "0",
-      "residency": "",
-      "year": "2017"
-    },
-    {
-      "draw_pool": "preference_antlerless_deer",
-      "hunt_code": "DA1000",
-      "points": "1",
-      "residency": "",
-      "year": "2017"
-    },
-    {
-      "draw_pool": "preference_antlerless_deer",
-      "hunt_code": "DA1000",
-      "points": "2",
-      "residency": "",
-      "year": "2017"
-    },
-    {
-      "draw_pool": "preference_antlerless_deer",
-      "hunt_code": "DA1000",
-      "points": "3",
-      "residency": "",
-      "year": "2017"
-    },
-    {
-      "draw_pool": "preference_antlerless_deer",
-      "hunt_code": "DA1000",
-      "points": "4",
-      "residency": "",
-      "year": "2017"
-    },
-    {
-      "draw_pool": "preference_antlerless_deer",
-      "hunt_code": "DA1000",
-      "points": "5",
-      "residency": "",
-      "year": "2017"
-    },
-    {
-      "draw_pool": "preference_antlerless_deer",
-      "hunt_code": "DA1000",
-      "points": "6",
-      "residency": "",
-      "year": "2017"
-    },
-    {
-      "draw_pool": "preference_antlerless_deer",
-      "hunt_code": "DA1000",
-      "points": "7",
-      "residency": "",
-      "year": "2017"
-    },
-    {
-      "draw_pool": "preference_antlerless_deer",
-      "hunt_code": "DA1000",
-      "points": "8",
-      "residency": "",
-      "year": "2017"
-    },
-    {
-      "draw_pool": "preference_antlerless_deer",
-      "hunt_code": "DA1000",
-      "points": "9",
-      "residency": "",
-      "year": "2017"
-    }
-  ],
-  "duplicate_key_fields": [
+  "active_database_hunt_codes": 1849,
+  "artifact": "draw_results_all_years_cumulative_truth",
+  "blank_hunt_code_rows": 0,
+  "blocker_count": 0,
+  "blockers": [],
+  "coarse_key_collision_count": 29247,
+  "coarse_key_fields": [
     "hunt_code",
     "year",
     "draw_pool",
     "residency",
     "points"
   ],
+  "cross_scope_only_collision_count": 29247,
+  "crosswalk_current_code_count": 0,
+  "crosswalk_current_codes_present_in_draw_rows": 0,
+  "database_truth_match_counts": {
+    "": 309562
+  },
+  "draw_method_counts": {
+    "": 309562
+  },
+  "draw_year_counts": {
+    "2018": 28427,
+    "2019": 33478,
+    "2020": 33069,
+    "2021": 33788,
+    "2022": 34876,
+    "2023": 35834,
+    "2024": 43175,
+    "2025": 38120,
+    "2026": 28795
+  },
   "guardrails": [
     "Draw year is treated as reported_hunt_year_inferred for historical draw-result rows.",
     "Model target year is draw/result year + 1 for predictive alignment summaries.",
+    "Cross-scope records remain distinct official evidence and are not silently merged.",
     "This validation layer does not rewrite current hunt codes or probability math."
   ],
   "invalid_year_rows": 0,
   "model_target_year_counts": {
-    "2018": 29503,
-    "2019": 31031,
+    "2019": 28427,
     "2020": 33478,
-    "2021": 33370,
+    "2021": 33069,
     "2022": 33788,
     "2023": 34876,
     "2024": 35834,
@@ -136,21 +61,21 @@
     "2026": 38120,
     "2027": 28795
   },
-  "normalized_long_rows": 341970,
+  "normalized_long_rows": 309562,
   "outputs": {
     "long_csv": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
     "processed_source_audit_csv": "processed_data/draw_results_all_years_source_audit.csv",
     "processed_summary_json": "processed_data/draw_results_all_years_summary.json",
     "processed_summary_md": "processed_data/draw_results_all_years_summary.md",
     "source_audit_csv": "data_truth/draw_results_truth/normalized/draw_results_all_years_source_audit.csv",
+    "source_identity_collisions_csv": "data_truth/draw_results_truth/normalized/draw_results_unresolved_source_identity_collisions.csv",
     "summary_json": "data_truth/draw_results_truth/normalized/draw_results_all_years_summary.json",
     "summary_md": "data_truth/draw_results_truth/normalized/draw_results_all_years_summary.md"
   },
   "publish_year_counts": {
-    "2017": 29503,
-    "2018": 31031,
+    "2018": 28427,
     "2019": 33478,
-    "2020": 33370,
+    "2020": 33069,
     "2021": 33788,
     "2022": 34876,
     "2023": 35834,
@@ -159,10 +84,9 @@
     "2026": 28795
   },
   "reported_hunt_year_inferred_counts": {
-    "2017": 29503,
-    "2018": 31031,
+    "2018": 28427,
     "2019": 33478,
-    "2020": 33370,
+    "2020": 33069,
     "2021": 33788,
     "2022": 34876,
     "2023": 35834,
@@ -171,17 +95,31 @@
     "2026": 28795
   },
   "residency_counts": {
-    "": 313438,
+    "": 281030,
     "Nonresident": 14262,
     "Resident": 14270
   },
-  "source_audit_rows": 201,
+  "source_audit_rows": 195,
+  "source_identity_collision_count": 0,
+  "source_identity_collision_examples": [],
+  "source_identity_collision_group_count": 0,
+  "source_identity_key_fields": [
+    "hunt_code",
+    "year",
+    "draw_pool",
+    "residency",
+    "points",
+    "source_scope",
+    "source_file",
+    "record_type",
+    "pdf_page",
+    "source_row_identifier"
+  ],
   "source_long_csv": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
   "status_counts": {
-    "": 341970
+    "": 309562
   },
   "unique_draw_years": [
-    "2017",
     "2018",
     "2019",
     "2020",
@@ -192,6 +130,6 @@
     "2025",
     "2026"
   ],
-  "unique_hunt_codes_all_years": 1544,
-  "unique_sources": 201
+  "unique_hunt_codes_all_years": 1494,
+  "unique_sources": 195
 }

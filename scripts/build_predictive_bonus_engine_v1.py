@@ -341,7 +341,7 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
         if not points_desc:
             continue
 
-        split = split_utah_bonus_permits(residency_quota)
+        split = split_utah_bonus_permits(residency_quota, residency)
         reserved_quota = split.maxPointPermits
         random_quota = split.randomPermits
         reserved_fraction = (reserved_quota / residency_quota) if residency_quota > 0 else 0.0

@@ -1,2 +1,0 @@
-name,source_file,role,exists,row_count,size_bytes,size_mb,delivery,href,local_href,cloudflare_href
-researchLibraryMaster,processed_data/research_library_master.csv,research-page source,false,0,0,0,cloudflare-fallback,https://json.uoga.workers.dev/processed_data/research_library_master.csv,./processed_data/research_library_master.csv,https://json.uoga.workers.dev/processed_data/research_library_master.csv

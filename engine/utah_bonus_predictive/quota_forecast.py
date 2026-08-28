@@ -16,7 +16,11 @@ class QuotaForecast:
     split: UtahBonusPermitSplit
 
 
-def forecast_quota(prior_public_permits: int, official_forecast: int | None = None) -> QuotaForecast:
+def forecast_quota(
+    prior_public_permits: int,
+    official_forecast: int | None = None,
+    residency: object = None,
+) -> QuotaForecast:
     if official_forecast is not None:
         public = max(0, int(official_forecast))
         source = "official_forecast_quota"
@@ -30,6 +34,6 @@ def forecast_quota(prior_public_permits: int, official_forecast: int | None = No
         public_permits_source=source,
         permit_delta_prior_to_forecast=public - max(0, int(prior_public_permits)),
         quota_confidence=confidence,
-        split=split_utah_bonus_permits(public),
+        split=split_utah_bonus_permits(public, residency),
     )
 

@@ -1661,6 +1661,18 @@
       };
     }
 
+    const guaranteedLinePoint = getGuaranteedLinePointForDisplay(meta, row, filters);
+    if (selectedOdds.percent === null
+      && guaranteedLinePoint !== null
+      && num(filters.points) !== null
+      && num(filters.points) > guaranteedLinePoint) {
+      return {
+        badge: 'Above Current Line',
+        message: `No exact ${RESEARCH_MODEL_YEAR} forecast is available at ${formatInteger(filters.points)} points. You are above the displayed ${formatInteger(guaranteedLinePoint)}-point line, so this page will not substitute a lower-point random-draw forecast.`,
+        className: 'is-yellow',
+      };
+    }
+
     return {
       badge: 'Random Chance Only',
       message: 'You are outside the guaranteed line and relying on the remaining random pool.',
@@ -1757,8 +1769,13 @@
       return;
     }
 
-    renderOutlookLight(getOutlookSignal(meta, row, referenceRow));
     const guaranteedLinePoint = getGuaranteedLinePointForDisplay(meta, row, filters);
+    const selectedPoint = num(filters.points);
+    const exactForecastUnavailableAboveLine = displayedOdds.percent === null
+      && guaranteedLinePoint !== null
+      && selectedPoint !== null
+      && selectedPoint > guaranteedLinePoint;
+    renderOutlookLight(exactForecastUnavailableAboveLine ? 'yellow' : getOutlookSignal(meta, row, referenceRow));
 
     if (els.summaryGuaranteed) {
       els.summaryGuaranteed.textContent = isRandomOnlyBonusCase(meta, row, referenceRow)
@@ -1773,7 +1790,9 @@
     if (els.summaryStatus) {
       els.summaryStatus.textContent = isRandomOnlyBonusCase(meta, row, referenceRow)
         ? 'Random draw only'
-        : formatGuaranteedLineStatus(row, filters.points);
+        : (guaranteedLinePoint === null
+          ? formatGuaranteedLineStatus(row, filters.points)
+          : formatGapStatus(guaranteedLinePoint - filters.points));
     }
 
     if (els.summaryOdds) {
@@ -1789,7 +1808,9 @@
     }
 
     if (els.summaryRecommendation) {
-      els.summaryRecommendation.textContent = getRecommendation(meta, row, referenceRow);
+      els.summaryRecommendation.textContent = exactForecastUnavailableAboveLine
+        ? `No exact ${RESEARCH_MODEL_YEAR} forecast is available at this point level. You are above the displayed current line, but future point creep can still change that line; the page will not use a lower-point forecast as your odds.`
+        : getRecommendation(meta, row, referenceRow);
     }
 
     if (els.selectedResidentPermits) {
@@ -2340,10 +2361,10 @@
       : null;
     const ladderRows = getLadderRows(filters.huntCode, filters.residency, filters.drawPool);
     const ladderPointRow = ladderRows.find((row) => Number(row.points) === Number(filters.points)) || null;
-    // Prefer exact engine row when present. For non-point families like Sportsman,
-    // availability/status rows, and youth pending groups, fall back to the first
-    // engine group row before falling back to the ladder row.
-    const summaryRow = engineRow || engineGroupFallbackRow || ladderPointRow || null;
+    // A selected point-level ladder row must take precedence over a generic
+    // hunt/residency fallback. A lower-point forecast is not the user's odds.
+    // The fallback remains only for genuinely non-point families.
+    const summaryRow = engineRow || ladderPointRow || engineGroupFallbackRow || null;
     const referenceRow = getReferenceRow(filters.huntCode, filters.residency, filters.drawPool);
     const isOtcMode = isOtcReferenceHunt(meta, summaryRow, referenceRow);
     const onlyOutOfScopeRowsHidden = !SHOW_AUDIT_ONLY_ROWS && rawEngineRows.length > 0 && engineRows.length === 0;
@@ -2398,6 +2419,7 @@
 
     state.selectedMeta = meta;
     state.selectedFilters = filters;
+    renderFilterReadout(filters);
 
     window.UOGA_HUNT_RESEARCH_SNAPSHOT = {
       filters,

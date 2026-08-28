@@ -12,6 +12,7 @@ flat extracts. It does not build truth-vs-prediction comparables.
 
 from __future__ import annotations
 
+import argparse
 import csv
 import hashlib
 import json
@@ -258,6 +259,8 @@ def classify_utahdraws_endpoint(endpoint: dict[str, Any]) -> tuple[bool, str, st
         return False, "excluded_wetland_or_waterfowl", "wetland_or_waterfowl"
     if "upland" in haystack and "turkey" not in haystack:
         return False, "excluded_non_turkey_upland", "non_turkey_upland"
+    if draw_name.lower() == "antlerless":
+        return True, "included_big_game_antlerless", "big_game_antlerless"
     if draw_name.lower() == "big game":
         if "antlerless" in haystack:
             return True, "included_big_game_antlerless", "big_game_antlerless"
@@ -402,12 +405,20 @@ def download_pdf_links(
         error = ""
         download_status = "OK"
         try:
-            status, content_type, payload = fetch_bytes(link.url, "application/pdf,*/*")
-            write_bytes(output_path, payload)
-            size_bytes = len(payload)
-            sha256 = sha256_bytes(payload)
-            downloaded += 1
-            time.sleep(0.05)
+            if output_path.exists():
+                payload = output_path.read_bytes()
+                status = "LOCAL_REHASH"
+                content_type = "application/pdf"
+                size_bytes = len(payload)
+                sha256 = sha256_bytes(payload)
+                download_status = "EXISTS_REHASHED"
+            else:
+                status, content_type, payload = fetch_bytes(link.url, "application/pdf,*/*")
+                write_bytes(output_path, payload)
+                size_bytes = len(payload)
+                sha256 = sha256_bytes(payload)
+                downloaded += 1
+                time.sleep(0.05)
         except Exception as exc:
             errors += 1
             download_status = "ERROR"
@@ -695,8 +706,24 @@ def write_report(
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        help="Existing or new repository-relative staging folder. Existing official PDFs are re-hashed rather than re-downloaded.",
+    )
+    parser.add_argument(
+        "--only-current-utahdraws",
+        action="store_true",
+        help="Pull only the current UtahDraws 2026 results/odds API snapshot; skip the historical DWR PDF archive.",
+    )
+    args = parser.parse_args()
     fetched_at_utc = datetime.now(timezone.utc).isoformat(timespec="seconds")
-    out_dir = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "_staging" / f"draw_odds_deep_pull_{now_stamp()}"
+    out_dir = (
+        args.output_dir
+        if args.output_dir.is_absolute()
+        else ROOT / args.output_dir
+    ) if args.output_dir else ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "_staging" / f"draw_odds_deep_pull_{now_stamp()}"
     out_dir.mkdir(parents=True, exist_ok=True)
 
     manifest_rows: list[dict[str, object]] = []
@@ -704,9 +731,13 @@ def main() -> int:
     utahdraws_included, utahdraws_errors, utahdraws_hunts, utahdraws_odds_rows = pull_utahdraws_current(
         out_dir, fetched_at_utc, manifest_rows, excluded_rows
     )
-    link_count, pdf_downloaded, pdf_errors = pull_official_pages(
-        out_dir, fetched_at_utc, manifest_rows, excluded_rows
-    )
+    link_count = 0
+    pdf_downloaded = 0
+    pdf_errors = 0
+    if not args.only_current_utahdraws:
+        link_count, pdf_downloaded, pdf_errors = pull_official_pages(
+            out_dir, fetched_at_utc, manifest_rows, excluded_rows
+        )
 
     manifest_fields = [
         "source_kind",
@@ -765,6 +796,7 @@ def main() -> int:
         "official_page_links_inspected": link_count,
         "official_pdf_files_downloaded": pdf_downloaded,
         "official_pdf_download_errors": pdf_errors,
+        "historical_dwr_pdf_archive_pulled": not args.only_current_utahdraws,
         "manifest_rows": len(manifest_rows),
         "excluded_rows": len(excluded_rows),
         "included_by_category": count_by(manifest_rows, "category"),

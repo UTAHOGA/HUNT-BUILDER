@@ -170,7 +170,7 @@ window.UOGA_CONFIG = (() => {
   const HUNT_DATA_VERSION = '20260604-runtime-canonical-1';
   const OUTFITTERS_DATA_VERSION = '20260327-city-logo-refresh-1';
   const OUTFITTER_COVERAGE_VERSION = '20260327-federal-coverage-demo-1';
-  const HUNT_RESEARCH_DATA_VERSION = '20260606-ladder-runtime-1';
+  const HUNT_RESEARCH_DATA_VERSION = '20260828-certified-split-contract-1';
 
   /*
     ============================================================================

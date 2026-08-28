@@ -15,7 +15,7 @@ from . import (
     TARGET_SCOPE_TARGET,
     append_reason_codes,
 )
-from .permit_accessors import target_permit_for_residency, target_permit_total
+from .permit_accessors import target_permit_total, target_residency_permit_allocation
 from .preference_ladder_normalizer import normalize_preference_ladder_rows
 
 
@@ -418,41 +418,21 @@ def _status(probability: float) -> str:
     return "BEHIND"
 
 
-def _forecast_quota_for_residency(
-    hunt_code: str,
-    draw_pool: str,
-    residency: str,
-    forecast_total: int,
-    latest_year: int,
-    total_drawn_by_code_year: Mapping[tuple[str, str, int], dict[str, int]],
-) -> int:
-    if residency == "All":
-        return forecast_total
-    observed = total_drawn_by_code_year.get((hunt_code, draw_pool, latest_year), {})
-    res_total = sum(int(value) for value in observed.values())
-    if forecast_total <= 0:
-        return 0
-    if res_total <= 0:
-        return forecast_total if residency == "Resident" else 0
-    resident_drawn = int(observed.get("Resident", 0))
-    nonresident_drawn = int(observed.get("Nonresident", 0))
-    if residency == "Resident":
-        return max(0, min(forecast_total, round(forecast_total * (resident_drawn / max(res_total, 1)))))
-    resident_quota = max(0, min(forecast_total, round(forecast_total * (resident_drawn / max(res_total, 1)))))
-    return max(0, forecast_total - resident_quota)
-
-
-def _explicit_quota_for_residency(
+def _official_quota_for_residency(
     row: Mapping[str, object],
     residency: str,
     forecast_year: int,
     source_year: int | None = None,
-) -> int | None:
-    if residency == "All":
-        permit = target_permit_total(row, forecast_year, source_year=source_year)
-        return permit.value if permit.value > 0 else None
-    permit = target_permit_for_residency(row, forecast_year, residency, source_year=source_year)
-    return permit.value if permit.value > 0 else None
+) -> tuple[int | None, str]:
+    allocation = target_residency_permit_allocation(
+        row,
+        forecast_year,
+        source_year=source_year,
+        draw_system_type="PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+    )
+    if not allocation.supported:
+        return None, allocation.authority
+    return allocation.for_residency(residency), allocation.authority
 
 
 def _forecast_applicant_ladder(
@@ -526,11 +506,17 @@ def build_preference_general_deer_predictions(
         forecast_total = target_permit_total(db_row, forecast_year, source_year=latest_source_year).value
         if forecast_total <= 0:
             continue
-        published_res = _clean(db_row.get(f"permits_{forecast_year}_res"))
-        published_nr = _clean(db_row.get(f"permits_{forecast_year}_nr"))
-        published_total = _clean(db_row.get(f"permits_{forecast_year}_total"))
-        total_only_quota = bool(published_total) and not published_res and not published_nr
-        total_only_reason = "NO_RESIDENCY_LANE_QUOTA|TOTAL_ONLY_QUOTA_RATIO_SKIPPED_NO_RESIDENCY_SPLIT"
+        target_allocation = target_residency_permit_allocation(
+            db_row,
+            forecast_year,
+            source_year=latest_source_year,
+            draw_system_type="PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+        )
+        published_res = str(target_allocation.resident) if target_allocation.supported else ""
+        published_nr = str(target_allocation.nonresident) if target_allocation.supported else ""
+        published_total = str(target_allocation.total) if target_allocation.total > 0 else ""
+        total_only_quota = target_allocation.authority == "OFFICIAL_10_PERCENT_TOTAL_ALLOCATION"
+        total_only_reason = target_allocation.authority if total_only_quota else ""
 
         meta = truth_meta.get((hunt_code, draw_pool), {}) or truth_meta.get((hunt_code, "standard"), {})
         hunt_name = _clean(db_row.get("hunt_name")) or meta.get("hunt_name", "")
@@ -551,9 +537,14 @@ def build_preference_general_deer_predictions(
 
         for residency in residencies_to_model:
             available_years = sorted(year for year in set(years_by_key.get((hunt_code, draw_pool, residency), [])) if year in history_year_set)
-            explicit_quota = _explicit_quota_for_residency(db_row, residency, forecast_year, source_year=latest_source_year)
+            official_quota, quota_authority = _official_quota_for_residency(
+                db_row,
+                residency,
+                forecast_year,
+                source_year=latest_source_year,
+            )
             if not available_years:
-                if residency == "Nonresident" and explicit_quota is None:
+                if residency == "Nonresident" and official_quota is None:
                     rows.append(
                         {
                             "model_version": MODEL_VERSION,
@@ -570,9 +561,9 @@ def build_preference_general_deer_predictions(
                             "points": "0",
                             "draw_pool": draw_pool,
                             "public_permits_2025": 0,
-                            "public_permits_2026": "" if total_only_quota else 0,
-                            "permits_2026_res": "" if total_only_quota else published_res,
-                            "permits_2026_nr": "" if total_only_quota else published_nr,
+                            "public_permits_2026": 0,
+                            "permits_2026_res": published_res,
+                            "permits_2026_nr": published_nr,
                             "permits_2026_total": published_total,
                             "max_point_permits_2025": "",
                             "max_point_permits_2026": "",
@@ -607,6 +598,7 @@ def build_preference_general_deer_predictions(
                             "reason_codes": (
                                 "NO_NONRESIDENT_HISTORY_TOTAL_ONLY_STRUCTURAL_ROW|NO_EXPLICIT_NONRESIDENT_QUOTA"
                                 + (f"|{total_only_reason}" if total_only_quota else "")
+                                + f"|{quota_authority}"
                             ),
                             "weapon": weapon,
                             "draw_system_type": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
@@ -617,11 +609,7 @@ def build_preference_general_deer_predictions(
 
             latest_ladder = ladders.get((code_latest_source_year, hunt_code, draw_pool, residency), {})
             prior_total = sum(int(values["drawn"]) for values in latest_ladder.values())
-            forecast_quota = (
-                explicit_quota
-                if explicit_quota is not None
-                else _forecast_quota_for_residency(hunt_code, draw_pool, residency, forecast_total, code_latest_source_year, total_drawn_by_code_year)
-            )
+            forecast_quota = official_quota if official_quota is not None else 0
             if forecast_quota <= 0:
                 if residency == "Nonresident":
                     rows.append(
@@ -640,9 +628,9 @@ def build_preference_general_deer_predictions(
                             "points": "0",
                             "draw_pool": draw_pool,
                             "public_permits_2025": prior_total,
-                            "public_permits_2026": "" if total_only_quota else 0,
-                            "permits_2026_res": "" if total_only_quota else published_res,
-                            "permits_2026_nr": "" if total_only_quota else published_nr,
+                            "public_permits_2026": 0,
+                            "permits_2026_res": published_res,
+                            "permits_2026_nr": published_nr,
                             "permits_2026_total": published_total,
                             "max_point_permits_2025": "",
                             "max_point_permits_2026": "",
@@ -771,7 +759,7 @@ def build_preference_general_deer_predictions(
                             else "Seeded from explicit current-year nonresident quota where no prior nonresident ladder exists."
                         ),
                         "reason_codes": append_reason_codes(
-                            total_only_reason if total_only_quota else "",
+                            quota_authority,
                             TAIL_CALIBRATION_REASON if tail_calibrated else "",
                         ),
                         "weapon": weapon,

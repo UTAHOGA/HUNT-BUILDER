@@ -83,7 +83,7 @@ def build_backtest_rows(
         for hunt_code, residency in pairs:
             prior_public = permits.get((str(year), hunt_code, residency), {}).get("public", 0)
             observed = permits.get((str(next_year), hunt_code, residency), {"bonus": 0, "regular": 0})
-            predicted_max, predicted_random = split_function(prior_public)
+            predicted_max, predicted_random = split_function(prior_public, residency)
             observed_max = observed["bonus"]
             observed_random = observed["regular"]
 

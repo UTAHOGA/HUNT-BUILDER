@@ -1,3 +1,4 @@
+import argparse
 import csv
 import hashlib
 import re
@@ -72,6 +73,12 @@ def safe_name(s: str) -> str:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Download official Utah DWR species-specific harvest supplements.")
+    parser.add_argument("--min-year", type=int, default=2020, help="Earliest report-generation year to collect.")
+    parser.add_argument("--manifest", type=Path, default=MANIFEST, help="Output source manifest path.")
+    parser.add_argument("--log", type=Path, default=LOG, help="Output download-log path.")
+    args = parser.parse_args()
+
     links = []
 
     for page in SEED_PAGES:
@@ -89,7 +96,7 @@ def main() -> None:
             if not any(h in blob for h in HARVEST_HINTS):
                 continue
             year = infer_year(f"{href} {label}")
-            if not year or year < 2020:
+            if not year or year < args.min_year:
                 continue
             links.append(
                 {
@@ -108,8 +115,8 @@ def main() -> None:
     rows = list(uniq.values())
     rows.sort(key=lambda r: (r["publish_year"], r["species"], r["url"]))
 
-    MANIFEST.parent.mkdir(parents=True, exist_ok=True)
-    with MANIFEST.open("w", encoding="utf-8", newline="") as f:
+    args.manifest.parent.mkdir(parents=True, exist_ok=True)
+    with args.manifest.open("w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=["source_page", "species", "publish_year", "label", "url"])
         w.writeheader()
         w.writerows(rows)
@@ -151,7 +158,8 @@ def main() -> None:
             failed += 1
             dlog.append({**r, "status": f"failed:{type(e).__name__}", "dest_path": ""})
 
-    with LOG.open("w", encoding="utf-8", newline="") as f:
+    args.log.parent.mkdir(parents=True, exist_ok=True)
+    with args.log.open("w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(
             f,
             fieldnames=["source_page", "species", "publish_year", "label", "url", "status", "dest_path"],
@@ -163,8 +171,8 @@ def main() -> None:
     print(f"DOWNLOADED={downloaded}")
     print(f"SKIPPED_EXISTS={skipped}")
     print(f"FAILED={failed}")
-    print(f"MANIFEST={MANIFEST}")
-    print(f"LOG={LOG}")
+    print(f"MANIFEST={args.manifest}")
+    print(f"LOG={args.log}")
 
 
 if __name__ == "__main__":

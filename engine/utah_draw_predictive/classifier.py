@@ -291,6 +291,25 @@ def classify_draw_system_type(row: Mapping[str, object]) -> str:
         return "OUT_OF_SCOPE_NON_TARGET"
 
     existing_draw_system_type = effective_draw_design(row)
+    # Raw UtahDraws rows use MAX_WEIGHTED_SPLIT for both big-game bonus draws
+    # and source-classified turkey rows.  Resolve target-specific systems before
+    # the legacy big-game alias so adult and youth turkey ladders cannot collapse
+    # into one BONUS_LE_BIG_GAME key.  Sportsman remains first because it is a
+    # distinct random-only draw regardless of its source draw-design label.
+    if is_sportsman_permit_row(row):
+        return SPORTSMAN_DRAW_SYSTEM_TYPE
+    if is_bear_row(row):
+        return BEAR_DRAW_SYSTEM_TYPE
+    if is_turkey_row(row):
+        if is_youth_turkey_row(row):
+            return YOUTH_TURKEY_DRAW_SYSTEM_TYPE
+        if is_supported_turkey_bonus_row(row):
+            return TURKEY_DRAW_SYSTEM_TYPE
+        if is_general_season_turkey_row(row) or is_remaining_turkey_row(row) or is_nonpublic_turkey_row(row) or "fall management" in text or "statewide" in text:
+            return "OTC_OR_REMAINING_TARGET"
+        return TURKEY_DRAW_SYSTEM_TYPE
+    if "cwmu" in text:
+        return "BONUS_CWMU_BIG_GAME"
     if existing_draw_system_type in LEGACY_BONUS_DRAW_DESIGNS:
         return _canonical_big_game_bonus_draw_system(row)
     if existing_draw_system_type and (
@@ -311,11 +330,6 @@ def classify_draw_system_type(row: Mapping[str, object]) -> str:
     if is_modeled_mountain_lion_row(row):
         return MOUNTAIN_LION_DRAW_SYSTEM_TYPE
 
-    if is_sportsman_permit_row(row):
-        return SPORTSMAN_DRAW_SYSTEM_TYPE
-
-    if is_bear_row(row):
-        return BEAR_DRAW_SYSTEM_TYPE
     if "mountain lion" in text or "cougar" in text:
         return "COUGAR_LICENSE_BASED"
     if is_youth_draw_only_elk_row(row):
@@ -346,22 +360,10 @@ def classify_draw_system_type(row: Mapping[str, object]) -> str:
     if "restricted pursuit" in text or "extended archery" in text:
         return "RANDOM_ONLY_TARGET"
 
-    if is_turkey_row(row):
-        if is_youth_turkey_row(row):
-            return YOUTH_TURKEY_DRAW_SYSTEM_TYPE
-        if is_supported_turkey_bonus_row(row):
-            return TURKEY_DRAW_SYSTEM_TYPE
-        if is_general_season_turkey_row(row) or is_remaining_turkey_row(row) or is_nonpublic_turkey_row(row) or "fall management" in text or "statewide" in text:
-            return "OTC_OR_REMAINING_TARGET"
-        return TURKEY_DRAW_SYSTEM_TYPE
-
     if "moose" in text and ("antlerless" in text or sex_type in {"antlerless", "cow", "cow only"}):
         return "BONUS_ANTLERLESS_MOOSE"
     if "bighorn" in text and ("ewe" in text or sex_type == "ewe"):
         return "BONUS_EWE_BIGHORN"
-
-    if "cwmu" in text:
-        return "BONUS_CWMU_BIG_GAME"
 
     if hunt_code in TRUE_PLE_HUNT_CODES:
         return "BONUS_PLE_BIG_GAME"

@@ -1,5 +1,7 @@
 # Current Repo And Prediction Engine Status
 
+> Historical snapshot generated on 2026-06-27. The authoritative current briefing is `docs/CURRENT_STATE.md`, and the machine-readable architecture and promotion state are in `governance/engine-authority.json`.
+
 Generated: 2026-06-27
 Repo: `C:\Users\tyler\Desktop\GitHub\HUNT-BUILDER`
 Branch: `main`

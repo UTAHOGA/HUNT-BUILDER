@@ -19,6 +19,14 @@ def test_derived_bonus_quota_uses_total_when_missing():
     assert resolved.random_quota == 5
 
 
+def test_derived_bonus_quota_rounds_odd_permit_to_max_pool():
+    hunt = Hunt(hunt_code="DB1001", species="mule deer", hunt_type="limited_entry", rule_system="bonus")
+    quota = Quota(draw_year=2026, hunt_code="DB1001", species="mule deer", total_public_permits=3, quota_source="forecast")
+    resolved = derive_quota(quota, hunt, UtahRuleConfig.default())
+    assert resolved.reserved_quota == 2
+    assert resolved.random_quota == 1
+
+
 def test_youth_reserve_applies_to_general_season_deer_only():
     quota = Quota(draw_year=2026, hunt_code="DB1501", species="mule deer", total_public_permits=100, quota_source="forecast")
 

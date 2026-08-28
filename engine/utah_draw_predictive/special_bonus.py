@@ -14,6 +14,7 @@ from typing import Iterable, Mapping
 from engine.utah_bonus_predictive.monte_carlo import combine_probabilities, compute_bonus_pool_probability
 from engine.utah_bonus_predictive.rules import MODEL_VERSION
 from engine.utah_bonus_predictive.split import split_utah_bonus_permits
+from .permit_accessors import target_residency_permit_allocation
 
 
 MODEL_STRATEGY_NAME = "bonus_special_phase6"
@@ -337,25 +338,14 @@ def _trend(prior_level: int | None, forecast_level: int | None) -> str:
 
 def _forecast_quota_for_residency(
     db_row: Mapping[str, object],
-    hunt_code: str,
     residency: str,
-    latest_year: int,
-    total_drawn_by_code_year: Mapping[tuple[str, int], dict[str, int]],
+    forecast_year: int,
+    source_year: int | None = None,
 ) -> int:
-    res_specific = _to_int(db_row.get("permits_2026_res"))
-    nr_specific = _to_int(db_row.get("permits_2026_nr"))
-    total = _to_int(db_row.get("permits_2026_total"))
-    if res_specific or nr_specific:
-        return res_specific if residency == "Resident" else nr_specific
-    observed = total_drawn_by_code_year.get((hunt_code, latest_year), {})
-    observed_total = sum(int(value) for value in observed.values())
-    if total <= 0:
+    allocation = target_residency_permit_allocation(db_row, forecast_year, source_year=source_year)
+    if not allocation.supported:
         return 0
-    if observed_total <= 0:
-        return total if residency == "Resident" else 0
-    resident_drawn = int(observed.get("Resident", 0))
-    resident_permits = max(0, min(total, round(total * (resident_drawn / max(observed_total, 1)))))
-    return resident_permits if residency == "Resident" else max(0, total - resident_permits)
+    return allocation.for_residency(residency)
 
 
 def _data_quality_flags(total_applicants: int, public_quota: int, max_point_permits: int, available_years: list[int]) -> list[str]:
@@ -364,7 +354,7 @@ def _data_quality_flags(total_applicants: int, public_quota: int, max_point_perm
         flags.append("MISSING_MULTIPLE_YEARS")
     if total_applicants < 5:
         flags.append("LOW_APPLICANT_COUNT")
-    if public_quota == 1:
+    if public_quota == 1 and max_point_permits == 0:
         flags.append("ONE_PERMIT_RANDOM_ONLY")
     if max_point_permits == 0 and public_quota > 0:
         flags.append("NO_MAX_POINT_POOL")
@@ -418,7 +408,12 @@ def build_phase6_bonus_special_predictions(
         for residency in ("Resident", "Nonresident"):
             available_years = sorted(year for year in set(years_by_key.get((draw_system_type, hunt_code, residency), [])) if year in history_year_set)
             latest_year = available_years[-1] if available_years else latest_source_year
-            forecast_quota = _forecast_quota_for_residency(db_row, hunt_code, residency, latest_year, total_drawn_by_code_year)
+            forecast_quota = _forecast_quota_for_residency(
+                db_row,
+                residency,
+                forecast_year,
+                source_year=latest_year,
+            )
             latest_ladder = ladders.get((draw_system_type, latest_year, hunt_code, residency), {})
             prior_total = sum(int(values.get("total", 0)) for values in latest_ladder.values())
 
@@ -460,7 +455,7 @@ def build_phase6_bonus_special_predictions(
                 continue
 
             public_quota = forecast_quota
-            split = split_utah_bonus_permits(public_quota)
+            split = split_utah_bonus_permits(public_quota, residency)
             max_point_permits = split.maxPointPermits
             random_permits = split.randomPermits
             forecast_ladder = _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)

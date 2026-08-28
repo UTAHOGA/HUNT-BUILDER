@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T04:53:14.224Z",
+  "generated_at": "2026-08-28T01:36:40.527Z",
   "input_resolution": {
     "predictive": "processed_data/draw_reality_engine_predictive_v2.csv",
     "oddsHistory": "data_model/runtime_drafts/draw_reality_engine_v2.csv",
@@ -8,12 +8,12 @@
     "huntUnitsLite": "data/hunt_boundaries.geojson"
   },
   "outputs": {
-    "hunt_predictions_rows": 22813,
-    "hunt_odds_history_rows": 426818,
+    "hunt_predictions_rows": 40642,
+    "hunt_odds_history_rows": 442549,
     "hunt_application_outlook_rows": 2898,
     "outfitters_public_rows": 11,
     "hunt_units_features": 683,
-    "unique_prediction_hunts": 911,
+    "unique_prediction_hunts": 978,
     "unique_outlook_hunts": 1449,
     "prediction_source_mode": "runtime_csv",
     "odds_history_source_mode": "runtime_csv",
@@ -31,32 +31,32 @@
       "file_path": "processed_data/draw_reality_engine_predictive_v2.csv",
       "role": "source_runtime_for_hunt_predictions",
       "exists": true,
-      "size_bytes": 22355072,
-      "sha256": "0d95490b91305f27a57e08ebbd265f67b7428e824a40a48ebdb1a3b20c99fae7",
-      "row_count": 22813
+      "size_bytes": 49541686,
+      "sha256": "9e4c0f1a66678cd63df88512e45ba71d63746a6b21d7e4038fecb142f40e9d5e",
+      "row_count": 40642
     },
     {
       "file_path": "data_model/runtime_drafts/draw_reality_engine_v2.csv",
       "role": "source_runtime_for_hunt_odds_history",
       "exists": true,
-      "size_bytes": 110117182,
-      "sha256": "a1d3b68b0e420d52f06af3bffe3ec017f41991fe471de7aae48a377b2e6f194c",
-      "row_count": 426818
+      "size_bytes": 136920314,
+      "sha256": "2592be0e945ea1e214b837b1feabc59da695ac09586ee75be04738b44b481758",
+      "row_count": 442549
     },
     {
       "file_path": "processed_data/research_page/hunt_application_outlook.json",
       "role": "source_contract_for_hunt_application_outlook",
       "exists": true,
-      "size_bytes": 5543211,
-      "sha256": "7bf4b26f37a1013abae05afedc0981a815959d6cdda5a4359989a2f8252515a7",
+      "size_bytes": 5679419,
+      "sha256": "81efc438565a394cdf7692d24051d2ff707e8281eb4121a3489fe96f8fd928e7",
       "row_count": 2898
     },
     {
       "file_path": "data/outfitters-public.json",
       "role": "source_public_outfitter_records",
       "exists": true,
-      "size_bytes": 7913,
-      "sha256": "c9df767c9a7b545576595417e61337ff3723c8acac03c8f9d568d5447ad8805d",
+      "size_bytes": 8291,
+      "sha256": "8fea7fd546088dc1bd444dab49e8acdd564ef694fb3fa5699c5a36f08c120997",
       "row_count": 11
     },
     {
@@ -71,32 +71,32 @@
       "file_path": "processed_data/public_contracts/hunt_predictions.json",
       "role": "public_contract:hunt_predictions.json",
       "exists": true,
-      "size_bytes": 21251610,
-      "sha256": "5b8f641a2b9022d16540b21f85c2a3925106c49e4c8e769abf6aa06a119d3dde",
-      "row_count": 22813
+      "size_bytes": 36446565,
+      "sha256": "f32305cd55280834e550fa2a63f1a8dee54f394fab37fa7d8b7874af801e4fa4",
+      "row_count": 40642
     },
     {
       "file_path": "processed_data/public_contracts/hunt_odds_history.json",
       "role": "public_contract:hunt_odds_history.json",
       "exists": true,
-      "size_bytes": 304509482,
-      "sha256": "64cdfc1834dc0a3b4db9fdbb779ec5617e981e04f40dec59e4e4939eb8cd8012",
-      "row_count": 426818
+      "size_bytes": 319074712,
+      "sha256": "fcf10d12457d115d34d85a30aec87387fe210bc853b5c0381fb480ce44fba48e",
+      "row_count": 442549
     },
     {
       "file_path": "processed_data/public_contracts/hunt_odds_history.csv",
       "role": "public_contract:hunt_odds_history.csv",
       "exists": true,
-      "size_bytes": 93713227,
-      "sha256": "9fb9e507ca6512e422dd1b8a8656d79cca868290f7052ebc0002360f361ec18a",
-      "row_count": 426818
+      "size_bytes": 100311012,
+      "sha256": "bf5316a9e3cd03e1be0200b959c9570da1644be076dc9c56470f7040dcfc39f8",
+      "row_count": 442549
     },
     {
       "file_path": "processed_data/public_contracts/hunt_application_outlook.json",
       "role": "public_contract:hunt_application_outlook.json",
       "exists": true,
-      "size_bytes": 3366614,
-      "sha256": "73666d1e885d3abfe83441959947ec96c1eb6195d7e70d9b97591d59b3bfa607",
+      "size_bytes": 3353900,
+      "sha256": "6f9127a7b2e6699a8046f2970b1deb4edb929687a0a2cc305b1978200d6e5079",
       "row_count": 2898
     },
     {

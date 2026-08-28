@@ -1,0 +1,104 @@
+{
+  "artifact": "draw_results_2020_for_2021_canonical_yearly_pdf_extraction",
+  "generated_at_utc": "2026-08-27T04:21:29.205877+00:00",
+  "write": true,
+  "source_pdf_count": 13,
+  "source_sha256": {
+    "20_bg-odds.pdf": "707d2e7f874e784dcc9076cafc61e339317eed4ae86466cb8516cc0eeabbeaef",
+    "20_antlerless_drawing_odds_report.pdf": "2efb7b6dcb5c2ef996feddf442ea7f2ba15f42b168c85e371843512564dc7d04",
+    "20_deer_odds.pdf": "3172d5b67a5385346a28f713b90f1d37698eb2a3ca0d99bf9f796e2ce3164a68",
+    "20_dh_odds.pdf": "a4467e998c6baa97722784dd1fdbc9e5e82dbec2ea972ccb37397e9460142771",
+    "20_lifetime_deer.pdf": "e21172f8e14bf73fea1907a0af99f8cb8b3e8a27926f7a1814cef838b4f17a08",
+    "20_youth_antlerless_drawing_odds_report.pdf": "f88f0b41e96cfcbf758a8661eaa65847e844202f8097a63ca061b40c0bc4c6a2",
+    "20_youth_bull_elk.pdf": "2a7590e1caab9640764a26e9af2f71cc0519d71c98889352713af98b08ce0367",
+    "20_youth_deer.pdf": "ceac587ed5dd11fc547e98c6ed3f68692cfa4f04e911eed3362fb548eded769b",
+    "20_youth_dh_odds.pdf": "830174af465b1b07dbf734f06205d5abbcdd63ad7e6383a764caf98f2cea344b",
+    "5213601e__turkey_2020_turkey_bonus_points_draw_results.pdf": "da4a587f233baa1e15eedfe57ccec92b8fb53011e9b9a58a357431325e7a2d10",
+    "68991b97__turkey_2020_youth_turkey_draw_results.pdf": "54fd5fec03839d0fb8931596aa1299de18d87ad0fbadc2d7ba4279664d59f7d3",
+    "97ffae94__black_bear_20_drawing_odds.pdf": "6a9aadf664bc7383fbd8b371e280d895cadae32a8fd29dd6ee1e143222d89ea6",
+    "20-21_sportsman_odds.pdf": "3c4056bbd3952a4dfb6ce80326f94a58bba0d2262ff4cc008b613c76c50d4b15"
+  },
+  "source_stats": {
+    "20_bg-odds.pdf": {
+      "pages": 561,
+      "hunt_pages": 545,
+      "parsed_hunt_pages": 545,
+      "rows": 15805
+    },
+    "20_antlerless_drawing_odds_report.pdf": {
+      "pages": 237,
+      "hunt_pages": 227,
+      "parsed_hunt_pages": 227,
+      "rows": 3859
+    },
+    "20_deer_odds.pdf": {
+      "pages": 97,
+      "hunt_pages": 95,
+      "parsed_hunt_pages": 95,
+      "rows": 2090
+    },
+    "20_dh_odds.pdf": {
+      "pages": 31,
+      "hunt_pages": 29,
+      "parsed_hunt_pages": 29,
+      "rows": 638
+    },
+    "20_lifetime_deer.pdf": {
+      "pages": 96,
+      "hunt_pages": 95,
+      "parsed_hunt_pages": 95,
+      "rows": 2090
+    },
+    "20_youth_antlerless_drawing_odds_report.pdf": {
+      "pages": 216,
+      "hunt_pages": 213,
+      "parsed_hunt_pages": 213,
+      "rows": 3621
+    },
+    "20_youth_bull_elk.pdf": {
+      "pages": 1,
+      "hunt_pages": 1,
+      "parsed_hunt_pages": 1,
+      "rows": 29
+    },
+    "20_youth_deer.pdf": {
+      "pages": 95,
+      "hunt_pages": 94,
+      "parsed_hunt_pages": 94,
+      "rows": 2068
+    },
+    "20_youth_dh_odds.pdf": {
+      "pages": 24,
+      "hunt_pages": 23,
+      "parsed_hunt_pages": 23,
+      "rows": 506
+    },
+    "5213601e__turkey_2020_turkey_bonus_points_draw_results.pdf": {
+      "pages": 7,
+      "hunt_pages": 6,
+      "parsed_hunt_pages": 6,
+      "rows": 126
+    },
+    "68991b97__turkey_2020_youth_turkey_draw_results.pdf": {
+      "pages": 6,
+      "hunt_pages": 6,
+      "parsed_hunt_pages": 6,
+      "rows": 126
+    },
+    "97ffae94__black_bear_20_drawing_odds.pdf": {
+      "pages": 102,
+      "hunt_pages": 100,
+      "parsed_hunt_pages": 100,
+      "rows": 2100
+    }
+  },
+  "rows": 33069,
+  "point_rows": 31624,
+  "hunt_total_rows": 1434,
+  "sportsman_rows": 11,
+  "unique_hunt_codes": 1014,
+  "unparsed_hunt_page_count": 0,
+  "duplicate_source_row_key_count": 0,
+  "canonical_path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2020_for_2021_canonical_yearly_draw_results.csv",
+  "status": "PASS"
+}

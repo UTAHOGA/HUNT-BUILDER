@@ -1,18 +1,42 @@
 {
   "artifact": "database_boundary_id_fill_2026",
-  "blank_boundary_id_after": 0,
-  "blank_boundary_id_before": 0,
-  "blocker_count": 0,
-  "blockers": [],
+  "blank_boundary_id_after": 19,
+  "blank_boundary_id_before": 19,
+  "blocker_count": 19,
+  "blockers": [
+    "BLANK_BOUNDARY_IDS_REMAIN"
+  ],
   "confirmed_count": 0,
   "corrected_count": 0,
   "database_source": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
   "duplicate_hunt_code_count": 0,
   "duplicate_hunt_codes": [],
-  "match_method_counts": {},
+  "match_method_counts": {
+    "UNRESOLVED": 19
+  },
   "promoted_count": 0,
-  "remaining_blank_hunt_codes": [],
+  "remaining_blank_hunt_codes": [
+    "LD1020",
+    "LP5042",
+    "LP5045",
+    "LP5052",
+    "LP5073",
+    "DB1035",
+    "EA1095",
+    "EA1097",
+    "EA1173",
+    "EB3560",
+    "PB5014",
+    "PB5023",
+    "PB5043",
+    "RS6705",
+    "TK1009",
+    "DA1034",
+    "DA1037",
+    "DA1038",
+    "EA1199"
+  ],
   "review_target_count": 0,
   "reviewed_count": 0,
-  "unresolved_count": 0
+  "unresolved_count": 19
 }

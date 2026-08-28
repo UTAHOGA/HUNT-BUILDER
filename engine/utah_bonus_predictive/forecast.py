@@ -244,7 +244,7 @@ def materialize_prediction_rows(
             quota_source_year = "2026"
         elif quota_source_year == "":
             quota_source_year = forecast_year_text
-        split = split_utah_bonus_permits(public_permits_2026)
+        split = split_utah_bonus_permits(public_permits_2026, residency)
         max_pool_text = first_nonempty(row.get("quota_2026_max_pool"))
         random_pool_text = first_nonempty(row.get("quota_2026_random_pool"))
         max_point_permits_2026 = to_int(max_pool_text) if max_pool_text != "" else split.maxPointPermits

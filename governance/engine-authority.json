@@ -1,0 +1,457 @@
+{
+  "schema_version": "1.1.0",
+  "last_verified_date": "2026-08-28",
+  "authority": "HUNT_BUILDER_PROJECT_MEMORY",
+  "lifecycle": {
+    "phase": "HOSTED_NORMAL_SPLIT_CONTRACT_RELEASED_CERTIFICATION_PENDING",
+    "active_forecast_year": 2026,
+    "production_prediction_accuracy_certified": false,
+    "promotion_status": "BLOCKED",
+    "promotion_blockers": [
+      "AGGREGATE_BLIND_BACKTEST_ACCEPTANCE_NOT_CERTIFIED",
+      "KNOWN_FAMILY_CONTRACT_TEST_DRIFT",
+      "GENERIC_SIMULATOR_RESIDENCY_SEQUENCE_NOT_CERTIFIED",
+      "DATED_PLANNER_SNAPSHOT_REQUIRED_FOR_2026_BEAR_TRANSITIONS",
+      "NO_EXACT_HISTORY_2026_ADDITIONS_SOURCE_CROSSWALK_PENDING"
+    ]
+  },
+  "official_draw_design_baseline": {
+    "document": "docs/UTAH_DRAW_DESIGN_BASELINE.md",
+    "verified_date": "2026-08-26",
+    "primary_rule": "https://wildlife.utah.gov/rules/r657-62",
+    "permit_drawing_explanation": "https://wildlife.utah.gov/licenses/permits",
+    "annual_guidebooks": [
+      "https://wildlife.utah.gov/guidebooks/biggameapp.pdf",
+      "https://wildlife.utah.gov/guidebooks/antlerless_guidebook.pdf",
+      "https://wildlife.utah.gov/guidebooks/black-bear-cougar-furbearer-guidebook.pdf"
+    ],
+    "historical_actuals": [
+      "https://wildlife.utah.gov/odds",
+      "https://wildlife.utah.gov/biggame/odds",
+      "https://wildlife.utah.gov/odds#bearReports",
+      "https://www.utahdraws.com/internetsales/home/drawodds"
+    ]
+  },
+  "research_runtime": {
+    "owner": "canonical_split_contract",
+    "page": "research.html",
+    "loader": "hunt-research.js",
+    "configuration": "config.js",
+    "load_order": [
+      "processed_data/hunt_research_2026_summary.json",
+      "processed_data/hunt_research_2026_split/hunt_research_2026.index.json",
+      "processed_data/hunt_research_2026_ladder.json",
+      "processed_data/hunt_research_2026_split/hunt_research_2026.details.json"
+    ],
+    "legacy_parallel_csv_fallback": "DISABLED_UNLESS_EXPLICITLY_CONFIGURED",
+    "runtime_contract_version": "hunt_research_2026.v2"
+  },
+  "draw_design_routing": {
+    "preferred_authority_field": "draw_design",
+    "compatibility_alias_field": "draw_system_type",
+    "taxonomy_owner": "engine/utah_draw_predictive/taxonomy.py",
+    "classifier_owner": "engine/utah_draw_predictive/classifier.py",
+    "family_runner": "engine/utah_draw_predictive/run_all_families.py",
+    "rule": "Classify the official source-backed draw design first, then invoke only that design family's mechanics. No universal probability formula may replace design routing.",
+    "families": {
+      "max_weighted_bonus": {
+        "modules": [
+          "engine/utah_draw_predictive/bonus.py",
+          "engine/utah_draw_predictive/special_bonus.py",
+          "engine/utah_draw_predictive/bear.py",
+          "engine/utah_draw_predictive/turkey.py"
+        ],
+        "draw_designs": [
+          "BONUS_OIL_BIG_GAME",
+          "BONUS_LE_BIG_GAME",
+          "BONUS_PLE_BIG_GAME",
+          "BONUS_CWMU_BIG_GAME",
+          "BONUS_ANTLERLESS_MOOSE",
+          "BONUS_EWE_BIGHORN",
+          "BONUS_TURKEY",
+          "BEAR_DRAW"
+        ],
+        "algorithm_status": "MODELED_BONUS",
+        "bear_programs": {
+          "LIMITED_ENTRY_BEAR_HUNT": "BONUS_DRAW",
+          "RESTRICTED_BEAR_PURSUIT": "BONUS_DRAW",
+          "HARVEST_OBJECTIVE_AVAILABILITY": "NO_DRAW",
+          "UNLIMITED_PURSUIT_PERMIT": "NO_DRAW"
+        },
+        "note": "BEAR_DRAW is a routing container. Only source-classified limited-entry hunting and restricted-pursuit rows enter bonus probability math. Harvest-objective hunting and general pursuit are availability programs."
+      },
+      "preference": {
+        "modules": [
+          "engine/utah_draw_predictive/preference_general_deer.py",
+          "engine/utah_draw_predictive/dedicated_hunter.py",
+          "engine/utah_draw_predictive/preference_antlerless.py",
+          "engine/utah_draw_predictive/youth.py"
+        ],
+        "draw_designs": [
+          "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+          "PREFERENCE_DEDICATED_HUNTER_DEER",
+          "PREFERENCE_ANTLERLESS_DEER",
+          "PREFERENCE_ANTLERLESS_ELK",
+          "PREFERENCE_DOE_PRONGHORN",
+          "YOUTH_GENERAL_DEER_RESERVE",
+          "YOUTH_ANTLERLESS_OR_DOE_RESERVE"
+        ],
+        "algorithm_status": "MODELED_PREFERENCE"
+      },
+      "random_only": {
+        "modules": [
+          "engine/utah_draw_predictive/sportsman.py",
+          "engine/utah_draw_predictive/youth.py"
+        ],
+        "draw_designs": [
+          "SPORTSMAN_PERMIT",
+          "YOUTH_GENERAL_ANY_BULL_ELK"
+        ],
+        "algorithm_statuses": [
+          "MODELED_SPORTSMAN_DRAW",
+          "MODELED_RANDOM_ONLY"
+        ],
+        "note": "These probabilities pass through the mixed layer unchanged."
+      },
+      "youth_set_aside": {
+        "modules": [
+          "engine/utah_draw_predictive/turkey.py"
+        ],
+        "draw_designs": [
+          "YOUTH_TURKEY_SET_ASIDE"
+        ],
+        "algorithm_status": "MODELED_BONUS",
+        "note": "Youth is not one generic engine; each youth row remains in its source-classified reserve, random-only, set-aside, or availability lane."
+      },
+      "non_draw_availability_allocation": {
+        "modules": [
+          "engine/utah_draw_predictive/mountain_lion.py",
+          "engine/utah_draw_predictive/private_lands_antlerless_elk.py",
+          "engine/utah_draw_predictive/exclusions.py",
+          "engine/utah_draw_predictive/random_only.py",
+          "engine/utah_draw_predictive/youth.py"
+        ],
+        "draw_designs": [
+          "COUGAR_LICENSE_BASED",
+          "PRIVATE_LANDS_ONLY_ANTLERLESS_ELK",
+          "YOUTH_OTC_OR_AVAILABILITY",
+          "OTC_OR_REMAINING_TARGET",
+          "LANDOWNER_BIG_GAME",
+          "MITIGATION_OR_DEPREDATION_BIG_GAME"
+        ],
+        "algorithm_statuses": [
+          "REFERENCE_LICENSE_BASED_NO_DRAW",
+          "MODELED_ALLOCATION",
+          "MODELED_AVAILABILITY",
+          "EXCLUDED_NOT_PREDICTIVE_DRAW"
+        ],
+        "probability_policy": "p_draw and all draw-pool probability fields must remain null"
+      },
+      "pending_or_review": {
+        "modules": [
+          "engine/utah_draw_predictive/classifier.py",
+          "engine/utah_draw_predictive/random_only.py",
+          "engine/utah_draw_predictive/youth.py"
+        ],
+        "draw_designs": [
+          "GENERAL_BIG_GAME_OTHER",
+          "RANDOM_ONLY_TARGET",
+          "UNKNOWN_TARGET"
+        ],
+        "algorithm_statuses": [
+          "IN_SCOPE_MODEL_PENDING",
+          "EXCLUDED_NOT_PREDICTIVE_DRAW",
+          "UNKNOWN_TARGET_NEEDS_REVIEW"
+        ],
+        "probability_policy": "Do not guess a design or fabricate probability"
+      }
+    }
+  },
+  "residency_rule_layer": {
+    "authority": "OFFICIAL_CURRENT_RESIDENT_AND_NONRESIDENT_QUOTA_LANES",
+    "rules": [
+      "CALCULATE_PROBABILITY_WITHIN_THE_APPLICABLE_RESIDENCY_LANE",
+      "ODD_BONUS_POOL_EXTRA_PERMIT_GOES_TO_MAX_POINT_SIDE",
+      "ONE_NONRESIDENT_PERMIT_IS_RANDOM_AFTER_BONUS_POINT_ROUND",
+      "DO_NOT_MERGE_RESIDENT_AND_NONRESIDENT_POOLS_BEFORE_OFFICIAL_CROSSOVER",
+      "CWMU_PUBLIC_DRAW_IS_RESIDENT_ONLY",
+      "SPORTSMAN_IS_RESIDENT_ONLY",
+      "EXPLICIT_OFFICIAL_RESIDENCY_SPLIT_OVERRIDES_DERIVED_ALLOCATION",
+      "SUPPORTED_TOTAL_ONLY_ALLOCATION_RULES_ARE_ALLOWLISTED",
+      "HISTORICAL_WINNER_SHARE_IS_PROHIBITED_AS_CURRENT_QUOTA_AUTHORITY"
+    ],
+    "forecast_policy": "Use the explicit official resident/nonresident split first. Apply a total-derived split only for a draw family with an allowlisted source-backed allocation rule. Unsupported total-only families block; historical winner share is never current quota authority.",
+    "resolver": "engine/utah_draw_predictive/permit_accessors.py",
+    "current_certification_status": "RESIDENCY_GUARD_ENFORCED_HOSTED_NORMAL_SPLIT_CONTRACT_RELEASED_CERTIFICATION_PENDING"
+  },
+  "applicant_behavior_model": {
+    "primary_anchor": "LATEST_OFFICIAL_UNSUCCESSFUL_APPLICANTS_ADVANCED_ONE_POINT",
+    "highest_priority_cohort": "HIGH_POINT_JUST_MISSED_UNSUCCESSFUL_APPLICANTS",
+    "secondary_components": [
+      "LOWER_POINT_NEW_ENTRANTS",
+      "HUNT_SWITCH_IN",
+      "HUNT_SWITCH_OUT",
+      "ATTRITION"
+    ],
+    "weight_policy": "Use family, residency, point-band, and cutoff-structure retention learned only from prior-year transitions. Select final weights by blind following-year accuracy, not an untested fixed multiplier."
+  },
+  "engine_roles": {
+    "post_family_calibration_owner": {
+      "path": "engine/utah_predictive_mixed",
+      "model_version": "mixed_predictive_v1.0.0",
+      "rule_version": "utah_draw_model_v1.0.0",
+      "status": "ACTIVE_POST_FAMILY_LAYER",
+      "responsibility": "Calibrates eligible design-family outputs using prior-year behavior, official quota, applicant rollover, and capped harvest demand pressure; passes Sportsman and random-only outputs through unchanged and never creates probability for non-draw rows"
+    },
+    "family_routing_owner": {
+      "path": "engine/utah_draw_predictive",
+      "status": "ACTIVE_SUPPORTING_AUTHORITY",
+      "responsibility": "Authoritative draw-design taxonomy, routing, family-specific probability rules, exclusions, allocation, and availability semantics"
+    },
+    "forecast_materialization_owner": {
+      "path": "engine/utah_bonus_predictive",
+      "pipeline_version": "hybrid_ml_v2.1.0",
+      "rule_version": "utah_bonus_rules_v1.1.0",
+      "status": "ACTIVE_BUILD_PIPELINE",
+      "responsibility": "Historical cohort forecast, uncertainty, design-family orchestration, backtest materialization, and prediction artifact packaging; directory name does not make it the engine for every draw design"
+    },
+    "deterministic_rules_owner": {
+      "path": "engine/utah",
+      "status": "ACTIVE_FOUNDATION",
+      "responsibility": "Utah draw mechanics, deterministic simulation, demand and quota foundations, validation, and base materialization"
+    }
+  },
+  "engine_directory_allowlist": [
+    "utah",
+    "utah_bonus_predictive",
+    "utah_draw_predictive",
+    "utah_predictive_mixed"
+  ],
+  "truth_authority": {
+    "current_hunt_and_permit_reference": {
+      "path": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
+      "storage": "GIT_TRACKED",
+      "required_locally": true,
+      "verified_sha256": "dd87461a76555c73b74fb0df069b47d66ac979b096ab25d9395a2c78f860a24b"
+    },
+    "normalized_draw_actuals": {
+      "path": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
+      "storage": "REPO_EXTERNAL_RUNTIME_DATA",
+      "required_for_prediction_rebuild": true,
+      "allowed_missing_for_code_only_tasks": true
+    },
+    "normalized_harvest_actuals": {
+      "path": "data_truth/harvest_results_truth/normalized",
+      "storage": "MIXED_GIT_AND_REPO_EXTERNAL_DATA",
+      "required_for_prediction_rebuild": true
+    },
+    "scoring_rule": "Only official scorable actual draw rows with retained lineage may determine prediction accuracy"
+  },
+  "runtime_artifacts": [
+    {
+      "role": "research_summary",
+      "path": "processed_data/hunt_research_2026_summary.json",
+      "external_url": "https://json.uoga.workers.dev/processed_data/hunt_research_2026_summary.json",
+      "local_policy": "OPTIONAL_R2_BACKED"
+    },
+    {
+      "role": "research_index",
+      "path": "processed_data/hunt_research_2026_split/hunt_research_2026.index.json",
+      "external_url": "https://json.uoga.workers.dev/processed_data/hunt_research_2026_split/hunt_research_2026.index.json",
+      "local_policy": "GIT_TRACKED"
+    },
+    {
+      "role": "research_ladder",
+      "path": "processed_data/hunt_research_2026_ladder.json",
+      "external_url": "https://json.uoga.workers.dev/processed_data/hunt_research_2026_ladder.json",
+      "local_policy": "OPTIONAL_R2_BACKED"
+    },
+    {
+      "role": "research_details",
+      "path": "processed_data/hunt_research_2026_split/hunt_research_2026.details.json",
+      "external_url": "https://json.uoga.workers.dev/processed_data/hunt_research_2026_split/hunt_research_2026.details.json",
+      "local_policy": "OPTIONAL_R2_BACKED"
+    },
+    {
+      "role": "predictive_runtime_csv",
+      "path": "processed_data/draw_reality_engine_predictive_v2.csv",
+      "external_url": "https://json.uoga.workers.dev/processed_data/draw_reality_engine_predictive_v2.csv",
+      "local_policy": "OPTIONAL_R2_BACKED"
+    },
+    {
+      "role": "point_ladder_csv",
+      "path": "processed_data/point_ladder_view.csv",
+      "external_url": "https://json.uoga.workers.dev/processed_data/point_ladder_view.csv",
+      "local_policy": "OPTIONAL_R2_BACKED"
+    }
+  ],
+  "latest_evidence": {
+    "checked_in_manifest": {
+      "path": "processed_data/utah_bonus_predictive_manifest.json",
+      "generated_at": "2026-08-27T12:37:43.345007-06:00",
+      "pipeline_version": "hybrid_ml_v2.1.0",
+      "forecast_year": 2026,
+      "prediction_rows": 40642,
+      "backtest_rows": 15166,
+      "duplicate_prediction_keys": 0,
+      "database_sha256_at_build": "dd87461a76555c73b74fb0df069b47d66ac979b096ab25d9395a2c78f860a24b",
+      "normalized_draw_truth_sha256": "94189f6c0bbb90ad597a8f0cd3f3d96b2be1983b0d927665d18d3673da920474",
+      "frozen_prediction_sha256": "9e4c0f1a66678cd63df88512e45ba71d63746a6b21d7e4038fecb142f40e9d5e",
+      "local_promotion_status": "LOCAL_REBUILT_HOSTED_EQUIVALENCE_PENDING"
+    },
+    "local_prediction_promotion_2026_08_27": {
+      "record": "processed_data/local_prediction_promotion_2026.json",
+      "candidate": "audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260827_certification_candidate",
+      "promoted_manifest_sha256": "8bef8cd755d657419a0948449ef37a4205af84d1b3e589082244da6c3d5f2af0",
+      "frozen_prediction_sha256": "9e4c0f1a66678cd63df88512e45ba71d63746a6b21d7e4038fecb142f40e9d5e",
+      "joined_actual_keys": 13968,
+      "unexpected_actual_engine_or_key_gaps": 0,
+      "duplicate_prediction_key_groups": 0,
+      "duplicate_actual_key_groups": 0,
+      "hosted_action": "NONE"
+    },
+    "hosted_runtime_comparison_2026_08_27": {
+      "audit": "audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260827_certification_candidate/r2_runtime_equivalence_2026-08-27.json",
+      "mode": "READ_ONLY_NO_R2_WRITE",
+      "status": "HOSTED_EQUIVALENCE_PENDING_OR_MISMATCH",
+      "predictive_runtime_csv": {
+        "comparison": "CONTENT_AND_SCHEMA_MISMATCH",
+        "local_rows": 40642,
+        "remote_rows": 35016,
+        "local_sha256": "9e4c0f1a66678cd63df88512e45ba71d63746a6b21d7e4038fecb142f40e9d5e",
+        "remote_sha256": "e2841a41d608b28a2967226f8d97087a447caabe5dd6ebe86fabd2d9d31a1095"
+      },
+      "research_index": {
+        "comparison": "CONTENT_MISMATCH_SCHEMA_MATCH",
+        "local_sha256": "5f0a20d7c43652a187255f7b1b97e98fa55e656da9120090dca21a6605877063",
+        "remote_sha256": "fa98e37cd1ab3e00604f300bbaaf95a97f0def1147ce04f42793193159c6a1e6"
+      },
+      "local_not_hydrated": [
+        "research_summary",
+        "research_ladder",
+        "research_details",
+        "point_ladder_csv"
+      ],
+      "hosted_action": "NONE"
+    },
+    "hosted_runtime_contract_audit_2026_08_27": {
+      "audit": "audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260827_certification_candidate/r2_review_copy_2026-08-27/runtime_contract_audit_v3.json",
+      "deployment_readiness_manifest": "audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260827_certification_candidate/r2_review_copy_2026-08-27/deployment_readiness_manifest_v3.json",
+      "mode": "READ_ONLY_REVIEW_COPY_NO_R2_WRITE",
+      "normal_research_runtime": "SPLIT_CANONICAL_CONTRACT",
+      "predictive_csv_loaded_by_default": false,
+      "hosted_only_predictive_fields": 34,
+      "legacy_fallback_referenced_hosted_only_fields": [
+        "display_odds_pct",
+        "prior_year_success_rate"
+      ],
+      "deployment_readiness": "NOT_DEPLOYMENT_READY",
+      "hosted_action": "NONE"
+    },
+    "local_split_contract_candidate_2026_08_27": {
+      "candidate_root": "audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260827_certification_candidate/research_split_contract_candidate_2026-08-27",
+      "validation": "audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260827_certification_candidate/research_split_contract_candidate_2026-08-27/candidate_contract_validation.json",
+      "release_readiness_manifest": "audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260827_certification_candidate/research_split_contract_candidate_2026-08-27/release_readiness_manifest.json",
+      "mode": "HOSTED_R2_AND_CLOUDFLARE_PAGES_RELEASED",
+      "status": "HOSTED_NORMAL_SPLIT_CONTRACT_HASH_VERIFIED",
+      "frozen_prediction_sha256": "9e4c0f1a66678cd63df88512e45ba71d63746a6b21d7e4038fecb142f40e9d5e",
+      "frozen_prediction_rows": 40642,
+      "candidate_index_hunt_codes": 1471,
+      "summary_only_historical_reference_hunt_codes": 320,
+      "frozen_keys_missing_from_ladder": 0,
+      "frozen_keys_missing_from_point_ladder": 0,
+      "normal_split_contract_schema_compatible": true,
+      "predictive_csv_schema_compatible": false,
+      "browser_smoke_tests": [
+        "DB1058 Resident 12 points",
+        "BR7004 Resident 0 points: 18 resident / 2 nonresident / 36 ladder rows"
+      ],
+      "browser_console_errors_or_warnings": 0,
+      "hosted_action": "RELEASED_2026_08_28"
+    },
+    "hosted_split_contract_release_2026_08_28": {
+      "release_record": "audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260827_certification_candidate/r2_authorized_release_20260828T010028Z/release_outcome_manifest.json",
+      "site": "https://huntbuilder.pages.dev",
+      "research_data_version": "20260828-certified-split-contract-1",
+      "normal_split_contract_public_hash_verification": "PASS",
+      "summary_sha256": "766fb9131c25e21768084c4f3c65991a766343a1adfea8baf1b6404afea30de7",
+      "index_sha256": "fac60c2aba1c4bca4c354b30dd8e953468a93b99621bc8eeab85f32281190e83",
+      "ladder_sha256": "1a45732cf45232ded9f9f3e81ac9827a0522326020af141abfc9a0b546644a5d",
+      "details_sha256": "67ab489bebe6e7bbf9f76058527b8afc401d9ca2f5a75ca7c89fecf714f2812a",
+      "live_smoke_test": "BR7004 Nonresident 0 points rendered 18 resident / 2 nonresident permits; loading status cleared",
+      "prediction_accuracy_certified": false
+    },
+    "hosted_runtime_observed_2026_08_26": {
+      "runtime_model_version": "mixed_predictive_v1.0.0",
+      "runtime_rule_version": "utah_draw_model_v1.0.0",
+      "summary_rows": 5124,
+      "summary_hunt_codes": 1697,
+      "index_hunt_codes": 1471,
+      "predictive_csv_rows": 35016,
+      "data_as_of": "2026-07-05"
+    }
+  },
+  "known_contract_drift": [
+    {
+      "id": "PRIVATE_LANDS_ANTLERLESS_STATUS",
+      "status": "UNRESOLVED_REQUIRES_REVIEW",
+      "detail": "Artifact uses MODELED_ALLOCATION while tests and older documentation expect capped MODELED_AVAILABILITY"
+    },
+    {
+      "id": "PRIVATE_LANDS_COVERAGE_FIELD",
+      "status": "UNRESOLVED_REQUIRES_REVIEW",
+      "detail": "Coverage report lacks private_lands_only_antlerless_elk_modeled_capped_permits"
+    },
+    {
+      "id": "SPORTSMAN_2017_COUGAR_ROW",
+      "status": "UNRESOLVED_REQUIRES_REVIEW",
+      "detail": "2017 Sportsman reconstruction returns 10 rows while the test contract expects 11 including cougar"
+    },
+    {
+      "id": "EB1007_YOUTH_ELK_STATUS",
+      "status": "UNRESOLVED_REQUIRES_REVIEW",
+      "detail": "EB1007 forecast currently remains IN_SCOPE_MODEL_PENDING while the test contract expects MODELED_RANDOM_ONLY"
+    },
+    {
+      "id": "GENERIC_SIMULATOR_RESIDENCY_SEQUENCE",
+      "status": "UNRESOLVED_REQUIRES_REVIEW",
+      "detail": "The deterministic simulator uses global bonus max and random counters over residency buckets instead of fully separate residency rounds followed by only eligible official crossover"
+    },
+    {
+      "id": "LOCAL_TO_R2_RUNTIME_EQUIVALENCE",
+      "status": "UNRESOLVED_REQUIRES_REVIEW",
+      "detail": "The normal four-file Research split contract was released and public-hash-verified on 2026-08-28. The legacy predictive CSV remains content/schema-different (35,016 hosted rows versus 40,642 local) and is not part of the normal Research load path; retain this review item while the fallback remains available."
+    }
+  ],
+  "protected_invariants": [
+    "DO_NOT_CREATE_NEW_ENGINE_STACK_WITHOUT_TYLER_APPROVAL",
+    "DO_NOT_ROUTE_DIFFERENT_DRAW_DESIGNS_THROUGH_ONE_GENERIC_FORMULA",
+    "DRAW_DESIGN_IS_PRIMARY_ROUTING_AUTHORITY",
+    "MIXED_LAYER_MUST_PRESERVE_FAMILY_ENGINE_MECHANICS",
+    "BEAR_HUNT_AND_RESTRICTED_PURSUIT_ARE_DISTINCT_BONUS_PROGRAMS",
+    "RESIDENCY_IS_A_RULE_LAYER_NOT_A_POST_HOC_LABEL",
+    "LAST_YEAR_HIGH_POINT_UNSUCCESSFUL_COHORT_IS_PRIMARY_DEMAND_ANCHOR",
+    "DO_NOT_TREAT_MAX_POOL_STATUS_AS_AUTOMATIC_100_PERCENT",
+    "DO_NOT_FABRICATE_PROBABILITY_FROM_PERMIT_TOTALS_OR_REFERENCE_ROWS",
+    "DO_NOT_MERGE_OVERLAY_PERMITS_INTO_PUBLIC_DRAW_QUOTA",
+    "DO_NOT_SCORE_UNSCORABLE_OR_ALLOCATION_ONLY_ROWS",
+    "DO_NOT_PROMOTE_WITHOUT_BLIND_FOLLOWING_YEAR_ACCURACY_EVIDENCE",
+    "DO_NOT_PUBLISH_OR_UPLOAD_WITHOUT_EXPLICIT_TYLER_AUTHORIZATION"
+  ],
+  "required_documents": [
+    "docs/CURRENT_STATE.md",
+    "docs/UTAH_DRAW_DESIGN_BASELINE.md",
+    "docs/decisions/ADR-0001-repository-memory-authority.md",
+    "docs/decisions/ADR-0002-prediction-engine-roles.md",
+    "docs/decisions/ADR-0003-truth-and-scoring-authority.md",
+    "docs/decisions/ADR-0004-r2-runtime-data-policy.md",
+    "docs/decisions/ADR-0005-prediction-promotion-standard.md"
+  ],
+  "commands": {
+    "validate_memory": "npm run validate:project-memory",
+    "repository_test": "npm test",
+    "prediction_materialize": "python -m engine.utah_bonus_predictive.materialize --output-dir processed_data --forecast-year 2026 --history-years 2018,2019,2020,2021,2022,2023,2024,2025",
+    "prediction_materialize_without_upstream_rebuild": "python -m engine.utah_bonus_predictive.materialize --output-dir processed_data --forecast-year 2026 --history-years 2018,2019,2020,2021,2022,2023,2024,2025 --skip-upstream",
+    "certified_local_promotion": "python scripts/promote_certified_prediction_candidate.py --candidate audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260827_certification_candidate --apply"
+  }
+}

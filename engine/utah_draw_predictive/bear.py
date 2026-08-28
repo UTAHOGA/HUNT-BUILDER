@@ -22,6 +22,7 @@ from . import (
     append_reason_codes,
 )
 from .sportsman import is_sportsman_permit_row
+from .permit_accessors import target_residency_permit_allocation
 
 
 MODEL_STRATEGY_NAME = "bear_bonus_phase8"
@@ -189,6 +190,10 @@ def is_bear_row(row: Mapping[str, object]) -> bool:
 
 @lru_cache(maxsize=1)
 def _parse_official_bear_draw_odds_pdf() -> dict[str, dict[str, object]]:
+    if not BEAR_DRAW_ODDS_SOURCE_PDF.exists():
+        # A missing repo-external source is a hydration blocker, not permission
+        # to guess bear pursuit subtype or crash unrelated classification work.
+        return {}
     try:
         import pdfplumber
     except Exception as exc:
@@ -583,25 +588,14 @@ def _trend(prior_level: int | None, forecast_level: int | None) -> str:
 
 def _forecast_quota_for_residency(
     db_row: Mapping[str, object],
-    hunt_code: str,
     residency: str,
-    latest_year: int,
-    total_drawn_by_code_year: Mapping[tuple[str, int], dict[str, int]],
+    forecast_year: int,
+    source_year: int | None = None,
 ) -> int:
-    res_specific = _to_int(db_row.get("permits_2026_res"))
-    nr_specific = _to_int(db_row.get("permits_2026_nr"))
-    total = _to_int(db_row.get("permits_2026_total"))
-    if res_specific or nr_specific:
-        return res_specific if residency == "Resident" else nr_specific
-    observed = total_drawn_by_code_year.get((hunt_code, latest_year), {})
-    observed_total = sum(int(value) for value in observed.values())
-    if total <= 0:
+    allocation = target_residency_permit_allocation(db_row, forecast_year, source_year=source_year)
+    if not allocation.supported:
         return 0
-    if observed_total <= 0:
-        return total if residency == "Resident" else 0
-    resident_drawn = int(observed.get("Resident", 0))
-    resident_permits = max(0, min(total, round(total * (resident_drawn / max(observed_total, 1)))))
-    return resident_permits if residency == "Resident" else max(0, total - resident_permits)
+    return allocation.for_residency(residency)
 
 
 def _has_published_permit_split(db_row: Mapping[str, object]) -> bool:
@@ -633,7 +627,7 @@ def _data_quality_flags(
         flags.append("MISSING_MULTIPLE_YEARS")
     if total_applicants < 5:
         flags.append("LOW_APPLICANT_COUNT")
-    if public_quota == 1:
+    if public_quota == 1 and max_point_permits == 0:
         flags.append("ONE_PERMIT_RANDOM_ONLY")
     if max_point_permits == 0 and public_quota > 0:
         flags.append("NO_MAX_POINT_POOL")
@@ -794,6 +788,9 @@ def build_bear_draw_odds_source_audit(
     summary = {
         "source_year": BEAR_DRAW_ODDS_SOURCE_YEAR,
         "source_file": BEAR_DRAW_ODDS_SOURCE_RELATIVE,
+        "source_status": "AVAILABLE" if BEAR_DRAW_ODDS_SOURCE_PDF.exists() else "MISSING_REPO_EXTERNAL_SOURCE",
+        "blocker": not BEAR_DRAW_ODDS_SOURCE_PDF.exists(),
+        "production_ready": BEAR_DRAW_ODDS_SOURCE_PDF.exists(),
         "bear_hunt_codes_found_in_official_draw_odds_pdf": len(official_rows),
         "bear_pursuit_hunt_codes_found_in_official_draw_odds_pdf": len(pursuit_codes_in_pdf),
         "pursuit_hunt_codes_found_in_official_draw_odds_pdf": pursuit_codes_in_pdf,
@@ -933,7 +930,12 @@ def build_bear_bonus_predictions(
             earliest_source_year = available_years[0] if available_years else default_earliest_source_year
             latest_ladder = ladders.get((subtype, latest_year, history_hunt_code, history_residency), {}) if available_years else {}
             prior_total = sum(int(values.get("total", 0)) for values in latest_ladder.values())
-            public_quota = _forecast_quota_for_residency(db_row, history_hunt_code, residency, latest_year, total_drawn_by_code_year)
+            public_quota = _forecast_quota_for_residency(
+                db_row,
+                residency,
+                forecast_year,
+                source_year=latest_year,
+            )
             base = _base_row(
                 forecast_year=forecast_year,
                 source_years_used_text=source_years_used_text,
@@ -1140,7 +1142,7 @@ def build_bear_bonus_predictions(
                 report_counts["pending"] += 1
                 continue
 
-            split = split_utah_bonus_permits(public_quota)
+            split = split_utah_bonus_permits(public_quota, residency)
             max_point_permits = split.maxPointPermits
             random_permits = split.randomPermits
             forecast_ladder = _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)

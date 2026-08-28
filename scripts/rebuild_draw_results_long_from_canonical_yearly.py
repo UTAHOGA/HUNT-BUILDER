@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
-"""Rebuild draw_results_long.csv from DWR-table-shaped yearly canonical files.
+"""Rebuild draw_results_long.csv from official yearly canonical files.
 
 This is intentionally strict: if any canonical yearly file still has the old
 `residency` split-row column, the script refuses to write the long file. The
-long file should be one durable shape, not mixed old/new row models.
+long file should be one durable shape, not mixed old/new row models.  The
+explicit ``--allow-split-row-canonical`` mode supports the repository's current
+uniform split-row canonical set without silently mixing shapes.
 """
 
 from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import shutil
 from datetime import datetime, timezone
@@ -112,18 +115,27 @@ def union_header(headers: list[list[str]]) -> list[str]:
     return output
 
 
-def validate_headers(files: list[Path], headers: dict[Path, list[str]]) -> list[dict[str, str]]:
+def validate_headers(
+    files: list[Path],
+    headers: dict[Path, list[str]],
+    allow_split_row_canonical: bool,
+) -> list[dict[str, str]]:
     problems: list[dict[str, str]] = []
     for path in files:
         header = headers[path]
-        if "residency" in header:
+        if "residency" in header and not allow_split_row_canonical:
             problems.append(
                 {
                     "file": str(path.relative_to(ROOT)).replace("\\", "/"),
                     "problem": "old_split_residency_column_present",
                 }
             )
-        for required in ["resident_eligible_applicants", "nonresident_eligible_applicants"]:
+        required_columns = (
+            ["actual_draw_year", "residency", "eligible_applicants", "total_permits"]
+            if allow_split_row_canonical
+            else ["resident_eligible_applicants", "nonresident_eligible_applicants"]
+        )
+        for required in required_columns:
             if required not in header:
                 problems.append(
                     {
@@ -144,10 +156,22 @@ def write_problem_audit(problems: list[dict[str, str]]) -> None:
         writer.writerows(problems)
 
 
-def rebuild(write: bool) -> dict[str, object]:
+def _sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def rebuild(
+    write: bool,
+    allow_split_row_canonical: bool = False,
+    backup_existing: bool = True,
+) -> dict[str, object]:
     files = canonical_files()
     headers = {path: read_header(path) for path in files}
-    problems = validate_headers(files, headers)
+    problems = validate_headers(files, headers, allow_split_row_canonical)
     if problems:
         write_problem_audit(problems)
         return {
@@ -161,17 +185,20 @@ def rebuild(write: bool) -> dict[str, object]:
     row_counts: dict[str, int] = {}
     total_rows = 0
     output_path = LONG_FILE if write else AUDIT_DIR / "draw_results_long_DWR_TABLE_SHAPE_PREVIEW.csv"
+    build_path = output_path.with_suffix(output_path.suffix + ".tmp") if write else output_path
     AUDIT_DIR.mkdir(parents=True, exist_ok=True)
 
     backup_path = ""
-    if write:
+    prior_output_sha256 = _sha256(LONG_FILE) if write and LONG_FILE.exists() else ""
+    if write and backup_existing and LONG_FILE.exists():
         BACKUP_DIR.mkdir(parents=True, exist_ok=True)
         timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
         backup = BACKUP_DIR / f"{LONG_FILE.stem}.before_dwr_table_shape_{timestamp}{LONG_FILE.suffix}"
         shutil.copy2(LONG_FILE, backup)
         backup_path = str(backup.relative_to(ROOT)).replace("\\", "/")
 
-    with output_path.open("w", newline="", encoding="utf-8") as out_handle:
+    years_seen: dict[str, int] = {}
+    with build_path.open("w", newline="", encoding="utf-8") as out_handle:
         writer = csv.DictWriter(out_handle, fieldnames=output_header, lineterminator="\n")
         writer.writeheader()
         for path in files:
@@ -180,18 +207,28 @@ def rebuild(write: bool) -> dict[str, object]:
                 reader = csv.DictReader(in_handle)
                 for row in reader:
                     writer.writerow({column: row.get(column, "") for column in output_header})
+                    actual_draw_year = str(row.get("actual_draw_year") or "").strip()
+                    if actual_draw_year:
+                        years_seen[actual_draw_year] = years_seen.get(actual_draw_year, 0) + 1
                     count += 1
             row_counts[str(path.relative_to(ROOT)).replace("\\", "/")] = count
             total_rows += count
+
+    if write:
+        build_path.replace(output_path)
 
     return {
         "write": write,
         "blocked": False,
         "output_path": str(output_path.relative_to(ROOT)).replace("\\", "/"),
         "backup_path": backup_path,
+        "prior_output_sha256": prior_output_sha256,
+        "output_sha256": _sha256(output_path),
+        "canonical_shape": "split_residency_rows" if allow_split_row_canonical else "collapsed_residency_columns",
         "canonical_file_count": len(files),
         "rows": total_rows,
         "columns": len(output_header),
+        "actual_draw_year_row_counts": dict(sorted(years_seen.items())),
         "row_counts": row_counts,
     }
 
@@ -199,12 +236,26 @@ def rebuild(write: bool) -> dict[str, object]:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--write", action="store_true")
+    parser.add_argument(
+        "--allow-split-row-canonical",
+        action="store_true",
+        help="Rebuild from the current uniform split-residency canonical yearly files.",
+    )
+    parser.add_argument(
+        "--no-backup",
+        action="store_true",
+        help="Record the prior hash but do not duplicate the existing large generated long file.",
+    )
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
-    summary = rebuild(write=args.write)
+    summary = rebuild(
+        write=args.write,
+        allow_split_row_canonical=args.allow_split_row_canonical,
+        backup_existing=not args.no_backup,
+    )
     AUDIT_DIR.mkdir(parents=True, exist_ok=True)
     REPORT_PATH.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(summary, indent=2))

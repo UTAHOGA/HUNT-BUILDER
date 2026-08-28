@@ -28,8 +28,16 @@ SOURCE_AUDIT = TRUTH_DIR / "draw_results_all_years_source_audit.csv"
 PROCESSED_SUMMARY_JSON = PROCESSED_DIR / "draw_results_all_years_summary.json"
 PROCESSED_SUMMARY_MD = PROCESSED_DIR / "draw_results_all_years_summary.md"
 PROCESSED_SOURCE_AUDIT = PROCESSED_DIR / "draw_results_all_years_source_audit.csv"
+SOURCE_IDENTITY_COLLISIONS = TRUTH_DIR / "draw_results_unresolved_source_identity_collisions.csv"
 
-KEY_FIELDS = ["hunt_code", "year", "draw_pool", "residency", "points"]
+COARSE_KEY_FIELDS = ["hunt_code", "year", "draw_pool", "residency", "points"]
+SOURCE_IDENTITY_KEY_FIELDS = COARSE_KEY_FIELDS + [
+    "source_scope",
+    "source_file",
+    "record_type",
+    "pdf_page",
+    "source_row_identifier",
+]
 SOURCE_AUDIT_FIELDS = [
     "source_file",
     "year",
@@ -94,6 +102,21 @@ def read_crosswalk_current_codes() -> set[str]:
     return {row["current_hunt_code"] for row in read_csv(CROSSWALK) if row.get("current_hunt_code")}
 
 
+def source_identity_key(row: dict[str, str], year: str | None = None) -> tuple[str, ...]:
+    return (
+        year if year is not None else row_year(row),
+        row.get("hunt_code", ""),
+        row.get("draw_pool", ""),
+        row.get("residency", ""),
+        row.get("points", ""),
+        row.get("source_scope", ""),
+        row.get("source_file", ""),
+        row.get("record_type", ""),
+        row.get("pdf_page", ""),
+        row.get("source_row_identifier", ""),
+    )
+
+
 def build_source_audit(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     grouped: dict[tuple[str, str], list[dict[str, str]]] = defaultdict(list)
     for row in rows:
@@ -133,9 +156,8 @@ def build_summary(rows: list[dict[str, str]], source_audit_rows: list[dict[str, 
     database_coverage_by_year: Counter[str] = Counter()
     blank_hunt_code_rows = 0
     invalid_year_rows = 0
-    duplicate_key_count = 0
-    duplicate_examples: list[dict[str, str]] = []
-    seen_keys: set[tuple[str, str, str, str, str]] = set()
+    coarse_groups: dict[tuple[str, ...], list[dict[str, str]]] = defaultdict(list)
+    source_identity_groups: dict[tuple[str, ...], list[dict[str, str]]] = defaultdict(list)
 
     for row in rows:
         year = row_year(row)
@@ -155,35 +177,37 @@ def build_summary(rows: list[dict[str, str]], source_audit_rows: list[dict[str, 
             blank_hunt_code_rows += 1
         if hunt_code in database_codes:
             database_coverage_by_year[year] += 1
-        key = (
+        coarse_key = (
             year,
             row.get("hunt_code", ""),
             row.get("draw_pool", ""),
             row.get("residency", ""),
             row.get("points", ""),
         )
-        if key in seen_keys:
-            duplicate_key_count += 1
-            if len(duplicate_examples) < 10:
-                duplicate_examples.append(
-                    {
-                        "year": key[0],
-                        "hunt_code": key[1],
-                        "draw_pool": key[2],
-                        "residency": key[3],
-                        "points": key[4],
-                    }
-                )
-        else:
-            seen_keys.add(key)
+        coarse_groups[coarse_key].append(row)
+        source_identity_groups[source_identity_key(row, year)].append(row)
+
+    coarse_key_collision_count = sum(len(group) - 1 for group in coarse_groups.values() if len(group) > 1)
+    source_identity_collisions = [
+        (key, group) for key, group in source_identity_groups.items() if len(group) > 1
+    ]
+    source_identity_collision_count = sum(len(group) - 1 for _, group in source_identity_collisions)
+    source_identity_collision_examples = [
+        {
+            "year": key[0], "hunt_code": key[1], "draw_pool": key[2], "residency": key[3],
+            "points": key[4], "source_scope": key[5], "source_file": key[6],
+            "record_type": key[7], "pdf_page": key[8], "source_row_identifier": key[9], "row_count": len(group),
+        }
+        for key, group in source_identity_collisions[:10]
+    ]
 
     blocker_codes = []
     if blank_hunt_code_rows:
         blocker_codes.append("BLANK_HUNT_CODES")
     if invalid_year_rows:
         blocker_codes.append("INVALID_DRAW_YEARS")
-    if duplicate_key_count:
-        blocker_codes.append("DUPLICATE_DRAW_RESULT_KEYS")
+    if source_identity_collision_count:
+        blocker_codes.append("UNRESOLVED_SOURCE_IDENTITY_DUPLICATES")
 
     summary = {
         "artifact": "draw_results_all_years_cumulative_truth",
@@ -209,9 +233,13 @@ def build_summary(rows: list[dict[str, str]], source_audit_rows: list[dict[str, 
         "database_truth_match_counts": dict(sorted(database_truth_counts.items())),
         "blank_hunt_code_rows": blank_hunt_code_rows,
         "invalid_year_rows": invalid_year_rows,
-        "duplicate_key_fields": KEY_FIELDS,
-        "duplicate_key_count": duplicate_key_count,
-        "duplicate_key_examples": duplicate_examples,
+        "coarse_key_fields": COARSE_KEY_FIELDS,
+        "coarse_key_collision_count": coarse_key_collision_count,
+        "cross_scope_only_collision_count": coarse_key_collision_count - source_identity_collision_count,
+        "source_identity_key_fields": SOURCE_IDENTITY_KEY_FIELDS,
+        "source_identity_collision_group_count": len(source_identity_collisions),
+        "source_identity_collision_count": source_identity_collision_count,
+        "source_identity_collision_examples": source_identity_collision_examples,
         "blocker_count": len(blocker_codes),
         "blockers": blocker_codes,
         "outputs": {
@@ -222,10 +250,12 @@ def build_summary(rows: list[dict[str, str]], source_audit_rows: list[dict[str, 
             "processed_source_audit_csv": str(PROCESSED_SOURCE_AUDIT.relative_to(ROOT)).replace("\\", "/"),
             "processed_summary_json": str(PROCESSED_SUMMARY_JSON.relative_to(ROOT)).replace("\\", "/"),
             "processed_summary_md": str(PROCESSED_SUMMARY_MD.relative_to(ROOT)).replace("\\", "/"),
+            "source_identity_collisions_csv": str(SOURCE_IDENTITY_COLLISIONS.relative_to(ROOT)).replace("\\", "/"),
         },
         "guardrails": [
             "Draw year is treated as reported_hunt_year_inferred for historical draw-result rows.",
             "Model target year is draw/result year + 1 for predictive alignment summaries.",
+            "Cross-scope records remain distinct official evidence and are not silently merged.",
             "This validation layer does not rewrite current hunt codes or probability math.",
         ],
     }
@@ -246,7 +276,9 @@ def write_markdown(summary: dict) -> None:
         f"- Source audit rows: {summary['source_audit_rows']}",
         f"- Blank hunt-code rows: {summary['blank_hunt_code_rows']}",
         f"- Invalid year rows: {summary['invalid_year_rows']}",
-        f"- Duplicate draw-result keys: {summary['duplicate_key_count']}",
+        f"- Coarse-key collisions across all source scopes: {summary['coarse_key_collision_count']}",
+        f"- Cross-scope-only collisions: {summary['cross_scope_only_collision_count']}",
+        f"- Unresolved same-source identity collisions: {summary['source_identity_collision_count']}",
         f"- Blockers: {summary['blocker_count']}",
         "",
         "## Draw Year Counts",
@@ -269,6 +301,29 @@ def main() -> None:
 
     write_csv(SOURCE_AUDIT, source_audit_rows, SOURCE_AUDIT_FIELDS)
     write_csv(PROCESSED_SOURCE_AUDIT, source_audit_rows, SOURCE_AUDIT_FIELDS)
+    collision_groups: dict[tuple[str, ...], list[dict[str, str]]] = defaultdict(list)
+    for row in rows:
+        collision_groups[source_identity_key(row)].append(row)
+    collision_rows: list[dict[str, str]] = []
+    for key, group in sorted(collision_groups.items()):
+        if len(group) < 2:
+            continue
+        for row in group:
+            collision_rows.append(
+                {
+                    "year": key[0], "hunt_code": key[1], "draw_pool": key[2], "residency": key[3],
+                    "points": key[4], "source_scope": key[5], "source_file": key[6],
+                    "record_type": key[7], "pdf_page": key[8], "source_row_identifier": key[9], "identity_group_row_count": str(len(group)),
+                    "source_dataset": row.get("source_dataset", ""), "algorithm_status": row.get("algorithm_status", ""),
+                    "eligible_applicants": row.get("eligible_applicants", ""), "total_permits": row.get("total_permits", ""),
+                    "p_draw": row.get("p_draw", ""), "notes": row.get("notes", ""),
+                }
+            )
+    collision_fields = [
+        "year", "hunt_code", "draw_pool", "residency", "points", "source_scope", "source_file", "record_type",
+        "pdf_page", "source_row_identifier", "identity_group_row_count", "source_dataset", "algorithm_status", "eligible_applicants", "total_permits", "p_draw", "notes",
+    ]
+    write_csv(SOURCE_IDENTITY_COLLISIONS, collision_rows, collision_fields)
     write_json(SUMMARY_JSON, summary)
     write_json(PROCESSED_SUMMARY_JSON, summary)
     write_markdown(summary)

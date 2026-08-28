@@ -3,7 +3,7 @@ from engine.utah_bonus_predictive.split import split_utah_bonus_permits
 
 
 def test_nonresident_one_permit_is_random_only() -> None:
-    split = split_utah_bonus_permits(1)
+    split = split_utah_bonus_permits(1, "Nonresident")
     assert split.maxPointPermits == 0
     assert split.randomPermits == 1
     assert split.randomOnly is True

@@ -1,3 +1,4 @@
+import argparse
 import csv
 import re
 import urllib.request
@@ -75,11 +76,17 @@ def extract_annual_biggame_links(html: str, min_year: int = 2020) -> list[dict]:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Download official Utah DWR harvest and annual big-game reports.")
+    parser.add_argument("--min-year", type=int, default=2020, help="Earliest report-generation year to collect.")
+    parser.add_argument("--manifest", type=Path, default=MANIFEST, help="Output source manifest path.")
+    parser.add_argument("--log", type=Path, default=LOG, help="Output download-log path.")
+    args = parser.parse_args()
+
     harvest_html = fetch_text(HARVEST_PAGE)
     annual_html = fetch_text(ANNUAL_PAGE)
 
-    links = extract_links_by_year(harvest_html, min_year=2020)
-    links += extract_annual_biggame_links(annual_html, min_year=2020)
+    links = extract_links_by_year(harvest_html, min_year=args.min_year)
+    links += extract_annual_biggame_links(annual_html, min_year=args.min_year)
 
     # de-dupe by URL
     uniq = {}
@@ -87,8 +94,8 @@ def main() -> None:
         uniq[r["url"]] = r
     rows = list(uniq.values())
 
-    MANIFEST.parent.mkdir(parents=True, exist_ok=True)
-    with MANIFEST.open("w", encoding="utf-8", newline="") as f:
+    args.manifest.parent.mkdir(parents=True, exist_ok=True)
+    with args.manifest.open("w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=["publish_year", "label", "url"])
         w.writeheader()
         w.writerows(rows)
@@ -124,7 +131,8 @@ def main() -> None:
             failed += 1
             dlog.append({"publish_year": year, "label": label, "url": url, "status": f"failed:{type(e).__name__}", "dest_path": ""})
 
-    with LOG.open("w", encoding="utf-8", newline="") as f:
+    args.log.parent.mkdir(parents=True, exist_ok=True)
+    with args.log.open("w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=["publish_year", "label", "url", "status", "dest_path"])
         w.writeheader()
         w.writerows(dlog)
@@ -133,8 +141,8 @@ def main() -> None:
     print(f"DOWNLOADED={downloaded}")
     print(f"SKIPPED_EXISTS={skipped}")
     print(f"FAILED={failed}")
-    print(f"MANIFEST={MANIFEST}")
-    print(f"LOG={LOG}")
+    print(f"MANIFEST={args.manifest}")
+    print(f"LOG={args.log}")
 
 
 if __name__ == "__main__":

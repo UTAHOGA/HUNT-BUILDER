@@ -59,7 +59,13 @@ def norm(value: str | None) -> str:
 
 
 def draw_year(row: dict[str, str]) -> str:
-    return norm(row.get("year") or row.get("draw_year") or row.get("reported_draw_year") or row.get("reported_hunt_year_inferred"))
+    return norm(
+        row.get("actual_draw_year")
+        or row.get("year")
+        or row.get("draw_year")
+        or row.get("reported_draw_year")
+        or row.get("reported_hunt_year_inferred")
+    )
 
 
 def relative(path: Path) -> str:

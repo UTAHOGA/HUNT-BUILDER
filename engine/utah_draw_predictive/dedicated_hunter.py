@@ -16,7 +16,7 @@ from . import (
     TARGET_SCOPE_TARGET,
     append_reason_codes,
 )
-from .permit_accessors import target_permit_for_residency, target_permit_total
+from .permit_accessors import target_permit_total, target_residency_permit_allocation
 from .preference_ladder_normalizer import normalize_preference_ladder_rows
 
 
@@ -384,40 +384,21 @@ def _status(probability: float) -> str:
     return "BEHIND"
 
 
-def _forecast_quota_for_residency(
-    lane: str,
-    hunt_code: str,
-    residency: str,
-    forecast_total: int,
-    latest_year: int,
-    total_drawn_by_code_year: Mapping[tuple[str, str, int], dict[str, int]],
-) -> int:
-    if residency == "All":
-        return forecast_total
-    observed = total_drawn_by_code_year.get((lane, hunt_code, latest_year), {})
-    res_total = sum(int(value) for value in observed.values())
-    if forecast_total <= 0:
-        return 0
-    if res_total <= 0:
-        return forecast_total if residency == "Resident" else 0
-    resident_drawn = int(observed.get("Resident", 0))
-    resident_quota = max(0, min(forecast_total, round(forecast_total * (resident_drawn / max(res_total, 1)))))
-    if residency == "Resident":
-        return resident_quota
-    return max(0, forecast_total - resident_quota)
-
-
-def _explicit_quota_for_residency(
+def _official_quota_for_residency(
     row: Mapping[str, object],
     residency: str,
     forecast_year: int,
     source_year: int | None = None,
-) -> int | None:
-    if residency == "All":
-        permit = target_permit_total(row, forecast_year, source_year=source_year)
-        return permit.value if permit.value > 0 else None
-    permit = target_permit_for_residency(row, forecast_year, residency, source_year=source_year)
-    return permit.value if permit.value > 0 else None
+) -> tuple[int | None, str]:
+    allocation = target_residency_permit_allocation(
+        row,
+        forecast_year,
+        source_year=source_year,
+        draw_system_type="PREFERENCE_DEDICATED_HUNTER_DEER",
+    )
+    if not allocation.supported:
+        return None, allocation.authority
+    return allocation.for_residency(residency), allocation.authority
 
 
 def _forecast_applicant_ladder(
@@ -498,9 +479,14 @@ def build_preference_dedicated_hunter_predictions(
 
         for residency in residencies_to_model:
             available_years = sorted(year for year in set(years_by_key.get((lane, hunt_code, residency), [])) if year in history_year_set)
-            explicit_quota = _explicit_quota_for_residency(db_row, residency, forecast_year, source_year=latest_source_year)
+            official_quota, quota_authority = _official_quota_for_residency(
+                db_row,
+                residency,
+                forecast_year,
+                source_year=latest_source_year,
+            )
             if not available_years:
-                if residency == "Nonresident" and explicit_quota is None:
+                if residency == "Nonresident" and official_quota is None:
                     rows.append(
                         {
                             "model_version": MODEL_VERSION,
@@ -548,7 +534,7 @@ def build_preference_dedicated_hunter_predictions(
                             "model_strategy": model_strategy,
                             "preference_model_valid": "TRUE",
                             "preference_model_note": "Structural nonresident point-0 row emitted for a total-only dedicated-hunter preference hunt with no blind-history nonresident ladder; probability remains zero until source history or explicit quota exists.",
-                            "reason_codes": "NO_NONRESIDENT_HISTORY_TOTAL_ONLY_STRUCTURAL_ROW|NO_EXPLICIT_NONRESIDENT_QUOTA",
+                            "reason_codes": f"NO_NONRESIDENT_HISTORY_STRUCTURAL_ROW|{quota_authority}",
                             "weapon": weapon,
                             "draw_system_type": "PREFERENCE_DEDICATED_HUNTER_DEER",
                         }
@@ -558,12 +544,7 @@ def build_preference_dedicated_hunter_predictions(
 
             latest_ladder = ladders.get((lane, code_latest_source_year, hunt_code, residency), {})
             prior_total = sum(int(values["drawn"]) for values in latest_ladder.values())
-            use_explicit_quota = explicit_quota is not None
-            forecast_quota = (
-                explicit_quota
-                if use_explicit_quota
-                else _forecast_quota_for_residency(lane, hunt_code, residency, forecast_total, code_latest_source_year, total_drawn_by_code_year)
-            )
+            forecast_quota = official_quota if official_quota is not None else 0
             if forecast_quota <= 0:
                 if residency == "Nonresident":
                     rows.append(
@@ -613,7 +594,7 @@ def build_preference_dedicated_hunter_predictions(
                             "model_strategy": model_strategy,
                             "preference_model_valid": "TRUE",
                             "preference_model_note": "Structural nonresident point-0 row emitted because blind-history quota inference produced zero nonresident permits for this total-only dedicated-hunter preference hunt.",
-                            "reason_codes": "ZERO_INFERRED_NONRESIDENT_QUOTA_STRUCTURAL_ROW|NO_EXPLICIT_NONRESIDENT_QUOTA",
+                            "reason_codes": f"ZERO_OFFICIAL_NONRESIDENT_QUOTA_STRUCTURAL_ROW|{quota_authority}",
                             "weapon": weapon,
                             "draw_system_type": "PREFERENCE_DEDICATED_HUNTER_DEER",
                         }
@@ -694,7 +675,7 @@ def build_preference_dedicated_hunter_predictions(
                             else f"Forecasted from {code_latest_source_year} youth dedicated hunter ladder as a separate preference lane; no 20 percent youth-reserve rule applied."
                         ) if available_years else "Seeded from explicit current-year nonresident quota where no prior nonresident ladder exists.",
                         "reason_codes": append_reason_codes(
-                            "",
+                            quota_authority,
                             TAIL_CALIBRATION_REASON if tail_calibrated else "",
                         ),
                         "weapon": weapon,

@@ -112,7 +112,12 @@ def derive_quota(quota: Quota, hunt: Hunt, config: UtahRuleConfig) -> Quota:
 
     if hunt.rule_system == DrawSystem.BONUS:
         if reserved is None:
+            # Utah assigns the extra permit in an odd pool to the max-point
+            # side. Residency-specific one-permit nonresident handling belongs
+            # in the residency-aware prediction/simulation layer.
             reserved = int(total * config.bonus_reserved_fraction)
+            if config.bonus_reserved_fraction == 0.5 and total % 2:
+                reserved += 1
         if random_quota is None:
             random_quota = max(total - reserved, 0)
     elif hunt.rule_system == DrawSystem.PREFERENCE:

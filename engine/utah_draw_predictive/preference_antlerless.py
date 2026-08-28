@@ -16,7 +16,7 @@ from . import (
     TARGET_SCOPE_TARGET,
     append_reason_codes,
 )
-from .permit_accessors import target_permit_for_residency, target_permit_total
+from .permit_accessors import target_permit_for_residency, target_permit_total, target_residency_permit_allocation
 from .preference_ladder_normalizer import normalize_preference_ladder_rows
 
 
@@ -430,27 +430,22 @@ def _status(probability: float) -> str:
     return "BEHIND"
 
 
-def _forecast_quota_for_residency(
-    hunt_code: str,
-    draw_pool: str,
+def _official_quota_for_residency(
+    row: Mapping[str, object],
     residency: str,
-    forecast_total: int,
-    latest_year: int,
-    total_drawn_by_code_year: Mapping[tuple[str, str, int], dict[str, int]],
-) -> int:
-    if residency == "All":
-        return forecast_total
-    observed = total_drawn_by_code_year.get((hunt_code, draw_pool, latest_year), {})
-    res_total = sum(int(value) for value in observed.values())
-    if forecast_total <= 0:
-        return 0
-    if res_total <= 0:
-        return forecast_total if residency == "Resident" else 0
-    resident_drawn = int(observed.get("Resident", 0))
-    resident_quota = max(0, min(forecast_total, round(forecast_total * (resident_drawn / max(res_total, 1)))))
-    if residency == "Resident":
-        return resident_quota
-    return max(0, forecast_total - resident_quota)
+    forecast_year: int,
+    source_year: int | None = None,
+    draw_system_type: str | None = None,
+) -> tuple[int | None, str]:
+    allocation = target_residency_permit_allocation(
+        row,
+        forecast_year,
+        source_year=source_year,
+        draw_system_type=draw_system_type,
+    )
+    if not allocation.supported:
+        return None, allocation.authority
+    return allocation.for_residency(residency), allocation.authority
 
 
 def _forecast_applicant_ladder(
@@ -640,7 +635,14 @@ def build_preference_antlerless_predictions(
             code_latest_source_year = max(available_years)
             latest_ladder = ladders[(draw_system_type, code_latest_source_year, history_source_hunt_code, draw_pool, residency)]
             prior_total = sum(int(values["drawn"]) for values in latest_ladder.values())
-            forecast_quota = _forecast_quota_for_residency(history_source_hunt_code, draw_pool, residency, forecast_total, code_latest_source_year, total_drawn_by_code_year)
+            official_quota, quota_authority = _official_quota_for_residency(
+                db_row,
+                residency,
+                forecast_year,
+                source_year=latest_source_year,
+                draw_system_type=draw_system_type,
+            )
+            forecast_quota = official_quota if official_quota is not None else 0
             if forecast_quota <= 0:
                 continue
             modeled_residencies.add(residency)
@@ -726,7 +728,7 @@ def build_preference_antlerless_predictions(
                         "weapon": weapon,
                         "draw_system_type": draw_system_type,
                         "reason_codes": append_reason_codes(
-                            "",
+                            quota_authority,
                             TAIL_CALIBRATION_REASON if tail_calibrated else "",
                         ),
                     }

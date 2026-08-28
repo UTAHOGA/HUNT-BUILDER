@@ -13,6 +13,29 @@ def test_turkey_bear_and_cougar_remain_target_scope() -> None:
     assert classify_draw_system_type({"hunt_type": "Limited Entry", "species": "Cougar", "sex_type": ""}) == "COUGAR_LICENSE_BASED"
 
 
+def test_source_classified_turkey_rows_override_the_legacy_max_weighted_alias() -> None:
+    adult = {
+        "hunt_code": "TK1018",
+        "hunt_type": "CWMU",
+        "species": "Turkey",
+        "draw_design": "MAX_WEIGHTED_SPLIT",
+        "source_is_youth": "false",
+    }
+    youth = {**adult, "source_is_youth": "true"}
+    assert classify_draw_system_type(adult) == "BONUS_TURKEY"
+    assert classify_draw_system_type(youth) == "YOUTH_TURKEY_SET_ASIDE"
+
+
+def test_cwmu_big_game_rows_override_the_legacy_max_weighted_alias() -> None:
+    row = {
+        "hunt_code": "DB1200",
+        "hunt_type": "CWMU",
+        "species": "Deer",
+        "draw_design": "MAX_WEIGHTED_SPLIT",
+    }
+    assert classify_draw_system_type(row) == "BONUS_CWMU_BIG_GAME"
+
+
 def test_antlerless_moose_and_ewe_bighorn_can_classify_as_bonus() -> None:
     assert classify_draw_system_type({"hunt_type": "Limited Entry", "species": "Moose", "sex_type": "Antlerless"}) == "BONUS_ANTLERLESS_MOOSE"
     assert classify_draw_system_type({"hunt_type": "General Season", "species": "Rocky Mountain Bighorn Sheep", "sex_type": "Ewe"}) == "BONUS_EWE_BIGHORN"

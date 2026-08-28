@@ -36,11 +36,14 @@ ACTUAL_2026_CANDIDATES = [
     REPO / "outputs" / "2026 scorable draw results.csv",
     REPO / "outputs" / "2026" / "2026 scorable draw results.csv",
 ]
-ACTUAL_2026 = next((path for path in ACTUAL_2026_CANDIDATES if path.exists()), ACTUAL_2026_CANDIDATES[0])
+EXTERNAL_ACTUAL_2026 = next((path for path in ACTUAL_2026_CANDIDATES if path.exists()), None)
 RUNTIME_DRAFT_DIR = REPO / "data_model" / "runtime_drafts"
 DEFAULT_OUT_ROOT = REPO / "audits" / "prediction_blind_backtests" / "2025_to_2026"
 BLACK_BEAR_CROSSWALK_2026 = REPO / "data_truth" / "crosswalk_truth" / "normalized" / "black_bear_BR_2024_2025_2026_crosswalk.csv"
-HISTORY_YEARS = [2021, 2022, 2023, 2024, 2025]
+CURRENT_DATABASE_2026 = REPO / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "DATABASE.csv"
+# Use every available pre-target official draw year.  The blind filter still
+# excludes 2026 actuals until the forecast is frozen.
+HISTORY_YEARS = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
 CWMU_TURKEY_CODES = {"TK1018", "TK1021"}
 SCORABLE_RECORD_TYPES = {
     "point_level_draw_result",
@@ -70,6 +73,7 @@ LEAN_TRUTH_COLUMNS = [
     "draw_design",
     "hunt_class",
     "draw_pool",
+    "source_is_youth",
     "residency",
     "points",
     "eligible_applicants",
@@ -198,6 +202,36 @@ def is_scorable_history_row(row: Mapping[str, Any]) -> bool:
     if not norm_code(row.get("hunt_code")):
         return False
     return probability_from_actual(row) is not None or parse_int(row.get("eligible_applicants")) is not None
+
+
+def build_or_resolve_actual_2026(out_dir: Path) -> Path:
+    """Resolve official 2026 scoring truth after the prediction is frozen."""
+
+    if EXTERNAL_ACTUAL_2026 is not None:
+        return EXTERNAL_ACTUAL_2026
+
+    _, rows = read_csv(SOURCE_LONG)
+    actual_rows: list[dict[str, Any]] = []
+    for source_row in rows:
+        if draw_year(source_row) != 2026:
+            continue
+        for row in expanded_engine_rows(source_row):
+            record_type = clean(row.get("record_type")).lower()
+            if record_type and record_type not in SCORABLE_RECORD_TYPES:
+                continue
+            if not norm_code(row.get("hunt_code")) or probability_from_actual(row) is None:
+                continue
+            item = {field: row.get(field, "") for field in LEAN_TRUTH_COLUMNS}
+            item["year"] = "2026"
+            item["actual_draw_year"] = "2026"
+            actual_rows.append(item)
+
+    if not actual_rows:
+        raise RuntimeError("Official draw_results_long.csv contains no scorable 2026 actual truth rows.")
+
+    output = out_dir / "comparison_phase" / "official_2026_scorable_truth.csv"
+    write_csv(output, LEAN_TRUTH_COLUMNS, actual_rows)
+    return output
 
 
 def expanded_engine_rows(row: Mapping[str, Any]) -> list[dict[str, Any]]:
@@ -392,7 +426,10 @@ def run_prediction_phase(out_dir: Path, filtered_truth_path: Path, runtime_dir: 
         materialize_mod.TRUTH_PATH = original_truth_path
         materialize_mod.RUNTIME_DRAFT_DIR = original_runtime_dir
 
-    frozen_prediction = prediction_dir / "ml_draw_predictions_v1.csv"
+    # This is the materializer's unified predictive surface.  It includes the
+    # separate bear, turkey, youth, sportsman, and main big-game engines.  The
+    # main-bonus-only file is a feeder and cannot certify full engine coverage.
+    frozen_prediction = prediction_dir / "draw_reality_engine_predictive_v2.csv"
     return {
         "prediction_dir": prediction_dir,
         "artifacts": {key: rel(Path(value)) for key, value in artifacts.items()},
@@ -482,10 +519,31 @@ def load_current_only_bear_split_codes() -> set[str]:
     }
 
 
+def load_current_database_by_code() -> dict[str, dict[str, str]]:
+    """Load the official current Planner identity for scoped disposition checks."""
+    if not CURRENT_DATABASE_2026.exists():
+        return {}
+    _, rows = read_csv(CURRENT_DATABASE_2026)
+    return {
+        norm_code(row.get("hunt_code")): row
+        for row in rows
+        if norm_code(row.get("hunt_code"))
+    }
+
+
+def is_current_planner_non_draw_bear(row: Mapping[str, Any]) -> bool:
+    text = " ".join(
+        clean(row.get(field)).lower()
+        for field in ("hunt_type", "hunt_class", "weapon", "draw_design", "draw_pool")
+    )
+    return "o.t.c" in text or "over the counter" in text or "pursuit" in text or "unlimited" in text
+
+
 def disposition_for_unmatched_actual(
     row: Mapping[str, Any],
     history_code_years: Mapping[str, set[int]],
     current_only_bear_split_codes: set[str],
+    current_database_by_code: Mapping[str, Mapping[str, Any]],
 ) -> tuple[str, str]:
     """Classify unmatched actual rows without using 2026 results as history."""
     code = norm_code(row.get("hunt_code"))
@@ -501,6 +559,12 @@ def disposition_for_unmatched_actual(
         return (
             "SOURCE_VERIFIED_PREDICTION_GAP_CURRENT_ONLY_BEAR_SPLIT_CHILD",
             "Official bear crosswalk marks this 2026 code as a current split/addition with no prior draw row; resolve with an explicit source/crosswalk route before treating as fully modeled.",
+        )
+    current_planner_row = current_database_by_code.get(code)
+    if draw_system_type == "BEAR_DRAW" and current_planner_row and is_current_planner_non_draw_bear(current_planner_row):
+        return (
+            "SOURCE_VERIFIED_CURRENT_PLANNER_NON_DRAW_BEAR",
+            "The official current DWR Planner identifies this code as an OTC/pursuit or other non-draw bear design, while the time-aligned official draw-result source contains a historic public-draw ladder. This is a source-timing/design transition, not a missing probability-engine key; retain it for dated-snapshot reconciliation rather than scoring it as a forecast failure.",
         )
     if not history_years:
         return (
@@ -557,6 +621,19 @@ def aggregate_prediction_rows(rows: list[dict[str, Any]], key_field: str) -> dic
         first = group[0]
         item = dict(first)
         item["probability"] = sum(probs) / len(probs)
+        applicant_counts = [
+            value
+            for row in group
+            if (value := parse_float(row.get("predicted_applicants"))) is not None
+        ]
+        if applicant_counts:
+            item["predicted_applicants"] = sum(applicant_counts) / len(applicant_counts)
+            item["predicted_applicants_min"] = min(applicant_counts)
+            item["predicted_applicants_max"] = max(applicant_counts)
+        for field in ("guaranteed_at_2025", "rollover_anchor_next_point"):
+            values = [clean(row.get(field)) for row in group if clean(row.get(field))]
+            if values:
+                item[field] = values[0]
         item["row_count_aggregated"] = len(group)
         item["probability_min"] = min(probs)
         item["probability_max"] = max(probs)
@@ -626,11 +703,87 @@ def metric_summary(errors: list[float]) -> dict[str, Any]:
     }
 
 
-def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
+def applicant_metric_summary(predicted_actual_pairs: list[tuple[float, float]]) -> dict[str, Any]:
+    if not predicted_actual_pairs:
+        return {
+            "rows": 0,
+            "mae_applicants": "",
+            "rmse_applicants": "",
+            "bias_applicants": "",
+            "median_absolute_error_applicants": "",
+            "weighted_absolute_percentage_error": "",
+        }
+    errors = [predicted - actual for predicted, actual in predicted_actual_pairs]
+    actual_total = sum(actual for _, actual in predicted_actual_pairs)
+    return {
+        "rows": len(errors),
+        "mae_applicants": sum(abs(error) for error in errors) / len(errors),
+        "rmse_applicants": math.sqrt(sum(error * error for error in errors) / len(errors)),
+        "bias_applicants": sum(errors) / len(errors),
+        "median_absolute_error_applicants": median(abs(error) for error in errors),
+        "weighted_absolute_percentage_error": (
+            sum(abs(error) for error in errors) / actual_total if actual_total > 0 else ""
+        ),
+    }
+
+
+def actual_rows_for_year(year: int) -> dict[tuple[str, str, str, str], dict[str, Any]]:
+    """Load official scorable actual rows for a historical comparison year."""
+
+    _, source_rows = read_csv(SOURCE_LONG)
+    rows: list[dict[str, Any]] = []
+    for source_row in source_rows:
+        if draw_year(source_row) != year:
+            continue
+        for row in expanded_engine_rows(source_row):
+            record_type = clean(row.get("record_type")).lower()
+            if record_type and record_type not in SCORABLE_RECORD_TYPES:
+                continue
+            applicants = parse_float(row.get("eligible_applicants"))
+            probability = probability_from_actual(row)
+            if applicants is not None and applicants <= 0:
+                continue
+            if probability is None:
+                continue
+            draw_system_type = classify_actual_row(row)
+            if draw_system_type in EXCLUDED_ACTUAL_DRAW_SYSTEM_TYPES:
+                continue
+            key = actual_key(row, draw_system_type)
+            if not key[0] or key[3] in {"UNKNOWN", "UNKNOWN_TARGET", "OUT_OF_SCOPE_NON_TARGET"}:
+                continue
+            rows.append(
+                {
+                    "key": key,
+                    "hunt_code": key[0],
+                    "residency": key[1],
+                    "points": key[2],
+                    "draw_system_type": key[3],
+                    "species": clean(row.get("species")),
+                    "hunt_name": clean(row.get("hunt_name")),
+                    "probability": probability,
+                    "eligible_applicants": clean(row.get("eligible_applicants")),
+                    "total_permits": clean(row.get("total_permits")),
+                    "record_type": clean(row.get("record_type")),
+                }
+            )
+    return aggregate_actual_rows(rows, "key")
+
+
+def just_missed_target_point(prediction: Mapping[str, Any]) -> int | None:
+    draw_system_type = clean(prediction.get("draw_system_type"))
+    if draw_system_type.startswith("PREFERENCE_"):
+        prior_cutoff = parse_int(prediction.get("guaranteed_at_2025"))
+        return None if prior_cutoff is None else prior_cutoff + 1
+    if draw_system_type.startswith("BONUS_"):
+        return parse_int(prediction.get("rollover_anchor_next_point"))
+    return None
+
+
+def compare_to_actual(out_dir: Path, frozen_prediction: Path, actual_2026: Path) -> dict[str, Any]:
     if str(REPO) not in sys.path:
         sys.path.insert(0, str(REPO))
     pred_headers, pred_raw = read_csv(frozen_prediction)
-    actual_headers, actual_raw = read_csv(ACTUAL_2026)
+    actual_headers, actual_raw = read_csv(actual_2026)
 
     prediction_rows: list[dict[str, Any]] = []
     prediction_without_probability = 0
@@ -653,6 +806,21 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
                 "species": clean(row.get("species")),
                 "hunt_name": clean(row.get("hunt_name")),
                 "probability": probability,
+                "predicted_applicants": next(
+                    (
+                        value
+                        for field in (
+                            "forecast_applicants_at_level",
+                            "applicants_at_level",
+                            "projected_applicants_2026",
+                            "projected_applicants",
+                        )
+                        if (value := parse_float(row.get(field))) is not None
+                    ),
+                    None,
+                ),
+                "guaranteed_at_2025": clean(row.get("guaranteed_at_2025")),
+                "rollover_anchor_next_point": clean(row.get("rollover_anchor_next_point")),
                 "algorithm_status": clean(row.get("algorithm_status")),
                 "model_strategy": clean(row.get("model_strategy")),
             }
@@ -697,12 +865,20 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
     actual_dupes = Counter(row["key"] for row in actual_rows)
     predictions = aggregate_prediction_rows(prediction_rows, "key")
     actuals = aggregate_actual_rows(actual_rows, "key")
+    actuals_2025 = actual_rows_for_year(2025)
 
     rowlevel: list[dict[str, Any]] = []
     errors: list[float] = []
     by_system: dict[str, list[float]] = defaultdict(list)
     by_species: dict[str, list[float]] = defaultdict(list)
     by_residency: dict[str, list[float]] = defaultdict(list)
+    just_missed_rows: list[dict[str, Any]] = []
+    model_applicant_pairs: list[tuple[float, float]] = []
+    just_missed_model_pairs: list[tuple[float, float]] = []
+    just_missed_same_level_pairs: list[tuple[float, float]] = []
+    just_missed_rollforward_pairs: list[tuple[float, float]] = []
+    just_missed_model_pairs_with_same_level: list[tuple[float, float]] = []
+    just_missed_model_pairs_with_rollforward: list[tuple[float, float]] = []
 
     for key in sorted(set(predictions) & set(actuals)):
         pred = predictions[key]
@@ -712,6 +888,49 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
         by_system[key[3]].append(error)
         by_species[actual.get("species") or pred.get("species") or "UNKNOWN"].append(error)
         by_residency[key[1]].append(error)
+        predicted_applicants = parse_float(pred.get("predicted_applicants"))
+        actual_applicants = parse_float(actual.get("eligible_applicants"))
+        point_value = parse_int(key[2])
+        target_point = just_missed_target_point(pred)
+        is_just_missed = point_value is not None and target_point is not None and point_value == target_point
+        prior_same_level = actuals_2025.get(key)
+        prior_same_level_applicants = parse_float((prior_same_level or {}).get("eligible_applicants"))
+        prior_unsuccessful_applicants: float | None = None
+        if point_value is not None and point_value > 0:
+            prior_source_key = (key[0], key[1], str(point_value - 1), key[3])
+            prior_source = actuals_2025.get(prior_source_key)
+            if prior_source is not None:
+                prior_eligible = parse_float(prior_source.get("eligible_applicants"))
+                prior_drawn = parse_float(prior_source.get("total_permits"))
+                if prior_eligible is not None and prior_drawn is not None:
+                    prior_unsuccessful_applicants = max(prior_eligible - prior_drawn, 0.0)
+        if predicted_applicants is not None and actual_applicants is not None:
+            model_applicant_pairs.append((predicted_applicants, actual_applicants))
+        if is_just_missed and predicted_applicants is not None and actual_applicants is not None:
+            just_missed_model_pairs.append((predicted_applicants, actual_applicants))
+            if prior_same_level_applicants is not None:
+                just_missed_same_level_pairs.append((prior_same_level_applicants, actual_applicants))
+                just_missed_model_pairs_with_same_level.append((predicted_applicants, actual_applicants))
+            if prior_unsuccessful_applicants is not None:
+                just_missed_rollforward_pairs.append((prior_unsuccessful_applicants, actual_applicants))
+                just_missed_model_pairs_with_rollforward.append((predicted_applicants, actual_applicants))
+            just_missed_rows.append(
+                {
+                    "hunt_code": key[0],
+                    "residency": key[1],
+                    "points": key[2],
+                    "draw_system_type": key[3],
+                    "species": actual.get("species") or pred.get("species"),
+                    "hunt_name": actual.get("hunt_name") or pred.get("hunt_name"),
+                    "just_missed_source_point_2025": point_value - 1 if point_value is not None else "",
+                    "predicted_applicants_2026": f"{predicted_applicants:.6f}",
+                    "actual_applicants_2026": f"{actual_applicants:.6f}",
+                    "model_applicant_error": f"{predicted_applicants - actual_applicants:.6f}",
+                    "prior_same_level_applicants_2025": "" if prior_same_level_applicants is None else f"{prior_same_level_applicants:.6f}",
+                    "prior_unsuccessful_source_cohort_2025": "" if prior_unsuccessful_applicants is None else f"{prior_unsuccessful_applicants:.6f}",
+                    "prediction_rows_aggregated": pred.get("row_count_aggregated", 1),
+                }
+            )
         rowlevel.append(
             {
                 "hunt_code": key[0],
@@ -722,6 +941,10 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
                 "hunt_name": actual.get("hunt_name") or pred.get("hunt_name"),
                 "predicted_probability": f"{pred['probability']:.9f}",
                 "actual_probability": f"{actual['probability']:.9f}",
+                "predicted_applicants": "" if predicted_applicants is None else f"{predicted_applicants:.6f}",
+                "actual_applicants": "" if actual_applicants is None else f"{actual_applicants:.6f}",
+                "applicant_error": "" if predicted_applicants is None or actual_applicants is None else f"{predicted_applicants - actual_applicants:.6f}",
+                "just_missed_successor_cohort": "TRUE" if is_just_missed else "FALSE",
                 "error": f"{error:.9f}",
                 "absolute_error": f"{abs(error):.9f}",
                 "prediction_rows_aggregated": pred.get("row_count_aggregated", 1),
@@ -735,6 +958,7 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
     unmatched_actuals = [actuals[key] for key in sorted(set(actuals) - set(predictions))]
     history_code_years = build_history_code_years()
     current_only_bear_split_codes = load_current_only_bear_split_codes()
+    current_database_by_code = load_current_database_by_code()
     source_verified_prediction_gaps: list[dict[str, Any]] = []
     unexpected_unmatched_actuals: list[dict[str, Any]] = []
     unmatched_disposition_counts: Counter[str] = Counter()
@@ -743,6 +967,7 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
             row,
             history_code_years,
             current_only_bear_split_codes,
+            current_database_by_code,
         )
         annotated = dict(row)
         annotated["disposition"] = disposition
@@ -788,6 +1013,10 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
             "hunt_name",
             "predicted_probability",
             "actual_probability",
+            "predicted_applicants",
+            "actual_applicants",
+            "applicant_error",
+            "just_missed_successor_cohort",
             "error",
             "absolute_error",
             "prediction_rows_aggregated",
@@ -796,6 +1025,25 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
             "model_strategy",
         ],
         rowlevel,
+    )
+    write_csv(
+        compare_dir / "just_missed_applicant_forecast_vs_2026_actual.csv",
+        [
+            "hunt_code",
+            "residency",
+            "points",
+            "draw_system_type",
+            "species",
+            "hunt_name",
+            "just_missed_source_point_2025",
+            "predicted_applicants_2026",
+            "actual_applicants_2026",
+            "model_applicant_error",
+            "prior_same_level_applicants_2025",
+            "prior_unsuccessful_source_cohort_2025",
+            "prediction_rows_aggregated",
+        ],
+        just_missed_rows,
     )
     write_csv(
         compare_dir / "unmatched_frozen_predictions.csv",
@@ -856,9 +1104,20 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
         grouped_rows,
     )
 
+    just_missed_model_metrics = applicant_metric_summary(just_missed_model_pairs)
+    just_missed_same_level_metrics = applicant_metric_summary(just_missed_same_level_pairs)
+    just_missed_rollforward_metrics = applicant_metric_summary(just_missed_rollforward_pairs)
+
+    def improvement_against(model: Mapping[str, Any], baseline: Mapping[str, Any]) -> float | str:
+        model_mae = model.get("mae_applicants")
+        baseline_mae = baseline.get("mae_applicants")
+        if not isinstance(model_mae, (int, float)) or not isinstance(baseline_mae, (int, float)) or baseline_mae <= 0:
+            return ""
+        return (baseline_mae - model_mae) / baseline_mae
+
     summary = {
         "prediction_file": rel(frozen_prediction),
-        "actual_file": rel(ACTUAL_2026),
+        "actual_file": rel(actual_2026),
         "prediction_rows_raw": len(pred_raw),
         "prediction_rows_with_probability": len(prediction_rows),
         "prediction_rows_without_probability": prediction_without_probability,
@@ -878,6 +1137,23 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
         "duplicate_actual_key_groups": len(duplicate_actual_rows),
         "join_key": "hunt_code + residency + points + draw_system_type",
         "overall_metrics": metric_summary(errors),
+        "applicant_forecast_metrics": applicant_metric_summary(model_applicant_pairs),
+        "just_missed_applicant_forecast": {
+            "definition": "The 2026 successor point immediately above the 2025 preference cutoff, or the bonus engine's declared rollover anchor next point.",
+            "model": just_missed_model_metrics,
+            "prior_same_point_baseline": just_missed_same_level_metrics,
+            "pure_prior_unsuccessful_rollforward_baseline": just_missed_rollforward_metrics,
+            "paired_model_for_prior_same_point_rows": applicant_metric_summary(just_missed_model_pairs_with_same_level),
+            "paired_model_for_pure_rollforward_rows": applicant_metric_summary(just_missed_model_pairs_with_rollforward),
+            "model_mae_improvement_vs_prior_same_point": improvement_against(
+                applicant_metric_summary(just_missed_model_pairs_with_same_level),
+                just_missed_same_level_metrics,
+            ),
+            "model_mae_improvement_vs_pure_prior_unsuccessful_rollforward": improvement_against(
+                applicant_metric_summary(just_missed_model_pairs_with_rollforward),
+                just_missed_rollforward_metrics,
+            ),
+        },
         "outputs": {
             "rowlevel": rel(compare_dir / "prediction_2025_to_2026_vs_actual_2026_rowlevel.csv"),
             "grouped": rel(compare_dir / "prediction_accuracy_grouped.csv"),
@@ -887,6 +1163,7 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path) -> dict[str, Any]:
             "unexpected_unmatched_actuals": rel(compare_dir / "unexpected_unmatched_2026_actuals.csv"),
             "duplicate_prediction_keys": rel(compare_dir / "duplicate_prediction_keys.csv"),
             "duplicate_actual_keys": rel(compare_dir / "duplicate_actual_keys.csv"),
+            "just_missed_applicant_forecast": rel(compare_dir / "just_missed_applicant_forecast_vs_2026_actual.csv"),
         },
     }
     write_json(compare_dir / "comparison_summary.json", summary)
@@ -908,7 +1185,7 @@ def main() -> int:
     run_started = datetime.now(timezone.utc).isoformat()
 
     if args.skip_prediction:
-        frozen_prediction = out_dir / "prediction_phase" / "ml_draw_predictions_v1.csv"
+        frozen_prediction = out_dir / "prediction_phase" / "draw_reality_engine_predictive_v2.csv"
         if not frozen_prediction.exists():
             raise FileNotFoundError(f"Missing frozen prediction file: {frozen_prediction}")
         prediction_info = {
@@ -926,6 +1203,7 @@ def main() -> int:
             runtime_info["main_bonus_rebuild"] = rebuild_main_bonus_frozen_inputs(filtered_info["path"], runtime_info["path"])
         prediction_info = run_prediction_phase(out_dir, filtered_info["path"], runtime_info["path"])
 
+    actual_2026 = build_or_resolve_actual_2026(out_dir)
     locked_manifest = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "run_started_utc": run_started,
@@ -946,13 +1224,13 @@ def main() -> int:
             "sha256": prediction_info["frozen_prediction_sha256"],
         },
         "actual_2026_reserved_for_scoring_only": {
-            "path": rel(ACTUAL_2026),
-            "sha256": sha256(ACTUAL_2026),
+            "path": rel(actual_2026),
+            "sha256": sha256(actual_2026),
         },
     }
     write_json(out_dir / "locked_prediction_manifest.json", locked_manifest)
 
-    comparison_summary = compare_to_actual(out_dir, prediction_info["frozen_prediction"])
+    comparison_summary = compare_to_actual(out_dir, prediction_info["frozen_prediction"], actual_2026)
     cleanup_summary = cleanup_large_temp_truth_files(out_dir, args.keep_temp_truth)
     final_summary = {
         "locked_prediction_manifest": rel(out_dir / "locked_prediction_manifest.json"),

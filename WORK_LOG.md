@@ -19011,3 +19011,234 @@ Scope:
 - Added repo-wide pre-2023 audit:
   - `audits\truth_organization_staging\source_import_inventory\CG9999_pre_2023_audit.csv`
 - Production not modified. draw_results_long.csv not edited. No production patch was applied.
+
+## 2026-08-26 - Repository-native project memory and architecture authority
+
+Scope:
+
+- Added a compact current-state briefing for Hunt Research, prediction-engine, truth, runtime, and build work.
+- Added a machine-readable engine authority contract that separates the four cooperating engine roles and records current promotion blockers.
+- Added accepted architecture decision records for repository memory, engine ownership, truth/scoring, R2 lifecycle, and promotion standards.
+- Added an automated project-memory validator and wired it into the normal `npm test` workflow.
+- Updated `AGENTS.MD` so future Codex tasks must load and validate the memory contract before related work.
+- Marked `docs/current_repo_engine_status.md` as a historical snapshot.
+- Did not change prediction math, truth data, generated prediction artifacts, hosted R2 objects, website runtime behavior, or deployment state.
+
+Files changed or added:
+
+- `AGENTS.MD`
+- `governance/engine-authority.json`
+- `docs/CURRENT_STATE.md`
+- `docs/decisions/README.md`
+- `docs/decisions/ADR-0001-repository-memory-authority.md`
+- `docs/decisions/ADR-0002-prediction-engine-roles.md`
+- `docs/decisions/ADR-0003-truth-and-scoring-authority.md`
+- `docs/decisions/ADR-0004-r2-runtime-data-policy.md`
+- `docs/decisions/ADR-0005-prediction-promotion-standard.md`
+- `scripts/validate-project-memory.js`
+- `tests/project-memory-contract.test.js`
+- `package.json`
+- `docs/current_repo_engine_status.md`
+- `WORK_LOG.md`
+
+Initial validator result:
+
+- Status: `PASS`.
+- Checks: `84`.
+- Active runtime model: `mixed_predictive_v1.0.0`.
+- Active build pipeline: `hybrid_ml_v2.1.0`.
+- Promotion status: `BLOCKED` pending the recorded data hydration, stale-build, blind-accuracy, and family-contract blockers.
+- Missing R2-backed files are reported as hydration warnings and do not authorize another engine design.
+
+## 2026-08-26 - Official Utah draw-design and residency baseline
+
+Scope:
+
+- Researched the current Utah DWR permit explanation, R657-62, 2026 big-game, antlerless, and black-bear guidebooks, group rules, Sportsman rules, and official historical draw reports.
+- Added `docs/UTAH_DRAW_DESIGN_BASELINE.md` as the source-backed matrix for bonus, preference, random-only, availability/allocation, youth overlays, bear hunting versus pursuit, resident/nonresident lanes, and applicant behavior.
+- Corrected the project memory contract so `engine/utah_predictive_mixed` is a post-family calibration layer rather than a universal draw design.
+- Recorded the latest unsuccessful high-point cohort advanced one point as the primary demand anchor; lower-point additions, switching, and attrition remain secondary and blind-backtested.
+- Made bonus permit splitting residency-aware. Odd pools round toward the max-point side, while a one-permit nonresident lane remains random after the bonus-point round.
+- Corrected the deterministic odd-pool split, normalized composite design/modifier labels for routing, and added focused tests.
+- Changed missing repo-external bear draw-odds evidence from a classification crash to an explicit blocked/pending source state.
+- Added unresolved certification blockers for total-only residency inference, the generic simulator residency sequence, and missing bear draw-odds hydration.
+
+Production state:
+
+- No prediction artifacts were rebuilt, published, uploaded, staged, committed, or deployed.
+- Prediction promotion remains blocked pending source hydration, official residency-split enforcement, simulator sequencing, and blind following-year scoring.
+
+## 2026-08-26 - Official report hydration, residency authority, rebuild, and blind scoring
+
+Scope:
+
+- Pulled the official Utah DWR reports linked from the big-game and other-species odds archives instead of treating historical reports as unavailable.
+- Hydrated all 20 linked 2018/2020 big-game PDFs and all 18 linked 2020-2025 bear/turkey PDFs, including the 2025 bear drawing-odds report.
+- Ran the generic official-PDF ingestion audits. The 2020 layouts extracted usable point rows; the already-hydrated 2018 legacy layout still needs its own canonical parser.
+- Rebuilt `data_truth/draw_results_truth/normalized/draw_results_long.csv` from canonical yearly inputs: 248,066 rows, 101 columns, draw years 2019 and 2021-2026, SHA-256 `48240cfded2661cd0dc74f43db4d0a31b230d85a123f42f4befbd79820f68b6a`.
+- Added one central official residency-allocation resolver. Explicit official resident/nonresident splits control; supported standard preference families may use the allowlisted official total-allocation rule; unsupported total-only and special/allocation/reference families block.
+- Removed historical resident/nonresident winner-share fallback from general deer, antlerless, Dedicated Hunter, bear, special bonus, turkey, and youth turkey builders.
+- Rebuilt the 2026 prediction artifacts successfully and added materializer handling for composite nonnumeric point labels and youth-reserve fields.
+- Extended the blind 2025-to-2026 backtest so the 2026 actual file can be generated from official normalized truth only after predictions are frozen.
+- Added paired applicant-count scoring for the declared high-point just-missed successor cohort against prior-same-point and pure prior-unsuccessful-rollforward baselines.
+
+Blind results:
+
+- Frozen prediction SHA-256: `f06a99dd38fcaa3a034130acbb983f661b3ee14589650902f24a790881f8a627`.
+- Joined prediction/actual keys: 12,795.
+- Probability MAE: 0.121038; RMSE: 0.280616; median absolute error: 0.011561; absolute error greater than 0.25: 1,919.
+- Just-missed paired model MAE versus prior-same-point baseline: 5.8716 versus 7.8253 applicants, a 24.97% improvement on 584 identical rows.
+- Just-missed paired model MAE versus pure unsuccessful-rollforward baseline: 5.1709 versus 5.0783 applicants on 702 identical rows; the model is 1.82% worse on MAE but has lower RMSE (11.7528 versus 12.5731).
+- A disclosed 75% latest-cohort bonus override was tested in a separate frozen run and rejected/reverted because it did not improve the stated just-missed MAE target.
+
+Remaining promotion blockers:
+
+- 12,570 duplicate prediction key groups from competing bonus surfaces.
+- 3,607 unexpected 2026 actual engine/key gaps, plus 186 source-verified exclusions or no-exact-history gaps.
+- Generic simulator residency sequence remains uncertified.
+- The official 2018 PDFs are present, but legacy-layout canonical extraction remains pending.
+
+Production state:
+
+- No files were staged, committed, pushed, uploaded to R2, published, or deployed.
+- Prediction promotion remains blocked; source hydration and local rebuild are complete, but blind reconciliation and certification are not.
+
+## 2026-08-26 - Official report-year folder correction and additional DWR sources
+
+- Corrected the raw-source storage convention: source PDFs are stored by the DWR report-generation year, not by the following model year.
+- Moved the 10 official 2018 big-game draw-odds PDFs from `pipeline/RAW/hunt_unit_database/2019/pdf/draw_odds/` to `pipeline/RAW/hunt_unit_database/2018/pdf/draw_odds/`.
+- Moved the 10 official 2020 big-game draw-odds PDFs from `pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/` to `pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/`.
+- Removed one misplaced 2026-named copy of the 2025 black-bear drawing-odds PDF after SHA-256 verification confirmed it was byte-identical to the correctly stored 2025 copy.
+- Pulled 66 official 2020+ annual/harvest reports from `https://wildlife.utah.gov/hunting/reports` and `https://wildlife.utah.gov/biggame/reports`; records are in `pipeline/manifests/utah_dwr_harvest_pdf_links_2020plus.csv` and `pipeline/manifests/harvest_pdf_download_log.csv`.
+- Pulled 25 supplemental species harvest artifacts with lineage in `pipeline/manifests/species_harvest_supplement_links.csv` and `pipeline/manifests/species_harvest_supplement_download_log.csv`.
+- Added a 14-row current DWR landowner-association reference extract at `pipeline/RAW/hunt_unit_database/2026/csv/official_landowner_associations_2026.csv`. It intentionally excludes public contact fields and is marked `LANDOWNER_ASSOCIATION_REFERENCE_ONLY` with `probability_truth_allowed=FALSE`.
+- Confirmed normalized scoreable draw truth remains present only for 2019 and 2021-2026. The 2018 and 2020 official PDFs are now in the correct raw folders but still require canonical extraction before they become scoreable truth.
+
+## 2026-08-26 - Local repository recovery check
+
+- Restored six files that were absent from the working tree but still tracked in `HEAD`: two background assets and four hard-copy PDFs.
+- Verified every restored file against its `HEAD` Git object hash.
+- Confirmed all seven existing canonical yearly draw-result files are locally present under `data_truth/draw_results_truth/normalized/canonical_yearly/`.
+- Confirmed the compressed master draw-results handoff is available from the configured Cloudflare public endpoint, but its decompressed SHA-256 (`93e9990f...`) differs from the locally rebuilt master (`48240cfd...`); it is an older recovery/archive candidate, not an overwrite source. No Cloudflare upload, Git staging, commit, or deployment was performed.
+
+## 2026-08-26 - Official hard-data recovery and live runtime lineage
+
+Scope:
+
+- Pulled and retained a dedicated 2026 UtahDraws draw-results/odds snapshot at `pipeline/RAW/hunt_unit_database/2026/json/draw_results/utahdraws_2026_20260826/`: 29 allowed endpoints, 1,077 hunts, and 22,018 point/residency rows with no endpoint failures. This includes general-season, limited-entry, once-in-a-lifetime species, Dedicated Hunter, and the separately labeled antlerless deer/elk/moose/pronghorn/ewe-sheep packages.
+- Completed the all-allowed-species official DWR draw-report archive pull in `pipeline/RAW/hunt_unit_database/_staging/draw_odds_deep_pull_20260826_203722/`: 275 official PDFs saved with hashes and source URLs in the manifest. The pull includes big game, antlerless, black bear, cougar, turkey, and Sportsman; wetland and non-turkey upland sources were intentionally excluded.
+- Pulled the full public DWR Hunt Planner category matrix: 30 of 30 source-table pulls succeeded, with a manifest in `pipeline/RAW/hunt_unit_database/_staging/huntplanner_full_matrix_20260826_204000/`.
+- Pulled the DWR Hunt Planner deep popup (`HaNumber`) data for all 1,433 active current-table hunt codes into `pipeline/RAW/hunt_unit_database/_staging/huntplanner_popup_deep_20260826_205700/`. All 1,433 fetches succeeded. The code universe came from the official `HuntTableData` matrix, not `DATABASE.csv`; it contains 29 active codes absent from the current database and is retained as reconciliation evidence only.
+- Mapped all 1,433 current Hunt Planner codes to the 1,077 current UtahDraws draw-result codes. The audit records 1,058 exact code matches, classified 375 Planner-only and 19 UtahDraws-only rows, and separates 275 CWMU and 10 Sportsman expected scope differences from 383 exact-code public-draw quota discrepancies that require review. The crosswalk is `pipeline/RAW/hunt_unit_database/_staging/huntplanner_popup_deep_20260826_205700/draw_results_crosswalk/huntplanner_to_utahdraws_draw_results_2026_crosswalk.csv`; it does not alter database or engine inputs.
+- Expanded DWR harvest collection from 2020+ to 2007+ without changing its original default. The annual collector discovered 213 current-page links and retained 172 files; 41 linked 2014–2016 bighorn-sheep URLs now return HTTP 404 and remain in the retry log. The species supplement collector discovered 120 links and retained 99 files; 21 currently return HTTP 404 and remain logged.
+- Re-probed all 41 unique failed official-harvest URLs; each returned HTTP 404. The evidence is retained in `pipeline/manifests/dwr_historical_harvest_broken_link_http_probe_20260826.csv`.
+- Added collection options to keep the 2026 UtahDraws-only snapshot distinct from the broad historical archive and to support explicit historical harvest-range manifests/logs.
+- Documented the exact hosted Hunt Research path and source-to-runtime rebuild chain in `docs/HARD_DATA_AND_RUNTIME_LINEAGE_2026-08-26.md`.
+
+Production state:
+
+- Verified that hosted Hunt Research normally reads R2 split-contract data (summary, split index, and ladder), not local `DATABASE.csv` and not a browser-run Python engine.
+- Verified that the current local `DATABASE.csv` hash differs from the database hash recorded in the existing predictive build manifest; local-to-hosted equivalence is therefore unproven.
+- No canonical truth, database, prediction output, R2 object, deployment, Git staging, commit, or push was performed.
+
+## 2026-08-26 - DWR draw-odds resolution for self-inconsistent Planner quotas
+
+- Compared every internally inconsistent matched public DWR Hunt Planner quota row to its current DWR draw-odds record.
+- DWR draw odds directly confirmed and reconciled 136 of 137 rows: 135 published valid DWR residency splits with a zero total, and `BR7004` published 18 resident / 0 nonresident / 20 total while draw odds confirmed 18 / 2 / 20.
+- `PD1056` was subsequently confirmed by Tyler as a DWR Hunt Planner typo. Its raw `63 / 4 / 0` remains retained, while the reviewed DWR record and draw odds agree on the corrected `36 / 4 / 40` value.
+- No canonical truth, database, prediction output, R2 object, deployment, Git staging, commit, or push was performed.
+
+## 2026-08-26 - DWR Hunt Planner quota-authority reconciliation
+
+- Confirmed the current DWR Hunt Planner `HuntTableData` surface is the authoritative published 2026 permit-quota source for the current hunt universe.
+- Added an audit-only reconciliation that preserves DWR quota values as authoritative and retains UtahDraws quota fields as draw-result evidence instead of attempting to overwrite either source.
+- The audit explicitly blocks split-dependent forecasting for DWR total-only rows and for DWR rows where published resident plus nonresident values do not equal the published total; it does not create a residency fallback.
+- No canonical truth, database, prediction output, R2 object, deployment, Git staging, commit, or push was performed.
+
+## 2026-08-27 - Expo reconciliation and reviewed PD1056 correction propagation
+
+- Added a sourced 2026 Expo-allocation overlay from the official September 2025 Utah Wildlife Board packet. The source confirms 200 Expo permits and identifies the resident/nonresident split by hunt code.
+- Reconciled 26 exact Planner-versus-public-draw differences where the full resident, nonresident, and total delta equals the official Expo allocation. These are labeled as `DWR_PLANNER_TO_PUBLIC_DRAW_RECONCILED_BY_OFFICIAL_EXPO_ALLOCATION` and conservation permits are retained as a separate overlay.
+- Locked the reconciliation contract so public-draw odds and historical/backtest scoring use official actual draw-result values, never Planner quota values or special-permit overlays.
+- Applied the user-confirmed `PD1056` correction (`36 / 4 / 40`) to `DATABASE.csv`, the 2026 yearly canonical, rebuilt `draw_results_long.csv`, and all four website-facing 2026 hunt-master JSON files. The raw current Planner `63 / 4 / 0` remains retained in the reconciliation audit with the correction provenance.
+- No prediction artifacts were rebuilt, no R2 objects were uploaded, and no site was published or deployed. The project-memory validator correctly remains blocked because the database hash changed while the prediction build manifest is stale.
+
+## 2026-08-27 - Official 2020 draw-results canonical extraction
+
+- Added `scripts/extract_2020_draw_results_from_pdfs.py`, a repeatable source-to-canonical extractor for the locally stored 2020 DWR draw-results PDFs. It parses the published resident/nonresident table geometry, retains source PDF and page lineage, and rejects any hunt page it cannot parse.
+- Wrote `draw_results_2020_for_2021_canonical_yearly_draw_results.csv`: 33,069 rows from 1,434 official hunt pages across 13 PDFs, with zero unparsed hunt pages and zero duplicate source-row keys.
+- Rebuilt `draw_results_long.csv` from all eight yearly canonical files. It now contains 281,135 rows for draw years 2019-2026; the prior long file is preserved under `audits/dwr_table_shape_canonical_rebuild/backups/`.
+- Recorded 2020 mountain-goat public-draw rows as `Either Sex`. The 2020 official field regulations distinguish hunter's-choice goat permits (either sex) from a separate female-goat class; no 2020 public-draw `GO` report page was labeled female-only.
+- No prediction artifacts were rebuilt, no R2 objects were uploaded, and no site was published or deployed. Prediction certification remains blocked pending the existing build-manifest, duplicate-key, and blind-scoring reconciliation work.
+
+## 2026-08-27 - 2018 canonical, source-identity normalization, and blind rebuild
+
+- Added a repeatable legacy-layout parser path for the locally retained 2018 official DWR draw-results PDFs. The new 2018 canonical contains 28,427 rows from nine source PDFs, with zero unparsed hunt pages and zero duplicate official source-row keys.
+- Rebuilt the canonical long truth series from nine annual files: 309,562 rows for official draw years 2018-2026. The long file carries exact source-row identity where a coarse hunt/point key alone is insufficient.
+- Reclassified 29,247 coarse collisions as distinct official source scopes. No truth rows were merged or dropped. The source-identity validator now reports zero unresolved duplicate source identities.
+- Preserved the 2026 UtahDraws Turkey adult/youth source dimension. One historical no-applicant/no-permit CWMU row legitimately coalesced two official input rows and retains both exact source identifiers. The 39 excluded Turkey Bonus Point source rows are recorded as point-purchase references rather than draw outcomes.
+- Preserved the source-level youth indicator into blind scoring so shared-code adult and youth Turkey ladders are not classified as the same draw design.
+- Rebuilt and froze an isolated 2018-2025 forecast before reading 2026 actuals. The final frozen prediction SHA-256 is `13fca90d314f183ba7ad4099e3bdd4187e4558b43b65268b95df93a4b7ee6c32`.
+- Added an output-only prediction-identity resolver. When legacy aliases emit several forecasts for one published hunt/residency/point/draw-system key, the current target `DRAW_POOL_MAX_WEIGHTED_SPLIT` calculation is retained and every discarded alias is written to `prediction_identity_resolution.csv`.
+- The resolved blind run produced zero duplicate prediction-key groups, 12,729 joined 2026 comparisons, probability MAE 0.102905, RMSE 0.268612, and 1,412 rows with absolute probability error above 0.25. Its just-missed cohort beat the prior-same-point baseline by 30.47% MAE and the pure prior-unsuccessful-rollforward baseline by 2.53% on paired rows.
+- Remaining certification blockers are explicit: 3,700 unexpected engine/key gaps in the 2026 actual comparison, 10 duplicate actual-key groups requiring source-design reconciliation, and R2 does not carry a matching predictive manifest. The four Hunt Research runtime objects respond successfully, but no R2 upload, deployment, Git staging, commit, or push was performed.
+
+## 2026-08-27 - Unified-engine certification candidate reconciliation
+
+- Corrected the blind scorer to freeze `draw_reality_engine_predictive_v2.csv`, the materializer's unified surface, rather than the main-bonus feeder alone. This includes the separate bear, turkey, youth, sportsman, and big-game engine outputs in the same comparison.
+- Corrected classifier precedence for raw `MAX_WEIGHTED_SPLIT` records: Sportsman, bear, source-classified adult/youth turkey, and CWMU rows now resolve to their explicit draw designs before the legacy big-game alias. The adult/youth Turkey source dimension produces separate scoring keys.
+- Corrected target-design precedence in the materializer. It overlays the current official Planner identity onto a forecast row before output classification, preventing a retired historical label such as `Cactus Buck` from routing current limited-entry `DB1058` into the general-season preference family.
+- The isolated, frozen 2018-2025-to-2026 candidate is `audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260827_certification_candidate/`; its unified forecast SHA-256 is `9e4c0f1a66678cd63df88512e45ba71d63746a6b21d7e4038fecb142f40e9d5e`.
+- The completed comparison has 13,968 joined keys, zero duplicate prediction-key groups, zero duplicate actual-key groups, and zero unexpected engine/key gaps. Probability MAE is 0.122938 and RMSE is 0.291489 over the joined keys. The just-missed applicant model MAE is 4.5771, 30.41% better than the paired same-point baseline and 2.47% better than pure unsuccessful-rollforward.
+- The 2,657 non-joined actual keys are all explicitly source-classified: 2,528 CWMU public-odds exclusions, 72 current-Planner non-draw bear-design transitions retained for dated-snapshot reconciliation, and 57 official no-exact-history additions. None is treated as an unexplained engine/key failure.
+- The local `processed_data` manifest and project-memory record deliberately remain stale. `npm run validate:project-memory` therefore continues to fail on the recorded DATABASE hash/build mismatch, correctly blocking runtime promotion. No R2 upload, deployment, Git staging, commit, or push was performed.
+
+## 2026-08-27 - Certified local runtime promotion
+
+- Replaced the stale local `processed_data` forecast artifacts and prediction manifest with the frozen unified 2018-2025-to-2026 certification candidate. The promoted manifest records `40,642` prediction rows, `15,166` backtest rows, zero duplicate prediction keys, the frozen forecast SHA-256 `9e4c0f1a66678cd63df88512e45ba71d63746a6b21d7e4038fecb142f40e9d5e`, and the current `DATABASE.csv` SHA-256 `dd87461a76555c73b74fb0df069b47d66ac979b096ab25d9395a2c78f860a24b`.
+- The promotion script verified all 31 copied artifact hashes and placed the previous local artifacts in the candidate audit's timestamped backup directory. `processed_data/draw_reality_engine_v2.csv` was deliberately preserved because it is an observed-truth runtime object, not a frozen forecast output.
+- Updated the project-memory authority to `LOCAL_RUNTIME_REBUILT_HOSTED_EQUIVALENCE_PENDING` while retaining `BLOCKED` promotion and `NO` production-accuracy certification. No R2 object, deployment, Git staging, commit, or push was performed.
+
+## 2026-08-27 - Read-only hosted-runtime equivalence comparison
+
+- Added and ran `scripts/compare_local_runtime_to_r2.py` in read-only mode. The audit is retained at `audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260827_certification_candidate/r2_runtime_equivalence_2026-08-27.json`; it performs no R2 write.
+- The hosted predictive CSV differs from the frozen local runtime in both content and schema: hosted SHA-256 `e2841a41...d31a1095`, `35,016` rows, and `220` fields versus local frozen SHA-256 `9e4c0f1a...f40e9d5e`, `40,642` rows, and `192` fields. The hosted Research index differs in content while retaining the same JSON-array schema.
+- Research summary, ladder, details, and point-ladder objects remain intentionally R2-only locally and are reported as not comparable rather than fabricated as a match. The project-memory promotion blocker now records the verified hosted mismatch. No R2 upload, deployment, Git staging, commit, or push was performed.
+
+## 2026-08-27 - Hunt Research runtime-contract and release-readiness audit
+
+- Read `research.html`, `config.js`, `hunt-research.js`, and the page's locally loaded supporting scripts. The normal page defaults to the split canonical contract (summary, split index, canonical ladder, and split details); predictive CSV loading is not on the normal path and requires a failed canonical load plus an explicit legacy-fallback override.
+- Downloaded isolated review copies of all six live R2 runtime objects under `audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260827_certification_candidate/r2_review_copy_2026-08-27/`. The four previously R2-only objects were hydrated only in that audit directory; no `processed_data` target was overwritten.
+- Compared the frozen local predictive CSV to the R2 baseline: 34 hosted-only fields and six local-only fields. Thirty-two hosted-only fields are unused by the normal Research path. `display_odds_pct` and `prior_year_success_rate` are referenced only by the disabled legacy fallback and must be carried only if that fallback is deliberately retained.
+- Produced a `NOT_DEPLOYMENT_READY` manifest with current R2 hashes, schemas, required rollback keys, and release gates. It requires an explicit, reviewed full split-contract replacement set before any R2 write. No R2 upload, deployment, Git staging, commit, or push was performed.
+
+## 2026-08-27 - Local split-contract Research candidate and held release plan
+
+- Built the complete split Hunt Research contract only under the certification audit directory: summary, selection index, canonical ladder, details bundle, and point-ladder support CSV. The build overlays the frozen unified forecast on the immutable R2 review copy while preserving non-draw/reference lanes; it does not modify `processed_data`, site files, or R2.
+- Reconciled the candidate selection index to the current 1,471-code public/current universe. The prior broad candidate index is preserved in `pre_index_scope_reconciliation/`; 320 historical summary/reference-only codes remain in the summary and details but are no longer selectable as current hunts.
+- The contract validator passes: all 40,642 frozen forecast identity keys appear in both candidate ladders, the current index has 1,471 codes, and the summary/details counts agree. Candidate outputs contain 5,477 summary rows, 136,882 ladder rows, and 136,726 point-ladder rows.
+- Created `release_readiness_manifest.json` with each current R2 review hash, candidate hash, schema comparison, required rollback key, and an explicit hold state. The four normal split-contract objects and point-ladder support artifact are schema-compatible with the reviewed R2 baseline. The predictive CSV remains schema-different and is documented as legacy-fallback-only rather than normal Research runtime input.
+- Smoke-tested the actual local Research page against the candidate using `DB1058` and `BR7004`. `BR7004` resolves as Black Bear with 18 resident and 2 nonresident permits across a 36-row ladder; the browser reported no errors or warnings. The page retains a cosmetic "Loading runtime rows..." status string after resolution, but the full summary and ladder were present.
+- Updated the project authority to `LOCAL_SPLIT_CONTRACT_CANDIDATE_VALIDATED_R2_RELEASE_HELD`. No R2 upload, deployment, Git staging, commit, or push was performed.
+
+## 2026-08-28 - Authorized R2 Hunt Research split-contract release
+
+- Created hash-verified R2 rollback copies under `rollback/20260828T010028Z/` before replacing any normal Research object.
+- Replaced the coordinated normal split contract in `uoga-data`: summary, split index, canonical ladder, and split details. The 536,997,339-byte ladder was uploaded through the R2 S3-compatible multipart API in 33 parts because Wrangler's direct object command is limited to 300 MiB.
+- Native R2 reads and fresh public-worker reads both matched every candidate SHA-256. The final release record is `audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260827_certification_candidate/r2_authorized_release_20260828T010028Z/release_outcome_manifest.json`.
+- Updated `HUNT_RESEARCH_DATA_VERSION` to `20260828-certified-split-contract-1`, rebuilt `pages-dist`, and deployed the production Cloudflare Pages project at `https://huntbuilder.pages.dev`.
+- Updated the Pages bundle guard to enforce Cloudflare Pages' 25 MiB per-file limit; oversized runtime artifacts are retained in the R2-required manifest instead of causing a deployment failure.
+- Fixed the Research page's stale post-load status label. The live `BR7004` nonresident zero-point smoke test now renders 18 resident / 2 nonresident permits and clears the loading status.
+
+Production state:
+
+- The normal Hunt Research split contract is live and public-hash-verified. Aggregate prediction-accuracy certification remains blocked; the legacy predictive CSV fallback was not replaced.
+- No files were staged, committed, or pushed.
+
+## 2026-08-28 - Git source hygiene and hosted Research follow-through
+
+- Corrected the Hunt Research point-level fallback so an applicant above the displayed draw line is not shown a lower-point random-draw forecast. `BR7004` Resident at 12 points now reports that the 11-point display line is below the applicant and explicitly withholds an unsupported exact odds estimate.
+- Kept the normal R2 split contract as the live Research data path. The legacy prediction feed remains an explicitly non-normal fallback and is not used to fabricate point-level odds.
+- Added a Pages 25 MiB bundle guard and a direct local-Wrangler deployment path that avoids stale repository Wrangler redirects.
+- Moved regenerated `processed_data` reports and the large prediction feed out of Git tracking while preserving all local files. The official yearly canonical draw-result files and current `DATABASE.csv` remain versioned reproducibility inputs.
+- `npm run validate:project-memory` and canonical rebuild tests pass. The full `npm test` permit-allocation verification remains a known failure: it reports 18,835 pre-sync mismatches and must be reconciled rather than bypassed.

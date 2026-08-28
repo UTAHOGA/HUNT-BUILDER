@@ -6,7 +6,12 @@ const repoRoot = path.resolve(__dirname, '..');
 const outDir = path.join(repoRoot, 'pages-dist');
 const MAX_PAGES_FILE_BYTES = Math.max(
   1,
-  Number(process.env.PAGES_DIST_MAX_BYTES_MB) > 0 ? Number(process.env.PAGES_DIST_MAX_BYTES_MB) * 1024 * 1024 : 100 * 1024 * 1024,
+  Math.min(
+    25 * 1024 * 1024,
+    Number(process.env.PAGES_DIST_MAX_BYTES_MB) > 0
+      ? Number(process.env.PAGES_DIST_MAX_BYTES_MB) * 1024 * 1024
+      : 25 * 1024 * 1024,
+  ),
 );
 const LARGE_MANIFEST_PATH = path.join(outDir, 'data', 'large-runtime-assets.json');
 const RUNTIME_MANIFEST_CANDIDATES = [
@@ -244,7 +249,7 @@ async function writeOptionalAuditReport(records, skippedPublicPaths, skippedByDi
     max_public_file_mb: formatSizeMb(MAX_PAGES_FILE_BYTES),
     skipped_files: records.length,
     skipped_due_to_path_rules: skippedByDirectory.length,
-    skipped_for_100mb_limit: skippedPublicPaths.length,
+    skipped_for_pages_file_limit: skippedPublicPaths.length,
     skipped_records: records,
   };
   await ensureParent(AUDIT_REPORT_PATH);

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const { existsSync } = require('fs');
 const { spawnSync } = require('child_process');
+const { tmpdir } = require('os');
 const path = require('path');
 
 function parseArgs(argv) {
@@ -32,7 +33,7 @@ function parseArgs(argv) {
 }
 
 function run(command, args, options = {}) {
-  const executable = process.platform === 'win32' && !command.toLowerCase().endsWith('.cmd')
+  const executable = process.platform === 'win32' && !path.extname(command)
     ? `${command}.cmd`
     : command;
   const result = spawnSync(executable, args, {
@@ -73,16 +74,18 @@ function main() {
     process.exit(4);
   }
 
-  const deployArgs = ['wrangler', 'pages', 'deploy', 'pages-dist', '--project-name', projectName];
+  const deployArgs = ['pages', 'deploy', pagesDist, '--project-name', projectName];
   if (branch) deployArgs.push('--branch', branch);
   if (commitHash) deployArgs.push('--commit-hash', commitHash);
 
   if (args.dryRun) {
-    console.log(`Dry run: npx ${deployArgs.join(' ')}`);
+    console.log(`Dry run: ${process.execPath} ${path.join(repoRoot, 'node_modules', 'wrangler', 'bin', 'wrangler.js')} ${deployArgs.join(' ')}`);
     return;
   }
 
-  run('npx', deployArgs, { cwd: repoRoot });
+  // Run outside the repository so a stale .wrangler/deploy redirect cannot
+  // override this explicit Pages deployment.
+  run(process.execPath, [path.join(repoRoot, 'node_modules', 'wrangler', 'bin', 'wrangler.js'), ...deployArgs], { cwd: tmpdir() });
 }
 
 main();

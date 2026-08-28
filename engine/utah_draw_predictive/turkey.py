@@ -11,6 +11,7 @@ from engine.utah_bonus_predictive.rules import MODEL_VERSION
 from engine.utah_bonus_predictive.split import split_utah_bonus_permits
 from engine.utah_draw_predictive.taxonomy import effective_draw_design
 from . import ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING, ALGORITHM_STATUS_MODELED_BONUS, StrategySpec, TARGET_SCOPE_TARGET
+from .permit_accessors import target_residency_permit_allocation
 
 
 MODEL_STRATEGY_NAME = "turkey_bonus_phase7"
@@ -139,6 +140,14 @@ def _is_turkey(row: Mapping[str, object]) -> bool:
 def _is_youth_turkey(row: Mapping[str, object]) -> bool:
     hunt_code = _clean(row.get("hunt_code")).upper()
     if hunt_code in CONSERVATION_TURKEY_CODES:
+        return False
+    source_is_youth = _clean_lower(row.get("source_is_youth"))
+    # Live UtahDraws result rows carry a source-level youth flag.  It has
+    # priority over generic text because adult and youth ladders can share the
+    # same public hunt code and otherwise look identical after normalization.
+    if source_is_youth in {"true", "1", "yes", "y"}:
+        return True
+    if source_is_youth in {"false", "0", "no", "n"}:
         return False
     source_file = _clean_lower(row.get("source_file"))
     draw_pool = _clean_lower(row.get("draw_pool"))
@@ -467,25 +476,14 @@ def _trend(prior_level: int | None, forecast_level: int | None) -> str:
 
 def _forecast_quota_for_residency(
     db_row: Mapping[str, object],
-    hunt_code: str,
     residency: str,
-    latest_year: int,
-    total_drawn_by_code_year: Mapping[tuple[str, int], dict[str, int]],
+    forecast_year: int,
+    source_year: int | None = None,
 ) -> int:
-    res_specific = _to_int(db_row.get("permits_2026_res"))
-    nr_specific = _to_int(db_row.get("permits_2026_nr"))
-    total = _to_int(db_row.get("permits_2026_total"))
-    if res_specific or nr_specific:
-        return res_specific if residency == "Resident" else nr_specific
-    observed = total_drawn_by_code_year.get((hunt_code, latest_year), {})
-    observed_total = sum(int(value) for value in observed.values())
-    if total <= 0:
+    allocation = target_residency_permit_allocation(db_row, forecast_year, source_year=source_year)
+    if not allocation.supported:
         return 0
-    if observed_total <= 0:
-        return total if residency == "Resident" else 0
-    resident_drawn = int(observed.get("Resident", 0))
-    resident_permits = max(0, min(total, round(total * (resident_drawn / max(observed_total, 1)))))
-    return resident_permits if residency == "Resident" else max(0, total - resident_permits)
+    return allocation.for_residency(residency)
 
 
 def _data_quality_flags(
@@ -500,7 +498,7 @@ def _data_quality_flags(
         flags.append("MISSING_MULTIPLE_YEARS")
     if total_applicants < 5:
         flags.append("LOW_APPLICANT_COUNT")
-    if public_quota == 1:
+    if public_quota == 1 and max_point_permits == 0:
         flags.append("ONE_PERMIT_RANDOM_ONLY")
     if max_point_permits == 0 and public_quota > 0:
         flags.append("NO_MAX_POINT_POOL")
@@ -566,7 +564,12 @@ def build_turkey_bonus_predictions(
             latest_ladder = ladders.get((latest_year, hunt_code, residency), {}) if available_years else {}
             latest_meta_source = meta.get(hunt_code, {}).get("source_file", "")
             prior_total = sum(int(values.get("total", 0)) for values in latest_ladder.values())
-            public_quota = _forecast_quota_for_residency(db_row, hunt_code, residency, latest_year, total_drawn_by_code_year)
+            public_quota = _forecast_quota_for_residency(
+                db_row,
+                residency,
+                forecast_year,
+                source_year=latest_year,
+            )
 
             if not available_years or public_quota <= 0:
                 if public_quota <= 0 and residency == "Nonresident":
@@ -673,7 +676,7 @@ def build_turkey_bonus_predictions(
                 report_counts["pending"] += 1
                 continue
 
-            split = split_utah_bonus_permits(public_quota)
+            split = split_utah_bonus_permits(public_quota, residency)
             max_point_permits = split.maxPointPermits
             random_permits = split.randomPermits
             forecast_ladder = _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)
@@ -891,25 +894,21 @@ def _build_youth_turkey_truth_ladders(
 
 def _forecast_youth_turkey_quota_for_residency(
     db_row: Mapping[str, object],
-    hunt_code: str,
     residency: str,
-    latest_year: int,
-    total_drawn_by_code_year: Mapping[tuple[str, int], dict[str, int]],
+    forecast_year: int,
+    source_year: int | None = None,
 ) -> tuple[int, int, str]:
-    current_total = _to_int(db_row.get("permits_2026_total"))
-    youth_total = 0 if "cwmu" in _joined_text(db_row) else int(current_total * YOUTH_TURKEY_SET_ASIDE_RATIO)
-    quota_source = "cwmu_zero_remainder" if "cwmu" in _joined_text(db_row) else "hard_permits_2026_total_youth_set_aside"
+    if "cwmu" in _joined_text(db_row):
+        return 0, 0, "cwmu_zero_remainder"
 
-    observed = total_drawn_by_code_year.get((hunt_code, latest_year), {})
-    observed_total = sum(int(value) for value in observed.values())
-    if youth_total <= 0:
-        return 0, youth_total, quota_source
-    if observed_total <= 0:
-        return (youth_total if residency == "Resident" else 0), youth_total, quota_source + "_resident_default"
+    allocation = target_residency_permit_allocation(db_row, forecast_year, source_year=source_year)
+    youth_total = int(allocation.total * YOUTH_TURKEY_SET_ASIDE_RATIO)
+    if not allocation.supported:
+        return 0, youth_total, "missing_official_residency_split"
 
-    resident_observed = int(observed.get("Resident", 0))
-    resident_quota = max(0, min(youth_total, round(youth_total * (resident_observed / max(observed_total, 1)))))
-    return (resident_quota if residency == "Resident" else max(0, youth_total - resident_quota)), youth_total, quota_source
+    lane_total = allocation.for_residency(residency)
+    youth_lane_quota = int(lane_total * YOUTH_TURKEY_SET_ASIDE_RATIO)
+    return youth_lane_quota, youth_total, "official_residency_split_youth_set_aside"
 
 
 def _youth_turkey_data_quality_flags(
@@ -933,7 +932,7 @@ def _youth_turkey_data_quality_flags(
         flags.append("LOW_APPLICANT_COUNT")
     if youth_total_quota <= 0:
         flags.append("ZERO_YOUTH_SET_ASIDE_QUOTA")
-    if public_quota == 1:
+    if public_quota == 1 and max_point_permits == 0:
         flags.append("ONE_PERMIT_RANDOM_ONLY")
     if max_point_permits == 0 and public_quota > 0:
         flags.append("NO_MAX_POINT_POOL")
@@ -1001,10 +1000,9 @@ def build_youth_turkey_predictions(
             prior_total = sum(int(values.get("total", 0)) for values in latest_ladder.values())
             public_quota, youth_total_quota, quota_source = _forecast_youth_turkey_quota_for_residency(
                 db_row,
-                hunt_code,
                 residency,
-                latest_year,
-                total_drawn_by_code_year,
+                forecast_year,
+                source_year=latest_year,
             )
 
             if not available_years:
@@ -1044,7 +1042,7 @@ def build_youth_turkey_predictions(
                 report_counts["pending"] += 1
                 continue
 
-            split = split_utah_bonus_permits(public_quota)
+            split = split_utah_bonus_permits(public_quota, residency)
             max_point_permits = split.maxPointPermits
             random_permits = split.randomPermits
             forecast_ladder = _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)

@@ -844,5 +844,17 @@ processed_data/hunt_research_2026_ladder.json
 processed_data/hunt_research_2026_ladder_bonus_max_random.json
 processed_data/hunt_research_2026_summary.json
 data_truth/hunt_code_universe_truth/locked/LOCKED_HUNT_CODE_YEAR_CODE_ROSTER_2017_2026.jsonl
-pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv
-pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv
+# Versioned official truth inputs. These are compact enough for Git and are
+# needed to reproduce the draw-history and current-reference contracts.
+!data_truth/draw_results_truth/normalized/canonical_yearly/
+!data_truth/draw_results_truth/normalized/canonical_yearly/*.csv
+!pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv
+
+# Generated processing output is local/R2 state. Keep only the small static
+# public contracts that are intentionally repository-served.
+/processed_data/*
+!/processed_data/public_contracts/
+!/processed_data/public_contracts/hunt_application_outlook.json
+!/processed_data/public_contracts/outfitters-public.json
+!/processed_data/public_contracts/public_contract_summary.json
+!/processed_data/public_contracts/source_snapshots.json

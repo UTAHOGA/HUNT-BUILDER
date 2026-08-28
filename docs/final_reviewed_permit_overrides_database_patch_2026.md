@@ -1,7 +1,10 @@
 # Final Reviewed Permit Overrides DATABASE Patch 2026
 
-Applied final reviewed overrides for `EA1176` and `PD1025`.
+Applied selected reviewed permit overrides.
 
-- DATABASE rows updated: `2`
-- Backup: `processed_data/backups/DATABASE_before_final_reviewed_permit_overrides_20260604T062018Z.csv`
+- DATABASE rows updated: `1`
+- Backup: `processed_data/backups/DATABASE_before_final_reviewed_permit_overrides_20260827T034926Z.csv`
+- 2026 canonical backup: ``
+- Website canonical backups: `4`
+- Long-file rebuild backup: ``
 - Patch CSV: `processed_data/audits/final_reviewed_permit_overrides_database_patch_2026.csv`

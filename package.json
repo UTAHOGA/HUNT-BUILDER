@@ -40,8 +40,11 @@
         "hunt-tables:2026:clean-all": "npm run hunt-tables:2026:clean-xlsx:publish && npm run hunt-tables:2026:pdf",
         "fetch:dwr-huntplanner:2026": "node scripts/fetch-dwr-huntplanner-hanumber-2026.js",
         "publish:hard-copy-tables": "node scripts/publish-formatted-hunt-tables.js",
+        "validate:project-memory": "node scripts/validate-project-memory.js",
+        "project:status": "node scripts/validate-project-memory.js",
+        "test:project-memory": "node tests/project-memory-contract.test.js",
         "test:canonical": "node tests/validate-canonical-json.test.js && node tests/canonical-rebuild.test.js",
-        "test": "node tests/validate-canonical-json.test.js && node tests/canonical-rebuild.test.js && npm run verify:permits-2026:read-only",
+        "test": "npm run validate:project-memory && npm run test:project-memory && node tests/validate-canonical-json.test.js && node tests/canonical-rebuild.test.js && npm run verify:permits-2026:read-only",
         "build": "npm run build:pages"
     },
     "devDependencies": {

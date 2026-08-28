@@ -6,8 +6,10 @@ import argparse
 import hashlib
 import json
 import shutil
+from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Mapping
 
 from engine.utah_draw_predictive import append_reason_codes
 from engine.utah_draw_predictive.classifier import sanitize_modeled_probability_fields
@@ -155,6 +157,16 @@ def status_from_probability(max_point_permits: int, random_permits: int, p_bonus
     if p_bonus_pool > 0:
         return "ON EDGE"
     return "BEHIND"
+
+
+def _point_sort_key(value: object) -> tuple[int, float, str]:
+    """Sort numeric point levels without crashing on reference/composite labels."""
+
+    text = str(value or "").strip()
+    try:
+        return (0, float(text or 0), "")
+    except ValueError:
+        return (1, 0.0, text)
 
 
 def build_report(
@@ -780,6 +792,79 @@ def _replace_rows_by_draw_system_type(
     return filtered
 
 
+PREDICTION_IDENTITY_FIELDS = ("hunt_code", "residency", "points", "draw_system_type")
+
+
+def _prediction_identity_key(row: Mapping[str, object]) -> tuple[str, str, str, str]:
+    return tuple(str(row.get(field, "")).strip() for field in PREDICTION_IDENTITY_FIELDS)  # type: ignore[return-value]
+
+
+def _prediction_identity_precedence(row: Mapping[str, object], row_number: int) -> tuple[int, int, int, int]:
+    """Prefer the current target design over legacy historical aliases.
+
+    The historical input can contain an OIL/PLE/LE alias for one current
+    MAX_WEIGHTED_SPLIT public hunt.  Those aliases are useful historical
+    evidence, but they must never become multiple probabilities for the same
+    hunt/residency/point/draw-system output identity.
+    """
+    reason_codes = str(row.get("reason_codes", "")).upper()
+    current_design_rank = 0 if "DRAW_POOL_MAX_WEIGHTED_SPLIT" in reason_codes else 1
+    has_forecast_stack_rank = 0 if str(row.get("forecast_applicants_at_level", "")).strip() else 1
+    has_probability_rank = 0 if str(row.get("p_draw", "")).strip() else 1
+    return (current_design_rank, has_forecast_stack_rank, has_probability_rank, row_number)
+
+
+def _deduplicate_prediction_identities(
+    rows: list[dict[str, object]],
+    *,
+    surface: str,
+) -> tuple[list[dict[str, object]], list[dict[str, object]]]:
+    """Return one authoritative target-design row per published prediction key.
+
+    Truth rows remain separate in the canonical long table.  This only resolves
+    duplicate *forecast outputs* caused by legacy draw-pool aliases before they
+    reach the website or a blind-scoring join.  Every discarded alternate is
+    written to an audit artifact with its selected replacement.
+    """
+    grouped: dict[tuple[str, str, str, str], list[tuple[int, dict[str, object]]]] = defaultdict(list)
+    for row_number, row in enumerate(rows, start=2):
+        grouped[_prediction_identity_key(row)].append((row_number, row))
+
+    deduplicated: list[dict[str, object]] = []
+    audit_rows: list[dict[str, object]] = []
+    for key, group in grouped.items():
+        ranked = sorted(group, key=lambda item: _prediction_identity_precedence(item[1], item[0]))
+        kept_row_number, kept_row = ranked[0]
+        deduplicated.append(kept_row)
+        if len(ranked) == 1:
+            continue
+        kept_rank = _prediction_identity_precedence(kept_row, kept_row_number)
+        for discarded_row_number, discarded_row in ranked[1:]:
+            audit_rows.append(
+                {
+                    "surface": surface,
+                    "hunt_code": key[0],
+                    "residency": key[1],
+                    "points": key[2],
+                    "draw_system_type": key[3],
+                    "group_row_count": str(len(group)),
+                    "kept_row_number": str(kept_row_number),
+                    "discarded_row_number": str(discarded_row_number),
+                    "resolution": "CURRENT_TARGET_DRAW_POOL_PRECEDENCE",
+                    "kept_precedence": "|".join(str(value) for value in kept_rank[:-1]),
+                    "discarded_precedence": "|".join(
+                        str(value)
+                        for value in _prediction_identity_precedence(discarded_row, discarded_row_number)[:-1]
+                    ),
+                    "kept_reason_codes": str(kept_row.get("reason_codes", "")),
+                    "discarded_reason_codes": str(discarded_row.get("reason_codes", "")),
+                    "kept_probability": str(kept_row.get("p_draw", "")),
+                    "discarded_probability": str(discarded_row.get("p_draw", "")),
+                }
+            )
+    return deduplicated, audit_rows
+
+
 def _runtime_promotion_family(row: dict[str, object]) -> str:
     draw_system_type = str(row.get("draw_system_type", "")).strip()
     algorithm_status = str(row.get("algorithm_status", "")).strip()
@@ -1269,6 +1354,7 @@ def _build_manifest(
     output_files = {
         "ml_draw_predictions_v1.csv": output_dir / "ml_draw_predictions_v1.csv",
         "ml_draw_predictions_v1_report.json": output_dir / "ml_draw_predictions_v1_report.json",
+        "prediction_identity_resolution.csv": output_dir / "prediction_identity_resolution.csv",
         "backtest_utah_bonus_draw.csv": output_dir / "backtest_utah_bonus_draw.csv",
         "backtest_utah_bonus_draw_report.json": output_dir / "backtest_utah_bonus_draw_report.json",
         "draw_reality_engine_predictive_v2.csv": output_dir / "draw_reality_engine_predictive_v2.csv",
@@ -1323,7 +1409,7 @@ def _build_manifest(
         "calibration_metric_non_null_count": _nonnull(backtest_rows, "calibration_error_by_probability_bucket"),
         "EB3024_regression_result": eb3024,
         "one_permit_random_only_result": {
-            "pass": split_utah_bonus_permits(1).maxPointPermits == 0 and split_utah_bonus_permits(1).randomPermits == 1,
+            "pass": split_utah_bonus_permits(1, "Nonresident").maxPointPermits == 0 and split_utah_bonus_permits(1, "Nonresident").randomPermits == 1,
         },
         "MAX_POOL_safety_result": {
             "pass": ui_checks["max_pool_force_100_absent"],
@@ -1355,6 +1441,46 @@ MIXED_COMPONENT_FIELDS = (
 
 def _clean_text(value: object) -> str:
     return str(value or "").strip()
+
+
+CURRENT_TARGET_DESIGN_FIELDS = (
+    "hunt_name",
+    "species",
+    "sex_type",
+    "hunt_type",
+    "hunt_class",
+    "weapon",
+    "draw_pool",
+    "draw_design",
+)
+
+
+def _apply_current_target_design(
+    prediction_rows: list[dict[str, object]],
+    db_rows: list[dict[str, str]],
+) -> list[dict[str, object]]:
+    """Overlay the Planner's target-year identity before routing output rows.
+
+    Forecast ladders legitimately retain historical names, but the published
+    prediction key must use the current official design. Otherwise a retired
+    historical label (for example, ``Cactus Buck``) can route a current
+    limited-entry code into the general-season preference engine.
+    """
+    current_by_code = {
+        _clean_text(row.get("hunt_code")).upper(): row
+        for row in db_rows
+        if _clean_text(row.get("hunt_code"))
+    }
+    for prediction in prediction_rows:
+        current = current_by_code.get(_clean_text(prediction.get("hunt_code")).upper())
+        if current is None:
+            continue
+        for field in CURRENT_TARGET_DESIGN_FIELDS:
+            value = _clean_text(current.get(field))
+            if value:
+                prediction[field] = value
+        sanitize_modeled_probability_fields(prediction)
+    return prediction_rows
 
 
 def _to_float(value: object) -> float | None:
@@ -1470,6 +1596,7 @@ def materialize_outputs(
     }
 
     truth_rows = expand_collapsed_truth_rows_for_engine(read_csv(TRUTH_PATH))
+    db_rows = apply_current_year_allotments_to_rows(read_csv(DATABASE_2026_PATH))
     permits, ladders, meta = build_truth_indexes(truth_rows)
     above_index = build_above_index(ladders)
 
@@ -1486,8 +1613,8 @@ def materialize_outputs(
         earliest_source_year=min(history_years),
         latest_source_year=max(history_years),
     )
-
-    db_rows = apply_current_year_allotments_to_rows(read_csv(DATABASE_2026_PATH))
+    prediction_rows = _apply_current_target_design(prediction_rows, db_rows)
+    successor_rows = _apply_current_target_design(successor_rows, db_rows)
     preference_general_deer_rows = build_preference_general_deer_predictions(
         truth_rows=truth_rows,
         db_rows=db_rows,
@@ -1599,11 +1726,20 @@ def materialize_outputs(
         mountain_lion_rows = [sanitize_modeled_probability_fields(dict(row)) for row in mountain_lion_rows]
         prediction_rows = _replace_rows_by_draw_system_type(prediction_rows, mountain_lion_rows, {MOUNTAIN_LION_DRAW_SYSTEM_TYPE})
         successor_rows = _replace_rows_by_draw_system_type(successor_rows, [dict(row) for row in mountain_lion_rows], {MOUNTAIN_LION_DRAW_SYSTEM_TYPE})
+    prediction_rows, prediction_identity_resolution_rows = _deduplicate_prediction_identities(
+        prediction_rows,
+        surface="ml_draw_predictions_v1",
+    )
+    successor_rows, successor_identity_resolution_rows = _deduplicate_prediction_identities(
+        successor_rows,
+        surface="draw_reality_engine_predictive_v2",
+    )
+    identity_resolution_rows = prediction_identity_resolution_rows + successor_identity_resolution_rows
     if preference_general_deer_rows or preference_antlerless_rows or preference_dedicated_hunter_rows or phase6_bonus_special_rows or turkey_bonus_rows or youth_turkey_rows or bear_bonus_rows or sportsman_rows or private_lands_rows or youth_rows or mountain_lion_rows:
         _normalize_merged_surface_contract(prediction_rows, history_years=history_years)
         _normalize_merged_surface_contract(successor_rows, history_years=history_years)
-        prediction_rows.sort(key=lambda row: (str(row.get("hunt_code", "")), str(row.get("residency", "")), int(float(str(row.get("points", 0)) or 0)), str(row.get("draw_system_type", ""))))
-        successor_rows.sort(key=lambda row: (str(row.get("hunt_code", "")), str(row.get("residency", "")), int(float(str(row.get("points", 0)) or 0)), str(row.get("draw_system_type", ""))))
+        prediction_rows.sort(key=lambda row: (str(row.get("hunt_code", "")), str(row.get("residency", "")), _point_sort_key(row.get("points", 0)), str(row.get("draw_system_type", ""))))
+        successor_rows.sort(key=lambda row: (str(row.get("hunt_code", "")), str(row.get("residency", "")), _point_sort_key(row.get("points", 0)), str(row.get("draw_system_type", ""))))
 
     promotion_report = _apply_runtime_promotion_marks(prediction_rows, output_dir)
     _apply_runtime_promotion_marks(successor_rows, output_dir)
@@ -1672,6 +1808,12 @@ def materialize_outputs(
         "quota_2026_total",
         "quota_2026_max_pool",
         "quota_2026_random_pool",
+        "quota_2026_youth_reserve",
+        "quota_2026_main_draw",
+        "youth_reserve_ratio",
+        "youth_reserve_model_valid",
+        "youth_reserve_probability",
+        "youth_rollover_main_draw_probability",
         "permits_2026_res",
         "permits_2026_nr",
         "permits_2026_total",
@@ -1807,6 +1949,28 @@ def materialize_outputs(
     ))
     excluded_no_code_path = output_dir / "hunt_code_reconciliation_required_rows.csv"
     write_csv(excluded_no_code_path, excluded_no_code_rows, excluded_no_code_fields)
+    identity_resolution_path = output_dir / "prediction_identity_resolution.csv"
+    write_csv(
+        identity_resolution_path,
+        identity_resolution_rows,
+        [
+            "surface",
+            "hunt_code",
+            "residency",
+            "points",
+            "draw_system_type",
+            "group_row_count",
+            "kept_row_number",
+            "discarded_row_number",
+            "resolution",
+            "kept_precedence",
+            "discarded_precedence",
+            "kept_reason_codes",
+            "discarded_reason_codes",
+            "kept_probability",
+            "discarded_probability",
+        ],
+    )
 
     ml_predictions_path = output_dir / "ml_draw_predictions_v1.csv"
     write_csv(ml_predictions_path, prediction_rows, prediction_fields)
@@ -1838,7 +2002,14 @@ def materialize_outputs(
     mountain_lion_csv_path, mountain_lion_json_path = _write_mountain_lion_artifacts(output_dir, prediction_rows, mountain_lion_report)
     promotion_csv_path, promotion_json_path, promotion_md_path = _write_runtime_promotion_artifacts(output_dir, promotion_report)
 
-    backtest_rows = build_backtest_rows(permits, ladders, lambda public_permits: (split_utah_bonus_permits(public_permits).maxPointPermits, split_utah_bonus_permits(public_permits).randomPermits))
+    backtest_rows = build_backtest_rows(
+        permits,
+        ladders,
+        lambda public_permits, residency: (
+            split_utah_bonus_permits(public_permits, residency).maxPointPermits,
+            split_utah_bonus_permits(public_permits, residency).randomPermits,
+        ),
+    )
     backtest_fields = [
         "from_year",
         "to_year",
@@ -1901,6 +2072,7 @@ def materialize_outputs(
     return {
         "ml_predictions": ml_predictions_path,
         "ml_report": ml_report_path,
+        "prediction_identity_resolution": identity_resolution_path,
         "hunt_code_reconciliation_required_rows": excluded_no_code_path,
         "backtest_csv": backtest_csv_path,
         "backtest_report": backtest_report_path,
