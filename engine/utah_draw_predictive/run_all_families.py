@@ -131,7 +131,13 @@ AUTHORITY_EXCLUDED_DRAW_SYSTEM_TYPES = {
 
 
 def _clean(value: object) -> str:
-    return str(value or "").strip()
+    # Numeric point level 0 is a real, scoreable ladder rung.  Do not use a
+    # truthiness shortcut here: it silently converted integer/float zero into
+    # an empty score-key component during final output normalization.  Preserve
+    # the existing treatment of boolean False as an absent optional value.
+    if value is None or value is False:
+        return ""
+    return str(value).strip()
 
 
 def _text(value: object) -> str:

@@ -19367,3 +19367,23 @@ Production state:
 - Kept the file-results panel for multi-file folders and for single resources that do not have an in-library viewer.
 - Changed every in-browser PDF preview to start at 200% zoom.
 - Preserved the approved wall-card placement, dimensions, ordering, and cabin artwork.
+
+## 2026-08-28 - Frozen 2017-to-2018 historical blind baseline
+
+- Froze the raw 2018 canonical actual-results file before scoring: `28,427` source rows across `886` hunt codes, SHA-256 `23f24fa39c6a92fc8b384edd567c8ce31d766a41c152cc6afed19c2ebbb5972e`. It remains untouched under `audits/prediction_blind_year_to_year/2017_to_2018_current_engine_20260828/inputs/`.
+- Reconstructed the input strictly from locally retained official 2017 DWR PDFs: `48,418` resident/nonresident rows across `858` codes, SHA-256 `d5b28142b91e7f3867f7002774652c8c9f96ecf2dcf04939d0f7dc773be01bf4`. Name-only 2017 bear odds and garbled Sportsman code pages were explicitly excluded rather than reverse-engineered from 2018 actuals.
+- Ran every source-available engine family using the audit-only 2017 permit proxy, not the current `DATABASE.csv`. The physical 2018 forecast was frozen at SHA-256 `8581f8522ba6d688828597ec5dcf6fa4f415db4cef939ada00b66b1c31c229f5`; every leakage check reports no future source years, current database, or hard-coded 2026 input.
+- Created a read-only scorer adapter to expand the historical combined-residency canonical rows, exclude lifetime/reference rows that are not prediction rows, and align only legacy pool labels. The raw truth and forecast hashes remain unchanged; no probability or official actual value was edited.
+- The valid predictive-scope draw-line-aware comparison scores `9,226` actual applicant-bearing point rows with MAE `0.120828`, applicant-weighted MAE `0.046879`, RMSE `0.287792`, and 79.49% within 10 percentage points. It is an unaccepted baseline, not a certification result: only 83.80% (`9,226 / 11,009`) of possible public-draw applicant rows have a forecast, with `1,783` missing prediction rows; `1,085` of those have a code-level forecast in a different source/design lane, exposing classifier/crosswalk work rather than a truth-data gap.
+- The baseline also records `1,249` scored rows above 25 percentage points absolute probability error and `405` false-guarantee cases (predicted probability at least 99.9999% but actual below that level). These must be analyzed by draw design before this historical year can support any acceptance decision.
+- No canonical truth, normalized long file, runtime artifact, R2 object, deployment, commit, or push was changed. The run is retained for coverage/classifier repair and later rolling-year comparison.
+
+## 2026-08-28 - 2017 source restoration and scoreable zero-point forecast repair
+
+- Verified the supplied `17_big_game_odds_report.pdf` is an exact SHA-256 match to the retained official 535-page 2017 DWR source. No external source download was needed.
+- Restored the already-retained code-bearing 2017 black-bear bonus-point report to the audit-only source reconstruction and made hunt-code prefixes authoritative for species, preventing unit names such as Elk Ridge or Bear River from changing a deer/elk source record's species. The reconciled source contains 52,018 official point/residency rows across 948 hunt codes; it is separate from, and does not overwrite, the original frozen baseline input.
+- Corrected final-output normalization so numeric point `0` remains the real zero-point ladder rung instead of becoming blank in `official_score_key_v2`. Added a regression test; the score-key, routing, and youth-history tests pass (`46 passed`).
+- Rebuilt an unpromoted 2017-to-2018 candidate from the reconciled source only. Its frozen forecast SHA-256 is `c4a2bd0105a573c3f91885787c73ace9a22d816fce04b6e39bc2341aeeb839a0`; the frozen 2018 actual remains `23f24fa39c6a92fc8b384edd567c8ce31d766a41c152cc6afed19c2ebbb5972e`.
+- The repair restores 345 previously missing scoreable point-zero forecasts: 200 elk-code rows, 77 deer-code rows, and 68 pronghorn-code rows. Blind score coverage rises from 84.86% to 88.02% (9,604 / 10,911), with MAE 0.118509, applicant-weighted MAE 0.045705, and RMSE 0.284289. This is an unaccepted audit candidate, not a certification or release.
+- Sixty-three zero-point limited-entry rows remain outside the restored set: 47 have only a nonresident historical forecast because the retained 2017 resident lane published zero permits, and 16 have no 2017 lane forecast. They remain source-continuity/coverage work; the engine does not invent resident permits or probabilities for them.
+- No canonical truth, long file, `DATABASE.csv`, runtime artifact, R2 object, deployment, commit, or push was changed.

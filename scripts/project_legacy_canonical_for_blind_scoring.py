@@ -69,6 +69,10 @@ def expand_actual(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     for row in rows:
         if "POINT" not in clean(row.get("record_type") or row.get("row_type")).upper():
             continue
+        # Lifetime-holder/reference rows can appear in a historical point table,
+        # but are explicitly not public-draw probability rows.
+        if clean(row.get("draw_design")).upper().startswith("REFERENCE_"):
+            continue
         if clean(row.get("residency")):
             projected.append(dict(row))
             continue
@@ -89,6 +93,15 @@ def expand_actual(rows: list[dict[str, str]]) -> list[dict[str, str]]:
             item["p_draw_percent"] = "" if not item["p_draw"] else f"{float(item['p_draw']) * 100:.8f}".rstrip("0").rstrip(".")
             item["successful_applicants"] = permits
             item["unsuccessful_applicants"] = ""
+            # The legacy antlerless parser routed MA (antlerless moose) to
+            # the DOE fallback. The official hunt-code prefix plus retained
+            # antlerless-report scope identify this as its own bonus design.
+            source_scope = clean(item.get("source_scope")).upper()
+            if item["hunt_code"].upper().startswith("MA") and "ANTLERLESS" in source_scope:
+                item["draw_design"] = "BONUS_ANTLERLESS_MOOSE"
+                item["draw_system_type"] = "BONUS_ANTLERLESS_MOOSE"
+                item["hunt_class"] = "BONUS_ANTLERLESS_MOOSE"
+                item["draw_pool"] = "BONUS_ANTLERLESS_MOOSE"
             projected.append(item)
     return projected
 
@@ -119,7 +132,11 @@ def legacy_pool(row: dict[str, str]) -> str:
             return "YOUTH_GENERAL_SEASON_DEER"
         if "youth" in source_file and "antlerless" in source_file:
             species = clean(row.get("species")).lower()
-            return "YOUTH_ANTLERLESS_ELK" if species == "elk" else "YOUTH_ANTLERLESS_DEER"
+            if species == "elk":
+                return "YOUTH_ANTLERLESS_ELK"
+            if species == "pronghorn":
+                return "YOUTH_DOE_PRONGHORN"
+            return "YOUTH_ANTLERLESS_DEER"
     return clean(row.get("draw_pool"))
 
 
@@ -161,6 +178,10 @@ def main() -> int:
         "forecast_legacy_pool_rows": dict(Counter(clean(row.get("draw_pool")) for row in prediction_projection)),
         "truth_values_changed": False,
         "forecast_probabilities_changed": False,
+        "identity_label_overrides": {
+            "actual_ma_antlerless": "BONUS_ANTLERLESS_MOOSE",
+            "forecast_youth_pronghorn_pool": "YOUTH_DOE_PRONGHORN",
+        },
         "status": "READ_ONLY_SCORING_PROJECTION_READY",
     }
     (args.out_dir / "scoring_projection_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")

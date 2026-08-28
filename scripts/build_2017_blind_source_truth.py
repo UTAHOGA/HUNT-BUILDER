@@ -30,6 +30,7 @@ SOURCE_CONFIG = (
     ("official_dwr_archive/big_game/17_youth_any_bull_elk.pdf", "YOUTH_ANY_BULL_ELK"),
     ("official_dwr_archive/big_game/17_youth_general_deer.pdf", "YOUTH_GENERAL_SEASON_DEER"),
     ("official_dwr_archive/big_game_antlerless/17_antlerless_youth_points.pdf", "YOUTH_ANTLERLESS"),
+    ("official_dwr_archive/black_bear/17_bonus_points.pdf", "BLACK_BEAR"),
     ("official_dwr_archive/turkey/2017_turkey_bonus_points_and_draw_results.pdf", "TURKEY"),
 )
 EXCLUDED_SOURCE_SCOPES = {
@@ -48,6 +49,36 @@ def as_int(value: object) -> int:
         return int(float(clean(value).replace(",", "")))
     except ValueError:
         return 0
+
+
+CODE_PREFIX_SPECIES = {
+    "BI": "Bison",
+    "BR": "Black Bear",
+    "CG": "Cougar",
+    "DA": "Deer",
+    "DB": "Deer",
+    "DS": "Desert Bighorn Sheep",
+    "EA": "Elk",
+    "EB": "Elk",
+    "GO": "Mountain Goat",
+    "MA": "Moose",
+    "MB": "Moose",
+    "PB": "Pronghorn",
+    "PD": "Pronghorn",
+    "RS": "Rocky Mountain Bighorn Sheep",
+    "TK": "Turkey",
+}
+
+
+def source_species_for(code: str, name: str) -> str:
+    """Classify from the official hunt-code prefix before unit-name text.
+
+    Unit names legitimately contain terms such as "Elk Ridge" and "Bear
+    River". Those location terms cannot change a DB/DA deer or EB/EA elk
+    record into another species.
+    """
+
+    return CODE_PREFIX_SPECIES.get(code[:2].upper(), species_for(code, name))
 
 
 def sha256(path: Path) -> str:
@@ -84,7 +115,7 @@ def canonical_row(raw: dict[str, object], source_file: str, scope: str) -> dict[
             "hunt_code": code,
             "hunt_name": name,
             "raw_hunt_name": name,
-            "species": species_for(code, name),
+            "species": source_species_for(code, name),
             "sex": sex,
             "sex_type": sex_type,
             "hunt_type": hunt_type,

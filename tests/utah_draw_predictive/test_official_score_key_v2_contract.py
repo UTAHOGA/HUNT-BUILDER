@@ -99,6 +99,27 @@ def test_family_predictions_emit_score_key_v2_columns_and_exact_key(residency: s
     )
 
 
+def test_bonus_prediction_numeric_zero_point_survives_final_output_normalization() -> None:
+    row = {
+        "hunt_code": "DB1009",
+        "hunt_name": "Limited Entry Deer",
+        "species": "Deer",
+        "hunt_type": "Limited Entry",
+        "draw_system_type": "BONUS_LE_BIG_GAME",
+        "draw_pool": "limited_entry_deer",
+        "residency": "Resident",
+        "points": 0,
+        "p_draw_mean": "0.000788",
+    }
+
+    normalized = _with_run_fields([row], 2017, 2018, "bonus_le_big_game")[0]
+    output = _finalize_prediction_output_row(normalized)
+
+    assert output["points"] == "0"
+    assert output["p_draw_mean"] == "0.000788"
+    assert output["official_score_key_v2"].endswith("|Resident|0|p_draw")
+
+
 @pytest.mark.parametrize(
     ("row", "family", "expected_source_family", "expected_key"),
     [
