@@ -19339,3 +19339,9 @@ Production state:
 - Kept the Draw Results folder limited to the 2026 source set by removing its unrelated 2025 summary workbook entry.
 - Preserved the approved wall-card order, dimensions, alignment, cabin artwork, and popup viewer behavior.
 - Verified all 30 source PDFs against the companion manifest by SHA-256 and byte size before copying; the set contains 1,422 readable, unencrypted pages totaling 9,230,153 bytes.
+
+## 2026-08-28 - Vercel public-contract fallback guard
+
+- Added a deployment-only guard to `scripts/build-public-data-contracts.js` so Vercel preserves the reviewed checked-in public contracts when the primary runtime CSVs or application-outlook source are not hydrated in the Git checkout.
+- Prevented synthetic fixture inputs from overwriting the production contract bundle during a website-only Vercel build, in accordance with the accepted prediction-promotion standard.
+- Kept local contract generation behavior unchanged outside Vercel so fixture-based development and explicit local rebuild workflows remain available.

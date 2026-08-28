@@ -348,6 +348,14 @@ async function main() {
     huntUnitsLite: await resolveInput('huntUnitsLite', INPUT_CANDIDATES.huntUnitsLite),
   };
 
+  const isVercelBuild = process.env.VERCEL === '1';
+  const usesFixtureRuntime = [inputResolution.predictive, inputResolution.oddsHistory]
+    .some((input) => rel(input.filePath).startsWith('data/utah/fixtures/'));
+  if (isVercelBuild && (usesFixtureRuntime || !inputResolution.outlook.exists)) {
+    console.log('Vercel public-contract guard: primary runtime inputs are unavailable; preserving the reviewed checked-in contracts.');
+    return;
+  }
+
   const predictiveRows = inputResolution.predictive.exists
     ? parseCsv(await readText(inputResolution.predictive.filePath), { onlyColumns: predictiveColumns })
     : [];
