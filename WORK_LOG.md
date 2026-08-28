@@ -19354,6 +19354,15 @@ Production state:
 - Prevented synthetic fixture inputs from overwriting the production contract bundle during a website-only Vercel build, in accordance with the accepted prediction-promotion standard.
 - Kept local contract generation behavior unchanged outside Vercel so fixture-based development and explicit local rebuild workflows remain available.
 
+## 2026-08-28 - Restricted-pursuit bear source repair and frozen coverage audit
+
+- Repaired the bear source-classification pointer to the retained, hash-verified 2025 official DWR report at `pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/official_dwr_archive/black_bear/25_drawing_odds.pdf` (SHA-256 `d18cf6df54d9e649ae945f43fe305bcad52410751bf2649f54713892483099e8`). The former model-year-named source path no longer exists locally, so the classifier silently found zero draw codes and misread Planner `Pursuit Only`/`O.T.C.` text as availability.
+- The official report contains 97 public draw codes, including the nine source-proven restricted-pursuit codes `BR1008` through `BR1017` (excluding unused `BR1014`) and limited-entry `BR7225`. Those nine now classify as `RESTRICTED_BEAR_PURSUIT`; `BR7225` classifies as `LIMITED_ENTRY_BEAR_HUNT`. The blind scorer now gives the official draw-code set precedence over ambiguous current Planner text.
+- Added regression coverage for the archive-backed draw-code correction and changed the source-audit test to build directly from the current classifier and `DATABASE.csv`, rather than asserting against the deliberately stale held `processed_data` artifact. Focused bear source/classification tests pass (`8 passed`), and project-memory validation passes (`104` checks).
+- Ran an isolated materialization and a fresh frozen 2025-to-2026 audit under `audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260828_bear_source_repair/`. The forecast was frozen at SHA-256 `5d0becac14bbeb84b96725acd917c4e7bc8a4a799d23b0a740b736874be8d90a` before reading 2026 actuals.
+- The repair converts all `72` former `SOURCE_VERIFIED_CURRENT_PLANNER_NON_DRAW_BEAR` actual-key exclusions into joined forecasts: joined rows increase from `13,968` to `14,040`; source-classified non-joins fall from `2,657` to `2,585`; unexpected gaps remain `0`. The remaining non-joins are `2,528` intentionally excluded CWMU rows and `57` source-verified new codes with no historical predecessor.
+- The diagnostic remains unaccepted and is not an ADR-0006 certification comparison. It records `229` false guarantees, including `63` now-visible bear rows, for the next rule-level review. No canonical truth, `DATABASE.csv`, held runtime artifact, R2 object, deployment, staging, commit, or push was changed.
+
 ## 2026-08-28 - Residency-lane rule correction and refreshed blind candidate
 
 - Corrected the deterministic Utah simulator to complete resident and nonresident bonus max/random lanes separately, with crossover only in explicitly eligible official crossover scenarios. The focused residency, bonus, quota, and one-permit tests pass (`20 passed`).

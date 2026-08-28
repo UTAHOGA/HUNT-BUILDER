@@ -10,8 +10,7 @@
     "promotion_blockers": [
       "HISTORICAL_ADJACENT_YEAR_ACCEPTANCE_REVIEW_NOT_ACCEPTED",
       "KNOWN_FAMILY_CONTRACT_TEST_DRIFT",
-      "CURRENT_DATABASE_NEWER_THAN_CHECKED_IN_PREDICTION_MANIFEST",
-      "DATED_PLANNER_SNAPSHOT_REQUIRED_FOR_2026_BEAR_TRANSITIONS"
+      "CURRENT_DATABASE_NEWER_THAN_CHECKED_IN_PREDICTION_MANIFEST"
     ]
   },
   "historical_blind_acceptance_2026_08_28": {
@@ -340,19 +339,25 @@
       "local_promotion_status": "LOCAL_REBUILT_HOSTED_EQUIVALENCE_PENDING"
     },
     "latest_unpromoted_blind_candidate_2026_08_28": {
-      "candidate": "audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260828_residency_lane_rebuild",
+      "candidate": "audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260828_bear_source_repair",
       "database_sha256_at_candidate_build": "75eceb9bd225d264d0294db655ffdc8feec03e3fe0d21b6c9e3a8a72d1794068",
-      "frozen_prediction_sha256": "53c5fb934f40f4ef54590309159879236ba696ef29672493648e1498d29adfc7",
-      "joined_actual_keys": 13968,
+      "frozen_prediction_sha256": "5d0becac14bbeb84b96725acd917c4e7bc8a4a799d23b0a740b736874be8d90a",
+      "joined_actual_keys": 14040,
       "duplicate_prediction_key_groups": 0,
       "duplicate_actual_key_groups": 0,
       "unexpected_actual_engine_or_key_gaps": 0,
-      "probability_mae": 0.09605323221120989,
-      "probability_rmse": 0.23871293956515582,
-      "probability_abs_error_gt_0_25": 1588,
-      "false_guarantee_rows": 336,
-      "prior_candidate_false_guarantee_rows": 256,
-      "acceptance_status": "NOT_ACCEPTED_FALSE_GUARANTEE_REVIEW_REQUIRED",
+      "source_classified_unmatched_actual_keys": 2585,
+      "source_classified_unmatched_actual_dispositions": {
+        "SOURCE_VERIFIED_NO_PUBLIC_ODDS_CWMU_EXCLUDED": 2528,
+        "SOURCE_VERIFIED_CURRENT_ADDITION_NO_COMPARABLE_HISTORY": 57
+      },
+      "probability_mae": 0.12255737032190898,
+      "probability_rmse": 0.2904466861780435,
+      "probability_abs_error_gt_0_25": 1976,
+      "false_guarantee_rows": 229,
+      "bear_false_guarantee_rows": 63,
+      "acceptance_status": "DIAGNOSTIC_ONLY_NOT_ACCEPTED_FALSE_GUARANTEE_REVIEW_REQUIRED",
+      "note": "The 2025-to-2026 diagnostic is excluded from ADR-0006 certification acceptance. It confirms the retained 2025 official bear report corrects the stale Planner-text interpretation: 72 prior bear source gaps now join as official draw rows.",
       "local_or_hosted_promotion": "NONE"
     },
     "local_prediction_promotion_2026_08_27": {
