@@ -19528,3 +19528,10 @@ Production state:
 - Excluded 31 historical cougar unit codes from the current public 2026 permit register while retaining them unchanged in `DATABASE.csv` for historical lineage.
 - Rebuilt the public register so Cougar contains one current row and clearly states that `CG9999` is statewide open and license-based.
 - Applied the same current-cougar filter to the Hunt Library's generated hunt index and browser loader so search/research drawers cannot reintroduce the 31 historical cougar codes.
+
+## 2026-08-28 - Hunt Library document classification corrected
+
+- Made `2026 Hunt Units / Permit Numbers` the single authoritative public location for the comprehensive 60-page all-hunts/all-hunt-codes register.
+- Removed the duplicate comprehensive register from `Conservation Permits`, leaving only the readable UOGA conservation guide and authoritative DWR working list there.
+- Moved the 26-code Draw + EXPO reconciliation into `2026 Hunt Draw Results`, where its draw-specific scope is clear.
+- Updated folder descriptions and public titles without changing wall-card positions, dimensions, ordering, search placement, cabin artwork, or PDF files.
