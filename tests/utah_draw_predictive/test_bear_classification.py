@@ -6,8 +6,10 @@ from engine.utah_draw_predictive.bear import (
     RESTRICTED_BEAR_PURSUIT,
     classify_bear_subtype,
     is_supported_bear_bonus_row,
+    official_bear_draw_odds_hunt_codes,
     official_bear_pursuit_hunt_codes,
 )
+from scripts.run_blind_2025_to_2026_prediction_backtest import is_current_planner_non_draw_bear
 
 
 def test_bear_classification() -> None:
@@ -35,6 +37,27 @@ def test_official_restricted_pursuit_bear_rows_enter_bonus_model() -> None:
     assert classify_bear_subtype(row) == RESTRICTED_BEAR_PURSUIT
     assert is_supported_bear_bonus_row(row) is True
     assert resolve_algorithm_status(row, "BEAR_DRAW") == "IN_SCOPE_MODEL_PENDING"
+
+
+def test_official_bear_draw_report_overrides_ambiguous_current_planner_labels() -> None:
+    pursuit_codes = {
+        "BR1008",
+        "BR1009",
+        "BR1010",
+        "BR1011",
+        "BR1012",
+        "BR1013",
+        "BR1015",
+        "BR1016",
+        "BR1017",
+    }
+    assert pursuit_codes <= official_bear_pursuit_hunt_codes()
+    assert "BR7225" in official_bear_draw_odds_hunt_codes()
+
+    for hunt_code in pursuit_codes | {"BR7225"}:
+        assert is_current_planner_non_draw_bear(
+            {"hunt_code": hunt_code, "hunt_type": "O.T.C.", "weapon": "Pursuit Only"}
+        ) is False
 
 
 def test_bear_name_in_non_bear_hunt_does_not_false_positive() -> None:

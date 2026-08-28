@@ -25,6 +25,7 @@ import shutil
 import sys
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
+from functools import lru_cache
 from pathlib import Path
 from statistics import median
 from typing import Any, Iterable, Mapping
@@ -40,6 +41,7 @@ EXTERNAL_ACTUAL_2026 = next((path for path in ACTUAL_2026_CANDIDATES if path.exi
 RUNTIME_DRAFT_DIR = REPO / "data_model" / "runtime_drafts"
 DEFAULT_OUT_ROOT = REPO / "audits" / "prediction_blind_backtests" / "2025_to_2026"
 BLACK_BEAR_CROSSWALK_2026 = REPO / "data_truth" / "crosswalk_truth" / "normalized" / "black_bear_BR_2024_2025_2026_crosswalk.csv"
+NO_EXACT_HISTORY_CROSSWALK_2026 = REPO / "data_truth" / "crosswalk_truth" / "normalized" / "2026_no_exact_history_additions_crosswalk.csv"
 CURRENT_DATABASE_2026 = REPO / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "DATABASE.csv"
 # Use every available pre-target official draw year.  The blind filter still
 # excludes 2026 actuals until the forecast is frozen.
@@ -531,7 +533,49 @@ def load_current_database_by_code() -> dict[str, dict[str, str]]:
     }
 
 
+def load_source_verified_no_exact_history_codes() -> dict[str, dict[str, str]]:
+    """Load official current additions intentionally excluded from scoring.
+
+    This is not a predecessor map.  Its only valid use is to prevent an
+    official 2026 addition with no exact historical draw code from being
+    misreported as an engine/key failure.
+    """
+    if not NO_EXACT_HISTORY_CROSSWALK_2026.exists():
+        return {}
+    _, rows = read_csv(NO_EXACT_HISTORY_CROSSWALK_2026)
+    verified_rows = [
+        row
+        for row in rows
+        if clean(row.get("crosswalk_status")) == "SOURCE_VERIFIED_UNSCORED_NO_EXACT_HISTORY"
+        and clean(row.get("recommended_model_behavior"))
+        == "DO_NOT_EMIT_PROBABILITY_OR_SCORE_UNTIL_OFFICIAL_PREDECESSOR_EXISTS"
+    ]
+    return {
+        norm_code(row.get("current_hunt_code")): row
+        for row in verified_rows
+        if norm_code(row.get("current_hunt_code"))
+    }
+
+
+@lru_cache(maxsize=1)
+def official_bear_draw_codes() -> frozenset[str]:
+    """Return 2025 official bear-draw codes used to disambiguate Planner text.
+
+    A current Planner label such as ``Pursuit Only`` or ``O.T.C.`` is not by
+    itself proof that a code was outside the preceding public drawing.  The
+    archived official draw-results report is the source correction layer.
+    """
+    repo_text = str(REPO)
+    if repo_text not in sys.path:
+        sys.path.insert(0, repo_text)
+    from engine.utah_draw_predictive.bear import official_bear_draw_odds_hunt_codes
+
+    return frozenset(official_bear_draw_odds_hunt_codes())
+
+
 def is_current_planner_non_draw_bear(row: Mapping[str, Any]) -> bool:
+    if norm_code(row.get("hunt_code")) in official_bear_draw_codes():
+        return False
     text = " ".join(
         clean(row.get(field)).lower()
         for field in ("hunt_type", "hunt_class", "weapon", "draw_design", "draw_pool")
@@ -544,6 +588,7 @@ def disposition_for_unmatched_actual(
     history_code_years: Mapping[str, set[int]],
     current_only_bear_split_codes: set[str],
     current_database_by_code: Mapping[str, Mapping[str, Any]],
+    source_verified_no_exact_history_codes: Mapping[str, Mapping[str, Any]],
 ) -> tuple[str, str]:
     """Classify unmatched actual rows without using 2026 results as history."""
     code = norm_code(row.get("hunt_code"))
@@ -565,6 +610,12 @@ def disposition_for_unmatched_actual(
         return (
             "SOURCE_VERIFIED_CURRENT_PLANNER_NON_DRAW_BEAR",
             "The official current DWR Planner identifies this code as an OTC/pursuit or other non-draw bear design, while the time-aligned official draw-result source contains a historic public-draw ladder. This is a source-timing/design transition, not a missing probability-engine key; retain it for dated-snapshot reconciliation rather than scoring it as a forecast failure.",
+        )
+    no_exact_history = source_verified_no_exact_history_codes.get(code)
+    if no_exact_history:
+        return (
+            "SOURCE_VERIFIED_CURRENT_ADDITION_NO_COMPARABLE_HISTORY",
+            "The retained official crosswalk verifies that this current 2026 code has no exact 2018-2025 canonical draw-result predecessor. It is deliberately excluded from forecast scoring and emits no borrowed probability until a time-aligned official DWR predecessor mapping exists.",
         )
     if not history_years:
         return (
@@ -959,6 +1010,7 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path, actual_2026: Path)
     history_code_years = build_history_code_years()
     current_only_bear_split_codes = load_current_only_bear_split_codes()
     current_database_by_code = load_current_database_by_code()
+    source_verified_no_exact_history_codes = load_source_verified_no_exact_history_codes()
     source_verified_prediction_gaps: list[dict[str, Any]] = []
     unexpected_unmatched_actuals: list[dict[str, Any]] = []
     unmatched_disposition_counts: Counter[str] = Counter()
@@ -968,6 +1020,7 @@ def compare_to_actual(out_dir: Path, frozen_prediction: Path, actual_2026: Path)
             history_code_years,
             current_only_bear_split_codes,
             current_database_by_code,
+            source_verified_no_exact_history_codes,
         )
         annotated = dict(row)
         annotated["disposition"] = disposition

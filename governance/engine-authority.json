@@ -8,12 +8,55 @@
     "production_prediction_accuracy_certified": false,
     "promotion_status": "BLOCKED",
     "promotion_blockers": [
-      "AGGREGATE_BLIND_BACKTEST_ACCEPTANCE_NOT_CERTIFIED",
+      "HISTORICAL_ADJACENT_YEAR_ACCEPTANCE_REVIEW_NOT_ACCEPTED",
       "KNOWN_FAMILY_CONTRACT_TEST_DRIFT",
-      "GENERIC_SIMULATOR_RESIDENCY_SEQUENCE_NOT_CERTIFIED",
-      "DATED_PLANNER_SNAPSHOT_REQUIRED_FOR_2026_BEAR_TRANSITIONS",
-      "NO_EXACT_HISTORY_2026_ADDITIONS_SOURCE_CROSSWALK_PENDING",
       "CURRENT_DATABASE_NEWER_THAN_CHECKED_IN_PREDICTION_MANIFEST"
+    ]
+  },
+  "historical_blind_acceptance_2026_08_28": {
+    "standard": "docs/decisions/ADR-0006-historical-blind-acceptance-thresholds.md",
+    "audit": "audits/prediction_blind_year_to_year/historical_adjacent_full_engine_2018_2025_20260828_source_pool_turkey_repair/acceptance_review/acceptance_review_manifest.json",
+    "physical_draw_folds": [
+      "2017_to_2018",
+      "2018_to_2019",
+      "2019_to_2020",
+      "2020_to_2021",
+      "2021_to_2022",
+      "2022_to_2023",
+      "2023_to_2024",
+      "2024_to_2025"
+    ],
+    "excluded_comparison": "2025_to_2026",
+    "joined_rows": 70912,
+    "probability_mae": 0.12160185168577956,
+    "probability_rmse": 0.2876779392242613,
+    "p90_absolute_probability_error": 0.448276,
+    "probability_abs_error_gt_0_25": 9862,
+    "false_guarantee_rows": 404,
+    "designs_reviewed": 7,
+    "acceptance_status": "NOT_ACCEPTED",
+    "rule": "No aggregate result may override a per-design false guarantee, failed threshold, insufficient evidence, or unclassified official actual gap.",
+    "root_cause_findings": [
+      {
+        "id": "TURKEY_ADULT_YOUTH_QUOTA_PROXY_COLLAPSE",
+        "status": "RESOLVED_RESCORING_NOT_ACCEPTED",
+        "detail": "The historical source-year proxy now keys adult and youth Turkey separately by family and draw-pool identity, preserving their official resident and nonresident quotas. Regression coverage reproduces TK1003's 250-adult versus 37-youth resident split."
+      },
+      {
+        "id": "TURKEY_RANDOM_WITH_REPLACEMENT_PROBABILITY",
+        "status": "RESOLVED_RESCORING_NOT_ACCEPTED",
+        "detail": "Turkey now removes deterministic max-pool winners before evaluating each successive weighted permit from the remaining finite applicant pool. It no longer compounds independent repeated chances for the same application."
+      },
+      {
+        "id": "BEAR_LEGACY_COMBINED_RESIDENCY_HISTORY",
+        "status": "2019_2022_SOURCE_SPLIT_PARITY_VALIDATED_2018_CANONICAL_FREEZE_AND_ADAPTER_PENDING",
+        "detail": "The retained 2018-2022 official bear PDFs have separate resident and nonresident point ladders. The hash-linked extraction recombines exactly for every canonical-covered year (2019-2022); the official 2018 PDF is extracted but its normal canonical bear scope is not yet frozen. A paired source-and-held-out source-lane scorer or engine adapter may use only exact-recombined years, and combined history must never be treated as a resident or nonresident ladder."
+      },
+      {
+        "id": "SOURCE_BACKED_PROBABILITY_ROLLFORWARD_FALSE_GUARANTEE",
+        "status": "RESOLVED_RESCORING_NOT_ACCEPTED",
+        "detail": "A copied source-year probability of 100 percent now emits an explicit NOT_SCORED guardrail rather than a next-year p_draw value. Lower copied values remain visibly source-backed roll-forward evidence and are not represented as a simulated lane."
+      }
     ]
   },
   "official_draw_design_baseline": {
@@ -305,6 +348,28 @@
       "frozen_prediction_sha256": "9e4c0f1a66678cd63df88512e45ba71d63746a6b21d7e4038fecb142f40e9d5e",
       "local_promotion_status": "LOCAL_REBUILT_HOSTED_EQUIVALENCE_PENDING"
     },
+    "latest_unpromoted_blind_candidate_2026_08_28": {
+      "candidate": "audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260828_bear_source_repair",
+      "database_sha256_at_candidate_build": "75eceb9bd225d264d0294db655ffdc8feec03e3fe0d21b6c9e3a8a72d1794068",
+      "frozen_prediction_sha256": "5d0becac14bbeb84b96725acd917c4e7bc8a4a799d23b0a740b736874be8d90a",
+      "joined_actual_keys": 14040,
+      "duplicate_prediction_key_groups": 0,
+      "duplicate_actual_key_groups": 0,
+      "unexpected_actual_engine_or_key_gaps": 0,
+      "source_classified_unmatched_actual_keys": 2585,
+      "source_classified_unmatched_actual_dispositions": {
+        "SOURCE_VERIFIED_NO_PUBLIC_ODDS_CWMU_EXCLUDED": 2528,
+        "SOURCE_VERIFIED_CURRENT_ADDITION_NO_COMPARABLE_HISTORY": 57
+      },
+      "probability_mae": 0.12255737032190898,
+      "probability_rmse": 0.2904466861780435,
+      "probability_abs_error_gt_0_25": 1976,
+      "false_guarantee_rows": 229,
+      "bear_false_guarantee_rows": 63,
+      "acceptance_status": "DIAGNOSTIC_ONLY_NOT_ACCEPTED_FALSE_GUARANTEE_REVIEW_REQUIRED",
+      "note": "The 2025-to-2026 diagnostic is excluded from ADR-0006 certification acceptance. It confirms the retained 2025 official bear report corrects the stale Planner-text interpretation: 72 prior bear source gaps now join as official draw rows.",
+      "local_or_hosted_promotion": "NONE"
+    },
     "local_prediction_promotion_2026_08_27": {
       "record": "processed_data/local_prediction_promotion_2026.json",
       "candidate": "audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260827_certification_candidate",
@@ -419,11 +484,6 @@
       "detail": "EB1007 forecast currently remains IN_SCOPE_MODEL_PENDING while the test contract expects MODELED_RANDOM_ONLY"
     },
     {
-      "id": "GENERIC_SIMULATOR_RESIDENCY_SEQUENCE",
-      "status": "UNRESOLVED_REQUIRES_REVIEW",
-      "detail": "The deterministic simulator uses global bonus max and random counters over residency buckets instead of fully separate residency rounds followed by only eligible official crossover"
-    },
-    {
       "id": "LOCAL_TO_R2_RUNTIME_EQUIVALENCE",
       "status": "UNRESOLVED_REQUIRES_REVIEW",
       "detail": "The normal four-file Research split contract was released and public-hash-verified on 2026-08-28. The legacy predictive CSV remains content/schema-different (35,016 hosted rows versus 40,642 local) and is not part of the normal Research load path; retain this review item while the fallback remains available."
@@ -451,7 +511,8 @@
     "docs/decisions/ADR-0002-prediction-engine-roles.md",
     "docs/decisions/ADR-0003-truth-and-scoring-authority.md",
     "docs/decisions/ADR-0004-r2-runtime-data-policy.md",
-    "docs/decisions/ADR-0005-prediction-promotion-standard.md"
+    "docs/decisions/ADR-0005-prediction-promotion-standard.md",
+    "docs/decisions/ADR-0006-historical-blind-acceptance-thresholds.md"
   ],
   "commands": {
     "validate_memory": "npm run validate:project-memory",

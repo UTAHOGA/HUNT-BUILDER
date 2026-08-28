@@ -311,13 +311,30 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
         if not is_target_bonus_hunt(raw_hunt_type):
             continue
 
-        # Published 2026 DB permit fields are the runtime quota source.
-        q_res = to_int(db.get("permits_2026_res"), 0)
-        q_nr = to_int(db.get("permits_2026_nr"), 0)
-        q_total = to_int(db.get("permits_2026_total"), q_res + q_nr)
-        residency_quota = current_year_quota_for_residency(db, residency)
-        quota_source_file = OFFICIAL_2026_QUOTA_SOURCE_FILE
-        quota_source_label = clean(db.get("permits_2026_source")) or "DATABASE_2026_PERMITS"
+        # Runtime predictions use the published 2026 DB permit fields.  A
+        # historical blind audit may deliberately provide a source-year
+        # permit proxy instead; it is never an alias for current authority.
+        historical_proxy = clean(db.get("historical_permit_proxy")).lower() in {"1", "true", "yes"}
+        if historical_proxy:
+            q_res = to_int(db.get("forecast_permits_res"), 0)
+            q_nr = to_int(db.get("forecast_permits_nr"), 0)
+            q_total = to_int(db.get("forecast_permits_total"), q_res + q_nr)
+            residency_quota = q_nr if clean(residency).lower().startswith("non") else q_res
+            quota_source_file = clean(db.get("forecast_permits_source_file"))
+            quota_source_label = clean(db.get("forecast_permits_source")) or "HISTORICAL_SOURCE_YEAR_PERMIT_PROXY"
+            quota_source_year = to_int(db.get("forecast_permits_source_year"), prediction_year)
+            quota_source_status = "historical_source_proxy"
+            permit_source_field = "forecast_permits_nr" if clean(residency).lower().startswith("non") else "forecast_permits_res"
+        else:
+            q_res = to_int(db.get("permits_2026_res"), 0)
+            q_nr = to_int(db.get("permits_2026_nr"), 0)
+            q_total = to_int(db.get("permits_2026_total"), q_res + q_nr)
+            residency_quota = current_year_quota_for_residency(db, residency)
+            quota_source_file = OFFICIAL_2026_QUOTA_SOURCE_FILE
+            quota_source_label = clean(db.get("permits_2026_source")) or "DATABASE_2026_PERMITS"
+            quota_source_year = prediction_year
+            quota_source_status = "official"
+            permit_source_field = "permits_2026_nr" if clean(residency).lower().startswith("non") else "permits_2026_res"
         if residency_quota <= 0:
             # Resident-only or NR-only handling: skip empty lane
             continue
@@ -359,8 +376,6 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
         reserved_quota = split.maxPointPermits
         random_quota = split.randomPermits
         reserved_fraction = (reserved_quota / residency_quota) if residency_quota > 0 else 0.0
-        quota_source_status = "official"
-        quota_source_year = prediction_year
         deterministic_draw, deterministic_reserved, deterministic_random, deterministic_zones, deterministic_cutoff = deterministic_pool_probabilities(
             points_desc,
             base_demand_by_point,
@@ -465,7 +480,7 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
                 "MAX_POOL_DEPRECATED_NO_AUTO_100",
                 "APPLICANT_STACK_ROLLED_FORWARD",
                 "MAX_POINT_BOUNDARY_RECOMPUTED",
-                "OFFICIAL_2026_QUOTA_USED",
+                "HISTORICAL_SOURCE_PERMIT_PROXY_USED" if historical_proxy else "OFFICIAL_2026_QUOTA_USED",
             ]
             if is_conditional_rung:
                 reasons.append("CONDITIONAL_ON_ONE_APPLICANT_AT_POINT")
@@ -504,6 +519,7 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
                     "quota_source_status": quota_source_status,
                     "quota_source_year": quota_source_year,
                     "quota_source_file": quota_source_file,
+                    "permit_source_field": permit_source_field,
                     "quota_2026_total": residency_quota,
                     "quota_2026_max_pool": reserved_quota,
                     "quota_2026_random_pool": random_quota,

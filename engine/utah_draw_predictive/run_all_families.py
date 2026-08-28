@@ -131,7 +131,13 @@ AUTHORITY_EXCLUDED_DRAW_SYSTEM_TYPES = {
 
 
 def _clean(value: object) -> str:
-    return str(value or "").strip()
+    # Numeric point level 0 is a real, scoreable ladder rung.  Do not use a
+    # truthiness shortcut here: it silently converted integer/float zero into
+    # an empty score-key component during final output normalization.  Preserve
+    # the existing treatment of boolean False as an absent optional value.
+    if value is None or value is False:
+        return ""
+    return str(value).strip()
 
 
 def _text(value: object) -> str:
@@ -937,6 +943,15 @@ def _source_backed_family_for_row(row: Mapping[str, object]) -> str:
     species = _clean(row.get("species")).lower()
     text = _joined_lower(row, "hunt_code", "hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "draw_design", "draw_pool", "source_file")
     draw_system = _draw_system(row).upper()
+    source_is_youth = _clean(row.get("source_is_youth")).lower()
+
+    # UtahDraws may publish adult and youth Turkey ladders under the same hunt
+    # code.  The source-level flag is therefore authoritative before generic
+    # filename/bucket routing can collapse the two pools.
+    if ("turkey" in species or prefix == "TK") and source_is_youth in {"true", "1", "yes", "y"}:
+        return "youth_turkey"
+    if ("turkey" in species or prefix == "TK") and source_is_youth in {"false", "0", "no", "n"}:
+        return "bonus_turkey"
 
     if "cwmu" in text and not any(token in text for token in ("private", "landowner", "voucher")):
         return "bonus_cwmu_big_game"
@@ -1067,6 +1082,23 @@ def _source_backed_probability_rows(
             if key in existing_keys or key in added_keys:
                 continue
             added_keys.add(key)
+            copied_guarantee = probability >= 1.0 - 1e-12
+            probability_fields = {
+                "p_preference_draw": f"{probability:.6f}" if family.startswith("preference_") and not copied_guarantee else "",
+                "p_bonus_pool": "" if family.startswith("preference_") or copied_guarantee else f"{probability:.6f}",
+                "p_random_pool": "",
+                "p_draw": "" if copied_guarantee else f"{probability:.6f}",
+                "p_bonus_pool_pct": "" if family.startswith("preference_") or copied_guarantee else f"{probability * 100.0:.3f}",
+                "p_random_pool_pct": "",
+                "p_draw_pct": "" if copied_guarantee else f"{probability * 100.0:.3f}",
+                "p_draw_mean": "" if copied_guarantee else f"{probability:.6f}",
+                "p_draw_p10": "" if copied_guarantee else f"{max(0.0, probability - 0.05):.6f}",
+                "p_draw_p50": "" if copied_guarantee else f"{probability:.6f}",
+                "p_draw_p90": "" if copied_guarantee else f"{min(1.0, probability + 0.05):.6f}",
+                "display_odds_pct": "" if copied_guarantee else f"{probability * 100.0:.3f}",
+                "display_odds_text": "No next-year modeled chance" if copied_guarantee else _render_odds_text(probability),
+                "draw_outlook": "MODEL PENDING" if copied_guarantee else _render_odds_text(probability),
+            }
             rows_by_family[family].append(
                 {
                     "model_version": "source_backed_roll_forward_v1",
@@ -1084,27 +1116,18 @@ def _source_backed_probability_rows(
                     "draw_pool": draw_pool,
                     "public_permits_2025": _clean(source_row.get("total_permits") or source_row.get("resident_total_permits") or source_row.get("nonresident_total_permits")),
                     "public_permits_2026": _clean(source_row.get("total_permits") or source_row.get("resident_total_permits") or source_row.get("nonresident_total_permits")),
-                    "p_preference_draw": f"{probability:.6f}" if family.startswith("preference_") else "",
-                    "p_bonus_pool": "" if family.startswith("preference_") else f"{probability:.6f}",
-                    "p_random_pool": "",
-                    "p_draw": f"{probability:.6f}",
-                    "p_bonus_pool_pct": "" if family.startswith("preference_") else f"{probability * 100.0:.3f}",
-                    "p_random_pool_pct": "",
-                    "p_draw_pct": f"{probability * 100.0:.3f}",
-                    "p_draw_mean": f"{probability:.6f}",
-                    "p_draw_p10": f"{max(0.0, probability - 0.05):.6f}",
-                    "p_draw_p50": f"{probability:.6f}",
-                    "p_draw_p90": f"{min(1.0, probability + 0.05):.6f}",
-                    "display_odds_pct": f"{probability * 100.0:.3f}",
-                    "display_odds_text": _render_odds_text(probability),
-                    "draw_outlook": _render_odds_text(probability),
+                    **probability_fields,
                     "source_years_used": str(source_year),
                     "source_year_count": "1",
                     "latest_source_year": str(source_year),
                     "earliest_source_year": str(source_year),
                     "source_dataset": "predictive",
                     "model_strategy": f"{family}_source_backed_roll_forward",
-                    "reason_codes": "SOURCE_BACKED_PUBLISHED_POINT_PROBABILITY_ROLL_FORWARD",
+                    "reason_codes": (
+                        "SOURCE_BACKED_PUBLISHED_POINT_PROBABILITY_ROLL_FORWARD_GUARANTEE_BLOCKED"
+                        if copied_guarantee
+                        else "SOURCE_BACKED_PUBLISHED_POINT_PROBABILITY_ROLL_FORWARD"
+                    ),
                     "weapon": _clean(source_row.get("weapon")),
                     "qa_notes": _clean(source_row.get("qa_notes")),
                     "source_file": _clean(source_row.get("source_file") or source_row.get("draw_source_file") or source_row.get("source_scope")),
@@ -1117,9 +1140,9 @@ def _source_backed_probability_rows(
                     "metric_scope": metric_scope,
                     "draw_method": _default_draw_method_for_family(family),
                     "point_system": _default_point_system_for_family(family),
-                    "algorithm_status": "MODELED_SOURCE_BACKED_ROLL_FORWARD",
-                    "prediction_status": "MODELED",
-                    "classification_status": "MODELED_SOURCE_BACKED_ROLL_FORWARD",
+                    "algorithm_status": "NOT_SCORED_SOURCE_ROLL_FORWARD_GUARANTEE_BLOCKED" if copied_guarantee else "MODELED_SOURCE_BACKED_ROLL_FORWARD",
+                    "prediction_status": "NOT_SCORED" if copied_guarantee else "MODELED",
+                    "classification_status": "SOURCE_ROLL_FORWARD_GUARANTEE_BLOCKED" if copied_guarantee else "MODELED_SOURCE_BACKED_ROLL_FORWARD",
                     "public_permits_target": _clean(source_row.get("total_permits") or source_row.get("resident_total_permits") or source_row.get("nonresident_total_permits")),
                     "public_permits_source": f"source_year_{source_year}_published_point_probability",
                 }
@@ -1201,6 +1224,11 @@ def _default_reason_code_for_family(family: str, algorithm_status: str) -> str:
 
 
 def _effective_draw_pool_for_family(row: Mapping[str, object], family: str) -> str:
+    # The official youth source flag is a pool identity boundary.  It takes
+    # precedence over generic source-file routes, which historically label
+    # both adult and youth Turkey reports as the same preference-point pool.
+    if family == "youth_turkey":
+        return "youth_turkey"
     source_route = _source_file_route(row)
     if source_route.get("draw_pool"):
         return source_route["draw_pool"]
@@ -1766,6 +1794,105 @@ def _with_historical_target_metadata(
     return enriched
 
 
+def _historical_source_year_runtime_db_rows(
+    source_rows: Sequence[Mapping[str, object]],
+    source_year: int,
+) -> list[dict[str, object]]:
+    """Build an audit-only runtime target proxy from source-year PDF truth.
+
+    A blind historical forecast may assume the latest published permit split
+    remains unchanged, but it must not read the current runtime database or
+    the holdout year's actual permit totals.  This adapter preserves the
+    source row's public residency split and labels every resulting quota as a
+    source-year proxy for audit traceability.
+    """
+    by_identity: dict[tuple[str, str, str], list[dict[str, object]]] = defaultdict(list)
+    for row in source_rows:
+        hunt_code = _clean(row.get("hunt_code")).upper()
+        family = _source_backed_family_for_row(row)
+        if not hunt_code or not family:
+            continue
+        # Family is a source-pool boundary, not merely an output label.  In
+        # particular, bonus_turkey and youth_turkey can share a hunt code but
+        # have independent quotas and applicant ladders.  Keep the effective
+        # draw pool as a further source identity guard against legacy scope
+        # collapse.
+        pool_identity = _effective_draw_pool_for_family(row, family)
+        by_identity[(hunt_code, family, pool_identity)].append(dict(row))
+
+    db_rows: list[dict[str, object]] = []
+    for (hunt_code, family, pool_identity), source_family_rows in sorted(by_identity.items()):
+        representative = next(
+            (
+                row
+                for row in source_family_rows
+                if "HUNT_TOTAL" in _clean(row.get("record_type") or row.get("row_type")).upper()
+            ),
+            source_family_rows[0],
+        )
+        total_rows = [
+            row
+            for row in source_family_rows
+            if "HUNT_TOTAL" in _clean(row.get("record_type") or row.get("row_type")).upper()
+        ]
+        quota_rows = total_rows or [
+            row
+            for row in source_family_rows
+            if "POINT" in _clean(row.get("record_type") or row.get("row_type")).upper()
+        ]
+        seen_points: set[tuple[str, str]] = set()
+        res = nr = total = 0.0
+        for row in quota_rows:
+            point_key = (_clean(row.get("points")), _clean(row.get("residency")).lower())
+            if not total_rows and point_key in seen_points:
+                continue
+            seen_points.add(point_key)
+            res += _best_number(row, "resident_total_permits", "resident_regular_permits")
+            nr += _best_number(row, "nonresident_total_permits", "nonresident_regular_permits")
+            value = _best_number(row, "total_permits", "total_regular_permits")
+            total += value if value > 0 else _best_number(row, "resident_total_permits") + _best_number(row, "nonresident_total_permits")
+        if total <= 0:
+            total = res + nr
+        if res <= 0 and nr <= 0 and total <= 0:
+            continue
+
+        draw_system_type = _draw_system_for_family(family)
+        if family == "bonus_le_big_game":
+            hunt_type = "Limited Entry"
+        elif family == "bonus_ple_big_game":
+            hunt_type = "Premium Limited Entry"
+        elif family == "bonus_oil_big_game":
+            hunt_type = "Once-in-a-Lifetime"
+        else:
+            hunt_type = _clean(representative.get("hunt_type"))
+        source_file = _clean(representative.get("source_path") or representative.get("source_file"))
+        db_rows.append(
+            {
+                "hunt_code": hunt_code,
+                "hunt_name": _clean(representative.get("hunt_name")),
+                "species": _clean(representative.get("species")),
+                "sex_type": _clean(representative.get("sex_type")),
+                "hunt_type": hunt_type,
+                "hunt_class": _clean(representative.get("hunt_class") or representative.get("hunt_draw_class")),
+                "weapon": _clean(representative.get("weapon")),
+                "draw_pool": pool_identity,
+                "draw_system_type": draw_system_type,
+                "historical_permit_proxy": "TRUE",
+                "historical_proxy_pool_identity": f"{family}:{pool_identity}",
+                "forecast_permits_res": str(int(round(res))),
+                "forecast_permits_nr": str(int(round(nr))),
+                "forecast_permits_total": str(int(round(total))),
+                "forecast_permits_source_year": str(source_year),
+                "forecast_permits_source": "SOURCE_YEAR_OFFICIAL_DRAW_RESULT_PERMIT_PROXY",
+                "forecast_permits_source_file": source_file,
+                f"permits_{source_year}_res": str(int(round(res))),
+                f"permits_{source_year}_nr": str(int(round(nr))),
+                f"permits_{source_year}_total": str(int(round(total))),
+            }
+        )
+    return db_rows
+
+
 def _with_run_fields(rows: Iterable[Mapping[str, object]], source_year: int, target_year: int, family: str) -> list[dict[str, object]]:
     out: list[dict[str, object]] = []
     for row in rows:
@@ -2140,6 +2267,8 @@ def run_all_families(
     enable_antlerless_deer_calibration: bool = False,
     calibration_mode: str = "off",
     calibrate_family: str = CALIBRATION_FAMILY,
+    runtime_permit_source: str = "current_2026",
+    score_target_year: int | None = None,
 ) -> dict[str, object]:
     if enable_antlerless_deer_calibration and (
         calibration_mode != "production" or _clean(calibrate_family).upper() != CALIBRATION_FAMILY
@@ -2148,6 +2277,11 @@ def run_all_families(
             "Active calibration requires --calibration-mode production and "
             "--calibrate-family PREFERENCE_ANTLERLESS_DEER."
         )
+    if runtime_permit_source not in {"current_2026", "source_year_proxy"}:
+        raise ValueError("runtime_permit_source must be current_2026 or source_year_proxy")
+    output_target_year = score_target_year if score_target_year is not None else target_year
+    if output_target_year < target_year:
+        raise ValueError("score_target_year cannot precede the forecast draw year")
     all_truth_rows = _read_csv(truth_path)
     source_rows = [row for row in all_truth_rows if _row_year(row) == source_year]
     engine_rows = _with_historical_target_metadata(source_rows, source_year, target_year)
@@ -2160,7 +2294,11 @@ def run_all_families(
     history_rows = [row for row in all_truth_rows if (_row_year(row) or 0) in history_year_set]
     history_engine_rows = _with_historical_target_metadata(history_rows, source_year, target_year)
     limited_history = len(history_years) <= 1
-    runtime_db_rows = _read_runtime_database_rows()
+    runtime_db_rows = (
+        _historical_source_year_runtime_db_rows(source_rows, source_year)
+        if runtime_permit_source == "source_year_proxy"
+        else _read_runtime_database_rows()
+    )
     runtime_history_years = history_years
     runtime_truth_rows = [row for row in all_truth_rows if (_row_year(row) or 0) in set(runtime_history_years)]
     suppressed_runtime_families: set[str] = set()
@@ -2178,7 +2316,7 @@ def run_all_families(
         seed=20260701,
     )
     big_game_bonus_rows_by_family = {
-        family: _with_run_fields(rows, source_year, target_year, family)
+        family: _with_run_fields(rows, source_year, output_target_year, family)
         for family, rows in _split_big_game_bonus_rows(big_game_bonus_raw_rows, big_game_bonus_db_by_code).items()
     }
     for rows in big_game_bonus_rows_by_family.values():
@@ -2188,40 +2326,40 @@ def run_all_families(
     general_rows = _with_run_fields(
         build_preference_general_deer_predictions(history_engine_rows, engine_rows, target_year, history_years),
         source_year,
-        target_year,
+        output_target_year,
         "preference_general_deer",
     )
     antlerless_all = build_preference_antlerless_predictions(history_engine_rows, engine_rows, target_year, history_years)
     antlerless_deer_rows = _with_run_fields(
         [row for row in antlerless_all if row.get("draw_system_type") == "PREFERENCE_ANTLERLESS_DEER"],
         source_year,
-        target_year,
+        output_target_year,
         "preference_antlerless_deer",
     )
     antlerless_elk_rows = _with_run_fields(
         [row for row in antlerless_all if row.get("draw_system_type") == "PREFERENCE_ANTLERLESS_ELK"],
         source_year,
-        target_year,
+        output_target_year,
         "preference_antlerless_elk",
     )
     doe_pronghorn_rows = _with_run_fields(
         [row for row in antlerless_all if row.get("draw_system_type") == "PREFERENCE_DOE_PRONGHORN"],
         source_year,
-        target_year,
+        output_target_year,
         "preference_doe_pronghorn",
     )
     dedicated_rows = _with_run_fields(
         build_preference_dedicated_hunter_predictions(history_engine_rows, engine_rows, target_year, history_years),
         source_year,
-        target_year,
+        output_target_year,
         "dedicated_hunter",
     )
     sportsman_rows, sportsman_report = build_sportsman_predictions(history_engine_rows, engine_rows, target_year, history_years)
-    sportsman_rows = _with_run_fields(sportsman_rows, source_year, target_year, "sportsman")
+    sportsman_rows = _with_run_fields(sportsman_rows, source_year, output_target_year, "sportsman")
     bear_rows, bear_report = build_bear_bonus_predictions(runtime_truth_rows, runtime_db_rows, target_year, runtime_history_years)
-    bear_rows = _with_run_fields(bear_rows, source_year, target_year, "bonus_bear")
+    bear_rows = _with_run_fields(bear_rows, source_year, output_target_year, "bonus_bear")
     turkey_rows, turkey_report = build_turkey_bonus_predictions(runtime_truth_rows, runtime_db_rows, target_year, runtime_history_years)
-    turkey_rows = _with_run_fields(turkey_rows, source_year, target_year, "bonus_turkey")
+    turkey_rows = _with_run_fields(turkey_rows, source_year, output_target_year, "bonus_turkey")
     if "youth_turkey" in suppressed_runtime_families:
         youth_turkey_rows = []
         youth_turkey_report = {
@@ -2242,9 +2380,9 @@ def run_all_families(
             target_year,
             runtime_history_years,
         )
-        youth_turkey_rows = _with_run_fields(youth_turkey_rows, source_year, target_year, "youth_turkey")
+        youth_turkey_rows = _with_run_fields(youth_turkey_rows, source_year, output_target_year, "youth_turkey")
     youth_rows, youth_report = build_youth_predictions(runtime_truth_rows, runtime_db_rows, target_year, runtime_history_years)
-    youth_rows = _with_run_fields(youth_rows, source_year, target_year, "youth_draw")
+    youth_rows = _with_run_fields(youth_rows, source_year, output_target_year, "youth_draw")
 
     modeled = {
         "bonus_le_big_game": big_game_bonus_rows_by_family["bonus_le_big_game"],
@@ -2262,12 +2400,12 @@ def run_all_families(
     }
     if "youth_turkey" not in suppressed_runtime_families:
         modeled["youth_turkey"] = youth_turkey_rows
-    source_backed_rows_by_family = _source_backed_probability_rows(source_rows, modeled, source_year, target_year)
+    source_backed_rows_by_family = _source_backed_probability_rows(source_rows, modeled, source_year, output_target_year)
     for family, source_backed_rows in source_backed_rows_by_family.items():
         if not source_backed_rows:
             continue
         modeled.setdefault(family, [])
-        modeled[family].extend(_with_run_fields(source_backed_rows, source_year, target_year, family))
+        modeled[family].extend(_with_run_fields(source_backed_rows, source_year, output_target_year, family))
     modeled["preference_antlerless_deer"] = _apply_antlerless_deer_production_calibration(
         modeled["preference_antlerless_deer"],
         enabled=enable_antlerless_deer_calibration,
@@ -2314,6 +2452,8 @@ def run_all_families(
     audit_dir.mkdir(parents=True, exist_ok=True)
     run_metadata = {
         "source_year": source_year,
+        "forecast_draw_year": target_year,
+        "score_target_year": output_target_year,
         "target_year": target_year,
         "truth_path": str(truth_path),
         "first_year_bootstrap": first_year_bootstrap,
@@ -2321,6 +2461,8 @@ def run_all_families(
         "source_years_available": history_years,
         "source_rows": len(source_rows),
         "history_rows": len(history_rows),
+        "runtime_permit_source": runtime_permit_source,
+        "runtime_database_rows": len(runtime_db_rows),
         "calibration_applied": bool(enable_antlerless_deer_calibration),
         "calibration_mode": calibration_mode,
         "calibrate_family": calibrate_family,
@@ -2540,7 +2682,11 @@ def run_all_families(
                     len(big_game_bonus_db_by_code) if family in {"bonus_le_big_game", "bonus_ple_big_game", "bonus_oil_big_game"} else len(runtime_db_rows),
                     list(big_game_bonus_db_by_code.values()) if family in {"bonus_le_big_game", "bonus_ple_big_game", "bonus_oil_big_game"} else runtime_db_rows,
                     blocker="" if (big_game_bonus_db_by_code if family in {"bonus_le_big_game", "bonus_ple_big_game", "bonus_oil_big_game"} else runtime_db_rows) else "NO_RUNTIME_DATABASE_ROWS",
-                    notes=f"Uses repo DATABASE.csv so rolling audit coverage matches runtime materializer family coverage. Report keys: {','.join(sorted(report.keys())[:12])}",
+                    notes=(
+                        "Uses repo DATABASE.csv so rolling audit coverage matches runtime materializer family coverage. "
+                        if runtime_permit_source == "current_2026"
+                        else "Uses source-year official-draw-result permit proxy; current runtime DATABASE.csv is not read. "
+                    ) + f"Report keys: {','.join(sorted(report.keys())[:12])}",
                 ),
                 _trace_row(
                     source_year,
@@ -2685,6 +2831,17 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--enable-antlerless-deer-calibration", action="store_true")
     parser.add_argument("--calibration-mode", choices=["off", "production"], default="off")
     parser.add_argument("--calibrate-family", default=CALIBRATION_FAMILY)
+    parser.add_argument(
+        "--runtime-permit-source",
+        choices=["current_2026", "source_year_proxy"],
+        default="current_2026",
+        help="Use source_year_proxy for a no-future-authority historical blind forecast.",
+    )
+    parser.add_argument(
+        "--score-target-year",
+        type=int,
+        help="Canonical model-target year used only for score-key alignment in a historical draw-year audit.",
+    )
     return parser
 
 
@@ -2698,6 +2855,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         enable_antlerless_deer_calibration=args.enable_antlerless_deer_calibration,
         calibration_mode=args.calibration_mode,
         calibrate_family=args.calibrate_family,
+        runtime_permit_source=args.runtime_permit_source,
+        score_target_year=args.score_target_year,
     )
     print(result)
     return 0
