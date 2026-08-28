@@ -56,6 +56,7 @@ YEAR_CONFIGS = {
             ("18_youth_antlerless_drawing_odds_report.pdf", "YOUTH_ANTLERLESS", "PREFERENCE"),
             ("18_youth_any_bull_elk.pdf", "YOUTH_ANY_BULL_ELK", "RANDOM_ONLY"),
             ("18_youth_general_deer.pdf", "YOUTH_GENERAL_SEASON_DEER", "PREFERENCE"),
+            ("official_dwr_archive/black_bear/18_drawing_odds.pdf", "BLACK_BEAR", "BONUS"),
         ],
         "sportsman_file": "18-19_sportsman_odds.pdf",
     },

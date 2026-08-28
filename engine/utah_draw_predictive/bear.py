@@ -28,11 +28,6 @@ from .permit_accessors import target_residency_permit_allocation
 MODEL_STRATEGY_NAME = "bear_bonus_phase8"
 BONUS_RULE_VERSION = "utah_bear_bonus_v1.0.0"
 BEAR_DRAW_SYSTEM_TYPE = "BEAR_DRAW"
-# A bear point ladder is a forecast, not a published applicant roster. The
-# empirical demand scenarios preserve Utah's deterministic draw mechanics
-# within each scenario while preventing a narrow mean-ladder max pool from
-# being presented as an unconditional guarantee.
-BEAR_DEMAND_SCENARIO_COUNT = 31
 BEAR_NO_PRIOR_LADDER_REASON_CODE = "BEAR_CURRENT_TARGET_NO_PRIOR_LADDER_NO_PUBLIC_P_DRAW"
 BEAR_NO_PUBLIC_PROBABILITY_REASON_CODES = {
     "KNOWN_ZERO_RESIDENCY_QUOTA",
@@ -469,9 +464,9 @@ def _build_truth_ladders(
     return ladders, meta, total_drawn_by_code_year
 
 
-def _retention_and_zero_growth_samples(
+def _build_retention_and_zero_growth(
     ladders: Mapping[tuple[str, int, str, str], dict[int, dict[str, int]]],
-) -> tuple[dict[str, list[float]], list[float]]:
+) -> tuple[dict[str, float], float]:
     retention_samples: dict[str, list[float]] = defaultdict(list)
     zero_growth_samples: list[float] = []
     years_by_subtype_code_res: dict[tuple[str, str, str], list[int]] = defaultdict(list)
@@ -497,14 +492,6 @@ def _retention_and_zero_growth_samples(
                 next_count = nxt.get(points + 1, {}).get("eligible", 0)
                 retention_samples[band].append(max(0.0, min(1.25, next_count / unsuccessful)))
 
-    return retention_samples, zero_growth_samples
-
-
-def _build_retention_and_zero_growth(
-    ladders: Mapping[tuple[str, int, str, str], dict[int, dict[str, int]]],
-) -> tuple[dict[str, float], float]:
-    retention_samples, zero_growth_samples = _retention_and_zero_growth_samples(ladders)
-
     default_retention = {
         "0": 0.78,
         "1": 0.83,
@@ -519,47 +506,6 @@ def _build_retention_and_zero_growth(
         retention_by_band[band] = round(mean(samples), 4) if samples else fallback
     zero_growth = round(mean(zero_growth_samples), 4) if zero_growth_samples else 1.0
     return retention_by_band, zero_growth
-
-
-def _empirical_quantile(samples: list[float], fallback: float, scenario_index: int) -> float:
-    """Return one deterministic empirical-demand scenario value.
-
-    All bands use a shared quantile index. That retains observed year-level
-    co-movement in applicant demand rather than treating point bands as
-    independent coin flips.
-    """
-    if not samples:
-        return fallback
-    ordered = sorted(samples)
-    if len(ordered) == 1:
-        return ordered[0]
-    position = scenario_index * (len(ordered) - 1) / (BEAR_DEMAND_SCENARIO_COUNT - 1)
-    lower = int(position)
-    upper = min(len(ordered) - 1, lower + 1)
-    if lower == upper:
-        return ordered[lower]
-    return ordered[lower] + (ordered[upper] - ordered[lower]) * (position - lower)
-
-
-def _forecast_applicant_ladder_scenarios(
-    latest_ladder: Mapping[int, dict[str, int]],
-    retention_by_band: Mapping[str, float],
-    zero_growth: float,
-    retention_samples: Mapping[str, list[float]],
-    zero_growth_samples: list[float],
-) -> list[dict[int, int]]:
-    """Build source-only next-year demand scenarios for one bear ladder."""
-    if not any(retention_samples.values()) and not zero_growth_samples:
-        return [_forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)]
-    scenarios: list[dict[int, int]] = []
-    for scenario_index in range(BEAR_DEMAND_SCENARIO_COUNT):
-        scenario_retention = {
-            band: _empirical_quantile(list(retention_samples.get(band, [])), rate, scenario_index)
-            for band, rate in retention_by_band.items()
-        }
-        scenario_zero_growth = _empirical_quantile(zero_growth_samples, zero_growth, scenario_index)
-        scenarios.append(_forecast_applicant_ladder(latest_ladder, scenario_retention, scenario_zero_growth))
-    return scenarios
 
 
 def _forecast_applicant_ladder(
@@ -916,7 +862,6 @@ def build_bear_bonus_predictions(
     default_latest_source_year = max(history_years)
     ladders, meta, total_drawn_by_code_year = _build_truth_ladders(truth_rows_list, history_year_set)
     retention_by_band, zero_growth = _build_retention_and_zero_growth(ladders)
-    retention_samples, zero_growth_samples = _retention_and_zero_growth_samples(ladders)
 
     years_by_subtype_code_res: dict[tuple[str, str, str], list[int]] = defaultdict(list)
     for subtype, year, hunt_code, residency in ladders:
@@ -1215,13 +1160,6 @@ def build_bear_bonus_predictions(
             max_point_permits = split.maxPointPermits
             random_permits = split.randomPermits
             forecast_ladder = _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)
-            demand_scenarios = _forecast_applicant_ladder_scenarios(
-                latest_ladder,
-                retention_by_band,
-                zero_growth,
-                retention_samples,
-                zero_growth_samples,
-            )
             if not forecast_ladder:
                 flags = ["LOW_APPLICANT_COUNT", "FIRST_CHOICE_ONLY_MODEL"]
                 for flag in flags:
@@ -1260,24 +1198,9 @@ def build_bear_bonus_predictions(
 
             for points in sorted(forecast_ladder.keys(), reverse=True):
                 applicants_by_points = {int(level): int(count) for level, count in forecast_ladder.items()}
-                conditional_bonus_pool, applicants_above, applicants_at_level = compute_bonus_pool_probability(points, applicants_by_points, max_point_permits)
-                conditional_random_pool = _weighted_random_probability(points, applicants_by_points, random_permits)
-                conditional_draw = combine_probabilities(conditional_bonus_pool, conditional_random_pool)
-                scenario_probabilities = []
-                for scenario_ladder in demand_scenarios:
-                    scenario_applicants = {int(level): int(count) for level, count in scenario_ladder.items()}
-                    scenario_bonus_pool, _scenario_above, _scenario_at_level = compute_bonus_pool_probability(
-                        points,
-                        scenario_applicants,
-                        max_point_permits,
-                    )
-                    scenario_random_pool = _weighted_random_probability(points, scenario_applicants, random_permits)
-                    scenario_probabilities.append(
-                        (scenario_bonus_pool, scenario_random_pool, combine_probabilities(scenario_bonus_pool, scenario_random_pool))
-                    )
-                p_bonus_pool = mean(value[0] for value in scenario_probabilities)
-                p_random_pool = mean(value[1] for value in scenario_probabilities)
-                p_draw = mean(value[2] for value in scenario_probabilities)
+                p_bonus_pool, applicants_above, applicants_at_level = compute_bonus_pool_probability(points, applicants_by_points, max_point_permits)
+                p_random_pool = _weighted_random_probability(points, applicants_by_points, random_permits)
+                p_draw = combine_probabilities(p_bonus_pool, p_random_pool)
                 row = dict(base)
                 row.update(
                     {
@@ -1291,8 +1214,6 @@ def build_bear_bonus_predictions(
                         "applicants_above": applicants_above,
                         "applicants_at_level": applicants_at_level,
                         "p_preference_draw": "",
-                        "p_draw_conditional_mean_ladder": f"{conditional_draw:.6f}",
-                        "historical_demand_scenario_count": len(demand_scenarios),
                         "p_bonus_pool": f"{p_bonus_pool:.6f}",
                         "p_random_pool": f"{p_random_pool:.6f}",
                         "p_draw": f"{p_draw:.6f}",
@@ -1306,11 +1227,8 @@ def build_bear_bonus_predictions(
                         "trend": _trend(prior_guaranteed, forecast_guaranteed),
                         "draw_outlook": _draw_outlook(p_draw),
                         "bear_bonus_valid": "TRUE",
-                        "bear_bonus_note": (
-                            f"Forecasted from {latest_year} public bear draw history with Utah bonus split rules "
-                            f"and {len(demand_scenarios)} historical applicant-demand scenarios."
-                        ),
-                        "data_quality_flags": "|".join([*flags, "HISTORICAL_DEMAND_SCENARIO_FORECAST"]),
+                        "bear_bonus_note": f"Forecasted from {latest_year} public bear draw history with Utah bonus split rules.",
+                        "data_quality_flags": "|".join(flags),
                     }
                 )
                 rows.append(row)
@@ -1369,14 +1287,6 @@ def build_bear_bonus_predictions(
         "p_random_pool_non_null_count": sum(1 for row in rows if _clean(row.get("p_random_pool"))),
         "p_draw_non_null_count": sum(1 for row in rows if _clean(row.get("p_draw"))),
         "p_draw_pct_non_null_count": sum(1 for row in rows if _clean(row.get("p_draw_pct"))),
-        "historical_demand_scenario_count": len(demand_scenarios) if 'demand_scenarios' in locals() else 0,
-        "mean_ladder_conditional_guarantee_count": sum(
-            1
-            for row in rows
-            if _clean(row.get("p_draw_conditional_mean_ladder"))
-            and float(_clean(row.get("p_draw_conditional_mean_ladder"))) >= 0.999999
-            and float(_clean(row.get("p_draw") or 0)) < 0.999999
-        ),
         "p_preference_draw_non_null_count": sum(1 for row in rows if _clean(row.get("p_preference_draw"))),
         "p_draw_outside_0_1_count": sum(1 for row in rows if _clean(row.get("p_draw")) and not (0.0 <= float(str(row.get("p_draw"))) <= 1.0)),
         "p_draw_pct_outside_0_100_count": sum(1 for row in rows if _clean(row.get("p_draw_pct")) and not (0.0 <= float(str(row.get("p_draw_pct"))) <= 100.0)),

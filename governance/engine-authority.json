@@ -48,6 +48,11 @@
         "detail": "Turkey now removes deterministic max-pool winners before evaluating each successive weighted permit from the remaining finite applicant pool. It no longer compounds independent repeated chances for the same application."
       },
       {
+        "id": "BEAR_LEGACY_COMBINED_RESIDENCY_HISTORY",
+        "status": "2019_2022_SOURCE_SPLIT_PARITY_VALIDATED_2018_CANONICAL_FREEZE_AND_ADAPTER_PENDING",
+        "detail": "The retained 2018-2022 official bear PDFs have separate resident and nonresident point ladders. The hash-linked extraction recombines exactly for every canonical-covered year (2019-2022); the official 2018 PDF is extracted but its normal canonical bear scope is not yet frozen. A paired source-and-held-out source-lane scorer or engine adapter may use only exact-recombined years, and combined history must never be treated as a resident or nonresident ladder."
+      },
+      {
         "id": "SOURCE_BACKED_PROBABILITY_ROLLFORWARD_FALSE_GUARANTEE",
         "status": "RESOLVED_RESCORING_NOT_ACCEPTED",
         "detail": "A copied source-year probability of 100 percent now emits an explicit NOT_SCORED guardrail rather than a next-year p_draw value. Lower copied values remain visibly source-backed roll-forward evidence and are not represented as a simulated lane."
