@@ -19304,3 +19304,21 @@ Production state:
 - Replaced the visual treatment only: the replica uses U.O.G.A.'s brown, cream, and orange palette and U.O.G.A. Hunt Builder wordmark rather than DWR branding. The source rows, residency lanes, adult/youth separation, and calculated display totals remain derived strictly from the retained UtahDraws JSON records.
 - Generated the definitive 30-file library at `output/pdf/utahdraws-2026-source-records-dwr-layout/` with its hash manifest. Verified all 30 output hashes and visually checked first and interior pages, including page 120 of the 210-page Limited-Entry Bull Elk report after correcting a page-break layout issue.
 - The former field-sheet conversion folder remains a local earlier presentation copy; the `-dwr-layout` directory is the approved visitor-facing design. No raw source JSON, canonical truth, prediction artifact, R2 object, website deployment, Git staging, commit, or push was performed.
+## 2026-08-28 - Hunt Library wall, 2026 rules, and DWR calendar
+
+- Updated the Hunt Library wall so its cabin background fills the viewport, removed the artificial fireplace overlay, raised the folder cards, and arranged the eight folders in two rows of four.
+- Moved the search control up beneath the library title while keeping it within the open log-wall area.
+- Published six current 2026 Utah DWR rule and guidebook PDFs in the rules folder.
+- Replaced the calendar placeholder with a same-page calendar that combines the official multi-feed Utah DWR Google Calendar with a Hunt Builder season-boundary view.
+- Populated the season view from the official 2026 DWR Hunt Planner HaNumber snapshot: 1,358 published date ranges across 1,115 hunt codes. The calendar marks every parsed start and end date; 281 CWMU records with operator-assigned dates remain explicitly identified and are not guessed.
+
+## 2026-08-28 - Hunt Library wall alignment refinement
+
+- Shifted the desktop search controls left so their center aligns with the baked-in "HARD COPY RESOURCE LIBRARY" wall heading rather than the full viewport.
+- Raised the two-row folder grid by approximately one cabin log while preserving the four-column desktop layout and responsive mobile flow.
+
+## 2026-08-28 - Unified dark popup and full-size PDF viewer
+
+- Reused the original Wild Eyez dark-brown topographic and leather textures for the Hunt Library popup surfaces.
+- Standardized folder results, PDF previews, and embedded calendar windows to the same near-full-screen viewport frame.
+- Moved the PDF dialog out of the transformed results panel so it can use the full viewport and set native browser PDF previews to open at 100% zoom.
