@@ -19,6 +19,8 @@ from pathlib import Path, PureWindowsPath
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL_DIR = ROOT / "data_truth" / "draw_results_truth" / "normalized" / "canonical_yearly"
 ARCHIVE_CATALOG = ROOT / "data_truth" / "draw_results_truth" / "raw_inventory" / "official_draw_source_retention_2017_2026.csv"
+PDF_PARITY_AUDIT = ROOT / "data_truth" / "draw_results_truth" / "validation" / "draw_2026_pdf_rows_vs_utahdraws_snapshot.csv"
+LIVE_ENDPOINT_AUDIT = ROOT / "data_truth" / "draw_results_truth" / "validation" / "draw_2026_live_endpoint_rows.csv"
 OUT_DIR = ROOT / "data_truth" / "draw_results_truth" / "validation"
 OUT_CSV = OUT_DIR / "canonical_parent_source_mapping_2018_2026.csv"
 OUT_JSON = OUT_DIR / "canonical_parent_source_mapping_2018_2026.json"
@@ -26,6 +28,7 @@ OUT_JSON = OUT_DIR / "canonical_parent_source_mapping_2018_2026.json"
 FIELDS = [
     "draw_year", "canonical_source_label", "canonical_rows", "canonical_pdf_pages",
     "source_dataset_values", "source_scope_values", "mapping_status", "mapping_method",
+    "scorable_rows", "certifiable_scorable_rows", "scorable_exclusions", "unscorable_structural_rows", "scoring_lineage_status",
     "parent_report_year", "parent_archive_paths", "parent_official_urls", "parent_sha256s", "notes",
 ]
 
@@ -63,6 +66,48 @@ def parent_candidates(label: str, sources: list[dict[str, str]]) -> tuple[str, l
         return "ENDPOINT_GROUP_REVIEW", [], "2026_LIVE_ENDPOINT_GROUP_REQUIRES_HUNT_LEVEL_MATCH"
     if "2026_permits=2027_model" in label_norm or "2026 permits 2027 model" in label_norm:
         return "SOURCE_RECOVERY_REQUIRED", [], "2026_CANONICAL_PDF_PARENT_NOT_RETAINED"
+
+    # These historic canonical labels were produced by splitting a single
+    # retained DWR report into named species/program scopes. Match them to the
+    # report's filename/title family, never by a generic fuzzy score.
+    def by_archive_filename(fragment: str) -> list[dict[str, str]]:
+        return [source for source in sources if fragment in source_label(source["durable_archive_path"]).lower()]
+
+    if "cwmu big game" in label_norm or label_norm.endswith("big game draw results pdf"):
+        candidates = by_archive_filename("bg-odds.pdf")
+        if len(candidates) == 1:
+            return "LINKED", candidates, "ARCHIVED_PARENT_BUNDLE_FILENAME:BIG_GAME"
+    if "antlerless" in label_norm or "doe pronghorn" in label_norm or "ewe" in label_norm:
+        candidates = by_archive_filename("antlerless_drawing_odds_report.pdf")
+        if "youth" in label_norm:
+            candidates = [source for source in candidates if "youth_" in source_label(source["durable_archive_path"]).lower()]
+        else:
+            candidates = [source for source in candidates if "youth_" not in source_label(source["durable_archive_path"]).lower()]
+        if len(candidates) == 1:
+            return "LINKED", candidates, "ARCHIVED_PARENT_BUNDLE_FILENAME:ANTLERLESS"
+    if "turkey" in label_norm:
+        fragment = "youth_turkey" if "youth" in label_norm else "turkey_bonus_points"
+        candidates = by_archive_filename(fragment)
+        if "youth" not in label_norm:
+            candidates = [source for source in candidates if "youth_" not in source_label(source["durable_archive_path"]).lower()]
+        if len(candidates) == 1:
+            return "LINKED", candidates, "ARCHIVED_FILENAME_AND_OFFICIAL_TITLE:TURKEY"
+    if "sportsman" in label_norm:
+        candidates = by_archive_filename("sportsman_odds.pdf")
+        if len(candidates) == 1:
+            return "LINKED", candidates, "ARCHIVED_FILENAME_AND_OFFICIAL_TITLE:SPORTSMAN"
+    if "youth" in label_norm and ("g s" in label_norm or "general season" in label_norm) and "deer" in label_norm:
+        candidates = by_archive_filename("youth_deer.pdf")
+        if len(candidates) == 1:
+            return "LINKED", candidates, "ARCHIVED_FILENAME_AND_OFFICIAL_TITLE:YOUTH_GENERAL_DEER"
+    if ("g s" in label_norm or "general season" in label_norm) and "deer" in label_norm:
+        candidates = [source for source in by_archive_filename("deer_odds.pdf") if "youth_deer" not in source_label(source["durable_archive_path"]).lower()]
+        if len(candidates) == 1:
+            return "LINKED", candidates, "ARCHIVED_FILENAME_AND_OFFICIAL_TITLE:GENERAL_DEER"
+    if "le deer draw results" in label_norm:
+        candidates = by_archive_filename("bg-odds.pdf")
+        if len(candidates) == 1:
+            return "LINKED", candidates, "ARCHIVED_PARENT_BUNDLE_FILENAME:LIMITED_ENTRY_DEER"
 
     # Parent report titles are official page labels. Use deliberate, conservative
     # design-family anchors rather than filename similarity or a fuzzy score.
@@ -126,6 +171,44 @@ def parent_candidates(label: str, sources: list[dict[str, str]]) -> tuple[str, l
     return "UNMAPPED", [], "NO_CONSERVATIVE_PARENT_RULE"
 
 
+def parity_by_source_label() -> dict[str, list[dict[str, str]]]:
+    """Load the exact 2026 row-level outcome audits without changing truth."""
+    grouped: dict[str, list[dict[str, str]]] = {}
+    for path in (PDF_PARITY_AUDIT, LIVE_ENDPOINT_AUDIT):
+        if not path.exists():
+            continue
+        for row in read_csv(path):
+            grouped.setdefault(source_label(clean(row.get("canonical_source_file"))), []).append(row)
+    return grouped
+
+
+def scoring_lineage(rows: list[dict[str, str]]) -> tuple[str, str, str, str, str]:
+    """Describe score eligibility separately from a physical PDF-parent link."""
+    if not rows:
+        return "", "", "", "", "NOT_APPLICABLE"
+    scorable = [
+        row
+        for row in rows
+        if (
+            clean(row.get("canonical_is_scorable")).lower() == "true"
+            or (
+                "canonical_is_scorable" not in row
+                and clean(row.get("certification_disposition")) != "UNSCORABLE_NO_APPLICANT_OR_SUCCESS"
+            )
+        )
+    ]
+    certifiable = [row for row in scorable if clean(row.get("certification_disposition")) == "CERTIFIABLE_SOURCE_VALUE_PARITY"]
+    excluded = [row for row in scorable if clean(row.get("certification_disposition")) == "EXCLUDE_FROM_CERTIFIABLE_SCORING_PENDING_SOURCE_RECONCILIATION"]
+    unscorable = [row for row in rows if clean(row.get("certification_disposition")) == "UNSCORABLE_NO_APPLICANT_OR_SUCCESS"]
+    if not scorable:
+        status = "NONSCORING_STRUCTURAL_ROWS_ONLY"
+    elif not excluded:
+        status = "VALUE_PARITY_FOR_ALL_SCORABLE_ROWS"
+    else:
+        status = "VALUE_PARITY_WITH_SCORABLE_EXCLUSIONS"
+    return str(len(scorable)), str(len(certifiable)), str(len(excluded)), str(len(unscorable)), status
+
+
 def main() -> None:
     archive_rows = read_csv(ARCHIVE_CATALOG)
     by_year: dict[int, list[dict[str, str]]] = {}
@@ -135,6 +218,7 @@ def main() -> None:
         except ValueError:
             continue
         by_year.setdefault(year, []).append(row)
+    row_level_parity = parity_by_source_label()
 
     output: list[dict[str, str]] = []
     for canonical in sorted(CANONICAL_DIR.glob("draw_results_*_for_*_canonical_yearly_draw_results.csv")):
@@ -150,6 +234,9 @@ def main() -> None:
             groups.setdefault(label, []).append(row)
         for label, rows in sorted(groups.items()):
             status, parents, method = parent_candidates(label, by_year.get(year, []))
+            scorable, certifiable, exclusions, unscorable, scoring_status = scoring_lineage(
+                row_level_parity.get(source_label(label), []) if year == 2026 else []
+            )
             output.append({
                 "draw_year": str(year),
                 "canonical_source_label": label,
@@ -159,11 +246,16 @@ def main() -> None:
                 "source_scope_values": " | ".join(sorted({clean(row.get("source_scope")) for row in rows if clean(row.get("source_scope"))}))[:2000],
                 "mapping_status": status,
                 "mapping_method": method,
+                "scorable_rows": scorable,
+                "certifiable_scorable_rows": certifiable,
+                "scorable_exclusions": exclusions,
+                "unscorable_structural_rows": unscorable,
+                "scoring_lineage_status": scoring_status,
                 "parent_report_year": " | ".join(sorted({clean(parent["report_year"]) for parent in parents})),
                 "parent_archive_paths": " | ".join(parent["durable_archive_path"] for parent in parents),
                 "parent_official_urls": " | ".join(parent["official_url"] for parent in parents),
                 "parent_sha256s": " | ".join(parent["sha256"] for parent in parents),
-                "notes": "Parent link is evidence only; value-level PDF/endpoint parity remains a separate validation.",
+                "notes": "Parent link is physical-source evidence. The 2026 scoring-lineage fields separately report retained UtahDraws value parity and exclusions; neither changes canonical values.",
             })
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -176,9 +268,10 @@ def main() -> None:
         "purpose": "Canonical source-label to archived-parent evidence audit; no canonical values were changed.",
         "source_scope_records": len(output),
         "rows_by_mapping_status": dict(sorted(Counter(row["mapping_status"] for row in output).items())),
+        "rows_by_scoring_lineage_status": dict(sorted(Counter(row["scoring_lineage_status"] for row in output).items())),
         "canonical_rows_by_mapping_status": dict(sorted(Counter({status: sum(int(row["canonical_rows"]) for row in output if row["mapping_status"] == status) for status in {row["mapping_status"] for row in output}}).items())),
         "mapping_csv": OUT_CSV.relative_to(ROOT).as_posix(),
-        "next_gate": "Only LINKED source scopes may be marked parent-source reproducible. AMBIGUOUS_PARENT, ENDPOINT_GROUP_REVIEW, SOURCE_RECOVERY_REQUIRED, and UNMAPPED require resolution.",
+        "next_gate": "Only LINKED scopes are physically parent-PDF reproducible. For certification scoring, use only row-level VALUE_PARITY rows and exclude every remaining scorable source-dimension/value issue.",
     }
     OUT_JSON.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(summary, indent=2))
