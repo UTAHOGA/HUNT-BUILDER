@@ -154,8 +154,19 @@ def test_quota_change_regression_changes_projected_probability() -> None:
         seed=2026,
     )
 
-    row_2025_quota = next(row for row in predictions_2025_quota if row["points"] == 7)
-    row_2026_quota = next(row for row in predictions_2026_quota if row["points"] == 7)
+    # Select the populated point group.  Empty structural rungs are now
+    # evaluated conditionally for one applicant and may be guaranteed under
+    # either quota, so they cannot demonstrate quota sensitivity.
+    row_2025_quota = next(
+        row
+        for row in predictions_2025_quota
+        if row["points"] == 7 and int(row["forecast_applicants_at_level"]) > 0
+    )
+    row_2026_quota = next(
+        row
+        for row in predictions_2026_quota
+        if row["points"] == 7 and int(row["forecast_applicants_at_level"]) > 0
+    )
 
     assert row_2025_quota["quota_2026_total"] == 160
     assert row_2026_quota["quota_2026_total"] == 130

@@ -7,7 +7,7 @@ from engine.utah_bonus_predictive.cohort_forecast import (
     smooth_retention_rate_with_evidence,
 )
 from engine.utah_bonus_predictive.monte_carlo import compute_bonus_pool_probability
-from scripts.build_predictive_bonus_engine_v1 import deterministic_pool_probabilities
+from scripts.build_predictive_bonus_engine_v1 import conditional_applicant_demand, deterministic_pool_probabilities
 
 
 def test_eb3024_2024_resident_bonus_pool() -> None:
@@ -66,6 +66,29 @@ def test_eb3024_2026_mixed_cutoff_probability_after_rollover() -> None:
     assert zones[29] == "max_pool_cutoff_mixed"
     assert zones[28] == "random_pool"
     assert p_draw[29] == p_max[29] + ((1 - p_max[29]) * p_random[29])
+
+
+def test_zero_forecast_rung_is_modeled_for_one_real_applicant() -> None:
+    # A visitor at 30 points remains an applicant even when the roll-forward
+    # stack forecasts no one at that exact rung.  The prior 29-point group is
+    # fully awarded from the ten max-point permits, so the 30-point applicant
+    # must be evaluated as guaranteed rather than as a zero-probability blank.
+    forecast = {29: 7, 28: 77, 27: 90}
+    conditioned = conditional_applicant_demand(forecast, 30)
+    p_draw, p_max, p_random, zones, cutoff = deterministic_pool_probabilities(
+        points_desc=[30, 29, 28, 27],
+        demand_by_point=conditioned,
+        reserved_quota=10,
+        random_quota=9,
+    )
+
+    assert forecast.get(30, 0) == 0
+    assert conditioned[30] == 1
+    assert p_max[30] == 1.0
+    assert p_random[30] == 0.0
+    assert p_draw[30] == 1.0
+    assert zones[30] == "max_pool_guaranteed"
+    assert cutoff == 28.0
 
 
 def test_detect_cutoff_structure_marks_guaranteed_stack_above_mixed_cutoff() -> None:

@@ -229,6 +229,11 @@ def materialize_row(
         "structure_retention_unsuccessful_total": row.get("structure_retention_unsuccessful_total") or legacy_row.get("structure_retention_unsuccessful_total") or "",
         "forecast_applicants_at_level": row.get("forecast_applicants_at_level") or legacy_row.get("forecast_applicants_at_level") or "",
         "forecast_applicants_above": row.get("forecast_applicants_above") or legacy_row.get("forecast_applicants_above") or "",
+        "probability_applicant_count": _first_nonempty(
+            row.get("probability_applicant_count"),
+            legacy_row.get("probability_applicant_count"),
+            max(1, int(_num(row.get("forecast_applicants_at_level")) or _num(legacy_row.get("forecast_applicants_at_level")) or 0)),
+        ),
         "rolled_forward_total_applicants": row.get("rolled_forward_total_applicants") or legacy_row.get("rolled_forward_total_applicants") or "",
         "display_odds_pct": round(display_odds_pct, 3),
         "odds_2026_projected": round(_num(row.get("odds_2026_projected")) if _num(row.get("odds_2026_projected")) is not None else display_odds_pct, 3),

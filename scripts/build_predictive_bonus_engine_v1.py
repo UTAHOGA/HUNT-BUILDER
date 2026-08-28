@@ -272,6 +272,20 @@ def deterministic_pool_probabilities(points_desc: List[int], demand_by_point: Di
     return p_draw, p_reserved, p_random, pool_zone, cutoff
 
 
+def conditional_applicant_demand(demand_by_point: Dict[int, int], points: int) -> Dict[int, int]:
+    """Return the forecast stack conditioned on one applicant at ``points``.
+
+    A forecast count of zero means the roll-forward model did not project an
+    applicant at that rung.  It does not mean a hunter who actually selects
+    that point level has a zero chance.  The returned stack preserves the
+    forecast competition and supplies the one applicant whose odds are being
+    evaluated.
+    """
+    conditioned = dict(demand_by_point)
+    conditioned[points] = max(1, int(conditioned.get(points, 0)))
+    return conditioned
+
+
 def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], prediction_year: int, iterations: int, seed: int) -> Tuple[List[dict], List[dict]]:
     rng = random.Random(seed)
 
@@ -353,6 +367,19 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
             reserved_quota,
             random_quota,
         )
+        # Probabilities are always conditional on a real applicant at the
+        # selected point level.  Rungs with forecast demand retain their
+        # regular group result; zero-demand rungs receive an explicit one-
+        # applicant counterfactual against the same forecast competition.
+        conditional_points = [p for p in points_desc if int(base_demand_by_point.get(p, 0)) <= 0]
+        conditional_deterministic: Dict[int, Tuple[Dict[int, float], Dict[int, float], Dict[int, float], Dict[int, str], float | None]] = {}
+        for p in conditional_points:
+            conditional_deterministic[p] = deterministic_pool_probabilities(
+                points_desc,
+                conditional_applicant_demand(base_demand_by_point, p),
+                reserved_quota,
+                random_quota,
+            )
         projected_random_pool_start_point = int(deterministic_cutoff) - 1 if deterministic_cutoff is not None else ""
 
         # Monte Carlo containers by point
@@ -360,6 +387,7 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
         p_reserved_samples: Dict[int, List[float]] = defaultdict(list)
         p_random_samples: Dict[int, List[float]] = defaultdict(list)
         zone_samples: Dict[int, Dict[str, int]] = defaultdict(lambda: defaultdict(int))
+        conditional_draw_samples: Dict[int, List[float]] = defaultdict(list)
         cutoff_samples: List[float] = []
 
         for _ in range(max(1, iterations)):
@@ -385,20 +413,50 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
                 p_random_samples[p].append(p_random_value)
                 zone_samples[p][zone_map.get(p, "random_pool")] += 1
 
+            # For a zero-demand rung, the sampled stack still needs to
+            # contain the applicant whose probability we expose.  Calculate
+            # the uncertainty range from that same conditional premise.
+            for p in conditional_points:
+                conditional_draw_map, _, _, _ = simulate_iteration(
+                    points_desc,
+                    conditional_applicant_demand(demand_iter, p),
+                    reserved_quota,
+                    random_quota,
+                )
+                conditional_draw_samples[p].append(conditional_draw_map.get(p, 0.0))
+
         expected_cutoff = round(mean(cutoff_samples), 3) if cutoff_samples else None
 
         # Build per-point prediction rows
         for p in points_desc:
-            draws = p_draw_samples[p]
+            is_conditional_rung = p in conditional_deterministic
+            draws = conditional_draw_samples[p] if is_conditional_rung else p_draw_samples[p]
             pres = p_reserved_samples[p]
-            p_draw_mean = deterministic_draw.get(p, mean(draws) if draws else 0.0)
+            deterministic_for_point = conditional_deterministic.get(p)
+            p_draw_mean = (
+                deterministic_for_point[0].get(p, 0.0)
+                if deterministic_for_point is not None
+                else deterministic_draw.get(p, mean(draws) if draws else 0.0)
+            )
             p10 = percentile(draws, 0.10)
             p50 = percentile(draws, 0.50)
             p90 = percentile(draws, 0.90)
-            p_reserved_mean = deterministic_reserved.get(p, mean(pres) if pres else 0.0)
-            p_random_mean = deterministic_random.get(p, mean(p_random_samples[p]) if p_random_samples[p] else 0.0)
+            p_reserved_mean = (
+                deterministic_for_point[1].get(p, 0.0)
+                if deterministic_for_point is not None
+                else deterministic_reserved.get(p, mean(pres) if pres else 0.0)
+            )
+            p_random_mean = (
+                deterministic_for_point[2].get(p, 0.0)
+                if deterministic_for_point is not None
+                else deterministic_random.get(p, mean(p_random_samples[p]) if p_random_samples[p] else 0.0)
+            )
             guaranteed_probability = 1.0 if p_draw_mean >= 0.999 else 0.0
-            point_pool_zone = deterministic_zones.get(p) or (max(zone_samples[p].items(), key=lambda item: (item[1], item[0]))[0] if zone_samples[p] else classify_point_pool_zone(p_reserved_mean))
+            point_pool_zone = (
+                deterministic_for_point[3].get(p, "random_pool")
+                if deterministic_for_point is not None
+                else deterministic_zones.get(p) or (max(zone_samples[p].items(), key=lambda item: (item[1], item[0]))[0] if zone_samples[p] else classify_point_pool_zone(p_reserved_mean))
+            )
 
             reasons = [
                 "BONUS_RULE_SIMULATED",
@@ -409,6 +467,8 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
                 "MAX_POINT_BOUNDARY_RECOMPUTED",
                 "OFFICIAL_2026_QUOTA_USED",
             ]
+            if is_conditional_rung:
+                reasons.append("CONDITIONAL_ON_ONE_APPLICANT_AT_POINT")
             if quota_source_label:
                 reasons.append("DATABASE_2026_PUBLISHED_PERMITS_USED")
             if guaranteed_probability >= 0.999:
@@ -481,6 +541,7 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
                     "structure_retention_unsuccessful_total": rollover.structure_retention_unsuccessful_total,
                     "forecast_applicants_at_level": int(base_demand_by_point.get(p, 0)),
                     "forecast_applicants_above": sum(count for point, count in base_demand_by_point.items() if point > p),
+                    "probability_applicant_count": max(1, int(base_demand_by_point.get(p, 0))),
                     "rolled_forward_total_applicants": rollover.total_projected_applicants,
                     "draw_pool": draw_pool,
                     "hunt_type": hunt_type,
@@ -599,6 +660,7 @@ def main() -> int:
         "structure_retention_rate_raw", "structure_retention_rate_smoothed", "structure_retention_prior",
         "structure_retention_matched_years", "structure_retention_unsuccessful_total",
         "forecast_applicants_at_level", "forecast_applicants_above", "rolled_forward_total_applicants",
+        "probability_applicant_count",
     ]
     write_csv(predictions_path, pred_headers, predictions)
 
