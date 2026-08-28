@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.2.0",
   "last_verified_date": "2026-08-28",
   "authority": "HUNT_BUILDER_PROJECT_MEMORY",
   "lifecycle": {
@@ -276,7 +276,7 @@
       "path": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
       "storage": "GIT_TRACKED",
       "required_locally": true,
-      "verified_sha256": "75eceb9bd225d264d0294db655ffdc8feec03e3fe0d21b6c9e3a8a72d1794068"
+      "verified_sha256": "3df7803b00c95176b106a01d5a86dc61a21b3ddb481107fa1310e1cf0dd56b1f"
     },
     "normalized_draw_actuals": {
       "path": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
@@ -302,7 +302,7 @@
       "role": "research_index",
       "path": "processed_data/hunt_research_2026_split/hunt_research_2026.index.json",
       "external_url": "https://json.uoga.workers.dev/processed_data/hunt_research_2026_split/hunt_research_2026.index.json",
-      "local_policy": "GIT_TRACKED"
+      "local_policy": "OPTIONAL_R2_BACKED"
     },
     {
       "role": "research_ladder",
@@ -330,10 +330,15 @@
     }
   ],
   "latest_evidence": {
-    "checked_in_manifest": {
-      "path": "processed_data/utah_bonus_predictive_manifest.json",
+    "prediction_build_evidence": {
+      "storage": "GIT_TRACKED_COMPACT_AUTHORITY",
+      "source_manifest_path": "processed_data/utah_bonus_predictive_manifest.json",
+      "source_manifest_storage": "REPO_EXTERNAL_GENERATED_ARTIFACT",
+      "source_manifest_local_policy": "OPTIONAL_LOCAL_HYDRATION",
+      "source_manifest_sha256": "8bef8cd755d657419a0948449ef37a4205af84d1b3e589082244da6c3d5f2af0",
       "generated_at": "2026-08-27T12:37:43.345007-06:00",
       "pipeline_version": "hybrid_ml_v2.1.0",
+      "rule_version": "utah_bonus_rules_v1.1.0",
       "forecast_year": 2026,
       "prediction_rows": 40642,
       "backtest_rows": 15166,

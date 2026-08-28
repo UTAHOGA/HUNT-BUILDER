@@ -129,11 +129,20 @@ function cleanPermit(value) {
   return Number.isFinite(number) ? String(Math.trunc(number)) : text;
 }
 
+function conservationPermit(row) {
+  return cleanPermit(row.permits_2026_conservation || row.conservation_permits_2026_total);
+}
+
+function allocationValue(row, field) {
+  if (field === 'permits_2026_conservation') return conservationPermit(row);
+  return clean(row[field]);
+}
+
 function permitStatus(row) {
   const res = cleanPermit(row.permits_2026_res);
   const nr = cleanPermit(row.permits_2026_nr);
   const total = cleanPermit(row.permits_2026_total || row.total_2026_permits);
-  const conservation = cleanPermit(row.permits_2026_conservation);
+  const conservation = conservationPermit(row);
   const expo = cleanPermit(row.permits_2026_expo);
   const sportsman = cleanPermit(row.permits_2026_sportsman);
   if (res && nr && total) return 'FULL_SPLIT';
@@ -150,7 +159,7 @@ function normalizedAllocation(row) {
     permits_2026_res: cleanPermit(row.permits_2026_res),
     permits_2026_nr: cleanPermit(row.permits_2026_nr),
     permits_2026_total: cleanPermit(row.permits_2026_total || row.total_2026_permits),
-    permits_2026_conservation: cleanPermit(row.permits_2026_conservation),
+    permits_2026_conservation: conservationPermit(row),
     permits_2026_expo: cleanPermit(row.permits_2026_expo),
     permits_2026_sportsman: cleanPermit(row.permits_2026_sportsman),
     permit_status: status,
@@ -213,8 +222,8 @@ function statusCounts(db) {
 function verifyRecord(record, truth, file, rowNumber) {
   const issues = [];
   for (const field of [...ALLOCATION_FIELDS, ...PROVENANCE_FIELDS]) {
-    const actual = clean(record[field]);
-    const expected = clean(truth[field]);
+    const actual = allocationValue(record, field);
+    const expected = allocationValue(truth, field);
     if (actual !== expected && !isAcceptedRacProvenance(field, actual, expected)) {
       issues.push({
         type: 'ALLOCATION_FIELD_MISMATCH',
@@ -292,7 +301,12 @@ function verifyRecord(record, truth, file, rowNumber) {
 function verifyCsv(file, db) {
   const parsed = readCsv(file);
   const required = [...ALLOCATION_FIELDS, ...PROVENANCE_FIELDS];
-  const missingColumns = required.filter((field) => !parsed.headers.includes(field));
+  const missingColumns = required.filter((field) => {
+    if (field === 'permits_2026_conservation') {
+      return !parsed.headers.includes(field) && !parsed.headers.includes('conservation_permits_2026_total');
+    }
+    return !parsed.headers.includes(field);
+  });
   const issues = missingColumns.map((field) => ({ type: 'MISSING_COLUMN', file, field }));
   const targetOnly = new Set();
   const matchedCodes = new Set();
@@ -310,7 +324,7 @@ function verifyCsv(file, db) {
     checkedRows += 1;
     matchedCodes.add(code);
     for (const field of ALLOCATION_FIELDS) {
-      if (!truth[field] && !clean(record[field])) blankValuesPreserved += 1;
+      if (!allocationValue(truth, field) && !allocationValue(record, field)) blankValuesPreserved += 1;
     }
     issues.push(...verifyRecord(record, truth, file, index + 2));
   });
@@ -351,7 +365,7 @@ function verifyJsonRows(file, db) {
     }
     matchedCodes.add(code);
     for (const field of ALLOCATION_FIELDS) {
-      if (!truth[field] && !clean(record[field])) blankValuesPreserved += 1;
+      if (!allocationValue(truth, field) && !allocationValue(record, field)) blankValuesPreserved += 1;
     }
     issues.push(...verifyRecord(record, truth, file, index));
   });

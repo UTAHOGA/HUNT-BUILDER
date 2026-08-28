@@ -1,6 +1,6 @@
 # Hunt Builder Current State
 
-Memory contract: `1.1.0`
+Memory contract: `1.2.0`
 Last verified: `2026-08-28`
 Machine authority: `governance/engine-authority.json`
 
@@ -28,6 +28,8 @@ The canonical split contract loads first:
 4. `processed_data/hunt_research_2026_split/hunt_research_2026.details.json`
 
 The older engine/ladder/master/reference CSV path is a legacy fallback and is disabled unless explicitly configured. Do not create a parallel Research loader.
+
+All six declared Research/runtime payloads, including the split index, are Cloudflare R2-backed and may be absent from a code-only checkout. `governance/engine-authority.json` retains each logical path and canonical HTTPS URL. Local absence is a hydration warning, not a code-contract failure.
 
 ## Engine Ownership
 
@@ -84,7 +86,10 @@ The locally promoted prediction runtime was rebuilt on `2026-08-27` from the the
 - Historical years used by the declared rebuild: `2018-2025`.
 - Duplicate prediction keys: `0`.
 - Frozen unified prediction SHA-256: `9e4c0f1a66678cd63df88512e45ba71d63746a6b21d7e4038fecb142f40e9d5e`.
-- Current `DATABASE.csv` SHA-256: `75eceb9bd225d264d0294db655ffdc8feec03e3fe0d21b6c9e3a8a72d1794068`.
+- `DATABASE.csv` SHA-256 at prediction build: `dd87461a76555c73b74fb0df069b47d66ac979b096ab25d9395a2c78f860a24b`.
+- Current reviewed `DATABASE.csv` SHA-256: `3df7803b00c95176b106a01d5a86dc61a21b3ddb481107fa1310e1cf0dd56b1f`. The database now includes the complete reviewed conservation-permit crosswalk on all 405 covered current hunt codes, plus the reviewed EA2045 and PD1056 corrections; the compact prediction-build evidence intentionally retains the earlier build hash until the prediction artifacts are rebuilt.
+
+The full generated prediction manifest is a repo-external build artifact at `processed_data/utah_bonus_predictive_manifest.json`. Its compact integrity evidence—including pipeline and rule versions, forecast year, row counts, source hashes, and the promoted manifest SHA-256—is Git-tracked in `governance/engine-authority.json`. Code-only validation uses that compact record and performs the full manifest hash and field cross-check whenever the generated manifest is locally hydrated.
 
 The normalized official draw truth is locally hydrated with `309,562` rows for draw years `2018-2026`; SHA-256 `94189f6c0bbb90ad597a8f0cd3f3d96b2be1983b0d927665d18d3673da920474`. The 2018 legacy-layout reports are canonically parsed and source-identity normalization retains distinct official scopes rather than merging coarse duplicate keys. Fourteen 2026 display-PDF parent scopes are not physically retained, but the retained official UtahDraws endpoint records provide value-level parity for `1,380` of `1,381` scorable rows; the one unresolved adult/youth-dimension key (`DB1630`, nonresident, 2 points) is excluded from scoring. `DB1630` is a General-Season Buck Deer restricted-muzzleloader hunt, first labeled new in the 2025 DWR application guidebook and still listed in 2026; its exclusion is a source-dimension issue, not a discontinued-hunt or no-history classification.
 
@@ -106,7 +111,7 @@ The pipeline and runtime model versions describe different layers. The legacy ho
 
 1. The formally adopted historical acceptance review is `NOT_ACCEPTED`: `BONUS_OIL_BIG_GAME` meets the per-design threshold, but the other reviewed designs either fail an error/false-guarantee threshold or have insufficient independent evidence. The highest recurring false-guarantee patterns are recorded by hunt code and draw design in the historical acceptance review.
 2. The `57` 2026 actual rows reduce to six current hunt codes (`BI6539`, `BR7021`, `BR7126`, `BR7238`, `DB1109`, `DB1121`). Their retained crosswalk verifies no exact 2018-2025 canonical draw predecessor, documents the dated application-guidebook listing, and keeps them deliberately unscored. They must not receive a borrowed same-unit probability unless an official DWR predecessor mapping is retained.
-3. The checked-in local prediction manifest and runtime artifacts still reflect the prior database/candidate; the newer candidate has not been accepted or promoted.
+3. The checked-in local prediction manifest and runtime artifacts still reflect the prior database/candidate. The current reviewed `DATABASE.csv` is newer after the conservation-permit crosswalk and EA2045/PD1056 corrections; the newer candidate has not been accepted or promoted.
 4. Five explicit family/design contract-drift items remain under review in the machine authority.
 
 These blockers mean "do not publish this as newly certified." They do not authorize another redesign.

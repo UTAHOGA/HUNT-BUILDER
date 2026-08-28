@@ -48,7 +48,6 @@ function validateProjectMemory(root = REPO) {
 
   const authority = readJson('governance/engine-authority.json');
   const packageJson = readJson('package.json');
-  const manifest = readJson('processed_data/utah_bonus_predictive_manifest.json');
   const agents = readText('AGENTS.MD');
   const currentState = readText('docs/CURRENT_STATE.md');
   const drawDesignBaseline = readText('docs/UTAH_DRAW_DESIGN_BASELINE.md');
@@ -57,7 +56,7 @@ function validateProjectMemory(root = REPO) {
   const mixedConstants = readText('engine/utah_predictive_mixed/__init__.py');
   const pipelineConstants = readText('engine/utah_bonus_predictive/rules.py');
 
-  check(authority.schema_version === '1.1.0', 'Memory schema_version must be 1.1.0.');
+  check(authority.schema_version === '1.2.0', 'Memory schema_version must be 1.2.0.');
   check(authority.authority === 'HUNT_BUILDER_PROJECT_MEMORY', 'Unexpected memory authority identifier.');
   check(authority.lifecycle?.promotion_status === 'BLOCKED', 'Current promotion status must remain BLOCKED until recorded blockers are cleared.');
   check(authority.lifecycle?.production_prediction_accuracy_certified === false, 'Current prediction accuracy must not be marked certified.');
@@ -129,16 +128,49 @@ function validateProjectMemory(root = REPO) {
   const pipelineOwner = authority.engine_roles?.forecast_materialization_owner || {};
   check(pipelineConstants.includes(`MODEL_VERSION = "${pipelineOwner.pipeline_version}"`), 'Forecast pipeline MODEL_VERSION disagrees with engine authority.');
   check(pipelineConstants.includes(`RULE_VERSION = "${pipelineOwner.rule_version}"`), 'Forecast pipeline RULE_VERSION disagrees with engine authority.');
-  check(manifest.model_version === pipelineOwner.pipeline_version, 'Checked-in prediction manifest model version disagrees with the declared build pipeline.');
-  check(manifest.rule_version === pipelineOwner.rule_version, 'Checked-in prediction manifest rule version disagrees with the declared build pipeline.');
-  check(manifest.forecast_year === authority.lifecycle.active_forecast_year, 'Checked-in manifest forecast year disagrees with project memory.');
 
-  const evidence = authority.latest_evidence?.checked_in_manifest || {};
-  check(evidence.path === 'processed_data/utah_bonus_predictive_manifest.json', 'Checked-in manifest evidence path is not canonical.');
-  check(evidence.pipeline_version === manifest.model_version, 'Recorded manifest pipeline version is stale.');
-  check(evidence.forecast_year === manifest.forecast_year, 'Recorded manifest forecast year is stale.');
-  check(evidence.prediction_rows === manifest.output_row_counts?.['ml_draw_predictions_v1.csv'], 'Recorded prediction row count is stale.');
-  check(evidence.backtest_rows === manifest.output_row_counts?.['backtest_utah_bonus_draw.csv'], 'Recorded backtest row count is stale.');
+  const evidence = authority.latest_evidence?.prediction_build_evidence || {};
+  check(evidence.storage === 'GIT_TRACKED_COMPACT_AUTHORITY', 'Prediction build evidence must remain a compact Git-tracked authority record.');
+  check(evidence.source_manifest_path === 'processed_data/utah_bonus_predictive_manifest.json', 'Prediction source-manifest path is not canonical.');
+  check(evidence.source_manifest_storage === 'REPO_EXTERNAL_GENERATED_ARTIFACT', 'Prediction source manifest must remain repo-external generated data.');
+  check(evidence.source_manifest_local_policy === 'OPTIONAL_LOCAL_HYDRATION', 'Prediction source-manifest local hydration policy is not optional.');
+  check(/^[a-f0-9]{64}$/.test(evidence.source_manifest_sha256 || ''), 'Prediction source-manifest SHA-256 is missing or invalid.');
+  check(evidence.pipeline_version === pipelineOwner.pipeline_version, 'Compact prediction evidence pipeline version disagrees with the declared build pipeline.');
+  check(evidence.rule_version === pipelineOwner.rule_version, 'Compact prediction evidence rule version disagrees with the declared build pipeline.');
+  check(evidence.forecast_year === authority.lifecycle.active_forecast_year, 'Compact prediction evidence forecast year disagrees with project memory.');
+  check(Number.isInteger(evidence.prediction_rows) && evidence.prediction_rows > 0, 'Compact prediction evidence has no valid prediction row count.');
+  check(Number.isInteger(evidence.backtest_rows) && evidence.backtest_rows > 0, 'Compact prediction evidence has no valid backtest row count.');
+  check(evidence.duplicate_prediction_keys === 0, 'Compact prediction evidence must retain the verified zero duplicate prediction-key count.');
+  check(/^[a-f0-9]{64}$/.test(evidence.database_sha256_at_build || ''), 'Compact prediction evidence has no valid DATABASE.csv SHA-256.');
+  check(/^[a-f0-9]{64}$/.test(evidence.normalized_draw_truth_sha256 || ''), 'Compact prediction evidence has no valid normalized draw-truth SHA-256.');
+  check(/^[a-f0-9]{64}$/.test(evidence.frozen_prediction_sha256 || ''), 'Compact prediction evidence has no valid frozen prediction SHA-256.');
+
+  const promotionEvidence = authority.latest_evidence?.local_prediction_promotion_2026_08_27 || {};
+  check(evidence.source_manifest_sha256 === promotionEvidence.promoted_manifest_sha256, 'Compact prediction evidence does not match the promoted manifest SHA-256.');
+  check(evidence.frozen_prediction_sha256 === promotionEvidence.frozen_prediction_sha256, 'Compact prediction evidence does not match the promoted frozen prediction SHA-256.');
+
+  const sourceManifestPath = evidence.source_manifest_path || '';
+  const sourceManifestFile = sourceManifestPath ? repoPath(root, sourceManifestPath) : '';
+  const sourceManifestExists = Boolean(sourceManifestFile) && fs.existsSync(sourceManifestFile);
+  let sourceManifest = null;
+  if (sourceManifestExists) {
+    try {
+      sourceManifest = JSON.parse(fs.readFileSync(sourceManifestFile, 'utf8'));
+    } catch (error) {
+      failures.push(`Invalid JSON in ${sourceManifestPath}: ${error.message}`);
+    }
+  } else {
+    warnings.push(`Repo-external prediction source manifest is not hydrated locally; compact governance evidence remains active: ${sourceManifestPath || '<blank>'}`);
+  }
+
+  if (sourceManifest) {
+    check(sha256(sourceManifestFile) === evidence.source_manifest_sha256, 'Hydrated prediction source-manifest SHA-256 disagrees with compact governance evidence.');
+    check(sourceManifest.model_version === evidence.pipeline_version, 'Hydrated prediction source-manifest model version is stale.');
+    check(sourceManifest.rule_version === evidence.rule_version, 'Hydrated prediction source-manifest rule version is stale.');
+    check(sourceManifest.forecast_year === evidence.forecast_year, 'Hydrated prediction source-manifest forecast year is stale.');
+    check(sourceManifest.output_row_counts?.['ml_draw_predictions_v1.csv'] === evidence.prediction_rows, 'Hydrated prediction source-manifest prediction row count is stale.');
+    check(sourceManifest.output_row_counts?.['backtest_utah_bonus_draw.csv'] === evidence.backtest_rows, 'Hydrated prediction source-manifest backtest row count is stale.');
+  }
 
   check(config.includes('processed_data/hunt_research_2026_summary.json'), 'config.js no longer declares the canonical Research summary.');
   check(config.includes('processed_data/hunt_research_2026_split/hunt_research_2026.index.json'), 'config.js no longer declares the canonical Research split index.');
@@ -153,18 +185,23 @@ function validateProjectMemory(root = REPO) {
     check(currentHash === database.verified_sha256, `DATABASE.csv changed without updating project memory. Expected=${database.verified_sha256} Actual=${currentHash}`);
     facts.push(`database_sha256=${currentHash}`);
 
-    const manifestDatabaseEntry = Object.entries(manifest.source_files_used || {})
-      .find(([filePath]) => filePath.replaceAll('\\', '/').endsWith('/pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv')
-        || filePath.replaceAll('\\', '/') === 'pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv');
-    check(Boolean(manifestDatabaseEntry), 'Prediction manifest does not retain the DATABASE.csv source hash.');
-    if (manifestDatabaseEntry) {
-      check(evidence.database_sha256_at_build === manifestDatabaseEntry[1], 'Recorded prediction-build database hash is stale.');
+    if (sourceManifest) {
+      const manifestDatabaseEntry = Object.entries(sourceManifest.source_files_used || {})
+        .find(([filePath]) => filePath.replaceAll('\\', '/').endsWith('/pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv')
+          || filePath.replaceAll('\\', '/') === 'pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv');
+      check(Boolean(manifestDatabaseEntry), 'Hydrated prediction source manifest does not retain the DATABASE.csv source hash.');
+      if (manifestDatabaseEntry) {
+        check(evidence.database_sha256_at_build === manifestDatabaseEntry[1], 'Hydrated prediction source-manifest DATABASE.csv hash is stale.');
+      }
+    }
+
+    if (evidence.database_sha256_at_build) {
       const staleBuildDeclared = (authority.lifecycle?.promotion_blockers || [])
         .includes('CURRENT_DATABASE_NEWER_THAN_CHECKED_IN_PREDICTION_MANIFEST');
       if (staleBuildDeclared) {
-        check(currentHash !== manifestDatabaseEntry[1], 'The recorded stale-build blocker is no longer true; rebuild evidence and promotion status must be reviewed.');
+        check(currentHash !== evidence.database_sha256_at_build, 'The recorded stale-build blocker is no longer true; rebuild evidence and promotion status must be reviewed.');
       } else {
-        check(currentHash === manifestDatabaseEntry[1], 'Current DATABASE.csv differs from the rebuilt prediction manifest without a declared stale-build blocker.');
+        check(currentHash === evidence.database_sha256_at_build, 'Current DATABASE.csv differs from compact prediction-build evidence without a declared stale-build blocker.');
       }
     }
   }
@@ -175,11 +212,12 @@ function validateProjectMemory(root = REPO) {
   for (const artifact of authority.runtime_artifacts || []) {
     check(typeof artifact.path === 'string' && artifact.path.length > 0, `Runtime artifact ${artifact.role || '<unknown>'} has no logical path.`);
     check(/^https:\/\//.test(artifact.external_url || ''), `Runtime artifact ${artifact.role || '<unknown>'} has no HTTPS external URL.`);
+    check(['GIT_TRACKED', 'OPTIONAL_R2_BACKED'].includes(artifact.local_policy), `Runtime artifact ${artifact.role || '<unknown>'} has an unsupported local policy: ${artifact.local_policy || '<blank>'}`);
     const exists = fs.existsSync(repoPath(root, artifact.path || ''));
     if (artifact.local_policy === 'GIT_TRACKED') {
       check(exists, `Git-tracked runtime artifact is missing: ${artifact.path}`);
-    } else {
-      warn(exists, `R2-backed runtime artifact is not hydrated locally: ${artifact.path}`);
+    } else if (artifact.local_policy === 'OPTIONAL_R2_BACKED') {
+      warn(exists, `R2-backed runtime artifact is not hydrated locally (allowed for code-only validation): ${artifact.path}`);
     }
   }
 
@@ -208,6 +246,8 @@ function validateProjectMemory(root = REPO) {
   facts.push(`forecast_year=${authority.lifecycle?.active_forecast_year || 'unknown'}`);
   facts.push(`runtime_model=${runtimeOwner.model_version || 'unknown'}`);
   facts.push(`build_pipeline=${pipelineOwner.pipeline_version || 'unknown'}`);
+  facts.push(`prediction_evidence=${evidence.storage || 'unknown'}`);
+  facts.push('runtime_storage=R2_BACKED_WITH_OPTIONAL_LOCAL_HYDRATION');
   facts.push(`promotion=${authority.lifecycle?.promotion_status || 'unknown'}`);
   facts.push(`known_contract_drift=${drift.length}`);
 

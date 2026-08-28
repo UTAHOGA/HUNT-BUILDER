@@ -16,12 +16,12 @@
 
   const FOLDERS = [
     { id: "rules", title: "UTAH DWR RULES & REGULATIONS", description: "Current-year/current-cycle public rules and regulation PDFs.", icon: "./assets/library-icons/mountain_goat.png" },
-    { id: "draw", title: "2026 HUNT DRAW RESULTS", description: "Public 2026 draw results and permit quota PDF documents.", icon: "./assets/library-icons/mule_deer.png" },
-    { id: "conservation", title: "CONSERVATION PERMITS", description: "Current-cycle conservation permit references.", icon: "./assets/library-icons/bison.png" },
+    { id: "draw", title: "2026 HUNT DRAW RESULTS", description: "Public 2026 draw results, odds records, and draw-specific permit reconciliations.", icon: "./assets/library-icons/mule_deer.png" },
+    { id: "conservation", title: "CONSERVATION PERMITS", description: "Current-cycle conservation permit guides and official source documents.", icon: "./assets/library-icons/bison.png" },
     { id: "expo", title: "HUNT EXPO", description: "Current-year Hunt Expo permit number references.", icon: "./assets/library-icons/bison.png" },
     { id: "harvest", title: "HARVEST DATA", description: "Public harvest reports and data across years.", icon: "./assets/library-icons/elk.png" },
     { id: "calendar", title: "SIGNIFICANT DATES / CALENDAR", description: "Application windows, deadlines, season dates, and calendar references.", icon: "./assets/library-icons/turkey.png" },
-    { id: "units2026", title: "2026 HUNT UNITS / PERMIT NUMBERS", description: "Current 2026 hunt code, hunt name, unit, and permit numbers.", icon: "./assets/library-icons/pronghorn.png" },
+    { id: "units2026", title: "2026 HUNT UNITS / PERMIT NUMBERS", description: "Complete current 2026 list of all hunts, hunt codes, hunt units, and available permit numbers.", icon: "./assets/library-icons/pronghorn.png" },
     { id: "outfitters", title: "UTAH OUTFITTERS BY HUNT CODE/HUNT NAME", description: "Outfitter resources tied to hunt code and hunt name.", icon: "./assets/library-icons/cougar.png" },
   ];
 
@@ -54,11 +54,15 @@
     { folderId: "rules", title: "2026 Black Bear, Cougar & Furbearer Guidebook", subtitle: "Utah hunting, pursuit and trapping regulations for black bear, cougar and furbearers.", href: "./public/hard-copy/regulations/2026/2026%20Black%20Bear%20Cougar%20and%20Furbearer%20Guidebook.pdf", type: "pdf", year: "2026", sortOrder: 40 },
     { folderId: "rules", title: "2026-27 Waterfowl, Upland Game & Turkey Guidebook", subtitle: "Current Utah regulations for waterfowl, upland game, turkey and small game.", href: "./public/hard-copy/regulations/2026/2026%20Waterfowl%20Upland%20Game%20and%20Turkey%20Guidebook.pdf", type: "pdf", year: "2026", sortOrder: 50 },
     { folderId: "rules", title: "2026 Fishing Guidebook", subtitle: "Utah fishing laws, methods, limits and rules for specific waters.", href: "./public/hard-copy/regulations/2026/2026%20Fishing%20Guidebook.pdf", type: "pdf", year: "2026", sortOrder: 60 },
-    { folderId: "harvest", title: "2025 Harvest Summary (Public)", subtitle: "Public summary workbook for harvest results.", href: "./public/hard-copy/DISPLAY%20DATA/data/2025_harvest_summary_public.xlsx", type: "xlsx", year: "2025", sortOrder: 10 },
-    { folderId: "conservation", title: "2025-2027 Multi-Year Conservation Permit Working List", subtitle: "Current working list of 336 conservation permits by species, area, condition, value, and organization.", href: "./public/hard-copy/conservation-permits/2025-2027/2025-27_conservation_permits.pdf", type: "pdf", year: "2026", sortOrder: 10 },
+    { folderId: "harvest", title: "Utah 2025 Harvest Results", subtitle: "All 1,141 current official DWR dashboard hunt rows, with the latest verified elk age and deer buck-to-doe management context.", href: "./public/hard-copy/harvest-data/2025/Utah_2025_Harvest_Results_UOGA.pdf", type: "pdf", year: "2025", sortOrder: 10 },
+    { folderId: "harvest", title: "2025 Permit Utilization & Conservation Supplement", subtitle: "Reconciles 164,240 listed permits to 143,418 hunters afield and isolates the 18 official conservation-class rows: 31 permits, 28 hunters afield, 24 harvests.", href: "./public/hard-copy/harvest-data/2025/Utah_2025_Permit_Utilization_and_Conservation_Supplement_UOGA.pdf", type: "pdf", year: "2025", sortOrder: 15 },
+    { folderId: "harvest", title: "Utah 2024 Harvest Results", subtitle: "All 1,039 verified hunt rows, with annual elk age and deer buck-to-doe management context.", href: "./public/hard-copy/harvest-data/2024/Utah_2024_Harvest_Results_UOGA.pdf", type: "pdf", year: "2024", sortOrder: 20 },
+    { folderId: "conservation", title: "Conservation Permits Explained (2025-27)", subtitle: "Readable UOGA guide to 336 annual conservation permits, 418 covered hunt codes, and why repeated hunt-code coverage is not additive.", href: "./public/hard-copy/conservation-permits/2025-2027/Utah_2025-27_Conservation_Permit_Guide_UOGA.pdf", type: "pdf", year: "2026", sortOrder: 10 },
+    { folderId: "conservation", title: "View Official Source: DWR 2025-27 Working List", subtitle: "Authoritative six-page DWR list of 336 permits by species, area, condition, value, and conservation organization.", href: "./public/hard-copy/conservation-permits/2025-2027/2025-27_conservation_permits.pdf", type: "pdf", year: "2026", sortOrder: 20 },
+    { folderId: "draw", title: "2026 Draw + EXPO Permit Reconciliation", subtitle: "Draw-specific reconciliation: 983 public-draw permits + 41 EXPO permits = 1,024 Hunt Planner permits across 26 exact hunt-code matches.", href: "./public/hard-copy/hunt-units-permits/2026/Utah_2026_Hunt_Units_Permit_Reconciliation_UOGA.pdf", type: "pdf", year: "2026", sortOrder: 5 },
     { folderId: "expo", title: "2026 EXPO Draw Results", subtitle: "Formatted Expo draw results (PDF).", href: "./public/hard-copy/DISPLAY%20DATA/expo%20permits/2026%20EXPO%20DRAW%20RESULTS.pdf", type: "pdf", year: "2026", sortOrder: 10 },
     { folderId: "calendar", title: "Utah DWR Significant Dates & 2026 Hunt Seasons", subtitle: "Official DWR events plus 1,358 published season ranges for 1,115 Hunt Planner hunt codes.", href: "./hunt-calendar-2026.html", type: "iframe", delivery: "embedded", year: "2026", sortOrder: 10 },
-    { folderId: "units2026", title: "2026 Hunt Units / Permit Numbers", subtitle: "Current 2026 hunt code, hunt unit, and permit workbook.", href: "./public/hard-copy/DISPLAY%20DATA/data/2026_hunt_units_permit_numbers.xlsx", type: "xlsx", year: "2026", sortOrder: 10 },
+    { folderId: "units2026", title: "2026 All Hunts, Hunt Codes & Available Permit Numbers", subtitle: "Comprehensive 60-page register of every current 2026 hunt and hunt code: 1,818 current rows plus 13 flagged conservation-crosswalk-only codes. Includes all published permit totals and conservation coverage; Cougar is the single statewide open code CG9999.", href: "./public/hard-copy/hunt-units-permits/2026/Utah_2026_All_Hunt_Codes_and_Available_Permits_UOGA.pdf", type: "pdf", year: "2026", sortOrder: 10 },
     { folderId: "outfitters", title: "Utah Outfitters by Hunt Code / Hunt Name", subtitle: "Public outfitter workbook tied to hunt code and hunt name.", href: "./public/hard-copy/DISPLAY%20DATA/data/utah_outfitters_by_hunt_code_hunt_name.xlsx", type: "xlsx", year: "2026", sortOrder: 10 },
   ];
   const PUBLIC_HUNT_LIBRARY_PDF_PATHS = [
@@ -384,7 +388,12 @@
   async function loadHuntIndex() {
     for (const url of HUNT_INDEX_URLS) {
       const rows = await fetchHuntIndex(url);
-      if (rows.length) return rows;
+      if (rows.length) {
+        return rows.filter((row) => {
+          const rowSpecies = String(row?.species || '').trim().toLowerCase();
+          return rowSpecies !== 'cougar' || normalizeHuntCode(row?.hunt_code) === 'CG9999';
+        });
+      }
     }
     return [];
   }
@@ -452,26 +461,6 @@
       if (!seen.has(key)) seen.set(key, item);
     });
     return Array.from(seen.values());
-  }
-
-  function enforceConservationSingleItem(items) {
-    const conservation = items.filter((item) => item.folderId === "conservation");
-    if (conservation.length <= 1) return items;
-
-    const scoreItem = (item) => {
-      const hay = `${item.title || ""} ${item.subtitle || ""} ${item.href || ""}`.toLowerCase();
-      let score = 0;
-      if (String(item.delivery || "").toLowerCase() === "pages-local") score += 200;
-      if (item.type === "pdf") score += 120;
-      if (/2026|2025[-/]27|2025[-/]2027/.test(`${item.year || ""} ${hay}`)) score += 90;
-      if (/public\/hard-copy|manual|web/.test(hay)) score += 40;
-      if (/\bexpo\b|\bdraw\b/.test(hay)) score -= 300;
-      if (item.type === "csv" || item.type === "xlsx") score -= 50;
-      return score;
-    };
-
-    const best = [...conservation].sort((a, b) => scoreItem(b) - scoreItem(a))[0];
-    return items.filter((item) => item.folderId !== "conservation").concat(best);
   }
 
   function closeEmbed() {
@@ -1059,7 +1048,6 @@
       const fixed = [...FIXED_PUBLIC_ITEMS, ...PUBLIC_HUNT_LIBRARY_ITEMS].map(toPublicItem).filter(Boolean);
       return { items: dedupe([...items, ...fixed]), huntRows };
     })
-    .then(({ items, huntRows }) => ({ items: enforceConservationSingleItem(items), huntRows }))
     .then(({ items, huntRows }) => filterAvailableItems(items).then((availableItems) => ({ items: availableItems, huntRows })))
     .then(({ items, huntRows }) => start(items, huntRows))
     .catch((error) => {

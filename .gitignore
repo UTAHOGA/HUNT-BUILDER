@@ -75,6 +75,7 @@ pipeline/**/*.xls
 *.pdf
 !public/hard-copy/draw-results/2026/*.pdf
 !public/hard-copy/conservation-permits/2025-2027/*.pdf
+!public/hard-copy/harvest-data/*/*.pdf
 *.xlsx
 *.xls
 *.gpkg
@@ -847,6 +848,14 @@ processed_data/hunt_research_2026_ladder.json
 processed_data/hunt_research_2026_ladder_bonus_max_random.json
 processed_data/hunt_research_2026_summary.json
 data_truth/hunt_code_universe_truth/locked/LOCKED_HUNT_CODE_YEAR_CODE_ROSTER_2017_2026.jsonl
+# Versioned Hunt Library permit-reconciliation source and finished PDF.
+!data_truth/permit_overlay_truth/
+!data_truth/permit_overlay_truth/normalized/
+!data_truth/permit_overlay_truth/normalized/huntplanner_draw_expo_reconciliation_2026.csv
+!public/hard-copy/hunt-units-permits/
+!public/hard-copy/hunt-units-permits/2026/
+!public/hard-copy/hunt-units-permits/2026/Utah_2026_Hunt_Units_Permit_Reconciliation_UOGA.pdf
+!public/hard-copy/hunt-units-permits/2026/Utah_2026_All_Hunt_Codes_and_Available_Permits_UOGA.pdf
 # Versioned official truth inputs. These are compact enough for Git and are
 # needed to reproduce the draw-history and current-reference contracts.
 !data_truth/draw_results_truth/normalized/canonical_yearly/
