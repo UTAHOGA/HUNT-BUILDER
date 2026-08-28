@@ -1,8 +1,8 @@
 {
   "artifact": "draw_results_2018_for_2019_canonical_yearly_pdf_extraction",
-  "generated_at_utc": "2026-08-27T05:26:13.897349+00:00",
-  "write": true,
-  "source_pdf_count": 9,
+  "generated_at_utc": "2026-08-28T12:14:48.724972+00:00",
+  "write": false,
+  "source_pdf_count": 10,
   "source_sha256": {
     "18_big_game_odds_report.pdf": "9fb8cdb701a3fb6f2c67f658b1a3a18aec6f72a1b340c79c834f5ee3627d727b",
     "18_antlerless_drawing_odds_report.pdf": "40ec655989eba823da2a200a2e63f17f63ce456e7406420bf388ce2f638588bd",
@@ -12,6 +12,7 @@
     "18_youth_antlerless_drawing_odds_report.pdf": "c229bd9c0df5796c9b4aa8bddf8b1262a2bb21ef38ce633eb581b8bebc2eb311",
     "18_youth_any_bull_elk.pdf": "84b62286540cf38959545cfe6daff715c49c61a86024379c0d66ce1e06a2a05a",
     "18_youth_general_deer.pdf": "949dfce56460dd3e1c4968bfbb791698d25c3d8370e6d58f5bc63835c81deb92",
+    "official_dwr_archive/black_bear/18_drawing_odds.pdf": "fd0d94204b0c46755ba1e7318426d96e94b2016a8799ca902cf48e92e0a01b2f",
     "18-19_sportsman_odds.pdf": "ee0abda3a4378e953dc43d3a75f52ed097da2d0dc1574dc570c56ec5d42c08d1"
   },
   "source_stats": {
@@ -62,13 +63,19 @@
       "hunt_pages": 94,
       "parsed_hunt_pages": 94,
       "rows": 2068
+    },
+    "official_dwr_archive/black_bear/18_drawing_odds.pdf": {
+      "pages": 93,
+      "hunt_pages": 91,
+      "parsed_hunt_pages": 91,
+      "rows": 1911
     }
   },
-  "rows": 28427,
-  "point_rows": 27143,
-  "hunt_total_rows": 1273,
+  "rows": 30338,
+  "point_rows": 28963,
+  "hunt_total_rows": 1364,
   "sportsman_rows": 11,
-  "unique_hunt_codes": 886,
+  "unique_hunt_codes": 977,
   "unparsed_hunt_page_count": 0,
   "duplicate_source_row_key_count": 0,
   "canonical_path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2018_for_2019_canonical_yearly_draw_results.csv",
