@@ -19251,3 +19251,18 @@ Production state:
 - Completed an isolated full 2026 bonus-engine validation build. Of 22,943 formerly empty-rung rows, 22,866 now have a nonzero conditional modeled chance and 18,395 are mechanically guaranteed; 77 remain valid zero-chance rows because higher-point applicants exhaust all permits and no random pool exists.
 - Confirmed the isolated `MB6011` Resident / 30 result carries `p_draw=1.000000`, `p_max_pool_mean=1.0`, `point_pool_zone=max_pool_guaranteed`, `forecast_applicants_at_level=0`, and `probability_applicant_count=1` through the materialization layer.
 - No local runtime artifact, R2 object, deployment, Git staging, commit, or push was performed. A formal rebuild/backtest and the still-open certification issues remain required before promoting this changed forecast.
+
+## 2026-08-28 - Verified official draw-source retention archive
+
+- Added `scripts/hydrate_official_draw_source_archive.py` to preserve official DWR draw-report PDFs by their report-generation year without modifying the immutable deep-pull staging capture or overwriting a source file.
+- Hash-verified and copied 132 official PDFs for report years 2017–2025 into `pipeline/RAW/hunt_unit_database/<report-year>/pdf/draw_odds/official_dwr_archive/<source-family>/` using the official source URL and SHA-256 retained in the DWR deep-pull manifest.
+- Hash-verified the separately durable 2026 UtahDraws source snapshot: 30 endpoint/supplement records under `pipeline/RAW/hunt_unit_database/2026/json/draw_results/utahdraws_2026_20260826/`.
+- Wrote the local source-retention catalog at `data_truth/draw_results_truth/raw_inventory/official_draw_source_retention_2017_2026.csv` and its summary JSON. All 162 cataloged sources matched both their source manifest and durable stored bytes.
+- The archive establishes physical official-source retention. Canonical row-to-parent-source mapping remains explicitly pending; no canonical truth, normalized long file, database, prediction output, R2 object, or live site was changed.
+
+## 2026-08-28 - Canonical-to-parent source evidence audit
+
+- Added `scripts/audit_canonical_parent_source_mapping.py` and generated `data_truth/draw_results_truth/validation/canonical_parent_source_mapping_2018_2026.csv` plus its JSON summary. The audit is read-only against canonical values.
+- It maps every canonical `source_file` scope to a hash-verified report-year parent only when the retained filename is exact or the official report title/source family gives one unambiguous parent. It deliberately leaves endpoint groups, ambiguous parents, and unrecovered 2026 PDF parents unresolved.
+- Current audit result: 195 source scopes across 309,562 canonical rows; 117 scopes / 221,263 rows are linked to one retained parent source. The remaining 78 scopes / 88,299 rows are explicitly classified as 42 ambiguous-parent scopes, 11 live-endpoint group reviews, 14 required 2026 PDF-parent recoveries, and 11 unmapped scopes.
+- No canonical value, normalized long file, database, prediction output, R2 object, or live site was changed. Prediction certification remains blocked until unresolved source scopes have value-level source parity or a retained official-parent mapping.

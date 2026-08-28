@@ -1,0 +1,30 @@
+{
+  "generated_at_utc": "2026-08-28T03:42:22.006391+00:00",
+  "scope": "official Utah DWR draw PDFs 2017-2025 plus durable UtahDraws 2026 endpoint snapshot",
+  "rows": 162,
+  "by_report_year": {
+    "2017": 19,
+    "2018": 15,
+    "2019": 14,
+    "2020": 14,
+    "2021": 14,
+    "2022": 14,
+    "2023": 15,
+    "2024": 14,
+    "2025": 13,
+    "2026": 30
+  },
+  "manifest_hash_status": {
+    "MATCH": 162
+  },
+  "durable_hash_status": {
+    "MATCH": 162
+  },
+  "archive_actions": {
+    "ALREADY_ARCHIVED": 132,
+    "ALREADY_DURABLE_2026_ENDPOINT_SNAPSHOT": 30
+  },
+  "catalog_csv": "data_truth/draw_results_truth/raw_inventory/official_draw_source_retention_2017_2026.csv",
+  "policy": "No raw source is overwritten. Source PDFs stay outside Git; this catalog records official URLs and SHA-256 values.",
+  "remaining_lineage_work": "Map each canonical source label to one or more archived parent PDFs or official 2026 endpoint records."
+}

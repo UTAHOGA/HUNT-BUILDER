@@ -1,0 +1,18 @@
+{
+  "generated_at_utc": "2026-08-28T03:56:26.999179+00:00",
+  "canonical_pdf_rows": 12156,
+  "status_counts": {
+    "AMBIGUOUS_SNAPSHOT_IDENTITY": 442,
+    "NO_SNAPSHOT_IDENTITY": 10581,
+    "VALUE_MISMATCH": 51,
+    "VALUE_PARITY": 1082
+  },
+  "rows_with_exact_value_parity": 1082,
+  "rows_requiring_source_recovery_or_review": 11074,
+  "comparison_identity": "hunt_code + residency + points",
+  "comparison_metrics": [
+    "eligible_applicants == ParticipantCount",
+    "successful_applicants == SuccessfulCount"
+  ],
+  "output_csv": "data_truth/draw_results_truth/validation/draw_2026_pdf_rows_vs_utahdraws_snapshot.csv"
+}

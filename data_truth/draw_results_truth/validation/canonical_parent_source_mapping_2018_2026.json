@@ -1,0 +1,21 @@
+{
+  "generated_at_utc": "2026-08-28T03:53:53.687577+00:00",
+  "purpose": "Canonical source-label to archived-parent evidence audit; no canonical values were changed.",
+  "source_scope_records": 195,
+  "rows_by_mapping_status": {
+    "AMBIGUOUS_PARENT": 42,
+    "ENDPOINT_GROUP_REVIEW": 11,
+    "LINKED": 117,
+    "SOURCE_RECOVERY_REQUIRED": 14,
+    "UNMAPPED": 11
+  },
+  "canonical_rows_by_mapping_status": {
+    "AMBIGUOUS_PARENT": 35388,
+    "ENDPOINT_GROUP_REVIEW": 16376,
+    "LINKED": 221263,
+    "SOURCE_RECOVERY_REQUIRED": 12156,
+    "UNMAPPED": 24379
+  },
+  "mapping_csv": "data_truth/draw_results_truth/validation/canonical_parent_source_mapping_2018_2026.csv",
+  "next_gate": "Only LINKED source scopes may be marked parent-source reproducible. AMBIGUOUS_PARENT, ENDPOINT_GROUP_REVIEW, SOURCE_RECOVERY_REQUIRED, and UNMAPPED require resolution."
+}
