@@ -19242,3 +19242,12 @@ Production state:
 - Added a Pages 25 MiB bundle guard and a direct local-Wrangler deployment path that avoids stale repository Wrangler redirects.
 - Moved regenerated `processed_data` reports and the large prediction feed out of Git tracking while preserving all local files. The official yearly canonical draw-result files and current `DATABASE.csv` remain versioned reproducibility inputs.
 - `npm run validate:project-memory` and canonical rebuild tests pass. The full `npm test` permit-allocation verification remains a known failure: it reports 18,835 pre-sync mismatches and must be reconciled rather than bypassed.
+
+## 2026-08-27 - Conditional applicant odds for empty bonus-point rungs
+
+- Corrected the bonus/max-weighted prediction engine so an empty rolled-forward point rung no longer means a real applicant at that point has zero chance. The model now evaluates that row conditionally with one applicant at the selected point level while keeping `forecast_applicants_at_level=0` as the forecast-population fact.
+- Preserved the distinction in the output contract with `probability_applicant_count`; conditionally evaluated rows are explicitly tagged `CONDITIONAL_ON_ONE_APPLICANT_AT_POINT` rather than silently promoted by the front end.
+- Added the MB6011-style regression fixture: a resident at 30 points is modeled at 100% in the max-point pool when the forecast stack has seven applicants at 29 points and ten max-point permits.
+- Completed an isolated full 2026 bonus-engine validation build. Of 22,943 formerly empty-rung rows, 22,866 now have a nonzero conditional modeled chance and 18,395 are mechanically guaranteed; 77 remain valid zero-chance rows because higher-point applicants exhaust all permits and no random pool exists.
+- Confirmed the isolated `MB6011` Resident / 30 result carries `p_draw=1.000000`, `p_max_pool_mean=1.0`, `point_pool_zone=max_pool_guaranteed`, `forecast_applicants_at_level=0`, and `probability_applicant_count=1` through the materialization layer.
+- No local runtime artifact, R2 object, deployment, Git staging, commit, or push was performed. A formal rebuild/backtest and the still-open certification issues remain required before promoting this changed forecast.
