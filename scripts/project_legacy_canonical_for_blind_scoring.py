@@ -110,15 +110,19 @@ def legacy_pool(row: dict[str, str]) -> str:
     family = clean(row.get("family"))
     source_file = clean(row.get("source_file")).lower()
     if family in {"bonus_le_big_game", "bonus_ple_big_game"}:
-        return "LIMITED_ENTRY"
+        # Older canonicals used LIMITED_ENTRY while the normalized series uses
+        # one stable MAX_WEIGHTED_SPLIT pool for Utah's bonus/max mechanics.
+        # This is an identity-label normalization only; forecast values remain
+        # untouched.
+        return "MAX_WEIGHTED_SPLIT"
     if family == "bonus_oil_big_game":
-        return "ONCE_IN_A_LIFETIME"
+        return "MAX_WEIGHTED_SPLIT"
     if family == "bonus_cwmu_big_game":
         return "CWMU_ANTLERLESS" if "antlerless" in source_file else "CWMU_BIG_GAME"
     if family == "preference_general_deer":
-        return "GENERAL_SEASON_DEER"
+        return "ADULT_GENERAL_DEER"
     if family == "dedicated_hunter":
-        return "DEDICATED_HUNTER_DEER"
+        return "DEDICATED_HUNTER"
     if family == "preference_antlerless_deer":
         return "ANTLERLESS_DEER"
     if family == "preference_antlerless_elk":

@@ -1,4 +1,7 @@
-from tools.prediction_accuracy_backtest.score_full_engine_draw_line_aware import actual_points_from_row
+from tools.prediction_accuracy_backtest.score_full_engine_draw_line_aware import (
+    actual_points_from_row,
+    prediction_alignment_key,
+)
 
 
 def test_total_pool_preference_probability_row_is_actual_point():
@@ -57,3 +60,39 @@ def test_reference_only_pool_still_excluded():
     )
 
     assert rows == []
+
+
+def test_max_weighted_canonical_label_normalizes_to_limited_entry_engine_design():
+    actual = actual_points_from_row(
+        {
+            "record_type": "point_row",
+            "hunt_code": "DB1009",
+            "species": "Deer",
+            "draw_design": "MAX_WEIGHTED_SPLIT",
+            "draw_pool": "max_weighted_split",
+            "points": "12",
+            "residency": "Resident",
+            "resident_eligible_applicants": "10",
+            "resident_p_draw": "0.2",
+        }
+    )[0]
+    predicted = prediction_alignment_key(
+        {
+            "family": "bonus_le_big_game",
+            "hunt_code": "DB1009",
+            "residency": "Resident",
+            "points": "12",
+            "draw_design": "BONUS_LE_BIG_GAME",
+            "draw_pool": "limited_entry_deer",
+        }
+    )
+
+    assert actual.draw_design_key == "BONUS_LE_BIG_GAME"
+    assert actual.draw_pool == "max_weighted_split"
+    assert predicted[:5] == (
+        "BONUS_LE_BIG_GAME",
+        "max_weighted_split",
+        "DB1009",
+        "Resident",
+        "12",
+    )

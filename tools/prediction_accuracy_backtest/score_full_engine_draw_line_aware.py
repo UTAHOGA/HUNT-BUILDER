@@ -16,14 +16,19 @@ import json
 import math
 import os
 import re
+import sys
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable, Mapping
 
-
 REPO = Path(__file__).resolve().parents[2]
+if str(REPO) not in sys.path:
+    sys.path.insert(0, str(REPO))
+
+from engine.utah_draw_predictive.classifier import classify_draw_system_type
+
 DEFAULT_HUNT_CODE_CROSSWALK_DIR = REPO / "data_truth" / "crosswalk_truth" / "normalized"
 DEFAULT_HUNT_CODE_CROSSWALK_FILES = (
     DEFAULT_HUNT_CODE_CROSSWALK_DIR / "current_to_historical_hunt_code_crosswalk_2026.csv",
@@ -687,6 +692,17 @@ def family_from_actual(row: Mapping[str, Any]) -> str:
         )
     ).upper()
     species = clean(row.get("species")).lower()
+    # UtahDraws' shared MAX_WEIGHTED_SPLIT label names the mechanics, not the
+    # underlying LE/OIL/PLE design. Reuse the source classifier to recover the
+    # official hunt-code/species family before the structural scoring join.
+    if draw_design == "MAX_WEIGHTED_SPLIT":
+        resolved_design = classify_draw_system_type(row)
+        if resolved_design == "BONUS_LE_BIG_GAME":
+            return "bonus_le_big_game"
+        if resolved_design == "BONUS_PLE_BIG_GAME":
+            return "bonus_ple_big_game"
+        if resolved_design == "BONUS_OIL_BIG_GAME":
+            return "bonus_oil_big_game"
     if record_type.startswith("sportsman") or "SPORTSMAN" in draw_system_type or "SPORTSMAN" in source_text:
         return "sportsman"
     if draw_design == "YOUTH_GENERAL_ANY_BULL_ELK" or draw_system_type == "YOUTH_GENERAL_ANY_BULL_ELK" or ("YOUTH" in source_text and hunt_code.startswith("EB")):
@@ -714,6 +730,50 @@ def family_from_actual(row: Mapping[str, Any]) -> str:
     if draw_design == "PREFERENCE_DOE_PRONGHORN" or hunt_code.startswith("PD") or "PREFERENCE_DOE_PRONGHORN" in draw_system_type:
         return "preference_doe_pronghorn"
     return ""
+
+
+def structural_draw_design(family: str, raw_design: Any) -> str:
+    """Return the stable engine-family design used for historical joins.
+
+    Retained older PDFs identify limited-entry, once-in-a-lifetime, and bear
+    bonus designs directly. Some newer canonical rows retain only Utah's
+    shared ``MAX_WEIGHTED_SPLIT`` mechanics label. The hunt-code family still
+    distinguishes the underlying design, so normalize that taxonomy label
+    symmetrically for scoring instead of dropping valid same-design joins.
+    """
+    by_family = {
+        "bonus_le_big_game": "BONUS_LE_BIG_GAME",
+        "bonus_ple_big_game": "BONUS_PLE_BIG_GAME",
+        "bonus_oil_big_game": "BONUS_OIL_BIG_GAME",
+        "bonus_bear": "BEAR_DRAW",
+        "bonus_turkey": "BONUS_TURKEY",
+        "preference_general_deer": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+        "dedicated_hunter": "PREFERENCE_DEDICATED_HUNTER_DEER",
+        "preference_antlerless_deer": "PREFERENCE_ANTLERLESS_DEER",
+        "preference_antlerless_elk": "PREFERENCE_ANTLERLESS_ELK",
+        "preference_doe_pronghorn": "PREFERENCE_DOE_PRONGHORN",
+        "sportsman": "SPORTSMAN_PERMIT",
+        "youth_draw": "YOUTH_GENERAL_ANY_BULL_ELK",
+    }
+    return by_family.get(family, norm_draw_design(raw_design))
+
+
+def structural_draw_pool(family: str, raw_pool: Any) -> str:
+    """Return the stable probability-pool label used for historical joins."""
+    by_family = {
+        "bonus_le_big_game": "max_weighted_split",
+        "bonus_ple_big_game": "max_weighted_split",
+        "bonus_oil_big_game": "max_weighted_split",
+        "bonus_bear": "bear_draw",
+        "bonus_turkey": "preference_point",
+        "preference_general_deer": "preference_general_season_buck_deer",
+        "dedicated_hunter": "preference_dedicated_hunter_deer",
+        "preference_antlerless_deer": "preference_antlerless_deer",
+        "preference_antlerless_elk": "preference_antlerless_elk",
+        "preference_doe_pronghorn": "preference_doe_pronghorn",
+        "sportsman": "sportsman_permit",
+    }
+    return by_family.get(family, norm_draw_pool(raw_pool))
 
 
 def actual_residencies(row: Mapping[str, Any], family: str) -> list[str]:
@@ -785,8 +845,8 @@ def actual_points_from_row(row: Mapping[str, Any]) -> list[ActualPoint]:
     hunt_code = hunt_code_resolution.join_code
     if not family or not hunt_code:
         return []
-    draw_design_key = norm_draw_design(row.get("draw_design"))
-    draw_pool = norm_draw_pool(row.get("draw_pool"))
+    draw_design_key = structural_draw_design(family, row.get("draw_design"))
+    draw_pool = structural_draw_pool(family, row.get("draw_pool"))
     draw_pool_is_scoreable_exception = draw_design_key == "PREFERENCE_GENERAL_SEASON_BUCK_DEER" and draw_pool == "lifetime_general_deer"
     if draw_design_key in NON_PROBABILITY_DRAW_DESIGNS or (
         draw_pool in NON_PROBABILITY_DRAW_POOLS and not draw_pool_is_scoreable_exception
@@ -887,8 +947,8 @@ def prediction_probability(row: Mapping[str, Any]) -> tuple[float | None, str]:
 
 def prediction_alignment_key(row: Mapping[str, Any]) -> tuple[str, str, str, str, str, str]:
     family = family_from_prediction(row)
-    draw_design = prediction_draw_design(row, family)
-    draw_pool = prediction_draw_pool(row, family)
+    draw_design = structural_draw_design(family, prediction_draw_design(row, family))
+    draw_pool = structural_draw_pool(family, prediction_draw_pool(row, family))
     # Sportsman is strictly random and has no bonus/preference point key.
     points = "" if family == "sportsman" else norm_points(row.get("points"))
     hunt_code = resolve_hunt_code(row.get("hunt_code")).join_code

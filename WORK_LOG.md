@@ -19387,3 +19387,10 @@ Production state:
 - The repair restores 345 previously missing scoreable point-zero forecasts: 200 elk-code rows, 77 deer-code rows, and 68 pronghorn-code rows. Blind score coverage rises from 84.86% to 88.02% (9,604 / 10,911), with MAE 0.118509, applicant-weighted MAE 0.045705, and RMSE 0.284289. This is an unaccepted audit candidate, not a certification or release.
 - Sixty-three zero-point limited-entry rows remain outside the restored set: 47 have only a nonresident historical forecast because the retained 2017 resident lane published zero permits, and 16 have no 2017 lane forecast. They remain source-continuity/coverage work; the engine does not invent resident permits or probabilities for them.
 - No canonical truth, long file, `DATABASE.csv`, runtime artifact, R2 object, deployment, commit, or push was changed.
+
+## 2026-08-28 - Resolved-repository 2017-to-2018 available-row score
+
+- Re-ran the full draw-line-aware score after repository resolution against the frozen, source-only 2017 forecast (`c4a2bd0105a573c3f91885787c73ace9a22d816fce04b6e39bc2341aeeb839a0`) and untouched frozen 2018 actual (`23f24fa39c6a92fc8b384edd567c8ce31d766a41c152cc6afed19c2ebbb5972e`).
+- Scored all 9,604 structurally matching, applicant-bearing official actual rows available to the audit: 88.02% coverage (9,604 / 10,911), MAE 0.118509, applicant-weighted MAE 0.045705, RMSE 0.284289, and 79.87% within 10 percentage points.
+- The audit correctly leaves 1,307 possible rows unscored because they do not yet have a structurally matching source-backed forecast; it does not synthesize probabilities. The current error tail has 1,271 scored rows above 25 percentage points absolute error and 419 false-guarantee cases, so this remains an unaccepted scoring result pending per-design review and formal acceptance thresholds.
+- No canonical truth, long file, `DATABASE.csv`, runtime artifact, R2 object, deployment, commit, or push was changed.
