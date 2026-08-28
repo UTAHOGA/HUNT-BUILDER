@@ -8,6 +8,8 @@
   --paper: #f3e0be;
   --paper-edge: #d2ae79;
   --glass: rgba(28, 15, 9, 0.62);
+  --library-popup-topo: url("../backgrounds/wild-eyez-dark-brown-topo.jpg");
+  --library-popup-leather: url("../backgrounds/wild-eyez-leather-player.jpg");
 }
 
 html,
@@ -395,21 +397,23 @@ body.library-results-open .public-library-folders {
 
 .public-library-results {
   position: fixed;
-  top: 82px;
-  left: 50%;
+  inset: 82px 22px 22px;
   z-index: 11000;
-  width: min(1240px, calc(100vw - 36px));
-  max-height: calc(100vh - 110px);
+  width: auto;
+  height: auto;
+  max-height: none;
   margin: 0;
-  transform: translateX(-50%);
-  overflow: auto;
-  border-radius: 22px;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  overflow: hidden;
+  border-radius: 20px;
   border: 1px solid rgba(233, 204, 156, 0.68);
   background:
-    radial-gradient(circle at 8% 0%, rgba(240, 140, 25, 0.16), transparent 28%),
-    linear-gradient(180deg, rgba(255, 249, 238, 0.98), rgba(236, 216, 184, 0.98));
+    radial-gradient(circle at 8% 0%, rgba(243, 112, 33, 0.18), transparent 34rem),
+    linear-gradient(rgba(27, 16, 10, 0.91), rgba(27, 16, 10, 0.97)),
+    var(--library-popup-topo) center / 840px auto repeat;
   box-shadow: 0 26px 80px rgba(0, 0, 0, 0.58);
-  color: #2d180f;
+  color: #fff7ed;
   padding: 18px;
   animation: uogaResultsPanelIn 220ms ease-out both;
 }
@@ -425,12 +429,12 @@ body.library-results-open .public-library-folders {
   gap: 12px;
   margin-bottom: 12px;
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(109, 65, 27, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .public-library-results-head h2 {
   margin: 0;
-  color: #24150c;
+  color: #fff7ed;
   font-size: clamp(20px, 2vw, 30px);
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -441,7 +445,7 @@ body.library-results-open .public-library-folders {
   margin-top: 4px;
   font-size: 14px;
   font-weight: 900;
-  color: #6a3a17;
+  color: #ffb878;
 }
 
 .public-library-results-close {
@@ -478,7 +482,8 @@ body.library-results-open .public-library-folders {
 .public-library-results-grid {
   display: grid;
   gap: 12px;
-  max-height: calc(100vh - 250px);
+  min-height: 0;
+  max-height: none;
   overflow: auto;
   padding-right: 4px;
 }
@@ -510,12 +515,12 @@ body.library-results-open .public-library-folders {
 @keyframes uogaResultsPanelIn {
   from {
     opacity: 0;
-    transform: translateX(-50%) translateY(14px) scale(0.985);
+    transform: translateY(14px) scale(0.985);
   }
 
   to {
     opacity: 1;
-    transform: translateX(-50%) translateY(0) scale(1);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -817,9 +822,8 @@ body.library-results-open .public-library-folders {
   position: fixed;
   inset: 0;
   z-index: 13000;
-  display: grid;
-  place-items: center;
-  padding: 24px;
+  display: block;
+  padding: 0;
 }
 
 .uoga-pdf-flip-panel[hidden] {
@@ -834,16 +838,20 @@ body.library-results-open .public-library-folders {
 }
 
 .uoga-pdf-flip-modal {
-  position: relative;
+  position: absolute;
+  inset: 82px 22px 22px;
   z-index: 1;
-  width: min(1500px, calc(100vw - 36px));
-  max-height: calc(100vh - 36px);
+  width: auto;
+  height: auto;
+  max-height: none;
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto minmax(0, 1fr);
   border: 1px solid rgba(255, 205, 143, 0.42);
-  border-radius: 22px;
+  border-radius: 20px;
   overflow: hidden;
-  background: rgba(14, 8, 5, 0.96);
+  background:
+    linear-gradient(rgba(27, 16, 10, 0.86), rgba(27, 16, 10, 0.94)),
+    var(--library-popup-topo) center / 840px auto repeat;
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.72);
 }
 
@@ -853,7 +861,9 @@ body.library-results-open .public-library-folders {
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
-  background: rgba(43, 22, 12, 0.96);
+  background:
+    linear-gradient(145deg, rgba(38, 20, 11, 0.66), rgba(18, 10, 6, 0.76)),
+    var(--library-popup-leather) center / cover no-repeat;
   color: #ffe4bd;
 }
 
@@ -883,7 +893,7 @@ body.library-results-open .public-library-folders {
 }
 
 .uoga-pdf-flip-toolbar {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   gap: 12px;
@@ -899,23 +909,25 @@ body.library-results-open .public-library-folders {
 }
 
 .uoga-pdf-flipbook {
-  min-height: min(760px, calc(100vh - 170px));
-  max-height: calc(100vh - 150px);
+  min-width: 0;
+  min-height: 0;
+  max-height: none;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 22px;
+  padding: 10px;
   background:
-    radial-gradient(circle at center, rgba(255, 214, 140, 0.10), transparent 45%),
-    rgba(7, 3, 1, 0.94);
+    linear-gradient(145deg, rgba(32, 17, 10, 0.72), rgba(7, 3, 1, 0.88)),
+    var(--library-popup-leather) center / cover no-repeat;
 }
 
 .uoga-pdf-inline-frame {
   width: 100%;
-  height: calc(100vh - 220px);
+  height: 100%;
+  min-height: 0;
   border: 0;
-  border-radius: 10px;
+  border-radius: 8px;
   background: #1b1008;
 }
 
@@ -969,7 +981,9 @@ body.uoga-modal-open {
   border: 1px solid rgba(255, 205, 143, 0.35);
   border-radius: 20px;
   overflow: hidden;
-  background: rgba(24, 12, 6, 0.88);
+  background:
+    linear-gradient(rgba(27, 16, 10, 0.86), rgba(27, 16, 10, 0.94)),
+    var(--library-popup-topo) center / 840px auto repeat;
   box-shadow: 0 20px 44px rgba(0, 0, 0, 0.45);
 }
 
@@ -983,7 +997,9 @@ body.uoga-modal-open {
   align-items: center;
   gap: 12px;
   padding: 12px 14px;
-  background: rgba(43, 22, 12, 0.92);
+  background:
+    linear-gradient(145deg, rgba(38, 20, 11, 0.66), rgba(18, 10, 6, 0.76)),
+    var(--library-popup-leather) center / cover no-repeat;
   color: #ffe4bd;
 }
 
@@ -1020,9 +1036,10 @@ body.uoga-modal-open {
   }
 
   .public-library-results {
-    top: 78px;
-    width: calc(100vw - 20px);
-    max-height: calc(100vh - 96px);
+    inset: 78px 10px 10px;
+    width: auto;
+    height: auto;
+    max-height: none;
     padding: 14px;
   }
 
@@ -1036,7 +1053,7 @@ body.uoga-modal-open {
   }
 
   .public-library-results-grid {
-    max-height: calc(100vh - 270px);
+    max-height: none;
   }
 
   .uoga-embed-panel {
@@ -1044,12 +1061,14 @@ body.uoga-modal-open {
   }
 
   .uoga-pdf-flip-panel {
-    padding: 10px;
+    padding: 0;
   }
 
   .uoga-pdf-flip-modal {
-    width: calc(100vw - 20px);
-    max-height: calc(100vh - 20px);
+    inset: 78px 10px 10px;
+    width: auto;
+    height: auto;
+    max-height: none;
   }
 
   .uoga-pdf-flip-head {
@@ -1058,10 +1077,10 @@ body.uoga-modal-open {
   }
 
   .uoga-pdf-flipbook {
-    min-height: 480px;
-    max-height: calc(100vh - 190px);
+    min-height: 0;
+    max-height: none;
     overflow: hidden;
-    padding: 12px;
+    padding: 8px;
   }
 
   .uoga-pdf-spread {

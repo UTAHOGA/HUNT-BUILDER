@@ -233,6 +233,14 @@
     return APPROVED_PUBLIC_EXTENSIONS.has(ext);
   }
 
+  function pdfViewerUrl(value) {
+    const href = safeUrl(value);
+    if (href === "#") return href;
+    const url = new URL(href);
+    url.hash = "zoom=100";
+    return url.href;
+  }
+
   function isApprovedPublicEmbedHref(href) {
     try {
       const url = new URL(String(href || ""), window.location.origin);
@@ -486,6 +494,9 @@
     if (!panel || !title || !status || !book) return;
     const viewerHref = item.viewerHref || item.href;
 
+    if (panel.parentElement !== document.body) {
+      document.body.appendChild(panel);
+    }
     panel.hidden = false;
     document.body.classList.add("uoga-modal-open");
     title.textContent = item.title || "PDF Viewer";
@@ -501,7 +512,7 @@
       frame.className = "uoga-pdf-inline-frame";
       frame.loading = "lazy";
       frame.referrerPolicy = "no-referrer-when-downgrade";
-      frame.src = safeUrl(viewerHref);
+      frame.src = pdfViewerUrl(viewerHref);
       frame.title = item.title || "PDF Preview";
       book.appendChild(frame);
     } catch (error) {

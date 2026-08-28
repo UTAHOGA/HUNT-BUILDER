@@ -19264,3 +19264,9 @@ Production state:
 
 - Shifted the desktop search controls left so their center aligns with the baked-in "HARD COPY RESOURCE LIBRARY" wall heading rather than the full viewport.
 - Raised the two-row folder grid by approximately one cabin log while preserving the four-column desktop layout and responsive mobile flow.
+
+## 2026-08-28 - Unified dark popup and full-size PDF viewer
+
+- Reused the original Wild Eyez dark-brown topographic and leather textures for the Hunt Library popup surfaces.
+- Standardized folder results, PDF previews, and embedded calendar windows to the same near-full-screen viewport frame.
+- Moved the PDF dialog out of the transformed results panel so it can use the full viewport and set native browser PDF previews to open at 100% zoom.
