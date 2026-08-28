@@ -192,17 +192,20 @@ def main() -> None:
         if reconstructed[key] != canonical[key]
     ]
     per_year: dict[str, dict[str, object]] = {}
-    canonical_covered_years = [year for year in SOURCES if year != 2018]
+    canonical_covered_years = [
+        year
+        for year in SOURCES
+        if any(key[0] == year for key in canonical)
+    ]
     for year in SOURCES:
         prefix = (year,)
         year_missing = [key for key in missing if key[:1] == prefix]
         year_extra = [key for key in extra if key[:1] == prefix]
         year_mismatches = [row for row in mismatches if row["key"][:1] == prefix]
-        # The 2018 bear PDF is retained official truth, but the normal 2018
-        # canonical has not yet frozen the corresponding bear draw scope.  It
-        # cannot be called a PDF/canonical mismatch; it is a separate
-        # canonical-freeze task.  Every later retained PDF recombines exactly.
-        if year == 2018:
+        # If a retained PDF scope has no canonical keys yet, record the
+        # source-complete scope as a canonical-freeze task.  Once promoted,
+        # every year uses the same exact recombination standard.
+        if year not in canonical_covered_years:
             status = "OFFICIAL_PDF_EXTRACTED_CANONICAL_BEAR_SCOPE_NOT_FROZEN"
         else:
             status = "PASS" if not year_missing and not year_extra and not year_mismatches else "FAIL"
@@ -229,11 +232,13 @@ def main() -> None:
         "canonical_covered_years": canonical_covered_years,
         "per_year": per_year,
         "parity_status": (
-            "PASS_FOR_CANONICAL_COVERED_YEARS_2019_2022"
+            "PASS"
             if all(per_year[str(year)]["status"] == "PASS" for year in canonical_covered_years)
             else "FAIL"
         ),
-        "canonical_freeze_status": "2018_BEAR_SCOPE_PENDING" if per_year["2018"]["status"] != "PASS" else "COMPLETE",
+        "canonical_freeze_status": "COMPLETE" if all(
+            per_year[str(year)]["status"] == "PASS" for year in SOURCES
+        ) else "PENDING",
         "output": relative(OUTPUT),
     }
     SUMMARY.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")

@@ -83,12 +83,19 @@ def test_2018_legacy_layout_is_canonicalized_with_complete_lineage() -> None:
     extracted = rows_2018()
 
     assert summary["status"] == "PASS"
-    assert summary["source_pdf_count"] == 9
-    assert summary["rows"] == 28427
+    assert summary["source_pdf_count"] == 10
+    assert summary["rows"] == 30338
     assert summary["unparsed_hunt_page_count"] == 0
     assert summary["duplicate_source_row_key_count"] == 0
-    assert len(extracted) == 28427
+    assert len(extracted) == 30338
     assert {row["actual_draw_year"] for row in extracted} == {"2018"}
     assert {row["model_target_year"] for row in extracted} == {"2019"}
     assert all(row["source_namespace"] == "OFFICIAL_DWR_DRAW_RESULTS_2018" for row in extracted)
     assert all(row["source_file"] and row["source_path"] and row["pdf_page"] for row in extracted)
+    bear_points = [
+        row
+        for row in extracted
+        if row["hunt_code"].startswith("BR") and row["record_type"] == "point_level_draw_result"
+    ]
+    assert len(bear_points) == 1820
+    assert {row["source_file"] for row in bear_points} == {"official_dwr_archive/black_bear/18_drawing_odds.pdf"}

@@ -501,10 +501,11 @@ def main() -> int:
     configure_report_year(args.report_year)
     if args.output_dir:
         global CANONICAL, SUMMARY, UNPARSED
+        output_dir = args.output_dir.resolve()
         pair = f"{REPORT_YEAR}_for_{MODEL_TARGET_YEAR}"
-        CANONICAL = args.output_dir / f"draw_results_{pair}_official_pdf_reconstructed.csv"
-        SUMMARY = args.output_dir / f"draw_results_{pair}_official_pdf_reconstruction_summary.json"
-        UNPARSED = args.output_dir / f"draw_results_{pair}_official_pdf_unparsed_hunt_pages.csv"
+        CANONICAL = output_dir / f"draw_results_{pair}_official_pdf_reconstructed.csv"
+        SUMMARY = output_dir / f"draw_results_{pair}_official_pdf_reconstruction_summary.json"
+        UNPARSED = output_dir / f"draw_results_{pair}_official_pdf_unparsed_hunt_pages.csv"
     rows, unparsed, source_stats = extract_hunt_tables()
     sportsman = extract_sportsman()
     rows.extend(sportsman)

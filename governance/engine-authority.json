@@ -49,8 +49,8 @@
       },
       {
         "id": "BEAR_LEGACY_COMBINED_RESIDENCY_HISTORY",
-        "status": "2019_2022_SOURCE_SPLIT_PARITY_VALIDATED_2018_CANONICAL_FREEZE_AND_ADAPTER_PENDING",
-        "detail": "The retained 2018-2022 official bear PDFs have separate resident and nonresident point ladders. The hash-linked extraction recombines exactly for every canonical-covered year (2019-2022); the official 2018 PDF is extracted but its normal canonical bear scope is not yet frozen. A paired source-and-held-out source-lane scorer or engine adapter may use only exact-recombined years, and combined history must never be treated as a resident or nonresident ladder."
+        "status": "2018_2022_SOURCE_SPLIT_PARITY_VALIDATED_SCORER_ADAPTER_PENDING",
+        "detail": "The retained 2018-2022 official bear PDFs have separate resident and nonresident point ladders. The hash-linked extraction recombines exactly for all five canonical years after the 2018 canonical was repaired from its previously omitted official Black Bear report. A paired source-and-held-out source-lane scorer or engine adapter may use only those exact-recombined years, and combined history must never be treated as a resident or nonresident ladder."
       },
       {
         "id": "SOURCE_BACKED_PROBABILITY_ROLLFORWARD_FALSE_GUARANTEE",

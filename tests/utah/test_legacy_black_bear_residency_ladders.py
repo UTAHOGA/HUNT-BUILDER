@@ -17,13 +17,13 @@ def test_legacy_bear_pdf_residency_ladders_reconcile_to_canonical_totals() -> No
         rows = list(csv.DictReader(handle))
     summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
 
-    assert summary["parity_status"] == "PASS_FOR_CANONICAL_COVERED_YEARS_2019_2022"
-    assert summary["canonical_freeze_status"] == "2018_BEAR_SCOPE_PENDING"
+    assert summary["parity_status"] == "PASS"
+    assert summary["canonical_freeze_status"] == "COMPLETE"
     assert summary["canonical_keys_missing_from_pdf"] == []
+    assert summary["pdf_keys_missing_from_canonical"] == []
     assert summary["value_mismatches"] == []
-    for year in ("2019", "2020", "2021", "2022"):
+    for year in ("2018", "2019", "2020", "2021", "2022"):
         assert summary["per_year"][year]["status"] == "PASS"
-    assert summary["per_year"]["2018"]["status"] == "OFFICIAL_PDF_EXTRACTED_CANONICAL_BEAR_SCOPE_NOT_FROZEN"
     assert {row["reported_draw_year"] for row in rows} == {"2018", "2019", "2020", "2021", "2022"}
     assert {row["residency"] for row in rows} == {"Resident", "Nonresident"}
 
