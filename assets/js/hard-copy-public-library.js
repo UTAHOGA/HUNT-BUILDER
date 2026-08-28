@@ -48,14 +48,17 @@
   ];
 
   const FIXED_PUBLIC_ITEMS = [
-    { folderId: "rules", title: "2026 Big Game Application Guidebook", subtitle: "Current-cycle big game application guidebook.", href: "./public/hard-copy/DISPLAY%20DATA/regulations/2026.biggame.app.pdf", type: "pdf", year: "2026", sortOrder: 10 },
-    { folderId: "rules", title: "2026 Cougar and Bear Regulations", subtitle: "Current-cycle cougar and bear rules.", href: "./public/hard-copy/DISPLAY%20DATA/regulations/2026.regs.cougar.bear.pdf", type: "pdf", year: "2026", sortOrder: 20 },
-    { folderId: "rules", title: "2026 Turkey Regulations", subtitle: "Current-cycle turkey regulations.", href: "./public/hard-copy/DISPLAY%20DATA/regulations/2026.regs.turkey.pdf", type: "pdf", year: "2026", sortOrder: 30 },
+    { folderId: "rules", title: "2026 Big Game Application Guidebook", subtitle: "Application rules, dates, hunt tables and permit information for Utah big game.", href: "./public/hard-copy/regulations/2026/2026%20Big%20Game%20Application.pdf", type: "pdf", year: "2026", sortOrder: 10 },
+    { folderId: "rules", title: "2026 Big Game Field Regulations Guidebook", subtitle: "Field regulations, season dates, legal methods and Utah big game unit information.", href: "./public/hard-copy/regulations/2026/2026%20Big%20Game%20Field%20Regulations.pdf", type: "pdf", year: "2026", sortOrder: 20 },
+    { folderId: "rules", title: "2026 Antlerless Application Guidebook", subtitle: "Application rules, hunt tables and permit information for antlerless big game.", href: "./public/hard-copy/regulations/2026/2026%20Antlerless%20Application%20Guidebook.pdf", type: "pdf", year: "2026", sortOrder: 30 },
+    { folderId: "rules", title: "2026 Black Bear, Cougar & Furbearer Guidebook", subtitle: "Utah hunting, pursuit and trapping regulations for black bear, cougar and furbearers.", href: "./public/hard-copy/regulations/2026/2026%20Black%20Bear%20Cougar%20and%20Furbearer%20Guidebook.pdf", type: "pdf", year: "2026", sortOrder: 40 },
+    { folderId: "rules", title: "2026-27 Waterfowl, Upland Game & Turkey Guidebook", subtitle: "Current Utah regulations for waterfowl, upland game, turkey and small game.", href: "./public/hard-copy/regulations/2026/2026%20Waterfowl%20Upland%20Game%20and%20Turkey%20Guidebook.pdf", type: "pdf", year: "2026", sortOrder: 50 },
+    { folderId: "rules", title: "2026 Fishing Guidebook", subtitle: "Utah fishing laws, methods, limits and rules for specific waters.", href: "./public/hard-copy/regulations/2026/2026%20Fishing%20Guidebook.pdf", type: "pdf", year: "2026", sortOrder: 60 },
     { folderId: "harvest", title: "2025 Harvest Summary (Public)", subtitle: "Public summary workbook for harvest results.", href: "./public/hard-copy/DISPLAY%20DATA/data/2025_harvest_summary_public.xlsx", type: "xlsx", year: "2025", sortOrder: 10 },
     { folderId: "draw", title: "2025 Draw Results Summary (Public)", subtitle: "Public summary workbook for draw outcomes.", href: "./public/hard-copy/DISPLAY%20DATA/data/2025_draw_results_summary_public.xlsx", type: "xlsx", year: "2025", sortOrder: 10 },
     { folderId: "conservation", title: "Unit-Specific Conservation / Expo Bundles", subtitle: "Public workbook with conservation/expo permit bundles by unit.", href: "./public/hard-copy/DISPLAY%20DATA/harvest%20results/unit_specific_conservation_expo_bundles.xlsx", type: "xlsx", year: "2026", sortOrder: 10 },
     { folderId: "expo", title: "2026 EXPO Draw Results", subtitle: "Formatted Expo draw results (PDF).", href: "./public/hard-copy/DISPLAY%20DATA/expo%20permits/2026%20EXPO%20DRAW%20RESULTS.pdf", type: "pdf", year: "2026", sortOrder: 10 },
-    { folderId: "calendar", title: "2026 Fishing Regulations Calendar Context", subtitle: "Public regulations publication with key timing context.", href: "./public/hard-copy/DISPLAY%20DATA/regulations/2026.regs.fishing.pdf", type: "pdf", year: "2026", sortOrder: 20 },
+    { folderId: "calendar", title: "Utah DWR Significant Dates & 2026 Hunt Seasons", subtitle: "Official DWR events plus 1,358 published season ranges for 1,115 Hunt Planner hunt codes.", href: "./hunt-calendar-2026.html", type: "iframe", delivery: "embedded", year: "2026", sortOrder: 10 },
     { folderId: "units2026", title: "2026 Hunt Units / Permit Numbers", subtitle: "Current 2026 hunt code, hunt unit, and permit workbook.", href: "./public/hard-copy/DISPLAY%20DATA/data/2026_hunt_units_permit_numbers.xlsx", type: "xlsx", year: "2026", sortOrder: 10 },
     { folderId: "outfitters", title: "Utah Outfitters by Hunt Code / Hunt Name", subtitle: "Public outfitter workbook tied to hunt code and hunt name.", href: "./public/hard-copy/DISPLAY%20DATA/data/utah_outfitters_by_hunt_code_hunt_name.xlsx", type: "xlsx", year: "2026", sortOrder: 10 },
   ];
@@ -87,12 +90,6 @@
     "public/hard-copy/HUNT LIBRARY/2026 PERMITS/PERMIT QUOTAS = HUNT NAME + HUNT CODE/ANTLERLESS_PERMIT_QUOTA_SUMMARY__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
     "public/hard-copy/HUNT LIBRARY/2026 PERMITS/PERMIT QUOTAS = HUNT NAME + HUNT CODE/DOE_PRONGHORN_PERMIT_QUOTA__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
     "public/hard-copy/HUNT LIBRARY/2026 PERMITS/PERMIT QUOTAS = HUNT NAME + HUNT CODE/EWE_ROCKY_MTN_SHEEP_PERMIT_QUOTA__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/regulations/2026.antlerless.guidebook.pdf",
-    "public/hard-copy/HUNT LIBRARY/regulations/2026.bear.cougar.regulations.pdf",
-    "public/hard-copy/HUNT LIBRARY/regulations/2026.big.game.application.guidebook.pdf",
-    "public/hard-copy/HUNT LIBRARY/regulations/2026.big.game.field.guidebook.pdf",
-    "public/hard-copy/HUNT LIBRARY/regulations/2026.fishing.regulations.pdf",
-    "public/hard-copy/HUNT LIBRARY/regulations/2026.turkey.regualtions.pdf",
   ];
   const PUBLIC_HUNT_LIBRARY_ITEMS = PUBLIC_HUNT_LIBRARY_PDF_PATHS.map((rel, index) => ({
     folderId: folderIdForLibraryPdfPath(rel),
@@ -104,6 +101,10 @@
     sortOrder: 100 + index,
   }));
   const APPROVED_PUBLIC_EXTENSIONS = new Set(["pdf", "xlsx"]);
+  const APPROVED_PUBLIC_EMBED_ORIGINS = new Set([
+    "https://www.google.com",
+    "https://calendar.google.com",
+  ]);
  const APPROVED_PUBLIC_PATH_PREFIXES = [
   "./public/hard-copy/",
   "/public/hard-copy/",
@@ -232,6 +233,16 @@
     return APPROVED_PUBLIC_EXTENSIONS.has(ext);
   }
 
+  function isApprovedPublicEmbedHref(href) {
+    try {
+      const url = new URL(String(href || ""), window.location.origin);
+      if (url.origin === window.location.origin && url.pathname.endsWith("/hunt-calendar-2026.html")) return true;
+      return APPROVED_PUBLIC_EMBED_ORIGINS.has(url.origin) && url.pathname.startsWith("/calendar/embed");
+    } catch {
+      return false;
+    }
+  }
+
   function isRuntimeDenied(item) {
     const hay = `${item.href || ""} ${item.local_href || ""} ${item.title || ""} ${item.subtitle || ""} ${item.source || ""}`.toLowerCase();
     return RUNTIME_DENYLIST.some((token) => hay.includes(token.toLowerCase()));
@@ -272,12 +283,16 @@
 
     if (!title || !href || !folderId) return null;
     if (hasBlockedInternalToken(`${title} ${subtitle} ${raw.source || ""}`)) return null;
-    if (!isApprovedPublicHref(href)) return null;
     const inferredExt = extractExtensionFromHref(href);
-    if (!APPROVED_PUBLIC_EXTENSIONS.has(inferredExt)) return null;
     if (type === "json") return null;
     if (!["pdf", "xlsx", "iframe", "link"].includes(type)) return null;
     if (type === "csv") return null;
+    if (type === "iframe") {
+      if (!isApprovedPublicEmbedHref(href)) return null;
+    } else {
+      if (!isApprovedPublicHref(href)) return null;
+      if (!APPROVED_PUBLIC_EXTENSIONS.has(inferredExt)) return null;
+    }
     if (isRuntimeDenied(raw) && !isExplicitAllow(raw)) return null;
     if (!passesFolderRules(folderId, { title, href, subtitle, year })) return null;
 
@@ -295,7 +310,7 @@
           ? "Current 2026 hunt code, hunt name, hunt unit, and permit table."
           : "Public hunt-library source file."),
       href,
-      type: inferredExt || type,
+      type: type === "iframe" ? "iframe" : (inferredExt || type),
       year,
       group,
       delivery,
@@ -440,6 +455,9 @@
     const frame = byId("uogaEmbedFrame");
     const title = byId("uogaEmbedTitle");
     if (!panel || !frame || !title) return;
+    if (panel.parentElement !== document.body) {
+      document.body.appendChild(panel);
+    }
     title.textContent = item.title || "Embedded Resource";
     frame.src = item.href;
     panel.hidden = false;

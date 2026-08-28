@@ -7,7 +7,7 @@
   <title>U.O.G.A. Hunt Library</title>
   <script src="./embed-mode.js?v=20260422-embed-1"></script>
   <link rel="stylesheet" href="./style.css?v=20260606-runtime-ladder-mask-1" />
-  <link rel="stylesheet" href="./assets/css/hard-copy-public-library.css?v=20260721-library-backwall-1" />
+  <link rel="stylesheet" href="./assets/css/hard-copy-public-library.css?v=20260828-library-wall-calendar-1" />
   <script src="https://js.sentry-cdn.com/26137c5576f01423efc85f47076f9548.min.js" crossorigin="anonymous"></script>
   <script src="./sentry-browser-init.js"></script>
 </head>
@@ -77,13 +77,19 @@
           <strong id="uogaEmbedTitle">Embedded Resource</strong>
           <button type="button" id="uogaEmbedClose">Close</button>
         </div>
-        <iframe id="uogaEmbedFrame" title="Embedded Public Resource" loading="lazy"></iframe>
+        <iframe
+          id="uogaEmbedFrame"
+          title="Embedded Public Resource"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+        ></iframe>
       </div>
     </section>
   </main>
 
   <script src="./header-layout.js?v=20260606-runtime-ladder-mask-1"></script>
   <script src="./ui.js?v=20260721-library-resource-backpack-1"></script>
-  <script src="./assets/js/hard-copy-public-library.js?v=20260721-library-preview-backpack-1"></script>
+  <script src="./assets/js/hard-copy-public-library.js?v=20260828-library-complete-hunt-calendar-2"></script>
 </body>
 </html>

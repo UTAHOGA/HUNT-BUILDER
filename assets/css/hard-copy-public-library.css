@@ -1,6 +1,6 @@
 :root {
   --wallpaper: url("/assets/backgrounds/LIBRARY.png");
-  --library-wallpaper-size: 1920px 1080px;
+  --library-wallpaper-size: cover;
   --library-wallpaper-position: center center;
   --ink: #2d180f;
   --accent: #d48635;
@@ -34,82 +34,7 @@ body {
   font-family: "Trebuchet MS", "Segoe UI", Tahoma, sans-serif;
 }
 
-.hard-copy-page::before,
-.hard-copy-page::after {
-  content: "";
-  position: fixed;
-  left: clamp(12px, 2.7vw, 46px);
-  bottom: clamp(82px, 12.2vh, 122px);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.hard-copy-page::before {
-  width: clamp(74px, 7.8vw, 132px);
-  height: clamp(112px, 16vh, 168px);
-  transform-origin: 50% 100%;
-  background:
-    radial-gradient(ellipse at 50% 82%, rgba(255, 54, 0, 0.82) 0 12%, rgba(255, 98, 0, 0.45) 25%, transparent 58%),
-    radial-gradient(ellipse at 38% 74%, rgba(255, 184, 42, 0.9) 0 9%, rgba(255, 103, 0, 0.48) 26%, transparent 56%),
-    radial-gradient(ellipse at 61% 68%, rgba(255, 222, 78, 0.86) 0 8%, rgba(255, 115, 0, 0.5) 24%, transparent 54%),
-    linear-gradient(11deg, transparent 0 34%, rgba(255, 235, 111, 0.94) 42%, rgba(255, 103, 0, 0.56) 58%, transparent 76%),
-    linear-gradient(-14deg, transparent 0 34%, rgba(255, 192, 50, 0.86) 43%, rgba(219, 56, 0, 0.5) 61%, transparent 78%);
-  filter: blur(2px) saturate(1.55);
-  mix-blend-mode: screen;
-  opacity: 0.72;
-  animation: uogaFireFlicker 820ms infinite alternate ease-in-out;
-}
-
-.hard-copy-page::after {
-  width: clamp(118px, 12vw, 210px);
-  height: clamp(116px, 15vh, 178px);
-  transform: translate(-22%, 13%);
-  background:
-    radial-gradient(ellipse at 42% 70%, rgba(255, 116, 22, 0.42), transparent 54%),
-    radial-gradient(ellipse at 58% 88%, rgba(255, 54, 0, 0.32), transparent 62%);
-  filter: blur(10px);
-  mix-blend-mode: screen;
-  opacity: 0.64;
-  animation: uogaFireGlow 1.65s infinite alternate ease-in-out;
-}
-
-@keyframes uogaFireFlicker {
-  0% {
-    opacity: 0.58;
-    transform: translate3d(-2px, 3px, 0) scale(0.94, 0.98) skewX(-2deg);
-  }
-
-  34% {
-    opacity: 0.82;
-    transform: translate3d(2px, -4px, 0) scale(1.02, 1.08) skewX(3deg);
-  }
-
-  67% {
-    opacity: 0.68;
-    transform: translate3d(-1px, -1px, 0) scale(0.98, 1.04) skewX(-4deg);
-  }
-
-  100% {
-    opacity: 0.9;
-    transform: translate3d(3px, -6px, 0) scale(1.05, 1.12) skewX(2deg);
-  }
-}
-
-@keyframes uogaFireGlow {
-  from {
-    opacity: 0.42;
-    transform: translate(-24%, 15%) scale(0.96);
-  }
-
-  to {
-    opacity: 0.76;
-    transform: translate(-20%, 10%) scale(1.08);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .hard-copy-page::before,
-  .hard-copy-page::after,
   .public-library-folders,
   .public-library-results,
   .public-file-card {
@@ -222,7 +147,7 @@ body {
 .public-library-controls {
   position: absolute;
   left: 50%;
-  top: clamp(280px, 42vh, 460px);
+  top: clamp(210px, 20vh, 250px);
   transform: translateX(-50%);
   width: min(820px, 68vw);
   display: flex;
@@ -273,13 +198,14 @@ body {
 .public-library-folders {
   position: absolute !important;
   left: 50% !important;
-  top: clamp(690px, 71vh, 770px) !important;
+  top: clamp(570px, 57vh, 650px) !important;
   transform: translateX(-50%) !important;
-  width: min(1440px, 76vw) !important;
+  width: min(1040px, 82vw) !important;
   margin: 0 !important;
   display: grid;
-  grid-template-columns: repeat(8, minmax(112px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
+  column-gap: 18px;
+  row-gap: 16px;
   z-index: 5;
   opacity: 1;
   transition:
@@ -298,6 +224,7 @@ body.library-results-open .public-library-folders {
 }
 
 .public-folder {
+  --folder-tilt: 0deg;
   position: relative;
   min-height: 122px;
   padding: 17px 11px 10px;
@@ -316,14 +243,33 @@ body.library-results-open .public-library-folders {
     linear-gradient(180deg, #e9c991 0%, #d8a965 56%, #bf8445 100%) !important;
   color: #2e1709 !important;
   box-shadow:
-    0 16px 30px rgba(0, 0, 0, 0.48),
+    0 5px 7px rgba(0, 0, 0, 0.42),
+    0 14px 24px rgba(0, 0, 0, 0.38),
     inset 0 0 0 1px rgba(255, 238, 201, 0.48),
     inset 0 0 28px rgba(69, 39, 18, 0.28);
   clip-path: polygon(2% 0, 98% 1%, 100% 4%, 99% 96%, 97% 100%, 4% 99%, 0 96%, 1% 5%);
   cursor: pointer;
   text-align: left;
+  transform: rotate(var(--folder-tilt));
+  transform-origin: 50% 8px;
   transition: transform 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
   overflow: hidden;
+}
+
+.public-folder:nth-child(4n + 1) {
+  --folder-tilt: -0.6deg;
+}
+
+.public-folder:nth-child(4n + 2) {
+  --folder-tilt: 0.35deg;
+}
+
+.public-folder:nth-child(4n + 3) {
+  --folder-tilt: -0.25deg;
+}
+
+.public-folder:nth-child(4n) {
+  --folder-tilt: 0.55deg;
 }
 
 .public-folder::before {
@@ -353,7 +299,7 @@ body.library-results-open .public-library-folders {
 
 .public-folder:hover,
 .public-folder.active {
-  transform: translateY(-5px) scale(1.01);
+  transform: translateY(-5px) scale(1.01) rotate(var(--folder-tilt));
   border-color: rgba(255, 223, 171, 0.96);
   box-shadow:
     0 22px 44px rgba(0, 0, 0, 0.5),
@@ -789,13 +735,9 @@ body.library-results-open .public-library-folders {
 }
 
 @media (max-width: 1100px) {
-  :root {
-    --library-wallpaper-size: 1920px 1080px;
-  }
-
   .public-library-controls {
     width: min(700px, 86vw);
-    top: clamp(250px, 40vh, 356px);
+    top: clamp(205px, 22vh, 250px);
   }
 
   .public-library-note {
@@ -814,9 +756,9 @@ body.library-results-open .public-library-folders {
   }
 
   .public-library-folders {
-    width: min(760px, 84vw);
-    grid-template-columns: repeat(2, minmax(180px, 1fr));
-    top: clamp(414px, 62vh, 548px) !important;
+    width: min(880px, 88vw);
+    grid-template-columns: repeat(4, minmax(130px, 1fr));
+    top: clamp(520px, 58vh, 610px) !important;
   }
 }
 
@@ -833,7 +775,7 @@ body.library-results-open .public-library-folders {
     position: static;
     transform: none;
     width: min(420px, 94vw);
-    margin: 8px auto 0;
+    margin: 112px auto 0;
   }
 
   .public-library-note {
@@ -858,6 +800,7 @@ body.library-results-open .public-library-folders {
   .public-library-folders {
     width: min(420px, 94vw);
     grid-template-columns: 1fr;
+    top: clamp(414px, 62vh, 548px) !important;
     margin-top: 14px;
   }
 

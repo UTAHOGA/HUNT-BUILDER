@@ -19251,3 +19251,11 @@ Production state:
 - Completed an isolated full 2026 bonus-engine validation build. Of 22,943 formerly empty-rung rows, 22,866 now have a nonzero conditional modeled chance and 18,395 are mechanically guaranteed; 77 remain valid zero-chance rows because higher-point applicants exhaust all permits and no random pool exists.
 - Confirmed the isolated `MB6011` Resident / 30 result carries `p_draw=1.000000`, `p_max_pool_mean=1.0`, `point_pool_zone=max_pool_guaranteed`, `forecast_applicants_at_level=0`, and `probability_applicant_count=1` through the materialization layer.
 - No local runtime artifact, R2 object, deployment, Git staging, commit, or push was performed. A formal rebuild/backtest and the still-open certification issues remain required before promoting this changed forecast.
+
+## 2026-08-28 - Hunt Library wall, 2026 rules, and DWR calendar
+
+- Updated the Hunt Library wall so its cabin background fills the viewport, removed the artificial fireplace overlay, raised the folder cards, and arranged the eight folders in two rows of four.
+- Moved the search control up beneath the library title while keeping it within the open log-wall area.
+- Published six current 2026 Utah DWR rule and guidebook PDFs in the rules folder.
+- Replaced the calendar placeholder with a same-page calendar that combines the official multi-feed Utah DWR Google Calendar with a Hunt Builder season-boundary view.
+- Populated the season view from the official 2026 DWR Hunt Planner HaNumber snapshot: 1,358 published date ranges across 1,115 hunt codes. The calendar marks every parsed start and end date; 281 CWMU records with operator-assigned dates remain explicitly identified and are not guessed.
