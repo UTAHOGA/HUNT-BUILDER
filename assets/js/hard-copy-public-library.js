@@ -16,10 +16,10 @@
 
   const FOLDERS = [
     { id: "rules", title: "UTAH DWR RULES & REGULATIONS", description: "Current-year/current-cycle public rules and regulation PDFs.", icon: "./assets/library-icons/mountain_goat.png" },
-    { id: "harvest", title: "HARVEST DATA", description: "Public harvest reports and data across years.", icon: "./assets/library-icons/elk.png" },
     { id: "draw", title: "2026 HUNT DRAW RESULTS", description: "Public 2026 draw results and permit quota PDF documents.", icon: "./assets/library-icons/mule_deer.png" },
     { id: "conservation", title: "CONSERVATION PERMITS", description: "Current-cycle conservation permit references.", icon: "./assets/library-icons/bison.png" },
     { id: "expo", title: "HUNT EXPO", description: "Current-year Hunt Expo permit number references.", icon: "./assets/library-icons/bison.png" },
+    { id: "harvest", title: "HARVEST DATA", description: "Public harvest reports and data across years.", icon: "./assets/library-icons/elk.png" },
     { id: "calendar", title: "SIGNIFICANT DATES / CALENDAR", description: "Application windows, deadlines, season dates, and calendar references.", icon: "./assets/library-icons/turkey.png" },
     { id: "units2026", title: "2026 HUNT UNITS / PERMIT NUMBERS", description: "Current 2026 hunt code, hunt name, unit, and permit numbers.", icon: "./assets/library-icons/pronghorn.png" },
     { id: "outfitters", title: "UTAH OUTFITTERS BY HUNT CODE/HUNT NAME", description: "Outfitter resources tied to hunt code and hunt name.", icon: "./assets/library-icons/cougar.png" },
@@ -55,7 +55,6 @@
     { folderId: "rules", title: "2026-27 Waterfowl, Upland Game & Turkey Guidebook", subtitle: "Current Utah regulations for waterfowl, upland game, turkey and small game.", href: "./public/hard-copy/regulations/2026/2026%20Waterfowl%20Upland%20Game%20and%20Turkey%20Guidebook.pdf", type: "pdf", year: "2026", sortOrder: 50 },
     { folderId: "rules", title: "2026 Fishing Guidebook", subtitle: "Utah fishing laws, methods, limits and rules for specific waters.", href: "./public/hard-copy/regulations/2026/2026%20Fishing%20Guidebook.pdf", type: "pdf", year: "2026", sortOrder: 60 },
     { folderId: "harvest", title: "2025 Harvest Summary (Public)", subtitle: "Public summary workbook for harvest results.", href: "./public/hard-copy/DISPLAY%20DATA/data/2025_harvest_summary_public.xlsx", type: "xlsx", year: "2025", sortOrder: 10 },
-    { folderId: "draw", title: "2025 Draw Results Summary (Public)", subtitle: "Public summary workbook for draw outcomes.", href: "./public/hard-copy/DISPLAY%20DATA/data/2025_draw_results_summary_public.xlsx", type: "xlsx", year: "2025", sortOrder: 10 },
     { folderId: "conservation", title: "Unit-Specific Conservation / Expo Bundles", subtitle: "Public workbook with conservation/expo permit bundles by unit.", href: "./public/hard-copy/DISPLAY%20DATA/harvest%20results/unit_specific_conservation_expo_bundles.xlsx", type: "xlsx", year: "2026", sortOrder: 10 },
     { folderId: "expo", title: "2026 EXPO Draw Results", subtitle: "Formatted Expo draw results (PDF).", href: "./public/hard-copy/DISPLAY%20DATA/expo%20permits/2026%20EXPO%20DRAW%20RESULTS.pdf", type: "pdf", year: "2026", sortOrder: 10 },
     { folderId: "calendar", title: "Utah DWR Significant Dates & 2026 Hunt Seasons", subtitle: "Official DWR events plus 1,358 published season ranges for 1,115 Hunt Planner hunt codes.", href: "./hunt-calendar-2026.html", type: "iframe", delivery: "embedded", year: "2026", sortOrder: 10 },
@@ -63,26 +62,36 @@
     { folderId: "outfitters", title: "Utah Outfitters by Hunt Code / Hunt Name", subtitle: "Public outfitter workbook tied to hunt code and hunt name.", href: "./public/hard-copy/DISPLAY%20DATA/data/utah_outfitters_by_hunt_code_hunt_name.xlsx", type: "xlsx", year: "2026", sortOrder: 10 },
   ];
   const PUBLIC_HUNT_LIBRARY_PDF_PATHS = [
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/ANTLERLESS_DEER_PERMIT_QUOTA__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/ANTLERLESS_ELK_PERMIT_QUOTA__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/ANTLERLESS_MOOSE_PERMIT_QUOTA__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/ANTLERLESS_PERMIT_QUOTA_SUMMARY__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/BEAR_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/BEAR_RESTRICTED_PURSUIT_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/DOE_PRONGHORN_PERMIT_QUOTA__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/D_H_DEER_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/EWE_ROCKY_MTN_SHEEP_PERMIT_QUOTA__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/G_S_BUCK_DEER_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/L_E_BUCK_DEER_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/L_E_BUCK_PRONGHORN_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/L_E_BULL_ELK_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/O_I_L_BISON_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/O_I_L_BULL_MOOSE_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/O_I_L_DESERT_BIGHORN_SHEEP_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/O_I_L_MTN_GOAT_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/O_I_L_ROCKY_MTN_SHEEP_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/SPORTSMAN_DRAW_RESULTS_CONSOLIDATED_FIXED_NARROW_DROPDOWN.pdf",
-    "public/hard-copy/HUNT LIBRARY/2026 HUNT DRAW RESULTS/YOUTH_ELK_DRAW_RESULTS__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_antlerless_17_antlerless_deer.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_antlerless_18_antlerless_elk.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_antlerless_19_antlerless_moose.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_antlerless_20_doe_pronghorn.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_antlerless_21_ewe_rocky_mtn_bighorn_sheep.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_big_game_05_general_season_buck_deer.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_big_game_06_draw_only_youth_elk.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_big_game_08_limited_entry_buck_deer.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_big_game_09_limited_entry_bull_elk.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_big_game_10_limited_entry_buck_pronghorn.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_big_game_11_bull_moose.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_big_game_12_bison.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_big_game_13_desert_bighorn_sheep.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_big_game_14_rocky_mtn_bighorn_sheep.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_big_game_15_mountain_goat.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_big_game_32_dedicated_hunter_buck_deer.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_black_bear_01_black_bear.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_black_bear_16_black_bear_restricted_pursuit.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_sportsman_22_sportsman_deer.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_sportsman_23_sportsman_elk.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_sportsman_24_sportsman_pronghorn.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_sportsman_25_sportsman_moose.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_sportsman_26_sportsman_bison.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_sportsman_27_sportsman_rocky_mtn_bighorn_sheep.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_sportsman_28_sportsman_desert_bighorn_sheep.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_sportsman_29_sportsman_mountain_goat.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_sportsman_30_sportsman_black_bear.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_sportsman_31_sportsman_turkey.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_2026_turkey_03_turkey.pdf",
+    "public/hard-copy/draw-results/2026/UOGA_UTAH_DRAWS_2026_draw_odds_supplement_data.pdf",
     "public/hard-copy/HUNT LIBRARY/2026 PERMITS/EXPO PERMITS/2026 EXPO DRAW RESULTS.pdf",
     "public/hard-copy/HUNT LIBRARY/2026 PERMITS/PERMIT QUOTAS = HUNT NAME + HUNT CODE/ANTLERLESS_DEER_PERMIT_QUOTA__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
     "public/hard-copy/HUNT LIBRARY/2026 PERMITS/PERMIT QUOTAS = HUNT NAME + HUNT CODE/ANTLERLESS_ELK_PERMIT_QUOTA__FIXED_DROPDOWN_NARROW_DROPDOWN.pdf",
@@ -183,6 +192,18 @@
 
   function titleFromLibraryPdfPath(rel) {
     const fileName = String(rel || "").split("/").pop() || "";
+    const retainedDrawMatch = fileName.match(/^UOGA_UTAH_DRAWS_2026_(?:2026_)?(?:(?:antlerless|big_game|black_bear|sportsman|turkey)_\d+_)?(.+)\.pdf$/i);
+    if (retainedDrawMatch) {
+      const subject = retainedDrawMatch[1]
+        .replace(/_/g, " ")
+        .replace(/\bmtn\b/gi, "Mountain")
+        .replace(/\s+/g, " ")
+        .trim()
+        .replace(/\b\w/g, (match) => match.toUpperCase());
+      return subject.toLowerCase() === "draw odds supplement data"
+        ? "2026 Draw Odds Supplement Data"
+        : `2026 ${subject} Draw Results`;
+    }
     return fileName
       .replace(/\.pdf$/i, "")
       .replace(/__FIXED_DROPDOWN_NARROW_DROPDOWN$/i, "")
@@ -207,6 +228,11 @@
 
   function subtitleForLibraryPdfPath(rel) {
     const lower = String(rel || "").toLowerCase();
+    if (lower.includes("/draw-results/2026/uoga_utah_draws_2026_")) {
+      return lower.includes("draw_odds_supplement_data")
+        ? "Retained 2026 UtahDraws source metadata and draw-package coverage."
+        : "Retained 2026 UtahDraws source record in the DWR-style U.O.G.A. layout.";
+    }
     if (lower.includes("/regulations/")) return "Parent rules PDF.";
     if (lower.includes("expo permits")) return "Parent Expo permit PDF.";
     if (lower.includes("permit quotas")) return "Parent permit-quota PDF by hunt code and hunt name.";

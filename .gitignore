@@ -73,6 +73,7 @@ pipeline/**/*.xls
 *.tar
 *.gz
 *.pdf
+!public/hard-copy/draw-results/2026/*.pdf
 *.xlsx
 *.xls
 *.gpkg

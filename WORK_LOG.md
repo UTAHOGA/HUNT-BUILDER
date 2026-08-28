@@ -19322,3 +19322,26 @@ Production state:
 - Reused the original Wild Eyez dark-brown topographic and leather textures for the Hunt Library popup surfaces.
 - Standardized folder results, PDF previews, and embedded calendar windows to the same near-full-screen viewport frame.
 - Moved the PDF dialog out of the transformed results panel so it can use the full viewport and set native browser PDF previews to open at 100% zoom.
+
+## 2026-08-28 - Larger square Hunt Library wall files
+
+- Enlarged the eight wall files into readable square cards, then refined the desktop dimensions to an even 200 by 200 pixels with proportional downscaling for narrower screens.
+- Widened the desktop four-column rail while preserving two rows of four.
+- Raised the complete card group by one additional cabin log, then moved it another 48 CSS pixels upward so the upper edge aligns with the next log crease while remaining clear of the foreground books and furniture.
+- Aligned the desktop file rail to the horizontal center of the complete search-and-Clear control row; mobile retains conventional viewport centering.
+- Reordered the wall files so Draw Results, Conservation Permits, and Hunt Expo complete the upper row after Rules, while Harvest Data begins the lower row.
+- Preserved the original cabin background and added a versioned replacement that removes both freestanding tabletop binocular sets, places the supplied orange spotting scope at the far-left tabletop position clear of the file rail, moves the U.O.G.A. mug to the former far-right binocular location, and angles the masonry U.O.G.A. plate to follow the sloped mortar course above the mantel.
+- Kept the square-card treatment responsive for narrower desktop and mobile layouts.
+
+## 2026-08-28 - 2026 UtahDraws PDFs in the Hunt Library
+
+- Replaced unavailable legacy 2026 Draw Results links with the 30 retained UtahDraws source-record PDFs supplied from `output/pdf/utahdraws-2026-source-records-dwr-layout`.
+- Kept the Draw Results folder limited to the 2026 source set by removing its unrelated 2025 summary workbook entry.
+- Preserved the approved wall-card order, dimensions, alignment, cabin artwork, and popup viewer behavior.
+- Verified all 30 source PDFs against the companion manifest by SHA-256 and byte size before copying; the set contains 1,422 readable, unencrypted pages totaling 9,230,153 bytes.
+
+## 2026-08-28 - Vercel public-contract fallback guard
+
+- Added a deployment-only guard to `scripts/build-public-data-contracts.js` so Vercel preserves the reviewed checked-in public contracts when the primary runtime CSVs or application-outlook source are not hydrated in the Git checkout.
+- Prevented synthetic fixture inputs from overwriting the production contract bundle during a website-only Vercel build, in accordance with the accepted prediction-promotion standard.
+- Kept local contract generation behavior unchanged outside Vercel so fixture-based development and explicit local rebuild workflows remain available.
