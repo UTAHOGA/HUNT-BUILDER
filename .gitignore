@@ -74,6 +74,7 @@ pipeline/**/*.xls
 *.gz
 *.pdf
 !public/hard-copy/draw-results/2026/*.pdf
+!public/hard-copy/conservation-permits/2025-2027/*.pdf
 *.xlsx
 *.xls
 *.gpkg
