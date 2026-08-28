@@ -9,11 +9,13 @@ endpoint cases remain review records instead of being guessed into a link.
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import re
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path, PureWindowsPath
+from urllib.parse import parse_qsl, unquote_plus, urlparse
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -21,6 +23,11 @@ CANONICAL_DIR = ROOT / "data_truth" / "draw_results_truth" / "normalized" / "can
 ARCHIVE_CATALOG = ROOT / "data_truth" / "draw_results_truth" / "raw_inventory" / "official_draw_source_retention_2017_2026.csv"
 PDF_PARITY_AUDIT = ROOT / "data_truth" / "draw_results_truth" / "validation" / "draw_2026_pdf_rows_vs_utahdraws_snapshot.csv"
 LIVE_ENDPOINT_AUDIT = ROOT / "data_truth" / "draw_results_truth" / "validation" / "draw_2026_live_endpoint_rows.csv"
+PLANNER_MATRIX_DIR = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "_staging" / "huntplanner_full_matrix_20260826_204000"
+PLANNER_MATRIX_MANIFEST = PLANNER_MATRIX_DIR / "dwr_huntboundary_full_matrix_manifest.csv"
+PLANNER_POPUP_DIR = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "_staging" / "huntplanner_popup_deep_20260826_205700"
+PLANNER_POPUP_CSV = PLANNER_POPUP_DIR / "dwr_huntplanner_hanumber_2026.csv"
+PLANNER_POPUP_RAW = PLANNER_POPUP_DIR / "dwr_huntplanner_hanumber_2026_raw_payloads.json"
 OUT_DIR = ROOT / "data_truth" / "draw_results_truth" / "validation"
 OUT_CSV = OUT_DIR / "canonical_parent_source_mapping_2018_2026.csv"
 OUT_JSON = OUT_DIR / "canonical_parent_source_mapping_2018_2026.json"
@@ -56,12 +63,70 @@ def norm(value: object) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
-def parent_candidates(label: str, sources: list[dict[str, str]]) -> tuple[str, list[dict[str, str]], str]:
+def normalized_url(value: object) -> str:
+    """Normalize DWR query URLs without changing their reported source text."""
+    parsed = urlparse(clean(value))
+    if not parsed.scheme or not parsed.netloc:
+        return ""
+    query = sorted(
+        (clean(key).lower(), unquote_plus(clean(item)).lower())
+        for key, item in parse_qsl(parsed.query, keep_blank_values=True)
+    )
+    return f"{parsed.scheme.lower()}://{parsed.netloc.lower()}{parsed.path.lower()}?{query}"
+
+
+def sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def retained_planner_evidence() -> dict[str, dict[str, str]]:
+    """Index the locally retained 2026 Planner matrix and popup evidence."""
+    evidence: dict[str, dict[str, str]] = {}
+    if PLANNER_MATRIX_MANIFEST.exists():
+        for row in read_csv(PLANNER_MATRIX_MANIFEST):
+            artifact = PLANNER_MATRIX_DIR / clean(row.get("file"))
+            url = clean(row.get("url"))
+            if clean(row.get("status")).lower() != "ok" or not artifact.exists() or not url:
+                continue
+            evidence[normalized_url(url)] = {
+                "report_year": "2026",
+                "durable_archive_path": artifact.relative_to(ROOT).as_posix(),
+                "official_url": url,
+                "sha256": sha256(artifact),
+            }
+    if PLANNER_POPUP_CSV.exists() and PLANNER_POPUP_RAW.exists():
+        raw_hash = sha256(PLANNER_POPUP_RAW)
+        raw_path = PLANNER_POPUP_RAW.relative_to(ROOT).as_posix()
+        for row in read_csv(PLANNER_POPUP_CSV):
+            url = clean(row.get("source_url"))
+            if clean(row.get("fetch_status")) != "OK" or not url:
+                continue
+            evidence[normalized_url(url)] = {
+                "report_year": "2026",
+                "durable_archive_path": raw_path,
+                "official_url": url,
+                "sha256": raw_hash,
+            }
+    return evidence
+
+
+def parent_candidates(
+    label: str,
+    sources: list[dict[str, str]],
+    planner_evidence: dict[str, dict[str, str]],
+) -> tuple[str, list[dict[str, str]], str]:
     """Return status, candidate sources, and a transparent matching method."""
     label_norm = norm(label)
     exact = [s for s in sources if source_label(s["durable_archive_path"]).lower() == source_label(label).lower()]
     if len(exact) == 1:
         return "LINKED", exact, "EXACT_ARCHIVED_FILENAME"
+    planner = planner_evidence.get(normalized_url(label))
+    if planner:
+        return "LINKED_RETAINED_DWR_PLANNER_EVIDENCE", [planner], "EXACT_RETAINED_DWR_PLANNER_CAPTURE"
     if label.lower().startswith("utahdraws live drawoddsdata:"):
         return "ENDPOINT_GROUP_REVIEW", [], "2026_LIVE_ENDPOINT_GROUP_REQUIRES_HUNT_LEVEL_MATCH"
     if "2026_permits=2027_model" in label_norm or "2026 permits 2027 model" in label_norm:
@@ -182,6 +247,53 @@ def parity_by_source_label() -> dict[str, list[dict[str, str]]]:
     return grouped
 
 
+def live_endpoint_rows_by_source_label() -> dict[str, list[dict[str, str]]]:
+    """Group exact 2026 endpoint-audit rows by the canonical display label."""
+    grouped: dict[str, list[dict[str, str]]] = {}
+    if not LIVE_ENDPOINT_AUDIT.exists():
+        return grouped
+    for row in read_csv(LIVE_ENDPOINT_AUDIT):
+        grouped.setdefault(source_label(clean(row.get("canonical_source_file"))), []).append(row)
+    return grouped
+
+
+def endpoint_parent_candidates(
+    label: str,
+    archive_sources: list[dict[str, str]],
+    live_rows_by_label: dict[str, list[dict[str, str]]],
+) -> tuple[str, list[dict[str, str]], str] | None:
+    """Resolve a 2026 display-family label through exact endpoint parity.
+
+    The canonical label is an aggregate display family, not an endpoint name.
+    The retained source packages are selected only from the hunt/residency/
+    point-level audit, never from a loose family-name match.
+    """
+    rows = live_rows_by_label.get(source_label(label), [])
+    endpoint_names = {
+        clean(row.get("expected_snapshot_source_json_file"))
+        for row in rows
+        if clean(row.get("expected_snapshot_source_json_file"))
+    }
+    parents = [
+        source
+        for source in archive_sources
+        if source_label(source.get("durable_archive_path", "")) in endpoint_names
+    ]
+    if not rows or len(parents) != len(endpoint_names):
+        return None
+    if any(
+        clean(row.get("certification_disposition"))
+        == "EXCLUDE_FROM_CERTIFIABLE_SCORING_PENDING_SOURCE_RECONCILIATION"
+        for row in rows
+    ):
+        status = "LINKED_RETAINED_2026_ENDPOINT_EVIDENCE_WITH_SCORABLE_EXCLUSIONS"
+    elif any(clean(row.get("parity_status")).startswith("AMBIGUOUS_") for row in rows):
+        status = "LINKED_RETAINED_2026_ENDPOINT_EVIDENCE_WITH_NONSCORING_AMBIGUITY"
+    else:
+        status = "LINKED_RETAINED_2026_ENDPOINT_EVIDENCE"
+    return status, parents, "HUNT_RESIDENCY_POINT_ENDPOINT_VALUE_PARITY"
+
+
 def scoring_lineage(rows: list[dict[str, str]]) -> tuple[str, str, str, str, str]:
     """Describe score eligibility separately from a physical PDF-parent link."""
     if not rows:
@@ -219,6 +331,8 @@ def main() -> None:
             continue
         by_year.setdefault(year, []).append(row)
     row_level_parity = parity_by_source_label()
+    live_rows_by_label = live_endpoint_rows_by_source_label()
+    planner_evidence = retained_planner_evidence()
 
     output: list[dict[str, str]] = []
     for canonical in sorted(CANONICAL_DIR.glob("draw_results_*_for_*_canonical_yearly_draw_results.csv")):
@@ -233,7 +347,17 @@ def main() -> None:
                 label = "(blank source file)"
             groups.setdefault(label, []).append(row)
         for label, rows in sorted(groups.items()):
-            status, parents, method = parent_candidates(label, by_year.get(year, []))
+            endpoint_resolution = (
+                endpoint_parent_candidates(label, by_year.get(year, []), live_rows_by_label)
+                if year == 2026
+                else None
+            )
+            if endpoint_resolution:
+                status, parents, method = endpoint_resolution
+            else:
+                status, parents, method = parent_candidates(
+                    label, by_year.get(year, []), planner_evidence
+                )
             scorable, certifiable, exclusions, unscorable, scoring_status = scoring_lineage(
                 row_level_parity.get(source_label(label), []) if year == 2026 else []
             )
@@ -255,7 +379,7 @@ def main() -> None:
                 "parent_archive_paths": " | ".join(parent["durable_archive_path"] for parent in parents),
                 "parent_official_urls": " | ".join(parent["official_url"] for parent in parents),
                 "parent_sha256s": " | ".join(parent["sha256"] for parent in parents),
-                "notes": "Parent link is physical-source evidence. The 2026 scoring-lineage fields separately report retained UtahDraws value parity and exclusions; neither changes canonical values.",
+                "notes": "The mapping points to a retained official source artifact: either an archived report, a raw UtahDraws endpoint package, or a raw DWR Planner capture. The 2026 scoring-lineage fields separately report exact outcome parity and exclusions; no canonical values are changed by this audit.",
             })
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -271,7 +395,7 @@ def main() -> None:
         "rows_by_scoring_lineage_status": dict(sorted(Counter(row["scoring_lineage_status"] for row in output).items())),
         "canonical_rows_by_mapping_status": dict(sorted(Counter({status: sum(int(row["canonical_rows"]) for row in output if row["mapping_status"] == status) for status in {row["mapping_status"] for row in output}}).items())),
         "mapping_csv": OUT_CSV.relative_to(ROOT).as_posix(),
-        "next_gate": "Only LINKED scopes are physically parent-PDF reproducible. For certification scoring, use only row-level VALUE_PARITY rows and exclude every remaining scorable source-dimension/value issue.",
+        "next_gate": "Physical archived-PDF links, retained raw UtahDraws endpoint links, and retained raw DWR Planner links are reported separately. For certification scoring, use only row-level VALUE_PARITY rows and exclude every remaining scorable source-dimension/value issue.",
     }
     OUT_JSON.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(summary, indent=2))

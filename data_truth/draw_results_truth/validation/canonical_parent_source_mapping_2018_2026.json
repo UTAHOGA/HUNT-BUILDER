@@ -1,13 +1,14 @@
 {
-  "generated_at_utc": "2026-08-28T04:18:08.043329+00:00",
+  "generated_at_utc": "2026-08-28T04:27:46.509317+00:00",
   "purpose": "Canonical source-label to archived-parent evidence audit; no canonical values were changed.",
   "source_scope_records": 195,
   "rows_by_mapping_status": {
-    "AMBIGUOUS_PARENT": 5,
-    "ENDPOINT_GROUP_REVIEW": 11,
     "LINKED": 160,
+    "LINKED_RETAINED_2026_ENDPOINT_EVIDENCE": 10,
+    "LINKED_RETAINED_2026_ENDPOINT_EVIDENCE_WITH_NONSCORING_AMBIGUITY": 1,
+    "LINKED_RETAINED_DWR_PLANNER_EVIDENCE": 6,
     "SOURCE_RECOVERY_REQUIRED": 14,
-    "UNMAPPED": 5
+    "UNMAPPED": 4
   },
   "rows_by_scoring_lineage_status": {
     "NONSCORING_STRUCTURAL_ROWS_ONLY": 12,
@@ -16,12 +17,13 @@
     "VALUE_PARITY_WITH_SCORABLE_EXCLUSIONS": 1
   },
   "canonical_rows_by_mapping_status": {
-    "AMBIGUOUS_PARENT": 262,
-    "ENDPOINT_GROUP_REVIEW": 16376,
     "LINKED": 280752,
+    "LINKED_RETAINED_2026_ENDPOINT_EVIDENCE": 16334,
+    "LINKED_RETAINED_2026_ENDPOINT_EVIDENCE_WITH_NONSCORING_AMBIGUITY": 42,
+    "LINKED_RETAINED_DWR_PLANNER_EVIDENCE": 263,
     "SOURCE_RECOVERY_REQUIRED": 12156,
-    "UNMAPPED": 16
+    "UNMAPPED": 15
   },
   "mapping_csv": "data_truth/draw_results_truth/validation/canonical_parent_source_mapping_2018_2026.csv",
-  "next_gate": "Only LINKED scopes are physically parent-PDF reproducible. For certification scoring, use only row-level VALUE_PARITY rows and exclude every remaining scorable source-dimension/value issue."
+  "next_gate": "Physical archived-PDF links, retained raw UtahDraws endpoint links, and retained raw DWR Planner links are reported separately. For certification scoring, use only row-level VALUE_PARITY rows and exclude every remaining scorable source-dimension/value issue."
 }
