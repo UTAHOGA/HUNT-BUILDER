@@ -19520,3 +19520,11 @@ Production state:
 - The 2019–2022 source lanes recombine exactly to the corresponding legacy canonical totals: `1,940`, `2,000`, `2,000`, and `2,016` point keys respectively, with zero missing keys and zero numeric mismatches. The 2022 table's inserted printed-number column is handled explicitly by the extractor rather than by a total-based inference.
 - The 2018 PDF supplies `1,820` official combined point keys, but the normal 2018 canonical does not contain the black-bear draw scope. This is recorded as `OFFICIAL_PDF_EXTRACTED_CANONICAL_BEAR_SCOPE_NOT_FROZEN`, not as an official-source disagreement. It must be frozen into canonical lineage before the 2017→2018 bear fold can use residency lanes.
 - Added a regression test that regenerates the output and requires all canonical-covered years to reconcile exactly while preserving the explicit 2018 canonical-freeze blocker. No canonical value, long file, `DATABASE.csv`, runtime artifact, R2 object, deployment, staging, commit, or push was changed.
+
+## 2026-08-28 - Current statewide cougar correction in the public permit register
+
+- Confirmed the current official 2026 DWR guidebook describes cougar hunting as a statewide, year-round license-based opportunity with no separate cougar permit required.
+- Kept the reviewed source row exactly as `CG9999 | Cougar - Statewide | Either Sex | Cougar | Any Legal Weapon | Statewide | open`.
+- Excluded 31 historical cougar unit codes from the current public 2026 permit register while retaining them unchanged in `DATABASE.csv` for historical lineage.
+- Rebuilt the public register so Cougar contains one current row and clearly states that `CG9999` is statewide open and license-based.
+- Applied the same current-cougar filter to the Hunt Library's generated hunt index and browser loader so search/research drawers cannot reintroduce the 31 historical cougar codes.

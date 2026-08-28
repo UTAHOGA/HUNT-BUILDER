@@ -63,7 +63,7 @@
     { folderId: "expo", title: "2026 EXPO Draw Results", subtitle: "Formatted Expo draw results (PDF).", href: "./public/hard-copy/DISPLAY%20DATA/expo%20permits/2026%20EXPO%20DRAW%20RESULTS.pdf", type: "pdf", year: "2026", sortOrder: 10 },
     { folderId: "calendar", title: "Utah DWR Significant Dates & 2026 Hunt Seasons", subtitle: "Official DWR events plus 1,358 published season ranges for 1,115 Hunt Planner hunt codes.", href: "./hunt-calendar-2026.html", type: "iframe", delivery: "embedded", year: "2026", sortOrder: 10 },
     { folderId: "units2026", title: "2026 Draw + EXPO Permit Reconciliation", subtitle: "Verified per-species and per-hunt-code totals: 983 public-draw permits + 41 EXPO permits = 1,024 Hunt Planner permits across 26 exact-code matches.", href: "./public/hard-copy/hunt-units-permits/2026/Utah_2026_Hunt_Units_Permit_Reconciliation_UOGA.pdf", type: "pdf", year: "2026", sortOrder: 10 },
-    { folderId: "units2026", title: "2026 All Hunt Codes & Available Permit Numbers", subtitle: "Complete 1,849-code Hunt Planner register plus 13 flagged conservation-crosswalk-only codes, with EXPO subsets and non-additive conservation coverage on every applicable hunt code.", href: "./public/hard-copy/hunt-units-permits/2026/Utah_2026_All_Hunt_Codes_and_Available_Permits_UOGA.pdf", type: "pdf", year: "2026", sortOrder: 20 },
+    { folderId: "units2026", title: "2026 All Hunt Codes & Available Permit Numbers", subtitle: "Current 1,818-row permit register plus 13 flagged conservation-crosswalk-only codes. Cougar is correctly represented by the single statewide open code CG9999; historical cougar unit codes are excluded.", href: "./public/hard-copy/hunt-units-permits/2026/Utah_2026_All_Hunt_Codes_and_Available_Permits_UOGA.pdf", type: "pdf", year: "2026", sortOrder: 20 },
     { folderId: "outfitters", title: "Utah Outfitters by Hunt Code / Hunt Name", subtitle: "Public outfitter workbook tied to hunt code and hunt name.", href: "./public/hard-copy/DISPLAY%20DATA/data/utah_outfitters_by_hunt_code_hunt_name.xlsx", type: "xlsx", year: "2026", sortOrder: 10 },
   ];
   const PUBLIC_HUNT_LIBRARY_PDF_PATHS = [
@@ -389,7 +389,12 @@
   async function loadHuntIndex() {
     for (const url of HUNT_INDEX_URLS) {
       const rows = await fetchHuntIndex(url);
-      if (rows.length) return rows;
+      if (rows.length) {
+        return rows.filter((row) => {
+          const rowSpecies = String(row?.species || '').trim().toLowerCase();
+          return rowSpecies !== 'cougar' || normalizeHuntCode(row?.hunt_code) === 'CG9999';
+        });
+      }
     }
     return [];
   }

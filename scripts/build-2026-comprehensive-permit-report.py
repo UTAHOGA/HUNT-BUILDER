@@ -105,9 +105,40 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 
 
 def load_sources() -> tuple[list[dict[str, object]], dict[str, dict[str, str]]]:
-    database_rows = read_csv(DATABASE)
-    if len(database_rows) != 1849:
-        raise RuntimeError(f"Expected 1,849 DATABASE rows, found {len(database_rows):,}")
+    all_database_rows = read_csv(DATABASE)
+    if len(all_database_rows) != 1849:
+        raise RuntimeError(f"Expected 1,849 DATABASE lineage rows, found {len(all_database_rows):,}")
+
+    cougar_rows = [row for row in all_database_rows if clean(row.get("species")) == "Cougar"]
+    current_cougar_rows = [row for row in cougar_rows if clean(row.get("hunt_code")).upper() == "CG9999"]
+    if len(cougar_rows) != 32 or len(current_cougar_rows) != 1:
+        raise RuntimeError(
+            f"Expected one current statewide cougar row plus 31 historical cougar rows; found {len(current_cougar_rows)} current and {len(cougar_rows) - len(current_cougar_rows)} historical"
+        )
+    current_cougar = current_cougar_rows[0]
+    expected_cougar = {
+        "hunt_code": "CG9999",
+        "species": "Cougar",
+        "sex_type": "Either Sex",
+        "weapon": "Any Legal Weapon",
+        "hunt_type": "Statewide",
+        "season": "open",
+    }
+    for field, expected in expected_cougar.items():
+        if clean(current_cougar.get(field)).lower() != expected.lower():
+            raise RuntimeError(
+                f"Current statewide cougar row disagrees with the reviewed source: {field}={current_cougar.get(field)!r}, expected {expected!r}"
+            )
+
+    # DATABASE.csv retains historical cougar lineage, but the current public
+    # permit register must show only the active statewide license-based row.
+    database_rows = [
+        row
+        for row in all_database_rows
+        if clean(row.get("species")) != "Cougar" or clean(row.get("hunt_code")).upper() == "CG9999"
+    ]
+    if len(database_rows) != 1818:
+        raise RuntimeError(f"Expected 1,818 current report rows after excluding historical cougar codes, found {len(database_rows):,}")
     codes = [clean(row.get("hunt_code")).upper() for row in database_rows]
     if not all(codes) or len(codes) != len(set(codes)):
         raise RuntimeError("DATABASE hunt codes are blank or duplicated")
@@ -174,7 +205,7 @@ def load_sources() -> tuple[list[dict[str, object]], dict[str, dict[str, str]]]:
             {
                 "hunt_code": code,
                 "species": clean(source.get("species")) or "Unclassified",
-                "hunt_name": clean(source.get("hunt_name")) or "-",
+                "hunt_name": "Cougar - Statewide" if code == "CG9999" else (clean(source.get("hunt_name")) or "-"),
                 "hunt_type": clean(source.get("hunt_type")) or "-",
                 "weapon": clean(source.get("weapon")) or "-",
                 "published_total": published,
@@ -300,6 +331,8 @@ def status_label(row: dict[str, object]) -> str:
     published = row["published_total"]
     conservation = int(row["conservation_permits"])
     status = str(row["status"])
+    if row["hunt_code"] == "CG9999":
+        return "Statewide open; license required; no separate cougar permit"
     if status == "CONSERVATION_CODE_NOT_IN_CURRENT_DATABASE":
         return "Crosswalk-only; absent current DATABASE"
     if published is not None:
@@ -374,7 +407,7 @@ def build_pdf(rows: list[dict[str, object]]) -> None:
         p("UOGA HUNT LIBRARY | COMPREHENSIVE 2026 REFERENCE", s["eyebrow"]),
         p("All Hunt Codes & Available Permit Numbers", s["title"]),
         p(
-            "A complete register of all 1,849 codes in the current Hunt Planner DATABASE snapshot, plus 13 conservation-crosswalk-only codes retained and explicitly flagged. Every row shows its published 2026 numeric permit total or an explicit no-number/status result. Exact EXPO allocations and conservation-permit coverage are separate overlays.",
+            "A current 2026 permit register built from 1,818 active/reportable DATABASE rows, plus 13 conservation-crosswalk-only codes retained and explicitly flagged. Thirty-one historical cougar unit codes remain in source lineage but are excluded here because 2026 has one statewide open cougar hunt code: CG9999. Every displayed row shows its published numeric permit total or an explicit no-number/status result. Exact EXPO allocations and conservation-permit coverage are separate overlays.",
             s["subtitle"],
         ),
         p(
@@ -449,9 +482,10 @@ def validate_pdf() -> None:
     text = " ".join("\n".join(page.extract_text() or "" for page in reader.pages).split())
     for marker in (
         "All Hunt Codes & Available Permit Numbers",
-        "all 1,849 codes",
+        "1,818 active/reportable DATABASE rows",
         "MUST NOT be treated as 1,454 distinct permits",
         "CG9999",
+        "Statewide open; license required; no separate cougar permit",
         "DB1024",
         "EA1180",
         "EA1270",
@@ -474,7 +508,9 @@ def main() -> int:
     print(f"OUTPUT={OUTPUT}")
     print(f"PUBLIC={PUBLIC}")
     print(f"ROWS={len(rows)}")
-    print("CURRENT_DATABASE_CODES=1849")
+    print("SOURCE_DATABASE_LINEAGE_CODES=1849")
+    print("CURRENT_REPORT_DATABASE_CODES=1818")
+    print("HISTORICAL_COUGAR_CODES_EXCLUDED=31")
     print("CONSERVATION_CROSSWALK_ONLY_CODES=13")
     print(f"NUMERIC_QUOTA_CODES={sum(row['published_total'] is not None for row in rows)}")
     print("EXPO_CODES=26")
