@@ -1,20 +1,20 @@
 {
-  "generated_at_utc": "2026-08-28T04:27:38.397718+00:00",
+  "generated_at_utc": "2026-08-28T06:36:11.761244+00:00",
   "canonical_pdf_derived_rows": 12156,
   "canonical_pdf_derived_scorable_rows": 1381,
-  "certifiable_scorable_rows": 1379,
-  "scorable_rows_excluded_pending_reconciliation": 2,
+  "certifiable_scorable_rows": 1380,
+  "scorable_rows_excluded_pending_reconciliation": 1,
   "unscorable_zero_applicant_or_success_rows": 10775,
   "parity_status_counts": {
-    "AMBIGUOUS_MULTIPLE_EQUAL_ENDPOINT_ROWS": 2,
+    "AMBIGUOUS_MULTIPLE_EQUAL_ENDPOINT_ROWS": 1,
     "NO_EXPECTED_ENDPOINT_IDENTITY": 10581,
     "VALUE_MISMATCH_DIRECT": 13,
-    "VALUE_PARITY_DIRECT": 1120,
+    "VALUE_PARITY_DIRECT": 1121,
     "VALUE_PARITY_UNIQUE_SOURCE_DIMENSION": 440
   },
   "certification_disposition_counts": {
-    "CERTIFIABLE_SOURCE_VALUE_PARITY": 1379,
-    "EXCLUDE_FROM_CERTIFIABLE_SCORING_PENDING_SOURCE_RECONCILIATION": 2,
+    "CERTIFIABLE_SOURCE_VALUE_PARITY": 1380,
+    "EXCLUDE_FROM_CERTIFIABLE_SCORING_PENDING_SOURCE_RECONCILIATION": 1,
     "UNSCORABLE_NO_APPLICANT_OR_SUCCESS": 10775
   },
   "planner_context_counts": {
