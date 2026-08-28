@@ -55,7 +55,7 @@
     { folderId: "rules", title: "2026-27 Waterfowl, Upland Game & Turkey Guidebook", subtitle: "Current Utah regulations for waterfowl, upland game, turkey and small game.", href: "./public/hard-copy/regulations/2026/2026%20Waterfowl%20Upland%20Game%20and%20Turkey%20Guidebook.pdf", type: "pdf", year: "2026", sortOrder: 50 },
     { folderId: "rules", title: "2026 Fishing Guidebook", subtitle: "Utah fishing laws, methods, limits and rules for specific waters.", href: "./public/hard-copy/regulations/2026/2026%20Fishing%20Guidebook.pdf", type: "pdf", year: "2026", sortOrder: 60 },
     { folderId: "harvest", title: "2025 Harvest Summary (Public)", subtitle: "Public summary workbook for harvest results.", href: "./public/hard-copy/DISPLAY%20DATA/data/2025_harvest_summary_public.xlsx", type: "xlsx", year: "2025", sortOrder: 10 },
-    { folderId: "conservation", title: "Unit-Specific Conservation / Expo Bundles", subtitle: "Public workbook with conservation/expo permit bundles by unit.", href: "./public/hard-copy/DISPLAY%20DATA/harvest%20results/unit_specific_conservation_expo_bundles.xlsx", type: "xlsx", year: "2026", sortOrder: 10 },
+    { folderId: "conservation", title: "2025-2027 Multi-Year Conservation Permit Working List", subtitle: "Current working list of 336 conservation permits by species, area, condition, value, and organization.", href: "./public/hard-copy/conservation-permits/2025-2027/2025-27_conservation_permits.pdf", type: "pdf", year: "2026", sortOrder: 10 },
     { folderId: "expo", title: "2026 EXPO Draw Results", subtitle: "Formatted Expo draw results (PDF).", href: "./public/hard-copy/DISPLAY%20DATA/expo%20permits/2026%20EXPO%20DRAW%20RESULTS.pdf", type: "pdf", year: "2026", sortOrder: 10 },
     { folderId: "calendar", title: "Utah DWR Significant Dates & 2026 Hunt Seasons", subtitle: "Official DWR events plus 1,358 published season ranges for 1,115 Hunt Planner hunt codes.", href: "./hunt-calendar-2026.html", type: "iframe", delivery: "embedded", year: "2026", sortOrder: 10 },
     { folderId: "units2026", title: "2026 Hunt Units / Permit Numbers", subtitle: "Current 2026 hunt code, hunt unit, and permit workbook.", href: "./public/hard-copy/DISPLAY%20DATA/data/2026_hunt_units_permit_numbers.xlsx", type: "xlsx", year: "2026", sortOrder: 10 },
@@ -263,7 +263,7 @@
     const href = safeUrl(value);
     if (href === "#") return href;
     const url = new URL(href);
-    url.hash = "zoom=100";
+    url.hash = "zoom=200";
     return url.href;
   }
 
@@ -573,7 +573,7 @@
     wall.innerHTML = FOLDERS.map((folder) => {
       const count = items.filter((item) => item.folderId === folder.id).length;
       const active = state.activeFolder === folder.id ? "active" : "";
-      const label = `${folder.title} (${count} files)`;
+      const label = `${folder.title} (${count} file${count === 1 ? "" : "s"})`;
       return `
         <button class="public-folder ${active}" type="button" data-folder="${esc(folder.id)}" aria-label="${esc(label)}">
           <span class="public-folder-title">${esc(folder.title)}</span>
@@ -881,7 +881,7 @@
       if (sortDelta !== 0) return sortDelta;
       return (b.year || "").localeCompare(a.year || "") || a.title.localeCompare(b.title);
     });
-    panelCount.textContent = `${filtered.length} files`;
+    panelCount.textContent = `${filtered.length} file${filtered.length === 1 ? "" : "s"}`;
 
     const chipsList = [];
     if (state.activeFolder) {
@@ -995,8 +995,27 @@
     const clear = byId("uogaLibraryClear");
     bindStaticControls();
 
+    const openSingleFolderResource = (folderId) => {
+      const folderItems = items.filter((item) => item.folderId === folderId);
+      if (folderItems.length !== 1) return false;
+
+      const item = folderItems[0];
+      const opensInLibrary = item.type === "pdf" || item.embedded || item.type === "iframe";
+      if (!opensInLibrary) return false;
+
+      state.activeFolder = "";
+      state.query = "";
+      if (search) search.value = "";
+      renderResults(items, state, huntRows, huntByCode);
+
+      if (item.type === "pdf") openPdfFlipbook(item);
+      else openEmbed(item);
+      return true;
+    };
+
     const renderAll = () => {
       renderFolderButtons(items, state, (folderId) => {
+        if (openSingleFolderResource(folderId)) return;
         state.activeFolder = state.activeFolder === folderId ? "" : folderId;
         renderAll();
       });

@@ -19345,3 +19345,17 @@ Production state:
 - Added a deployment-only guard to `scripts/build-public-data-contracts.js` so Vercel preserves the reviewed checked-in public contracts when the primary runtime CSVs or application-outlook source are not hydrated in the Git checkout.
 - Prevented synthetic fixture inputs from overwriting the production contract bundle during a website-only Vercel build, in accordance with the accepted prediction-promotion standard.
 - Kept local contract generation behavior unchanged outside Vercel so fixture-based development and explicit local rebuild workflows remain available.
+
+## 2026-08-28 - Conservation permit PDF in the Hunt Library
+
+- Replaced the unavailable conservation workbook placeholder with the current `2025-27_conservation_permits.pdf` source from `pipeline/RAW/hunt_unit_database/2026/pdf/conservation permits/`.
+- Published the six-page 2025-2027 working list as the Conservation Permits folder's single current-cycle resource, covering 336 permits by species, area, condition, value, and organization.
+- Preserved the approved wall-card order, 200-by-200 dimensions, alignment, cabin artwork, and full-size PDF preview behavior.
+- Verified the copied PDF by SHA-256, parsed all six pages, and visually inspected its first and final pages before wiring it into the local build.
+
+## 2026-08-28 - Direct-open single-resource folders and 200% PDF zoom
+
+- Made single-resource folders open their viewable content immediately, bypassing the intermediate file-results panel for the embedded calendar and single PDFs.
+- Kept the file-results panel for multi-file folders and for single resources that do not have an in-library viewer.
+- Changed every in-browser PDF preview to start at 200% zoom.
+- Preserved the approved wall-card placement, dimensions, ordering, and cabin artwork.
