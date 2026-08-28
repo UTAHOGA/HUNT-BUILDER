@@ -943,6 +943,15 @@ def _source_backed_family_for_row(row: Mapping[str, object]) -> str:
     species = _clean(row.get("species")).lower()
     text = _joined_lower(row, "hunt_code", "hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "draw_design", "draw_pool", "source_file")
     draw_system = _draw_system(row).upper()
+    source_is_youth = _clean(row.get("source_is_youth")).lower()
+
+    # UtahDraws may publish adult and youth Turkey ladders under the same hunt
+    # code.  The source-level flag is therefore authoritative before generic
+    # filename/bucket routing can collapse the two pools.
+    if ("turkey" in species or prefix == "TK") and source_is_youth in {"true", "1", "yes", "y"}:
+        return "youth_turkey"
+    if ("turkey" in species or prefix == "TK") and source_is_youth in {"false", "0", "no", "n"}:
+        return "bonus_turkey"
 
     if "cwmu" in text and not any(token in text for token in ("private", "landowner", "voucher")):
         return "bonus_cwmu_big_game"
@@ -1073,6 +1082,23 @@ def _source_backed_probability_rows(
             if key in existing_keys or key in added_keys:
                 continue
             added_keys.add(key)
+            copied_guarantee = probability >= 1.0 - 1e-12
+            probability_fields = {
+                "p_preference_draw": f"{probability:.6f}" if family.startswith("preference_") and not copied_guarantee else "",
+                "p_bonus_pool": "" if family.startswith("preference_") or copied_guarantee else f"{probability:.6f}",
+                "p_random_pool": "",
+                "p_draw": "" if copied_guarantee else f"{probability:.6f}",
+                "p_bonus_pool_pct": "" if family.startswith("preference_") or copied_guarantee else f"{probability * 100.0:.3f}",
+                "p_random_pool_pct": "",
+                "p_draw_pct": "" if copied_guarantee else f"{probability * 100.0:.3f}",
+                "p_draw_mean": "" if copied_guarantee else f"{probability:.6f}",
+                "p_draw_p10": "" if copied_guarantee else f"{max(0.0, probability - 0.05):.6f}",
+                "p_draw_p50": "" if copied_guarantee else f"{probability:.6f}",
+                "p_draw_p90": "" if copied_guarantee else f"{min(1.0, probability + 0.05):.6f}",
+                "display_odds_pct": "" if copied_guarantee else f"{probability * 100.0:.3f}",
+                "display_odds_text": "No next-year modeled chance" if copied_guarantee else _render_odds_text(probability),
+                "draw_outlook": "MODEL PENDING" if copied_guarantee else _render_odds_text(probability),
+            }
             rows_by_family[family].append(
                 {
                     "model_version": "source_backed_roll_forward_v1",
@@ -1090,27 +1116,18 @@ def _source_backed_probability_rows(
                     "draw_pool": draw_pool,
                     "public_permits_2025": _clean(source_row.get("total_permits") or source_row.get("resident_total_permits") or source_row.get("nonresident_total_permits")),
                     "public_permits_2026": _clean(source_row.get("total_permits") or source_row.get("resident_total_permits") or source_row.get("nonresident_total_permits")),
-                    "p_preference_draw": f"{probability:.6f}" if family.startswith("preference_") else "",
-                    "p_bonus_pool": "" if family.startswith("preference_") else f"{probability:.6f}",
-                    "p_random_pool": "",
-                    "p_draw": f"{probability:.6f}",
-                    "p_bonus_pool_pct": "" if family.startswith("preference_") else f"{probability * 100.0:.3f}",
-                    "p_random_pool_pct": "",
-                    "p_draw_pct": f"{probability * 100.0:.3f}",
-                    "p_draw_mean": f"{probability:.6f}",
-                    "p_draw_p10": f"{max(0.0, probability - 0.05):.6f}",
-                    "p_draw_p50": f"{probability:.6f}",
-                    "p_draw_p90": f"{min(1.0, probability + 0.05):.6f}",
-                    "display_odds_pct": f"{probability * 100.0:.3f}",
-                    "display_odds_text": _render_odds_text(probability),
-                    "draw_outlook": _render_odds_text(probability),
+                    **probability_fields,
                     "source_years_used": str(source_year),
                     "source_year_count": "1",
                     "latest_source_year": str(source_year),
                     "earliest_source_year": str(source_year),
                     "source_dataset": "predictive",
                     "model_strategy": f"{family}_source_backed_roll_forward",
-                    "reason_codes": "SOURCE_BACKED_PUBLISHED_POINT_PROBABILITY_ROLL_FORWARD",
+                    "reason_codes": (
+                        "SOURCE_BACKED_PUBLISHED_POINT_PROBABILITY_ROLL_FORWARD_GUARANTEE_BLOCKED"
+                        if copied_guarantee
+                        else "SOURCE_BACKED_PUBLISHED_POINT_PROBABILITY_ROLL_FORWARD"
+                    ),
                     "weapon": _clean(source_row.get("weapon")),
                     "qa_notes": _clean(source_row.get("qa_notes")),
                     "source_file": _clean(source_row.get("source_file") or source_row.get("draw_source_file") or source_row.get("source_scope")),
@@ -1123,9 +1140,9 @@ def _source_backed_probability_rows(
                     "metric_scope": metric_scope,
                     "draw_method": _default_draw_method_for_family(family),
                     "point_system": _default_point_system_for_family(family),
-                    "algorithm_status": "MODELED_SOURCE_BACKED_ROLL_FORWARD",
-                    "prediction_status": "MODELED",
-                    "classification_status": "MODELED_SOURCE_BACKED_ROLL_FORWARD",
+                    "algorithm_status": "NOT_SCORED_SOURCE_ROLL_FORWARD_GUARANTEE_BLOCKED" if copied_guarantee else "MODELED_SOURCE_BACKED_ROLL_FORWARD",
+                    "prediction_status": "NOT_SCORED" if copied_guarantee else "MODELED",
+                    "classification_status": "SOURCE_ROLL_FORWARD_GUARANTEE_BLOCKED" if copied_guarantee else "MODELED_SOURCE_BACKED_ROLL_FORWARD",
                     "public_permits_target": _clean(source_row.get("total_permits") or source_row.get("resident_total_permits") or source_row.get("nonresident_total_permits")),
                     "public_permits_source": f"source_year_{source_year}_published_point_probability",
                 }
@@ -1207,6 +1224,11 @@ def _default_reason_code_for_family(family: str, algorithm_status: str) -> str:
 
 
 def _effective_draw_pool_for_family(row: Mapping[str, object], family: str) -> str:
+    # The official youth source flag is a pool identity boundary.  It takes
+    # precedence over generic source-file routes, which historically label
+    # both adult and youth Turkey reports as the same preference-point pool.
+    if family == "youth_turkey":
+        return "youth_turkey"
     source_route = _source_file_route(row)
     if source_route.get("draw_pool"):
         return source_route["draw_pool"]
@@ -1784,17 +1806,22 @@ def _historical_source_year_runtime_db_rows(
     source row's public residency split and labels every resulting quota as a
     source-year proxy for audit traceability.
     """
-    by_code: dict[str, list[dict[str, object]]] = defaultdict(list)
+    by_identity: dict[tuple[str, str, str], list[dict[str, object]]] = defaultdict(list)
     for row in source_rows:
         hunt_code = _clean(row.get("hunt_code")).upper()
-        if hunt_code:
-            by_code[hunt_code].append(dict(row))
+        family = _source_backed_family_for_row(row)
+        if not hunt_code or not family:
+            continue
+        # Family is a source-pool boundary, not merely an output label.  In
+        # particular, bonus_turkey and youth_turkey can share a hunt code but
+        # have independent quotas and applicant ladders.  Keep the effective
+        # draw pool as a further source identity guard against legacy scope
+        # collapse.
+        pool_identity = _effective_draw_pool_for_family(row, family)
+        by_identity[(hunt_code, family, pool_identity)].append(dict(row))
 
     db_rows: list[dict[str, object]] = []
-    for hunt_code, rows in sorted(by_code.items()):
-        source_family_rows = [row for row in rows if _source_backed_family_for_row(row)]
-        if not source_family_rows:
-            continue
+    for (hunt_code, family, pool_identity), source_family_rows in sorted(by_identity.items()):
         representative = next(
             (
                 row
@@ -1803,10 +1830,6 @@ def _historical_source_year_runtime_db_rows(
             ),
             source_family_rows[0],
         )
-        family = _source_backed_family_for_row(representative)
-        if not family:
-            continue
-
         total_rows = [
             row
             for row in source_family_rows
@@ -1852,9 +1875,10 @@ def _historical_source_year_runtime_db_rows(
                 "hunt_type": hunt_type,
                 "hunt_class": _clean(representative.get("hunt_class") or representative.get("hunt_draw_class")),
                 "weapon": _clean(representative.get("weapon")),
-                "draw_pool": _effective_draw_pool_for_family(representative, family),
+                "draw_pool": pool_identity,
                 "draw_system_type": draw_system_type,
                 "historical_permit_proxy": "TRUE",
+                "historical_proxy_pool_identity": f"{family}:{pool_identity}",
                 "forecast_permits_res": str(int(round(res))),
                 "forecast_permits_nr": str(int(round(nr))),
                 "forecast_permits_total": str(int(round(total))),

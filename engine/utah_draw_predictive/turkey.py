@@ -16,7 +16,7 @@ from .permit_accessors import target_residency_permit_allocation
 
 MODEL_STRATEGY_NAME = "turkey_bonus_phase7"
 YOUTH_TURKEY_MODEL_STRATEGY_NAME = "youth_turkey_set_aside_bonus_v1"
-BONUS_RULE_VERSION = "utah_turkey_bonus_v1.0.0"
+BONUS_RULE_VERSION = "utah_turkey_bonus_v1.1.0"
 TURKEY_DRAW_SYSTEM_TYPE = "BONUS_TURKEY"
 YOUTH_TURKEY_DRAW_SYSTEM_TYPE = "YOUTH_TURKEY_SET_ASIDE"
 YOUTH_TURKEY_SET_ASIDE_RATIO = 0.15
@@ -409,18 +409,67 @@ def _forecast_applicant_ladder(
     return forecast
 
 
-def _weighted_random_probability(points: int, applicants_by_points: Mapping[int, int], random_permits: int) -> float:
-    total_weight = 0.0
-    target_weight = 0.0
-    for point_level, count in applicants_by_points.items():
-        weight = max(0, int(count)) * max(1, int(point_level) + 1)
-        total_weight += weight
-        if int(point_level) == int(points):
-            target_weight += weight
-    if random_permits <= 0 or total_weight <= 0 or target_weight <= 0:
-        return 0.0
-    share = min(1.0, max(0.0, target_weight / total_weight))
-    return max(0.0, min(1.0, 1.0 - ((1.0 - share) ** max(1, random_permits))))
+def _remaining_applicants_after_max_pool(
+    applicants_by_points: Mapping[int, int],
+    max_point_permits: int,
+) -> dict[int, int]:
+    """Remove deterministic max-pool winners before the weighted pool.
+
+    Utah's bonus draw does not return a max-pool winner to the weighted draw.
+    At a partial cutoff, only the applicants not awarded in that cutoff remain.
+    """
+    remaining_permits = max(0, int(max_point_permits))
+    remaining: dict[int, int] = {}
+    for point_level in sorted((int(level) for level in applicants_by_points), reverse=True):
+        count = max(0, int(applicants_by_points.get(point_level, 0)))
+        awarded = min(count, remaining_permits)
+        remaining[point_level] = count - awarded
+        remaining_permits -= awarded
+    return remaining
+
+
+def _weighted_without_replacement_probabilities(
+    applicants_by_points: Mapping[int, int],
+    random_permits: int,
+) -> dict[int, float]:
+    """Evaluate finite-population weighted bonus odds without replacement.
+
+    Each successive permit consumes weighted applicant mass from the pool
+    before the next permit is evaluated.  This deterministic finite-population
+    formulation retains the exact one-permit and all-applicants-awarded cases,
+    avoids a simulation/noise budget, and never treats the same application as
+    available for every permit as the old repeated-chance formula did.
+    """
+    counts = {int(level): max(0, int(count)) for level, count in applicants_by_points.items()}
+    counts = {level: count for level, count in counts.items() if count > 0}
+    total_applicants = sum(counts.values())
+    quota = min(max(0, int(random_permits)), total_applicants)
+    if quota <= 0 or not counts:
+        return {level: 0.0 for level in counts}
+    if quota >= total_applicants:
+        return {level: 1.0 for level in counts}
+
+    weights = {level: level + 1 for level in counts}
+    total_weight = sum(counts[level] * weights[level] for level in counts)
+    if quota == 1:
+        return {level: weights[level] / total_weight for level in counts}
+
+    available = {level: float(count) for level, count in counts.items()}
+    selected_probability = {level: 0.0 for level in counts}
+    for _permit in range(quota):
+        weighted_total = sum(available[level] * weights[level] for level in available)
+        if weighted_total <= 0:
+            break
+        for level in available:
+            # Conditional chance for one still-unselected applicant at this
+            # level.  The prior pass's expected winners have already been
+            # removed from every level below.
+            conditional_probability = weights[level] / weighted_total
+            selected_probability[level] += (1.0 - selected_probability[level]) * conditional_probability
+        for level in available:
+            expected_awards = available[level] * weights[level] / weighted_total
+            available[level] = max(0.0, available[level] - expected_awards)
+    return {level: max(0.0, min(1.0, probability)) for level, probability in selected_probability.items()}
 
 
 def _guaranteed_level(ladder: Mapping[int, int], quota: int) -> int | None:
@@ -726,10 +775,12 @@ def build_turkey_bonus_predictions(
             for flag in flags:
                 data_quality_counter[flag] += 1
 
+            applicants_by_points = {int(level): int(count) for level, count in forecast_ladder.items()}
+            remaining_after_max = _remaining_applicants_after_max_pool(applicants_by_points, max_point_permits)
+            random_probabilities = _weighted_without_replacement_probabilities(remaining_after_max, random_permits)
             for points in sorted(forecast_ladder.keys(), reverse=True):
-                applicants_by_points = {int(level): int(count) for level, count in forecast_ladder.items()}
                 p_bonus_pool, applicants_above, applicants_at_level = compute_bonus_pool_probability(points, applicants_by_points, max_point_permits)
-                p_random_pool = _weighted_random_probability(points, applicants_by_points, random_permits)
+                p_random_pool = random_probabilities.get(points, 0.0)
                 p_draw = combine_probabilities(p_bonus_pool, p_random_pool)
                 row = {
                     "model_version": MODEL_VERSION,
@@ -974,7 +1025,14 @@ def build_youth_turkey_predictions(
     rows: list[dict[str, object]] = []
     report_counts = Counter()
     data_quality_counter: Counter[str] = Counter()
-    review_rows = [dict(row) for row in db_rows if _clean(row.get("hunt_code")).upper() in youth_codes]
+    # Youth results supply the applicant ladder.  The adult public row is the
+    # only parent quota from which the official 15% youth set-aside is derived;
+    # a youth proxy row must never be treated as a second parent quota.
+    review_rows = [
+        dict(row)
+        for row in db_rows
+        if _clean(row.get("hunt_code")).upper() in youth_codes and _is_modeled_turkey_db_row(row)
+    ]
 
     for db_row in review_rows:
         hunt_code = _clean(db_row.get("hunt_code")).upper()
@@ -1151,10 +1209,12 @@ def build_youth_turkey_predictions(
             for flag in flags:
                 data_quality_counter[flag] += 1
 
+            applicants_by_points = {int(level): int(count) for level, count in forecast_ladder.items()}
+            remaining_after_max = _remaining_applicants_after_max_pool(applicants_by_points, max_point_permits)
+            random_probabilities = _weighted_without_replacement_probabilities(remaining_after_max, random_permits)
             for points in sorted(forecast_ladder.keys(), reverse=True):
-                applicants_by_points = {int(level): int(count) for level, count in forecast_ladder.items()}
                 p_bonus_pool, applicants_above, applicants_at_level = compute_bonus_pool_probability(points, applicants_by_points, max_point_permits)
-                p_random_pool = _weighted_random_probability(points, applicants_by_points, random_permits)
+                p_random_pool = random_probabilities.get(points, 0.0)
                 p_draw = combine_probabilities(p_bonus_pool, p_random_pool)
                 rows.append(
                     {

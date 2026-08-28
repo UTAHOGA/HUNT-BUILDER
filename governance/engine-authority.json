@@ -8,11 +8,52 @@
     "production_prediction_accuracy_certified": false,
     "promotion_status": "BLOCKED",
     "promotion_blockers": [
-      "AGGREGATE_BLIND_BACKTEST_ACCEPTANCE_NOT_CERTIFIED",
+      "HISTORICAL_ADJACENT_YEAR_ACCEPTANCE_REVIEW_NOT_ACCEPTED",
       "KNOWN_FAMILY_CONTRACT_TEST_DRIFT",
       "CURRENT_DATABASE_NEWER_THAN_CHECKED_IN_PREDICTION_MANIFEST",
       "DATED_PLANNER_SNAPSHOT_REQUIRED_FOR_2026_BEAR_TRANSITIONS",
       "NO_EXACT_HISTORY_2026_ADDITIONS_SOURCE_CROSSWALK_PENDING"
+    ]
+  },
+  "historical_blind_acceptance_2026_08_28": {
+    "standard": "docs/decisions/ADR-0006-historical-blind-acceptance-thresholds.md",
+    "audit": "audits/prediction_blind_year_to_year/historical_adjacent_full_engine_2018_2025_20260828_source_pool_turkey_repair/acceptance_review/acceptance_review_manifest.json",
+    "physical_draw_folds": [
+      "2017_to_2018",
+      "2018_to_2019",
+      "2019_to_2020",
+      "2020_to_2021",
+      "2021_to_2022",
+      "2022_to_2023",
+      "2023_to_2024",
+      "2024_to_2025"
+    ],
+    "excluded_comparison": "2025_to_2026",
+    "joined_rows": 70912,
+    "probability_mae": 0.12160185168577956,
+    "probability_rmse": 0.2876779392242613,
+    "p90_absolute_probability_error": 0.448276,
+    "probability_abs_error_gt_0_25": 9862,
+    "false_guarantee_rows": 404,
+    "designs_reviewed": 7,
+    "acceptance_status": "NOT_ACCEPTED",
+    "rule": "No aggregate result may override a per-design false guarantee, failed threshold, insufficient evidence, or unclassified official actual gap.",
+    "root_cause_findings": [
+      {
+        "id": "TURKEY_ADULT_YOUTH_QUOTA_PROXY_COLLAPSE",
+        "status": "RESOLVED_RESCORING_NOT_ACCEPTED",
+        "detail": "The historical source-year proxy now keys adult and youth Turkey separately by family and draw-pool identity, preserving their official resident and nonresident quotas. Regression coverage reproduces TK1003's 250-adult versus 37-youth resident split."
+      },
+      {
+        "id": "TURKEY_RANDOM_WITH_REPLACEMENT_PROBABILITY",
+        "status": "RESOLVED_RESCORING_NOT_ACCEPTED",
+        "detail": "Turkey now removes deterministic max-pool winners before evaluating each successive weighted permit from the remaining finite applicant pool. It no longer compounds independent repeated chances for the same application."
+      },
+      {
+        "id": "SOURCE_BACKED_PROBABILITY_ROLLFORWARD_FALSE_GUARANTEE",
+        "status": "RESOLVED_RESCORING_NOT_ACCEPTED",
+        "detail": "A copied source-year probability of 100 percent now emits an explicit NOT_SCORED guardrail rather than a next-year p_draw value. Lower copied values remain visibly source-backed roll-forward evidence and are not represented as a simulated lane."
+      }
     ]
   },
   "official_draw_design_baseline": {
@@ -456,7 +497,8 @@
     "docs/decisions/ADR-0002-prediction-engine-roles.md",
     "docs/decisions/ADR-0003-truth-and-scoring-authority.md",
     "docs/decisions/ADR-0004-r2-runtime-data-policy.md",
-    "docs/decisions/ADR-0005-prediction-promotion-standard.md"
+    "docs/decisions/ADR-0005-prediction-promotion-standard.md",
+    "docs/decisions/ADR-0006-historical-blind-acceptance-thresholds.md"
   ],
   "commands": {
     "validate_memory": "npm run validate:project-memory",

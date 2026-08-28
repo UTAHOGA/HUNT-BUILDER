@@ -241,6 +241,7 @@ def main() -> int:
     overall_status, overall_failures = decision({clean(row["fold"]) for row in rows}, overall)
     manifest = {
         "purpose": "frozen_blind_following_year_acceptance_review",
+        "acceptance_standard": "docs/decisions/ADR-0006-historical-blind-acceptance-thresholds.md",
         "thresholds": THRESHOLDS,
         "inputs": input_folds,
         "overall": {**overall, "acceptance_status": overall_status, "failure_reasons": overall_failures},

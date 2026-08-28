@@ -168,7 +168,10 @@ Random pass:
 ```text
 tickets[p] = points[p] + 1
 weighted_pool = sum(remaining_applicants[p] * tickets[p])
-p_random[p] ~= 1 - (1 - tickets[p] / weighted_pool) ^ Q_random
+# For each weighted permit, select one remaining application by its ticket
+# weight, then remove that application before the next weighted selection.
+# Do not model Q_random as repeated independent chances for one applicant.
+p_random[p] = weighted_without_replacement_selection(remaining_applicants, tickets, Q_random)[p]
 p_draw[p] = p_max[p] + (1 - p_max[p]) * p_random[p]
 ```
 
