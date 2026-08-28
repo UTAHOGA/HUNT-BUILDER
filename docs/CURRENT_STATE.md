@@ -102,7 +102,7 @@ The pipeline and runtime model versions describe different layers. The legacy ho
 
 ## Why Promotion Is Blocked
 
-1. The formally adopted historical acceptance review is `NOT_ACCEPTED`: every reviewed design either fails an error/false-guarantee threshold or has insufficient independent evidence. The highest recurring false-guarantee patterns are recorded by hunt code and draw design in the historical acceptance review.
+1. The formally adopted historical acceptance review is `NOT_ACCEPTED`: `BONUS_OIL_BIG_GAME` meets the per-design threshold, but the other reviewed designs either fail an error/false-guarantee threshold or have insufficient independent evidence. The highest recurring false-guarantee patterns are recorded by hunt code and draw design in the historical acceptance review.
 2. The `72` current-Planner non-draw bear transitions require a dated Planner snapshot to distinguish valid program transition from data drift.
 3. The `57` official no-exact-history 2026 additions require their source crosswalk before they can become historical forecasting lanes.
 4. The checked-in local prediction manifest and runtime artifacts still reflect the prior database/candidate; the newer candidate has not been accepted or promoted.

@@ -1,0 +1,27 @@
+{
+  "artifact": "data_truth/crosswalk_truth/normalized/2026_no_exact_history_additions_crosswalk.csv",
+  "artifact_sha256": "f4ed21324cd882b265b2dae1e905a9ec7adb7d02298e671224cb27901b92ea46",
+  "codes": [
+    "BI6539",
+    "BR7021",
+    "BR7126",
+    "BR7238",
+    "DB1109",
+    "DB1121"
+  ],
+  "historical_exact_code_search_years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "policy": "No same-unit, same-species, or similar-season row is promoted as a predecessor without an official DWR source mapping. These rows remain outside prediction scoring and no probability is emitted from this artifact.",
+  "records": 6,
+  "source_current_canonical": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+  "source_current_canonical_sha256": "b26cdfb485ae85050b58eed47b6b7338c162f447ae6c6cf3fec098f53e3b1683",
+  "status": "PASS_SOURCE_VERIFIED_UNSCORED_NO_EXACT_HISTORY"
+}
