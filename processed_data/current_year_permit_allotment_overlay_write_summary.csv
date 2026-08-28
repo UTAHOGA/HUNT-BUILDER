@@ -1,7 +1,0 @@
-file,status,rows_checked,rac_rows,fallback_rows,blank_rows,changed_cells,written,backup_path
-processed_data/hunt_unit_reference_linked.csv,unchanged,2997,1038,1506,453,0,False,
-processed_data/hunt_master_enriched.csv,unchanged,54357,32046,21858,453,0,False,
-processed_data/draw_reality_engine.csv,unchanged,36892,19519,11452,5921,0,False,
-processed_data/point_ladder_view.csv,unchanged,92844,33838,48185,10821,0,False,
-processed_data/ml_draw_predictions_v1.csv,unchanged,27940,20104,2046,5790,0,False,
-processed_data/draw_reality_engine_predictive_v2.csv,unchanged,27940,20104,2046,5790,0,False,

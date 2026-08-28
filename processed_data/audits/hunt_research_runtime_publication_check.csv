@@ -1,8 +1,0 @@
-field_name,expected_in_contract,present_in_contract,used_by_runtime_from_contract,still_used_from_legacy_feeder,publication_status,notes
-availability_status,YES,YES,YES,YES,PUBLISHED,
-current_age_3yr_average,YES,YES,YES,YES,PUBLISHED,
-dwr_result_display,YES,YES,YES,YES,PUBLISHED,
-guaranteed_at_2026,YES,YES,YES,YES,PUBLISHED,
-management_direction,YES,YES,YES,NO,PUBLISHED,
-management_objective_range,YES,YES,YES,NO,PUBLISHED,
-management_objective_type,YES,YES,YES,NO,PUBLISHED,

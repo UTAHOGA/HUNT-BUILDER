@@ -1,6 +1,0 @@
-{
-  "status": "PASS",
-  "source_csv": "processed_data\\pronghorn_buck_limited_entry_reference_export.csv",
-  "output_xlsx": "processed_data\\pronghorn_buck_limited_entry_reference_export.xlsx",
-  "formula_error_scan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}"
-}

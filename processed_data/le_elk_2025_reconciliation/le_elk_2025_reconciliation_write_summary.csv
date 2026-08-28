@@ -1,2 +1,0 @@
-file,status,kind,rows checked,matched rows,matched hunt codes,changed cells,written,backup path,error
-processed_data/le_elk_2025_database_patch.csv,error,patch_csv,0,0,0,0,false,,Required patch file is missing: processed_data/le_elk_2025_database_patch.csv
