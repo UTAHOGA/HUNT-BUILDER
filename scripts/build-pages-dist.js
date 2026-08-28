@@ -27,6 +27,7 @@ const rootFiles = [
   'verify.html',
   'verify.htmlm',
   'hard-copy.html',
+  'hunt-calendar-2026.html',
   'hard-data.html',
   'coverage.html',
   'builder.html',

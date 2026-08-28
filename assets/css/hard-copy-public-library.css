@@ -1,6 +1,6 @@
 :root {
   --wallpaper: url("/assets/backgrounds/LIBRARY.png");
-  --library-wallpaper-size: 1920px 1080px;
+  --library-wallpaper-size: cover;
   --library-wallpaper-position: center center;
   --ink: #2d180f;
   --accent: #d48635;
@@ -8,6 +8,8 @@
   --paper: #f3e0be;
   --paper-edge: #d2ae79;
   --glass: rgba(28, 15, 9, 0.62);
+  --library-popup-topo: url("../backgrounds/wild-eyez-dark-brown-topo.jpg");
+  --library-popup-leather: url("../backgrounds/wild-eyez-leather-player.jpg");
 }
 
 html,
@@ -34,82 +36,7 @@ body {
   font-family: "Trebuchet MS", "Segoe UI", Tahoma, sans-serif;
 }
 
-.hard-copy-page::before,
-.hard-copy-page::after {
-  content: "";
-  position: fixed;
-  left: clamp(12px, 2.7vw, 46px);
-  bottom: clamp(82px, 12.2vh, 122px);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.hard-copy-page::before {
-  width: clamp(74px, 7.8vw, 132px);
-  height: clamp(112px, 16vh, 168px);
-  transform-origin: 50% 100%;
-  background:
-    radial-gradient(ellipse at 50% 82%, rgba(255, 54, 0, 0.82) 0 12%, rgba(255, 98, 0, 0.45) 25%, transparent 58%),
-    radial-gradient(ellipse at 38% 74%, rgba(255, 184, 42, 0.9) 0 9%, rgba(255, 103, 0, 0.48) 26%, transparent 56%),
-    radial-gradient(ellipse at 61% 68%, rgba(255, 222, 78, 0.86) 0 8%, rgba(255, 115, 0, 0.5) 24%, transparent 54%),
-    linear-gradient(11deg, transparent 0 34%, rgba(255, 235, 111, 0.94) 42%, rgba(255, 103, 0, 0.56) 58%, transparent 76%),
-    linear-gradient(-14deg, transparent 0 34%, rgba(255, 192, 50, 0.86) 43%, rgba(219, 56, 0, 0.5) 61%, transparent 78%);
-  filter: blur(2px) saturate(1.55);
-  mix-blend-mode: screen;
-  opacity: 0.72;
-  animation: uogaFireFlicker 820ms infinite alternate ease-in-out;
-}
-
-.hard-copy-page::after {
-  width: clamp(118px, 12vw, 210px);
-  height: clamp(116px, 15vh, 178px);
-  transform: translate(-22%, 13%);
-  background:
-    radial-gradient(ellipse at 42% 70%, rgba(255, 116, 22, 0.42), transparent 54%),
-    radial-gradient(ellipse at 58% 88%, rgba(255, 54, 0, 0.32), transparent 62%);
-  filter: blur(10px);
-  mix-blend-mode: screen;
-  opacity: 0.64;
-  animation: uogaFireGlow 1.65s infinite alternate ease-in-out;
-}
-
-@keyframes uogaFireFlicker {
-  0% {
-    opacity: 0.58;
-    transform: translate3d(-2px, 3px, 0) scale(0.94, 0.98) skewX(-2deg);
-  }
-
-  34% {
-    opacity: 0.82;
-    transform: translate3d(2px, -4px, 0) scale(1.02, 1.08) skewX(3deg);
-  }
-
-  67% {
-    opacity: 0.68;
-    transform: translate3d(-1px, -1px, 0) scale(0.98, 1.04) skewX(-4deg);
-  }
-
-  100% {
-    opacity: 0.9;
-    transform: translate3d(3px, -6px, 0) scale(1.05, 1.12) skewX(2deg);
-  }
-}
-
-@keyframes uogaFireGlow {
-  from {
-    opacity: 0.42;
-    transform: translate(-24%, 15%) scale(0.96);
-  }
-
-  to {
-    opacity: 0.76;
-    transform: translate(-20%, 10%) scale(1.08);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .hard-copy-page::before,
-  .hard-copy-page::after,
   .public-library-folders,
   .public-library-results,
   .public-file-card {
@@ -221,8 +148,8 @@ body {
 
 .public-library-controls {
   position: absolute;
-  left: 50%;
-  top: clamp(280px, 42vh, 460px);
+  left: 43%;
+  top: clamp(210px, 20vh, 250px);
   transform: translateX(-50%);
   width: min(820px, 68vw);
   display: flex;
@@ -273,13 +200,14 @@ body {
 .public-library-folders {
   position: absolute !important;
   left: 50% !important;
-  top: clamp(690px, 71vh, 770px) !important;
+  top: clamp(440px, 47vh, 520px) !important;
   transform: translateX(-50%) !important;
-  width: min(1440px, 76vw) !important;
+  width: min(1040px, 82vw) !important;
   margin: 0 !important;
   display: grid;
-  grid-template-columns: repeat(8, minmax(112px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
+  column-gap: 18px;
+  row-gap: 16px;
   z-index: 5;
   opacity: 1;
   transition:
@@ -298,6 +226,7 @@ body.library-results-open .public-library-folders {
 }
 
 .public-folder {
+  --folder-tilt: 0deg;
   position: relative;
   min-height: 122px;
   padding: 17px 11px 10px;
@@ -316,14 +245,33 @@ body.library-results-open .public-library-folders {
     linear-gradient(180deg, #e9c991 0%, #d8a965 56%, #bf8445 100%) !important;
   color: #2e1709 !important;
   box-shadow:
-    0 16px 30px rgba(0, 0, 0, 0.48),
+    0 5px 7px rgba(0, 0, 0, 0.42),
+    0 14px 24px rgba(0, 0, 0, 0.38),
     inset 0 0 0 1px rgba(255, 238, 201, 0.48),
     inset 0 0 28px rgba(69, 39, 18, 0.28);
   clip-path: polygon(2% 0, 98% 1%, 100% 4%, 99% 96%, 97% 100%, 4% 99%, 0 96%, 1% 5%);
   cursor: pointer;
   text-align: left;
+  transform: rotate(var(--folder-tilt));
+  transform-origin: 50% 8px;
   transition: transform 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
   overflow: hidden;
+}
+
+.public-folder:nth-child(4n + 1) {
+  --folder-tilt: -0.6deg;
+}
+
+.public-folder:nth-child(4n + 2) {
+  --folder-tilt: 0.35deg;
+}
+
+.public-folder:nth-child(4n + 3) {
+  --folder-tilt: -0.25deg;
+}
+
+.public-folder:nth-child(4n) {
+  --folder-tilt: 0.55deg;
 }
 
 .public-folder::before {
@@ -353,7 +301,7 @@ body.library-results-open .public-library-folders {
 
 .public-folder:hover,
 .public-folder.active {
-  transform: translateY(-5px) scale(1.01);
+  transform: translateY(-5px) scale(1.01) rotate(var(--folder-tilt));
   border-color: rgba(255, 223, 171, 0.96);
   box-shadow:
     0 22px 44px rgba(0, 0, 0, 0.5),
@@ -449,21 +397,23 @@ body.library-results-open .public-library-folders {
 
 .public-library-results {
   position: fixed;
-  top: 82px;
-  left: 50%;
+  inset: 82px 22px 22px;
   z-index: 11000;
-  width: min(1240px, calc(100vw - 36px));
-  max-height: calc(100vh - 110px);
+  width: auto;
+  height: auto;
+  max-height: none;
   margin: 0;
-  transform: translateX(-50%);
-  overflow: auto;
-  border-radius: 22px;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  overflow: hidden;
+  border-radius: 20px;
   border: 1px solid rgba(233, 204, 156, 0.68);
   background:
-    radial-gradient(circle at 8% 0%, rgba(240, 140, 25, 0.16), transparent 28%),
-    linear-gradient(180deg, rgba(255, 249, 238, 0.98), rgba(236, 216, 184, 0.98));
+    radial-gradient(circle at 8% 0%, rgba(243, 112, 33, 0.18), transparent 34rem),
+    linear-gradient(rgba(27, 16, 10, 0.91), rgba(27, 16, 10, 0.97)),
+    var(--library-popup-topo) center / 840px auto repeat;
   box-shadow: 0 26px 80px rgba(0, 0, 0, 0.58);
-  color: #2d180f;
+  color: #fff7ed;
   padding: 18px;
   animation: uogaResultsPanelIn 220ms ease-out both;
 }
@@ -479,12 +429,12 @@ body.library-results-open .public-library-folders {
   gap: 12px;
   margin-bottom: 12px;
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(109, 65, 27, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .public-library-results-head h2 {
   margin: 0;
-  color: #24150c;
+  color: #fff7ed;
   font-size: clamp(20px, 2vw, 30px);
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -495,7 +445,7 @@ body.library-results-open .public-library-folders {
   margin-top: 4px;
   font-size: 14px;
   font-weight: 900;
-  color: #6a3a17;
+  color: #ffb878;
 }
 
 .public-library-results-close {
@@ -532,7 +482,8 @@ body.library-results-open .public-library-folders {
 .public-library-results-grid {
   display: grid;
   gap: 12px;
-  max-height: calc(100vh - 250px);
+  min-height: 0;
+  max-height: none;
   overflow: auto;
   padding-right: 4px;
 }
@@ -564,12 +515,12 @@ body.library-results-open .public-library-folders {
 @keyframes uogaResultsPanelIn {
   from {
     opacity: 0;
-    transform: translateX(-50%) translateY(14px) scale(0.985);
+    transform: translateY(14px) scale(0.985);
   }
 
   to {
     opacity: 1;
-    transform: translateX(-50%) translateY(0) scale(1);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -789,13 +740,9 @@ body.library-results-open .public-library-folders {
 }
 
 @media (max-width: 1100px) {
-  :root {
-    --library-wallpaper-size: 1920px 1080px;
-  }
-
   .public-library-controls {
     width: min(700px, 86vw);
-    top: clamp(250px, 40vh, 356px);
+    top: clamp(205px, 22vh, 250px);
   }
 
   .public-library-note {
@@ -814,9 +761,9 @@ body.library-results-open .public-library-folders {
   }
 
   .public-library-folders {
-    width: min(760px, 84vw);
-    grid-template-columns: repeat(2, minmax(180px, 1fr));
-    top: clamp(414px, 62vh, 548px) !important;
+    width: min(880px, 88vw);
+    grid-template-columns: repeat(4, minmax(130px, 1fr));
+    top: clamp(410px, 48vh, 500px) !important;
   }
 }
 
@@ -833,7 +780,7 @@ body.library-results-open .public-library-folders {
     position: static;
     transform: none;
     width: min(420px, 94vw);
-    margin: 8px auto 0;
+    margin: 112px auto 0;
   }
 
   .public-library-note {
@@ -858,6 +805,7 @@ body.library-results-open .public-library-folders {
   .public-library-folders {
     width: min(420px, 94vw);
     grid-template-columns: 1fr;
+    top: clamp(414px, 62vh, 548px) !important;
     margin-top: 14px;
   }
 
@@ -874,9 +822,8 @@ body.library-results-open .public-library-folders {
   position: fixed;
   inset: 0;
   z-index: 13000;
-  display: grid;
-  place-items: center;
-  padding: 24px;
+  display: block;
+  padding: 0;
 }
 
 .uoga-pdf-flip-panel[hidden] {
@@ -891,16 +838,20 @@ body.library-results-open .public-library-folders {
 }
 
 .uoga-pdf-flip-modal {
-  position: relative;
+  position: absolute;
+  inset: 82px 22px 22px;
   z-index: 1;
-  width: min(1500px, calc(100vw - 36px));
-  max-height: calc(100vh - 36px);
+  width: auto;
+  height: auto;
+  max-height: none;
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto minmax(0, 1fr);
   border: 1px solid rgba(255, 205, 143, 0.42);
-  border-radius: 22px;
+  border-radius: 20px;
   overflow: hidden;
-  background: rgba(14, 8, 5, 0.96);
+  background:
+    linear-gradient(rgba(27, 16, 10, 0.86), rgba(27, 16, 10, 0.94)),
+    var(--library-popup-topo) center / 840px auto repeat;
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.72);
 }
 
@@ -910,7 +861,9 @@ body.library-results-open .public-library-folders {
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
-  background: rgba(43, 22, 12, 0.96);
+  background:
+    linear-gradient(145deg, rgba(38, 20, 11, 0.66), rgba(18, 10, 6, 0.76)),
+    var(--library-popup-leather) center / cover no-repeat;
   color: #ffe4bd;
 }
 
@@ -940,7 +893,7 @@ body.library-results-open .public-library-folders {
 }
 
 .uoga-pdf-flip-toolbar {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   gap: 12px;
@@ -956,23 +909,25 @@ body.library-results-open .public-library-folders {
 }
 
 .uoga-pdf-flipbook {
-  min-height: min(760px, calc(100vh - 170px));
-  max-height: calc(100vh - 150px);
+  min-width: 0;
+  min-height: 0;
+  max-height: none;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 22px;
+  padding: 10px;
   background:
-    radial-gradient(circle at center, rgba(255, 214, 140, 0.10), transparent 45%),
-    rgba(7, 3, 1, 0.94);
+    linear-gradient(145deg, rgba(32, 17, 10, 0.72), rgba(7, 3, 1, 0.88)),
+    var(--library-popup-leather) center / cover no-repeat;
 }
 
 .uoga-pdf-inline-frame {
   width: 100%;
-  height: calc(100vh - 220px);
+  height: 100%;
+  min-height: 0;
   border: 0;
-  border-radius: 10px;
+  border-radius: 8px;
   background: #1b1008;
 }
 
@@ -1026,7 +981,9 @@ body.uoga-modal-open {
   border: 1px solid rgba(255, 205, 143, 0.35);
   border-radius: 20px;
   overflow: hidden;
-  background: rgba(24, 12, 6, 0.88);
+  background:
+    linear-gradient(rgba(27, 16, 10, 0.86), rgba(27, 16, 10, 0.94)),
+    var(--library-popup-topo) center / 840px auto repeat;
   box-shadow: 0 20px 44px rgba(0, 0, 0, 0.45);
 }
 
@@ -1040,7 +997,9 @@ body.uoga-modal-open {
   align-items: center;
   gap: 12px;
   padding: 12px 14px;
-  background: rgba(43, 22, 12, 0.92);
+  background:
+    linear-gradient(145deg, rgba(38, 20, 11, 0.66), rgba(18, 10, 6, 0.76)),
+    var(--library-popup-leather) center / cover no-repeat;
   color: #ffe4bd;
 }
 
@@ -1077,9 +1036,10 @@ body.uoga-modal-open {
   }
 
   .public-library-results {
-    top: 78px;
-    width: calc(100vw - 20px);
-    max-height: calc(100vh - 96px);
+    inset: 78px 10px 10px;
+    width: auto;
+    height: auto;
+    max-height: none;
     padding: 14px;
   }
 
@@ -1093,7 +1053,7 @@ body.uoga-modal-open {
   }
 
   .public-library-results-grid {
-    max-height: calc(100vh - 270px);
+    max-height: none;
   }
 
   .uoga-embed-panel {
@@ -1101,12 +1061,14 @@ body.uoga-modal-open {
   }
 
   .uoga-pdf-flip-panel {
-    padding: 10px;
+    padding: 0;
   }
 
   .uoga-pdf-flip-modal {
-    width: calc(100vw - 20px);
-    max-height: calc(100vh - 20px);
+    inset: 78px 10px 10px;
+    width: auto;
+    height: auto;
+    max-height: none;
   }
 
   .uoga-pdf-flip-head {
@@ -1115,10 +1077,10 @@ body.uoga-modal-open {
   }
 
   .uoga-pdf-flipbook {
-    min-height: 480px;
-    max-height: calc(100vh - 190px);
+    min-height: 0;
+    max-height: none;
     overflow: hidden;
-    padding: 12px;
+    padding: 8px;
   }
 
   .uoga-pdf-spread {

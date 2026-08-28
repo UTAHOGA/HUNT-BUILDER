@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Utah DWR 2026 Hunt Dates Calendar</title>
+  <link rel="stylesheet" href="./assets/css/hunt-calendar-2026.css?v=20260828-1" />
+</head>
+<body>
+  <main class="season-calendar-shell">
+    <header class="season-calendar-hero">
+      <div>
+        <p class="eyebrow">UTAH DIVISION OF WILDLIFE RESOURCES</p>
+        <h1>2026 Hunt Start & End Dates</h1>
+        <p id="calendarSummary">Loading official Hunt Planner dates...</p>
+      </div>
+      <nav class="calendar-tabs" aria-label="Calendar views">
+        <button type="button" class="active" data-tab="seasons">All Hunt Dates</button>
+        <button type="button" data-tab="official">DWR Events Calendar</button>
+      </nav>
+    </header>
+
+    <section id="seasonDatesView" class="calendar-view">
+      <div class="calendar-toolbar">
+        <div class="month-controls">
+          <button id="previousMonth" type="button" aria-label="Previous month">&#8249;</button>
+          <select id="calendarMonth" aria-label="Calendar month"></select>
+          <button id="nextMonth" type="button" aria-label="Next month">&#8250;</button>
+        </div>
+        <label>
+          <span>Species</span>
+          <select id="speciesFilter"><option value="">All species</option></select>
+        </label>
+        <label class="search-label">
+          <span>Find a hunt</span>
+          <input id="huntSearch" type="search" placeholder="Hunt code, unit, weapon..." autocomplete="off" />
+        </label>
+      </div>
+
+      <div class="calendar-layout">
+        <section class="month-panel" aria-label="Monthly hunt date calendar">
+          <h2 id="monthTitle"></h2>
+          <div class="weekday-row" aria-hidden="true">
+            <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+          </div>
+          <div id="monthGrid" class="month-grid"></div>
+        </section>
+
+        <aside class="date-details" aria-live="polite">
+          <h2 id="detailTitle">Select a date</h2>
+          <p id="detailCount">Start and end markers will appear here.</p>
+          <div id="detailList" class="detail-list"></div>
+        </aside>
+      </div>
+
+      <p class="calendar-legend">
+        <span><i class="start-marker"></i> Hunt starts</span>
+        <span><i class="end-marker"></i> Hunt ends</span>
+        <span>Exact published ranges only; operator-assigned CWMU dates are not guessed.</span>
+      </p>
+    </section>
+
+    <section id="officialCalendarView" class="calendar-view" hidden>
+      <iframe
+        title="Official Utah DWR events calendar"
+        src="https://www.google.com/calendar/embed?height=760&wkst=1&bgcolor=%23FFFFFF&src=utah.gov_95qrjmfvfifbq6mkg1e41lnrno%40group.calendar.google.com&color=%231B887A&src=utah.gov_l1ndc1a2r58v1t6g7ac3na96s8%40group.calendar.google.com&color=%23856508&src=utah.gov_e55anhcr6q7nrgte2f30h2o2lo%40group.calendar.google.com&color=%23B1440E&src=utah.gov_v0i790s35jhgef7nqbrthvgnf8%40group.calendar.google.com&color=%23333333&src=utah.gov_a4abp8ma2mmcjuhd5jgftto3to%40group.calendar.google.com&color=%23A32929&ctz=America%2FDenver"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+      ></iframe>
+    </section>
+
+    <footer>
+      <a href="https://dwrapps.utah.gov/huntboundary/huntplanner/index.html" target="_blank" rel="noopener">Official Utah DWR Hunt Planner</a>
+      <a href="https://wildlife.utah.gov/calendar" target="_blank" rel="noopener">Official DWR calendar page</a>
+      <span id="sourceStamp"></span>
+    </footer>
+  </main>
+  <script src="./assets/js/hunt-calendar-2026.js?v=20260828-1"></script>
+</body>
+</html>
