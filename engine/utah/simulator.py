@@ -70,12 +70,45 @@ def _init_residency_buckets(quota: Quota) -> tuple[bool, dict[str, int], int]:
     return separate, buckets, total
 
 
+def _bonus_lane_round_quota(
+    residency: str,
+    permits: int,
+    config: UtahRuleConfig,
+) -> tuple[int, int]:
+    """Return the max-point and random allotment for one residency lane.
+
+    Utah's 50/50 bonus split is applied within each official residency lane,
+    not across the combined hunt total.  The documented exception is a
+    one-permit nonresident lane, which is issued in the random phase.
+    """
+    permits = max(int(permits), 0)
+    residency = normalize_residency(residency)
+    if residency == "Nonresident" and permits == 1:
+        return 0, 1
+    reserved = int(permits * config.bonus_reserved_fraction)
+    if config.bonus_reserved_fraction == 0.5 and permits % 2:
+        reserved += 1
+    return reserved, max(permits - reserved, 0)
+
+
+def _bonus_crossover_is_allowed(draw_state: DrawState, quota: Quota) -> bool:
+    """Limit crossover to the exact limited-entry programs named by DWR."""
+    species = str(draw_state.hunt.species or quota.species or "").strip().lower()
+    eligible_species = any(name in species for name in ("deer", "elk", "pronghorn"))
+    return bool(
+        quota.crossover_allowed
+        and draw_state.rule_config.resident_nonresident_crossover_enabled_when_allowed
+        and draw_state.hunt.hunt_type == "limited_entry"
+        and eligible_species
+    )
+
+
 def _consume_residency_quota(
     unit: ApplicationUnit,
-    quota: Quota,
     separate_residency: bool,
     residency_buckets: MutableMapping[str, int],
     total_remaining: dict[str, int],
+    target_residency: str | None = None,
 ) -> str | None:
     if not separate_residency:
         if total_remaining["value"] < unit.group_size:
@@ -83,16 +116,11 @@ def _consume_residency_quota(
         total_remaining["value"] -= unit.group_size
         return "total"
 
-    resident_key = normalize_residency(unit.residency)
-    other_key = "Nonresident" if resident_key == "Resident" else "Resident"
-    if residency_buckets.get(resident_key, 0) >= unit.group_size:
-        residency_buckets[resident_key] -= unit.group_size
+    residency_key = normalize_residency(target_residency or unit.residency)
+    if residency_buckets.get(residency_key, 0) >= unit.group_size:
+        residency_buckets[residency_key] -= unit.group_size
         total_remaining["value"] -= unit.group_size
-        return resident_key
-    if quota.crossover_allowed and residency_buckets.get(other_key, 0) >= unit.group_size:
-        residency_buckets[other_key] -= unit.group_size
-        total_remaining["value"] -= unit.group_size
-        return other_key
+        return residency_key
     return None
 
 
@@ -156,7 +184,7 @@ def run_simulation_once(draw_state: DrawState, seed: int) -> SimulationResult:
                         DrawResult(unit.application_unit_id, unit.member_application_ids, None, False, "youth_reserved", None, 0, False, ("GROUP_SKIPPED_QUOTA_TOO_SMALL",))
                     )
                     continue
-                if _consume_residency_quota(unit, quota, separate_residency, residency_buckets, total_remaining) is None:
+                if _consume_residency_quota(unit, separate_residency, residency_buckets, total_remaining) is None:
                     results.append(
                         DrawResult(unit.application_unit_id, unit.member_application_ids, None, False, "youth_reserved", None, 0, False, ("CROSSOVER_NOT_ALLOWED",))
                     )
@@ -187,7 +215,7 @@ def run_simulation_once(draw_state: DrawState, seed: int) -> SimulationResult:
                         DrawResult(unit.application_unit_id, unit.member_application_ids, None, False, "preference", None, 0, False, ("GROUP_SKIPPED_PREFERENCE_QUOTA_TOO_SMALL",))
                     )
                     continue
-                if _consume_residency_quota(unit, quota, separate_residency, residency_buckets, total_remaining) is None:
+                if _consume_residency_quota(unit, separate_residency, residency_buckets, total_remaining) is None:
                     results.append(
                         DrawResult(unit.application_unit_id, unit.member_application_ids, None, False, "preference", None, 0, False, ("CROSSOVER_NOT_ALLOWED",))
                     )
@@ -199,55 +227,150 @@ def run_simulation_once(draw_state: DrawState, seed: int) -> SimulationResult:
                 )
     else:
         reserved_pool = [unit for unit in ordered_units if unit.hunt_choices and unit.hunt_choices[0] == draw_state.hunt.hunt_code]
-        for points in sorted({unit.effective_points for unit in reserved_pool}, reverse=True):
-            bucket = [unit for unit in reserved_pool if unit.effective_points == points]
-            rng.shuffle(bucket)
-            for unit in bucket:
-                if remaining["bonus_reserved"] <= 0:
-                    break
-                if not can_group_fit_quota(unit.group_size, remaining["bonus_reserved"]):
-                    results.append(
-                        DrawResult(unit.application_unit_id, unit.member_application_ids, None, False, "reserved_bonus", None, 0, False, ("GROUP_SKIPPED_RESERVED_QUOTA_TOO_SMALL", "MAX_POOL_NOT_GUARANTEED"))
-                    )
-                    continue
-                if _consume_residency_quota(unit, quota, separate_residency, residency_buckets, total_remaining) is None:
-                    results.append(
-                        DrawResult(unit.application_unit_id, unit.member_application_ids, None, False, "reserved_bonus", None, 0, False, ("CROSSOVER_NOT_ALLOWED",))
-                    )
-                    continue
-                remaining["bonus_reserved"] -= unit.group_size
-                remaining_by_hunt[draw_state.hunt.hunt_code] -= unit.group_size
-                results.append(
-                    DrawResult(unit.application_unit_id, unit.member_application_ids, draw_state.hunt.hunt_code, True, "reserved_bonus", 1, unit.group_size, True, ("BONUS_RESERVED_SELECTED",))
-                )
+        if separate_residency:
+            # DWR evaluates every choice inside each residency lane before any
+            # eligible cross-over evaluation.  Do not share max/random counters
+            # across lanes: a resident's high point total cannot consume an NR
+            # permit while NR applicants still await their own round.
+            lane_remaining = {
+                residency: {
+                    "bonus_reserved": _bonus_lane_round_quota(residency, residency_buckets[residency], config)[0],
+                    "bonus_random": _bonus_lane_round_quota(residency, residency_buckets[residency], config)[1],
+                }
+                for residency in ("Resident", "Nonresident")
+            }
+            for residency in ("Resident", "Nonresident"):
+                lane_pool = [unit for unit in reserved_pool if normalize_residency(unit.residency) == residency]
+                for points in sorted({unit.effective_points for unit in lane_pool}, reverse=True):
+                    bucket = [unit for unit in lane_pool if unit.effective_points == points]
+                    rng.shuffle(bucket)
+                    for unit in bucket:
+                        if lane_remaining[residency]["bonus_reserved"] <= 0:
+                            break
+                        if not can_group_fit_quota(unit.group_size, lane_remaining[residency]["bonus_reserved"]):
+                            results.append(
+                                DrawResult(unit.application_unit_id, unit.member_application_ids, None, False, "reserved_bonus", None, 0, False, ("GROUP_SKIPPED_RESERVED_QUOTA_TOO_SMALL", "MAX_POOL_NOT_GUARANTEED"))
+                            )
+                            continue
+                        if _consume_residency_quota(unit, True, residency_buckets, total_remaining, residency) is None:
+                            results.append(
+                                DrawResult(unit.application_unit_id, unit.member_application_ids, None, False, "reserved_bonus", None, 0, False, ("RESIDENCY_LANE_QUOTA_EXHAUSTED",))
+                            )
+                            continue
+                        lane_remaining[residency]["bonus_reserved"] -= unit.group_size
+                        remaining_by_hunt[draw_state.hunt.hunt_code] -= unit.group_size
+                        drawn_ids.add(unit.application_unit_id)
+                        results.append(
+                            DrawResult(unit.application_unit_id, unit.member_application_ids, draw_state.hunt.hunt_code, True, "reserved_bonus", 1, unit.group_size, True, ("BONUS_RESERVED_SELECTED", f"RESIDENCY_LANE_{residency.upper()}"))
+                        )
 
-        random_pool = [unit for unit in ordered_units if unit.application_unit_id not in {result.application_unit_id for result in results if result.drawn_flag}]
-        while random_pool and remaining["bonus_random"] > 0:
-            selected = _weighted_draw(random_pool, rng)
-            if selected is None:
-                break
-            random_pool = [unit for unit in random_pool if unit.application_unit_id != selected.application_unit_id]
-            choice, choice_rank = _select_choice(selected, remaining_by_hunt)
-            if choice is None:
+            for residency in ("Resident", "Nonresident"):
+                random_pool = [
+                    unit for unit in ordered_units
+                    if normalize_residency(unit.residency) == residency and unit.application_unit_id not in drawn_ids
+                ]
+                while random_pool and lane_remaining[residency]["bonus_random"] > 0:
+                    selected = _weighted_draw(random_pool, rng)
+                    if selected is None:
+                        break
+                    random_pool = [unit for unit in random_pool if unit.application_unit_id != selected.application_unit_id]
+                    choice, choice_rank = _select_choice(selected, remaining_by_hunt)
+                    if choice is None:
+                        results.append(
+                            DrawResult(selected.application_unit_id, selected.member_application_ids, None, False, "random_bonus", None, 0, False, ("BONUS_RANDOM_NO_CHOICE_AVAILABLE",))
+                        )
+                        continue
+                    if not can_group_fit_quota(selected.group_size, lane_remaining[residency]["bonus_random"]):
+                        results.append(
+                            DrawResult(selected.application_unit_id, selected.member_application_ids, None, False, "random_bonus", None, 0, False, ("GROUP_SKIPPED_RANDOM_QUOTA_TOO_SMALL",))
+                        )
+                        continue
+                    if _consume_residency_quota(selected, True, residency_buckets, total_remaining, residency) is None:
+                        results.append(
+                            DrawResult(selected.application_unit_id, selected.member_application_ids, None, False, "random_bonus", None, 0, False, ("RESIDENCY_LANE_QUOTA_EXHAUSTED",))
+                        )
+                        continue
+                    lane_remaining[residency]["bonus_random"] -= selected.group_size
+                    remaining_by_hunt[choice] -= selected.group_size
+                    drawn_ids.add(selected.application_unit_id)
+                    results.append(
+                        DrawResult(selected.application_unit_id, selected.member_application_ids, choice, True, "random_bonus", choice_rank, selected.group_size, True, ("BONUS_RANDOM_SELECTED", f"RESIDENCY_LANE_{residency.upper()}", "POINTS_FORFEITED_BONUS"))
+                    )
+
+            if _bonus_crossover_is_allowed(draw_state, quota):
+                crossover_pool = [unit for unit in ordered_units if unit.application_unit_id not in drawn_ids]
+                while crossover_pool:
+                    selected = _weighted_draw(crossover_pool, rng)
+                    if selected is None:
+                        break
+                    crossover_pool = [unit for unit in crossover_pool if unit.application_unit_id != selected.application_unit_id]
+                    target_residency = "Nonresident" if normalize_residency(selected.residency) == "Resident" else "Resident"
+                    choice, choice_rank = _select_choice(selected, remaining_by_hunt)
+                    if choice is None:
+                        results.append(
+                            DrawResult(selected.application_unit_id, selected.member_application_ids, None, False, "crossover_bonus", None, 0, False, ("BONUS_CROSSOVER_NO_CHOICE_AVAILABLE",))
+                        )
+                        continue
+                    if _consume_residency_quota(selected, True, residency_buckets, total_remaining, target_residency) is None:
+                        results.append(
+                            DrawResult(selected.application_unit_id, selected.member_application_ids, None, False, "crossover_bonus", None, 0, False, ("CROSSOVER_LANE_QUOTA_EXHAUSTED",))
+                        )
+                        continue
+                    remaining_by_hunt[choice] -= selected.group_size
+                    drawn_ids.add(selected.application_unit_id)
+                    results.append(
+                        DrawResult(selected.application_unit_id, selected.member_application_ids, choice, True, "crossover_bonus", choice_rank, selected.group_size, True, ("BONUS_CROSSOVER_SELECTED", "CROSSOVER_AFTER_SEPARATE_RESIDENCY_EVALUATION", "POINTS_FORFEITED_BONUS"))
+                    )
+        else:
+            for points in sorted({unit.effective_points for unit in reserved_pool}, reverse=True):
+                bucket = [unit for unit in reserved_pool if unit.effective_points == points]
+                rng.shuffle(bucket)
+                for unit in bucket:
+                    if remaining["bonus_reserved"] <= 0:
+                        break
+                    if not can_group_fit_quota(unit.group_size, remaining["bonus_reserved"]):
+                        results.append(
+                            DrawResult(unit.application_unit_id, unit.member_application_ids, None, False, "reserved_bonus", None, 0, False, ("GROUP_SKIPPED_RESERVED_QUOTA_TOO_SMALL", "MAX_POOL_NOT_GUARANTEED"))
+                        )
+                        continue
+                    if _consume_residency_quota(unit, False, residency_buckets, total_remaining) is None:
+                        results.append(
+                            DrawResult(unit.application_unit_id, unit.member_application_ids, None, False, "reserved_bonus", None, 0, False, ("RESIDENCY_LANE_QUOTA_EXHAUSTED",))
+                        )
+                        continue
+                    remaining["bonus_reserved"] -= unit.group_size
+                    remaining_by_hunt[draw_state.hunt.hunt_code] -= unit.group_size
+                    results.append(
+                        DrawResult(unit.application_unit_id, unit.member_application_ids, draw_state.hunt.hunt_code, True, "reserved_bonus", 1, unit.group_size, True, ("BONUS_RESERVED_SELECTED",))
+                    )
+
+            random_pool = [unit for unit in ordered_units if unit.application_unit_id not in {result.application_unit_id for result in results if result.drawn_flag}]
+            while random_pool and remaining["bonus_random"] > 0:
+                selected = _weighted_draw(random_pool, rng)
+                if selected is None:
+                    break
+                random_pool = [unit for unit in random_pool if unit.application_unit_id != selected.application_unit_id]
+                choice, choice_rank = _select_choice(selected, remaining_by_hunt)
+                if choice is None:
+                    results.append(
+                        DrawResult(selected.application_unit_id, selected.member_application_ids, None, False, "random_bonus", None, 0, False, ("BONUS_RANDOM_NO_CHOICE_AVAILABLE",))
+                    )
+                    continue
+                if not can_group_fit_quota(selected.group_size, remaining["bonus_random"]):
+                    results.append(
+                        DrawResult(selected.application_unit_id, selected.member_application_ids, None, False, "random_bonus", None, 0, False, ("GROUP_SKIPPED_RANDOM_QUOTA_TOO_SMALL",))
+                    )
+                    continue
+                if _consume_residency_quota(selected, False, residency_buckets, total_remaining) is None:
+                    results.append(
+                        DrawResult(selected.application_unit_id, selected.member_application_ids, None, False, "random_bonus", None, 0, False, ("RESIDENCY_LANE_QUOTA_EXHAUSTED",))
+                    )
+                    continue
+                remaining["bonus_random"] -= selected.group_size
+                remaining_by_hunt[choice] -= selected.group_size
                 results.append(
-                    DrawResult(selected.application_unit_id, selected.member_application_ids, None, False, "random_bonus", None, 0, False, ("BONUS_RANDOM_NO_CHOICE_AVAILABLE",))
+                    DrawResult(selected.application_unit_id, selected.member_application_ids, choice, True, "random_bonus", choice_rank, selected.group_size, True, ("BONUS_RANDOM_SELECTED", "POINTS_FORFEITED_BONUS"))
                 )
-                continue
-            if not can_group_fit_quota(selected.group_size, remaining["bonus_random"]):
-                results.append(
-                    DrawResult(selected.application_unit_id, selected.member_application_ids, None, False, "random_bonus", None, 0, False, ("GROUP_SKIPPED_RANDOM_QUOTA_TOO_SMALL",))
-                )
-                continue
-            if _consume_residency_quota(selected, quota, separate_residency, residency_buckets, total_remaining) is None:
-                results.append(
-                    DrawResult(selected.application_unit_id, selected.member_application_ids, None, False, "random_bonus", None, 0, False, ("CROSSOVER_NOT_ALLOWED",))
-                )
-                continue
-            remaining["bonus_random"] -= selected.group_size
-            remaining_by_hunt[choice] -= selected.group_size
-            results.append(
-                DrawResult(selected.application_unit_id, selected.member_application_ids, choice, True, "random_bonus", choice_rank, selected.group_size, True, ("BONUS_RANDOM_SELECTED", "POINTS_FORFEITED_BONUS"))
-            )
 
     return SimulationResult(draw_state, tuple(results), tuple(reason_codes))
 
@@ -282,7 +405,7 @@ def _aggregate_simulation(draw_state: DrawState, simulations: Sequence[Simulatio
                     drawn += 1
                     if result.draw_stage == "reserved_bonus":
                         reserved += 1
-                    elif result.draw_stage == "random_bonus":
+                    elif result.draw_stage in {"random_bonus", "crossover_bonus"}:
                         random_draw += 1
                     elif result.draw_stage == "preference":
                         preference += 1

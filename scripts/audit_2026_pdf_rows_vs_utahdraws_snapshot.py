@@ -101,6 +101,28 @@ def values_match(canonical: dict[str, str], endpoint: dict[str, str]) -> bool:
     )
 
 
+def source_dimension_candidates(
+    canonical: dict[str, str],
+    matches: list[dict[str, str]],
+) -> tuple[list[dict[str, str]], str]:
+    """Apply a dated, identity-specific source-dimension resolution.
+
+    The retained UtahDraws general-season endpoint contains both adult and
+    youth records. Most PDF-derived rows can resolve that dimension from the
+    values alone; rows with equal adult/youth values remain excluded unless
+    their archived Planner evidence identifies the displayed adult ladder.
+    """
+    confirmed_adult_identities = {
+        # DWR Planner record captured 2026-08-28: Kamas / General Buck Deer,
+        # nonresident ladder 7/8, 3/3, 1/1, 1/1 at points 0-3.
+        ("DB1592", "nonresident", "3"),
+    }
+    row_key = identity(canonical.get("hunt_code"), canonical.get("residency"), canonical.get("points"))
+    if row_key in confirmed_adult_identities:
+        return [row for row in matches if clean(row.get("IsYouth")).lower() == "false"], "ADULT_GENERAL_BUCK_DEER_PLANNER_LADDER"
+    return matches, ""
+
+
 def endpoint_status(canonical: dict[str, str], matches: list[dict[str, str]]) -> tuple[str, list[dict[str, str]]]:
     """Resolve only through retained, same-package endpoint evidence."""
     if not matches:
@@ -137,7 +159,8 @@ def main() -> None:
         row_identity = identity(canonical.get("hunt_code"), canonical.get("residency"), canonical.get("points"))
         endpoint = expected_endpoint(canonical)
         matches = raw_index.get((row_identity, endpoint), [])
-        parity_status, equal_value_rows = endpoint_status(canonical, matches)
+        source_candidates, source_dimension_resolution = source_dimension_candidates(canonical, matches)
+        parity_status, equal_value_rows = endpoint_status(canonical, source_candidates)
         planner = planner_index.get(row_identity[0])
         selected = equal_value_rows[0] if len(equal_value_rows) == 1 else (matches[0] if len(matches) == 1 else None)
         scorable = (integer(canonical.get("eligible_applicants")) or 0) > 0 or (integer(canonical.get("successful_applicants")) or 0) > 0
@@ -153,6 +176,7 @@ def main() -> None:
             "expected_snapshot_source_json_file": endpoint,
             "snapshot_matches_in_expected_endpoint": str(len(matches)),
             "snapshot_candidate_source_dimensions": " | ".join(sorted({clean(row.get("IsYouth")) for row in matches})),
+            "source_dimension_resolution": source_dimension_resolution,
             "snapshot_participant_count": clean(selected.get("ParticipantCount")) if selected else "",
             "snapshot_successful_count": clean(selected.get("SuccessfulCount")) if selected else "",
             "snapshot_selected_is_youth": clean(selected.get("IsYouth")) if selected else "",
@@ -165,6 +189,7 @@ def main() -> None:
             "planner_total_quota": clean(planner.get("permits_2026_total")) if planner else "",
             "notes": (
                 "UtahDraws outcome values are the parity source; DWR Planner is identity/quota context only."
+                + (f" Source dimension resolved as {source_dimension_resolution}." if source_dimension_resolution else "")
                 if parity_status.startswith("VALUE_PARITY")
                 else "Do not use as certifiable scoring truth until source-value reconciliation is complete."
             ),
