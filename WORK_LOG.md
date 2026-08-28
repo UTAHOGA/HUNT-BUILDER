@@ -19340,6 +19340,14 @@ Production state:
 - Preserved the approved wall-card order, dimensions, alignment, cabin artwork, and popup viewer behavior.
 - Verified all 30 source PDFs against the companion manifest by SHA-256 and byte size before copying; the set contains 1,422 readable, unencrypted pages totaling 9,230,153 bytes.
 
+## 2026-08-28 - 2026 no-exact-history source crosswalk and guidebook verification
+
+- Built `data_truth/crosswalk_truth/normalized/2026_no_exact_history_additions_crosswalk.csv` from the official 2026 canonical results and an exact-code search across all retained 2018-2025 canonical draw results. The 57 non-joined 2026 actual rows reduce to six codes: `BI6539`, `BR7021`, `BR7126`, `BR7238`, `DB1109`, and `DB1121`.
+- Verified the dated official DWR application-guidebook evidence: `BI6539`, `BR7021`, `BR7126`, `BR7238`, and `DB1121` are explicitly marked new in 2026; `DB1109` is explicitly marked new in 2025 and remains listed in 2026. All six are active through the 2026 guidebooks. The separate DWR field-regulation PDFs for 2018-2026 contain no hunt-number occurrence for these codes, so the application guidebooks are retained as the hunt-code authority.
+- Updated the blind-backtest classifier to report these rows as `SOURCE_VERIFIED_CURRENT_ADDITION_NO_COMPARABLE_HISTORY`. This is an intentional unscored disposition: it emits no proxy odds and cannot turn a same-unit/similar hunt into an unofficial predecessor. The audit-only rerun has zero unexpected actual/key gaps and classifies all 57 rows under that disposition.
+- The crosswalk rerun was not promoted. Its materialized prediction hash differs from the earlier unpromoted candidate because the Turkey/source-pool engine repairs were committed between the two audit runs; the filtered truth input is byte-identical, while the engine revision is not. Retain both frozen audits and do not compare them as same-revision reproducibility runs.
+- No canonical numeric truth, `DATABASE.csv`, runtime artifact, R2 object, deployment, staging, commit, or push was changed.
+
 ## 2026-08-28 - Vercel public-contract fallback guard
 
 - Added a deployment-only guard to `scripts/build-public-data-contracts.js` so Vercel preserves the reviewed checked-in public contracts when the primary runtime CSVs or application-outlook source are not hydrated in the Git checkout.

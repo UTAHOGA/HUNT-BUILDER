@@ -1,6 +1,7 @@
 import csv
-import json
 from pathlib import Path
+
+from engine.utah_draw_predictive.bear import build_bear_draw_odds_source_audit
 
 
 def _repo_root() -> Path:
@@ -21,10 +22,11 @@ def _read_csv(path: Path) -> list[dict[str, str]]:
 
 
 def test_bear_draw_odds_source_audit_records_pursuit_pdf_evidence() -> None:
-    csv_path = Path(str(_repo_root() / "processed_data/bear_draw_odds_source_audit.csv"))
-    json_path = Path(str(_repo_root() / "processed_data/bear_draw_odds_source_audit.json"))
-    rows = _read_csv(csv_path)
-    report = json.loads(json_path.read_text(encoding="utf-8"))
+    # `processed_data` is deliberately held at the last promoted candidate;
+    # validate the current source classifier directly so the test does not
+    # mistake that known-stale runtime artifact for current engine evidence.
+    database = _repo_root() / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "DATABASE.csv"
+    rows, report = build_bear_draw_odds_source_audit(_read_csv(database))
 
     assert rows
     assert report["bear_hunt_codes_found_in_official_draw_odds_pdf"] > 0

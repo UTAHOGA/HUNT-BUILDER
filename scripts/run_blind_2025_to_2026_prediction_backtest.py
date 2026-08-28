@@ -25,6 +25,7 @@ import shutil
 import sys
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
+from functools import lru_cache
 from pathlib import Path
 from statistics import median
 from typing import Any, Iterable, Mapping
@@ -556,7 +557,25 @@ def load_source_verified_no_exact_history_codes() -> dict[str, dict[str, str]]:
     }
 
 
+@lru_cache(maxsize=1)
+def official_bear_draw_codes() -> frozenset[str]:
+    """Return 2025 official bear-draw codes used to disambiguate Planner text.
+
+    A current Planner label such as ``Pursuit Only`` or ``O.T.C.`` is not by
+    itself proof that a code was outside the preceding public drawing.  The
+    archived official draw-results report is the source correction layer.
+    """
+    repo_text = str(REPO)
+    if repo_text not in sys.path:
+        sys.path.insert(0, repo_text)
+    from engine.utah_draw_predictive.bear import official_bear_draw_odds_hunt_codes
+
+    return frozenset(official_bear_draw_odds_hunt_codes())
+
+
 def is_current_planner_non_draw_bear(row: Mapping[str, Any]) -> bool:
+    if norm_code(row.get("hunt_code")) in official_bear_draw_codes():
+        return False
     text = " ".join(
         clean(row.get(field)).lower()
         for field in ("hunt_type", "hunt_class", "weapon", "draw_design", "draw_pool")

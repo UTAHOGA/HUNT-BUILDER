@@ -27,8 +27,21 @@ TARGET_NOTES = {
     "BR7021": "The official 2026 Dolores Triangle bear-season result uses a code absent from the retained 2018-2025 canonical draw series. No official predecessor mapping is retained, so it remains unscored rather than borrowing another bear season's odds.",
     "BR7126": "The official 2026 Dolores Triangle bear-season result uses a code absent from the retained 2018-2025 canonical draw series. No official predecessor mapping is retained, so it remains unscored rather than borrowing another bear season's odds.",
     "BR7238": "The official 2026 Dolores Triangle bear-season result uses a code absent from the retained 2018-2025 canonical draw series. No official predecessor mapping is retained, so it remains unscored rather than borrowing another bear season's odds.",
-    "DB1109": "The official 2026 Thousand Lakes restricted multiseason deer result uses a code absent from the retained 2018-2025 canonical draw series. A guidebook/reference identity is not an official prior draw-result ladder and cannot be used as a forecast source.",
+    "DB1109": "DWR first labels this Thousand Lakes restricted multiseason deer hunt new in the 2025 application guidebook. It has no exact 2018-2025 canonical draw-result ladder, so guidebook identity alone cannot be used as a forecast source.",
     "DB1121": "The official 2026 Antelope Island limited-entry deer result uses a code absent from the retained 2018-2025 canonical draw series. A same-unit premium hunt is not an official successor mapping and cannot be used as a forecast source.",
+}
+
+# Hunt numbers appear in DWR's application guidebooks, not in the separate
+# field-regulation PDFs. The dated page evidence below was verified against the
+# retained official guidebooks.  The field-regulation PDFs for 2018-2026 were
+# also searched for these codes and contained no hunt-number occurrence.
+GUIDEBOOK_EVIDENCE = {
+    "BI6539": ("2026", "pipeline/RAW/hunt_unit_database/2026/pdf/guidebooks/biggameapp.pdf", "65", "NEW", "65"),
+    "BR7021": ("2026", "pipeline/RAW/hunt_unit_database/2026/pdf/guidebooks/black-bear-cougar-furbearer-guidebook.pdf", "73", "NEW", "73"),
+    "BR7126": ("2026", "pipeline/RAW/hunt_unit_database/2026/pdf/guidebooks/black-bear-cougar-furbearer-guidebook.pdf", "74", "NEW", "74"),
+    "BR7238": ("2026", "pipeline/RAW/hunt_unit_database/2026/pdf/guidebooks/black-bear-cougar-furbearer-guidebook.pdf", "75", "NEW", "75"),
+    "DB1109": ("2025", "pipeline/RAW/hunt_unit_database/2025/pdf/guidebooks/2025_biggameapp.pdf", "49", "NEW", "53"),
+    "DB1121": ("2026", "pipeline/RAW/hunt_unit_database/2026/pdf/guidebooks/biggameapp.pdf", "50", "NEW", "50"),
 }
 
 FIELDNAMES = [
@@ -41,6 +54,15 @@ FIELDNAMES = [
     "boundary_id",
     "actual_draw_year",
     "draw_system_type",
+    "guidebook_first_listed_year",
+    "guidebook_first_listed_file",
+    "guidebook_first_listed_page",
+    "guidebook_first_listing_label",
+    "guidebook_last_checked_year",
+    "guidebook_last_checked_file",
+    "guidebook_last_checked_page",
+    "guidebook_current_status",
+    "field_regulation_code_search_2018_2026",
     "history_exact_code_years",
     "historical_hunt_code",
     "relationship_type",
@@ -115,6 +137,12 @@ def main() -> None:
     output_rows: list[dict[str, str]] = []
     for code in sorted(TARGET_NOTES):
         rows = current_by_code[code]
+        first_year, first_file, first_page, first_label, current_page = GUIDEBOOK_EVIDENCE[code]
+        current_file = (
+            "pipeline/RAW/hunt_unit_database/2026/pdf/guidebooks/black-bear-cougar-furbearer-guidebook.pdf"
+            if code.startswith("BR")
+            else "pipeline/RAW/hunt_unit_database/2026/pdf/guidebooks/biggameapp.pdf"
+        )
         output_rows.append(
             {
                 "current_hunt_code": code,
@@ -126,6 +154,15 @@ def main() -> None:
                 "boundary_id": one_value(rows, "boundary_id", code),
                 "actual_draw_year": "2026",
                 "draw_system_type": one_value(rows, "draw_system_type", code),
+                "guidebook_first_listed_year": first_year,
+                "guidebook_first_listed_file": first_file,
+                "guidebook_first_listed_page": first_page,
+                "guidebook_first_listing_label": first_label,
+                "guidebook_last_checked_year": "2026",
+                "guidebook_last_checked_file": current_file,
+                "guidebook_last_checked_page": current_page,
+                "guidebook_current_status": "LISTED_ACTIVE_NOT_DISCONTINUED_THROUGH_2026",
+                "field_regulation_code_search_2018_2026": "NO_HUNT_NUMBER_HITS; APPLICATION_GUIDEBOOK_IS_CODE_AUTHORITY",
                 "history_exact_code_years": "",
                 "historical_hunt_code": "",
                 "relationship_type": "CURRENT_CODE_WITHOUT_EXACT_HISTORICAL_DRAW_HISTORY",
@@ -156,7 +193,7 @@ def main() -> None:
         "records": len(output_rows),
         "codes": [row["current_hunt_code"] for row in output_rows],
         "status": "PASS_SOURCE_VERIFIED_UNSCORED_NO_EXACT_HISTORY",
-        "policy": "No same-unit, same-species, or similar-season row is promoted as a predecessor without an official DWR source mapping. These rows remain outside prediction scoring and no probability is emitted from this artifact.",
+        "policy": "No same-unit, same-species, or similar-season row is promoted as a predecessor without an official DWR source mapping. These rows remain outside prediction scoring and no probability is emitted from this artifact. DWR field-regulation PDFs do not carry these hunt-number rows; the dated DWR application guidebook is the retained code authority.",
     }
     with SUMMARY.open("w", encoding="utf-8", newline="") as handle:
         json.dump(summary, handle, indent=2, sort_keys=True)
@@ -165,13 +202,13 @@ def main() -> None:
     lines = [
         "# 2026 Additions Without Exact Historical Draw History",
         "",
-        "This source crosswalk verifies the absence of an exact 2018-2025 canonical draw-history code for each listed official 2026 result. It is an exclusion artifact, not a probability or proxy-history table.",
+        "This source crosswalk verifies the absence of an exact 2018-2025 canonical draw-history code for each listed official 2026 result. It is an exclusion artifact, not a probability or proxy-history table. The code-presence evidence comes from DWR application guidebooks; the separate 2018-2026 field-regulation PDFs contain no hunt-number hit for these codes.",
         "",
-        "| 2026 code | Hunt | Design | Status |",
-        "| --- | --- | --- | --- |",
+        "| 2026 code | Hunt | First listed | Current 2026 status | Status |",
+        "| --- | --- | --- | --- | --- |",
     ]
     lines.extend(
-        f"| {row['current_hunt_code']} | {row['current_hunt_name']} | {row['draw_system_type']} | {row['crosswalk_status']} |"
+        f"| {row['current_hunt_code']} | {row['current_hunt_name']} | {row['guidebook_first_listed_year']} ({row['guidebook_first_listing_label']}) | {row['guidebook_current_status']} | {row['crosswalk_status']} |"
         for row in output_rows
     )
     lines.extend(
