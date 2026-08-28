@@ -19359,3 +19359,74 @@ Production state:
 - Kept the file-results panel for multi-file folders and for single resources that do not have an in-library viewer.
 - Changed every in-browser PDF preview to start at 200% zoom.
 - Preserved the approved wall-card placement, dimensions, ordering, and cabin artwork.
+
+## 2026-08-28 - Complete 2024 and 2025 harvest-result PDFs
+
+- Added a reproducible harvest-report builder and generated readable U.O.G.A.-styled 2024 and 2025 PDF references for the Hunt Library Harvest Data folder.
+- The 2024 report contains all 1,039 verified hunt rows plus annual-report elk harvest-age and mule deer buck-to-doe management context.
+- Reconciled the 2025 report to the current official Utah DWR harvest dashboard: 1,141 hunt rows across eight species, including 21 newly published rows and correction of PB1000 from Moose to Pronghorn.
+- Kept the annual elk age, three-year age, age objective, and deer buck-to-doe measures distinct. Because DWR has not published a full 2025 annual big-game age/ratio report, the 2025 reference clearly labels the latest verified 2024 management-quality context instead of inventing 2025 values.
+- Published both PDFs as two Harvest Data resources without changing wall-card placement, dimensions, ordering, or cabin artwork.
+
+## 2026-08-28 - Project-memory validator aligned to Cloudflare R2 policy
+
+- Updated the repository memory contract to schema 1.2 so all six declared Research/runtime payloads, including the split index, are explicitly Cloudflare R2-backed with optional local hydration.
+- Replaced the obsolete checked-in generated prediction-manifest requirement with compact Git-tracked build evidence in `governance/engine-authority.json`, retaining the promoted manifest hash, pipeline and rule versions, forecast year, row counts, and source hashes.
+- Updated `scripts/validate-project-memory.js` to pass code-only validation when repo-external artifacts are absent, emit clear hydration warnings, and fully hash/cross-check the generated prediction manifest whenever it is locally restored.
+- Kept prediction promotion blocked and preserved every existing certification, source-crosswalk, residency, and contract-drift guardrail.
+
+## 2026-08-28 - 2026 Hunt Planner draw-plus-EXPO permit reconciliation PDF
+
+- Recovered the prior exact-code reconciliation from the authoritative Hunt Planner, official UtahDraws 2026 draw-result packages, and the Utah Wildlife Board Sept. 18, 2025 EXPO allocation tables.
+- Preserved the verified result: all 26 applicable hunt codes reconcile independently at the resident, nonresident, and total levels; 983 public-draw permits plus 41 EXPO permits equal 1,024 Hunt Planner permits.
+- Added a compact normalized 26-row reconciliation source and a reproducible U.O.G.A.-styled eight-page PDF grouped by species and hunt code.
+- Replaced the unavailable Hunt Units / Permit Numbers workbook link with the verified PDF; the single-resource folder opens it directly at 200% zoom.
+- Preserved all wall-card positions, dimensions, ordering, search placement, cabin artwork, and popup sizing.
+- Verified source uniqueness and arithmetic, PDF text and page count, output/public SHA-256 parity, full eight-page visual rendering, local folder count, direct-open behavior, viewer zoom, JavaScript/Python syntax, project-memory validation, project-memory contract tests, and `git diff --check`.
+
+## 2026-08-28 - Conservation hunters-afield supplement and complete 2026 permit register
+
+- Added a separate 2025 permit-utilization and conservation supplement without changing the completed 1,141-row harvest report. Across the 1,130 rows with both values, 656 have permits equal to hunters afield, 474 have permits greater than hunters afield, and none have hunters greater than permits.
+- Preserved the official distinction between issued permits and reported hunters afield. The 18 DWR harvest rows explicitly classified as Conservation total 31 permits, 28 hunters afield, and 24 harvested animals; the full conservation allocation list is not added to those hunter totals.
+- Added a comprehensive 2026 hunt-code permit register covering all 1,849 current DATABASE codes plus 13 conservation-crosswalk-only codes that remain explicitly flagged rather than silently omitted.
+- Listed each of the 336 annual 2025-27 conservation permits on every compatible hunt code when an area covers multiple codes, as requested. The report prominently identifies the resulting 1,454 visible assignments as a non-additive search aid and retains 336 as the unduplicated annual program total.
+- Kept the existing 26-code Draw + EXPO reconciliation as a separate report. The complete register shows all available published 2026 permit totals, the 41 EXPO permits as already-included subsets on their exact codes, and conservation coverage as a separate special-permit overlay.
+- Published both supplemental PDFs into their existing Hunt Library folders and preserved the approved wall-card placement, responsive sizing, popup dimensions, and 200% default PDF zoom.
+
+## 2026-08-28 - Full conservation crosswalk and PD1056 permit verification
+
+- Confirmed the conservation scope from the official 2025-27 working list and the reviewed derived crosswalk: 336 unduplicated annual permits, 271 grouped area/condition records, 418 covered hunt codes, and 1,454 deliberately repeated per-code display assignments.
+- Corrected the complete 2026 permit register so conservation-covered rows without a public-draw quota are labeled as conservation-only or conservation coverage instead of being described simply as having no quota. EA1180, EA1270, EA1271, EA2041, and EA2045 each display four conservation permits from the reviewed crosswalk.
+- Updated the permit-allocation verifier to recognize `conservation_permits_2026_total` as the DATABASE alias for `permits_2026_conservation`. The read-only verifier now exposes 595 real stale-field differences across five derived files instead of silently dropping the conservation values; no bulk synchronization was run.
+- Verified PD1056 against the official 2026 Utah Antlerless Application Guidebook and the Utah DWR 2026 Antlerless Permit Tables. The hunt is Parker Mtn, any legal weapon, Dec. 12-20, 2026, with 36 resident permits, 4 nonresident permits, and 40 total. Derived 63/4/67 copies are stale.
+- Rebuilt the 60-page comprehensive permit PDF, confirmed output/public hash parity, extracted the affected rows, and visually inspected the cover, summary, all five conservation-only rows, and PD1056. No Git staging, commit, push, deployment, or broad derived-data rewrite was performed.
+
+## 2026-08-28 - Public conservation permit reading sequence
+
+- Added a reproducible four-page U.O.G.A.-branded `2025-27 Utah Conservation Permit Guide` that explains the 336 annual permits, 271 area/condition records, 418 covered hunt codes, and 1,454 non-additive hunt-code display assignments.
+- Corrected the public-facing conservation-only antlerless elk examples to the current reviewed 2026 mapping: EA1180 La Sal, EA1270 Fishlake, EA1271 Manti, EA2041 Cache, and EA2045 Wasatch Mtns, with four conservation permits on each code.
+- Reordered the Conservation Permits folder so the readable U.O.G.A. guide appears first, the authoritative six-page DWR working list appears second as `View Official Source`, and the complete 60-page hunt-code register remains third.
+- Removed the obsolete single-item conservation-folder lock, retained direct-open behavior only for truly single-resource folders, and versioned the library script reference so production clients receive the new order.
+- Rendered and visually inspected all four guide pages, rebuilt the deploy bundle, verified all three PDFs were included, and confirmed the live page logic displayed three resources in the requested order with no browser warnings or errors.
+- No Git staging, commit, push, or deployment was performed.
+
+## 2026-08-28 - Complete conservation permit database population and memory reconciliation
+
+- Populated `DATABASE.csv` from the reviewed 2025-27 conservation crosswalk: all 405 current database hunt codes covered by the crosswalk now match their derived per-code conservation counts, with zero mismatches. The 13 crosswalk-only legacy codes remain explicitly outside the current database rather than being invented as current rows.
+- Preserved 336 as the unduplicated annual permit total while recording 1,454 non-additive permit-to-code display assignments across 418 crosswalk codes. Conservation values remain separate from public-draw resident, nonresident, and total quota fields.
+- Removed four stale positive mappings that are not in the reviewed crosswalk—DB1075, DB1076, EA1220, and EA1221—while retaining DB0009 as the explicit zero-permit conservation reference.
+- Confirmed PD1056 remains 36 resident, 4 nonresident, and 40 total permits; EA1180, EA1270, EA1271, EA2041, and EA2045 each carry four conservation permits and are classified `SPECIAL_PERMIT_ONLY` with blank public-draw quota fields.
+- Updated the current truth-authority SHA-256 to the fully populated `DATABASE.csv` hash while preserving the older prediction-build database hash as immutable build provenance.
+- Declared the current database newer than the checked-in prediction manifest, so later prediction promotion remains blocked until those artifacts are rebuilt and revalidated.
+- Removed the contradictory unconditional validator comparison; the validator now permits a newer current database only when the explicit stale-build blocker is present.
+- Project-memory validation and its contract test both pass with only the expected optional Cloudflare R2 hydration warnings. No Git staging, commit, push, deployment, or R2 publication was performed.
+- The broader `npm test` run reaches the read-only permit verifier and correctly stops on 1,905 downstream derived-field mismatches across five files; those derived-file rewrites were not performed because this request was limited to making `DATABASE.csv` authoritative and correct.
+
+## 2026-08-28 - Permit allocation downstream synchronization and canonical-long reconciliation
+
+- Synchronized the authoritative 2026 permit and conservation fields from `DATABASE.csv` into all 12 existing local downstream targets. The sync updated 159,387 repeated rows, reduced 343,250 field mismatches to zero, and produced zero permit-promotion blockers.
+- Created recoverable pre-sync copies under `processed_data/backups/permit_allocations_2026_20260828_105342`. Five optional runtime targets absent from the checkout were skipped without being fabricated: `hunt_master_enriched.csv`, `hunt_unit_reference_linked.csv`, `draw_reality_engine.csv`, `point_ladder_view.csv`, and the processed canonical source-of-truth JSON.
+- The read-only permit verifier now reports zero mismatches and zero promotion blockers. The complete `npm test` command passes, including project-memory, canonical validation, canonical rebuild, and permit-allocation verification.
+- The combined `draw_results_long.csv` is not locally hydrated, so reconciliation used all nine canonical yearly components from which it is rebuilt. Across 7,319 comparable shared hunt-code/year quota records, 7,310 match exactly and nine differ only by blank-versus-zero representation; there are zero substantive numeric mismatches and zero conflicting canonical quota tuples.
+- For 2026 specifically, all 1,097 canonical hunt codes exist in `DATABASE.csv`: 1,088 exact quota matches and nine blank-versus-zero-only differences. Conservation counts remain intentionally separate because the canonical draw-results long contract does not represent special conservation allocation overlays.
+- No Git staging, commit, push, Cloudflare R2 upload, or production deployment was performed.

@@ -1,6 +1,6 @@
 # Hunt Builder Current State
 
-Memory contract: `1.1.0`
+Memory contract: `1.2.0`
 Last verified: `2026-08-28`
 Machine authority: `governance/engine-authority.json`
 
@@ -28,6 +28,8 @@ The canonical split contract loads first:
 4. `processed_data/hunt_research_2026_split/hunt_research_2026.details.json`
 
 The older engine/ladder/master/reference CSV path is a legacy fallback and is disabled unless explicitly configured. Do not create a parallel Research loader.
+
+All six declared Research/runtime payloads, including the split index, are Cloudflare R2-backed and may be absent from a code-only checkout. `governance/engine-authority.json` retains each logical path and canonical HTTPS URL. Local absence is a hydration warning, not a code-contract failure.
 
 ## Engine Ownership
 
@@ -84,7 +86,10 @@ The certified local prediction runtime was rebuilt on `2026-08-27` from the froz
 - Historical years used by the declared rebuild: `2018-2025`.
 - Duplicate prediction keys: `0`.
 - Frozen unified prediction SHA-256: `9e4c0f1a66678cd63df88512e45ba71d63746a6b21d7e4038fecb142f40e9d5e`.
-- Current `DATABASE.csv` SHA-256: `dd87461a76555c73b74fb0df069b47d66ac979b096ab25d9395a2c78f860a24b`.
+- `DATABASE.csv` SHA-256 at prediction build: `dd87461a76555c73b74fb0df069b47d66ac979b096ab25d9395a2c78f860a24b`.
+- Current reviewed `DATABASE.csv` SHA-256: `3df7803b00c95176b106a01d5a86dc61a21b3ddb481107fa1310e1cf0dd56b1f`. The database now includes the complete reviewed conservation-permit crosswalk on all 405 covered current hunt codes, plus the reviewed EA2045 and PD1056 corrections; the compact prediction-build evidence intentionally retains the earlier build hash until the prediction artifacts are rebuilt.
+
+The full generated prediction manifest is a repo-external build artifact at `processed_data/utah_bonus_predictive_manifest.json`. Its compact integrity evidence—including pipeline and rule versions, forecast year, row counts, source hashes, and the promoted manifest SHA-256—is Git-tracked in `governance/engine-authority.json`. Code-only validation uses that compact record and performs the full manifest hash and field cross-check whenever the generated manifest is locally hydrated.
 
 The normalized official draw truth is locally hydrated with `309,562` rows for draw years `2018-2026`; SHA-256 `94189f6c0bbb90ad597a8f0cd3f3d96b2be1983b0d927665d18d3673da920474`. Every canonical annual source has retained lineage. The 2018 legacy-layout reports are now canonically parsed; source-identity normalization retains distinct official scopes rather than merging coarse duplicate keys.
 
@@ -103,6 +108,7 @@ The pipeline and runtime model versions describe different layers. The legacy ho
 3. The `57` official no-exact-history 2026 additions require their source crosswalk before they can become historical forecasting lanes.
 4. The generic deterministic simulator residency sequence remains uncertified.
 5. Five explicit family/design contract-drift items remain under review in the machine authority.
+6. The current `DATABASE.csv` is newer than the checked-in compact prediction-build evidence after the reviewed conservation-permit crosswalk and EA2045/PD1056 corrections. Rebuild and revalidate prediction artifacts before any later prediction promotion.
 
 These blockers mean "do not publish this as newly certified." They do not authorize another redesign.
 

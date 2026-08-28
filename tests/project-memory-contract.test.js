@@ -10,6 +10,8 @@ const result = validateProjectMemory(root);
 assert.deepStrictEqual(result.failures, [], result.failures.join('\n'));
 assert(result.checks >= 40, `Expected a substantive memory contract, received ${result.checks} checks.`);
 assert(result.facts.includes('promotion=BLOCKED'), 'The current uncertified build must remain explicitly blocked.');
+assert(result.facts.includes('prediction_evidence=GIT_TRACKED_COMPACT_AUTHORITY'), 'Prediction integrity evidence must remain a compact Git-tracked authority record.');
+assert(result.facts.includes('runtime_storage=R2_BACKED_WITH_OPTIONAL_LOCAL_HYDRATION'), 'Runtime storage must remain R2-backed with optional local hydration.');
 const drawTruthPath = path.join(root, 'data_truth', 'draw_results_truth', 'normalized', 'draw_results_long.csv');
 assert(
   fs.existsSync(drawTruthPath) || result.warnings.some((warning) => warning.includes('draw_results_long.csv')),

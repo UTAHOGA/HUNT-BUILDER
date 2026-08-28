@@ -8,6 +8,22 @@ const STAMP = new Date().toISOString().replace(/[-:]/g, '').replace(/\..+$/, '')
 const BACKUP_DIR = `processed_data/backups/permit_allocations_2026_${STAMP}`;
 const LAST_SYNC_FILE = 'processed_data/permit_allocation_2026_last_sync.json';
 
+function requestedHuntCodes(argv) {
+  const codes = new Set();
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    if (arg === '--hunt-code' && argv[index + 1]) {
+      codes.add(String(argv[index + 1]).trim().toUpperCase());
+      index += 1;
+    } else if (arg.startsWith('--hunt-code=')) {
+      codes.add(arg.slice('--hunt-code='.length).trim().toUpperCase());
+    }
+  }
+  return codes;
+}
+
+const HUNT_CODE_FILTER = requestedHuntCodes(process.argv.slice(2));
+
 const ALLOCATION_FIELDS = [
   'permits_2026_res',
   'permits_2026_nr',
@@ -35,6 +51,11 @@ const CSV_TARGETS = [
   { file: 'processed_data/hunt_unit_reference_linked.csv', updatePublicPermits: true },
   { file: 'processed_data/draw_reality_engine.csv', updatePublicPermits: true },
   { file: 'processed_data/point_ladder_view.csv', updatePublicPermits: false },
+  { file: 'data/hunt-master-canonical-2026-database-candidate.csv', updatePublicPermits: false, preserveSchema: true },
+  { file: 'data/hunt-master-canonical-2026-foundation.csv', updatePublicPermits: false, preserveSchema: true },
+  { file: 'data/hunt-master-canonical-2026-source-of-truth.csv', updatePublicPermits: false, preserveSchema: true },
+  { file: 'public/hunt-docs/latest/availability_only.csv', updatePublicPermits: false, preserveSchema: true },
+  { file: 'public/hunt-docs/latest/public_all_hunts.csv', updatePublicPermits: false, preserveSchema: true },
 ];
 
 const JSON_ROW_TARGETS = [
@@ -44,6 +65,11 @@ const JSON_ROW_TARGETS = [
   'processed_data/hunt-master-canonical-2026-source-of-truth.json',
   'canonical/hunt-planner-2026.json',
   'generated/pages/hunt-planner.json',
+];
+
+const JSON_COMPATIBILITY_TARGETS = [
+  'data/hunt_application_outlook.json',
+  'processed_data/public_contracts/hunt_application_outlook.json',
 ];
 
 const JSON_METADATA_TARGETS = [
@@ -133,7 +159,7 @@ function permitStatus(row) {
   const res = cleanPermit(row.permits_2026_res);
   const nr = cleanPermit(row.permits_2026_nr);
   const total = cleanPermit(row.permits_2026_total || row.total_2026_permits);
-  const conservation = cleanPermit(row.permits_2026_conservation);
+  const conservation = cleanPermit(row.permits_2026_conservation || row.conservation_permits_2026_total);
   const expo = cleanPermit(row.permits_2026_expo);
   const sportsman = cleanPermit(row.permits_2026_sportsman);
   if (res && nr && total) return 'FULL_SPLIT';
@@ -150,7 +176,7 @@ function normalizedAllocation(row) {
     permits_2026_res: cleanPermit(row.permits_2026_res),
     permits_2026_nr: cleanPermit(row.permits_2026_nr),
     permits_2026_total: cleanPermit(row.permits_2026_total || row.total_2026_permits),
-    permits_2026_conservation: cleanPermit(row.permits_2026_conservation),
+    permits_2026_conservation: cleanPermit(row.permits_2026_conservation || row.conservation_permits_2026_total),
     permits_2026_expo: cleanPermit(row.permits_2026_expo),
     permits_2026_sportsman: cleanPermit(row.permits_2026_sportsman),
     permit_status: status,
@@ -174,6 +200,7 @@ function loadDatabase() {
   for (const row of parsed.records) {
     const normalized = normalizedAllocation(row);
     if (!normalized.hunt_code) continue;
+    if (HUNT_CODE_FILTER.size && !HUNT_CODE_FILTER.has(normalized.hunt_code)) continue;
     if (index.has(normalized.hunt_code)) duplicates.push(normalized.hunt_code);
     index.set(normalized.hunt_code, normalized);
   }
@@ -198,6 +225,19 @@ function setField(record, field, value, changes) {
   }
 }
 
+function syncExistingCompatibilityFields(record, truth, changes) {
+  const compatibilityValues = {
+    conservation_permits_2026_total: truth.permits_2026_conservation,
+    permit_allotment_2026_res: truth.permits_2026_res,
+    permit_allotment_2026_nr: truth.permits_2026_nr,
+    permit_allotment_2026_total: truth.permits_2026_total,
+    total_2026_permits: truth.permits_2026_total,
+  };
+  for (const [field, value] of Object.entries(compatibilityValues)) {
+    if (Object.prototype.hasOwnProperty.call(record, field)) setField(record, field, value, changes);
+  }
+}
+
 function compatibilityPublicPermits(record, truth) {
   if (truth.permit_status === 'NO_QUOTA_PUBLISHED' || truth.permit_status === 'SPECIAL_PERMIT_ONLY') return '';
   if (truth.permit_status === 'TOTAL_ONLY') return truth.permits_2026_total;
@@ -209,10 +249,14 @@ function compatibilityPublicPermits(record, truth) {
 
 function auditRecord(record, truth, target) {
   const mismatches = [];
-  for (const field of [...ALLOCATION_FIELDS, ...PROVENANCE_FIELDS]) {
+  const targetFile = typeof target === 'string' ? target : target.file;
+  const fields = [...ALLOCATION_FIELDS, ...PROVENANCE_FIELDS].filter(
+    (field) => !(target && target.preserveSchema) || Object.prototype.hasOwnProperty.call(record, field),
+  );
+  for (const field of fields) {
     if (clean(record[field]) !== clean(truth[field])) {
       mismatches.push({
-        file: target.file || target,
+        file: targetFile,
         hunt_code: truth.hunt_code,
         field,
         expected: clean(truth[field]),
@@ -234,8 +278,8 @@ function rowsFromJson(data) {
 function syncCsvTarget(target, db) {
   const parsed = readCsv(target.file);
   const headers = [...parsed.headers];
-  const required = [...ALLOCATION_FIELDS, ...PROVENANCE_FIELDS];
-  if (target.updatePublicPermits) required.push(...PUBLIC_COMPAT_FIELDS);
+  const required = target.preserveSchema ? [] : [...ALLOCATION_FIELDS, ...PROVENANCE_FIELDS];
+  if (target.updatePublicPermits && !target.preserveSchema) required.push(...PUBLIC_COMPAT_FIELDS);
   const addedColumns = [];
   for (const field of required) {
     if (!headers.includes(field)) {
@@ -267,13 +311,14 @@ function syncCsvTarget(target, db) {
     matchedCodes.add(code);
     beforeMismatches.push(...auditRecord(record, truth, target));
     const changes = [];
-    for (const field of ALLOCATION_FIELDS) {
+    for (const field of ALLOCATION_FIELDS.filter((name) => !target.preserveSchema || Object.prototype.hasOwnProperty.call(record, name))) {
       if (!truth[field]) blankValuesPreserved += 1;
       setField(record, field, truth[field], changes);
     }
-    for (const field of PROVENANCE_FIELDS) {
+    for (const field of PROVENANCE_FIELDS.filter((name) => !target.preserveSchema || Object.prototype.hasOwnProperty.call(record, name))) {
       setField(record, field, truth[field], changes);
     }
+    syncExistingCompatibilityFields(record, truth, changes);
     if (target.updatePublicPermits) {
       const publicPermits = compatibilityPublicPermits(record, truth);
       setField(record, 'public_permits_2026', publicPermits, changes);
@@ -311,7 +356,7 @@ function syncCsvTarget(target, db) {
   };
 }
 
-function syncJsonRows(file, db) {
+function syncJsonRows(file, db, options = {}) {
   const data = JSON.parse(fs.readFileSync(abs(file), 'utf8'));
   const rows = rowsFromJson(data);
   const beforeMismatches = [];
@@ -330,16 +375,18 @@ function syncJsonRows(file, db) {
       return;
     }
     matchedCodes.add(code);
-    beforeMismatches.push(...auditRecord(record, truth, file));
+    const target = { file, ...options };
+    beforeMismatches.push(...auditRecord(record, truth, target));
     const changes = [];
-    for (const field of ALLOCATION_FIELDS) {
+    for (const field of ALLOCATION_FIELDS.filter((name) => !options.preserveSchema || Object.prototype.hasOwnProperty.call(record, name))) {
       if (!truth[field]) blankValuesPreserved += 1;
       setField(record, field, truth[field], changes);
     }
-    for (const field of PROVENANCE_FIELDS) {
+    for (const field of PROVENANCE_FIELDS.filter((name) => !options.preserveSchema || Object.prototype.hasOwnProperty.call(record, name))) {
       setField(record, field, truth[field], changes);
     }
-    afterMismatches.push(...auditRecord(record, truth, file));
+    syncExistingCompatibilityFields(record, truth, changes);
+    afterMismatches.push(...auditRecord(record, truth, target));
     if (changes.length) rowChanges.push({ row_index: index, hunt_code: code, changes });
   });
 
@@ -473,7 +520,8 @@ function main() {
   const fileReports = [
     ...existingTargets(CSV_TARGETS).map((target) => syncCsvTarget(target, db)),
     ...existingTargets(JSON_ROW_TARGETS).map((file) => syncJsonRows(file, db)),
-    ...existingTargets(JSON_METADATA_TARGETS).map((file) => syncJsonMetadata(file)),
+    ...existingTargets(JSON_COMPATIBILITY_TARGETS).map((file) => syncJsonRows(file, db, { preserveSchema: true })),
+    ...(HUNT_CODE_FILTER.size ? [] : existingTargets(JSON_METADATA_TARGETS).map((file) => syncJsonMetadata(file))),
   ];
   const promotionBlockers = fileReports.filter((item) => item.mismatches_after_sync > 0);
   const report = {
@@ -484,6 +532,7 @@ function main() {
     database_rows: db.records.length,
     database_unique_hunt_codes: db.index.size,
     database_duplicate_hunt_codes: db.duplicates,
+    hunt_code_filter: [...HUNT_CODE_FILTER].sort(),
     allocation_fields: ALLOCATION_FIELDS,
     forbidden_historical_draw_fields: [
       'permits_2025_draw_res',
