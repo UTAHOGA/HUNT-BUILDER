@@ -1285,7 +1285,7 @@
       [DRAW_MODE.BONUS]: ['Points', `${RESEARCH_RESULT_YEAR} Actual Odds`, `${RESEARCH_MODEL_YEAR} Estimated Odds`, 'Marker'],
       [DRAW_MODE.YOUTH_RESERVE]: ['Points', `${RESEARCH_RESULT_YEAR} Actual Odds`, `${RESEARCH_MODEL_YEAR} Estimated Odds`, 'Marker'],
       [DRAW_MODE.ALLOCATION_AVAILABILITY]: ['Status', 'Availability', `${RESEARCH_MODEL_YEAR} Permits`, 'Details'],
-      [DRAW_MODE.STATUS_ONLY]: ['Points', `${RESEARCH_RESULT_YEAR} Result`, 'Current Status', 'Estimated Odds'],
+      [DRAW_MODE.STATUS_ONLY]: ['Points', `${RESEARCH_RESULT_YEAR} Actual Odds`, `${RESEARCH_MODEL_YEAR} Estimated Odds`, 'Marker'],
     };
     const headers = headersByMode[mode] || headersByMode[DRAW_MODE.STATUS_ONLY];
     [
@@ -2078,19 +2078,18 @@
         ];
       }
 
-      const statusOnly = firstAvailable(row, ['status', 'draw_outlook', 'algorithm_status']) || '';
       return [
         formatInteger(row.points),
         actual2025Display,
-        statusOnly,
         oddsDisplay,
+        '',
       ];
     }
 
     const displayedRows = rows.filter((row) => {
       const rowPoint = Number(row?.points);
       if (Number(rowPoint) === Number(points) || isGuaranteedLineRow(row, rows, mode)) return true;
-      if ([DRAW_MODE.ALLOCATION_AVAILABILITY, DRAW_MODE.STATUS_ONLY].includes(mode)) return true;
+      if (mode === DRAW_MODE.ALLOCATION_AVAILABILITY) return true;
       const historicalPointRow = state.engineHistoryByPoint.get(rowKey(huntCode, residency, row.points, drawPool)) || null;
       const cells = getRowCells(row, historicalPointRow);
       const hasUsefulOdds = (value) => {
