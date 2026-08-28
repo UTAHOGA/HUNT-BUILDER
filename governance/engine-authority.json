@@ -10,7 +10,7 @@
     "promotion_blockers": [
       "AGGREGATE_BLIND_BACKTEST_ACCEPTANCE_NOT_CERTIFIED",
       "KNOWN_FAMILY_CONTRACT_TEST_DRIFT",
-      "GENERIC_SIMULATOR_RESIDENCY_SEQUENCE_NOT_CERTIFIED",
+      "CURRENT_DATABASE_NEWER_THAN_CHECKED_IN_PREDICTION_MANIFEST",
       "DATED_PLANNER_SNAPSHOT_REQUIRED_FOR_2026_BEAR_TRANSITIONS",
       "NO_EXACT_HISTORY_2026_ADDITIONS_SOURCE_CROSSWALK_PENDING"
     ]
@@ -232,7 +232,7 @@
       "path": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
       "storage": "GIT_TRACKED",
       "required_locally": true,
-      "verified_sha256": "dd87461a76555c73b74fb0df069b47d66ac979b096ab25d9395a2c78f860a24b"
+      "verified_sha256": "75eceb9bd225d264d0294db655ffdc8feec03e3fe0d21b6c9e3a8a72d1794068"
     },
     "normalized_draw_actuals": {
       "path": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
@@ -298,6 +298,22 @@
       "normalized_draw_truth_sha256": "94189f6c0bbb90ad597a8f0cd3f3d96b2be1983b0d927665d18d3673da920474",
       "frozen_prediction_sha256": "9e4c0f1a66678cd63df88512e45ba71d63746a6b21d7e4038fecb142f40e9d5e",
       "local_promotion_status": "LOCAL_REBUILT_HOSTED_EQUIVALENCE_PENDING"
+    },
+    "latest_unpromoted_blind_candidate_2026_08_28": {
+      "candidate": "audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260828_residency_lane_rebuild",
+      "database_sha256_at_candidate_build": "75eceb9bd225d264d0294db655ffdc8feec03e3fe0d21b6c9e3a8a72d1794068",
+      "frozen_prediction_sha256": "53c5fb934f40f4ef54590309159879236ba696ef29672493648e1498d29adfc7",
+      "joined_actual_keys": 13968,
+      "duplicate_prediction_key_groups": 0,
+      "duplicate_actual_key_groups": 0,
+      "unexpected_actual_engine_or_key_gaps": 0,
+      "probability_mae": 0.09605323221120989,
+      "probability_rmse": 0.23871293956515582,
+      "probability_abs_error_gt_0_25": 1588,
+      "false_guarantee_rows": 336,
+      "prior_candidate_false_guarantee_rows": 256,
+      "acceptance_status": "NOT_ACCEPTED_FALSE_GUARANTEE_REVIEW_REQUIRED",
+      "local_or_hosted_promotion": "NONE"
     },
     "local_prediction_promotion_2026_08_27": {
       "record": "processed_data/local_prediction_promotion_2026.json",
@@ -411,11 +427,6 @@
       "id": "EB1007_YOUTH_ELK_STATUS",
       "status": "UNRESOLVED_REQUIRES_REVIEW",
       "detail": "EB1007 forecast currently remains IN_SCOPE_MODEL_PENDING while the test contract expects MODELED_RANDOM_ONLY"
-    },
-    {
-      "id": "GENERIC_SIMULATOR_RESIDENCY_SEQUENCE",
-      "status": "UNRESOLVED_REQUIRES_REVIEW",
-      "detail": "The deterministic simulator uses global bonus max and random counters over residency buckets instead of fully separate residency rounds followed by only eligible official crossover"
     },
     {
       "id": "LOCAL_TO_R2_RUNTIME_EQUIVALENCE",

@@ -75,7 +75,7 @@ Black bear has four distinct public behaviors. Limited-entry hunting and restric
 
 ## Current Build Evidence
 
-The certified local prediction runtime was rebuilt on `2026-08-27` from the frozen, unified 2018-2025 forecast candidate and the current official 2026 database. The promotion copied 31 forecast artifacts to `processed_data/`, verified every copied SHA-256, and backed up each prior local target. It does not upload or alter R2.
+The locally promoted prediction runtime was rebuilt on `2026-08-27` from the then-current frozen, unified 2018-2025 forecast candidate. The promotion copied 31 forecast artifacts to `processed_data/`, verified every copied SHA-256, and backed up each prior local target. It did not upload or alter R2. That local runtime is now deliberately treated as stale because the official current database has changed; it remains untouched until the newer blind candidate is accepted and explicitly promoted.
 
 - Build pipeline: `hybrid_ml_v2.1.0`.
 - Forecast year: `2026`.
@@ -84,11 +84,11 @@ The certified local prediction runtime was rebuilt on `2026-08-27` from the froz
 - Historical years used by the declared rebuild: `2018-2025`.
 - Duplicate prediction keys: `0`.
 - Frozen unified prediction SHA-256: `9e4c0f1a66678cd63df88512e45ba71d63746a6b21d7e4038fecb142f40e9d5e`.
-- Current `DATABASE.csv` SHA-256: `dd87461a76555c73b74fb0df069b47d66ac979b096ab25d9395a2c78f860a24b`.
+- Current `DATABASE.csv` SHA-256: `75eceb9bd225d264d0294db655ffdc8feec03e3fe0d21b6c9e3a8a72d1794068`.
 
-The normalized official draw truth is locally hydrated with `309,562` rows for draw years `2018-2026`; SHA-256 `94189f6c0bbb90ad597a8f0cd3f3d96b2be1983b0d927665d18d3673da920474`. Every canonical annual source has retained lineage. The 2018 legacy-layout reports are now canonically parsed; source-identity normalization retains distinct official scopes rather than merging coarse duplicate keys.
+The normalized official draw truth is locally hydrated with `309,562` rows for draw years `2018-2026`; SHA-256 `94189f6c0bbb90ad597a8f0cd3f3d96b2be1983b0d927665d18d3673da920474`. The 2018 legacy-layout reports are canonically parsed and source-identity normalization retains distinct official scopes rather than merging coarse duplicate keys. Fourteen 2026 display-PDF parent scopes are not physically retained, but the retained official UtahDraws endpoint records provide value-level parity for `1,380` of `1,381` scorable rows; the one unresolved adult/youth-dimension key (`DB1630`, nonresident, 2 points) is excluded from scoring.
 
-The blind 2025-to-2026 run froze the unified forecast before reading 2026 actuals. It joins `13,968` official actual keys with zero duplicate prediction-key groups, zero duplicate actual-key groups, and zero unexpected engine/key gaps. Probability MAE is `0.122938` and RMSE is `0.291489`. The just-missed applicant model MAE is `4.5771`: `30.41%` better than the paired same-point baseline and `2.47%` better than pure unsuccessful-rollforward. The `2,657` non-joined keys are source-classified as `2,528` CWMU public-odds exclusions, `72` current-Planner non-draw bear transitions awaiting dated-snapshot reconciliation, and `57` official no-exact-history additions.
+The current unpromoted blind candidate at `audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260828_residency_lane_rebuild/` froze its forecast before reading 2026 actuals. It uses the current database SHA above and has frozen prediction SHA-256 `53c5fb934f40f4ef54590309159879236ba696ef29672493648e1498d29adfc7`. It joins `13,968` official actual keys with zero duplicate prediction-key groups, zero duplicate actual-key groups, and zero unexpected engine/key gaps. Probability MAE is `0.096053` and RMSE is `0.238713`, with `1,588` absolute probability errors above 25 points (the prior candidate had `1,963`). The just-missed applicant MAE remains `4.5771`: `30.41%` better than the paired same-point baseline and `2.47%` better than pure unsuccessful-rollforward. However, it has `336` false-guarantee rows versus `256` in the prior candidate, so this candidate is explicitly **not accepted** pending targeted guarantee calibration and formal acceptance thresholds. The `2,657` non-joined keys are source-classified as `2,528` CWMU public-odds exclusions, `72` current-Planner non-draw bear transitions awaiting dated-snapshot reconciliation, and `57` official no-exact-history additions.
 
 On `2026-08-28`, the normal four-file split Research contract was released to R2 and the Pages frontend was deployed with `HUNT_RESEARCH_DATA_VERSION = 20260828-certified-split-contract-1`. The public worker returned an exact SHA-256 match for all four objects: summary `766fb913...30de7`, index `fac60c2a...90e83`, ladder `1a45732c...44a5d`, and details `67ab489b...2812a`. Fresh rollback copies are retained under `audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260827_certification_candidate/r2_authorized_release_20260828T010028Z/`.
 
@@ -101,17 +101,17 @@ The pipeline and runtime model versions describe different layers. The legacy ho
 1. Aggregate blind acceptance thresholds, including tail-error and false-guarantee tolerances, are not yet formally certified despite the completed comparison.
 2. The `72` current-Planner non-draw bear transitions require a dated Planner snapshot to distinguish valid program transition from data drift.
 3. The `57` official no-exact-history 2026 additions require their source crosswalk before they can become historical forecasting lanes.
-4. The generic deterministic simulator residency sequence remains uncertified.
+4. The checked-in local prediction manifest and runtime artifacts still reflect the prior database/candidate; the newer candidate has not been accepted or promoted.
 5. Five explicit family/design contract-drift items remain under review in the machine authority.
 
 These blockers mean "do not publish this as newly certified." They do not authorize another redesign.
 
 ## Approved Continuation Path
 
-1. Establish formal aggregate blind acceptance thresholds and review the remaining tail-error and false-guarantee evidence.
+1. Establish formal aggregate blind acceptance thresholds and review the remaining tail-error and false-guarantee evidence against the 2026-08-28 candidate.
 2. Resolve the dated Planner/bear and no-exact-history source transitions.
 3. Preserve `engine/utah_predictive_mixed` as the final probability blend and `engine/utah_draw_predictive` as family authority.
-4. Do not replace the legacy predictive fallback or publish a newly accuracy-certified claim without Tyler's explicit authorization and a fresh rollback plan.
+4. If accepted, rebuild the local runtime artifacts and manifests from the 2026-08-28 candidate, then separately obtain authorization and a rollback plan before any hosted release.
 
 ## Required Commands
 

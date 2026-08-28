@@ -1,22 +1,22 @@
 {
-  "generated_at_utc": "2026-08-27T01:55:51+00:00",
+  "generated_at_utc": "2026-08-28T06:39:23+00:00",
   "audit_scope": "read_only_draw_truth_year_by_year_hardening",
   "database_path": "pipeline\\RAW\\hunt_unit_database\\2026\\csv\\DATABASE.csv",
   "draw_long_path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
   "current_database_rows": 1849,
   "current_database_unique_hunt_codes": 1849,
-  "draw_long_rows": 248066,
+  "draw_long_rows": 309562,
   "unique_draw_years": [],
-  "unique_draw_hunt_codes_all_years": 1474,
-  "current_database_codes_covered_any_draw_year": 1474,
-  "current_database_codes_missing_all_draw_years": 375,
-  "historical_only_draw_codes_not_current_database": 0,
+  "unique_draw_hunt_codes_all_years": 1494,
+  "current_database_codes_covered_any_draw_year": 1493,
+  "current_database_codes_missing_all_draw_years": 356,
+  "historical_only_draw_codes_not_current_database": 1,
   "draw_hunt_code_growth_note": "Unique draw hunt-code counts should generally increase slightly year over year, or the audit must explain the gap before draw data is combined into prediction features.",
   "field_capture_status": [
     {
       "field": "eligible_applicants",
       "captured_in_draw_truth": true,
-      "nonblank_rows": 247405
+      "nonblank_rows": 308901
     },
     {
       "field": "total_drawn",
@@ -26,17 +26,17 @@
     {
       "field": "bonus_permits",
       "captured_in_draw_truth": true,
-      "nonblank_rows": 247363
+      "nonblank_rows": 308837
     },
     {
       "field": "regular_permits",
       "captured_in_draw_truth": true,
-      "nonblank_rows": 247352
+      "nonblank_rows": 308826
     },
     {
       "field": "total_permits",
       "captured_in_draw_truth": true,
-      "nonblank_rows": 247830
+      "nonblank_rows": 309326
     },
     {
       "field": "success_ratio",
@@ -56,12 +56,12 @@
     {
       "field": "points",
       "captured_in_draw_truth": true,
-      "nonblank_rows": 245895
+      "nonblank_rows": 304662
     },
     {
       "field": "draw_pool",
       "captured_in_draw_truth": true,
-      "nonblank_rows": 248066
+      "nonblank_rows": 309562
     },
     {
       "field": "draw_method",
@@ -71,12 +71,12 @@
     {
       "field": "hunt_class",
       "captured_in_draw_truth": true,
-      "nonblank_rows": 73111
+      "nonblank_rows": 134607
     },
     {
       "field": "source_file",
       "captured_in_draw_truth": true,
-      "nonblank_rows": 248066
+      "nonblank_rows": 309562
     },
     {
       "field": "page_number",

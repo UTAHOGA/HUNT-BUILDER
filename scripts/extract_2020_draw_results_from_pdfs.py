@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Build a report-year draw-results canonical from official DWR PDFs.
+"""Build a report-year draw-results extraction from official DWR PDFs.
 
-The 2020 PDF archive is source evidence, not a permit allocation reference.
+The official PDF archive is source evidence, not a permit allocation reference.
 This extractor emits one source-faithful table row for each official point
 level and hunt total, retaining the PDF file and page for every row.  It
 intentionally skips point-purchase summary pages because they have no hunt
@@ -30,6 +30,21 @@ ROOT = Path(__file__).resolve().parents[1]
 VALIDATION = ROOT / "data_truth" / "draw_results_truth" / "validation"
 
 YEAR_CONFIGS = {
+    2017: {
+        "target_year": 2018,
+        "sources": [
+            ("official_dwr_archive/big_game/17_big_game_odds_report.pdf", "BIG_GAME", "BONUS"),
+            ("official_dwr_archive/big_game_antlerless/17_antlerless_points.pdf", "ANTLERLESS", "PREFERENCE"),
+            ("official_dwr_archive/big_game/17_general_deer.pdf", "GENERAL_SEASON_DEER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/17_dedicated_hunter_deer.pdf", "DEDICATED_HUNTER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/17_lifetime_general_deer.pdf", "LIFETIME_GENERAL_SEASON_DEER", "REFERENCE"),
+            ("official_dwr_archive/big_game_antlerless/17_antlerless_youth_points.pdf", "YOUTH_ANTLERLESS", "PREFERENCE"),
+            ("official_dwr_archive/big_game/17_youth_any_bull_elk.pdf", "YOUTH_ANY_BULL_ELK", "RANDOM_ONLY"),
+            ("official_dwr_archive/big_game/17_youth_general_deer.pdf", "YOUTH_GENERAL_SEASON_DEER", "PREFERENCE"),
+            ("official_dwr_archive/turkey/2017_turkey_bonus_points_and_draw_results.pdf", "TURKEY", "BONUS"),
+        ],
+        "sportsman_file": "official_dwr_archive/big_game/2017_sportsman_odds.pdf",
+    },
     2018: {
         "target_year": 2019,
         "sources": [
@@ -473,8 +488,22 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--report-year", type=int, choices=sorted(YEAR_CONFIGS), default=2020, help="DWR report-generation year to extract.")
     parser.add_argument("--write", action="store_true", help="Write the canonical after strict parsing succeeds.")
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        help=(
+            "Write the extraction, summary, and unparsed-page audit to this directory. "
+            "Use this for a historical audit without changing canonical or validation paths."
+        ),
+    )
     args = parser.parse_args()
     configure_report_year(args.report_year)
+    if args.output_dir:
+        global CANONICAL, SUMMARY, UNPARSED
+        pair = f"{REPORT_YEAR}_for_{MODEL_TARGET_YEAR}"
+        CANONICAL = args.output_dir / f"draw_results_{pair}_official_pdf_reconstructed.csv"
+        SUMMARY = args.output_dir / f"draw_results_{pair}_official_pdf_reconstruction_summary.json"
+        UNPARSED = args.output_dir / f"draw_results_{pair}_official_pdf_unparsed_hunt_pages.csv"
     rows, unparsed, source_stats = extract_hunt_tables()
     sportsman = extract_sportsman()
     rows.extend(sportsman)

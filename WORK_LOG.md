@@ -19345,3 +19345,11 @@ Production state:
 - Added a deployment-only guard to `scripts/build-public-data-contracts.js` so Vercel preserves the reviewed checked-in public contracts when the primary runtime CSVs or application-outlook source are not hydrated in the Git checkout.
 - Prevented synthetic fixture inputs from overwriting the production contract bundle during a website-only Vercel build, in accordance with the accepted prediction-promotion standard.
 - Kept local contract generation behavior unchanged outside Vercel so fixture-based development and explicit local rebuild workflows remain available.
+
+## 2026-08-28 - Residency-lane rule correction and refreshed blind candidate
+
+- Corrected the deterministic Utah simulator to complete resident and nonresident bonus max/random lanes separately, with crossover only in explicitly eligible official crossover scenarios. The focused residency, bonus, quota, and one-permit tests pass (`20 passed`).
+- Confirmed that the simulator is the deterministic rules foundation; the production family materializer retains its own source-classified quota splitter. No universal engine or shortcut was introduced.
+- Resolved the `DB1592` adult General-Season Buck Deer source-dimension ambiguity using the retained official public-draw ladder evidence while preserving youth rows. Only `DB1630` nonresident at two points remains ambiguous and is excluded from scoring.
+- Generated the unpromoted, hash-frozen blind candidate at `audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260828_residency_lane_rebuild/`. Its 2025-to-2026 comparison joins 13,968 keys with no duplicate or unexpected gaps, reduces probability MAE to 0.096053 and RMSE to 0.238713, and reduces absolute errors above 25 points to 1,588. It is not accepted: false-guarantee rows increased from 256 to 336 and require targeted calibration plus formal acceptance thresholds.
+- The candidate was not copied into `processed_data`, uploaded to R2, deployed, staged, committed, or pushed. The earlier local runtime/manifest is explicitly stale against the current `DATABASE.csv` and promotion remains blocked pending acceptance thresholds and the remaining source/design blockers.
