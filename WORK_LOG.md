@@ -19259,3 +19259,8 @@ Production state:
 - Published six current 2026 Utah DWR rule and guidebook PDFs in the rules folder.
 - Replaced the calendar placeholder with a same-page calendar that combines the official multi-feed Utah DWR Google Calendar with a Hunt Builder season-boundary view.
 - Populated the season view from the official 2026 DWR Hunt Planner HaNumber snapshot: 1,358 published date ranges across 1,115 hunt codes. The calendar marks every parsed start and end date; 281 CWMU records with operator-assigned dates remain explicitly identified and are not guessed.
+
+## 2026-08-28 - Hunt Library wall alignment refinement
+
+- Shifted the desktop search controls left so their center aligns with the baked-in "HARD COPY RESOURCE LIBRARY" wall heading rather than the full viewport.
+- Raised the two-row folder grid by approximately one cabin log while preserving the four-column desktop layout and responsive mobile flow.
