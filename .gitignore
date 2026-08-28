@@ -858,3 +858,7 @@ data_truth/hunt_code_universe_truth/locked/LOCKED_HUNT_CODE_YEAR_CODE_ROSTER_201
 !/processed_data/public_contracts/outfitters-public.json
 !/processed_data/public_contracts/public_contract_summary.json
 !/processed_data/public_contracts/source_snapshots.json
+
+# The legacy full prediction feed is an R2/local fallback, not a GitHub asset.
+# Keep the small static contracts above; do not let this large JSON re-enter.
+/processed_data/public_contracts/hunt_predictions.json
