@@ -19353,3 +19353,17 @@ Production state:
 - Resolved the `DB1592` adult General-Season Buck Deer source-dimension ambiguity using the retained official public-draw ladder evidence while preserving youth rows. Only `DB1630` nonresident at two points remains ambiguous and is excluded from scoring.
 - Generated the unpromoted, hash-frozen blind candidate at `audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260828_residency_lane_rebuild/`. Its 2025-to-2026 comparison joins 13,968 keys with no duplicate or unexpected gaps, reduces probability MAE to 0.096053 and RMSE to 0.238713, and reduces absolute errors above 25 points to 1,588. It is not accepted: false-guarantee rows increased from 256 to 336 and require targeted calibration plus formal acceptance thresholds.
 - The candidate was not copied into `processed_data`, uploaded to R2, deployed, staged, committed, or pushed. The earlier local runtime/manifest is explicitly stale against the current `DATABASE.csv` and promotion remains blocked pending acceptance thresholds and the remaining source/design blockers.
+
+## 2026-08-28 - Conservation permit PDF in the Hunt Library
+
+- Replaced the unavailable conservation workbook placeholder with the current `2025-27_conservation_permits.pdf` source from `pipeline/RAW/hunt_unit_database/2026/pdf/conservation permits/`.
+- Published the six-page 2025-2027 working list as the Conservation Permits folder's single current-cycle resource, covering 336 permits by species, area, condition, value, and organization.
+- Preserved the approved wall-card order, 200-by-200 dimensions, alignment, cabin artwork, and full-size PDF preview behavior.
+- Verified the copied PDF by SHA-256, parsed all six pages, and visually inspected its first and final pages before wiring it into the local build.
+
+## 2026-08-28 - Direct-open single-resource folders and 200% PDF zoom
+
+- Made single-resource folders open their viewable content immediately, bypassing the intermediate file-results panel for the embedded calendar and single PDFs.
+- Kept the file-results panel for multi-file folders and for single resources that do not have an in-library viewer.
+- Changed every in-browser PDF preview to start at 200% zoom.
+- Preserved the approved wall-card placement, dimensions, ordering, and cabin artwork.

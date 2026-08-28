@@ -2238,6 +2238,7 @@ def run_all_families(
     calibration_mode: str = "off",
     calibrate_family: str = CALIBRATION_FAMILY,
     runtime_permit_source: str = "current_2026",
+    score_target_year: int | None = None,
 ) -> dict[str, object]:
     if enable_antlerless_deer_calibration and (
         calibration_mode != "production" or _clean(calibrate_family).upper() != CALIBRATION_FAMILY
@@ -2248,6 +2249,9 @@ def run_all_families(
         )
     if runtime_permit_source not in {"current_2026", "source_year_proxy"}:
         raise ValueError("runtime_permit_source must be current_2026 or source_year_proxy")
+    output_target_year = score_target_year if score_target_year is not None else target_year
+    if output_target_year < target_year:
+        raise ValueError("score_target_year cannot precede the forecast draw year")
     all_truth_rows = _read_csv(truth_path)
     source_rows = [row for row in all_truth_rows if _row_year(row) == source_year]
     engine_rows = _with_historical_target_metadata(source_rows, source_year, target_year)
@@ -2282,7 +2286,7 @@ def run_all_families(
         seed=20260701,
     )
     big_game_bonus_rows_by_family = {
-        family: _with_run_fields(rows, source_year, target_year, family)
+        family: _with_run_fields(rows, source_year, output_target_year, family)
         for family, rows in _split_big_game_bonus_rows(big_game_bonus_raw_rows, big_game_bonus_db_by_code).items()
     }
     for rows in big_game_bonus_rows_by_family.values():
@@ -2292,40 +2296,40 @@ def run_all_families(
     general_rows = _with_run_fields(
         build_preference_general_deer_predictions(history_engine_rows, engine_rows, target_year, history_years),
         source_year,
-        target_year,
+        output_target_year,
         "preference_general_deer",
     )
     antlerless_all = build_preference_antlerless_predictions(history_engine_rows, engine_rows, target_year, history_years)
     antlerless_deer_rows = _with_run_fields(
         [row for row in antlerless_all if row.get("draw_system_type") == "PREFERENCE_ANTLERLESS_DEER"],
         source_year,
-        target_year,
+        output_target_year,
         "preference_antlerless_deer",
     )
     antlerless_elk_rows = _with_run_fields(
         [row for row in antlerless_all if row.get("draw_system_type") == "PREFERENCE_ANTLERLESS_ELK"],
         source_year,
-        target_year,
+        output_target_year,
         "preference_antlerless_elk",
     )
     doe_pronghorn_rows = _with_run_fields(
         [row for row in antlerless_all if row.get("draw_system_type") == "PREFERENCE_DOE_PRONGHORN"],
         source_year,
-        target_year,
+        output_target_year,
         "preference_doe_pronghorn",
     )
     dedicated_rows = _with_run_fields(
         build_preference_dedicated_hunter_predictions(history_engine_rows, engine_rows, target_year, history_years),
         source_year,
-        target_year,
+        output_target_year,
         "dedicated_hunter",
     )
     sportsman_rows, sportsman_report = build_sportsman_predictions(history_engine_rows, engine_rows, target_year, history_years)
-    sportsman_rows = _with_run_fields(sportsman_rows, source_year, target_year, "sportsman")
+    sportsman_rows = _with_run_fields(sportsman_rows, source_year, output_target_year, "sportsman")
     bear_rows, bear_report = build_bear_bonus_predictions(runtime_truth_rows, runtime_db_rows, target_year, runtime_history_years)
-    bear_rows = _with_run_fields(bear_rows, source_year, target_year, "bonus_bear")
+    bear_rows = _with_run_fields(bear_rows, source_year, output_target_year, "bonus_bear")
     turkey_rows, turkey_report = build_turkey_bonus_predictions(runtime_truth_rows, runtime_db_rows, target_year, runtime_history_years)
-    turkey_rows = _with_run_fields(turkey_rows, source_year, target_year, "bonus_turkey")
+    turkey_rows = _with_run_fields(turkey_rows, source_year, output_target_year, "bonus_turkey")
     if "youth_turkey" in suppressed_runtime_families:
         youth_turkey_rows = []
         youth_turkey_report = {
@@ -2346,9 +2350,9 @@ def run_all_families(
             target_year,
             runtime_history_years,
         )
-        youth_turkey_rows = _with_run_fields(youth_turkey_rows, source_year, target_year, "youth_turkey")
+        youth_turkey_rows = _with_run_fields(youth_turkey_rows, source_year, output_target_year, "youth_turkey")
     youth_rows, youth_report = build_youth_predictions(runtime_truth_rows, runtime_db_rows, target_year, runtime_history_years)
-    youth_rows = _with_run_fields(youth_rows, source_year, target_year, "youth_draw")
+    youth_rows = _with_run_fields(youth_rows, source_year, output_target_year, "youth_draw")
 
     modeled = {
         "bonus_le_big_game": big_game_bonus_rows_by_family["bonus_le_big_game"],
@@ -2366,12 +2370,12 @@ def run_all_families(
     }
     if "youth_turkey" not in suppressed_runtime_families:
         modeled["youth_turkey"] = youth_turkey_rows
-    source_backed_rows_by_family = _source_backed_probability_rows(source_rows, modeled, source_year, target_year)
+    source_backed_rows_by_family = _source_backed_probability_rows(source_rows, modeled, source_year, output_target_year)
     for family, source_backed_rows in source_backed_rows_by_family.items():
         if not source_backed_rows:
             continue
         modeled.setdefault(family, [])
-        modeled[family].extend(_with_run_fields(source_backed_rows, source_year, target_year, family))
+        modeled[family].extend(_with_run_fields(source_backed_rows, source_year, output_target_year, family))
     modeled["preference_antlerless_deer"] = _apply_antlerless_deer_production_calibration(
         modeled["preference_antlerless_deer"],
         enabled=enable_antlerless_deer_calibration,
@@ -2418,6 +2422,8 @@ def run_all_families(
     audit_dir.mkdir(parents=True, exist_ok=True)
     run_metadata = {
         "source_year": source_year,
+        "forecast_draw_year": target_year,
+        "score_target_year": output_target_year,
         "target_year": target_year,
         "truth_path": str(truth_path),
         "first_year_bootstrap": first_year_bootstrap,
@@ -2801,6 +2807,11 @@ def build_parser() -> argparse.ArgumentParser:
         default="current_2026",
         help="Use source_year_proxy for a no-future-authority historical blind forecast.",
     )
+    parser.add_argument(
+        "--score-target-year",
+        type=int,
+        help="Canonical model-target year used only for score-key alignment in a historical draw-year audit.",
+    )
     return parser
 
 
@@ -2815,6 +2826,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         calibration_mode=args.calibration_mode,
         calibrate_family=args.calibrate_family,
         runtime_permit_source=args.runtime_permit_source,
+        score_target_year=args.score_target_year,
     )
     print(result)
     return 0
