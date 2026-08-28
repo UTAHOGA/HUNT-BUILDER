@@ -1,0 +1,315 @@
+{
+  "generated_at_utc": "2026-08-28T05:18:40.366Z",
+  "layout": "UOGA-colored DWR draw-results mirror",
+  "source_directory": "pipeline\\RAW\\hunt_unit_database\\2026\\json\\draw_results\\utahdraws_2026_20260826\\utahdraws_2026\\json",
+  "output_directory": "output\\pdf\\utahdraws-2026-source-records-dwr-layout",
+  "file_count": 30,
+  "totals": {
+    "source_bytes": 12394162,
+    "output_bytes": 9230153,
+    "hunt_records": 1077,
+    "odds_records": 22018
+  },
+  "files": [
+    {
+      "source_file": "2026_antlerless_17_antlerless_deer.json",
+      "source_sha256": "b26f685beb6515e1783990ef3983dbc1f7900c3ecb35ed92510c0325eb5f1253",
+      "source_bytes": 194428,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_antlerless_17_antlerless_deer.pdf",
+      "output_sha256": "5956f48254aa949a02a552bb43996d8599391bbd6b85e8428f2f618a81bb8c49",
+      "output_bytes": 254421,
+      "hunt_records": 22,
+      "odds_records": 332
+    },
+    {
+      "source_file": "2026_antlerless_18_antlerless_elk.json",
+      "source_sha256": "01c420d071cfe8c8c0ed8f19065322c212068474616e4925c56850d5763d2ef4",
+      "source_bytes": 1215416,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_antlerless_18_antlerless_elk.pdf",
+      "output_sha256": "39c2e692492f2cfa73cdce361a870f65ba66e4970ffb6c6a76b5d8c71c9f1582",
+      "output_bytes": 1350385,
+      "hunt_records": 174,
+      "odds_records": 1986
+    },
+    {
+      "source_file": "2026_antlerless_19_antlerless_moose.json",
+      "source_sha256": "fba75e719ce869ab15025b30c871fd283d6874661000cd72cafe6ca05ab2fb3c",
+      "source_bytes": 89259,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_antlerless_19_antlerless_moose.pdf",
+      "output_sha256": "205a45a8a6afa9d8906330d5fdf96401665a88256b18ce00f1069163992de494",
+      "output_bytes": 119740,
+      "hunt_records": 6,
+      "odds_records": 164
+    },
+    {
+      "source_file": "2026_antlerless_20_doe_pronghorn.json",
+      "source_sha256": "21a1cbfcd0b043933e3baa367c3aa557ff12af0e693810d258a1564f194b29eb",
+      "source_bytes": 261082,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_antlerless_20_doe_pronghorn.pdf",
+      "output_sha256": "8d969422a07e0c31e0e575e873f181bb6ec8ba7f35022b72670a06173e3489a6",
+      "output_bytes": 285028,
+      "hunt_records": 26,
+      "odds_records": 458
+    },
+    {
+      "source_file": "2026_antlerless_21_ewe_rocky_mtn_bighorn_sheep.json",
+      "source_sha256": "c7f7f1d125809c93328d6a6f093c7cab6dc9a5784f326da5285162ccd25520bc",
+      "source_bytes": 16539,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_antlerless_21_ewe_rocky_mtn_bighorn_sheep.pdf",
+      "output_sha256": "beba3cfa5b55fe64a0b975e2881990c47d795500e4d45efb029c7da90fa5cb53",
+      "output_bytes": 89780,
+      "hunt_records": 2,
+      "odds_records": 28
+    },
+    {
+      "source_file": "2026_big_game_05_general_season_buck_deer.json",
+      "source_sha256": "5c84470a265bbc741700c17b63decff3274df6a73085f842fdcca2ed125e8d13",
+      "source_bytes": 1022908,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_big_game_05_general_season_buck_deer.pdf",
+      "output_sha256": "2bf34aeef6a5a914eb7a561f2587816e279662aeb02ef6eedf5c2d72f63c0315",
+      "output_bytes": 920845,
+      "hunt_records": 107,
+      "odds_records": 1773
+    },
+    {
+      "source_file": "2026_big_game_06_draw_only_youth_elk.json",
+      "source_sha256": "ac7f9b3a0a047e3eb07a7e82c903c743efa728e066b0b8f749355f88e233391c",
+      "source_bytes": 2464,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_big_game_06_draw_only_youth_elk.pdf",
+      "output_sha256": "6f04a5f3a62b121a90d910671ccfd49aae1b7f0b5bc7dabb893fa69fff90dbe9",
+      "output_bytes": 83985,
+      "hunt_records": 1,
+      "odds_records": 2
+    },
+    {
+      "source_file": "2026_big_game_08_limited_entry_buck_deer.json",
+      "source_sha256": "0d1b8db94317ede6a32495f2b04fb39b62fdf757a1437ff8b2fd6942398010cc",
+      "source_bytes": 2213107,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_big_game_08_limited_entry_buck_deer.pdf",
+      "output_sha256": "d0151bdd6eb8053dc08ad6e9e489f4a4cd940887bdf88120c1da90c7d54644cf",
+      "output_bytes": 1109906,
+      "hunt_records": 193,
+      "odds_records": 3945
+    },
+    {
+      "source_file": "2026_big_game_09_limited_entry_bull_elk.json",
+      "source_sha256": "5e2bcb6f98d313668ef8e893746c1022490180ba554b89862be62cd427641099",
+      "source_bytes": 3491005,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_big_game_09_limited_entry_bull_elk.pdf",
+      "output_sha256": "bb02f812de5920c3b8991af5480e7892583ceff9dfe9349af0ea5b5a1099d8cc",
+      "output_bytes": 1374193,
+      "hunt_records": 210,
+      "odds_records": 6456
+    },
+    {
+      "source_file": "2026_big_game_10_limited_entry_buck_pronghorn.json",
+      "source_sha256": "b9a93d415f08c6b6157fd2f5bb60344e70add5bfa0f45d5576d3193e7de318f2",
+      "source_bytes": 848921,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_big_game_10_limited_entry_buck_pronghorn.pdf",
+      "output_sha256": "e7b3eb979482b19169be1a90735b0353f97b427ab87926ce69c667b5f10de27a",
+      "output_bytes": 513887,
+      "hunt_records": 88,
+      "odds_records": 1477
+    },
+    {
+      "source_file": "2026_big_game_11_bull_moose.json",
+      "source_sha256": "22d203440fa1c6a36f50b4b4e1121d284fbfe6fe4145dcc8f3da118141f9d7cf",
+      "source_bytes": 495426,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_big_game_11_bull_moose.pdf",
+      "output_sha256": "eb157cc864a8e37a3484fc30c7dbbfa1abcf6732367aa44806e42f0dccd2e824",
+      "output_bytes": 279273,
+      "hunt_records": 27,
+      "odds_records": 927
+    },
+    {
+      "source_file": "2026_big_game_12_bison.json",
+      "source_sha256": "0879bc85bd6571430940689e5cb55dcaec8e45c2955c1aa1d92d35217f8b0472",
+      "source_bytes": 309347,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_big_game_12_bison.pdf",
+      "output_sha256": "7fbcc9f434b04887b04b7261baf57935f1e41b5ca6a3cd159435522ba6b3f94f",
+      "output_bytes": 200064,
+      "hunt_records": 17,
+      "odds_records": 578
+    },
+    {
+      "source_file": "2026_big_game_13_desert_bighorn_sheep.json",
+      "source_sha256": "d2dafb2f3f27690a096091c7b1951cd78abfce6d09b5030399ea7a5d9ea63e9e",
+      "source_bytes": 385844,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_big_game_13_desert_bighorn_sheep.pdf",
+      "output_sha256": "f65fae38b8aa5ea24c49f31a9ea631084343abf98c9d525fdeec79fc1bb3c507",
+      "output_bytes": 222548,
+      "hunt_records": 19,
+      "odds_records": 727
+    },
+    {
+      "source_file": "2026_big_game_14_rocky_mtn_bighorn_sheep.json",
+      "source_sha256": "497c28c3efd0760aa1a0bd0315e7c4f04715bce586042f78a370f30602a3e998",
+      "source_bytes": 286816,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_big_game_14_rocky_mtn_bighorn_sheep.pdf",
+      "output_sha256": "15257f6d016cb3bb1eaa8e3a051de14c3916f4c12196a05e0e2d493d801824ea",
+      "output_bytes": 192545,
+      "hunt_records": 16,
+      "odds_records": 535
+    },
+    {
+      "source_file": "2026_big_game_15_mountain_goat.json",
+      "source_sha256": "f40532aeee93db1df005d8e117a500d676cc98a803171d7681b759824aade1ab",
+      "source_bytes": 312434,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_big_game_15_mountain_goat.pdf",
+      "output_sha256": "cc97a133b178a4884a47c871c08e114d836ffb9357128c5db8a828efb731692e",
+      "output_bytes": 202673,
+      "hunt_records": 18,
+      "odds_records": 582
+    },
+    {
+      "source_file": "2026_big_game_32_dedicated_hunter_buck_deer.json",
+      "source_sha256": "b5d1532c39c48cb2abc8dd52f1b52902514a2a2615f8e08f904eb5ed953952a4",
+      "source_bytes": 192918,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_big_game_32_dedicated_hunter_buck_deer.pdf",
+      "output_sha256": "e7a7a18723f14550be8deb229716c2b486a4031cc742fc735534478783c69dd5",
+      "output_bytes": 300882,
+      "hunt_records": 32,
+      "odds_records": 301
+    },
+    {
+      "source_file": "2026_black_bear_01_black_bear.json",
+      "source_sha256": "eb7f3f52e86a3c12ceb5a5643fa50ed1cae162952fdc0185f21761de597acb69",
+      "source_bytes": 867197,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_black_bear_01_black_bear.pdf",
+      "output_sha256": "5ee61870de697451788abb35cf5eef7fd18a79c93c00ef7a5d50c18972af7d52",
+      "output_bytes": 551088,
+      "hunt_records": 91,
+      "odds_records": 1461
+    },
+    {
+      "source_file": "2026_black_bear_16_black_bear_restricted_pursuit.json",
+      "source_sha256": "4fb426ef7dfa61360e8fef8914a51823d5cb13ac1a0fd7d367451112efe7e7a8",
+      "source_bytes": 57397,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_black_bear_16_black_bear_restricted_pursuit.pdf",
+      "output_sha256": "a5ac5fc93dd43ab76f29ac433c7c1d21cbe86c846d9ebe61806e31a38c715241",
+      "output_bytes": 121322,
+      "hunt_records": 10,
+      "odds_records": 89
+    },
+    {
+      "source_file": "2026_sportsman_22_sportsman_deer.json",
+      "source_sha256": "9c4dff0a89a8f506f823dff136f20186da3f0a821ecb74586913835dfbd7b5f4",
+      "source_bytes": 2099,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_sportsman_22_sportsman_deer.pdf",
+      "output_sha256": "d0730d22aca172572566ff26e880e8ad12aeb35701555df85cab9491f0196bd9",
+      "output_bytes": 83033,
+      "hunt_records": 1,
+      "odds_records": 1
+    },
+    {
+      "source_file": "2026_sportsman_23_sportsman_elk.json",
+      "source_sha256": "4e69e53215ce49034b4a6810e5a063ece3222f564449f3f799e7e16819fcd666",
+      "source_bytes": 2097,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_sportsman_23_sportsman_elk.pdf",
+      "output_sha256": "9d9f652a0bc13df834482cf71758b629948556610ac8471627bd1e5145dc3d09",
+      "output_bytes": 80878,
+      "hunt_records": 1,
+      "odds_records": 1
+    },
+    {
+      "source_file": "2026_sportsman_24_sportsman_pronghorn.json",
+      "source_sha256": "118f29aef5c84073aa0e3db46d3833baffc63060bf0e4bd9da907cf4c8d8b51c",
+      "source_bytes": 2108,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_sportsman_24_sportsman_pronghorn.pdf",
+      "output_sha256": "69a0f544e352cc8a83a98b88e6f94140dce7f20c613742c05370506d36463a91",
+      "output_bytes": 82005,
+      "hunt_records": 1,
+      "odds_records": 1
+    },
+    {
+      "source_file": "2026_sportsman_25_sportsman_moose.json",
+      "source_sha256": "7c51422fdb1e35e01e432a3e3808e376dd6f0c5e5ea24b37a2d9d50e2cc0e0ca",
+      "source_bytes": 1914,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_sportsman_25_sportsman_moose.pdf",
+      "output_sha256": "69d700f592c4fdd2ef86af80b5b48baef12a01ec3b8409eb92a52861fa4b9337",
+      "output_bytes": 81688,
+      "hunt_records": 1,
+      "odds_records": 1
+    },
+    {
+      "source_file": "2026_sportsman_26_sportsman_bison.json",
+      "source_sha256": "d8a9ceb3d1396884d9133cb385238dbb7f64e3fdec22aa48bfdbac6eb96811f0",
+      "source_bytes": 1904,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_sportsman_26_sportsman_bison.pdf",
+      "output_sha256": "5ef27b9bfcc8c237d68389c1733d9244084cdfd4f5ae06e89658c939df329c00",
+      "output_bytes": 82353,
+      "hunt_records": 1,
+      "odds_records": 1
+    },
+    {
+      "source_file": "2026_sportsman_27_sportsman_rocky_mtn_bighorn_sheep.json",
+      "source_sha256": "8199e115f56ee0b89a751a0bae3a3019a5cf35ba92d84469427f013cca6e4f42",
+      "source_bytes": 1945,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_sportsman_27_sportsman_rocky_mtn_bighorn_sheep.pdf",
+      "output_sha256": "e8c40a72a11cbf0e08faddb1d6724b05e647caa62b7666c29bd25a074ce9fd90",
+      "output_bytes": 81719,
+      "hunt_records": 1,
+      "odds_records": 1
+    },
+    {
+      "source_file": "2026_sportsman_28_sportsman_desert_bighorn_sheep.json",
+      "source_sha256": "0bac5c5a930cdc1f3571cb337b14af15c8884435dcca60dcdbf5e8d1277642cd",
+      "source_bytes": 1934,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_sportsman_28_sportsman_desert_bighorn_sheep.pdf",
+      "output_sha256": "f8d8d2543c3f2e99a3402dc872b86726a6b2d9662b35959948859b2de317fa1d",
+      "output_bytes": 81309,
+      "hunt_records": 1,
+      "odds_records": 1
+    },
+    {
+      "source_file": "2026_sportsman_29_sportsman_mountain_goat.json",
+      "source_sha256": "577b1c26c7d916a042478fe7258015b7a29d2a0e54dfb964869d5a467ee2d0ad",
+      "source_bytes": 1920,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_sportsman_29_sportsman_mountain_goat.pdf",
+      "output_sha256": "3fa8dc8708deb589bfa91d44fb7ee3c8e510aada73895c98066721a7b97646e2",
+      "output_bytes": 81764,
+      "hunt_records": 1,
+      "odds_records": 1
+    },
+    {
+      "source_file": "2026_sportsman_30_sportsman_black_bear.json",
+      "source_sha256": "ef9d621ea67317efd7775fbe46e7efb536da074395b455fdf0978c4a18a483c8",
+      "source_bytes": 1913,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_sportsman_30_sportsman_black_bear.pdf",
+      "output_sha256": "34ebe34e04bf2048430896c7abedf0a7ccf9fd9bcd3275e5eb47c7b8ffe44328",
+      "output_bytes": 82177,
+      "hunt_records": 1,
+      "odds_records": 1
+    },
+    {
+      "source_file": "2026_sportsman_31_sportsman_turkey.json",
+      "source_sha256": "85aae781d2b9641acbd55914215f02f20ec8beea22e859d3d2a46b19f3b4896a",
+      "source_bytes": 1925,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_sportsman_31_sportsman_turkey.pdf",
+      "output_sha256": "78044d0ea751df7bc43c2414eb637753a2603e8cba768a150d42348479207d19",
+      "output_bytes": 82118,
+      "hunt_records": 1,
+      "odds_records": 1
+    },
+    {
+      "source_file": "2026_turkey_03_turkey.json",
+      "source_sha256": "f94377519eb2f46f7749d6a4331bf95f9af7946ef6dacb6ff33b5c1e6c69f555",
+      "source_bytes": 103556,
+      "output_file": "UOGA_UTAH_DRAWS_2026_2026_turkey_03_turkey.pdf",
+      "output_sha256": "0b7df8ee58ebeeac92b6cbfd46b09ff7ad7eec9f767ce47d22a4b6c070965c2d",
+      "output_bytes": 152035,
+      "hunt_records": 8,
+      "odds_records": 187
+    },
+    {
+      "source_file": "draw_odds_supplement_data.json",
+      "source_sha256": "93af94272cba6b2e09646c3afdd7758a8b6d1d68e98284512290bbb0ff7e9b67",
+      "source_bytes": 8339,
+      "output_file": "UOGA_UTAH_DRAWS_2026_draw_odds_supplement_data.pdf",
+      "output_sha256": "34fae4c04eed014ab1e07ee7205b065b0496f084225c9f34a838d46c6852c775",
+      "output_bytes": 86509,
+      "hunt_records": 0,
+      "odds_records": 0
+    }
+  ]
+}

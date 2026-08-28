@@ -19275,3 +19275,32 @@ Production state:
 - Rebuilt `draw_results_long.csv` from all nine annual canonical files after the repair. It remains `309,562` rows and dry-run reproduction matches the rebuilt SHA-256 `8eca055a8e5c8168b170008524934ae28ca8c81d6152b49c7c12c4162f3c837e`.
 - Extended the canonical-parent mapping audit so physical PDF-parent retention and scoring eligibility are reported separately. The 14 unrecovered 2026 PDF parent scopes are still transparent; twelve are non-scoring structural ladders, Dedicated Hunter has value parity for every scorable row, and General-Season Deer has value parity with the two source-dimension exclusions above.
 - No prediction artifact, R2 object, website file, deployment, Git staging, commit, or push was performed. The deterministic residency repair and a fresh engine/backtest run remain deferred until the remaining historical parent-scope and two-row source-dimension work is resolved or formally excluded.
+
+## 2026-08-28 - Retained UtahDraws and DWR Hunt Planner evidence classification
+
+- Verified the two complete local 2026 captures that anchor current source lineage: the UtahDraws draw-odds endpoint snapshot contains 29 retained draw packages, 1,077 returned hunt codes, and 22,018 point/residency outcome rows; the DWR Hunt Planner matrix and popup capture contain all 30 advertised matrix pulls and all 1,433 returned public hunt-code payloads.
+- Extended `scripts/audit_canonical_parent_source_mapping.py` so it no longer mislabels raw source captures as ambiguous PDF parents. It now distinguishes archived PDF parents, retained hunt/residency/point-matched UtahDraws endpoint packages, and exact retained DWR Hunt Planner matrix/popup evidence.
+- The refreshed mapping links 160 historical scopes to archived PDF parents, 11 2026 endpoint-display scopes to retained UtahDraws evidence (one has only a non-scoring duplicate-dimension ambiguity), and 6 current Planner source scopes to the retained Planner JSON capture. No canonical values were changed.
+- Checked the remaining 2025 Sportsman parent gap against local Git history and the current official DWR report page. The recovered historical blob was a 2024 report despite its former 2025 folder placement and did not match the canonical 2025 rows, so it is explicitly named `INVALID_2024_REPORT_RECOVERED_FROM_GIT_HISTORY__DO_NOT_USE.pdf` and is not cataloged or used. The true 2025 Sportsman source remains a recovery requirement; it is not silently treated as resolved.
+- Re-ran the two exact 2026 outcome-parity audits and the source-parent mapping audit. Project-memory validation passes. No prediction artifact, R2 object, website deployment, Git stage, commit, or push was performed.
+
+## 2026-08-28 - Utah Source Records printable PDF library
+
+- Added `scripts/build-utah-source-record-pdfs.js` and generated five printable PDFs from the authoritative Utah draw-source records: hard-data/runtime lineage, draw-design baseline, official-table schema, yearly source policy, and rules sources.
+- The exports use the preserved warm brown, cream, and orange field-sheet visual system from the existing formatted 2026 hunt-table PDFs, so they read as part of the Hunt Builder document family rather than a separate design experiment.
+- Rendered and visually checked all 14 PDF pages, including the wide official design matrix, source-policy content, and print footers. The output library is local at `output/pdf/utah-source-records/` and is not included in Git or deployed to the website.
+- The former `pages-dist/research_page/pdfs` verification/rotation render directory was removed in historical cleanup; the actual formatted hunt-table PDF library remains locally retained. No source truth data, runtime artifact, R2 object, website deployment, Git staging, commit, or push was performed.
+
+## 2026-08-28 - UtahDraws 2026 raw JSON source-record PDF conversion
+
+- Added `scripts/build-utahdraws-2026-source-record-pdfs.js` to render the exact retained UtahDraws 2026 endpoint capture from `pipeline/RAW/hunt_unit_database/2026/json/draw_results/utahdraws_2026_20260826/utahdraws_2026/json/` as one U.O.G.A.-styled printable PDF per JSON source file.
+- Generated 30 local PDFs under `output/pdf/utahdraws-2026-source-records/`, plus a hash manifest. Together they represent all 1,077 source hunt records and all 22,018 published point/residency odds rows; the renderer preserves source order, quota fields, season/weapon fields, and every odds row.
+- Verified all 30 output hashes against the generated manifest and visually checked first-page and deep-interior pages from the 382-page limited-entry bull-elk record, the black-bear record, and the three-page supplemental endpoint record. The underlying JSON remains the immutable source record, identified in each PDF by its source path and SHA-256.
+- The output is a local, derived presentation library only. No raw source JSON, canonical truth, prediction artifact, R2 object, website deployment, Git staging, commit, or push was performed.
+
+## 2026-08-28 - UtahDraws draw-results mirror layout
+
+- Rebuilt the UtahDraws JSON PDF renderer after reviewing the 2025 official DWR limited-entry and once-in-a-lifetime draw-results PDF. The final output mirrors its visitor-research layout: one hunt per letter-size page, paired resident/nonresident applicant ladders, descending point rows, max-point and regular permit columns, totals, and success ratios.
+- Replaced the visual treatment only: the replica uses U.O.G.A.'s brown, cream, and orange palette and U.O.G.A. Hunt Builder wordmark rather than DWR branding. The source rows, residency lanes, adult/youth separation, and calculated display totals remain derived strictly from the retained UtahDraws JSON records.
+- Generated the definitive 30-file library at `output/pdf/utahdraws-2026-source-records-dwr-layout/` with its hash manifest. Verified all 30 output hashes and visually checked first and interior pages, including page 120 of the 210-page Limited-Entry Bull Elk report after correcting a page-break layout issue.
+- The former field-sheet conversion folder remains a local earlier presentation copy; the `-dwr-layout` directory is the approved visitor-facing design. No raw source JSON, canonical truth, prediction artifact, R2 object, website deployment, Git staging, commit, or push was performed.
