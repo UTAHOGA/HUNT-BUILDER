@@ -178,29 +178,62 @@ def source_hash(path: Path) -> str:
     return digest.hexdigest()
 
 
+CODE_PREFIX_SPECIES = {
+    "BI": "Bison",
+    "BR": "Black Bear",
+    "CG": "Cougar",
+    "DA": "Deer",
+    "DB": "Deer",
+    "DS": "Desert Bighorn Sheep",
+    "EA": "Elk",
+    "EB": "Elk",
+    "GO": "Mountain Goat",
+    "MA": "Moose",
+    "MB": "Moose",
+    "PB": "Pronghorn",
+    "PD": "Pronghorn",
+    "RS": "Rocky Mountain Bighorn Sheep",
+    "TK": "Turkey",
+}
+
+
 def species_for(code: str, name: str) -> str:
-    text = f"{code} {name}".upper()
-    if code.startswith("BI") or "BISON" in text:
+    """Return source species from the official code before using name text.
+
+    Utah unit names legitimately contain animal words (for example Bear
+    Mountain, Bear River, and Elk Ridge).  Those location terms cannot change
+    an official ``DA`` deer or ``EA`` elk code into Black Bear.  Name matching
+    remains only as a fallback for a source row whose code is absent or not in
+    the documented prefix vocabulary.
+    """
+
+    normalized_code = clean(code).upper()
+    from_prefix = CODE_PREFIX_SPECIES.get(normalized_code[:2])
+    if from_prefix:
+        return from_prefix
+
+    text = f"{normalized_code} {name}".upper()
+    if "BISON" in text:
         return "Bison"
-    if code.startswith("BR") or "BEAR" in text:
+    if "BLACK BEAR" in text or "BEAR" in text:
         return "Black Bear"
-    if code.startswith("CG") or "COUGAR" in text:
+    if "COUGAR" in text:
         return "Cougar"
-    if code.startswith("TK") or "TURKEY" in text:
+    if "TURKEY" in text:
         return "Turkey"
-    if code.startswith("GO") or "GOAT" in text:
+    if "GOAT" in text:
         return "Mountain Goat"
-    if code.startswith("MB") or "MOOSE" in text:
+    if "MOOSE" in text:
         return "Moose"
-    if code.startswith("DS") or "DESERT BIGHORN" in text:
+    if "DESERT BIGHORN" in text:
         return "Desert Bighorn Sheep"
-    if code.startswith("RS") or "ROCKY" in text and "SHEEP" in text:
+    if "ROCKY" in text and "SHEEP" in text:
         return "Rocky Mountain Bighorn Sheep"
-    if code.startswith(("PB", "PD")) or "PRONGHORN" in text:
+    if "PRONGHORN" in text:
         return "Pronghorn"
-    if code.startswith(("EB", "EA")) or "ELK" in text:
+    if "ELK" in text:
         return "Elk"
-    if code.startswith(("DB", "DA")) or "DEER" in text:
+    if "DEER" in text:
         return "Deer"
     return "Unknown"
 
@@ -535,7 +568,10 @@ def main() -> int:
     if unparsed or duplicate_count:
         print(json.dumps(summary, indent=2))
         return 1
-    if args.write:
+    # ``--output-dir`` is an audit candidate, not a request to silently drop
+    # the reconstructed rows.  It must always receive the extracted CSV while
+    # leaving the canonical untouched unless ``--write`` was explicitly used.
+    if args.write or args.output_dir:
         write_csv(CANONICAL, rows, HEADER)
     print(json.dumps(summary, indent=2))
     return 0

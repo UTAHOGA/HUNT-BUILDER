@@ -17,6 +17,17 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 
+# The legacy canonical keeps some older Black Bear rows under a generic or
+# reference-only design label even though the retained DWR PDF page identifies
+# the actual program. These fields preserve that page-level identity only on
+# this audit projection; they do not alter canonical source truth.
+HISTORICAL_BEAR_IDENTITY_FIELDS = [
+    "bear_source_classification",
+    "bear_source_identity_source",
+    "bear_source_identity_file",
+]
+
+
 def clean(value: object) -> str:
     return "" if value is None else str(value).strip()
 
@@ -74,10 +85,19 @@ def project(
     lane_rows: list[dict[str, str]],
     through_year: int | None,
 ) -> tuple[list[dict[str, str]], dict[str, object]]:
+    # A source-side blind fold must not merely ignore later Bear lanes; it must
+    # not carry later official rows in the file passed to the engine at all.
+    # Target-side callers pass their one frozen target canonical instead.
+    source_rows = [
+        row
+        for row in rows
+        if through_year is None or actual_year(row) == 0 or actual_year(row) <= through_year
+    ]
+    input_years = {actual_year(row) for row in source_rows if actual_year(row) > 0}
     lanes: dict[tuple[int, str, int], list[dict[str, str]]] = defaultdict(list)
     for lane in lane_rows:
         year = integer(lane.get("reported_draw_year"))
-        if through_year is not None and year > through_year:
+        if (through_year is not None and year > through_year) or year not in input_years:
             continue
         code, points = clean(lane.get("hunt_code")).upper(), integer(lane.get("points"))
         if code and clean(lane.get("residency")) in {"Resident", "Nonresident"}:
@@ -89,7 +109,7 @@ def project(
     codes = {code for _, code, _ in lanes}
     parents = {
         (actual_year(row), clean(row.get("hunt_code")).upper(), integer(row.get("points"))): row
-        for row in rows
+        for row in source_rows
         if is_bear_point(row, years)
     }
     if set(lanes) != set(parents):
@@ -98,7 +118,7 @@ def project(
             f"missing_parent={len(set(lanes) - set(parents))}, missing_lane={len(set(parents) - set(lanes))}"
         )
 
-    output = [row for row in rows if not is_bear_point(row, years) and not is_bear_hunt_total(row, years, codes)]
+    output = [row for row in source_rows if not is_bear_point(row, years) and not is_bear_hunt_total(row, years, codes)]
     for key in sorted(lanes):
         parent = parents[key]
         for lane in sorted(lanes[key], key=lambda row: clean(row["residency"])):
@@ -122,10 +142,14 @@ def project(
                     "p_draw_percent": "" if not probability else f"{float(probability) * 100:.8f}".rstrip("0").rstrip("."),
                     "source_file": clean(lane["source_file"]),
                     "source_path": clean(lane["source_file"]),
+                    "hunt_name": clean(lane["hunt_name"]),
                     "pdf_page": clean(lane["page_number"]),
                     "official_page": clean(lane["page_number"]),
                     "qa_status": "OFFICIAL_PDF_RESIDENCY_LANE_PROJECTED",
                     "notes": "Read-only audit projection from retained official Black Bear PDF residency ladder.",
+                    "bear_source_classification": clean(lane["source_classification"]),
+                    "bear_source_identity_source": "RETAINED_OFFICIAL_BLACK_BEAR_PDF",
+                    "bear_source_identity_file": clean(lane["source_file"]),
                 }
             )
             output.append(item)
@@ -134,7 +158,8 @@ def project(
         "official_lane_point_keys": len(lanes),
         "official_lane_rows": sum(len(value) for value in lanes.values()),
         "replaced_combined_bear_point_rows": len(parents),
-        "removed_combined_bear_hunt_totals": sum(1 for row in rows if is_bear_hunt_total(row, years, codes)),
+        "removed_combined_bear_hunt_totals": sum(1 for row in source_rows if is_bear_hunt_total(row, years, codes)),
+        "later_rows_excluded": len(rows) - len(source_rows),
         "projected_years": sorted(years),
         "projected_codes": len(codes),
     }
@@ -150,9 +175,13 @@ def main() -> int:
     fields, rows = read_csv(args.input)
     _, lane_rows = read_csv(args.official_lanes)
     projected, counts = project(rows, lane_rows, args.through_year)
+    output_fields = [*fields]
+    for field in HISTORICAL_BEAR_IDENTITY_FIELDS:
+        if field not in output_fields:
+            output_fields.append(field)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="ignore", lineterminator="\n")
+        writer = csv.DictWriter(handle, fieldnames=output_fields, extrasaction="ignore", lineterminator="\n")
         writer.writeheader()
         writer.writerows(projected)
     manifest = {

@@ -717,6 +717,12 @@ def family_from_actual(row: Mapping[str, Any]) -> str:
         return "bonus_oil_big_game"
     if draw_design == "BONUS_TURKEY" or draw_system_type == "BONUS_TURKEY":
         return "bonus_turkey"
+    # A CWMU antlerless hunt can use a DA/EA/DB/EB code prefix.  The explicit
+    # official CWMU draw-system field controls before those species prefixes;
+    # otherwise a valid public CWMU bonus lane is incorrectly scored as a
+    # regular preference or limited-entry lane and appears to have no forecast.
+    if draw_design == "BONUS_CWMU_BIG_GAME" or draw_system_type == "BONUS_CWMU_BIG_GAME" or "CWMU" in source_text:
+        return "bonus_cwmu_big_game"
     if draw_design == "COUGAR_LICENSE_BASED" or draw_system_type == "COUGAR_LICENSE_BASED":
         return "cougar"
     if "DEDICATED" in source_text or hunt_code.startswith("DB17"):
@@ -745,6 +751,7 @@ def structural_draw_design(family: str, raw_design: Any) -> str:
         "bonus_le_big_game": "BONUS_LE_BIG_GAME",
         "bonus_ple_big_game": "BONUS_PLE_BIG_GAME",
         "bonus_oil_big_game": "BONUS_OIL_BIG_GAME",
+        "bonus_cwmu_big_game": "BONUS_CWMU_BIG_GAME",
         "bonus_bear": "BEAR_DRAW",
         "bonus_turkey": "BONUS_TURKEY",
         "preference_general_deer": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
@@ -782,13 +789,19 @@ def actual_residencies(row: Mapping[str, Any], family: str) -> list[str]:
     explicit = norm_residency(row.get("residency"))
     if explicit in {"Resident", "Nonresident", "All"}:
         return [explicit]
+    has_resident_lane = bool(clean(row.get("resident_eligible_applicants")) or clean(row.get("resident_p_draw")))
+    has_nonresident_lane = bool(clean(row.get("nonresident_eligible_applicants")) or clean(row.get("nonresident_p_draw")))
     metric_scope = clean(row.get("metric_scope")).lower()
-    if family != "sportsman" and metric_scope == "total":
+    # Canonical DWR table rows legitimately carry a total metric scope while
+    # retaining both residency columns. Those are two official draw lanes for
+    # scoring, not one synthetic "All" lane. Reserve total-only handling for
+    # rows that actually lack side-specific source values.
+    if family != "sportsman" and metric_scope == "total" and not (has_resident_lane or has_nonresident_lane):
         return ["All"]
     residencies: list[str] = []
-    if clean(row.get("resident_eligible_applicants")) != "" or clean(row.get("resident_p_draw")) != "" or family == "sportsman":
+    if has_resident_lane or family == "sportsman":
         residencies.append("Resident")
-    if clean(row.get("nonresident_eligible_applicants")) != "" or clean(row.get("nonresident_p_draw")) != "":
+    if has_nonresident_lane:
         residencies.append("Nonresident")
     if not residencies and (clean(row.get("total_eligible_applicants")) != "" or clean(row.get("total_p_draw")) != ""):
         residencies.append("All")
@@ -943,6 +956,24 @@ def prediction_probability(row: Mapping[str, Any]) -> tuple[float | None, str]:
         if probability is not None:
             return probability, field
     return None, ""
+
+
+def intentionally_blocked_copied_guarantee(prediction: Mapping[str, Any] | None) -> bool:
+    """Recognize the explicit no-copy guarantee safeguard as an exclusion.
+
+    A previous source-year 100% outcome is not a valid following-year
+    guarantee. These rows are deliberately emitted without a probability and
+    must not be misreported as an engine coverage failure.
+    """
+    if not prediction:
+        return False
+    row = prediction.get("row", prediction)
+    status = clean(row.get("algorithm_status")).upper()
+    reasons = clean(row.get("reason_codes")).upper()
+    return (
+        status == "NOT_SCORED_SOURCE_ROLL_FORWARD_GUARANTEE_BLOCKED"
+        or "SOURCE_BACKED_PUBLISHED_POINT_PROBABILITY_ROLL_FORWARD_GUARANTEE_BLOCKED" in reasons
+    )
 
 
 def prediction_alignment_key(row: Mapping[str, Any]) -> tuple[str, str, str, str, str, str]:
@@ -1277,8 +1308,12 @@ def actual_ladder_rows(
                 decision = "missing_prediction_for_scoreable_actual_ladder_row"
                 scoreability_status = "possible_missing_prediction"
             elif predicted_probability is None:
-                decision = "do_not_score_missing_prediction_probability"
-                scoreability_status = "possible_missing_prediction_probability"
+                if intentionally_blocked_copied_guarantee(prediction):
+                    decision = "do_not_score_intentionally_blocked_copied_guarantee"
+                    scoreability_status = "intentionally_excluded_copied_guarantee"
+                else:
+                    decision = "do_not_score_missing_prediction_probability"
+                    scoreability_status = "possible_missing_prediction_probability"
 
             error = None
             family_key = actual.family or "(unknown)"
@@ -1647,13 +1682,13 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     weights_by_family: defaultdict[str, float] = defaultdict(float)
 
     for row_number, prediction in enumerate(prediction_rows, start=2):
-        family = family_from_prediction(prediction)
-        draw_design_key = prediction_draw_design(prediction, family)
-        draw_pool_key = prediction_draw_pool(prediction, family)
+        # Use the same canonical key adapter that the coverage diagnostics and
+        # unit tests use. Applying raw prediction draw_pool values here made a
+        # valid LE/OIL forecast (`limited_entry_deer`) fail to join the
+        # canonical equivalent (`max_weighted_split`) even though the engine
+        # and source truth agreed on hunt, lane, and point rung.
+        draw_design_key, draw_pool_key, hunt_code, residency, points, family = prediction_alignment_key(prediction)
         hunt_code_resolution = resolve_hunt_code(prediction.get("hunt_code"))
-        hunt_code = hunt_code_resolution.join_code
-        residency = prediction_residency(prediction)
-        points = "" if family == "sportsman" else norm_points(prediction.get("points"))
         ladder = (
             ladders.get((draw_design_key, draw_pool_key, hunt_code, residency))
             if draw_design_key and draw_pool_key and hunt_code and residency

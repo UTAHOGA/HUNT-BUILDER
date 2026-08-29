@@ -4,6 +4,7 @@ import csv
 import json
 from pathlib import Path
 
+from scripts.extract_2020_draw_results_from_pdfs import species_for
 
 ROOT = Path(__file__).resolve().parents[2]
 CANONICAL = (
@@ -99,3 +100,12 @@ def test_2018_legacy_layout_is_canonicalized_with_complete_lineage() -> None:
     ]
     assert len(bear_points) == 1820
     assert {row["source_file"] for row in bear_points} == {"official_dwr_archive/black_bear/18_drawing_odds.pdf"}
+
+
+def test_official_hunt_code_prefix_controls_species_over_unit_name() -> None:
+    """Place names such as Bear Mountain/River must not reclassify game species."""
+
+    assert species_for("DA1001", "Antlerless Deer - Box Elder, West Bear River") == "Deer"
+    assert species_for("EA1120", "CWMU Antlerless Elk - Bear Mountain") == "Elk"
+    assert species_for("MB6011", "Elk Ridge Moose") == "Moose"
+    assert species_for("BR7004", "Manti South/San Rafael North") == "Black Bear"

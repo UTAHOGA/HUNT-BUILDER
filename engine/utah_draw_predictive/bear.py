@@ -70,6 +70,11 @@ UNLIMITED_PURSUIT_PERMIT = "UNLIMITED_PURSUIT_PERMIT"
 CONSERVATION_OR_NON_PUBLIC = "CONSERVATION_OR_NON_PUBLIC"
 UNKNOWN_BEAR_SUBTYPE = "UNKNOWN_BEAR_SUBTYPE"
 
+HISTORICAL_BEAR_PDF_CLASSIFICATIONS = {
+    "TRUE_BEAR_BONUS_DRAW",
+    "BEAR_PURSUIT_BONUS_DRAW",
+}
+
 MODELED_BEAR_SUBTYPES = {LIMITED_ENTRY_BEAR_HUNT, RESTRICTED_BEAR_PURSUIT}
 EXCLUDED_BEAR_SUBTYPES = {
     HARVEST_OBJECTIVE_AVAILABILITY,
@@ -257,6 +262,32 @@ def official_bear_pursuit_hunt_codes() -> set[str]:
     }
 
 
+def _historical_bear_pdf_classification(row: Mapping[str, object]) -> str:
+    """Use retained-PDF identity only for an explicit audit lane projection.
+
+    Some 2018-2020 canonical rows preserve a generic legacy draw label even
+    though the retained official Black Bear PDF page identifies the program.
+    The residency-lane audit projection carries that exact page classification
+    forward in dedicated fields. Do not infer it from a code prefix, permit
+    count, or generic legacy draw label.
+    """
+
+    classification = _clean(row.get("bear_source_classification")).upper()
+    source = _clean(row.get("bear_source_identity_source")).upper()
+    source_file = _clean_lower(row.get("bear_source_identity_file") or row.get("source_file")).replace("\\", "/")
+    qa_status = _clean(row.get("qa_status")).upper()
+    hunt_code = _clean(row.get("hunt_code")).upper()
+    if (
+        classification not in HISTORICAL_BEAR_PDF_CLASSIFICATIONS
+        or source != "RETAINED_OFFICIAL_BLACK_BEAR_PDF"
+        or not hunt_code.startswith("BR")
+        or "/official_dwr_archive/black_bear/" not in f"/{source_file.lstrip('/')}"
+        or qa_status != "OFFICIAL_PDF_RESIDENCY_LANE_PROJECTED"
+    ):
+        return ""
+    return classification
+
+
 def classify_bear_subtype_before_source_correction(row: Mapping[str, object]) -> str:
     if not is_bear_row(row):
         return UNKNOWN_BEAR_SUBTYPE
@@ -322,6 +353,11 @@ def classify_bear_subtype(row: Mapping[str, object]) -> str:
         return CONSERVATION_OR_NON_PUBLIC
     if "harvest objective" in text:
         return HARVEST_OBJECTIVE_AVAILABILITY
+    historical_pdf_classification = _historical_bear_pdf_classification(row)
+    if historical_pdf_classification == "BEAR_PURSUIT_BONUS_DRAW":
+        return RESTRICTED_BEAR_PURSUIT
+    if historical_pdf_classification == "TRUE_BEAR_BONUS_DRAW":
+        return LIMITED_ENTRY_BEAR_HUNT
     if hunt_code in official_pursuit_codes:
         return RESTRICTED_BEAR_PURSUIT
     if hunt_code in official_draw_codes:
@@ -404,7 +440,8 @@ def _is_proven_bonus_bear_truth_row(row: Mapping[str, object]) -> bool:
         return False
     if classify_bear_subtype(row) not in MODELED_BEAR_SUBTYPES:
         return False
-    if _clean_lower(row.get("draw_pool")) not in {"", "standard", "black_bear", "max_weighted_split"}:
+    historical_pdf_classification = _historical_bear_pdf_classification(row)
+    if not historical_pdf_classification and _clean_lower(row.get("draw_pool")) not in {"", "standard", "black_bear", "max_weighted_split"}:
         return False
     source_file = _clean_lower(row.get("source_file"))
     if source_file in {"database.csv", "sportsman_permit_no_draw_odds"}:

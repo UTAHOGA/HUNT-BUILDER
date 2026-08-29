@@ -49,8 +49,8 @@
       },
       {
         "id": "BEAR_LEGACY_COMBINED_RESIDENCY_HISTORY",
-        "status": "2018_2022_SOURCE_SPLIT_PARITY_VALIDATED_SCORER_ADAPTER_PENDING",
-        "detail": "The retained 2018-2022 official bear PDFs have separate resident and nonresident point ladders. The hash-linked extraction recombines exactly for all five canonical years after the 2018 canonical was repaired from its previously omitted official Black Bear report. A paired source-and-held-out source-lane scorer or engine adapter may use only those exact-recombined years, and combined history must never be treated as a resident or nonresident ladder."
+        "status": "2018_2022_SOURCE_LANE_FOLDS_COMPLETE_HISTORICAL_BEAR_CLASSIFIER_REPAIRED_NOT_ACCEPTED",
+        "detail": "The retained 2018-2022 official bear PDFs have separate resident and nonresident point ladders. The hash-linked extraction recombines exactly for all five canonical years after the 2018 canonical was repaired from its previously omitted official Black Bear report. The 2021-to-2022 source-only lane fold found and repaired an audit-only historical-proxy defect that summed broad residency columns from both normalized lane rows, doubling the max/random permit allocation. The repaired 2021-to-2022 deterministic Bear fold has 1,205 applicant-bearing rows, MAE 0.3238575487, and 53 false guarantees. The archived classifier now preserves the retained PDF page classification only on an official residency-lane audit projection, never from a prefix, quota, or generic legacy label. The repaired 2018-to-2019, 2019-to-2020, and 2020-to-2021 folds emit 3,600, 4,464, and 4,176 deterministic Bear rows across 75, 93, and 87 hunt codes. Their held-out scoreable rows/MAE/false guarantees are 31/0.4047964029/0, 1,168/0.3241954934/61, and 1,248/0.3566033402/98. This resolves archive classification coverage, not certification; no high-point demand or retention adjustment is authorized. Combined history must never be treated as a resident or nonresident ladder."
       },
       {
         "id": "SOURCE_BACKED_PROBABILITY_ROLLFORWARD_FALSE_GUARANTEE",

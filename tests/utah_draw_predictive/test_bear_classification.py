@@ -4,6 +4,7 @@ from engine.utah_draw_predictive.bear import (
     BEAR_HISTORY_CODE_ALIASES_2026,
     LIMITED_ENTRY_BEAR_HUNT,
     RESTRICTED_BEAR_PURSUIT,
+    _is_proven_bonus_bear_truth_row,
     classify_bear_subtype,
     is_supported_bear_bonus_row,
     official_bear_draw_odds_hunt_codes,
@@ -98,3 +99,23 @@ def test_2026_lasal_dolores_bear_split_and_successor_codes_are_locked() -> None:
     assert classify_bear_subtype(lasal) == LIMITED_ENTRY_BEAR_HUNT
     assert classify_bear_subtype(dolores) == LIMITED_ENTRY_BEAR_HUNT
     assert BEAR_HISTORY_CODE_ALIASES_2026["BR7022"] != "BR7021"
+
+
+def test_retained_historical_bear_pdf_identity_restores_only_audited_lane_rows() -> None:
+    legacy_lane = {
+        "hunt_code": "BR7002",
+        "species": "Black Bear",
+        "hunt_type": "Bear",
+        "draw_pool": "LIMITED_ENTRY_BEAR_HUNT",
+        "source_file": "pipeline/RAW/hunt_unit_database/2018/pdf/draw_odds/official_dwr_archive/black_bear/18_drawing_odds.pdf",
+        "qa_status": "OFFICIAL_PDF_RESIDENCY_LANE_PROJECTED",
+        "bear_source_classification": "TRUE_BEAR_BONUS_DRAW",
+        "bear_source_identity_source": "RETAINED_OFFICIAL_BLACK_BEAR_PDF",
+        "bear_source_identity_file": "pipeline/RAW/hunt_unit_database/2018/pdf/draw_odds/official_dwr_archive/black_bear/18_drawing_odds.pdf",
+    }
+    assert classify_bear_subtype(legacy_lane) == LIMITED_ENTRY_BEAR_HUNT
+    assert _is_proven_bonus_bear_truth_row(legacy_lane) is True
+
+    unproven_copy = dict(legacy_lane)
+    unproven_copy.pop("bear_source_identity_source")
+    assert _is_proven_bonus_bear_truth_row(unproven_copy) is False

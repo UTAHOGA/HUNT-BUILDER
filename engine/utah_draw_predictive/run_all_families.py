@@ -1842,16 +1842,46 @@ def _historical_source_year_runtime_db_rows(
         ]
         seen_points: set[tuple[str, str]] = set()
         res = nr = total = 0.0
+        has_explicit_residency_lanes = False
         for row in quota_rows:
             point_key = (_clean(row.get("points")), _clean(row.get("residency")).lower())
             if not total_rows and point_key in seen_points:
                 continue
             seen_points.add(point_key)
+            scope = _metric_scope_for_residency(row.get("residency") or row.get("metric_scope"))
+            # A normalized residency-lane row carries its own official permit
+            # outcome in ``total_permits``.  The original broad resident and
+            # nonresident columns remain on both lane rows for lineage, so
+            # summing those columns across both rows doubles the permit pool
+            # before the max-point and random rounds are split.
+            if scope == "resident":
+                has_explicit_residency_lanes = True
+                res += _best_number(
+                    row,
+                    "total_permits",
+                    "total_regular_permits",
+                    "resident_total_permits",
+                    "resident_regular_permits",
+                )
+                continue
+            if scope == "nonresident":
+                has_explicit_residency_lanes = True
+                nr += _best_number(
+                    row,
+                    "total_permits",
+                    "total_regular_permits",
+                    "nonresident_total_permits",
+                    "nonresident_regular_permits",
+                )
+                continue
+
             res += _best_number(row, "resident_total_permits", "resident_regular_permits")
             nr += _best_number(row, "nonresident_total_permits", "nonresident_regular_permits")
             value = _best_number(row, "total_permits", "total_regular_permits")
             total += value if value > 0 else _best_number(row, "resident_total_permits") + _best_number(row, "nonresident_total_permits")
-        if total <= 0:
+        if has_explicit_residency_lanes:
+            total = res + nr
+        elif total <= 0:
             total = res + nr
         if res <= 0 and nr <= 0 and total <= 0:
             continue

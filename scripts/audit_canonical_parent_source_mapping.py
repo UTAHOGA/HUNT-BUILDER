@@ -1,9 +1,10 @@
 """Audit canonical draw-truth source labels against retained parent sources.
 
-This is a lineage audit, not a data rewrite.  A canonical source scope can be
-reported as linked only when it has either an exact retained parent filename or
-one unambiguous, source-title-backed parent report.  Multi-parent and 2026
-endpoint cases remain review records instead of being guessed into a link.
+This is a lineage audit, not a data rewrite. A canonical source scope can be
+reported as linked only when it has either an exact retained parent filename,
+one unambiguous source-title-backed parent report, or endpoint evidence named
+explicitly by the retained 2026 hunt/residency/point audit. Multi-parent cases
+remain review records instead of being guessed into a link.
 """
 
 from __future__ import annotations
@@ -247,20 +248,40 @@ def parity_by_source_label() -> dict[str, list[dict[str, str]]]:
     return grouped
 
 
-def live_endpoint_rows_by_source_label() -> dict[str, list[dict[str, str]]]:
-    """Group exact 2026 endpoint-audit rows by the canonical display label."""
+def endpoint_rows_by_source_label() -> dict[str, list[dict[str, str]]]:
+    """Group retained 2026 endpoint-audit rows by canonical source label.
+
+    The PDF-parity audit includes both scorable outcome rows and structural
+    zero/N-A rows. The latter cannot certify probability, but an explicit
+    `expected_snapshot_source_json_file` is still conclusive parent-source
+    lineage. Do not discard that retained source merely because its row is
+    intentionally unscorable.
+    """
     grouped: dict[str, list[dict[str, str]]] = {}
-    if not LIVE_ENDPOINT_AUDIT.exists():
-        return grouped
-    for row in read_csv(LIVE_ENDPOINT_AUDIT):
-        grouped.setdefault(source_label(clean(row.get("canonical_source_file"))), []).append(row)
+    seen: set[tuple[str, str, str, str, str]] = set()
+    for path in (PDF_PARITY_AUDIT, LIVE_ENDPOINT_AUDIT):
+        if not path.exists():
+            continue
+        for row in read_csv(path):
+            label = source_label(clean(row.get("canonical_source_file")))
+            key = (
+                label,
+                clean(row.get("hunt_code")),
+                clean(row.get("residency")),
+                clean(row.get("points") or row.get("canonical_points")),
+                clean(row.get("expected_snapshot_source_json_file")),
+            )
+            if key in seen:
+                continue
+            seen.add(key)
+            grouped.setdefault(label, []).append(row)
     return grouped
 
 
 def endpoint_parent_candidates(
     label: str,
     archive_sources: list[dict[str, str]],
-    live_rows_by_label: dict[str, list[dict[str, str]]],
+    endpoint_rows_by_label: dict[str, list[dict[str, str]]],
 ) -> tuple[str, list[dict[str, str]], str] | None:
     """Resolve a 2026 display-family label through exact endpoint parity.
 
@@ -268,7 +289,7 @@ def endpoint_parent_candidates(
     The retained source packages are selected only from the hunt/residency/
     point-level audit, never from a loose family-name match.
     """
-    rows = live_rows_by_label.get(source_label(label), [])
+    rows = endpoint_rows_by_label.get(source_label(label), [])
     endpoint_names = {
         clean(row.get("expected_snapshot_source_json_file"))
         for row in rows
@@ -289,9 +310,14 @@ def endpoint_parent_candidates(
         status = "LINKED_RETAINED_2026_ENDPOINT_EVIDENCE_WITH_SCORABLE_EXCLUSIONS"
     elif any(clean(row.get("parity_status")).startswith("AMBIGUOUS_") for row in rows):
         status = "LINKED_RETAINED_2026_ENDPOINT_EVIDENCE_WITH_NONSCORING_AMBIGUITY"
+    elif all(
+        clean(row.get("certification_disposition")) == "UNSCORABLE_NO_APPLICANT_OR_SUCCESS"
+        for row in rows
+    ):
+        status = "LINKED_RETAINED_2026_ENDPOINT_PARENT_NONSCORING"
     else:
         status = "LINKED_RETAINED_2026_ENDPOINT_EVIDENCE"
-    return status, parents, "HUNT_RESIDENCY_POINT_ENDPOINT_VALUE_PARITY"
+    return status, parents, "EXACT_RETAINED_ENDPOINT_PARENT_FROM_HUNT_RESIDENCY_POINT_AUDIT"
 
 
 def scoring_lineage(rows: list[dict[str, str]]) -> tuple[str, str, str, str, str]:
@@ -331,7 +357,7 @@ def main() -> None:
             continue
         by_year.setdefault(year, []).append(row)
     row_level_parity = parity_by_source_label()
-    live_rows_by_label = live_endpoint_rows_by_source_label()
+    endpoint_rows_by_label = endpoint_rows_by_source_label()
     planner_evidence = retained_planner_evidence()
 
     output: list[dict[str, str]] = []
@@ -348,7 +374,7 @@ def main() -> None:
             groups.setdefault(label, []).append(row)
         for label, rows in sorted(groups.items()):
             endpoint_resolution = (
-                endpoint_parent_candidates(label, by_year.get(year, []), live_rows_by_label)
+                endpoint_parent_candidates(label, by_year.get(year, []), endpoint_rows_by_label)
                 if year == 2026
                 else None
             )
