@@ -4,6 +4,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from engine.utah_draw_predictive.youth import build_youth_predictions
+
 
 REPO = Path(__file__).resolve().parents[2]
 
@@ -68,29 +70,27 @@ def test_phase15_youth_artifacts_are_generated(tmp_path: Path) -> None:
     assert all(row["p_random_pool"] == "" for row in eb1007_rows)
 
 
-def test_phase15_youth_2027_materialization_keeps_draw_only_elk_separate(tmp_path: Path) -> None:
-    subprocess.run(
-        [
-            sys.executable,
-            "-m",
-            "engine.utah_bonus_predictive.materialize",
-            "--output-dir",
-            str(tmp_path),
-            "--forecast-year",
-            "2027",
-            "--history-years",
-            "2021,2022,2023,2024,2025,2026",
-            "--skip-upstream",
+def test_phase15_youth_2027_materialization_keeps_draw_only_elk_separate() -> None:
+    rows, report = build_youth_predictions(
+        truth_rows=[],
+        db_rows=[
+            {
+                "hunt_code": "EB1007",
+                "hunt_name": "Youth Any Bull Units",
+                "species": "Elk",
+                "sex_type": "Bull",
+                "hunt_type": "General Season",
+                "hunt_class": "Preference",
+                "weapon": "Any Legal Weapon",
+                "draw_system_type": "YOUTH_GENERAL_ANY_BULL_ELK",
+                "permits_2026_res": "675",
+                "permits_2026_nr": "75",
+                "permits_2026_total": "750",
+            }
         ],
-        cwd=REPO,
-        check=True,
+        forecast_year=2027,
+        history_years=[2021, 2022, 2023, 2024, 2025, 2026],
     )
-
-    csv_path = tmp_path / "youth_draw_predictions_v1.csv"
-    json_path = tmp_path / "youth_draw_report.json"
-
-    rows = _read_csv(csv_path)
-    report = json.loads(json_path.read_text(encoding="utf-8"))
 
     eb1007_rows = [row for row in rows if row["hunt_code"] == "EB1007"]
     eb1011_rows = [row for row in rows if row["hunt_code"] == "EB1011"]

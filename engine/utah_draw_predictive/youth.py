@@ -44,7 +44,7 @@ YOUTH_ELK_MODEL_STRATEGY_NAME = "youth_general_any_bull_elk_random_v1"
 RULE_VERSION = "utah_youth_strategy_phase17_v1.0.0"
 
 YOUTH_ELK_SOURCE_PATH = REPO / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "2026_elk_general_anybull_youth.csv"
-YOUTH_ELK_HISTORY_PATH = REPO / "processed_data" / "eb1007_youth_general_bull_history.csv"
+YOUTH_ELK_HISTORY_PATH = REPO / "data" / "utah" / "youth" / "eb1007_youth_general_bull_history.csv"
 YOUTH_GENERAL_ANY_BULL_ELK_TREND_DAMPING = 0.25
 
 YOUTH_DEER_SOURCE_FILES = {

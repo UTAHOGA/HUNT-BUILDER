@@ -28,7 +28,13 @@ from engine.utah.current_year_allotments import (
     apply_current_year_allotments_to_rows,
     current_year_quota_for_residency,
 )
-from engine.utah_bonus_predictive.cohort_forecast import roll_forward_applicant_stack
+from engine.utah_bonus_predictive.cohort_forecast import (
+    BOOTSTRAP_QUOTA_SCALE_RANGE,
+    BOOTSTRAP_RETENTION_RANGE,
+    BOOTSTRAP_SWITCH_IN_SHARE_RANGE,
+    has_observed_transition,
+    roll_forward_applicant_stack,
+)
 from engine.utah_bonus_predictive.rules import MODEL_VERSION, RULE_VERSION
 from engine.utah_bonus_predictive.split import split_utah_bonus_permits
 
@@ -286,7 +292,16 @@ def conditional_applicant_demand(demand_by_point: Dict[int, int], points: int) -
     return conditioned
 
 
-def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], prediction_year: int, iterations: int, seed: int) -> Tuple[List[dict], List[dict]]:
+def build_predictions(
+    history_rows: List[dict],
+    db_by_code: Dict[str, dict],
+    prediction_year: int,
+    iterations: int,
+    seed: int,
+    central_estimate_mode: str = "deterministic",
+) -> Tuple[List[dict], List[dict]]:
+    if central_estimate_mode not in {"deterministic", "simulation_mean"}:
+        raise ValueError("central_estimate_mode must be deterministic or simulation_mean")
     rng = random.Random(seed)
 
     # Group history at hunt+pool+residency granularity
@@ -363,6 +378,7 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
             continue
 
         rollover = roll_forward_applicant_stack(point_history_by_year, source_year)
+        bootstrap_transition_uncertainty = not has_observed_transition(point_history_by_year)
         base_demand_by_point = dict(rollover.applicants_by_points)
         structural_points = set(by_point_year.keys())
         if structural_points:
@@ -403,18 +419,50 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
         p_random_samples: Dict[int, List[float]] = defaultdict(list)
         zone_samples: Dict[int, Dict[str, int]] = defaultdict(lambda: defaultdict(int))
         conditional_draw_samples: Dict[int, List[float]] = defaultdict(list)
+        conditional_reserved_samples: Dict[int, List[float]] = defaultdict(list)
+        conditional_random_samples: Dict[int, List[float]] = defaultdict(list)
         cutoff_samples: List[float] = []
 
         for _ in range(max(1, iterations)):
             demand_iter: Dict[int, int] = {}
+            iteration_reserved_quota = reserved_quota
+            iteration_random_quota = random_quota
+            bootstrap_retention = rollover.retention_rate_smoothed
+            bootstrap_switch_share = 0.0
+            if bootstrap_transition_uncertainty and central_estimate_mode == "simulation_mean":
+                bootstrap_retention = rng.triangular(*BOOTSTRAP_RETENTION_RANGE)
+                bootstrap_switch_share = rng.triangular(*BOOTSTRAP_SWITCH_IN_SHARE_RANGE)
+                quota_scale = rng.triangular(*BOOTSTRAP_QUOTA_SCALE_RANGE)
+                iteration_quota = max(1, int(round(residency_quota * quota_scale)))
+                iteration_split = split_utah_bonus_permits(iteration_quota, residency)
+                iteration_reserved_quota = iteration_split.maxPointPermits
+                iteration_random_quota = iteration_split.randomPermits
             for p in points_desc:
                 base = max(0.0, float(base_demand_by_point.get(p, 0)))
+                if bootstrap_transition_uncertainty and central_estimate_mode == "simulation_mean":
+                    source_prior = point_history_by_year[source_year].get(p - 1, {})
+                    source_same_point = point_history_by_year[source_year].get(p, {})
+                    unsuccessful_prior = max(
+                        int(source_prior.get("eligible", 0))
+                        - int(source_prior.get("bonus", 0))
+                        - int(source_prior.get("regular", 0)),
+                        0,
+                    )
+                    base = (
+                        unsuccessful_prior * bootstrap_retention
+                        + int(source_same_point.get("eligible", 0)) * bootstrap_switch_share
+                    )
                 # History-calibrated uncertainty: demand variance grows with base and volatility
                 sigma = max(1.0, math.sqrt(max(base, 1.0)) * 0.25)
                 sampled = int(round(max(0.0, rng.gauss(base, sigma))))
                 demand_iter[p] = sampled
 
-            p_draw_map, p_res_map, zone_map, cutoff = simulate_iteration(points_desc, demand_iter, reserved_quota, random_quota)
+            p_draw_map, p_res_map, zone_map, cutoff = simulate_iteration(
+                points_desc,
+                demand_iter,
+                iteration_reserved_quota,
+                iteration_random_quota,
+            )
             if cutoff is not None:
                 cutoff_samples.append(cutoff)
             for p in points_desc:
@@ -432,13 +480,25 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
             # contain the applicant whose probability we expose.  Calculate
             # the uncertainty range from that same conditional premise.
             for p in conditional_points:
-                conditional_draw_map, _, _, _ = simulate_iteration(
+                conditional_draw_map, conditional_reserved_map, _, _ = simulate_iteration(
                     points_desc,
                     conditional_applicant_demand(demand_iter, p),
-                    reserved_quota,
-                    random_quota,
+                    iteration_reserved_quota,
+                    iteration_random_quota,
                 )
-                conditional_draw_samples[p].append(conditional_draw_map.get(p, 0.0))
+                conditional_draw_value = conditional_draw_map.get(p, 0.0)
+                conditional_reserved_value = conditional_reserved_map.get(p, 0.0)
+                conditional_random_value = 0.0
+                if conditional_reserved_value < 0.999:
+                    residual = max(0.0, 1.0 - conditional_reserved_value)
+                    if residual > 0:
+                        conditional_random_value = max(
+                            0.0,
+                            min(1.0, (conditional_draw_value - conditional_reserved_value) / residual),
+                        )
+                conditional_draw_samples[p].append(conditional_draw_value)
+                conditional_reserved_samples[p].append(conditional_reserved_value)
+                conditional_random_samples[p].append(conditional_random_value)
 
         expected_cutoff = round(mean(cutoff_samples), 3) if cutoff_samples else None
 
@@ -446,26 +506,32 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
         for p in points_desc:
             is_conditional_rung = p in conditional_deterministic
             draws = conditional_draw_samples[p] if is_conditional_rung else p_draw_samples[p]
-            pres = p_reserved_samples[p]
+            pres = conditional_reserved_samples[p] if is_conditional_rung else p_reserved_samples[p]
+            prandom = conditional_random_samples[p] if is_conditional_rung else p_random_samples[p]
             deterministic_for_point = conditional_deterministic.get(p)
-            p_draw_mean = (
-                deterministic_for_point[0].get(p, 0.0)
-                if deterministic_for_point is not None
-                else deterministic_draw.get(p, mean(draws) if draws else 0.0)
-            )
+            if central_estimate_mode == "simulation_mean":
+                p_draw_mean = mean(draws) if draws else 0.0
+                p_reserved_mean = mean(pres) if pres else 0.0
+                p_random_mean = mean(prandom) if prandom else 0.0
+            else:
+                p_draw_mean = (
+                    deterministic_for_point[0].get(p, 0.0)
+                    if deterministic_for_point is not None
+                    else deterministic_draw.get(p, mean(draws) if draws else 0.0)
+                )
+                p_reserved_mean = (
+                    deterministic_for_point[1].get(p, 0.0)
+                    if deterministic_for_point is not None
+                    else deterministic_reserved.get(p, mean(pres) if pres else 0.0)
+                )
+                p_random_mean = (
+                    deterministic_for_point[2].get(p, 0.0)
+                    if deterministic_for_point is not None
+                    else deterministic_random.get(p, mean(prandom) if prandom else 0.0)
+                )
             p10 = percentile(draws, 0.10)
             p50 = percentile(draws, 0.50)
             p90 = percentile(draws, 0.90)
-            p_reserved_mean = (
-                deterministic_for_point[1].get(p, 0.0)
-                if deterministic_for_point is not None
-                else deterministic_reserved.get(p, mean(pres) if pres else 0.0)
-            )
-            p_random_mean = (
-                deterministic_for_point[2].get(p, 0.0)
-                if deterministic_for_point is not None
-                else deterministic_random.get(p, mean(p_random_samples[p]) if p_random_samples[p] else 0.0)
-            )
             guaranteed_probability = 1.0 if p_draw_mean >= 0.999 else 0.0
             point_pool_zone = (
                 deterministic_for_point[3].get(p, "random_pool")
@@ -484,6 +550,10 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
             ]
             if is_conditional_rung:
                 reasons.append("CONDITIONAL_ON_ONE_APPLICANT_AT_POINT")
+            if central_estimate_mode == "simulation_mean":
+                reasons.append("MONTE_CARLO_CENTRAL_ESTIMATE")
+                if bootstrap_transition_uncertainty:
+                    reasons.append("SOURCE_TRANSITION_UNCERTAINTY_DISCOUNT")
             if quota_source_label:
                 reasons.append("DATABASE_2026_PUBLISHED_PERMITS_USED")
             if guaranteed_probability >= 0.999:
@@ -597,6 +667,7 @@ def build_predictions(history_rows: List[dict], db_by_code: Dict[str, dict], pre
                 "points_modeled": len(points_desc),
                 "expected_cutoff_points": "" if deterministic_cutoff is None else deterministic_cutoff,
                 "iterations": iterations,
+                "central_estimate_mode": central_estimate_mode,
             }
         )
 
@@ -610,6 +681,7 @@ def main() -> int:
     parser.add_argument("--prediction-year", type=int, default=2026)
     parser.add_argument("--iterations", type=int, default=600)
     parser.add_argument("--seed", type=int, default=20260520)
+    parser.add_argument("--central-estimate-mode", choices=["deterministic", "simulation_mean"], default="deterministic")
     parser.add_argument("--out-dir", default=str(OUT_DIR_DEFAULT))
     args = parser.parse_args()
 
@@ -628,6 +700,7 @@ def main() -> int:
         prediction_year=args.prediction_year,
         iterations=args.iterations,
         seed=args.seed,
+        central_estimate_mode=args.central_estimate_mode,
     )
 
     # Materialize bridge-compatible rows (legacy + modeled fields)
@@ -693,7 +766,7 @@ def main() -> int:
         "structure_retention_rate_raw", "structure_retention_rate_smoothed", "structure_retention_prior",
         "structure_retention_matched_years", "structure_retention_unsuccessful_total",
         "rolled_forward_total_applicants", "rolled_forward_unsuccessful_applicants", "lower_point_additions",
-        "points_modeled", "expected_cutoff_points", "iterations",
+        "points_modeled", "expected_cutoff_points", "iterations", "central_estimate_mode",
     ]
     write_csv(audit_path, audit_headers, audit)
 

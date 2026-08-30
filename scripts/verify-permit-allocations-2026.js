@@ -4,7 +4,6 @@ const path = require('path');
 const REPO = path.resolve(__dirname, '..');
 const SOURCE_FILE = 'pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv';
 const SOURCE_LABEL = 'DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS';
-const LAST_SYNC_FILE = 'processed_data/permit_allocation_2026_last_sync.json';
 
 const ALLOCATION_FIELDS = [
   'permits_2026_res',
@@ -41,7 +40,11 @@ const FORBIDDEN_FIELDS = [
   'satisfaction_2025',
 ];
 
-const CSV_TARGETS = [
+// These large processed files are optional local/R2 hydration surfaces.  They
+// are not part of the code-only allocation contract, and several now use
+// historical point-row grains that intentionally do not carry hunt-level 2026
+// allocation fields.  Audit them only when explicitly requested.
+const OPTIONAL_HYDRATION_CSV_TARGETS = [
   'processed_data/hunt_master_enriched.csv',
   'processed_data/hunt_unit_reference_linked.csv',
   'processed_data/draw_reality_engine.csv',
@@ -52,9 +55,12 @@ const JSON_ROW_TARGETS = [
   'data/hunt-master-canonical-2026-database-candidate.json',
   'data/hunt-master-canonical-2026-foundation.json',
   'data/hunt-master-canonical-2026-source-of-truth.json',
-  'processed_data/hunt-master-canonical-2026-source-of-truth.json',
   'canonical/hunt-planner-2026.json',
   'generated/pages/hunt-planner.json',
+];
+
+const OPTIONAL_HYDRATION_JSON_ROW_TARGETS = [
+  'processed_data/hunt-master-canonical-2026-source-of-truth.json',
 ];
 
 const JSON_METADATA_TARGETS = [
@@ -440,9 +446,9 @@ function writeReports(report) {
     '',
     '## Files Audited',
     '',
-    '| File | Rows checked | Codes checked | Mismatches before | Mismatches after | Blank values preserved | Target-only codes | Database-only codes |',
-    '| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |',
-    ...report.files.map((item) => `| ${item.file} | ${item.rows_checked} | ${item.hunt_codes_checked} | ${item.mismatches_before_sync || 0} | ${item.mismatches_after_sync} | ${item.blank_values_preserved} | ${item.target_only_hunt_codes.length} | ${item.database_only_hunt_codes.length} |`),
+    '| File | Rows checked | Codes checked | Current mismatches | Blank values preserved | Target-only codes | Database-only codes |',
+    '| --- | ---: | ---: | ---: | ---: | ---: | ---: |',
+    ...report.files.map((item) => `| ${item.file} | ${item.rows_checked} | ${item.hunt_codes_checked} | ${item.mismatches_after_sync} | ${item.blank_values_preserved} | ${item.target_only_hunt_codes.length} | ${item.database_only_hunt_codes.length} |`),
     '',
     '## Guardrails',
     '',
@@ -459,21 +465,35 @@ function writeReports(report) {
       ? report.skipped_missing_targets.map((file) => `- ${file}`)
       : ['- None']),
     '',
+    '## Optional Hydration Targets Not Audited',
+    '',
+    ...(report.skipped_optional_hydration_targets.length
+      ? report.skipped_optional_hydration_targets.map((file) => `- ${file}`)
+      : ['- None']),
+    '',
   ];
   fs.writeFileSync(abs('docs/permit-allocation-2026-integrity-report.md'), `${lines.join('\n')}\n`, 'utf8');
 }
 
 function main() {
   const writeReportFiles = !process.argv.includes('--no-write');
+  const showDetails = process.argv.includes('--details');
+  const includeOptionalHydration = process.argv.includes('--include-optional-hydration');
   const db = loadDatabase();
-  const lastSync = fs.existsSync(abs(LAST_SYNC_FILE)) ? JSON.parse(fs.readFileSync(abs(LAST_SYNC_FILE), 'utf8')) : null;
   const skippedMissingTargets = [];
-  const existingCsvTargets = CSV_TARGETS.filter((file) => {
+  const skippedOptionalHydrationTargets = includeOptionalHydration
+    ? []
+    : [...OPTIONAL_HYDRATION_CSV_TARGETS, ...OPTIONAL_HYDRATION_JSON_ROW_TARGETS];
+  const csvTargets = includeOptionalHydration ? OPTIONAL_HYDRATION_CSV_TARGETS : [];
+  const jsonRowTargets = includeOptionalHydration
+    ? [...JSON_ROW_TARGETS, ...OPTIONAL_HYDRATION_JSON_ROW_TARGETS]
+    : JSON_ROW_TARGETS;
+  const existingCsvTargets = csvTargets.filter((file) => {
     const ok = fs.existsSync(abs(file));
     if (!ok) skippedMissingTargets.push(file);
     return ok;
   });
-  const existingJsonRowTargets = JSON_ROW_TARGETS.filter((file) => {
+  const existingJsonRowTargets = jsonRowTargets.filter((file) => {
     const ok = fs.existsSync(abs(file));
     if (!ok) skippedMissingTargets.push(file);
     return ok;
@@ -488,18 +508,6 @@ function main() {
     ...existingJsonRowTargets.map((file) => verifyJsonRows(file, db)),
     ...existingJsonMetadataTargets.map((file) => verifyJsonMetadata(file)),
   ];
-  if (lastSync && Array.isArray(lastSync.files)) {
-    for (const item of files) {
-      const synced = lastSync.files.find((candidate) => candidate.file === item.file);
-      if (synced) {
-        item.fields_added = synced.fields_added || [];
-        item.fields_updated = synced.fields_updated || [];
-        item.mismatches_before_sync = synced.mismatches_before_sync || 0;
-        item.changed_rows = synced.changed_rows || 0;
-        item.changed_cells = synced.changed_cells || 0;
-      }
-    }
-  }
   const blockers = files.filter((item) => item.mismatches_after_sync > 0);
   const report = {
     generated_at: new Date().toISOString(),
@@ -514,12 +522,13 @@ function main() {
     status_counts: statusCounts(db),
     files,
     skipped_missing_targets: skippedMissingTargets,
-    files_changed: lastSync?.files_changed || [],
+    skipped_optional_hydration_targets: skippedOptionalHydrationTargets,
+    files_changed: [],
     totals: {
-      rows_updated: files.reduce((sum, item) => sum + (item.changed_rows || 0), 0),
+      rows_updated: 0,
       fields_added: [...new Set(files.flatMap((item) => item.fields_added || []))].sort(),
       fields_updated: [...new Set(files.flatMap((item) => item.fields_updated || []))].sort(),
-      mismatches_before_sync: files.reduce((sum, item) => sum + (item.mismatches_before_sync || 0), 0),
+      mismatches_before_sync: 0,
       mismatches_after_sync: files.reduce((sum, item) => sum + item.mismatches_after_sync, 0),
       blank_values_preserved: files.reduce((sum, item) => sum + item.blank_values_preserved, 0),
     },
@@ -537,6 +546,20 @@ function main() {
     promotion_blockers: report.promotion_blocker_count,
     report_json: writeReportFiles ? 'canonical/permit-allocation-2026-integrity-report.json' : null,
     report_md: writeReportFiles ? 'docs/permit-allocation-2026-integrity-report.md' : null,
+    optional_hydration_audited: includeOptionalHydration,
+    ...(showDetails ? {
+      file_results: files.map((item) => ({
+        file: item.file,
+        type: item.type,
+        rows_checked: item.rows_checked,
+        matched_rows: item.matched_rows,
+        hunt_codes_checked: item.hunt_codes_checked,
+        mismatches_after_sync: item.mismatches_after_sync,
+        sample_issues: item.sample_issues,
+      })),
+      skipped_missing_targets: skippedMissingTargets,
+      skipped_optional_hydration_targets: skippedOptionalHydrationTargets,
+    } : {}),
   }, null, 2));
   if (report.promotion_blocker_count) process.exitCode = 1;
 }

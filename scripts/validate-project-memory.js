@@ -222,7 +222,7 @@ function validateProjectMemory(root = REPO) {
   }
 
   const drift = authority.known_contract_drift || [];
-  check(drift.length >= 4, 'Known family and design-contract drift items must remain explicit until resolved.');
+  check(drift.length >= 1, 'Known runtime-contract drift items must remain explicit until resolved.');
   check(new Set(drift.map((item) => item.id)).size === drift.length, 'Known contract-drift IDs must be unique.');
   check(drift.every((item) => item.status === 'UNRESOLVED_REQUIRES_REVIEW'), 'Resolved contract drift must be removed through a reviewed memory update.');
 

@@ -50,6 +50,10 @@ def main() -> int:
     parser.add_argument("--source-start", type=int, default=2018)
     parser.add_argument("--source-end", type=int, default=2024)
     parser.add_argument("--out-dir", type=Path, required=True)
+    parser.add_argument("--bonus-central-estimate", choices=["deterministic", "simulation_mean"], default="deterministic")
+    parser.add_argument("--bonus-iterations", type=int, default=1)
+    parser.add_argument("--bear-central-estimate", choices=["deterministic", "simulation_mean"], default="deterministic")
+    parser.add_argument("--bear-iterations", type=int, default=1)
     args = parser.parse_args()
     if args.source_end < args.source_start:
         raise SystemExit("--source-end must be at least --source-start")
@@ -79,6 +83,14 @@ def main() -> int:
                 str(prediction_dir),
                 "--runtime-permit-source",
                 "source_year_proxy",
+                "--bonus-central-estimate",
+                args.bonus_central_estimate,
+                "--bonus-iterations",
+                str(args.bonus_iterations),
+                "--bear-central-estimate",
+                args.bear_central_estimate,
+                "--bear-iterations",
+                str(args.bear_iterations),
             ]
         )
         run(

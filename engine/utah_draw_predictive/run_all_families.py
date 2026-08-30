@@ -1636,6 +1636,80 @@ def _drop_broad_partitioned_rows_when_source_backed(rows: Sequence[Mapping[str, 
     return out, dropped
 
 
+def _drop_total_scope_bear_guarantees_when_source_backed(
+    rows: Sequence[Mapping[str, object]],
+) -> tuple[list[dict[str, object]], int]:
+    """Replace unsupported Bear guarantees with exact source-backed odds.
+
+    Some legacy Bear source tables retain resident probabilities but only a
+    combined applicant ladder for cohort forecasting.  The Bear model marks
+    those derived residency forecasts explicitly.  If that broad model claims
+    a 100% chance while the same official hunt/residency/point lane has a
+    positive, numeric source-backed probability below 100%, retaining both
+    collapses to a duplicate during draw-line scoring and the unsupported
+    guarantee can be selected merely because it appeared first.
+
+    This guard is deliberately narrower than a general source-row preference:
+    it removes only 100% ``MODELED_BONUS`` Bear rows carrying the explicit
+    ``TOTAL_SCOPE_HISTORY_USED_FOR_RESIDENCY`` quality flag, and only when the
+    exact source-backed row supplies a positive lower probability.  Zero odds
+    are not carried forward over the cohort model because they can represent a
+    source-year rung with no awarded permit.  Blocked or blank source rows,
+    non-guarantees, lane-specific Bear models, and every other prediction
+    family remain unchanged.
+    """
+
+    def lane_key(row: Mapping[str, object]) -> tuple[str, str, str, str]:
+        return (
+            _clean(row.get("source_family")).upper(),
+            _clean(row.get("hunt_code")).upper(),
+            _metric_scope_for_residency(row.get("residency") or row.get("metric_scope")),
+            _canonical_points_text(row.get("points")),
+        )
+
+    source_backed_keys: set[tuple[str, str, str, str]] = set()
+    for row in rows:
+        if (
+            _clean(row.get("source_family")).upper() != "BEAR_DRAW_RESULTS"
+            or _clean(row.get("algorithm_status")).upper() != "MODELED_SOURCE_BACKED_ROLL_FORWARD"
+            or not _clean(row.get("source_file"))
+        ):
+            continue
+        raw_probability = _clean(row.get("p_draw_mean") or row.get("p_draw"))
+        try:
+            probability = float(raw_probability)
+        except ValueError:
+            continue
+        if 0.0 < probability < 1.0:
+            source_backed_keys.add(lane_key(row))
+    if not source_backed_keys:
+        return [dict(row) for row in rows], 0
+
+    out: list[dict[str, object]] = []
+    dropped = 0
+    for row in rows:
+        quality_flags = {
+            flag.strip().upper()
+            for flag in _clean(row.get("data_quality_flags")).split("|")
+            if flag.strip()
+        }
+        is_total_scope_bear_model = (
+            _clean(row.get("source_family")).upper() == "BEAR_DRAW_RESULTS"
+            and _clean(row.get("algorithm_status")).upper() == "MODELED_BONUS"
+            and "TOTAL_SCOPE_HISTORY_USED_FOR_RESIDENCY" in quality_flags
+        )
+        raw_probability = _clean(row.get("p_draw_mean") or row.get("p_draw"))
+        try:
+            is_guarantee = float(raw_probability) >= 1.0
+        except ValueError:
+            is_guarantee = False
+        if is_total_scope_bear_model and is_guarantee and lane_key(row) in source_backed_keys:
+            dropped += 1
+            continue
+        out.append(dict(row))
+    return out, dropped
+
+
 def _write_csv_with_fieldnames(path: Path, rows: Sequence[Mapping[str, object]], fieldnames: Sequence[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as handle:
@@ -2299,6 +2373,10 @@ def run_all_families(
     calibrate_family: str = CALIBRATION_FAMILY,
     runtime_permit_source: str = "current_2026",
     score_target_year: int | None = None,
+    bonus_central_estimate: str = "deterministic",
+    bonus_iterations: int = 1,
+    bear_central_estimate: str = "deterministic",
+    bear_iterations: int = 1,
 ) -> dict[str, object]:
     if enable_antlerless_deer_calibration and (
         calibration_mode != "production" or _clean(calibrate_family).upper() != CALIBRATION_FAMILY
@@ -2309,6 +2387,14 @@ def run_all_families(
         )
     if runtime_permit_source not in {"current_2026", "source_year_proxy"}:
         raise ValueError("runtime_permit_source must be current_2026 or source_year_proxy")
+    if bonus_central_estimate not in {"deterministic", "simulation_mean"}:
+        raise ValueError("bonus_central_estimate must be deterministic or simulation_mean")
+    if bonus_iterations < 1:
+        raise ValueError("bonus_iterations must be at least 1")
+    if bear_central_estimate not in {"deterministic", "simulation_mean"}:
+        raise ValueError("bear_central_estimate must be deterministic or simulation_mean")
+    if bear_iterations < 1:
+        raise ValueError("bear_iterations must be at least 1")
     output_target_year = score_target_year if score_target_year is not None else target_year
     if output_target_year < target_year:
         raise ValueError("score_target_year cannot precede the forecast draw year")
@@ -2342,8 +2428,9 @@ def run_all_families(
         history_rows=_prepare_big_game_bonus_history_rows(runtime_truth_rows),
         db_by_code=big_game_bonus_db_by_code,
         prediction_year=target_year,
-        iterations=1,
+        iterations=bonus_iterations,
         seed=20260701,
+        central_estimate_mode=bonus_central_estimate,
     )
     big_game_bonus_rows_by_family = {
         family: _with_run_fields(rows, source_year, output_target_year, family)
@@ -2386,9 +2473,25 @@ def run_all_families(
     )
     sportsman_rows, sportsman_report = build_sportsman_predictions(history_engine_rows, engine_rows, target_year, history_years)
     sportsman_rows = _with_run_fields(sportsman_rows, source_year, output_target_year, "sportsman")
-    bear_rows, bear_report = build_bear_bonus_predictions(runtime_truth_rows, runtime_db_rows, target_year, runtime_history_years)
+    bear_rows, bear_report = build_bear_bonus_predictions(
+        runtime_truth_rows,
+        runtime_db_rows,
+        target_year,
+        runtime_history_years,
+        central_estimate_mode=bear_central_estimate,
+        iterations=bear_iterations,
+        seed=20260701,
+    )
     bear_rows = _with_run_fields(bear_rows, source_year, output_target_year, "bonus_bear")
-    turkey_rows, turkey_report = build_turkey_bonus_predictions(runtime_truth_rows, runtime_db_rows, target_year, runtime_history_years)
+    turkey_rows, turkey_report = build_turkey_bonus_predictions(
+        runtime_truth_rows,
+        runtime_db_rows,
+        target_year,
+        runtime_history_years,
+        central_estimate_mode=bonus_central_estimate,
+        iterations=bonus_iterations,
+        seed=20260701,
+    )
     turkey_rows = _with_run_fields(turkey_rows, source_year, output_target_year, "bonus_turkey")
     if "youth_turkey" in suppressed_runtime_families:
         youth_turkey_rows = []
@@ -2821,6 +2924,9 @@ def run_all_families(
 
     all_prediction_rows = [_finalize_prediction_output_row(row) for row in all_prediction_rows]
     all_prediction_rows, broad_partitioned_rows_dropped = _drop_broad_partitioned_rows_when_source_backed(all_prediction_rows)
+    all_prediction_rows, total_scope_bear_guarantees_dropped = _drop_total_scope_bear_guarantees_when_source_backed(
+        all_prediction_rows
+    )
     all_prediction_rows, duplicate_report = _dedupe_final_family_prediction_rows(all_prediction_rows)
     _write_duplicate_official_score_key_v2_report(audit_dir, duplicate_report)
     if duplicate_report["conflict_key_count"]:
@@ -2842,6 +2948,7 @@ def run_all_families(
         "family_predictions_duplicate_exact_rows_dropped": duplicate_report["exact_duplicate_rows_dropped"],
         "family_predictions_duplicate_conflict_key_count": duplicate_report["conflict_key_count"],
         "broad_partitioned_rows_dropped": broad_partitioned_rows_dropped,
+        "total_scope_bear_guarantees_dropped": total_scope_bear_guarantees_dropped,
         "family_counts": {family: len(rows) for family, rows in modeled.items()},
         "classified_families": deferred_families,
         "first_year_bootstrap": first_year_bootstrap,
@@ -2849,6 +2956,10 @@ def run_all_families(
         "source_years_available": history_years,
         "antlerless_deer_calibration_enabled": enable_antlerless_deer_calibration,
         "antlerless_deer_calibration_mode": calibration_mode,
+        "bonus_central_estimate": bonus_central_estimate,
+        "bonus_iterations": bonus_iterations,
+        "bear_central_estimate": bear_central_estimate,
+        "bear_iterations": bear_iterations,
     }
 
 
@@ -2861,6 +2972,10 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--enable-antlerless-deer-calibration", action="store_true")
     parser.add_argument("--calibration-mode", choices=["off", "production"], default="off")
     parser.add_argument("--calibrate-family", default=CALIBRATION_FAMILY)
+    parser.add_argument("--bonus-central-estimate", choices=["deterministic", "simulation_mean"], default="deterministic")
+    parser.add_argument("--bonus-iterations", type=int, default=1)
+    parser.add_argument("--bear-central-estimate", choices=["deterministic", "simulation_mean"], default="deterministic")
+    parser.add_argument("--bear-iterations", type=int, default=1)
     parser.add_argument(
         "--runtime-permit-source",
         choices=["current_2026", "source_year_proxy"],
@@ -2887,6 +3002,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         calibrate_family=args.calibrate_family,
         runtime_permit_source=args.runtime_permit_source,
         score_target_year=args.score_target_year,
+        bonus_central_estimate=args.bonus_central_estimate,
+        bonus_iterations=args.bonus_iterations,
+        bear_central_estimate=args.bear_central_estimate,
+        bear_iterations=args.bear_iterations,
     )
     print(result)
     return 0

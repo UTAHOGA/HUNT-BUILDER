@@ -17,6 +17,16 @@ STRUCTURE_RETENTION_PRIORS = {
 }
 STRUCTURE_RETENTION_EVIDENCE_STRENGTH = 200.0
 
+# A one-year bootstrap has no observed transition from which to estimate
+# reapplication, hunt switching, or a target-year quota change.  These bounded
+# priors are used only by audit simulation mode so that an unobserved
+# transition cannot be reported as certain.  Runtime deterministic forecasts
+# remain unchanged.
+# Tuples follow random.triangular(low, high, mode) argument order.
+BOOTSTRAP_RETENTION_RANGE = (0.50, 1.00, DEFAULT_RETENTION_PRIOR)
+BOOTSTRAP_SWITCH_IN_SHARE_RANGE = (0.00, 1.00, 0.08)
+BOOTSTRAP_QUOTA_SCALE_RANGE = (0.50, 1.50, 1.00)
+
 
 @dataclass(frozen=True)
 class CohortCarryForward:
@@ -181,6 +191,14 @@ def infer_group_retention_rate(point_history_by_year: Mapping[int, Mapping[int, 
 
     raw = infer_retention_rate(unsuccessful_prior, observed_next) if unsuccessful_prior > 0 else 0.85
     return raw, smooth_retention_rate(raw)
+
+
+def has_observed_transition(
+    point_history_by_year: Mapping[int, Mapping[int, Mapping[str, int]]],
+) -> bool:
+    """Return whether the hunt has at least one source-year transition."""
+    years = {int(year) for year in point_history_by_year}
+    return any(year + 1 in years for year in years)
 
 
 def infer_structure_retention_rates(

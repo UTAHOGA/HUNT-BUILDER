@@ -1,0 +1,12 @@
+year,hunt_code,hunt_name,species,resident_quota,nonresident_quota,total_quota,resident_apps,nonresident_apps,total_apps,odds_text,odds_denominator,source_file,source_url
+2017,TK1000,Sportsman Turkey,Turkey,1,0,1,1196,0,1196,"1 in 1,196.0",1196,2017_sportsman_odds.pdf,https://wildlife.utah.gov/pdf/bg/2017/2017_sportsman_odds.pdf
+2017,BI1000,Sportsman Bison,Bison,1,0,1,4772,0,4772,"1 in 4,772.0",4772,2017_sportsman_odds.pdf,https://wildlife.utah.gov/pdf/bg/2017/2017_sportsman_odds.pdf
+2017,BR1000,Sportsman Black Bear,Black Bear,1,0,1,2141,0,2141,"1 in 2,141.0",2141,2017_sportsman_odds.pdf,https://wildlife.utah.gov/pdf/bg/2017/2017_sportsman_odds.pdf
+2017,CG1000,Sportsman Cougar,Cougar,1,0,1,1240,0,1240,"1 in 1,240.0",1240,2017_sportsman_odds.pdf,https://wildlife.utah.gov/pdf/bg/2017/2017_sportsman_odds.pdf
+2017,DB1045,Sportsman Deer,Deer,1,0,1,12860,0,12860,"1 in 12,860.0",12860,2017_sportsman_odds.pdf,https://wildlife.utah.gov/pdf/bg/2017/2017_sportsman_odds.pdf
+2017,DS1000,Sportsman Desert Bighorn Sheep,Desert Bighorn Sheep,1,0,1,4124,0,4124,"1 in 4,124.0",4124,2017_sportsman_odds.pdf,https://wildlife.utah.gov/pdf/bg/2017/2017_sportsman_odds.pdf
+2017,EB1000,Sportsman Elk,Elk,1,0,1,12220,0,12220,"1 in 12,220.0",12220,2017_sportsman_odds.pdf,https://wildlife.utah.gov/pdf/bg/2017/2017_sportsman_odds.pdf
+2017,MB1000,Sportsman Moose,Moose,1,0,1,5562,0,5562,"1 in 5,562.0",5562,2017_sportsman_odds.pdf,https://wildlife.utah.gov/pdf/bg/2017/2017_sportsman_odds.pdf
+2017,GO1000,Sportsman Mountain Goat,Mountain Goat,1,0,1,3409,0,3409,"1 in 3,409.0",3409,2017_sportsman_odds.pdf,https://wildlife.utah.gov/pdf/bg/2017/2017_sportsman_odds.pdf
+2017,PB1000,Sportsman Pronghorn,Pronghorn,1,0,1,3503,0,3503,"1 in 3,503.0",3503,2017_sportsman_odds.pdf,https://wildlife.utah.gov/pdf/bg/2017/2017_sportsman_odds.pdf
+2017,RS1000,Sportsman Rocky Mountain Bighorn Sheep,Rocky Mountain Bighorn Sheep,1,0,1,4274,0,4274,"1 in 4,274.0",4274,2017_sportsman_odds.pdf,https://wildlife.utah.gov/pdf/bg/2017/2017_sportsman_odds.pdf

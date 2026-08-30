@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 import csv
 import json
+import random
 from collections import Counter, defaultdict
 from functools import lru_cache
 from pathlib import Path
@@ -503,7 +504,7 @@ def _build_truth_ladders(
 
 def _build_retention_and_zero_growth(
     ladders: Mapping[tuple[str, int, str, str], dict[int, dict[str, int]]],
-) -> tuple[dict[str, float], float]:
+) -> tuple[dict[str, float], float, dict[str, tuple[float, ...]], tuple[float, ...]]:
     retention_samples: dict[str, list[float]] = defaultdict(list)
     zero_growth_samples: list[float] = []
     years_by_subtype_code_res: dict[tuple[str, str, str], list[int]] = defaultdict(list)
@@ -538,11 +539,14 @@ def _build_retention_and_zero_growth(
         "10_plus": 0.98,
     }
     retention_by_band: dict[str, float] = {}
+    retention_history_by_band: dict[str, tuple[float, ...]] = {}
     for band, fallback in default_retention.items():
         samples = retention_samples.get(band, [])
         retention_by_band[band] = round(mean(samples), 4) if samples else fallback
+        retention_history_by_band[band] = tuple(samples) if samples else (fallback,)
     zero_growth = round(mean(zero_growth_samples), 4) if zero_growth_samples else 1.0
-    return retention_by_band, zero_growth
+    zero_growth_history = tuple(zero_growth_samples) if zero_growth_samples else (zero_growth,)
+    return retention_by_band, zero_growth, retention_history_by_band, zero_growth_history
 
 
 def _forecast_applicant_ladder(
@@ -570,18 +574,104 @@ def _forecast_applicant_ladder(
     return forecast
 
 
-def _weighted_random_probability(points: int, applicants_by_points: Mapping[int, int], random_permits: int) -> float:
+def _weighted_random_probability(
+    points: int,
+    applicants_by_points: Mapping[int, int],
+    random_permits: int,
+    max_point_permits: int = 0,
+) -> float:
+    remaining_max_permits = max(0, int(max_point_permits))
+    nonwinners_by_points: dict[int, int] = {}
+    for point_level in sorted((int(level) for level in applicants_by_points), reverse=True):
+        count = max(0, int(applicants_by_points.get(point_level, 0)))
+        max_pool_winners = min(count, remaining_max_permits)
+        nonwinners_by_points[point_level] = count - max_pool_winners
+        remaining_max_permits -= max_pool_winners
+
     total_weight = 0.0
     target_weight = 0.0
-    for point_level, count in applicants_by_points.items():
+    for point_level, count in nonwinners_by_points.items():
         weight = max(0, int(count)) * max(1, int(point_level) + 1)
         total_weight += weight
-        if int(point_level) == int(points):
-            target_weight += weight
+        if int(point_level) == int(points) and int(count) > 0:
+            # Public odds describe one application at this point level.  The
+            # prior implementation used the combined ticket weight of every
+            # applicant at the level, which returned the chance that anyone in
+            # the group drew rather than the chance for one applicant.
+            target_weight = float(max(1, int(point_level) + 1))
     if random_permits <= 0 or total_weight <= 0 or target_weight <= 0:
         return 0.0
     share = min(1.0, max(0.0, target_weight / total_weight))
     return max(0.0, min(1.0, 1.0 - ((1.0 - share) ** max(1, random_permits))))
+
+
+def _percentile(values: list[float], quantile: float) -> float:
+    if not values:
+        return 0.0
+    ordered = sorted(values)
+    if len(ordered) == 1:
+        return ordered[0]
+    position = max(0.0, min(1.0, quantile)) * (len(ordered) - 1)
+    lower = int(position)
+    upper = min(lower + 1, len(ordered) - 1)
+    fraction = position - lower
+    return ordered[lower] + ((ordered[upper] - ordered[lower]) * fraction)
+
+
+def _sample_bear_forecast_ladders(
+    latest_ladder: Mapping[int, dict[str, int]],
+    retention_history_by_band: Mapping[str, tuple[float, ...]],
+    zero_growth_history: tuple[float, ...],
+    iterations: int,
+    seed: str,
+) -> list[dict[int, int]]:
+    """Sample applicant ladders only from source-year transition history."""
+
+    rng = random.Random(seed)
+    sampled_ladders: list[dict[int, int]] = []
+    for _ in range(max(1, iterations)):
+        sampled_retention = {
+            band: rng.choice(samples)
+            for band, samples in retention_history_by_band.items()
+        }
+        sampled_zero_growth = rng.choice(zero_growth_history)
+        sampled_ladders.append(
+            _forecast_applicant_ladder(
+                latest_ladder,
+                sampled_retention,
+                sampled_zero_growth,
+            )
+        )
+    return sampled_ladders
+
+
+def _bear_simulation_probability(
+    points: int,
+    sampled_ladders: Iterable[Mapping[int, int]],
+    max_point_permits: int,
+    random_permits: int,
+) -> tuple[float, float, float, float, float, float]:
+    """Return mean draw components and P10/P50/P90 for one applicant."""
+
+    bonus_samples: list[float] = []
+    random_samples: list[float] = []
+    draw_samples: list[float] = []
+    for sampled in sampled_ladders:
+        conditioned = {int(level): max(0, int(count)) for level, count in sampled.items()}
+        conditioned[points] = max(1, conditioned.get(points, 0))
+        p_bonus, _, _ = compute_bonus_pool_probability(points, conditioned, max_point_permits)
+        p_random = _weighted_random_probability(points, conditioned, random_permits, max_point_permits)
+        bonus_samples.append(p_bonus)
+        random_samples.append(p_random)
+        draw_samples.append(combine_probabilities(p_bonus, p_random))
+    return (
+        mean(bonus_samples) if bonus_samples else 0.0,
+        mean(random_samples) if random_samples else 0.0,
+        mean(draw_samples) if draw_samples else 0.0,
+        _percentile(draw_samples, 0.10),
+        _percentile(draw_samples, 0.50),
+        _percentile(draw_samples, 0.90),
+    )
 
 
 def _guaranteed_level(ladder: Mapping[int, int], quota: int) -> int | None:
@@ -886,7 +976,14 @@ def build_bear_bonus_predictions(
     db_rows: Iterable[Mapping[str, object]],
     forecast_year: int,
     history_years: list[int],
+    central_estimate_mode: str = "deterministic",
+    iterations: int = 1,
+    seed: int = 20260701,
 ) -> tuple[list[dict[str, object]], dict[str, object]]:
+    if central_estimate_mode not in {"deterministic", "simulation_mean"}:
+        raise ValueError("central_estimate_mode must be deterministic or simulation_mean")
+    if iterations < 1:
+        raise ValueError("iterations must be at least 1")
     truth_rows_list = list(truth_rows)
     history_years = _history_years_or_bootstrap(history_years, truth_rows_list)
     if not history_years:
@@ -898,7 +995,7 @@ def build_bear_bonus_predictions(
     default_earliest_source_year = min(history_years)
     default_latest_source_year = max(history_years)
     ladders, meta, total_drawn_by_code_year = _build_truth_ladders(truth_rows_list, history_year_set)
-    retention_by_band, zero_growth = _build_retention_and_zero_growth(ladders)
+    retention_by_band, zero_growth, retention_history_by_band, zero_growth_history = _build_retention_and_zero_growth(ladders)
 
     years_by_subtype_code_res: dict[tuple[str, str, str], list[int]] = defaultdict(list)
     for subtype, year, hunt_code, residency in ladders:
@@ -1197,6 +1294,17 @@ def build_bear_bonus_predictions(
             max_point_permits = split.maxPointPermits
             random_permits = split.randomPermits
             forecast_ladder = _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)
+            sampled_ladders = (
+                _sample_bear_forecast_ladders(
+                    latest_ladder,
+                    retention_history_by_band,
+                    zero_growth_history,
+                    iterations,
+                    f"{seed}|{subtype}|{hunt_code}|{residency}|{latest_year}",
+                )
+                if central_estimate_mode == "simulation_mean"
+                else []
+            )
             if not forecast_ladder:
                 flags = ["LOW_APPLICANT_COUNT", "FIRST_CHOICE_ONLY_MODEL"]
                 for flag in flags:
@@ -1236,8 +1344,34 @@ def build_bear_bonus_predictions(
             for points in sorted(forecast_ladder.keys(), reverse=True):
                 applicants_by_points = {int(level): int(count) for level, count in forecast_ladder.items()}
                 p_bonus_pool, applicants_above, applicants_at_level = compute_bonus_pool_probability(points, applicants_by_points, max_point_permits)
-                p_random_pool = _weighted_random_probability(points, applicants_by_points, random_permits)
+                p_random_pool = _weighted_random_probability(points, applicants_by_points, random_permits, max_point_permits)
                 p_draw = combine_probabilities(p_bonus_pool, p_random_pool)
+                deterministic_p_bonus_pool = p_bonus_pool
+                deterministic_p_random_pool = p_random_pool
+                p_draw_p10 = max(0.0, p_draw - 0.05)
+                p_draw_p50 = p_draw
+                p_draw_p90 = min(1.0, p_draw + 0.05)
+                if central_estimate_mode == "simulation_mean":
+                    (
+                        simulated_p_bonus_pool,
+                        simulated_p_random_pool,
+                        _simulated_p_draw,
+                        p_draw_p10,
+                        p_draw_p50,
+                        p_draw_p90,
+                    ) = _bear_simulation_probability(
+                        points,
+                        sampled_ladders,
+                        max_point_permits,
+                        random_permits,
+                    )
+                    # This uncertainty layer represents unobserved returning or
+                    # switching applicants.  It may discount a deterministic
+                    # chance, but it must never create a higher chance or move
+                    # a false guarantee to a different point rung.
+                    p_bonus_pool = min(deterministic_p_bonus_pool, simulated_p_bonus_pool)
+                    p_random_pool = min(deterministic_p_random_pool, simulated_p_random_pool)
+                    p_draw = combine_probabilities(p_bonus_pool, p_random_pool)
                 row = dict(base)
                 row.update(
                     {
@@ -1254,6 +1388,10 @@ def build_bear_bonus_predictions(
                         "p_bonus_pool": f"{p_bonus_pool:.6f}",
                         "p_random_pool": f"{p_random_pool:.6f}",
                         "p_draw": f"{p_draw:.6f}",
+                        "p_draw_mean": f"{p_draw:.6f}",
+                        "p_draw_p10": f"{p_draw_p10:.6f}",
+                        "p_draw_p50": f"{p_draw_p50:.6f}",
+                        "p_draw_p90": f"{p_draw_p90:.6f}",
                         "p_bonus_pool_pct": f"{p_bonus_pool * 100.0:.3f}",
                         "p_random_pool_pct": f"{p_random_pool * 100.0:.3f}",
                         "p_draw_pct": f"{p_draw * 100.0:.3f}",
@@ -1264,7 +1402,15 @@ def build_bear_bonus_predictions(
                         "trend": _trend(prior_guaranteed, forecast_guaranteed),
                         "draw_outlook": _draw_outlook(p_draw),
                         "bear_bonus_valid": "TRUE",
-                        "bear_bonus_note": f"Forecasted from {latest_year} public bear draw history with Utah bonus split rules.",
+                        "bear_bonus_note": (
+                            f"Forecasted from {latest_year} public bear draw history with source-transition Monte Carlo uncertainty."
+                            if central_estimate_mode == "simulation_mean"
+                            else f"Forecasted from {latest_year} public bear draw history with Utah bonus split rules."
+                        ),
+                        "reason_codes": append_reason_codes(
+                            row.get("reason_codes"),
+                            "BEAR_SOURCE_TRANSITION_UNCERTAINTY_DISCOUNT" if central_estimate_mode == "simulation_mean" else "",
+                        ),
                         "data_quality_flags": "|".join(flags),
                     }
                 )
@@ -1277,6 +1423,8 @@ def build_bear_bonus_predictions(
 
     report = {
         "forecast_year": forecast_year,
+        "central_estimate_mode": central_estimate_mode,
+        "iterations": iterations,
         "source_years": history_years,
         "total_bear_rows_reviewed": len(review_rows),
         "bear_rows_seen_observed_history": len(observed_history_rows),

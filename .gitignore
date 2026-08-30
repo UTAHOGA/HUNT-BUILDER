@@ -581,6 +581,8 @@ audits/prediction_accuracy_backtest/
 *.csv
 # EXCEPTIONS (KEEP THESE)
 !data_truth/draw_results_truth/validation/black_bear_2018_2022_pdf_residency_ladders.csv
+!data/utah/sportsman/sportsman_odds_2017.csv
+!data/utah/youth/eb1007_youth_general_bull_history.csv
 !processed_data/**/*.json
 !processed_data/**/*.geojson
 !processed_data/**/*.md

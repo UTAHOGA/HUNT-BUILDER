@@ -2,10 +2,16 @@
 
 from __future__ import annotations
 
+import random
 from collections import Counter, defaultdict
 from statistics import mean
 from typing import Iterable, Mapping
 
+from engine.utah_bonus_predictive.cohort_forecast import (
+    BOOTSTRAP_QUOTA_SCALE_RANGE,
+    BOOTSTRAP_RETENTION_RANGE,
+    BOOTSTRAP_SWITCH_IN_SHARE_RANGE,
+)
 from engine.utah_bonus_predictive.monte_carlo import combine_probabilities, compute_bonus_pool_probability
 from engine.utah_bonus_predictive.rules import MODEL_VERSION
 from engine.utah_bonus_predictive.split import split_utah_bonus_permits
@@ -110,6 +116,14 @@ def _skipped_no_history_report(forecast_year: int, family: str) -> dict[str, obj
 
 def _round_count(value: float) -> int:
     return max(0, int(round(value)))
+
+
+def _percentile(values: list[float], fraction: float) -> float:
+    if not values:
+        return 0.0
+    ordered = sorted(values)
+    index = max(0, min(len(ordered) - 1, int(round(fraction * (len(ordered) - 1)))))
+    return ordered[index]
 
 
 def _band_for_points(points: int) -> str:
@@ -313,7 +327,13 @@ def _build_truth_ladders(
             continue
         hunt_code = _clean(row.get("hunt_code")).upper()
         residency = _clean(row.get("residency")) or "Resident"
-        points = _to_int(row.get("points"))
+        points_text = _clean(row.get("points"))
+        if not points_text.isdigit():
+            # Hunt-total rows are quota evidence, not a zero-point applicant
+            # cohort.  Treating a blank/TOTAL label as point zero double-counts
+            # the entire ladder and distorts weighted-pool odds.
+            continue
+        points = int(points_text)
         if not hunt_code:
             continue
 
@@ -561,7 +581,15 @@ def build_turkey_bonus_predictions(
     db_rows: Iterable[Mapping[str, object]],
     forecast_year: int,
     history_years: list[int],
+    central_estimate_mode: str = "deterministic",
+    iterations: int = 1,
+    seed: int = 20260520,
 ) -> tuple[list[dict[str, object]], dict[str, object]]:
+    if central_estimate_mode not in {"deterministic", "simulation_mean"}:
+        raise ValueError("central_estimate_mode must be deterministic or simulation_mean")
+    if iterations < 1:
+        raise ValueError("iterations must be at least 1")
+    rng = random.Random(seed)
     truth_rows_list = list(truth_rows)
     history_years = _history_years_or_bootstrap(history_years, truth_rows_list)
     if not history_years:
@@ -778,10 +806,72 @@ def build_turkey_bonus_predictions(
             applicants_by_points = {int(level): int(count) for level, count in forecast_ladder.items()}
             remaining_after_max = _remaining_applicants_after_max_pool(applicants_by_points, max_point_permits)
             random_probabilities = _weighted_without_replacement_probabilities(remaining_after_max, random_permits)
+            bootstrap_transition_uncertainty = len(available_years) == 1
+            simulated_draw: dict[int, list[float]] = defaultdict(list)
+            simulated_bonus: dict[int, list[float]] = defaultdict(list)
+            simulated_random: dict[int, list[float]] = defaultdict(list)
+            if central_estimate_mode == "simulation_mean":
+                for _ in range(max(1, iterations)):
+                    iteration_ladder = dict(applicants_by_points)
+                    iteration_quota = public_quota
+                    if bootstrap_transition_uncertainty:
+                        retention = rng.triangular(*BOOTSTRAP_RETENTION_RANGE)
+                        switch_share = rng.triangular(*BOOTSTRAP_SWITCH_IN_SHARE_RANGE)
+                        quota_scale = rng.triangular(*BOOTSTRAP_QUOTA_SCALE_RANGE)
+                        iteration_quota = max(1, _round_count(public_quota * quota_scale))
+                        iteration_ladder = {}
+                        for point_level in applicants_by_points:
+                            prior = latest_ladder.get(point_level - 1, {})
+                            same_point = latest_ladder.get(point_level, {})
+                            unsuccessful = max(
+                                int(prior.get("eligible", 0))
+                                - int(prior.get("bonus", 0))
+                                - int(prior.get("regular", 0)),
+                                0,
+                            )
+                            base = unsuccessful * retention + int(same_point.get("eligible", 0)) * switch_share
+                            sigma = max(1.0, max(base, 1.0) ** 0.5 * 0.25)
+                            iteration_ladder[point_level] = _round_count(max(0.0, rng.gauss(base, sigma)))
+                    iteration_split = split_utah_bonus_permits(iteration_quota, residency)
+                    iteration_remaining = _remaining_applicants_after_max_pool(
+                        iteration_ladder,
+                        iteration_split.maxPointPermits,
+                    )
+                    iteration_random = _weighted_without_replacement_probabilities(
+                        iteration_remaining,
+                        iteration_split.randomPermits,
+                    )
+                    for point_level in applicants_by_points:
+                        iteration_bonus, _, _ = compute_bonus_pool_probability(
+                            point_level,
+                            iteration_ladder,
+                            iteration_split.maxPointPermits,
+                        )
+                        iteration_random_probability = iteration_random.get(point_level, 0.0)
+                        simulated_bonus[point_level].append(iteration_bonus)
+                        simulated_random[point_level].append(iteration_random_probability)
+                        simulated_draw[point_level].append(
+                            combine_probabilities(iteration_bonus, iteration_random_probability)
+                        )
             for points in sorted(forecast_ladder.keys(), reverse=True):
                 p_bonus_pool, applicants_above, applicants_at_level = compute_bonus_pool_probability(points, applicants_by_points, max_point_permits)
                 p_random_pool = random_probabilities.get(points, 0.0)
                 p_draw = combine_probabilities(p_bonus_pool, p_random_pool)
+                draws = simulated_draw.get(points, [])
+                if central_estimate_mode == "simulation_mean" and draws:
+                    # Uncertainty may reduce a deterministic forecast but may
+                    # not create a new guarantee elsewhere in the ladder.
+                    p_bonus_pool = min(p_bonus_pool, mean(simulated_bonus[points]))
+                    p_random_pool = min(p_random_pool, mean(simulated_random[points]))
+                    p_draw = min(p_draw, mean(draws))
+                p10 = _percentile(draws, 0.10) if draws else p_draw
+                p50 = _percentile(draws, 0.50) if draws else p_draw
+                p90 = _percentile(draws, 0.90) if draws else p_draw
+                reason_codes = ["FAMILY_ENGINE_MODELED_TURKEY_BONUS"]
+                if central_estimate_mode == "simulation_mean":
+                    reason_codes.append("MONTE_CARLO_CENTRAL_ESTIMATE")
+                    if bootstrap_transition_uncertainty:
+                        reason_codes.append("TURKEY_SOURCE_TRANSITION_UNCERTAINTY_DISCOUNT")
                 row = {
                     "model_version": MODEL_VERSION,
                     "rule_version": BONUS_RULE_VERSION,
@@ -810,6 +900,10 @@ def build_turkey_bonus_predictions(
                     "p_bonus_pool": f"{p_bonus_pool:.6f}",
                     "p_random_pool": f"{p_random_pool:.6f}",
                     "p_draw": f"{p_draw:.6f}",
+                    "p_draw_mean": f"{p_draw:.6f}",
+                    "p_draw_p10": f"{p10:.6f}",
+                    "p_draw_p50": f"{p50:.6f}",
+                    "p_draw_p90": f"{p90:.6f}",
                     "p_bonus_pool_pct": f"{p_bonus_pool * 100.0:.3f}",
                     "p_random_pool_pct": f"{p_random_pool * 100.0:.3f}",
                     "p_draw_pct": f"{p_draw * 100.0:.3f}",
@@ -825,6 +919,7 @@ def build_turkey_bonus_predictions(
                     "earliest_source_year": available_years[0],
                     "source_dataset": "predictive",
                     "model_strategy": MODEL_STRATEGY_NAME,
+                    "reason_codes": "|".join(reason_codes),
                     "turkey_bonus_valid": "TRUE",
                     "turkey_bonus_note": f"Forecasted from {latest_year} limited-entry turkey bonus ladder with Utah split rule.",
                     "weapon": weapon,
@@ -870,6 +965,8 @@ def build_turkey_bonus_predictions(
         "other_non_draw_turkey_rows": excluded_other,
         "source_years_used_non_null_count": sum(1 for row in rows if _clean(row.get("source_years_used"))),
         "data_quality_flags_summary": dict(data_quality_counter),
+        "central_estimate_mode": central_estimate_mode,
+        "iterations": iterations,
     }
     return rows, report
 
@@ -921,7 +1018,10 @@ def _build_youth_turkey_truth_ladders(
                     )
                 )
 
-        points = _to_int(row.get("points") or row.get("point_level"))
+        points_text = _clean(row.get("points") or row.get("point_level"))
+        if not points_text.isdigit():
+            continue
+        points = int(points_text)
         for residency, eligible, bonus, regular, total in entries:
             ladders[(year, hunt_code, residency)][points]["eligible"] += eligible
             ladders[(year, hunt_code, residency)][points]["bonus"] += bonus

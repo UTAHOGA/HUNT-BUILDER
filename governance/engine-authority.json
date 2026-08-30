@@ -1,6 +1,6 @@
 {
   "schema_version": "1.2.0",
-  "last_verified_date": "2026-08-28",
+  "last_verified_date": "2026-08-29",
   "authority": "HUNT_BUILDER_PROJECT_MEMORY",
   "lifecycle": {
     "phase": "HOSTED_NORMAL_SPLIT_CONTRACT_RELEASED_CERTIFICATION_PENDING",
@@ -9,9 +9,27 @@
     "promotion_status": "BLOCKED",
     "promotion_blockers": [
       "HISTORICAL_ADJACENT_YEAR_ACCEPTANCE_REVIEW_NOT_ACCEPTED",
-      "KNOWN_FAMILY_CONTRACT_TEST_DRIFT",
       "CURRENT_DATABASE_NEWER_THAN_CHECKED_IN_PREDICTION_MANIFEST"
     ]
+  },
+  "historical_blind_targeted_repair_2026_08_29": {
+    "standard": "docs/decisions/ADR-0006-historical-blind-acceptance-thresholds.md",
+    "audit": "audits/prediction_blind_year_to_year/historical_adjacent_full_engine_repaired_uncertainty_200iter_20260829/acceptance_review/acceptance_review_manifest.json",
+    "baseline": "audits/prediction_blind_year_to_year/historical_adjacent_full_engine_repaired_uncertainty_200iter_20260829/baseline_manifest.json",
+    "joined_rows": 85249,
+    "probability_mae": 0.126337907740592,
+    "probability_rmse": 0.295625834200328,
+    "p90_absolute_probability_error": 0.5,
+    "probability_abs_error_gt_0_25": 12210,
+    "false_guarantee_rows": 98,
+    "false_guarantee_breakdown": {
+      "BEAR_DRAW": 97,
+      "BONUS_LE_BIG_GAME": 1,
+      "BONUS_TURKEY": 0
+    },
+    "acceptance_status": "NOT_ACCEPTED",
+    "runtime_status": "AUDIT_ONLY_NOT_PROMOTED",
+    "scope": "Targeted repair of the prior 185 false guarantees; no PDF re-ingestion, database replacement, canonical rebuild, runtime promotion, or deployment."
   },
   "historical_blind_acceptance_2026_08_28": {
     "standard": "docs/decisions/ADR-0006-historical-blind-acceptance-thresholds.md",
@@ -463,26 +481,6 @@
     }
   },
   "known_contract_drift": [
-    {
-      "id": "PRIVATE_LANDS_ANTLERLESS_STATUS",
-      "status": "UNRESOLVED_REQUIRES_REVIEW",
-      "detail": "Artifact uses MODELED_ALLOCATION while tests and older documentation expect capped MODELED_AVAILABILITY"
-    },
-    {
-      "id": "PRIVATE_LANDS_COVERAGE_FIELD",
-      "status": "UNRESOLVED_REQUIRES_REVIEW",
-      "detail": "Coverage report lacks private_lands_only_antlerless_elk_modeled_capped_permits"
-    },
-    {
-      "id": "SPORTSMAN_2017_COUGAR_ROW",
-      "status": "UNRESOLVED_REQUIRES_REVIEW",
-      "detail": "2017 Sportsman reconstruction returns 10 rows while the test contract expects 11 including cougar"
-    },
-    {
-      "id": "EB1007_YOUTH_ELK_STATUS",
-      "status": "UNRESOLVED_REQUIRES_REVIEW",
-      "detail": "EB1007 forecast currently remains IN_SCOPE_MODEL_PENDING while the test contract expects MODELED_RANDOM_ONLY"
-    },
     {
       "id": "LOCAL_TO_R2_RUNTIME_EQUIVALENCE",
       "status": "UNRESOLVED_REQUIRES_REVIEW",

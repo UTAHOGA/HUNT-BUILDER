@@ -6,7 +6,7 @@ import argparse
 import hashlib
 import json
 import shutil
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Mapping
@@ -45,6 +45,9 @@ from engine.utah_draw_predictive.turkey import (
 )
 from engine.utah_draw_predictive.youth import (
     YOUTH_DRAW_SYSTEM_TYPES,
+    YOUTH_ANTLERLESS_OR_DOE_RESERVE_DRAW_SYSTEM_TYPE,
+    YOUTH_GENERAL_ANY_BULL_ELK_DRAW_SYSTEM_TYPE,
+    YOUTH_GENERAL_DEER_RESERVE_DRAW_SYSTEM_TYPE,
     build_youth_predictions,
 )
 
@@ -751,8 +754,42 @@ def _write_youth_artifacts(
         "p_random_pool",
     ]
     write_csv(csv_path, rows, fieldnames)
+    # The family builder reports its pre-merge rows.  Identity resolution can
+    # legitimately collapse overlapping youth reserve rows when they are merged
+    # into the final prediction surface, so the artifact report must describe
+    # the rows actually written rather than the pre-merge candidate count.
+    artifact_report = dict(report)
+    status_counts = Counter(str(row.get("algorithm_status", "")).strip() for row in rows)
+    artifact_report.update(
+        {
+            "active_predictive_youth_row_count": len(rows),
+            "youth_general_deer_reserve_row_count": sum(
+                1 for row in rows if str(row.get("draw_system_type", "")).strip() == YOUTH_GENERAL_DEER_RESERVE_DRAW_SYSTEM_TYPE
+            ),
+            "youth_antlerless_or_doe_reserve_row_count": sum(
+                1 for row in rows if str(row.get("draw_system_type", "")).strip() == YOUTH_ANTLERLESS_OR_DOE_RESERVE_DRAW_SYSTEM_TYPE
+            ),
+            "youth_general_any_bull_elk_row_count": sum(
+                1 for row in rows if str(row.get("draw_system_type", "")).strip() == YOUTH_GENERAL_ANY_BULL_ELK_DRAW_SYSTEM_TYPE
+            ),
+            "rows_by_algorithm_status": dict(sorted(status_counts.items())),
+            "modeled_preference_row_count": status_counts.get("MODELED_PREFERENCE", 0),
+            "modeled_random_only_row_count": status_counts.get("MODELED_RANDOM_ONLY", 0),
+            "modeled_allocation_row_count": status_counts.get("MODELED_ALLOCATION", 0),
+            "modeled_availability_row_count": status_counts.get("MODELED_AVAILABILITY", 0),
+            "in_scope_model_pending_row_count": status_counts.get("IN_SCOPE_MODEL_PENDING", 0),
+            "excluded_not_predictive_draw_row_count": status_counts.get("EXCLUDED_NOT_PREDICTIVE_DRAW", 0),
+            "p_draw_non_null_count": sum(1 for row in rows if str(row.get("p_draw", "")).strip()),
+            "p_draw_pct_non_null_count": sum(1 for row in rows if str(row.get("p_draw_pct", "")).strip()),
+            "p_preference_draw_non_null_count": sum(1 for row in rows if str(row.get("p_preference_draw", "")).strip()),
+            "p_bonus_pool_non_null_count": sum(1 for row in rows if str(row.get("p_bonus_pool", "")).strip()),
+            "p_random_pool_non_null_count": sum(1 for row in rows if str(row.get("p_random_pool", "")).strip()),
+            "p_availability_non_null_count": sum(1 for row in rows if str(row.get("p_availability", "")).strip()),
+            "availability_pct_non_null_count": sum(1 for row in rows if str(row.get("availability_pct", "")).strip()),
+        }
+    )
     json_path = output_dir / "youth_draw_report.json"
-    json_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
+    json_path.write_text(json.dumps(artifact_report, indent=2), encoding="utf-8")
     return csv_path, json_path
 
 

@@ -308,6 +308,8 @@ def classify_draw_system_type(row: Mapping[str, object]) -> str:
         if is_general_season_turkey_row(row) or is_remaining_turkey_row(row) or is_nonpublic_turkey_row(row) or "fall management" in text or "statewide" in text:
             return "OTC_OR_REMAINING_TARGET"
         return TURKEY_DRAW_SYSTEM_TYPE
+    if "cwmu" in text and hunt_class == "private":
+        return "LANDOWNER_BIG_GAME"
     if "cwmu" in text:
         return "BONUS_CWMU_BIG_GAME"
     if existing_draw_system_type in LEGACY_BONUS_DRAW_DESIGNS:
@@ -1100,6 +1102,10 @@ def build_draw_system_coverage_report(
     private_lands_summary = {
         "private_lands_only_antlerless_elk_in_scope": True,
         "private_lands_only_antlerless_elk_modeled_allocation": any(row["algorithm_status"] == ALGORITHM_STATUS_MODELED_ALLOCATION for row in predictive_private_lands_rows),
+        # Compatibility aliases retained for the original capped-permit coverage
+        # contract.  These describe the same allocation rows; they do not
+        # reclassify private-lands permits as draw odds or availability odds.
+        "private_lands_only_antlerless_elk_modeled_capped_permits": any(row["algorithm_status"] == ALGORITHM_STATUS_MODELED_ALLOCATION for row in predictive_private_lands_rows),
         "private_lands_only_antlerless_elk_modeled": any(row["algorithm_status"] == ALGORITHM_STATUS_MODELED_ALLOCATION for row in predictive_private_lands_rows),
         "private_lands_only_antlerless_elk_pending": any(row["algorithm_status"] == ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING for row in predictive_private_lands_rows),
         "private_lands_only_antlerless_elk_still_pending": any(row["algorithm_status"] == ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING for row in predictive_private_lands_rows),
@@ -1108,6 +1114,7 @@ def build_draw_system_coverage_report(
         "private_lands_only_antlerless_elk_hunt_code_count": _distinct_count(predictive_rows, lambda row: row["draw_system_type"] == PRIVATE_LANDS_ANTLERLESS_ELK_DRAW_SYSTEM_TYPE),
         "private_lands_only_antlerless_elk_active_predictive_hunt_code_count": _distinct_count(predictive_rows, lambda row: row["draw_system_type"] == PRIVATE_LANDS_ANTLERLESS_ELK_DRAW_SYSTEM_TYPE),
         "private_lands_only_antlerless_elk_modeled_allocation_row_count": sum(1 for row in predictive_private_lands_rows if row["algorithm_status"] == ALGORITHM_STATUS_MODELED_ALLOCATION),
+        "private_lands_only_antlerless_elk_modeled_capped_permit_row_count": sum(1 for row in predictive_private_lands_rows if row["algorithm_status"] == ALGORITHM_STATUS_MODELED_ALLOCATION),
         "private_lands_only_antlerless_elk_pending_row_count": sum(1 for row in predictive_private_lands_rows if row["algorithm_status"] == ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING),
         "private_lands_only_antlerless_elk_excluded_row_count": sum(1 for row in predictive_private_lands_rows if row["algorithm_status"] == ALGORITHM_STATUS_EXCLUDED_NOT_PREDICTIVE_DRAW),
         "private_lands_only_antlerless_elk_p_draw_count": sum(1 for row in predictive_private_lands_rows if str(row.get("p_draw", "")).strip()),

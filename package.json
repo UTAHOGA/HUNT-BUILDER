@@ -24,6 +24,7 @@
         "sync:permits-2026": "node scripts/sync-permit-allocations-2026.js",
         "verify:permits-2026": "node scripts/verify-permit-allocations-2026.js",
         "verify:permits-2026:read-only": "node scripts/verify-permit-allocations-2026.js --no-write",
+        "verify:permits-2026:optional-hydration": "node scripts/verify-permit-allocations-2026.js --no-write --include-optional-hydration --details",
         "reconcile:le-elk-2025": "node scripts/reconcile-le-elk-2025-permits.js",
         "reconcile:le-elk-2025:write": "node scripts/reconcile-le-elk-2025-permits.js --write",
         "integrity:hard-data": "node scripts/run-hard-data-integrity.js",
