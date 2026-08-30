@@ -1038,6 +1038,24 @@ def _source_backed_probability_values(row: Mapping[str, object]) -> list[tuple[s
     return values
 
 
+def _source_backed_eligible_applicants(
+    row: Mapping[str, object],
+    residency: str,
+) -> float | None:
+    if _clean(row.get("residency")):
+        fields = ("eligible_applicants", "total_eligible_applicants")
+    elif _clean(residency).lower() == "resident":
+        fields = ("resident_eligible_applicants",)
+    elif _clean(residency).lower() == "nonresident":
+        fields = ("nonresident_eligible_applicants",)
+    else:
+        fields = ("eligible_applicants", "total_eligible_applicants")
+    for field in fields:
+        if _clean(row.get(field)):
+            return _to_number(row.get(field))
+    return None
+
+
 def _source_backed_probability_rows(
     source_rows: Sequence[Mapping[str, object]],
     modeled: Mapping[str, Sequence[Mapping[str, object]]],
@@ -1083,22 +1101,41 @@ def _source_backed_probability_rows(
                 continue
             added_keys.add(key)
             copied_guarantee = probability >= 1.0 - 1e-12
+            source_eligible_applicants = _source_backed_eligible_applicants(source_row, residency)
+            empty_bear_rung = (
+                family == "bonus_bear"
+                and source_eligible_applicants is not None
+                and source_eligible_applicants <= 0
+            )
+            probability_blocked = copied_guarantee or empty_bear_rung
             probability_fields = {
-                "p_preference_draw": f"{probability:.6f}" if family.startswith("preference_") and not copied_guarantee else "",
-                "p_bonus_pool": "" if family.startswith("preference_") or copied_guarantee else f"{probability:.6f}",
+                "p_preference_draw": f"{probability:.6f}" if family.startswith("preference_") and not probability_blocked else "",
+                "p_bonus_pool": "" if family.startswith("preference_") or probability_blocked else f"{probability:.6f}",
                 "p_random_pool": "",
-                "p_draw": "" if copied_guarantee else f"{probability:.6f}",
-                "p_bonus_pool_pct": "" if family.startswith("preference_") or copied_guarantee else f"{probability * 100.0:.3f}",
+                "p_draw": "" if probability_blocked else f"{probability:.6f}",
+                "p_bonus_pool_pct": "" if family.startswith("preference_") or probability_blocked else f"{probability * 100.0:.3f}",
                 "p_random_pool_pct": "",
-                "p_draw_pct": "" if copied_guarantee else f"{probability * 100.0:.3f}",
-                "p_draw_mean": "" if copied_guarantee else f"{probability:.6f}",
-                "p_draw_p10": "" if copied_guarantee else f"{max(0.0, probability - 0.05):.6f}",
-                "p_draw_p50": "" if copied_guarantee else f"{probability:.6f}",
-                "p_draw_p90": "" if copied_guarantee else f"{min(1.0, probability + 0.05):.6f}",
-                "display_odds_pct": "" if copied_guarantee else f"{probability * 100.0:.3f}",
-                "display_odds_text": "No next-year modeled chance" if copied_guarantee else _render_odds_text(probability),
-                "draw_outlook": "MODEL PENDING" if copied_guarantee else _render_odds_text(probability),
+                "p_draw_pct": "" if probability_blocked else f"{probability * 100.0:.3f}",
+                "p_draw_mean": "" if probability_blocked else f"{probability:.6f}",
+                "p_draw_p10": "" if probability_blocked else f"{max(0.0, probability - 0.05):.6f}",
+                "p_draw_p50": "" if probability_blocked else f"{probability:.6f}",
+                "p_draw_p90": "" if probability_blocked else f"{min(1.0, probability + 0.05):.6f}",
+                "display_odds_pct": "" if probability_blocked else f"{probability * 100.0:.3f}",
+                "display_odds_text": "No next-year modeled chance" if probability_blocked else _render_odds_text(probability),
+                "draw_outlook": "MODEL PENDING" if probability_blocked else _render_odds_text(probability),
             }
+            if empty_bear_rung:
+                source_algorithm_status = "NOT_SCORED_SOURCE_ROLL_FORWARD_EMPTY_RUNG"
+                source_classification_status = "SOURCE_ROLL_FORWARD_EMPTY_RUNG_BLOCKED"
+                source_reason_code = "SOURCE_BACKED_EMPTY_APPLICANT_RUNG_NO_NEXT_YEAR_PROBABILITY"
+            elif copied_guarantee:
+                source_algorithm_status = "NOT_SCORED_SOURCE_ROLL_FORWARD_GUARANTEE_BLOCKED"
+                source_classification_status = "SOURCE_ROLL_FORWARD_GUARANTEE_BLOCKED"
+                source_reason_code = "SOURCE_BACKED_PUBLISHED_POINT_PROBABILITY_ROLL_FORWARD_GUARANTEE_BLOCKED"
+            else:
+                source_algorithm_status = "MODELED_SOURCE_BACKED_ROLL_FORWARD"
+                source_classification_status = "MODELED_SOURCE_BACKED_ROLL_FORWARD"
+                source_reason_code = "SOURCE_BACKED_PUBLISHED_POINT_PROBABILITY_ROLL_FORWARD"
             rows_by_family[family].append(
                 {
                     "model_version": "source_backed_roll_forward_v1",
@@ -1123,11 +1160,7 @@ def _source_backed_probability_rows(
                     "earliest_source_year": str(source_year),
                     "source_dataset": "predictive",
                     "model_strategy": f"{family}_source_backed_roll_forward",
-                    "reason_codes": (
-                        "SOURCE_BACKED_PUBLISHED_POINT_PROBABILITY_ROLL_FORWARD_GUARANTEE_BLOCKED"
-                        if copied_guarantee
-                        else "SOURCE_BACKED_PUBLISHED_POINT_PROBABILITY_ROLL_FORWARD"
-                    ),
+                    "reason_codes": source_reason_code,
                     "weapon": _clean(source_row.get("weapon")),
                     "qa_notes": _clean(source_row.get("qa_notes")),
                     "source_file": _clean(source_row.get("source_file") or source_row.get("draw_source_file") or source_row.get("source_scope")),
@@ -1140,9 +1173,9 @@ def _source_backed_probability_rows(
                     "metric_scope": metric_scope,
                     "draw_method": _default_draw_method_for_family(family),
                     "point_system": _default_point_system_for_family(family),
-                    "algorithm_status": "NOT_SCORED_SOURCE_ROLL_FORWARD_GUARANTEE_BLOCKED" if copied_guarantee else "MODELED_SOURCE_BACKED_ROLL_FORWARD",
-                    "prediction_status": "NOT_SCORED" if copied_guarantee else "MODELED",
-                    "classification_status": "SOURCE_ROLL_FORWARD_GUARANTEE_BLOCKED" if copied_guarantee else "MODELED_SOURCE_BACKED_ROLL_FORWARD",
+                    "algorithm_status": source_algorithm_status,
+                    "prediction_status": "NOT_SCORED" if probability_blocked else "MODELED",
+                    "classification_status": source_classification_status,
                     "public_permits_target": _clean(source_row.get("total_permits") or source_row.get("resident_total_permits") or source_row.get("nonresident_total_permits")),
                     "public_permits_source": f"source_year_{source_year}_published_point_probability",
                 }
@@ -1644,18 +1677,19 @@ def _drop_total_scope_bear_guarantees_when_source_backed(
     Some legacy Bear source tables retain resident probabilities but only a
     combined applicant ladder for cohort forecasting.  The Bear model marks
     those derived residency forecasts explicitly.  If that broad model claims
-    a 100% chance while the same official hunt/residency/point lane has a
-    positive, numeric source-backed probability below 100%, retaining both
-    collapses to a duplicate during draw-line scoring and the unsupported
-    guarantee can be selected merely because it appeared first.
+    a 100% chance while the same official hunt/residency/point lane either has
+    a positive, numeric source-backed probability below 100% or explicitly
+    lacks a valid next-year probability, retaining both lets the unsupported
+    guarantee override the stronger lane-specific evidence.
 
     This guard is deliberately narrower than a general source-row preference:
     it removes only 100% ``MODELED_BONUS`` Bear rows carrying the explicit
     ``TOTAL_SCOPE_HISTORY_USED_FOR_RESIDENCY`` quality flag, and only when the
-    exact source-backed row supplies a positive lower probability.  Zero odds
-    are not carried forward over the cohort model because they can represent a
-    source-year rung with no awarded permit.  Blocked or blank source rows,
-    non-guarantees, lane-specific Bear models, and every other prediction
+    exact source-backed row supplies a positive lower probability or an
+    explicit blocked status.  Empty source rungs and copied source-year
+    guarantees remain unscored because neither supports a next-year numerical
+    chance.  An observed numeric zero does not override the cohort model.
+    Non-guarantees, lane-specific Bear models, and every other prediction
     family remain unchanged.
     """
 
@@ -1667,13 +1701,22 @@ def _drop_total_scope_bear_guarantees_when_source_backed(
             _canonical_points_text(row.get("points")),
         )
 
+    blocked_source_statuses = {
+        "NOT_SCORED_SOURCE_ROLL_FORWARD_GUARANTEE_BLOCKED",
+        "NOT_SCORED_SOURCE_ROLL_FORWARD_EMPTY_RUNG",
+    }
     source_backed_keys: set[tuple[str, str, str, str]] = set()
     for row in rows:
         if (
             _clean(row.get("source_family")).upper() != "BEAR_DRAW_RESULTS"
-            or _clean(row.get("algorithm_status")).upper() != "MODELED_SOURCE_BACKED_ROLL_FORWARD"
             or not _clean(row.get("source_file"))
         ):
+            continue
+        algorithm_status = _clean(row.get("algorithm_status")).upper()
+        if algorithm_status in blocked_source_statuses:
+            source_backed_keys.add(lane_key(row))
+            continue
+        if algorithm_status != "MODELED_SOURCE_BACKED_ROLL_FORWARD":
             continue
         raw_probability = _clean(row.get("p_draw_mean") or row.get("p_draw"))
         try:
