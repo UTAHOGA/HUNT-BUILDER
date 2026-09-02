@@ -19687,3 +19687,11 @@ Production state:
 - `BR7003 | Resident | 7 points` remains scoreable at `33.3333%` against the official `14.2857%` result, with one prediction candidate. The coverage reduction is an intentional uncertainty disclosure, not evidence of broader acceptance; no full historical evaluation was run.
 - Verification: `18` focused precedence, Bear uncertainty, and scoring tests pass; the repository `npm test` suite passes. The broader optional-runtime Bear selection has `42` passes and the three known stale processed-artifact/coverage comparisons; this audit did not rebuild or modify those ignored current-runtime artifacts.
 - Focused evidence: `audits/prediction_blind_year_to_year/2021_to_2022_bear_explicit_uncertainty_20260829/`. No PDF, canonical truth, `DATABASE.csv`, current permit row, promoted runtime, R2 object, deployment, Git staging, commit, or push was changed.
+
+## 2026-09-02 - 2026 Draw Results topo Library release package
+
+- Added five complete 2026 Utah DWR / UtahDraws result reports to the public Draw Results Library: Antlerless, Big Game, Black Bear, Turkey, and Sportsman.
+- Used the corrected youth-residency report set as the value/layout baseline, then applied the existing UOGA Hunt Library `tan-topo.png` background at 12% opacity. The header and all white-and-cream applicant tables remain opaque, and all species artwork remains intact.
+- Preserved the existing 30 online 2026 Draw Results PDFs and the Hunt Units / Permit Reconciliation PDF. The five new reports use separate stable filenames and do not replace any current public document.
+- Reopened and compared all `1,491` pages against the corrected source set: page counts and extracted text match on every page, including the DB1501 youth resident/nonresident repair. The five reports retain all `29` official packages and `22,018` source rows, with zero 2025 season starts and zero EA1281 matches.
+- Visual QA covered short and full ladders, DB1501 youth, EB3067 elk, Antlerless Moose, Black Bear, Turkey, and Sportsman pages. The complete Pages build, public-manifest guard, JavaScript syntax check, Library UI smoke test, and project-memory validation pass. Optional ignored/R2-backed build omissions remain pre-existing diagnostics.
