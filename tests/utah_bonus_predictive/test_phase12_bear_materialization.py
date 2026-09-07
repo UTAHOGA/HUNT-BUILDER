@@ -127,3 +127,59 @@ def test_bear_known_zero_residency_quota_preserves_canonical_zero_point(monkeypa
     assert nonresident_rows[0]["bear_bonus_valid"] == "FALSE"
     assert nonresident_rows[0]["p_draw"] == ""
     assert "KNOWN_ZERO_RESIDENCY_QUOTA" in nonresident_rows[0]["data_quality_flags"]
+
+
+def test_bear_total_scope_history_cannot_emit_residency_guarantee(monkeypatch) -> None:
+    from engine.utah_draw_predictive import bear as bear_module
+
+    monkeypatch.setattr(bear_module, "official_bear_draw_odds_hunt_codes", lambda: set())
+    monkeypatch.setattr(bear_module, "official_bear_pursuit_hunt_codes", lambda: set())
+
+    truth_rows = [
+        {
+            "year": "2026",
+            "hunt_code": "BR9998",
+            "hunt_name": "Combined Scope Test",
+            "species": "Black Bear",
+            "hunt_type": "Limited Entry",
+            "weapon": "Any Legal Weapon",
+            "draw_pool": "standard",
+            "residency": "All",
+            "points": "0",
+            "eligible_applicants": "1",
+            "bonus_permits": "0",
+            "regular_permits": "0",
+            "total_permits": "0",
+        }
+    ]
+    db_rows = [
+        {
+            "hunt_code": "BR9998",
+            "hunt_name": "Combined Scope Test",
+            "species": "Black Bear",
+            "hunt_type": "Limited Entry",
+            "weapon": "Any Legal Weapon",
+            "hunt_class": "Public",
+            "permits_2026_res": "99",
+            "permits_2026_nr": "0",
+            "permits_2026_total": "99",
+        }
+    ]
+
+    rows, _report = bear_module.build_bear_bonus_predictions(
+        truth_rows=truth_rows,
+        db_rows=db_rows,
+        forecast_year=2027,
+        history_years=[2026],
+    )
+
+    resident_row = next(
+        row
+        for row in rows
+        if row.get("hunt_code") == "BR9998" and row.get("residency") == "Resident" and row.get("points") == "0"
+    )
+    assert resident_row["p_draw"] == ""
+    assert resident_row["p_draw_mean"] == ""
+    assert resident_row["guaranteed_at_2026"] == ""
+    assert resident_row["algorithm_status"] == "NOT_SCORED_TOTAL_SCOPE_RESIDENCY_GUARANTEE_BLOCKED"
+    assert "TOTAL_SCOPE_RESIDENCY_GUARANTEE_BLOCKED" in resident_row["reason_codes"]

@@ -13,6 +13,8 @@ from dataclasses import dataclass
 from statistics import mean
 from typing import Iterable
 
+from engine.utah.quality.harvest_identity import harvest_identity_compatible
+
 
 BLANK_TOKENS = {"", "-", "--", "---", "–", "—", "na", "n/a", "none", "null"}
 
@@ -217,8 +219,6 @@ def grade_for_match(match_method: str, year_count: int) -> str:
             return "C"
     if match_method in {"SAME_HUNT_NAME_SPECIES_HISTORY", "UNIT_SPECIES_HISTORY"}:
         return "C" if year_count >= 2 else "D"
-    if match_method in {"SPECIES_FAMILY_HISTORY", "STATEWIDE_SPECIES_HISTORY"}:
-        return "D"
     return "F"
 
 
@@ -241,9 +241,13 @@ def fallback_feature_selection(
     name_norm = normalize_text(hunt_name)
     unit_norm = unit_key(hunt_name)
 
-    candidates = [row for row in usable if row.get("hunt_code") == hunt_code]
+    same_code = [row for row in usable if row.get("hunt_code") == hunt_code]
+    target = {"hunt_code": hunt_code, "species": species, "hunt_name": hunt_name}
+    candidates = [row for row in same_code if harvest_identity_compatible(row, target)]
     method = "EXACT_HUNT_CODE_HISTORY"
     reasons: list[str] = []
+    if same_code and not candidates:
+        reasons.append("HUNT_CODE_NAME_OR_SPECIES_MISMATCH_REJECTED")
     if not candidates and species_norm and name_norm:
         candidates = [
             row
@@ -260,12 +264,13 @@ def fallback_feature_selection(
         ]
         method = "UNIT_SPECIES_HISTORY"
         reasons.append("FALLBACK_BY_UNIT_SPECIES")
-    if not candidates and species_norm:
-        candidates = [row for row in usable if normalize_text(row.get("species")) == species_norm]
-        method = "SPECIES_FAMILY_HISTORY"
-        reasons.append("FALLBACK_BY_SPECIES")
     if not candidates:
-        return FallbackSelection([], "NO_HARVEST_HISTORY", "F", ["NO_USABLE_HARVEST_HISTORY"])
+        return FallbackSelection(
+            [],
+            "NO_HARVEST_HISTORY",
+            "F",
+            reasons + ["NO_USABLE_HARVEST_HISTORY", "SPECIES_WIDE_FALLBACK_PROHIBITED"],
+        )
 
     by_year: dict[int, list[dict[str, str]]] = defaultdict(list)
     for row in candidates:

@@ -386,6 +386,25 @@ def dwr_table_shape_rows(split_rows: list[dict[str, str]]) -> list[dict[str, str
         template.update(
             {
                 "residency": "",
+                # The template begins as one physical residency lane.  A
+                # canonical table-shape row must explicitly carry *both*
+                # official lanes; otherwise whichever lane happened to be
+                # selected as the template leaks through while the combined
+                # totals correctly contain both lanes.
+                "resident_eligible_applicants": str(res_apps),
+                "resident_bonus_permits": str(res_bonus),
+                "resident_regular_permits": str(res_regular),
+                "resident_total_permits": str(res_permits),
+                "resident_success_ratio": clean(resident.get("success_ratio", "N/A")) or "N/A",
+                "resident_p_draw": probability(res_permits, res_apps)[0],
+                "resident_p_draw_percent": probability(res_permits, res_apps)[1],
+                "nonresident_eligible_applicants": str(nr_apps),
+                "nonresident_bonus_permits": str(nr_bonus),
+                "nonresident_regular_permits": str(nr_regular),
+                "nonresident_total_permits": str(nr_permits),
+                "nonresident_success_ratio": clean(nonresident.get("success_ratio", "N/A")) or "N/A",
+                "nonresident_p_draw": probability(nr_permits, nr_apps)[0],
+                "nonresident_p_draw_percent": probability(nr_permits, nr_apps)[1],
                 "eligible_applicants": str(total_apps),
                 "bonus_permits": str(res_bonus + nr_bonus),
                 "regular_permits": str(res_regular + nr_regular),

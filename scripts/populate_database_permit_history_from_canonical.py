@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Populate DATABASE.csv permit history columns from yearly canonical truth files.
+"""Reconcile historical DATABASE.csv permit-history lineage to yearly canonicals.
 
 The database is a hunt/unit display table, so this script only imports summary
 permit fields. Point-ladder applicant/probability rows stay in draw_results_long.
 Matching is strict by hunt_code + species + sex_type + weapon first, then by a
 single unambiguous hunt_code only when there is exactly one canonical identity
-for that code in that year.
+for that code in that year.  It is intentionally *not* a current-quota writer:
+the current-year Planner permit reference remains owned by its retained DWR
+Planner feeder, while the canonicals remain the historical draw-result truth.
 """
 
 from __future__ import annotations
@@ -142,7 +144,17 @@ def main() -> int:
     parser.add_argument("--year", type=int, action="append", default=[])
     parser.add_argument("--write", action="store_true")
     args = parser.parse_args()
-    years = sorted(set(args.year or range(2019, 2027)))
+    # The active 2026 permit reference is not a historical draw-result field.
+    # Its official authority is the current Hunt Planner feeder, so a canonical
+    # point/result row must never clear, zero-fill, or otherwise overwrite it.
+    years = sorted(set(args.year or range(2019, 2026)))
+    current_or_future_years = [year for year in years if year >= 2026]
+    if current_or_future_years:
+        raise SystemExit(
+            "Refusing to write current/future permit-reference fields from draw-result canonicals: "
+            + ", ".join(str(year) for year in current_or_future_years)
+            + ". Reconcile those fields against the retained DWR Hunt Planner feeder instead."
+        )
 
     AUDIT_DIR.mkdir(parents=True, exist_ok=True)
     header, rows = read_csv(DATABASE)
@@ -246,8 +258,16 @@ def main() -> int:
         "write_mode": args.write,
         "database": str(DATABASE.relative_to(ROOT)),
         "years": years,
+        "authority_boundary": {
+            "historical_draw_result_truth": "data_truth/draw_results_truth/normalized/canonical_yearly",
+            "database_role": "current hunt identity and current DWR Planner permit reference",
+            "current_planner_reference_year_excluded_from_canonical_write": 2026,
+            "rule": "Canonical point/result rows may establish historical permit lineage but may not overwrite current Planner quota/reference fields.",
+        },
         "database_rows": len(rows),
         "cell_updates": len(changes),
+        "numeric_permit_updates": sum(1 for change in changes if not change["column"].endswith("_source")),
+        "lineage_label_updates": sum(1 for change in changes if change["column"].endswith("_source")),
         "updates_by_column": dict(Counter(change["column"] for change in changes)),
         "matches_by_method": dict(Counter(row["match_method"] for row in row_summaries)),
         "changes_csv": str(changes_path.relative_to(ROOT)),

@@ -19,9 +19,15 @@ from typing import Iterable
 
 ROOT = Path(__file__).resolve().parents[1]
 
-SOURCE_2024_PDF = ROOT / "pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/24 bear draw odds complete.pdf"
-SOURCE_2025_PDF = ROOT / "pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/2025 Black Bear Draw odds.pdf"
-PERMITS_2026 = ROOT / "data_truth/permit_overlay_truth/normalized/black_bear_permits_2026_canonical.csv"
+# The former feeder copies were model-year staging paths and were removed
+# during raw-data cleanup.  These are the retained report-year archive files.
+SOURCE_2024_PDF = ROOT / "pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/official_dwr_archive/black_bear/24_drawing_odds.pdf"
+SOURCE_2025_PDF = ROOT / "pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/official_dwr_archive/black_bear/25_drawing_odds.pdf"
+# The old 2026 one-purpose permit export is no longer retained.  DATABASE.csv
+# is the reviewed current DWR Planner permit-reference authority.  This
+# crosswalk uses only active Bear records with a positive published 2026 total;
+# no applicant or outcome truth is taken from this source.
+CURRENT_2026_DATABASE = ROOT / "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
 
 NORMALIZED_2025_OUT = ROOT / "data_truth/draw_results_truth/normalized/black_bear_2025_draw_odds_model_target_2026_permit_totals.csv"
 CROSSWALK_OUT = ROOT / "data_truth/crosswalk_truth/normalized/black_bear_BR_2024_2025_2026_crosswalk.csv"
@@ -101,6 +107,19 @@ def read_csv(path: Path) -> list[dict[str, str]]:
     with path.open("r", encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
         return [{(k or "").strip(): (v or "").strip() for k, v in row.items()} for row in reader]
+
+
+def current_2026_bear_permit_rows() -> list[dict[str, str]]:
+    """Return only active current Bear permit references from DATABASE.csv."""
+
+    output: list[dict[str, str]] = []
+    for row in read_csv(CURRENT_2026_DATABASE):
+        code = row.get("hunt_code", "").upper()
+        total = row.get("permits_2026_total", "").strip()
+        if not code.startswith("BR") or not total.isdigit() or int(total) <= 0:
+            continue
+        output.append(row)
+    return output
 
 
 def write_csv(path: Path, rows: Iterable[dict[str, object]], fields: list[str]) -> None:
@@ -357,7 +376,7 @@ def build_report(summary: dict[str, object]) -> str:
 def main() -> None:
     rows_2024 = parse_pdf(SOURCE_2024_PDF, 2024)
     rows_2025 = parse_pdf(SOURCE_2025_PDF, 2025)
-    current_rows = read_csv(PERMITS_2026)
+    current_rows = current_2026_bear_permit_rows()
 
     draw_2024 = keyed(rows_2024)
     draw_2025 = keyed(rows_2025)
@@ -397,7 +416,8 @@ def main() -> None:
         "source_2024_sha256": sha256(SOURCE_2024_PDF),
         "source_2025_file": str(SOURCE_2025_PDF.relative_to(ROOT)).replace("\\", "/"),
         "source_2025_sha256": sha256(SOURCE_2025_PDF),
-        "current_2026_file": str(PERMITS_2026.relative_to(ROOT)).replace("\\", "/"),
+        "current_2026_file": str(CURRENT_2026_DATABASE.relative_to(ROOT)).replace("\\", "/"),
+        "current_2026_filter": "hunt_code starts BR and permits_2026_total is a positive published integer",
         "draw_2024_rows": len(rows_2024),
         "draw_2025_rows": len(rows_2025),
         "current_2026_rows": len(current_rows),

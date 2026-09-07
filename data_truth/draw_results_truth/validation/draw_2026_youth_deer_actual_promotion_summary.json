@@ -1,0 +1,31 @@
+{
+  "generated_at_utc": "2026-09-02T10:59:26.515774+00:00",
+  "write": true,
+  "canonical_path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+  "canonical_sha256_before": "9eef874725b9b3b714ccb2764a5c794f3f622b897e15ccb42711b89ad0c52aa1",
+  "canonical_rows_before": 31381,
+  "canonical_rows_after": 32834,
+  "promoted_point_rows": 2001,
+  "promoted_hunt_codes": 137,
+  "promoted_source_scope_counts": {
+    "DEDICATED_HUNTER": 225,
+    "GENERAL_SEASON_DEER": 1333,
+    "YOUTH_DEDICATED_HUNTER_DEER": 54,
+    "YOUTH_GENERAL_SEASON_DEER": 389
+  },
+  "promoted_residency_counts": {
+    "Nonresident": 813,
+    "Resident": 1188
+  },
+  "retained_reference_rows": 262,
+  "superseded_partial_or_repaired_rows_removed": 548,
+  "retained_source_sha256": {
+    "pipeline/RAW/hunt_unit_database/2026/json/draw_results/utahdraws_2026_20260902/utahdraws_2026/csv/2026_big_game_05_general_season_buck_deer.csv": "ef9f296a4cb1cf1a45765d0302c9d909ccca0b50102fced0617482afa41ed9b9",
+    "pipeline/RAW/hunt_unit_database/2026/json/draw_results/utahdraws_2026_20260902/utahdraws_2026/csv/2026_big_game_32_dedicated_hunter_buck_deer.csv": "aed2dbe69dbebab0f83ae373a434abd922e85e7cb73a5b0988a2e8fe0a7d651f"
+  },
+  "year_guard": "IsHistoricalData=false and SeasonWeapons contains 2026 and not 2025",
+  "probability_policy": "successful_applicants / eligible_applicants when both are positive; blank probability otherwise",
+  "candidate_path": "audits/2026_youth_deer_actual_promotion/draw_results_2026_youth_deer_promoted_candidate.csv",
+  "canonical_sha256_after": "0b29c905cb301c9279ac4a894f1ef2e1297383ead2f0fa0d2706583f709f4534",
+  "backup_path": "audits/2026_youth_deer_actual_promotion/backups/draw_results_2026_for_2027_canonical_yearly_draw_results.before_youth_deer_20260902T105926Z.csv"
+}

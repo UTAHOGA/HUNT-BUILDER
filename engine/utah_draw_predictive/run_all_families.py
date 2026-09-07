@@ -50,6 +50,46 @@ REPO = Path(__file__).resolve().parents[2]
 TRUTH_PATH = REPO / "data_truth" / "draw_results_truth" / "normalized" / "draw_results_long.csv"
 AUTHORITY_PATH = REPO / "data_truth" / "crosswalk_truth" / "normalized" / "hunt_code_crosswalk_authority_2020_2026.csv"
 DATABASE_2026_PATH = REPO / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "DATABASE.csv"
+BLACK_BEAR_POINT_PURCHASE_TRUTH_PATH = (
+    REPO
+    / "data_truth"
+    / "point_purchase_truth"
+    / "black_bear_limited_entry_bonus_point_purchases_2018_2025.csv"
+)
+# These seven rows are the only target-year identities allowed into the
+# 2025-to-2026 diagnostic bridge. It exists because the source-year permit
+# proxy cannot contain a hunt code DWR created or recoded in the target year.
+# This is not part of ADR-0006 source-only certification scoring.
+BEAR_2025_TO_2026_DIAGNOSTIC_TARGET_IDENTITIES: dict[str, dict[str, str]] = {
+    "BR7022": {
+        "bear_target_identity_status": "CURRENT_CODE_SUCCESSOR_WITH_PROVEN_HISTORY",
+        "bear_crosswalk_parent_hunt_code": "BR7008",
+    },
+    "BR7127": {
+        "bear_target_identity_status": "CURRENT_CODE_SUCCESSOR_WITH_PROVEN_HISTORY",
+        "bear_crosswalk_parent_hunt_code": "BR7108",
+    },
+    "BR7239": {
+        "bear_target_identity_status": "CURRENT_CODE_SUCCESSOR_WITH_PROVEN_HISTORY",
+        "bear_crosswalk_parent_hunt_code": "BR7208",
+    },
+    "BR7326": {
+        "bear_target_identity_status": "CURRENT_CODE_SUCCESSOR_WITH_PROVEN_HISTORY",
+        "bear_crosswalk_parent_hunt_code": "BR7307",
+    },
+    "BR7021": {
+        "bear_target_identity_status": "CURRENT_NEW_UNIT_NO_COMPARABLE_HISTORY",
+        "bear_crosswalk_parent_hunt_code": "",
+    },
+    "BR7126": {
+        "bear_target_identity_status": "CURRENT_NEW_UNIT_NO_COMPARABLE_HISTORY",
+        "bear_crosswalk_parent_hunt_code": "",
+    },
+    "BR7238": {
+        "bear_target_identity_status": "CURRENT_NEW_UNIT_NO_COMPARABLE_HISTORY",
+        "bear_crosswalk_parent_hunt_code": "",
+    },
+}
 MODELED_FAMILIES = (
     "preference_general_deer",
     "dedicated_hunter",
@@ -219,6 +259,28 @@ def _row_year(row: Mapping[str, object]) -> int | None:
         if value is not None:
             return value
     return None
+
+
+def _available_history_years(
+    truth_rows: Iterable[Mapping[str, object]],
+    source_year: int,
+) -> list[int]:
+    """Return every physically available official history year through source year.
+
+    The normal long truth series begins in 2018, so its established runs keep
+    exactly their prior 2018-forward behavior.  An audit-only truth extension
+    may legitimately retain an earlier official source year (currently 2017
+    Black Bear).  Do not discard that dated predecessor merely because the
+    main series previously had a later first year.
+    """
+
+    return sorted(
+        {
+            year
+            for row in truth_rows
+            if (year := _row_year(row)) is not None and year <= source_year
+        }
+    )
 
 
 def _read_csv(path: Path) -> list[dict[str, str]]:
@@ -628,7 +690,9 @@ def _split_big_game_bonus_rows(rows: Sequence[Mapping[str, object]], db_by_code:
         item["hunt_type"] = normalized_hunt_type
         item["draw_system_type"] = _draw_system_for_big_game_bonus_kind(kind)
         item["engine_family"] = item["draw_system_type"]
-        item["algorithm_status"] = "MODELED_BONUS" if _clean(item.get("p_draw_mean")) else "IN_SCOPE_MODEL_PENDING"
+        item["algorithm_status"] = _clean(item.get("algorithm_status")) or (
+            "MODELED_BONUS" if _clean(item.get("p_draw_mean")) else "IN_SCOPE_MODEL_PENDING"
+        )
         item["model_strategy"] = _clean(item.get("model_strategy")) or "generic_big_game_bonus"
         item["bonus_big_game_kind"] = kind
         split[family].append(item)
@@ -1256,6 +1320,52 @@ def _default_reason_code_for_family(family: str, algorithm_status: str) -> str:
     return algorithm_status
 
 
+def _cwmu_source_pool_from_fields(row: Mapping[str, object], raw_draw_pool: str) -> str:
+    """Refine a generic historical CWMU pool only from its own source fields.
+
+    Older DWR reports often say merely ``CWMU_BIG_GAME`` or
+    ``CWMU_ANTLERLESS``.  Those labels are too coarse to keep adult buck,
+    antlerless, and youth ladders separate in a following-year blind join.
+    The published species, sex, and youth flag provide the missing identity;
+    do not use the held-out year's pool to supply it.
+    """
+    normalized = _clean(raw_draw_pool).lower().replace("-", "_").replace(" ", "_")
+    generic_pools = {"", "standard", "cwmu_big_game", "cwmu_antlerless", "cwmu"}
+    if normalized not in generic_pools:
+        return ""
+
+    species = _clean(row.get("species")).lower()
+    sex = _joined_lower(row, "sex_type", "sex", "hunt_type", "hunt_name")
+    source_is_youth = _clean(row.get("source_is_youth")).lower() in {"true", "1", "yes", "y"}
+    antlerless = any(token in sex for token in ("antlerless", "doe", "cow", "female", "either sex"))
+    male = any(token in sex for token in ("buck", "bull", "male"))
+
+    if species == "deer":
+        if source_is_youth:
+            return "cwmu_youth_antlerless_deer"
+        if antlerless:
+            return "cwmu_antlerless_deer"
+        if male:
+            return "cwmu_big_game_deer_buck"
+    if species == "elk":
+        if source_is_youth:
+            return "cwmu_youth_antlerless_elk"
+        if antlerless:
+            return "cwmu_antlerless_elk"
+        if male:
+            return "cwmu_big_game_elk_bull"
+    if species == "pronghorn":
+        if source_is_youth:
+            return "cwmu_youth_doe_pronghorn"
+        if antlerless:
+            return "cwmu_doe_pronghorn"
+        if male:
+            return "cwmu_big_game_pronghorn_buck"
+    if species == "moose" and male:
+        return "cwmu_big_game_moose_bull"
+    return ""
+
+
 def _effective_draw_pool_for_family(row: Mapping[str, object], family: str) -> str:
     # The official youth source flag is a pool identity boundary.  It takes
     # precedence over generic source-file routes, which historically label
@@ -1264,6 +1374,10 @@ def _effective_draw_pool_for_family(row: Mapping[str, object], family: str) -> s
         return "youth_turkey"
     source_route = _source_file_route(row)
     if source_route.get("draw_pool"):
+        if family == "bonus_cwmu_big_game":
+            source_pool = _cwmu_source_pool_from_fields(row, source_route["draw_pool"])
+            if source_pool:
+                return source_pool
         return source_route["draw_pool"]
 
     bucket_pool = REBUILT_BUCKET_TO_DRAW_POOL.get(_rebuilt_bucket(row))
@@ -1271,6 +1385,10 @@ def _effective_draw_pool_for_family(row: Mapping[str, object], family: str) -> s
         return bucket_pool
 
     draw_pool = _clean(row.get("draw_pool"))
+    if family == "bonus_cwmu_big_game":
+        source_pool = _cwmu_source_pool_from_fields(row, draw_pool)
+        if source_pool:
+            return source_pool
     if family == "preference_general_deer":
         if _is_lifetime_general_deer_row(row):
             return "lifetime_general_deer"
@@ -2040,6 +2158,76 @@ def _historical_source_year_runtime_db_rows(
     return db_rows
 
 
+def _runtime_permit_rows_for_mode(
+    runtime_permit_source: str,
+    source_rows: Sequence[Mapping[str, object]],
+    source_year: int,
+) -> list[dict[str, object]]:
+    """Return permit-reference rows without blurring live and blind authority.
+
+    An ADR-0006 historical fold must construct its permit lanes exclusively
+    from the source-year official result rows.  The live forecast deliberately
+    uses the current DWR reference database instead.  Keeping that branch in
+    one small function makes the authority boundary testable and prevents a
+    future refactor from quietly reading ``DATABASE.csv`` during a blind run.
+    """
+    if runtime_permit_source == "source_year_proxy":
+        return _historical_source_year_runtime_db_rows(source_rows, source_year)
+    if runtime_permit_source == "current_2026":
+        return _read_runtime_database_rows()
+    raise ValueError("runtime_permit_source must be current_2026 or source_year_proxy")
+
+
+def _with_2026_bear_diagnostic_target_identity_rows(
+    source_proxy_rows: Sequence[Mapping[str, object]],
+    *,
+    source_year: int,
+    target_year: int,
+) -> list[dict[str, object]]:
+    """Append the reviewed 2026 Bear identity bridge to one diagnostic only.
+
+    The bridge reads current DWR-derived target identity and permit splits for
+    the four documented code successors and three documented new units. It
+    never supplies applicants or probabilities. The caller must opt in and
+    the guard below limits it to the explicitly non-certifying 2025-to-2026
+    diagnostic; ADR-0006 historical folds remain source-only.
+    """
+    if (source_year, target_year) != (2025, 2026):
+        raise ValueError(
+            "The current-target Bear identity bridge is limited to the non-certifying 2025-to-2026 diagnostic."
+        )
+
+    rows = [dict(row) for row in source_proxy_rows]
+    existing_codes = {_clean(row.get("hunt_code")).upper() for row in rows}
+    current_by_code = {
+        _clean(row.get("hunt_code")).upper(): dict(row)
+        for row in _read_runtime_database_rows()
+        if _clean(row.get("hunt_code")).upper() in BEAR_2025_TO_2026_DIAGNOSTIC_TARGET_IDENTITIES
+    }
+    missing_current = sorted(set(BEAR_2025_TO_2026_DIAGNOSTIC_TARGET_IDENTITIES) - set(current_by_code))
+    if missing_current:
+        raise RuntimeError(
+            "Reviewed 2026 Bear target identity rows are missing from DATABASE.csv: "
+            + ", ".join(missing_current)
+        )
+
+    for hunt_code, identity in BEAR_2025_TO_2026_DIAGNOSTIC_TARGET_IDENTITIES.items():
+        if hunt_code in existing_codes:
+            continue
+        row = current_by_code[hunt_code]
+        row.update(
+            {
+                "historical_permit_proxy": "FALSE",
+                "target_identity_diagnostic": "CURRENT_2026_BEAR_IDENTITY_BRIDGE",
+                "forecast_permits_source": "CURRENT_2026_DWR_BEAR_IDENTITY_AND_PERMIT_REFERENCE_DIAGNOSTIC_ONLY",
+                "forecast_permits_source_year": "2026",
+                **identity,
+            }
+        )
+        rows.append(row)
+    return rows
+
+
 def _with_run_fields(rows: Iterable[Mapping[str, object]], source_year: int, target_year: int, family: str) -> list[dict[str, object]]:
     out: list[dict[str, object]] = []
     for row in rows:
@@ -2081,6 +2269,7 @@ def _with_run_fields(rows: Iterable[Mapping[str, object]], source_year: int, tar
                     "low_applicant_count",
                 )
             )
+            and "not_scored_new_unit_no_comparable_history" not in status_text
         ):
             item["algorithm_status"] = "SOURCE_DATA_INCOMPLETE_NO_PUBLIC_DRAW_PROBABILITY"
             item["classification_status"] = item["algorithm_status"]
@@ -2364,10 +2553,15 @@ def _leakage_row(source_year: int, target_year: int, family: str, rows: Sequence
     future_year_detected = False
     current_year_authority_file_used = False
     hardcoded_2026_field_required = False
+    target_identity_diagnostic_used = False
     authority_source_statuses: set[str] = set()
     source_years_used: set[str] = set()
 
     for row in rows:
+        if _clean(row.get("target_identity_diagnostic")):
+            target_identity_diagnostic_used = True
+            current_year_authority_file_used = True
+            authority_source_statuses.add("declared_current_target_identity_diagnostic")
         for part in _clean(row.get("source_years_used")).split(","):
             part = part.strip()
             if not part:
@@ -2391,7 +2585,11 @@ def _leakage_row(source_year: int, target_year: int, family: str, rows: Sequence
         if target_year != 2026 and hardcoded_authority:
             hardcoded_2026_field_required = True
 
-    leakage_status = "FAIL" if future_year_detected or hardcoded_2026_field_required else "PASS"
+    leakage_status = (
+        "DECLARED_CURRENT_TARGET_IDENTITY_DIAGNOSTIC"
+        if target_identity_diagnostic_used
+        else ("FAIL" if future_year_detected or hardcoded_2026_field_required else "PASS")
+    )
     return {
         "source_year": source_year,
         "target_year": target_year,
@@ -2400,6 +2598,7 @@ def _leakage_row(source_year: int, target_year: int, family: str, rows: Sequence
         "future_year_detected": str(future_year_detected).lower(),
         "current_year_authority_file_used": str(current_year_authority_file_used).lower(),
         "hardcoded_2026_field_required": str(hardcoded_2026_field_required).lower(),
+        "target_identity_diagnostic_used": str(target_identity_diagnostic_used).lower(),
         "authority_source_status": ";".join(sorted(authority_source_statuses)),
         "leakage_status": leakage_status,
     }
@@ -2415,11 +2614,13 @@ def run_all_families(
     calibration_mode: str = "off",
     calibrate_family: str = CALIBRATION_FAMILY,
     runtime_permit_source: str = "current_2026",
+    include_current_target_bear_identity_diagnostic: bool = False,
     score_target_year: int | None = None,
     bonus_central_estimate: str = "deterministic",
     bonus_iterations: int = 1,
     bear_central_estimate: str = "deterministic",
     bear_iterations: int = 1,
+    bear_returning_cohort_mode: str = "off",
 ) -> dict[str, object]:
     if enable_antlerless_deer_calibration and (
         calibration_mode != "production" or _clean(calibrate_family).upper() != CALIBRATION_FAMILY
@@ -2430,6 +2631,8 @@ def run_all_families(
         )
     if runtime_permit_source not in {"current_2026", "source_year_proxy"}:
         raise ValueError("runtime_permit_source must be current_2026 or source_year_proxy")
+    if include_current_target_bear_identity_diagnostic and runtime_permit_source != "source_year_proxy":
+        raise ValueError("The current-target Bear identity diagnostic requires runtime_permit_source=source_year_proxy")
     if bonus_central_estimate not in {"deterministic", "simulation_mean"}:
         raise ValueError("bonus_central_estimate must be deterministic or simulation_mean")
     if bonus_iterations < 1:
@@ -2438,6 +2641,12 @@ def run_all_families(
         raise ValueError("bear_central_estimate must be deterministic or simulation_mean")
     if bear_iterations < 1:
         raise ValueError("bear_iterations must be at least 1")
+    if bear_returning_cohort_mode not in {"off", "source_calibrated_tail_mixture", "lane_cohort_hierarchical"}:
+        raise ValueError(
+            "bear_returning_cohort_mode must be off, source_calibrated_tail_mixture, or lane_cohort_hierarchical"
+        )
+    if bear_returning_cohort_mode != "off" and bear_central_estimate != "simulation_mean":
+        raise ValueError("bear_returning_cohort_mode requires bear_central_estimate=simulation_mean")
     output_target_year = score_target_year if score_target_year is not None else target_year
     if output_target_year < target_year:
         raise ValueError("score_target_year cannot precede the forecast draw year")
@@ -2445,21 +2654,33 @@ def run_all_families(
     source_rows = [row for row in all_truth_rows if _row_year(row) == source_year]
     engine_rows = _with_historical_target_metadata(source_rows, source_year, target_year)
     first_year_bootstrap = source_year == 2017 and target_year == 2018
-    if first_year_bootstrap and source_rows:
-        history_years = [source_year]
-    else:
-        history_years = list(range(2018, source_year + 1))
+    history_years = _available_history_years(all_truth_rows, source_year)
     history_year_set = set(history_years)
     history_rows = [row for row in all_truth_rows if (_row_year(row) or 0) in history_year_set]
     history_engine_rows = _with_historical_target_metadata(history_rows, source_year, target_year)
     limited_history = len(history_years) <= 1
-    runtime_db_rows = (
-        _historical_source_year_runtime_db_rows(source_rows, source_year)
-        if runtime_permit_source == "source_year_proxy"
-        else _read_runtime_database_rows()
-    )
+    runtime_db_rows = _runtime_permit_rows_for_mode(runtime_permit_source, source_rows, source_year)
+    if include_current_target_bear_identity_diagnostic:
+        runtime_db_rows = _with_2026_bear_diagnostic_target_identity_rows(
+            runtime_db_rows,
+            source_year=source_year,
+            target_year=target_year,
+        )
     runtime_history_years = history_years
     runtime_truth_rows = [row for row in all_truth_rows if (_row_year(row) or 0) in set(runtime_history_years)]
+    if bear_returning_cohort_mode == "source_calibrated_tail_mixture":
+        if not BLACK_BEAR_POINT_PURCHASE_TRUTH_PATH.exists():
+            raise FileNotFoundError(
+                "The source-calibrated Bear returning cohort mode requires the retained "
+                f"statewide point-purchase input: {BLACK_BEAR_POINT_PURCHASE_TRUTH_PATH}"
+            )
+        bear_point_purchase_rows = [
+            row
+            for row in _read_csv(BLACK_BEAR_POINT_PURCHASE_TRUTH_PATH)
+            if _to_int(row.get("draw_year")) in set(runtime_history_years)
+        ]
+    else:
+        bear_point_purchase_rows = []
     suppressed_runtime_families: set[str] = set()
     if _suppress_youth_turkey_for_source_year(source_year):
         suppressed_runtime_families.add("youth_turkey")
@@ -2524,6 +2745,8 @@ def run_all_families(
         central_estimate_mode=bear_central_estimate,
         iterations=bear_iterations,
         seed=20260701,
+        returning_cohort_mode=bear_returning_cohort_mode,
+        point_purchase_rows=bear_point_purchase_rows,
     )
     bear_rows = _with_run_fields(bear_rows, source_year, output_target_year, "bonus_bear")
     turkey_rows, turkey_report = build_turkey_bonus_predictions(
@@ -3003,6 +3226,7 @@ def run_all_families(
         "bonus_iterations": bonus_iterations,
         "bear_central_estimate": bear_central_estimate,
         "bear_iterations": bear_iterations,
+        "bear_returning_cohort_mode": bear_returning_cohort_mode,
     }
 
 
@@ -3020,10 +3244,28 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--bear-central-estimate", choices=["deterministic", "simulation_mean"], default="deterministic")
     parser.add_argument("--bear-iterations", type=int, default=1)
     parser.add_argument(
+        "--bear-returning-cohort-mode",
+        choices=["off", "source_calibrated_tail_mixture", "lane_cohort_hierarchical"],
+        default="off",
+        help=(
+            "Audit-only source-calibrated Bear cohort mode. Both candidates require "
+            "--bear-central-estimate simulation_mean. lane_cohort_hierarchical uses "
+            "only public same-lane adjacent-year results; it never allocates statewide purchasers to a hunt."
+        ),
+    )
+    parser.add_argument(
         "--runtime-permit-source",
         choices=["current_2026", "source_year_proxy"],
         default="current_2026",
         help="Use source_year_proxy for a no-future-authority historical blind forecast.",
+    )
+    parser.add_argument(
+        "--include-current-target-bear-identity-diagnostic",
+        action="store_true",
+        help=(
+            "Add the reviewed 2026 Bear recode/new-unit identity bridge to the non-certifying "
+            "2025-to-2026 diagnostic only. It is rejected for all other folds."
+        ),
     )
     parser.add_argument(
         "--score-target-year",
@@ -3044,11 +3286,13 @@ def main(argv: Sequence[str] | None = None) -> int:
         calibration_mode=args.calibration_mode,
         calibrate_family=args.calibrate_family,
         runtime_permit_source=args.runtime_permit_source,
+        include_current_target_bear_identity_diagnostic=args.include_current_target_bear_identity_diagnostic,
         score_target_year=args.score_target_year,
         bonus_central_estimate=args.bonus_central_estimate,
         bonus_iterations=args.bonus_iterations,
         bear_central_estimate=args.bear_central_estimate,
         bear_iterations=args.bear_iterations,
+        bear_returning_cohort_mode=args.bear_returning_cohort_mode,
     )
     print(result)
     return 0

@@ -1,18 +1,14 @@
 {
-  "generated_at_utc": "2026-05-28T22:28:42.913752+00:00",
-  "global_age_database": "C:/Users/tyler/Desktop/GitHub/HUNTS/data_model/harvest_quality/harvest_average_age_global_merge_database.csv",
+  "generated_at_utc": "2026-09-07T03:10:59.503995+00:00",
+  "global_age_database": "data_model/harvest_quality/harvest_average_age_global_merge_database.csv",
   "input_lane_row_counts": {
-    "2021_complete": 343,
-    "2022_complete": 248,
-    "2023_complete": 177,
-    "2024_revised_combined": 259,
-    "2024_24bg_fallback": 137,
-    "goat_historical_all_years": 210,
-    "cougar_2021_crosswalked": 47
+    "retained_pre_2025_canonical_baseline": 1303,
+    "2025_official_dwr_tables": 222
   },
-  "input_rows_total": 1421,
-  "selected_rows_total": 1303,
-  "selected_unique_year_hunt_code_keys": 1303,
+  "input_rows_total": 1525,
+  "selected_rows_total": 1525,
+  "selected_unique_year_hunt_code_keys": 1525,
+  "selected_unique_year_hunt_code_species_keys": 1525,
   "reported_hunt_year_counts": {
     "2015": 20,
     "2016": 18,
@@ -23,16 +19,17 @@
     "2021": 397,
     "2022": 253,
     "2023": 185,
-    "2024": 343
+    "2024": 343,
+    "2025": 222
   },
   "species_counts": {
-    "Elk": 328,
+    "Elk": 471,
     "Mountain Goat": 210,
     "Black Bear": 208,
+    "Pronghorn": 187,
     "Antlerless Elk": 164,
-    "Pronghorn": 121,
+    "Moose": 65,
     "Limited Entry Bull Elk": 63,
-    "Moose": 52,
     "Cougar": 47,
     "Mule Deer": 36,
     "Limited Entry Buck Pronghorn": 27,
@@ -43,10 +40,10 @@
     "Antlerless Moose": 3
   },
   "selection_stats": {
-    "conflicting_same_priority_age_value_keys": 2
+    "conflicting_same_priority_age_value_keys": 0
   },
   "outputs": {
-    "global_age_csv": "C:/Users/tyler/Desktop/GitHub/HUNTS/data_model/harvest_quality/harvest_average_age_global_merge_database.csv",
-    "global_age_summary": "C:/Users/tyler/Desktop/GitHub/HUNTS/data_model/harvest_quality/harvest_average_age_global_merge_database_summary.json"
+    "global_age_csv": "data_model/harvest_quality/harvest_average_age_global_merge_database.csv",
+    "global_age_summary": "data_model/harvest_quality/harvest_average_age_global_merge_database_summary.json"
   }
 }

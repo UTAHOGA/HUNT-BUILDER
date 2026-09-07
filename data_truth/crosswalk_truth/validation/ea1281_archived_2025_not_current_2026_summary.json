@@ -1,0 +1,41 @@
+{
+  "artifact": "ea1281_archived_2025_not_current_2026",
+  "generated_at_utc": "2026-09-02T08:54:23+00:00",
+  "write": true,
+  "hunt_code": "EA1281",
+  "disposition": "RETIRED_2025_HUNT_EXCLUDED_FROM_ACTIVE_2026",
+  "official_detail": {
+    "url": "https://dwrapps.utah.gov/huntboundary/HaNumber?roles=&hn=EA1281",
+    "hunt_year": 2025,
+    "status": "OFF",
+    "season": "Dec 20 2025 - Jan 11 2026",
+    "quota_res": 67,
+    "quota_nres": 8,
+    "quota_total": 75,
+    "updated": "Jul 17, 2026"
+  },
+  "current_list": {
+    "url": "https://dwrapps.utah.gov/huntboundary/HuntTableData?species=Elk&gender=Antlerless",
+    "ea1281_match_count_verified_2026_09_02": 0
+  },
+  "guidebook": {
+    "path": "pipeline/RAW/hunt_unit_database/2026/pdf/guidebooks/antlerless_guidebook.pdf",
+    "ea1281_match_count": 0,
+    "deep_creek_match_count": 0,
+    "current_mt_dutton_north_codes_listed": [
+      "EA1291",
+      "EA1292"
+    ]
+  },
+  "database_rows_before": 1849,
+  "database_rows_after": 1848,
+  "database_ea1281_rows_removed": 1,
+  "database_sha256_before": "3df7803b00c95176b106a01d5a86dc61a21b3ddb481107fa1310e1cf0dd56b1f",
+  "database_sha256_after": "f9678c05c6fd5c504f6c9a7b41897842c31473f34cb462d361261f6a1b448d6d",
+  "canonical_rows_before": 30939,
+  "canonical_rows_after": 30938,
+  "canonical_ea1281_rows_removed": 1,
+  "canonical_sha256_before": "bfcb38285686f2af17870eb8a8e43977c35e3fe5e70ca3d96dae05a35b5f17ed",
+  "canonical_sha256_after": "5a1360683e4f9cec14990a5636071213f2d91a7f2c55a586f8e1844165e76a25",
+  "historical_2025_ea1281_rows_preserved": 36
+}

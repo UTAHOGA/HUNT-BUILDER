@@ -16,7 +16,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "data_truth" / "draw_results_truth" / "normalized" / "canonical_yearly" / "draw_results_2026_for_2027_canonical_yearly_draw_results.csv"
-SNAPSHOT = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "json" / "draw_results" / "utahdraws_2026_20260826" / "utahdraws_2026" / "csv" / "2026_allowed_draw_odds_all_flat_rows.csv"
+SNAPSHOT = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "json" / "draw_results" / "utahdraws_2026_20260902" / "utahdraws_2026" / "csv" / "2026_allowed_draw_odds_all_flat_rows.csv"
 PLANNER = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "_staging" / "huntplanner_popup_deep_20260826_205700" / "dwr_huntplanner_hanumber_2026.csv"
 OUT_DIR = ROOT / "data_truth" / "draw_results_truth" / "validation"
 OUT_CSV = OUT_DIR / "draw_2026_live_endpoint_rows.csv"
@@ -69,6 +69,16 @@ def expected_endpoint(row: dict[str, str]) -> str:
     scope = clean(row.get("source_scope")).upper()
     species = clean(row.get("species")).lower()
     mapping = {
+        "ANTLERLESS_DEER": "2026_antlerless_17_antlerless_deer.json",
+        "YOUTH_ANTLERLESS_DEER": "2026_antlerless_17_antlerless_deer.json",
+        "ANTLERLESS_ELK": "2026_antlerless_18_antlerless_elk.json",
+        "YOUTH_ANTLERLESS_ELK": "2026_antlerless_18_antlerless_elk.json",
+        "ANTLERLESS_MOOSE": "2026_antlerless_19_antlerless_moose.json",
+        "YOUTH_ANTLERLESS_MOOSE": "2026_antlerless_19_antlerless_moose.json",
+        "ANTLERLESS_PRONGHORN": "2026_antlerless_20_doe_pronghorn.json",
+        "YOUTH_ANTLERLESS_PRONGHORN": "2026_antlerless_20_doe_pronghorn.json",
+        "ANTLERLESS_ROCKY_MOUNTAIN_BIGHORN_SHEEP": "2026_antlerless_21_ewe_rocky_mtn_bighorn_sheep.json",
+        "YOUTH_ANTLERLESS_ROCKY_MOUNTAIN_BIGHORN_SHEEP": "2026_antlerless_21_ewe_rocky_mtn_bighorn_sheep.json",
         "YOUTH_GENERAL_SEASON_ELK": "2026_big_game_06_draw_only_youth_elk.json",
         "LIMITED_ENTRY_DEER": "2026_big_game_08_limited_entry_buck_deer.json",
         "LIMITED_ENTRY_ELK": "2026_big_game_09_limited_entry_bull_elk.json",

@@ -14,6 +14,7 @@ from engine.utah.quality.harvest_feature_model import (
     trend_delta,
     trend_direction,
 )
+from engine.utah.quality.materialize_harvest_feature_model import build_feature_row
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -68,9 +69,69 @@ def test_new_2026_hunt_without_direct_history_uses_fallback_or_no_history() -> N
     assert selection.match_method in {
         "SAME_HUNT_NAME_SPECIES_HISTORY",
         "UNIT_SPECIES_HISTORY",
-        "SPECIES_FAMILY_HISTORY",
         "NO_HARVEST_HISTORY",
     }
+
+
+def test_same_code_with_wrong_name_is_not_an_exact_history_match() -> None:
+    history = [
+        {
+            "reported_hunt_year": "2025",
+            "hunt_code": "EA1270",
+            "species": "Elk",
+            "hunt_name": "Manti",
+            "percent_success": "50",
+        }
+    ]
+    selection = fallback_feature_selection("EA1270", "Elk", "Fishlake (Conservation)", 2026, history)
+
+    assert selection.match_method != "EXACT_HUNT_CODE_HISTORY"
+    assert "HUNT_CODE_NAME_OR_SPECIES_MISMATCH_REJECTED" in selection.reason_codes
+
+
+def test_unrelated_species_history_is_not_used_as_an_age_substitute() -> None:
+    history = [
+        {
+            "reported_hunt_year": "2025",
+            "hunt_code": "EB3001",
+            "species": "Elk",
+            "hunt_name": "Beaver",
+            "average_age": "9.6",
+        }
+    ]
+
+    selection = fallback_feature_selection("EB3999", "Elk", "Cactus Ranch", 2026, history)
+
+    assert selection.rows == []
+    assert selection.match_method == "NO_HARVEST_HISTORY"
+    assert selection.data_quality_grade == "F"
+    assert "SPECIES_WIDE_FALLBACK_PROHIBITED" in selection.reason_codes
+
+
+def test_feature_model_keeps_reported_and_computed_three_year_age_separate() -> None:
+    db_row = {"hunt_code": "DB1000", "species": "Deer", "hunt_name": "Henry Mountains"}
+    history = [
+        {
+            "reported_hunt_year": "2024",
+            "hunt_code": "DB1000",
+            "species": "Deer",
+            "hunt_name": "Henry Mountains",
+            "percent_success": "55",
+        }
+    ]
+    age_rows = [
+        {"reported_hunt_year": "2022", "hunt_code": "DB1000", "species": "Limited Entry Buck Deer", "average_harvest_age": "5.7", "average_harvest_age_3yr": "5.5"},
+        {"reported_hunt_year": "2023", "hunt_code": "DB1000", "species": "Limited Entry Buck Deer", "average_harvest_age": "6.0", "average_harvest_age_3yr": "5.7"},
+        {"reported_hunt_year": "2024", "hunt_code": "DB1000", "species": "Limited Entry Buck Deer", "average_harvest_age": "6.6", "average_harvest_age_3yr": "6.1"},
+    ]
+
+    feature = build_feature_row(db_row, history, 2026, age_rows)
+
+    assert feature["average_harvest_age_recent"] == "6.6"
+    assert feature["average_harvest_age_3yr_reported"] == "6.1"
+    assert feature["average_harvest_age_3yr_computed"] == "6.1"
+    assert feature["average_age_recent"] == feature["average_harvest_age_recent"]
+    assert feature["average_age_3yr_avg"] == feature["average_harvest_age_3yr_computed"]
 
 
 def test_materialized_feature_ranges_are_valid() -> None:

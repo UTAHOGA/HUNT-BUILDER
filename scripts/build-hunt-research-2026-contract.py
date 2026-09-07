@@ -3,6 +3,7 @@ import csv
 import gzip
 import json
 import re
+import sys
 from collections import Counter, defaultdict
 from datetime import datetime
 from pathlib import Path
@@ -17,6 +18,10 @@ def _repo_root() -> Path:
     return repo_root
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from engine.utah.quality.harvest_identity import build_identity_index, harvest_identity_compatible, species_family
 
 OUT_JSON = ROOT / "processed_data" / "hunt_research_2026.json"
 OUT_SUMMARY_JSON = ROOT / "processed_data" / "hunt_research_2026_summary.json"
@@ -31,7 +36,10 @@ MASTER_CANDIDATES = [
     ROOT / "processed_data" / "hunt_master_enriched.csv",
     ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "hunt_master_canonical_2026_built.csv",
 ]
-LADDER_PATH = ROOT / "processed_data" / "point_ladder_view.csv"
+LADDER_CANDIDATES = [
+    ROOT / "processed_data" / "point_ladder_view.csv",
+    ROOT / "point_ladder_view.csv",
+]
 DRAW_HISTORY_CANDIDATES = [
     ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "Draw Odds" / "rebuilt_2025_draw_results_for_2026_modeling.csv",
     Path(str(_repo_root() / "pipeline/RAW/hunt_unit_database/2026/csv/Draw Odds/rebuilt_2025_draw_results_for_2026_modeling.csv")),
@@ -40,6 +48,7 @@ DRAW_HISTORY_CANDIDATES = [
     ROOT / "processed_data" / "draw_reality_engine.csv",
 ]
 HARVEST_CANDIDATES = [
+    ROOT / "data_truth" / "harvest_results_truth" / "normalized" / "harvest_results_2025_for_2026_current.csv",
     ROOT / "data_truth" / "harvest_results_truth" / "normalized" / "harvest_results_2025_for_2026_long.csv",
     ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2025" / "csv" / "harvest data" / "harvest_results_2025_for_2026_hunt_code_keyed.csv",
     ROOT / "processed_data" / "harvest_quality_features_all_years_by_hunt_code.csv",
@@ -422,28 +431,33 @@ def build_dwr_lookup(rows):
 
 
 def build_harvest_lookup(rows):
-    lookup = {}
-    for row in rows:
-        code = upper(row.get("hunt_code") or row.get("current_hunt_code"))
-        if not code:
-            continue
-        year = int(to_number(row.get("reported_hunt_year") or 0) or 0)
-        current = lookup.get(code)
-        if current and year < current["year"]:
-            continue
-        lookup[code] = {
-            "year": year,
-            "harvest_success_pct": pct_text(first_text(row.get("percent_success"), row.get("harvest_success_percent"), row.get("success_percent"))),
-            "average_days_hunted": number_text(first_text(row.get("avg_days"), row.get("average_days"), row.get("avg_days_hunted"), row.get("average_days_hunted"))),
-            "average_age": number_text(first_text(row.get("average_age"), row.get("average_harvest_age"))),
-            "harvest_source_file": clean(row.get("source_file")),
-            "harvest_source_page": clean(row.get("source_page")),
-        }
-    return lookup
+    return build_identity_index(rows)
+
+
+def harvest_for(target, lookup):
+    code = upper(target.get("hunt_code") or target.get("current_hunt_code"))
+    compatible = [row for row in lookup.get(code, []) if harvest_identity_compatible(row, target)]
+    if not compatible:
+        return {}
+    row = max(compatible, key=lambda item: int(to_number(item.get("reported_hunt_year") or 0) or 0))
+    return {
+        "year": int(to_number(row.get("reported_hunt_year") or 0) or 0),
+        "harvest_success_pct": pct_text(first_text(row.get("percent_success"), row.get("harvest_success_percent"), row.get("success_percent"))),
+        "average_days_hunted": number_text(first_text(row.get("avg_days"), row.get("average_days"), row.get("avg_days_hunted"), row.get("average_days_hunted"))),
+        "harvest_total": number_text(first_text(row.get("harvest_total"), row.get("harvest"))),
+        "hunters_afield": number_text(first_text(row.get("hunters_afield"), row.get("hunters"))),
+        "hunter_satisfaction": number_text(first_text(row.get("hunter_satisfaction"), row.get("satisfaction"))),
+        "average_age": number_text(first_text(row.get("average_age"), row.get("average_harvest_age"))),
+        "average_age_3yr_reported": number_text(
+            first_text(row.get("average_age_3yr_reported"), row.get("average_harvest_age_3yr"))
+        ),
+        "harvest_source_file": clean(row.get("source_file")),
+        "harvest_source_page": clean(row.get("source_page")),
+    }
 
 
 def build_age_lookup(rows):
-    lookup = {}
+    lookup = defaultdict(list)
     for row in rows:
         code = upper(row.get("hunt_code") or row.get("current_hunt_code"))
         if not code:
@@ -452,18 +466,26 @@ def build_age_lookup(rows):
         age = to_number(row.get("average_harvest_age"))
         if age is None or age <= 0:
             continue
-        current = lookup.get(code)
-        if current and year < current["year"]:
-            continue
-        lookup[code] = {
+        lookup[code].append({
             "year": year,
+            "species": clean(row.get("species")),
             "average_harvest_age": number_text(age),
+            "average_harvest_age_3yr_reported": number_text(row.get("average_harvest_age_3yr")),
             "age_source_file": clean(row.get("source_file") or row.get("age_source_file")),
             "age_source_page": clean(row.get("source_page") or row.get("age_source_page")),
-            "age_source_table_title": clean(row.get("source_table_title")),
-            "age_review_status": clean(row.get("review_status")),
-        }
-    return lookup
+            "age_source_table_title": clean(row.get("source_table_title") or row.get("age_source_table_title")),
+            "age_review_status": clean(
+                row.get("review_status") or row.get("age_mapping_status") or row.get("crosswalk_confidence")
+            ),
+        })
+    return dict(lookup)
+
+
+def age_for(target, lookup):
+    code = upper(target.get("hunt_code") or target.get("current_hunt_code"))
+    target_species = species_family(target.get("species"))
+    compatible = [row for row in lookup.get(code, []) if species_family(row.get("species")) == target_species]
+    return max(compatible, key=lambda item: item["year"]) if compatible else {}
 
 
 def build_summary_rows(rows):
@@ -538,7 +560,8 @@ def main():
     db_rows = read_csv(DB_PATH)
     master_path = choose_existing(MASTER_CANDIDATES)
     master_rows = read_csv(master_path)
-    ladder_rows = read_csv(LADDER_PATH)
+    ladder_path = choose_existing(LADDER_CANDIDATES)
+    ladder_rows = read_csv(ladder_path)
     draw_history_path = choose_existing(DRAW_HISTORY_CANDIDATES)
     draw_rows = read_csv(draw_history_path)
     harvest_path = choose_existing(HARVEST_CANDIDATES)
@@ -557,7 +580,9 @@ def main():
     age_map = build_age_lookup(age_rows)
 
     expected_fields = [
-        "algorithm_status", "applicants", "average_harvest_age", "data_quality_flags", "delta_gap",
+        "algorithm_status", "applicants", "average_harvest_age", "average_harvest_age_3yr_reported",
+        "average_days_hunted", "harvest_total", "hunters_afield", "hunter_satisfaction",
+        "data_quality_flags", "delta_gap",
         "display_2025_draw_results", "display_2026_max_point_pool", "display_2026_random_draw",
         "display_odds_pct", "draw_2026_system_type", "draw_outlook", "draw_pool", "draw_system",
         "draw_system_type", "dwr_result_display", "eligible_applicants", "gap", "guaranteed_at_2026",
@@ -591,8 +616,8 @@ def main():
 
         hist = draw_by_key.get((code, residency, points)) or draw_by_code_res.get((code, residency), {})
         draw2025 = draw2025_by_code_point.get((code, normalize_points(points))) or draw2025_by_code.get(code, {})
-        harvest = harvest_map.get(code, {})
-        age = age_map.get(code, {})
+        harvest = harvest_for(row, harvest_map)
+        age = age_for(row, age_map)
 
         p_draw_mean = first_text(row.get("p_draw_mean"))
         p_draw_pct = first_text(row.get("p_draw_pct"), row.get("display_odds_pct"))
@@ -749,6 +774,9 @@ def main():
             "objective_unit": first_text(mgmt.get("objective_unit")),
             "management_direction": first_text(mgmt.get("management_direction")),
             "average_harvest_age": first_text(age.get("average_harvest_age"), harvest.get("average_age"), db.get("average_harvest_age")),
+            "average_harvest_age_3yr_reported": first_text(
+                age.get("average_harvest_age_3yr_reported"), harvest.get("average_age_3yr_reported")
+            ),
             "current_age_3yr_average": first_text(
                 dwr.get("current_age_3yr_average"),
                 number_text(row.get("current_age_3yr_average")),
@@ -756,6 +784,9 @@ def main():
             ),
             "harvest_success_pct": first_text(harvest.get("harvest_success_pct")),
             "average_days_hunted": first_text(harvest.get("average_days_hunted")),
+            "harvest_total": first_text(harvest.get("harvest_total")),
+            "hunters_afield": first_text(harvest.get("hunters_afield")),
+            "hunter_satisfaction": first_text(harvest.get("hunter_satisfaction")),
             "source_file": first_text(hist.get("source_file"), harvest.get("harvest_source_file"), age.get("age_source_file")),
             "source_page": first_text(hist.get("source_page"), harvest.get("harvest_source_page"), age.get("age_source_page")),
             "truth_source_file": first_text(row.get("truth_source_file"), hist.get("source_file"), age.get("age_source_file")),
@@ -803,8 +834,8 @@ def main():
         master = master_map.get(code, {})
         mgmt = management_map.get(code, {})
         dwr = dwr_map.get(code, {})
-        harvest = harvest_map.get(code, {})
-        age = age_map.get(code, {})
+        harvest = harvest_for(master, harvest_map)
+        age = age_for(master or db, age_map)
         draw2025 = draw2025_by_code.get(code, {})
         rows.append({
             "hunt_code": code,
@@ -874,12 +905,18 @@ def main():
             "objective_unit": first_text(mgmt.get("objective_unit")),
             "management_direction": first_text(mgmt.get("management_direction")),
             "average_harvest_age": first_text(age.get("average_harvest_age"), harvest.get("average_age"), db.get("average_harvest_age")),
+            "average_harvest_age_3yr_reported": first_text(
+                age.get("average_harvest_age_3yr_reported"), harvest.get("average_age_3yr_reported")
+            ),
             "current_age_3yr_average": first_text(
                 dwr.get("current_age_3yr_average"),
                 number_text(db.get("current_age_3yr_average")),
             ),
             "harvest_success_pct": first_text(harvest.get("harvest_success_pct")),
             "average_days_hunted": first_text(harvest.get("average_days_hunted")),
+            "harvest_total": first_text(harvest.get("harvest_total")),
+            "hunters_afield": first_text(harvest.get("hunters_afield")),
+            "hunter_satisfaction": first_text(harvest.get("hunter_satisfaction")),
             "source_file": "",
             "source_page": "",
             "truth_source_file": "",
@@ -932,7 +969,8 @@ def main():
 
     key_fields = [
         "hunt_code", "species", "residency", "points", "p_draw_pct", "guaranteed_at_2026",
-        "permits_2026_total", "average_harvest_age", "harvest_success_pct", "average_days_hunted",
+        "permits_2026_total", "average_harvest_age", "average_harvest_age_3yr_reported",
+        "harvest_success_pct", "average_days_hunted", "harvest_total", "hunters_afield", "hunter_satisfaction",
         "management_objective_type", "model_version", "rule_version", "source_freshness",
     ]
     field_presence = []
@@ -990,7 +1028,7 @@ Generated: {generated_at}
 ## Sources used
 - DATABASE truth: `{display_path(DB_PATH)}`
 - Master reference resolved: `{display_path(master_path)}`
-- Point ladder: `{display_path(LADDER_PATH)}`
+- Point ladder: `{display_path(ladder_path)}`
 - Draw history: `{display_path(draw_history_path)}`
 - Harvest features: `{display_path(harvest_path)}`
 - Age features: `{display_path(AGE_PATH)}`

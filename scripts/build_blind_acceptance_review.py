@@ -29,6 +29,16 @@ THRESHOLDS = {
     "required_unclassified_actual_gaps": 0,
 }
 
+# `BEAR_DRAW` describes the shared Utah bonus-draw mechanics, but it is not a
+# single visitor or certification population. Limited-entry bear hunting and
+# restricted bear pursuit are different official programs with distinct hunt
+# purposes and historical ladders. Keep their evidence separate while
+# retaining the mechanical key in the scorer for structural joins.
+BEAR_CERTIFICATION_DESIGNS = {
+    "LIMITED_ENTRY_BEAR_HUNT": "BEAR_LIMITED_ENTRY_HUNT_BONUS",
+    "RESTRICTED_BEAR_PURSUIT": "BEAR_RESTRICTED_PURSUIT_BONUS",
+}
+
 
 def clean(value: object) -> str:
     return "" if value is None else str(value).strip()
@@ -42,6 +52,21 @@ def number(value: object) -> float | None:
         return float(text)
     except ValueError:
         return None
+
+
+def certification_draw_design(row: dict[str, str]) -> str:
+    """Return the declared certification population for a scored row.
+
+    The scorer keeps `BEAR_DRAW` for the official structural join.
+    Certification must not blend restricted-pursuit evidence into
+    limited-entry Bear hunting, so every Bear score requires a subtype.
+    """
+
+    design = clean(row.get("draw_design_key"))
+    if design != "BEAR_DRAW":
+        return design
+    subtype = clean(row.get("bear_draw_subtype"))
+    return BEAR_CERTIFICATION_DESIGNS.get(subtype, "BEAR_DRAW_UNCLASSIFIED_SUBTYPE")
 
 
 def percentile(values: list[float], fraction: float) -> float | None:
@@ -115,7 +140,7 @@ def load_draw_line_fold(fold: str, path: Path) -> list[dict[str, object]]:
         rows.append(
             review_row(
                 fold=fold,
-                design=clean(row.get("draw_design_key")),
+                design=certification_draw_design(row),
                 row=row,
                 hunt_code=clean(row.get("hunt_code")).upper(),
                 residency=clean(row.get("residency")),

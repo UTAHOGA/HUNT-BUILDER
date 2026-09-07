@@ -26,6 +26,11 @@ HANUMBER_BOUNDARY_OVERRIDES_2026 = {
     "EA1261": {"boundary_id": "808", "note": "Boundary verified by DWR HaNumber 2026 as Blackhawk CWMU."},
 }
 
+# The retained June HuntTableData snapshot included this prior-year hunt because
+# its Dec. 2025 season ended in Jan. 2026. The current DWR detail record identifies
+# it as HUNT_YEAR=2025 and STATUS=OFF, and the 2026 guidebook omits it.
+ARCHIVED_PRIOR_YEAR_HUNT_CODES = {"EA1281"}
+
 
 def clean(value):
     return " ".join(str(value or "").replace("\r", "\n").split())
@@ -237,6 +242,21 @@ def main():
     skipped = []
     for source in sources:
         code = clean(source.get("HUNT_NBR")).upper()
+        if code in ARCHIVED_PRIOR_YEAR_HUNT_CODES:
+            skipped.append(
+                {
+                    "hunt_code": code,
+                    "hunt_name": clean(source.get("HUNT_NAME")),
+                    "species": clean(source.get("SPECIES")),
+                    "sex_type": clean(source.get("GENDER")),
+                    "weapon": clean(source.get("WEAPON")),
+                    "season": clean(source.get("SEASON_DATE_TEXT")),
+                    "reason": "archived_2025_hunt_status_off_not_in_2026_guidebook",
+                    "canonical_boundary_id": "",
+                    "source_filename": source.get("_source_filename", ""),
+                }
+            )
+            continue
         db_row = choose_database_row(db.get(code, []), source)
         payload = canonical_payload(source, db_row, canonical_fields)
         key = row_key(payload)

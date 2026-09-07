@@ -45,6 +45,7 @@ REPORT_OUT = ROOT / "processed_data/live_dwr_permit_numbers_promoted_to_DATABASE
 SOURCE_LABEL = "2026_LIVE_DWR_HUNT_PLANNER_HUNTTABLEDATA"
 NO_QUOTA_LABEL = "2026_LIVE_DWR_HUNT_PLANNER_NO_QUOTA_PUBLISHED"
 TOTAL_ONLY_TYPES = {"CWMU", "Private Lands Only", "Conservation", "Expo", "Antlerless Elk Control"}
+ARCHIVED_PRIOR_YEAR_HUNT_CODES = {"EA1281"}
 
 
 def clean(value: object) -> str:
@@ -107,7 +108,11 @@ def main() -> int:
     timestamp = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     db_rows, db_fields = read_csv(DATABASE)
     live_rows, _ = read_csv(LIVE_SNAPSHOT)
-    live_by_code = {row["hunt_code"]: row for row in live_rows if row.get("hunt_code")}
+    live_by_code = {
+        row["hunt_code"]: row
+        for row in live_rows
+        if row.get("hunt_code") and row["hunt_code"] not in ARCHIVED_PRIOR_YEAR_HUNT_CODES
+    }
 
     audit_rows: list[dict[str, object]] = []
     status_counts: Counter[str] = Counter()
@@ -250,6 +255,7 @@ def main() -> int:
         "source_snapshot": LIVE_SNAPSHOT.relative_to(ROOT).as_posix(),
         "database_path": DATABASE.relative_to(ROOT).as_posix(),
         "live_row_count": len(live_rows),
+        "excluded_archived_prior_year_codes": sorted(ARCHIVED_PRIOR_YEAR_HUNT_CODES),
         "promoted_row_count": len(audit_rows),
         "changed_rows": changed_rows,
         "changed_cells": changed_cells,

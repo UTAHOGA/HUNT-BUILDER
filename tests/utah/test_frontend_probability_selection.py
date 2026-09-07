@@ -217,8 +217,19 @@ def test_source_snapshot_odds_use_combined_format():
     text = _frontend_text()
     block = _block(text, "function buildSourceBoxes(meta, row, referenceRow)", "function openSourceModal(meta, row, referenceRow, residency)")
     assert "['2025 Draw Results', formatHistoricalDrawResult(row)" in block
-    assert "formatOddsAsOneInOrPercent(row?.odds_2025_actual)" in block
+    assert "formatHistoricalRatioFromPercent(row?.odds_2025_actual)" in block
     assert "['2026 Draw Odds', getDisplayedOdds(row).value]" in block
+
+
+def test_historical_dwr_success_ratio_is_not_displayed_as_a_percent():
+    text = _frontend_text()
+    historical_block = _block(text, "function normalizeHistoricalOddsDisplay(value)", "function hasDataQualityFlag(row, flag)")
+    fallback_block = _block(text, "function formatHistoricalDrawResult(row)", "function isOddsDisplayText(value)")
+    assert "const sourceRatio = text.match(/1\\s*in\\s*([0-9]+(?:\\.[0-9]+)?)/i);" in historical_block
+    assert "return `1 in ${sourceRatio[1]}`;" in historical_block
+    assert "formatHistoricalRatioFromPercent(pct)" in historical_block
+    assert "or ${percent.toFixed(1)}%" not in fallback_block
+    assert "return `1 in ${(applicants / totalPermits).toFixed(1)}`;" in fallback_block
 
 
 def test_ladder_source_pill_click_matches_csv_point_values_numerically():

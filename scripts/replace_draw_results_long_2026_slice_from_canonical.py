@@ -2,7 +2,9 @@ import csv
 import hashlib
 import json
 import os
+import shutil
 from collections import Counter
+from datetime import datetime, timezone
 from pathlib import Path
 
 
@@ -21,6 +23,14 @@ def row_digest(row, fields):
     return hashlib.sha1(payload.encode("utf-8")).hexdigest()
 
 
+def file_sha256(path):
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
 def load_rows(path):
     with path.open(newline="", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
@@ -29,6 +39,7 @@ def load_rows(path):
 
 def main():
     AUDIT_DIR.mkdir(parents=True, exist_ok=True)
+    prior_long_sha256 = file_sha256(LONG)
     canonical_fields, canonical_rows = load_rows(CANONICAL)
     with LONG.open(newline="", encoding="utf-8-sig") as f:
         long_reader = csv.DictReader(f)
@@ -67,7 +78,13 @@ def main():
     for digest, count in missing_old.items():
         missing_by_code[clean(digest_to_new[digest].get("hunt_code"))] += count
 
+    backup_dir = AUDIT_DIR / "backups"
+    backup_dir.mkdir(parents=True, exist_ok=True)
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    backup = backup_dir / f"{LONG.stem}.before_2026_slice_{timestamp}{LONG.suffix}"
+    shutil.copy2(LONG, backup)
     os.replace(tmp, LONG)
+    updated_long_sha256 = file_sha256(LONG)
 
     summary = {
         "long_rows_kept_non_2026": kept_count,
@@ -79,6 +96,9 @@ def main():
         "top_extra_old_hunt_codes": extras_by_code.most_common(25),
         "top_missing_old_hunt_codes": missing_by_code.most_common(25),
         "long_file_size_bytes_after": LONG.stat().st_size,
+        "long_sha256_before": prior_long_sha256,
+        "long_sha256_after": updated_long_sha256,
+        "backup_path": backup.relative_to(ROOT).as_posix(),
     }
     (AUDIT_DIR / "replace_draw_results_long_2026_slice_summary.json").write_text(
         json.dumps(summary, indent=2, sort_keys=True),

@@ -54,6 +54,11 @@ def main() -> int:
     parser.add_argument("--bonus-iterations", type=int, default=1)
     parser.add_argument("--bear-central-estimate", choices=["deterministic", "simulation_mean"], default="deterministic")
     parser.add_argument("--bear-iterations", type=int, default=1)
+    parser.add_argument(
+        "--bear-returning-cohort-mode",
+        choices=["off", "source_calibrated_tail_mixture", "lane_cohort_hierarchical"],
+        default="off",
+    )
     args = parser.parse_args()
     if args.source_end < args.source_start:
         raise SystemExit("--source-end must be at least --source-start")
@@ -91,7 +96,18 @@ def main() -> int:
                 args.bear_central_estimate,
                 "--bear-iterations",
                 str(args.bear_iterations),
+                "--bear-returning-cohort-mode",
+                args.bear_returning_cohort_mode,
             ]
+            # The current 2026 Bear recodes/new units cannot appear in a
+            # source-year proxy. This explicit, non-certifying diagnostic
+            # bridge prevents a coverage hole without changing ADR-0006
+            # source-only accepted folds (which stop at 2024-to-2025).
+            + (
+                ["--include-current-target-bear-identity-diagnostic"]
+                if (source_year, target_year) == (2025, 2026)
+                else []
+            )
         )
         run(
             [
@@ -103,6 +119,10 @@ def main() -> int:
                 str(prediction_dir / "family_predictions.csv"),
                 "--out-dir",
                 str(projection_dir),
+                "--source-year",
+                str(source_year),
+                "--forecast-year",
+                str(target_year),
             ]
         )
         run(

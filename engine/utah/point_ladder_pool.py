@@ -146,20 +146,20 @@ def format_historical_draw_result(applicants: object, total_permits: object, suc
     if total is None or total <= 0:
         return ""
 
-    applicant_count = _to_float(applicants)
-    denominator = None
     ratio_text = _text(success_ratio)
     match = re.search(r"1\s*in\s*([0-9]+(?:\.[0-9]+)?)", ratio_text, flags=re.IGNORECASE)
     if match:
-        denominator = float(match.group(1))
-    elif applicant_count is not None and applicant_count > 0:
-        denominator = applicant_count / total
+        # Historical results are displayed exactly as DWR prints the Success
+        # Ratio. The count fields remain the calculation authority elsewhere.
+        return ratio_text
+
+    applicant_count = _to_float(applicants)
+    denominator = applicant_count / total if applicant_count is not None and applicant_count > 0 else None
 
     if denominator is None or denominator <= 0:
         return ""
 
-    percent = min(100.0, 100.0 / denominator)
-    return f"~1 in {_format_one_decimal(denominator)} or {_format_one_decimal(percent)}%"
+    return f"1 in {_format_one_decimal(denominator)}"
 
 
 def format_modeled_draw_result(percent_value: object) -> str:

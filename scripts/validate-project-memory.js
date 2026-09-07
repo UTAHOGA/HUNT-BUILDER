@@ -212,11 +212,11 @@ function validateProjectMemory(root = REPO) {
   for (const artifact of authority.runtime_artifacts || []) {
     check(typeof artifact.path === 'string' && artifact.path.length > 0, `Runtime artifact ${artifact.role || '<unknown>'} has no logical path.`);
     check(/^https:\/\//.test(artifact.external_url || ''), `Runtime artifact ${artifact.role || '<unknown>'} has no HTTPS external URL.`);
-    check(['GIT_TRACKED', 'OPTIONAL_R2_BACKED'].includes(artifact.local_policy), `Runtime artifact ${artifact.role || '<unknown>'} has an unsupported local policy: ${artifact.local_policy || '<blank>'}`);
+    check(['GIT_TRACKED', 'OPTIONAL_R2_BACKED', 'R2_BACKED_DISPLAY_OVERLAY'].includes(artifact.local_policy), `Runtime artifact ${artifact.role || '<unknown>'} has an unsupported local policy: ${artifact.local_policy || '<blank>'}`);
     const exists = fs.existsSync(repoPath(root, artifact.path || ''));
     if (artifact.local_policy === 'GIT_TRACKED') {
       check(exists, `Git-tracked runtime artifact is missing: ${artifact.path}`);
-    } else if (artifact.local_policy === 'OPTIONAL_R2_BACKED') {
+    } else if (['OPTIONAL_R2_BACKED', 'R2_BACKED_DISPLAY_OVERLAY'].includes(artifact.local_policy)) {
       warn(exists, `R2-backed runtime artifact is not hydrated locally (allowed for code-only validation): ${artifact.path}`);
     }
   }

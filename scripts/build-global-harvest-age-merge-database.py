@@ -14,6 +14,7 @@ AGE_2021 = MODEL_DIR / 'harvest_results_2021_for_2022_complete_database.csv'
 AGE_2022 = MODEL_DIR / 'harvest_results_2022_for_2023_complete_database.csv'
 AGE_2023 = MODEL_DIR / 'harvest_results_2023_for_2024_complete_database.csv'
 AGE_2024_24BG = MODEL_DIR / 'harvest_results_2024_complete_database.csv'
+AGE_2025 = MODEL_DIR / 'harvest_results_2025_for_2026_age_database.csv'
 COUGAR_2021_FEATURES = MODEL_DIR / 'cougar_2021_for_2022_age_features_by_current_hunt_code.csv'
 
 BACKFILL_2024_DIR = ROOT / 'pipeline' / 'RAW' / 'hunt_unit_database' / '2025' / 'pdf' / 'harvest_report' / 'harvest_2024_for_2025_backfill_package_revised'
@@ -100,8 +101,13 @@ def to_record(
     average_harvest_age: object,
     average_harvest_age_3yr: object = '',
     age_source_file: object = '',
+    age_source_url: object = '',
+    age_source_sha256: object = '',
     age_source_page: object = '',
     age_source_table_title: object = '',
+    crosswalk_source_page: object = '',
+    crosswalk_source_hunt_name: object = '',
+    crosswalk_source_weapon: object = '',
     crosswalk_confidence: object = '',
     age_mapping_status: object = '',
     source_package: str,
@@ -111,7 +117,8 @@ def to_record(
     year = parse_year(reported_hunt_year)
     code = norm_code(hunt_code)
     age = parse_age(average_harvest_age)
-    if not year or not code or not age:
+    age_3yr = parse_age(average_harvest_age_3yr)
+    if not year or not code or (not age and not age_3yr):
         return None
     model_target_year = str(int(year) + 1)
     return {
@@ -120,11 +127,16 @@ def to_record(
         'hunt_code': code,
         'species': species_norm(species),
         'average_harvest_age': age,
-        'average_harvest_age_3yr': parse_age(average_harvest_age_3yr),
+        'average_harvest_age_3yr': age_3yr,
         'age_data_available': 'true',
         'age_source_file': clean(age_source_file),
+        'age_source_url': clean(age_source_url),
+        'age_source_sha256': clean(age_source_sha256),
         'age_source_page': clean(age_source_page),
         'age_source_table_title': clean(age_source_table_title),
+        'crosswalk_source_page': clean(crosswalk_source_page),
+        'crosswalk_source_hunt_name': clean(crosswalk_source_hunt_name),
+        'crosswalk_source_weapon': clean(crosswalk_source_weapon),
         'crosswalk_confidence': clean(crosswalk_confidence),
         'age_mapping_status': clean(age_mapping_status),
         'source_package': source_package,
@@ -299,10 +311,78 @@ def load_cougar_2021_records() -> list[dict[str, str]]:
     return out
 
 
+def load_retained_pre_2025_baseline_records() -> list[dict[str, str]]:
+    """Retain the tracked canonical history when retired source packages are absent.
+
+    The repository's tracked global database is the durable selected result for
+    the 2015-2024 lanes. Filtering it before reading the new 2025 lane keeps
+    incremental rebuilds deterministic and prevents prior promoted history from
+    depending on source-package directories that are no longer in this checkout.
+    """
+
+    df = pd.read_csv(OUT_GLOBAL, dtype=str, low_memory=False).fillna('')
+    out: list[dict[str, str]] = []
+    for _, row in df.iterrows():
+        if int(parse_year(row.get('reported_hunt_year', '')) or '0') >= 2025:
+            continue
+        rec = to_record(
+            reported_hunt_year=row.get('reported_hunt_year', ''),
+            hunt_code=row.get('hunt_code', ''),
+            species=row.get('species', ''),
+            average_harvest_age=row.get('average_harvest_age', ''),
+            average_harvest_age_3yr=row.get('average_harvest_age_3yr', ''),
+            age_source_file=row.get('age_source_file', ''),
+            age_source_url=row.get('age_source_url', ''),
+            age_source_sha256=row.get('age_source_sha256', ''),
+            age_source_page=row.get('age_source_page', ''),
+            age_source_table_title=row.get('age_source_table_title', ''),
+            crosswalk_source_page=row.get('crosswalk_source_page', ''),
+            crosswalk_source_hunt_name=row.get('crosswalk_source_hunt_name', ''),
+            crosswalk_source_weapon=row.get('crosswalk_source_weapon', ''),
+            crosswalk_confidence=row.get('crosswalk_confidence', ''),
+            age_mapping_status=row.get('age_mapping_status', ''),
+            source_package=clean(row.get('source_package', '')) or 'retained_pre_2025_canonical_baseline',
+            source_priority=int(clean(row.get('source_priority', '0')) or '0'),
+            notes=row.get('notes', ''),
+        )
+        if rec:
+            out.append(rec)
+    return out
+
+
+def load_2025_records() -> list[dict[str, str]]:
+    df = pd.read_csv(AGE_2025, dtype=str, low_memory=False).fillna('')
+    out: list[dict[str, str]] = []
+    for _, row in df.iterrows():
+        rec = to_record(
+            reported_hunt_year=row.get('reported_hunt_year', ''),
+            hunt_code=row.get('hunt_code', ''),
+            species=row.get('species', ''),
+            average_harvest_age=row.get('average_harvest_age', ''),
+            average_harvest_age_3yr=row.get('average_harvest_age_3yr', ''),
+            age_source_file=row.get('age_source_file', ''),
+            age_source_url=row.get('age_source_url', ''),
+            age_source_sha256=row.get('age_source_sha256', ''),
+            age_source_page=row.get('age_source_page', ''),
+            age_source_table_title=row.get('age_source_table_title', ''),
+            crosswalk_source_page=row.get('crosswalk_source_page', ''),
+            crosswalk_source_hunt_name=row.get('crosswalk_source_hunt_name', ''),
+            crosswalk_source_weapon=row.get('crosswalk_source_weapon', ''),
+            crosswalk_confidence=row.get('crosswalk_confidence', ''),
+            age_mapping_status=row.get('age_mapping_status', ''),
+            source_package='official_2026_dwr_age_and_permit_tables',
+            source_priority=100,
+            notes=row.get('notes', ''),
+        )
+        if rec:
+            out.append(rec)
+    return out
+
+
 def select_best(records: list[dict[str, str]]) -> tuple[list[dict[str, str]], dict[str, int]]:
-    by_key: dict[tuple[str, str], list[dict[str, str]]] = defaultdict(list)
+    by_key: dict[tuple[str, str, str], list[dict[str, str]]] = defaultdict(list)
     for rec in records:
-        by_key[(rec['reported_hunt_year'], rec['hunt_code'])].append(rec)
+        by_key[(rec['reported_hunt_year'], rec['hunt_code'], species_norm(rec['species']))].append(rec)
 
     selected: list[dict[str, str]] = []
     tie_count = 0
@@ -333,7 +413,7 @@ def select_best(records: list[dict[str, str]]) -> tuple[list[dict[str, str]], di
 
 
 def main() -> None:
-    required = [
+    legacy_required = [
         AGE_2021,
         AGE_2022,
         AGE_2023,
@@ -342,6 +422,7 @@ def main() -> None:
         BACKFILL_GOAT_ALL,
         COUGAR_2021_FEATURES,
     ]
+    required = [AGE_2025]
     missing = [str(p) for p in required if not p.exists()]
     if missing:
         raise FileNotFoundError('Missing required source files: ' + '; '.join(missing))
@@ -349,15 +430,24 @@ def main() -> None:
     all_records: list[dict[str, str]] = []
     source_counts: dict[str, int] = {}
 
-    lanes = [
-        ('2021_complete', load_2021_records),
-        ('2022_complete', load_2022_records),
-        ('2023_complete', load_2023_records),
-        ('2024_revised_combined', load_2024_revised_records),
-        ('2024_24bg_fallback', load_2024_24bg_fallback_records),
-        ('goat_historical_all_years', load_goat_historical_records),
-        ('cougar_2021_crosswalked', load_cougar_2021_records),
-    ]
+    if all(path.exists() for path in legacy_required):
+        lanes = [
+            ('2021_complete', load_2021_records),
+            ('2022_complete', load_2022_records),
+            ('2023_complete', load_2023_records),
+            ('2024_revised_combined', load_2024_revised_records),
+            ('2024_24bg_fallback', load_2024_24bg_fallback_records),
+            ('goat_historical_all_years', load_goat_historical_records),
+            ('cougar_2021_crosswalked', load_cougar_2021_records),
+        ]
+    elif OUT_GLOBAL.exists():
+        lanes = [('retained_pre_2025_canonical_baseline', load_retained_pre_2025_baseline_records)]
+    else:
+        missing_legacy = [str(path) for path in legacy_required if not path.exists()]
+        raise FileNotFoundError(
+            'Missing legacy age inputs and no tracked global baseline is available: ' + '; '.join(missing_legacy)
+        )
+    lanes.append(('2025_official_dwr_tables', load_2025_records))
 
     for lane_name, loader in lanes:
         lane_rows = loader()
@@ -375,17 +465,18 @@ def main() -> None:
 
     summary = {
         'generated_at_utc': datetime.now(timezone.utc).isoformat(),
-        'global_age_database': str(OUT_GLOBAL).replace('\\', '/'),
+        'global_age_database': str(OUT_GLOBAL.relative_to(ROOT)).replace('\\', '/'),
         'input_lane_row_counts': source_counts,
         'input_rows_total': len(all_records),
         'selected_rows_total': len(out_df),
         'selected_unique_year_hunt_code_keys': int(out_df[['reported_hunt_year', 'hunt_code']].drop_duplicates().shape[0]) if not out_df.empty else 0,
+        'selected_unique_year_hunt_code_species_keys': int(out_df[['reported_hunt_year', 'hunt_code', 'species']].drop_duplicates().shape[0]) if not out_df.empty else 0,
         'reported_hunt_year_counts': year_counts,
         'species_counts': species_counts,
         'selection_stats': selection_stats,
         'outputs': {
-            'global_age_csv': str(OUT_GLOBAL).replace('\\', '/'),
-            'global_age_summary': str(OUT_SUMMARY).replace('\\', '/'),
+            'global_age_csv': str(OUT_GLOBAL.relative_to(ROOT)).replace('\\', '/'),
+            'global_age_summary': str(OUT_SUMMARY.relative_to(ROOT)).replace('\\', '/'),
         },
     }
     OUT_SUMMARY.write_text(json.dumps(summary, indent=2), encoding='utf-8')

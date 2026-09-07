@@ -279,13 +279,21 @@
   function normalizeHistoricalOddsDisplay(value) {
     const text = String(value || '').trim();
     if (!text) return '';
-    if (/[0-9]\s*in\s*[0-9]/i.test(text)) {
-      return text.replace(/~/g, DOCUMENTED_DRAW_RESULT_PREFIX);
+    const sourceRatio = text.match(/1\s*in\s*([0-9]+(?:\.[0-9]+)?)/i);
+    if (sourceRatio) {
+      return `1 in ${sourceRatio[1]}`;
     }
 
     const pct = num(text);
     if (pct === null || pct <= 0) return '';
-    return formatOddsAsOneInOrPercent(pct).replace(/~/g, DOCUMENTED_DRAW_RESULT_PREFIX);
+    return formatHistoricalRatioFromPercent(pct);
+  }
+
+  function formatHistoricalRatioFromPercent(percentValue) {
+    const parsed = num(percentValue);
+    if (!Number.isFinite(parsed) || parsed <= 0) return '';
+    const denominator = 100 / clamp(parsed, 0, 100);
+    return `1 in ${denominator.toFixed(1)}`;
   }
 
   function hasDataQualityFlag(row, flag) {
@@ -308,9 +316,7 @@
     const applicants = num(row?.applicants ?? row?.eligible_applicants);
     if (applicants === null || applicants <= 0) return '';
 
-    const denominator = applicants / totalPermits;
-    const percent = Math.min(100, 100 / denominator);
-    return `${DOCUMENTED_DRAW_RESULT_PREFIX}1 in ${denominator.toFixed(1)} or ${percent.toFixed(1)}%`;
+    return `1 in ${(applicants / totalPermits).toFixed(1)}`;
   }
 
   function isOddsDisplayText(value) {
@@ -1816,6 +1822,10 @@
     return !!text && text.toUpperCase() !== 'N/A' && text.toUpperCase() !== 'NOT AVAILABLE';
   }
 
+  function firstMeaningfulValue(...values) {
+    return values.find(hasMeaningfulValue) ?? '';
+  }
+
   function hasSourceData(meta, row, referenceRow) {
     if (referenceRow) return true;
     if (!meta || !row) return false;
@@ -1837,15 +1847,15 @@
     const boxes = [
       [`${RESEARCH_RESULT_YEAR} Draw Results`, formatHistoricalDrawResult(row)
         || (Number.isFinite(num(row?.odds_2025_actual))
-          ? formatOddsAsOneInOrPercent(row?.odds_2025_actual)
+          ? formatHistoricalRatioFromPercent(row?.odds_2025_actual)
           : (row?.odds_2025_actual || ''))],
       [`${RESEARCH_MODEL_YEAR} Draw Odds`, getDisplayedOdds(meta, row, referenceRow).value],
       [`${RESEARCH_MODEL_YEAR} Quota Source`, quotaSourceDisplay],
-      [`${RESEARCH_RESULT_YEAR} Harvest Success`, hasMeaningfulValue(referenceRow?.harvest_success_percent_2025)
-        ? `${referenceRow.harvest_success_percent_2025}%`
+      [`${RESEARCH_RESULT_YEAR} Harvest Success`, hasMeaningfulValue(firstMeaningfulValue(referenceRow?.harvest_success_percent_2025, referenceRow?.harvest_success_pct, referenceRow?.percent_success))
+        ? `${firstMeaningfulValue(referenceRow?.harvest_success_percent_2025, referenceRow?.harvest_success_pct, referenceRow?.percent_success)}%`
         : (hasMeaningfulValue(meta?.success_percent) ? `${meta.success_percent}%` : 'Not available')],
-      ['Harvest / Hunters', hasMeaningfulValue(referenceRow?.harvest_2025) || hasMeaningfulValue(referenceRow?.harvest_hunters_2025)
-        ? `${referenceRow?.harvest_2025 || '0'} / ${referenceRow?.harvest_hunters_2025 || '0'}`
+      ['Harvest / Hunters', hasMeaningfulValue(firstMeaningfulValue(referenceRow?.harvest_2025, referenceRow?.harvest, referenceRow?.harvest_total)) || hasMeaningfulValue(firstMeaningfulValue(referenceRow?.harvest_hunters_2025, referenceRow?.hunters, referenceRow?.hunters_afield))
+        ? `${firstMeaningfulValue(referenceRow?.harvest_2025, referenceRow?.harvest, referenceRow?.harvest_total) || '0'} / ${firstMeaningfulValue(referenceRow?.harvest_hunters_2025, referenceRow?.hunters, referenceRow?.hunters_afield) || '0'}`
         : (hasMeaningfulValue(meta?.success_harvest) || hasMeaningfulValue(meta?.success_hunters)
           ? `${meta?.success_harvest || '0'} / ${meta?.success_hunters || '0'}`
           : 'Not available')],
@@ -1870,19 +1880,29 @@
   }
 
   function getHarvestSnapshot(meta, referenceRow) {
-    const success = hasMeaningfulValue(referenceRow?.harvest_success_percent_2025)
-      ? `${referenceRow.harvest_success_percent_2025}% success`
+    const successValue = firstMeaningfulValue(
+      referenceRow?.harvest_success_percent_2025,
+      referenceRow?.harvest_success_pct,
+      referenceRow?.percent_success,
+      meta?.success_percent,
+    );
+    const harvestValue = firstMeaningfulValue(referenceRow?.harvest_2025, referenceRow?.harvest, referenceRow?.harvest_total, meta?.success_harvest);
+    const huntersValue = firstMeaningfulValue(referenceRow?.harvest_hunters_2025, referenceRow?.hunters, referenceRow?.hunters_afield, meta?.success_hunters);
+    const daysValue = firstMeaningfulValue(referenceRow?.harvest_average_days_2025, referenceRow?.average_days_hunted, referenceRow?.avg_days);
+    const satisfactionValue = firstMeaningfulValue(referenceRow?.harvest_satisfaction_2025, referenceRow?.hunter_satisfaction, referenceRow?.satisfaction);
+    const success = hasMeaningfulValue(successValue)
+      ? `${successValue}% success`
       : (hasMeaningfulValue(meta?.success_percent) ? `${meta.success_percent}% success` : '');
-    const harvestCount = hasMeaningfulValue(referenceRow?.harvest_2025) || hasMeaningfulValue(referenceRow?.harvest_hunters_2025)
-      ? `${referenceRow?.harvest_2025 || '0'} harvest / ${referenceRow?.harvest_hunters_2025 || '0'} hunters`
+    const harvestCount = hasMeaningfulValue(harvestValue) || hasMeaningfulValue(huntersValue)
+      ? `${harvestValue || '0'} harvest / ${huntersValue || '0'} hunters`
       : (hasMeaningfulValue(meta?.success_harvest) || hasMeaningfulValue(meta?.success_hunters)
         ? `${meta?.success_harvest || '0'} harvest / ${meta?.success_hunters || '0'} hunters`
         : '');
-    const days = hasMeaningfulValue(referenceRow?.harvest_average_days_2025)
-      ? `${referenceRow.harvest_average_days_2025} avg days`
+    const days = hasMeaningfulValue(daysValue)
+      ? `${daysValue} avg days`
       : '';
-    const satisfaction = hasMeaningfulValue(referenceRow?.harvest_satisfaction_2025)
-      ? `${referenceRow.harvest_satisfaction_2025} satisfaction`
+    const satisfaction = hasMeaningfulValue(satisfactionValue)
+      ? `${satisfactionValue} satisfaction`
       : '';
     const parts = [success, harvestCount, days, satisfaction].filter(Boolean);
     return parts.length ? parts.join(' | ') : 'Harvest data is not mapped to this hunt row yet.';
@@ -2031,9 +2051,9 @@
       const actual2025Display = formatHistoricalDrawResult(row)
         || formatHistoricalDrawResult(historicalPointRow)
         || (Number.isFinite(num(row?.odds_2025_actual))
-          ? formatOddsAsOneInOrPercent(row?.odds_2025_actual)
+          ? formatHistoricalRatioFromPercent(row?.odds_2025_actual)
           : (Number.isFinite(num(historicalPointRow?.odds_2025_actual))
-            ? formatOddsAsOneInOrPercent(historicalPointRow?.odds_2025_actual)
+            ? formatHistoricalRatioFromPercent(historicalPointRow?.odds_2025_actual)
             : ''))
         || '';
       const odds = (mode === DRAW_MODE.PREFERENCE || mode === DRAW_MODE.YOUTH_RESERVE)

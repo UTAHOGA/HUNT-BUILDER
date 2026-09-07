@@ -1,0 +1,51 @@
+{
+  "generated_at_utc": "2026-09-07T03:10:58.513597+00:00",
+  "reported_hunt_year": 2025,
+  "model_target_year": 2026,
+  "source_files_sha256": {
+    "table-2026-04-01-bull-elk-tables.pdf": "3d50bc0a24b51f30263df4e1d157cff773d09cb9724f20fec86bf7d3d0bfc02b",
+    "table-2026-04-01-pronghorn-tables.pdf": "661c9b99feed062c96474a2f31e9d2a921dd730eee547fd1a2242ad408e477f5",
+    "table-2026-04-01-oilt-tables.pdf": "d95cca26dcf34c3cd62d0a076816566f22e08b9738a84396f61828a287f50c08"
+  },
+  "source_urls": {
+    "table-2026-04-01-bull-elk-tables.pdf": "https://wildlife.utah.gov/pdf/meetings/rac/table-2026-04-01-bull-elk-tables.pdf",
+    "table-2026-04-01-pronghorn-tables.pdf": "https://wildlife.utah.gov/pdf/meetings/rac/table-2026-04-01-pronghorn-tables.pdf",
+    "table-2026-04-01-oilt-tables.pdf": "https://wildlife.utah.gov/pdf/meetings/rac/table-2026-04-01-oilt-tables.pdf"
+  },
+  "age_source_rows": 67,
+  "age_source_rows_by_species": {
+    "Pronghorn": 29,
+    "Elk": 26,
+    "Moose": 12
+  },
+  "permit_hunt_code_mappings_by_species": {
+    "Elk": 145,
+    "Pronghorn": 66,
+    "Moose": 13
+  },
+  "hunt_code_rows": 222,
+  "hunt_code_rows_by_species": {
+    "Elk": 143,
+    "Pronghorn": 66,
+    "Moose": 13
+  },
+  "annual_2025_age_nonblank": 220,
+  "reported_2023_2025_average_nonblank": 222,
+  "unmatched_source_units": [
+    {
+      "species": "Pronghorn",
+      "source_unit_name": "Morgan-South Rich"
+    }
+  ],
+  "guardrails": {
+    "permit_quota_authority": "NO",
+    "draw_probability_authority": "NO",
+    "boundary_id_used_for_matching": "NO",
+    "crosswalk_basis": "same official DWR 2026 table file, age-unit page to hunt-number pages"
+  },
+  "outputs": {
+    "source_age_rows": "data_model/harvest_quality/harvest_results_2025_age_rows_from_2026_tables.csv",
+    "expanded_age_rows": "data_model/harvest_quality/harvest_results_2025_age_rows_hunt_code_expanded.csv",
+    "hunt_code_age_database": "data_model/harvest_quality/harvest_results_2025_for_2026_age_database.csv"
+  }
+}

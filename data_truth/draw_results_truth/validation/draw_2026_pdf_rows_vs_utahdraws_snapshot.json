@@ -1,24 +1,24 @@
 {
-  "generated_at_utc": "2026-08-28T06:36:11.761244+00:00",
-  "canonical_pdf_derived_rows": 12156,
-  "canonical_pdf_derived_scorable_rows": 1381,
-  "certifiable_scorable_rows": 1380,
+  "generated_at_utc": "2026-09-02T23:44:06.589125+00:00",
+  "canonical_pdf_derived_rows": 12051,
+  "canonical_pdf_derived_scorable_rows": 1276,
+  "certifiable_scorable_rows": 1275,
   "scorable_rows_excluded_pending_reconciliation": 1,
   "unscorable_zero_applicant_or_success_rows": 10775,
   "parity_status_counts": {
     "AMBIGUOUS_MULTIPLE_EQUAL_ENDPOINT_ROWS": 1,
     "NO_EXPECTED_ENDPOINT_IDENTITY": 10581,
     "VALUE_MISMATCH_DIRECT": 13,
-    "VALUE_PARITY_DIRECT": 1121,
-    "VALUE_PARITY_UNIQUE_SOURCE_DIMENSION": 440
+    "VALUE_PARITY_DIRECT": 1083,
+    "VALUE_PARITY_UNIQUE_SOURCE_DIMENSION": 373
   },
   "certification_disposition_counts": {
-    "CERTIFIABLE_SOURCE_VALUE_PARITY": 1380,
+    "CERTIFIABLE_SOURCE_VALUE_PARITY": 1275,
     "EXCLUDE_FROM_CERTIFIABLE_SCORING_PENDING_SOURCE_RECONCILIATION": 1,
     "UNSCORABLE_NO_APPLICANT_OR_SUCCESS": 10775
   },
   "planner_context_counts": {
-    "DWR_PLANNER_HUNT_CODE_FOUND": 12142,
+    "DWR_PLANNER_HUNT_CODE_FOUND": 12037,
     "DWR_PLANNER_HUNT_CODE_NOT_IN_1433_CAPTURE": 14
   },
   "comparison_identity": "hunt_code + residency + points + expected UtahDraws source package",

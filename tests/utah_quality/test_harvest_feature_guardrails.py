@@ -26,8 +26,17 @@ PROTECTED_FIELDS = [
     "quota_2026_total",
     "quota_2026_max_pool",
     "quota_2026_random_pool",
+    "permits_2026_res",
+    "permits_2026_nr",
+    "permits_2026_total",
+    "permit_allotment_2026_res",
+    "permit_allotment_2026_nr",
     "permit_allotment_2026_total",
+    "permit_allotment_2026_source",
+    "permit_allotment_2026_source_file",
+    "permit_allotment_2026_status",
     "public_permits_2026",
+    "public_permits_2026_source",
 ]
 
 

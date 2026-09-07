@@ -733,6 +733,31 @@ def test_cwmu_source_backed_rows_keep_cwmu_family_over_species_bucket() -> None:
     )
 
 
+def test_generic_historical_cwmu_antlerless_pool_uses_its_own_species_and_sex_identity() -> None:
+    source_rows = [
+        {
+            "row_type": "point_level_draw_result",
+            "hunt_code": "DA1011",
+            "hunt_name": "CWMU antlerless deer",
+            "species": "Deer",
+            "sex_type": "Doe",
+            "hunt_type": "CWMU",
+            "draw_system_type": "BONUS_CWMU_BIG_GAME",
+            "draw_pool": "CWMU_ANTLERLESS",
+            "residency": "",
+            "points": "3",
+            "p_draw": "0.5",
+            "source_file": "2018 CWMU Big Game Draw Results.pdf",
+        }
+    ]
+
+    rows = _source_backed_probability_rows(source_rows, {}, 2018, 2019)
+    finalized = _with_run_fields(rows["bonus_cwmu_big_game"], 2018, 2019, "bonus_cwmu_big_game")
+
+    assert len(finalized) == 1
+    assert finalized[0]["draw_pool"] == "cwmu_antlerless_deer"
+
+
 def test_source_backed_rows_keep_antlerless_moose_in_its_special_bonus_pool() -> None:
     source_rows = [
         {

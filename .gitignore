@@ -583,6 +583,10 @@ audits/prediction_accuracy_backtest/
 !data_truth/draw_results_truth/validation/black_bear_2018_2022_pdf_residency_ladders.csv
 !data/utah/sportsman/sportsman_odds_2017.csv
 !data/utah/youth/eb1007_youth_general_bull_history.csv
+!data_model/harvest_quality/harvest_results_2025_age_rows_from_2026_tables.csv
+!data_model/harvest_quality/harvest_results_2025_age_rows_hunt_code_expanded.csv
+!data_model/harvest_quality/harvest_results_2025_for_2026_age_database.csv
+!data_model/harvest_quality/harvest_results_2025_for_2026_age_database_summary.json
 !processed_data/**/*.json
 !processed_data/**/*.geojson
 !processed_data/**/*.md
@@ -877,3 +881,4 @@ data_truth/hunt_code_universe_truth/locked/LOCKED_HUNT_CODE_YEAR_CODE_ROSTER_201
 # The legacy full prediction feed is an R2/local fallback, not a GitHub asset.
 # Keep the small static contracts above; do not let this large JSON re-enter.
 /processed_data/public_contracts/hunt_predictions.json
+.vercel

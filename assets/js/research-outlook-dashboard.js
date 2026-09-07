@@ -277,7 +277,8 @@
   }
 
   function getOutlookSources() {
-    const version = window.UOGA_CONFIG?.HUNT_RESEARCH_DATA_VERSION || "research-outlook-dashboard-2";
+    const contractVersion = window.UOGA_CONFIG?.HUNT_RESEARCH_DATA_VERSION || "research-outlook-dashboard-2";
+    const version = `${contractVersion}-management-quality-20260906-v1`;
     const cloudflare = "https://json.uoga.workers.dev";
     return [
       `${cloudflare}/processed_data/public_contracts/hunt_application_outlook.json?v=${version}`,
@@ -452,6 +453,18 @@
       || firstValue(selectedRow, ["average_harvest_age"]);
   }
 
+  function getReportedThreeYearAge(meta, reference, selectedRow) {
+    return firstValue(meta, ["average_harvest_age_3yr_reported"])
+      || firstValue(reference, ["average_harvest_age_3yr_reported"])
+      || firstValue(selectedRow, ["average_harvest_age_3yr_reported"]);
+  }
+
+  function getHunterSatisfaction(meta, reference, selectedRow) {
+    return firstValue(meta, ["hunter_satisfaction", "harvest_satisfaction_2025", "satisfaction"])
+      || firstValue(reference, ["hunter_satisfaction", "harvest_satisfaction_2025", "satisfaction"])
+      || firstValue(selectedRow, ["hunter_satisfaction", "harvest_satisfaction_2025", "satisfaction"]);
+  }
+
   function getCurrentAge(meta, reference, selectedRow) {
     return firstValue(meta, ["current_age_3yr_average"])
       || firstValue(reference, ["current_age_3yr_average"])
@@ -551,12 +564,6 @@
       || firstValue(selectedRow, ["total_permits", "quota_2026_total"]);
   }
 
-  function getPercentFivePlus(meta, reference, selectedRow) {
-    return firstValue(meta, ["percent_5_plus", "percent_5plus", "percent_five_plus", "harvest_age_percent_5plus"])
-      || firstValue(reference, ["percent_5_plus", "percent_5plus", "percent_five_plus", "harvest_age_percent_5plus"])
-      || firstValue(selectedRow, ["percent_5_plus", "percent_5plus", "percent_five_plus", "harvest_age_percent_5plus"]);
-  }
-
   function getGuaranteedLine(selectedRow, meta) {
     return firstValue(selectedRow, ["guaranteed_at_2026", "guaranteed_points", "min_points_guaranteed", "guaranteed_line"])
       || firstValue(meta, ["guaranteed_at_2026", "guaranteed_points", "min_points_guaranteed", "guaranteed_line"]);
@@ -625,6 +632,12 @@
     return "Limited quality data";
   }
 
+  function humanizeStatus(value, fallback = "Not available") {
+    if (!hasValue(value)) return fallback;
+    return String(value).replace(/_/g, " ").replace(/\s+/g, " ").trim().toLowerCase()
+      .replace(/(^|\s)\S/g, (letter) => letter.toUpperCase());
+  }
+
   function comparableStatus(row) {
     const odds = firstValue(row, ["modeled_draw_probability", "p_draw_pct", "random_draw_odds_2026", "odds_2026_projected", "success_ratio"]);
     const status = firstValue(row, ["status", "draw_outlook", "point_status"]);
@@ -655,7 +668,9 @@
 
   function renderManagementPanel(rows) {
     const row = rows[0] || {};
-    const objectiveRange = hasValue(row.management_objective_range)
+    const objectiveRange = hasValue(row.management_objective_target)
+      ? formatValue(row.management_objective_target)
+      : hasValue(row.management_objective_range)
       ? formatValue(row.management_objective_range)
       : hasValue(row.management_objective_min)
       ? `${formatValue(row.management_objective_min)}${hasValue(row.management_objective_max) ? ` to ${formatValue(row.management_objective_max)}` : ""} ${formatValue(row.objective_unit, "")}`.trim()
@@ -669,13 +684,41 @@
       ${panelKicker("U.O.G.A. curated fields")}
       <div class="uoga-badge-row">${badge("Management Plan Context", "management")}</div>
       ${listRows([
-        metricRow("State objective", `${formatValue(row.management_objective_type, "Objective type pending")} / ${objectiveRange}`),
-        metricRow("Observed evidence", formatValue(row.management_objective_note || row.notes || row.objective_status_rule, "Observed comparison details are limited.")),
+        metricRow("DWR management measure", formatValue(row.management_objective_type, "No quantified DWR objective loaded")),
+        metricRow("DWR objective", objectiveRange),
+        metricRow("Current DWR value", formatValue(row.management_current_value, "Not reported in the retained DWR source")),
+        metricRow("Unit of measure", formatValue(row.management_objective_unit || row.objective_unit)),
+        metricRow("Objective status", humanizeStatus(row.management_objective_status || row.objective_status)),
+        metricRow("Management scope", humanizeStatus(row.management_measure_scope)),
         metricRow("Management direction", managementDirection),
-        metricRow("Permit direction watch", formatValue(row.permit_direction_watch, "Use as context only; does not change draw odds.")),
+        metricRow("Evidence note", formatValue(row.management_objective_note || row.notes || row.objective_status_rule, "Observed comparison details are limited.")),
       ])}
       <p class="uoga-outlook-muted">Benchmark only. This is context and does not change modeled draw probability.</p>
     `);
+  }
+
+  function renderHuntQualityProfile(contract) {
+    const score = num(contract.hunt_unit_quality_score);
+    const scoreStatus = humanizeStatus(contract.hunt_unit_quality_score_status, "Composite unavailable");
+    const reasonCodes = pipeList(contract.hunt_unit_quality_reason_codes).slice(0, 4).map((value) => humanizeStatus(value));
+    return panel("Hunt Quality Profile", `
+      ${panelKicker("U.O.G.A. display-only synthesis")}
+      <div class="uoga-badge-row">
+        ${badge(score === null ? "Composite withheld" : `${formatValue(score)} / 100`, score === null ? "limited" : "modeled")}
+        ${hasValue(contract.hunt_unit_quality_confidence) ? badge(`${formatValue(contract.hunt_unit_quality_confidence)} confidence`, "official") : ""}
+      </div>
+      ${listRows([
+        metricRow("Quality profile", formatValue(contract.hunt_unit_quality_label, scoreStatus)),
+        metricRow("Biological quality", score === null ? "Not scored" : `${formatValue(contract.hunt_quality_biological_component)} / 100`),
+        metricRow("3-year harvest success", formatPercent(contract.harvest_success_3yr_avg)),
+        metricRow("3-year hunter satisfaction", formatValue(contract.hunter_satisfaction_3yr_avg)),
+        metricRow("3-year average effort", hasValue(contract.hunter_effort_days_3yr_avg) ? `${formatValue(contract.hunter_effort_days_3yr_avg)} days` : "Not available"),
+        metricRow("3-year hunters afield", formatInteger(contract.hunters_afield_3yr_avg)),
+        metricRow("Evidence gate", scoreStatus),
+        metricRow("Why withheld", reasonCodes.length ? reasonCodes.join("; ") : "All required evidence checks passed"),
+      ])}
+      <p class="uoga-outlook-muted">U.O.G.A. score, not a DWR score. Compare only within the same species, sex/type and hunt class. It never changes draw odds, permits or quotas.</p>
+    `, "is-quality");
   }
 
   function hasPersonaData(contract) {
@@ -709,25 +752,32 @@
     return "Data Updated 2026";
   }
   function sourceDetails(selection, selectedRow, meta) {
-    const sourceFile = firstValue(selectedRow, ["source_file", "truth_source_file", "average_harvest_age_source_file"])
-      || firstValue(meta, ["truth_source_file", "average_harvest_age_source_file", "harvest_source_file", "age_source_file"]);
-    const sourcePage = firstValue(selectedRow, ["page_number", "source_page", "truth_source_page"])
-      || firstValue(meta, ["page_number", "source_page", "truth_source_page", "harvest_source_page", "age_source_page"]);
+    const sourceFile = firstValue(meta, ["truth_source_file", "average_harvest_age_source_file", "harvest_source_file", "age_source_file"])
+      || firstValue(selectedRow, ["source_file", "truth_source_file", "average_harvest_age_source_file"]);
+    const sourcePage = firstValue(meta, ["page_number", "source_page", "truth_source_page", "harvest_source_page", "age_source_page"])
+      || firstValue(selectedRow, ["page_number", "source_page", "truth_source_page"]);
     const tableTitle = firstValue(selectedRow, ["source_table_title", "table_title", "truth_source_table_title"])
       || firstValue(meta, ["source_table_title", "table_title", "truth_source_table_title", "age_source_table_title"]);
+    const sourceMetrics = [
+      metricRow("Engine mode", window.UOGA_CONFIG?.HUNT_RESEARCH_ENGINE_MODE || "observed"),
+      metricRow("Data version", window.UOGA_CONFIG?.HUNT_RESEARCH_DATA_VERSION || "not configured"),
+      metricRow("Data freshness", getFreshnessLabel(meta, meta, selectedRow)),
+      metricRow("Model version", firstValue(meta, ["model_version"]) || window.UOGA_CONFIG?.HUNT_RESEARCH_MODEL_VERSION || "display-only dashboard"),
+      metricRow("Rule version", firstValue(meta, ["rule_version"]) || window.UOGA_CONFIG?.HUNT_RESEARCH_RULE_VERSION || "core Research rules"),
+      metricRow("Selected hunt", `${selection.huntCode} / ${selection.residency} / ${selection.points} pts`),
+      metricRow("Source file", formatValue(sourceFile)),
+      metricRow("Source page", formatValue(sourcePage)),
+    ];
+    if (hasValue(tableTitle)) sourceMetrics.push(metricRow("Source table", formatValue(tableTitle)));
+    if (hasValue(meta.management_source_url)) sourceMetrics.push(metricRow("Management source", formatValue(meta.management_source_url)));
+    if (hasValue(meta.management_source_locator)) sourceMetrics.push(metricRow("Management locator", formatValue(meta.management_source_locator)));
+    if (hasValue(meta.management_plan_reference_url)) sourceMetrics.push(metricRow("Management plan", formatValue(meta.management_plan_reference_url)));
+    if (hasValue(meta.hunt_quality_profile_version)) sourceMetrics.push(metricRow("Quality profile version", formatValue(meta.hunt_quality_profile_version)));
     return `
       <details class="uoga-source-details">
         <summary>Source / freshness / model details</summary>
         <div class="uoga-source-grid">
-          ${metricRow("Engine mode", window.UOGA_CONFIG?.HUNT_RESEARCH_ENGINE_MODE || "observed")}
-          ${metricRow("Data version", window.UOGA_CONFIG?.HUNT_RESEARCH_DATA_VERSION || "not configured")}
-          ${metricRow("Data freshness", getFreshnessLabel(meta, meta, selectedRow))}
-          ${metricRow("Model version", firstValue(meta, ["model_version"]) || window.UOGA_CONFIG?.HUNT_RESEARCH_MODEL_VERSION || "display-only dashboard")}
-          ${metricRow("Rule version", firstValue(meta, ["rule_version"]) || window.UOGA_CONFIG?.HUNT_RESEARCH_RULE_VERSION || "core Research rules")}
-          ${metricRow("Selected hunt", `${selection.huntCode} / ${selection.residency} / ${selection.points} pts`)}
-          ${metricRow("Source file", formatValue(sourceFile))}
-          ${metricRow("Source page", formatValue(sourcePage))}
-          ${metricRow("Source table", formatValue(tableTitle))}
+          ${sourceMetrics.join("")}
         </div>
       </details>`;
   }
@@ -738,10 +788,14 @@
     const oddsInfo = getSelectedOddsInfo(selectedRow, ladderPoint, meta, contract);
     const odds = oddsInfo.percent;
     const oddsDisplay = oddsInfo.display;
-    const averageAge = getAge(meta, reference, selectedRow) || firstValue(contract, ["average_harvest_age"]);
-    const currentAge = getCurrentAge(meta, reference, selectedRow) || firstValue(contract, ["current_age_3yr_average"]);
-    const harvestSuccess = getHarvestSuccess(meta, reference, selectedRow) || firstValue(contract, ["harvest_success_pct"]);
-    const avgDays = getAverageDays(meta, reference) || firstValue(contract, ["average_days_hunted"]);
+    const averageAge = firstValue(contract, ["average_harvest_age"]) || getAge(meta, reference, selectedRow);
+    const reportedThreeYearAge = firstValue(contract, ["average_harvest_age_3yr_reported"])
+      || getReportedThreeYearAge(meta, reference, selectedRow);
+    const currentAge = firstValue(contract, ["current_age_3yr_average"]) || getCurrentAge(meta, reference, selectedRow);
+    const harvestSuccess = firstValue(contract, ["harvest_success_pct"]) || getHarvestSuccess(meta, reference, selectedRow);
+    const avgDays = firstValue(contract, ["average_days_hunted"]) || getAverageDays(meta, reference);
+    const hunterSatisfaction = firstValue(contract, ["hunter_satisfaction"])
+      || getHunterSatisfaction(meta, reference, selectedRow);
     const permitTotal = getPermitTotal(meta, reference, selectedRow) || firstValue(contract, ["permits_2026_total"]);
     const huntType = firstValue(meta, ["hunt_type"]) || firstValue(reference, ["hunt_type"]) || firstValue(selectedRow, ["hunt_type"]) || firstValue(contract, ["hunt_type"]);
     const drawDesign = normalizeDrawDesignLabel(
@@ -753,7 +807,6 @@
     const guaranteedLine = getGuaranteedLine(selectedRow, meta) || firstValue(contract, ["guaranteed_line_points"]);
     const pointTrend = getPointTrend(selectedRow, meta) || firstValue(contract, ["point_creep_1yr"]);
     const pointStatus = getPointStatusLabel(selection, selectedRow, meta);
-    const percentFivePlus = firstValue(contract, ["percent_5plus"]) || getPercentFivePlus(meta, reference, selectedRow);
     const hasSelectedPointRow = selectedRow && hasValue(selectedRow.hunt_code) && num(selectedRow.points) !== null;
     const sourceBadges = pipeList(contract.source_badges)
       .filter((label) => !(hasSelectedPointRow && label.toLowerCase().includes("status")));
@@ -769,10 +822,15 @@
     const limitedData = odds === null || !hasValue(harvestSuccess) || !hasValue(averageAge);
     const managementRow = {
       management_objective_type: contract.management_objective_type,
-      management_objective_min: "",
-      management_objective_max: "",
+      management_objective_target: contract.management_objective_target,
+      management_objective_min: contract.management_objective_min,
+      management_objective_max: contract.management_objective_max,
       objective_unit: contract.management_objective_range,
+      management_objective_unit: contract.management_objective_unit,
+      management_current_value: contract.management_current_value,
       objective_status: contract.management_objective_status,
+      management_objective_status: contract.management_objective_status,
+      management_measure_scope: contract.management_measure_scope,
       notes: contract.management_objective_note,
       management_direction: contract.management_direction,
       permit_direction_watch: contract.permit_direction_watch,
@@ -824,14 +882,19 @@
           ${panel("Official DWR Field Evidence", `
             ${panelKicker("Official DWR source fields")}
             ${listRows([
-            metricRow("Harvest success", formatPercent(harvestSuccess)),
-            metricRow("Average days hunted", formatValue(avgDays)),
-            metricRow("Average harvest age", formatAge(averageAge)),
-            metricRow("Current 3-year age avg", formatAge(currentAge)),
-            metricRow("Percent 5+", formatPercent(percentFivePlus)),
+            metricRow(`${formatValue(contract.harvest_success_reported_year, "Most recent")} harvest success`, formatPercent(harvestSuccess)),
+            metricRow("3-year average harvest success", formatPercent(contract.harvest_success_3yr_avg)),
+            metricRow(`${formatValue(contract.average_days_hunted_reported_year, "Most recent")} average days hunted`, formatValue(avgDays)),
+            metricRow(`${formatValue(contract.average_harvest_age_reported_year, "Most recent verified")} annual harvested age`, formatAge(averageAge)),
+            metricRow(`DWR-reported 3-year harvest age${hasValue(contract.average_harvest_age_3yr_reported_year) ? ` (through ${escapeHtml(contract.average_harvest_age_3yr_reported_year)})` : ""}`, formatAge(reportedThreeYearAge)),
+            metricRow("DWR unit current harvested age (3-year avg)", formatAge(currentAge)),
+            metricRow(`${formatValue(contract.hunter_satisfaction_reported_year, "Most recent")} hunter satisfaction`, formatValue(hunterSatisfaction)),
+            metricRow(`${formatValue(contract.harvest_total_reported_year, "Most recent")} harvested animals`, formatInteger(contract.harvest_total)),
+            metricRow(`${formatValue(contract.hunters_afield_reported_year, "Most recent")} hunters afield`, formatInteger(contract.hunters_afield)),
           ])}
           `, "is-official")}
           ${renderManagementPanel(effectiveManagementRows)}
+          ${renderHuntQualityProfile(contract)}
         </div>
         ${hasPersonaData(contract) ? `
         <details class="uoga-outlook-panel is-compact uoga-outlook-wide uoga-collapsed-panel">

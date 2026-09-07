@@ -464,7 +464,11 @@ async function main() {
     permits_2026_total: first(row, ['permits_2026_total']),
     harvest_success_pct: first(row, ['harvest_success_pct']),
     average_days_hunted: first(row, ['average_days_hunted']),
+    hunter_satisfaction: first(row, ['hunter_satisfaction']),
+    harvest_total: first(row, ['harvest_total']),
+    hunters_afield: first(row, ['hunters_afield']),
     average_harvest_age: first(row, ['average_harvest_age']),
+    average_harvest_age_3yr_reported: first(row, ['average_harvest_age_3yr_reported']),
     current_age_3yr_average: first(row, ['current_age_3yr_average']),
     percent_5plus: first(row, ['percent_5plus']),
     management_objective_type: first(row, ['management_objective_type']),
@@ -474,6 +478,11 @@ async function main() {
     recommended_action: first(row, ['recommended_action']),
     data_confidence: first(row, ['data_confidence']),
     source_badges: first(row, ['source_badges']),
+    harvest_source_file: first(row, ['harvest_source_file']),
+    harvest_source_page: first(row, ['harvest_source_page']),
+    age_source_file: first(row, ['age_source_file']),
+    age_source_page: first(row, ['age_source_page']),
+    age_source_table_title: first(row, ['age_source_table_title']),
   })).filter((row) => row.hunt_code);
 
   backfillPrimaryDrawFields(predictionRows, primaryDrawLookup);

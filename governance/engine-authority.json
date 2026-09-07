@@ -1,6 +1,6 @@
 {
   "schema_version": "1.2.0",
-  "last_verified_date": "2026-08-29",
+  "last_verified_date": "2026-09-06",
   "authority": "HUNT_BUILDER_PROJECT_MEMORY",
   "lifecycle": {
     "phase": "HOSTED_NORMAL_SPLIT_CONTRACT_RELEASED_CERTIFICATION_PENDING",
@@ -294,7 +294,16 @@
       "path": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
       "storage": "GIT_TRACKED",
       "required_locally": true,
-      "verified_sha256": "3df7803b00c95176b106a01d5a86dc61a21b3ddb481107fa1310e1cf0dd56b1f"
+      "verified_sha256": "0678f9382ef3b17cbf08197113f56bdddc865755b66ea7f8983d8575c5fa3996",
+      "role_boundary": "Current DWR Hunt Planner identity and permit-reference context only; it is not historical draw-result truth and cannot replace yearly canonicals or draw_results_long.csv for prediction scoring.",
+      "current_feeder_audit": {
+        "path": "processed_data/audits/database_current_identity_quota_2026_feeder_audit_summary.json",
+        "status": "PASS",
+        "unresolved_current_field_delta_count": 0,
+        "planner_records_verified": 1433,
+        "database_rows_audited": 1848,
+        "completed_utc": "2026-09-06T08:32:56.921451+00:00"
+      }
     },
     "normalized_draw_actuals": {
       "path": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
@@ -306,6 +315,18 @@
       "path": "data_truth/harvest_results_truth/normalized",
       "storage": "MIXED_GIT_AND_REPO_EXTERNAL_DATA",
       "required_for_prediction_rebuild": true
+    },
+    "hunt_research_management_context": {
+      "path": "processed_data/management_context/hunt_management_objective_context.json",
+      "schema": "HUNT_MANAGEMENT_QUALITY_DISPLAY_V1",
+      "storage": "GENERATED_DISPLAY_CONTRACT",
+      "role_boundary": "Exact-code, compatible-species DWR management context for visitor display only. Synthetic statewide unit targets and boundary_id identity are prohibited; target/current comparisons require matching units."
+    },
+    "hunt_quality_profile": {
+      "path": "data_model/harvest_quality/hunt_quality_profile_by_hunt_code_2026.csv",
+      "version": "UOGA_HUNT_QUALITY_PROFILE_V1",
+      "storage": "GENERATED_DISPLAY_MODEL",
+      "role_boundary": "Display-only U.O.G.A. composite. It is not a DWR score or prediction input, never reweights missing components, and cannot change draw probability, permits, quotas, or canonical truth."
     },
     "scoring_rule": "Only official scorable actual draw rows with retained lineage may determine prediction accuracy"
   },
@@ -345,6 +366,13 @@
       "path": "processed_data/point_ladder_view.csv",
       "external_url": "https://json.uoga.workers.dev/processed_data/point_ladder_view.csv",
       "local_policy": "OPTIONAL_R2_BACKED"
+    },
+    {
+      "role": "hunt_application_outlook_display_contract",
+      "path": "processed_data/public_contracts/hunt_application_outlook.json",
+      "external_url": "https://json.uoga.workers.dev/processed_data/public_contracts/hunt_application_outlook.json",
+      "local_policy": "R2_BACKED_DISPLAY_OVERLAY",
+      "role_boundary": "Visitor-facing raw harvest, exact management, and evidence-gated quality-profile fields layered over an unchanged protected draw/permit/quota projection."
     }
   ],
   "latest_evidence": {

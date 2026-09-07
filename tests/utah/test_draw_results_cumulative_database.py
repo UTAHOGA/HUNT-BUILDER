@@ -52,10 +52,10 @@ def test_draw_results_cumulative_counts_are_locked():
     run_builder()
     summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
 
-    assert summary["normalized_long_rows"] == 309562
+    assert summary["normalized_long_rows"] == 315512
     assert summary["unique_draw_years"] == ["2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026"]
     assert summary["draw_year_counts"] == {
-        "2018": 28427,
+        "2018": 30338,
         "2019": 33478,
         "2020": 33069,
         "2021": 33788,
@@ -63,10 +63,10 @@ def test_draw_results_cumulative_counts_are_locked():
         "2023": 35834,
         "2024": 43175,
         "2025": 38120,
-        "2026": 28795,
+        "2026": 32834,
     }
     assert summary["model_target_year_counts"] == {
-        "2019": 28427,
+        "2019": 30338,
         "2020": 33478,
         "2021": 33069,
         "2022": 33788,
@@ -74,7 +74,7 @@ def test_draw_results_cumulative_counts_are_locked():
         "2024": 35834,
         "2025": 43175,
         "2026": 38120,
-        "2027": 28795,
+        "2027": 32834,
     }
 
 
@@ -87,7 +87,7 @@ def test_draw_results_cumulative_key_contract_and_crosswalk_presence():
         "hunt_code", "year", "draw_pool", "residency", "points", "source_scope", "source_file", "record_type",
         "pdf_page", "source_row_identifier",
     ]
-    assert summary["active_database_hunt_codes"] == 1849
+    assert summary["active_database_hunt_codes"] == 1848
     assert summary["crosswalk_current_code_count"] == 0
     assert summary["crosswalk_current_codes_present_in_draw_rows"] == 0
 

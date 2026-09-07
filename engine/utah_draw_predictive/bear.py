@@ -5,8 +5,10 @@ from __future__ import annotations
 import re
 import csv
 import json
+import math
 import random
 from collections import Counter, defaultdict
+from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
 from statistics import mean
@@ -100,6 +102,10 @@ BEAR_HISTORICAL_CODE_SUCCESSORS_2026 = {
     "BR7008": "BR7022",
     "BR7108": "BR7127",
     "BR7208": "BR7239",
+    # The historical public-draw multiseason row moved to BR7326.  BR7307
+    # was reused in 2026 for a conservation allocation and must never be
+    # materialized as a duplicate public-draw forecast.
+    "BR7307": "BR7326",
 }
 
 STRATEGY_SPECS = [
@@ -183,6 +189,39 @@ def _band_for_points(points: int) -> str:
     return "10_plus"
 
 
+@dataclass(frozen=True)
+class _BearCohortEvidence:
+    """Aggregate public-ladder evidence for one source-to-target cohort.
+
+    DWR's public reports do not identify people.  ``retained`` is therefore
+    the portion of the next-year same-lane rung that can be supplied by the
+    preceding year's unsuccessful cohort; any excess is retained separately as
+    a measured arrival, rather than being silently treated as reapplication.
+    """
+
+    transitions: int = 0
+    unsuccessful: int = 0
+    retained: int = 0
+    arrivals: int = 0
+
+
+@dataclass(frozen=True)
+class _BearCohortCalibration:
+    reapply_rate: float
+    arrival_count: float
+    evidence_scope: str
+    exact_unsuccessful: int
+    exact_transitions: int
+
+
+@dataclass(frozen=True)
+class _BearLaneCohortModel:
+    exact_rung: Mapping[tuple[str, str, str, int], _BearCohortEvidence]
+    lane_band: Mapping[tuple[str, str, str, str], _BearCohortEvidence]
+    subtype_residency_band: Mapping[tuple[str, str, str], _BearCohortEvidence]
+    residency_band: Mapping[tuple[str, str], _BearCohortEvidence]
+
+
 def _joined_text(row: Mapping[str, object]) -> str:
     return " ".join(
         _clean_lower(row.get(key))
@@ -264,13 +303,14 @@ def official_bear_pursuit_hunt_codes() -> set[str]:
 
 
 def _historical_bear_pdf_classification(row: Mapping[str, object]) -> str:
-    """Use retained-PDF identity only for an explicit audit lane projection.
+    """Use retained-PDF identity only for verified lane evidence.
 
     Some 2018-2020 canonical rows preserve a generic legacy draw label even
     though the retained official Black Bear PDF page identifies the program.
-    The residency-lane audit projection carries that exact page classification
-    forward in dedicated fields. Do not infer it from a code prefix, permit
-    count, or generic legacy draw label.
+    The residency-lane audit projection and a canonical row promoted from that
+    hash-linked evidence carry the exact page classification forward in
+    dedicated fields. Do not infer it from a code prefix, permit count, or a
+    generic legacy draw label.
     """
 
     classification = _clean(row.get("bear_source_classification")).upper()
@@ -280,13 +320,57 @@ def _historical_bear_pdf_classification(row: Mapping[str, object]) -> str:
     hunt_code = _clean(row.get("hunt_code")).upper()
     if (
         classification not in HISTORICAL_BEAR_PDF_CLASSIFICATIONS
-        or source != "RETAINED_OFFICIAL_BLACK_BEAR_PDF"
+        or source not in {
+            "RETAINED_OFFICIAL_BLACK_BEAR_PDF",
+            "CANONICAL_OFFICIAL_BLACK_BEAR_PDF",
+        }
         or not hunt_code.startswith("BR")
         or "/official_dwr_archive/black_bear/" not in f"/{source_file.lstrip('/')}"
-        or qa_status != "OFFICIAL_PDF_RESIDENCY_LANE_PROJECTED"
+        or qa_status not in {
+            "OFFICIAL_PDF_RESIDENCY_LANE_PROJECTED",
+            "OFFICIAL_PDF_RESIDENCY_LANES_CANONICAL",
+        }
     ):
         return ""
     return classification
+
+
+def _canonical_official_bear_residency_lanes(row: Mapping[str, object]) -> list[dict[str, object]]:
+    """Expand a verified canonical Bear point record into DWR residency lanes.
+
+    Canonical records retain a combined row so they remain reversible to the
+    original report shape.  When, and only when, retained PDF lineage proves
+    the separate resident/nonresident tables, the model reads the published
+    lane columns instead of treating the record as an ``All`` ladder.
+    """
+
+    if _clean(row.get("qa_status")).upper() != "OFFICIAL_PDF_RESIDENCY_LANES_CANONICAL":
+        return []
+    if _clean(row.get("bear_source_identity_source")).upper() != "CANONICAL_OFFICIAL_BLACK_BEAR_PDF":
+        return []
+    if not _historical_bear_pdf_classification(row):
+        return []
+    if _clean(row.get("residency")) or _clean_lower(row.get("metric_scope")) not in {"", "total"}:
+        return []
+
+    lanes: list[dict[str, object]] = []
+    for residency, prefix in (("Resident", "resident"), ("Nonresident", "nonresident")):
+        item = dict(row)
+        item.update(
+            {
+                "residency": residency,
+                "metric_scope": residency.lower(),
+                "eligible_applicants": _clean(row.get(f"{prefix}_eligible_applicants")),
+                "bonus_permits": _clean(row.get(f"{prefix}_bonus_permits")),
+                "regular_permits": _clean(row.get(f"{prefix}_regular_permits")),
+                "total_permits": _clean(row.get(f"{prefix}_total_permits")),
+                "success_ratio": _clean(row.get(f"{prefix}_success_ratio")),
+                "p_draw": _clean(row.get(f"{prefix}_p_draw")),
+                "p_draw_percent": _clean(row.get(f"{prefix}_p_draw_percent")),
+            }
+        )
+        lanes.append(item)
+    return lanes
 
 
 def classify_bear_subtype_before_source_correction(row: Mapping[str, object]) -> str:
@@ -464,40 +548,55 @@ def _build_truth_ladders(
     meta: dict[str, dict[str, str]] = {}
     total_drawn_by_code_year: dict[tuple[str, int], dict[str, int]] = defaultdict(lambda: defaultdict(int))
 
-    for row in truth_rows:
-        year = _to_int(row.get("year") or row.get("actual_draw_year"))
-        if year not in history_years or not _is_proven_bonus_bear_truth_row(row):
-            continue
-        subtype = classify_bear_subtype(row)
-        hunt_code = _clean(row.get("hunt_code")).upper()
-        metric_scope = _clean_lower(row.get("metric_scope"))
-        residency = _clean(row.get("residency"))
-        if metric_scope == "total" or not residency:
-            residency = "All"
-        points = _to_int(row.get("points"))
-        if not hunt_code:
-            continue
+    for source_row in truth_rows:
+        # Promoted combined rows carry both DWR lanes in dedicated fields. Do
+        # not let their aggregate values double as a residency demand ladder.
+        candidate_rows = _canonical_official_bear_residency_lanes(source_row) or [dict(source_row)]
+        for row in candidate_rows:
+            # Canonical draw rows are dated by the draw that actually happened.
+            # Some retained legacy rows also contain the literal text "None" in
+            # the old ``year`` column.  Treating that placeholder as a date
+            # silently drops otherwise valid historical ladders, so keep the
+            # explicit official draw-year field authoritative and only then
+            # fall back through alternate source-date names.
+            year = _to_int(
+                row.get("actual_draw_year")
+                or row.get("source_year")
+                or row.get("draw_year")
+                or row.get("year")
+            )
+            if year not in history_years or not _is_proven_bonus_bear_truth_row(row):
+                continue
+            subtype = classify_bear_subtype(row)
+            hunt_code = _clean(row.get("hunt_code")).upper()
+            metric_scope = _clean_lower(row.get("metric_scope"))
+            residency = _clean(row.get("residency"))
+            if metric_scope == "total" or not residency:
+                residency = "All"
+            points = _to_int(row.get("points"))
+            if not hunt_code:
+                continue
 
-        eligible = _to_int(row.get("eligible_applicants"))
-        bonus = _to_int(row.get("bonus_permits"))
-        regular = _to_int(row.get("regular_permits"))
-        total = _to_int(row.get("total_permits"))
-        ladders[(subtype, year, hunt_code, residency)][points]["eligible"] += eligible
-        ladders[(subtype, year, hunt_code, residency)][points]["bonus"] += bonus
-        ladders[(subtype, year, hunt_code, residency)][points]["regular"] += regular
-        ladders[(subtype, year, hunt_code, residency)][points]["total"] += total
-        total_drawn_by_code_year[(hunt_code, year)][residency] += total
+            eligible = _to_int(row.get("eligible_applicants"))
+            bonus = _to_int(row.get("bonus_permits"))
+            regular = _to_int(row.get("regular_permits"))
+            total = _to_int(row.get("total_permits"))
+            ladders[(subtype, year, hunt_code, residency)][points]["eligible"] += eligible
+            ladders[(subtype, year, hunt_code, residency)][points]["bonus"] += bonus
+            ladders[(subtype, year, hunt_code, residency)][points]["regular"] += regular
+            ladders[(subtype, year, hunt_code, residency)][points]["total"] += total
+            total_drawn_by_code_year[(hunt_code, year)][residency] += total
 
-        if hunt_code not in meta:
-            meta[hunt_code] = {
-                "hunt_name": _clean(row.get("hunt_name")),
-                "species": _clean(row.get("species")),
-                "hunt_type": _clean(row.get("hunt_type")),
-                "hunt_class": _clean(row.get("hunt_class")),
-                "weapon": _clean(row.get("weapon")),
-                "sex_type": _clean(row.get("sex_type")),
-                "source_file": _clean(row.get("source_file")),
-            }
+            if hunt_code not in meta:
+                meta[hunt_code] = {
+                    "hunt_name": _clean(row.get("hunt_name")),
+                    "species": _clean(row.get("species")),
+                    "hunt_type": _clean(row.get("hunt_type")),
+                    "hunt_class": _clean(row.get("hunt_class")),
+                    "weapon": _clean(row.get("weapon")),
+                    "sex_type": _clean(row.get("sex_type")),
+                    "source_file": _clean(row.get("source_file")),
+                }
 
     return ladders, meta, total_drawn_by_code_year
 
@@ -547,6 +646,346 @@ def _build_retention_and_zero_growth(
     zero_growth = round(mean(zero_growth_samples), 4) if zero_growth_samples else 1.0
     zero_growth_history = tuple(zero_growth_samples) if zero_growth_samples else (zero_growth,)
     return retention_by_band, zero_growth, retention_history_by_band, zero_growth_history
+
+
+def _add_bear_cohort_evidence(
+    evidence: dict[tuple[object, ...], _BearCohortEvidence],
+    key: tuple[object, ...],
+    *,
+    unsuccessful: int,
+    observed_next: int,
+) -> None:
+    """Accumulate one official adjacent-year public-ladder transition."""
+
+    current = evidence.get(key, _BearCohortEvidence())
+    supplied_by_prior_unsuccessful = min(max(0, unsuccessful), max(0, observed_next))
+    evidence[key] = _BearCohortEvidence(
+        transitions=current.transitions + 1,
+        unsuccessful=current.unsuccessful + max(0, unsuccessful),
+        retained=current.retained + supplied_by_prior_unsuccessful,
+        arrivals=current.arrivals + max(0, observed_next - supplied_by_prior_unsuccessful),
+    )
+
+
+def _build_lane_cohort_model(
+    ladders: Mapping[tuple[str, int, str, str], dict[int, dict[str, int]]],
+) -> _BearLaneCohortModel:
+    """Build source-only same-lane reapplication and arrival evidence.
+
+    The exact key is ``subtype / hunt code / residency / source point``.  Its
+    observed following-year applicant count is decomposed into the part that
+    the prior unsuccessful cohort could supply and a residual measured arrival.
+    The progressively broader maps are empirical fallback evidence only; they
+    never receive a statewide point-purchase count or a quota-derived value.
+    """
+
+    exact_rung: dict[tuple[object, ...], _BearCohortEvidence] = {}
+    lane_band: dict[tuple[object, ...], _BearCohortEvidence] = {}
+    subtype_residency_band: dict[tuple[object, ...], _BearCohortEvidence] = {}
+    residency_band: dict[tuple[object, ...], _BearCohortEvidence] = {}
+    years_by_lane: dict[tuple[str, str, str], list[int]] = defaultdict(list)
+    for subtype, year, hunt_code, residency in ladders:
+        if residency in {"Resident", "Nonresident"}:
+            years_by_lane[(subtype, hunt_code, residency)].append(year)
+
+    for (subtype, hunt_code, residency), years in years_by_lane.items():
+        for source_year in sorted(set(years)):
+            target_year = source_year + 1
+            if target_year not in years:
+                continue
+            source = ladders[(subtype, source_year, hunt_code, residency)]
+            target = ladders[(subtype, target_year, hunt_code, residency)]
+            for source_points, source_values in source.items():
+                source_points = int(source_points)
+                target_points = source_points + 1
+                unsuccessful = max(
+                    int(source_values.get("eligible", 0))
+                    - int(source_values.get("bonus", 0))
+                    - int(source_values.get("regular", 0)),
+                    0,
+                )
+                observed_next = max(0, int(target.get(target_points, {}).get("eligible", 0)))
+                band = _band_for_points(source_points)
+                payload = {"unsuccessful": unsuccessful, "observed_next": observed_next}
+                _add_bear_cohort_evidence(
+                    exact_rung,
+                    (subtype, hunt_code, residency, source_points),
+                    **payload,
+                )
+                _add_bear_cohort_evidence(
+                    lane_band,
+                    (subtype, hunt_code, residency, band),
+                    **payload,
+                )
+                _add_bear_cohort_evidence(
+                    subtype_residency_band,
+                    (subtype, residency, band),
+                    **payload,
+                )
+                _add_bear_cohort_evidence(
+                    residency_band,
+                    (residency, band),
+                    **payload,
+                )
+
+    return _BearLaneCohortModel(
+        exact_rung=exact_rung,
+        lane_band=lane_band,
+        subtype_residency_band=subtype_residency_band,
+        residency_band=residency_band,
+    )
+
+
+def _rate_from_evidence(evidence: _BearCohortEvidence | None, default: float) -> float:
+    if evidence is None or evidence.unsuccessful <= 0:
+        return default
+    return max(0.0, min(1.0, evidence.retained / evidence.unsuccessful))
+
+
+def _arrival_from_evidence(evidence: _BearCohortEvidence | None, default: float) -> float:
+    if evidence is None or evidence.transitions <= 0:
+        return default
+    return max(0.0, evidence.arrivals / evidence.transitions)
+
+
+def _without_bear_cohort_evidence(
+    total: _BearCohortEvidence | None,
+    excluded: _BearCohortEvidence | None,
+) -> _BearCohortEvidence | None:
+    """Leave the exact rung out of the broader prior when it is available.
+
+    Otherwise a one-observation, 100% exact lane would also make every parent
+    100%, defeating the hierarchy and recreating the false-guarantee problem.
+    """
+
+    if total is None:
+        return None
+    if excluded is None:
+        return total
+    return _BearCohortEvidence(
+        transitions=max(0, total.transitions - excluded.transitions),
+        unsuccessful=max(0, total.unsuccessful - excluded.unsuccessful),
+        retained=max(0, total.retained - excluded.retained),
+        arrivals=max(0, total.arrivals - excluded.arrivals),
+    )
+
+
+def _smooth_bear_cohort_value(observed: float, evidence_total: int, prior: float, prior_strength: float) -> float:
+    if evidence_total <= 0:
+        return prior
+    weight = evidence_total / (evidence_total + max(1.0, prior_strength))
+    return (weight * observed) + ((1.0 - weight) * prior)
+
+
+def _lane_cohort_calibration(
+    model: _BearLaneCohortModel,
+    *,
+    subtype: str,
+    hunt_code: str,
+    residency: str,
+    source_points: int,
+) -> _BearCohortCalibration:
+    """Resolve exact public-lane evidence before a progressively broader prior.
+
+    The posterior is deliberately bounded to a real reapplication percentage.
+    Excess next-year applicants remain an arrival component, so an observed
+    hunt switch cannot inflate the same-hunt retention percentage beyond 100%.
+    """
+
+    band = _band_for_points(source_points)
+    exact = model.exact_rung.get((subtype, hunt_code, residency, source_points))
+    # Every broader level is leave-exact-rung-out. This is a source-only
+    # hierarchy, not a self-referential way to turn one perfect transition into
+    # a perfect fallback prior.
+    broad = _without_bear_cohort_evidence(
+        model.residency_band.get((residency, band)), exact
+    )
+    broad_rate = _rate_from_evidence(broad, 0.85)
+    broad_arrivals = _arrival_from_evidence(broad, 0.0)
+    subtype_evidence = _without_bear_cohort_evidence(
+        model.subtype_residency_band.get((subtype, residency, band)), exact
+    )
+    subtype_rate = _smooth_bear_cohort_value(
+        _rate_from_evidence(subtype_evidence, broad_rate),
+        0 if subtype_evidence is None else subtype_evidence.unsuccessful,
+        broad_rate,
+        30.0,
+    )
+    subtype_arrivals = _smooth_bear_cohort_value(
+        _arrival_from_evidence(subtype_evidence, broad_arrivals),
+        0 if subtype_evidence is None else subtype_evidence.transitions,
+        broad_arrivals,
+        6.0,
+    )
+    lane_evidence = _without_bear_cohort_evidence(
+        model.lane_band.get((subtype, hunt_code, residency, band)), exact
+    )
+    lane_rate = _smooth_bear_cohort_value(
+        _rate_from_evidence(lane_evidence, subtype_rate),
+        0 if lane_evidence is None else lane_evidence.unsuccessful,
+        subtype_rate,
+        16.0,
+    )
+    lane_arrivals = _smooth_bear_cohort_value(
+        _arrival_from_evidence(lane_evidence, subtype_arrivals),
+        0 if lane_evidence is None else lane_evidence.transitions,
+        subtype_arrivals,
+        4.0,
+    )
+    exact_unsuccessful = 0 if exact is None else exact.unsuccessful
+    exact_transitions = 0 if exact is None else exact.transitions
+    reapply_rate = _smooth_bear_cohort_value(
+        _rate_from_evidence(exact, lane_rate),
+        exact_unsuccessful,
+        lane_rate,
+        8.0,
+    )
+    arrival_count = _smooth_bear_cohort_value(
+        _arrival_from_evidence(exact, lane_arrivals),
+        exact_transitions,
+        lane_arrivals,
+        2.0,
+    )
+    if exact_unsuccessful >= 8 and exact_transitions >= 2:
+        evidence_scope = "EXACT_LANE_RUNG"
+    elif lane_evidence and lane_evidence.unsuccessful > 0:
+        evidence_scope = "LANE_POINT_BAND_SMOOTHED"
+    elif subtype_evidence and subtype_evidence.unsuccessful > 0:
+        evidence_scope = "SUBTYPE_RESIDENCY_POINT_BAND_FALLBACK"
+    else:
+        evidence_scope = "RESIDENCY_POINT_BAND_FALLBACK"
+    return _BearCohortCalibration(
+        reapply_rate=max(0.0, min(1.0, reapply_rate)),
+        arrival_count=max(0.0, arrival_count),
+        evidence_scope=evidence_scope,
+        exact_unsuccessful=exact_unsuccessful,
+        exact_transitions=exact_transitions,
+    )
+
+
+def _forecast_lane_cohort_ladder(
+    latest_ladder: Mapping[int, dict[str, int]],
+    model: _BearLaneCohortModel,
+    *,
+    subtype: str,
+    hunt_code: str,
+    residency: str,
+) -> tuple[dict[int, int], dict[int, _BearCohortCalibration]]:
+    """Forecast one Bear lane using measured reapplication plus measured arrivals."""
+
+    prior_points = sorted(int(points) for points in latest_ladder)
+    max_points = max(prior_points) if prior_points else 0
+    forecast: dict[int, int] = {0: _round_count(latest_ladder.get(0, {}).get("eligible", 0))}
+    calibrations: dict[int, _BearCohortCalibration] = {}
+    for target_points in range(1, max_points + 5):
+        source_points = target_points - 1
+        source = latest_ladder.get(source_points, {})
+        unsuccessful = max(
+            int(source.get("eligible", 0)) - int(source.get("bonus", 0)) - int(source.get("regular", 0)),
+            0,
+        )
+        calibration = _lane_cohort_calibration(
+            model,
+            subtype=subtype,
+            hunt_code=hunt_code,
+            residency=residency,
+            source_points=source_points,
+        )
+        calibrations[target_points] = calibration
+        # An aggregate public ladder cannot identify a person who appears at an
+        # otherwise empty upper rung. A broad fallback must therefore never
+        # create that population. An exact same-lane transition is different:
+        # it is direct historical evidence that this specific rung has received
+        # an arrival despite having no prior unsuccessful cohort. Keep that
+        # measured component separate from returning applicants.
+        allow_exact_arrival = calibration.exact_transitions > 0
+        forecast[target_points] = (
+            _round_count((unsuccessful * calibration.reapply_rate) + calibration.arrival_count)
+            if unsuccessful > 0
+            else _round_count(calibration.arrival_count) if allow_exact_arrival else 0
+        )
+    return forecast, calibrations
+
+
+def _point_purchase_counts_by_year_residency(
+    point_purchase_rows: Iterable[Mapping[str, object]],
+    history_years: set[int],
+) -> dict[tuple[int, str], dict[int, int]]:
+    """Read only the separate statewide point-purchase evidence class.
+
+    These counts deliberately remain statewide.  They are used below solely
+    to corroborate that an observed historical high-point return/switch could
+    have come from an outside applicant pool; they are never allocated to a
+    hunt or converted directly into forecast applicants.
+    """
+
+    counts: dict[tuple[int, str], dict[int, int]] = defaultdict(lambda: defaultdict(int))
+    for row in point_purchase_rows:
+        year = _to_int(row.get("draw_year") or row.get("actual_draw_year") or row.get("year"))
+        residency = _clean(row.get("residency"))
+        points = _to_int(row.get("points"))
+        applicants = _to_int(row.get("point_purchase_applicants"))
+        if year not in history_years or residency not in {"Resident", "Nonresident"}:
+            continue
+        if points < 0 or applicants <= 0:
+            continue
+        counts[(year, residency)][points] += applicants
+    return {key: dict(value) for key, value in counts.items()}
+
+
+def _build_source_calibrated_returning_tail_profiles(
+    ladders: Mapping[tuple[str, int, str, str], dict[int, dict[str, int]]],
+    point_purchase_counts: Mapping[tuple[int, str], Mapping[int, int]],
+) -> dict[tuple[str, str, str], tuple[dict[int, int], ...]]:
+    """Find prior, hunt-specific high-tail arrivals supported by source pools.
+
+    A profile is accepted only when a prior official transition shows an
+    applicant at a high rung that the immediately preceding same-hunt
+    unsuccessful cohort could not have supplied *and* the separately retained
+    statewide point-purchase table confirms people existed at that rung.  The
+    profile is a sampled historical scenario, not a direct assignment of
+    statewide purchasers to that hunt.
+    """
+
+    years_by_lane: dict[tuple[str, str, str], list[int]] = defaultdict(list)
+    for subtype, year, hunt_code, residency in ladders:
+        if residency in {"Resident", "Nonresident"}:
+            years_by_lane[(subtype, hunt_code, residency)].append(year)
+
+    profiles: dict[tuple[str, str, str], tuple[dict[int, int], ...]] = {}
+    for lane_key, years in years_by_lane.items():
+        subtype, hunt_code, residency = lane_key
+        profiles_for_lane: list[dict[int, int]] = []
+        for prior_year in sorted(set(years)):
+            next_year = prior_year + 1
+            if next_year not in years:
+                continue
+            prior = ladders[(subtype, prior_year, hunt_code, residency)]
+            nxt = ladders[(subtype, next_year, hunt_code, residency)]
+            statewide = point_purchase_counts.get((prior_year, residency), {})
+            tail: dict[int, int] = {}
+            for points, next_values in nxt.items():
+                # The 6+ band is the high-stack range for Bear.  Lower bands
+                # already have substantial direct just-missed cohorts and are
+                # not appropriate for an external-returning uncertainty path.
+                if int(points) < 6 or int(statewide.get(int(points), 0)) <= 0:
+                    continue
+                previous = prior.get(int(points) - 1, {})
+                prior_unsuccessful = max(
+                    int(previous.get("eligible", 0))
+                    - int(previous.get("bonus", 0))
+                    - int(previous.get("regular", 0)),
+                    0,
+                )
+                observed_next = max(0, int(next_values.get("eligible", 0)))
+                unobserved_arrivals = max(0, observed_next - prior_unsuccessful)
+                if unobserved_arrivals:
+                    tail[int(points)] = unobserved_arrivals
+            if tail:
+                profiles_for_lane.append(tail)
+        if profiles_for_lane:
+            profiles[lane_key] = tuple(profiles_for_lane)
+    return profiles
 
 
 def _forecast_applicant_ladder(
@@ -624,25 +1063,144 @@ def _sample_bear_forecast_ladders(
     zero_growth_history: tuple[float, ...],
     iterations: int,
     seed: str,
+    returning_tail_profiles: Iterable[Mapping[int, int]] = (),
 ) -> list[dict[int, int]]:
     """Sample applicant ladders only from source-year transition history."""
 
     rng = random.Random(seed)
     sampled_ladders: list[dict[int, int]] = []
+    profiles = [dict(profile) for profile in returning_tail_profiles]
+    # Keep an explicit no-tail scenario.  This makes the historical-returning
+    # path a calibrated mixture rather than a deterministic population add.
+    scenarios = [{}] + profiles
     for _ in range(max(1, iterations)):
         sampled_retention = {
             band: rng.choice(samples)
             for band, samples in retention_history_by_band.items()
         }
         sampled_zero_growth = rng.choice(zero_growth_history)
-        sampled_ladders.append(
-            _forecast_applicant_ladder(
-                latest_ladder,
-                sampled_retention,
-                sampled_zero_growth,
-            )
-        )
+        sampled = _forecast_applicant_ladder(latest_ladder, sampled_retention, sampled_zero_growth)
+        for points, arrivals in rng.choice(scenarios).items():
+            sampled[int(points)] = max(0, int(sampled.get(int(points), 0)) + int(arrivals))
+        sampled_ladders.append(sampled)
     return sampled_ladders
+
+
+def _sample_observed_arrival_count(rng: random.Random, expected_arrivals: float) -> int:
+    """Sample an integer arrival count with the measured posterior mean.
+
+    The public ladders give an aggregate residual count, not a person-level
+    identity.  A Poisson count is the least-committal discrete distribution for
+    that measured mean: it preserves the expected observed residual while
+    allowing zero, one, or multiple arrivals in a particular simulation.  It
+    replaces the former deterministic rounding of a fractional arrival into
+    every iteration.
+    """
+
+    rate = max(0.0, float(expected_arrivals))
+    if rate <= 0.0:
+        return 0
+    # Knuth's exact sampler is stable and fast for the small high-stack
+    # residuals. A normal approximation prevents pathological loops in a large
+    # lower-point lane without changing the retained-applicant calculation.
+    if rate > 30.0:
+        return max(0, int(round(rng.gauss(rate, math.sqrt(rate)))))
+    threshold = math.exp(-rate)
+    product = 1.0
+    count = 0
+    while product > threshold:
+        count += 1
+        product *= rng.random()
+    return max(0, count - 1)
+
+
+def _split_bear_bonus_permits(public_permits_raw: int, residency: object) -> tuple[int, int]:
+    """Return the official Bear max-point/random allocation for one lane.
+
+    The ordinary Utah bonus split rounds odd pools toward max point. Retained
+    official Black Bear draw-result ladders consistently show the distinct
+    one-permit Bear case in the regular/random column for both residency lanes.
+    Keep this exception in the Bear owner rather than changing the shared
+    limited-entry/OIL bonus rule.
+    """
+
+    public_permits = max(0, int(public_permits_raw or 0))
+    if public_permits == 1:
+        return 0, 1
+    split = split_utah_bonus_permits(public_permits, residency)
+    return split.maxPointPermits, split.randomPermits
+
+
+def _sample_lane_cohort_forecast_ladders(
+    latest_ladder: Mapping[int, dict[str, int]],
+    calibrations: Mapping[int, _BearCohortCalibration],
+    *,
+    iterations: int,
+    seed: str,
+) -> list[dict[int, int]]:
+    """Sample only the uncertainty inherent in public-ladder retention evidence.
+
+    A rate backed by a thin exact lane keeps a broader posterior and therefore
+    cannot become a deterministic visitor-facing guarantee merely because one
+    prior transition happened to retain every applicant.  Measured arrivals are
+    kept distinct and fixed at their source-only posterior expectation.
+    """
+
+    rng = random.Random(seed)
+    max_points = max((int(points) for points in latest_ladder), default=0)
+    sampled_ladders: list[dict[int, int]] = []
+    for _ in range(max(1, iterations)):
+        sampled: dict[int, int] = {
+            0: _round_count(latest_ladder.get(0, {}).get("eligible", 0))
+        }
+        for target_points in range(1, max_points + 5):
+            source_points = target_points - 1
+            source = latest_ladder.get(source_points, {})
+            unsuccessful = max(
+                int(source.get("eligible", 0)) - int(source.get("bonus", 0)) - int(source.get("regular", 0)),
+                0,
+            )
+            calibration = calibrations[target_points]
+            if unsuccessful <= 0 and calibration.exact_transitions <= 0:
+                sampled[target_points] = 0
+                continue
+            # Eight pseudo-applicants is the exact-rung prior strength used by
+            # the hierarchical estimator.  It leaves a thin lane genuinely
+            # uncertain while allowing a repeatedly observed lane to dominate.
+            if unsuccessful > 0:
+                evidence_strength = max(8.0, float(calibration.exact_unsuccessful + 8))
+                alpha = max(0.001, calibration.reapply_rate * evidence_strength)
+                beta = max(0.001, (1.0 - calibration.reapply_rate) * evidence_strength)
+                sampled_reapply_rate = rng.betavariate(alpha, beta)
+            else:
+                sampled_reapply_rate = 0.0
+            sampled_arrivals = _sample_observed_arrival_count(rng, calibration.arrival_count)
+            # Preserve an empty-rung arrival only when the exact hunt/lane/rung
+            # has actually exhibited that behavior in an earlier source-only
+            # transition. Broader priors guide a measured existing cohort but
+            # cannot invent a high-stack population.
+            sampled[target_points] = _round_count(
+                (unsuccessful * sampled_reapply_rate) + sampled_arrivals
+            ) if (unsuccessful > 0 or calibration.exact_transitions > 0) else 0
+        sampled_ladders.append(sampled)
+    return sampled_ladders
+
+
+def _condition_for_focal_bear_applicant(
+    applicants_by_points: Mapping[int, int],
+    points: int,
+) -> dict[int, int]:
+    """Evaluate probability for the applicant represented by this forecast row.
+
+    An aggregate arrival sample may be zero at a rung even though the page is
+    answering the chance for one applicant who is considering that rung.  The
+    applicant must be present in both the deterministic ceiling and every
+    simulation; otherwise a sampled zero incorrectly becomes a 0% chance.
+    """
+
+    conditioned = {int(level): max(0, int(count)) for level, count in applicants_by_points.items()}
+    conditioned[int(points)] = max(1, conditioned.get(int(points), 0))
+    return conditioned
 
 
 def _bear_simulation_probability(
@@ -657,8 +1215,7 @@ def _bear_simulation_probability(
     random_samples: list[float] = []
     draw_samples: list[float] = []
     for sampled in sampled_ladders:
-        conditioned = {int(level): max(0, int(count)) for level, count in sampled.items()}
-        conditioned[points] = max(1, conditioned.get(points, 0))
+        conditioned = _condition_for_focal_bear_applicant(sampled, points)
         p_bonus, _, _ = compute_bonus_pool_probability(points, conditioned, max_point_permits)
         p_random = _weighted_random_probability(points, conditioned, random_permits, max_point_permits)
         bonus_samples.append(p_bonus)
@@ -979,9 +1536,17 @@ def build_bear_bonus_predictions(
     central_estimate_mode: str = "deterministic",
     iterations: int = 1,
     seed: int = 20260701,
+    returning_cohort_mode: str = "off",
+    point_purchase_rows: Iterable[Mapping[str, object]] = (),
 ) -> tuple[list[dict[str, object]], dict[str, object]]:
     if central_estimate_mode not in {"deterministic", "simulation_mean"}:
         raise ValueError("central_estimate_mode must be deterministic or simulation_mean")
+    if returning_cohort_mode not in {"off", "source_calibrated_tail_mixture", "lane_cohort_hierarchical"}:
+        raise ValueError(
+            "returning_cohort_mode must be off, source_calibrated_tail_mixture, or lane_cohort_hierarchical"
+        )
+    if returning_cohort_mode != "off" and central_estimate_mode != "simulation_mean":
+        raise ValueError("The returning cohort mixture requires central_estimate_mode=simulation_mean")
     if iterations < 1:
         raise ValueError("iterations must be at least 1")
     truth_rows_list = list(truth_rows)
@@ -996,6 +1561,13 @@ def build_bear_bonus_predictions(
     default_latest_source_year = max(history_years)
     ladders, meta, total_drawn_by_code_year = _build_truth_ladders(truth_rows_list, history_year_set)
     retention_by_band, zero_growth, retention_history_by_band, zero_growth_history = _build_retention_and_zero_growth(ladders)
+    lane_cohort_model = _build_lane_cohort_model(ladders)
+    point_purchase_counts = _point_purchase_counts_by_year_residency(point_purchase_rows, history_year_set)
+    returning_tail_profiles = (
+        _build_source_calibrated_returning_tail_profiles(ladders, point_purchase_counts)
+        if returning_cohort_mode == "source_calibrated_tail_mixture"
+        else {}
+    )
 
     years_by_subtype_code_res: dict[tuple[str, str, str], list[int]] = defaultdict(list)
     for subtype, year, hunt_code, residency in ladders:
@@ -1105,6 +1677,14 @@ def build_bear_bonus_predictions(
             )
             base["history_hunt_code"] = history_hunt_code
             base["crosswalk_status"] = "DIRECT_HISTORICAL_TO_CURRENT_CODE" if history_hunt_code != hunt_code else ""
+            # Retain the narrow current-target identity bridge in diagnostic
+            # output. Its current permit split is target configuration only;
+            # it never contributes applicant or probability evidence.
+            if _clean(db_row.get("target_identity_diagnostic")):
+                base["target_identity_diagnostic"] = _clean(db_row.get("target_identity_diagnostic"))
+                base["bear_target_identity_status"] = _clean(db_row.get("bear_target_identity_status"))
+                base["bear_crosswalk_parent_hunt_code"] = _clean(db_row.get("bear_crosswalk_parent_hunt_code"))
+                base["public_permits_source"] = _clean(db_row.get("forecast_permits_source"))
 
             if subtype == UNLIMITED_PURSUIT_PERMIT:
                 row = dict(base)
@@ -1253,8 +1833,14 @@ def build_bear_bonus_predictions(
 
             if not available_years or public_quota <= 0:
                 flags = []
+                is_new_unit_without_history = (
+                    _clean(db_row.get("bear_target_identity_status"))
+                    == "CURRENT_NEW_UNIT_NO_COMPARABLE_HISTORY"
+                )
                 if not available_years:
                     flags.append("MISSING_PROVEN_BEAR_DRAW_HISTORY")
+                    if is_new_unit_without_history:
+                        flags.append("NEW_UNIT_NO_COMPARABLE_HISTORY")
                 elif history_hunt_code != hunt_code:
                     flags.append("CURRENT_TO_HISTORICAL_CODE_ALIAS")
                 if public_quota <= 0:
@@ -1277,11 +1863,21 @@ def build_bear_bonus_predictions(
                         "p_draw_pct": "",
                         "draw_outlook": _draw_outlook(0.0, pending=True),
                         "bear_bonus_valid": "FALSE",
-                        "bear_bonus_note": "Missing proven bear history or usable 2026 public quota for this residency.",
+                        "bear_bonus_note": (
+                            "Current official public-draw Bear unit is new and has no comparable prior official applicant ladder; no probability is modeled."
+                            if is_new_unit_without_history
+                            else "Missing proven bear history or usable 2026 public quota for this residency."
+                        ),
+                        "algorithm_status": (
+                            "NOT_SCORED_NEW_UNIT_NO_COMPARABLE_HISTORY"
+                            if is_new_unit_without_history
+                            else "IN_SCOPE_MODEL_PENDING"
+                        ),
                         "data_quality_flags": "|".join(flags),
                         "reason_codes": append_reason_codes(
                             row.get("reason_codes"),
                             BEAR_NO_PRIOR_LADDER_REASON_CODE if "MISSING_PROVEN_BEAR_DRAW_HISTORY" in flags else "",
+                            "NOT_SCORED_NEW_UNIT_NO_COMPARABLE_HISTORY" if is_new_unit_without_history else "",
                             "NO_PUBLIC_DRAW_PROBABILITY_FOR_RESIDENCY" if public_quota <= 0 else "",
                         ),
                     }
@@ -1290,20 +1886,42 @@ def build_bear_bonus_predictions(
                 report_counts["pending"] += 1
                 continue
 
-            split = split_utah_bonus_permits(public_quota, residency)
-            max_point_permits = split.maxPointPermits
-            random_permits = split.randomPermits
-            forecast_ladder = _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)
-            sampled_ladders = (
-                _sample_bear_forecast_ladders(
+            max_point_permits, random_permits = _split_bear_bonus_permits(public_quota, residency)
+            lane_cohort_calibrations: dict[int, _BearCohortCalibration] = {}
+            if returning_cohort_mode == "lane_cohort_hierarchical":
+                forecast_ladder, lane_cohort_calibrations = _forecast_lane_cohort_ladder(
                     latest_ladder,
-                    retention_history_by_band,
-                    zero_growth_history,
-                    iterations,
-                    f"{seed}|{subtype}|{hunt_code}|{residency}|{latest_year}",
+                    lane_cohort_model,
+                    subtype=subtype,
+                    hunt_code=history_hunt_code,
+                    residency=history_residency,
                 )
-                if central_estimate_mode == "simulation_mean"
-                else []
+                sampled_ladders = (
+                    _sample_lane_cohort_forecast_ladders(
+                        latest_ladder,
+                        lane_cohort_calibrations,
+                        iterations=iterations,
+                        seed=f"{seed}|lane-cohort|{subtype}|{hunt_code}|{residency}|{latest_year}",
+                    )
+                    if central_estimate_mode == "simulation_mean"
+                    else []
+                )
+            else:
+                forecast_ladder = _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)
+                sampled_ladders = (
+                    _sample_bear_forecast_ladders(
+                        latest_ladder,
+                        retention_history_by_band,
+                        zero_growth_history,
+                        iterations,
+                        f"{seed}|{subtype}|{hunt_code}|{residency}|{latest_year}",
+                        returning_tail_profiles.get((subtype, history_hunt_code, history_residency), ()),
+                    )
+                    if central_estimate_mode == "simulation_mean"
+                    else []
+                )
+            returning_profile_count = len(
+                returning_tail_profiles.get((subtype, history_hunt_code, history_residency), ())
             )
             if not forecast_ladder:
                 flags = ["LOW_APPLICANT_COUNT", "FIRST_CHOICE_ONLY_MODEL"]
@@ -1342,7 +1960,10 @@ def build_bear_bonus_predictions(
                 data_quality_counter[flag] += 1
 
             for points in sorted(forecast_ladder.keys(), reverse=True):
+                lane_calibration = lane_cohort_calibrations.get(int(points))
                 applicants_by_points = {int(level): int(count) for level, count in forecast_ladder.items()}
+                if returning_cohort_mode == "lane_cohort_hierarchical":
+                    applicants_by_points = _condition_for_focal_bear_applicant(applicants_by_points, points)
                 p_bonus_pool, applicants_above, applicants_at_level = compute_bonus_pool_probability(points, applicants_by_points, max_point_permits)
                 p_random_pool = _weighted_random_probability(points, applicants_by_points, random_permits, max_point_permits)
                 p_draw = combine_probabilities(p_bonus_pool, p_random_pool)
@@ -1372,6 +1993,10 @@ def build_bear_bonus_predictions(
                     p_bonus_pool = min(deterministic_p_bonus_pool, simulated_p_bonus_pool)
                     p_random_pool = min(deterministic_p_random_pool, simulated_p_random_pool)
                     p_draw = combine_probabilities(p_bonus_pool, p_random_pool)
+                total_scope_guarantee_blocked = (
+                    history_scope_flag == "TOTAL_SCOPE_HISTORY_USED_FOR_RESIDENCY"
+                    and p_draw >= 1.0 - 1e-12
+                )
                 row = dict(base)
                 row.update(
                     {
@@ -1380,42 +2005,74 @@ def build_bear_bonus_predictions(
                         "max_point_permits_2026": max_point_permits,
                         "random_permits_2025": "",
                         "random_permits_2026": random_permits,
-                        "guaranteed_at_2025": "" if prior_guaranteed is None else str(prior_guaranteed),
-                        "guaranteed_at_2026": "" if forecast_guaranteed is None else str(forecast_guaranteed),
+                        # A combined applicant ladder can support neither a
+                        # resident nor a nonresident exact guarantee.  Keep
+                        # its lower-probability signal, but never surface a
+                        # lane-specific draw line or 100% outcome from it.
+                        "guaranteed_at_2025": "" if total_scope_guarantee_blocked or prior_guaranteed is None else str(prior_guaranteed),
+                        "guaranteed_at_2026": "" if total_scope_guarantee_blocked or forecast_guaranteed is None else str(forecast_guaranteed),
                         "applicants_above": applicants_above,
                         "applicants_at_level": applicants_at_level,
                         "p_preference_draw": "",
-                        "p_bonus_pool": f"{p_bonus_pool:.6f}",
-                        "p_random_pool": f"{p_random_pool:.6f}",
-                        "p_draw": f"{p_draw:.6f}",
-                        "p_draw_mean": f"{p_draw:.6f}",
-                        "p_draw_p10": f"{p_draw_p10:.6f}",
-                        "p_draw_p50": f"{p_draw_p50:.6f}",
-                        "p_draw_p90": f"{p_draw_p90:.6f}",
-                        "p_bonus_pool_pct": f"{p_bonus_pool * 100.0:.3f}",
-                        "p_random_pool_pct": f"{p_random_pool * 100.0:.3f}",
-                        "p_draw_pct": f"{p_draw * 100.0:.3f}",
-                        "random_draw_odds_2026": f"{p_random_pool * 100.0:.3f}",
-                        "gap": "" if forecast_guaranteed is None else str(forecast_guaranteed - points),
-                        "delta_gap": "" if forecast_guaranteed is None or prior_guaranteed is None else str((forecast_guaranteed - points) - (prior_guaranteed - points)),
-                        "status": _status(max_point_permits, random_permits, p_bonus_pool),
+                        "p_bonus_pool": "" if total_scope_guarantee_blocked else f"{p_bonus_pool:.6f}",
+                        "p_random_pool": "" if total_scope_guarantee_blocked else f"{p_random_pool:.6f}",
+                        "p_draw": "" if total_scope_guarantee_blocked else f"{p_draw:.6f}",
+                        "p_draw_mean": "" if total_scope_guarantee_blocked else f"{p_draw:.6f}",
+                        "p_draw_p10": "" if total_scope_guarantee_blocked else f"{p_draw_p10:.6f}",
+                        "p_draw_p50": "" if total_scope_guarantee_blocked else f"{p_draw_p50:.6f}",
+                        "p_draw_p90": "" if total_scope_guarantee_blocked else f"{p_draw_p90:.6f}",
+                        "p_bonus_pool_pct": "" if total_scope_guarantee_blocked else f"{p_bonus_pool * 100.0:.3f}",
+                        "p_random_pool_pct": "" if total_scope_guarantee_blocked else f"{p_random_pool * 100.0:.3f}",
+                        "p_draw_pct": "" if total_scope_guarantee_blocked else f"{p_draw * 100.0:.3f}",
+                        "random_draw_odds_2026": "" if total_scope_guarantee_blocked else f"{p_random_pool * 100.0:.3f}",
+                        "gap": "" if total_scope_guarantee_blocked or forecast_guaranteed is None else str(forecast_guaranteed - points),
+                        "delta_gap": "" if total_scope_guarantee_blocked or forecast_guaranteed is None or prior_guaranteed is None else str((forecast_guaranteed - points) - (prior_guaranteed - points)),
+                        "status": "INSUFFICIENT LANE EVIDENCE" if total_scope_guarantee_blocked else _status(max_point_permits, random_permits, p_bonus_pool),
                         "trend": _trend(prior_guaranteed, forecast_guaranteed),
-                        "draw_outlook": _draw_outlook(p_draw),
-                        "bear_bonus_valid": "TRUE",
+                        "draw_outlook": _draw_outlook(0.0, pending=True) if total_scope_guarantee_blocked else _draw_outlook(p_draw),
+                        "bear_bonus_valid": "FALSE" if total_scope_guarantee_blocked else "TRUE",
                         "bear_bonus_note": (
+                            "Combined-residency bear applicant history cannot establish a resident or nonresident guarantee."
+                            if total_scope_guarantee_blocked
+                            else (
+                            f"Forecasted from {latest_year} public Bear draw history with source-calibrated returning-applicant tail scenarios; "
+                            "statewide point-purchase counts corroborate the historical source pool but are not allocated to this hunt."
+                            if returning_cohort_mode == "source_calibrated_tail_mixture" and returning_profile_count
+                            else (
                             f"Forecasted from {latest_year} public bear draw history with source-transition Monte Carlo uncertainty."
                             if central_estimate_mode == "simulation_mean"
                             else f"Forecasted from {latest_year} public bear draw history with Utah bonus split rules."
+                            )
+                            )
+                        ),
+                        "returning_cohort_mode": returning_cohort_mode,
+                        "returning_tail_profile_count": str(returning_profile_count),
+                        "bear_cohort_evidence_scope": "" if lane_calibration is None else lane_calibration.evidence_scope,
+                        "bear_cohort_reapply_rate": "" if lane_calibration is None else f"{lane_calibration.reapply_rate:.6f}",
+                        "bear_cohort_arrival_count": "" if lane_calibration is None else f"{lane_calibration.arrival_count:.6f}",
+                        "bear_cohort_exact_unsuccessful": "" if lane_calibration is None else str(lane_calibration.exact_unsuccessful),
+                        "bear_cohort_exact_transitions": "" if lane_calibration is None else str(lane_calibration.exact_transitions),
+                        "algorithm_status": (
+                            "NOT_SCORED_TOTAL_SCOPE_RESIDENCY_GUARANTEE_BLOCKED"
+                            if total_scope_guarantee_blocked
+                            else ALGORITHM_STATUS_MODELED_BONUS
                         ),
                         "reason_codes": append_reason_codes(
                             row.get("reason_codes"),
                             "BEAR_SOURCE_TRANSITION_UNCERTAINTY_DISCOUNT" if central_estimate_mode == "simulation_mean" else "",
+                            "BEAR_SOURCE_CALIBRATED_RETURNING_TAIL_MIXTURE"
+                            if returning_cohort_mode == "source_calibrated_tail_mixture" and returning_profile_count
+                            else "",
+                            "TOTAL_SCOPE_RESIDENCY_GUARANTEE_BLOCKED" if total_scope_guarantee_blocked else "",
                         ),
                         "data_quality_flags": "|".join(flags),
                     }
                 )
                 rows.append(row)
-                report_counts["modeled"] += 1
+                if total_scope_guarantee_blocked:
+                    report_counts["pending"] += 1
+                else:
+                    report_counts["modeled"] += 1
 
     observed_history_rows = [row for row in truth_rows if is_bear_row(row)]
     review_counter = Counter(classify_bear_subtype(row) for row in review_rows)
@@ -1425,6 +2082,12 @@ def build_bear_bonus_predictions(
         "forecast_year": forecast_year,
         "central_estimate_mode": central_estimate_mode,
         "iterations": iterations,
+        "returning_cohort_mode": returning_cohort_mode,
+        "statewide_point_purchase_source_row_count": sum(
+            len(levels) for levels in point_purchase_counts.values()
+        ),
+        "returning_tail_profile_lane_count": len(returning_tail_profiles),
+        "returning_tail_profile_count": sum(len(profiles) for profiles in returning_tail_profiles.values()),
         "source_years": history_years,
         "total_bear_rows_reviewed": len(review_rows),
         "bear_rows_seen_observed_history": len(observed_history_rows),

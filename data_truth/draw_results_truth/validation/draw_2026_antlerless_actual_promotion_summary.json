@@ -1,0 +1,152 @@
+{
+  "generated_at_utc": "2026-09-02T08:54:34.564409+00:00",
+  "write": true,
+  "canonical_path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2026_for_2027_canonical_yearly_draw_results.csv",
+  "canonical_sha256_before": "5a1360683e4f9cec14990a5636071213f2d91a7f2c55a586f8e1844165e76a25",
+  "canonical_rows_before": 30938,
+  "canonical_rows_after": 30938,
+  "promoted_point_rows": 2144,
+  "promoted_positive_applicant_rows": 1911,
+  "promoted_zero_applicant_rows": 233,
+  "formatted_2025_style_point_rows": 1503,
+  "formatted_2025_style_total_rows": 291,
+  "formatted_2025_style_wide_rows": 1794,
+  "source_backed_hunt_codes": 153,
+  "public_draw_reference_codes": 162,
+  "unmatched_reference_count": 9,
+  "unmatched_reference_details": [
+    {
+      "hunt_code": "EA1180",
+      "hunt_name": "La Sal (Conservation)",
+      "permits_2026_res": 0,
+      "permits_2026_nr": 0,
+      "permits_2026_total": 0,
+      "permit_source": "",
+      "permit_source_file": "",
+      "disposition": "ZERO_PERMIT_OR_SPECIAL_REFERENCE_NO_POINT_RESULT_EXPECTED"
+    },
+    {
+      "hunt_code": "EA1220",
+      "hunt_name": "Manti (Expo)",
+      "permits_2026_res": 0,
+      "permits_2026_nr": 0,
+      "permits_2026_total": 0,
+      "permit_source": "",
+      "permit_source_file": "",
+      "disposition": "ZERO_PERMIT_OR_SPECIAL_REFERENCE_NO_POINT_RESULT_EXPECTED"
+    },
+    {
+      "hunt_code": "EA1221",
+      "hunt_name": "Fishlake/Thousand Lake (Expo)",
+      "permits_2026_res": 0,
+      "permits_2026_nr": 0,
+      "permits_2026_total": 0,
+      "permit_source": "",
+      "permit_source_file": "",
+      "disposition": "ZERO_PERMIT_OR_SPECIAL_REFERENCE_NO_POINT_RESULT_EXPECTED"
+    },
+    {
+      "hunt_code": "EA1258",
+      "hunt_name": "La Sal (Expo)",
+      "permits_2026_res": 0,
+      "permits_2026_nr": 0,
+      "permits_2026_total": 0,
+      "permit_source": "",
+      "permit_source_file": "",
+      "disposition": "ZERO_PERMIT_OR_SPECIAL_REFERENCE_NO_POINT_RESULT_EXPECTED"
+    },
+    {
+      "hunt_code": "EA1270",
+      "hunt_name": "Fishlake (Conservation)",
+      "permits_2026_res": 0,
+      "permits_2026_nr": 0,
+      "permits_2026_total": 0,
+      "permit_source": "",
+      "permit_source_file": "",
+      "disposition": "ZERO_PERMIT_OR_SPECIAL_REFERENCE_NO_POINT_RESULT_EXPECTED"
+    },
+    {
+      "hunt_code": "EA1271",
+      "hunt_name": "Manti (Conservation)",
+      "permits_2026_res": 0,
+      "permits_2026_nr": 0,
+      "permits_2026_total": 0,
+      "permit_source": "",
+      "permit_source_file": "",
+      "disposition": "ZERO_PERMIT_OR_SPECIAL_REFERENCE_NO_POINT_RESULT_EXPECTED"
+    },
+    {
+      "hunt_code": "EA2000",
+      "hunt_name": "Antlerless Elk Control",
+      "permits_2026_res": 0,
+      "permits_2026_nr": 0,
+      "permits_2026_total": 0,
+      "permit_source": "",
+      "permit_source_file": "",
+      "disposition": "ZERO_PERMIT_OR_SPECIAL_REFERENCE_NO_POINT_RESULT_EXPECTED"
+    },
+    {
+      "hunt_code": "EA2041",
+      "hunt_name": "Cache (Conservation)",
+      "permits_2026_res": 0,
+      "permits_2026_nr": 0,
+      "permits_2026_total": 0,
+      "permit_source": "",
+      "permit_source_file": "",
+      "disposition": "ZERO_PERMIT_OR_SPECIAL_REFERENCE_NO_POINT_RESULT_EXPECTED"
+    },
+    {
+      "hunt_code": "EA2045",
+      "hunt_name": "Wasatch Mtns (Conservation)",
+      "permits_2026_res": 0,
+      "permits_2026_nr": 0,
+      "permits_2026_total": 0,
+      "permit_source": "",
+      "permit_source_file": "",
+      "disposition": "ZERO_PERMIT_OR_SPECIAL_REFERENCE_NO_POINT_RESULT_EXPECTED"
+    }
+  ],
+  "reference_group_counts": {
+    "CWMU_REFERENCE": 73,
+    "PRIVATE_LANDS_ONLY_REFERENCE": 27,
+    "PUBLIC_DRAW_REFERENCE": 162
+  },
+  "promoted_source_scope_counts": {
+    "ANTLERLESS_DEER": 214,
+    "ANTLERLESS_ELK": 1226,
+    "ANTLERLESS_MOOSE": 80,
+    "ANTLERLESS_PRONGHORN": 277,
+    "ANTLERLESS_ROCKY_MOUNTAIN_BIGHORN_SHEEP": 14,
+    "YOUTH_ANTLERLESS_DEER": 30,
+    "YOUTH_ANTLERLESS_ELK": 267,
+    "YOUTH_ANTLERLESS_PRONGHORN": 36
+  },
+  "promoted_source_file_counts": {
+    "2026_antlerless_17_antlerless_deer.json": 244,
+    "2026_antlerless_18_antlerless_elk.json": 1493,
+    "2026_antlerless_19_antlerless_moose.json": 80,
+    "2026_antlerless_20_doe_pronghorn.json": 313,
+    "2026_antlerless_21_ewe_rocky_mtn_bighorn_sheep.json": 14
+  },
+  "retained_source_sha256": {
+    "pipeline/RAW/hunt_unit_database/2026/json/draw_results/utahdraws_2026_20260902/utahdraws_2026/csv/2026_antlerless_17_antlerless_deer.csv": "2aa12ef5222044c7ae4ca3ebd2f011acfed82270d69d2e7fff9d1371cb82caa8",
+    "pipeline/RAW/hunt_unit_database/2026/json/draw_results/utahdraws_2026_20260902/utahdraws_2026/csv/2026_antlerless_18_antlerless_elk.csv": "59e1ac451438b4c6b309e4f64c09b54ce7fa59ca01e570d9c066fec5b64c57fb",
+    "pipeline/RAW/hunt_unit_database/2026/json/draw_results/utahdraws_2026_20260902/utahdraws_2026/csv/2026_antlerless_19_antlerless_moose.csv": "87a5eb6359f30244c1bd8e887024a120886275fd1c303db9f08045e56abf6848",
+    "pipeline/RAW/hunt_unit_database/2026/json/draw_results/utahdraws_2026_20260902/utahdraws_2026/csv/2026_antlerless_20_doe_pronghorn.csv": "81eb47c38d166ea829d2ef20fe8bb0d2d3f66b595bc87c705cdd7a5557fe975b",
+    "pipeline/RAW/hunt_unit_database/2026/json/draw_results/utahdraws_2026_20260902/utahdraws_2026/csv/2026_antlerless_21_ewe_rocky_mtn_bighorn_sheep.csv": "810a158a9819d780ff0b5cb2b2d2fba9b5204cec0a0fd4c002ed4f7751046eef"
+  },
+  "probability_policy": "successful_applicants / eligible_applicants when both are positive; blank probability for zero-success or zero-applicant source rows",
+  "reference_row_policy": "All 262 current Hunt Planner permit-reference rows are preserved as non-scorable quota/identity references.",
+  "formatted_output_directory": "data_truth/draw_results_truth/normalized/formatted_2026_antlerless",
+  "formatted_output_files": [
+    "2026_antlerless_draw_results_2025_style_wide.csv",
+    "2026_antlerless_17_antlerless_deer_2025_style_wide.csv",
+    "2026_antlerless_18_antlerless_elk_2025_style_wide.csv",
+    "2026_antlerless_19_antlerless_moose_2025_style_wide.csv",
+    "2026_antlerless_20_doe_pronghorn_2025_style_wide.csv",
+    "2026_antlerless_21_ewe_rocky_mtn_bighorn_sheep_2025_style_wide.csv"
+  ],
+  "canonical_sha256_after": "5a1360683e4f9cec14990a5636071213f2d91a7f2c55a586f8e1844165e76a25",
+  "backup_path": "audits/2026_antlerless_actual_promotion/backups/draw_results_2026_for_2027_canonical_yearly_draw_results.before_antlerless_20260902T085434Z.csv",
+  "candidate_path": "audits/2026_antlerless_actual_promotion/draw_results_2026_antlerless_promoted_candidate.csv"
+}

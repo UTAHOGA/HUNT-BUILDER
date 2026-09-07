@@ -23,6 +23,7 @@ from engine.utah.quality.harvest_feature_model import (
     trend_delta,
     trend_direction,
 )
+from engine.utah.quality.harvest_identity import build_identity_index, normalize_code, resolve_identity_match, species_family
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -38,8 +39,17 @@ PROTECTED_FIELDS = [
     "quota_2026_total",
     "quota_2026_max_pool",
     "quota_2026_random_pool",
+    "permits_2026_res",
+    "permits_2026_nr",
+    "permits_2026_total",
+    "permit_allotment_2026_res",
+    "permit_allotment_2026_nr",
     "permit_allotment_2026_total",
+    "permit_allotment_2026_source",
+    "permit_allotment_2026_source_file",
+    "permit_allotment_2026_status",
     "public_permits_2026",
+    "public_permits_2026_source",
 ]
 
 FEATURE_FIELDS = [
@@ -59,6 +69,9 @@ FEATURE_FIELDS = [
     "harvest_3yr_avg",
     "hunters_afield_recent",
     "hunters_afield_3yr_avg",
+    "average_harvest_age_recent",
+    "average_harvest_age_3yr_reported",
+    "average_harvest_age_3yr_computed",
     "average_age_recent",
     "average_age_3yr_avg",
     "percent_female_recent",
@@ -119,13 +132,23 @@ def latest_delta(rows: list[dict[str, str]], field: str) -> float | None:
     return trend_delta(values[-1][1], values[-2][1])
 
 
+def latest_value(rows: list[dict[str, str]], field: str) -> float | None:
+    values = values_by_year(rows, field)
+    return values[-1][1] if values else None
+
+
 def percent_from_parts(numerator: float | None, denominator: float | None) -> float | None:
     if numerator is None or denominator in (None, 0):
         return None
     return 100.0 * numerator / denominator
 
 
-def build_feature_row(db_row: dict[str, str], history_rows: list[dict[str, str]], target_year: int = 2026) -> dict[str, str]:
+def build_feature_row(
+    db_row: dict[str, str],
+    history_rows: list[dict[str, str]],
+    target_year: int = 2026,
+    age_rows: list[dict[str, str]] | None = None,
+) -> dict[str, str]:
     selection = fallback_feature_selection(
         db_row.get("hunt_code", ""),
         db_row.get("species", ""),
@@ -143,7 +166,29 @@ def build_feature_row(db_row: dict[str, str], history_rows: list[dict[str, str]]
     harvest_recent, harvest_avg, harvest_reasons = recent_and_average(rows, "harvest_total")
     hunters_recent, hunters_avg, hunters_reasons = recent_and_average(rows, "hunters_afield")
     age_recent, age_avg, age_reasons = recent_and_average(rows, "average_age")
+    age_3yr_reported = latest_value(rows, "average_age_3yr_reported")
+    if age_rows is not None:
+        direct_age_rows = [
+            row
+            for row in age_rows
+            if normalize_code(row.get("hunt_code")) == normalize_code(db_row.get("hunt_code"))
+            and species_family(row.get("species")) == species_family(db_row.get("species"))
+            and int(clean_numeric(row.get("reported_hunt_year")) or 0) < target_year
+        ]
+        direct_age_years = {
+            int(clean_numeric(row.get("reported_hunt_year")) or 0)
+            for row in direct_age_rows
+            if clean_numeric(row.get("reported_hunt_year")) is not None
+        }
+        if direct_age_rows:
+            age_recent, age_avg, age_reasons = recent_and_average(direct_age_rows, "average_harvest_age")
+            age_3yr_reported = latest_value(direct_age_rows, "average_harvest_age_3yr")
+            years = sorted(set(years) | {year for year in direct_age_years if year})
     reason_codes.extend(success_reasons + satisfaction_reasons + effort_reasons + harvest_reasons + hunters_reasons + age_reasons)
+    if age_3yr_reported is not None:
+        reason_codes.append("DWR_REPORTED_3YR_HARVEST_AGE")
+    if age_avg is not None:
+        reason_codes.append("COMPUTED_3YR_HARVEST_AGE")
 
     success_delta = latest_delta(rows, "percent_success")
     satisfaction_delta = latest_delta(rows, "hunter_satisfaction")
@@ -178,6 +223,9 @@ def build_feature_row(db_row: dict[str, str], history_rows: list[dict[str, str]]
         "harvest_3yr_avg": harvest_avg,
         "hunters_afield_recent": hunters_recent,
         "hunters_afield_3yr_avg": hunters_avg,
+        "average_harvest_age_recent": age_recent,
+        "average_harvest_age_3yr_reported": age_3yr_reported,
+        "average_harvest_age_3yr_computed": age_avg,
         "average_age_recent": age_recent,
         "average_age_3yr_avg": age_avg,
         "average_age_delta_1yr": age_delta,
@@ -251,11 +299,15 @@ def assert_protected_unchanged(before: dict[tuple[str, str, str, str], dict[str,
         raise AssertionError("Harvest feature materialization changed protected probability or quota fields.")
 
 
-def append_features(rows: list[dict[str, str]], features_by_code: dict[str, dict[str, str]]) -> list[dict[str, str]]:
+def append_features(
+    rows: list[dict[str, str]],
+    features_by_code: dict[str, list[dict[str, str]]],
+) -> list[dict[str, str]]:
     output = []
     for row in rows:
         merged = dict(row)
-        feature = features_by_code.get(row.get("hunt_code", ""), {})
+        resolution = resolve_identity_match(row, features_by_code.get(row.get("hunt_code", ""), []))
+        feature = resolution.row or {}
         for field in FEATURE_FIELDS:
             merged[field] = feature.get(field, "")
         output.append(merged)
@@ -266,14 +318,16 @@ def materialize(output_dir: Path, forecast_year: int = 2026) -> dict[str, object
     history_path = ROOT / "data_model" / "harvest_quality" / "harvest_quality_features_all_years_by_hunt_code.csv"
     long_path = ROOT / "data_model" / "harvest_quality" / "harvest_results_all_years_long.csv"
     database_path = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "DATABASE.csv"
+    age_path = ROOT / "data_model" / "harvest_quality" / "harvest_average_age_global_merge_database.csv"
     ml_path = ROOT / "processed_data" / "ml_draw_predictions_v1.csv"
     successor_path = ROOT / "processed_data" / "draw_reality_engine_predictive_v2.csv"
 
     history_rows = read_rows(history_path)
     long_rows = read_rows(long_path)
     db_rows = [row for row in read_rows(database_path) if row.get("hunt_code")]
-    features = [build_feature_row(row, history_rows, forecast_year) for row in db_rows]
-    features_by_code = {row["hunt_code"]: row for row in features}
+    age_rows = read_rows(age_path)
+    features = [build_feature_row(row, history_rows, forecast_year, age_rows) for row in db_rows]
+    features_by_code = build_identity_index(features)
     species_year = build_species_year_rows(long_rows)
 
     feature_fields = ["hunt_code", "species", "hunt_name", "active_2026"] + FEATURE_FIELDS
@@ -311,6 +365,15 @@ def materialize(output_dir: Path, forecast_year: int = 2026) -> dict[str, object
         "active_2026_hunt_codes": len(features),
         "harvest_quality_index_count": sum(1 for row in features if row.get("harvest_quality_index")),
         "demand_pressure_signal_count": sum(1 for row in features if row.get("demand_pressure_signal")),
+        "average_harvest_age_recent_count": sum(
+            1 for row in features if row.get("average_harvest_age_recent")
+        ),
+        "average_harvest_age_3yr_reported_count": sum(
+            1 for row in features if row.get("average_harvest_age_3yr_reported")
+        ),
+        "average_harvest_age_3yr_computed_count": sum(
+            1 for row in features if row.get("average_harvest_age_3yr_computed")
+        ),
         "match_method_counts": dict(sorted(method_counts.items())),
         "data_quality_grade_counts": dict(sorted(grade_counts.items())),
         "protected_probability_and_quota_fields_unchanged": True,
@@ -334,6 +397,9 @@ def materialize(output_dir: Path, forecast_year: int = 2026) -> dict[str, object
         f"- active_2026_hunt_codes: {audit['active_2026_hunt_codes']}",
         f"- harvest_quality_index_count: {audit['harvest_quality_index_count']}",
         f"- demand_pressure_signal_count: {audit['demand_pressure_signal_count']}",
+        f"- average_harvest_age_recent_count: {audit['average_harvest_age_recent_count']}",
+        f"- average_harvest_age_3yr_reported_count: {audit['average_harvest_age_3yr_reported_count']}",
+        f"- average_harvest_age_3yr_computed_count: {audit['average_harvest_age_3yr_computed_count']}",
         f"- protected_probability_and_quota_fields_unchanged: {audit['protected_probability_and_quota_fields_unchanged']}",
         f"- match_method_counts: {audit['match_method_counts']}",
     ]

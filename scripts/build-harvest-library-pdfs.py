@@ -3,6 +3,7 @@ from __future__ import annotations
 import csv
 import hashlib
 import io
+import json
 import re
 import shutil
 import statistics
@@ -46,7 +47,15 @@ PUBLIC_2025 = PUBLIC_DIR / "2025" / OUTPUT_2025.name
 DWR_REPORTS_URL = "https://wildlife.utah.gov/hunting/reports"
 DWR_HARVEST_DASHBOARD_URL = "https://wildlife.utah.gov/biggame/reports"
 DWR_2024_BIG_GAME_URL = "https://wildlife.utah.gov/pdf/annual-reports/big-game/24_bg_report.pdf"
-DWR_DASHBOARD_ACCESSED = "2026-08-28"
+DWR_2025_DASHBOARD_DELTA = (
+    ROOT
+    / "data_truth"
+    / "harvest_results_truth"
+    / "sources"
+    / "dwr_big_game_harvest_dashboard_2025_delta.json"
+)
+_DWR_2025_DELTA = json.loads(DWR_2025_DASHBOARD_DELTA.read_text(encoding="utf-8"))
+DWR_DASHBOARD_ACCESSED = str(_DWR_2025_DELTA["dashboard_accessed_date"])
 
 PAGE_SIZE = landscape(letter)
 PAGE_W, PAGE_H = PAGE_SIZE
@@ -78,43 +87,17 @@ SPECIES_ORDER = {
 }
 
 
-# Hunt rows published after the 2026-03-06 preliminary package. These were
-# transcribed from the official DWR harvest dashboards on 2026-08-28. Tuple
-# fields: species, hunt code, hunt name, hunt type, weapon, sex, permits,
-# hunters afield, harvest.
+# Hunt rows published after the preliminary package. The reviewed transcription
+# is shared with the data-ingestion builder so reports and model inputs cannot drift.
 DWR_2025_ADDITIONS = [
-    ("Deer", "LO1629", "Boulder/Kaiparowits", "General Season Landowner", "Rifle Restricted", "Male Only", "1", "", ""),
-    ("Deer", "MIT001", "", "Mitigation", "Hunters/Fee", "Female Only", "512", "474", "345"),
-    ("Deer", "MIT011", "", "Mitigation", "Landowners/Free", "Female Only", "2800", "1858", "957"),
-    ("Elk", "EA1258", "La Sal", "Antlerless", "Any Legal Weapon", "Female Only", "1", "", ""),
-    ("Elk", "EL3015", "Panguitch Lake", "Limited Entry Landowner", "Archery", "Male Only", "2", "", ""),
-    ("Elk", "EL3032", "Cache, Meadowville", "Limited Entry Landowner", "Early Any Legal Weapon", "Male Only", "1", "", ""),
-    ("Elk", "EL3042", "Fillmore, Pahvant", "Limited Entry Landowner", "Early Any Legal Weapon", "Male Only", "1", "", ""),
-    ("Elk", "EL3067", "San Juan Bull Elk", "Limited Entry Landowner", "Late Any Legal Weapon", "Male Only", "1", "", ""),
-    ("Elk", "EL3073", "Wasatch Mtns", "Limited Entry Landowner", "Late Any Legal Weapon", "Male Only", "1", "", ""),
-    ("Elk", "EL3098", "Diamond Mtn", "Limited Entry Landowner", "Muzzleloader", "Male Only", "", "", ""),
-    ("Elk", "EL3162", "Book Cliffs, Bitter Creek/East", "Limited Entry Landowner", "Early Any Legal Weapon", "Male Only", "1", "", ""),
-    ("Elk", "EL3163", "Book Cliffs, Bitter Creek/East", "Limited Entry Landowner", "Late Any Legal Weapon", "Male Only", "1", "", ""),
-    ("Elk", "LO0011", "Diamond Mtn Landowner Association", "Limited Entry Landowner", "Archery", "Male Only", "1", "", ""),
-    ("Elk", "LO0012", "Diamond Mtn Landowner Association", "Limited Entry Landowner", "Early Any Legal Weapon", "Male Only", "12", "12", "12"),
-    ("Elk", "LO0013", "Diamond Mtn Landowner Association", "Limited Entry Landowner", "Mid Any Legal Weapon", "Male Only", "9", "9", "9"),
-    ("Elk", "LO0014", "Diamond Mtn Landowner Association", "Limited Entry Landowner", "Muzzleloader", "Male Only", "5", "5", "5"),
-    ("Elk", "LO0015", "Diamond Mtn Landowner Association", "Limited Entry Landowner", "Late Any Legal Weapon", "Male Only", "2", "2", "0"),
-    ("Elk", "MIT001", "", "Mitigation", "Hunters/Fee", "Female Only", "1695", "1572", "639"),
-    ("Elk", "MIT011", "", "Mitigation", "Landowners/Free", "Female Only", "1773", "1316", "509"),
-    ("Pronghorn", "MIT001", "", "Mitigation", "Hunters/Fee", "Female Only", "374", "343", "191"),
-    ("Pronghorn", "MIT011", "", "Mitigation", "Landowners/Free", "Female Only", "510", "330", "143"),
+    tuple(
+        str(row.get(field, ""))
+        for field in ("species", "hunt_code", "hunt_name", "hunt_type", "weapon", "sex_type", "permits", "hunters_afield", "harvest")
+    )
+    for row in _DWR_2025_DELTA["additions"]
 ]
-
 EXPECTED_2025_SPECIES_COUNTS = {
-    "Bison": 18,
-    "Deer": 421,
-    "Desert Bighorn Sheep": 25,
-    "Elk": 471,
-    "Moose": 43,
-    "Mountain Goat": 18,
-    "Pronghorn": 124,
-    "Rocky Mountain Bighorn Sheep": 21,
+    str(species): int(count) for species, count in _DWR_2025_DELTA["expected_species_counts"].items()
 }
 
 

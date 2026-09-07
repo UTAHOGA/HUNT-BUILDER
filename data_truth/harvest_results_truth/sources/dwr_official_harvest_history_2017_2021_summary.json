@@ -1,0 +1,99 @@
+{
+  "generated_at_utc": "2026-09-06T23:18:34.505269+00:00",
+  "scope": "official Utah DWR big-game harvest history for 2017-2021",
+  "source_pdf_count_2017_2020": 12,
+  "source_pdf_sha256": {
+    "pipeline\\RAW\\hunt_unit_database\\2017\\pdf\\harvest_report\\35263124__General-season buck deer.pdf": "2562270c88a4aa2f36777bbb3536e05be2278a39841571e6dd3c5d5c800816e4",
+    "pipeline\\RAW\\hunt_unit_database\\2017\\pdf\\harvest_report\\c1e4809e__Limited-entry and once-in-a-lifetime species.pdf": "e0ed2da0bc76074f08730ade80e320028385d93ccc5dcff4f0b2f640f59fc215",
+    "pipeline\\RAW\\hunt_unit_database\\2017\\pdf\\harvest_report\\bc5511e8__Antlerless big game.pdf": "5c044926794c607436a483261f45dbae23c4a657b26d061fe2d62395d9853839",
+    "pipeline\\RAW\\hunt_unit_database\\2018\\pdf\\harvest_report\\2251affc__harvest_report.pdf": "bf3f4786524b6fc95ca3e928a3c9cc9d78205f201de20c671c9aa2d83d13d8dc",
+    "pipeline\\RAW\\hunt_unit_database\\2018\\pdf\\harvest_report\\f0bc038b__harvest_report.pdf": "c368bb2ed985e0c9725129f6c726cb227fe7c2ed0e21fc1c2fdd850fea7a7292",
+    "pipeline\\RAW\\hunt_unit_database\\2018\\pdf\\harvest_report\\3605c429__harvest_report.pdf": "5b40fa191573b2c7a8c3e698eb28f2598017742c8581b9086ccd03db60e5ab9e",
+    "pipeline\\RAW\\hunt_unit_database\\2019\\pdf\\harvest_report\\3707480f__General-season buck deer.pdf": "1b51cf58ae0aae011836e0759bc503da6ddf044c8524fe2f69bfea0e9a29522d",
+    "pipeline\\RAW\\hunt_unit_database\\2019\\pdf\\harvest_report\\e764d19f__Limited-entry and once-in-a-lifetime species.pdf": "e3a994ebda7026af38fc22691034a0efc0ecab21f923a79921846d8c95312796",
+    "pipeline\\RAW\\hunt_unit_database\\2019\\pdf\\harvest_report\\50b32b02__Antlerless big game.pdf": "42aaea4a3d72502a65b07d7044337bb3e41b84b4f9c1f87459c607f17a8b895f",
+    "pipeline\\RAW\\hunt_unit_database\\2020\\pdf\\harvest_report\\e38eeb18__General-season buck deer.pdf": "97e4da029a3070bcf60478c07090064e392f43cfc00c3ad35e5d9864eb06a062",
+    "pipeline\\RAW\\hunt_unit_database\\2020\\pdf\\harvest_report\\0b5ca51c__Limited-entry and once-in-a-lifetime species.pdf": "33b7071b5af63f0b6c0c027b0be3a294eac2667648feeb79ee55a1d7e25c9cfa",
+    "pipeline\\RAW\\hunt_unit_database\\2020\\pdf\\harvest_report\\4275246d__Antlerless big game.pdf": "8600b92f638ae176e3836db97c40c607db22cc1fc311fbef5ccefa3616f0976f"
+  },
+  "source_line_rows_by_year_and_family": {
+    "2017": {
+      "general": 145,
+      "limited": 551,
+      "antlerless": 241
+    },
+    "2018": {
+      "general": 159,
+      "limited": 558,
+      "antlerless": 255
+    },
+    "2019": {
+      "general": 161,
+      "limited": 556,
+      "antlerless": 282
+    },
+    "2020": {
+      "general": 162,
+      "limited": 564,
+      "antlerless": 250
+    }
+  },
+  "source_line_rows_2017_2020": 3884,
+  "normalized_hunt_code_rows_by_year": {
+    "2017": 908,
+    "2018": 936,
+    "2019": 962,
+    "2020": 939,
+    "2021": 974
+  },
+  "metric_nonblank_by_year": {
+    "2017": {
+      "permits": 908,
+      "hunters_afield": 901,
+      "harvest_total": 897,
+      "percent_success": 897,
+      "average_days": 780,
+      "hunter_satisfaction": 658
+    },
+    "2018": {
+      "permits": 936,
+      "hunters_afield": 928,
+      "harvest_total": 924,
+      "percent_success": 924,
+      "average_days": 801,
+      "hunter_satisfaction": 672
+    },
+    "2019": {
+      "permits": 962,
+      "hunters_afield": 959,
+      "harvest_total": 957,
+      "percent_success": 957,
+      "average_days": 833,
+      "hunter_satisfaction": 677
+    },
+    "2020": {
+      "permits": 939,
+      "hunters_afield": 933,
+      "harvest_total": 933,
+      "percent_success": 933,
+      "average_days": 808,
+      "hunter_satisfaction": 682
+    },
+    "2021": {
+      "permits": 974,
+      "hunters_afield": 972,
+      "harvest_total": 970,
+      "percent_success": 970,
+      "average_days": 969,
+      "hunter_satisfaction": 0
+    }
+  },
+  "guardrails": {
+    "do_not_use_for_permit_quota": true,
+    "do_not_use_directly_for_p_draw": true
+  },
+  "outputs": {
+    "long_rows": "data_truth\\harvest_results_truth\\sources\\dwr_official_harvest_history_2017_2020_long.csv",
+    "normalized_rows": "data_truth\\harvest_results_truth\\sources\\dwr_official_harvest_history_2017_2021_normalized.csv"
+  }
+}

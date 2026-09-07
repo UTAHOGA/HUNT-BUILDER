@@ -1,0 +1,43 @@
+{
+  "release": "2026 Utah Draw Results complete residency ladder format repair",
+  "created_at_local": "2026-09-02T23:04:00-06:00",
+  "scope": "Presentation-only replacement of the five visitor-facing UOGA tan-topographic PDFs. Canonical truth and retained UtahDraws source rows are unchanged.",
+  "format_repairs": [
+    "Every Resident/Nonresident point-rung cell is populated; an endpoint-omitted zero-activity rung is rendered as 0 / 0 / 0 / 0 / N/A.",
+    "Every applicant-panel title explicitly declares Adult or Youth, in addition to residency.",
+    "The public library lists only the five complete family reports; retained per-package source PDFs remain on disk for lineage and URL compatibility."
+  ],
+  "rollback_directory": "rollback_public_20260902_complete_ladder_format",
+  "files": [
+    {
+      "public_file": "Utah_2026_Antlerless_Draw_Results_UOGA_Topo.pdf",
+      "prior_sha256": "3e6ca690f78ba0eb644b7feefba6637a0a9a981260940f76cf0933c0b35af7fb",
+      "candidate_file": "2026_uoga_antlerless_draw_results_corrected.pdf",
+      "candidate_sha256": "7714cd077a2aaccac6009cf4b52424c68d02857f8aa9a34f032e0340bae8f70b"
+    },
+    {
+      "public_file": "Utah_2026_Big_Game_Draw_Results_UOGA_Topo.pdf",
+      "prior_sha256": "366afc61c93a274abcd2bb4b276f2548483443f48c82353a6c199d9b0d8d0029",
+      "candidate_file": "2026_uoga_big_game_draw_results.pdf",
+      "candidate_sha256": "a88c478c98dbef6bc9782568370e14537b06de74f35ff7be1fe903b20b9bbf0d"
+    },
+    {
+      "public_file": "Utah_2026_Black_Bear_Draw_Results_UOGA_Topo.pdf",
+      "prior_sha256": "a834ed7c0fbdf5010f4f5ee128d6033fff2ac61a7d8a4352ac8e5502cffebb81",
+      "candidate_file": "2026_uoga_black_bear_draw_results.pdf",
+      "candidate_sha256": "838d5340c1b45c6897eddf5f4bd1e73ed36add9e95dad20751e0f1a05a322d18"
+    },
+    {
+      "public_file": "Utah_2026_Sportsman_Draw_Results_UOGA_Topo.pdf",
+      "prior_sha256": "0675ca1251e4b8f705d8e8863611eca5117e67246cada1d88fd11bd4f759b4c4",
+      "candidate_file": "2026_uoga_sportsman_draw_results.pdf",
+      "candidate_sha256": "7e4092a3e9ff60775995fa2959c11cedc082efb0f1742ecbfa7818e3c1a2267f"
+    },
+    {
+      "public_file": "Utah_2026_Turkey_Draw_Results_UOGA_Topo.pdf",
+      "prior_sha256": "e3ee54738a9dd115366ffd7fdcc50ced62987c2fb522f7b166cb02f86d83c327",
+      "candidate_file": "2026_uoga_turkey_draw_results.pdf",
+      "candidate_sha256": "a1b7554d92056def978f98d17835dc8709619a6b10fdb5726c7db3aa7152cdaa"
+    }
+  ]
+}

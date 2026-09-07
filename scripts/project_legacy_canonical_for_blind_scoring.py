@@ -118,6 +118,13 @@ def legacy_pool(row: dict[str, str]) -> str:
     if family == "bonus_oil_big_game":
         return "MAX_WEIGHTED_SPLIT"
     if family == "bonus_cwmu_big_game":
+        # Keep the source-year species/sex/youth pool when the family runner
+        # has already resolved it.  Replacing it with a filename-level
+        # CWMU_BIG_GAME/CWMU_ANTLERLESS label collapses separate official
+        # ladders before the blind scorer can match them.
+        explicit_pool = clean(row.get("draw_pool"))
+        if explicit_pool.lower() not in {"", "standard", "cwmu", "cwmu_big_game", "cwmu_antlerless"}:
+            return explicit_pool
         return "CWMU_ANTLERLESS" if "antlerless" in source_file else "CWMU_BIG_GAME"
     if family == "preference_general_deer":
         return "ADULT_GENERAL_DEER"
@@ -153,18 +160,43 @@ def project_predictions(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     return output
 
 
+def _single_year(rows: list[dict[str, str]], *fields: str, label: str) -> int:
+    years = {
+        int(clean(row.get(field)))
+        for row in rows
+        for field in fields
+        if clean(row.get(field)).isdigit()
+    }
+    if len(years) != 1:
+        raise ValueError(f"Expected one {label} year for scoring projection; found {sorted(years)}")
+    return years.pop()
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--frozen-truth", type=Path, required=True)
     parser.add_argument("--frozen-forecast", type=Path, required=True)
     parser.add_argument("--out-dir", type=Path, required=True)
+    parser.add_argument(
+        "--source-year",
+        type=int,
+        help="Physical source draw year for the audit label. Required when the combined forecast carries mixed score-key years.",
+    )
+    parser.add_argument(
+        "--forecast-year",
+        type=int,
+        help="Physical forecast draw year for the audit label. Required when the combined forecast carries mixed score-key years.",
+    )
     args = parser.parse_args()
     truth_fields, truth_rows = read_csv(args.frozen_truth)
     prediction_fields, prediction_rows = read_csv(args.frozen_forecast)
     actual_projection = expand_actual(truth_rows)
     prediction_projection = project_predictions(prediction_rows)
-    actual_path = args.out_dir / "2018_frozen_actual_residency_scoring_projection.csv"
-    prediction_path = args.out_dir / "2017_to_2018_frozen_forecast_legacy_pool_scoring_projection.csv"
+    actual_year = _single_year(truth_rows, "actual_draw_year", "draw_year", "year", label="actual draw")
+    source_year = args.source_year or _single_year(prediction_rows, "source_year", label="forecast source")
+    forecast_year = args.forecast_year or _single_year(prediction_rows, "forecast_year", "year", label="forecast draw")
+    actual_path = args.out_dir / f"{actual_year}_frozen_actual_residency_scoring_projection.csv"
+    prediction_path = args.out_dir / f"{source_year}_to_{forecast_year}_frozen_forecast_legacy_pool_scoring_projection.csv"
     write_csv(actual_path, truth_fields, actual_projection)
     write_csv(prediction_path, prediction_fields, prediction_projection)
     manifest = {
@@ -180,6 +212,11 @@ def main() -> int:
         "forecast_projection_sha256": sha256(prediction_path),
         "actual_residency_rows": dict(Counter(clean(row.get("residency")) for row in actual_projection)),
         "forecast_legacy_pool_rows": dict(Counter(clean(row.get("draw_pool")) for row in prediction_projection)),
+        "projection_years": {
+            "source_year": source_year,
+            "forecast_year": forecast_year,
+            "actual_draw_year": actual_year,
+        },
         "truth_values_changed": False,
         "forecast_probabilities_changed": False,
         "identity_label_overrides": {

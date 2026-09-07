@@ -4,20 +4,20 @@ This validation layer finalizes the cumulative draw-results truth table without 
 
 ## Validation
 
-- Rows: 309562
+- Rows: 315512
 - Unique draw years: 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026
-- Unique hunt codes: 1494
-- Source audit rows: 195
+- Unique hunt codes: 1504
+- Source audit rows: 205
 - Blank hunt-code rows: 0
 - Invalid year rows: 0
-- Coarse-key collisions across all source scopes: 29247
-- Cross-scope-only collisions: 29247
+- Coarse-key collisions across all source scopes: 30692
+- Cross-scope-only collisions: 30692
 - Unresolved same-source identity collisions: 0
 - Blockers: 0
 
 ## Draw Year Counts
 
-- 2018: 28427
+- 2018: 30338
 - 2019: 33478
 - 2020: 33069
 - 2021: 33788
@@ -25,7 +25,7 @@ This validation layer finalizes the cumulative draw-results truth table without 
 - 2023: 35834
 - 2024: 43175
 - 2025: 38120
-- 2026: 28795
+- 2026: 32834
 
 ## Guardrails
 

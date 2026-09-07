@@ -1,0 +1,54 @@
+{
+  "generated_at_utc": "2026-09-06T08:12:36.779911+00:00",
+  "purpose": "frozen historical draw truth assembled solely from approved yearly canonicals",
+  "truth_boundary": {
+    "opened_DATABASE_csv": false,
+    "opened_runtime_artifacts": false,
+    "opened_prediction_outputs": false,
+    "opened_following_year_actuals_for_scoring": false
+  },
+  "canonical_file_count": 10,
+  "canonical_sha256": {
+    "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2017_for_2018_canonical_yearly_draw_results.csv": "62f81f709afaf7b9513e39746943124eef32a72984fd8fd07e44429c39d63350",
+    "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2018_for_2019_canonical_yearly_draw_results.csv": "87186c081b6d16bf1cec1d8c362fe06cce05a751a6bd95a9a791472e107bd667",
+    "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2019_for_2020_canonical_yearly_draw_results.csv": "4f8e4edb15b12a8b7928e2242d96f5c88407fbf02b432e05233a9ac688bf3315",
+    "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2020_for_2021_canonical_yearly_draw_results.csv": "7df9d7aea6ac692d573ddaefcb2464d38d778855ec3a628dc4ea7ab5280c9c60",
+    "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2021_for_2022_canonical_yearly_draw_results.csv": "0039ff562f9e8c1c53bcf992dd3cff9d9fe8932afc3e9e68674ae0c6098868f2",
+    "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2022_for_2023_canonical_yearly_draw_results.csv": "3da76259c2eb226cec06305bc2ddb3c172db492c5e813e16e1174defaadaa226",
+    "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2023_for_2024_canonical_yearly_draw_results.csv": "fb2e61c9d6bbdb92ee20b1b465fe44dbf4afd0b365ca197dcb0e5c5065245c44",
+    "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2024_for_2025_canonical_yearly_draw_results.csv": "92bbe7e81a5f082be23bf9c00c67357d656f625a2caa946189e93d9747c70a92",
+    "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2025_for_2026_canonical_yearly_draw_results.csv": "c09a53651cf5a361e9c1a252f1babfab4b1a22eb6e3fc2c5fdc58a8a713a6d9c",
+    "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2026_for_2027_canonical_yearly_draw_results.csv": "0b29c905cb301c9279ac4a894f1ef2e1297383ead2f0fa0d2706583f709f4534"
+  },
+  "long_path": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
+  "long_sha256": "8b0053a8be9366671a2c80d5d4e2bb0c290a32e3ce476d41154e5ecc113d0a18",
+  "columns": 108,
+  "canonical_rows": 341842,
+  "canonical_rows_by_actual_draw_year": {
+    "2017": 26330,
+    "2018": 30338,
+    "2019": 33478,
+    "2020": 33069,
+    "2021": 33788,
+    "2022": 34876,
+    "2023": 35834,
+    "2024": 43175,
+    "2025": 38120,
+    "2026": 32834
+  },
+  "long_rows_by_actual_draw_year": {
+    "2017": 26330,
+    "2018": 30338,
+    "2019": 33478,
+    "2020": 33069,
+    "2021": 33788,
+    "2022": 34876,
+    "2023": 35834,
+    "2024": 43175,
+    "2025": 38120,
+    "2026": 32834
+  },
+  "strict_ordered_value_parity": true,
+  "status": "PASS_FROZEN_LONG_TRUTH_FROM_YEARLY_CANONICALS",
+  "errors": []
+}

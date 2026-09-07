@@ -149,6 +149,7 @@ def to_runtime_record(row: dict[str, str], generated_at: str) -> dict[str, objec
         "draw_2025_type": first(row.get("draw_2025_type")),
         "percent_harvest_success_previous_hunting_season": first(row.get("percent_harvest_success_previous_hunting_season")),
         "average_harvest_age": first(row.get("average_harvest_age")),
+        "average_harvest_age_3yr_reported": first(row.get("average_harvest_age_3yr_reported")),
         "current_age_3yr_average": first(row.get("current_age_3yr_average")),
         "average_harvest_age_source_file": first(row.get("average_harvest_age_source_file")),
         "average_harvest_age_review_status": first(row.get("average_harvest_age_review_status")),
@@ -248,6 +249,21 @@ def rebuild_split(records: list[dict[str, object]], research_by_code: dict[str, 
         detail = {
             **existing,
             **record,
+            "harvest": first(summary.get("harvest_total")),
+            "hunters": first(summary.get("hunters_afield")),
+            "percent_success": first(summary.get("harvest_success_pct")),
+            "avg_days": first(summary.get("average_days_hunted")),
+            "satisfaction": first(summary.get("hunter_satisfaction")),
+            "average_harvest_age": first(
+                summary.get("average_harvest_age"), record.get("average_harvest_age")
+            ),
+            "average_harvest_age_3yr_reported": first(
+                summary.get("average_harvest_age_3yr_reported"),
+                record.get("average_harvest_age_3yr_reported"),
+            ),
+            "current_age_3yr_average": first(
+                summary.get("current_age_3yr_average"), record.get("current_age_3yr_average")
+            ),
             "detail_path": detail_path,
             "research_summary_rows": summary_rows,
             "research_summary_row_count": len(summary_rows),
@@ -275,7 +291,14 @@ def rebuild_split(records: list[dict[str, object]], research_by_code: dict[str, 
             "availability_status": first(summary.get("availability_status"), summary.get("status")),
             "draw_2026_system_type": first(record.get("draw_2026_system_type"), summary.get("draw_2026_system_type")),
             "average_harvest_age": first(record.get("average_harvest_age"), summary.get("average_harvest_age")),
+            "average_harvest_age_3yr_reported": first(
+                summary.get("average_harvest_age_3yr_reported"),
+                record.get("average_harvest_age_3yr_reported"),
+            ),
             "current_age_3yr_average": first(record.get("current_age_3yr_average"), summary.get("current_age_3yr_average")),
+            "harvest_success_pct": first(summary.get("harvest_success_pct")),
+            "average_days_hunted": first(summary.get("average_days_hunted")),
+            "hunter_satisfaction": first(summary.get("hunter_satisfaction")),
             "research_summary_row_count": len(summary_rows),
             "detail_path": detail_path,
         }

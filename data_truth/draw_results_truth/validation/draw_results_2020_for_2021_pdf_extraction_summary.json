@@ -1,11 +1,11 @@
 {
   "artifact": "draw_results_2020_for_2021_canonical_yearly_pdf_extraction",
-  "generated_at_utc": "2026-08-27T04:21:29.205877+00:00",
+  "generated_at_utc": "2026-09-02T11:31:09.896840+00:00",
   "write": true,
   "source_pdf_count": 13,
   "source_sha256": {
     "20_bg-odds.pdf": "707d2e7f874e784dcc9076cafc61e339317eed4ae86466cb8516cc0eeabbeaef",
-    "20_antlerless_drawing_odds_report.pdf": "2efb7b6dcb5c2ef996feddf442ea7f2ba15f42b168c85e371843512564dc7d04",
+    "20_antlerless_drawing_odds_report.pdf": "e3d8c2cb2ae13e010c5b221d852a12cfea070f07c3925e285b8b6d2fc7ea9ee7",
     "20_deer_odds.pdf": "3172d5b67a5385346a28f713b90f1d37698eb2a3ca0d99bf9f796e2ce3164a68",
     "20_dh_odds.pdf": "a4467e998c6baa97722784dd1fdbc9e5e82dbec2ea972ccb37397e9460142771",
     "20_lifetime_deer.pdf": "e21172f8e14bf73fea1907a0af99f8cb8b3e8a27926f7a1814cef838b4f17a08",
@@ -18,6 +18,7 @@
     "97ffae94__black_bear_20_drawing_odds.pdf": "6a9aadf664bc7383fbd8b371e280d895cadae32a8fd29dd6ee1e143222d89ea6",
     "20-21_sportsman_odds.pdf": "3c4056bbd3952a4dfb6ce80326f94a58bba0d2262ff4cc008b613c76c50d4b15"
   },
+  "source_changed_during_extraction": {},
   "source_stats": {
     "20_bg-odds.pdf": {
       "pages": 561,
@@ -100,5 +101,6 @@
   "unparsed_hunt_page_count": 0,
   "duplicate_source_row_key_count": 0,
   "canonical_path": "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2020_for_2021_canonical_yearly_draw_results.csv",
-  "status": "PASS"
+  "status": "PASS",
+  "backup_path": "audits/database_alignment/canonical_pdf_reextraction/backups/draw_results_2020_for_2021_canonical_yearly_draw_results.before_official_pdf_reextract_20260902T113109Z.csv"
 }

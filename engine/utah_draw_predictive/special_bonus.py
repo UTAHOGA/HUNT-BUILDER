@@ -170,7 +170,15 @@ def _build_truth_ladders(
         draw_system_type = _classify_phase6_family(row)
         if not draw_system_type:
             continue
-        if _clean_lower(row.get("draw_pool")) not in {"", "standard"}:
+        # Canonical source rows may retain their specific official pool name;
+        # it is still the same special-bonus family and must not be dropped
+        # merely because it is more specific than the legacy ``standard``.
+        allowed_pools = {
+            "BONUS_ANTLERLESS_MOOSE": {"", "standard", "antlerless_moose", "bonus_antlerless_moose"},
+            "BONUS_EWE_BIGHORN": {"", "standard", "ewe_bighorn", "bonus_ewe_bighorn"},
+            "BONUS_CWMU_BIG_GAME": {"", "standard", "cwmu_big_game", "cwmu_antlerless"},
+        }
+        if _clean_lower(row.get("draw_pool")) not in allowed_pools[draw_system_type]:
             continue
 
         hunt_code = _clean(row.get("hunt_code")).upper()

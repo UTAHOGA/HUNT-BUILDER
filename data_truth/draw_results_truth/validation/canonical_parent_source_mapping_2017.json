@@ -1,0 +1,15 @@
+{
+  "generated_at_utc": "2026-09-06T07:23:09.032168+00:00",
+  "purpose": "2017 canonical row-source scope to archived-parent official PDF mapping",
+  "source_scope_records": 19,
+  "canonical_rows": 26330,
+  "canonical_sources_linked": 11,
+  "retained_noncanonical_source_scopes": 8,
+  "canonical_rows_by_mapping_status": {
+    "LINKED": 26330,
+    "RETAINED_NONCANONICAL_SOURCE_SCOPE": 0
+  },
+  "mapping_csv": "data_truth/draw_results_truth/validation/canonical_parent_source_mapping_2017.csv",
+  "status": "PASS_2017_CANONICAL_PARENT_SOURCE_LINEAGE_COMPLETE",
+  "next_gate": "The map proves historical source lineage only; acceptance scoring remains governed by ADR-0006."
+}

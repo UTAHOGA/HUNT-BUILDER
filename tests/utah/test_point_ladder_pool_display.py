@@ -42,7 +42,7 @@ def test_rows_below_max_boundary_with_permits_are_historical_random_successes():
     assert row["bonus_permits"] == "0"
     assert row["regular_permits"] == "1"
     assert row["total_permits"] == "1"
-    assert row["display_2025_draw_results"] == "~1 in 49.0 or 2.0%"
+    assert row["display_2025_draw_results"] == "1 in 49.0"
 
 
 def test_historical_random_successes_do_not_become_max_point_guarantees():

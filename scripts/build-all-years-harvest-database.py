@@ -6,12 +6,24 @@ import csv
 import hashlib
 import io
 import json
+import subprocess
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 from zipfile import ZipFile
 
-
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from engine.utah.quality.harvest_identity import (
+    hunt_name_compatible,
+    normalize_code,
+    normalize_species,
+    species_family,
+)
+
+
 OUT_TRUTH = ROOT / "data_truth" / "harvest_results_truth" / "normalized"
 OUT_PROCESSED = ROOT / "processed_data"
 OUT_MODEL = ROOT / "data_model" / "harvest_quality"
@@ -19,6 +31,22 @@ OUT_OVERLAY = ROOT / "data_model" / "permit_overlays"
 DATABASE = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "DATABASE.csv"
 HARVEST_ROOT = ROOT / "pipeline" / "RAW" / "hunt_unit_database"
 SOURCE_BUNDLE_ROOT = ROOT / "data_truth" / "harvest_results_truth" / "source_package_bundles"
+MODEL_SOURCE_BUNDLE_ROOT = ROOT / "data_model" / "harvest_quality" / "source_package_bundles"
+DWR_2025_DASHBOARD_DELTA = (
+    ROOT
+    / "data_truth"
+    / "harvest_results_truth"
+    / "sources"
+    / "dwr_big_game_harvest_dashboard_2025_delta.json"
+)
+DWR_HISTORY_2017_2021 = (
+    ROOT
+    / "data_truth"
+    / "harvest_results_truth"
+    / "sources"
+    / "dwr_official_harvest_history_2017_2021_normalized.csv"
+)
+AGE_DATABASE = OUT_MODEL / "harvest_average_age_global_merge_database.csv"
 
 
 NORMALIZED_FIELDS = [
@@ -41,6 +69,12 @@ NORMALIZED_FIELDS = [
     "average_days",
     "hunter_satisfaction",
     "average_age",
+    "average_age_3yr_reported",
+    "average_age_source_file",
+    "average_age_source_page",
+    "average_age_source_table_title",
+    "average_age_crosswalk_confidence",
+    "average_age_mapping_status",
     "male_harvest",
     "female_harvest",
     "harvest_objective",
@@ -72,6 +106,55 @@ def read_csv_file(path: Path) -> tuple[list[dict[str, str]], list[str]]:
         return list(reader), reader.fieldnames or []
 
 
+def read_preserved_normalized_long() -> list[dict[str, str]]:
+    """Use the checked-in comprehensive normalized history when raw bundles are partial.
+
+    Large raw/extracted harvest assets are optionally hydrated. The checked-in model
+    history is therefore the reproducible local fallback and must be loaded before
+    this builder overwrites its generated copy.
+    """
+
+    path = OUT_MODEL / "harvest_results_all_years_long.csv"
+    if path.exists():
+        rows, _ = read_csv_file(path)
+        if len(rows) >= 50_000:
+            return rows
+    try:
+        result = subprocess.run(
+            ["git", "show", "HEAD:data_model/harvest_quality/harvest_results_all_years_long.csv"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return []
+    rows, _ = read_csv_rows_from_text(result.stdout.decode("utf-8-sig"))
+    return rows if len(rows) >= 50_000 else []
+
+
+def read_checked_in_csv(relative_path: str) -> list[dict[str, str]]:
+    try:
+        result = subprocess.run(
+            ["git", "show", f"HEAD:{relative_path}"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return []
+    rows, _ = read_csv_rows_from_text(result.stdout.decode("utf-8-sig"))
+    return rows
+
+
+def read_preserved_best_history() -> list[dict[str, str]]:
+    path = OUT_MODEL / "harvest_quality_features_all_years_by_hunt_code.csv"
+    if path.exists():
+        rows, _ = read_csv_file(path)
+        if len(rows) >= 5_500:
+            return rows
+    return read_checked_in_csv("data_model/harvest_quality/harvest_quality_features_all_years_by_hunt_code.csv")
+
+
 def read_database_codes() -> set[str]:
     if not DATABASE.exists():
         return set()
@@ -92,7 +175,7 @@ def zip_sha(path: Path) -> str:
 
 def harvest_zip_candidates() -> list[Path]:
     candidates = []
-    for search_root in [HARVEST_ROOT, SOURCE_BUNDLE_ROOT]:
+    for search_root in [HARVEST_ROOT, SOURCE_BUNDLE_ROOT, MODEL_SOURCE_BUNDLE_ROOT]:
         if not search_root.exists():
             continue
         for path in search_root.rglob("*.zip"):
@@ -300,6 +383,16 @@ def normalize_row(
         "average_days": first(row, "average_days", "average_days_hunted", "harvest_average_days", "mean_days_afield"),
         "hunter_satisfaction": first(row, "hunter_satisfaction", "harvest_satisfaction"),
         "average_age": first(row, "average_age", "age_of_sheep", "age_of_sheep_decimal"),
+        "average_age_3yr_reported": first(row, "average_age_3yr_reported", "average_harvest_age_3yr"),
+        "average_age_source_file": first(row, "average_age_source_file", "age_source_file"),
+        "average_age_source_page": first(row, "average_age_source_page", "age_source_page"),
+        "average_age_source_table_title": first(
+            row, "average_age_source_table_title", "age_source_table_title"
+        ),
+        "average_age_crosswalk_confidence": first(
+            row, "average_age_crosswalk_confidence", "crosswalk_confidence"
+        ),
+        "average_age_mapping_status": first(row, "average_age_mapping_status", "age_mapping_status"),
         "male_harvest": first(row, "male_harvest"),
         "female_harvest": first(row, "female_harvest"),
         "harvest_objective": first(row, "harvest_objective"),
@@ -327,6 +420,362 @@ def row_score(row: dict[str, str]) -> tuple[int, int, int]:
     filled = sum(1 for field in ["permits", "hunters_afield", "harvest_total", "percent_success", "average_days"] if row.get(field))
     has_quality = 1 if row.get("percent_success") or row.get("average_days") or row.get("hunter_satisfaction") else 0
     return (priority, filled, has_quality)
+
+
+def _dashboard_addition_row(raw: dict[str, object], delta: dict[str, object]) -> dict[str, str]:
+    hunters = first({key: str(value) for key, value in raw.items()}, "hunters_afield")
+    harvest = first({key: str(value) for key, value in raw.items()}, "harvest")
+    percent_success = ""
+    try:
+        if float(hunters.replace(",", "")) > 0:
+            percent_success = f"{100 * float(harvest.replace(',', '') or 0) / float(hunters.replace(',', '')):.1f}"
+    except ValueError:
+        percent_success = ""
+    return {
+        "reported_hunt_year": str(delta["reported_hunt_year"]),
+        "model_target_year": str(delta["model_target_year"]),
+        "hunt_code": normalize_code(raw.get("hunt_code")),
+        "species": str(raw.get("species", "")),
+        "sex_type": str(raw.get("sex_type", "")),
+        "hunt_name": str(raw.get("hunt_name", "")),
+        "hunt_type": str(raw.get("hunt_type", "")),
+        "weapon": str(raw.get("weapon", "")),
+        "permits": str(raw.get("permits", "")),
+        "hunters_afield": hunters,
+        "harvest_total": harvest,
+        "harvest_male": "",
+        "harvest_female": "",
+        "harvest_young": "",
+        "harvest_unknown": "",
+        "percent_success": percent_success,
+        "average_days": "",
+        "hunter_satisfaction": "",
+        "average_age": "",
+        "average_age_3yr_reported": "",
+        "average_age_source_file": "",
+        "average_age_source_page": "",
+        "average_age_source_table_title": "",
+        "average_age_crosswalk_confidence": "",
+        "average_age_mapping_status": "",
+        "male_harvest": "",
+        "female_harvest": "",
+        "harvest_objective": "",
+        "source_file": "Utah DWR Big Game Harvest & Survey dashboard",
+        "source_page": str(delta["source_url"]),
+        "source_container": str(DWR_2025_DASHBOARD_DELTA.relative_to(ROOT)),
+        "source_member": "",
+        "source_kind": "official_dashboard_current_delta",
+        "source_priority": "110",
+        "source_status": "official_dashboard_current",
+        "parse_status": "REVIEWED_DASHBOARD_TRANSCRIPTION",
+        "do_not_use_for_permit_quota": "True",
+        "do_not_use_directly_for_p_draw": "True",
+        "trend_feature_eligible": "True",
+        "data_quality_flags": "OFFICIAL_DWR_DASHBOARD|HUNT_CODE_KEYED|BIG_GAME_HARVEST",
+        "recommended_use": "harvest quality, demand-signal, and backcheck features only; do not use as permit quota or direct draw probability",
+    }
+
+
+def reconcile_current_2025_dashboard(
+    all_rows: list[dict[str, str]],
+) -> tuple[list[dict[str, str]], dict[str, object]]:
+    delta = json.loads(DWR_2025_DASHBOARD_DELTA.read_text(encoding="utf-8"))
+    baseline_member = "harvest_results_2025_for_2026_hunt_code_keyed.csv"
+    baseline_candidates = [
+        row
+        for row in all_rows
+        if row.get("reported_hunt_year") == "2025"
+        and Path(row.get("source_member", "")).name == baseline_member
+    ]
+    current_by_identity: dict[tuple[str, ...], dict[str, str]] = {}
+    for row in baseline_candidates:
+        key = tuple(
+            row.get(field, "")
+            for field in (
+                "species",
+                "hunt_code",
+                "hunt_name",
+                "hunt_type",
+                "weapon",
+                "sex_type",
+                "permits",
+                "hunters_afield",
+                "harvest_total",
+                "percent_success",
+                "average_days",
+                "hunter_satisfaction",
+            )
+        )
+        current_by_identity.setdefault(key, dict(row))
+    current_rows = list(current_by_identity.values())
+    if len(current_rows) != int(delta["baseline_expected_rows"]):
+        raise RuntimeError(
+            f"Expected {delta['baseline_expected_rows']} packaged 2025 big-game rows, found {len(current_rows)}"
+        )
+
+    correction_count = 0
+    for correction in delta["corrections"]:
+        for collection in (all_rows, current_rows):
+            for row in collection:
+                if row.get("reported_hunt_year") != "2025":
+                    continue
+                if normalize_code(row.get("hunt_code")) != normalize_code(correction["hunt_code"]):
+                    continue
+                row_species = normalize_species(row.get("species"))
+                if row_species not in {
+                    normalize_species(correction["from_species"]),
+                    normalize_species(correction["to_species"]),
+                }:
+                    continue
+                if not hunt_name_compatible(row.get("hunt_name"), correction["hunt_name"]):
+                    continue
+                row["species"] = str(correction["to_species"])
+                flags = [flag for flag in row.get("data_quality_flags", "").split("|") if flag]
+                if "DASHBOARD_SPECIES_CORRECTED" not in flags:
+                    flags.append("DASHBOARD_SPECIES_CORRECTED")
+                row["data_quality_flags"] = "|".join(flags)
+                if collection is current_rows:
+                    correction_count += 1
+    if correction_count != len(delta["corrections"]):
+        raise RuntimeError(
+            f"Expected {len(delta['corrections'])} current dashboard corrections, applied {correction_count}"
+        )
+
+    additions = [_dashboard_addition_row(row, delta) for row in delta["additions"]]
+    current_rows.extend(dict(row) for row in additions)
+    all_rows.extend(additions)
+
+    species_counts = Counter(row["species"] for row in current_rows)
+    expected_counts = Counter({str(key): int(value) for key, value in delta["expected_species_counts"].items()})
+    if species_counts != expected_counts:
+        raise RuntimeError(f"2025 DWR dashboard species counts differ: {dict(species_counts)}")
+    if len(current_rows) != int(delta["current_expected_rows"]):
+        raise RuntimeError(
+            f"Expected {delta['current_expected_rows']} current 2025 dashboard rows, found {len(current_rows)}"
+        )
+    current_rows.sort(
+        key=lambda row: (
+            normalize_species(row.get("species")),
+            normalize_code(row.get("hunt_code")),
+            row.get("hunt_name", ""),
+            row.get("weapon", ""),
+        )
+    )
+    return current_rows, {
+        "source_url": delta["source_url"],
+        "dashboard_accessed_date": delta["dashboard_accessed_date"],
+        "baseline_rows": delta["baseline_expected_rows"],
+        "addition_rows": len(additions),
+        "correction_rows": correction_count,
+        "current_rows": len(current_rows),
+        "species_counts": dict(sorted(species_counts.items())),
+    }
+
+
+def reconcile_best_history(
+    preserved_best_rows: list[dict[str, str]],
+    current_2025_rows: list[dict[str, str]],
+) -> list[dict[str, str]]:
+    """Overlay current dashboard identities without collapsing shared hunt codes."""
+
+    rows = [
+        dict(row)
+        for row in preserved_best_rows
+        if row.get("source_kind") != "official_dashboard_current_delta"
+    ]
+    current_by_identity = {
+        (
+            row.get("reported_hunt_year", ""),
+            normalize_code(row.get("hunt_code")),
+            normalize_species(row.get("species")),
+            row.get("hunt_name", ""),
+            row.get("weapon", ""),
+        ): row
+        for row in current_2025_rows
+    }
+    for row in rows:
+        if row.get("reported_hunt_year") != "2025" or normalize_code(row.get("hunt_code")) != "PB1000":
+            continue
+        if hunt_name_compatible(row.get("hunt_name"), "Pronghorn - Statewide Permit"):
+            row["species"] = "Pronghorn"
+            flags = [flag for flag in row.get("data_quality_flags", "").split("|") if flag]
+            if "DASHBOARD_SPECIES_CORRECTED" not in flags:
+                flags.append("DASHBOARD_SPECIES_CORRECTED")
+            row["data_quality_flags"] = "|".join(flags)
+
+    existing = {
+        (
+            row.get("reported_hunt_year", ""),
+            normalize_code(row.get("hunt_code")),
+            normalize_species(row.get("species")),
+            row.get("hunt_name", ""),
+            row.get("weapon", ""),
+        )
+        for row in rows
+    }
+    for key, row in current_by_identity.items():
+        if row.get("source_kind") == "official_dashboard_current_delta" and key not in existing:
+            rows.append(dict(row))
+            existing.add(key)
+    rows.sort(
+        key=lambda row: (
+            row.get("reported_hunt_year", ""),
+            normalize_code(row.get("hunt_code")),
+            normalize_species(row.get("species")),
+            row.get("hunt_name", ""),
+            row.get("weapon", ""),
+        )
+    )
+    return rows
+
+
+def read_history_2017_2021_repairs() -> list[dict[str, str]]:
+    if not DWR_HISTORY_2017_2021.exists():
+        raise FileNotFoundError(
+            "Missing normalized 2017-2021 DWR harvest repair source. "
+            "Run: python scripts/extract-dwr-harvest-history-2017-2021.py"
+        )
+    rows, headers = read_csv_file(DWR_HISTORY_2017_2021)
+    missing = sorted(set(NORMALIZED_FIELDS) - set(headers))
+    if missing:
+        raise RuntimeError(f"2017-2021 DWR harvest repair source is missing columns: {missing}")
+    expected_years = {str(year) for year in range(2017, 2022)}
+    actual_years = {row.get("reported_hunt_year", "") for row in rows}
+    if actual_years != expected_years:
+        raise RuntimeError(f"2017-2021 DWR harvest repair years differ: {sorted(actual_years)}")
+    return [{field: row.get(field, "") for field in NORMALIZED_FIELDS} for row in rows]
+
+
+def merge_history_repairs_into_best(
+    preserved_best_rows: list[dict[str, str]],
+    repair_rows: list[dict[str, str]],
+) -> list[dict[str, str]]:
+    repair_years = {str(year) for year in range(2017, 2022)}
+    preserved_by_year_code: dict[tuple[str, str], list[dict[str, str]]] = defaultdict(list)
+    for row in preserved_best_rows:
+        if row.get("reported_hunt_year") in repair_years:
+            preserved_by_year_code[
+                (row.get("reported_hunt_year", ""), normalize_code(row.get("hunt_code")))
+            ].append(row)
+
+    output = [dict(row) for row in preserved_best_rows if row.get("reported_hunt_year") not in repair_years]
+    for repair in repair_rows:
+        row = dict(repair)
+        candidates = preserved_by_year_code.get(
+            (row.get("reported_hunt_year", ""), normalize_code(row.get("hunt_code"))),
+            [],
+        )
+        compatible = [
+            candidate
+            for candidate in candidates
+            if normalize_species(candidate.get("species")) == normalize_species(row.get("species"))
+            and (
+                not candidate.get("hunt_name")
+                or not row.get("hunt_name")
+                or hunt_name_compatible(candidate.get("hunt_name"), row.get("hunt_name"))
+            )
+        ]
+        if row.get("reported_hunt_year") == "2021" and not compatible:
+            raise RuntimeError(
+                f"No compatible preserved 2021 harvest identity for {row.get('hunt_code')} {row.get('hunt_name')}"
+            )
+        for field in (
+            "average_age",
+            "harvest_young",
+            "harvest_unknown",
+            "male_harvest",
+            "female_harvest",
+            "harvest_objective",
+        ):
+            if row.get(field):
+                continue
+            values = {candidate.get(field, "") for candidate in compatible if candidate.get(field, "")}
+            if len(values) == 1:
+                row[field] = next(iter(values))
+        output.append(row)
+
+    output.sort(
+        key=lambda row: (
+            row.get("reported_hunt_year", ""),
+            normalize_code(row.get("hunt_code")),
+            normalize_species(row.get("species")),
+            row.get("hunt_name", ""),
+            row.get("weapon", ""),
+        )
+    )
+    return output
+
+
+def read_age_database() -> list[dict[str, str]]:
+    if not AGE_DATABASE.exists():
+        raise FileNotFoundError(f"Missing official age merge database: {AGE_DATABASE.relative_to(ROOT)}")
+    rows, headers = read_csv_file(AGE_DATABASE)
+    required = {
+        "reported_hunt_year",
+        "hunt_code",
+        "species",
+        "average_harvest_age",
+        "average_harvest_age_3yr",
+        "age_source_file",
+        "age_source_page",
+        "age_source_table_title",
+        "crosswalk_confidence",
+        "age_mapping_status",
+    }
+    missing = sorted(required - set(headers))
+    if missing:
+        raise RuntimeError(f"Official age merge database is missing columns: {missing}")
+    return rows
+
+
+def merge_age_database(
+    rows: list[dict[str, str]],
+    age_rows: list[dict[str, str]],
+) -> tuple[list[dict[str, str]], dict[str, object]]:
+    """Overlay official age fields by year, hunt code, and compatible species only."""
+
+    age_by_identity: dict[tuple[str, str, str], dict[str, str]] = {}
+    for age in age_rows:
+        key = (
+            age.get("reported_hunt_year", ""),
+            normalize_code(age.get("hunt_code")),
+            species_family(age.get("species")),
+        )
+        if not all(key):
+            continue
+        if key in age_by_identity:
+            raise RuntimeError(f"Duplicate official age identity: {key}")
+        age_by_identity[key] = age
+
+    matched_source_keys: set[tuple[str, str, str]] = set()
+    matched_output_rows = 0
+    for source in rows:
+        key = (
+            source.get("reported_hunt_year", ""),
+            normalize_code(source.get("hunt_code")),
+            species_family(source.get("species")),
+        )
+        age = age_by_identity.get(key)
+        if not age:
+            continue
+        source["average_age"] = age.get("average_harvest_age", "")
+        source["average_age_3yr_reported"] = age.get("average_harvest_age_3yr", "")
+        source["average_age_source_file"] = age.get("age_source_file", "")
+        source["average_age_source_page"] = age.get("age_source_page", "")
+        source["average_age_source_table_title"] = age.get("age_source_table_title", "")
+        source["average_age_crosswalk_confidence"] = age.get("crosswalk_confidence", "")
+        source["average_age_mapping_status"] = age.get("age_mapping_status", "")
+        matched_source_keys.add(key)
+        matched_output_rows += 1
+
+    return rows, {
+        "source_rows": len(age_rows),
+        "matched_source_identity_rows": len(matched_source_keys),
+        "unmatched_source_identity_rows": len(age_by_identity) - len(matched_source_keys),
+        "matched_output_rows": matched_output_rows,
+        "annual_age_nonblank": sum(bool(row.get("average_harvest_age", "")) for row in age_rows),
+        "reported_3yr_age_nonblank": sum(bool(row.get("average_harvest_age_3yr", "")) for row in age_rows),
+    }
 
 
 def special_permit_overlay_class(row: dict[str, str], database_row: dict[str, str] | None = None) -> str:
@@ -367,40 +816,118 @@ def main() -> int:
     source_audit: list[dict[str, object]] = []
     all_rows: list[dict[str, str]] = []
 
-    for container, path, member, source_kind, priority in candidate_csv_members():
-        rows, headers = read_candidate(container, path, member)
-        normalized_rows = []
-        for row in rows:
-            normalized = normalize_row(row, container, member, source_kind, priority)
-            if normalized:
-                normalized_rows.append(normalized)
-        all_rows.extend(normalized_rows)
-        codes = {row["hunt_code"] for row in normalized_rows}
-        years = sorted({row["reported_hunt_year"] for row in normalized_rows})
+    preserved_rows = [
+        row
+        for row in read_preserved_normalized_long()
+        if row.get("source_kind") != "official_dashboard_current_delta"
+    ]
+    if preserved_rows:
+        all_rows.extend(preserved_rows)
+        codes = {row["hunt_code"] for row in preserved_rows}
+        years = sorted({row["reported_hunt_year"] for row in preserved_rows})
         source_audit.append(
             {
-                "container": container,
-                "member": member or "",
-                "source_kind": source_kind,
-                "source_priority": priority,
-                "raw_rows": len(rows),
-                "normalized_rows": len(normalized_rows),
+                "container": str((OUT_MODEL / "harvest_results_all_years_long.csv").relative_to(ROOT)),
+                "member": "",
+                "source_kind": "preserved_comprehensive_normalized_history",
+                "source_priority": 100,
+                "raw_rows": len(preserved_rows),
+                "normalized_rows": len(preserved_rows),
                 "unique_hunt_codes": len(codes),
                 "active_database_codes": len(codes & active_codes),
                 "reported_hunt_years": "|".join(years),
-                "header_count": len(headers),
+                "header_count": len(NORMALIZED_FIELDS),
             }
         )
+    else:
+        for container, path, member, source_kind, priority in candidate_csv_members():
+            rows, headers = read_candidate(container, path, member)
+            normalized_rows = []
+            for row in rows:
+                normalized = normalize_row(row, container, member, source_kind, priority)
+                if normalized:
+                    normalized_rows.append(normalized)
+            all_rows.extend(normalized_rows)
+            codes = {row["hunt_code"] for row in normalized_rows}
+            years = sorted({row["reported_hunt_year"] for row in normalized_rows})
+            source_audit.append(
+                {
+                    "container": container,
+                    "member": member or "",
+                    "source_kind": source_kind,
+                    "source_priority": priority,
+                    "raw_rows": len(rows),
+                    "normalized_rows": len(normalized_rows),
+                    "unique_hunt_codes": len(codes),
+                    "active_database_codes": len(codes & active_codes),
+                    "reported_hunt_years": "|".join(years),
+                    "header_count": len(headers),
+                }
+            )
+
+    history_repairs = read_history_2017_2021_repairs()
+    history_repair_kinds = {
+        "official_dwr_harvest_pdf_hunt_code_aggregate",
+        "official_dwr_2021_package_mapping_repair",
+    }
+    all_rows = [row for row in all_rows if row.get("source_kind") not in history_repair_kinds]
+    all_rows.extend(dict(row) for row in history_repairs)
+    history_codes = {row["hunt_code"] for row in history_repairs}
+    source_audit.append(
+        {
+            "container": str(DWR_HISTORY_2017_2021.relative_to(ROOT)),
+            "member": "",
+            "source_kind": "official_dwr_history_2017_2021_repair",
+            "source_priority": 115,
+            "raw_rows": len(history_repairs),
+            "normalized_rows": len(history_repairs),
+            "unique_hunt_codes": len(history_codes),
+            "active_database_codes": len(history_codes & active_codes),
+            "reported_hunt_years": "2017|2018|2019|2020|2021",
+            "header_count": len(NORMALIZED_FIELDS),
+        }
+    )
+
+    current_2025_rows, current_2025_summary = reconcile_current_2025_dashboard(all_rows)
+    source_audit.append(
+        {
+            "container": str(DWR_2025_DASHBOARD_DELTA.relative_to(ROOT)),
+            "member": "",
+            "source_kind": "official_dashboard_current_delta",
+            "source_priority": 110,
+            "raw_rows": current_2025_summary["addition_rows"],
+            "normalized_rows": current_2025_summary["addition_rows"],
+            "unique_hunt_codes": len({row["hunt_code"] for row in current_2025_rows}),
+            "active_database_codes": len({row["hunt_code"] for row in current_2025_rows} & active_codes),
+            "reported_hunt_years": "2025",
+            "header_count": len(NORMALIZED_FIELDS),
+        }
+    )
 
     all_rows.sort(key=lambda row: (row["reported_hunt_year"], row["hunt_code"], row["source_container"], row["source_member"]))
 
-    best: dict[tuple[str, str], dict[str, str]] = {}
-    for row in all_rows:
-        key = (row["reported_hunt_year"], row["hunt_code"])
-        current = best.get(key)
-        if current is None or row_score(row) > row_score(current):
-            best[key] = row
-    best_rows = [best[key] for key in sorted(best)]
+    preserved_best_rows = read_preserved_best_history()
+    if preserved_best_rows:
+        best_rows = merge_history_repairs_into_best(preserved_best_rows, history_repairs)
+        best_rows = reconcile_best_history(best_rows, current_2025_rows)
+    else:
+        best: dict[tuple[str, str, str, str, str], dict[str, str]] = {}
+        for row in all_rows:
+            key = (
+                row["reported_hunt_year"],
+                normalize_code(row["hunt_code"]),
+                normalize_species(row["species"]),
+                row["hunt_name"],
+                row["weapon"],
+            )
+            current = best.get(key)
+            if current is None or row_score(row) > row_score(current):
+                best[key] = row
+        best_rows = [best[key] for key in sorted(best)]
+
+    age_rows = read_age_database()
+    all_rows, age_long_summary = merge_age_database(all_rows, age_rows)
+    best_rows, age_best_summary = merge_age_database(best_rows, age_rows)
 
     year_counts = Counter(row["reported_hunt_year"] for row in best_rows)
     model_year_counts = Counter(row["model_target_year"] for row in best_rows)
@@ -418,6 +945,8 @@ def main() -> int:
     source_audit_path = OUT_TRUTH / "harvest_results_all_years_source_audit.csv"
     write_csv(long_path, all_rows, NORMALIZED_FIELDS)
     write_csv(best_path, best_rows, NORMALIZED_FIELDS)
+    current_2025_path = OUT_TRUTH / "harvest_results_2025_for_2026_current.csv"
+    write_csv(current_2025_path, current_2025_rows, NORMALIZED_FIELDS)
     write_csv(
         source_audit_path,
         [{key: str(value) for key, value in row.items()} for row in source_audit],
@@ -440,29 +969,13 @@ def main() -> int:
     write_csv(OUT_PROCESSED / "harvest_quality_features_all_years_by_hunt_code.csv", best_rows, NORMALIZED_FIELDS)
     write_csv(OUT_MODEL / "harvest_results_all_years_long.csv", all_rows, NORMALIZED_FIELDS)
     write_csv(OUT_MODEL / "harvest_quality_features_all_years_by_hunt_code.csv", best_rows, NORMALIZED_FIELDS)
+    write_csv(OUT_PROCESSED / "harvest_results_2025_for_2026_current.csv", current_2025_rows, NORMALIZED_FIELDS)
+    write_csv(OUT_MODEL / "harvest_results_2025_for_2026_current.csv", current_2025_rows, NORMALIZED_FIELDS)
 
-    overlay_rows: list[dict[str, str]] = []
-    for row in best_rows:
-        overlay_class = special_permit_overlay_class(row, database_rows.get(row["hunt_code"]))
-        if not overlay_class:
-            continue
-        overlay_rows.append(
-            {
-                "reported_hunt_year": row["reported_hunt_year"],
-                "model_target_year": row["model_target_year"],
-                "hunt_code": row["hunt_code"],
-                "species": row["species"],
-                "hunt_name": row["hunt_name"],
-                "hunt_type": row["hunt_type"],
-                "permits": row["permits"],
-                "permit_overlay_class": overlay_class,
-                "permit_overlay_use": "TOTAL_PERMIT_RECONCILIATION_ONLY",
-                "public_draw_odds_use": "NO",
-                "p_draw_math_use": "NO",
-                "source_file": row["source_file"],
-                "source_container": row["source_container"],
-            }
-        )
+    # Harvest refreshes never regenerate permit-reconciliation overlays.
+    overlay_rows = read_checked_in_csv("data_model/permit_overlays/special_permit_overlay_classes_all_years.csv")
+    if not overlay_rows:
+        raise RuntimeError("The checked-in special permit overlay is unavailable; refusing to reconstruct it from harvest rows.")
     overlay_fields = [
         "reported_hunt_year",
         "model_target_year",
@@ -482,6 +995,14 @@ def main() -> int:
     write_csv(OUT_PROCESSED / "special_permit_overlay_classes_all_years.csv", overlay_rows, overlay_fields)
 
     duplicate_keys = len(all_rows) - len({(row["reported_hunt_year"], row["hunt_code"], row["source_container"], row["source_member"]) for row in all_rows})
+    history_repair_year_counts = Counter(row["reported_hunt_year"] for row in history_repairs)
+    history_repair_metric_counts = {
+        year: {
+            field: sum(bool(row.get(field, "")) for row in history_repairs if row["reported_hunt_year"] == year)
+            for field in ("permits", "hunters_afield", "harvest_total", "percent_success", "average_days", "hunter_satisfaction")
+        }
+        for year in sorted(history_repair_year_counts)
+    }
     summary = {
         "source_candidates": len(source_audit),
         "normalized_long_rows": len(all_rows),
@@ -495,10 +1016,22 @@ def main() -> int:
         "special_permit_overlay_rows": len(overlay_rows),
         "special_permit_overlay_class_counts": dict(Counter(row["permit_overlay_class"] for row in overlay_rows)),
         "duplicate_source_key_count": duplicate_keys,
+        "official_dwr_history_2017_2021": {
+            "source": str(DWR_HISTORY_2017_2021.relative_to(ROOT)),
+            "rows_by_year": dict(sorted(history_repair_year_counts.items())),
+            "metric_nonblank_by_year": history_repair_metric_counts,
+        },
+        "official_harvest_age": {
+            "source": str(AGE_DATABASE.relative_to(ROOT)),
+            "normalized_long": age_long_summary,
+            "best_by_hunt_identity": age_best_summary,
+        },
+        "current_2025_dashboard": current_2025_summary,
         "outputs": {
             "long_csv": str(long_path.relative_to(ROOT)),
             "best_by_hunt_code_csv": str(best_path.relative_to(ROOT)),
             "source_audit_csv": str(source_audit_path.relative_to(ROOT)),
+            "current_2025_dashboard_csv": str(current_2025_path.relative_to(ROOT)),
             "processed_long_csv": "processed_data/harvest_results_all_years_long.csv",
             "processed_best_by_hunt_code_csv": "processed_data/harvest_quality_features_all_years_by_hunt_code.csv",
             "data_model_long_csv": "data_model/harvest_quality/harvest_results_all_years_long.csv",
@@ -511,6 +1044,10 @@ def main() -> int:
             "Harvest permits remain harvest-report context and are not current-year draw allotments.",
             "Harvest rows are marked do_not_use_for_permit_quota=True and do_not_use_directly_for_p_draw=True by default.",
             "Reported hunt year drives model target year as reported_hunt_year + 1 when model_target_year is missing.",
+            "Current-row reconciliation requires exact normalized hunt_code plus compatible hunt_name and species; boundary_id is never a match key.",
+            "The 2017-2021 repair uses official DWR harvest PDFs/package rows and remains feature-only truth, never permit or direct p_draw truth.",
+            "Annual harvest age and DWR-reported three-year harvest age remain separate fields with separate age provenance.",
+            "DWR Hunt Planner current_age_3yr_average is not a harvest-report age field and is not populated by this builder.",
         ],
     }
     (OUT_TRUTH / "harvest_results_all_years_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")

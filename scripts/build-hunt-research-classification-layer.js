@@ -80,7 +80,7 @@ const outputFiles = {
   newCsv: 'processed_data/research_page/new_hunts_report.csv',
   newJson: 'processed_data/research_page/new_hunts_report.json',
   demographicsJson: 'processed_data/research_page/demographic_hunt_recommendations.json',
-  managementContextJson: 'processed_data/management_context/hunt_management_objective_context.json',
+  managementContextProjectionJson: 'processed_data/research_page/hunt_management_objective_context_projection.json',
   auditJson: 'processed_data/audits/hunt_classification_layer_audit.json',
 };
 
@@ -125,15 +125,18 @@ const predictiveColumns = [
 const harvestColumns = [
   'reported_hunt_year', 'model_target_year', 'hunt_code', 'species', 'sex_type',
   'hunt_name', 'hunt_type', 'weapon', 'permits', 'hunters_afield', 'harvest_total',
-  'percent_success', 'average_days', 'average_age', 'source_file', 'source_page',
+  'percent_success', 'average_days', 'hunter_satisfaction', 'average_age',
+  'average_age_3yr_reported', 'source_file', 'source_page',
   'source_status', 'data_quality_flags', 'recommended_use',
 ];
 
 const ageColumns = [
   'hunt_code', 'current_hunt_code', 'hunt_name', 'species', 'reported_hunt_year',
   'model_target_year', 'unit_name', 'boundary_id', 'average_harvest_age',
-  'age_data_available', 'percent_5plus', 'percent_mature_or_5_plus', 'age_metric_type',
-  'source_file', 'source_page', 'source_table_title', 'review_status', 'review_reason',
+  'average_harvest_age_3yr', 'age_data_available', 'percent_5plus',
+  'percent_mature_or_5_plus', 'age_metric_type', 'source_file', 'source_page',
+  'source_table_title', 'age_source_file', 'age_source_page', 'age_source_table_title',
+  'review_status', 'review_reason', 'crosswalk_confidence', 'age_mapping_status',
   'quality_score_eligible', 'trophy_age_score_eligible',
 ];
 
@@ -342,6 +345,54 @@ function unitSpeciesKey(unitName, species) {
   return unit && sp ? `${unit}|${sp}` : '';
 }
 
+function speciesFamily(value) {
+  const species = lower(value);
+  if (species.includes('desert') && species.includes('bighorn')) return 'desert bighorn sheep';
+  if (species.includes('rocky') && species.includes('bighorn')) return 'rocky mountain bighorn sheep';
+  for (const [token, family] of [
+    ['bighorn sheep', 'bighorn sheep'],
+    ['mountain goat', 'mountain goat'],
+    ['pronghorn', 'pronghorn'],
+    ['moose', 'moose'],
+    ['elk', 'elk'],
+    ['deer', 'deer'],
+    ['bison', 'bison'],
+    ['bear', 'black bear'],
+    ['cougar', 'cougar'],
+    ['turkey', 'turkey'],
+  ]) {
+    if (species.includes(token)) return family;
+  }
+  return species;
+}
+
+function huntNamesCompatible(left, right) {
+  const a = normalizeUnitKey(left);
+  const b = normalizeUnitKey(right);
+  if (!a || !b) return false;
+  if (a === b) return true;
+  const aTokens = new Set(a.split(' ').filter(Boolean));
+  const bTokens = new Set(b.split(' ').filter(Boolean));
+  const smaller = aTokens.size <= bTokens.size ? aTokens : bTokens;
+  const larger = aTokens.size <= bTokens.size ? bTokens : aTokens;
+  return [...smaller].every((token) => larger.has(token));
+}
+
+function latestCompatibleHarvest(target, lookup) {
+  const candidates = lookup.get(code(target)) || [];
+  const compatible = candidates.filter((row) => (
+    speciesFamily(row.species) === speciesFamily(target.species)
+    && huntNamesCompatible(row.hunt_name || row.unit_name, target.hunt_name || target.unit_name)
+  ));
+  return compatible.sort((a, b) => b.year - a.year)[0] || {};
+}
+
+function latestCompatibleAge(target, lookup) {
+  const candidates = lookup.get(code(target)) || [];
+  const compatible = candidates.filter((row) => speciesFamily(row.species) === speciesFamily(target.species));
+  return compatible.sort((a, b) => b.year - a.year)[0] || {};
+}
+
 function chooseText(target, field, value) {
   if (!hasValue(target[field]) && hasValue(value)) target[field] = text(value);
 }
@@ -407,6 +458,13 @@ function buildSourceBadges(row) {
 
 function managementStatus(row, mgmt) {
   if (!mgmt) return { status: '', observed: null, reason: '' };
+  if (hasValue(mgmt.management_objective_status)) {
+    return {
+      status: text(mgmt.management_objective_status),
+      observed: num(mgmt.management_current_numeric),
+      reason: text(mgmt.management_objective_note),
+    };
+  }
   const min = num(mgmt.management_objective_min);
   const max = num(mgmt.management_objective_max);
   const speciesName = lower(row.species || mgmt.species);
@@ -438,72 +496,6 @@ function managementDirectionLabel(status) {
   if (s === 'QUALITY_BELOW_OBJECTIVE') return 'Below Objective';
   if (s === 'OBJECTIVE_KNOWN_NO_OBSERVED_DATA') return 'Objective Known / Observed Evidence Limited';
   return 'Objective Context Loaded';
-}
-
-function buildSyntheticManagementRows(databaseRows) {
-  const byCode = new Map();
-  databaseRows.forEach((row) => {
-    const c = upper(row.hunt_code);
-    if (!c || byCode.has(c)) return;
-    const species = lower(row.species);
-    const huntType = lower(row.hunt_type);
-    const huntClass = lower(row.hunt_class);
-    let synthetic = null;
-
-    if (species.includes('elk')) {
-      if (huntType.includes('limited entry') || huntClass.includes('limited entry') || huntClass.includes('premium')) {
-        synthetic = {
-          hunt_code: c,
-          species: row.species,
-          management_objective_type: 'Elk LE Age Objective',
-          management_objective_min: 5.5,
-          management_objective_max: 7.0,
-          objective_unit: 'years avg harvested bull age',
-          objective_status_rule: 'Compare observed average harvested age against statewide LE objective band.',
-          notes: 'Context from statewide elk plan; does not change permits or draw odds.',
-        };
-      }
-    } else if (species.includes('deer')) {
-      if (huntType.includes('premium limited entry') || huntClass.includes('premium')) {
-        synthetic = {
-          hunt_code: c,
-          species: row.species,
-          management_objective_type: 'Mule Deer Premium LE Expectation',
-          management_objective_min: 40,
-          management_objective_max: 45,
-          objective_unit: 'bucks per 100 does objective band',
-          age_structure_threshold_min: 40,
-          objective_status_rule: 'Use verified percent age 5+ as observed evidence when available.',
-          notes: 'Premium LE quality context from statewide mule deer plan; not a direct odds input.',
-        };
-      } else if (huntType.includes('limited entry')) {
-        synthetic = {
-          hunt_code: c,
-          species: row.species,
-          management_objective_type: 'Mule Deer LE Objective',
-          management_objective_min: 25,
-          management_objective_max: 30,
-          objective_unit: 'bucks per 100 does objective band',
-          objective_status_rule: 'Observed buck:doe evidence is external; keep as context-only benchmark.',
-          notes: 'LE management objective context from statewide mule deer plan.',
-        };
-      } else if (huntType.includes('general')) {
-        synthetic = {
-          hunt_code: c,
-          species: row.species,
-          management_objective_type: 'Mule Deer General Objective',
-          management_objective_min: 15,
-          management_objective_max: 20,
-          objective_unit: 'bucks per 100 does objective band',
-          objective_status_rule: 'Use as management context only unless observed buck:doe evidence is loaded.',
-          notes: 'General-season objective context from statewide mule deer plan.',
-        };
-      }
-    }
-
-    if (synthetic) byCode.set(c, synthetic);
-  });
-  return [...byCode.values()];
 }
 
 function permitDirectionWatch(row, yearFlag) {
@@ -551,6 +543,7 @@ async function build() {
     database: await sha256(resolved.database),
     predictive: await sha256(resolved.predictive),
     ladder: await sha256(resolved.ladder),
+    management: await sha256(resolved.management),
   };
 
   const syncMatrix = await readJson(resolved.syncMatrix);
@@ -569,8 +562,10 @@ async function build() {
     readCsv(resolved.database),
   ]);
 
-  const syntheticManagementRows = managementRows.length ? [] : buildSyntheticManagementRows(database);
-  const managementRowsEffective = managementRows.length ? managementRows : syntheticManagementRows;
+  if (!managementRows.length) {
+    throw new Error('Verified DWR management context is required; synthetic statewide objective fallback is prohibited.');
+  }
+  const managementRowsEffective = managementRows;
   const managementByCode = new Map(managementRowsEffective.map((row) => [upper(row.hunt_code), row]));
   const masterByCode = new Map();
   master.forEach((row) => {
@@ -727,17 +722,22 @@ async function build() {
     const year = num(row.reported_hunt_year) || 0;
     const harvestAverageAge = num(row.average_age || row.average_harvest_age);
     if (c) {
-      const existing = harvestByCode.get(c);
-      if (!existing || year >= existing.year) {
-        harvestByCode.set(c, {
-          year,
-          harvest_success_pct: pct(row.percent_success),
-          average_days_hunted: num(row.average_days),
-          harvest_average_age: harvestAverageAge,
-          source_file: text(row.source_file),
-          source_page: text(row.source_page),
-        });
-      }
+      const candidates = harvestByCode.get(c) || [];
+      candidates.push({
+        year,
+        hunt_name: text(row.hunt_name || row.unit_name),
+        species: text(row.species),
+        harvest_success_pct: pct(row.percent_success),
+        average_days_hunted: num(row.average_days),
+        hunter_satisfaction: num(row.hunter_satisfaction),
+        harvest_total: num(row.harvest_total),
+        hunters_afield: num(row.hunters_afield),
+        harvest_average_age: harvestAverageAge,
+        average_harvest_age_3yr_reported: num(row.average_age_3yr_reported),
+        source_file: text(row.source_file),
+        source_page: text(row.source_page),
+      });
+      harvestByCode.set(c, candidates);
     }
     const key = unitSpeciesKey(row.hunt_name || row.unit_name, row.species);
     if (key && harvestAverageAge != null && harvestAverageAge > 0) {
@@ -777,34 +777,38 @@ async function build() {
     const c = code(row);
     if (!c) return;
     const year = num(row.reported_hunt_year) || 0;
-    const existing = ageByCode.get(c);
     const avgAge = num(row.average_harvest_age);
     const percent5 = num(row.percent_5plus || row.percent_mature_or_5_plus);
-    if (!existing || year >= existing.year) {
-      ageByCode.set(c, {
-        year,
-        average_harvest_age: avgAge != null && avgAge > 0 ? avgAge : null,
-        percent_5plus: percent5 != null && percent5 > 0 ? percent5 : null,
-        source_file: text(row.source_file),
-        source_page: text(row.source_page),
-        source_table_title: text(row.source_table_title),
-        review_status: text(row.review_status),
-      });
-    }
+    const candidates = ageByCode.get(c) || [];
+    candidates.push({
+      year,
+      species: text(row.species),
+      average_harvest_age: avgAge != null && avgAge > 0 ? avgAge : null,
+      average_harvest_age_3yr_reported: num(row.average_harvest_age_3yr),
+      percent_5plus: percent5 != null && percent5 > 0 ? percent5 : null,
+      source_file: text(row.source_file || row.age_source_file),
+      source_page: text(row.source_page || row.age_source_page),
+      source_table_title: text(row.source_table_title || row.age_source_table_title),
+      review_status: text(row.review_status || row.age_mapping_status || row.crosswalk_confidence),
+    });
+    ageByCode.set(c, candidates);
   });
 
   const rows = [...base.values()].sort((a, b) => `${a.hunt_code}|${a.residency}`.localeCompare(`${b.hunt_code}|${b.residency}`));
   rows.forEach((row) => {
-    const h = harvestByCode.get(row.hunt_code) || {};
+    const h = latestCompatibleHarvest(row, harvestByCode);
     if (h.harvest_success_pct != null) row.harvest_success_pct = round(h.harvest_success_pct);
     if (h.average_days_hunted != null) row.average_days_hunted = round(h.average_days_hunted);
+    if (h.hunter_satisfaction != null) row.hunter_satisfaction = round(h.hunter_satisfaction);
+    if (h.harvest_total != null) row.harvest_total = round(h.harvest_total);
+    if (h.hunters_afield != null) row.hunters_afield = round(h.hunters_afield);
     if ((row.average_harvest_age == null || row.average_harvest_age === '') && h.harvest_average_age != null && h.harvest_average_age > 0) {
       row.average_harvest_age = round(h.harvest_average_age);
       row._ageSource = resolved.harvest;
     }
     if (hasValue(h.source_file)) row.harvest_source_file = h.source_file;
     if (hasValue(h.source_page)) row.harvest_source_page = h.source_page;
-    const a = ageByCode.get(row.hunt_code) || {};
+    const a = latestCompatibleAge(row, ageByCode);
     if (a.average_harvest_age != null) {
       row.average_harvest_age = round(a.average_harvest_age);
       row._ageSource = resolved.age;
@@ -821,12 +825,17 @@ async function build() {
       }
     }
     if (a.percent_5plus != null) row.percent_5plus = round(a.percent_5plus);
+    const reported3yr = a.average_harvest_age_3yr_reported ?? h.average_harvest_age_3yr_reported;
+    if (reported3yr != null && reported3yr > 0) row.average_harvest_age_3yr_reported = round(reported3yr);
     if (hasValue(a.source_file)) row.age_source_file = a.source_file;
     if (hasValue(a.source_page)) row.age_source_page = a.source_page;
     if (hasValue(a.source_table_title)) row.age_source_table_title = a.source_table_title;
     if (hasValue(a.review_status)) row.age_review_status = a.review_status;
     row.average_harvest_age = num(row.average_harvest_age) > 0 ? round(num(row.average_harvest_age)) : '';
     row.current_age_3yr_average = num(row.current_age_3yr_average) > 0 ? round(num(row.current_age_3yr_average)) : '';
+    row.average_harvest_age_3yr_reported = num(row.average_harvest_age_3yr_reported) > 0
+      ? round(num(row.average_harvest_age_3yr_reported))
+      : '';
     row.percent_5plus = num(row.percent_5plus) > 0 ? round(num(row.percent_5plus)) : '';
     row.modeled_draw_probability = row._probabilities.length ? round(median(row._probabilities)) : '';
     row.current_points_context_available = row._pointRows > 0;
@@ -890,7 +899,8 @@ async function build() {
       row.management_objective_type = text(mgmt.management_objective_type);
       const min = text(mgmt.management_objective_min);
       const max = text(mgmt.management_objective_max);
-      row.management_objective_range = min || max ? `${min}${max ? `-${max}` : ''} ${text(mgmt.objective_unit)}`.trim() : text(mgmt.objective_unit);
+      row.management_objective_range = text(mgmt.management_objective_target)
+        || (min || max ? `${min}${max ? `-${max}` : ''} ${text(mgmt.objective_unit)}`.trim() : text(mgmt.objective_unit));
       const status = managementStatus(row, mgmt);
       row.management_objective_status = status.status;
       row.management_objective_note = status.reason;
@@ -992,7 +1002,8 @@ async function build() {
     'hunt_code', 'hunt_name', 'species', 'residency', 'draw_family', 'hunt_class', 'weapon',
     'hunt_type', 'draw_pool', 'unit_name', 'boundary_id', 'current_points_context_available', 'modeled_draw_probability',
     'guaranteed_line_points', 'point_creep_1yr', 'harvest_success_pct',
-    'average_days_hunted', 'average_harvest_age', 'current_age_3yr_average', 'percent_5plus',
+    'average_days_hunted', 'hunter_satisfaction', 'harvest_total', 'hunters_afield',
+    'average_harvest_age', 'average_harvest_age_3yr_reported', 'current_age_3yr_average', 'percent_5plus',
     'management_objective_type', 'management_objective_range', 'management_objective_status',
     'management_objective_note', 'management_direction', 'permit_direction_watch',
     'permits_2026_res', 'permits_2026_nr', 'permits_2026_total',
@@ -1010,6 +1021,7 @@ async function build() {
     managementSeen.add(row.hunt_code);
     const mg = managementByCode.get(row.hunt_code) || {};
     managementContextRows.push({
+      ...mg,
       hunt_code: row.hunt_code,
       species: row.species,
       hunt_name: row.hunt_name,
@@ -1023,7 +1035,7 @@ async function build() {
       management_direction: row.management_direction || '',
       notes: row.management_objective_note || mg.notes || '',
       permit_direction_watch: row.permit_direction_watch || '',
-      source_class: managementRows.length ? 'reviewed_management_context_file' : 'synthetic_plan_context_from_database',
+      source_class: 'verified_dwr_management_context_file',
       context_only: true,
     });
   }
@@ -1062,11 +1074,14 @@ async function build() {
     average_days_hunted_mapped_as_age_suspect_count: rows.filter((row) => row.average_harvest_age !== '' && row.average_days_hunted !== '' && text(row.average_harvest_age) === text(row.average_days_hunted) && row._ageSource !== resolved.age).length,
     average_days_hunted_same_as_verified_age_count: rows.filter((row) => row.average_harvest_age !== '' && row.average_days_hunted !== '' && text(row.average_harvest_age) === text(row.average_days_hunted) && row._ageSource === resolved.age).length,
     blocked_rows: cleanRows.filter((row) => row.data_confidence === 'BLOCKED').length,
+    output_average_harvest_age_3yr_reported_count: cleanRows.filter((row) => hasValue(row.average_harvest_age_3yr_reported)).length,
+    output_hunter_satisfaction_count: cleanRows.filter((row) => hasValue(row.hunter_satisfaction)).length,
   };
   const protectedAfter = {
     database: await sha256(resolved.database),
     predictive: await sha256(resolved.predictive),
     ladder: await sha256(resolved.ladder),
+    management: await sha256(resolved.management),
   };
 
   await writeJson(outputFiles.outlookJson, cleanRows);
@@ -1082,7 +1097,7 @@ async function build() {
     purpose: 'Visitor-friendly hunt classification and persona recommendation layer. Display-only; does not modify draw odds, p_draw, permits, or quotas.',
     persona_groups: demographics,
   });
-  await writeJson(outputFiles.managementContextJson, managementContextRows);
+  await writeJson(outputFiles.managementContextProjectionJson, managementContextRows);
   await writeJson(outputFiles.auditJson, {
     generated_at: new Date().toISOString(),
     inputs: {
@@ -1090,7 +1105,7 @@ async function build() {
       readiness_engines: readiness.engines ? readiness.engines.length : 0,
       management_context_rows: managementRows.length,
       management_context_rows_effective: managementRowsEffective.length,
-      management_context_source: managementRows.length ? 'file' : 'synthetic_from_database_and_plan_rules',
+      management_context_source: 'verified_dwr_file',
       elk_plan_present: hasElkPlan,
       mule_deer_plan_present: hasDeerPlan,
       master_rows: master.length,
@@ -1119,7 +1134,7 @@ async function build() {
       sleeper_hunt_rows: sleeperRows.length,
       new_hunt_rows: newRows.length,
       demographic_groups: personaTags.length,
-      management_context_output_rows: managementContextRows.length,
+      management_context_projection_rows: managementContextRows.length,
     },
     tag_counts: tagCounts,
     demographic_counts: Object.fromEntries(Object.entries(demographics).map(([tag, group]) => [tag, group.count])),
@@ -1128,12 +1143,15 @@ async function build() {
       database: protectedBefore.database === protectedAfter.database,
       predictive: protectedBefore.predictive === protectedAfter.predictive,
       ladder: protectedBefore.ladder === protectedAfter.ladder,
+      management: protectedBefore.management === protectedAfter.management,
     },
     guardrails: [
       'No DATABASE.csv truth values modified.',
       'No prediction formulas, point ladder math, p_draw, permits, or quotas modified.',
       'Management objectives are benchmark/context only and never overwrite observed age or draw probability.',
       'Mule deer percent_5plus is kept separate from average_harvest_age.',
+      'DWR-reported three-year harvest age is kept separate from Hunt Planner current_age_3yr_average.',
+      'Harvest mapping requires hunt code plus compatible hunt name and species; boundary_id is never used.',
     ],
   });
 
@@ -1147,6 +1165,7 @@ async function build() {
       database: protectedBefore.database === protectedAfter.database,
       predictive: protectedBefore.predictive === protectedAfter.predictive,
       ladder: protectedBefore.ladder === protectedAfter.ladder,
+      management: protectedBefore.management === protectedAfter.management,
     },
   }, null, 2));
 }

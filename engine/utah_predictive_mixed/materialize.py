@@ -13,6 +13,7 @@ from engine.utah_predictive_mixed.mixed_probability import blend_probability, fo
 from engine.utah_predictive_mixed.models import BlendWeights
 from engine.utah_predictive_mixed.prior_year import prior_year_baseline, to_float
 from engine.utah_predictive_mixed.quota import is_no_published_permit_authority, quota_adjusted_probability, quota_for_row
+from engine.utah.quality.harvest_identity import build_identity_index, resolve_identity_match
 from engine.utah_predictive_mixed.rollover import rollover_probability_from_pools
 
 
@@ -438,15 +439,20 @@ def materialize(
     apply_database_permit_authority(ml_rows, permit_authority)
     apply_database_permit_authority(successor_rows, permit_authority)
     apply_database_permit_authority(ladder_rows, permit_authority)
-    harvest_rows = {row["hunt_code"]: row for row in read_rows(harvest_path) if row.get("hunt_code")}
+    harvest_rows = build_identity_index(row for row in read_rows(harvest_path) if row.get("hunt_code"))
     harvest_audit = read_json(harvest_audit_path)
     prior_lookup = build_prior_lookup(ladder_rows, draw_rows)
-    materialized = [mixed_row(row, prior_lookup.get(row_key(row)), harvest_rows.get(row.get("hunt_code", "")), weights) for row in ml_rows]
+
+    def harvest_for(row: dict[str, str]) -> dict[str, str] | None:
+        resolution = resolve_identity_match(row, harvest_rows.get(row.get("hunt_code", ""), []))
+        return dict(resolution.row) if resolution.row is not None else None
+
+    materialized = [mixed_row(row, prior_lookup.get(row_key(row)), harvest_for(row), weights) for row in ml_rows]
     successor_materialized = [
-        mixed_row(row, prior_lookup.get(row_key(row)), harvest_rows.get(row.get("hunt_code", "")), weights) for row in successor_rows
+        mixed_row(row, prior_lookup.get(row_key(row)), harvest_for(row), weights) for row in successor_rows
     ]
     ladder_materialized = [
-        mixed_row(row, prior_lookup.get(row_key(row), row), harvest_rows.get(row.get("hunt_code", "")), weights) for row in ladder_rows
+        mixed_row(row, prior_lookup.get(row_key(row), row), harvest_for(row), weights) for row in ladder_rows
     ]
 
     fields = list(ml_rows[0].keys()) + [field for field in REQUIRED_FIELDS if field not in ml_rows[0]]

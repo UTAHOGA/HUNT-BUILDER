@@ -20,6 +20,7 @@ import sys
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Iterable, Mapping
 
@@ -27,9 +28,16 @@ REPO = Path(__file__).resolve().parents[2]
 if str(REPO) not in sys.path:
     sys.path.insert(0, str(REPO))
 
+from engine.utah_draw_predictive.bear import (
+    LIMITED_ENTRY_BEAR_HUNT,
+    RESTRICTED_BEAR_PURSUIT,
+    classify_bear_subtype,
+)
 from engine.utah_draw_predictive.classifier import classify_draw_system_type
 
 DEFAULT_HUNT_CODE_CROSSWALK_DIR = REPO / "data_truth" / "crosswalk_truth" / "normalized"
+CANONICAL_YEARLY_DRAW_RESULTS_DIR = REPO / "data_truth" / "draw_results_truth" / "normalized" / "canonical_yearly"
+BEAR_PDF_RESIDENCY_LADDER = REPO / "data_truth" / "draw_results_truth" / "validation" / "black_bear_2018_2022_pdf_residency_ladders.csv"
 DEFAULT_HUNT_CODE_CROSSWALK_FILES = (
     DEFAULT_HUNT_CODE_CROSSWALK_DIR / "current_to_historical_hunt_code_crosswalk_2026.csv",
     DEFAULT_HUNT_CODE_CROSSWALK_DIR / "black_bear_BR_2024_2025_2026_crosswalk.csv",
@@ -765,6 +773,83 @@ def structural_draw_design(family: str, raw_design: Any) -> str:
     return by_family.get(family, norm_draw_design(raw_design))
 
 
+@lru_cache(maxsize=None)
+def canonical_bear_subtypes_for_draw_year(draw_year: str) -> dict[str, str]:
+    """Index one source draw year's approved canonical Bear classifications."""
+
+    candidates: dict[str, set[str]] = defaultdict(set)
+    for path in sorted(CANONICAL_YEARLY_DRAW_RESULTS_DIR.glob(f"draw_results_{draw_year}_for_*_canonical_yearly_draw_results.csv")):
+        _header, rows = read_csv(path)
+        for row in rows:
+            code = clean(row.get("hunt_code")).upper()
+            subtype = next(
+                (
+                    clean(row.get(field))
+                    for field in ("draw_design", "hunt_draw_class", "draw_system_type", "hunt_class")
+                    if clean(row.get(field)) in {LIMITED_ENTRY_BEAR_HUNT, RESTRICTED_BEAR_PURSUIT}
+                ),
+                "",
+            )
+            if code.startswith("BR") and clean(row.get("actual_draw_year")) == draw_year and subtype:
+                candidates[code].add(subtype)
+    return {
+        key: next(iter(values))
+        for key, values in candidates.items()
+        if len(values) == 1
+    }
+
+
+@lru_cache(maxsize=1)
+def retained_bear_pdf_subtypes_by_draw_year() -> dict[tuple[str, str], str]:
+    """Index the retained, hash-linked Bear PDF residency-ladder classifications."""
+
+    if not BEAR_PDF_RESIDENCY_LADDER.exists():
+        return {}
+    _header, rows = read_csv(BEAR_PDF_RESIDENCY_LADDER)
+    source_classification_to_subtype = {
+        "TRUE_BEAR_BONUS_DRAW": LIMITED_ENTRY_BEAR_HUNT,
+        "BEAR_PURSUIT_BONUS_DRAW": RESTRICTED_BEAR_PURSUIT,
+    }
+    candidates: dict[tuple[str, str], set[str]] = defaultdict(set)
+    for row in rows:
+        subtype = source_classification_to_subtype.get(clean(row.get("source_classification")), "")
+        draw_year = clean(row.get("reported_draw_year"))
+        code = clean(row.get("hunt_code")).upper()
+        if draw_year and code and subtype:
+            candidates[(draw_year, code)].add(subtype)
+    return {key: next(iter(values)) for key, values in candidates.items() if len(values) == 1}
+
+
+def prediction_bear_subtype(row: Mapping[str, Any], draw_design_key: str) -> tuple[str, str]:
+    """Return a source-backed Bear subtype without reading target-year truth.
+
+    New forecasts already carry the subtype. Older frozen forecasts predate
+    that output field, but their source-year code can be joined to the
+    approved yearly canonical classification. When that exact source-year
+    mapping is absent, the forecast's original source metadata may be checked
+    by the established official Bear classifier. Neither route reads a target
+    ladder. A result outside the two scoreable Bear programs stays explicit.
+    """
+
+    if draw_design_key != "BEAR_DRAW":
+        return "", "NOT_BEAR_DRAW"
+    emitted = clean(row.get("bear_draw_subtype"))
+    if emitted in {LIMITED_ENTRY_BEAR_HUNT, RESTRICTED_BEAR_PURSUIT}:
+        return emitted, "FORECAST_EMITTED"
+    source_year = clean(row.get("source_year"))
+    source_code = clean(row.get("hunt_code")).upper()
+    canonical = canonical_bear_subtypes_for_draw_year(source_year).get(source_code, "")
+    if canonical:
+        return canonical, "SOURCE_YEAR_CANONICAL_TRUTH"
+    retained_pdf = retained_bear_pdf_subtypes_by_draw_year().get((source_year, source_code), "")
+    if retained_pdf:
+        return retained_pdf, "SOURCE_YEAR_RETAINED_OFFICIAL_BEAR_PDF"
+    classified = classify_bear_subtype(row)
+    if classified in {LIMITED_ENTRY_BEAR_HUNT, RESTRICTED_BEAR_PURSUIT}:
+        return classified, "SOURCE_CLASSIFIED_FROM_FROZEN_FORECAST_METADATA"
+    return "", "UNCLASSIFIED_FROM_FROZEN_FORECAST_METADATA"
+
+
 def structural_draw_pool(family: str, raw_pool: Any) -> str:
     """Return the stable probability-pool label used for historical joins."""
     by_family = {
@@ -1107,6 +1192,8 @@ ROW_FIELDS = [
     "residency",
     "points",
     "draw_design_key",
+    "bear_draw_subtype",
+    "bear_draw_subtype_source",
     "draw_pool_key",
     "draw_pool_predicted",
     "predicted_probability",
@@ -1180,6 +1267,8 @@ EXTRA_PREDICTION_FIELDS = [
     "residency",
     "points",
     "family",
+    "bear_draw_subtype",
+    "bear_draw_subtype_source",
     "hunt_name_predicted",
     "predicted_probability",
     "prediction_probability_field",
@@ -1688,6 +1777,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         # canonical equivalent (`max_weighted_split`) even though the engine
         # and source truth agreed on hunt, lane, and point rung.
         draw_design_key, draw_pool_key, hunt_code, residency, points, family = prediction_alignment_key(prediction)
+        bear_draw_subtype, bear_draw_subtype_source = prediction_bear_subtype(prediction, draw_design_key)
         hunt_code_resolution = resolve_hunt_code(prediction.get("hunt_code"))
         ladder = (
             ladders.get((draw_design_key, draw_pool_key, hunt_code, residency))
@@ -1724,6 +1814,8 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
                 "residency": residency,
                 "points": points,
                 "draw_design_key": draw_design_key,
+                "bear_draw_subtype": bear_draw_subtype,
+                "bear_draw_subtype_source": bear_draw_subtype_source,
                 "draw_pool_key": draw_pool_key,
                 "draw_pool_predicted": clean(prediction.get("draw_pool")),
                 "predicted_probability": "" if predicted_probability is None else f"{predicted_probability:.10f}",

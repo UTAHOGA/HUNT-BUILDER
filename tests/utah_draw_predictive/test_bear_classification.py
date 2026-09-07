@@ -4,6 +4,7 @@ from engine.utah_draw_predictive.bear import (
     BEAR_HISTORY_CODE_ALIASES_2026,
     LIMITED_ENTRY_BEAR_HUNT,
     RESTRICTED_BEAR_PURSUIT,
+    _canonical_official_bear_residency_lanes,
     _is_proven_bonus_bear_truth_row,
     classify_bear_subtype,
     is_supported_bear_bonus_row,
@@ -77,6 +78,7 @@ def test_2026_lasal_dolores_bear_split_and_successor_codes_are_locked() -> None:
         "BR7008": "BR7022",
         "BR7108": "BR7127",
         "BR7208": "BR7239",
+        "BR7307": "BR7326",
     }
 
     lasal = {
@@ -119,3 +121,33 @@ def test_retained_historical_bear_pdf_identity_restores_only_audited_lane_rows()
     unproven_copy = dict(legacy_lane)
     unproven_copy.pop("bear_source_identity_source")
     assert _is_proven_bonus_bear_truth_row(unproven_copy) is False
+
+
+def test_promoted_canonical_bear_row_expands_only_verified_dwr_residency_lanes() -> None:
+    canonical = {
+        "hunt_code": "BR7000",
+        "species": "Black Bear",
+        "hunt_type": "Limited Entry",
+        "metric_scope": "total",
+        "residency": "",
+        "qa_status": "OFFICIAL_PDF_RESIDENCY_LANES_CANONICAL",
+        "bear_source_classification": "TRUE_BEAR_BONUS_DRAW",
+        "bear_source_identity_source": "CANONICAL_OFFICIAL_BLACK_BEAR_PDF",
+        "bear_source_identity_file": "pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/official_dwr_archive/black_bear/20_drawing_odds.pdf",
+        "resident_eligible_applicants": "7",
+        "resident_bonus_permits": "2",
+        "resident_regular_permits": "1",
+        "resident_total_permits": "3",
+        "nonresident_eligible_applicants": "2",
+        "nonresident_bonus_permits": "0",
+        "nonresident_regular_permits": "1",
+        "nonresident_total_permits": "1",
+    }
+
+    lanes = _canonical_official_bear_residency_lanes(canonical)
+
+    assert [(row["residency"], row["eligible_applicants"], row["total_permits"]) for row in lanes] == [
+        ("Resident", "7", "3"),
+        ("Nonresident", "2", "1"),
+    ]
+    assert _canonical_official_bear_residency_lanes(dict(canonical, qa_status="SOURCE_TABLE_PARSED")) == []

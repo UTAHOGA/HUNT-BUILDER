@@ -1,0 +1,51 @@
+{
+  "source_url": "https://wildlife.utah.gov/biggame/reports",
+  "dashboard_accessed_date": "2026-09-02",
+  "reported_hunt_year": 2025,
+  "model_target_year": 2026,
+  "baseline_source_file": "2026-03-06-2025-preliminary-bg-harvest.xlsx",
+  "baseline_expected_rows": 1120,
+  "current_expected_rows": 1141,
+  "expected_species_counts": {
+    "Bison": 18,
+    "Deer": 421,
+    "Desert Bighorn Sheep": 25,
+    "Elk": 471,
+    "Moose": 43,
+    "Mountain Goat": 18,
+    "Pronghorn": 124,
+    "Rocky Mountain Bighorn Sheep": 21
+  },
+  "corrections": [
+    {
+      "hunt_code": "PB1000",
+      "hunt_name": "Pronghorn - Statewide Permit",
+      "from_species": "Moose",
+      "to_species": "Pronghorn",
+      "reason": "The official dashboard classifies this statewide permit as Pronghorn."
+    }
+  ],
+  "additions": [
+    {"species":"Deer","hunt_code":"LO1629","hunt_name":"Boulder/Kaiparowits","hunt_type":"General Season Landowner","weapon":"Rifle Restricted","sex_type":"Male Only","permits":"1","hunters_afield":"","harvest":""},
+    {"species":"Deer","hunt_code":"MIT001","hunt_name":"","hunt_type":"Mitigation","weapon":"Hunters/Fee","sex_type":"Female Only","permits":"512","hunters_afield":"474","harvest":"345"},
+    {"species":"Deer","hunt_code":"MIT011","hunt_name":"","hunt_type":"Mitigation","weapon":"Landowners/Free","sex_type":"Female Only","permits":"2800","hunters_afield":"1858","harvest":"957"},
+    {"species":"Elk","hunt_code":"EA1258","hunt_name":"La Sal","hunt_type":"Antlerless","weapon":"Any Legal Weapon","sex_type":"Female Only","permits":"1","hunters_afield":"","harvest":""},
+    {"species":"Elk","hunt_code":"EL3015","hunt_name":"Panguitch Lake","hunt_type":"Limited Entry Landowner","weapon":"Archery","sex_type":"Male Only","permits":"2","hunters_afield":"","harvest":""},
+    {"species":"Elk","hunt_code":"EL3032","hunt_name":"Cache, Meadowville","hunt_type":"Limited Entry Landowner","weapon":"Early Any Legal Weapon","sex_type":"Male Only","permits":"1","hunters_afield":"","harvest":""},
+    {"species":"Elk","hunt_code":"EL3042","hunt_name":"Fillmore, Pahvant","hunt_type":"Limited Entry Landowner","weapon":"Early Any Legal Weapon","sex_type":"Male Only","permits":"1","hunters_afield":"","harvest":""},
+    {"species":"Elk","hunt_code":"EL3067","hunt_name":"San Juan Bull Elk","hunt_type":"Limited Entry Landowner","weapon":"Late Any Legal Weapon","sex_type":"Male Only","permits":"1","hunters_afield":"","harvest":""},
+    {"species":"Elk","hunt_code":"EL3073","hunt_name":"Wasatch Mtns","hunt_type":"Limited Entry Landowner","weapon":"Late Any Legal Weapon","sex_type":"Male Only","permits":"1","hunters_afield":"","harvest":""},
+    {"species":"Elk","hunt_code":"EL3098","hunt_name":"Diamond Mtn","hunt_type":"Limited Entry Landowner","weapon":"Muzzleloader","sex_type":"Male Only","permits":"","hunters_afield":"","harvest":""},
+    {"species":"Elk","hunt_code":"EL3162","hunt_name":"Book Cliffs, Bitter Creek/East","hunt_type":"Limited Entry Landowner","weapon":"Early Any Legal Weapon","sex_type":"Male Only","permits":"1","hunters_afield":"","harvest":""},
+    {"species":"Elk","hunt_code":"EL3163","hunt_name":"Book Cliffs, Bitter Creek/East","hunt_type":"Limited Entry Landowner","weapon":"Late Any Legal Weapon","sex_type":"Male Only","permits":"1","hunters_afield":"","harvest":""},
+    {"species":"Elk","hunt_code":"LO0011","hunt_name":"Diamond Mtn Landowner Association","hunt_type":"Limited Entry Landowner","weapon":"Archery","sex_type":"Male Only","permits":"1","hunters_afield":"","harvest":""},
+    {"species":"Elk","hunt_code":"LO0012","hunt_name":"Diamond Mtn Landowner Association","hunt_type":"Limited Entry Landowner","weapon":"Early Any Legal Weapon","sex_type":"Male Only","permits":"12","hunters_afield":"12","harvest":"12"},
+    {"species":"Elk","hunt_code":"LO0013","hunt_name":"Diamond Mtn Landowner Association","hunt_type":"Limited Entry Landowner","weapon":"Mid Any Legal Weapon","sex_type":"Male Only","permits":"9","hunters_afield":"9","harvest":"9"},
+    {"species":"Elk","hunt_code":"LO0014","hunt_name":"Diamond Mtn Landowner Association","hunt_type":"Limited Entry Landowner","weapon":"Muzzleloader","sex_type":"Male Only","permits":"5","hunters_afield":"5","harvest":"5"},
+    {"species":"Elk","hunt_code":"LO0015","hunt_name":"Diamond Mtn Landowner Association","hunt_type":"Limited Entry Landowner","weapon":"Late Any Legal Weapon","sex_type":"Male Only","permits":"2","hunters_afield":"2","harvest":"0"},
+    {"species":"Elk","hunt_code":"MIT001","hunt_name":"","hunt_type":"Mitigation","weapon":"Hunters/Fee","sex_type":"Female Only","permits":"1695","hunters_afield":"1572","harvest":"639"},
+    {"species":"Elk","hunt_code":"MIT011","hunt_name":"","hunt_type":"Mitigation","weapon":"Landowners/Free","sex_type":"Female Only","permits":"1773","hunters_afield":"1316","harvest":"509"},
+    {"species":"Pronghorn","hunt_code":"MIT001","hunt_name":"","hunt_type":"Mitigation","weapon":"Hunters/Fee","sex_type":"Female Only","permits":"374","hunters_afield":"343","harvest":"191"},
+    {"species":"Pronghorn","hunt_code":"MIT011","hunt_name":"","hunt_type":"Mitigation","weapon":"Landowners/Free","sex_type":"Female Only","permits":"510","hunters_afield":"330","harvest":"143"}
+  ]
+}

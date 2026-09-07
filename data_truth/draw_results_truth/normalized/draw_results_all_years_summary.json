@@ -1,21 +1,21 @@
 {
   "active_database_coverage_by_draw_year": {
-    "2018": 28400,
+    "2018": 30311,
     "2019": 33478,
     "2020": 33069,
     "2021": 33788,
     "2022": 34876,
     "2023": 35834,
     "2024": 43175,
-    "2025": 38120,
-    "2026": 28795
+    "2025": 38084,
+    "2026": 32834
   },
-  "active_database_hunt_codes": 1849,
+  "active_database_hunt_codes": 1848,
   "artifact": "draw_results_all_years_cumulative_truth",
   "blank_hunt_code_rows": 0,
   "blocker_count": 0,
   "blockers": [],
-  "coarse_key_collision_count": 29247,
+  "coarse_key_collision_count": 30692,
   "coarse_key_fields": [
     "hunt_code",
     "year",
@@ -23,17 +23,17 @@
     "residency",
     "points"
   ],
-  "cross_scope_only_collision_count": 29247,
+  "cross_scope_only_collision_count": 30692,
   "crosswalk_current_code_count": 0,
   "crosswalk_current_codes_present_in_draw_rows": 0,
   "database_truth_match_counts": {
-    "": 309562
+    "": 315512
   },
   "draw_method_counts": {
-    "": 309562
+    "": 315512
   },
   "draw_year_counts": {
-    "2018": 28427,
+    "2018": 30338,
     "2019": 33478,
     "2020": 33069,
     "2021": 33788,
@@ -41,7 +41,7 @@
     "2023": 35834,
     "2024": 43175,
     "2025": 38120,
-    "2026": 28795
+    "2026": 32834
   },
   "guardrails": [
     "Draw year is treated as reported_hunt_year_inferred for historical draw-result rows.",
@@ -51,7 +51,7 @@
   ],
   "invalid_year_rows": 0,
   "model_target_year_counts": {
-    "2019": 28427,
+    "2019": 30338,
     "2020": 33478,
     "2021": 33069,
     "2022": 33788,
@@ -59,9 +59,9 @@
     "2024": 35834,
     "2025": 43175,
     "2026": 38120,
-    "2027": 28795
+    "2027": 32834
   },
-  "normalized_long_rows": 309562,
+  "normalized_long_rows": 315512,
   "outputs": {
     "long_csv": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
     "processed_source_audit_csv": "processed_data/draw_results_all_years_source_audit.csv",
@@ -73,7 +73,7 @@
     "summary_md": "data_truth/draw_results_truth/normalized/draw_results_all_years_summary.md"
   },
   "publish_year_counts": {
-    "2018": 28427,
+    "2018": 30338,
     "2019": 33478,
     "2020": 33069,
     "2021": 33788,
@@ -81,10 +81,10 @@
     "2023": 35834,
     "2024": 43175,
     "2025": 38120,
-    "2026": 28795
+    "2026": 32834
   },
   "reported_hunt_year_inferred_counts": {
-    "2018": 28427,
+    "2018": 30338,
     "2019": 33478,
     "2020": 33069,
     "2021": 33788,
@@ -92,14 +92,14 @@
     "2023": 35834,
     "2024": 43175,
     "2025": 38120,
-    "2026": 28795
+    "2026": 32834
   },
   "residency_counts": {
-    "": 281030,
-    "Nonresident": 14262,
-    "Resident": 14270
+    "": 282940,
+    "Nonresident": 15677,
+    "Resident": 16895
   },
-  "source_audit_rows": 195,
+  "source_audit_rows": 205,
   "source_identity_collision_count": 0,
   "source_identity_collision_examples": [],
   "source_identity_collision_group_count": 0,
@@ -117,7 +117,7 @@
   ],
   "source_long_csv": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
   "status_counts": {
-    "": 309562
+    "": 315512
   },
   "unique_draw_years": [
     "2018",
@@ -130,6 +130,6 @@
     "2025",
     "2026"
   ],
-  "unique_hunt_codes_all_years": 1494,
-  "unique_sources": 195
+  "unique_hunt_codes_all_years": 1504,
+  "unique_sources": 205
 }

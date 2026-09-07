@@ -1,0 +1,225 @@
+{
+  "generated_at_utc": "2026-09-02T10:21:07.331967+00:00",
+  "source": "Utah DWR official 2026 UtahDraws online results",
+  "branding": "UOGA-styled local reproduction",
+  "uoga_palette": {
+    "black": "#000000",
+    "brown": "#59270B",
+    "dark_brown": "#3E1C00",
+    "cream": "#F4EBD7",
+    "forest": "#003314",
+    "off_white": "#FBFAF7",
+    "tan": "#9A8669"
+  },
+  "validation": {
+    "source_package_count": 29,
+    "source_row_count": 22018,
+    "source_hunt_code_count": 1077,
+    "package_row_counts": {
+      "2026_antlerless_17_antlerless_deer.csv": 332,
+      "2026_antlerless_18_antlerless_elk.csv": 1986,
+      "2026_antlerless_19_antlerless_moose.csv": 164,
+      "2026_antlerless_20_doe_pronghorn.csv": 458,
+      "2026_antlerless_21_ewe_rocky_mtn_bighorn_sheep.csv": 28,
+      "2026_big_game_05_general_season_buck_deer.csv": 1773,
+      "2026_big_game_06_draw_only_youth_elk.csv": 2,
+      "2026_big_game_08_limited_entry_buck_deer.csv": 3945,
+      "2026_big_game_09_limited_entry_bull_elk.csv": 6456,
+      "2026_big_game_10_limited_entry_buck_pronghorn.csv": 1477,
+      "2026_big_game_11_bull_moose.csv": 927,
+      "2026_big_game_12_bison.csv": 578,
+      "2026_big_game_13_desert_bighorn_sheep.csv": 727,
+      "2026_big_game_14_rocky_mtn_bighorn_sheep.csv": 535,
+      "2026_big_game_15_mountain_goat.csv": 582,
+      "2026_big_game_32_dedicated_hunter_buck_deer.csv": 301,
+      "2026_black_bear_01_black_bear.csv": 1461,
+      "2026_black_bear_16_black_bear_restricted_pursuit.csv": 89,
+      "2026_sportsman_22_sportsman_deer.csv": 1,
+      "2026_sportsman_23_sportsman_elk.csv": 1,
+      "2026_sportsman_24_sportsman_pronghorn.csv": 1,
+      "2026_sportsman_25_sportsman_moose.csv": 1,
+      "2026_sportsman_26_sportsman_bison.csv": 1,
+      "2026_sportsman_27_sportsman_rocky_mtn_bighorn_sheep.csv": 1,
+      "2026_sportsman_28_sportsman_desert_bighorn_sheep.csv": 1,
+      "2026_sportsman_29_sportsman_mountain_goat.csv": 1,
+      "2026_sportsman_30_sportsman_black_bear.csv": 1,
+      "2026_sportsman_31_sportsman_turkey.csv": 1,
+      "2026_turkey_03_turkey.csv": 187
+    },
+    "source_sha256": {
+      "2026_antlerless_17_antlerless_deer.csv": "2aa12ef5222044c7ae4ca3ebd2f011acfed82270d69d2e7fff9d1371cb82caa8",
+      "2026_antlerless_18_antlerless_elk.csv": "59e1ac451438b4c6b309e4f64c09b54ce7fa59ca01e570d9c066fec5b64c57fb",
+      "2026_antlerless_19_antlerless_moose.csv": "87a5eb6359f30244c1bd8e887024a120886275fd1c303db9f08045e56abf6848",
+      "2026_antlerless_20_doe_pronghorn.csv": "81eb47c38d166ea829d2ef20fe8bb0d2d3f66b595bc87c705cdd7a5557fe975b",
+      "2026_antlerless_21_ewe_rocky_mtn_bighorn_sheep.csv": "810a158a9819d780ff0b5cb2b2d2fba9b5204cec0a0fd4c002ed4f7751046eef",
+      "2026_big_game_05_general_season_buck_deer.csv": "ef9f296a4cb1cf1a45765d0302c9d909ccca0b50102fced0617482afa41ed9b9",
+      "2026_big_game_06_draw_only_youth_elk.csv": "81d248daa1fe5b1af8818d6f86d03168605f0ae2ce868aaa4a5e66c8bf499f0d",
+      "2026_big_game_08_limited_entry_buck_deer.csv": "ba958752b0e5d4368b26f393770437b587aac64fc2df9c170cb28048e2cdda90",
+      "2026_big_game_09_limited_entry_bull_elk.csv": "56198d9bcd2380b06418f5558da4cf8a917b57fdb64ec33f0fef9044bbfcc491",
+      "2026_big_game_10_limited_entry_buck_pronghorn.csv": "7fa5b116ca00f94520dfad2aa9ba68eb8ae3aeab0046a524fc007f908ba76e04",
+      "2026_big_game_11_bull_moose.csv": "66c39c099bec6d016282a732ba9646238478591f1a4d021d8f430eae3a3ef70f",
+      "2026_big_game_12_bison.csv": "fbd9fed721b6981577fb20e22136b0a9c0b9e1868ad363b62e9301878f7a6681",
+      "2026_big_game_13_desert_bighorn_sheep.csv": "fb16c3ed2f9a74dcca30a0228d2bf827ef3f744213406ae902445e968abfb6d3",
+      "2026_big_game_14_rocky_mtn_bighorn_sheep.csv": "3e9ddfe844a5079983d4fd82f9302da92daf54fa8d91aec4ca704521ee6c5fa9",
+      "2026_big_game_15_mountain_goat.csv": "baf8f08a694a2e441b39dbb9700aa62ab145e8bb536aebd7e4de8e6bd9c8a22b",
+      "2026_big_game_32_dedicated_hunter_buck_deer.csv": "aed2dbe69dbebab0f83ae373a434abd922e85e7cb73a5b0988a2e8fe0a7d651f",
+      "2026_black_bear_01_black_bear.csv": "25e96bc71406242fdde6662b541659fd667c7ac5f8119d3d757506d96a428b12",
+      "2026_black_bear_16_black_bear_restricted_pursuit.csv": "f35fd262f2dc808e37030ce7c08d142a931963d70e2d93753c719c09f6e2b2f9",
+      "2026_sportsman_22_sportsman_deer.csv": "a80461658ee80c5a53bb7bc466e656541fd194ad3eaaa1968f4f8887f1f39770",
+      "2026_sportsman_23_sportsman_elk.csv": "db5ad5836f338ee286f59cc4bfe019271657eb8e291e88e909e630b685ffb0a2",
+      "2026_sportsman_24_sportsman_pronghorn.csv": "0ab7e1f5814557a2ad818cbabfef52519d3c23f54e6e81f88383b2129ee1e36f",
+      "2026_sportsman_25_sportsman_moose.csv": "302391b699f5f55017b197977af77308e577589e8ff5c604197891cbaf14e3b7",
+      "2026_sportsman_26_sportsman_bison.csv": "140ffe80349268cecf0a7fe30da8eaa0e01d12a50d6bbbfad30c3ee8b8996d8c",
+      "2026_sportsman_27_sportsman_rocky_mtn_bighorn_sheep.csv": "377aeb9c6a8b42d394427966a5bc9250f335544b1fe20dc861d1c96fc4a1f119",
+      "2026_sportsman_28_sportsman_desert_bighorn_sheep.csv": "8a746f752c5762efe80e7690a5156be2f58e2614a73c09460404a56e93391d3b",
+      "2026_sportsman_29_sportsman_mountain_goat.csv": "03e531931c7da4ed6cd2e1c9ef2fe90b41a9b0adad401a73869a8d3482b475d7",
+      "2026_sportsman_30_sportsman_black_bear.csv": "a3e5d62ab3d419fbbc699daf63bcdd0e97d0c2b2636ac30d6cf4a4a5573a7bdc",
+      "2026_sportsman_31_sportsman_turkey.csv": "bdb7dae88d4b235fcef3a7404c50cfd2a591034b7e1142d75834ceb21a81f83c",
+      "2026_turkey_03_turkey.csv": "62f91aaeab5aac27fd2d4a2a698da2b0b3ba301457baa97c281e78e41f6a1f57"
+    },
+    "season_license_year_counts": {
+      "2026": 26991
+    },
+    "season_start_year_counts": {
+      "2026": 26893,
+      "2027": 98
+    },
+    "calendar_2025_season_start_count": 0,
+    "is_historical_data_counts": {
+      "False": 22018
+    },
+    "archived_prior_year_codes_excluded": [
+      "EA1281"
+    ],
+    "archived_prior_year_code_matches": {
+      "EA1281": 0
+    },
+    "year_guard": "Every retained row is IsHistoricalData=False; every populated SeasonWeapons LicenseYear is 2026; no season starts in 2025; EA1281 is absent. Calendar-year 2027 starts remain valid where the official record assigns LicenseYear 2026."
+  },
+  "outputs": {
+    "antlerless": {
+      "path": "output/pdf/2026_utahdraws_uoga_approved_white_cream_complete_20260902/2026_uoga_antlerless_draw_results_corrected.pdf",
+      "source_rows": 2968,
+      "hunt_sections": 432,
+      "pages": 432,
+      "species_art_page_counts": {
+        "bighorn": 2,
+        "deer": 43,
+        "elk": 332,
+        "pronghorn": 49
+      },
+      "missing_species_art_page_counts": {
+        "moose": 6
+      },
+      "sha256": "4820788d00d271c35adf9d12a2f4cf84d97deb8d189f828a715f58e3a7f76c09"
+    },
+    "big_game": {
+      "path": "output/pdf/2026_utahdraws_uoga_approved_white_cream_complete_20260902/2026_uoga_big_game_draw_results.pdf",
+      "source_rows": 17303,
+      "hunt_sections": 861,
+      "pages": 932,
+      "species_art_page_counts": {
+        "bighorn": 45,
+        "bison": 25,
+        "deer": 475,
+        "elk": 237,
+        "mountain_goat": 19,
+        "pronghorn": 88
+      },
+      "missing_species_art_page_counts": {
+        "moose": 43
+      },
+      "sha256": "40b7cdedd54875a7463a35f8ce38530a614507cb0ed10943357e3cfb2575e5ef"
+    },
+    "black_bear": {
+      "path": "output/pdf/2026_utahdraws_uoga_approved_white_cream_complete_20260902/2026_uoga_black_bear_draw_results.pdf",
+      "source_rows": 1550,
+      "hunt_sections": 101,
+      "pages": 101,
+      "species_art_page_counts": {
+        "bear": 101
+      },
+      "missing_species_art_page_counts": {},
+      "sha256": "f71dba252c52e4fdf46ce23c6039992ab0d210e4309038776ea5226d82724ce5"
+    },
+    "turkey": {
+      "path": "output/pdf/2026_utahdraws_uoga_approved_white_cream_complete_20260902/2026_uoga_turkey_draw_results.pdf",
+      "source_rows": 187,
+      "hunt_sections": 16,
+      "pages": 16,
+      "species_art_page_counts": {
+        "turkey": 16
+      },
+      "missing_species_art_page_counts": {},
+      "sha256": "be6cc6d4197c698362c95adc27ba2f953c8841f887a9f89611600965d8e4f6fb"
+    },
+    "sportsman": {
+      "path": "output/pdf/2026_utahdraws_uoga_approved_white_cream_complete_20260902/2026_uoga_sportsman_draw_results.pdf",
+      "source_rows": 10,
+      "hunt_sections": 10,
+      "pages": 10,
+      "species_art_page_counts": {
+        "bear": 1,
+        "bighorn": 2,
+        "bison": 1,
+        "deer": 1,
+        "elk": 1,
+        "mountain_goat": 1,
+        "pronghorn": 1,
+        "turkey": 1
+      },
+      "missing_species_art_page_counts": {
+        "moose": 1
+      },
+      "sha256": "f3605a9686b0a3a21c6ec41de74aefdaac5d806b9bad739d2fef4a8d98ab98f1"
+    }
+  },
+  "species_art": {
+    "available": {
+      "bison": {
+        "source_path": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\assets\\library-icons\\bison.png",
+        "sha256": "2671a9458ac5627a4bd22f13fb9a700cae8de43a980818ecf293644cc16a4395"
+      },
+      "cougar": {
+        "source_path": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\assets\\library-icons\\cougar.png",
+        "sha256": "4023366ea514266cdaf1e9051860c9e34fb70a6dc498f3515124dc78359c4e2d"
+      },
+      "deer": {
+        "source_path": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\assets\\library-icons\\mule_deer.png",
+        "sha256": "55ae05343b64087bdd98bcbd3c0decdbfe8508a428ac2b60ba73c13b64fbb7b4"
+      },
+      "elk": {
+        "source_path": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\assets\\library-icons\\elk.png",
+        "sha256": "c49c952eac8817a3ec4e152ccf7f7f048b53e2ecc0afc53bb3b39240b4c8a383"
+      },
+      "mountain_goat": {
+        "source_path": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\assets\\library-icons\\mountain_goat.png",
+        "sha256": "d6c867011d26c36a1fa2301482a2bec2c6e989c9ee30eea729d4a115d2cfdc51"
+      },
+      "pronghorn": {
+        "source_path": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\assets\\library-icons\\pronghorn.png",
+        "sha256": "fd07618ec1c197eb667a1d173b58fd0f7046b8610baeeef85d7883d929416601"
+      },
+      "turkey": {
+        "source_path": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\assets\\library-icons\\turkey.png",
+        "sha256": "283e45e2b1296956e68451e571b6949a7b149013a3a364239f0971915e477a8c"
+      },
+      "bighorn": {
+        "source_path": "P:\\bighorn sheep vector.png",
+        "sha256": "cf86339d5a4f2c23616b4a35ba1ee649903cd35d1e494e4d3cadde51785b2bb1"
+      },
+      "bear": {
+        "source_path": "C:\\Users\\tyler\\DOWNLOADS\\black bear vector.png",
+        "sha256": "d595dbfe6286456be3b02a56ab9cbf36f394c017c83b30320e71a760c30e9807"
+      }
+    },
+    "not_supplied": [
+      "moose"
+    ],
+    "treatment": "Full-strength transparent art in the white header and an 8.5% warm-brown watermark behind each applicant point table."
+  },
+  "logo": {
+    "source_path": "P:\\pictures\\Imported from B Backup\\UOGA LOGO CIRCLE 2.png",
+    "sha256": "a37b55fb6381e13f50b716381cb4355c02f34fa95e078e6739d9230258295dbf"
+  }
+}

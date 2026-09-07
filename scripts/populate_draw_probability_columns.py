@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CANONICAL_DIR = ROOT / "data_truth" / "draw_results_truth" / "normalized" / "canonical_yearly"
 LONG_FILE = ROOT / "data_truth" / "draw_results_truth" / "normalized" / "draw_results_long.csv"
 AUDIT_DIR = ROOT / "audits" / "database_alignment" / "identity_registry"
+MATERIAL_COUNT_CONFLICT_TOLERANCE = 1e-6
 
 
 def clean(value: object) -> str:
@@ -111,6 +112,34 @@ def derive_probability(row: dict[str, str], prefix: str) -> float | None:
     return None
 
 
+def has_count_backed_probability(row: dict[str, str], prefix: str) -> bool:
+    """Return whether the lane has exact applicant and permit counts.
+
+    This distinguishes a derived exact probability from the DWR report's
+    rounded one-decimal Success Ratio. The source text itself is never altered.
+    """
+    applicants = to_float(row.get(f"{prefix}_eligible_applicants"))
+    permits = permit_count(row, prefix)
+    return applicants is not None and permits is not None and applicants > 0
+
+
+def has_material_count_backed_conflict(row: dict[str, str], prefix: str) -> bool:
+    """Identify a public draw-result probability that conflicts with exact counts.
+
+    Point rows and official hunt-total draw-result rows both carry applicant
+    and permit evidence.  Sportsman odds are reported as hunt totals, so a
+    point-row-only guard would preserve an obviously incorrect derived value
+    even though the authoritative counts are present.
+    """
+    record_type = clean(row.get("record_type") or row.get("row_type")).lower()
+    legacy_point_row = clean(row.get("row_type")).upper() == "POINT_ROW"
+    if ("draw_result" not in record_type and not legacy_point_row) or not has_count_backed_probability(row, prefix):
+        return False
+    exact = derive_probability(row, prefix)
+    existing = to_float(row.get(f"{prefix}_p_draw"))
+    return exact is not None and existing is not None and abs(exact - existing) >= MATERIAL_COUNT_CONFLICT_TOLERANCE
+
+
 def target_path_for_year(year: int) -> Path:
     return CANONICAL_DIR / f"draw_results_{year}_for_{year + 1}_canonical_yearly_draw_results.csv"
 
@@ -122,6 +151,8 @@ def update_rows(
     header: list[str],
     rows: list[dict[str, str]],
     write: bool,
+    correct_count_backed: bool,
+    existing_only: bool,
 ) -> tuple[list[dict[str, object]], dict[str, object]]:
     changes: list[dict[str, object]] = []
     target_rows = 0
@@ -139,7 +170,8 @@ def update_rows(
                 continue
             desired = format_probability(probability)
             current = clean(row.get(p_col))
-            if current != desired:
+            should_correct = correct_count_backed and has_material_count_backed_conflict(row, prefix)
+            if ((not current and not existing_only) or should_correct) and current != desired:
                 row[p_col] = desired
                 changes.append(
                     {
@@ -152,7 +184,7 @@ def update_rows(
                         "new_value": desired,
                     }
                 )
-            if pct_col in header and not clean(row.get(pct_col)):
+            if pct_col in header and ((not clean(row.get(pct_col)) and not existing_only) or should_correct) and clean(row.get(pct_col)) != format_percent(probability):
                 pct = format_percent(probability)
                 row[pct_col] = pct
                 changes.append(
@@ -188,6 +220,16 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--year", type=int, action="append", required=True)
     parser.add_argument("--write", action="store_true")
+    parser.add_argument(
+        "--correct-count-backed",
+        action="store_true",
+        help="Correct only material point-row conflicts between existing probability values and exact applicant/permit counts; preserve DWR Success Ratio text.",
+    )
+    parser.add_argument(
+        "--existing-only",
+        action="store_true",
+        help="Do not populate blank probability fields; only apply an explicitly requested correction to existing material count-backed conflicts.",
+    )
     args = parser.parse_args()
 
     AUDIT_DIR.mkdir(parents=True, exist_ok=True)
@@ -197,7 +239,15 @@ def main() -> int:
     for year in args.year:
         for path in (target_path_for_year(year), LONG_FILE):
             header, rows = read_csv(path)
-            changes, summary = update_rows(path=path, year=year, header=header, rows=rows, write=args.write)
+            changes, summary = update_rows(
+                path=path,
+                year=year,
+                header=header,
+                rows=rows,
+                write=args.write,
+                correct_count_backed=args.correct_count_backed,
+                existing_only=args.existing_only,
+            )
             all_changes.extend(changes)
             summaries.append(summary)
 
@@ -213,6 +263,8 @@ def main() -> int:
     report = {
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "write_mode": args.write,
+        "correct_count_backed": args.correct_count_backed,
+        "existing_only": args.existing_only,
         "years": args.year,
         "summaries": summaries,
         "changes_csv": str(changes_path.relative_to(ROOT)),

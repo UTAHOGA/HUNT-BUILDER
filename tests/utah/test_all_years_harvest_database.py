@@ -33,16 +33,21 @@ def test_all_years_harvest_database_outputs_exist():
 def test_all_years_harvest_database_has_expected_years_and_counts():
     summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
 
-    assert summary["unique_reported_hunt_years"] == ["2021", "2022", "2023", "2024", "2025"]
+    assert summary["unique_reported_hunt_years"] == [str(year) for year in range(2005, 2026)]
     assert summary["reported_hunt_year_counts"] == {
+        **{str(year): 12 for year in range(2005, 2017)},
+        "2017": 908,
+        "2018": 936,
+        "2019": 962,
+        "2020": 939,
         "2021": 974,
-        "2022": 924,
-        "2023": 1078,
+        "2022": 1050,
+        "2023": 1179,
         "2024": 1048,
-        "2025": 1127,
+        "2025": 1148,
     }
-    assert summary["best_by_year_hunt_code_rows"] == 5151
-    assert summary["normalized_long_rows"] == 68657
+    assert summary["best_by_year_hunt_code_rows"] == 9288
+    assert summary["normalized_long_rows"] == 73397
     assert summary["special_permit_overlay_class_counts"] == {
         "CONSERVATION": 77,
         "CWMU": 1429,
@@ -56,9 +61,18 @@ def test_all_years_harvest_model_target_year_is_reported_year_plus_one():
         assert int(row["model_target_year"]) == int(row["reported_hunt_year"]) + 1
 
 
-def test_all_years_harvest_best_table_has_unique_year_hunt_code_keys():
+def test_all_years_harvest_best_table_has_unique_year_hunt_identity_keys():
     rows = _rows(BEST)
-    keys = [(row["reported_hunt_year"], row["hunt_code"]) for row in rows]
+    keys = [
+        (
+            row["reported_hunt_year"],
+            row["hunt_code"],
+            row["species"],
+            row["hunt_name"],
+            row["weapon"],
+        )
+        for row in rows
+    ]
 
     assert len(keys) == len(set(keys))
 
@@ -86,6 +100,88 @@ def test_all_years_harvest_includes_2025_model_year_2026():
     rows = _rows(BEST)
 
     assert any(row["reported_hunt_year"] == "2025" and row["model_target_year"] == "2026" for row in rows)
+
+
+def test_official_2017_2021_history_has_hunt_level_metrics_and_guardrails():
+    summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
+    history = summary["official_dwr_history_2017_2021"]
+
+    assert history["rows_by_year"] == {
+        "2017": 908,
+        "2018": 936,
+        "2019": 962,
+        "2020": 939,
+        "2021": 974,
+    }
+    assert history["metric_nonblank_by_year"]["2017"]["harvest_total"] == 897
+    assert history["metric_nonblank_by_year"]["2020"]["percent_success"] == 933
+    assert history["metric_nonblank_by_year"]["2021"]["harvest_total"] == 970
+
+    repaired_rows = [row for row in _rows(BEST) if "2017" <= row["reported_hunt_year"] <= "2021"]
+    assert repaired_rows
+    assert all(row["do_not_use_for_permit_quota"] == "True" for row in repaired_rows)
+    assert all(row["do_not_use_directly_for_p_draw"] == "True" for row in repaired_rows)
+
+    sample_2017 = next(
+        row for row in repaired_rows if row["reported_hunt_year"] == "2017" and row["hunt_code"] == "DB1000"
+    )
+    assert sample_2017["permits"] == "12"
+    assert sample_2017["hunters_afield"] == "12"
+    assert sample_2017["harvest_total"] == "11"
+    assert sample_2017["percent_success"] == "91.7"
+
+    sample_2021 = next(
+        row for row in repaired_rows if row["reported_hunt_year"] == "2021" and row["hunt_code"] == "BI6503"
+    )
+    assert sample_2021["permits"] == "18"
+    assert sample_2021["hunters_afield"] == "18"
+    assert sample_2021["harvest_total"] == "15"
+    assert sample_2021["percent_success"] == "81.3"
+
+
+def test_current_2025_dashboard_snapshot_has_all_live_rows_and_species_counts():
+    summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
+    current = summary["current_2025_dashboard"]
+
+    assert current["current_rows"] == 1141
+    assert current["addition_rows"] == 21
+    assert current["correction_rows"] == 1
+    assert current["species_counts"] == {
+        "Bison": 18,
+        "Deer": 421,
+        "Desert Bighorn Sheep": 25,
+        "Elk": 471,
+        "Moose": 43,
+        "Mountain Goat": 18,
+        "Pronghorn": 124,
+        "Rocky Mountain Bighorn Sheep": 21,
+    }
+
+
+def test_official_annual_and_reported_three_year_age_are_distinct_and_provenanced():
+    rows = _rows(BEST)
+    sample_2017 = next(
+        row for row in rows if row["reported_hunt_year"] == "2017" and row["hunt_code"] == "GO6800"
+    )
+    assert sample_2017["average_age"] == "3.9"
+    assert sample_2017["average_age_3yr_reported"] == ""
+    assert sample_2017["average_age_source_page"] == "1"
+    assert sample_2017["average_age_crosswalk_confidence"] == "high"
+
+    sample_2022 = next(
+        row for row in rows if row["reported_hunt_year"] == "2022" and row["hunt_code"] == "DB1000"
+    )
+    assert sample_2022["average_age"] == "5.7"
+    assert sample_2022["average_age_3yr_reported"] == "5.5"
+    assert sample_2022["average_age_mapping_status"] == "mapped_direct_hunt_code"
+
+    current_2025 = [row for row in rows if row["reported_hunt_year"] == "2025"]
+    assert current_2025
+    assert sum(bool(row["average_age"]) for row in current_2025) == 220
+    assert sum(bool(row["average_age_3yr_reported"]) for row in current_2025) == 222
+
+    summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
+    assert summary["official_harvest_age"]["best_by_hunt_identity"]["reported_3yr_age_nonblank"] == 814
 
 
 def test_harvest_packages_imported_without_pdf_reextraction():

@@ -403,6 +403,10 @@ def build_predictions(
         # regular group result; zero-demand rungs receive an explicit one-
         # applicant counterfactual against the same forecast competition.
         conditional_points = [p for p in points_desc if int(base_demand_by_point.get(p, 0)) <= 0]
+        active_forecast_points = [
+            p for p, applicants in base_demand_by_point.items() if int(applicants) > 0
+        ]
+        highest_active_forecast_point = max(active_forecast_points) if active_forecast_points else None
         conditional_deterministic: Dict[int, Tuple[Dict[int, float], Dict[int, float], Dict[int, float], Dict[int, str], float | None]] = {}
         for p in conditional_points:
             conditional_deterministic[p] = deterministic_pool_probabilities(
@@ -533,6 +537,19 @@ def build_predictions(
             p50 = percentile(draws, 0.50)
             p90 = percentile(draws, 0.90)
             guaranteed_probability = 1.0 if p_draw_mean >= 0.999 else 0.0
+            unsupported_conditional_guarantee = (
+                bootstrap_transition_uncertainty
+                and is_conditional_rung
+                and guaranteed_probability >= 0.999
+            )
+            empty_upper_structural_rung = (
+                is_conditional_rung
+                and highest_active_forecast_point is not None
+                and p > highest_active_forecast_point
+            )
+            not_scored_conditional_rung = (
+                unsupported_conditional_guarantee or empty_upper_structural_rung
+            )
             point_pool_zone = (
                 deterministic_for_point[3].get(p, "random_pool")
                 if deterministic_for_point is not None
@@ -556,7 +573,11 @@ def build_predictions(
                     reasons.append("SOURCE_TRANSITION_UNCERTAINTY_DISCOUNT")
             if quota_source_label:
                 reasons.append("DATABASE_2026_PUBLISHED_PERMITS_USED")
-            if guaranteed_probability >= 0.999:
+            if empty_upper_structural_rung:
+                reasons.append("NOT_SCORED_EMPTY_UPPER_STRUCTURAL_RUNG")
+            elif unsupported_conditional_guarantee:
+                reasons.append("NOT_SCORED_CONDITIONAL_RUNG_NO_TRANSITION_EVIDENCE")
+            elif guaranteed_probability >= 0.999:
                 reasons.append("MODELED_100_CONFIRMED")
             if point_pool_zone == "max_pool_cutoff_mixed":
                 reasons.append("MIXED_MAX_POINT_CUTOFF")
@@ -571,18 +592,18 @@ def build_predictions(
                     "hunt_code": code,
                     "residency": residency,
                     "points": p,
-                    "p_draw_mean": round(p_draw_mean, 6),
-                    "p_draw_p10": round(p10, 6),
-                    "p_draw_p50": round(p50, 6),
-                    "p_draw_p90": round(p90, 6),
-                    "p_reserved_mean": round(p_reserved_mean, 6),
-                    "p_random_mean": round(p_random_mean, 6),
-                    "p_max_pool_mean": round(p_reserved_mean, 6),
-                    "p_preference_mean": 0.0,
-                    "p_youth_mean": 1.0 if draw_pool.startswith("youth") else 0.0,
+                    "p_draw_mean": "" if not_scored_conditional_rung else round(p_draw_mean, 6),
+                    "p_draw_p10": "" if not_scored_conditional_rung else round(p10, 6),
+                    "p_draw_p50": "" if not_scored_conditional_rung else round(p50, 6),
+                    "p_draw_p90": "" if not_scored_conditional_rung else round(p90, 6),
+                    "p_reserved_mean": "" if not_scored_conditional_rung else round(p_reserved_mean, 6),
+                    "p_random_mean": "" if not_scored_conditional_rung else round(p_random_mean, 6),
+                    "p_max_pool_mean": "" if not_scored_conditional_rung else round(p_reserved_mean, 6),
+                    "p_preference_mean": "" if not_scored_conditional_rung else 0.0,
+                    "p_youth_mean": "" if not_scored_conditional_rung else (1.0 if draw_pool.startswith("youth") else 0.0),
                     "expected_cutoff_points": deterministic_cutoff if deterministic_cutoff is not None else expected_cutoff,
-                    "cutoff_bucket_probability": round(p_draw_mean, 6),
-                    "guaranteed_probability": round(guaranteed_probability, 6),
+                    "cutoff_bucket_probability": "" if not_scored_conditional_rung else round(p_draw_mean, 6),
+                    "guaranteed_probability": "" if not_scored_conditional_rung else round(guaranteed_probability, 6),
                     "point_creep_1yr": 0.0,
                     "point_creep_3yr": 0.0,
                     "quota_source": "approved_2026_residency_split",
@@ -610,8 +631,22 @@ def build_predictions(
                     "data_cutoff_date": str(date.today()),
                     "data_quality_grade": "B",
                     "reason_codes": tuple(reasons),
-                    "display_odds_pct": round(p_draw_mean * 100.0, 3),
-                    "status": status_from_pool_zone(point_pool_zone, random_quota),
+                    "display_odds_pct": "" if not_scored_conditional_rung else round(p_draw_mean * 100.0, 3),
+                    "status": (
+                        "DISPLAY ONLY - NO FORECASTED APPLICANT COHORT"
+                        if empty_upper_structural_rung
+                        else "NOT SCORED - NO TRANSITION EVIDENCE"
+                        if unsupported_conditional_guarantee
+                        else status_from_pool_zone(point_pool_zone, random_quota)
+                    ),
+                    "algorithm_status": (
+                        "NOT_SCORED_EMPTY_UPPER_STRUCTURAL_RUNG"
+                        if empty_upper_structural_rung
+                        else "NOT_SCORED_CONDITIONAL_RUNG_NO_TRANSITION_EVIDENCE"
+                        if unsupported_conditional_guarantee
+                        else "MODELED_BONUS"
+                    ),
+                    "prediction_status": "NOT_SCORED" if not_scored_conditional_rung else "MODELED",
                     "point_pool_zone": point_pool_zone,
                     "applicant_rollover_source_year": source_year,
                     "retention_rate_raw": round(rollover.retention_rate_raw, 6),
@@ -627,7 +662,7 @@ def build_predictions(
                     "structure_retention_unsuccessful_total": rollover.structure_retention_unsuccessful_total,
                     "forecast_applicants_at_level": int(base_demand_by_point.get(p, 0)),
                     "forecast_applicants_above": sum(count for point, count in base_demand_by_point.items() if point > p),
-                    "probability_applicant_count": max(1, int(base_demand_by_point.get(p, 0))),
+                    "probability_applicant_count": "" if not_scored_conditional_rung else max(1, int(base_demand_by_point.get(p, 0))),
                     "rolled_forward_total_applicants": rollover.total_projected_applicants,
                     "draw_pool": draw_pool,
                     "hunt_type": hunt_type,

@@ -18,6 +18,7 @@ import csv
 import hashlib
 import json
 import re
+import shutil
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -118,6 +119,7 @@ HEADER = [
     "total_permits", "total_success_ratio", "total_p_draw", "total_p_draw_percent",
     "eligible_applicants", "bonus_permits", "regular_permits", "success_ratio", "p_draw",
     "p_draw_percent", "successful_applicants", "unsuccessful_applicants", "source_scope",
+    "source_is_youth",
     "source_namespace", "draw_source_namespace", "source_file", "draw_source_file",
     "source_path", "source_pdf", "pdf_page", "official_page", "page_kind", "source_dataset",
     "extraction_status", "parse_method", "qa_status", "qa_notes", "algorithm_status", "notes",
@@ -144,6 +146,11 @@ def clean(value: object) -> str:
     return "" if value is None else " ".join(str(value).strip().split())
 
 
+def source_is_youth(scope: str) -> str:
+    """Return the explicit source-pool youth identity for a PDF scope."""
+    return "true" if clean(scope).upper().startswith("YOUTH_") else "false"
+
+
 def number(value: object) -> int | None:
     text = clean(value).replace(",", "")
     if not text or text.upper() == "N/A":
@@ -163,6 +170,24 @@ def ratio_probability(value: object) -> tuple[str, str]:
         return "", ""
     probability = 1.0 / denominator
     return f"{probability:.10f}".rstrip("0").rstrip("."), f"{probability * 100:.8f}".rstrip("0").rstrip(".")
+
+
+def count_backed_probability(applicants: object, permits: object, success_ratio: object) -> tuple[str, str]:
+    """Prefer exact PDF counts over the report's one-decimal display ratio."""
+    applicant_count = number(applicants)
+    permit_count = number(permits)
+    if applicant_count is not None and permit_count is not None:
+        if applicant_count > 0:
+            probability = min(1.0, permit_count / applicant_count)
+            return (
+                f"{probability:.10f}".rstrip("0").rstrip("."),
+                f"{probability * 100:.8f}".rstrip("0").rstrip("."),
+            )
+        # A zero-applicant PDF row is structural, never an applicant-level
+        # probability.  A printed ratio on a zero-applicant row is retained as
+        # source text but cannot establish actual draw odds.
+        return "", ""
+    return ratio_probability(success_ratio)
 
 
 def combine_total(left: object, right: object) -> str:
@@ -287,6 +312,13 @@ def classify(scope: str, code: str, name: str) -> tuple[str, str, str, str]:
     if scope in {"ANTLERLESS", "YOUTH_ANTLERLESS"}:
         if "CWMU" in text:
             return "CWMU_ANTLERLESS", "CWMU", "BONUS_CWMU_BIG_GAME", "MODELED_BONUS"
+        # These two special antlerless designs are bonus-point drawings, not
+        # preference doe-pronghorn.  Check them before the ordinary-code
+        # fallback so source identity, scoring, and family routing agree.
+        if code.startswith("MA") or ("MOOSE" in text and "ANTLERLESS" in text):
+            return "ANTLERLESS_MOOSE", "Antlerless", "BONUS_ANTLERLESS_MOOSE", "MODELED_BONUS"
+        if code.startswith(("DS", "RS", "RE")) or "EWE" in text:
+            return "EWE_BIGHORN", "Ewe", "BONUS_EWE_BIGHORN", "MODELED_BONUS"
         prefix = "YOUTH_" if scope == "YOUTH_ANTLERLESS" else ""
         if code.startswith(("DA", "DB")):
             return f"{prefix}ANTLERLESS_DEER", "Antlerless", "PREFERENCE_ANTLERLESS_DEER", "MODELED_PREFERENCE"
@@ -376,8 +408,8 @@ def build_row(
         r_apps, r_bonus, r_regular, r_total, r_ratio = left
         n_apps, n_bonus, n_regular, n_total, n_ratio = right
     hunt_class, hunt_type, draw_design, algorithm_status = classify(scope, code, name)
-    r_probability, r_percent = ratio_probability(r_ratio)
-    n_probability, n_percent = ratio_probability(n_ratio)
+    r_probability, r_percent = count_backed_probability(r_apps, r_total, r_ratio)
+    n_probability, n_percent = count_backed_probability(n_apps, n_total, n_ratio)
     source_path = PDF_ROOT / source_file
     sex, sex_type = sex_metadata_for(code, name)
     row = {column: "" for column in HEADER}
@@ -400,7 +432,7 @@ def build_row(
             "bonus_permits": combine_total(r_bonus, n_bonus), "regular_permits": combine_total(r_regular, n_regular),
             "successful_applicants": combine_total(r_total, n_total),
             "unsuccessful_applicants": str(max(0, (number(r_apps) or 0) + (number(n_apps) or 0) - (number(r_total) or 0) - (number(n_total) or 0))),
-            "source_scope": scope, "source_namespace": f"OFFICIAL_DWR_DRAW_RESULTS_{REPORT_YEAR}",
+            "source_scope": scope, "source_is_youth": source_is_youth(scope), "source_namespace": f"OFFICIAL_DWR_DRAW_RESULTS_{REPORT_YEAR}",
             "draw_source_namespace": f"OFFICIAL_DWR_DRAW_RESULTS_{REPORT_YEAR}", "source_file": source_file,
             "draw_source_file": source_file, "source_path": str(source_path.relative_to(ROOT)).replace("\\", "/"),
             "source_pdf": source_file, "pdf_page": str(page_number), "official_page": str(page_number),
@@ -489,10 +521,12 @@ def extract_sportsman() -> list[dict[str, str]]:
             "draw_design": draw_design, "hunt_draw_class": hunt_class, "hunt_class": hunt_class,
             "row_type": "HUNT_TOTAL", "record_type": "sportsman_total_draw_result",
             "resident_eligible_applicants": str(resident_apps), "resident_total_permits": str(total_permits),
-            "resident_success_ratio": data["resident_success"], "resident_p_draw": ratio_probability(data["resident_success"])[0],
-            "resident_p_draw_percent": ratio_probability(data["resident_success"])[1], "total_eligible_applicants": data["total_applications"],
+            "resident_success_ratio": data["resident_success"],
+            "resident_p_draw": count_backed_probability(resident_apps, total_permits, data["resident_success"])[0],
+            "resident_p_draw_percent": count_backed_probability(resident_apps, total_permits, data["resident_success"])[1],
+            "total_eligible_applicants": data["total_applications"],
             "total_permits": str(total_permits), "eligible_applicants": data["total_applications"], "successful_applicants": str(total_permits),
-            "unsuccessful_applicants": str(max(0, number(data["total_applications"]) - total_permits)), "source_scope": "SPORTSMAN",
+            "unsuccessful_applicants": str(max(0, number(data["total_applications"]) - total_permits)), "source_scope": "SPORTSMAN", "source_is_youth": "false",
             "source_namespace": f"OFFICIAL_DWR_DRAW_RESULTS_{REPORT_YEAR}", "draw_source_namespace": f"OFFICIAL_DWR_DRAW_RESULTS_{REPORT_YEAR}",
             "source_file": SPORTSMAN_FILE, "draw_source_file": SPORTSMAN_FILE,
             "source_path": str(path.relative_to(ROOT)).replace("\\", "/"), "source_pdf": SPORTSMAN_FILE,
@@ -539,18 +573,34 @@ def main() -> int:
         CANONICAL = output_dir / f"draw_results_{pair}_official_pdf_reconstructed.csv"
         SUMMARY = output_dir / f"draw_results_{pair}_official_pdf_reconstruction_summary.json"
         UNPARSED = output_dir / f"draw_results_{pair}_official_pdf_unparsed_hunt_pages.csv"
+    # A completed extraction can only claim a source hash if every PDF stayed
+    # byte-identical from the first page parsed through the final write.
+    source_hashes_before = {
+        source_file: source_hash(PDF_ROOT / source_file)
+        for source_file, _, _ in SOURCE_CONFIGS
+    } | {SPORTSMAN_FILE: source_hash(PDF_ROOT / SPORTSMAN_FILE)}
     rows, unparsed, source_stats = extract_hunt_tables()
     sportsman = extract_sportsman()
     rows.extend(sportsman)
     rows.sort(key=lambda row: (row["source_file"], int(row["pdf_page"] or 0), row["hunt_code"], row["record_type"], -int(row["points"] or -1)))
     duplicate_keys = Counter((row["hunt_code"], row["source_file"], row["pdf_page"], row["record_type"], row["points"]) for row in rows)
     duplicate_count = sum(count - 1 for count in duplicate_keys.values() if count > 1)
+    source_hashes_after = {
+        source_file: source_hash(PDF_ROOT / source_file)
+        for source_file, _, _ in SOURCE_CONFIGS
+    } | {SPORTSMAN_FILE: source_hash(PDF_ROOT / SPORTSMAN_FILE)}
+    source_changed_during_extraction = {
+        source_file: {"before": source_hashes_before[source_file], "after": source_hashes_after[source_file]}
+        for source_file in source_hashes_before
+        if source_hashes_before[source_file] != source_hashes_after[source_file]
+    }
     summary = {
         "artifact": f"draw_results_{REPORT_YEAR}_for_{MODEL_TARGET_YEAR}_canonical_yearly_pdf_extraction",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "write": args.write,
         "source_pdf_count": len(SOURCE_CONFIGS) + 1,
-        "source_sha256": {source_file: source_hash(PDF_ROOT / source_file) for source_file, _, _ in SOURCE_CONFIGS} | {SPORTSMAN_FILE: source_hash(PDF_ROOT / SPORTSMAN_FILE)},
+        "source_sha256": source_hashes_after,
+        "source_changed_during_extraction": source_changed_during_extraction,
         "source_stats": source_stats,
         "rows": len(rows),
         "point_rows": sum(row["record_type"] == "point_level_draw_result" for row in rows),
@@ -560,8 +610,14 @@ def main() -> int:
         "unparsed_hunt_page_count": len(unparsed),
         "duplicate_source_row_key_count": duplicate_count,
         "canonical_path": str(CANONICAL.relative_to(ROOT)).replace("\\", "/"),
-        "status": "PASS" if not unparsed and not duplicate_count else "BLOCKED",
+        "status": "PASS" if not unparsed and not duplicate_count and not source_changed_during_extraction else "BLOCKED",
     }
+    if args.write and CANONICAL.exists():
+        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        backup = ROOT / "audits" / "database_alignment" / "canonical_pdf_reextraction" / "backups" / f"{CANONICAL.stem}.before_official_pdf_reextract_{stamp}.csv"
+        backup.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(CANONICAL, backup)
+        summary["backup_path"] = str(backup.relative_to(ROOT)).replace("\\", "/")
     VALIDATION.mkdir(parents=True, exist_ok=True)
     write_csv(UNPARSED, unparsed, ["source_file", "pdf_page", "hunt_code", "hunt_name", "reason"])
     SUMMARY.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")

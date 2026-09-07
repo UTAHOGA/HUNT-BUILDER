@@ -2,12 +2,18 @@ from __future__ import annotations
 
 import csv
 import json
+import sys
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from engine.utah.quality.harvest_identity import build_identity_index, resolve_identity_match
+
 DATABASE = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "DATABASE.csv"
 HUNT_MASTER = ROOT / "processed_data" / "hunt_master_enriched.csv"
 REFERENCE = ROOT / "processed_data" / "hunt_unit_reference_linked.csv"
@@ -72,16 +78,10 @@ def first_value(row: dict[str, str], keys: list[str]) -> str:
     return ""
 
 
-def build_harvest_by_code(rows: list[dict[str, str]]) -> dict[str, dict[str, str]]:
-    best: dict[str, dict[str, str]] = {}
-    for row in rows:
-        if str(row.get("model_target_year", "")).strip() != "2026":
-            continue
-        hunt_code = code(row)
-        if not hunt_code:
-            continue
-        best[hunt_code] = row
-    return best
+def build_harvest_by_code(rows: list[dict[str, str]]) -> dict[str, list[dict[str, str]]]:
+    return build_identity_index(
+        row for row in rows if str(row.get("model_target_year", "")).strip() == "2026"
+    )
 
 
 def backfill_reference_row(master_row: dict[str, str], columns: list[str], harvest_row: dict[str, str] | None) -> dict[str, str]:
@@ -143,7 +143,14 @@ def main() -> int:
             if key in seen_keys:
                 continue
             seen_keys.add(key)
-            backfilled_rows.append(backfill_reference_row(master_row, reference_columns, harvest_by_code.get(hunt_code)))
+            resolution = resolve_identity_match(master_row, harvest_by_code.get(hunt_code, []))
+            backfilled_rows.append(
+                backfill_reference_row(
+                    master_row,
+                    reference_columns,
+                    dict(resolution.row) if resolution.row is not None else None,
+                )
+            )
 
     output_rows = cleaned_reference + backfilled_rows
     output_rows.sort(key=lambda row: (code(row), clean_residency(row.get("residency", "")), str(row.get("draw_pool", "") or "")))
