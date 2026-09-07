@@ -2641,9 +2641,14 @@ def run_all_families(
         raise ValueError("bear_central_estimate must be deterministic or simulation_mean")
     if bear_iterations < 1:
         raise ValueError("bear_iterations must be at least 1")
-    if bear_returning_cohort_mode not in {"off", "source_calibrated_tail_mixture", "lane_cohort_hierarchical"}:
+    if bear_returning_cohort_mode not in {
+        "off",
+        "source_calibrated_tail_mixture",
+        "lane_cohort_hierarchical",
+        "lane_cohort_repeatable_exact_arrivals",
+    }:
         raise ValueError(
-            "bear_returning_cohort_mode must be off, source_calibrated_tail_mixture, or lane_cohort_hierarchical"
+            "bear_returning_cohort_mode must be off, source_calibrated_tail_mixture, lane_cohort_hierarchical, or lane_cohort_repeatable_exact_arrivals"
         )
     if bear_returning_cohort_mode != "off" and bear_central_estimate != "simulation_mean":
         raise ValueError("bear_returning_cohort_mode requires bear_central_estimate=simulation_mean")
@@ -3245,12 +3250,19 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--bear-iterations", type=int, default=1)
     parser.add_argument(
         "--bear-returning-cohort-mode",
-        choices=["off", "source_calibrated_tail_mixture", "lane_cohort_hierarchical"],
+        choices=[
+            "off",
+            "source_calibrated_tail_mixture",
+            "lane_cohort_hierarchical",
+            "lane_cohort_repeatable_exact_arrivals",
+        ],
         default="off",
         help=(
             "Audit-only source-calibrated Bear cohort mode. Both candidates require "
             "--bear-central-estimate simulation_mean. lane_cohort_hierarchical uses "
-            "only public same-lane adjacent-year results; it never allocates statewide purchasers to a hunt."
+            "only public same-lane adjacent-year results; lane_cohort_repeatable_exact_arrivals "
+            "further limits its arrival component to two earlier positive exact-lane/rung "
+            "transitions. Neither mode allocates statewide purchasers to a hunt."
         ),
     )
     parser.add_argument(

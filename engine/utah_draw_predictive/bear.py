@@ -8,7 +8,7 @@ import json
 import math
 import random
 from collections import Counter, defaultdict
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from functools import lru_cache
 from pathlib import Path
 from statistics import mean
@@ -203,6 +203,7 @@ class _BearCohortEvidence:
     unsuccessful: int = 0
     retained: int = 0
     arrivals: int = 0
+    positive_arrival_transitions: int = 0
 
 
 @dataclass(frozen=True)
@@ -212,6 +213,7 @@ class _BearCohortCalibration:
     evidence_scope: str
     exact_unsuccessful: int
     exact_transitions: int
+    exact_positive_arrival_transitions: int
 
 
 @dataclass(frozen=True)
@@ -659,11 +661,13 @@ def _add_bear_cohort_evidence(
 
     current = evidence.get(key, _BearCohortEvidence())
     supplied_by_prior_unsuccessful = min(max(0, unsuccessful), max(0, observed_next))
+    arrivals = max(0, observed_next - supplied_by_prior_unsuccessful)
     evidence[key] = _BearCohortEvidence(
         transitions=current.transitions + 1,
         unsuccessful=current.unsuccessful + max(0, unsuccessful),
         retained=current.retained + supplied_by_prior_unsuccessful,
-        arrivals=current.arrivals + max(0, observed_next - supplied_by_prior_unsuccessful),
+        arrivals=current.arrivals + arrivals,
+        positive_arrival_transitions=current.positive_arrival_transitions + int(arrivals > 0),
     )
 
 
@@ -767,6 +771,7 @@ def _without_bear_cohort_evidence(
         unsuccessful=max(0, total.unsuccessful - excluded.unsuccessful),
         retained=max(0, total.retained - excluded.retained),
         arrivals=max(0, total.arrivals - excluded.arrivals),
+        positive_arrival_transitions=max(0, total.positive_arrival_transitions - excluded.positive_arrival_transitions),
     )
 
 
@@ -834,6 +839,7 @@ def _lane_cohort_calibration(
     )
     exact_unsuccessful = 0 if exact is None else exact.unsuccessful
     exact_transitions = 0 if exact is None else exact.transitions
+    exact_positive_arrival_transitions = 0 if exact is None else exact.positive_arrival_transitions
     reapply_rate = _smooth_bear_cohort_value(
         _rate_from_evidence(exact, lane_rate),
         exact_unsuccessful,
@@ -860,6 +866,7 @@ def _lane_cohort_calibration(
         evidence_scope=evidence_scope,
         exact_unsuccessful=exact_unsuccessful,
         exact_transitions=exact_transitions,
+        exact_positive_arrival_transitions=exact_positive_arrival_transitions,
     )
 
 
@@ -870,6 +877,7 @@ def _forecast_lane_cohort_ladder(
     subtype: str,
     hunt_code: str,
     residency: str,
+    repeatable_exact_arrivals_only: bool = False,
 ) -> tuple[dict[int, int], dict[int, _BearCohortCalibration]]:
     """Forecast one Bear lane using measured reapplication plus measured arrivals."""
 
@@ -891,6 +899,13 @@ def _forecast_lane_cohort_ladder(
             residency=residency,
             source_points=source_points,
         )
+        # This strict audit candidate changes arrival placement only. A
+        # separately measured arrival can enter this exact hunt/lane/rung
+        # only after at least two earlier positive residual transitions. The
+        # official unsuccessful cohort and its reapplication calibration are
+        # intentionally untouched.
+        if repeatable_exact_arrivals_only and calibration.exact_positive_arrival_transitions < 2:
+            calibration = replace(calibration, arrival_count=0.0)
         calibrations[target_points] = calibration
         # An aggregate public ladder cannot identify a person who appears at an
         # otherwise empty upper rung. A broad fallback must therefore never
@@ -1541,9 +1556,14 @@ def build_bear_bonus_predictions(
 ) -> tuple[list[dict[str, object]], dict[str, object]]:
     if central_estimate_mode not in {"deterministic", "simulation_mean"}:
         raise ValueError("central_estimate_mode must be deterministic or simulation_mean")
-    if returning_cohort_mode not in {"off", "source_calibrated_tail_mixture", "lane_cohort_hierarchical"}:
+    if returning_cohort_mode not in {
+        "off",
+        "source_calibrated_tail_mixture",
+        "lane_cohort_hierarchical",
+        "lane_cohort_repeatable_exact_arrivals",
+    }:
         raise ValueError(
-            "returning_cohort_mode must be off, source_calibrated_tail_mixture, or lane_cohort_hierarchical"
+            "returning_cohort_mode must be off, source_calibrated_tail_mixture, lane_cohort_hierarchical, or lane_cohort_repeatable_exact_arrivals"
         )
     if returning_cohort_mode != "off" and central_estimate_mode != "simulation_mean":
         raise ValueError("The returning cohort mixture requires central_estimate_mode=simulation_mean")
@@ -1888,13 +1908,19 @@ def build_bear_bonus_predictions(
 
             max_point_permits, random_permits = _split_bear_bonus_permits(public_quota, residency)
             lane_cohort_calibrations: dict[int, _BearCohortCalibration] = {}
-            if returning_cohort_mode == "lane_cohort_hierarchical":
+            if returning_cohort_mode in {
+                "lane_cohort_hierarchical",
+                "lane_cohort_repeatable_exact_arrivals",
+            }:
                 forecast_ladder, lane_cohort_calibrations = _forecast_lane_cohort_ladder(
                     latest_ladder,
                     lane_cohort_model,
                     subtype=subtype,
                     hunt_code=history_hunt_code,
                     residency=history_residency,
+                    repeatable_exact_arrivals_only=(
+                        returning_cohort_mode == "lane_cohort_repeatable_exact_arrivals"
+                    ),
                 )
                 sampled_ladders = (
                     _sample_lane_cohort_forecast_ladders(
@@ -1962,7 +1988,10 @@ def build_bear_bonus_predictions(
             for points in sorted(forecast_ladder.keys(), reverse=True):
                 lane_calibration = lane_cohort_calibrations.get(int(points))
                 applicants_by_points = {int(level): int(count) for level, count in forecast_ladder.items()}
-                if returning_cohort_mode == "lane_cohort_hierarchical":
+                if returning_cohort_mode in {
+                    "lane_cohort_hierarchical",
+                    "lane_cohort_repeatable_exact_arrivals",
+                }:
                     applicants_by_points = _condition_for_focal_bear_applicant(applicants_by_points, points)
                 p_bonus_pool, applicants_above, applicants_at_level = compute_bonus_pool_probability(points, applicants_by_points, max_point_permits)
                 p_random_pool = _weighted_random_probability(points, applicants_by_points, random_permits, max_point_permits)
@@ -2052,6 +2081,9 @@ def build_bear_bonus_predictions(
                         "bear_cohort_arrival_count": "" if lane_calibration is None else f"{lane_calibration.arrival_count:.6f}",
                         "bear_cohort_exact_unsuccessful": "" if lane_calibration is None else str(lane_calibration.exact_unsuccessful),
                         "bear_cohort_exact_transitions": "" if lane_calibration is None else str(lane_calibration.exact_transitions),
+                        "bear_cohort_exact_positive_arrival_transitions": ""
+                        if lane_calibration is None
+                        else str(lane_calibration.exact_positive_arrival_transitions),
                         "algorithm_status": (
                             "NOT_SCORED_TOTAL_SCOPE_RESIDENCY_GUARANTEE_BLOCKED"
                             if total_scope_guarantee_blocked
@@ -2062,6 +2094,9 @@ def build_bear_bonus_predictions(
                             "BEAR_SOURCE_TRANSITION_UNCERTAINTY_DISCOUNT" if central_estimate_mode == "simulation_mean" else "",
                             "BEAR_SOURCE_CALIBRATED_RETURNING_TAIL_MIXTURE"
                             if returning_cohort_mode == "source_calibrated_tail_mixture" and returning_profile_count
+                            else "",
+                            "BEAR_REPEATABLE_EXACT_ARRIVAL_PLACEMENT"
+                            if returning_cohort_mode == "lane_cohort_repeatable_exact_arrivals"
                             else "",
                             "TOTAL_SCOPE_RESIDENCY_GUARANTEE_BLOCKED" if total_scope_guarantee_blocked else "",
                         ),

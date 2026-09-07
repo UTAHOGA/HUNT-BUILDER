@@ -281,6 +281,64 @@ def test_exact_lane_arrival_evidence_can_populate_an_empty_upper_rung() -> None:
     assert max(sample[10] for sample in samples) >= 1
 
 
+def test_repeatable_exact_arrival_mode_rejects_a_one_off_arrival() -> None:
+    """One observed residual does not authorize a targeted arrival repair."""
+
+    key = ("LIMITED_ENTRY_BEAR_HUNT", "BR9995", "Resident")
+    ladders = {
+        (key[0], 2017, key[1], key[2]): {
+            9: {"eligible": 0, "bonus": 0, "regular": 0, "total": 0},
+        },
+        (key[0], 2018, key[1], key[2]): {
+            10: {"eligible": 2, "bonus": 0, "regular": 0, "total": 0},
+        },
+    }
+    model = _build_lane_cohort_model(ladders)
+    forecast, calibrations = _forecast_lane_cohort_ladder(
+        {9: {"eligible": 0, "bonus": 0, "regular": 0, "total": 0}},
+        model,
+        subtype=key[0],
+        hunt_code=key[1],
+        residency=key[2],
+        repeatable_exact_arrivals_only=True,
+    )
+
+    assert calibrations[10].exact_positive_arrival_transitions == 1
+    assert calibrations[10].arrival_count == 0.0
+    assert forecast[10] == 0
+
+
+def test_repeatable_exact_arrival_mode_keeps_two_prior_placements_separate() -> None:
+    """Two source-only placements can support the separately sampled arrival."""
+
+    key = ("LIMITED_ENTRY_BEAR_HUNT", "BR9994", "Resident")
+    ladders = {
+        (key[0], 2017, key[1], key[2]): {
+            9: {"eligible": 0, "bonus": 0, "regular": 0, "total": 0},
+        },
+        (key[0], 2018, key[1], key[2]): {
+            9: {"eligible": 0, "bonus": 0, "regular": 0, "total": 0},
+            10: {"eligible": 2, "bonus": 0, "regular": 0, "total": 0},
+        },
+        (key[0], 2019, key[1], key[2]): {
+            10: {"eligible": 3, "bonus": 0, "regular": 0, "total": 0},
+        },
+    }
+    model = _build_lane_cohort_model(ladders)
+    forecast, calibrations = _forecast_lane_cohort_ladder(
+        {9: {"eligible": 0, "bonus": 0, "regular": 0, "total": 0}},
+        model,
+        subtype=key[0],
+        hunt_code=key[1],
+        residency=key[2],
+        repeatable_exact_arrivals_only=True,
+    )
+
+    assert calibrations[10].exact_positive_arrival_transitions == 2
+    assert calibrations[10].arrival_count > 0.0
+    assert forecast[10] > 0
+
+
 def test_measured_arrival_sampling_preserves_mean_without_rounding_every_iteration() -> None:
     import random
 

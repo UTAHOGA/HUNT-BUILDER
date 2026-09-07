@@ -56,7 +56,12 @@ def main() -> int:
     parser.add_argument("--bear-iterations", type=int, default=1)
     parser.add_argument(
         "--bear-returning-cohort-mode",
-        choices=["off", "source_calibrated_tail_mixture", "lane_cohort_hierarchical"],
+        choices=[
+            "off",
+            "source_calibrated_tail_mixture",
+            "lane_cohort_hierarchical",
+            "lane_cohort_repeatable_exact_arrivals",
+        ],
         default="off",
     )
     args = parser.parse_args()
