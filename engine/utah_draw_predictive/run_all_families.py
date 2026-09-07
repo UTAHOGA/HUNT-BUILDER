@@ -2645,10 +2645,10 @@ def run_all_families(
         "off",
         "source_calibrated_tail_mixture",
         "lane_cohort_hierarchical",
-        "lane_cohort_repeatable_exact_arrivals",
+        "lane_cumulative_recent_trend",
     }:
         raise ValueError(
-            "bear_returning_cohort_mode must be off, source_calibrated_tail_mixture, lane_cohort_hierarchical, or lane_cohort_repeatable_exact_arrivals"
+            "bear_returning_cohort_mode must be off, source_calibrated_tail_mixture, lane_cohort_hierarchical, or lane_cumulative_recent_trend"
         )
     if bear_returning_cohort_mode != "off" and bear_central_estimate != "simulation_mean":
         raise ValueError("bear_returning_cohort_mode requires bear_central_estimate=simulation_mean")
@@ -3254,15 +3254,15 @@ def build_parser() -> argparse.ArgumentParser:
             "off",
             "source_calibrated_tail_mixture",
             "lane_cohort_hierarchical",
-            "lane_cohort_repeatable_exact_arrivals",
+            "lane_cumulative_recent_trend",
         ],
         default="off",
         help=(
             "Audit-only source-calibrated Bear cohort mode. Both candidates require "
             "--bear-central-estimate simulation_mean. lane_cohort_hierarchical uses "
-            "only public same-lane adjacent-year results; lane_cohort_repeatable_exact_arrivals "
-            "further limits its arrival component to two earlier positive exact-lane/rung "
-            "transitions. Neither mode allocates statewide purchasers to a hunt."
+            "only public same-lane adjacent-year results. lane_cumulative_recent_trend directly "
+            "forecasts each at-or-above point stack from the three most recent physical same-hunt, "
+            "same-residency transitions. Neither mode allocates statewide purchasers to a hunt."
         ),
     )
     parser.add_argument(

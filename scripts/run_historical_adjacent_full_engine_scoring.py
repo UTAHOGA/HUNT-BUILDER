@@ -60,7 +60,7 @@ def main() -> int:
             "off",
             "source_calibrated_tail_mixture",
             "lane_cohort_hierarchical",
-            "lane_cohort_repeatable_exact_arrivals",
+            "lane_cumulative_recent_trend",
         ],
         default="off",
     )

@@ -151,3 +151,47 @@ def test_promoted_canonical_bear_row_expands_only_verified_dwr_residency_lanes()
         ("Nonresident", "2", "1"),
     ]
     assert _canonical_official_bear_residency_lanes(dict(canonical, qa_status="SOURCE_TABLE_PARSED")) == []
+
+
+def test_accepted_reconciled_legacy_canonical_bear_row_expands_published_lanes() -> None:
+    """Older canonical promotions may predate dedicated Bear PDF metadata.
+
+    They are still safe to use only when all published resident/nonresident
+    count columns are retained and recombine exactly to the combined row.
+    """
+
+    canonical = {
+        "hunt_code": "BR7003",
+        "species": "Black Bear",
+        "hunt_type": "Limited Entry",
+        "metric_scope": "total",
+        "residency": "",
+        "qa_status": "SOURCE_TABLE_PARSED",
+        "candidate_promotion_status": "CONFIRMED_CANONICAL_SCORABLE",
+        "source_file": "official_dwr_archive/black_bear/17_bonus_points.pdf",
+        "eligible_applicants": "47",
+        "bonus_permits": "1",
+        "regular_permits": "1",
+        "total_permits": "2",
+        "resident_eligible_applicants": "40",
+        "resident_bonus_permits": "1",
+        "resident_regular_permits": "1",
+        "resident_total_permits": "2",
+        "nonresident_eligible_applicants": "7",
+        "nonresident_bonus_permits": "0",
+        "nonresident_regular_permits": "0",
+        "nonresident_total_permits": "0",
+    }
+
+    lanes = _canonical_official_bear_residency_lanes(canonical)
+
+    assert [(row["residency"], row["eligible_applicants"], row["total_permits"]) for row in lanes] == [
+        ("Resident", "40", "2"),
+        ("Nonresident", "7", "0"),
+    ]
+    assert _canonical_official_bear_residency_lanes(
+        dict(canonical, nonresident_eligible_applicants="8")
+    ) == []
+    assert _canonical_official_bear_residency_lanes(
+        dict(canonical, candidate_promotion_status="")
+    ) == []
