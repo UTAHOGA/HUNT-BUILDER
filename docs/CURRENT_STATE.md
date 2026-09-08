@@ -87,6 +87,12 @@ The visitor-facing management and harvest-quality layer is display-only and foll
 - The `U.O.G.A. Hunt Quality Profile V1` is not a DWR score and cannot change draw probability, permits, quotas, or canonical truth. Its four fixed components are biological measure (40%), three-year success (25%), three-year satisfaction (20%), and three-year inverse effort (15%). Missing components are never reweighted.
 - A composite score is published only for exact-code, current-through-2025 grade A/B history with all three-year components, a numeric matching-unit DWR target/current comparison, no relevant value conflict, and at least 10 average hunters afield. Raw verified measures and explicit withholding reasons remain publishable when the composite gate is not met.
 
+## Harvest Report Library
+
+The public Library registers one assembled annual harvest report for every year from 2017 through 2025 under `HARVEST REPORTS`. The nine PDFs contain 9,144 normalized official hunt-code rows and preserve annual harvested age and DWR-reported three-year harvested age as separate fields. Blank measures remain blank; the reports do not infer missing age, current quota, or draw probability.
+
+The 2025 report contains 1,148 rows: 1,141 current big-game dashboard rows and seven official turkey rows. It includes the official 2025 elk, pronghorn, and moose annual ages plus their DWR-reported 2023-2025 averages. The report is explicitly labeled as the current dashboard/preliminary package reconciled through September 2, 2026, rather than as a replaced final annual package. The existing 2025 permit-utilization/conservation supplement remains a separate Library item.
+
 ## Current Build Evidence
 
 The locally promoted prediction runtime was rebuilt on `2026-08-27` from the then-current frozen, unified 2018-2025 forecast candidate. The promotion copied 31 forecast artifacts to `processed_data/`, verified every copied SHA-256, and backed up each prior local target. It did not upload or alter R2. That local runtime is now deliberately treated as stale because the official current database has changed; it remains untouched until the newer blind candidate is accepted and explicitly promoted.
