@@ -53,3 +53,23 @@ def test_certified_fields_can_remain_explicitly_blank_for_pending_source_rows() 
     )
 
     assert all(field in result and result[field] == "" for field in CERTIFIED_FIELDS)
+
+
+def test_display_only_zero_placeholder_is_not_a_certified_prediction() -> None:
+    result = preview_row(
+        {
+            "hunt_code": "DB1001",
+            "prediction_certification_status": "CERTIFIED",
+            "prediction_certification_design": "BONUS_PLE_BIG_GAME",
+            "status": "DISPLAY ONLY - NO FORECASTED APPLICANT COHORT",
+            "p_draw": "0.000000",
+            "p_draw_mean": "0.000000",
+            "p_draw_pct": "0.000",
+            "certified_p_draw": "0.000000",
+            "certified_p_draw_mean": "0.000000",
+            "certified_p_draw_pct": "0.000",
+        },
+        "test-build",
+    )
+
+    assert all(result[field] == "" for field in CERTIFIED_FIELDS)

@@ -76,6 +76,20 @@ def _first_probability(row: Mapping[str, object], *fields: str) -> object:
     return ""
 
 
+def has_publishable_probability_basis(row: Mapping[str, object]) -> bool:
+    """Return true only when the row represents an actual future estimate.
+
+    Structural ladder padding is useful for displaying the full point range,
+    but its zero placeholder is not a forecast and must never become a
+    certified zero-probability claim.
+    """
+
+    status = clean(row.get("status")).upper()
+    if status == "DISPLAY ONLY - NO FORECASTED APPLICANT COHORT":
+        return False
+    return clean(_first_probability(row, "p_draw", "p_draw_mean", "p_preference_draw")) != ""
+
+
 def annotate_prediction_rows(
     rows: Iterable[dict[str, object]],
     registry: Mapping[str, Any],
@@ -123,7 +137,7 @@ def annotate_prediction_rows(
             "projected_2026_max_cutoff_point",
         )
 
-        if status == CERTIFIED:
+        if status == CERTIFIED and has_publishable_probability_basis(row):
             row["certified_p_draw"] = _first_probability(row, "p_draw", "p_draw_mean", "p_preference_draw")
             row["certified_p_draw_mean"] = _first_probability(row, "p_draw_mean", "p_draw", "p_preference_draw")
             row["certified_p_draw_pct"] = _first_probability(row, "p_draw_pct", "display_odds_pct")

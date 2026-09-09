@@ -20291,3 +20291,31 @@ Validation:
 - Built a local Hunt Research preview by reusing `research.html` and `hunt-research.js` with a local split-contract override. Its selectable ladder is limited to the four certified designs: limited-entry, once-in-a-lifetime, premium limited-entry, and general-season buck deer.
 - Removed every raw future-probability field and display alias from the preview contract. Only `certified_p_draw`, `certified_p_draw_mean`, and `certified_p_draw_pct` remain available to the page. The preview has 26,486 certified-design rows, of which 26,476 carry certified probabilities; 10 source-pending aggregate rows correctly remain blank.
 - Browser QA confirmed the candidate split contract loads without legacy fallback and renders certified estimates in the existing U.O.G.A. Hunt Research interface. The preview is local only; no `processed_data`, R2, `pages-dist`, hosted runtime, deployment, Git staging, commit, or push changed.
+## 2026-09-08 - Publish 2017-2025 Harvest Reports Library
+
+- Generated and released nine annual UOGA visitor PDFs from the normalized official DWR harvest truth: one report for every year from 2017 through 2025, totaling 9,144 hunt-code rows and 360 pages.
+- Each row preserves available harvest, hunters afield, success, effort, satisfaction, annual harvested age, DWR-reported three-year harvested age, and compact harvest/age source-file and page references. Missing measures remain blank, and the reports identify historical permit values as non-authoritative for current quota or direct draw probability.
+- The 2025 report contains 1,148 current rows: 1,141 reconciled big-game dashboard rows plus seven turkey rows. It includes 220 official 2025 annual elk/pronghorn/moose age rows and 222 DWR-reported 2023-2025 average rows.
+- Renamed the public Library folder to `HARVEST REPORTS`, registered the nine annual PDFs, retained the separate 2025 permit-utilization/conservation supplement, and added the reproducible source-driven builder.
+- Validation covered all output/public-copy hashes, 360 rendered PDF pages, report text and age-field contracts, JavaScript syntax, project memory, public-manifest exposure, local Library UI, and all PDF URLs. This release does not change prediction-engine logic, certification, runtime data, permits, quotas, or draw probabilities.
+## 2026-09-08 - Publish three-year harvest reports with objectives, experience, quality, and navigation
+
+Scope:
+- Replaced the public 2017-2025 annual harvest set with only the requested 2023, 2024, and 2025 annual reports; the separate 2025 permit-utilization and conservation supplement remains available.
+- Added exact hunt-code/species-compatible Utah DWR management-objective context, permit utilization, days hunted, hunter satisfaction, annual harvested age, DWR-reported three-year harvested age, and evidence-gated U.O.G.A. Hunt Unit Quality.
+- Added U.O.G.A.-styled clickable Species / Sex tables of contents, PDF bookmarks, alphabetical hunting-unit indexes, exact hunt-code/unit-name row links, and return navigation.
+- Kept source/page/hash lineage internal and preserved blank values when compatible evidence is unavailable.
+
+Result:
+- 2023: 1,179 rows; 668 management-objective matches; 390 publishable quality profiles.
+- 2024: 1,048 rows; 660 management-objective matches; 385 publishable quality profiles.
+- 2025: 1,148 rows; 651 management-objective matches; 390 publishable quality profiles.
+- No prediction-engine, quota, certification, or Research runtime behavior was changed.
+
+Validation:
+- Rebuilt all three PDFs from the normalized harvest history plus verified management and quality overlays.
+- Structurally validated page counts, PDF outlines, internal jump links, required columns, hidden internal lineage, and output/public SHA-256 parity.
+- Rendered every page and visually reviewed representative covers, TOCs, objective frameworks, unit indexes, populated result rows, sparse pages, and final pages.
+
+Commit:
+- Pending release commit.

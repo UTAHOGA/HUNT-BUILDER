@@ -159,6 +159,35 @@ def test_row_annotation_separates_bear_subtypes_and_withholds_uncertified_odds()
     assert report["certification_status_counts"] == {CERTIFIED: 1, EXPERIMENTAL: 1}
 
 
+def test_certified_design_does_not_publish_display_only_zero_placeholder() -> None:
+    registry = {
+        "registry_id": "test-registry",
+        "evidence": {"acceptance_by_draw_design": "audit/review.csv"},
+        "families": {
+            "BONUS_PLE_BIG_GAME": {
+                "certification_status": CERTIFIED,
+                "failure_reasons": "",
+            }
+        },
+    }
+    rows = [
+        {
+            "draw_system_type": "BONUS_PLE_BIG_GAME",
+            "status": "DISPLAY ONLY - NO FORECASTED APPLICANT COHORT",
+            "p_draw": "0.000000",
+            "p_draw_mean": "0.000000",
+            "p_draw_pct": "0.000",
+        }
+    ]
+
+    annotate_prediction_rows(rows, registry)
+
+    assert rows[0]["prediction_certification_status"] == CERTIFIED
+    assert rows[0]["certified_p_draw"] == ""
+    assert rows[0]["certified_p_draw_mean"] == ""
+    assert rows[0]["certified_p_draw_pct"] == ""
+
+
 def test_local_promotion_gate_rejects_public_probability_on_uncertified_row(tmp_path: Path) -> None:
     path = tmp_path / "predictions.csv"
     common = {

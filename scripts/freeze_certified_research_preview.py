@@ -18,12 +18,18 @@ import hashlib
 import json
 import re
 import shutil
+import sys
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from engine.utah_draw_predictive.certification import has_publishable_probability_basis
+
+
 DEFAULT_MATERIALIZATION = (
     ROOT
     / "audits"
@@ -141,8 +147,12 @@ def preview_row(row: dict[str, str], build_id: str) -> dict[str, str]:
     # Keep the three allowed fields explicit, including blank values, so the
     # preview contract is directly auditable without relying on missing-key
     # behavior.
+    probability_is_publishable = (
+        clean(row.get("prediction_certification_status")) == "CERTIFIED"
+        and has_publishable_probability_basis(row)
+    )
     for field in CERTIFIED_FIELDS:
-        result[field] = clean(row.get(field))
+        result[field] = clean(row.get(field)) if probability_is_publishable else ""
     result["preview_probability_contract"] = "CERTIFIED_P_DRAW_FIELDS_ONLY"
     result["preview_build_id"] = build_id
     return result
@@ -438,6 +448,14 @@ def build(
     )
     if preview_raw_probability_values or preview_uncertified_probability_leaks:
         raise RuntimeError("Generated preview did not preserve the certified-only probability contract.")
+    preview_probability_rows = sum(
+        1 for row in preview_rows if any(clean(row.get(field)) for field in CERTIFIED_FIELDS)
+    )
+    preview_certified_design_rows = sum(
+        1
+        for row in preview_rows
+        if clean(row.get("prediction_certification_status")) == "CERTIFIED"
+    )
 
     materialization_artifacts = {
         path.name: artifact(path)
@@ -482,6 +500,9 @@ def build(
             "summary_row_count": len(summary_rows),
             "index_hunt_code_count": len(index_rows),
             "point_ladder_row_count": len(preview_rows),
+            "certified_design_row_count": preview_certified_design_rows,
+            "rows_with_certified_probability": preview_probability_rows,
+            "certified_design_rows_without_probability": preview_certified_design_rows - preview_probability_rows,
             "scope": (
                 "ALL_MATERIALIZED_ROWS_CERTIFICATION_STATUS_AUDIT"
                 if include_all_statuses

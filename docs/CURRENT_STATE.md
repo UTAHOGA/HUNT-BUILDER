@@ -108,11 +108,11 @@ The visitor-facing management and harvest-quality layer is display-only and foll
 
 ## Harvest Report Library
 
-The local Library source now registers one assembled annual harvest report for every year from 2017 through 2025 under `HARVEST REPORTS`. The nine PDFs contain 9,144 normalized official hunt-code rows and preserve annual harvested age and DWR-reported three-year harvested age as separate fields. Blank measures remain blank; the reports do not infer missing age, current quota, or draw probability.
+The public Library registers only the three most recent assembled harvest years—2023, 2024, and 2025—under `HARVEST REPORTS`. The three annual PDFs contain 3,375 normalized official hunt-code rows. Each report displays permit utilization, harvest success, days hunted, hunter satisfaction, annual harvested age, DWR-reported three-year harvested age, the compatible species-specific DWR management objective/current/status measure, and the evidence-gated U.O.G.A. Hunt Unit Quality profile. A U.O.G.A.-styled clickable table of contents navigates by Species / Sex, and the alphabetical hunting-unit index links exact unit names and hunt codes to their result rows. Blank measures remain blank; the reports do not infer missing values, current quota, or draw probability. The separate 2025 permit-utilization and conservation supplement remains registered as a fourth Library file.
 
 The 2025 report contains 1,148 rows: 1,141 current big-game dashboard rows and seven official turkey rows. It includes the official 2025 elk, pronghorn, and moose annual ages plus their DWR-reported 2023-2025 averages. The report is explicitly labeled as the current dashboard/preliminary package reconciled through September 2, 2026, rather than as a replaced final annual package.
 
-The Library source, local public copies, and generated `pages-dist` output are local-only until an explicitly authorized stage, commit, push, or deployment. The existing 2025 permit-utilization/conservation supplement remains a separate Library item.
+An earlier 2017–2025 nine-report assembly and its release remain documented in `WORK_LOG.md` as historical evidence. The current public registry intentionally supersedes that set with the enhanced 2023–2025 reports described above.
 
 ## Internal Outfitter Directory
 
@@ -171,7 +171,6 @@ narrowed to nine unique vetted hunting businesses. Six fishing-only legacy rows
 and their tracked logo-source entries were removed from the current tree. Those
 11 vetted contact rows remain unchanged; the public feed supplements them with
 the 63 permit-confirmed name-only profiles described above.
-
 ## Current Build Evidence
 
 The locally promoted prediction runtime was rebuilt on `2026-08-27` from the then-current frozen, unified 2018-2025 forecast candidate. The promotion copied 31 forecast artifacts to `processed_data/`, verified every copied SHA-256, and backed up each prior local target. It did not upload or alter R2. That local runtime is now deliberately treated as stale because the official current database has changed; it remains untouched until the newer blind candidate is accepted and explicitly promoted.

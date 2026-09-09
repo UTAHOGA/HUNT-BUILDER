@@ -1240,6 +1240,7 @@
 
   function getPrimaryOddsLabel(meta, row, displayedOdds, referenceRow) {
     if (getCertificationDisplayStatus(row)) return 'Not available';
+    if (displayedOdds.percent === null) return 'Not available';
     if (displayedOdds.source === 'ml_hybrid') {
       const confidence = displayedOdds.confidence === null ? null : Number(displayedOdds.confidence);
       const confidenceLabel = Number.isFinite(confidence) ? ` (conf ${confidence.toFixed(2)})` : '';
