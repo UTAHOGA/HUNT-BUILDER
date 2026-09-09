@@ -2,7 +2,14 @@ from __future__ import annotations
 
 from engine.utah_draw_predictive.dedicated_hunter import build_preference_dedicated_hunter_predictions
 from engine.utah_draw_predictive.preference_antlerless import build_preference_antlerless_predictions
-from engine.utah_draw_predictive.preference_general_deer import build_preference_general_deer_predictions
+from engine.utah_draw_predictive.preference_general_deer import (
+    _looks_like_general_buck_deer,
+    build_preference_general_deer_predictions,
+)
+from engine.utah_draw_predictive.run_all_families import (
+    _family_for_legacy_row,
+    _with_historical_target_metadata,
+)
 
 
 def _split_truth_row(
@@ -63,6 +70,58 @@ def _assert_historical_rows(rows: list[dict[str, object]], source_year: int) -> 
     assert all(str(row.get("source_file", "")).find("2026") == -1 for row in rows)
     assert all(str(row.get("reason_codes", "")).find("2026") == -1 for row in rows)
     assert all(row.get("applicants_at_level") != 1 for row in rows if row.get("probability_applicant_count") == 1)
+
+
+def test_authoritative_2021_adult_pool_outranks_stale_youth_descriptor() -> None:
+    repaired_adult = {
+        "hunt_code": "DB1520",
+        "hunt_name": "Plateau, Thousand Lakes",
+        "species": "Deer",
+        "sex_type": "Either Sex",
+        "hunt_type": "General Season",
+        "hunt_class": "Youth",
+        "draw_pool": "adult_general_deer",
+        "draw_system_type": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+        "source_file": "21_deer_odds.pdf",
+    }
+    actual_youth = dict(
+        repaired_adult,
+        draw_pool="youth_general_deer",
+        draw_system_type="REFERENCE_ONLY",
+        source_file="21_youth_deer.pdf",
+    )
+
+    assert _looks_like_general_buck_deer(repaired_adult)
+    assert not _looks_like_general_buck_deer(actual_youth)
+
+
+def test_runner_routes_repaired_2021_adult_pool_before_stale_youth_descriptor() -> None:
+    repaired_adult = {
+        "year": "2021",
+        "hunt_code": "DB1520",
+        "hunt_name": "Plateau, Thousand Lakes",
+        "species": "Deer",
+        "sex_type": "Either Sex",
+        "hunt_class": "Youth",
+        "draw_system_type": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+        "draw_pool": "adult_general_deer",
+        "source_file": "21_deer_odds.pdf",
+    }
+    true_youth = {
+        **repaired_adult,
+        "draw_system_type": "REFERENCE_ONLY",
+        "draw_pool": "youth_general_deer",
+        "source_file": "21_youth_deer.pdf",
+    }
+
+    assert _family_for_legacy_row(repaired_adult) == "preference_general_deer"
+    assert _family_for_legacy_row(true_youth) == ""
+
+    [enriched] = _with_historical_target_metadata([repaired_adult], 2021, 2022)
+    assert enriched["draw_system_type"] == "PREFERENCE_GENERAL_SEASON_BUCK_DEER"
+    assert enriched["draw_pool"] == "adult_general_deer"
+    assert enriched["sex_type"] == "Buck"
+    assert enriched["hunt_class"] == "GENERAL_SEASON_DEER"
 
 
 def test_2018_to_2019_preference_families_use_source_year_permits_without_2026() -> None:

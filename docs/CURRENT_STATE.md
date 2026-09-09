@@ -1,20 +1,39 @@
 # Hunt Builder Current State
 
-Memory contract: `1.2.0`
-Last verified: `2026-09-06`
+Memory contract: `1.3.0`
+Last verified: `2026-09-09`
 Machine authority: `governance/engine-authority.json`
 
 This is the required short briefing for Hunt Builder, Hunt Research, prediction-engine, truth, runtime, build, and deployment work. It supersedes older files whose names contain "current" when their generated date is earlier than this document. `WORK_LOG.md` is historical evidence, not current architecture authority.
 
 ## Current Classification
 
-- Product phase: `HOSTED_NORMAL_SPLIT_CONTRACT_RELEASED_CERTIFICATION_PENDING`.
+- Product phase: `HOSTED_NORMAL_SPLIT_CONTRACT_RELEASED_PARTIAL_FAMILY_CERTIFICATION_NOT_PROMOTED`.
 - Hunt Research: hosted and materially functional.
 - Prediction mechanics: implemented across the declared engine roles below.
 - Active forecast year: `2026`.
 - Prediction accuracy certified: `NO`.
 - Promotion status: `BLOCKED`.
 - New engine designs: prohibited without Tyler's explicit approval.
+
+The local family-certification gate is implemented but not deployed. Runtime
+implementation status and statistical certification are now separate. Raw
+probabilities remain available for development and blind scoring; a future
+certification-aware public contract may display only `certified_p_draw*`
+fields. Non-certified rows retain their historical evidence and projected draw
+line, but their future probability is withheld. The line is a structural
+forecast, never a guaranteed draw.
+
+The reviewed 2026 materialization is frozen locally at
+`audits/prediction_release_candidates/certified_core_20260909_33875/`. Its
+primary prediction file contains `33,875` rows and `212` unique columns at
+SHA-256 `8412538782ee4ead10a355ff5e80e38f704462eb912af39163ca5b13174bff7f`.
+The accompanying local Hunt Research preview is restricted to the four
+certified designs and removes every raw future-probability field or display
+alias. It contains `26,486` certified-design ladder rows; `26,476` have a
+published `certified_p_draw*` value and 10 source-pending aggregate rows remain
+blank. This is frozen candidate evidence and a local preview only: it does not
+replace `processed_data`, R2, `pages-dist`, or the hosted Research runtime.
 
 ## Active Research Runtime
 
@@ -87,6 +106,72 @@ The visitor-facing management and harvest-quality layer is display-only and foll
 - The `U.O.G.A. Hunt Quality Profile V1` is not a DWR score and cannot change draw probability, permits, quotas, or canonical truth. Its four fixed components are biological measure (40%), three-year success (25%), three-year satisfaction (20%), and three-year inverse effort (15%). Missing components are never reweighted.
 - A composite score is published only for exact-code, current-through-2025 grade A/B history with all three-year components, a numeric matching-unit DWR target/current comparison, no relevant value conflict, and at least 10 average hunters afield. Raw verified measures and explicit withholding reasons remain publishable when the composite gate is not met.
 
+## Harvest Report Library
+
+The local Library source now registers one assembled annual harvest report for every year from 2017 through 2025 under `HARVEST REPORTS`. The nine PDFs contain 9,144 normalized official hunt-code rows and preserve annual harvested age and DWR-reported three-year harvested age as separate fields. Blank measures remain blank; the reports do not infer missing age, current quota, or draw probability.
+
+The 2025 report contains 1,148 rows: 1,141 current big-game dashboard rows and seven official turkey rows. It includes the official 2025 elk, pronghorn, and moose annual ages plus their DWR-reported 2023-2025 averages. The report is explicitly labeled as the current dashboard/preliminary package reconciled through September 2, 2026, rather than as a replaced final annual package.
+
+The Library source, local public copies, and generated `pages-dist` output are local-only until an explicitly authorized stage, commit, push, or deployment. The existing 2025 permit-utilization/conservation supplement remains a separate Library item.
+
+## Internal Outfitter Directory
+
+The public GitHub repository does not hold the promoted internal rows. The
+Git-ignored local artifact
+`local_data/outfitters/outfitters-master.internal.json` is the working directory
+of 138 named hunting businesses promoted from the reconciled spreadsheet. It
+preserves 7 `Confirmed`, 59 `Needs Verification`, and 72 `Spreadsheet Only`
+records without converting those values into the separate legacy
+`Vetted/Unreviewed` field. Fishing-only and unclassified businesses are
+excluded. `data/outfitter-internal-master-manifest.json` records the promotion
+counts and source hash without exposing private rows.
+
+The updated working master now supplies 80 hunting-outfitter USFS/BLM evidence
+records. The supplied official USDA Forest Service rosters confirm 70 unique
+hunting businesses independently of their contact-record review status. The
+Manti-La Sal list, last updated May 19, 2026, contributes 19 matched businesses
+with North Zone or South Zone scope. The 2025 Fishlake image contributes 41
+matched businesses with whole-Fishlake scope. The prior Region 4 FOIA rosters
+remain integrated. Permit confirmation changes neither contact verification nor
+spreadsheet review status; among the 70 permit-confirmed businesses, 6 contact
+records are `Confirmed`, 33 are `Needs Verification`, and 31 are `Spreadsheet
+Only`. Ten remaining federal-area records stay internal leads.
+
+The 761-row local federal coverage review now uses the September 8, 2026 full
+Utah DWR ArcGIS boundary snapshot: 685 unique polygons, including two additions
+and two name corrections relative to the 683-feature browser-light map layer.
+Of 477 eligible unit/species rows, 464 resolve to exact DWR geometry and 13 do
+not. Every business tied by exact or clearly close business name to a supplied
+official issued-authorization roster participates in the authorization
+crosswalk even when its independent contact record is `Needs Verification` or
+`Spreadsheet Only`. Ambiguous Cisco and Sunrise Manti-La Sal identities and the
+unmatched Chunky Trout Fishlake name remain unresolved rather than being
+assigned by guesswork.
+
+A confirmed USFS SUP or BLM SRP area intersecting a DWR unit establishes guide
+authorization on the permitted federal land inside that unit. The same mapped
+species/unit coverage applies to every sex-specific or hunt-specific selection
+that uses that DWR species/unit geometry. A 0.1-acre minimum overlap excludes
+boundary-touch artifacts; whole-unit coverage percentage is descriptive and is
+not an authorization gate. The current build records 7,639
+outfitter/unit/species associations across 70 permit-confirmed outfitters in
+354 public coverage rows, including six separately operator-confirmed Wild Eyez
+elk-service claims. The legacy 75% comparison would retain only 26 rows across
+32 outfitters and therefore does not control eligibility.
+
+The public contract contains the existing 11 vetted contact rows plus 63
+permit-confirmed, name-only profiles. Those 63 profiles expose only the business
+name and confirmed coverage; their phone, email, website, owner, city, personal
+address, and other unverified contact fields remain withheld. The public
+coverage contract is `processed_data/outfitter-federal-unit-coverage-review.json`.
+Private internal source and evidence artifacts remain outside the public build.
+
+The tracked `data/outfitters-master.json` and root canonical outfitter array are
+narrowed to nine unique vetted hunting businesses. Six fishing-only legacy rows
+and their tracked logo-source entries were removed from the current tree. Those
+11 vetted contact rows remain unchanged; the public feed supplements them with
+the 63 permit-confirmed name-only profiles described above.
+
 ## Current Build Evidence
 
 The locally promoted prediction runtime was rebuilt on `2026-08-27` from the then-current frozen, unified 2018-2025 forecast candidate. The promotion copied 31 forecast artifacts to `processed_data/`, verified every copied SHA-256, and backed up each prior local target. It did not upload or alter R2. That local runtime is now deliberately treated as stale because the official current database has changed; it remains untouched until the newer blind candidate is accepted and explicitly promoted.
@@ -103,11 +188,19 @@ The locally promoted prediction runtime was rebuilt on `2026-08-27` from the the
 
 The full generated prediction manifest is a repo-external build artifact at `processed_data/utah_bonus_predictive_manifest.json`. Its compact integrity evidence—including pipeline and rule versions, forecast year, row counts, source hashes, and the promoted manifest SHA-256—is Git-tracked in `governance/engine-authority.json`. Code-only validation uses that compact record and performs the full manifest hash and field cross-check whenever the generated manifest is locally hydrated.
 
-The normalized official draw truth is locally hydrated with `341,842` rows for draw years `2017-2026`; SHA-256 `8b0053a8be9366671a2c80d5d4e2bb0c290a32e3ce476d41154e5ecc113d0a18`. The 2017 legacy scope is frozen from retained official source reports, and the 2018 legacy-layout reports are canonically parsed; source-identity normalization retains distinct official scopes rather than merging coarse duplicate keys. On 2026-08-29, the yearly canonicals were corrected by official hunt-code prefix only: 2,723 historical `species` metadata cells are now normalized (for example, Deer at Bear River and Elk at Bear Mountain), with no official applicant, permit, probability, point, source-file, or PDF-page value changed. On 2026-09-02, `857` 2018 point-lane derived probabilities were corrected from rounded DWR `Success Ratio` display values to their exact retained applicant/permit counts; the source `1 in X` text, counts, point rows, and PDF lineage were preserved. The prior prediction-build manifest deliberately retains its earlier truth hash until a fresh source-only forecast is built and accepted. The September 2 live UtahDraws refresh added `2,144` actual 2026 antlerless point/residency/adult-youth rows across `153` public drawn hunt codes to the 2026 canonical. Of these rows, `1,911` have positive applicants and `233` preserve official zero-applicant evidence with blank probabilities. All `262` current Hunt Planner permit-reference rows remain non-scorable identity/quota references. The live source backs `153` of the `162` public drawn references; all nine unmatched references are zero-permit conservation, Expo, or control references. `EA1281` (Mt Dutton, Deep Creek) was removed from the active 2026 database and canonical reference set: its current DWR detail record identifies it as `HUNT_YEAR=2025` and `STATUS=OFF`, the current antlerless-elk list omits it, and the 2026 antlerless guidebook contains neither the code nor Deep Creek. Its `67` resident plus `8` nonresident permits (`75` total) are archived 2025 Hunt Planner values for the Dec. 20, 2025-Jan. 11, 2026 season, not 2026 draw permits. All `36` canonical 2025 EA1281 result rows remain preserved. The official online results are also formatted into one combined and five species-specific 2025-style PDFs under `pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/official_dwr_online_results/`, with resident and nonresident ladders matched by hunt code. Across all current live endpoint packages, `18,519` canonical rows have direct value parity and one `DB1630` row has multiple equal endpoint candidates; `17,165` rows are certifiable source-value parity and `1,355` are explicitly unscorable because the official source has no applicant or successful-applicant count.
+The normalized official draw truth is locally hydrated with `338,802` rows for draw years `2017-2026`; SHA-256 `23da1cb46b521eba252135a45a706ada20b1e6814c7a21d6c0a6fd2ea01fa8df`. The 2017 legacy scope is frozen from retained official source reports, and the 2018 legacy-layout reports are canonically parsed; source-identity normalization retains distinct official scopes rather than merging coarse duplicate keys. On 2026-08-29, the yearly canonicals were corrected by official hunt-code prefix only: 2,723 historical `species` metadata cells are now normalized (for example, Deer at Bear River and Elk at Bear Mountain), with no official applicant, permit, probability, point, source-file, or PDF-page value changed. On 2026-09-02, `857` 2018 point-lane derived probabilities were corrected from rounded DWR `Success Ratio` display values to their exact retained applicant/permit counts; the source `1 in X` text, counts, point rows, and PDF lineage were preserved. The 2026-09-09 source audit proved that the supplied 2021 general-season buck-deer PDF is byte-identical to the retained DWR archive and exactly matches all 2,208 canonical hunt/point rows, applicant and permit counts, success ratios, PDF pages, and recomputed probabilities. It completed the earlier 483-row repair across 21 hunts by normalizing `draw_design` and `hunt_class` in addition to `draw_system_type` and `draw_pool`; no official numeric or lineage value changed. The proven `3,040`-row 2023 false youth-general-deer source lane remains removed after exact multiset reconciliation to the retained youth-antlerless deer, elk, and pronghorn lanes. The frozen long file has strict ordered value parity with all ten yearly canonicals. The prior promoted prediction-build manifest deliberately retains its earlier truth hash until a candidate is separately authorized for promotion. The September 2 live UtahDraws refresh added `2,144` actual 2026 antlerless point/residency/adult-youth rows across `153` public drawn hunt codes to the 2026 canonical. Of these rows, `1,911` have positive applicants and `233` preserve official zero-applicant evidence with blank probabilities. All `262` current Hunt Planner permit-reference rows remain non-scorable identity/quota references. The live source backs `153` of the `162` public drawn references; all nine unmatched references are zero-permit conservation, Expo, or control references. `EA1281` (Mt Dutton, Deep Creek) was removed from the active 2026 database and canonical reference set: its current DWR detail record identifies it as `HUNT_YEAR=2025` and `STATUS=OFF`, the current antlerless-elk list omits it, and the 2026 antlerless guidebook contains neither the code nor Deep Creek. Its `67` resident plus `8` nonresident permits (`75` total) are archived 2025 Hunt Planner values for the Dec. 20, 2025-Jan. 11, 2026 season, not 2026 draw permits. All `36` canonical 2025 EA1281 result rows remain preserved. The official online results are also formatted into one combined and five species-specific 2025-style PDFs under `pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/official_dwr_online_results/`, with resident and nonresident ladders matched by hunt code. Across all current live endpoint packages, `18,519` canonical rows have direct value parity and one `DB1630` row has multiple equal endpoint candidates; `17,165` rows are certifiable source-value parity and `1,355` are explicitly unscorable because the official source has no applicant or successful-applicant count.
 
 Five complete UOGA-styled 2026 result PDFs are retained under `pipeline/RAW/hunt_unit_database/2026/pdf/draw_odds/official_dwr_online_results/uoga_styled_20260902/`: corrected Antlerless, Big Game, Black Bear, Turkey, and Sportsman. They cover all `29` retained official UtahDraws packages and all `22,018` result rows. Each page uses the supplied UOGA circle logo, the current UOGA black/brown/cream/forest palette, and the 2025 DWR-style resident/nonresident point tables while clearly identifying DWR/UtahDraws as the data source. The generation guard requires every row to have `IsHistoricalData=False`, every populated season to have `LicenseYear=2026`, zero calendar-2025 season starts, and zero `EA1281` source matches; 2027 calendar starts remain valid only when DWR assigns them to the 2026 license year.
 
-The accepted acceptance standard is `docs/decisions/ADR-0006-historical-blind-acceptance-thresholds.md`. Its source-only, physically adjacent review runs `2017→2018` through `2024→2025`; the final pair scores the 2025 drawing even though the corresponding canonical key is named for model year 2026. It explicitly excludes the 2025→2026 comparison. The current deterministic baseline is retained at `audits/prediction_blind_year_to_year/frozen_canonical_long_2017_2025_deterministic_20260906_current_identity_audited_bg/acceptance_review/`. It keeps all `90,145` joined rows and is `NOT_ACCEPTED`: MAE `0.115985`, RMSE `0.280574`, 90th-percentile error `0.400000`, and `11,830` rows (`13.123%`) over 25 probability points. It has `190` false guarantees: `182` limited-entry Bear hunting, `5` restricted Bear pursuit, and `3` Turkey. The source-typed reporting review is retained at `audits/prediction_blind_year_to_year/frozen_canonical_long_2017_2025_deterministic_20260906_current_identity_audited_bg_bear_subtype_reporting/`; no general/unlimited Bear pursuit availability rows are included in this probability population.
+The accepted acceptance standard is `docs/decisions/ADR-0006-historical-blind-acceptance-thresholds.md`, with the publication enforcement contract in `docs/decisions/ADR-0007-family-certification-and-publication-gate.md`. Its source-only, physically adjacent review runs `2017→2018` through `2024→2025`; the final pair scores the 2025 drawing even though the corresponding canonical key is named for model year 2026. It explicitly excludes the 2025→2026 comparison. The current deterministic baseline is retained at `audits/prediction_blind_year_to_year/frozen_canonical_long_2017_2025_deterministic_20260906_current_identity_audited_bg/acceptance_review/`. It keeps all `90,145` joined rows and is `NOT_ACCEPTED`: MAE `0.115985`, RMSE `0.280574`, 90th-percentile error `0.400000`, and `11,830` rows (`13.123%`) over 25 probability points. It has `190` false guarantees: `182` limited-entry Bear hunting, `5` restricted Bear pursuit, and `3` Turkey. The source-typed reporting review is retained at `audits/prediction_blind_year_to_year/frozen_canonical_long_2017_2025_deterministic_20260906_current_identity_audited_bg_bear_subtype_reporting/`; no general/unlimited Bear pursuit availability rows are included in this probability population.
+
+The current machine-enforced review is `audits/prediction_blind_year_to_year/certification_repair_clean_2017_2025_20260909/acceptance_review/`. It reruns all eight physically adjacent folds against the repaired canonical truth and source-classifies each missing scoreable actual against its exact prior-year source. The compact registry is `governance/prediction-family-certification.json`. Four core big-game designs are now locally `CERTIFIED`, all with zero false guarantees and zero unclassified official-actual gaps: `BONUS_LE_BIG_GAME` (49,916 joined rows, MAE `0.070690`, P90 `0.161155`, tail `7.290%`), `BONUS_OIL_BIG_GAME` (34,330 rows, MAE `0.043740`, P90 `0.045455`, tail `4.532%`), `BONUS_PLE_BIG_GAME` (1,912 rows across five folds, MAE `0.020256`, P90 `0.022884`, tail `1.987%`), and `PREFERENCE_GENERAL_SEASON_BUCK_DEER` (7,783 rows, MAE `0.088697`, P90 `0.250000`, tail `9.457%`). Bear, CWMU, turkey, antlerless, dedicated-hunter, and under-evidenced youth designs remain experimental or insufficient and cannot publish certified probability. The overall multi-design registry therefore remains `NOT_CERTIFIED`. This certification is local only: no runtime artifact, R2 object, or live page was promoted.
+
+The certification-aware local materialization now separates raw development probability from publishable probability. It retains raw `p_draw*` fields for scoring, emits `certified_p_draw*` only for a design whose registry status is `CERTIFIED`, and otherwise marks the probability `EXPERIMENTAL_NOT_CERTIFIED`, `INSUFFICIENT_EVIDENCE`, or `NOT_EVALUATED`. The 2026-09-09 isolated materialization from the rebuilt truth produced `33,875` rows: `26,486` certified, `6,319` experimental, `416` insufficient-evidence, and `654` not-evaluated. Its publication audit found zero unauthorized certified-probability rows. All `28,613` rows labeled `MODELED_BONUS` carry `p_draw`; two recovered legacy Bear point rows explain the increase from the preceding materialization. Probability-less bonus rows are now explicitly pending instead of modeled, and the primary CSV surface has 212 unique columns with no duplicate header names. The Research source treats a future line as a `Projected Draw Line`; it does not convert a selected point level above that line into 100% odds. These changes are local and have not been built into or deployed over the hosted release.
+
+The requested direct same-hunt, same-residency cumulative-applicant-stack candidate was developed on `2019→2020` through `2022→2023`, frozen, and then tested on the previously unopened `2023→2024` and `2024→2025` folds. It failed the Bear limited-entry gates in both phases. Development had `4,755` rows, MAE `0.120384`, P90 `0.361654`, tail `13.165%`, and zero forecasted-certainty failures. Holdout had `3,216` rows, MAE `0.127443`, P90 `0.375429`, tail `14.583%`, and one forecasted-certainty failure. The matching hierarchical baseline was better on every holdout accuracy measure and had the same one certainty failure, so the cumulative candidate was rejected and removed from the selectable engine modes. Its immutable audit evidence remains under `audits/prediction_blind_year_to_year/bear_lane_cumulative_sparse_gamma_development_2019_2023_20260907/` and `audits/prediction_blind_year_to_year/bear_lane_cumulative_sparse_gamma_holdout_2023_2025_20260907/`.
+
+The retained audit-only `lane_cohort_hierarchical` Bear candidate was then run through all eight adjacent folds at 400 deterministic samples. Limited-entry Bear improves materially over the deterministic baseline—from MAE `0.157690` to `0.113279`, P90 `0.565000` to `0.333333`, tail `16.811%` to `12.634%`, and `182` to `34` forecasted-certainty failures—but still fails every ADR-0006 accuracy gate. Restricted pursuit improves from MAE `0.174980` to `0.145782`, P90 `0.429231` to `0.375000`, tail `21.887%` to `18.006%`, and five to one certainty failure, but has only `311` joined rows and is also insufficiently evidenced. The full candidate remains off by default, unpromoted, and uncertified at `audits/prediction_blind_year_to_year/bear_lane_cohort_hierarchical_2017_2025_20260907/`. The 35 remaining exact-100 errors are not caused by applicants over 25 points or a missing unit crosswalk: 31 occur in the thin-history `2018→2019` fold, three in the next two early folds, and one in `2024→2025`. They arise when the aggregate public history has no source-supported rival arrival above the focal rung; changing that assumption after opening the holdout would require new prospective evidence before certification.
 
 The existing, source-backed Bear returning-cohort uncertainty layer was then tested—not promoted—at 400 deterministic samples in `audits/prediction_blind_year_to_year/frozen_canonical_long_2017_2025_bear_source_calibrated_tail_mixture_20260906/acceptance_review/`. It preserves the exact same `90,145` scored keys and reduces false guarantees from `190` to `78` (`75` Bear plus the same `3` Turkey), with MAE `0.115837` and RMSE `0.280042`. It remains `NOT_ACCEPTED`: the P90 remains `0.400000`, and its tail grows slightly to `11,837` rows (`13.131%`). The active/default estimate remains deterministic; no candidate is certified or promoted.
 
@@ -115,7 +208,7 @@ The remaining `75` Bear false guarantees are evidence about unmet, lane-specific
 
 The durable source boundary for a future Bear entry/switch model is now `data_truth/point_purchase_truth/BLACK_BEAR_HUNT_LANE_TRANSITION_CONTRACT.md`. Public DWR reports and the UtahDraws endpoint remain aggregate-only evidence; they do not connect a person’s prior Bear outcome or point purchase to a following-year hunt selection. R657-62-8 confirms that DWR retains the electronic application record needed to make that connection, while the guidebook keeps individual results private. The only acceptable extension is a DWR-produced, de-identified, aggregate prior-activity-to-next-first-choice transition matrix that meets the contract’s lineage, adjacency, residency, suppression, and held-out validation gates. Until such an extract exists, no additional hunt-level entrant allocation is permitted.
 
-The retained official 2018–2022 black-bear PDFs contain separate resident and nonresident point ladders, while the canonical source rows retain their combined values. The hash-linked extraction at `data_truth/draw_results_truth/validation/black_bear_2018_2022_pdf_residency_ladders.csv` recombines exactly to all five canonical years, with no missing point keys or value disagreements. The prior 2018 canonical omitted the retained Black Bear report; it was rebuilt from the ten retained official report parents, compared so that every non-Bear row and the existing `BR1000` Sportsman row remained identical, then promoted with a hash-verified rollback copy. `draw_results_long.csv` is rebuilt solely from the canonical yearly truth and now has `341,842` rows, including the later frozen 2017 canonical promotion, the `2,144` newly promoted official 2026 antlerless result rows, and the exclusion of the misclassified EA1281 permit reference. The extraction remains validation truth: the engine must not use a combined-residency row as a resident or nonresident odds ladder. The 2021→2022 paired source-and-held-out lane fold found a narrowly scoped defect in the audit-only historical permit proxy: it summed broad resident/nonresident columns from both normalized lane rows and doubled the max-point/random permit allocation. The repair now uses each lane's scoped `total_permits` once. The source-only rerun has zero duplicate forecast keys and reduces Bear from `68` to `53` false guarantees and MAE from `0.402231` to `0.323858`; it remains **NOT_ACCEPTED** because every remaining false guarantee is a max-pool demand miss, not a combined-lane or repeated permit-allocation defect. The attempted generic demand-scenario adjustment is explicitly not retained.
+The retained official 2018–2022 black-bear PDFs contain separate resident and nonresident point ladders, while the canonical source rows retain their combined values. The hash-linked extraction at `data_truth/draw_results_truth/validation/black_bear_2018_2022_pdf_residency_ladders.csv` recombines exactly to all five canonical years, with no missing point keys or value disagreements. The prior 2018 canonical omitted the retained Black Bear report; it was rebuilt from the ten retained official report parents, compared so that every non-Bear row and the existing `BR1000` Sportsman row remained identical, then promoted with a hash-verified rollback copy. `draw_results_long.csv` is rebuilt solely from the canonical yearly truth and now has `338,802` rows, including the later frozen 2017 canonical promotion, the `2,144` newly promoted official 2026 antlerless result rows, the exclusion of the misclassified EA1281 permit reference, and the removal of the proven 3,040-row 2023 duplicate lane. The extraction remains validation truth: the engine must not use a combined-residency row as a resident or nonresident odds ladder. The 2021→2022 paired source-and-held-out lane fold found a narrowly scoped defect in the audit-only historical permit proxy: it summed broad resident/nonresident columns from both normalized lane rows and doubled the max-point/random permit allocation. The repair now uses each lane's scoped `total_permits` once. The source-only rerun has zero duplicate forecast keys and reduces Bear from `68` to `53` false guarantees and MAE from `0.402231` to `0.323858`; it remains **NOT_ACCEPTED** because every remaining false guarantee is a max-pool demand miss, not a combined-lane or repeated permit-allocation defect. The attempted generic demand-scenario adjustment is explicitly not retained.
 
 The paired Bear lane-fold replication is complete for `2018→2019`, `2019→2020`, `2020→2021`, and `2021→2022`. Every source file physically excludes later official truth and every Bear leakage check passes. The archived classifier repair now carries the retained PDF page's explicit `TRUE_BEAR_BONUS_DRAW` or `BEAR_PURSUIT_BONUS_DRAW` identity only on the audit's official residency-lane projections; it does not alter canonical truth or classify rows from a code prefix, permit total, or generic legacy label. The reruns now produce deterministic Bear rows in every earlier fold: `3,600` rows across `75` hunt codes for `2018→2019`, `4,464` across `93` for `2019→2020`, and `4,176` across `87` for `2020→2021`.
 
@@ -131,7 +224,7 @@ The pipeline and runtime model versions describe different layers. The legacy ho
 
 ## Why Promotion Is Blocked
 
-1. The formally adopted historical acceptance review is `NOT_ACCEPTED`: `BONUS_OIL_BIG_GAME` meets the per-design threshold, but the other reviewed designs either fail an error/false-guarantee threshold or have insufficient independent evidence. The highest recurring false-guarantee patterns are recorded by hunt code and draw design in the historical acceptance review.
+1. The formally adopted overall historical acceptance review remains `NOT_ACCEPTED`, but certification is enforced per design. Limited-entry, once-in-a-lifetime, premium limited-entry, and general-season buck deer now pass the complete machine-enforced contract locally. None has been promoted over the hosted runtime. Bear, CWMU, turkey, antlerless, dedicated-hunter, and under-evidenced youth designs still fail an error, coverage, or evidence-volume threshold; the highest recurring failures are recorded by hunt code and draw design in the current historical acceptance review.
 2. The `57` 2026 actual rows reduce to six current hunt codes (`BI6539`, `BR7021`, `BR7126`, `BR7238`, `DB1109`, `DB1121`). Their retained crosswalk verifies no exact 2018-2025 canonical draw predecessor, documents the dated application-guidebook listing, and keeps them deliberately unscored. They must not receive a borrowed same-unit probability unless an official DWR predecessor mapping is retained.
 3. The checked-in local prediction manifest and runtime artifacts still reflect the prior database/candidate. The current reviewed `DATABASE.csv` is newer after the conservation-permit crosswalk and EA2045/PD1056 corrections; the newer candidate has not been accepted or promoted.
 4. The four source/family contract mismatches recorded on 2026-08-28 are resolved. The only remaining contract-drift review is local-versus-R2 equivalence for the legacy predictive CSV fallback, which is not part of the normal Research load path.

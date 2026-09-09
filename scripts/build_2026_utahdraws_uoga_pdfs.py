@@ -828,14 +828,26 @@ def build_pdf(
 
 
 def main() -> None:
+    global SOURCE_ROOT, SOURCE_DIR, SUPPLEMENT
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--validate-only", action="store_true")
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
+    parser.add_argument(
+        "--source-root",
+        type=Path,
+        default=SOURCE_ROOT,
+        help="UtahDraws snapshot root containing csv/ and json/ directories.",
+    )
     parser.add_argument("--logo", type=Path, default=DEFAULT_LOGO)
     parser.add_argument("--bighorn-icon", type=Path, default=DEFAULT_BIGHORN_ICON)
     parser.add_argument("--bear-icon", type=Path, default=DEFAULT_BEAR_ICON)
     parser.add_argument("--moose-icon", type=Path, default=DEFAULT_MOOSE_ICON)
     args = parser.parse_args()
+
+    SOURCE_ROOT = args.source_root.resolve()
+    SOURCE_DIR = SOURCE_ROOT / "csv"
+    SUPPLEMENT = SOURCE_ROOT / "json" / "draw_odds_supplement_data.json"
 
     by_family, validation = validate_sources()
     payload: dict[str, object] = {

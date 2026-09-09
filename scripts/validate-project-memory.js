@@ -47,6 +47,7 @@ function validateProjectMemory(root = REPO) {
   }
 
   const authority = readJson('governance/engine-authority.json');
+  const familyCertification = readJson('governance/prediction-family-certification.json');
   const packageJson = readJson('package.json');
   const agents = readText('AGENTS.MD');
   const currentState = readText('docs/CURRENT_STATE.md');
@@ -56,7 +57,7 @@ function validateProjectMemory(root = REPO) {
   const mixedConstants = readText('engine/utah_predictive_mixed/__init__.py');
   const pipelineConstants = readText('engine/utah_bonus_predictive/rules.py');
 
-  check(authority.schema_version === '1.2.0', 'Memory schema_version must be 1.2.0.');
+  check(authority.schema_version === '1.3.0', 'Memory schema_version must be 1.3.0.');
   check(authority.authority === 'HUNT_BUILDER_PROJECT_MEMORY', 'Unexpected memory authority identifier.');
   check(authority.lifecycle?.promotion_status === 'BLOCKED', 'Current promotion status must remain BLOCKED until recorded blockers are cleared.');
   check(authority.lifecycle?.production_prediction_accuracy_certified === false, 'Current prediction accuracy must not be marked certified.');
@@ -83,6 +84,33 @@ function validateProjectMemory(root = REPO) {
   check(drawDesignBaseline.includes('Black bear limited-entry hunting permits'), 'Draw-design baseline must distinguish limited-entry bear hunting.');
   check(drawDesignBaseline.includes('Resident and nonresident rules'), 'Draw-design baseline must preserve residency rules.');
   check(drawDesignBaseline.includes('just-missed high-point cohort'), 'Draw-design baseline must preserve the applicant-behavior anchor.');
+
+  const certificationAuthority = authority.prediction_family_certification || {};
+  check(certificationAuthority.registry === 'governance/prediction-family-certification.json', 'Family certification registry path is not canonical.');
+  check(certificationAuthority.registry_schema === 'prediction-family-certification.v1', 'Family certification registry schema is not declared.');
+  check(familyCertification.schema_version === certificationAuthority.registry_schema, 'Family certification registry schema disagrees with engine authority.');
+  check(familyCertification.certification_standard === certificationAuthority.acceptance_standard, 'Family certification standard disagrees with engine authority.');
+  check(Array.isArray(familyCertification.certified_designs), 'Family certification registry has no certified-design list.');
+  check(JSON.stringify(familyCertification.certified_designs || []) === JSON.stringify(certificationAuthority.certified_designs || []), 'Certified-design list disagrees with engine authority.');
+  check(familyCertification.overall_certification_status === 'NOT_CERTIFIED', 'Current family registry must remain NOT_CERTIFIED until a passing review is generated.');
+  check(researchLoader.includes('function getCertificationGatedOdds(row)'), 'Hunt Research is missing the family certification probability gate.');
+  check(researchLoader.includes('uncertified_probability_withheld'), 'Hunt Research does not visibly withhold uncertified probability.');
+  check(researchLoader.includes('projected_draw_line_2026'), 'Hunt Research does not prefer projected-line semantics.');
+
+  const certificationEvidence = familyCertification.evidence || {};
+  for (const [pathKey, hashKey] of [
+    ['acceptance_by_draw_design', 'acceptance_by_draw_design_sha256'],
+    ['acceptance_review_manifest', 'acceptance_review_manifest_sha256'],
+  ]) {
+    const relativePath = certificationEvidence[pathKey] || '';
+    check(/^[a-f0-9]{64}$/.test(certificationEvidence[hashKey] || ''), `Family certification evidence hash is missing or invalid: ${hashKey}`);
+    const evidencePath = relativePath ? repoPath(root, relativePath) : '';
+    if (evidencePath && fs.existsSync(evidencePath)) {
+      check(sha256(evidencePath) === certificationEvidence[hashKey], `Family certification evidence hash changed: ${relativePath}`);
+    } else {
+      warnings.push(`Family certification audit detail is not hydrated locally; compact registry evidence remains active: ${relativePath || '<blank>'}`);
+    }
+  }
 
   const routing = authority.draw_design_routing || {};
   check(routing.preferred_authority_field === 'draw_design', 'Draw-design routing must prefer draw_design.');

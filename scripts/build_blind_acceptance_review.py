@@ -19,6 +19,7 @@ from typing import Any, Iterable
 
 REPO = Path(__file__).resolve().parents[1]
 FALSE_GUARANTEE_THRESHOLD = 0.999999
+MISSING_SCOREABLE_ACTUAL_DECISION = "missing_prediction_for_scoreable_actual_ladder_row"
 THRESHOLDS = {
     "minimum_independent_following_year_folds": 2,
     "minimum_joined_rows_per_design": 400,
@@ -153,6 +154,52 @@ def load_draw_line_fold(fold: str, path: Path) -> list[dict[str, object]]:
     return rows
 
 
+def actual_gap_key(row: dict[str, str]) -> tuple[str, str, str, str, str]:
+    return (
+        clean(row.get("draw_design_key")),
+        clean(row.get("draw_pool_key")),
+        clean(row.get("hunt_code")).upper(),
+        clean(row.get("residency")),
+        clean(row.get("points")),
+    )
+
+
+def load_actual_gap_fold(fold: str, path: Path) -> tuple[list[dict[str, object]], str]:
+    """Load scoreable official actuals that did not receive a prediction.
+
+    ADR-0006 requires every non-joined official actual to be source-classified.
+    A blank classification is an unclassified certification gap, even when the
+    probability metrics for joined rows look favorable.
+    """
+
+    rows: list[dict[str, object]] = []
+    if not path.exists():
+        return rows, ""
+    classification_path = path.parent / "draw_line_aware_actual_gap_classifications.csv"
+    classifications = {
+        actual_gap_key(row): row
+        for row in read_csv(classification_path)
+    } if classification_path.exists() else {}
+    for row in read_csv(path):
+        if clean(row.get("scoring_decision")) != MISSING_SCOREABLE_ACTUAL_DECISION:
+            continue
+        sidecar = classifications.get(actual_gap_key(row), {})
+        classification = clean(sidecar.get("actual_gap_classification") or row.get("actual_gap_classification") or row.get("source_classification") or row.get("unscorable_reason"))
+        certification_gap_status = clean(sidecar.get("certification_gap_status"))
+        is_source_classified = bool(classification) and certification_gap_status == "SOURCE_CLASSIFIED"
+        rows.append(
+            {
+                "fold": fold,
+                "draw_design": certification_draw_design(row),
+                "hunt_code": clean(row.get("hunt_code")).upper(),
+                "classification": classification,
+                "certification_gap_status": certification_gap_status,
+                "is_unclassified": not is_source_classified,
+            }
+        )
+    return rows, str(classification_path) if classification_path.exists() else ""
+
+
 def metrics(rows: list[dict[str, object]]) -> dict[str, object]:
     errors = [float(row["absolute_error"]) for row in rows]
     tail = sum(bool(row["tail_error_over_25pp"]) for row in rows)
@@ -168,7 +215,11 @@ def metrics(rows: list[dict[str, object]]) -> dict[str, object]:
     }
 
 
-def decision(folds: set[str], row_metrics: dict[str, object]) -> tuple[str, list[str]]:
+def decision(
+    folds: set[str],
+    row_metrics: dict[str, object],
+    unclassified_actual_gap_rows: int = 0,
+) -> tuple[str, list[str]]:
     failures: list[str] = []
     if len(folds) < THRESHOLDS["minimum_independent_following_year_folds"]:
         failures.append("INSUFFICIENT_INDEPENDENT_FOLDS")
@@ -182,24 +233,39 @@ def decision(folds: set[str], row_metrics: dict[str, object]) -> tuple[str, list
         failures.append("TAIL_ERROR_RATE_EXCEEDS_LIMIT")
     if int(row_metrics["false_guarantee_rows"]) > THRESHOLDS["maximum_false_guarantee_rows"]:
         failures.append("FALSE_GUARANTEE")
+    if unclassified_actual_gap_rows > THRESHOLDS["required_unclassified_actual_gaps"]:
+        failures.append("UNCLASSIFIED_ACTUAL_GAPS")
     return ("ACCEPTED" if not failures else "NOT_ACCEPTED"), failures
 
 
-def build_design_rows(rows: list[dict[str, object]]) -> list[dict[str, object]]:
+def build_design_rows(
+    rows: list[dict[str, object]],
+    actual_gaps: list[dict[str, object]] | None = None,
+) -> list[dict[str, object]]:
+    actual_gaps = actual_gaps or []
     groups: dict[str, list[dict[str, object]]] = defaultdict(list)
     for row in rows:
         groups[clean(row["draw_design"]) or "UNCLASSIFIED"].append(row)
+    gap_groups: dict[str, list[dict[str, object]]] = defaultdict(list)
+    for row in actual_gaps:
+        gap_groups[clean(row["draw_design"]) or "UNCLASSIFIED"].append(row)
     out: list[dict[str, object]] = []
-    for design, group in sorted(groups.items()):
+    for design in sorted(set(groups) | set(gap_groups)):
+        group = groups.get(design, [])
+        design_gaps = gap_groups.get(design, [])
         row_metrics = metrics(group)
-        fold_names = {clean(row["fold"]) for row in group}
-        status, failures = decision(fold_names, row_metrics)
+        fold_names = {clean(row["fold"]) for row in group} | {clean(row["fold"]) for row in design_gaps}
+        unclassified_gaps = sum(bool(row["is_unclassified"]) for row in design_gaps)
+        classified_gaps = len(design_gaps) - unclassified_gaps
+        status, failures = decision(fold_names, row_metrics, unclassified_gaps)
         out.append(
             {
                 "draw_design": design,
                 "independent_following_year_folds": ";".join(sorted(fold_names)),
                 "fold_count": len(fold_names),
                 **row_metrics,
+                "classified_actual_gap_rows": classified_gaps,
+                "unclassified_actual_gap_rows": unclassified_gaps,
                 "acceptance_status": status,
                 "failure_reasons": ";".join(failures),
             }
@@ -244,7 +310,10 @@ def main() -> int:
     args = parser.parse_args()
 
     rows: list[dict[str, object]] = []
+    actual_gaps: list[dict[str, object]] = []
     input_folds: dict[str, str] = {}
+    input_actual_gap_folds: dict[str, str] = {}
+    input_actual_gap_classification_folds: dict[str, str] = {}
     for value in args.fold:
         if "=" not in value:
             raise SystemExit("Each --fold must be SOURCE_TO_TARGET=SCORING_ROWS_CSV")
@@ -255,7 +324,13 @@ def main() -> int:
             raise SystemExit(f"Fold name or scoring file is invalid: {value}")
         rows.extend(load_draw_line_fold(fold, path))
         input_folds[fold] = str(path)
-    design_rows = build_design_rows(rows)
+        actual_gap_path = path.parent / "draw_line_aware_actual_ladder_scoring_rows.csv"
+        fold_gaps, classification_path = load_actual_gap_fold(fold, actual_gap_path)
+        actual_gaps.extend(fold_gaps)
+        input_actual_gap_folds[fold] = str(actual_gap_path)
+        if classification_path:
+            input_actual_gap_classification_folds[fold] = classification_path
+    design_rows = build_design_rows(rows, actual_gaps)
     hunt_rows = build_hunt_code_rows(rows)
 
     args.out_dir.mkdir(parents=True, exist_ok=True)
@@ -263,13 +338,26 @@ def main() -> int:
     write_csv(args.out_dir / "hunt_code_following_year_review.csv", hunt_rows)
     write_csv(args.out_dir / "scored_rows_for_acceptance_review.csv", rows)
     overall = metrics(rows)
-    overall_status, overall_failures = decision({clean(row["fold"]) for row in rows}, overall)
+    overall_unclassified_gaps = sum(bool(row["is_unclassified"]) for row in actual_gaps)
+    overall_status, overall_failures = decision(
+        {clean(row["fold"]) for row in rows} | {clean(row["fold"]) for row in actual_gaps},
+        overall,
+        overall_unclassified_gaps,
+    )
     manifest = {
         "purpose": "frozen_blind_following_year_acceptance_review",
         "acceptance_standard": "docs/decisions/ADR-0006-historical-blind-acceptance-thresholds.md",
         "thresholds": THRESHOLDS,
         "inputs": input_folds,
-        "overall": {**overall, "acceptance_status": overall_status, "failure_reasons": overall_failures},
+        "actual_gap_inputs": input_actual_gap_folds,
+        "actual_gap_classification_inputs": input_actual_gap_classification_folds,
+        "overall": {
+            **overall,
+            "classified_actual_gap_rows": sum(not bool(row["is_unclassified"]) for row in actual_gaps),
+            "unclassified_actual_gap_rows": overall_unclassified_gaps,
+            "acceptance_status": overall_status,
+            "failure_reasons": overall_failures,
+        },
         "design_count": len(design_rows),
         "hunt_code_review_count": len(hunt_rows),
         "policy": "A failed or insufficiently evidenced design remains blocked; no aggregate result may override a design-level false guarantee.",

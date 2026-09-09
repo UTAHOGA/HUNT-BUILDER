@@ -20,13 +20,35 @@ from .preference_ladder_normalizer import normalize_preference_ladder_rows
 
 
 MODEL_STRATEGY_NAME = "preference_general_deer"
-PREFERENCE_RULE_VERSION = "utah_preference_general_deer_v1.0.0"
+PREFERENCE_RULE_VERSION = "utah_preference_general_deer_v1.1.0"
 PREFERENCE_TAIL_FLOOR = 0.001
 PREFERENCE_TAIL_CEILING = 0.995
 # Keep this at zero unless a future source-backed model change proves a
 # probability lift improves MAE. A broad +0.35 lift overpredicted this family.
 PREFERENCE_REPO_HOLDOUT_BIAS_CORRECTION = 0.0
 TAIL_CALIBRATION_REASON = "PREFERENCE_TAIL_CALIBRATED_FROM_REPO_BACKTEST"
+MIDRANGE_CALIBRATION_REASON = "PREFERENCE_RESIDENCY_MIDRANGE_CALIBRATED_FROM_BLIND_DEVELOPMENT_FOLDS"
+
+# Raw preference probabilities between 20% and 95% are the transition zone
+# where one year's carried applicant stack is most sensitive to switching and
+# attrition. These monotone, residency-specific anchors were selected on the
+# 2017->2018 through 2022->2023 source-only folds and then held fixed for the
+# untouched 2023->2024 and 2024->2025 checks. The tails are deliberately left
+# alone so strong near-zero and near-certain evidence is not flattened.
+PREFERENCE_MIDRANGE_ANCHORS = {
+    "Resident": (
+        (0.20, 0.40, 0.25),
+        (0.40, 0.60, 0.55),
+        (0.60, 0.80, 0.75),
+        (0.80, 0.95, 0.75),
+    ),
+    "Nonresident": (
+        (0.20, 0.40, 0.15),
+        (0.40, 0.60, 0.25),
+        (0.60, 0.80, 0.75),
+        (0.80, 0.95, 0.75),
+    ),
+}
 
 
 STRATEGY_SPECS = [
@@ -159,6 +181,19 @@ def _looks_like_general_buck_deer(row: Mapping[str, object]) -> bool:
     draw_system_type = _clean_lower(row.get("draw_system_type"))
     if draw_system_type in {"availability_only", "reference_only", "guaranteed_lifetime_permit"}:
         return False
+
+    draw_pool = _clean_lower(row.get("draw_pool"))
+    if (
+        draw_system_type == "preference_general_season_buck_deer"
+        and draw_pool == "adult_general_deer"
+    ):
+        # The official 2021 adult Deer rows were source-reclassified with the
+        # correct design and pool while retaining a stale legacy
+        # ``hunt_class=Youth``/``sex_type=Either Sex`` descriptor.  The exact
+        # adult pool and draw-system authority outrank those descriptive
+        # fields.  True youth and lifetime rows use different pools and remain
+        # excluded below.
+        return True
 
     text = " ".join(
         _clean_lower(row.get(key))
@@ -352,7 +387,7 @@ def _preference_probability(quota: int, applicants_above: int, applicants_at_lev
     return max(0.0, min(1.0, remaining / applicants_at_level))
 
 
-def _calibrate_tail_probability(probability: float) -> tuple[float, bool]:
+def _calibrate_tail_probability(probability: float, residency: str = "") -> tuple[float, bool]:
     calibrated = False
     if probability >= 1.0:
         base_probability = 1.0
@@ -364,6 +399,11 @@ def _calibrate_tail_probability(probability: float) -> tuple[float, bool]:
         base_probability = probability
 
     adjusted = min(PREFERENCE_TAIL_CEILING, base_probability + PREFERENCE_REPO_HOLDOUT_BIAS_CORRECTION)
+    for lower, upper, anchor in PREFERENCE_MIDRANGE_ANCHORS.get(residency, ()):
+        if lower <= adjusted < upper:
+            adjusted = anchor
+            calibrated = True
+            break
     if abs(adjusted - probability) > 0.000001:
         calibrated = True
     return adjusted, calibrated
@@ -522,7 +562,11 @@ def build_preference_general_deer_predictions(
         hunt_name = _clean(db_row.get("hunt_name")) or meta.get("hunt_name", "")
         species = _clean(db_row.get("species")) or meta.get("species", "Deer")
         hunt_type = _clean(db_row.get("hunt_type")) or meta.get("hunt_type", "General Season")
-        hunt_class = _clean(db_row.get("hunt_class")) or meta.get("hunt_class", "Public")
+        hunt_class = (
+            "GENERAL_SEASON_DEER"
+            if draw_pool == "adult_general_deer"
+            else _clean(db_row.get("hunt_class")) or meta.get("hunt_class", "Public")
+        )
         weapon = _clean(db_row.get("weapon")) or meta.get("weapon", "")
 
         available_residencies = sorted(
@@ -700,7 +744,7 @@ def build_preference_general_deer_predictions(
                 applicants_above = running_above
                 probability_applicant_count = max(forecast_applicants_at_level, 1)
                 raw_probability = _preference_probability(forecast_quota, applicants_above, probability_applicant_count)
-                probability, tail_calibrated = _calibrate_tail_probability(raw_probability)
+                probability, tail_calibrated = _calibrate_tail_probability(raw_probability, residency)
                 gap = (forecast_guaranteed - points) if forecast_guaranteed is not None else None
                 prior_gap = (prior_guaranteed - points) if prior_guaranteed is not None else None
                 delta_gap = None if gap is None or prior_gap is None else gap - prior_gap
@@ -761,6 +805,9 @@ def build_preference_general_deer_predictions(
                         "reason_codes": append_reason_codes(
                             quota_authority,
                             TAIL_CALIBRATION_REASON if tail_calibrated else "",
+                            MIDRANGE_CALIBRATION_REASON
+                            if tail_calibrated and 0.20 <= raw_probability < 0.95
+                            else "",
                         ),
                         "weapon": weapon,
                     }

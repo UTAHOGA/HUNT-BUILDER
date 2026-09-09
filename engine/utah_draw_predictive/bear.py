@@ -30,6 +30,7 @@ from .permit_accessors import target_residency_permit_allocation
 
 MODEL_STRATEGY_NAME = "bear_bonus_phase8"
 BONUS_RULE_VERSION = "utah_bear_bonus_v1.0.0"
+FUTURE_BEAR_DRAW_PROBABILITY_CEILING = 0.99
 BEAR_DRAW_SYSTEM_TYPE = "BEAR_DRAW"
 BEAR_NO_PRIOR_LADDER_REASON_CODE = "BEAR_CURRENT_TARGET_NO_PRIOR_LADDER_NO_PUBLIC_P_DRAW"
 BEAR_NO_PUBLIC_PROBABILITY_REASON_CODES = {
@@ -220,27 +221,6 @@ class _BearLaneCohortModel:
     lane_band: Mapping[tuple[str, str, str, str], _BearCohortEvidence]
     subtype_residency_band: Mapping[tuple[str, str, str], _BearCohortEvidence]
     residency_band: Mapping[tuple[str, str], _BearCohortEvidence]
-    cumulative_stack: Mapping[
-        tuple[str, str, str, int],
-        tuple["_BearCumulativeStackObservation", ...],
-    ]
-
-
-@dataclass(frozen=True)
-class _BearCumulativeStackObservation:
-    source_year: int
-    source_applicant_stack: int
-    target_applicant_stack: int
-
-
-@dataclass(frozen=True)
-class _BearCumulativeStackCalibration:
-    target_points: int
-    transition_count: int
-    recent_trend_delta: float
-    current_source_stack: int
-    forecast_target_stack: int
-    observations: tuple[_BearCumulativeStackObservation, ...]
 
 
 def _joined_text(row: Mapping[str, object]) -> str:
@@ -573,6 +553,12 @@ def _is_proven_bonus_bear_truth_row(row: Mapping[str, object]) -> bool:
         return False
     if classify_bear_subtype(row) not in MODELED_BEAR_SUBTYPES:
         return False
+    # Older accepted canonicals can retain the complete published residency
+    # columns before the later dedicated Bear-PDF identity fields existed.
+    # Exact lane/combined reconciliation is sufficient provenance to admit
+    # those rows; it never derives a lane from a total.
+    if _canonical_official_bear_residency_lanes(row):
+        return True
     historical_pdf_classification = _historical_bear_pdf_classification(row)
     if not historical_pdf_classification and _clean_lower(row.get("draw_pool")) not in {"", "standard", "black_bear", "max_weighted_split"}:
         return False
@@ -597,10 +583,29 @@ def _build_truth_ladders(
     total_drawn_by_code_year: dict[tuple[str, int], dict[str, int]] = defaultdict(lambda: defaultdict(int))
 
     for source_row in truth_rows:
+        # Establish source admissibility before expanding a combined canonical
+        # into lane copies.  A copy is intentionally marked Resident or
+        # Nonresident, so it no longer satisfies the combined-row expansion
+        # predicate by itself; testing the copy would accidentally drop an
+        # otherwise proven older source year.
+        if not _is_proven_bonus_bear_truth_row(source_row):
+            continue
         # Promoted combined rows carry both DWR lanes in dedicated fields. Do
         # not let their aggregate values double as a residency demand ladder.
         candidate_rows = _canonical_official_bear_residency_lanes(source_row) or [dict(source_row)]
         for row in candidate_rows:
+            # A Hunt Total is a report summary, not a point rung.  Feeding it
+            # through ``_to_int('Totals')`` creates a false point-zero demand
+            # record, often as a third aggregate residency lane beside the
+            # actual resident/nonresident tables.  Only official point-rung
+            # records may form an applicant ladder.
+            record_type = _clean_lower(row.get("record_type") or row.get("row_type"))
+            # Retained legacy/synthetic truth rows may predate the explicit
+            # point-row label.  Exclude only rows positively identified as
+            # hunt totals; a blank record type is not evidence that a point
+            # rung should be discarded.
+            if record_type in {"hunt_total_draw_result", "total", "hunt_total", "total_row"}:
+                continue
             # Canonical draw rows are dated by the draw that actually happened.
             # Some retained legacy rows also contain the literal text "None" in
             # the old ``year`` column.  Treating that placeholder as a date
@@ -613,7 +618,7 @@ def _build_truth_ladders(
                 or row.get("draw_year")
                 or row.get("year")
             )
-            if year not in history_years or not _is_proven_bonus_bear_truth_row(row):
+            if year not in history_years:
                 continue
             subtype = classify_bear_subtype(row)
             hunt_code = _clean(row.get("hunt_code")).upper()
@@ -731,10 +736,6 @@ def _build_lane_cohort_model(
     lane_band: dict[tuple[object, ...], _BearCohortEvidence] = {}
     subtype_residency_band: dict[tuple[object, ...], _BearCohortEvidence] = {}
     residency_band: dict[tuple[object, ...], _BearCohortEvidence] = {}
-    cumulative_stack: dict[
-        tuple[str, str, str, int],
-        list[_BearCumulativeStackObservation],
-    ] = defaultdict(list)
     years_by_lane: dict[tuple[str, str, str], list[int]] = defaultdict(list)
     for subtype, year, hunt_code, residency in ladders:
         if residency in {"Resident", "Nonresident"}:
@@ -779,39 +780,11 @@ def _build_lane_cohort_model(
                     (residency, band),
                     **payload,
                 )
-
-            max_source_points = max((int(points) for points in source), default=0)
-            max_target_points = max((int(points) for points in target), default=0)
-            for target_points in range(1, max(max_source_points, max_target_points) + 1):
-                source_applicant_stack = sum(
-                    max(0, int(values.get("eligible", 0)))
-                    for points, values in source.items()
-                    if int(points) >= target_points
-                )
-                target_applicant_stack = sum(
-                    max(0, int(values.get("eligible", 0)))
-                    for points, values in target.items()
-                    if int(points) >= target_points
-                )
-                if source_applicant_stack <= 0 and target_applicant_stack <= 0:
-                    continue
-                cumulative_stack[(subtype, hunt_code, residency, target_points)].append(
-                    _BearCumulativeStackObservation(
-                        source_year=source_year,
-                        source_applicant_stack=source_applicant_stack,
-                        target_applicant_stack=target_applicant_stack,
-                    )
-                )
-
     return _BearLaneCohortModel(
         exact_rung=exact_rung,
         lane_band=lane_band,
         subtype_residency_band=subtype_residency_band,
         residency_band=residency_band,
-        cumulative_stack={
-            key: tuple(sorted(values, key=lambda item: item.source_year))
-            for key, values in cumulative_stack.items()
-        },
     )
 
 
@@ -984,220 +957,6 @@ def _forecast_lane_cohort_ladder(
             else _round_count(calibration.arrival_count) if allow_exact_arrival else 0
         )
     return forecast, calibrations
-
-
-def _applicant_stack_at_or_above(
-    ladder: Mapping[int, dict[str, int]],
-    target_points: int,
-) -> int:
-    return sum(
-        max(0, int(values.get("eligible", 0)))
-        for points, values in ladder.items()
-        if int(points) >= int(target_points)
-    )
-
-
-def _ladder_to_cumulative_stack(
-    ladder: Mapping[int, int],
-    target_points: Iterable[int],
-) -> dict[int, int]:
-    return {
-        int(points): sum(
-            max(0, int(count))
-            for rung, count in ladder.items()
-            if int(rung) >= int(points)
-        )
-        for points in target_points
-    }
-
-
-def _cumulative_stack_calibration(
-    model: _BearLaneCohortModel,
-    latest_ladder: Mapping[int, dict[str, int]],
-    *,
-    subtype: str,
-    hunt_code: str,
-    residency: str,
-    target_points: int,
-) -> _BearCumulativeStackCalibration | None:
-    """Calibrate an at-or-above stack from recent same-lane transitions."""
-
-    all_observations = model.cumulative_stack.get(
-        (subtype, hunt_code, residency, int(target_points)),
-        (),
-    )
-    observations = tuple(all_observations[-3:])
-    if not observations:
-        return None
-    current_source_stack = _applicant_stack_at_or_above(latest_ladder, target_points)
-    recency_weights = tuple(range(1, len(observations) + 1))
-    weighted_delta = sum(
-        weight
-        * (observation.target_applicant_stack - observation.source_applicant_stack)
-        for weight, observation in zip(recency_weights, observations)
-    ) / sum(recency_weights)
-    # One neutral pseudo-transition prevents thin history from becoming an
-    # unqualified linear trend. Counts use additive changes: a newly populated
-    # stack must not become a multiplicative explosion from an empty base.
-    credibility = len(observations) / (len(observations) + 1.0)
-    raw_trend_delta = credibility * weighted_delta
-    recent_trend_delta = max(
-        0.0,
-        min(raw_trend_delta, max(1.0, math.sqrt(current_source_stack))),
-    )
-    forecast_target_stack = max(
-        current_source_stack,
-        _round_count(current_source_stack + recent_trend_delta),
-    )
-    return _BearCumulativeStackCalibration(
-        target_points=int(target_points),
-        transition_count=len(observations),
-        recent_trend_delta=recent_trend_delta,
-        current_source_stack=current_source_stack,
-        forecast_target_stack=forecast_target_stack,
-        observations=observations,
-    )
-
-
-def _cumulative_stack_to_ladder(
-    cumulative: Mapping[int, int],
-    *,
-    zero_point_count: int,
-) -> dict[int, int]:
-    if not cumulative:
-        return {0: max(0, int(zero_point_count))}
-    target_points = sorted(int(points) for points in cumulative)
-    monotone: dict[int, int] = {}
-    higher_stack = 0
-    for points in reversed(target_points):
-        higher_stack = max(higher_stack, max(0, int(cumulative.get(points, 0))))
-        monotone[points] = higher_stack
-    ladder = {0: max(0, int(zero_point_count))}
-    for points in target_points:
-        ladder[points] = max(0, monotone[points] - monotone.get(points + 1, 0))
-    return ladder
-
-
-def _forecast_recent_cumulative_stack_ladder(
-    latest_ladder: Mapping[int, dict[str, int]],
-    model: _BearLaneCohortModel,
-    fallback_ladder: Mapping[int, int],
-    *,
-    subtype: str,
-    hunt_code: str,
-    residency: str,
-) -> tuple[dict[int, int], dict[int, _BearCumulativeStackCalibration]]:
-    """Forecast target rungs from direct same-lane cumulative demand trends."""
-
-    target_points = sorted(int(points) for points in fallback_ladder if int(points) > 0)
-    cumulative = _ladder_to_cumulative_stack(fallback_ladder, target_points)
-    calibrations: dict[int, _BearCumulativeStackCalibration] = {}
-    for points in target_points:
-        calibration = _cumulative_stack_calibration(
-            model,
-            latest_ladder,
-            subtype=subtype,
-            hunt_code=hunt_code,
-            residency=residency,
-            target_points=points,
-        )
-        if calibration is None:
-            continue
-        calibrations[points] = calibration
-        # The current same-lane applicant stack is a direct demand anchor.
-        # Its recent history may add measured pressure but may not erase
-        # applicants already supported by the hierarchical forecast.
-        cumulative[points] = max(
-            cumulative[points],
-            calibration.forecast_target_stack,
-        )
-    return (
-        _cumulative_stack_to_ladder(
-            cumulative,
-            zero_point_count=int(fallback_ladder.get(0, 0)),
-        ),
-        calibrations,
-    )
-
-
-def _weighted_recent_observation(
-    observations: tuple[_BearCumulativeStackObservation, ...],
-    quantile: float,
-) -> _BearCumulativeStackObservation:
-    weights = tuple(range(1, len(observations) + 1))
-    threshold = max(0.0, min(1.0, quantile)) * sum(weights)
-    cumulative_weight = 0
-    for weight, observation in zip(weights, observations):
-        cumulative_weight += weight
-        if threshold <= cumulative_weight:
-            return observation
-    return observations[-1]
-
-
-def _sample_recent_cumulative_stack_ladders(
-    latest_ladder: Mapping[int, dict[str, int]],
-    fallback_samples: Iterable[Mapping[int, int]],
-    calibrations: Mapping[int, _BearCumulativeStackCalibration],
-    *,
-    seed: str,
-) -> list[dict[int, int]]:
-    """Bootstrap coherent at-or-above stacks from recent physical transitions."""
-
-    rng = random.Random(seed)
-    samples: list[dict[int, int]] = []
-    for fallback in fallback_samples:
-        target_points = sorted(int(points) for points in fallback if int(points) > 0)
-        cumulative = _ladder_to_cumulative_stack(fallback, target_points)
-        shared_transition_quantile = rng.random()
-        for points, calibration in calibrations.items():
-            observation = _weighted_recent_observation(
-                calibration.observations,
-                shared_transition_quantile,
-            )
-            credibility = calibration.transition_count / (calibration.transition_count + 1.0)
-            sampled_delta = max(
-                0.0,
-                min(
-                    credibility
-                    * (observation.target_applicant_stack - observation.source_applicant_stack),
-                    max(1.0, math.sqrt(calibration.current_source_stack)),
-                ),
-            )
-            direct_anchor = max(
-                calibration.current_source_stack,
-                _round_count(calibration.current_source_stack + sampled_delta),
-            )
-            # A future applicant count is not known exactly even when the one
-            # available transition was flat. Use an asymmetric gamma count
-            # posterior around the direct cumulative anchor. Sparse one-lane
-            # stacks retain a real upper tail; additional transitions and a
-            # larger observed stack narrow relative uncertainty. This is a
-            # demand-stack uncertainty model, not a symmetric arrival offset
-            # or an artificial probability cap.
-            if 0 < direct_anchor <= 3:
-                posterior_shape = max(
-                    0.5,
-                    (direct_anchor * calibration.transition_count) / 2.0,
-                )
-                sampled_stack = _round_count(
-                    rng.gammavariate(
-                        posterior_shape,
-                        direct_anchor / posterior_shape,
-                    )
-                )
-            else:
-                sampled_stack = direct_anchor
-            cumulative[int(points)] = max(
-                cumulative.get(int(points), 0),
-                max(0, sampled_stack),
-            )
-        samples.append(
-            _cumulative_stack_to_ladder(
-                cumulative,
-                zero_point_count=int(fallback.get(0, 0)),
-            )
-        )
-    return samples
 
 
 def _point_purchase_counts_by_year_residency(
@@ -1435,8 +1194,7 @@ def _sample_lane_cohort_forecast_ladders(
 
     A rate backed by a thin exact lane keeps a broader posterior and therefore
     cannot become a deterministic visitor-facing guarantee merely because one
-    prior transition happened to retain every applicant.  Measured arrivals are
-    kept distinct and fixed at their source-only posterior expectation.
+    prior transition happened to retain every applicant.
     """
 
     rng = random.Random(seed)
@@ -1467,14 +1225,19 @@ def _sample_lane_cohort_forecast_ladders(
                 sampled_reapply_rate = rng.betavariate(alpha, beta)
             else:
                 sampled_reapply_rate = 0.0
-            sampled_arrivals = _sample_observed_arrival_count(rng, calibration.arrival_count)
+            sampled_arrivals = _sample_observed_arrival_count(
+                rng,
+                calibration.arrival_count,
+            )
             # Preserve an empty-rung arrival only when the exact hunt/lane/rung
             # has actually exhibited that behavior in an earlier source-only
             # transition. Broader priors guide a measured existing cohort but
             # cannot invent a high-stack population.
-            sampled[target_points] = _round_count(
-                (unsuccessful * sampled_reapply_rate) + sampled_arrivals
-            ) if (unsuccessful > 0 or calibration.exact_transitions > 0) else 0
+            sampled[target_points] = (
+                _round_count(unsuccessful * sampled_reapply_rate) + sampled_arrivals
+                if (unsuccessful > 0 or calibration.exact_transitions > 0)
+                else 0
+            )
         sampled_ladders.append(sampled)
     return sampled_ladders
 
@@ -1838,10 +1601,9 @@ def build_bear_bonus_predictions(
         "off",
         "source_calibrated_tail_mixture",
         "lane_cohort_hierarchical",
-        "lane_cumulative_recent_trend",
     }:
         raise ValueError(
-            "returning_cohort_mode must be off, source_calibrated_tail_mixture, lane_cohort_hierarchical, or lane_cumulative_recent_trend"
+            "returning_cohort_mode must be off, source_calibrated_tail_mixture, or lane_cohort_hierarchical"
         )
     if returning_cohort_mode != "off" and central_estimate_mode != "simulation_mean":
         raise ValueError("The returning cohort mixture requires central_estimate_mode=simulation_mean")
@@ -2186,8 +1948,7 @@ def build_bear_bonus_predictions(
 
             max_point_permits, random_permits = _split_bear_bonus_permits(public_quota, residency)
             lane_cohort_calibrations: dict[int, _BearCohortCalibration] = {}
-            cumulative_stack_calibrations: dict[int, _BearCumulativeStackCalibration] = {}
-            if returning_cohort_mode in {"lane_cohort_hierarchical", "lane_cumulative_recent_trend"}:
+            if returning_cohort_mode == "lane_cohort_hierarchical":
                 forecast_ladder, lane_cohort_calibrations = _forecast_lane_cohort_ladder(
                     latest_ladder,
                     lane_cohort_model,
@@ -2205,23 +1966,6 @@ def build_bear_bonus_predictions(
                     if central_estimate_mode == "simulation_mean"
                     else []
                 )
-                if returning_cohort_mode == "lane_cumulative_recent_trend":
-                    forecast_ladder, cumulative_stack_calibrations = (
-                        _forecast_recent_cumulative_stack_ladder(
-                            latest_ladder,
-                            lane_cohort_model,
-                            forecast_ladder,
-                            subtype=subtype,
-                            hunt_code=history_hunt_code,
-                            residency=history_residency,
-                        )
-                    )
-                    sampled_ladders = _sample_recent_cumulative_stack_ladders(
-                        latest_ladder,
-                        sampled_ladders,
-                        cumulative_stack_calibrations,
-                        seed=f"{seed}|cumulative-stack|{subtype}|{hunt_code}|{residency}|{latest_year}",
-                    )
             else:
                 forecast_ladder = _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)
                 sampled_ladders = (
@@ -2277,9 +2021,8 @@ def build_bear_bonus_predictions(
 
             for points in sorted(forecast_ladder.keys(), reverse=True):
                 lane_calibration = lane_cohort_calibrations.get(int(points))
-                cumulative_calibration = cumulative_stack_calibrations.get(int(points))
                 applicants_by_points = {int(level): int(count) for level, count in forecast_ladder.items()}
-                if returning_cohort_mode in {"lane_cohort_hierarchical", "lane_cumulative_recent_trend"}:
+                if returning_cohort_mode == "lane_cohort_hierarchical":
                     applicants_by_points = _condition_for_focal_bear_applicant(applicants_by_points, points)
                 p_bonus_pool, applicants_above, applicants_at_level = compute_bonus_pool_probability(points, applicants_by_points, max_point_permits)
                 p_random_pool = _weighted_random_probability(points, applicants_by_points, random_permits, max_point_permits)
@@ -2310,10 +2053,20 @@ def build_bear_bonus_predictions(
                     p_bonus_pool = min(deterministic_p_bonus_pool, simulated_p_bonus_pool)
                     p_random_pool = min(deterministic_p_random_pool, simulated_p_random_pool)
                     p_draw = combine_probabilities(p_bonus_pool, p_random_pool)
+                structural_future_certainty = p_draw >= 1.0 - 1e-12
                 total_scope_guarantee_blocked = (
                     history_scope_flag == "TOTAL_SCOPE_HISTORY_USED_FOR_RESIDENCY"
-                    and p_draw >= 1.0 - 1e-12
+                    and structural_future_certainty
                 )
+                if not total_scope_guarantee_blocked:
+                    # A projected applicant stack may clear structurally, but
+                    # a future Utah draw is never an observed guarantee. Keep
+                    # the internal draw-line evidence while withholding 100%
+                    # visitor-facing certainty.
+                    p_draw = min(FUTURE_BEAR_DRAW_PROBABILITY_CEILING, p_draw)
+                    p_draw_p10 = min(FUTURE_BEAR_DRAW_PROBABILITY_CEILING, p_draw_p10)
+                    p_draw_p50 = min(FUTURE_BEAR_DRAW_PROBABILITY_CEILING, p_draw_p50)
+                    p_draw_p90 = min(FUTURE_BEAR_DRAW_PROBABILITY_CEILING, p_draw_p90)
                 row = dict(base)
                 row.update(
                     {
@@ -2369,18 +2122,6 @@ def build_bear_bonus_predictions(
                         "bear_cohort_arrival_count": "" if lane_calibration is None else f"{lane_calibration.arrival_count:.6f}",
                         "bear_cohort_exact_unsuccessful": "" if lane_calibration is None else str(lane_calibration.exact_unsuccessful),
                         "bear_cohort_exact_transitions": "" if lane_calibration is None else str(lane_calibration.exact_transitions),
-                        "bear_cumulative_transition_count": ""
-                        if cumulative_calibration is None
-                        else str(cumulative_calibration.transition_count),
-                        "bear_cumulative_recent_trend_delta": ""
-                        if cumulative_calibration is None
-                        else f"{cumulative_calibration.recent_trend_delta:.6f}",
-                        "bear_cumulative_source_stack": ""
-                        if cumulative_calibration is None
-                        else str(cumulative_calibration.current_source_stack),
-                        "bear_cumulative_forecast_stack": ""
-                        if cumulative_calibration is None
-                        else str(cumulative_calibration.forecast_target_stack),
                         "algorithm_status": (
                             "NOT_SCORED_TOTAL_SCOPE_RESIDENCY_GUARANTEE_BLOCKED"
                             if total_scope_guarantee_blocked
@@ -2392,10 +2133,10 @@ def build_bear_bonus_predictions(
                             "BEAR_SOURCE_CALIBRATED_RETURNING_TAIL_MIXTURE"
                             if returning_cohort_mode == "source_calibrated_tail_mixture" and returning_profile_count
                             else "",
-                            "BEAR_SAME_LANE_CUMULATIVE_RECENT_TREND"
-                            if returning_cohort_mode == "lane_cumulative_recent_trend"
-                            else "",
                             "TOTAL_SCOPE_RESIDENCY_GUARANTEE_BLOCKED" if total_scope_guarantee_blocked else "",
+                            "FUTURE_BEAR_DRAW_PROBABILITY_CEILING_APPLIED"
+                            if structural_future_certainty and not total_scope_guarantee_blocked
+                            else "",
                         ),
                         "data_quality_flags": "|".join(flags),
                     }

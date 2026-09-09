@@ -1,4 +1,4 @@
-from extract_permits import HUNT_LINE_RE, normalize_text_lines, parse_hunt_line, parse_totals_line
+from scripts.extract_permits import HUNT_LINE_RE, normalize_text_lines, parse_hunt_line, parse_totals_line
 
 
 def test_hunt_line_regex_finds_antlerless_deer_permit():

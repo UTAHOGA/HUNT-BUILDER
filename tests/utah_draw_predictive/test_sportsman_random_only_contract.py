@@ -1,4 +1,5 @@
 import math
+from pathlib import Path
 
 from engine.utah_draw_predictive.classifier import classify_draw_system_type
 from engine.utah_draw_predictive.sportsman import build_sportsman_predictions
@@ -115,7 +116,7 @@ def test_2017_sportsman_pdf_source_emits_cougar_code_for_2018_forecast() -> None
     assert "DB0007" not in by_code
 
     cougar = by_code["CG1000"]
-    assert cougar["sportsman_source_file"] == "2017_sportsman_odds.pdf"
+    assert Path(cougar["sportsman_source_file"]).name == "2017_sportsman_odds.pdf"
     assert cougar["sportsman_applicants"] == "1240"
     assert cougar["sportsman_permit_count"] == "1"
     assert math.isclose(float(cougar["p_sportsman_draw"]), 1 / 1240, rel_tol=0, abs_tol=1e-6)

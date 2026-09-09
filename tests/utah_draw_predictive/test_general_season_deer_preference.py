@@ -1,9 +1,21 @@
 from engine.utah_draw_predictive.preference_general_deer import (
     MODEL_STRATEGY_NAME,
     STRATEGY_SPECS,
+    _calibrate_tail_probability,
     build_preference_general_deer_predictions,
     is_modeled_general_deer_row,
 )
+
+
+def test_midrange_preference_calibration_is_residency_specific_and_preserves_tails() -> None:
+    assert _calibrate_tail_probability(0.30, "Resident") == (0.25, True)
+    assert _calibrate_tail_probability(0.30, "Nonresident") == (0.15, True)
+    assert _calibrate_tail_probability(0.50, "Resident") == (0.55, True)
+    assert _calibrate_tail_probability(0.50, "Nonresident") == (0.25, True)
+    assert _calibrate_tail_probability(0.70, "Resident") == (0.75, True)
+    assert _calibrate_tail_probability(0.90, "Nonresident") == (0.75, True)
+    assert _calibrate_tail_probability(0.10, "Resident") == (0.10, False)
+    assert _calibrate_tail_probability(1.00, "Resident") == (0.995, True)
 
 
 def test_general_season_deer_strategy_is_promoted_to_modeled_preference() -> None:

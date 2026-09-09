@@ -24,14 +24,6 @@
     "notes": "Shopify header logo"
   },
   {
-    "id": "outfitter-all-seasons-adventures",
-    "selectedLogoUrl": "https://allseasonsadventures.com/wp-content/themes/allseasonsadventures/dist/svg/header-logo.svg",
-    "sourcePageUrl": "https://allseasonsadventures.com",
-    "sourceMethod": "header-logo",
-    "confidence": "high",
-    "notes": "Header SVG logo"
-  },
-  {
     "id": "outfitter-battleground-g-o",
     "selectedLogoUrl": "https://www.lonetreeoutfitters.com/assets/images/LT_full_344.png",
     "sourcePageUrl": "https://www.lonetreeoutfitters.com/",
@@ -230,22 +222,6 @@
     "sourceMethod": "instagram-profile-image",
     "confidence": "medium",
     "notes": "Official Instagram profile image used as primary public-facing logo"
-  },
-  {
-    "id": "outfitter-utah-s-best-guides",
-    "selectedLogoUrl": "https://scontent-den2-1.xx.fbcdn.net/v/t39.30808-1/308469327_394951746177512_8570235024672474302_n.png?stp=dst-png&cstp=mx650x336&ctp=s650x336&_nc_cat=103&ccb=1-7&_nc_sid=3ab345&_nc_ohc=fKTpiy93yhcQ7kNvwF8iICl&_nc_oc=Adr0sTVvGiKFuGQU1tSv191Eg-JAIAVrUdsLr9RR7g6FUHqZS1-pXngLeKxoJC9-L9o&_nc_zt=24&_nc_ht=scontent-den2-1.xx&_nc_gid=HyFVReqmRFBxvLjp8Ox-eg&_nc_ss=7a30f&oh=00_Afxa_6YyWAUWXE1DSF1PZnskUPsFryDUwrFq-2zbga_tpw&oe=69CB66CE",
-    "sourcePageUrl": "https://www.facebook.com/p/Utahs-Best-Guides-100069880705092/",
-    "sourceMethod": "facebook-profile-image",
-    "confidence": "medium",
-    "notes": "Official Facebook profile image used as primary public-facing logo"
-  },
-  {
-    "id": "outfitter-wasatch-guide-service",
-    "selectedLogoUrl": "https://wasatchguideservice.com/wp-content/uploads/2022/05/2022-LOGO_250.png",
-    "sourcePageUrl": "https://wasatchguideservice.com",
-    "sourceMethod": "header-logo",
-    "confidence": "high",
-    "notes": "Explicit logo image from site header assets"
   },
   {
     "id": "outfitter-wild-west-outfitters",

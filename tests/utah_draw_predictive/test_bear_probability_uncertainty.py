@@ -8,13 +8,11 @@ from engine.utah_draw_predictive.bear import (
     _build_source_calibrated_returning_tail_profiles,
     _build_truth_ladders,
     _condition_for_focal_bear_applicant,
-    _forecast_recent_cumulative_stack_ladder,
     _forecast_lane_cohort_ladder,
     _point_purchase_counts_by_year_residency,
     _split_bear_bonus_permits,
     _sample_observed_arrival_count,
     _sample_lane_cohort_forecast_ladders,
-    _sample_recent_cumulative_stack_ladders,
     _sample_bear_forecast_ladders,
     _weighted_random_probability,
 )
@@ -70,6 +68,7 @@ def test_bear_truth_ladder_uses_actual_draw_year_when_legacy_year_is_none() -> N
             "year": "None",
             "actual_draw_year": "2018",
             "hunt_code": "BR7004",
+            "record_type": "point_level_draw_result",
             "points": "9",
             "eligible_applicants": "7",
             "bonus_permits": "0",
@@ -87,6 +86,7 @@ def test_bear_truth_ladder_uses_actual_draw_year_when_legacy_year_is_none() -> N
             "year": "None",
             "actual_draw_year": "2019",
             "hunt_code": "BR7004",
+            "record_type": "point_level_draw_result",
             "points": "10",
             "eligible_applicants": "3",
             "bonus_permits": "3",
@@ -106,6 +106,59 @@ def test_bear_truth_ladder_uses_actual_draw_year_when_legacy_year_is_none() -> N
 
     assert any(key[1:3] == (2018, "BR7004") for key in ladders)
     assert any(key[1:3] == (2019, "BR7004") for key in ladders)
+
+
+def test_bear_truth_ladder_excludes_hunt_totals_and_keeps_reconciled_legacy_lanes() -> None:
+    """A report total must never become a synthetic point-zero cohort."""
+
+    point_row = {
+        "actual_draw_year": "2017",
+        "hunt_code": "BR7003",
+        "species": "Black Bear",
+        "hunt_type": "Limited Entry",
+        "record_type": "point_level_draw_result",
+        "metric_scope": "total",
+        "points": "1",
+        "eligible_applicants": "25",
+        "bonus_permits": "0",
+        "regular_permits": "1",
+        "total_permits": "1",
+        "resident_eligible_applicants": "24",
+        "resident_bonus_permits": "0",
+        "resident_regular_permits": "1",
+        "resident_total_permits": "1",
+        "nonresident_eligible_applicants": "1",
+        "nonresident_bonus_permits": "0",
+        "nonresident_regular_permits": "0",
+        "nonresident_total_permits": "0",
+        "candidate_promotion_status": "CONFIRMED_CANONICAL_SCORABLE",
+        "source_file": "official_dwr_archive/black_bear/17_bonus_points.pdf",
+        "draw_system_type": "LIMITED_ENTRY_BEAR_HUNT",
+    }
+    total_row = dict(
+        point_row,
+        record_type="hunt_total_draw_result",
+        points="Totals",
+        eligible_applicants="999",
+        resident_eligible_applicants="999",
+        nonresident_eligible_applicants="0",
+    )
+
+    ladders, _, _ = _build_truth_ladders([point_row, total_row], {2017})
+
+    assert ladders[("LIMITED_ENTRY_BEAR_HUNT", 2017, "BR7003", "Resident")][1] == {
+        "eligible": 24,
+        "bonus": 0,
+        "regular": 1,
+        "total": 1,
+    }
+    assert ladders[("LIMITED_ENTRY_BEAR_HUNT", 2017, "BR7003", "Nonresident")][1] == {
+        "eligible": 1,
+        "bonus": 0,
+        "regular": 0,
+        "total": 0,
+    }
+    assert not any(key[-1] == "All" for key in ladders)
 
 
 def test_returning_tail_profile_requires_both_historical_hunt_arrival_and_statewide_pool() -> None:
@@ -176,157 +229,6 @@ def test_lane_cohort_model_uses_same_lane_rung_reapplication_and_separate_arriva
     assert calibration.reapply_rate <= 1.0
     assert calibration.arrival_count > 0.0
     assert forecast[9] > 4
-
-
-def test_recent_cumulative_stack_forecast_uses_only_same_lane_demand_trends() -> None:
-    key = ("LIMITED_ENTRY_BEAR_HUNT", "BR9993", "Resident")
-    ladders = {
-        (key[0], 2017, key[1], key[2]): {
-            8: {"eligible": 4, "bonus": 0, "regular": 0, "total": 0},
-        },
-        (key[0], 2018, key[1], key[2]): {
-            8: {"eligible": 4, "bonus": 0, "regular": 0, "total": 0},
-            9: {"eligible": 8, "bonus": 0, "regular": 0, "total": 0},
-        },
-        (key[0], 2019, key[1], key[2]): {
-            8: {"eligible": 4, "bonus": 0, "regular": 0, "total": 0},
-            9: {"eligible": 10, "bonus": 0, "regular": 0, "total": 0},
-            10: {"eligible": 10, "bonus": 0, "regular": 0, "total": 0},
-        },
-    }
-    model = _build_lane_cohort_model(ladders)
-    fallback, _ = _forecast_lane_cohort_ladder(
-        ladders[(key[0], 2019, key[1], key[2])],
-        model,
-        subtype=key[0],
-        hunt_code=key[1],
-        residency=key[2],
-    )
-
-    forecast, calibrations = _forecast_recent_cumulative_stack_ladder(
-        ladders[(key[0], 2019, key[1], key[2])],
-        model,
-        fallback,
-        subtype=key[0],
-        hunt_code=key[1],
-        residency=key[2],
-    )
-
-    calibration = calibrations[9]
-    assert calibration.transition_count == 2
-    assert calibration.recent_trend_delta > 0.0
-    assert calibration.current_source_stack == 20
-    assert sum(count for points, count in forecast.items() if points >= 9) >= calibration.forecast_target_stack
-    assert calibration.forecast_target_stack > calibration.current_source_stack
-
-
-def test_recent_cumulative_stack_uses_one_exact_transition_but_never_cross_hunt_fallback() -> None:
-    key = ("LIMITED_ENTRY_BEAR_HUNT", "BR9992", "Resident")
-    ladders = {
-        (key[0], 2018, key[1], key[2]): {
-            8: {"eligible": 4, "bonus": 0, "regular": 0, "total": 0},
-        },
-        (key[0], 2019, key[1], key[2]): {
-            9: {"eligible": 7, "bonus": 0, "regular": 0, "total": 0},
-        },
-    }
-    model = _build_lane_cohort_model(ladders)
-    latest = ladders[(key[0], 2019, key[1], key[2])]
-    fallback, fallback_calibrations = _forecast_lane_cohort_ladder(
-        latest,
-        model,
-        subtype=key[0],
-        hunt_code=key[1],
-        residency=key[2],
-    )
-
-    forecast, calibrations = _forecast_recent_cumulative_stack_ladder(
-        latest,
-        model,
-        fallback,
-        subtype=key[0],
-        hunt_code=key[1],
-        residency=key[2],
-    )
-    assert calibrations[9].transition_count == 1
-    assert sum(count for points, count in forecast.items() if points >= 9) >= sum(
-        count for points, count in fallback.items() if points >= 9
-    )
-    fallback_samples = _sample_lane_cohort_forecast_ladders(
-        latest,
-        fallback_calibrations,
-        iterations=10,
-        seed="one-transition-fallback",
-    )
-    samples = _sample_recent_cumulative_stack_ladders(
-        latest,
-        fallback_samples,
-        calibrations,
-        seed="one-transition-cumulative",
-    )
-    assert len(samples) == len(fallback_samples)
-    assert all(
-        sum(count for points, count in sample.items() if points >= 9)
-        >= sum(count for points, count in fallback_sample.items() if points >= 9)
-        for sample, fallback_sample in zip(samples, fallback_samples)
-    )
-
-    other_hunt_forecast, other_hunt_calibrations = _forecast_recent_cumulative_stack_ladder(
-        latest,
-        model,
-        fallback,
-        subtype=key[0],
-        hunt_code="BR_NO_HISTORY",
-        residency=key[2],
-    )
-
-    assert other_hunt_calibrations == {}
-    assert other_hunt_forecast == fallback
-
-
-def test_recent_cumulative_stack_keeps_sparse_direct_count_upper_tail() -> None:
-    key = ("LIMITED_ENTRY_BEAR_HUNT", "BR9991", "Resident")
-    ladders = {
-        (key[0], 2018, key[1], key[2]): {
-            10: {"eligible": 1, "bonus": 0, "regular": 0, "total": 0},
-        },
-        (key[0], 2019, key[1], key[2]): {
-            10: {"eligible": 1, "bonus": 0, "regular": 0, "total": 0},
-        },
-    }
-    model = _build_lane_cohort_model(ladders)
-    latest = ladders[(key[0], 2019, key[1], key[2])]
-    fallback, fallback_calibrations = _forecast_lane_cohort_ladder(
-        latest,
-        model,
-        subtype=key[0],
-        hunt_code=key[1],
-        residency=key[2],
-    )
-    _, calibrations = _forecast_recent_cumulative_stack_ladder(
-        latest,
-        model,
-        fallback,
-        subtype=key[0],
-        hunt_code=key[1],
-        residency=key[2],
-    )
-    fallback_samples = _sample_lane_cohort_forecast_ladders(
-        latest,
-        fallback_calibrations,
-        iterations=400,
-        seed="sparse-direct-fallback",
-    )
-    samples = _sample_recent_cumulative_stack_ladders(
-        latest,
-        fallback_samples,
-        calibrations,
-        seed="sparse-direct-cumulative",
-    )
-
-    stacks = [sum(count for points, count in sample.items() if points >= 10) for sample in samples]
-    assert len(set(stacks)) > 1
-    assert max(stacks) > 5
 
 
 def test_lane_cohort_sampling_keeps_a_thin_exact_lane_uncertain() -> None:

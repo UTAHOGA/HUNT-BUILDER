@@ -266,7 +266,6 @@
     return `~1 in ${denominatorText} or ${percentText}`;
   }
 
-  const MAX_POINT_POOL_GUARANTEED_DISPLAY = '~1 in 1 or 99%';
   const DOCUMENTED_DRAW_RESULT_PREFIX = '=';
   const DRAW_MODE = {
     PREFERENCE: 'PREFERENCE',
@@ -326,14 +325,10 @@
   }
 
   function getMaxPointPoolDisplay(row, rows = [], mode = DRAW_MODE.STATUS_ONLY) {
+    const certificationGated = getCertificationGatedOdds(row);
+    if (certificationGated && certificationGated.percent === null) return '';
     const zone = String(row?.point_pool_zone || '').trim();
-    if (mode === DRAW_MODE.BONUS && (isGuaranteedLineRow(row, rows, mode) || isAboveGuaranteedLineRow(row, rows, mode))) {
-      return MAX_POINT_POOL_GUARANTEED_DISPLAY;
-    }
     if (!['max_point_pool', 'max_pool_guaranteed', 'max_pool_cutoff_mixed'].includes(zone)) return '';
-    if (zone === 'max_point_pool' || zone === 'max_pool_guaranteed') {
-      return MAX_POINT_POOL_GUARANTEED_DISPLAY;
-    }
 
     const display = String(row?.display_2026_max_point_pool || '').trim();
     if (isOddsDisplayText(display)) return display;
@@ -347,6 +342,8 @@
   }
 
   function getRandomDrawDisplay(row) {
+    const certificationGated = getCertificationGatedOdds(row);
+    if (certificationGated && certificationGated.percent === null) return '';
     const display = String(row?.display_2026_random_draw || '').trim();
     if (isOddsDisplayText(display)) return display;
 
@@ -378,19 +375,19 @@
   function formatGapStatus(gap) {
     const parsed = num(gap);
     if (parsed === null) return 'Not available';
-    if (parsed > 0) return `${parsed} pts short of guaranteed`;
-    if (parsed === 0) return 'At guaranteed';
-    return `${Math.abs(parsed)} pts above guaranteed`;
+    if (parsed > 0) return `${parsed} pts short of projected line`;
+    if (parsed === 0) return 'At projected line';
+    return `${Math.abs(parsed)} pts above projected line`;
   }
 
   function formatGuaranteedLineStatus(row, selectedPoints) {
     const selected = num(selectedPoints);
-    const guaranteed = num(firstAvailable(row, ['guaranteed_at_2026', 'projected_2026_max_cutoff_point', 'guaranteed_line']));
+    const guaranteed = num(firstAvailable(row, ['projected_draw_line_2026', 'guaranteed_at_2026', 'projected_2026_max_cutoff_point', 'guaranteed_line']));
     if (selected !== null && guaranteed !== null) {
       const delta = guaranteed - selected;
-      if (delta > 0) return `${delta} pts short of guaranteed`;
-      if (delta === 0) return 'At guaranteed';
-      return `${Math.abs(delta)} pts above guaranteed`;
+      if (delta > 0) return `${delta} pts short of projected line`;
+      if (delta === 0) return 'At projected line';
+      return `${Math.abs(delta)} pts above projected line`;
     }
     return formatGapStatus(row?.gap);
   }
@@ -424,20 +421,60 @@
   function hasModeledProbabilityFields(row) {
     if (!row) return false;
     return [
-      row.p_draw_pct,
-      row.p_draw,
-      row.p_bonus_pool_pct,
-      row.p_random_pool_pct,
-      row.display_odds_pct,
-      row.p_draw_mean,
-      row.p_draw_p10,
-      row.p_draw_p90,
-      row.guaranteed_probability,
+      row.certified_p_draw_pct,
+      row.certified_p_draw,
+      row.certified_p_draw_mean,
     ].some(hasValue);
   }
 
   function getGuaranteedProbability(row) {
+    const certificationGated = getCertificationGatedOdds(row);
+    if (certificationGated && certificationGated.percent === null) return null;
     return toProbabilityUnit(firstAvailable(row, ['guaranteed_probability']));
+  }
+
+  function getCertificationGatedOdds(row) {
+    if (!row) return null;
+    if (!hasValue(row.prediction_certification_status)) {
+      return { percent: null, source: 'certification_metadata_missing_probability_withheld' };
+    }
+    if (String(row.prediction_certification_status).trim() !== 'CERTIFIED') {
+      return { percent: null, source: 'uncertified_probability_withheld' };
+    }
+    const percent = num(firstAvailable(row, ['certified_p_draw_pct']));
+    if (percent !== null) return { percent: clamp(percent, 0, 100), source: 'certified_p_draw_pct' };
+    const unit = num(firstAvailable(row, ['certified_p_draw_mean', 'certified_p_draw']));
+    return {
+      percent: unit === null ? null : clamp(toProbabilityPercent(unit), 0, 100),
+      source: unit === null ? 'certified_probability_unavailable' : 'certified_p_draw',
+    };
+  }
+
+  function getCertificationDisplayStatus(row) {
+    const status = String(row?.prediction_certification_status || '').trim();
+    if (!status || status === 'CERTIFIED') return null;
+    if (status === 'EXPERIMENTAL_NOT_CERTIFIED') {
+      return {
+        badge: 'Experimental',
+        pointStatus: 'Experimental — prediction withheld',
+        message: 'This family has enough evidence to evaluate, but it has not passed every blind certification gate. Future probability is withheld.',
+        className: 'is-yellow',
+      };
+    }
+    if (status === 'INSUFFICIENT_EVIDENCE') {
+      return {
+        badge: 'Insufficient evidence',
+        pointStatus: 'Insufficient evidence — prediction withheld',
+        message: 'This family does not yet have enough independent, source-backed evidence to certify a future probability. Future probability is withheld.',
+        className: 'is-yellow',
+      };
+    }
+    return {
+      badge: 'Not evaluated',
+      pointStatus: 'Not evaluated — prediction withheld',
+      message: 'This row is not part of a certified probability population. No future prediction is displayed.',
+      className: 'is-red',
+    };
   }
 
   function isRandomOnlyBonusCase(meta, row, referenceRow) {
@@ -701,7 +738,7 @@
           random_permits_2026: projectedRow?.projected_random_pool_permits ?? '',
           permits_2026_total: projectedRow?.current_recommended_permits ?? detail?.permits_2026_total ?? '',
           point_pool_zone: zone,
-          display_2026_max_point_pool: zone === 'random_pool' ? '' : (guaranteedProbability >= 0.999 ? MAX_POINT_POOL_GUARANTEED_DISPLAY : displayFromSplitProbability(guaranteedProbability)),
+          display_2026_max_point_pool: zone === 'random_pool' ? '' : displayFromSplitProbability(guaranteedProbability),
           display_2026_random_draw: zone === 'max_pool_guaranteed' ? '' : displayFromSplitProbability(randomProbability),
           p_max_pool_mean: guaranteedProbability === null ? '' : guaranteedProbability,
           p_random_pool: randomProbability === null ? '' : randomProbability,
@@ -952,6 +989,8 @@
 
   function getDeterministicOddsCandidate(row) {
     if (!row) return null;
+    const certificationGated = getCertificationGatedOdds(row);
+    if (certificationGated) return certificationGated.percent;
     const displayOddsPct = num(firstAvailable(row, ['display_odds_pct']));
     if (displayOddsPct !== null) return displayOddsPct;
     const pDrawMean = num(firstAvailable(row, ['p_draw_mean']));
@@ -966,6 +1005,8 @@
 
   function selectDrawOddsPercent(row) {
     if (!row) return { percent: null, source: 'unavailable' };
+    const certificationGated = getCertificationGatedOdds(row);
+    if (certificationGated) return certificationGated;
 
     const displayOddsPct = num(firstAvailable(row, ['display_odds_pct']));
     if (displayOddsPct !== null && displayOddsPct > 0) {
@@ -1017,6 +1058,8 @@
 
   function selectPreferenceOddsPercent(row) {
     if (!row) return { percent: null, source: 'unavailable' };
+    const certificationGated = getCertificationGatedOdds(row);
+    if (certificationGated) return certificationGated;
 
     const displayOddsPct = num(firstAvailable(row, ['display_odds_pct']));
     if (displayOddsPct !== null && displayOddsPct > 0) return { percent: clamp(displayOddsPct, 0, 100), source: 'display_odds_pct' };
@@ -1044,12 +1087,6 @@
     const p50 = num(firstAvailable(row, ['p50']));
     const p50Pct = p50 !== null ? toProbabilityPercent(p50) : null;
     if (p50Pct !== null && p50Pct > 0) return { percent: clamp(p50Pct, 0, 100), source: 'p50' };
-
-    const selectedPoints = num(row.points);
-    const guaranteedLine = num(firstAvailable(row, ['guaranteed_at_2026', 'projected_2026_max_cutoff_point', 'guaranteed_line']));
-    if (selectedPoints !== null && guaranteedLine !== null && selectedPoints > guaranteedLine) {
-      return { percent: 100, source: 'guaranteed_line_met' };
-    }
 
     if (displayOddsPct !== null) return { percent: clamp(displayOddsPct, 0, 100), source: 'display_odds_pct' };
     if (pDrawMeanPct !== null) return { percent: clamp(pDrawMeanPct, 0, 100), source: 'p_draw_mean' };
@@ -1193,15 +1230,16 @@
       case 'GREEN LIGHT':
         return 'This hunt is currently inside the max-point pool at your selected point level.';
       case 'POINT CREEP DEFEAT':
-        return 'The guaranteed line is moving away faster than your point gain. This is not a realistic catch-up hunt.';
+        return 'The projected line is moving away faster than your point gain. This is not a realistic catch-up hunt.';
       case 'MAY DRAW IN 5-10 YEARS':
         return 'You are still behind the line, but the hunt remains potentially catchable if trend pressure stabilizes.';
       default:
-        return 'You are outside the guaranteed line and relying on the remaining random pool.';
+        return 'You are outside the projected line and relying on the remaining random pool.';
     }
   }
 
   function getPrimaryOddsLabel(meta, row, displayedOdds, referenceRow) {
+    if (getCertificationDisplayStatus(row)) return 'Not available';
     if (displayedOdds.source === 'ml_hybrid') {
       const confidence = displayedOdds.confidence === null ? null : Number(displayedOdds.confidence);
       const confidenceLabel = Number.isFinite(confidence) ? ` (conf ${confidence.toFixed(2)})` : '';
@@ -1217,6 +1255,8 @@
   }
 
   function getOutlookSignal(meta, row, referenceRow) {
+    if (hasValue(row?.prediction_certification_status)
+      && String(row.prediction_certification_status).trim() !== 'CERTIFIED') return 'yellow';
     const guaranteedProbability = getGuaranteedProbability(row);
     if (guaranteedProbability !== null && guaranteedProbability >= 0.999) return 'green';
 
@@ -1315,6 +1355,10 @@
 
   function getCatchTrainSummary(meta, row, filters, referenceRow) {
     if (!row) return 'No row is modeled yet, so we cannot tell if this train is catchable.';
+    const certification = getCertificationDisplayStatus(row);
+    if (certification) {
+      return `${certification.badge}: the projected line is context only and future probability is withheld.`;
+    }
     const selectedOdds = selectModeOddsPercent(meta, row, referenceRow);
     const gap = num(row.gap);
     const trend = String(row.trend || '').trim().toUpperCase();
@@ -1331,7 +1375,7 @@
       return 'Maybe. You are still behind, but the line is close enough to watch instead of writing it off.';
     }
     if (isRandomOnlyBonusCase(meta, row, referenceRow)) {
-      return 'No guaranteed train to catch here. This one is about weighted random chance.';
+      return 'No point line to catch here. This one is about weighted random chance.';
     }
     return 'Possible, but the model needs more history before calling it a confident catch-up hunt.';
   }
@@ -1342,9 +1386,9 @@
       return 'Preference-style logic is mostly line math: compare your points to the last modeled draw line, then adjust for permit change and point creep.';
     }
     if (isRandomOnlyBonusCase(meta, row, referenceRow)) {
-      return 'Random-only logic uses the remaining random permits and the applicant stack at this point level. More points can help weight, but they do not create a guaranteed line.';
+      return 'Random-only logic uses the remaining random permits and the applicant stack at this point level. More points can help weight, but they do not create a guaranteed outcome.';
     }
-    return 'Bonus-style logic separates the max-point pool from the random pool. First we test whether your points reach the guaranteed line; if not, your odds come from the random pool.';
+    return 'Bonus-style logic separates the max-point pool from the random pool. The projected line estimates where the max-point pool may fall; the probability model still determines the forecast odds.';
   }
 
   function getPointCreepDisplay(row) {
@@ -1581,20 +1625,14 @@
       };
     }
 
+    const certification = getCertificationDisplayStatus(row);
+    if (certification) return certification;
+
     if (isRandomOnlyBonusCase(meta, row, referenceRow)) {
       return {
         badge: 'Random Chance Only',
-        message: 'This hunt does not currently offer a meaningful guaranteed path at this residency. Your outcome depends on the random draw only.',
+        message: 'This hunt does not currently offer a meaningful max-point path at this residency. Your outcome depends on the random draw only.',
         className: 'is-red',
-      };
-    }
-
-    const guaranteedProbability = getGuaranteedProbability(row);
-    if (guaranteedProbability !== null && guaranteedProbability >= 0.999) {
-      return {
-        badge: 'Guaranteed',
-        message: `At ${formatInteger(filters.points)} points, this hunt is analytically or modeled as guaranteed.`,
-        className: 'is-green',
       };
     }
 
@@ -1603,8 +1641,8 @@
     if (selectedOdds.percent !== null) {
       if (selectedOdds.percent >= 99.9) {
         return {
-          badge: 'Guaranteed',
-          message: `At ${formatInteger(filters.points)} points, the selected draw-odds field is effectively 100%.`,
+          badge: 'Very high modeled odds',
+          message: `At ${formatInteger(filters.points)} points, the certified probability is at least 99.9%; the drawing is still not guaranteed.`,
           className: 'is-green',
         };
       }
@@ -1639,7 +1677,7 @@
     if (row.draw_outlook === 'MAY DRAW IN 5-10 YEARS' || num(row.gap) === 1) {
       return {
         badge: 'On the Line',
-        message: 'You are near the edge of the guaranteed path. This hunt is still in reach, but pressure and point creep matter.',
+        message: 'You are near the projected line. This hunt is still in reach, but pressure and point creep matter.',
         className: 'is-yellow',
       };
     }
@@ -1666,7 +1704,7 @@
 
     return {
       badge: 'Random Chance Only',
-      message: 'You are outside the guaranteed line and relying on the remaining random pool.',
+      message: 'You are outside the projected line and relying on the remaining random pool.',
       className: 'is-red',
     };
   }
@@ -1779,7 +1817,10 @@
     }
 
     if (els.summaryStatus) {
-      els.summaryStatus.textContent = isRandomOnlyBonusCase(meta, row, referenceRow)
+      const certification = getCertificationDisplayStatus(row);
+      els.summaryStatus.textContent = certification
+        ? certification.pointStatus
+        : isRandomOnlyBonusCase(meta, row, referenceRow)
         ? 'Random draw only'
         : (guaranteedLinePoint === null
           ? formatGuaranteedLineStatus(row, filters.points)
@@ -1996,6 +2037,8 @@
   }
 
   function getGuaranteedLinePoint(row, rows = [], mode = DRAW_MODE.STATUS_ONLY) {
+    const projectedDrawLine = num(row?.projected_draw_line_2026);
+    if (projectedDrawLine !== null) return projectedDrawLine;
     const summaryGuaranteedPoint = num(row?.guaranteed_at_2026);
     if (summaryGuaranteedPoint !== null) return summaryGuaranteedPoint;
     const projected = num(row?.projected_2026_max_cutoff_point);
@@ -2221,7 +2264,13 @@
     // The fallback remains only for genuinely non-point families.
     const summaryRow = engineRow || ladderPointRow || engineGroupFallbackRow || null;
     const referenceRow = getReferenceRow(filters.huntCode, filters.residency, filters.drawPool);
-    const isOtcMode = isOtcReferenceHunt(meta, summaryRow, referenceRow);
+    const certificationGatedDrawRow = Boolean(
+      getCertificationDisplayStatus(summaryRow)
+      && /^MODELED_(BONUS|PREFERENCE|RANDOM|SPORTSMAN|DRAW)/.test(
+        String(summaryRow?.algorithm_status || '').trim().toUpperCase()
+      )
+    );
+    const isOtcMode = isOtcReferenceHunt(meta, summaryRow, referenceRow) && !certificationGatedDrawRow;
     const onlyOutOfScopeRowsHidden = !SHOW_AUDIT_ONLY_ROWS && rawEngineRows.length > 0 && engineRows.length === 0;
     const coverageMessage = onlyOutOfScopeRowsHidden
       ? 'This category is outside the approved target prediction universe and is hidden from the standard Hunt Research view.'

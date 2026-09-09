@@ -66,6 +66,12 @@ TRUE_PLE_HUNT_CODES = {
     "DB1008",
 }
 
+# A following-year draw forecast cannot be a literal guarantee.  Even when
+# the projected max-point pool clears under the central applicant stack,
+# applications and quotas can change before the official draw.  Keep the
+# structural pool classification, but reserve 1.0 for observed outcomes.
+FUTURE_DRAW_PROBABILITY_CEILING = 0.99
+
 
 def clean(v: object) -> str:
     return "" if v is None else str(v).strip()
@@ -97,9 +103,20 @@ def read_csv(path: Path) -> List[dict]:
 
 
 def write_csv(path: Path, headers: List[str], rows: List[dict]) -> None:
+    # Prediction families can add audited status/provenance fields that are
+    # absent from the first or most common row shape. Preserve the declared
+    # stable prefix, then append every additional emitted field in first-seen
+    # order so a valid later row cannot make a full build fail at packaging.
+    complete_headers = list(headers)
+    seen = set(complete_headers)
+    for row in rows:
+        for field in row:
+            if field not in seen:
+                complete_headers.append(field)
+                seen.add(field)
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=headers)
+        w = csv.DictWriter(f, fieldnames=complete_headers)
         w.writeheader()
         w.writerows(rows)
 
@@ -536,11 +553,11 @@ def build_predictions(
             p10 = percentile(draws, 0.10)
             p50 = percentile(draws, 0.50)
             p90 = percentile(draws, 0.90)
-            guaranteed_probability = 1.0 if p_draw_mean >= 0.999 else 0.0
+            structural_certainty = p_draw_mean >= 0.999
             unsupported_conditional_guarantee = (
                 bootstrap_transition_uncertainty
                 and is_conditional_rung
-                and guaranteed_probability >= 0.999
+                and structural_certainty
             )
             empty_upper_structural_rung = (
                 is_conditional_rung
@@ -550,6 +567,12 @@ def build_predictions(
             not_scored_conditional_rung = (
                 unsupported_conditional_guarantee or empty_upper_structural_rung
             )
+            if not not_scored_conditional_rung:
+                p_draw_mean = min(FUTURE_DRAW_PROBABILITY_CEILING, p_draw_mean)
+                p10 = min(FUTURE_DRAW_PROBABILITY_CEILING, p10)
+                p50 = min(FUTURE_DRAW_PROBABILITY_CEILING, p50)
+                p90 = min(FUTURE_DRAW_PROBABILITY_CEILING, p90)
+            guaranteed_probability = 0.0
             point_pool_zone = (
                 deterministic_for_point[3].get(p, "random_pool")
                 if deterministic_for_point is not None
@@ -577,8 +600,9 @@ def build_predictions(
                 reasons.append("NOT_SCORED_EMPTY_UPPER_STRUCTURAL_RUNG")
             elif unsupported_conditional_guarantee:
                 reasons.append("NOT_SCORED_CONDITIONAL_RUNG_NO_TRANSITION_EVIDENCE")
-            elif guaranteed_probability >= 0.999:
-                reasons.append("MODELED_100_CONFIRMED")
+            elif structural_certainty:
+                reasons.append("STRUCTURAL_MAX_POOL_CLEAR_BUT_FUTURE_DRAW_NOT_GUARANTEED")
+                reasons.append("FUTURE_DRAW_PROBABILITY_CEILING_APPLIED")
             if point_pool_zone == "max_pool_cutoff_mixed":
                 reasons.append("MIXED_MAX_POINT_CUTOFF")
             if rollover.cutoff_structure:

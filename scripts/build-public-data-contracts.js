@@ -321,7 +321,10 @@ async function main() {
     'hunt_code', 'hunt_name', 'unit_name', 'unit', 'species', 'sportsman_species', 'sex_type',
     'weapon', 'hunt_type', 'draw_design', 'hunt_class', 'residency', 'points', 'draw_pool',
     'p_draw_mean', 'p_draw', 'p_availability', 'p_draw_pct', 'availability_pct',
-    'guaranteed_at_2026', 'projected_2026_max_cutoff_point',
+    'certified_p_draw_mean', 'certified_p_draw', 'certified_p_draw_pct',
+    'prediction_certification_design', 'prediction_certification_status', 'prediction_publication_status',
+    'prediction_certification_registry_id', 'prediction_certification_evidence',
+    'projected_draw_line_2026', 'guaranteed_at_2026', 'projected_2026_max_cutoff_point',
     'status', 'draw_outlook', 'availability_status',
     'model_version', 'rule_version',
     'source_file', 'sportsman_source_file', 'quota_source_file', 'truth_source_file',
@@ -385,7 +388,12 @@ async function main() {
     }
   }
 
-  let predictionRows = predictiveRows.map((row) => ({
+  let predictionRows = predictiveRows.map((row) => {
+    const certificationStatus = first(row, ['prediction_certification_status']);
+    const isCertified = certificationStatus === 'CERTIFIED';
+    const isAvailabilityOnly = !first(row, ['p_draw_mean', 'p_draw', 'p_draw_pct'])
+      && Boolean(first(row, ['p_availability', 'availability_pct']));
+    return {
     hunt_code: first(row, ['hunt_code']),
     hunt_name: first(row, ['hunt_name', 'unit_name', 'unit']),
     species: first(row, ['species', 'sportsman_species']),
@@ -397,15 +405,26 @@ async function main() {
     residency: first(row, ['residency']),
     points: first(row, ['points']),
     draw_pool: first(row, ['draw_pool']),
-    modeled_draw_probability: numberOrBlank(first(row, ['p_draw_mean', 'p_draw', 'p_availability'])),
-    modeled_draw_probability_pct: numberOrBlank(first(row, ['p_draw_pct', 'availability_pct'])),
-    guaranteed_line_points: first(row, ['guaranteed_at_2026', 'projected_2026_max_cutoff_point']),
+    modeled_draw_probability: numberOrBlank(first(row, isCertified
+      ? ['certified_p_draw_mean', 'certified_p_draw']
+      : (isAvailabilityOnly ? ['p_availability'] : []))),
+    modeled_draw_probability_pct: numberOrBlank(first(row, isCertified
+      ? ['certified_p_draw_pct']
+      : (isAvailabilityOnly ? ['availability_pct'] : []))),
+    projected_draw_line_points: first(row, ['projected_draw_line_2026', 'guaranteed_at_2026', 'projected_2026_max_cutoff_point']),
+    guaranteed_line_points: first(row, ['projected_draw_line_2026', 'guaranteed_at_2026', 'projected_2026_max_cutoff_point']),
+    prediction_certification_design: first(row, ['prediction_certification_design']),
+    prediction_certification_status: first(row, ['prediction_certification_status']),
+    prediction_publication_status: first(row, ['prediction_publication_status']),
+    prediction_certification_registry_id: first(row, ['prediction_certification_registry_id']),
+    prediction_certification_evidence: first(row, ['prediction_certification_evidence']),
     status: first(row, ['status', 'draw_outlook', 'availability_status']),
     model_version: first(row, ['model_version']),
     rule_version: first(row, ['rule_version']),
     source_file: first(row, ['source_file', 'sportsman_source_file', 'quota_source_file', 'truth_source_file']),
     data_quality_flags: first(row, ['data_quality_flags', 'reason_codes']),
-  })).filter((row) => row.hunt_code);
+    };
+  }).filter((row) => row.hunt_code);
 
   let oddsHistoryRows = oddsRows.map((row) => ({
     hunt_code: first(row, ['hunt_code']),
@@ -483,7 +502,7 @@ async function main() {
     age_source_file: first(row, ['age_source_file']),
     age_source_page: first(row, ['age_source_page']),
     age_source_table_title: first(row, ['age_source_table_title']),
-  })).filter((row) => row.hunt_code);
+  }));
 
   backfillPrimaryDrawFields(predictionRows, primaryDrawLookup);
   backfillPrimaryDrawFields(contractOutlookRows, primaryDrawLookup);

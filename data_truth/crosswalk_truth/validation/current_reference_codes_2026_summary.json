@@ -1,12 +1,10 @@
 {
   "artifact": "current_reference_codes_2026_review",
-  "blocker_count": 7,
+  "blocker_count": 5,
   "blockers": [
     "CG9999 hunt_name: expected 'Cougar - Statewide', found 'Statewide'",
     "EX1000 hunt_name: expected 'Elk Extended Archery', found 'Elk Extended'",
     "EX1000 hunt_type: expected 'Extended Archery', found 'O.T.C.'",
-    "LO0008 hunt_name: expected 'Diamond Mtn Landowner Association', found 'Diamond Mtn'",
-    "LO0008 hunt_type: expected 'Limited Entry - Private Land Only', found 'Limited Entry'",
     "LO0011 hunt_name: expected 'Diamond Mtn Landowner Association', found 'Diamond Mtn'",
     "LO0011 hunt_type: expected 'Limited Entry - Private Land Only', found 'Limited Entry'"
   ],

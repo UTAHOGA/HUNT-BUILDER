@@ -1,0 +1,63 @@
+{
+  "metadata": {
+    "id": "fishlake-permitted-hunting-outfitters-2025",
+    "authority": "USDA Forest Service",
+    "sourceDocument": "Fishlake Outfitters 2025.JPG",
+    "sourceDocumentSha256": "605b1ba01bc1aa24b666106cf4410dbbc0057c77d4143a7ae821d4a998f521ad",
+    "sourceAsOf": "2025",
+    "reviewedAt": "2026-09-08",
+    "scope": "Hunting outfitters shown in the user-identified Fishlake National Forest roster image",
+    "sourceContext": "Tyler identified the supplied image as the Fishlake roster; the crop itself displays the Hunting table but not the forest heading",
+    "permitScope": "Fishlake National Forest - All Forest",
+    "matchingRule": "Business-name exact or clearly close variant only; no contact-only match"
+  },
+  "records": [
+    {"outfitterId": "outfitter-adam-bronson", "masterDisplayName": "BRONSON OUTFITTING", "officialPermitHolderName": "Adam Bronson Hunting", "matchType": "CLOSE_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-albrecht-outfitters", "masterDisplayName": "ALBRECHT OUTFITTERS", "officialPermitHolderName": "Albrecht Outfitters", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-alpha-outfitters", "masterDisplayName": "ALPHA OUTFITTERS G.S. HUNTING", "officialPermitHolderName": "Alpha Outfitters", "matchType": "CLOSE_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-battleground-g-o", "masterDisplayName": "BATTLEGROUND GUIDES & OUTFITTERS, LLC", "officialPermitHolderName": "Battleground Guides and Outfitters", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-beaver-mountain-outfitters", "masterDisplayName": "Beaver Mountain Outfitters LLC", "officialPermitHolderName": "Beaver Mountain Outfitters", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-desert-mountain-outfitters", "masterDisplayName": "Desert Mountain Outfitters", "officialPermitHolderName": "Desert Mountain", "matchType": "CLOSE_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-desert-trophy-outfitters", "masterDisplayName": "DESERT TROPHY OUTFITTERS", "officialPermitHolderName": "Desert Trophy", "matchType": "CLOSE_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-dc-outfitters-llc", "masterDisplayName": "DC OUTFITTERS, LLC", "officialPermitHolderName": "DC Outfitters", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-dirtnap-outfitters-llc", "masterDisplayName": "DIRTNAP OUTFITTERS LLC", "officialPermitHolderName": "Dirtnap Outfitters", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-double-c-guides", "masterDisplayName": "DOUBLE C GUIDES", "officialPermitHolderName": "Double C Guides", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-dusty-trails-outfitting-llc", "masterDisplayName": "DUSTY TRAILS OUTFITTING, LLC", "officialPermitHolderName": "Dusty Trails Outfitters", "matchType": "CLOSE_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-elite-western-outfitters-llc", "masterDisplayName": "ELITE WESTERN OUTFITTERS LLC", "officialPermitHolderName": "Elite Western Outfitters", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-f-n-h-outfitters", "masterDisplayName": "F-N-H OUTFITTERS", "officialPermitHolderName": "FNH Outfitters", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-fremont-river-outfitters", "masterDisplayName": "FREMONT RIVER OUTFITTERS", "officialPermitHolderName": "Fremont River Outfitters", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-graylight-outfitters", "masterDisplayName": "GRAYLIGHT OUTFITTERS", "officialPermitHolderName": "Graylight Outfitters", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-gunner-steele-hunting", "masterDisplayName": "GUNNER STEELE HUNTING", "officialPermitHolderName": "Gunner Steele Hunting", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-high-desert-wild-sheep", "masterDisplayName": "HIGH DESERT WILD SHEEP", "officialPermitHolderName": "High Desert Wild Sheep", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-jake-bess-hunting", "masterDisplayName": "JAKE BESS HUNTING", "officialPermitHolderName": "Jake Bess Hunts", "matchType": "CLOSE_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-jmc-hunting", "masterDisplayName": "JMC HUNTING", "officialPermitHolderName": "JMC Outfitting", "matchType": "CLOSE_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-kolob-outfitters", "masterDisplayName": "KOLOB OUTFITTERS", "officialPermitHolderName": "Kolob Outfitters", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-lone-tree-outfitters-llc", "masterDisplayName": "LONE TREE OUTFITTERS LLC", "officialPermitHolderName": "Lonetree Outfitters", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-martin-hunting", "masterDisplayName": "MARTIN HUNTING", "officialPermitHolderName": "Martin Hunting", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-mecham-outfitters", "masterDisplayName": "MECHAM OUTFITTERS", "officialPermitHolderName": "Mecham Outfitters", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-mossback-g-o-inc", "masterDisplayName": "MOSSBACK G/O, INC", "officialPermitHolderName": "Mossback Outfitters", "matchType": "CLOSE_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-needle-rock-outfitters", "masterDisplayName": "NEEDLE ROCK OUTFITTERS", "officialPermitHolderName": "Needle Rock Outfitters", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-north-rim-outfitters-inc", "masterDisplayName": "North Rim Outfitters, INC", "officialPermitHolderName": "North Rim Outfitters", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-oak-creek-outfitters", "masterDisplayName": "OAK CREEK OUTFITTERS", "officialPermitHolderName": "Oak Creek Outfitters", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-offgrid-outdoors", "masterDisplayName": "OFFGRID OUTDOORS", "officialPermitHolderName": "Offgrid Outfitters", "matchType": "CLOSE_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-pine-valley-outfitters", "masterDisplayName": "PINE VALLEY OUTFITTERS", "officialPermitHolderName": "Pine Valley", "matchType": "CLOSE_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-psc-outdoors-llc", "masterDisplayName": "PSC OUTDOORS LLC", "officialPermitHolderName": "PSC Outdoors", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-samuel-robb", "masterDisplayName": "RED CREEK OUTFITTERS", "officialPermitHolderName": "Red Creek Outfitters", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-rim-rock-outfitters", "masterDisplayName": "Rim Rock Outfitters", "officialPermitHolderName": "Rim Rock Outfitters", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-robb-hunting", "masterDisplayName": "ROBB HUNTING", "officialPermitHolderName": "Robb Hunting", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-shane-scott-outfitting-l-l-c", "masterDisplayName": "SHANE SCOTT OUTFITTING L.L.C.", "officialPermitHolderName": "Shane Scott Outfitters", "matchType": "CLOSE_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-sportsman-s-hunting-adventures", "masterDisplayName": "Sportsman's Hunting Adventures", "officialPermitHolderName": "Sportsmans Hunting", "matchType": "CLOSE_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-tripple-h", "masterDisplayName": "Triple H Hunting", "officialPermitHolderName": "Triple H Hunting", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-utah-big-game-outfitters", "masterDisplayName": "Utah Big Game Outfitters", "officialPermitHolderName": "Utah Big Game Outfitters", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-western-pursuits-llc-dba-western-lands-outfitters", "masterDisplayName": "Western Pursuits LLC DBA Western Lands Outfitters", "officialPermitHolderName": "Western Lands", "matchType": "CLOSE_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-wilderness-pursuits", "masterDisplayName": "WILDERNESS PURSUITS", "officialPermitHolderName": "Wilderness Pursuits", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-wild-eyez-outfitters", "masterDisplayName": "WILD EYEZ OUTFITTERS", "officialPermitHolderName": "Wild Eyez Outfitters", "matchType": "EXACT_BUSINESS_NAME"},
+    {"outfitterId": "outfitter-x-factor-outfitters", "masterDisplayName": "X-FACTOR OUTFITTERS", "officialPermitHolderName": "X Factor Outfitters", "matchType": "EXACT_BUSINESS_NAME"}
+  ],
+  "unresolved": [
+    {
+      "officialPermitHolderName": "Chunky Trout Outfitter",
+      "reason": "No exact or clearly close hunting-business name exists in the internal master."
+    }
+  ]
+}

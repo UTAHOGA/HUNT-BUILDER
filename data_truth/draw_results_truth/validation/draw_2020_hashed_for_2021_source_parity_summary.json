@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-27T05:34:53+00:00",
+  "generated_at_utc": "2026-09-09T11:15:47+00:00",
   "audit_scope": "2020_hashed_draw_odds_source_parity_for_2021_modeling",
   "legacy_source_dir": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2020\\pdf\\draw_odds",
   "active_source_dir": "pipeline\\RAW\\hunt_unit_database\\2020\\pdf\\draw_odds",
@@ -18,14 +18,6 @@
       "files": [
         "20_youth_bull_elk.pdf",
         "3f05ae15__Youth draw-only elk bonus point draw results.pdf"
-      ],
-      "file_count": 2
-    },
-    {
-      "sha256": "2efb7b6dcb5c2ef996feddf442ea7f2ba15f42b168c85e371843512564dc7d04",
-      "files": [
-        "20_antlerless_drawing_odds_report.pdf",
-        "d30a80bb__Antlerless big game draw results.pdf"
       ],
       "file_count": 2
     },
@@ -104,14 +96,6 @@
       "file_count": 2
     },
     {
-      "sha256": "2efb7b6dcb5c2ef996feddf442ea7f2ba15f42b168c85e371843512564dc7d04",
-      "files": [
-        "20_antlerless_drawing_odds_report.pdf",
-        "d30a80bb__Antlerless big game draw results.pdf"
-      ],
-      "file_count": 2
-    },
-    {
       "sha256": "3172d5b67a5385346a28f713b90f1d37698eb2a3ca0d99bf9f796e2ce3164a68",
       "files": [
         "20_deer_odds.pdf",
@@ -176,7 +160,7 @@
       "file_count": 2
     }
   ],
-  "active_duplicate_hash_group_count": 10,
+  "active_duplicate_hash_group_count": 9,
   "same_hash_named_2020_source_match_count": 0,
   "hashed_sources_without_named_2020_match_count": 24,
   "hashed_sources_without_named_2020_match": [
@@ -211,7 +195,7 @@
   "draw_truth_2020_unique_hunt_codes": 1014,
   "draw_truth_2021_rows": 33788,
   "draw_truth_2021_unique_hunt_codes": 1022,
-  "draw_truth_2021_source_file_count": 14,
+  "draw_truth_2021_source_file_count": 15,
   "draw_truth_2021_source_files": [
     "2021 Antlerless Draw Results.pdf",
     "2021 Bear Draw Results.pdf",
@@ -226,12 +210,14 @@
     "21_youth_antlerless_drawing_odds_report.pdf",
     "21_youth_bull_elk.pdf",
     "21_youth_deer.pdf",
-    "21_youth_dh_odds.pdf"
+    "21_youth_dh_odds.pdf",
+    "pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/official_dwr_archive/black_bear/21_drawing_odds.pdf"
   ],
   "draw_truth_2021_source_file_counts": {
     "2021 Antlerless Draw Results.pdf": 3723,
     "21_youth_antlerless_drawing_odds_report.pdf": 3468,
-    "2021 Bear Draw Results.pdf": 2100,
+    "pipeline/RAW/hunt_unit_database/2021/pdf/draw_odds/official_dwr_archive/black_bear/21_drawing_odds.pdf": 2000,
+    "2021 Bear Draw Results.pdf": 100,
     "21_bg-odds.pdf": 16500,
     "2021_PERMITS=2022_MODEL__COUGAR DRAW RESULTS.pdf": 210,
     "21_dh_odds.pdf": 638,

@@ -322,6 +322,8 @@ def _source_file_route(row: Mapping[str, object]) -> dict[str, str]:
             "draw_pool": draw_pool,
         }
 
+    source_name = _source_file_name(row)
+
     if "cwmu" in compact:
         if "youth_antlerless_elk" in compact:
             draw_pool = "cwmu_youth_antlerless_elk"
@@ -371,7 +373,7 @@ def _source_file_route(row: Mapping[str, object]) -> dict[str, str]:
         return route("youth_draw", "YOUTH_GENERAL_SEASON_DEER", "PREFERENCE_GENERAL_SEASON_BUCK_DEER", "youth_general_deer")
     if "lifetime_g_s_deer" in compact or "lifetime_general_deer" in compact:
         return route("", "LIFETIME_GENERAL_SEASON_DEER", "REFERENCE_ONLY", "lifetime_general_deer")
-    if "g_s_buck_deer" in compact or "general_deer" in compact:
+    if "g_s_buck_deer" in compact or "general_deer" in compact or re.fullmatch(r"\d{2}_deer_odds\.pdf", source_name):
         return route(
             "preference_general_deer",
             "GENERAL_SEASON_DEER",
@@ -605,6 +607,20 @@ def _big_game_bonus_db_by_code(db_rows: Sequence[Mapping[str, object]]) -> dict[
 
 
 def _prepare_big_game_bonus_history_rows(rows: Sequence[Mapping[str, object]]) -> list[dict[str, object]]:
+    """Prepare official big-game ladders at hunt/pool/residency granularity.
+
+    The normalized DWR big-game records intentionally preserve the PDF row:
+    one point rung with separate resident and nonresident columns.  The bonus
+    cohort model, however, groups and forecasts on the generic lane fields
+    (``residency``, ``eligible_applicants``, and permit outcomes).  Passing a
+    combined PDF row through unchanged collapses both official lanes into an
+    empty-residency stack and later forces the family runner to use the
+    one-year source-backed probability fallback.
+
+    Expand only published lane values.  Already-normalized lane rows remain
+    unchanged, and total-only records remain total scope rather than receiving
+    an inferred residency split.
+    """
     prepared: list[dict[str, object]] = []
     for row in rows:
         item = dict(row)
@@ -615,7 +631,54 @@ def _prepare_big_game_bonus_history_rows(rows: Sequence[Mapping[str, object]]) -
                     break
         if not _clean(item.get("draw_pool")):
             item["draw_pool"] = "standard"
-        prepared.append(item)
+        family = _source_backed_family_for_row(item)
+        if family not in {"bonus_le_big_game", "bonus_ple_big_game", "bonus_oil_big_game"}:
+            # Hunt codes can be reused by separate programs.  DB1045, for
+            # example, appears in both the 2017 Sportsman report and the
+            # limited-entry deer ladder.  The target database is not evidence
+            # that an unrelated source row belongs in the bonus cohort.
+            continue
+        # DWR and the legacy canonical used several labels for the same pool
+        # across 2017-2024 (for example LIMITED_ENTRY,
+        # max_weighted_split, and limited_entry_deer).  Normalize before
+        # grouping so one hunt/residency produces one longitudinal cohort
+        # instead of several conflicting partial-history forecasts.
+        item["draw_pool"] = _effective_draw_pool_for_family(item, family)
+        if _clean(item.get("residency")):
+            prepared.append(item)
+            continue
+
+        expanded = False
+        for residency, prefix in (("Resident", "resident"), ("Nonresident", "nonresident")):
+            lane_fields = {
+                "eligible_applicants": f"{prefix}_eligible_applicants",
+                "bonus_permits": f"{prefix}_bonus_permits",
+                "regular_permits": f"{prefix}_regular_permits",
+                "total_permits": f"{prefix}_total_permits",
+                "success_ratio": f"{prefix}_success_ratio",
+                "p_draw": f"{prefix}_p_draw",
+                "p_draw_percent": f"{prefix}_p_draw_percent",
+            }
+            if not any(_clean(item.get(source_field)) for source_field in lane_fields.values()):
+                continue
+            lane = dict(item)
+            lane["residency"] = residency
+            lane["metric_scope"] = _metric_scope_for_residency(residency)
+            for target_field, source_field in lane_fields.items():
+                lane[target_field] = _clean(item.get(source_field))
+            successful = _source_backed_successful_applicants(item, residency)
+            eligible = _to_number(lane.get("eligible_applicants"))
+            lane["successful_applicants"] = "" if successful is None else _text(successful)
+            lane["unsuccessful_applicants"] = (
+                ""
+                if successful is None or eligible is None
+                else _text(max(eligible - successful, 0.0))
+            )
+            prepared.append(lane)
+            expanded = True
+
+        if not expanded:
+            prepared.append(item)
     return prepared
 
 
@@ -787,6 +850,16 @@ def _family_for_legacy_row(row: Mapping[str, object]) -> str:
     hunt_draw_class = _clean(row.get("hunt_draw_class")).lower()
     hunt_type = _clean(row.get("hunt_type")).lower()
     species = _clean(row.get("species")).lower()
+    if (
+        draw_system_type == "PREFERENCE_GENERAL_SEASON_BUCK_DEER"
+        and draw_pool == "adult_general_deer"
+    ):
+        # Source-repaired draw authority outranks stale descriptive labels.
+        # The official 2021 adult Deer report rows retain a legacy
+        # ``hunt_class=Youth`` value, but their reviewed draw-system and pool
+        # identity are the adult general-season preference design. Genuine
+        # youth rows use a youth-specific pool and remain routed below.
+        return "preference_general_deer"
     if "youth" in source_file or draw_pool.startswith("youth_") or "youth" in hunt_class or "youth" in hunt_draw_class:
         if "turkey" in hunt_type or "turkey" in _joined_lower(row, "hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "source_file"):
             return "youth_turkey"
@@ -1066,11 +1139,51 @@ def _source_backed_family_for_row(row: Mapping[str, object]) -> str:
     return ""
 
 
+def _source_backed_successful_applicants(
+    row: Mapping[str, object],
+    residency: str,
+) -> float | None:
+    """Return an official point-row success count when the source reports it.
+
+    Several DWR tables leave the displayed probability blank when applicants
+    were present but no applicant at that rung drew.  The official applicant
+    and successful-applicant counts still establish an exact 0% result.  Do
+    not interpret a blank count as zero; this helper returns a value only when
+    a lane-scoped count field is explicitly populated.
+    """
+
+    if _clean(row.get("residency")):
+        direct_fields = ("successful_applicants", "total_permits")
+        component_fields = ("bonus_permits", "regular_permits")
+    elif _clean(residency).lower() == "resident":
+        direct_fields = ("resident_total_permits",)
+        component_fields = ("resident_bonus_permits", "resident_regular_permits")
+    elif _clean(residency).lower() == "nonresident":
+        direct_fields = ("nonresident_total_permits",)
+        component_fields = ("nonresident_bonus_permits", "nonresident_regular_permits")
+    else:
+        direct_fields = ("successful_applicants", "total_permits")
+        component_fields = ("total_bonus_permits", "total_regular_permits")
+
+    for field in direct_fields:
+        if _clean(row.get(field)):
+            return _to_number(row.get(field))
+    populated_components = [row.get(field) for field in component_fields if _clean(row.get(field))]
+    if populated_components:
+        return sum(_to_number(value) or 0.0 for value in populated_components)
+    return None
+
+
 def _source_backed_probability_values(row: Mapping[str, object]) -> list[tuple[str, float]]:
     if _clean(row.get("residency")):
         probability = _to_probability(row.get("p_draw") or row.get("p_draw_percent") or row.get("success_ratio"))
-        if probability is None and _to_number(row.get("eligible_applicants")) == 0:
-            probability = 0.0
+        eligible = _to_number(row.get("eligible_applicants"))
+        successful = _source_backed_successful_applicants(row, _clean(row.get("residency")))
+        if probability is None and eligible is not None:
+            if eligible == 0:
+                probability = 0.0
+            elif successful is not None and 0 <= successful <= eligible:
+                probability = successful / eligible
         if probability is None:
             return []
         return [(_clean(row.get("residency")), probability)]
@@ -1085,8 +1198,13 @@ def _source_backed_probability_values(row: Mapping[str, object]) -> list[tuple[s
             probability = _to_probability(row.get(field))
             if probability is not None:
                 break
-        if probability is None and _clean(row.get(eligible_field)) and _to_number(row.get(eligible_field)) == 0:
-            probability = 0.0
+        eligible = _to_number(row.get(eligible_field)) if _clean(row.get(eligible_field)) else None
+        successful = _source_backed_successful_applicants(row, residency)
+        if probability is None and eligible is not None:
+            if eligible == 0:
+                probability = 0.0
+            elif successful is not None and 0 <= successful <= eligible:
+                probability = successful / eligible
         if probability is not None:
             values.append((residency, probability))
     total_probability = None
@@ -1095,8 +1213,13 @@ def _source_backed_probability_values(row: Mapping[str, object]) -> list[tuple[s
         if total_probability is not None:
             break
     total_eligible = row.get("eligible_applicants") or row.get("total_eligible_applicants")
-    if total_probability is None and _clean(total_eligible) and _to_number(total_eligible) == 0:
-        total_probability = 0.0
+    total_successful = _source_backed_successful_applicants(row, "")
+    if total_probability is None and _clean(total_eligible):
+        eligible = _to_number(total_eligible)
+        if eligible == 0:
+            total_probability = 0.0
+        elif eligible is not None and total_successful is not None and 0 <= total_successful <= eligible:
+            total_probability = total_successful / eligible
     if total_probability is not None:
         values.append(("", total_probability))
     return values
@@ -1149,7 +1272,9 @@ def _source_backed_probability_rows(
         family = _source_backed_family_for_row(source_row)
         if not family:
             continue
-        if _draw_system(source_row).upper() == "REFERENCE_ONLY" or _source_family_for_output_row(family, source_row) == "LIFETIME_GENERAL_SEASON_DEER":
+        source_route = _source_file_route(source_row)
+        effective_draw_system = _clean(source_route.get("draw_system_type") or _draw_system(source_row)).upper()
+        if effective_draw_system == "REFERENCE_ONLY" or _source_family_for_output_row(family, source_row) == "LIFETIME_GENERAL_SEASON_DEER":
             continue
         hunt_code = _clean(source_row.get("hunt_code")).upper()
         points = _text(source_row.get("points"))
@@ -1756,14 +1881,21 @@ def _dedupe_final_family_prediction_rows(rows: Sequence[Mapping[str, object]]) -
 
 
 def _drop_broad_partitioned_rows_when_source_backed(rows: Sequence[Mapping[str, object]]) -> tuple[list[dict[str, object]], int]:
+    """Prefer an exact published lane without discarding other modeled lanes.
+
+    Earlier versions keyed this precedence rule only by source family and hunt
+    code.  A single residual source-backed row (for example a total-scope or
+    blocked guarantee rung) then removed every resident/nonresident cohort
+    prediction for that hunt.  ``official_score_key_v2`` already expresses
+    the required year, pool, residency, point, and probability identity, so
+    precedence must be applied at that exact boundary.
+    """
     specific_keys = {
-        (
-            _clean(row.get("source_family")).upper(),
-            _clean(row.get("hunt_code")).upper(),
-        )
+        _clean(row.get("official_score_key_v2"))
         for row in rows
         if _clean(row.get("source_family")).upper() in QUALIFIED_DRAW_POOL_SOURCE_FAMILIES
         and _clean(row.get("source_file"))
+        and _clean(row.get("official_score_key_v2"))
     }
     if not specific_keys:
         return [dict(row) for row in rows], 0
@@ -1772,9 +1904,8 @@ def _drop_broad_partitioned_rows_when_source_backed(rows: Sequence[Mapping[str, 
     dropped = 0
     for row in rows:
         source_family = _clean(row.get("source_family")).upper()
-        hunt_code = _clean(row.get("hunt_code")).upper()
         model_strategy = _clean(row.get("model_strategy")).lower()
-        has_specific_key = (source_family, hunt_code) in specific_keys
+        has_specific_key = _clean(row.get("official_score_key_v2")) in specific_keys
         is_broad_partitioned_model = (
             source_family in QUALIFIED_DRAW_POOL_SOURCE_FAMILIES
             and not _clean(row.get("source_file"))
@@ -2017,7 +2148,9 @@ def _with_historical_target_metadata(
             item["draw_pool"] = draw_pool
             item["hunt_type"] = "General Season"
             item["sex_type"] = "Buck"
-            if not _clean(item.get("hunt_class")):
+            if draw_pool == "adult_general_deer":
+                item["hunt_class"] = "GENERAL_SEASON_DEER"
+            elif not _clean(item.get("hunt_class")):
                 item["hunt_class"] = "GENERAL_SEASON_DEER"
         elif family in {"preference_antlerless_deer", "preference_antlerless_elk", "preference_doe_pronghorn"}:
             item["draw_pool"] = draw_pool
@@ -2645,10 +2778,9 @@ def run_all_families(
         "off",
         "source_calibrated_tail_mixture",
         "lane_cohort_hierarchical",
-        "lane_cumulative_recent_trend",
     }:
         raise ValueError(
-            "bear_returning_cohort_mode must be off, source_calibrated_tail_mixture, lane_cohort_hierarchical, or lane_cumulative_recent_trend"
+            "bear_returning_cohort_mode must be off, source_calibrated_tail_mixture, or lane_cohort_hierarchical"
         )
     if bear_returning_cohort_mode != "off" and bear_central_estimate != "simulation_mean":
         raise ValueError("bear_returning_cohort_mode requires bear_central_estimate=simulation_mean")
@@ -3254,15 +3386,13 @@ def build_parser() -> argparse.ArgumentParser:
             "off",
             "source_calibrated_tail_mixture",
             "lane_cohort_hierarchical",
-            "lane_cumulative_recent_trend",
         ],
         default="off",
         help=(
             "Audit-only source-calibrated Bear cohort mode. Both candidates require "
             "--bear-central-estimate simulation_mean. lane_cohort_hierarchical uses "
-            "only public same-lane adjacent-year results. lane_cumulative_recent_trend directly "
-            "forecasts each at-or-above point stack from the three most recent physical same-hunt, "
-            "same-residency transitions. Neither mode allocates statewide purchasers to a hunt."
+            "only public same-lane adjacent-year results. Neither mode allocates statewide "
+            "purchasers to a hunt."
         ),
     )
     parser.add_argument(

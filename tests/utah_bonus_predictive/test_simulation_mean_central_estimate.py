@@ -156,3 +156,42 @@ def test_unknown_central_estimate_mode_is_rejected() -> None:
     history, database = _first_year_fixture()
     with pytest.raises(ValueError, match="central_estimate_mode"):
         build_predictions(history, database, 2018, 10, 7, central_estimate_mode="unknown")
+
+
+def test_future_structural_clear_is_high_probability_not_a_guarantee() -> None:
+    history = [
+        {
+            "hunt_code": "EB9997",
+            "draw_pool": "limited_entry_elk",
+            "residency": "Resident",
+            "year": str(year),
+            "points": str(points),
+            "eligible_applicants": str(applicants),
+            "bonus_permits": "0",
+            "regular_permits": "0",
+            "total_permits": "0",
+        }
+        for year, points, applicants in [
+            (2020, 0, 6),
+            (2021, 1, 6),
+        ]
+    ]
+    database = {
+        "EB9997": {
+            "hunt_code": "EB9997",
+            "hunt_type": "Limited Entry Elk",
+            "historical_permit_proxy": "true",
+            "forecast_permits_res": "20",
+            "forecast_permits_nr": "0",
+            "forecast_permits_total": "20",
+            "forecast_permits_source_year": "2021",
+        }
+    }
+
+    predictions, _ = build_predictions(history, database, 2022, 20, 7)
+    active = next(row for row in predictions if row["forecast_applicants_at_level"] > 0)
+
+    assert active["p_draw_mean"] == pytest.approx(0.99)
+    assert active["p_draw_p90"] == pytest.approx(0.99)
+    assert active["guaranteed_probability"] == 0.0
+    assert "STRUCTURAL_MAX_POOL_CLEAR_BUT_FUTURE_DRAW_NOT_GUARANTEED" in active["reason_codes"]

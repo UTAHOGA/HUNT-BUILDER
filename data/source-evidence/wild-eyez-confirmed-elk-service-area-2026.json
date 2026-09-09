@@ -1,0 +1,57 @@
+{
+  "metadata": {
+    "id": "wild-eyez-confirmed-elk-service-area-2026",
+    "authority": "Wild Eyez Outfitters operator confirmation",
+    "confirmedAt": "2026-09-08",
+    "relationship": "CONFIRMED_OUTFITTER_SERVICE_CLAIM",
+    "publicExposure": "INTERNAL_ONLY_UNTIL_SEPARATELY_APPROVED_FOR_PUBLICATION",
+    "note": "Operator confirmation is authoritative for services actually offered, while federal permit documents and mapped administrative boundaries remain the authority for federal land authorization scope."
+  },
+  "outfitterId": "outfitter-wild-eyez-outfitters",
+  "displayName": "WILD EYEZ OUTFITTERS",
+  "federalAuthorizationScope": {
+    "wholeForestIds": [
+      "fishlake"
+    ],
+    "rangerDistrictIds": [
+      "manti-la-sal-north-zone",
+      "uwc-spanish-fork"
+    ],
+    "rangerDistricts": [
+      "Manti-La Sal North Zone (Sanpete, Ferron, and Price ranger districts)",
+      "Spanish Fork Ranger District"
+    ]
+  },
+  "confirmedServiceClaims": [
+    {
+      "species": "Elk",
+      "unitCode": "manti",
+      "unitName": "Manti"
+    },
+    {
+      "species": "Elk",
+      "unitCode": "fishlake-thousand-lakes",
+      "unitName": "Fishlake/Thousand Lakes"
+    },
+    {
+      "species": "Elk",
+      "unitCode": "monroe",
+      "unitName": "Monroe"
+    },
+    {
+      "species": "Elk",
+      "unitCode": "beaver-east",
+      "unitName": "Beaver, East"
+    },
+    {
+      "species": "Elk",
+      "unitCode": "nebo",
+      "unitName": "Nebo"
+    },
+    {
+      "species": "Elk",
+      "unitCode": "fillmore-pahvant",
+      "unitName": "Fillmore, Pahvant"
+    }
+  ]
+}

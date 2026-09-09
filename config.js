@@ -168,8 +168,8 @@ window.UOGA_CONFIG = (() => {
     ============================================================================
   */
   const HUNT_DATA_VERSION = '20260604-runtime-canonical-1';
-  const OUTFITTERS_DATA_VERSION = '20260327-city-logo-refresh-1';
-  const OUTFITTER_COVERAGE_VERSION = '20260327-federal-coverage-demo-1';
+  const OUTFITTERS_DATA_VERSION = '20260908-usfs-roster-publication-1';
+  const OUTFITTER_COVERAGE_VERSION = '20260908-usfs-roster-intersection-2';
   const HUNT_RESEARCH_DATA_VERSION = '20260828-certified-split-contract-1';
 
   /*
@@ -259,7 +259,9 @@ window.UOGA_CONFIG = (() => {
     ] : []),
   ].filter(Boolean);
 
-  const OUTFITTER_FEDERAL_COVERAGE_SOURCES = [];
+  const OUTFITTER_FEDERAL_COVERAGE_SOURCES = [
+    `./processed_data/outfitter-federal-unit-coverage-review.json?v=${OUTFITTER_COVERAGE_VERSION}`,
+  ];
 
   /*
     ============================================================================

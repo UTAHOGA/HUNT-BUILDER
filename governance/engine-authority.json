@@ -1,9 +1,9 @@
 {
-  "schema_version": "1.2.0",
-  "last_verified_date": "2026-09-06",
+  "schema_version": "1.3.0",
+  "last_verified_date": "2026-09-09",
   "authority": "HUNT_BUILDER_PROJECT_MEMORY",
   "lifecycle": {
-    "phase": "HOSTED_NORMAL_SPLIT_CONTRACT_RELEASED_CERTIFICATION_PENDING",
+    "phase": "HOSTED_NORMAL_SPLIT_CONTRACT_RELEASED_PARTIAL_FAMILY_CERTIFICATION_NOT_PROMOTED",
     "active_forecast_year": 2026,
     "production_prediction_accuracy_certified": false,
     "promotion_status": "BLOCKED",
@@ -11,6 +11,45 @@
       "HISTORICAL_ADJACENT_YEAR_ACCEPTANCE_REVIEW_NOT_ACCEPTED",
       "CURRENT_DATABASE_NEWER_THAN_CHECKED_IN_PREDICTION_MANIFEST"
     ]
+  },
+  "prediction_family_certification": {
+    "contract": "docs/decisions/ADR-0007-family-certification-and-publication-gate.md",
+    "acceptance_standard": "docs/decisions/ADR-0006-historical-blind-acceptance-thresholds.md",
+    "registry": "governance/prediction-family-certification.json",
+    "registry_schema": "prediction-family-certification.v1",
+    "status": "LOCAL_GATE_RERUN_FOUR_CORE_BIG_GAME_FAMILIES_CERTIFIED_NOT_PROMOTED",
+    "certified_designs": [
+      "BONUS_LE_BIG_GAME",
+      "BONUS_OIL_BIG_GAME",
+      "BONUS_PLE_BIG_GAME",
+      "PREFERENCE_GENERAL_SEASON_BUCK_DEER"
+    ],
+    "raw_probability_policy": "RETAIN_FOR_DEVELOPMENT_AND_BLIND_SCORING",
+    "public_probability_policy": "ONLY_CERTIFIED_P_DRAW_FIELDS_FROM_CERTIFIED_DESIGNS",
+    "future_line_semantics": "PROJECTED_DRAW_LINE_NOT_GUARANTEED_OUTCOME",
+    "hosted_action": "NONE"
+  },
+  "local_certified_research_preview_2026_09_09": {
+    "status": "FROZEN_LOCAL_CERTIFIED_PREVIEW_READY_NOT_PROMOTED",
+    "candidate_root": "audits/prediction_release_candidates/certified_core_20260909_33875",
+    "freeze_manifest": "audits/prediction_release_candidates/certified_core_20260909_33875/freeze_manifest.json",
+    "freeze_manifest_sha256": "d8d20fdfcd2eb981652ebe942a4e2157c6647ad7191a29ad6b27a6449062d1bb",
+    "source_materialization": "audits/prediction_blind_year_to_year/certification_repair_clean_2017_2025_20260909/materialization/ml_draw_predictions_v1.csv",
+    "source_and_frozen_sha256": "8412538782ee4ead10a355ff5e80e38f704462eb912af39163ca5b13174bff7f",
+    "materialization_rows": 33875,
+    "materialization_unique_columns": 212,
+    "preview_scope": [
+      "BONUS_LE_BIG_GAME",
+      "BONUS_OIL_BIG_GAME",
+      "BONUS_PLE_BIG_GAME",
+      "PREFERENCE_GENERAL_SEASON_BUCK_DEER"
+    ],
+    "preview_ladder_rows": 26486,
+    "preview_rows_with_certified_probability": 26476,
+    "preview_rows_without_certified_probability": 10,
+    "preview_ladder_sha256": "af82f0d14952cfcb9be35145da98d9c59eaf5ec6d76a1981c7980c39408df935",
+    "probability_contract": "CERTIFIED_P_DRAW_FIELDS_ONLY",
+    "hosted_action": "NONE"
   },
   "historical_blind_targeted_repair_2026_08_29": {
     "standard": "docs/decisions/ADR-0006-historical-blind-acceptance-thresholds.md",
@@ -309,7 +348,11 @@
       "path": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
       "storage": "REPO_EXTERNAL_RUNTIME_DATA",
       "required_for_prediction_rebuild": true,
-      "allowed_missing_for_code_only_tasks": true
+      "allowed_missing_for_code_only_tasks": true,
+      "verified_sha256": "23da1cb46b521eba252135a45a706ada20b1e6814c7a21d6c0a6fd2ea01fa8df",
+      "row_count": 338802,
+      "draw_years": "2017-2026",
+      "freeze_evidence": "data_truth/draw_results_truth/validation/draw_results_long_canonical_freeze_2017_2026.json"
     },
     "normalized_harvest_actuals": {
       "path": "data_truth/harvest_results_truth/normalized",
@@ -415,6 +458,49 @@
       "acceptance_status": "DIAGNOSTIC_ONLY_NOT_ACCEPTED_FALSE_GUARANTEE_REVIEW_REQUIRED",
       "note": "The 2025-to-2026 diagnostic is excluded from ADR-0006 certification acceptance. It confirms the retained 2025 official bear report corrects the stale Planner-text interpretation: 72 prior bear source gaps now join as official draw rows.",
       "local_or_hosted_promotion": "NONE"
+    },
+    "bear_family_candidates_2026_09_07": {
+      "direct_cumulative_stack": {
+        "status": "REJECTED_AFTER_FROZEN_DEVELOPMENT_AND_HOLDOUT_REVIEW",
+        "development_review": "audits/prediction_blind_year_to_year/bear_lane_cumulative_sparse_gamma_development_2019_2023_20260907/acceptance_review",
+        "holdout_review": "audits/prediction_blind_year_to_year/bear_lane_cumulative_sparse_gamma_holdout_2023_2025_20260907/acceptance_review",
+        "limited_entry_development": {
+          "joined_rows": 4755,
+          "mae": 0.1203835471738591,
+          "p90_absolute_error": 0.3616542000000005,
+          "tail_error_rate_over_25pp": 0.1316508937960042,
+          "forecasted_certainty_failure_rows": 0
+        },
+        "limited_entry_holdout": {
+          "joined_rows": 3216,
+          "mae": 0.12744332501831468,
+          "p90_absolute_error": 0.375429,
+          "tail_error_rate_over_25pp": 0.14583333333333334,
+          "forecasted_certainty_failure_rows": 1
+        },
+        "engine_mode_retained": false,
+        "local_or_hosted_promotion": "NONE"
+      },
+      "lane_cohort_hierarchical": {
+        "status": "EXPERIMENTAL_NOT_CERTIFIED",
+        "review": "audits/prediction_blind_year_to_year/bear_lane_cohort_hierarchical_2017_2025_20260907/acceptance_review",
+        "limited_entry": {
+          "joined_rows": 9736,
+          "mae": 0.11327864707521568,
+          "p90_absolute_error": 0.333333,
+          "tail_error_rate_over_25pp": 0.12633525061626952,
+          "forecasted_certainty_failure_rows": 34
+        },
+        "restricted_pursuit": {
+          "joined_rows": 311,
+          "mae": 0.1457818742289389,
+          "p90_absolute_error": 0.375,
+          "tail_error_rate_over_25pp": 0.18006430868167203,
+          "forecasted_certainty_failure_rows": 1
+        },
+        "engine_mode_default": false,
+        "local_or_hosted_promotion": "NONE"
+      }
     },
     "local_prediction_promotion_2026_08_27": {
       "record": "processed_data/local_prediction_promotion_2026.json",
@@ -538,10 +624,12 @@
     "docs/decisions/ADR-0003-truth-and-scoring-authority.md",
     "docs/decisions/ADR-0004-r2-runtime-data-policy.md",
     "docs/decisions/ADR-0005-prediction-promotion-standard.md",
-    "docs/decisions/ADR-0006-historical-blind-acceptance-thresholds.md"
+    "docs/decisions/ADR-0006-historical-blind-acceptance-thresholds.md",
+    "docs/decisions/ADR-0007-family-certification-and-publication-gate.md"
   ],
   "commands": {
     "validate_memory": "npm run validate:project-memory",
+    "build_prediction_family_certification": "npm run build:prediction-certification",
     "repository_test": "npm test",
     "prediction_materialize": "python -m engine.utah_bonus_predictive.materialize --output-dir processed_data --forecast-year 2026 --history-years 2018,2019,2020,2021,2022,2023,2024,2025",
     "prediction_materialize_without_upstream_rebuild": "python -m engine.utah_bonus_predictive.materialize --output-dir processed_data --forecast-year 2026 --history-years 2018,2019,2020,2021,2022,2023,2024,2025 --skip-upstream",

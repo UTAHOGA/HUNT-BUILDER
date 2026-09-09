@@ -13,6 +13,11 @@ def _read_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
+def _read_header(path: Path) -> list[str]:
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        return next(csv.reader(handle))
+
+
 def _nonnull(rows: list[dict[str, str]], column: str) -> int:
     return sum(1 for row in rows if str(row.get(column) or "").strip() != "")
 
@@ -92,6 +97,8 @@ def test_formal_cli_generates_populated_artifacts(tmp_path: Path) -> None:
     assert mountain_lion_csv_path.exists()
     assert mountain_lion_report_path.exists()
     assert manifest_path.exists()
+    assert len(_read_header(ml_path)) == len(set(_read_header(ml_path)))
+    assert len(_read_header(successor_path)) == len(set(_read_header(successor_path)))
 
     ml_rows = _read_csv(ml_path)
     bt_rows = _read_csv(bt_path)

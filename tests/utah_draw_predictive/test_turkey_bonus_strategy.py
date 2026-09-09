@@ -111,7 +111,8 @@ def test_single_year_turkey_simulation_does_not_report_deterministic_certainty()
 
     deterministic_row = next(row for row in deterministic if row["residency"] == "Resident" and row["points"] == "1")
     simulated_row = next(row for row in simulated if row["residency"] == "Resident" and row["points"] == "1")
-    assert deterministic_row["p_draw"] == "1.000000"
+    assert deterministic_row["p_draw"] == "0.990000"
+    assert "FUTURE_TURKEY_DRAW_PROBABILITY_CEILING_APPLIED" in deterministic_row["reason_codes"]
     assert float(simulated_row["p_draw"]) < 1.0
     assert "TURKEY_SOURCE_TRANSITION_UNCERTAINTY_DISCOUNT" in simulated_row["reason_codes"]
 

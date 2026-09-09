@@ -222,5 +222,5 @@ def test_cwmu_rows_route_to_their_own_bonus_bucket() -> None:
 
     assert _family_for_legacy_row(row) == "bonus_cwmu_big_game"
     assert _source_backed_family_for_row(row) == "bonus_cwmu_big_game"
-    assert _effective_draw_pool_for_family(row, "bonus_cwmu_big_game") == "cwmu_big_game"
+    assert _effective_draw_pool_for_family(row, "bonus_cwmu_big_game") == "cwmu_big_game_deer_buck"
     assert _source_family_for_output_row("bonus_cwmu_big_game", row) == "CWMU_BIG_GAME"

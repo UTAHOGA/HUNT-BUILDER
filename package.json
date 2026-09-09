@@ -42,6 +42,7 @@
         "fetch:dwr-huntplanner:2026": "node scripts/fetch-dwr-huntplanner-hanumber-2026.js",
         "publish:hard-copy-tables": "node scripts/publish-formatted-hunt-tables.js",
         "validate:project-memory": "node scripts/validate-project-memory.js",
+        "build:prediction-certification": "python scripts/build_prediction_family_certification_registry.py",
         "project:status": "node scripts/validate-project-memory.js",
         "test:project-memory": "node tests/project-memory-contract.test.js",
         "test:canonical": "node tests/validate-canonical-json.test.js && node tests/canonical-rebuild.test.js",

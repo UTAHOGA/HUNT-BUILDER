@@ -2235,24 +2235,46 @@ function normalizeOutfitterCoverageList(list) {
       primaryBlmDistrictName: firstNonEmpty(row.PrimaryBlmDistrictName, row.primaryBlmDistrictName),
       usfsAuthoritySource: firstNonEmpty(row.UsfsAuthoritySource, row.usfsAuthoritySource),
       blmAuthoritySource: firstNonEmpty(row.BlmAuthoritySource, row.blmAuthoritySource),
-      usfsPermitMatchedOutfitters: normalizeListValues(firstNonEmpty(row.UsfsPermitMatchedOutfitters, row.usfsPermitMatchedOutfitters)),
-      blmPermitMatchedOutfitters: normalizeListValues(firstNonEmpty(row.BlmPermitMatchedOutfitters, row.blmPermitMatchedOutfitters)),
-      federalPermitMatchedOutfitters: normalizeListValues(firstNonEmpty(row.FederalPermitMatchedOutfitters, row.federalPermitMatchedOutfitters)),
+      usfsPermitMatchedOutfitters: normalizeCoverageNameList(row.UsfsPermitMatchedOutfitters, row.usfsPermitMatchedOutfitters),
+      blmPermitMatchedOutfitters: normalizeCoverageNameList(row.BlmPermitMatchedOutfitters, row.blmPermitMatchedOutfitters),
+      federalPermitMatchedOutfitters: normalizeCoverageNameList(row.FederalPermitMatchedOutfitters, row.federalPermitMatchedOutfitters),
+      confirmedServiceOutfitters: normalizeCoverageNameList(row.ConfirmedServiceOutfitters, row.confirmedServiceOutfitters),
       federalCoverageEligible: firstNonEmpty(row.FederalCoverageEligible, row.federalCoverageEligible),
       notes: firstNonEmpty(row.Notes, row.notes)
     };
   }).filter(row => row.species && row.unitCode);
 }
+function normalizeCoverageNameList(...candidates) {
+  for (const candidate of candidates) {
+    if (Array.isArray(candidate) && candidate.length) return normalizeListValues(candidate);
+    const text = safe(candidate).trim();
+    if (text) return text.split(/\s*\|\s*/).map(value => value.trim()).filter(Boolean);
+  }
+  return [];
+}
 function indexOutfitterFederalCoverage(list) {
   outfitterFederalCoverageIndex.clear();
   outfitterFederalCoverage = normalizeOutfitterCoverageList(list);
   outfitterFederalCoverage.forEach(row => {
-    outfitterFederalCoverageIndex.set(getOutfitterCoverageKey(row.species, row.unitCode), row);
+    [row.unitCode, row.unitName]
+      .map(value => getOutfitterCoverageKey(row.species, value))
+      .filter(Boolean)
+      .forEach(key => outfitterFederalCoverageIndex.set(key, row));
   });
 }
 function getFederalCoverageForHunt(hunt) {
-  if (!hunt) return null;
-  return outfitterFederalCoverageIndex.get(getOutfitterCoverageKey(getSpeciesDisplay(hunt), getUnitCode(hunt))) || null;
+  if (!hunt || isPrivateLandOnlyRecord(hunt)) return null;
+  const displayedSpecies = getSpeciesDisplay(hunt);
+  const speciesCandidates = [displayedSpecies];
+  if (displayedSpecies.endsWith('Bighorn Sheep')) speciesCandidates.push('Bighorn Sheep');
+  const unitCandidates = [getUnitCode(hunt), ...getBoundaryNamesForHunt(hunt)];
+  for (const species of speciesCandidates) {
+    for (const unit of unitCandidates) {
+      const match = outfitterFederalCoverageIndex.get(getOutfitterCoverageKey(species, unit));
+      if (match) return match;
+    }
+  }
+  return null;
 }
 function deterministicHash(input) {
   const text = safe(input);
@@ -3225,6 +3247,8 @@ function renderSelectedHunt() {
 function getMatchingOutfittersForHunt(hunt) {
   if (!hunt || !outfitters.length) return [];
   const publishedCoverage = getFederalCoverageForHunt(hunt);
+  const requiresPublishedCoverage = Array.isArray(OUTFITTER_FEDERAL_COVERAGE_SOURCES)
+    && OUTFITTER_FEDERAL_COVERAGE_SOURCES.length > 0;
   const species = normalizeBoundaryKey(getSpeciesDisplay(hunt));
   const unitCode = normalizeBoundaryKey(getUnitCode(hunt));
   const unitName = normalizeBoundaryKey(getUnitName(hunt));
@@ -3272,7 +3296,8 @@ function getMatchingOutfittersForHunt(hunt) {
     .map(row => ({ ...row.outfitter, matchReasons: row.matchReasons }));
 
   const fallbackMatches = strongMatches.length ? strongMatches : speciesOnlyMatches;
-  if (publishedCoverage && publishedCoverage.federalCoverageEligible !== 'No') {
+  if (requiresPublishedCoverage) {
+    if (!publishedCoverage || publishedCoverage.federalCoverageEligible === 'No') return [];
     const publishedNames = normalizeListValues(
       publishedCoverage.federalPermitMatchedOutfitters?.length
         ? publishedCoverage.federalPermitMatchedOutfitters
@@ -3280,43 +3305,25 @@ function getMatchingOutfittersForHunt(hunt) {
     );
     if (publishedNames.length) {
       const lookup = new Map(outfitters.map(o => [safe(o.listingName).trim().toLowerCase(), o]));
+      const confirmedServiceNames = new Set(
+        normalizeListValues(publishedCoverage.confirmedServiceOutfitters)
+          .map(name => safe(name).trim().toLowerCase())
+      );
       const publishedMatches = publishedNames
         .map(name => lookup.get(safe(name).trim().toLowerCase()))
         .filter(Boolean)
         .map(o => {
           const matchReasons = [];
-          if (publishedCoverage.primaryUsfsForestName) {
-            matchReasons.push(`${publishedCoverage.primaryUsfsForestName} Permit Match`);
+          if (confirmedServiceNames.has(safe(o.listingName).trim().toLowerCase())) {
+            matchReasons.push('Confirmed Hunt Offering');
           }
-          if (publishedCoverage.primaryBlmDistrictName) {
-            matchReasons.push(`${publishedCoverage.primaryBlmDistrictName} Permit Match`);
-          }
+          matchReasons.push('Confirmed Federal Permit Area');
+          matchReasons.push('Authorized Federal Land Only');
           return { ...o, matchReasons: [...new Set(matchReasons)] };
         });
-      const merged = [];
-      const mergedIndex = new Map();
-      const upsert = (candidate) => {
-        const key = safe(firstNonEmpty(candidate.id, candidate.slug, candidate.listingName)).trim().toLowerCase();
-        if (!key) return;
-        const existing = mergedIndex.get(key);
-        if (!existing) {
-          const normalized = {
-            ...candidate,
-            matchReasons: [...new Set(normalizeListValues(candidate.matchReasons))]
-          };
-          mergedIndex.set(key, normalized);
-          merged.push(normalized);
-          return;
-        }
-        existing.matchReasons = [...new Set([
-          ...normalizeListValues(existing.matchReasons),
-          ...normalizeListValues(candidate.matchReasons)
-        ])];
-      };
-      publishedMatches.forEach(upsert);
-      fallbackMatches.forEach(upsert);
-      if (merged.length) return orderOutfitterMatchesForDisplay(hunt, merged, requiredUsfsForests);
+      return orderOutfitterMatchesForDisplay(hunt, publishedMatches, requiredUsfsForests);
     }
+    return [];
   }
   return orderOutfitterMatchesForDisplay(hunt, fallbackMatches, requiredUsfsForests);
 }

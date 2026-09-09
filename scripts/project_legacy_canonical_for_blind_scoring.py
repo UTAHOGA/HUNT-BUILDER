@@ -64,6 +64,40 @@ def p_draw(row: dict[str, str], prefix: str) -> str:
     return f"{max(0.0, min(1.0, permits / apps)):.10f}".rstrip("0").rstrip(".")
 
 
+def cwmu_pool_from_actual_fields(row: dict[str, str]) -> str:
+    """Resolve the official CWMU sub-pool from the actual row itself."""
+    text = " ".join(
+        clean(row.get(field)).lower()
+        for field in ("hunt_name", "raw_hunt_name", "hunt_type", "hunt_class", "draw_system_type", "draw_pool")
+    )
+    if "cwmu" not in text:
+        return ""
+    if any(token in text for token in ("private", "landowner", "voucher")):
+        return ""
+
+    species = clean(row.get("species")).lower()
+    sex = " ".join(clean(row.get(field)).lower() for field in ("sex_type", "sex", "hunt_name", "raw_hunt_name"))
+    youth = clean(row.get("source_is_youth")).lower() in {"true", "1", "yes", "y"}
+    antlerless = any(token in sex for token in ("antlerless", "doe", "cow", "female", "either sex"))
+    male = any(token in sex for token in ("buck", "bull", "male"))
+
+    if species == "deer":
+        if youth:
+            return "cwmu_youth_antlerless_deer"
+        return "cwmu_antlerless_deer" if antlerless else "cwmu_big_game_deer_buck" if male else ""
+    if species == "elk":
+        if youth:
+            return "cwmu_youth_antlerless_elk"
+        return "cwmu_antlerless_elk" if antlerless else "cwmu_big_game_elk_bull" if male else ""
+    if species == "pronghorn":
+        if youth:
+            return "cwmu_youth_doe_pronghorn"
+        return "cwmu_doe_pronghorn" if antlerless else "cwmu_big_game_pronghorn_buck" if male else ""
+    if species == "moose" and male:
+        return "cwmu_big_game_moose_bull"
+    return ""
+
+
 def expand_actual(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     projected: list[dict[str, str]] = []
     for row in rows:
@@ -73,15 +107,21 @@ def expand_actual(rows: list[dict[str, str]]) -> list[dict[str, str]]:
         # but are explicitly not public-draw probability rows.
         if clean(row.get("draw_design")).upper().startswith("REFERENCE_"):
             continue
-        if clean(row.get("residency")):
-            projected.append(dict(row))
+        base = dict(row)
+        cwmu_pool = cwmu_pool_from_actual_fields(base)
+        if cwmu_pool:
+            base["draw_design"] = "BONUS_CWMU_BIG_GAME"
+            base["draw_system_type"] = "BONUS_CWMU_BIG_GAME"
+            base["draw_pool"] = cwmu_pool
+        if clean(base.get("residency")):
+            projected.append(base)
             continue
         for residency, prefix in (("Resident", "resident"), ("Nonresident", "nonresident")):
-            apps = clean(row.get(f"{prefix}_eligible_applicants"))
-            permits = clean(row.get(f"{prefix}_total_permits"))
+            apps = clean(base.get(f"{prefix}_eligible_applicants"))
+            permits = clean(base.get(f"{prefix}_total_permits"))
             if number(apps) is None and number(permits) is None:
                 continue
-            item = dict(row)
+            item = dict(base)
             item["residency"] = residency
             item["metric_scope"] = residency.lower()
             item["eligible_applicants"] = apps
@@ -221,6 +261,7 @@ def main() -> int:
         "forecast_probabilities_changed": False,
         "identity_label_overrides": {
             "actual_ma_antlerless": "BONUS_ANTLERLESS_MOOSE",
+            "actual_cwmu_pool": "SPECIES_SEX_SOURCE_FIELDS",
             "forecast_youth_pronghorn_pool": "YOUTH_DOE_PRONGHORN",
         },
         "status": "READ_ONLY_SCORING_PROJECTION_READY",

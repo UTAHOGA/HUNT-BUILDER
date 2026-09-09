@@ -1,4 +1,32 @@
-from scripts.project_legacy_canonical_for_blind_scoring import _single_year, legacy_pool
+from scripts.project_legacy_canonical_for_blind_scoring import (
+    _single_year,
+    cwmu_pool_from_actual_fields,
+    expand_actual,
+    legacy_pool,
+)
+
+
+def test_actual_cwmu_pool_is_resolved_from_species_and_sex_without_changing_values() -> None:
+    row = {
+        "record_type": "point_level_draw_result",
+        "hunt_code": "DA1050",
+        "hunt_name": "Cwmu Antlerless Deer - The Rose Of Snowville",
+        "species": "Deer",
+        "sex_type": "Doe",
+        "hunt_type": "CWMU",
+        "draw_design": "MAX_WEIGHTED_SPLIT",
+        "draw_pool": "cwmu_antlerless_deer_reference",
+        "resident_eligible_applicants": "40",
+        "resident_total_permits": "0",
+        "resident_p_draw": "0",
+    }
+
+    assert cwmu_pool_from_actual_fields(row) == "cwmu_antlerless_deer"
+    [projected] = expand_actual(row for row in [row])
+    assert projected["draw_system_type"] == "BONUS_CWMU_BIG_GAME"
+    assert projected["draw_pool"] == "cwmu_antlerless_deer"
+    assert projected["eligible_applicants"] == "40"
+    assert projected["p_draw"] == "0"
 
 
 def test_cwmu_projection_preserves_source_derived_species_sex_pool() -> None:

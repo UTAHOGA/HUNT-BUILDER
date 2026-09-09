@@ -1,0 +1,62 @@
+{
+  "metadata": {
+    "id": "outfitter-internal-master-manifest",
+    "generatedAt": "2026-09-08T00:00:00Z",
+    "privacyBoundary": "The full internal records are local and Git-ignored because this repository is public"
+  },
+  "source": {
+    "workbook": "Utah_Outfitters_Contact_Info_WORKING_MASTER_USFS_PERMITS_UPDATED.xlsx",
+    "workbookSha256": "677a7285a3b17fafd7907cea8622c2a8f1a0f7df54d05b0dbfadde798998a34f",
+    "sheet": "Outfitters",
+    "huntUnitGeometry": "audits/dwr_hunt_unit_boundaries/arcgis_pull_20260908T083542Z/udwr_hunt_boundaries_combined.geojson",
+    "huntUnitGeometrySha256": "c5c3b49d1719bc8b1da9bc9f7e3202fe52503e254171717cdb1fd466e7ea5d65",
+    "huntBoundaryInfo": "processed_data/dwr_huntplanner_hanumber_2026.json",
+    "huntBoundaryInfoSha256": "d50ac9be246afb5d4495c388d755efb78412654504b1734f7a58b1b7c1014a3d",
+    "federalBoundarySnapshotManifest": "local_data/outfitters/federal-boundaries/manifest.json",
+    "federalBoundarySnapshotGeneratedAt": "2026-09-08T08:39:46.160944Z"
+  },
+  "localArtifacts": {
+    "master": "local_data/outfitters/outfitters-master.internal.json",
+    "federalEvidence": "local_data/outfitters/outfitter-federal-service-area-evidence.internal.json",
+    "unitEligibilityCoverage": "local_data/outfitters/outfitter-federal-unit-coverage-review.internal.json"
+  },
+  "counts": {
+    "namedWorkbookBusinesses": 182,
+    "promotedHuntingBusinesses": 138,
+    "reviewStatus": {
+      "Confirmed": 7,
+      "Needs Verification": 59,
+      "Spreadsheet Only": 72
+    },
+    "spreadsheetFederalEvidenceRecords": 79,
+    "authoritativePermitEvidenceRecords": 60,
+    "operatorConfirmedServiceClaims": 6,
+    "uniqueFederalEvidenceRecords": 80,
+    "publicRowsUnchanged": 11,
+    "publicRepositoryMasterBusinesses": 9,
+    "coverageRows": 761,
+    "exactBoundaryRows": 464,
+    "authorizedCoverageRows": 354,
+    "authorizedOutfitters": 70,
+    "authorizedOutfitterUnitSpeciesAssociations": 7639,
+    "legacy75PercentCoverageRows": 26,
+    "confirmedServiceClaimRows": 6,
+    "confirmedServiceClaimOutfitters": 1,
+    "legacy75PercentOutfitters": 32,
+    "federalPermitIntersectionAssociations": 7633,
+    "effectiveOutfitters": 70,
+    "effectiveOutfitterUnitSpeciesAssociations": 7639,
+    "publicVettedRows": 11,
+    "publicPermitConfirmedProfiles": 63,
+    "publicCoverageRows": 354,
+    "publicCoverageOutfitters": 70,
+    "publicCoverageAssociations": 7639
+  },
+  "rules": {
+    "excluded": "Fishing-only and unclassified businesses",
+    "unitAssociation": "CONFIRMED_OUTFITTER_SERVICE_CLAIM identifies an operator-confirmed offering; otherwise a confirmed USFS SUP or BLM SRP area intersecting a DWR unit establishes guide authorization only on the permitted federal land inside that unit",
+    "publicSource": "data/outfitters-public.json",
+    "legalScope": "OPERATIONAL_INFERENCE_NOT_PERMIT_OR_LICENSE_ADJUDICATION",
+    "publicExposure": "Vetted profiles retain approved contacts; permit-confirmed profiles publish business name and coverage only, with contacts withheld until separately verified"
+  }
+}

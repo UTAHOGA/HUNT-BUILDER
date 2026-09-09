@@ -1,11 +1,12 @@
 {
   "active_database_coverage_by_draw_year": {
+    "2017": 26330,
     "2018": 30311,
     "2019": 33478,
     "2020": 33069,
     "2021": 33788,
     "2022": 34876,
-    "2023": 35834,
+    "2023": 32794,
     "2024": 43175,
     "2025": 38084,
     "2026": 32834
@@ -15,7 +16,7 @@
   "blank_hunt_code_rows": 0,
   "blocker_count": 0,
   "blockers": [],
-  "coarse_key_collision_count": 30692,
+  "coarse_key_collision_count": 28168,
   "coarse_key_fields": [
     "hunt_code",
     "year",
@@ -23,22 +24,23 @@
     "residency",
     "points"
   ],
-  "cross_scope_only_collision_count": 30692,
+  "cross_scope_only_collision_count": 28168,
   "crosswalk_current_code_count": 0,
   "crosswalk_current_codes_present_in_draw_rows": 0,
   "database_truth_match_counts": {
-    "": 315512
+    "": 338802
   },
   "draw_method_counts": {
-    "": 315512
+    "": 338802
   },
   "draw_year_counts": {
+    "2017": 26330,
     "2018": 30338,
     "2019": 33478,
     "2020": 33069,
     "2021": 33788,
     "2022": 34876,
-    "2023": 35834,
+    "2023": 32794,
     "2024": 43175,
     "2025": 38120,
     "2026": 32834
@@ -51,17 +53,18 @@
   ],
   "invalid_year_rows": 0,
   "model_target_year_counts": {
+    "2018": 26330,
     "2019": 30338,
     "2020": 33478,
     "2021": 33069,
     "2022": 33788,
     "2023": 34876,
-    "2024": 35834,
+    "2024": 32794,
     "2025": 43175,
     "2026": 38120,
     "2027": 32834
   },
-  "normalized_long_rows": 315512,
+  "normalized_long_rows": 338802,
   "outputs": {
     "long_csv": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
     "processed_source_audit_csv": "processed_data/draw_results_all_years_source_audit.csv",
@@ -73,33 +76,35 @@
     "summary_md": "data_truth/draw_results_truth/normalized/draw_results_all_years_summary.md"
   },
   "publish_year_counts": {
+    "2017": 26330,
     "2018": 30338,
     "2019": 33478,
     "2020": 33069,
     "2021": 33788,
     "2022": 34876,
-    "2023": 35834,
+    "2023": 32794,
     "2024": 43175,
     "2025": 38120,
     "2026": 32834
   },
   "reported_hunt_year_inferred_counts": {
+    "2017": 26330,
     "2018": 30338,
     "2019": 33478,
     "2020": 33069,
     "2021": 33788,
     "2022": 34876,
-    "2023": 35834,
+    "2023": 32794,
     "2024": 43175,
     "2025": 38120,
     "2026": 32834
   },
   "residency_counts": {
-    "": 282940,
+    "": 306230,
     "Nonresident": 15677,
     "Resident": 16895
   },
-  "source_audit_rows": 205,
+  "source_audit_rows": 218,
   "source_identity_collision_count": 0,
   "source_identity_collision_examples": [],
   "source_identity_collision_group_count": 0,
@@ -117,9 +122,10 @@
   ],
   "source_long_csv": "data_truth/draw_results_truth/normalized/draw_results_long.csv",
   "status_counts": {
-    "": 315512
+    "": 338802
   },
   "unique_draw_years": [
+    "2017",
     "2018",
     "2019",
     "2020",
@@ -130,6 +136,6 @@
     "2025",
     "2026"
   ],
-  "unique_hunt_codes_all_years": 1504,
-  "unique_sources": 205
+  "unique_hunt_codes_all_years": 1542,
+  "unique_sources": 218
 }

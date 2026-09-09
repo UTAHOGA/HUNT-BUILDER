@@ -291,9 +291,17 @@ def is_sportsman_permit_row(row: Mapping[str, object]) -> bool:
     text = _joined_text(row)
     if hunt_code in HISTORICAL_COUGAR_SPORTSMAN_CODES or "cougar" in text or "mountain lion" in text:
         return hunt_code in HISTORICAL_COUGAR_SPORTSMAN_CODES and 0 < _row_year(row) <= LAST_COUGAR_SPORTSMAN_SOURCE_YEAR
-    if hunt_code in sportsman_code_allowlist():
+    if effective_draw_design(row) == SPORTSMAN_DRAW_SYSTEM_TYPE or "sportsman" in text:
         return True
-    if "sportsman" in text:
+    # Current Sportsman codes are stable identifiers even when the Planner's
+    # display name says only "Statewide Permit". Historical Sportsman codes are
+    # not globally unique (for example TK1000 is now general-season turkey), so
+    # accept a legacy code only when the row's own year resolves to that year's
+    # official Sportsman source.
+    if hunt_code in SPORTSMAN_CODE_ALIASES:
+        return True
+    source_year = _row_year(row)
+    if source_year and hunt_code in _sportsman_source_by_code(source_year):
         return True
     return False
 

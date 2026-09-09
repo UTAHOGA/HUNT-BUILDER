@@ -13,6 +13,7 @@ from typing import Mapping
 
 from engine.utah_draw_predictive import append_reason_codes
 from engine.utah_draw_predictive.classifier import sanitize_modeled_probability_fields
+from engine.utah_draw_predictive.certification import annotate_prediction_rows, load_registry
 from engine.utah.current_year_allotments import apply_current_year_allotments_to_rows
 from engine.utah_draw_predictive.bear import (
     BEAR_DRAW_SYSTEM_TYPE,
@@ -69,6 +70,7 @@ from .split import split_utah_bonus_permits
 TRUTH_PATH = REPO / "data_truth" / "draw_results_truth" / "normalized" / "draw_results_long.csv"
 RUNTIME_DRAFT_DIR = REPO / "data_model" / "runtime_drafts"
 DATABASE_2026_PATH = REPO / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "DATABASE.csv"
+PREDICTION_CERTIFICATION_REGISTRY = REPO / "governance" / "prediction-family-certification.json"
 TARGET_HUNT_TOKENS = (
     "once-in-a-lifetime",
     "once in a lifetime",
@@ -1053,6 +1055,21 @@ def _write_runtime_promotion_artifacts(output_dir: Path, promotion_report: dict[
     return csv_path, json_path, md_path
 
 
+def _write_prediction_certification_artifacts(
+    output_dir: Path,
+    certification_report: dict[str, object],
+) -> tuple[Path, Path]:
+    json_path = output_dir / "prediction_family_certification_report.json"
+    csv_path = output_dir / "prediction_family_certification_report.csv"
+    json_path.write_text(json.dumps(certification_report, indent=2) + "\n", encoding="utf-8")
+    rows = [
+        {"prediction_certification_status": status, "row_count": count}
+        for status, count in dict(certification_report.get("certification_status_counts", {})).items()
+    ]
+    write_csv(csv_path, rows, ["prediction_certification_status", "row_count"])
+    return csv_path, json_path
+
+
 def _remove_no_hunt_code_rows(rows: list[dict[str, object]], source_label: str) -> tuple[list[dict[str, object]], list[dict[str, object]]]:
     kept: list[dict[str, object]] = []
     excluded: list[dict[str, object]] = []
@@ -1387,6 +1404,7 @@ def _build_manifest(
     ui_checks: dict[str, object],
     runtime_truth_copy: Path,
     prediction_input: Path,
+    certification_report: dict[str, object],
 ) -> Path:
     output_files = {
         "ml_draw_predictions_v1.csv": output_dir / "ml_draw_predictions_v1.csv",
@@ -1421,6 +1439,8 @@ def _build_manifest(
         "private_lands_antlerless_elk_report.json": output_dir / "private_lands_antlerless_elk_report.json",
         "mountain_lion_availability_predictions_v1.csv": output_dir / "mountain_lion_availability_predictions_v1.csv",
         "mountain_lion_availability_report.json": output_dir / "mountain_lion_availability_report.json",
+        "prediction_family_certification_report.csv": output_dir / "prediction_family_certification_report.csv",
+        "prediction_family_certification_report.json": output_dir / "prediction_family_certification_report.json",
     }
     anomalies = _anomaly_counts(prediction_rows, backtest_rows)
     manifest = {
@@ -1454,6 +1474,7 @@ def _build_manifest(
         "UI_precedence_result": ui_checks,
         "coverage_report_summary": coverage_report,
         "anomaly_checks": anomalies,
+        "prediction_family_certification": certification_report,
         "source_files_used": {
             _safe_relative(TRUTH_PATH): _sha256_file(TRUTH_PATH),
             _safe_relative(DATABASE_2026_PATH): _sha256_file(DATABASE_2026_PATH),
@@ -1610,7 +1631,27 @@ def _normalize_merged_surface_contract(
 
         probability = "" if probability_value is None else f"{probability_value:.6f}"
         if not probability:
+            if _clean_text(row.get("algorithm_status")) == "MODELED_BONUS":
+                # MODELED_BONUS is a public probability-bearing contract.  A
+                # row with no probability evidence is pending, not modeled.
+                row["algorithm_status"] = "IN_SCOPE_MODEL_PENDING"
+                row["prediction_status"] = "NOT_SCORED"
+                row["classification_status"] = "IN_SCOPE_MODEL_PENDING"
+                reason_codes = [
+                    value
+                    for value in _clean_text(row.get("reason_codes")).split("|")
+                    if value
+                ]
+                if "MISSING_PUBLIC_DRAW_PROBABILITY" not in reason_codes:
+                    reason_codes.append("MISSING_PUBLIC_DRAW_PROBABILITY")
+                row["reason_codes"] = "|".join(reason_codes)
+                for field in MIXED_COMPONENT_FIELDS:
+                    row[field] = ""
             continue
+        if not _clean_text(row.get("p_draw")):
+            row["p_draw"] = probability
+        if not _clean_text(row.get("p_draw_pct")):
+            row["p_draw_pct"] = f"{probability_value * 100.0:.3f}"
         for field in MIXED_COMPONENT_FIELDS:
             if not _clean_text(row.get(field)):
                 row[field] = probability
@@ -1780,6 +1821,9 @@ def materialize_outputs(
 
     promotion_report = _apply_runtime_promotion_marks(prediction_rows, output_dir)
     _apply_runtime_promotion_marks(successor_rows, output_dir)
+    certification_registry = load_registry(PREDICTION_CERTIFICATION_REGISTRY)
+    certification_report = annotate_prediction_rows(prediction_rows, certification_registry)
+    annotate_prediction_rows(successor_rows, certification_registry)
 
     prediction_fields = [
         "model_version",
@@ -1811,6 +1855,8 @@ def materialize_outputs(
         "random_permits_2026",
         "guaranteed_at_2025",
         "guaranteed_at_2026",
+        "projected_draw_line_2025",
+        "projected_draw_line_2026",
         "applicants_above",
         "applicants_at_level",
         "probability_applicant_count",
@@ -1896,6 +1942,15 @@ def materialize_outputs(
         "runtime_promotion_source",
         "runtime_promotion_source_report",
         "runtime_promotion_note",
+        "prediction_certification_design",
+        "prediction_certification_status",
+        "prediction_publication_status",
+        "prediction_certification_registry_id",
+        "prediction_certification_evidence",
+        "prediction_certification_failure_reasons",
+        "certified_p_draw",
+        "certified_p_draw_mean",
+        "certified_p_draw_pct",
         "preference_model_valid",
         "preference_model_note",
         "bonus_special_valid",
@@ -1906,6 +1961,13 @@ def materialize_outputs(
         "youth_general_any_bull_elk_note",
         "bear_bonus_valid",
         "bear_bonus_note",
+        "returning_cohort_mode",
+        "returning_tail_profile_count",
+        "bear_cohort_evidence_scope",
+        "bear_cohort_reapply_rate",
+        "bear_cohort_arrival_count",
+        "bear_cohort_exact_unsuccessful",
+        "bear_cohort_exact_transitions",
         "sportsman_valid",
         "sportsman_model_note",
         "weapon",
@@ -1951,7 +2013,6 @@ def materialize_outputs(
         "private_lands_capped_permit_valid",
         "private_lands_capped_permit_note",
         "capped_permit_count",
-        "acquisition_method",
         "permits_allotted",
         "permits_remaining",
         "permits_sold",
@@ -1972,6 +2033,7 @@ def materialize_outputs(
         "data_quality_flags",
         "draw_system_type",
         "algorithm_status",
+        "prediction_status",
         "target_scope",
         "modeled_by_engine",
         "reason",
@@ -2038,6 +2100,10 @@ def materialize_outputs(
     youth_csv_path, youth_json_path = _write_youth_artifacts(output_dir, prediction_rows, youth_report)
     mountain_lion_csv_path, mountain_lion_json_path = _write_mountain_lion_artifacts(output_dir, prediction_rows, mountain_lion_report)
     promotion_csv_path, promotion_json_path, promotion_md_path = _write_runtime_promotion_artifacts(output_dir, promotion_report)
+    certification_csv_path, certification_json_path = _write_prediction_certification_artifacts(
+        output_dir,
+        certification_report,
+    )
 
     backtest_rows = build_backtest_rows(
         permits,
@@ -2104,6 +2170,7 @@ def materialize_outputs(
         ui_checks=ui_checks,
         runtime_truth_copy=runtime_truth_copy,
         prediction_input=runtime_paths["materialized_rows"],
+        certification_report=certification_report,
     )
 
     return {
@@ -2146,6 +2213,8 @@ def materialize_outputs(
         "runtime_family_promotion_csv": promotion_csv_path,
         "runtime_family_promotion_json": promotion_json_path,
         "runtime_family_promotion_md": promotion_md_path,
+        "prediction_family_certification_csv": certification_csv_path,
+        "prediction_family_certification_json": certification_json_path,
         "manifest": manifest_path,
     }
 

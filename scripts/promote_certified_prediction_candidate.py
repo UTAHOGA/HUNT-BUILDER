@@ -45,6 +45,46 @@ def zero_row_count(path: Path) -> int:
         return sum(1 for _ in csv.DictReader(handle))
 
 
+def validate_certification_publication_gate(path: Path) -> dict[str, Any]:
+    """Verify that uncertified rows expose no certified public probability."""
+
+    required = {
+        "prediction_certification_design",
+        "prediction_certification_status",
+        "prediction_publication_status",
+        "certified_p_draw",
+        "certified_p_draw_mean",
+        "certified_p_draw_pct",
+    }
+    allowed_statuses = {"CERTIFIED", "EXPERIMENTAL_NOT_CERTIFIED", "INSUFFICIENT_EVIDENCE", "NOT_EVALUATED"}
+    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        fields = set(reader.fieldnames or [])
+        missing_fields = sorted(required - fields)
+        rows = list(reader)
+    invalid_status_rows = 0
+    unauthorized_public_probability_rows = 0
+    certified_rows = 0
+    for row in rows:
+        status = str(row.get("prediction_certification_status", "")).strip()
+        if status not in allowed_statuses:
+            invalid_status_rows += 1
+        if status == "CERTIFIED":
+            certified_rows += 1
+        elif any(str(row.get(field, "")).strip() for field in ("certified_p_draw", "certified_p_draw_mean", "certified_p_draw_pct")):
+            unauthorized_public_probability_rows += 1
+    passed = not missing_fields and invalid_status_rows == 0 and unauthorized_public_probability_rows == 0
+    return {
+        "status": "PASS" if passed else "BLOCKED",
+        "rows": len(rows),
+        "certified_rows": certified_rows,
+        "missing_fields": missing_fields,
+        "invalid_status_rows": invalid_status_rows,
+        "unauthorized_public_probability_rows": unauthorized_public_probability_rows,
+        "policy": "Uncertified raw probabilities may be retained for development, but certified_p_draw fields must be blank.",
+    }
+
+
 def promote(candidate: Path, apply: bool) -> dict[str, Any]:
     prediction_dir = candidate / "prediction_phase"
     comparison_dir = candidate / "comparison_phase"
@@ -71,6 +111,15 @@ def promote(candidate: Path, apply: bool) -> dict[str, Any]:
 
     source_manifest = read_json(source_manifest_path)
     source_outputs = source_manifest.get("output_files") or {}
+    prediction_source_value = source_outputs.get("ml_draw_predictions_v1.csv")
+    if not prediction_source_value:
+        raise ValueError("Candidate manifest does not declare ml_draw_predictions_v1.csv.")
+    prediction_source = REPO / str(prediction_source_value)
+    if not prediction_source.exists():
+        raise FileNotFoundError(f"Candidate prediction output is missing: {prediction_source}")
+    certification_gate = validate_certification_publication_gate(prediction_source)
+    if apply and certification_gate["status"] != "PASS":
+        raise ValueError(f"Candidate fails the family certification publication gate: {certification_gate}")
     copied: list[dict[str, Any]] = []
     skipped: list[dict[str, str]] = []
     backup_root = candidate / "local_promotion_backups" / utc_stamp()
@@ -146,6 +195,7 @@ def promote(candidate: Path, apply: bool) -> dict[str, Any]:
             "duplicate_actual_key_groups": summary.get("duplicate_actual_key_groups"),
             "duplicate_prediction_key_groups": summary.get("duplicate_prediction_key_groups"),
         },
+        "certification_publication_gate": certification_gate,
         "copied_artifacts": copied,
         "skipped_artifacts": skipped,
         "backup_root": str(backup_root.relative_to(REPO)),

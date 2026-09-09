@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-02T20:39:28+00:00",
+  "generated_at_utc": "2026-09-09T11:15:00+00:00",
   "source_2024_file": "pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/official_dwr_archive/black_bear/24_drawing_odds.pdf",
   "source_2024_sha256": "7285646f7a11b529256c3040278a345f6b3df0613950570c0a9901e42e1ec8ea",
   "source_2025_file": "pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/official_dwr_archive/black_bear/25_drawing_odds.pdf",
@@ -8,10 +8,10 @@
   "current_2026_filter": "hunt_code starts BR and permits_2026_total is a positive published integer",
   "draw_2024_rows": 96,
   "draw_2025_rows": 97,
-  "current_2026_rows": 106,
+  "current_2026_rows": 105,
   "draw_2024_total_public_permits": 943,
   "draw_2025_total_public_permits": 994,
-  "current_2026_total_numeric_permits": 1111,
+  "current_2026_total_numeric_permits": 1110,
   "draw_2024_codes_missing_2025": [
     "BR7019"
   ],
@@ -36,7 +36,6 @@
     "HISTORICAL_CODE_RECODED_TO_CURRENT": 3,
     "NEW_IN_2025_AND_CURRENT_2026": 2,
     "CURRENT_CODE_REUSED_FOR_CONSERVATION_PERMIT": 1,
-    "CURRENT_CONSERVATION_NO_DRAW_SOURCE": 1,
     "HISTORICAL_CODE_RECODED_BECAUSE_CODE_REUSED": 1,
     "RETIRED_AFTER_2024_NO_2025_OR_2026_MATCH": 1
   },

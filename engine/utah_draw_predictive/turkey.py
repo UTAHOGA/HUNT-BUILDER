@@ -25,6 +25,7 @@ YOUTH_TURKEY_MODEL_STRATEGY_NAME = "youth_turkey_set_aside_bonus_v1"
 BONUS_RULE_VERSION = "utah_turkey_bonus_v1.1.0"
 TURKEY_DRAW_SYSTEM_TYPE = "BONUS_TURKEY"
 YOUTH_TURKEY_DRAW_SYSTEM_TYPE = "YOUTH_TURKEY_SET_ASIDE"
+FUTURE_TURKEY_DRAW_PROBABILITY_CEILING = 0.99
 YOUTH_TURKEY_SET_ASIDE_RATIO = 0.15
 CONSERVATION_TURKEY_CODES = {"TK1012", "TK1013", "TK1014", "TK1015", "TK1016"}
 
@@ -867,11 +868,18 @@ def build_turkey_bonus_predictions(
                 p10 = _percentile(draws, 0.10) if draws else p_draw
                 p50 = _percentile(draws, 0.50) if draws else p_draw
                 p90 = _percentile(draws, 0.90) if draws else p_draw
+                structural_future_certainty = p_draw >= 1.0 - 1e-12
+                p_draw = min(FUTURE_TURKEY_DRAW_PROBABILITY_CEILING, p_draw)
+                p10 = min(FUTURE_TURKEY_DRAW_PROBABILITY_CEILING, p10)
+                p50 = min(FUTURE_TURKEY_DRAW_PROBABILITY_CEILING, p50)
+                p90 = min(FUTURE_TURKEY_DRAW_PROBABILITY_CEILING, p90)
                 reason_codes = ["FAMILY_ENGINE_MODELED_TURKEY_BONUS"]
                 if central_estimate_mode == "simulation_mean":
                     reason_codes.append("MONTE_CARLO_CENTRAL_ESTIMATE")
                     if bootstrap_transition_uncertainty:
                         reason_codes.append("TURKEY_SOURCE_TRANSITION_UNCERTAINTY_DISCOUNT")
+                if structural_future_certainty:
+                    reason_codes.append("FUTURE_TURKEY_DRAW_PROBABILITY_CEILING_APPLIED")
                 row = {
                     "model_version": MODEL_VERSION,
                     "rule_version": BONUS_RULE_VERSION,
@@ -1316,6 +1324,8 @@ def build_youth_turkey_predictions(
                 p_bonus_pool, applicants_above, applicants_at_level = compute_bonus_pool_probability(points, applicants_by_points, max_point_permits)
                 p_random_pool = random_probabilities.get(points, 0.0)
                 p_draw = combine_probabilities(p_bonus_pool, p_random_pool)
+                structural_future_certainty = p_draw >= 1.0 - 1e-12
+                p_draw = min(FUTURE_TURKEY_DRAW_PROBABILITY_CEILING, p_draw)
                 rows.append(
                     {
                         "model_version": MODEL_VERSION,
@@ -1362,6 +1372,10 @@ def build_youth_turkey_predictions(
                         "model_strategy": YOUTH_TURKEY_MODEL_STRATEGY_NAME,
                         "weapon": weapon,
                         "draw_system_type": YOUTH_TURKEY_DRAW_SYSTEM_TYPE,
+                        "reason_codes": (
+                            "FAMILY_ENGINE_MODELED_YOUTH_TURKEY_SET_ASIDE"
+                            + ("|FUTURE_TURKEY_DRAW_PROBABILITY_CEILING_APPLIED" if structural_future_certainty else "")
+                        ),
                         "data_quality_flags": "|".join(flags),
                     }
                 )

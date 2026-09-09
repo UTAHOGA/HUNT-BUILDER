@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-27T05:34:58+00:00",
+  "generated_at_utc": "2026-09-09T11:15:40+00:00",
   "audit_scope": "2020_draw_odds_source_parity_for_2021_modeling",
   "source_dir": "pipeline\\RAW\\hunt_unit_database\\2020\\pdf\\draw_odds",
   "expected_file_count": 13,
@@ -10,7 +10,7 @@
   "source_draw_result_year": "2020",
   "draw_truth_2020_rows": 33069,
   "draw_truth_2020_unique_hunt_codes": 1014,
-  "draw_truth_2020_source_file_count": 13,
+  "draw_truth_2020_source_file_count": 14,
   "draw_truth_2020_source_files": [
     "20-21_sportsman_odds.pdf",
     "20_antlerless_drawing_odds_report.pdf",
@@ -24,7 +24,8 @@
     "20_youth_dh_odds.pdf",
     "5213601e__turkey_2020_turkey_bonus_points_draw_results.pdf",
     "68991b97__turkey_2020_youth_turkey_draw_results.pdf",
-    "97ffae94__black_bear_20_drawing_odds.pdf"
+    "97ffae94__black_bear_20_drawing_odds.pdf",
+    "pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/official_dwr_archive/black_bear/20_drawing_odds.pdf"
   ],
   "draw_truth_2020_source_file_counts": {
     "20-21_sportsman_odds.pdf": 11,
@@ -39,9 +40,10 @@
     "20_youth_dh_odds.pdf": 506,
     "5213601e__turkey_2020_turkey_bonus_points_draw_results.pdf": 126,
     "68991b97__turkey_2020_youth_turkey_draw_results.pdf": 126,
-    "97ffae94__black_bear_20_drawing_odds.pdf": 2100
+    "97ffae94__black_bear_20_drawing_odds.pdf": 100,
+    "pipeline/RAW/hunt_unit_database/2020/pdf/draw_odds/official_dwr_archive/black_bear/20_drawing_odds.pdf": 2000
   },
-  "draw_truth_source_label_status": "SOURCE_LABELS_MATCH_EXPECTED_FILES",
+  "draw_truth_source_label_status": "SOURCE_LABEL_LINEAGE_REVIEW",
   "guardrails": [
     "Source-integrity audit only; no PDF extraction or draw truth rewrite is performed.",
     "2020 draw truth is native-year evidence and is not judged against the 2026 active hunt-code universe.",

@@ -1,0 +1,199 @@
+{
+  "schema_version": "prediction-family-certification.v1",
+  "registry_id": "adr-0006-c555c069fc1f",
+  "certification_standard": "docs/decisions/ADR-0006-historical-blind-acceptance-thresholds.md",
+  "thresholds": {
+    "minimum_independent_following_year_folds": 2,
+    "minimum_joined_rows_per_design": 400,
+    "maximum_mae": 0.1,
+    "maximum_p90_absolute_error": 0.3,
+    "maximum_tail_error_rate_over_25pp": 0.1,
+    "maximum_false_guarantee_rows": 0,
+    "required_unclassified_actual_gaps": 0
+  },
+  "evidence": {
+    "acceptance_by_draw_design": "audits/prediction_blind_year_to_year/certification_repair_clean_2017_2025_20260909/acceptance_review/acceptance_by_draw_design.csv",
+    "acceptance_by_draw_design_sha256": "c555c069fc1fdf3203e0c13665a331b2df92df12784bc44d3393f5e56bd36b66",
+    "acceptance_review_manifest": "audits/prediction_blind_year_to_year/certification_repair_clean_2017_2025_20260909/acceptance_review/acceptance_review_manifest.json",
+    "acceptance_review_manifest_sha256": "8bc32acab5297c655a8c27557dbfffd889007ca995bd216a1445b5e220d94eb6"
+  },
+  "families": {
+    "BEAR_DRAW_UNCLASSIFIED_SUBTYPE": {
+      "certification_status": "INSUFFICIENT_EVIDENCE",
+      "evidence_sufficiency": "INSUFFICIENT",
+      "fold_count": 5,
+      "joined_rows": 0,
+      "mae": null,
+      "p90_absolute_error": null,
+      "tail_error_rate_over_25pp": null,
+      "false_guarantee_rows": 0,
+      "unclassified_actual_gap_rows": 0,
+      "failure_reasons": "INSUFFICIENT_JOINED_ROWS;MAE_EXCEEDS_LIMIT;P90_ERROR_EXCEEDS_LIMIT;TAIL_ERROR_RATE_EXCEEDS_LIMIT"
+    },
+    "BEAR_LIMITED_ENTRY_HUNT_BONUS": {
+      "certification_status": "EXPERIMENTAL_NOT_CERTIFIED",
+      "evidence_sufficiency": "SUFFICIENT",
+      "fold_count": 8,
+      "joined_rows": 9890,
+      "mae": 0.18385058336827098,
+      "p90_absolute_error": 0.9000005000000012,
+      "tail_error_rate_over_25pp": 0.19443882709807886,
+      "false_guarantee_rows": 0,
+      "unclassified_actual_gap_rows": 0,
+      "failure_reasons": "MAE_EXCEEDS_LIMIT;P90_ERROR_EXCEEDS_LIMIT;TAIL_ERROR_RATE_EXCEEDS_LIMIT"
+    },
+    "BEAR_RESTRICTED_PURSUIT_BONUS": {
+      "certification_status": "INSUFFICIENT_EVIDENCE",
+      "evidence_sufficiency": "INSUFFICIENT",
+      "fold_count": 8,
+      "joined_rows": 311,
+      "mae": 0.2286125122688103,
+      "p90_absolute_error": 1.0,
+      "tail_error_rate_over_25pp": 0.2797427652733119,
+      "false_guarantee_rows": 0,
+      "unclassified_actual_gap_rows": 0,
+      "failure_reasons": "INSUFFICIENT_JOINED_ROWS;MAE_EXCEEDS_LIMIT;P90_ERROR_EXCEEDS_LIMIT;TAIL_ERROR_RATE_EXCEEDS_LIMIT"
+    },
+    "BONUS_CWMU_BIG_GAME": {
+      "certification_status": "EXPERIMENTAL_NOT_CERTIFIED",
+      "evidence_sufficiency": "SUFFICIENT",
+      "fold_count": 8,
+      "joined_rows": 9669,
+      "mae": 0.12060430458914055,
+      "p90_absolute_error": 0.5,
+      "tail_error_rate_over_25pp": 0.14996380184093494,
+      "false_guarantee_rows": 0,
+      "unclassified_actual_gap_rows": 0,
+      "failure_reasons": "MAE_EXCEEDS_LIMIT;P90_ERROR_EXCEEDS_LIMIT;TAIL_ERROR_RATE_EXCEEDS_LIMIT"
+    },
+    "BONUS_LE_BIG_GAME": {
+      "certification_status": "CERTIFIED",
+      "evidence_sufficiency": "SUFFICIENT",
+      "fold_count": 8,
+      "joined_rows": 49916,
+      "mae": 0.07069003149134746,
+      "p90_absolute_error": 0.16115533335,
+      "tail_error_rate_over_25pp": 0.07290247615994871,
+      "false_guarantee_rows": 0,
+      "unclassified_actual_gap_rows": 0,
+      "failure_reasons": ""
+    },
+    "BONUS_OIL_BIG_GAME": {
+      "certification_status": "CERTIFIED",
+      "evidence_sufficiency": "SUFFICIENT",
+      "fold_count": 8,
+      "joined_rows": 34330,
+      "mae": 0.04373977298286921,
+      "p90_absolute_error": 0.0454545455,
+      "tail_error_rate_over_25pp": 0.04532478881444801,
+      "false_guarantee_rows": 0,
+      "unclassified_actual_gap_rows": 0,
+      "failure_reasons": ""
+    },
+    "BONUS_PLE_BIG_GAME": {
+      "certification_status": "CERTIFIED",
+      "evidence_sufficiency": "SUFFICIENT",
+      "fold_count": 5,
+      "joined_rows": 1912,
+      "mae": 0.020256402120606695,
+      "p90_absolute_error": 0.02288382439,
+      "tail_error_rate_over_25pp": 0.0198744769874477,
+      "false_guarantee_rows": 0,
+      "unclassified_actual_gap_rows": 0,
+      "failure_reasons": ""
+    },
+    "BONUS_TURKEY": {
+      "certification_status": "EXPERIMENTAL_NOT_CERTIFIED",
+      "evidence_sufficiency": "SUFFICIENT",
+      "fold_count": 7,
+      "joined_rows": 411,
+      "mae": 0.2709794001625304,
+      "p90_absolute_error": 1.0,
+      "tail_error_rate_over_25pp": 0.2895377128953771,
+      "false_guarantee_rows": 0,
+      "unclassified_actual_gap_rows": 17,
+      "failure_reasons": "MAE_EXCEEDS_LIMIT;P90_ERROR_EXCEEDS_LIMIT;TAIL_ERROR_RATE_EXCEEDS_LIMIT;UNCLASSIFIED_ACTUAL_GAPS"
+    },
+    "PREFERENCE_ANTLERLESS_DEER": {
+      "certification_status": "EXPERIMENTAL_NOT_CERTIFIED",
+      "evidence_sufficiency": "SUFFICIENT",
+      "fold_count": 8,
+      "joined_rows": 1034,
+      "mae": 0.21440506179516441,
+      "p90_absolute_error": 0.855,
+      "tail_error_rate_over_25pp": 0.22340425531914893,
+      "false_guarantee_rows": 0,
+      "unclassified_actual_gap_rows": 71,
+      "failure_reasons": "MAE_EXCEEDS_LIMIT;P90_ERROR_EXCEEDS_LIMIT;TAIL_ERROR_RATE_EXCEEDS_LIMIT;UNCLASSIFIED_ACTUAL_GAPS"
+    },
+    "PREFERENCE_ANTLERLESS_ELK": {
+      "certification_status": "EXPERIMENTAL_NOT_CERTIFIED",
+      "evidence_sufficiency": "SUFFICIENT",
+      "fold_count": 8,
+      "joined_rows": 4854,
+      "mae": 0.20584741168473422,
+      "p90_absolute_error": 0.7933826999999996,
+      "tail_error_rate_over_25pp": 0.23815409971157808,
+      "false_guarantee_rows": 0,
+      "unclassified_actual_gap_rows": 436,
+      "failure_reasons": "MAE_EXCEEDS_LIMIT;P90_ERROR_EXCEEDS_LIMIT;TAIL_ERROR_RATE_EXCEEDS_LIMIT;UNCLASSIFIED_ACTUAL_GAPS"
+    },
+    "PREFERENCE_DEDICATED_HUNTER_DEER": {
+      "certification_status": "EXPERIMENTAL_NOT_CERTIFIED",
+      "evidence_sufficiency": "SUFFICIENT",
+      "fold_count": 8,
+      "joined_rows": 1979,
+      "mae": 0.2700482215806973,
+      "p90_absolute_error": 0.995,
+      "tail_error_rate_over_25pp": 0.3178372915613946,
+      "false_guarantee_rows": 0,
+      "unclassified_actual_gap_rows": 21,
+      "failure_reasons": "MAE_EXCEEDS_LIMIT;P90_ERROR_EXCEEDS_LIMIT;TAIL_ERROR_RATE_EXCEEDS_LIMIT;UNCLASSIFIED_ACTUAL_GAPS"
+    },
+    "PREFERENCE_DOE_PRONGHORN": {
+      "certification_status": "EXPERIMENTAL_NOT_CERTIFIED",
+      "evidence_sufficiency": "SUFFICIENT",
+      "fold_count": 8,
+      "joined_rows": 1018,
+      "mae": 0.2280915022891945,
+      "p90_absolute_error": 0.701,
+      "tail_error_rate_over_25pp": 0.3948919449901768,
+      "false_guarantee_rows": 0,
+      "unclassified_actual_gap_rows": 111,
+      "failure_reasons": "MAE_EXCEEDS_LIMIT;P90_ERROR_EXCEEDS_LIMIT;TAIL_ERROR_RATE_EXCEEDS_LIMIT;UNCLASSIFIED_ACTUAL_GAPS"
+    },
+    "PREFERENCE_GENERAL_SEASON_BUCK_DEER": {
+      "certification_status": "CERTIFIED",
+      "evidence_sufficiency": "SUFFICIENT",
+      "fold_count": 8,
+      "joined_rows": 7783,
+      "mae": 0.08869689207353205,
+      "p90_absolute_error": 0.25,
+      "tail_error_rate_over_25pp": 0.09456507773352178,
+      "false_guarantee_rows": 0,
+      "unclassified_actual_gap_rows": 0,
+      "failure_reasons": ""
+    },
+    "YOUTH_GENERAL_ANY_BULL_ELK": {
+      "certification_status": "INSUFFICIENT_EVIDENCE",
+      "evidence_sufficiency": "INSUFFICIENT",
+      "fold_count": 8,
+      "joined_rows": 16,
+      "mae": 0.0170294089125,
+      "p90_absolute_error": 0.044463228349999995,
+      "tail_error_rate_over_25pp": 0.0,
+      "false_guarantee_rows": 0,
+      "unclassified_actual_gap_rows": 0,
+      "failure_reasons": "INSUFFICIENT_JOINED_ROWS"
+    }
+  },
+  "certified_designs": [
+    "BONUS_LE_BIG_GAME",
+    "BONUS_OIL_BIG_GAME",
+    "BONUS_PLE_BIG_GAME",
+    "PREFERENCE_GENERAL_SEASON_BUCK_DEER"
+  ],
+  "overall_certification_status": "NOT_CERTIFIED",
+  "publication_policy": "Only certified_p_draw fields from CERTIFIED designs may be presented as certified future draw probability.",
+  "line_semantics": "projected_draw_line fields are structural forecasts and never guarantees of a future draw."
+}

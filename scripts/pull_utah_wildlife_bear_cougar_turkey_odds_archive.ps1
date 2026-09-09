@@ -1,5 +1,6 @@
 param(
-    [string]$FreshDir = "audits/2025_canonical_finalization/fresh_live_pulls_20260621_192945"
+    [string]$FreshDir = "audits/2025_canonical_finalization/fresh_live_pulls_20260621_192945",
+    [string[]]$Years = @()
 )
 
 $ErrorActionPreference = "Stop"
@@ -46,6 +47,10 @@ foreach ($match in $matches) {
         }
     }
 
+    if ($Years.Count -gt 0 -and $year -notin $Years) {
+        continue
+    }
+
     if ($href.StartsWith("http")) {
         $url = $href
     } else {
@@ -81,8 +86,10 @@ foreach ($match in $matches) {
     }
 
     $length = 0
+    $sha256 = ""
     if (Test-Path $outPath) {
         $length = (Get-Item $outPath).Length
+        $sha256 = (Get-FileHash -LiteralPath $outPath -Algorithm SHA256).Hash
     }
 
     $rows += [pscustomobject]@{
@@ -92,6 +99,7 @@ foreach ($match in $matches) {
         title = $text
         status = $status
         bytes = $length
+        sha256 = $sha256
         file = "older_years_bear_cougar_turkey_odds/$species/$year/$fileName"
         url = $url
         error = $errorMessage
@@ -116,6 +124,7 @@ $summary = [pscustomobject]@{
     out_dir = $archiveDir
     manifest = $manifestPath
     total_links = $rows.Count
+    requested_years = @($Years)
     ok = @($rows | Where-Object { $_.status -eq "ok" }).Count
     errors = @($rows | Where-Object { $_.status -ne "ok" }).Count
     by_species = $bySpecies

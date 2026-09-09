@@ -1,0 +1,166 @@
+{
+  "metadata": {
+    "id": "manti-la-sal-permitted-hunting-outfitters-2026",
+    "authority": "USDA Forest Service",
+    "sourceDocument": "Manti-La Sal National Forest Permits Forest Service.pdf",
+    "sourceDocumentSha256": "65e2865f7c6ed744908e39301cda536032568e0f39d8e7505898367fd0f244e7",
+    "sourcePageTitle": "Manti-La Sal National Forest | Permits | Forest Service",
+    "sourceLastUpdated": "2026-05-19",
+    "reviewedAt": "2026-09-07",
+    "scope": "Only permit-holder names matched to businesses already classified as hunting in the internal outfitter master",
+    "exclusions": "Fishing-only, non-hunting recreation, and unclassified permit holders are not promoted"
+  },
+  "records": [
+    {
+      "outfitterId": "outfitter-apex-outfitters",
+      "masterDisplayName": "APEX OUTFITTERS",
+      "officialPermitHolderName": "Apex Outfitters",
+      "zone": "North Zone",
+      "permitScope": "Manti-La Sal National Forest"
+    },
+    {
+      "outfitterId": "outfitter-crab-creek-outfitters",
+      "masterDisplayName": "Crab Creek Outfitters",
+      "officialPermitHolderName": "Crab Creek",
+      "zone": "North Zone",
+      "permitScope": "Manti-La Sal National Forest"
+    },
+    {
+      "outfitterId": "outfitter-guy-or-trudy-webster",
+      "masterDisplayName": "GT OUTFITTERS",
+      "officialPermitHolderName": "GT Outfitters",
+      "zone": "North Zone",
+      "permitScope": "Manti-La Sal National Forest"
+    },
+    {
+      "outfitterId": "outfitter-lazy-bar-t-outfitters",
+      "masterDisplayName": "LAZY BAR T OUTFITTERS",
+      "officialPermitHolderName": "Lazy Bar T Outfitters",
+      "zone": "North Zone",
+      "permitScope": "Manti-La Sal National Forest"
+    },
+    {
+      "outfitterId": "outfitter-lone-tree-outfitters-llc",
+      "masterDisplayName": "LONE TREE OUTFITTERS LLC",
+      "officialPermitHolderName": "Lone Tree Outfitters",
+      "zone": "North Zone",
+      "permitScope": "Manti-La Sal National Forest"
+    },
+    {
+      "outfitterId": "outfitter-needle-rock-outfitters",
+      "masterDisplayName": "NEEDLE ROCK OUTFITTERS",
+      "officialPermitHolderName": "Needle Rock Outfitters",
+      "zone": "North Zone",
+      "permitScope": "Manti-La Sal National Forest"
+    },
+    {
+      "outfitterId": "outfitter-nr-peaks",
+      "masterDisplayName": "NR PEAKS",
+      "officialPermitHolderName": "NR Peaks",
+      "zone": "North Zone",
+      "permitScope": "Manti-La Sal National Forest"
+    },
+    {
+      "outfitterId": "outfitter-rim-rock-outfitters",
+      "masterDisplayName": "Rim Rock Outfitters",
+      "officialPermitHolderName": "Rimrock Outfitters",
+      "zone": "North Zone",
+      "permitScope": "Manti-La Sal National Forest"
+    },
+    {
+      "outfitterId": "outfitter-shane-scott-outfitting-l-l-c",
+      "masterDisplayName": "SHANE SCOTT OUTFITTING L.L.C.",
+      "officialPermitHolderName": "Shane Scott Outfitting",
+      "zone": "North Zone",
+      "permitScope": "Manti-La Sal National Forest"
+    },
+    {
+      "outfitterId": "outfitter-sportsman-s-hunting-adventures",
+      "masterDisplayName": "Sportsman's Hunting Adventures",
+      "officialPermitHolderName": "Sportsmans Hunting",
+      "zone": "North Zone",
+      "permitScope": "Manti-La Sal National Forest"
+    },
+    {
+      "outfitterId": "outfitter-tripple-h",
+      "masterDisplayName": "Triple H Hunting",
+      "officialPermitHolderName": "Triple H Hunting",
+      "zone": "North Zone",
+      "permitScope": "Manti-La Sal National Forest"
+    },
+    {
+      "outfitterId": "outfitter-wild-eyez-outfitters",
+      "masterDisplayName": "WILD EYEZ OUTFITTERS",
+      "officialPermitHolderName": "Wild Eyez Outfitters",
+      "zone": "North Zone",
+      "permitScope": "Manti-La Sal National Forest"
+    },
+    {
+      "outfitterId": "outfitter-adam-bronson",
+      "masterDisplayName": "BRONSON OUTFITTING",
+      "officialPermitHolderName": "Adam Bronson Outfitting",
+      "zone": "South Zone - Moab and Monticello",
+      "permitScope": "Manti-La Sal National Forest"
+    },
+    {
+      "outfitterId": "outfitter-black-timber-outfitters",
+      "masterDisplayName": "BLACK TIMBER OUTFITTERS",
+      "officialPermitHolderName": "Black Timber Outfitters",
+      "zone": "South Zone - Moab and Monticello",
+      "permitScope": "Manti-La Sal National Forest"
+    },
+    {
+      "outfitterId": "outfitter-jake-bess-hunting",
+      "masterDisplayName": "JAKE BESS HUNTING",
+      "officialPermitHolderName": "Jake Bess Hunting",
+      "zone": "South Zone - Moab and Monticello",
+      "permitScope": "Manti-La Sal National Forest"
+    },
+    {
+      "outfitterId": "outfitter-mossback-g-o-inc",
+      "masterDisplayName": "MOSSBACK G/O, INC",
+      "officialPermitHolderName": "Mossback Guides and Outfitters",
+      "zone": "South Zone - Moab and Monticello",
+      "permitScope": "Manti-La Sal National Forest"
+    },
+    {
+      "outfitterId": "outfitter-samuel-robb",
+      "masterDisplayName": "RED CREEK OUTFITTERS",
+      "officialPermitHolderName": "Red Creek Canyon Outfitters",
+      "zone": "South Zone - Moab and Monticello",
+      "permitScope": "Manti-La Sal National Forest"
+    },
+    {
+      "outfitterId": "outfitter-silver-sage-outfitters",
+      "masterDisplayName": "SILVER SAGE OUTFITTERS",
+      "officialPermitHolderName": "Silver Sage Outfitters",
+      "zone": "South Zone - Moab and Monticello",
+      "permitScope": "Manti-La Sal National Forest"
+    },
+    {
+      "outfitterId": "outfitter-sunrise-outfitting",
+      "masterDisplayName": "SUNRISE OUTFITTING",
+      "officialPermitHolderName": "Sunrise Outfitting",
+      "zone": "South Zone - Moab and Monticello",
+      "permitScope": "Manti-La Sal National Forest"
+    }
+  ],
+  "unresolved": [
+    {
+      "officialPermitHolderName": "Cisco Outfitting (All-Forest Permit)",
+      "zone": "North Zone",
+      "permitScope": "Manti-La Sal National Forest - All Forest",
+      "reason": "The working master contains two Cisco-associated business records; the official name cannot be assigned to one without additional identity evidence.",
+      "candidateOutfitterIds": [
+        "outfitter-book-cliff-outfitters",
+        "outfitter-cisco-outfitting-travis-kruckenberg-outfitting"
+      ]
+    },
+    {
+      "officialPermitHolderName": "Sunrise Outfitters",
+      "zone": "South Zone - Moab and Monticello",
+      "reason": "The official list separately names Sunrise Outfitting and Sunrise Outfitters; only Sunrise Outfitting has an exact hunting-master match.",
+      "candidateOutfitterIds": []
+    }
+  ]
+}
