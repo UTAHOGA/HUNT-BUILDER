@@ -58,8 +58,34 @@ YEAR_CONFIGS = {
             ("18_youth_any_bull_elk.pdf", "YOUTH_ANY_BULL_ELK", "RANDOM_ONLY"),
             ("18_youth_general_deer.pdf", "YOUTH_GENERAL_SEASON_DEER", "PREFERENCE"),
             ("official_dwr_archive/black_bear/18_drawing_odds.pdf", "BLACK_BEAR", "BONUS"),
+            # The DWR 2018-19 Cougar report is named for the upcoming season,
+            # but its tables were generated on 2018-11-15.  It therefore
+            # belongs to draw year 2018 under the repository's draw-year rule.
+            ("official_dwr_archive/cougar/2019_cougar_odds_report.pdf", "COUGAR", "BONUS"),
+            ("official_dwr_archive/turkey/2018_turkey_bonus_points.pdf", "TURKEY", "BONUS"),
         ],
         "sportsman_file": "18-19_sportsman_odds.pdf",
+    },
+    2019: {
+        "target_year": 2020,
+        "sources": [
+            ("official_dwr_archive/big_game/19_bg-odds.pdf", "BIG_GAME", "BONUS"),
+            ("official_dwr_archive/big_game_antlerless/19_antlerless_drawing_odds_report.pdf", "ANTLERLESS", "PREFERENCE"),
+            ("official_dwr_archive/big_game/19_deer_odds.pdf", "GENERAL_SEASON_DEER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/19_dh_odds.pdf", "DEDICATED_HUNTER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/19_lifetime_deer.pdf", "LIFETIME_GENERAL_SEASON_DEER", "REFERENCE"),
+            ("official_dwr_archive/big_game_antlerless/19_youth_antlerless_drawing_odds_report.pdf", "YOUTH_ANTLERLESS", "PREFERENCE"),
+            ("official_dwr_archive/big_game/19_youth_bull_elk.pdf", "YOUTH_ANY_BULL_ELK", "RANDOM_ONLY"),
+            ("official_dwr_archive/big_game/19_youth_deer.pdf", "YOUTH_GENERAL_SEASON_DEER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/19_youth_dh_odds.pdf", "YOUTH_DEDICATED_HUNTER", "PREFERENCE"),
+            ("official_dwr_archive/black_bear/19_drawing_odds.pdf", "BLACK_BEAR", "BONUS"),
+            # DWR files the 2019-20 Cougar report under the upcoming season;
+            # its printed draw date is 2019-10-25, so it is draw-year 2019.
+            ("official_dwr_archive/cougar/2020_cougar_odds_report.pdf", "COUGAR", "BONUS"),
+            ("official_dwr_archive/turkey/2019_turkey_bonus_points.pdf", "TURKEY", "BONUS"),
+            ("official_dwr_archive/turkey/2019_youth_turkey_bonus_points.pdf", "YOUTH_TURKEY", "BONUS"),
+        ],
+        "sportsman_file": "official_dwr_archive/big_game/19-20_sportsman_odds.pdf",
     },
     2020: {
         "target_year": 2021,
@@ -89,6 +115,27 @@ SUMMARY = VALIDATION / "draw_results_2020_for_2021_pdf_extraction_summary.json"
 UNPARSED = VALIDATION / "draw_results_2020_for_2021_pdf_unparsed_hunt_pages.csv"
 SOURCE_CONFIGS = YEAR_CONFIGS[REPORT_YEAR]["sources"]
 SPORTSMAN_FILE = YEAR_CONFIGS[REPORT_YEAR]["sportsman_file"]
+
+
+def resolve_source_path(source_file: str) -> Path:
+    """Resolve a stable source label in durable or isolated fresh-pull trees."""
+    direct = PDF_ROOT / source_file
+    if direct.exists():
+        return direct
+
+    normalized = source_file.replace("\\", "/")
+    archive_prefix = "official_dwr_archive/"
+    if normalized.startswith(archive_prefix):
+        fresh = PDF_ROOT / normalized.removeprefix(archive_prefix)
+        if fresh.exists():
+            return fresh
+
+    matches = sorted(PDF_ROOT.rglob(Path(source_file).name))
+    if len(matches) == 1:
+        return matches[0]
+    if not matches:
+        raise FileNotFoundError(direct)
+    raise ValueError(f"Ambiguous source filename under {PDF_ROOT}: {source_file}: {matches}")
 
 
 def configure_report_year(report_year: int) -> None:
@@ -144,6 +191,12 @@ SPORTSMAN_RE = re.compile(
 
 def clean(value: object) -> str:
     return "" if value is None else " ".join(str(value).strip().split())
+
+
+def clean_hunt_name(value: object) -> str:
+    """Remove a following report header captured in the same PDF text block."""
+    name = clean(value)
+    return re.split(r"\s+20\d{2}\s+Draw\b", name, maxsplit=1, flags=re.I)[0].strip()
 
 
 def source_is_youth(scope: str) -> str:
@@ -309,6 +362,8 @@ def classify(scope: str, code: str, name: str) -> tuple[str, str, str, str]:
         if "PURSUIT" in text:
             return "RESTRICTED_BEAR_PURSUIT", "Bear Pursuit", "RESTRICTED_BEAR_PURSUIT", "MODELED_BONUS"
         return "LIMITED_ENTRY_BEAR_HUNT", "Bear", "LIMITED_ENTRY_BEAR_HUNT", "MODELED_BONUS"
+    if scope == "COUGAR":
+        return "HISTORICAL_LIMITED_ENTRY_COUGAR", "Cougar", "BONUS_HISTORICAL_COUGAR", "SOURCE_ONLY_HISTORICAL_DRAW"
     if scope in {"ANTLERLESS", "YOUTH_ANTLERLESS"}:
         if "CWMU" in text:
             return "CWMU_ANTLERLESS", "CWMU", "BONUS_CWMU_BIG_GAME", "MODELED_BONUS"
@@ -327,6 +382,13 @@ def classify(scope: str, code: str, name: str) -> tuple[str, str, str, str]:
         return f"{prefix}DOE_PRONGHORN", "Antlerless", "PREFERENCE_DOE_PRONGHORN", "MODELED_PREFERENCE"
     if "CWMU" in text:
         return "CWMU_BIG_GAME", "CWMU", "BONUS_CWMU_BIG_GAME", "MODELED_BONUS"
+    if scope == "BIG_GAME" and code == "DB1058" and "CACTUS BUCK" in text:
+        return "CACTUS_DEER", "Cactus Buck Deer", "BONUS_LE_BIG_GAME", "MODELED_BONUS"
+    if scope == "BIG_GAME" and "MANAGEMENT" in text and "BUCK DEER" in text:
+        # These historical public hunts appear inside the official 2018 Big
+        # Game Bonus Point Draw Results.  Retain their distinct management
+        # identity without routing them into general-season preference.
+        return "MANAGEMENT_DEER", "Management Buck Deer", "BONUS_LE_BIG_GAME", "MODELED_BONUS"
     if code.startswith(("BI", "GO", "MB", "DS", "RS")):
         return "ONCE_IN_A_LIFETIME", "O.I.L.", "BONUS_OIL_BIG_GAME", "MODELED_BONUS"
     if code.startswith(("DB", "EB", "PB")):
@@ -339,7 +401,30 @@ def metadata_from_page(page: pymupdf.Page, scope: str) -> tuple[str, str] | None
     for block in blocks:
         match = HUNT_BLOCK_RE.search(block[4])
         if match:
-            return match.group(1).upper(), clean(match.group(2))
+            return match.group(1).upper(), clean_hunt_name(match.group(2))
+
+    # The first six hunt-result pages in the official 2018 Bear package are
+    # rotated pursuit tables.  Their ``Hunt: BR####`` label is printed near
+    # the bottom of the page and the source-backed ``... - Pursuit`` name is
+    # a separate block immediately above it.  The ordinary legacy fallback
+    # intentionally looks only near the top of a page, so without this
+    # layout-specific rule it selects a numeric ladder block as the name and
+    # incorrectly routes these rows as limited-entry Bear hunts.
+    if scope == "BLACK_BEAR":
+        codes = {
+            code.upper()
+            for *_, block_text, _block_no, _block_type in blocks
+            for code in CODE_RE.findall(block_text)
+        }
+        pursuit_names = [
+            clean_hunt_name(block_text)
+            for *_, block_text, _block_no, _block_type in blocks
+            if "PURSUIT" in clean(block_text).upper()
+            and "APPLICANT" not in clean(block_text).upper()
+            and "SPECIES:" not in clean(block_text).upper()
+        ]
+        if len(codes) == 1 and len(pursuit_names) == 1:
+            return next(iter(codes)), pursuit_names[0]
 
     # The 2018 antlerless PDFs place ``Hunt:`` and the code in one block but
     # print the hunt name as the separate first block. Retain that exact
@@ -364,7 +449,7 @@ def metadata_from_page(page: pymupdf.Page, scope: str) -> tuple[str, str] | None
             ):
                 candidates.append((candidate_y, candidate))
         if candidates:
-            return codes[0].upper(), sorted(candidates)[0][1]
+            return codes[0].upper(), clean_hunt_name(sorted(candidates)[0][1])
 
     text = page.get_text("text", sort=True)
     codes = CODE_RE.findall(text)
@@ -379,12 +464,20 @@ def metadata_from_page(page: pymupdf.Page, scope: str) -> tuple[str, str] | None
         upper = text.upper()
         if y0 < 170 and x0 > 70 and text and "HUNT" not in upper and "DRAW" not in upper and "PAGE" not in upper:
             candidates.append((y0, text))
-    return code, candidates[0][1] if candidates else code
+    return code, clean_hunt_name(candidates[0][1]) if candidates else code
 
 
 def normalized_cells(table_row: list[object]) -> list[str]:
     cells = [clean(cell).replace("N /A", "N/A") for cell in table_row if clean(cell)]
     return cells
+
+
+def split_draw_table_cells(cells: list[str], record_type: str) -> tuple[list[str], list[str]]:
+    """Return resident/nonresident six- or five-field lanes from a DWR row."""
+    if record_type == "point_level_draw_result":
+        return cells[:6], cells[6:12]
+    # Hunt-total rows print a separate ``Totals`` marker before each lane.
+    return cells[1:6], cells[7:12]
 
 
 def build_row(
@@ -397,20 +490,19 @@ def build_row(
     cells: list[str],
     record_type: str,
 ) -> dict[str, str]:
+    left, right = split_draw_table_cells(cells, record_type)
     if record_type == "point_level_draw_result":
-        left, right = cells[:6], cells[6:12]
         points = left[0]
         r_apps, r_bonus, r_regular, r_total, r_ratio = left[1:]
         n_apps, n_bonus, n_regular, n_total, n_ratio = right[1:]
     else:
-        left, right = cells[1:6], cells[6:11]
         points = ""
         r_apps, r_bonus, r_regular, r_total, r_ratio = left
         n_apps, n_bonus, n_regular, n_total, n_ratio = right
     hunt_class, hunt_type, draw_design, algorithm_status = classify(scope, code, name)
     r_probability, r_percent = count_backed_probability(r_apps, r_total, r_ratio)
     n_probability, n_percent = count_backed_probability(n_apps, n_total, n_ratio)
-    source_path = PDF_ROOT / source_file
+    source_path = resolve_source_path(source_file)
     sex, sex_type = sex_metadata_for(code, name)
     row = {column: "" for column in HEADER}
     row.update(
@@ -454,9 +546,7 @@ def extract_hunt_tables() -> tuple[list[dict[str, str]], list[dict[str, str]], d
     unparsed: list[dict[str, str]] = []
     source_stats: dict[str, dict[str, int]] = {}
     for source_file, scope, _ in SOURCE_CONFIGS:
-        path = PDF_ROOT / source_file
-        if not path.exists():
-            raise FileNotFoundError(path)
+        path = resolve_source_path(source_file)
         document = pymupdf.open(path)
         stats = Counter(pages=len(document))
         for page_number, page in enumerate(document, start=1):
@@ -488,7 +578,7 @@ def extract_hunt_tables() -> tuple[list[dict[str, str]], list[dict[str, str]], d
 
 
 def extract_sportsman() -> list[dict[str, str]]:
-    path = PDF_ROOT / SPORTSMAN_FILE
+    path = resolve_source_path(SPORTSMAN_FILE)
     with pdfplumber.open(path) as pdf:
         text = pdf.pages[0].extract_text(x_tolerance=1, y_tolerance=3) or ""
     merged = []
@@ -555,6 +645,11 @@ def write_csv(path: Path, rows: list[dict[str, str]], header: list[str]) -> None
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--report-year", type=int, choices=sorted(YEAR_CONFIGS), default=2020, help="DWR report-generation year to extract.")
+    parser.add_argument(
+        "--pdf-root",
+        type=Path,
+        help="Optional repository-local root containing a separately named fresh official PDF pull.",
+    )
     parser.add_argument("--write", action="store_true", help="Write the canonical after strict parsing succeeds.")
     parser.add_argument(
         "--output-dir",
@@ -566,6 +661,11 @@ def main() -> int:
     )
     args = parser.parse_args()
     configure_report_year(args.report_year)
+    if args.pdf_root:
+        global PDF_ROOT
+        PDF_ROOT = args.pdf_root.resolve()
+        if not PDF_ROOT.is_relative_to(ROOT):
+            raise ValueError(f"PDF root must remain inside this repository: {PDF_ROOT}")
     if args.output_dir:
         global CANONICAL, SUMMARY, UNPARSED
         output_dir = args.output_dir.resolve()
@@ -576,9 +676,9 @@ def main() -> int:
     # A completed extraction can only claim a source hash if every PDF stayed
     # byte-identical from the first page parsed through the final write.
     source_hashes_before = {
-        source_file: source_hash(PDF_ROOT / source_file)
+        source_file: source_hash(resolve_source_path(source_file))
         for source_file, _, _ in SOURCE_CONFIGS
-    } | {SPORTSMAN_FILE: source_hash(PDF_ROOT / SPORTSMAN_FILE)}
+    } | {SPORTSMAN_FILE: source_hash(resolve_source_path(SPORTSMAN_FILE))}
     rows, unparsed, source_stats = extract_hunt_tables()
     sportsman = extract_sportsman()
     rows.extend(sportsman)
@@ -586,9 +686,9 @@ def main() -> int:
     duplicate_keys = Counter((row["hunt_code"], row["source_file"], row["pdf_page"], row["record_type"], row["points"]) for row in rows)
     duplicate_count = sum(count - 1 for count in duplicate_keys.values() if count > 1)
     source_hashes_after = {
-        source_file: source_hash(PDF_ROOT / source_file)
+        source_file: source_hash(resolve_source_path(source_file))
         for source_file, _, _ in SOURCE_CONFIGS
-    } | {SPORTSMAN_FILE: source_hash(PDF_ROOT / SPORTSMAN_FILE)}
+    } | {SPORTSMAN_FILE: source_hash(resolve_source_path(SPORTSMAN_FILE))}
     source_changed_during_extraction = {
         source_file: {"before": source_hashes_before[source_file], "after": source_hashes_after[source_file]}
         for source_file in source_hashes_before
@@ -607,6 +707,15 @@ def main() -> int:
         "hunt_total_rows": sum(row["record_type"] == "hunt_total_draw_result" for row in rows),
         "sportsman_rows": len(sportsman),
         "unique_hunt_codes": len({row["hunt_code"] for row in rows}),
+        "management_buck_hunts": [
+            {
+                "hunt_code": code,
+                "hunt_name": next(row["hunt_name"] for row in rows if row["hunt_code"] == code),
+                "hunt_class": next(row["hunt_class"] for row in rows if row["hunt_code"] == code),
+                "draw_design": next(row["draw_design"] for row in rows if row["hunt_code"] == code),
+            }
+            for code in sorted({row["hunt_code"] for row in rows if row["hunt_class"] == "MANAGEMENT_DEER"})
+        ],
         "unparsed_hunt_page_count": len(unparsed),
         "duplicate_source_row_key_count": duplicate_count,
         "canonical_path": str(CANONICAL.relative_to(ROOT)).replace("\\", "/"),

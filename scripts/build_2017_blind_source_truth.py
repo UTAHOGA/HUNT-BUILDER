@@ -44,7 +44,7 @@ EXCLUDED_SOURCE_SCOPES = {
 }
 HUNT_PAGE_CODE_RE = re.compile(r"(?im)^\s*Hunt:\s*([A-Z]{2}\d{4})\b")
 SPORTSMAN_ROW_RE = re.compile(
-    r"^(?P<raw_code>\S+)\s+(?P<successful>\d+)\s+N/A\s+"
+    r"^(?P<raw_code>\S+)\s+(?:.+?\s+)?(?P<successful>\d+)\s+N/A\s+"
     r"(?P<unsuccessful>\d+)\s+N/A\s+(?P<applicants>\d+)\s+"
     r"(?P<resident_quota>\d+)\s+N/A\s+(?P<total_quota>\d+)\s+"
     r"(?P<ratio>1\s+in\s+[\d.]+)\s+N/A$",
@@ -69,6 +69,10 @@ SPORTSMAN_2017_CODE_CROSSWALK = {
     "GGOO10-00": ("GO1000", "Sportsman Mountain Goat"),
     "PBP1B0-00": ("PB1000", "Sportsman Pronghorn"),
     "RRSS10-00": ("RS1000", "Sportsman Rocky Mtn Bighorn Sheep"),
+    # The report dated 2017-11-21 is named for the upcoming 2018 season and
+    # exposes two different extracted glyph tokens.
+    "EEBB10-00": ("EB1000", "Sportsman Elk"),
+    "PPBB10-00": ("PB1000", "Sportsman Pronghorn"),
 }
 
 
@@ -121,6 +125,20 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def source_path(source_file: str) -> Path:
+    """Resolve a retained source label in the durable or fresh-pull layout."""
+    direct = PDF_ROOT / source_file
+    if direct.exists():
+        return direct
+    prefix = "official_dwr_archive/"
+    normalized = source_file.replace("\\", "/")
+    if normalized.startswith(prefix):
+        fresh = PDF_ROOT / normalized.removeprefix(prefix)
+        if fresh.exists():
+            return fresh
+    return direct
+
+
 def validate_2017_alias_manifest() -> dict[str, object]:
     """Verify that every retained official 2017 source has one hashed role."""
     if not ALIAS_MANIFEST.exists():
@@ -139,13 +157,18 @@ def validate_2017_alias_manifest() -> dict[str, object]:
     for row in entries:
         if clean(row["source_year"]) != "2017" or clean(row["target_year"]) != "2018":
             raise ValueError(f"2017 source alias manifest has wrong year boundary: {row}")
-        path = PDF_ROOT / clean(row["standardized_raw_pdf_relative_path"])
+        path = source_path(clean(row["standardized_raw_pdf_relative_path"]))
         if not path.exists():
             raise FileNotFoundError(f"2017 alias manifest source is missing: {path}")
         if sha256(path) != clean(row["sha256"]):
             raise ValueError(f"2017 alias manifest hash mismatch: {path}")
     configured = {source_file for source_file, _scope in SOURCE_CONFIG}
-    configured.add("official_dwr_archive/big_game/2017_sportsman_odds.pdf")
+    sportsman_source = (
+        "official_dwr_archive/big_game/2018_sportsman_odds.pdf"
+        if source_path("official_dwr_archive/big_game/2018_sportsman_odds.pdf").exists()
+        else "official_dwr_archive/big_game/2017_sportsman_odds.pdf"
+    )
+    configured.add(sportsman_source)
     manifest_relative = {
         str(Path(path)).replace("\\", "/")
         for path in paths
@@ -209,7 +232,8 @@ def extract_2017_sportsman_rows(path: Path) -> tuple[list[dict[str, object]], li
         if len(pdf.pages) != 1:
             raise ValueError(f"Expected one Sportsman page in {path}, found {len(pdf.pages)}")
         for line in (pdf.pages[0].extract_text() or "").splitlines():
-            match = SPORTSMAN_ROW_RE.match(clean(line))
+            normalized_line = re.sub(r"^([A-Z0-9-]+)-\s+(\d{2})\s+", r"\1-\2 ", clean(line), flags=re.I)
+            match = SPORTSMAN_ROW_RE.match(normalized_line)
             if not match:
                 continue
             raw_code = match.group("raw_code").upper()
@@ -244,10 +268,10 @@ def extract_2017_sportsman_rows(path: Path) -> tuple[list[dict[str, object]], li
                     "total_permits": str(permits),
                 }
             )
-    if len(parsed) != len(SPORTSMAN_2017_CODE_CROSSWALK):
+    if len(parsed) != 11:
         raise ValueError(
             "Official 2017 Sportsman report did not produce every expected published row: "
-            f"got {len(parsed)}, expected {len(SPORTSMAN_2017_CODE_CROSSWALK)}"
+            f"got {len(parsed)}, expected 11"
         )
     return parsed, crosswalk
 
@@ -308,7 +332,7 @@ def canonical_row(raw: dict[str, object], source_file: str, scope: str) -> dict[
             "draw_source_namespace": "OFFICIAL_DWR_DRAW_RESULTS_2017",
             "source_file": source_file,
             "draw_source_file": source_file,
-            "source_path": str((PDF_ROOT / source_file).relative_to(REPO)).replace("\\", "/"),
+            "source_path": str(source_path(source_file).relative_to(REPO)).replace("\\", "/"),
             "source_pdf": Path(source_file).name,
             "pdf_page": str(raw["page_number"]),
             "official_page": str(raw["page_number"]),
@@ -432,9 +456,32 @@ def dwr_table_shape_rows(split_rows: list[dict[str, str]]) -> list[dict[str, str
 
 
 def main() -> int:
+    global PDF_ROOT, ALIAS_MANIFEST, SOURCE_CONFIG
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out-dir", type=Path, required=True)
+    parser.add_argument(
+        "--pdf-root",
+        type=Path,
+        default=None,
+        help="Optional physical root for a separately named fresh pull. Retained source_file labels remain stable.",
+    )
+    parser.add_argument(
+        "--alias-manifest",
+        type=Path,
+        default=None,
+        help="Optional year-scoped source-role manifest for a separately reviewed source set.",
+    )
     args = parser.parse_args()
+    if args.pdf_root is not None:
+        PDF_ROOT = args.pdf_root.resolve()
+    if args.alias_manifest is not None:
+        ALIAS_MANIFEST = args.alias_manifest.resolve()
+    corrected_cougar = "official_dwr_archive/cougar/2018_cougar_odds_report.pdf"
+    if source_path(corrected_cougar).exists():
+        SOURCE_CONFIG = tuple(
+            (corrected_cougar, scope) if scope == "COUGAR" else (source_file, scope)
+            for source_file, scope in SOURCE_CONFIG
+        )
     alias_manifest_validation = validate_2017_alias_manifest()
     rows: list[dict[str, str]] = []
     source_counts: dict[str, int] = {}
@@ -442,7 +489,7 @@ def main() -> int:
     page_identity_exclusions: list[dict[str, str]] = []
     sportsman_crosswalk: list[dict[str, str]] = []
     for source_file, scope in SOURCE_CONFIG:
-        path = PDF_ROOT / source_file
+        path = source_path(source_file)
         if not path.exists():
             raise FileNotFoundError(path)
         print(f"Extracting {source_file}", flush=True)
@@ -479,8 +526,12 @@ def main() -> int:
         source_hashes[source_file] = sha256(path)
         print(f"  parsed rows: {len(converted)}", flush=True)
 
-    sportsman_source = "official_dwr_archive/big_game/2017_sportsman_odds.pdf"
-    sportsman_path = PDF_ROOT / sportsman_source
+    sportsman_source = (
+        "official_dwr_archive/big_game/2018_sportsman_odds.pdf"
+        if source_path("official_dwr_archive/big_game/2018_sportsman_odds.pdf").exists()
+        else "official_dwr_archive/big_game/2017_sportsman_odds.pdf"
+    )
+    sportsman_path = source_path(sportsman_source)
     print(f"Extracting {sportsman_source}", flush=True)
     sportsman_raw, sportsman_crosswalk = extract_2017_sportsman_rows(sportsman_path)
     sportsman_rows = [canonical_row(row, sportsman_source, "SPORTSMAN") for row in sportsman_raw]

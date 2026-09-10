@@ -424,6 +424,12 @@ def parse_years(value: str) -> list[int]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--years", default="2017-2026", help="Year list/range, e.g. 2017,2018 or 2017-2026.")
+    parser.add_argument(
+        "--input-root",
+        type=Path,
+        default=None,
+        help="Optional explicit repository-local PDF root for an isolated fresh-pull review.",
+    )
     parser.add_argument("--output-dir", type=Path, default=None)
     parser.add_argument("--strip-summary-pages", action="store_true", help="Move summary pages aside and rewrite mixed PDFs without them.")
     parser.add_argument("--split-hunt-type-pages", action="store_true", help="Write child PDFs for mixed hunt-type page groups.")
@@ -439,8 +445,18 @@ def main() -> int:
     years = parse_years(args.years)
 
     all_infos: list[PageInfo] = []
-    for year in years:
-        all_infos.extend(scan_year(year))
+    if args.input_root is not None:
+        input_root = args.input_root.resolve()
+        if not input_root.is_relative_to(REPO):
+            raise ValueError(f"Explicit PDF input root must remain inside this repository: {input_root}")
+        if len(years) != 1:
+            raise ValueError("Explicit PDF input root requires exactly one report year")
+        for path in sorted(input_root.rglob("*.pdf")):
+            if is_candidate_pdf(path):
+                all_infos.extend(page_infos_for_pdf(path, years[0], "explicit_input_root"))
+    else:
+        for year in years:
+            all_infos.extend(scan_year(year))
 
     page_rows = [
         {

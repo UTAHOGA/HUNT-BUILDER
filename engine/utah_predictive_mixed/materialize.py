@@ -314,6 +314,18 @@ def mixed_row(row: dict[str, str], prior: dict[str, str] | None, harvest: dict[s
         rollover_reasons.append("FAMILY_ENGINE_PROBABILITY_USED")
     if status in PASSTHROUGH_PROBABILITY_STATUSES:
         p_rollover = to_float(row.get("p_sportsman_draw") or row.get("p_draw") or row.get("p_draw_mean"))
+    prior_random_winners = to_float(prior_fields.get("prior_year_regular_permits")) or 0.0
+    if status == "MODELED_BONUS" and prior_random_winners > 0 and p_rollover is not None:
+        # The family forecast already removes prior winners from the returning
+        # applicant stack. Reusing the observed random/weighted win rate as a
+        # positive current-year component would add those winners back through
+        # the blend and can mechanically raise the next forecast because a
+        # permit was drawn. Keep the official result as historical evidence,
+        # but let the winner-removed cohort forecast own current probability.
+        p_prior = None
+        p_quota = None
+        prior_reasons.append("PRIOR_RANDOM_WINNER_BASELINE_WITHHELD_FROM_CURRENT_FORECAST")
+        quota_adjust_reasons.append("PRIOR_RANDOM_WINNER_QUOTA_PROXY_WITHHELD_FROM_CURRENT_FORECAST")
     p_harvest, harvest_reasons = harvest_adjusted_probability(p_rollover, harvest or {})
     if no_published_no_quota:
         p_prior = p_quota = p_rollover = p_harvest = None

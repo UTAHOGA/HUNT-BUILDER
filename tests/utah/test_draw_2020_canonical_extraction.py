@@ -4,7 +4,20 @@ import csv
 import json
 from pathlib import Path
 
-from scripts.extract_2020_draw_results_from_pdfs import classify, count_backed_probability, species_for
+from scripts.extract_2020_draw_results_from_pdfs import (
+    YEAR_CONFIGS,
+    classify,
+    clean_hunt_name,
+    count_backed_probability,
+    metadata_from_page,
+    species_for,
+    split_draw_table_cells,
+)
+from scripts.compare_draw_canonical_candidate import (
+    decimal_value,
+    normalized_source_role,
+    success_ratio_denominator,
+)
 from scripts.populate_draw_probability_columns import has_material_count_backed_conflict
 from engine.utah_draw_predictive.run_all_families import _cwmu_source_pool_from_fields
 
@@ -24,6 +37,94 @@ def test_2020_antlerless_special_species_use_bonus_designs_before_pronghorn_fall
     assert classify("ANTLERLESS", "MA1000", "Antlerless Moose - East Canyon") == (
         "ANTLERLESS_MOOSE", "Antlerless", "BONUS_ANTLERLESS_MOOSE", "MODELED_BONUS"
     )
+
+
+def test_2018_management_buck_retains_distinct_identity_and_bonus_draw_design() -> None:
+    assert classify("BIG_GAME", "DB1009", "Management Rifle Buck Deer - Henry Mtns - Any Legal Weapon") == (
+        "MANAGEMENT_DEER", "Management Buck Deer", "BONUS_LE_BIG_GAME", "MODELED_BONUS"
+    )
+
+
+def test_2018_rotated_bear_pursuit_page_uses_the_published_hunt_name() -> None:
+    class RotatedBearPursuitPage:
+        blocks = [
+            (356.8, 108.8, 368.0, 646.4, "0 0 0 0 0 9 0 N/A 0 0 N/A", 0, 0),
+            (103.3, 545.4, 114.5, 633.2, "Book Cliffs - Pursuit", 1, 0),
+            (103.3, 647.1, 114.7, 718.4, "Hunt: BR1008", 2, 0),
+        ]
+
+        def get_text(self, kind: str, sort: bool = False):
+            if kind == "blocks":
+                return self.blocks
+            if kind == "text":
+                return "\n".join(block[4] for block in self.blocks)
+            raise AssertionError(kind)
+
+    code, name = metadata_from_page(RotatedBearPursuitPage(), "BLACK_BEAR")
+
+    assert (code, name) == ("BR1008", "Book Cliffs - Pursuit")
+    assert classify("BLACK_BEAR", code, name) == (
+        "RESTRICTED_BEAR_PURSUIT",
+        "Bear Pursuit",
+        "RESTRICTED_BEAR_PURSUIT",
+        "MODELED_BONUS",
+    )
+    assert classify("BIG_GAME", "DB1058", "Management Rifle Cactus Buck Deer - Paunsaugunt, Cactus Buck") == (
+        "CACTUS_DEER", "Cactus Buck Deer", "BONUS_LE_BIG_GAME", "MODELED_BONUS"
+    )
+
+
+def test_historical_cougar_source_stays_a_bonus_draw_not_current_availability() -> None:
+    assert classify("COUGAR", "CG1001", "Book Cliffs, East - Any Legal Weapon") == (
+        "HISTORICAL_LIMITED_ENTRY_COUGAR", "Cougar", "BONUS_HISTORICAL_COUGAR", "SOURCE_ONLY_HISTORICAL_DRAW"
+    )
+
+
+def test_2019_source_set_uses_draw_date_for_cougar_and_separate_youth_pools() -> None:
+    source_files = {source_file: scope for source_file, scope, _ in YEAR_CONFIGS[2019]["sources"]}
+    assert source_files["official_dwr_archive/cougar/2020_cougar_odds_report.pdf"] == "COUGAR"
+    assert "official_dwr_archive/cougar/2019_cougar_odds_report.pdf" not in source_files
+    assert source_files["official_dwr_archive/big_game/19_youth_dh_odds.pdf"] == "YOUTH_DEDICATED_HUNTER"
+    assert source_files["official_dwr_archive/turkey/2019_youth_turkey_bonus_points.pdf"] == "YOUTH_TURKEY"
+
+
+def test_legacy_pdf_hunt_name_does_not_absorb_the_following_report_header() -> None:
+    assert clean_hunt_name(
+        "Management Rifle Buck Deer - Henry Mtns - Any Legal Weapon "
+        "2018 Draw 5, Big Game Bonus Point Draw Results 06/11/2018"
+    ) == "Management Rifle Buck Deer - Henry Mtns - Any Legal Weapon"
+
+
+def test_hunt_total_table_skips_both_printed_totals_markers() -> None:
+    cells = [
+        "Totals", "693", "3", "4", "7", "1 in 99.0",
+        "Totals", "159", "0", "1", "1", "1 in 159.0",
+    ]
+    resident, nonresident = split_draw_table_cells(cells, "hunt_total_draw_result")
+
+    assert resident == ["693", "3", "4", "7", "1 in 99.0"]
+    assert nonresident == ["159", "0", "1", "1", "1 in 159.0"]
+
+
+def test_legacy_split_output_names_normalize_to_parent_source_roles() -> None:
+    assert normalized_source_role(
+        {"source_file": "2019_PERMITS=2020_MODEL__CWMU_YOUTH_ANTLERLESS_ELK_DRAW_RESULTS.pdf"}
+    ) == "YOUTH_ANTLERLESS"
+    assert normalized_source_role(
+        {"source_file": "2019_PERMITS=2020_MODEL__O.I.L._BISON_DRAW_RESULTS.pdf"}
+    ) == "BIG_GAME"
+    assert normalized_source_role(
+        {"source_file": "official_dwr_archive/big_game/19_youth_dh_odds.pdf"}
+    ) == "YOUTH_DEDICATED_HUNTER"
+    assert normalized_source_role(
+        {"source_file": "2019_PERMITS=2020_MODEL__CWMU_DOE_PRONGHORN_DRAW_RESULTS.pdf"}
+    ) == "ANTLERLESS"
+
+
+def test_comparison_normalizes_printed_number_and_success_ratio_formats() -> None:
+    assert decimal_value("10,964") == decimal_value("10964")
+    assert success_ratio_denominator("1 in 99.0") == success_ratio_denominator("99")
+    assert success_ratio_denominator("N/A") == success_ratio_denominator("")
 
 
 def test_cwmu_youth_flag_keeps_shared_antlerless_ladders_in_separate_source_pools() -> None:

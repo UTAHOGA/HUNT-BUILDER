@@ -30,10 +30,85 @@ primary prediction file contains `33,875` rows and `212` unique columns at
 SHA-256 `8412538782ee4ead10a355ff5e80e38f704462eb912af39163ca5b13174bff7f`.
 The accompanying local Hunt Research preview is restricted to the four
 certified designs and removes every raw future-probability field or display
-alias. It contains `26,486` certified-design ladder rows; `26,476` have a
-published `certified_p_draw*` value and 10 source-pending aggregate rows remain
-blank. This is frozen candidate evidence and a local preview only: it does not
+alias. It contains `26,486` certified-design ladder rows; `15,260` have a
+published `certified_p_draw*` value and `11,226` remain blank. The blank rows
+include 10 source-pending aggregate rows and 11,216 structural padding rows
+whose exact status is `DISPLAY ONLY - NO FORECASTED APPLICANT COHORT`; a zero
+placeholder is not represented as a certified forecast. This is frozen
+candidate evidence and a local preview only: it does not
 replace `processed_data`, R2, `pages-dist`, or the hosted Research runtime.
+
+The 2026-09-09 post-family carry-forward audit found a separate probability
+defect in `engine/utah_predictive_mixed`: although the family engine removed a
+random/weighted winner from the returning applicant cohort, the final blend
+reintroduced the same outcome through a 60% prior-year success-rate component
+and a 20% quota proxy. The isolated correction withholds both components only
+for `MODELED_BONUS` rows with an official prior random/weighted winner and
+lets the winner-removed cohort forecast own the current probability. It does
+not alter preference draws. Against the frozen 33,875-row candidate and the
+official 2025 residency lanes, 2,166 bonus rows were affected, including 1,841
+certified rows; the legacy blend was higher on 1,809 rows, with median
+inflation 5.404 percentage points among those rows and a maximum of 80 points.
+The evidence is under
+`audits/prediction_release_candidates/random_winner_baseline_suppression_20260909/`.
+This is a validated code-and-audit candidate, not a rebuilt or promoted
+runtime.
+
+The separately named year-by-year official-source rebuild is active under
+`audits/prediction_rebuilds/fresh_official_draw_truth_rebuild_2017_forward_20260909/`.
+Draw years 2017 and 2018 are frozen there as isolated source-truth candidates.
+The current 2017 V3 freeze contains 26,310 rows and 981 hunt codes at SHA-256
+`5f3942d077c32fe9c73a888c57ab762f740b467d986028d126ca399436538c99`.
+All 1,392 pages in its 19-PDF official source set were scanned with zero
+unknown roles. Eighteen files match `C:\Users\tyler\Downloads\2017`; that
+folder has the November 2016 Sportsman report instead of the correct November
+2017 `2018_sportsman_odds.pdf`. The V3 correction also retains the previously
+verified cougar boundary: `2018_cougar_*` was drawn October 31, 2017, while
+`2017_cougar_*` was drawn November 2, 2016. Relative to the retained canonical,
+259 matched cougar rows and 11 Sportsman rows change official values, and 20
+obsolete `CG7620` rows are absent.
+
+The 2018 freeze contains 31,031 rows and 1,010 hunt codes at SHA-256
+`880009d886378e0ac38ac4bde334c5bfeba0b1e7050f01bcd37b6f36e48f5d95`.
+Its 13 fresh official PDFs contain 1,436 pages with zero unknown roles. The
+candidate matches every retained canonical key and adds 693 official rows: 546
+historical cougar and 147 turkey. It corrects an absorbed-report-header name
+defect and a second-`Totals` cell shift in the retained hunt-total lanes. Four
+public management-buck hunts (`DB1009`, `DB1010`, `DB1051`, and `DB1052`)
+retain distinct `MANAGEMENT_DEER` identity but the official
+`BONUS_LE_BIG_GAME` design; they are not general-season preference rows. These
+candidates remain audit-only and have not replaced yearly canonical, unified
+truth, prediction, runtime, R2, or hosted data.
+
+The 2019 freeze contains 33,478 rows and 1,054 hunt codes at SHA-256
+`36a30bac05790a1043733f0a718266618547da300acab8f8d500bd9a9861ef76`.
+Its 14 fresh official PDFs contain 1,531 pages with zero unknown roles. After
+normalizing the retained canonical's split-output source names, all 33,478
+identities reconcile with zero missing or added rows. Count fields agree except
+that the retained canonical labels each of the 11 random-only Sportsman permits
+as a bonus permit. The fresh candidate also preserves six antlerless-moose
+ratios whose retained text lost the leading `1`, four official Bear half-up
+ratio values, and the correct Sportsman elk result of `1 in 10,750.0` rather
+than the adjacent mountain-goat value. Six public management-buck codes retain
+distinct `MANAGEMENT_DEER` identity and the official `BONUS_LE_BIG_GAME`
+design. The 2019 freeze is audit-only and unpromoted.
+Thirteen fresh PDFs are byte-identical to a repository copy; the fresh main
+big-game PDF differs only in modification metadata, with identical normalized
+text and word geometry on all 551 pages.
+
+The fresh rebuild now includes reviewed audit-only hunt-identity crosswalks for
+2017-to-2018 and 2018-to-2019. The first contains 1,047 transition rows and
+covers all 981 source and 1,010 target hunt codes; 918 rows permit applicant
+carry-forward. The second contains 1,078 transition rows and covers all 1,010
+source and 1,054 target hunt codes; 963 rows permit carry-forward. Permission
+is limited to `SAME_IDENTITY` or `NAME_ALIAS` rows with a common forecastable
+draw design and applies only within the same draw-design and residency lane.
+Every boundary/program change, split, new hunt, eliminated hunt, and unresolved
+candidate is blocked. Six unresolved source candidates remain explicit rather
+than guessed. These tables are not integrated into the engine, canonical truth,
+runtime, or certification evidence. The next source repair is the malformed
+2018 `BR1008`-`BR1013` Bear pursuit identity/classification before an isolated
+crosswalk-aware fold can be scored.
 
 ## Active Research Runtime
 
@@ -183,7 +258,7 @@ The locally promoted prediction runtime was rebuilt on `2026-08-27` from the the
 - Duplicate prediction keys: `0`.
 - Frozen unified prediction SHA-256: `9e4c0f1a66678cd63df88512e45ba71d63746a6b21d7e4038fecb142f40e9d5e`.
 - `DATABASE.csv` SHA-256 at prediction build: `dd87461a76555c73b74fb0df069b47d66ac979b096ab25d9395a2c78f860a24b`.
-- Current reviewed `DATABASE.csv` SHA-256: `0678f9382ef3b17cbf08197113f56bdddc865755b66ea7f8983d8575c5fa3996`. The standalone current-identity/current-quota feeder audit is `processed_data/audits/database_current_identity_quota_2026_feeder_audit_summary.json`: it verifies all 1,433 retained DWR Planner records and all 1,848 database rows with zero unexplained current-field deltas. It retains the reviewed turkey and private-lands source differences as non-draw allocation context, retains the BR7004 official 18/2/20 draw-result split, preserves the PD1056 corrected 36/4/40 official value, and moves BR7324's 2025-27 conservation-cycle count out of current public-quota fields while preserving it in `conservation_permits_2026_total`. The database remains current identity/permit-reference context only; the compact prediction-build evidence intentionally retains its earlier build hash until prediction artifacts are rebuilt and accepted.
+- Current reviewed `DATABASE.csv` SHA-256: `bb3c821b7de85735c9d49baddf695abb1744ee5ba6f398488ad6060802339106`. The standalone current-identity/current-quota feeder audit is `processed_data/audits/database_current_identity_quota_2026_feeder_audit_summary.json`: it verifies all 1,433 retained DWR Planner records and all 1,848 database rows with zero unexplained current-field deltas. It retains the reviewed turkey and private-lands source differences as non-draw allocation context, retains the BR7004 official 18/2/20 draw-result split, preserves the PD1056 corrected 36/4/40 official value, and moves BR7324's 2025-27 conservation-cycle count out of current public-quota fields while preserving it in `conservation_permits_2026_total`. The five antlerless-elk conservation reference codes `EA1180`, `EA1270`, `EA1271`, `EA2041`, and `EA2045` retain their separate four-permit conservation counts while their public-draw quota status remains `NO_QUOTA_PUBLISHED`. The database remains current identity/permit-reference context only; the compact prediction-build evidence intentionally retains its earlier build hash until prediction artifacts are rebuilt and accepted.
 
 The full generated prediction manifest is a repo-external build artifact at `processed_data/utah_bonus_predictive_manifest.json`. Its compact integrity evidence—including pipeline and rule versions, forecast year, row counts, source hashes, and the promoted manifest SHA-256—is Git-tracked in `governance/engine-authority.json`. Code-only validation uses that compact record and performs the full manifest hash and field cross-check whenever the generated manifest is locally hydrated.
 
@@ -227,6 +302,7 @@ The pipeline and runtime model versions describe different layers. The legacy ho
 2. The `57` 2026 actual rows reduce to six current hunt codes (`BI6539`, `BR7021`, `BR7126`, `BR7238`, `DB1109`, `DB1121`). Their retained crosswalk verifies no exact 2018-2025 canonical draw predecessor, documents the dated application-guidebook listing, and keeps them deliberately unscored. They must not receive a borrowed same-unit probability unless an official DWR predecessor mapping is retained.
 3. The checked-in local prediction manifest and runtime artifacts still reflect the prior database/candidate. The current reviewed `DATABASE.csv` is newer after the conservation-permit crosswalk and EA2045/PD1056 corrections; the newer candidate has not been accepted or promoted.
 4. The four source/family contract mismatches recorded on 2026-08-28 are resolved. The only remaining contract-drift review is local-versus-R2 equivalence for the legacy predictive CSV fallback, which is not part of the normal Research load path.
+5. The frozen 33,875-row candidate predates the random/weighted-winner post-family correction. Its hash remains preserved as baseline evidence; it must not be silently rewritten. A new isolated materialization from the current database is required before any promotion decision.
 
 These blockers mean "do not publish this as newly certified." They do not authorize another redesign.
 
@@ -236,7 +312,8 @@ These blockers mean "do not publish this as newly certified." They do not author
 2. Retain `EB3100` resident point 12 as an explicit unresolved first-fold mixed-cutoff case unless an official source-backed mechanic explains its held-out result. Do not force it below 100 percent merely to satisfy the acceptance gate.
 3. Keep the six no-exact-history codes source-classified as intentionally unscored rather than unresolved engine gaps.
 4. Preserve `engine/utah_predictive_mixed` as the final probability blend and `engine/utah_draw_predictive` as family authority.
-5. If accepted, rebuild the local runtime artifacts and manifests from the 2026-08-28 candidate, then separately obtain authorization and a rollback plan before any hosted release.
+5. Rebuild the current certified designs in a new isolated candidate with the random/weighted-winner post-family correction, then rerun the publication gate and representative Research UI matrix. Do not replace the frozen baseline.
+6. If accepted, rebuild the local runtime artifacts and manifests from the reviewed candidate, then separately obtain authorization and a rollback plan before any hosted release.
 
 ## Required Commands
 

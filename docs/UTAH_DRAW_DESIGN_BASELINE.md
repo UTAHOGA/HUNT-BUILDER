@@ -94,7 +94,7 @@ The 2025-to-2026 blind audit now performs this comparison. It scores the declare
 - The generic deterministic simulator has global bonus max/random counters layered over residency buckets; it does not yet perform a fully separate resident round, nonresident round, and later eligible cross-over sequence.
 - Public preference reports state that published odds reflect first choices. Exact second-through-fifth-choice probabilities are not fully observable from those reports.
 - The rebuilt output still contains duplicate bonus prediction identities and the blind join has unexpected key gaps; these block promotion.
-- The official 2018 reports are hydrated, but their legacy table layout needs a dedicated parser before they can be promoted into canonical truth.
+- The official 2018 and 2019 reports are hydrated and have isolated, source-checked reconstructions. Corrected hunt-total lanes, management-buck classification, historical cougar year assignment, separate youth pools, and source-faithful Sportsman/ratio fields remain unpromoted until the complete year-by-year reconciliation gate passes.
 
 ## Official sources
 

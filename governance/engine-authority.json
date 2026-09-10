@@ -33,7 +33,7 @@
     "status": "FROZEN_LOCAL_CERTIFIED_PREVIEW_READY_NOT_PROMOTED",
     "candidate_root": "audits/prediction_release_candidates/certified_core_20260909_33875",
     "freeze_manifest": "audits/prediction_release_candidates/certified_core_20260909_33875/freeze_manifest.json",
-    "freeze_manifest_sha256": "d8d20fdfcd2eb981652ebe942a4e2157c6647ad7191a29ad6b27a6449062d1bb",
+    "freeze_manifest_sha256": "3c06daac7a47ee146b1670529ad472090ddc1668da740a98e16c1a5a62e005dc",
     "source_materialization": "audits/prediction_blind_year_to_year/certification_repair_clean_2017_2025_20260909/materialization/ml_draw_predictions_v1.csv",
     "source_and_frozen_sha256": "8412538782ee4ead10a355ff5e80e38f704462eb912af39163ca5b13174bff7f",
     "materialization_rows": 33875,
@@ -45,10 +45,118 @@
       "PREFERENCE_GENERAL_SEASON_BUCK_DEER"
     ],
     "preview_ladder_rows": 26486,
-    "preview_rows_with_certified_probability": 26476,
-    "preview_rows_without_certified_probability": 10,
-    "preview_ladder_sha256": "af82f0d14952cfcb9be35145da98d9c59eaf5ec6d76a1981c7980c39408df935",
+    "preview_rows_with_certified_probability": 15260,
+    "preview_rows_without_certified_probability": 11226,
+    "preview_display_only_rows_without_forecasted_applicant_cohort": 11216,
+    "preview_ladder_sha256": "ce44a80b4cb55c41ca0fae44700d18dadc4aa7695235861976f05801ff478de3",
     "probability_contract": "CERTIFIED_P_DRAW_FIELDS_ONLY",
+    "hosted_action": "NONE"
+  },
+  "random_weighted_winner_carryforward_candidate_2026_09_09": {
+    "status": "ISOLATED_POST_FAMILY_MATERIALIZATION_VALIDATED_NOT_PROMOTED",
+    "owner": "engine/utah_predictive_mixed/materialize.py",
+    "audit": "audits/prediction_release_candidates/random_winner_baseline_suppression_20260909/random_winner_probability_summary.json",
+    "comparison": "audits/prediction_release_candidates/random_winner_baseline_suppression_20260909/random_winner_probability_comparison.csv",
+    "audit_sha256": "8e0561685f38d3ad06a17c593375688fa9282b56f571e4cc2194c7b499ef412a",
+    "comparison_sha256": "7765489bda3423f5ab3f01873eaa67f8f269d22beba6b7cb4be2215535837a97",
+    "affected_bonus_rows": 2166,
+    "affected_certified_rows": 1841,
+    "legacy_probability_higher_rows": 1809,
+    "median_probability_inflation_among_inflated_rows": 0.054042565,
+    "maximum_probability_inflation": 0.8,
+    "rule": "For MODELED_BONUS rows with an official prior random or weighted winner, the post-family layer must not reuse that observed success rate or its quota proxy after the family cohort forecast has already removed the winner.",
+    "preference_draw_policy": "UNCHANGED",
+    "frozen_baseline_policy": "PRESERVE_HASH_REBUILD_SEPARATE_CANDIDATE",
+    "hosted_action": "NONE"
+  },
+  "fresh_year_by_year_draw_truth_rebuild_2026_09_09": {
+    "status": "DRAW_YEARS_2017_2019_FROZEN_ISOLATED_NOT_PROMOTED",
+    "root": "audits/prediction_rebuilds/fresh_official_draw_truth_rebuild_2017_forward_20260909",
+    "completed_draw_years": [
+      2017,
+      2018,
+      2019
+    ],
+    "current_draw_year": 2019,
+    "draw_year_2017": {
+      "official_pdf_count": 19,
+      "official_pdf_pages": 1392,
+      "independent_download_folder_equivalence": "REVIEW_REQUIRED_18_OF_19_EXACT_SHA256_CORRECT_DRAW_YEAR_SPORTSMAN_MISSING_FROM_USER_FOLDER",
+      "source_truth_candidate_rows": 26310,
+      "source_truth_candidate_hunt_codes": 981,
+      "source_truth_candidate_duplicate_keys": 0,
+      "source_truth_candidate_sha256": "5f3942d077c32fe9c73a888c57ab762f740b467d986028d126ca399436538c99",
+      "freeze_manifest": "audits/prediction_rebuilds/fresh_official_draw_truth_rebuild_2017_forward_20260909/2017/frozen_v3_complete_draw_year_rule/SOURCE_TRUTH_FREEZE_MANIFEST.json",
+      "freeze_manifest_sha256": "da2e1d6e32893bf0fae72b605561c503219fac17665c6ee6e55ba938b3ef9e1b",
+      "source_correction": "DWR 2017-18 cougar files named 2018_cougar_* are assigned to draw year 2017 because the draw occurred 2017-10-31; prior 2017_cougar_* files were drawn 2016-11-02. DWR 2018_sportsman_odds.pdf is dated 2017-11-21 and replaces 2017_sportsman_odds.pdf dated 2016-11-30 for draw year 2017.",
+      "matched_cougar_rows_with_official_value_changes": 259,
+      "matched_sportsman_rows_with_official_value_changes": 11,
+      "obsolete_cg7620_rows_removed_in_candidate": 20,
+      "prior_v2_freeze_status": "INVALIDATED_BY_COMPLETE_DRAW_YEAR_RULE_V3"
+    },
+    "draw_year_2018": {
+      "official_pdf_count": 13,
+      "official_pdf_pages": 1436,
+      "fresh_official_pull_status": "PASS_13_OF_13_READABLE_PDF",
+      "independent_download_folder_equivalence": "NOT_APPLICABLE_NO_USER_FOLDER_SUPPLIED",
+      "source_truth_candidate_rows": 31031,
+      "source_truth_candidate_hunt_codes": 1010,
+      "source_truth_candidate_duplicate_keys": 0,
+      "source_truth_candidate_sha256": "880009d886378e0ac38ac4bde334c5bfeba0b1e7050f01bcd37b6f36e48f5d95",
+      "freeze_manifest": "audits/prediction_rebuilds/fresh_official_draw_truth_rebuild_2017_forward_20260909/2018/frozen/SOURCE_TRUTH_FREEZE_MANIFEST.json",
+      "freeze_manifest_sha256": "c1f24589aa78f925116bd3a91fc5a810e3e8bb93da286e20b274a88dfaa7d84c",
+      "source_corrections": "Correct 2018-19 Sportsman source; 2019_cougar_odds_report.pdf is dated 2018-11-15 and assigned to draw year 2018; absorbed report headers are removed from hunt names; the second printed Totals marker no longer shifts nonresident hunt-total lanes.",
+      "retained_canonical_comparison": {
+        "matched_keys": 30338,
+        "baseline_only_rows": 0,
+        "candidate_only_rows": 693,
+        "candidate_only_cougar_rows": 546,
+        "candidate_only_turkey_rows": 147,
+        "matched_rows_with_official_value_differences": 8047
+      },
+      "management_buck_hunt_codes": [
+        "DB1009",
+        "DB1010",
+        "DB1051",
+        "DB1052"
+      ],
+      "management_buck_rule": "Retain distinct MANAGEMENT_DEER identity with the official BONUS_LE_BIG_GAME design; do not route to general-season preference."
+    },
+    "draw_year_2019": {
+      "official_pdf_count": 14,
+      "official_pdf_pages": 1531,
+      "fresh_official_pull_status": "PASS_14_OF_14_READABLE_PDF",
+      "durable_archive_comparison": "PASS_13_EXACT_BYTES_1_CONTENT_EQUIVALENT_METADATA_ONLY",
+      "independent_download_folder_equivalence": "NOT_APPLICABLE_NO_USER_FOLDER_SUPPLIED",
+      "source_truth_candidate_rows": 33478,
+      "source_truth_candidate_point_rows": 31975,
+      "source_truth_candidate_hunt_total_rows": 1492,
+      "source_truth_candidate_hunt_codes": 1054,
+      "source_truth_candidate_duplicate_keys": 0,
+      "source_truth_candidate_sha256": "36a30bac05790a1043733f0a718266618547da300acab8f8d500bd9a9861ef76",
+      "freeze_manifest": "audits/prediction_rebuilds/fresh_official_draw_truth_rebuild_2017_forward_20260909/2019/frozen/SOURCE_TRUTH_FREEZE_MANIFEST.json",
+      "freeze_manifest_sha256": "cf6f64553f806f26ab30feb27fd1fd645358cf5681f2a7abc2db3272a19a49c4",
+      "source_corrections": "2020_cougar_odds_report.pdf is dated 2019-10-25 and assigned to draw year 2019. Sportsman permits remain random-only rather than bonus permits. The candidate restores six truncated antlerless-moose ratio fields, four official Bear half-up ratios, and Sportsman elk at 1 in 10,750.0.",
+      "retained_canonical_comparison": {
+        "matched_keys_after_source_role_normalization": 33478,
+        "baseline_only_rows": 0,
+        "candidate_only_rows": 0,
+        "matched_rows_with_numeric_count_differences": 11,
+        "count_difference_resolution": "All 11 are Sportsman permit-type fields: the retained canonical calls a random-only permit a bonus permit; applicant and total-permit counts agree.",
+        "matched_rows_with_material_lane_probability_differences": 0,
+        "maximum_lane_probability_absolute_delta": 0.00000000005
+      },
+      "management_buck_hunt_codes": [
+        "DB1009",
+        "DB1010",
+        "DB1051",
+        "DB1052",
+        "DB1073",
+        "DB1074"
+      ],
+      "management_buck_rule": "Retain distinct MANAGEMENT_DEER identity with the official BONUS_LE_BIG_GAME design; do not route to general-season preference."
+    },
+    "promotion_policy": "PRESERVE_CURRENT_CANONICAL_AND_UNIFIED_TRUTH_UNTIL_FULL_YEAR_BY_YEAR_RECONCILIATION_GATE",
     "hosted_action": "NONE"
   },
   "historical_blind_targeted_repair_2026_08_29": {
@@ -333,7 +441,7 @@
       "path": "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv",
       "storage": "GIT_TRACKED",
       "required_locally": true,
-      "verified_sha256": "0678f9382ef3b17cbf08197113f56bdddc865755b66ea7f8983d8575c5fa3996",
+      "verified_sha256": "bb3c821b7de85735c9d49baddf695abb1744ee5ba6f398488ad6060802339106",
       "role_boundary": "Current DWR Hunt Planner identity and permit-reference context only; it is not historical draw-result truth and cannot replace yearly canonicals or draw_results_long.csv for prediction scoring.",
       "current_feeder_audit": {
         "path": "processed_data/audits/database_current_identity_quota_2026_feeder_audit_summary.json",
@@ -341,7 +449,7 @@
         "unresolved_current_field_delta_count": 0,
         "planner_records_verified": 1433,
         "database_rows_audited": 1848,
-        "completed_utc": "2026-09-06T08:32:56.921451+00:00"
+        "completed_utc": "2026-09-09T11:47:53.747345+00:00"
       }
     },
     "normalized_draw_actuals": {
