@@ -170,7 +170,7 @@ window.UOGA_CONFIG = (() => {
   const HUNT_DATA_VERSION = '20260604-runtime-canonical-1';
   const OUTFITTERS_DATA_VERSION = '20260908-usfs-roster-publication-1';
   const OUTFITTER_COVERAGE_VERSION = '20260908-usfs-roster-intersection-2';
-  const HUNT_RESEARCH_DATA_VERSION = '20260828-certified-split-contract-1';
+  const HUNT_RESEARCH_DATA_VERSION = '20260919-certified-core-complete-2';
 
   /*
     ============================================================================
@@ -310,9 +310,10 @@ window.UOGA_CONFIG = (() => {
   });
 
   const HUNT_RESEARCH_SPLIT_DETAIL_BASES = uniqueUrls([
+    './processed_data/hunt_research_2026_split',
     fromR2('processed_data/hunt_research_2026_split'),
-    ...(isDevLikeHost() ? ['./processed_data/hunt_research_2026_split'] : []),
   ].filter(Boolean));
+  const HUNT_RESEARCH_USE_SPLIT_DETAIL_DIRECT = true;
 
   const HUNT_RESEARCH_CANONICAL_LADDER_SOURCES = runtimeSourceCandidates({
     key: 'research_hunt_research_2026_ladder_json',
@@ -663,6 +664,7 @@ window.UOGA_CONFIG = (() => {
     HUNT_RESEARCH_SPLIT_INDEX_SOURCES,
     HUNT_RESEARCH_SPLIT_DETAIL_BUNDLE_SOURCES,
     HUNT_RESEARCH_SPLIT_DETAIL_BASES,
+    HUNT_RESEARCH_USE_SPLIT_DETAIL_DIRECT,
     HUNT_RESEARCH_CANONICAL_LADDER_SOURCES,
     USE_PREDICTIVE_DRAW_ENGINE,
     HUNT_RESEARCH_ENGINE_MODE,

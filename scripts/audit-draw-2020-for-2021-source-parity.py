@@ -24,19 +24,20 @@ EXTRACTION_SUMMARY = VALIDATION_DIR / "draw_results_2020_for_2021_pdf_extraction
 REPORT_MD = ROOT / "processed_data" / "draw_2020_for_2021_source_parity.md"
 
 EXPECTED_FILES = [
-    "20_deer_odds.pdf",
-    "20_lifetime_deer.pdf",
-    "20_youth_deer.pdf",
-    "20_dh_odds.pdf",
-    "20_youth_dh_odds.pdf",
-    "20-21_sportsman_odds.pdf",
-    "20_youth_bull_elk.pdf",
-    "20_bg-odds.pdf",
-    "20_antlerless_drawing_odds_report.pdf",
-    "20_youth_antlerless_drawing_odds_report.pdf",
-    "5213601e__turkey_2020_turkey_bonus_points_draw_results.pdf",
-    "68991b97__turkey_2020_youth_turkey_draw_results.pdf",
-    "97ffae94__black_bear_20_drawing_odds.pdf",
+    "official_dwr_archive/big_game/20_deer_odds.pdf",
+    "official_dwr_archive/big_game/20_lifetime_deer.pdf",
+    "official_dwr_archive/big_game/20_youth_deer.pdf",
+    "official_dwr_archive/big_game/20_dh_odds.pdf",
+    "official_dwr_archive/big_game/20_youth_dh_odds.pdf",
+    "official_dwr_archive/big_game/20-21_sportsman_odds.pdf",
+    "official_dwr_archive/big_game/20_youth_bull_elk.pdf",
+    "official_dwr_archive/big_game/20_bg-odds.pdf",
+    "official_dwr_archive/big_game_antlerless/20_antlerless_drawing_odds_report.pdf",
+    "official_dwr_archive/big_game_antlerless/20_youth_antlerless_drawing_odds_report.pdf",
+    "official_dwr_archive/turkey/2020_turkey_bonus_points_draw_results.pdf",
+    "official_dwr_archive/turkey/2020_youth_turkey_draw_results.pdf",
+    "official_dwr_archive/black_bear/20_drawing_odds.pdf",
+    "official_dwr_archive/cougar/2021_cougar_odds_report.pdf",
 ]
 
 

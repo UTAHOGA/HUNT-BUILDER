@@ -27,7 +27,11 @@ def test_standard_big_game_total_uses_official_ten_percent_allocation() -> None:
     allocation = target_residency_permit_allocation(
         {
             "draw_system_type": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+            "hunt_class": "Preference",
+            "draw_pool": "preference_general_season_buck_deer",
             "permits_2026_total": "1160",
+            "target_permits_scope": "REGULAR_DRAW_AFTER_PROGRAM_ALLOCATIONS",
+            "target_permits_source": "official_regular_round_quota_fixture",
         },
         2026,
     )
@@ -36,6 +40,17 @@ def test_standard_big_game_total_uses_official_ten_percent_allocation() -> None:
     assert allocation.authority == OFFICIAL_10_PERCENT_TOTAL_ALLOCATION
     assert allocation.resident == 1044
     assert allocation.nonresident == 116
+
+
+def test_general_deer_board_total_is_not_regular_draw_quota() -> None:
+    for row in (
+        {"permits_2026_total": "1160"},
+        {"permits_2026_total": "1160", "target_permits_scope": "REGULAR_DRAW_AFTER_PROGRAM_ALLOCATIONS"},
+    ):
+        allocation = target_residency_permit_allocation(
+            {"draw_system_type": "PREFERENCE_GENERAL_SEASON_BUCK_DEER", **row}, 2026
+        )
+        assert not allocation.supported
 
 
 def test_ten_percent_allocation_uses_integer_half_up_rounding() -> None:
@@ -85,4 +100,3 @@ def test_cwmu_text_blocks_percentage_even_with_stale_preference_label() -> None:
 
     assert allocation.supported is False
     assert allocation.authority == UNSUPPORTED_TOTAL_ONLY_RESIDENCY_RULE
-

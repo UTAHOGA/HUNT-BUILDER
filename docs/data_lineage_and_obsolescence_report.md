@@ -4,16 +4,23 @@ Generated: 2026-06-01 (America/Denver)
 Scope: repo-local data layers + live runtime dependencies
 
 ## Lineage Contract (Current)
-1. `DATABASE.csv` is canonical truth for current hunt-code universe, boundary ID alignment, and reviewed permit/allotment fields.
-2. Regeneration/sync scripts materialize runtime and research surfaces from truth/reference layers.
-3. Browser pages consume a mix of:
+1. `DATABASE.csv` is the current-target hunt identity and reviewed permit-reference authority. It is not historical draw-result or scoring truth.
+2. Yearly canonical draw-result files frozen into `draw_results_long.csv` are the historical prediction and scoring truth.
+3. Regeneration/sync scripts materialize runtime and research surfaces from truth/reference layers.
+4. Browser pages consume a mix of:
    - Vercel-served static JSON/GeoJSON from repo build artifact (`pages-dist`)
    - Cloudflare-hosted large CSV runtime feeds for Research.
 
-## Truth Source (Authoritative)
+## Current-Target Identity And Permit Reference
 - `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
-  - Role: canonical row truth for 2026 hunt universe and permit/allotment values where populated.
+  - Role: current hunt identity and published permit-reference context for the 2026 target universe.
   - Policy: should not be overwritten by derived runtime outputs.
+
+## Historical Draw-Result Truth
+- `data_truth/draw_results_truth/normalized/canonical_yearly/*.csv`
+- `data_truth/draw_results_truth/normalized/draw_results_long.csv`
+  - Role: official year-specific applicant, permit, success, and probability evidence used by historical folds and scoring.
+  - Policy: historical certification folds must not substitute `DATABASE.csv` for these sources.
 
 ## Derived (Regenerated/Recipient Layers)
 - `processed_data/hard_data_exports/hunt_tables/2026/CLEAN_XLXS_STAGED/MASTER.xlsx`
@@ -86,7 +93,8 @@ These are useful for analysis and regeneration pipelines, but not currently the 
 4. Purge committed `__pycache__` artifacts.
 
 ## Summary
-- **Truth:** `DATABASE.csv`
+- **Historical draw truth:** yearly canonicals frozen into `draw_results_long.csv`
+- **Current target identity/permit reference:** `DATABASE.csv`
 - **Recipient/derived export:** `MASTER.xlsx`
 - **Live runtime:** Vercel static + Cloudflare research CSVs
 - **Display/reference:** draw/harvest auxiliary layers

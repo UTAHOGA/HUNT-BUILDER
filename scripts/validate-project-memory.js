@@ -59,7 +59,8 @@ function validateProjectMemory(root = REPO) {
 
   check(authority.schema_version === '1.3.0', 'Memory schema_version must be 1.3.0.');
   check(authority.authority === 'HUNT_BUILDER_PROJECT_MEMORY', 'Unexpected memory authority identifier.');
-  check(authority.lifecycle?.promotion_status === 'BLOCKED', 'Current promotion status must remain BLOCKED until recorded blockers are cleared.');
+  const allowedPromotionStatuses = new Set(['BLOCKED', 'PARTIAL_FAMILY_PROMOTION_COMPLETE']);
+  check(allowedPromotionStatuses.has(authority.lifecycle?.promotion_status), 'Current promotion status is not an approved lifecycle state.');
   check(authority.lifecycle?.production_prediction_accuracy_certified === false, 'Current prediction accuracy must not be marked certified.');
   check(Number.isInteger(authority.lifecycle?.active_forecast_year), 'Active forecast year must be an integer.');
   check(Array.isArray(authority.lifecycle?.promotion_blockers) && authority.lifecycle.promotion_blockers.length > 0, 'Blocked promotion requires explicit blocker codes.');
@@ -79,7 +80,7 @@ function validateProjectMemory(root = REPO) {
   check(currentState.includes(`Memory contract: \`${authority.schema_version}\``), 'CURRENT_STATE.md memory version does not match the authority schema.');
   check(currentState.includes(`Last verified: \`${authority.last_verified_date}\``), 'CURRENT_STATE.md verification date does not match the authority record.');
   check(currentState.includes(authority.lifecycle.phase), 'CURRENT_STATE.md does not state the declared lifecycle phase.');
-  check(currentState.includes('Promotion status: `BLOCKED`'), 'CURRENT_STATE.md must state the current blocked promotion status.');
+  check(currentState.includes(`Promotion status: \`${authority.lifecycle?.promotion_status}\``), 'CURRENT_STATE.md must state the current promotion status.');
   check(drawDesignBaseline.includes('Black bear restricted pursuit permits'), 'Draw-design baseline must distinguish restricted bear pursuit.');
   check(drawDesignBaseline.includes('Black bear limited-entry hunting permits'), 'Draw-design baseline must distinguish limited-entry bear hunting.');
   check(drawDesignBaseline.includes('Resident and nonresident rules'), 'Draw-design baseline must preserve residency rules.');
@@ -173,7 +174,11 @@ function validateProjectMemory(root = REPO) {
   check(/^[a-f0-9]{64}$/.test(evidence.normalized_draw_truth_sha256 || ''), 'Compact prediction evidence has no valid normalized draw-truth SHA-256.');
   check(/^[a-f0-9]{64}$/.test(evidence.frozen_prediction_sha256 || ''), 'Compact prediction evidence has no valid frozen prediction SHA-256.');
 
-  const promotionEvidence = authority.latest_evidence?.local_prediction_promotion_2026_08_27 || {};
+  const promotionEvidence = authority.lifecycle?.promotion_status === 'PARTIAL_FAMILY_PROMOTION_COMPLETE'
+    ? (authority.latest_evidence?.certified_core_production_promotion_2026_09_19
+      || authority.latest_evidence?.certified_core_production_promotion_2026_09_10
+      || {})
+    : (authority.latest_evidence?.local_prediction_promotion_2026_08_27 || {});
   check(evidence.source_manifest_sha256 === promotionEvidence.promoted_manifest_sha256, 'Compact prediction evidence does not match the promoted manifest SHA-256.');
   check(evidence.frozen_prediction_sha256 === promotionEvidence.frozen_prediction_sha256, 'Compact prediction evidence does not match the promoted frozen prediction SHA-256.');
 
@@ -240,12 +245,23 @@ function validateProjectMemory(root = REPO) {
   for (const artifact of authority.runtime_artifacts || []) {
     check(typeof artifact.path === 'string' && artifact.path.length > 0, `Runtime artifact ${artifact.role || '<unknown>'} has no logical path.`);
     check(/^https:\/\//.test(artifact.external_url || ''), `Runtime artifact ${artifact.role || '<unknown>'} has no HTTPS external URL.`);
-    check(['GIT_TRACKED', 'OPTIONAL_R2_BACKED', 'R2_BACKED_DISPLAY_OVERLAY'].includes(artifact.local_policy), `Runtime artifact ${artifact.role || '<unknown>'} has an unsupported local policy: ${artifact.local_policy || '<blank>'}`);
+    const supportedLocalPolicies = [
+      'GIT_TRACKED',
+      'OPTIONAL_R2_BACKED',
+      'R2_BACKED_DISPLAY_OVERLAY',
+      'UNCHANGED_R2_ARCHIVE',
+      'R2_BACKED_AUDIT_AND_LEGACY_FALLBACK',
+      'PAGES_BUNDLED_LAZY_RUNTIME',
+    ];
+    check(supportedLocalPolicies.includes(artifact.local_policy), `Runtime artifact ${artifact.role || '<unknown>'} has an unsupported local policy: ${artifact.local_policy || '<blank>'}`);
     const exists = fs.existsSync(repoPath(root, artifact.path || ''));
     if (artifact.local_policy === 'GIT_TRACKED') {
       check(exists, `Git-tracked runtime artifact is missing: ${artifact.path}`);
-    } else if (['OPTIONAL_R2_BACKED', 'R2_BACKED_DISPLAY_OVERLAY'].includes(artifact.local_policy)) {
+    } else if (['OPTIONAL_R2_BACKED', 'R2_BACKED_DISPLAY_OVERLAY', 'UNCHANGED_R2_ARCHIVE', 'R2_BACKED_AUDIT_AND_LEGACY_FALLBACK'].includes(artifact.local_policy)) {
       warn(exists, `R2-backed runtime artifact is not hydrated locally (allowed for code-only validation): ${artifact.path}`);
+    } else if (artifact.local_policy === 'PAGES_BUNDLED_LAZY_RUNTIME') {
+      const detailDirectory = repoPath(root, String(artifact.path || '').replace('/<hunt_code>.json', ''));
+      check(fs.existsSync(detailDirectory), `Pages-bundled lazy runtime directory is missing: ${detailDirectory}`);
     }
   }
 

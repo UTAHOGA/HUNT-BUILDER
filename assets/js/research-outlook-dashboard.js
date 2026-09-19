@@ -1319,11 +1319,10 @@
       }
     });
 
-    const detail = document.getElementById("detailContent");
-    if (detail && window.MutationObserver) {
-      const observer = new MutationObserver(() => window.setTimeout(render, 0));
-      observer.observe(detail, { attributes: true, attributeFilter: ["hidden"], childList: true, subtree: true });
-    }
+    // Hunt Research emits `uoga:hunt-research-rendered` after every completed
+    // selection render.  Observing the entire detail subtree as well caused a
+    // feedback loop because this dashboard lives inside that subtree and its
+    // own `innerHTML` update scheduled another render indefinitely.
   }
 
   function init() {

@@ -31,8 +31,8 @@ def test_2020_draw_source_pdfs_are_byte_identical_in_active_repo() -> None:
     summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
     parity_rows = rows(PARITY_CSV)
 
-    assert summary["expected_file_count"] == 13
-    assert summary["byte_match_count"] == 13
+    assert summary["expected_file_count"] == 14
+    assert summary["byte_match_count"] == 14
     assert summary["review_file_count"] == 0
     assert all(row["status"] == "PASS" for row in parity_rows)
 
@@ -42,6 +42,6 @@ def test_2020_draw_truth_native_count_is_anchored_and_source_label_is_verified()
 
     assert summary["model_target_year"] == "2021"
     assert summary["source_draw_result_year"] == "2020"
-    assert summary["draw_truth_2020_rows"] == 33069
-    assert summary["draw_truth_2020_unique_hunt_codes"] == 1014
+    assert summary["draw_truth_2020_rows"] == 33363
+    assert summary["draw_truth_2020_unique_hunt_codes"] == 1028
     assert summary["draw_truth_source_label_status"] == "SOURCE_LABELS_MATCH_EXPECTED_FILES"

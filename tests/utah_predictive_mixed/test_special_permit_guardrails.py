@@ -3,6 +3,8 @@ from __future__ import annotations
 import csv
 from pathlib import Path
 
+import pytest
+
 
 ROOT = Path(__file__).resolve().parents[2]
 SUMMARY = ROOT / "processed_data" / "mixed_predictive_engine_2026_summary.json"
@@ -32,6 +34,8 @@ def test_db1004_expo_reconciles_but_conservation_does_not_explain_gap() -> None:
 
 
 def test_conservation_remains_336_permits_per_year() -> None:
+    if not OVERLAY_RAW.exists():
+        pytest.skip("optional raw conservation source is not hydrated in this checkout")
     rows = read_csv(OVERLAY_RAW)
     assert {year: sum(1 for r in rows if r["permit_year"] == year) for year in ["2025", "2026", "2027"]} == {
         "2025": 336,

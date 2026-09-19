@@ -1,4 +1,5 @@
 import csv
+import hashlib
 import json
 from pathlib import Path
 
@@ -11,6 +12,14 @@ SOURCE_AUDIT = TRUTH_ROOT / "harvest_results_all_years_source_audit.csv"
 SUMMARY = TRUTH_ROOT / "harvest_results_all_years_summary.json"
 PACKAGE_MANIFEST = ROOT / "data_truth" / "harvest_results_truth" / "raw_packages_manifest.json"
 OVERLAY = ROOT / "data_model" / "permit_overlays" / "special_permit_overlay_classes_all_years.csv"
+CURRENT_2025 = TRUTH_ROOT / "harvest_results_2025_for_2026_current.csv"
+DASHBOARD_SNAPSHOT = (
+    ROOT
+    / "data_truth"
+    / "harvest_results_truth"
+    / "sources"
+    / "dwr_2025_dashboard_snapshot_2026-09-19"
+)
 
 
 def _rows(path: Path):
@@ -47,7 +56,7 @@ def test_all_years_harvest_database_has_expected_years_and_counts():
         "2025": 1148,
     }
     assert summary["best_by_year_hunt_code_rows"] == 9288
-    assert summary["normalized_long_rows"] == 73397
+    assert summary["normalized_long_rows"] == 74517
     assert summary["special_permit_overlay_class_counts"] == {
         "CONSERVATION": 77,
         "CWMU": 1429,
@@ -144,8 +153,13 @@ def test_current_2025_dashboard_snapshot_has_all_live_rows_and_species_counts():
     current = summary["current_2025_dashboard"]
 
     assert current["current_rows"] == 1141
-    assert current["addition_rows"] == 21
-    assert current["correction_rows"] == 1
+    assert current["dashboard_accessed_date"] == "2026-09-19"
+    assert current["snapshot_status"] == "OFFICIAL_CURRENT_DASHBOARD_EXPORT_NOT_STANDALONE_FINAL_PDF"
+    assert current["baseline_preliminary_rows"] == 1120
+    assert current["survey_context_exact_identity_matches"] == 1110
+    assert current["survey_context_unmatched_rows"] == 31
+    assert current["hunt_planner_current_age_matches"] == 218
+    assert len(current["source_files"]) == 8
     assert current["species_counts"] == {
         "Bison": 18,
         "Deer": 421,
@@ -182,6 +196,52 @@ def test_official_annual_and_reported_three_year_age_are_distinct_and_provenance
 
     summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
     assert summary["official_harvest_age"]["best_by_hunt_identity"]["reported_3yr_age_nonblank"] == 814
+
+
+def test_current_2025_dashboard_snapshot_exact_sources_and_overlay_fields():
+    manifest = json.loads((DASHBOARD_SNAPSHOT / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest["expected_2025_rows"] == 1141
+    assert len(manifest["files"]) == 8
+    for entry in manifest["files"]:
+        path = DASHBOARD_SNAPSHOT / entry["file"]
+        assert path.exists()
+        assert path.stat().st_size == entry["bytes"]
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == entry["sha256"]
+
+    rows = _rows(CURRENT_2025)
+    assert len(rows) == 1141
+    by_identity = {(row["species"], row["hunt_code"]): row for row in rows}
+
+    bison = by_identity[("Bison", "BI6531")]
+    assert bison["permits"] == "7"
+    assert bison["harvest_male"] == "6"
+    assert bison["harvest_female"] == "0"
+    assert bison["trophy_left_length"] == "15.8333333333333"
+    assert bison["average_days"] == "3.7"
+    assert bison["hunter_satisfaction"] == "3.7"
+    assert bison["survey_context_status"] == "PRELIMINARY_SURVEY_CONTEXT_RETAINED_EXACT_IDENTITY"
+
+    pronghorn = by_identity[("Pronghorn", "PD1050")]
+    assert pronghorn["permits"] == "9"
+    assert pronghorn["hunters_afield"] == "8"
+    assert pronghorn["harvest_total"] == "8"
+    assert pronghorn["percent_success"] == "100"
+
+    new_deer_identity = by_identity[("Deer", "LO0008")]
+    assert new_deer_identity["survey_context_status"] == ""
+    assert new_deer_identity["average_days"] == ""
+    assert new_deer_identity["hunter_satisfaction"] == ""
+
+
+def test_age_measures_remain_four_distinct_fields():
+    rows = _rows(CURRENT_2025)
+    moose = next(row for row in rows if row["species"] == "Moose" and row["hunt_code"] == "MB6000")
+    assert moose["average_age"] == "5.4"
+    assert moose["average_age_3yr_reported"] == "5.3"
+    assert moose["average_age_3yr_local_computed"] == "5.33"
+    assert moose["average_age_3yr_local_computed_status"] == "LOCAL_MEAN_OF_THREE_ANNUAL_DWR_AGES"
+    assert moose["hunt_planner_current_age_3yr_average"] == "5.3"
+    assert moose["hunt_planner_current_age_source"] == "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
 
 
 def test_harvest_packages_imported_without_pdf_reextraction():

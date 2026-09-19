@@ -156,6 +156,24 @@ def write_problem_audit(problems: list[dict[str, str]]) -> None:
         writer.writerows(problems)
 
 
+def require_source_lineage(row: dict[str, str]) -> None:
+    """Reject lost PDF lineage; retain explicitly identified official web rows.
+
+    The 2026 live DrawOddsData and Planner reference records are not PDFs.
+    Requiring a fabricated page number would corrupt their actual provenance.
+    """
+    source = str(row.get("source_file") or "").strip()
+    dataset = str(row.get("source_dataset") or "").strip()
+    page = str(row.get("pdf_page") or "").strip()
+    official_endpoint = (
+        source.startswith("UtahDraws live DrawOddsData:") and dataset.startswith("UTAHDRAWS_")
+    ) or (
+        source.startswith("https://dwrapps.utah.gov/huntboundary/") and dataset.startswith("DWR_HUNT_PLANNER_")
+    )
+    if not source or (not page and not official_endpoint):
+        raise ValueError(f"Missing official source/page lineage: {row.get('actual_draw_year')}:{row.get('hunt_code')}:{row.get('points')}")
+
+
 def _sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -206,6 +224,7 @@ def rebuild(
             with path.open(newline="", encoding="utf-8-sig") as in_handle:
                 reader = csv.DictReader(in_handle)
                 for row in reader:
+                    require_source_lineage(row)
                     writer.writerow({column: row.get(column, "") for column in output_header})
                     actual_draw_year = str(row.get("actual_draw_year") or "").strip()
                     if actual_draw_year:

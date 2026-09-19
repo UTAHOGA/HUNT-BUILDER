@@ -1,15 +1,34 @@
 {
   "schema_version": "1.3.0",
-  "last_verified_date": "2026-09-09",
+  "last_verified_date": "2026-09-19",
   "authority": "HUNT_BUILDER_PROJECT_MEMORY",
+  "core_release_completion_audit": {
+    "status": "FOUR_CORE_FINAL_CALCULATION_CERTIFIED_RELEASE_VERIFICATION_PENDING",
+    "candidate_root": "audits/prediction_release_candidates/core_le_deer_repair_20260919",
+    "final_probability_contract": "CORE_FAMILY_MECHANICS_PRESERVED_V1",
+    "required_coverage": "INDEPENDENT_CURRENT_HUNT_RESIDENCY_AND_SOURCE_SUCCESSOR_POINT_INVENTORY",
+    "required_browser_coverage": "ALL_CURRENT_CORE_LANES_INCLUDING_WITHHELD_AND_ZERO_QUOTA",
+    "current_deer_regular_quota_source": "audits/prediction_release_candidates/core_final_coverage_20260919/source_evidence/2026_general_deer_official.json",
+    "current_deer_regular_quota_sha256": "d0da22b5bd20e1ecaef74aff4b0dba8d4b16f6e12327c0e6b6ae496ccd7b7f58",
+    "current_deer_regular_quota_role": "CURRENT_TARGET_CONTEXT_ONLY_NEVER_HISTORICAL_FOLDS",
+    "protected_board_planner_permit_reference_fields": "PRESERVED",
+    "production_action": "NONE_FOR_THIS_CANDIDATE",
+    "candidate_registry": "audits/prediction_release_candidates/core_le_deer_repair_20260919/certification_registry.json",
+    "candidate_certified_designs": ["BONUS_LE_BIG_GAME", "BONUS_OIL_BIG_GAME", "BONUS_PLE_BIG_GAME", "PREFERENCE_GENERAL_SEASON_BUCK_DEER"],
+    "candidate_blockers": ["FINAL_BROWSER_AND_CONTROLLED_RELEASE_VERIFICATION_PENDING"],
+    "prior_blocked_candidate_preserved": "audits/prediction_release_candidates/core_final_coverage_20260919",
+    "source_proven_le_intentional_blanks": 32,
+    "numeric_errors_reclassified_out_of_metrics": 0,
+    "historical_blank_probability_rows": "COUNTED_AS_GAPS_NOT_SILENTLY_DROPPED"
+  },
   "lifecycle": {
-    "phase": "HOSTED_NORMAL_SPLIT_CONTRACT_RELEASED_PARTIAL_FAMILY_CERTIFICATION_NOT_PROMOTED",
+    "phase": "HOSTED_CERTIFIED_CORE_PUBLISHED_NONCERTIFIED_SUPPRESSED",
     "active_forecast_year": 2026,
     "production_prediction_accuracy_certified": false,
-    "promotion_status": "BLOCKED",
+    "promotion_status": "PARTIAL_FAMILY_PROMOTION_COMPLETE",
     "promotion_blockers": [
-      "HISTORICAL_ADJACENT_YEAR_ACCEPTANCE_REVIEW_NOT_ACCEPTED",
-      "CURRENT_DATABASE_NEWER_THAN_CHECKED_IN_PREDICTION_MANIFEST"
+      "NON_CERTIFIED_FAMILIES_WITHHELD",
+      "OVERALL_MULTI_FAMILY_CERTIFICATION_NOT_ACHIEVED"
     ]
   },
   "prediction_family_certification": {
@@ -17,7 +36,7 @@
     "acceptance_standard": "docs/decisions/ADR-0006-historical-blind-acceptance-thresholds.md",
     "registry": "governance/prediction-family-certification.json",
     "registry_schema": "prediction-family-certification.v1",
-    "status": "LOCAL_GATE_RERUN_FOUR_CORE_BIG_GAME_FAMILIES_CERTIFIED_NOT_PROMOTED",
+    "status": "FOUR_CORE_BIG_GAME_FAMILIES_CERTIFIED_AND_PROMOTED",
     "certified_designs": [
       "BONUS_LE_BIG_GAME",
       "BONUS_OIL_BIG_GAME",
@@ -27,7 +46,66 @@
     "raw_probability_policy": "RETAIN_FOR_DEVELOPMENT_AND_BLIND_SCORING",
     "public_probability_policy": "ONLY_CERTIFIED_P_DRAW_FIELDS_FROM_CERTIFIED_DESIGNS",
     "future_line_semantics": "PROJECTED_DRAW_LINE_NOT_GUARANTEED_OUTCOME",
-    "hosted_action": "NONE"
+    "hosted_action": "CERTIFIED_CORE_RANDOM_WINNER_CORRECTION_PROMOTED_2026_09_19"
+  },
+  "certified_core_production_promotion_2026_09_10": {
+    "status": "PROMOTED_AND_LIVE_BROWSER_VERIFIED",
+    "candidate_root": "audits/prediction_release_candidates/certified_core_20260910_production",
+    "materialization": "audits/prediction_release_candidates/certified_core_20260910_production/materialization/ml_draw_predictions_v1.csv",
+    "materialization_sha256": "6d87896217958eef9a2d5bf47875777f46b891d4f476d72a1a926a37c7f5c9fc",
+    "promoted_manifest_sha256": "b7dce581d49af8743a5f2b6974da399b1c9cb8af8a6566ccbd50fb7bef64ee53",
+    "materialization_rows": 33875,
+    "public_probability_contract": "CERTIFIED_P_DRAW_FIELDS_ONLY",
+    "certified_designs": [
+      "BONUS_LE_BIG_GAME",
+      "BONUS_OIL_BIG_GAME",
+      "BONUS_PLE_BIG_GAME",
+      "PREFERENCE_GENERAL_SEASON_BUCK_DEER"
+    ],
+    "noncertified_probability_rows": 0,
+    "selectable_hunt_codes": 1471,
+    "direct_detail_files_validated": 1471,
+    "normal_runtime_ladder_mode": "LAZY_PER_HUNT_SPLIT_DETAIL",
+    "r2_objects_replaced": 6,
+    "r2_rollback_namespace": "rollback/20260910T154642Z/",
+    "r2_post_upload_hash_verification": "PASS",
+    "legacy_ladder_archive_status": "UNCHANGED_NOT_CONSUMED_BY_NORMAL_RUNTIME",
+    "legacy_ladder_archive_sha256": "1a45732cf45232ded9f9f3e81ac9827a0522326020af141abfc9a0b546644a5d",
+    "production_site": "https://huntbuilder.pages.dev/research.html",
+    "cloudflare_pages_deployment": "https://17d45b08.huntbuilder.pages.dev",
+    "browser_qa": "audits/prediction_release_candidates/certified_core_20260910_production/research_split_contract_candidate_v3/browser_qa_production_alias.json",
+    "browser_qa_status": "PASS_13_OF_13_ZERO_FAILED_REQUESTS_ZERO_CONSOLE_ERRORS",
+    "promotion_report": "audits/prediction_release_candidates/certified_core_20260910_production/production_promotion_report.json"
+  },
+  "certified_core_production_promotion_2026_09_19": {
+    "status": "PROMOTED_AND_LIVE_BROWSER_VERIFIED",
+    "candidate_root": "audits/prediction_release_candidates/certified_core_random_winner_20260919",
+    "materialization": "audits/prediction_release_candidates/certified_core_random_winner_20260919/mixed_materialization/ml_draw_predictions_v1.csv",
+    "materialization_sha256": "f5c6e7bf8d9f0bcf3099dcde6d264e1e15f3d6668e3cca157ff588f136d5059b",
+    "promoted_manifest_sha256": "4619b3cecb4465afc7b7f67f794f5ccdd7a43e4184ed19d45f2de22033205a7b",
+    "materialization_rows": 28579,
+    "certification_registry_id": "adr-0006-6fe5d6162d74",
+    "certification_registry_sha256": "d05dcc2b422be1f32cfbe05396f5ef21382108fbc9facb2491b8b9b8728cc531",
+    "certified_rows": 26424,
+    "experimental_rows": 1078,
+    "insufficient_evidence_rows": 2,
+    "not_evaluated_rows": 1075,
+    "public_probability_contract": "CERTIFIED_P_DRAW_FIELDS_ONLY",
+    "noncertified_probability_rows": 0,
+    "protected_draw_permit_quota_field_changes": 0,
+    "selectable_hunt_codes": 1471,
+    "direct_detail_files_validated": 1471,
+    "normal_runtime_ladder_mode": "LAZY_PER_HUNT_SPLIT_DETAIL",
+    "r2_objects_replaced": 6,
+    "r2_rollback_namespace": "rollback/20260919T142958Z/",
+    "r2_post_upload_hash_verification": "PASS",
+    "legacy_ladder_archive_status": "UNCHANGED_NOT_CONSUMED_BY_NORMAL_RUNTIME",
+    "legacy_ladder_archive_sha256": "1a45732cf45232ded9f9f3e81ac9827a0522326020af141abfc9a0b546644a5d",
+    "production_site": "https://huntbuilder.pages.dev/research.html",
+    "cloudflare_pages_deployment": "https://d6f6feeb.huntbuilder.pages.dev",
+    "browser_qa": "audits/prediction_release_candidates/certified_core_random_winner_20260919/research_contract_candidate_v4/browser_qa_production_alias.json",
+    "browser_qa_status": "PASS_13_OF_13_ZERO_FAILED_REQUESTS_ZERO_CONSOLE_ERRORS",
+    "promotion_report": "audits/prediction_release_candidates/certified_core_random_winner_20260919/production_promotion_report.json"
   },
   "local_certified_research_preview_2026_09_09": {
     "status": "FROZEN_LOCAL_CERTIFIED_PREVIEW_READY_NOT_PROMOTED",
@@ -53,7 +131,7 @@
     "hosted_action": "NONE"
   },
   "random_weighted_winner_carryforward_candidate_2026_09_09": {
-    "status": "ISOLATED_POST_FAMILY_MATERIALIZATION_VALIDATED_NOT_PROMOTED",
+    "status": "PROMOTED_IN_CERTIFIED_CORE_2026_09_19",
     "owner": "engine/utah_predictive_mixed/materialize.py",
     "audit": "audits/prediction_release_candidates/random_winner_baseline_suppression_20260909/random_winner_probability_summary.json",
     "comparison": "audits/prediction_release_candidates/random_winner_baseline_suppression_20260909/random_winner_probability_comparison.csv",
@@ -67,7 +145,7 @@
     "rule": "For MODELED_BONUS rows with an official prior random or weighted winner, the post-family layer must not reuse that observed success rate or its quota proxy after the family cohort forecast has already removed the winner.",
     "preference_draw_policy": "UNCHANGED",
     "frozen_baseline_policy": "PRESERVE_HASH_REBUILD_SEPARATE_CANDIDATE",
-    "hosted_action": "NONE"
+    "hosted_action": "CERTIFIED_CORE_RANDOM_WINNER_CORRECTION_PROMOTED_2026_09_19"
   },
   "fresh_year_by_year_draw_truth_rebuild_2026_09_09": {
     "status": "DRAW_YEARS_2017_2019_FROZEN_ISOLATED_NOT_PROMOTED",
@@ -498,7 +576,8 @@
       "role": "research_ladder",
       "path": "processed_data/hunt_research_2026_ladder.json",
       "external_url": "https://json.uoga.workers.dev/processed_data/hunt_research_2026_ladder.json",
-      "local_policy": "OPTIONAL_R2_BACKED"
+      "local_policy": "UNCHANGED_R2_ARCHIVE",
+      "normal_runtime_usage": "NOT_CONSUMED"
     },
     {
       "role": "research_details",
@@ -516,7 +595,15 @@
       "role": "point_ladder_csv",
       "path": "processed_data/point_ladder_view.csv",
       "external_url": "https://json.uoga.workers.dev/processed_data/point_ladder_view.csv",
-      "local_policy": "OPTIONAL_R2_BACKED"
+      "local_policy": "R2_BACKED_AUDIT_AND_LEGACY_FALLBACK",
+      "normal_runtime_usage": "NOT_FETCHED_AT_STARTUP"
+    },
+    {
+      "role": "research_direct_hunt_details",
+      "path": "processed_data/hunt_research_2026_split/hunts/<hunt_code>.json",
+      "external_url": "https://huntbuilder.pages.dev/processed_data/hunt_research_2026_split/hunts/<hunt_code>.json",
+      "local_policy": "PAGES_BUNDLED_LAZY_RUNTIME",
+      "role_boundary": "One sanitized selected-hunt ladder at a time; only certified_p_draw fields may expose future probability."
     },
     {
       "role": "hunt_application_outlook_display_contract",
@@ -527,23 +614,67 @@
     }
   ],
   "latest_evidence": {
+    "certified_core_production_promotion_2026_09_19": {
+      "status": "PASS_PROMOTED_AND_PUBLIC_ALIAS_VERIFIED",
+      "registry_id": "adr-0006-6fe5d6162d74",
+      "registry_sha256": "d05dcc2b422be1f32cfbe05396f5ef21382108fbc9facb2491b8b9b8728cc531",
+      "materialization_rows": 28579,
+      "materialization_sha256": "f5c6e7bf8d9f0bcf3099dcde6d264e1e15f3d6668e3cca157ff588f136d5059b",
+      "frozen_prediction_sha256": "f5c6e7bf8d9f0bcf3099dcde6d264e1e15f3d6668e3cca157ff588f136d5059b",
+      "promoted_manifest_sha256": "4619b3cecb4465afc7b7f67f794f5ccdd7a43e4184ed19d45f2de22033205a7b",
+      "public_prediction_rows": 28579,
+      "public_probability_contract": "CERTIFIED_P_DRAW_FIELDS_ONLY",
+      "unauthorized_probability_rows": 0,
+      "protected_draw_permit_quota_field_changes": 0,
+      "r2_changed_object_count": 6,
+      "r2_post_upload_verification": "ALL_SIX_SHA256_MATCH_CANDIDATE",
+      "rollback_namespace": "rollback/20260919T142958Z/",
+      "unchanged_legacy_ladder_sha256": "1a45732cf45232ded9f9f3e81ac9827a0522326020af141abfc9a0b546644a5d",
+      "cloudflare_pages_deployment": "https://d6f6feeb.huntbuilder.pages.dev",
+      "public_alias": "https://huntbuilder.pages.dev/research.html",
+      "browser_qa": "PASS_13_OF_13_ZERO_FAILED_REQUESTS_ZERO_CONSOLE_ERRORS",
+      "normal_loader": "SUMMARY_AND_INDEX_AT_STARTUP_THEN_LAZY_DIRECT_HUNT_DETAIL",
+      "report": "audits/prediction_release_candidates/certified_core_random_winner_20260919/production_promotion_report.json"
+    },
+    "certified_core_production_promotion_2026_09_10": {
+      "status": "PASS_PROMOTED_AND_PUBLIC_ALIAS_VERIFIED",
+      "registry_id": "adr-0006-20e88d8a4405",
+      "registry_sha256": "19040fcdd8d89e519969d1c40a9efd2bbd0d8fcb7c0565f79c67d5714deb4012",
+      "materialization_rows": 33875,
+      "materialization_unique_columns": 212,
+      "materialization_sha256": "6d87896217958eef9a2d5bf47875777f46b891d4f476d72a1a926a37c7f5c9fc",
+      "frozen_prediction_sha256": "6d87896217958eef9a2d5bf47875777f46b891d4f476d72a1a926a37c7f5c9fc",
+      "promoted_manifest_sha256": "b7dce581d49af8743a5f2b6974da399b1c9cb8af8a6566ccbd50fb7bef64ee53",
+      "public_prediction_rows": 33875,
+      "public_probability_contract": "CERTIFIED_P_DRAW_FIELDS_ONLY",
+      "unauthorized_probability_rows": 0,
+      "r2_changed_object_count": 6,
+      "r2_post_upload_verification": "ALL_SIX_SHA256_MATCH_CANDIDATE",
+      "rollback_namespace": "rollback/20260910T154642Z/",
+      "unchanged_legacy_ladder_sha256": "1a45732cf45232ded9f9f3e81ac9827a0522326020af141abfc9a0b546644a5d",
+      "cloudflare_pages_deployment": "https://17d45b08.huntbuilder.pages.dev",
+      "public_alias": "https://huntbuilder.pages.dev/research.html",
+      "browser_qa": "PASS_13_OF_13_ZERO_FAILED_REQUESTS_ZERO_CONSOLE_ERRORS",
+      "normal_loader": "SUMMARY_AND_INDEX_AT_STARTUP_THEN_LAZY_DIRECT_HUNT_DETAIL",
+      "report": "audits/prediction_release_candidates/certified_core_20260910_production/production_promotion_report.json"
+    },
     "prediction_build_evidence": {
       "storage": "GIT_TRACKED_COMPACT_AUTHORITY",
       "source_manifest_path": "processed_data/utah_bonus_predictive_manifest.json",
       "source_manifest_storage": "REPO_EXTERNAL_GENERATED_ARTIFACT",
       "source_manifest_local_policy": "OPTIONAL_LOCAL_HYDRATION",
-      "source_manifest_sha256": "8bef8cd755d657419a0948449ef37a4205af84d1b3e589082244da6c3d5f2af0",
-      "generated_at": "2026-08-27T12:37:43.345007-06:00",
+      "source_manifest_sha256": "4619b3cecb4465afc7b7f67f794f5ccdd7a43e4184ed19d45f2de22033205a7b",
+      "generated_at": "2026-09-19T13:49:33.491791+00:00",
       "pipeline_version": "hybrid_ml_v2.1.0",
       "rule_version": "utah_bonus_rules_v1.1.0",
       "forecast_year": 2026,
-      "prediction_rows": 40642,
-      "backtest_rows": 15166,
+      "prediction_rows": 28579,
+      "backtest_rows": 19474,
       "duplicate_prediction_keys": 0,
-      "database_sha256_at_build": "dd87461a76555c73b74fb0df069b47d66ac979b096ab25d9395a2c78f860a24b",
-      "normalized_draw_truth_sha256": "94189f6c0bbb90ad597a8f0cd3f3d96b2be1983b0d927665d18d3673da920474",
-      "frozen_prediction_sha256": "9e4c0f1a66678cd63df88512e45ba71d63746a6b21d7e4038fecb142f40e9d5e",
-      "local_promotion_status": "LOCAL_REBUILT_HOSTED_EQUIVALENCE_PENDING"
+      "database_sha256_at_build": "bb3c821b7de85735c9d49baddf695abb1744ee5ba6f398488ad6060802339106",
+      "normalized_draw_truth_sha256": "aed03f2def7809428e9ffe8f557614a3b4836d01f320c5edbee1d1514e178a5c",
+      "frozen_prediction_sha256": "f5c6e7bf8d9f0bcf3099dcde6d264e1e15f3d6668e3cca157ff588f136d5059b",
+      "local_promotion_status": "LOCAL_AND_HOSTED_CERTIFIED_CORE_HASH_VERIFIED"
     },
     "latest_unpromoted_blind_candidate_2026_08_28": {
       "candidate": "audits/prediction_blind_backtests/2025_to_2026_truth_2018_2026_20260828_bear_source_repair",

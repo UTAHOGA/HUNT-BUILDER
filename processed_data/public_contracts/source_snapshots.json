@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-28T01:36:40.527Z",
+  "generated_at": "2026-09-10T16:32:17.237Z",
   "input_resolution": {
     "predictive": "processed_data/draw_reality_engine_predictive_v2.csv",
     "oddsHistory": "data_model/runtime_drafts/draw_reality_engine_v2.csv",
@@ -8,13 +8,13 @@
     "huntUnitsLite": "data/hunt_boundaries.geojson"
   },
   "outputs": {
-    "hunt_predictions_rows": 40642,
-    "hunt_odds_history_rows": 442549,
-    "hunt_application_outlook_rows": 2898,
-    "outfitters_public_rows": 11,
+    "hunt_predictions_rows": 33875,
+    "hunt_odds_history_rows": 614925,
+    "hunt_application_outlook_rows": 1628,
+    "outfitters_public_rows": 74,
     "hunt_units_features": 683,
-    "unique_prediction_hunts": 978,
-    "unique_outlook_hunts": 1449,
+    "unique_prediction_hunts": 975,
+    "unique_outlook_hunts": 814,
     "prediction_source_mode": "runtime_csv",
     "odds_history_source_mode": "runtime_csv",
     "outfitters_source_mode": "outfitters_public_json"
@@ -31,33 +31,33 @@
       "file_path": "processed_data/draw_reality_engine_predictive_v2.csv",
       "role": "source_runtime_for_hunt_predictions",
       "exists": true,
-      "size_bytes": 49541686,
-      "sha256": "9e4c0f1a66678cd63df88512e45ba71d63746a6b21d7e4038fecb142f40e9d5e",
-      "row_count": 40642
+      "size_bytes": 65037799,
+      "sha256": "9143d741f35fefeb2fdaad4bc7aeb59144e47670c28b249b0c7bed63f03cc836",
+      "row_count": 33875
     },
     {
       "file_path": "data_model/runtime_drafts/draw_reality_engine_v2.csv",
       "role": "source_runtime_for_hunt_odds_history",
       "exists": true,
-      "size_bytes": 136920314,
-      "sha256": "2592be0e945ea1e214b837b1feabc59da695ac09586ee75be04738b44b481758",
-      "row_count": 442549
+      "size_bytes": 190261652,
+      "sha256": "ce56acdb0687ee09b06648f75be3873b17c32e6b44de68090ed4e859bf327830",
+      "row_count": 614925
     },
     {
       "file_path": "processed_data/research_page/hunt_application_outlook.json",
       "role": "source_contract_for_hunt_application_outlook",
       "exists": true,
-      "size_bytes": 5679419,
-      "sha256": "81efc438565a394cdf7692d24051d2ff707e8281eb4121a3489fe96f8fd928e7",
-      "row_count": 2898
+      "size_bytes": 3408682,
+      "sha256": "372ee4e1bbe651a69477fc76ed212e6ed17a94cd93f48bcd65b2ae5dce607a88",
+      "row_count": 1628
     },
     {
       "file_path": "data/outfitters-public.json",
       "role": "source_public_outfitter_records",
       "exists": true,
-      "size_bytes": 8291,
-      "sha256": "8fea7fd546088dc1bd444dab49e8acdd564ef694fb3fa5699c5a36f08c120997",
-      "row_count": 11
+      "size_bytes": 48253,
+      "sha256": "7f61fdc3b90b82761c0270edb510ee42bb96d24b21582142f4d57d4c3af2427d",
+      "row_count": 74
     },
     {
       "file_path": "data/hunt_boundaries.geojson",
@@ -71,41 +71,41 @@
       "file_path": "processed_data/public_contracts/hunt_predictions.json",
       "role": "public_contract:hunt_predictions.json",
       "exists": true,
-      "size_bytes": 36446565,
-      "sha256": "f32305cd55280834e550fa2a63f1a8dee54f394fab37fa7d8b7874af801e4fa4",
-      "row_count": 40642
+      "size_bytes": 51091805,
+      "sha256": "cf92e65ee7361305a1b0e5b98e2ce8d6bc01f3849d5756beb9b5bed6d53d90ee",
+      "row_count": 33875
     },
     {
       "file_path": "processed_data/public_contracts/hunt_odds_history.json",
       "role": "public_contract:hunt_odds_history.json",
       "exists": true,
-      "size_bytes": 319074712,
-      "sha256": "fcf10d12457d115d34d85a30aec87387fe210bc853b5c0381fb480ce44fba48e",
-      "row_count": 442549
+      "size_bytes": 447304495,
+      "sha256": "7dee054df6d570b545395b5681577a1b14a02b0ed102a13873f8960dcc587886",
+      "row_count": 614925
     },
     {
       "file_path": "processed_data/public_contracts/hunt_odds_history.csv",
       "role": "public_contract:hunt_odds_history.csv",
       "exists": true,
-      "size_bytes": 100311012,
-      "sha256": "bf5316a9e3cd03e1be0200b959c9570da1644be076dc9c56470f7040dcfc39f8",
-      "row_count": 442549
+      "size_bytes": 143451525,
+      "sha256": "16e83d02826e0e6165b8164c88e37f692d8902e0d2d4049f1787e11c51a6ea7b",
+      "row_count": 614925
     },
     {
       "file_path": "processed_data/public_contracts/hunt_application_outlook.json",
       "role": "public_contract:hunt_application_outlook.json",
       "exists": true,
-      "size_bytes": 3353900,
-      "sha256": "6f9127a7b2e6699a8046f2970b1deb4edb929687a0a2cc305b1978200d6e5079",
-      "row_count": 2898
+      "size_bytes": 2476265,
+      "sha256": "b11eedb201b2fafb5b70649a8c8a3fa0c064c62c9b0bb9851ccae75f22c9bc93",
+      "row_count": 1628
     },
     {
       "file_path": "processed_data/public_contracts/outfitters-public.json",
       "role": "public_contract:outfitters-public.json",
       "exists": true,
-      "size_bytes": 7913,
-      "sha256": "c9df767c9a7b545576595417e61337ff3723c8acac03c8f9d568d5447ad8805d",
-      "row_count": 11
+      "size_bytes": 46676,
+      "sha256": "015a97f0dd77ba15ff1c5eaba0d8eb6fb6569b8cf070133d9e80e7cf9b1280fb",
+      "row_count": 74
     },
     {
       "file_path": "processed_data/public_contracts/hunt_units.geojson",

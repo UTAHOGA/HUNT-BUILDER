@@ -17,6 +17,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
+REPO = Path(__file__).resolve().parents[1]
+
+
 def clean(value: object) -> str:
     return "" if value is None else str(value).strip()
 
@@ -98,6 +101,23 @@ def cwmu_pool_from_actual_fields(row: dict[str, str]) -> str:
     return ""
 
 
+def is_premium_limited_entry_actual(row: dict[str, str]) -> bool:
+    text = " ".join(
+        clean(row.get(field)).lower()
+        for field in (
+            "hunt_name",
+            "raw_hunt_name",
+            "hunt_type",
+            "hunt_class",
+            "hunt_draw_class",
+            "draw_design",
+            "draw_system_type",
+            "source_file",
+        )
+    )
+    return any(token in text for token in ("premium le", "premium limited entry", "big game:premium"))
+
+
 def expand_actual(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     projected: list[dict[str, str]] = []
     for row in rows:
@@ -113,6 +133,11 @@ def expand_actual(rows: list[dict[str, str]]) -> list[dict[str, str]]:
             base["draw_design"] = "BONUS_CWMU_BIG_GAME"
             base["draw_system_type"] = "BONUS_CWMU_BIG_GAME"
             base["draw_pool"] = cwmu_pool
+        elif is_premium_limited_entry_actual(base):
+            base["draw_design"] = "BONUS_PLE_BIG_GAME"
+            base["draw_system_type"] = "BONUS_PLE_BIG_GAME"
+            base["hunt_class"] = "PREMIUM_LIMITED_ENTRY"
+            base["draw_pool"] = "MAX_WEIGHTED_SPLIT"
         if clean(base.get("residency")):
             projected.append(base)
             continue
@@ -200,6 +225,173 @@ def project_predictions(rows: list[dict[str, str]]) -> list[dict[str, str]]:
     return output
 
 
+def load_reviewed_identity_crosswalk(path: Path) -> dict[str, list[dict[str, str]]]:
+    """Load the audit-reviewed source-to-target hunt identity decisions."""
+    _fields, rows = read_csv(path)
+    required = {
+        "from_hunt_code",
+        "to_hunt_code",
+        "transition_type",
+        "applicant_stack_carry_forward_allowed",
+    }
+    if not rows or not required.issubset(rows[0]):
+        raise ValueError(f"Reviewed identity crosswalk is missing required fields: {path}")
+    by_source: dict[str, list[dict[str, str]]] = {}
+    for row in rows:
+        source_code = clean(row.get("from_hunt_code")).upper()
+        if source_code:
+            by_source.setdefault(source_code, []).append(row)
+    return by_source
+
+
+def inspect_identity_crosswalk_contract(path: Path) -> dict[str, object]:
+    """Determine whether a crosswalk is pre-draw certification evidence.
+
+    Target-reviewed full crosswalks remain useful diagnostics, but only an
+    exceptions-only table whose rows explicitly prohibit target-result use may
+    participate in a source-only fold.
+    """
+    fields, rows = read_csv(path)
+    pre_draw_fields = {
+        "evidence_timing",
+        "target_draw_results_used",
+        "crosswalk_scope",
+        "certification_use",
+        "from_draw_year",
+        "to_draw_year",
+        "target_application_evidence_file",
+        "target_application_evidence_sha256",
+        "target_application_evidence_pages",
+        "target_application_evidence_excerpt",
+        "pre_draw_timing_evidence",
+    }
+    errors: list[str] = []
+    if not rows:
+        errors.append("EMPTY_CROSSWALK")
+    if not pre_draw_fields.issubset(fields):
+        errors.append("MISSING_PRE_DRAW_CONTRACT_FIELDS")
+    if not errors:
+        year_pairs = {
+            (clean(row.get("from_draw_year")), clean(row.get("to_draw_year")))
+            for row in rows
+        }
+        if len(year_pairs) != 1:
+            errors.append("MIXED_YEAR_PAIRS")
+        else:
+            from_year, to_year = next(iter(year_pairs))
+            if not from_year.isdigit() or not to_year.isdigit() or int(to_year) != int(from_year) + 1:
+                errors.append("INVALID_ADJACENT_YEAR_PAIR")
+            expected_name = f"pre_draw_hunt_identity_crosswalk_{from_year}_to_{to_year}.csv"
+            if path.name != expected_name:
+                errors.append("NONCANONICAL_PRE_DRAW_FILENAME")
+        for index, row in enumerate(rows, start=2):
+            if clean(row.get("evidence_timing")).upper() != "PRE_DRAW":
+                errors.append(f"ROW_{index}_NOT_PRE_DRAW")
+            if clean(row.get("target_draw_results_used")).upper() != "FALSE":
+                errors.append(f"ROW_{index}_TARGET_RESULT_USE_NOT_PROHIBITED")
+            if clean(row.get("crosswalk_scope")).upper() != "EXCEPTIONS_ONLY_PRE_DRAW":
+                errors.append(f"ROW_{index}_INVALID_SCOPE")
+            if clean(row.get("certification_use")).upper() != "ELIGIBLE_PRE_DRAW_IDENTITY_ONLY":
+                errors.append(f"ROW_{index}_NOT_CERTIFICATION_ELIGIBLE")
+            if not clean(row.get("target_application_evidence_pages")):
+                errors.append(f"ROW_{index}_MISSING_EVIDENCE_PAGE")
+            if not clean(row.get("target_application_evidence_excerpt")):
+                errors.append(f"ROW_{index}_MISSING_EVIDENCE_EXCERPT")
+            if not clean(row.get("pre_draw_timing_evidence")):
+                errors.append(f"ROW_{index}_MISSING_TIMING_EVIDENCE")
+            evidence_path = Path(clean(row.get("target_application_evidence_file")))
+            if not evidence_path.is_absolute():
+                evidence_path = REPO / evidence_path
+            expected_sha = clean(row.get("target_application_evidence_sha256")).lower()
+            if not evidence_path.is_file():
+                errors.append(f"ROW_{index}_EVIDENCE_FILE_MISSING")
+            elif not expected_sha or sha256(evidence_path) != expected_sha:
+                errors.append(f"ROW_{index}_EVIDENCE_HASH_MISMATCH")
+    is_pre_draw = not errors
+    return {
+        "crosswalk_contract": (
+            "EXCEPTIONS_ONLY_PRE_DRAW" if is_pre_draw else "FULL_TARGET_REVIEWED_DIAGNOSTIC"
+        ),
+        "unlisted_source_code_behavior": "PASS_THROUGH" if is_pre_draw else "EXCLUDE",
+        "certification_eligible": is_pre_draw,
+        "target_draw_results_used": False if is_pre_draw else None,
+        "crosswalk_contract_validation_errors": errors,
+    }
+
+
+def apply_reviewed_identity_crosswalk(
+    rows: list[dict[str, str]],
+    crosswalk: dict[str, list[dict[str, str]]],
+    *,
+    unlisted_source_code_behavior: str = "EXCLUDE",
+) -> tuple[list[dict[str, str]], dict[str, object]]:
+    """Carry only reviewed one-to-one identities into the target-year score.
+
+    This is an audit projection, not a truth or model rewrite. A source hunt
+    may continue only when the reviewed table explicitly says that its stack
+    can carry. Splits, boundary/program changes, eliminations, unresolved
+    rows, and missing decisions are excluded rather than guessed.
+    """
+    output: list[dict[str, str]] = []
+    reason_counts: Counter[str] = Counter()
+    mapped_code_counts: Counter[str] = Counter()
+    passthrough_rows = 0
+    for row in rows:
+        source_code = clean(row.get("hunt_code")).upper()
+        decisions = crosswalk.get(source_code, [])
+        if not decisions and unlisted_source_code_behavior == "PASS_THROUGH":
+            item = dict(row)
+            item["identity_crosswalk_from_hunt_code"] = source_code
+            item["identity_crosswalk_to_hunt_code"] = source_code
+            item["identity_crosswalk_transition_type"] = "UNCHANGED_CODE_NO_EXCEPTION"
+            item["identity_crosswalk_transition_id"] = ""
+            item["identity_crosswalk_status"] = "PRE_DRAW_NO_EXCEPTION_PASS_THROUGH"
+            output.append(item)
+            passthrough_rows += 1
+            continue
+        allowed = [
+            decision
+            for decision in decisions
+            if clean(decision.get("applicant_stack_carry_forward_allowed")).upper() == "TRUE"
+            and clean(decision.get("to_hunt_code"))
+        ]
+        if len(allowed) != 1:
+            if not decisions:
+                reason = "NO_REVIEWED_CROSSWALK_DECISION"
+            elif not allowed:
+                transition_types = sorted({clean(item.get("transition_type")) for item in decisions})
+                reason = "BLOCKED_" + "_OR_".join(transition_types)
+            else:
+                reason = "AMBIGUOUS_MULTIPLE_ALLOWED_SUCCESSORS"
+            reason_counts[reason] += 1
+            continue
+
+        decision = allowed[0]
+        target_code = clean(decision.get("to_hunt_code")).upper()
+        item = dict(row)
+        item["identity_crosswalk_from_hunt_code"] = source_code
+        item["identity_crosswalk_to_hunt_code"] = target_code
+        item["identity_crosswalk_transition_type"] = clean(decision.get("transition_type"))
+        item["identity_crosswalk_transition_id"] = clean(decision.get("transition_id"))
+        item["identity_crosswalk_status"] = "REVIEWED_STACK_CARRY_ALLOWED"
+        item["hunt_code"] = target_code
+        # This projection is scored in the legacy structural-key mode. Do not
+        # leave a pre-crosswalk v2 key that still embeds the source hunt code.
+        if clean(item.get("official_score_key_v2")):
+            item["official_score_key_v2"] = ""
+        output.append(item)
+        mapped_code_counts[f"{source_code}->{target_code}"] += 1
+
+    return output, {
+        "input_prediction_rows": len(rows),
+        "projected_prediction_rows": len(output),
+        "excluded_prediction_rows": len(rows) - len(output),
+        "passthrough_prediction_rows": passthrough_rows,
+        "excluded_reason_counts": dict(sorted(reason_counts.items())),
+        "mapped_code_row_counts": dict(sorted(mapped_code_counts.items())),
+    }
+
+
 def _single_year(rows: list[dict[str, str]], *fields: str, label: str) -> int:
     years = {
         int(clean(row.get(field)))
@@ -227,11 +419,28 @@ def main() -> int:
         type=int,
         help="Physical forecast draw year for the audit label. Required when the combined forecast carries mixed score-key years.",
     )
+    parser.add_argument(
+        "--identity-crosswalk",
+        type=Path,
+        help="Optional reviewed adjacent-year identity table used only to gate/remap the scoring projection.",
+    )
     args = parser.parse_args()
     truth_fields, truth_rows = read_csv(args.frozen_truth)
     prediction_fields, prediction_rows = read_csv(args.frozen_forecast)
     actual_projection = expand_actual(truth_rows)
     prediction_projection = project_predictions(prediction_rows)
+    identity_crosswalk_report: dict[str, object] | None = None
+    identity_crosswalk_contract: dict[str, object] | None = None
+    if args.identity_crosswalk is not None:
+        identity_crosswalk_contract = inspect_identity_crosswalk_contract(args.identity_crosswalk)
+        identity_crosswalk = load_reviewed_identity_crosswalk(args.identity_crosswalk)
+        prediction_projection, identity_crosswalk_report = apply_reviewed_identity_crosswalk(
+            prediction_projection,
+            identity_crosswalk,
+            unlisted_source_code_behavior=str(
+                identity_crosswalk_contract["unlisted_source_code_behavior"]
+            ),
+        )
     actual_year = _single_year(truth_rows, "actual_draw_year", "draw_year", "year", label="actual draw")
     source_year = args.source_year or _single_year(prediction_rows, "source_year", label="forecast source")
     forecast_year = args.forecast_year or _single_year(prediction_rows, "forecast_year", "year", label="forecast draw")
@@ -259,6 +468,27 @@ def main() -> int:
         },
         "truth_values_changed": False,
         "forecast_probabilities_changed": False,
+        "certification_eligible": (
+            args.identity_crosswalk is None
+            or bool(identity_crosswalk_contract and identity_crosswalk_contract["certification_eligible"])
+        ),
+        "certification_note": (
+            "The exceptions-only identity table is frozen from pre-draw application guides and does not use target draw results."
+            if identity_crosswalk_contract and identity_crosswalk_contract["certification_eligible"]
+            else "Reviewed target-transition crosswalk is used for identity gating; this run is diagnostic and cannot itself certify the model."
+            if args.identity_crosswalk is not None
+            else "No target-transition identity crosswalk was used."
+        ),
+        "identity_crosswalk": (
+            {
+                "path": str(args.identity_crosswalk).replace("\\", "/"),
+                "sha256": sha256(args.identity_crosswalk),
+                **(identity_crosswalk_contract or {}),
+                **(identity_crosswalk_report or {}),
+            }
+            if args.identity_crosswalk is not None
+            else None
+        ),
         "identity_label_overrides": {
             "actual_ma_antlerless": "BONUS_ANTLERLESS_MOOSE",
             "actual_cwmu_pool": "SPECIES_SEX_SOURCE_FIELDS",

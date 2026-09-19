@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -293,6 +294,18 @@ def protected_snapshot(rows: list[dict[str, str]]) -> dict[tuple[str, str, str, 
     return {row_key(row, index): {field: row.get(field, "") for field in PROTECTED_FIELDS if field in row} for index, row in enumerate(rows)}
 
 
+def protected_digest(rows: list[dict[str, str]]) -> str:
+    projection = [
+        {
+            "row_key": list(row_key(row, index)),
+            "protected_fields": {field: row.get(field, "") for field in PROTECTED_FIELDS if field in row},
+        }
+        for index, row in enumerate(rows)
+    ]
+    encoded = json.dumps(projection, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
 def assert_protected_unchanged(before: dict[tuple[str, str, str, str], dict[str, str]], rows: list[dict[str, str]]) -> None:
     after = protected_snapshot(rows)
     if before != after:
@@ -340,10 +353,18 @@ def materialize(output_dir: Path, forecast_year: int = 2026) -> dict[str, object
     successor_rows = read_rows(successor_path)
     ml_before = protected_snapshot(ml_rows)
     successor_before = protected_snapshot(successor_rows)
+    ml_protected_before_sha256 = protected_digest(ml_rows)
+    successor_protected_before_sha256 = protected_digest(successor_rows)
     ml_joined = append_features(ml_rows, features_by_code)
     successor_joined = append_features(successor_rows, features_by_code)
     assert_protected_unchanged(ml_before, ml_joined)
     assert_protected_unchanged(successor_before, successor_joined)
+    ml_protected_after_sha256 = protected_digest(ml_joined)
+    successor_protected_after_sha256 = protected_digest(successor_joined)
+    if ml_protected_before_sha256 != ml_protected_after_sha256:
+        raise AssertionError("Harvest feature materialization changed protected ML field bytes.")
+    if successor_protected_before_sha256 != successor_protected_after_sha256:
+        raise AssertionError("Harvest feature materialization changed protected successor field bytes.")
 
     ml_joined_path = ROOT / "data_model" / "harvest_quality" / "ml_draw_predictions_with_harvest_features.csv"
     successor_joined_path = ROOT / "data_model" / "harvest_quality" / "draw_reality_engine_predictive_with_harvest_features.csv"
@@ -377,6 +398,12 @@ def materialize(output_dir: Path, forecast_year: int = 2026) -> dict[str, object
         "match_method_counts": dict(sorted(method_counts.items())),
         "data_quality_grade_counts": dict(sorted(grade_counts.items())),
         "protected_probability_and_quota_fields_unchanged": True,
+        "protected_field_sha256": {
+            "ml_draw_predictions_before": ml_protected_before_sha256,
+            "ml_draw_predictions_after": ml_protected_after_sha256,
+            "draw_reality_engine_predictive_before": successor_protected_before_sha256,
+            "draw_reality_engine_predictive_after": successor_protected_after_sha256,
+        },
         "outputs": {
             "feature_by_hunt_code": str(feature_path.relative_to(ROOT)),
             "feature_by_species_year": str(species_path.relative_to(ROOT)),

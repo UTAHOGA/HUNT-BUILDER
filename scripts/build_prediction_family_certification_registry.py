@@ -109,6 +109,17 @@ def build_registry(review_dir: Path) -> dict[str, Any]:
     thresholds = manifest.get("thresholds")
     if not isinstance(thresholds, dict):
         raise ValueError("Acceptance review manifest has no thresholds.")
+    authority_gate = manifest.get("historical_truth_authority_gate")
+    if not isinstance(authority_gate, dict):
+        raise ValueError(
+            "Acceptance review has no historical truth-authority gate; certification cannot prove DATABASE.csv exclusion."
+        )
+    if clean(authority_gate.get("status")) != "PASS":
+        raise ValueError("Acceptance review historical truth-authority gate did not pass.")
+    if integer(authority_gate.get("historical_database_csv_read_count")) != 0:
+        raise ValueError("Acceptance review indicates DATABASE.csv was read by a historical fold.")
+    if clean(authority_gate.get("database_csv_role")) != "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY":
+        raise ValueError("Acceptance review blurs the declared DATABASE.csv authority boundary.")
     with csv_path.open("r", encoding="utf-8-sig", newline="") as handle:
         rows = list(csv.DictReader(handle))
 
@@ -154,6 +165,8 @@ def build_registry(review_dir: Path) -> dict[str, Any]:
             "acceptance_by_draw_design_sha256": sha256(csv_path),
             "acceptance_review_manifest": relative_or_absolute(manifest_path),
             "acceptance_review_manifest_sha256": sha256(manifest_path),
+            "historical_truth_authority_gate": authority_gate,
+            "final_probability_gate": manifest.get("final_probability_gate", {"status": "NOT_PROVEN"}),
         },
         "families": dict(sorted(families.items())),
         "certified_designs": certified,

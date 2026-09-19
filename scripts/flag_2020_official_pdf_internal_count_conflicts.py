@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Quarantine derived probability fields on structural 2020 official lanes.
+"""Normalize duplicated top-point total/ratio cells on 2020 official lanes.
 
-Some retained DWR table rows publish zero applicants together with positive
-permits and a success ratio. The canonical preserves that source text and
-counts. It clears only derived probability fields for the affected lane so
-scoring cannot silently treat a structural zero-applicant row as an
-applicant-level probability.
+Some DWR tables repeat the next lower point row's total-permit and success-ratio
+display cells on an empty top point row even though both component permit
+columns are zero. Preserve those displayed cells in the audit note, normalize
+effective permits to the component-column total, and prevent a false winner or
+probability from entering the applicant stack.
 """
 
 from __future__ import annotations
@@ -20,8 +20,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CANONICAL = ROOT / "data_truth/draw_results_truth/normalized/canonical_yearly/draw_results_2020_for_2021_canonical_yearly_draw_results.csv"
 AUDIT = ROOT / "audits/database_alignment/draw_2020_full_pdf_reconstruction_20260902"
-MARKER = "OFFICIAL_SOURCE_ZERO_APPLICANT_STRUCTURAL_ROW_WITH_DISPLAYED_PERMIT"
+MARKER = "OFFICIAL_SOURCE_TOP_POINT_TOTAL_RATIO_CARRYOVER"
 LEGACY_MARKER = "OFFICIAL_SOURCE_INTERNAL_COUNT_CONFLICT_ZERO_APPLICANTS_WITH_PERMITS"
+PRIOR_MARKER = "OFFICIAL_SOURCE_ZERO_APPLICANT_STRUCTURAL_ROW_WITH_DISPLAYED_PERMIT"
 
 
 def number(value: object) -> int | None:
@@ -58,8 +59,9 @@ def conflicts(rows: list[dict[str, str]]) -> list[dict[str, str]]:
                         "points": row.get("points", ""),
                         "lane": lane,
                         "eligible_applicants": str(applicants),
-                        "total_permits": str(permits),
-                        "success_ratio": row.get(f"{lane}_success_ratio", ""),
+                        "displayed_total_permits": str(permits),
+                        "effective_total_permits": "0",
+                        "displayed_success_ratio": row.get(f"{lane}_success_ratio", ""),
                         "source_file": row.get("source_file", ""),
                         "pdf_page": row.get("pdf_page", ""),
                     }
@@ -75,7 +77,7 @@ def main() -> None:
     args = parser.parse_args()
     fields, rows = read_csv(CANONICAL)
     rows_to_flag = conflicts(rows)
-    audit_path = AUDIT / "official_pdf_internal_count_conflicts.csv"
+    audit_path = AUDIT / "official_pdf_top_point_total_ratio_carryovers.csv"
     audit_path.parent.mkdir(parents=True, exist_ok=True)
     with audit_path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(rows_to_flag[0]) if rows_to_flag else ["line"], lineterminator="\n")
@@ -91,15 +93,38 @@ def main() -> None:
             if not item:
                 continue
             note = str(row.get("qa_notes") or "").strip()
-            note = "|".join(part for part in note.split("|") if part and not part.startswith(LEGACY_MARKER))
-            lane_marker = f"{MARKER}:{item['lane']}"
+            note = "|".join(
+                part
+                for part in note.split("|")
+                if part
+                and not part.startswith(LEGACY_MARKER)
+                and not part.startswith(PRIOR_MARKER)
+                and not part.startswith(MARKER)
+            )
+            lane_marker = (
+                f"{MARKER}:{item['lane']}:points={row.get('points', '')}:"
+                f"displayed_total_permits={item['displayed_total_permits']}:"
+                f"displayed_success_ratio={str(item['displayed_success_ratio']).replace(' ', '')}"
+            )
             if lane_marker not in note.split("|"):
                 row["qa_notes"] = "|".join(part for part in (note, lane_marker) if part)
                 changed_notes += 1
+            row[f"{item['lane']}_total_permits"] = "0"
+            row[f"{item['lane']}_success_ratio"] = "N/A"
             for column in (f"{item['lane']}_p_draw", f"{item['lane']}_p_draw_percent"):
                 if row.get(column, ""):
                     row[column] = ""
                     cleared_probability_cells += 1
+            resident_permits = number(row.get("resident_total_permits")) or 0
+            nonresident_permits = number(row.get("nonresident_total_permits")) or 0
+            total_permits = resident_permits + nonresident_permits
+            total_applicants = (number(row.get("resident_eligible_applicants")) or 0) + (
+                number(row.get("nonresident_eligible_applicants")) or 0
+            )
+            row["total_permits"] = str(total_permits)
+            row["successful_applicants"] = str(total_permits)
+            row["unsuccessful_applicants"] = str(max(0, total_applicants - total_permits))
+            row["collapse_conflict_count"] = "1"
         stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
         backup = AUDIT / "backups" / f"{CANONICAL.stem}.before_internal_count_conflict_flag_{stamp}.csv"
         backup.parent.mkdir(parents=True, exist_ok=True)
@@ -114,7 +139,10 @@ def main() -> None:
         "audit": str(audit_path.relative_to(ROOT)).replace("\\", "/"),
         "applied": args.apply,
     }
-    (AUDIT / "official_pdf_internal_count_conflicts_summary.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    (AUDIT / "official_pdf_top_point_total_ratio_carryovers_summary.json").write_text(
+        json.dumps(report, indent=2) + "\n",
+        encoding="utf-8",
+    )
     print(json.dumps(report, indent=2))
 
 

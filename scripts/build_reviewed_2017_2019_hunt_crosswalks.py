@@ -28,7 +28,7 @@ SOURCES = {
     / "draw_results_2018_for_2019_source_truth_candidate_frozen.csv",
     2019: REBUILD
     / "2019"
-    / "frozen"
+    / "frozen_bear_pursuit_repaired"
     / "draw_results_2019_for_2020_source_truth_candidate_frozen.csv",
 }
 

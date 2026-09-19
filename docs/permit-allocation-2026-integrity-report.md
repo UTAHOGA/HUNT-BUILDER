@@ -1,15 +1,15 @@
 # 2026 Permit Allocation Integrity Report
 
-Generated: 2026-08-29T16:29:16.759Z
+Generated: 2026-09-10T08:23:21.922Z
 Source file used: pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv
 Source label: DATABASE_2026_DWR_APPROVED_PUBLISHED_PERMIT_ALLOCATIONS
 Promotion blockers: 0
 
 ## Status Counts
 
-- FULL_SPLIT: 932
-- TOTAL_ONLY: 227
-- SPECIAL_PERMIT_ONLY: 25
+- FULL_SPLIT: 931
+- TOTAL_ONLY: 226
+- SPECIAL_PERMIT_ONLY: 26
 - NO_QUOTA_PUBLISHED: 665
 - PARTIAL_SPLIT: 0
 
@@ -17,11 +17,11 @@ Promotion blockers: 0
 
 | File | Rows checked | Codes checked | Current mismatches | Blank values preserved | Target-only codes | Database-only codes |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| data/hunt-master-canonical-2026-database-candidate.json | 1471 | 1471 | 0 | 12409 | 0 | 378 |
-| data/hunt-master-canonical-2026-foundation.json | 1471 | 1471 | 0 | 12409 | 0 | 378 |
-| data/hunt-master-canonical-2026-source-of-truth.json | 1471 | 1471 | 0 | 12409 | 0 | 378 |
-| canonical/hunt-planner-2026.json | 1471 | 1471 | 0 | 12409 | 0 | 378 |
-| generated/pages/hunt-planner.json | 1471 | 1471 | 0 | 12409 | 0 | 378 |
+| data/hunt-master-canonical-2026-database-candidate.json | 1471 | 1470 | 0 | 12402 | 1 | 378 |
+| data/hunt-master-canonical-2026-foundation.json | 1471 | 1470 | 0 | 12402 | 1 | 378 |
+| data/hunt-master-canonical-2026-source-of-truth.json | 1471 | 1470 | 0 | 12402 | 1 | 378 |
+| canonical/hunt-planner-2026.json | 1471 | 1470 | 0 | 12402 | 1 | 378 |
+| generated/pages/hunt-planner.json | 1471 | 1470 | 0 | 12402 | 1 | 378 |
 | generated/pages/hunt-research.json | 0 | 0 | 0 | 0 | 0 | 0 |
 
 ## Guardrails

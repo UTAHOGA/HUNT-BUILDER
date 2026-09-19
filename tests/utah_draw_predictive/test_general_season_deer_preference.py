@@ -246,6 +246,8 @@ def test_build_preference_general_deer_predictions_returns_modeled_rows() -> Non
             "hunt_type": "General Season",
             "weapon": "Archery",
             "permits_2026_total": "100",
+            "target_permits_res": "90",
+            "target_permits_nr": "10",
         }
     ]
 
@@ -258,9 +260,62 @@ def test_build_preference_general_deer_predictions_returns_modeled_rows() -> Non
 
     assert rows
     assert all(row["model_strategy"] == MODEL_STRATEGY_NAME for row in rows)
-    assert all(row["preference_model_valid"] == "TRUE" for row in rows)
-    assert all(is_modeled_general_deer_row(row) for row in rows)
-    assert any(float(row["p_draw"]) >= 0.995 for row in rows)
+    resident_rows = [row for row in rows if row["residency"] == "Resident"]
+    assert all(row["preference_model_valid"] == "TRUE" for row in resident_rows)
+    assert all(is_modeled_general_deer_row(row) for row in resident_rows)
+    assert any(float(row["p_draw"]) >= 0.995 for row in resident_rows)
+    nonresident = [row for row in rows if row["residency"] == "Nonresident"]
+    assert len(nonresident) == 1
+    assert nonresident[0]["algorithm_status"] == "WITHHELD_NO_COMPARABLE_SOURCE_HISTORY"
+    assert nonresident[0]["p_draw"] == ""
+
+
+def test_source_native_general_season_deer_pool_is_normalized_for_forecast() -> None:
+    truth_rows = [
+        {
+            "hunt_code": "DB1501",
+            "hunt_name": "Box Elder - Archery",
+            "species": "Deer",
+            "sex_type": "Buck",
+            "hunt_type": "General Season",
+            "hunt_class": "GENERAL_SEASON_DEER",
+            "draw_design": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+            "draw_system_type": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+            "weapon": "Archery",
+            "year": "2025",
+            "draw_pool": "GENERAL_SEASON_DEER",
+            "residency": "Resident",
+            "points": "0",
+            "eligible_applicants": "100",
+            "total_permits": "80",
+        }
+    ]
+    db_rows = [
+        {
+            "hunt_code": "DB1501",
+            "hunt_name": "Box Elder - Archery",
+            "species": "Deer",
+            "sex_type": "Buck",
+            "hunt_type": "General Season",
+            "hunt_class": "GENERAL_SEASON_DEER",
+            "draw_system_type": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+            "weapon": "Archery",
+            "permits_2026_total": "100",
+            "target_permits_res": "90",
+            "target_permits_nr": "10",
+        }
+    ]
+
+    rows = build_preference_general_deer_predictions(
+        truth_rows=truth_rows,
+        db_rows=db_rows,
+        forecast_year=2026,
+        history_years=[2025],
+    )
+
+    assert rows
+    assert {row["draw_pool"] for row in rows} == {"adult_general_deer"}
+    assert all(row["model_strategy"] == MODEL_STRATEGY_NAME for row in rows)
 
 
 def test_general_season_deer_emits_structural_zero_point_rows() -> None:
@@ -305,6 +360,8 @@ def test_general_season_deer_emits_structural_zero_point_rows() -> None:
             "hunt_type": "General Season",
             "weapon": "Archery",
             "permits_2026_total": "100",
+            "target_permits_res": "90",
+            "target_permits_nr": "10",
         }
     ]
 
@@ -368,6 +425,8 @@ def test_duplicate_general_deer_ladder_keys_are_aggregated_before_forecast() -> 
             "hunt_type": "General Season",
             "weapon": "Archery",
             "permits_2026_total": "50",
+            "target_permits_res": "45",
+            "target_permits_nr": "5",
         }
     ]
 

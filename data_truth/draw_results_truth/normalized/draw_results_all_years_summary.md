@@ -4,7 +4,7 @@ This validation layer finalizes the cumulative draw-results truth table without 
 
 ## Validation
 
-- Rows: 338802
+- Rows: 339096
 - Unique draw years: 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026
 - Unique hunt codes: 1542
 - Source audit rows: 218
@@ -20,7 +20,7 @@ This validation layer finalizes the cumulative draw-results truth table without 
 - 2017: 26330
 - 2018: 30338
 - 2019: 33478
-- 2020: 33069
+- 2020: 33363
 - 2021: 33788
 - 2022: 34876
 - 2023: 32794

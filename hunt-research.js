@@ -452,7 +452,23 @@
 
   function getCertificationDisplayStatus(row) {
     const status = String(row?.prediction_certification_status || '').trim();
-    if (!status || status === 'CERTIFIED') return null;
+    if (status === 'CERTIFIED' && getCertificationGatedOdds(row)?.percent === null) {
+      return {
+        badge: 'Insufficient evidence',
+        pointStatus: 'Insufficient evidence — prediction withheld',
+        message: 'The draw family is certified, but this hunt, residency and point level does not have a supported forecast. No future probability is displayed.',
+        className: 'is-yellow',
+      };
+    }
+    if (!status) {
+      return {
+        badge: 'Insufficient evidence',
+        pointStatus: 'Insufficient evidence — prediction withheld',
+        message: 'This hunt, residency and point level has no verified certification record. No future probability is displayed.',
+        className: 'is-yellow',
+      };
+    }
+    if (status === 'CERTIFIED') return null;
     if (status === 'EXPERIMENTAL_NOT_CERTIFIED') {
       return {
         badge: 'Experimental',
@@ -759,9 +775,18 @@
 
   function buildRuntimeRowsFromSplitDetail(detail) {
     const summaryRows = splitDetailSummaryRows(detail);
+    const directLadderRows = Array.isArray(detail?.research_ladder_rows)
+      ? detail.research_ladder_rows.map((row) => ({
+        ...detail,
+        ...row,
+        hunt_code: normalizeKey(row?.hunt_code || detail?.hunt_code),
+        residency: normalizeResidencyLabel(row?.residency),
+        draw_pool: normalizeDrawPool(row?.draw_pool),
+      }))
+      : [];
     const bonusRows = buildBonusRowsFromSplitDetail(detail);
-    const engineRows = bonusRows.length ? bonusRows : summaryRows;
-    const ladderRows = bonusRows.length ? bonusRows : summaryRows;
+    const engineRows = directLadderRows.length ? directLadderRows : (bonusRows.length ? bonusRows : summaryRows);
+    const ladderRows = directLadderRows.length ? directLadderRows : (bonusRows.length ? bonusRows : summaryRows);
     const residencies = new Set(summaryRows.map((row) => normalizeResidencyLabel(row.residency)));
     if (!residencies.size) residencies.add('Resident');
     const identityRows = Array.from(residencies).map((residency) => splitDetailIdentityRow(detail, residency));
@@ -2432,12 +2457,14 @@
       ...detail,
       split_runtime_source: source,
     });
-    const ladderRows = state.ladderRows.length ? state.ladderRows : runtimeRows.ladderRows;
+    const keepOtherHunts = (rows) => rows.filter((row) => normalizeKey(row?.hunt_code) !== huntCode);
+    const engineRows = [...keepOtherHunts(state.engineRows), ...runtimeRows.engineRows];
+    const ladderRows = [...keepOtherHunts(state.ladderRows), ...runtimeRows.ladderRows];
     indexData(
-      runtimeRows.engineRows,
+      engineRows,
       ladderRows,
-      runtimeRows.masterRows,
-      runtimeRows.referenceRows
+      [...keepOtherHunts(state.masterRows), ...runtimeRows.masterRows],
+      [...keepOtherHunts(state.referenceRows), ...runtimeRows.referenceRows]
     );
     state.loadedSplitDetails.add(huntCode);
     state.splitDetailByCode.set(huntCode, detail);
@@ -2519,14 +2546,13 @@
       try {
         if (USE_SPLIT_CANONICAL_CONTRACT) {
           try {
-            const [summary, splitIndex, ladder] = await Promise.all([
+            const [summary, splitIndex] = await Promise.all([
               loadFirstAvailable(CANONICAL_SUMMARY_SOURCES),
               loadFirstAvailable(SPLIT_INDEX_SOURCES),
-              loadFirstAvailable(LADDER_SOURCES),
             ]);
             const summaryRows = parseJsonRows(summary.text);
             const splitIndexRows = parseJsonRows(splitIndex.text);
-            const ladderRows = parseCsv(ladder.text);
+            const ladderRows = [];
             state.splitIndexByCode.clear();
             splitIndexRows.forEach((row) => {
               const huntCode = normalizeKey(row?.hunt_code);
@@ -2549,7 +2575,7 @@
               canonicalRows: summaryRows.length,
               summaryRows: summaryRows.length,
               engine: 'canonical_summary_contract',
-              ladder: ladder.source,
+              ladder: 'lazy_per_hunt_split_detail',
               ladderRows: ladderRows.length,
               master: 'split_index_contract',
               reference: 'split_index_contract',

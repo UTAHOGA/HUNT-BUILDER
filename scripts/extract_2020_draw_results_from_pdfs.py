@@ -45,6 +45,7 @@ YEAR_CONFIGS = {
             ("official_dwr_archive/turkey/2017_turkey_bonus_points_and_draw_results.pdf", "TURKEY", "BONUS"),
         ],
         "sportsman_file": "official_dwr_archive/big_game/2017_sportsman_odds.pdf",
+        "sportsman_expected_rows": 11,
     },
     2018: {
         "target_year": 2019,
@@ -65,6 +66,7 @@ YEAR_CONFIGS = {
             ("official_dwr_archive/turkey/2018_turkey_bonus_points.pdf", "TURKEY", "BONUS"),
         ],
         "sportsman_file": "18-19_sportsman_odds.pdf",
+        "sportsman_expected_rows": 11,
     },
     2019: {
         "target_year": 2020,
@@ -86,24 +88,139 @@ YEAR_CONFIGS = {
             ("official_dwr_archive/turkey/2019_youth_turkey_bonus_points.pdf", "YOUTH_TURKEY", "BONUS"),
         ],
         "sportsman_file": "official_dwr_archive/big_game/19-20_sportsman_odds.pdf",
+        "sportsman_expected_rows": 11,
     },
     2020: {
         "target_year": 2021,
         "sources": [
-            ("20_bg-odds.pdf", "BIG_GAME", "BONUS"),
-            ("20_antlerless_drawing_odds_report.pdf", "ANTLERLESS", "PREFERENCE"),
-            ("20_deer_odds.pdf", "GENERAL_SEASON_DEER", "PREFERENCE"),
-            ("20_dh_odds.pdf", "DEDICATED_HUNTER", "PREFERENCE"),
-            ("20_lifetime_deer.pdf", "LIFETIME_GENERAL_SEASON_DEER", "REFERENCE"),
-            ("20_youth_antlerless_drawing_odds_report.pdf", "YOUTH_ANTLERLESS", "PREFERENCE"),
-            ("20_youth_bull_elk.pdf", "YOUTH_ANY_BULL_ELK", "RANDOM_ONLY"),
-            ("20_youth_deer.pdf", "YOUTH_GENERAL_SEASON_DEER", "PREFERENCE"),
-            ("20_youth_dh_odds.pdf", "YOUTH_DEDICATED_HUNTER", "PREFERENCE"),
-            ("5213601e__turkey_2020_turkey_bonus_points_draw_results.pdf", "TURKEY", "BONUS"),
-            ("68991b97__turkey_2020_youth_turkey_draw_results.pdf", "YOUTH_TURKEY", "BONUS"),
-            ("97ffae94__black_bear_20_drawing_odds.pdf", "BLACK_BEAR", "BONUS"),
+            ("official_dwr_archive/big_game/20_bg-odds.pdf", "BIG_GAME", "BONUS"),
+            ("official_dwr_archive/big_game_antlerless/20_antlerless_drawing_odds_report.pdf", "ANTLERLESS", "PREFERENCE"),
+            ("official_dwr_archive/big_game/20_deer_odds.pdf", "GENERAL_SEASON_DEER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/20_dh_odds.pdf", "DEDICATED_HUNTER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/20_lifetime_deer.pdf", "LIFETIME_GENERAL_SEASON_DEER", "REFERENCE"),
+            ("official_dwr_archive/big_game_antlerless/20_youth_antlerless_drawing_odds_report.pdf", "YOUTH_ANTLERLESS", "PREFERENCE"),
+            ("official_dwr_archive/big_game/20_youth_bull_elk.pdf", "YOUTH_ANY_BULL_ELK", "RANDOM_ONLY"),
+            ("official_dwr_archive/big_game/20_youth_deer.pdf", "YOUTH_GENERAL_SEASON_DEER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/20_youth_dh_odds.pdf", "YOUTH_DEDICATED_HUNTER", "PREFERENCE"),
+            ("official_dwr_archive/black_bear/20_drawing_odds.pdf", "BLACK_BEAR", "BONUS"),
+            # The 2020-21 Cougar drawing closed in December 2020 and DWR
+            # generated its result tables on 2021-01-20.  The printed draw
+            # cycle, not the filename's ending year, assigns it to draw 2020.
+            ("official_dwr_archive/cougar/2021_cougar_odds_report.pdf", "COUGAR", "BONUS"),
+            ("official_dwr_archive/turkey/2020_turkey_bonus_points_draw_results.pdf", "TURKEY", "BONUS"),
+            ("official_dwr_archive/turkey/2020_youth_turkey_draw_results.pdf", "YOUTH_TURKEY", "BONUS"),
         ],
-        "sportsman_file": "20-21_sportsman_odds.pdf",
+        "sportsman_file": "official_dwr_archive/big_game/20-21_sportsman_odds.pdf",
+        "sportsman_expected_rows": 11,
+    },
+    2021: {
+        "target_year": 2022,
+        "sources": [
+            ("official_dwr_archive/big_game/21_bg-odds.pdf", "BIG_GAME", "BONUS"),
+            ("official_dwr_archive/big_game_antlerless/21_antlerless_drawing_odds_report.pdf", "ANTLERLESS", "PREFERENCE"),
+            ("official_dwr_archive/big_game/21_deer_odds.pdf", "GENERAL_SEASON_DEER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/21_dh_odds.pdf", "DEDICATED_HUNTER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/21_lifetime_deer.pdf", "LIFETIME_GENERAL_SEASON_DEER", "REFERENCE"),
+            ("official_dwr_archive/big_game_antlerless/21_youth_antlerless_drawing_odds_report.pdf", "YOUTH_ANTLERLESS", "PREFERENCE"),
+            ("official_dwr_archive/big_game/21_youth_bull_elk.pdf", "YOUTH_ANY_BULL_ELK", "RANDOM_ONLY"),
+            ("official_dwr_archive/big_game/21_youth_deer.pdf", "YOUTH_GENERAL_SEASON_DEER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/21_youth_dh_odds.pdf", "YOUTH_DEDICATED_HUNTER", "PREFERENCE"),
+            ("official_dwr_archive/black_bear/21_drawing_odds.pdf", "BLACK_BEAR", "BONUS"),
+            # DWR labels the upcoming Cougar season by its ending year; the
+            # 2021-22 report was drawn in October 2021.
+            ("official_dwr_archive/cougar/2022_cougar_odds_report.pdf", "COUGAR", "BONUS"),
+            ("official_dwr_archive/turkey/2021_turkey_bonus_points_draw_results.pdf", "TURKEY", "BONUS"),
+            ("official_dwr_archive/turkey/2021_youth_turkey_draw_results.pdf", "YOUTH_TURKEY", "BONUS"),
+        ],
+        "sportsman_file": "official_dwr_archive/big_game/21-22_sportsman_odds.pdf",
+        # DWR offered a documented, one-time second Sportsman Cougar permit
+        # (CG9999), so this report has one more official row than prior years.
+        "sportsman_expected_rows": 12,
+    },
+    2022: {
+        "target_year": 2023,
+        "sources": [
+            ("official_dwr_archive/big_game/22_bg-odds.pdf", "BIG_GAME", "BONUS"),
+            ("official_dwr_archive/big_game_antlerless/22_antlerless_drawing_odds_report.pdf", "ANTLERLESS", "PREFERENCE"),
+            ("official_dwr_archive/big_game/22_deer_odds.pdf", "GENERAL_SEASON_DEER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/22_dh_odds.pdf", "DEDICATED_HUNTER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/22_lifetime_deer.pdf", "LIFETIME_GENERAL_SEASON_DEER", "REFERENCE"),
+            ("official_dwr_archive/big_game_antlerless/22_youth_antlerless_drawing_odds_report.pdf", "YOUTH_ANTLERLESS", "PREFERENCE"),
+            ("official_dwr_archive/big_game/22_youth_bull_elk.pdf", "YOUTH_ANY_BULL_ELK", "RANDOM_ONLY"),
+            ("official_dwr_archive/big_game/22_youth_deer.pdf", "YOUTH_GENERAL_SEASON_DEER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/22_youth_dh_odds.pdf", "YOUTH_DEDICATED_HUNTER", "PREFERENCE"),
+            ("official_dwr_archive/black_bear/22_drawing_odds.pdf", "BLACK_BEAR", "BONUS"),
+            # The official archive labels Cougar by the ending year of the
+            # 2022-23 season; its drawing belongs to physical draw year 2022.
+            ("official_dwr_archive/cougar/2023_cougar_odds_report.pdf", "COUGAR", "BONUS"),
+            ("official_dwr_archive/turkey/2022_turkey_bonus_points_draw_results.pdf", "TURKEY", "BONUS"),
+            ("official_dwr_archive/turkey/2022_youth_turkey_draw_results.pdf", "YOUTH_TURKEY", "BONUS"),
+        ],
+        "sportsman_file": "official_dwr_archive/big_game/22-23_sportsman_odds.pdf",
+        "sportsman_expected_rows": 11,
+    },
+    2023: {
+        "target_year": 2024,
+        "sources": [
+            ("official_dwr_archive/big_game/23_bg-odds.pdf", "BIG_GAME", "BONUS"),
+            ("official_dwr_archive/big_game_antlerless/23_antlerless_drawing_odds_report.pdf", "ANTLERLESS", "PREFERENCE"),
+            ("official_dwr_archive/big_game/23_deer_odds.pdf", "GENERAL_SEASON_DEER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/23_dh_odds.pdf", "DEDICATED_HUNTER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/23_lifetime_deer.pdf", "LIFETIME_GENERAL_SEASON_DEER", "REFERENCE"),
+            ("official_dwr_archive/big_game_antlerless/23_youth_antlerless_drawing_odds_report.pdf", "YOUTH_ANTLERLESS", "PREFERENCE"),
+            ("official_dwr_archive/big_game/23_youth_elk.pdf", "YOUTH_ANY_BULL_ELK", "RANDOM_ONLY"),
+            ("official_dwr_archive/big_game/23_youth_deer.pdf", "YOUTH_GENERAL_SEASON_DEER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/23_youth_dh_odds.pdf", "YOUTH_DEDICATED_HUNTER", "PREFERENCE"),
+            ("official_dwr_archive/black_bear/23_drawing_odds.pdf", "BLACK_BEAR", "BONUS"),
+            # Cougar became an open-season program in 2023. The archived
+            # 2023-named PDF belongs to the 2022-23 draw and is not 2023 truth.
+            ("official_dwr_archive/turkey/2023_turkey_bonus_points_draw_results.pdf", "TURKEY", "BONUS"),
+            ("official_dwr_archive/turkey/2023_youth_turkey_draw_results.pdf", "YOUTH_TURKEY", "BONUS"),
+        ],
+        "sportsman_file": "official_dwr_archive/big_game/23-24_sportsman_odds.pdf",
+        # Cougar left both the limited-entry draw and Sportsman table.
+        "sportsman_expected_rows": 10,
+    },
+    2024: {
+        "target_year": 2025,
+        "sources": [
+            ("official_dwr_archive/big_game/24_bg-odds.pdf", "BIG_GAME", "BONUS"),
+            ("official_dwr_archive/big_game_antlerless/24_antlerless_drawing_odds_report.pdf", "ANTLERLESS", "PREFERENCE"),
+            ("official_dwr_archive/big_game/24_deer_odds.pdf", "GENERAL_SEASON_DEER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/24_dh_odds.pdf", "DEDICATED_HUNTER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/24_lifetime_deer.pdf", "LIFETIME_GENERAL_SEASON_DEER", "REFERENCE"),
+            ("official_dwr_archive/big_game_antlerless/24_youth_antlerless_drawing_odds_report.pdf", "YOUTH_ANTLERLESS", "PREFERENCE"),
+            ("official_dwr_archive/big_game/24_youth_elk.pdf", "YOUTH_ANY_BULL_ELK", "RANDOM_ONLY"),
+            ("official_dwr_archive/big_game/24_youth_deer.pdf", "YOUTH_GENERAL_SEASON_DEER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/24_youth_dh_odds.pdf", "YOUTH_DEDICATED_HUNTER", "PREFERENCE"),
+            ("official_dwr_archive/black_bear/24_drawing_odds.pdf", "BLACK_BEAR", "BONUS"),
+            ("official_dwr_archive/turkey/2024_turkey_bonus_points_draw_results.pdf", "TURKEY", "BONUS"),
+            ("official_dwr_archive/turkey/2024_youth_turkey_draw_results.pdf", "YOUTH_TURKEY", "BONUS"),
+        ],
+        "sportsman_file": "official_dwr_archive/big_game/24-25_sportsman_odds.pdf",
+        "sportsman_expected_rows": 10,
+    },
+    2025: {
+        "target_year": 2026,
+        "sources": [
+            ("official_dwr_archive/big_game/25_bg-odds.pdf", "BIG_GAME", "BONUS"),
+            ("official_dwr_archive/big_game_antlerless/25_antlerless_drawing_odds_report.pdf", "ANTLERLESS", "PREFERENCE"),
+            ("official_dwr_archive/big_game/25_deer_odds.pdf", "GENERAL_SEASON_DEER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/25_dh_odds.pdf", "DEDICATED_HUNTER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/25_lifetime_deer.pdf", "LIFETIME_GENERAL_SEASON_DEER", "REFERENCE"),
+            ("official_dwr_archive/big_game_antlerless/25_youth_antlerless_drawing_odds_report.pdf", "YOUTH_ANTLERLESS", "PREFERENCE"),
+            ("official_dwr_archive/big_game/25_youth_elk.pdf", "YOUTH_ANY_BULL_ELK", "RANDOM_ONLY"),
+            ("official_dwr_archive/big_game/25_youth_deer.pdf", "YOUTH_GENERAL_SEASON_DEER", "PREFERENCE"),
+            ("official_dwr_archive/big_game/25_youth_dh_odds.pdf", "YOUTH_DEDICATED_HUNTER", "PREFERENCE"),
+            ("official_dwr_archive/black_bear/25_drawing_odds.pdf", "BLACK_BEAR", "BONUS"),
+            ("official_dwr_archive/turkey/2025_turkey_bonus_points_draw_results.pdf", "TURKEY", "BONUS"),
+            ("official_dwr_archive/turkey/2025_youth_turkey_draw_results.pdf", "YOUTH_TURKEY", "BONUS"),
+        ],
+        # DWR's static 2025 archive does not publish a Sportsman report. The
+        # separately retained online 2026 Sportsman rows are not a PDF source
+        # and therefore remain outside this source-only PDF reconstruction.
+        "sportsman_file": None,
+        "sportsman_expected_rows": 0,
     },
 }
 
@@ -115,6 +232,7 @@ SUMMARY = VALIDATION / "draw_results_2020_for_2021_pdf_extraction_summary.json"
 UNPARSED = VALIDATION / "draw_results_2020_for_2021_pdf_unparsed_hunt_pages.csv"
 SOURCE_CONFIGS = YEAR_CONFIGS[REPORT_YEAR]["sources"]
 SPORTSMAN_FILE = YEAR_CONFIGS[REPORT_YEAR]["sportsman_file"]
+SPORTSMAN_EXPECTED_ROWS = YEAR_CONFIGS[REPORT_YEAR]["sportsman_expected_rows"]
 
 
 def resolve_source_path(source_file: str) -> Path:
@@ -140,7 +258,7 @@ def resolve_source_path(source_file: str) -> Path:
 
 def configure_report_year(report_year: int) -> None:
     """Switch all lineage paths and labels together for a supported report year."""
-    global REPORT_YEAR, MODEL_TARGET_YEAR, PDF_ROOT, CANONICAL, SUMMARY, UNPARSED, SOURCE_CONFIGS, SPORTSMAN_FILE
+    global REPORT_YEAR, MODEL_TARGET_YEAR, PDF_ROOT, CANONICAL, SUMMARY, UNPARSED, SOURCE_CONFIGS, SPORTSMAN_FILE, SPORTSMAN_EXPECTED_ROWS
     config = YEAR_CONFIGS[report_year]
     REPORT_YEAR = report_year
     MODEL_TARGET_YEAR = config["target_year"]
@@ -151,6 +269,7 @@ def configure_report_year(report_year: int) -> None:
     UNPARSED = VALIDATION / f"draw_results_{pair}_pdf_unparsed_hunt_pages.csv"
     SOURCE_CONFIGS = config["sources"]
     SPORTSMAN_FILE = config["sportsman_file"]
+    SPORTSMAN_EXPECTED_ROWS = config["sportsman_expected_rows"]
 
 
 HEADER = [
@@ -241,6 +360,43 @@ def count_backed_probability(applicants: object, permits: object, success_ratio:
         # source text but cannot establish actual draw odds.
         return "", ""
     return ratio_probability(success_ratio)
+
+
+DISPLAY_CARRYOVER_MARKER = "OFFICIAL_SOURCE_TOP_POINT_TOTAL_RATIO_CARRYOVER"
+
+
+def normalize_zero_applicant_display_carryover(
+    *,
+    lane: str,
+    points: str,
+    applicants: str,
+    bonus_permits: str,
+    regular_permits: str,
+    total_permits: str,
+    success_ratio: str,
+) -> tuple[str, str, str]:
+    """Keep DWR's displayed cells in lineage without treating them as awards.
+
+    Some 2020 antlerless tables repeat the next lower point row's total-permit
+    and success-ratio display cells on an empty top point row.  The component
+    award columns remain zero.  Canonical effective permits must therefore use
+    the component columns while the anomalous printed cells stay auditable.
+    """
+    if not points:
+        return total_permits, success_ratio, ""
+    if not (
+        number(applicants) == 0
+        and number(bonus_permits) == 0
+        and number(regular_permits) == 0
+        and (number(total_permits) or 0) > 0
+    ):
+        return total_permits, success_ratio, ""
+    displayed_ratio = clean(success_ratio).replace(" ", "")
+    note = (
+        f"{DISPLAY_CARRYOVER_MARKER}:{lane}:points={points}:"
+        f"displayed_total_permits={total_permits}:displayed_success_ratio={displayed_ratio}"
+    )
+    return "0", "N/A", note
 
 
 def combine_total(left: object, right: object) -> str:
@@ -429,25 +585,27 @@ def metadata_from_page(page: pymupdf.Page, scope: str) -> tuple[str, str] | None
     # The 2018 antlerless PDFs place ``Hunt:`` and the code in one block but
     # print the hunt name as the separate first block. Retain that exact
     # geometry rather than treating the page as a missing result.
-    for _, hunt_y, _, _, block_text, *_ in blocks:
+    for hunt_index, (*_, block_text, _block_no, _block_type) in enumerate(blocks):
         if "HUNT:" not in block_text.upper():
             continue
         codes = CODE_RE.findall(block_text)
         if len(set(codes)) != 1:
             continue
         candidates = []
-        for _, candidate_y, _, _, candidate_text, *_ in blocks:
+        for candidate_index, (*_, candidate_text, _candidate_block_no, _candidate_block_type) in enumerate(blocks):
+            if candidate_index >= hunt_index:
+                continue
             candidate = clean(candidate_text)
             upper = candidate.upper()
             if (
                 candidate
-                and candidate_y <= hunt_y
+                and re.search(r"[A-Z]{3}", upper)
                 and "HUNT:" not in upper
-                and "UTAH DIVISION" not in upper
-                and "DRAW" not in upper
-                and "PAGE" not in upper
+                and not upper.startswith("UTAH DIVISION")
+                and not re.match(r"^\d{4}\s+DRAW\b", upper)
+                and not re.match(r"^\d{2}/\d{2}/\d{4}\b", upper)
             ):
-                candidates.append((candidate_y, candidate))
+                candidates.append((candidate_index, candidate))
         if candidates:
             return codes[0].upper(), clean_hunt_name(sorted(candidates)[0][1])
 
@@ -499,6 +657,25 @@ def build_row(
         points = ""
         r_apps, r_bonus, r_regular, r_total, r_ratio = left
         n_apps, n_bonus, n_regular, n_total, n_ratio = right
+    r_total, r_ratio, r_carryover_note = normalize_zero_applicant_display_carryover(
+        lane="resident",
+        points=points,
+        applicants=r_apps,
+        bonus_permits=r_bonus,
+        regular_permits=r_regular,
+        total_permits=r_total,
+        success_ratio=r_ratio,
+    )
+    n_total, n_ratio, n_carryover_note = normalize_zero_applicant_display_carryover(
+        lane="nonresident",
+        points=points,
+        applicants=n_apps,
+        bonus_permits=n_bonus,
+        regular_permits=n_regular,
+        total_permits=n_total,
+        success_ratio=n_ratio,
+    )
+    carryover_notes = [note for note in (r_carryover_note, n_carryover_note) if note]
     hunt_class, hunt_type, draw_design, algorithm_status = classify(scope, code, name)
     r_probability, r_percent = count_backed_probability(r_apps, r_total, r_ratio)
     n_probability, n_percent = count_backed_probability(n_apps, n_total, n_ratio)
@@ -530,9 +707,10 @@ def build_row(
             "source_pdf": source_file, "pdf_page": str(page_number), "official_page": str(page_number),
             "page_kind": "HUNT_PAGE", "source_dataset": f"DWR_{REPORT_YEAR}_DRAW_RESULTS_PDF",
             "extraction_status": "OK", "parse_method": "PYMUPDF_FIND_TABLES",
-            "qa_status": "SOURCE_TABLE_PARSED", "algorithm_status": algorithm_status,
+            "qa_status": "SOURCE_TABLE_PARSED", "qa_notes": "|".join(carryover_notes),
+            "algorithm_status": algorithm_status,
             "source_residencies": "nonresident; resident", "source_row_count": "1",
-            "collapse_conflict_count": "0", "candidate_promotion_status": "OFFICIAL_SOURCE_PARSED",
+            "collapse_conflict_count": str(len(carryover_notes)), "candidate_promotion_status": "OFFICIAL_SOURCE_PARSED",
             "draw_system_type": draw_design, "draw_pool": hunt_class,
             "draw_system_type_source": f"{REPORT_YEAR}_OFFICIAL_PDF_SOURCE_SCOPE", "draw_system_type_confidence": "high",
             "metric_scope": "total",
@@ -578,6 +756,10 @@ def extract_hunt_tables() -> tuple[list[dict[str, str]], list[dict[str, str]], d
 
 
 def extract_sportsman() -> list[dict[str, str]]:
+    if SPORTSMAN_FILE is None:
+        if SPORTSMAN_EXPECTED_ROWS != 0:
+            raise ValueError("Sportsman source is absent but a nonzero row count is configured")
+        return []
     path = resolve_source_path(SPORTSMAN_FILE)
     with pdfplumber.open(path) as pdf:
         text = pdf.pages[0].extract_text(x_tolerance=1, y_tolerance=3) or ""
@@ -627,8 +809,8 @@ def extract_sportsman() -> list[dict[str, str]]:
             "draw_system_type_source": f"{REPORT_YEAR}_OFFICIAL_PDF_SOURCE_SCOPE", "draw_system_type_confidence": "high", "metric_scope": "total",
         })
         rows.append(row)
-    if len(rows) != 11:
-        raise ValueError(f"Expected 11 Sportsman rows, parsed {len(rows)}")
+    if len(rows) != SPORTSMAN_EXPECTED_ROWS:
+        raise ValueError(f"Expected {SPORTSMAN_EXPECTED_ROWS} Sportsman rows, parsed {len(rows)}")
     return rows
 
 
@@ -678,7 +860,9 @@ def main() -> int:
     source_hashes_before = {
         source_file: source_hash(resolve_source_path(source_file))
         for source_file, _, _ in SOURCE_CONFIGS
-    } | {SPORTSMAN_FILE: source_hash(resolve_source_path(SPORTSMAN_FILE))}
+    }
+    if SPORTSMAN_FILE is not None:
+        source_hashes_before[SPORTSMAN_FILE] = source_hash(resolve_source_path(SPORTSMAN_FILE))
     rows, unparsed, source_stats = extract_hunt_tables()
     sportsman = extract_sportsman()
     rows.extend(sportsman)
@@ -688,7 +872,9 @@ def main() -> int:
     source_hashes_after = {
         source_file: source_hash(resolve_source_path(source_file))
         for source_file, _, _ in SOURCE_CONFIGS
-    } | {SPORTSMAN_FILE: source_hash(resolve_source_path(SPORTSMAN_FILE))}
+    }
+    if SPORTSMAN_FILE is not None:
+        source_hashes_after[SPORTSMAN_FILE] = source_hash(resolve_source_path(SPORTSMAN_FILE))
     source_changed_during_extraction = {
         source_file: {"before": source_hashes_before[source_file], "after": source_hashes_after[source_file]}
         for source_file in source_hashes_before
@@ -698,7 +884,7 @@ def main() -> int:
         "artifact": f"draw_results_{REPORT_YEAR}_for_{MODEL_TARGET_YEAR}_canonical_yearly_pdf_extraction",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "write": args.write,
-        "source_pdf_count": len(SOURCE_CONFIGS) + 1,
+        "source_pdf_count": len(SOURCE_CONFIGS) + (1 if SPORTSMAN_FILE is not None else 0),
         "source_sha256": source_hashes_after,
         "source_changed_during_extraction": source_changed_during_extraction,
         "source_stats": source_stats,
@@ -718,6 +904,9 @@ def main() -> int:
         ],
         "unparsed_hunt_page_count": len(unparsed),
         "duplicate_source_row_key_count": duplicate_count,
+        "normalized_top_point_total_ratio_carryover_lane_count": sum(
+            DISPLAY_CARRYOVER_MARKER in row.get("qa_notes", "") for row in rows
+        ),
         "canonical_path": str(CANONICAL.relative_to(ROOT)).replace("\\", "/"),
         "status": "PASS" if not unparsed and not duplicate_count and not source_changed_during_extraction else "BLOCKED",
     }

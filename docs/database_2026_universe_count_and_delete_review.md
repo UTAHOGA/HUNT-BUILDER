@@ -33,9 +33,9 @@ The earlier `1600+` number did not come from the active `DATABASE.csv`; it came 
 
 ## Recommendation
 
-Keep `DATABASE.csv` as truth/reference with retired rows clearly marked. For website/current permit outputs, use the active reconciliation universe instead of physically deleting historical/crosswalk rows.
+Keep `DATABASE.csv` as the current-target identity and permit-reference authority with retired rows clearly marked. It is not historical draw-result truth. For website/current permit outputs, use the active reconciliation universe instead of physically deleting historical/crosswalk rows.
 
-If you later want a current-only file, generate a derived export that excludes `RETIRED_REFERENCE_ROW` rows rather than deleting them from the truth database.
+If you later want a current-only file, generate a derived export that excludes `RETIRED_REFERENCE_ROW` rows rather than deleting them from the current-target reference database.
 
 ## Outputs
 

@@ -7,6 +7,7 @@ modify canonical truth.
 
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 from collections import Counter, defaultdict
@@ -80,6 +81,10 @@ def expected_endpoint(row: dict[str, str]) -> str:
         "ANTLERLESS_ROCKY_MOUNTAIN_BIGHORN_SHEEP": "2026_antlerless_21_ewe_rocky_mtn_bighorn_sheep.json",
         "YOUTH_ANTLERLESS_ROCKY_MOUNTAIN_BIGHORN_SHEEP": "2026_antlerless_21_ewe_rocky_mtn_bighorn_sheep.json",
         "YOUTH_GENERAL_SEASON_ELK": "2026_big_game_06_draw_only_youth_elk.json",
+        "GENERAL_SEASON_DEER": "2026_big_game_05_general_season_buck_deer.json",
+        "YOUTH_GENERAL_SEASON_DEER": "2026_big_game_05_general_season_buck_deer.json",
+        "DEDICATED_HUNTER": "2026_big_game_32_dedicated_hunter_buck_deer.json",
+        "YOUTH_DEDICATED_HUNTER_DEER": "2026_big_game_32_dedicated_hunter_buck_deer.json",
         "LIMITED_ENTRY_DEER": "2026_big_game_08_limited_entry_buck_deer.json",
         "LIMITED_ENTRY_ELK": "2026_big_game_09_limited_entry_bull_elk.json",
         "LIMITED_ENTRY_PRONGHORN": "2026_big_game_10_limited_entry_buck_pronghorn.json",
@@ -138,14 +143,35 @@ def disposition(row: dict[str, str], status: str) -> str:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--snapshot-csv", type=Path, default=SNAPSHOT)
+    parser.add_argument("--snapshot-dir", type=Path)
+    parser.add_argument("--planner-csv", type=Path, default=PLANNER)
+    parser.add_argument("--output-dir", type=Path, default=OUT_DIR)
+    args = parser.parse_args()
+
+    if args.snapshot_dir:
+        snapshot_files = sorted(
+            path
+            for path in args.snapshot_dir.resolve().glob("*.csv")
+            if path.name != "2026_sportsman_all.csv"
+        )
+    else:
+        snapshot_files = [args.snapshot_csv.resolve()]
+    if not snapshot_files:
+        raise FileNotFoundError("No UtahDraws snapshot CSV files were found")
+
     raw_index: dict[tuple[tuple[str, str, str], str], list[dict[str, str]]] = defaultdict(list)
-    for raw in read_csv(SNAPSHOT):
-        raw_index[(identity(raw.get("HuntCode"), raw.get("residency_label"), raw.get("Point")), clean(raw.get("source_json_file")))].append(raw)
-    planner_index = {
-        clean(row.get("hunt_code")).upper(): row
-        for row in read_csv(PLANNER)
-        if clean(row.get("fetch_status")) == "OK"
-    }
+    for snapshot_file in snapshot_files:
+        for raw in read_csv(snapshot_file):
+            raw_index[(identity(raw.get("HuntCode"), raw.get("residency_label"), raw.get("Point")), clean(raw.get("source_json_file")))].append(raw)
+    planner_index = {}
+    if args.planner_csv.exists():
+        planner_index = {
+            clean(row.get("hunt_code")).upper(): row
+            for row in read_csv(args.planner_csv)
+            if clean(row.get("fetch_status")) == "OK"
+        }
 
     output: list[dict[str, str]] = []
     for canonical in read_csv(CANONICAL):
@@ -185,8 +211,11 @@ def main() -> None:
         })
 
     fields = list(output[0]) if output else []
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
-    with OUT_CSV.open("w", encoding="utf-8", newline="") as handle:
+    output_dir = args.output_dir.resolve()
+    output_csv = output_dir / OUT_CSV.name
+    output_json = output_dir / OUT_JSON.name
+    output_dir.mkdir(parents=True, exist_ok=True)
+    with output_csv.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields)
         writer.writeheader()
         writer.writerows(output)
@@ -198,9 +227,11 @@ def main() -> None:
         "planner_context_counts": dict(sorted(Counter(row["planner_context_status"] for row in output).items())),
         "comparison_identity": "hunt_code + residency + point + exact expected UtahDraws endpoint package",
         "sportsman_point_policy": "Blank canonical Sportsman point maps to the endpoint's zero-point source convention.",
-        "output_csv": OUT_CSV.relative_to(ROOT).as_posix(),
+        "snapshot_files": [str(path.relative_to(ROOT)).replace("\\", "/") for path in snapshot_files],
+        "planner_context_available": args.planner_csv.exists(),
+        "output_csv": str(output_csv.relative_to(ROOT)).replace("\\", "/"),
     }
-    OUT_JSON.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
+    output_json.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(summary, indent=2))
 
 

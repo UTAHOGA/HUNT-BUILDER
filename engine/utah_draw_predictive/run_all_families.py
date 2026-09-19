@@ -360,14 +360,14 @@ def _source_file_route(row: Mapping[str, object]) -> dict[str, str]:
         return route("cougar", "COUGAR", "COUGAR", "cougar")
     if "youth_any_bull_elk" in compact:
         return route("youth_draw", "YOUTH_ANY_BULL_ELK", "YOUTH_GENERAL_ANY_BULL_ELK", "youth_general_any_bull_elk")
-    if "youth_d_h_deer" in compact or "youth_dedicated_hunter_deer" in compact:
+    if "youth_d_h_deer" in compact or "youth_dh_odds" in compact or "youth_dedicated_hunter_deer" in compact:
         return route(
             "dedicated_hunter",
             "YOUTH_DEDICATED_HUNTER_DEER",
             "PREFERENCE_DEDICATED_HUNTER_DEER",
             "youth_dedicated_hunter",
         )
-    if "d_h_deer" in compact or "dedicated_hunter_deer" in compact:
+    if "d_h_deer" in compact or re.search(r"(?:^|_)dh_odds_pdf$", compact) or "dedicated_hunter_deer" in compact:
         return route("dedicated_hunter", "DEDICATED_HUNTER_DEER", "PREFERENCE_DEDICATED_HUNTER_DEER", "dedicated_hunter")
     if "youth_g_s_deer" in compact or "youth_general_deer" in compact:
         return route("youth_draw", "YOUTH_GENERAL_SEASON_DEER", "PREFERENCE_GENERAL_SEASON_BUCK_DEER", "youth_general_deer")
@@ -2078,25 +2078,52 @@ def _write_duplicate_official_score_key_v2_report(audit_dir: Path, report: Mappi
     markdown_path.write_text("\n".join(md_lines) + "\n", encoding="utf-8")
 
 
-def _aggregate_target_permits(rows: Sequence[Mapping[str, object]]) -> dict[tuple[str, str, str], dict[str, float]]:
+def _aggregate_target_permits(
+    rows: Sequence[Mapping[str, object]], source_year: int | None = None,
+) -> dict[tuple[str, str, str], dict[str, float]]:
+    """Sum source-year point awards once, never add the printed hunt total.
+
+    This is a labeled historical winner-count proxy, not a current quota.
+    Canonicals may contain both the total and its component point rows, and
+    either collapsed R/NR columns or explicit residency rows. Neither format
+    permits counting an award twice. Current allocations use their own source.
+    """
     aggregates: dict[tuple[str, str, str], dict[str, float]] = {}
-    seen_point_rows: set[tuple[str, str, str, str]] = set()
+    seen_lanes: dict[tuple[str, str, str, int, str], float] = {}
     for row in rows:
+        if source_year is not None and _row_year(row) != source_year:
+            continue
         family = _family_for_legacy_row(row)
         hunt_code = _clean(row.get("hunt_code")).upper()
         draw_pool = _effective_draw_pool_for_family(row, family)
-        points = _clean(row.get("points"))
-        if not family or not hunt_code or (family, hunt_code, draw_pool, points) in seen_point_rows:
+        point_text = _clean(row.get("points"))
+        if not point_text.isdigit():
             continue
-        seen_point_rows.add((family, hunt_code, draw_pool, points))
+        point = int(point_text)
+        if not family or not hunt_code:
+            continue
         key = (family, hunt_code, draw_pool)
         aggregate = aggregates.setdefault(key, {"res": 0.0, "nr": 0.0, "total": 0.0})
-        res = _best_number(row, "resident_regular_permits", "resident_total_permits")
-        nr = _best_number(row, "nonresident_regular_permits", "nonresident_total_permits")
-        total = _best_number(row, "total_regular_permits", "total_permits")
-        aggregate["res"] += res
-        aggregate["nr"] += nr
-        aggregate["total"] += total if total > 0 else res + nr
+        scope = _metric_scope_for_residency(row.get("residency"))
+        if scope in {"resident", "nonresident"}:
+            values = [("res" if scope == "resident" else "nr",
+                       _best_number(row, "total_permits", "regular_permits", f"{scope}_total_permits"))]
+        elif any(_clean(row.get(f"{lane}_total_permits") or row.get(f"{lane}_regular_permits"))
+                 for lane in ("resident", "nonresident")):
+            values = [("res", _best_number(row, "resident_total_permits", "resident_regular_permits")),
+                      ("nr", _best_number(row, "nonresident_total_permits", "nonresident_regular_permits"))]
+        else:
+            values = [("total", _best_number(row, "total_permits", "total_regular_permits"))]
+        for lane, count in values:
+            lane_key = (*key, int(point), lane)
+            if lane_key in seen_lanes:
+                if seen_lanes[lane_key] != count:
+                    raise ValueError(f"Conflicting source permit outcomes for {lane_key}")
+                continue
+            seen_lanes[lane_key] = count
+            aggregate[lane] += count
+            if lane != "total":
+                aggregate["total"] += count
     return aggregates
 
 
@@ -2105,7 +2132,7 @@ def _with_historical_target_metadata(
     source_year: int,
     target_year: int,
 ) -> list[dict[str, object]]:
-    aggregates = _aggregate_target_permits(rows)
+    aggregates = _aggregate_target_permits(rows, source_year)
     enriched: list[dict[str, object]] = []
     for row in rows:
         item = dict(row)
@@ -2999,6 +3026,13 @@ def run_all_families(
         "history_rows": len(history_rows),
         "runtime_permit_source": runtime_permit_source,
         "runtime_database_rows": len(runtime_db_rows),
+        "historical_truth_authority_gate": {
+            "status": "PASS_SOURCE_YEAR_ONLY" if runtime_permit_source == "source_year_proxy" else "NOT_APPLICABLE_LIVE_CURRENT_TARGET",
+            "historical_database_csv_read_count": 0 if runtime_permit_source == "source_year_proxy" else 1,
+            "historical_draw_truth_path": str(truth_path),
+            "historical_draw_truth_role": "YEARLY_CANONICALS_FROZEN_INTO_DRAW_RESULTS_LONG",
+            "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY",
+        },
         "calibration_applied": bool(enable_antlerless_deer_calibration),
         "calibration_mode": calibration_mode,
         "calibrate_family": calibrate_family,

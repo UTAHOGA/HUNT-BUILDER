@@ -1,0 +1,57 @@
+{
+  "generated_at_utc": "2026-09-10T09:52:30+00:00",
+  "status": "PASS_PROMOTED_2020_OFFICIAL_DRAW_TRUTH",
+  "report_year": 2020,
+  "model_target_year": 2021,
+  "official_source_reconciliation": {
+    "official_pdf_count": 16,
+    "matched_pdf_count": 16,
+    "missing_pdf_count": 0,
+    "hash_mismatch_pdf_count": 0,
+    "total_pages": 1527,
+    "model_source_or_reference_pdf_count": 14,
+    "reference_only_outside_current_model_scope_pdf_count": 2
+  },
+  "canonical_reconciliation": {
+    "prior_rows": 33069,
+    "promoted_rows": 33363,
+    "matched_row_identities": 33069,
+    "missing_prior_row_identities": 0,
+    "new_official_cougar_rows": 294,
+    "unique_hunt_codes": 1028,
+    "point_level_rows": 31904,
+    "hunt_total_rows": 1448,
+    "sportsman_rows": 11,
+    "unparsed_hunt_pages": 0,
+    "duplicate_source_row_keys": 0,
+    "normalized_top_point_total_ratio_carryovers": 7,
+    "carryover_rule": "Point-15 effective permits and successful applicants use zero-valued bonus and regular component columns; duplicated displayed total and ratio cells remain in qa_notes.",
+    "prior_canonical_sha256": "7df9d7aea6ac692d573ddaaefcb2464d38d778855ec3a628dc4ea7ab5280c9c60",
+    "promoted_canonical_sha256": "5570e3bbe94f0d9498f27072dd81bfea6f1701f60c2a628040d0afbafa657ae4"
+  },
+  "long_truth_rebuild": {
+    "prior_sha256": "23da1cb46b521eba252135a45a706ada20b1e6814c7a21d6c0a6fd2ea01fa8df",
+    "promoted_sha256": "5f617a3f27659787987cbe3c3e6ecd0ea92548abf597c62a543ac5287ff649ed",
+    "rows": 339096,
+    "columns": 108,
+    "draw_year_2020_rows": 33363,
+    "strict_ordered_value_parity": true
+  },
+  "guardrails": {
+    "database_2026_changed": false,
+    "official_2026_permit_allotments_changed": false,
+    "prediction_runtime_changed": false,
+    "certification_status_changed": false,
+    "hosted_action": "NONE",
+    "next_report_year_started": false
+  },
+  "evidence": {
+    "source_import_summary": "data_truth/draw_results_truth/raw_inventory/official_draw_source_import_2020_summary.json",
+    "source_import_manifest": "data_truth/draw_results_truth/raw_inventory/official_draw_source_import_2020.json",
+    "source_import_detail": "data_truth/draw_results_truth/raw_inventory/official_draw_source_import_2020.csv",
+    "canonical_extraction_summary": "data_truth/draw_results_truth/validation/draw_results_2020_for_2021_pdf_extraction_summary.json",
+    "source_parity_summary": "data_truth/draw_results_truth/validation/draw_2020_for_2021_source_parity_summary.json",
+    "source_carryover_detail": "audits/database_alignment/draw_2020_full_pdf_reconstruction_20260902/official_pdf_top_point_total_ratio_carryovers.csv",
+    "long_truth_freeze": "data_truth/draw_results_truth/validation/draw_results_long_canonical_freeze_2017_2026.json"
+  }
+}

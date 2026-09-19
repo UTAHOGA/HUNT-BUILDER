@@ -14,7 +14,7 @@ from typing import Mapping
 from engine.utah_draw_predictive import append_reason_codes
 from engine.utah_draw_predictive.classifier import sanitize_modeled_probability_fields
 from engine.utah_draw_predictive.certification import annotate_prediction_rows, load_registry
-from engine.utah.current_year_allotments import apply_current_year_allotments_to_rows
+from engine.utah.current_year_allotments import apply_current_year_allotments_to_rows, apply_official_general_deer_regular_quotas
 from engine.utah_draw_predictive.bear import (
     BEAR_DRAW_SYSTEM_TYPE,
     CONSERVATION_OR_NON_PUBLIC,
@@ -130,10 +130,13 @@ def expand_collapsed_truth_rows_for_engine(rows: list[dict[str, str]]) -> list[d
                 continue
             out = dict(row)
             out["residency"] = residency
+            out["metric_scope"] = prefix
             out["eligible_applicants"] = _clean_cell(row.get(f"{prefix}_eligible_applicants"))
             out["bonus_permits"] = _clean_cell(row.get(f"{prefix}_bonus_permits"))
             out["regular_permits"] = _clean_cell(row.get(f"{prefix}_regular_permits"))
             out["total_permits"] = _clean_cell(row.get(f"{prefix}_total_permits"))
+            out["successful_applicants"] = out["total_permits"]
+            out["drawn"] = out["total_permits"]
             out["success_ratio"] = _clean_cell(row.get(f"{prefix}_success_ratio"))
             out["p_draw"] = _clean_cell(row.get(f"{prefix}_p_draw"))
             out["p_draw_percent"] = _clean_cell(row.get(f"{prefix}_p_draw_percent"))
@@ -1516,6 +1519,8 @@ CURRENT_TARGET_DESIGN_FIELDS = (
 def _apply_current_target_design(
     prediction_rows: list[dict[str, object]],
     db_rows: list[dict[str, str]],
+    truth_rows: list[dict[str, str]] | None = None,
+    *, historical_only: bool = False,
 ) -> list[dict[str, object]]:
     """Overlay the Planner's target-year identity before routing output rows.
 
@@ -1529,9 +1534,40 @@ def _apply_current_target_design(
         for row in db_rows
         if _clean_text(row.get("hunt_code"))
     }
+    latest_source_by_code: dict[str, dict[str, str]] = {}
+    for source in truth_rows or []:
+        source_code = _clean_text(source.get("hunt_code")).upper()
+        previous = latest_source_by_code.get(source_code, {})
+        if _clean_text(source.get("actual_draw_year")) >= _clean_text(previous.get("actual_draw_year")):
+            latest_source_by_code[source_code] = source
     for prediction in prediction_rows:
         current = current_by_code.get(_clean_text(prediction.get("hunt_code")).upper())
-        if current is None:
+        historical_reference = current is not None and (
+            "PDF_CONFIRMED_TRUTH_ONLY_BACKFILL" in _clean_text(current.get("NOTES"))
+            and not any(_clean_text(current.get(field)) for field in ("permits_2026_res", "permits_2026_nr", "permits_2026_total", "draw_2026_system_type"))
+        )
+        if current is None or historical_reference:
+            source = latest_source_by_code.get(_clean_text(prediction.get("hunt_code")).upper())
+            if source is not None:
+                for field in (*CURRENT_TARGET_DESIGN_FIELDS, "draw_system_type", "source_file", "pdf_page"):
+                    if _clean_text(source.get(field)):
+                        prediction[field] = source[field]
+                prediction.update({
+                    "algorithm_status": "EXCLUDED_NOT_PREDICTIVE_DRAW",
+                    "classification_status": "SOURCE_VERIFIED_HISTORICAL_REFERENCE_ONLY",
+                    "model_strategy": "historical_reference_only",
+                    "probability_model": "NONE",
+                    "status": "HISTORICAL_REFERENCE_ONLY",
+                    "prediction_status": "NOT_SCORED",
+                    "current_target_eligible": "FALSE",
+                    "latest_source_year": source.get("actual_draw_year", ""),
+                    "reason_codes": append_reason_codes(prediction.get("reason_codes", ""), "HISTORICAL_ONLY_NO_CURRENT_DRAW_AUTHORITY"),
+                })
+                for field in list(prediction):
+                    if field.startswith(("p_", "certified_p_")):
+                        prediction[field] = ""
+            continue
+        if historical_only:
             continue
         for field in CURRENT_TARGET_DESIGN_FIELDS:
             value = _clean_text(current.get(field))
@@ -1665,6 +1701,7 @@ def materialize_outputs(
     history_years: list[int],
     command_used: str,
     run_upstream: bool = True,
+    current_deer_quota_source: Path | None = None,
 ) -> dict[str, Path]:
     output_dir.mkdir(parents=True, exist_ok=True)
     runtime_paths = run_official_forecast_build(forecast_year, RUNTIME_DRAFT_DIR) if run_upstream else {
@@ -1675,6 +1712,9 @@ def materialize_outputs(
 
     truth_rows = expand_collapsed_truth_rows_for_engine(read_csv(TRUTH_PATH))
     db_rows = apply_current_year_allotments_to_rows(read_csv(DATABASE_2026_PATH))
+    if current_deer_quota_source is not None:
+        db_rows, deer_quota_audit = apply_official_general_deer_regular_quotas(db_rows, current_deer_quota_source, forecast_year)
+        (output_dir / "official_general_deer_regular_quota_audit.json").write_text(json.dumps(deer_quota_audit, indent=2) + "\n", encoding="utf-8")
     permits, ladders, meta = build_truth_indexes(truth_rows)
     above_index = build_above_index(ladders)
 
@@ -1691,8 +1731,47 @@ def materialize_outputs(
         earliest_source_year=min(history_years),
         latest_source_year=max(history_years),
     )
-    prediction_rows = _apply_current_target_design(prediction_rows, db_rows)
-    successor_rows = _apply_current_target_design(successor_rows, db_rows)
+    prediction_rows = _apply_current_target_design(prediction_rows, db_rows, truth_rows)
+    successor_rows = _apply_current_target_design(successor_rows, db_rows, truth_rows)
+    # Use the same prepared history, current identity routing and deterministic
+    # family builder as the source-only certification runner. Old runtime draft
+    # probabilities must not become a parallel source of core predictions.
+    from engine.utah_draw_predictive.run_all_families import (
+        _big_game_bonus_db_by_code, _prepare_big_game_bonus_history_rows,
+        _split_big_game_bonus_rows, _with_run_fields, build_big_game_bonus_predictions,
+    )
+    core_targets = _big_game_bonus_db_by_code(db_rows)
+    core_history = _prepare_big_game_bonus_history_rows([
+        row for row in read_csv(TRUTH_PATH)
+        if int(row.get("actual_draw_year") or row.get("year") or 0) in history_years
+    ])
+    core_years_by_lane: dict[tuple[str, str], set[int]] = {}
+    for source in core_history:
+        lane = (str(source.get("hunt_code", "")), str(source.get("residency", "")))
+        if str(source.get("points", "")).isdigit():
+            core_years_by_lane.setdefault(lane, set()).add(int(source.get("actual_draw_year") or source.get("year")))
+    raw_core_rows, _ = build_big_game_bonus_predictions(
+        history_rows=core_history,
+        db_by_code=core_targets, prediction_year=forecast_year,
+        iterations=1, seed=20260701, central_estimate_mode="deterministic",
+    )
+    core_rows = [
+        {**row, "year": forecast_year, "forecast_year": forecast_year}
+        for family, family_rows in _split_big_game_bonus_rows(raw_core_rows, core_targets).items()
+        for row in _with_run_fields(family_rows, max(history_years), forecast_year, family)
+    ]
+    for row in core_rows:
+        target = core_targets.get(str(row.get("hunt_code", "")), {})
+        for field in ("hunt_name", "species", "sex_type", "weapon", "unit_name"):
+            row[field] = target.get(field, "")
+        years = sorted(core_years_by_lane.get((str(row.get("hunt_code", "")), str(row.get("residency", ""))), set()))
+        row["source_years_used"] = ",".join(map(str, years))
+        row["source_year_count"] = str(len(years))
+        row["earliest_source_year"] = str(min(years)) if years else ""
+        row["latest_source_year"] = str(max(years)) if years else ""
+    core_codes = set(core_targets)
+    prediction_rows = [row for row in prediction_rows if row.get("hunt_code") not in core_codes] + core_rows
+    successor_rows = [row for row in successor_rows if row.get("hunt_code") not in core_codes] + [dict(row) for row in core_rows]
     preference_general_deer_rows = build_preference_general_deer_predictions(
         truth_rows=truth_rows,
         db_rows=db_rows,
@@ -1804,6 +1883,10 @@ def materialize_outputs(
         mountain_lion_rows = [sanitize_modeled_probability_fields(dict(row)) for row in mountain_lion_rows]
         prediction_rows = _replace_rows_by_draw_system_type(prediction_rows, mountain_lion_rows, {MOUNTAIN_LION_DRAW_SYSTEM_TYPE})
         successor_rows = _replace_rows_by_draw_system_type(successor_rows, [dict(row) for row in mountain_lion_rows], {MOUNTAIN_LION_DRAW_SYSTEM_TYPE})
+    # Family builders can emit their own placeholder records. Reconcile those
+    # too, without relabeling the family-selected current draw design/pool.
+    _apply_current_target_design(prediction_rows, db_rows, truth_rows, historical_only=True)
+    _apply_current_target_design(successor_rows, db_rows, truth_rows, historical_only=True)
     prediction_rows, prediction_identity_resolution_rows = _deduplicate_prediction_identities(
         prediction_rows,
         surface="ml_draw_predictions_v1",
@@ -2072,6 +2155,7 @@ def materialize_outputs(
     )
 
     ml_predictions_path = output_dir / "ml_draw_predictions_v1.csv"
+    prediction_fields = list(dict.fromkeys(prediction_fields + [key for row in prediction_rows for key in row]))
     write_csv(ml_predictions_path, prediction_rows, prediction_fields)
 
     report = build_report(prediction_rows, forecast_year, history_years, runtime_paths["materialized_rows"], command_used)
@@ -2225,6 +2309,7 @@ def main() -> None:
     parser.add_argument("--forecast-year", type=int, default=2026)
     parser.add_argument("--history-years", default="2018,2019,2020,2021,2022,2023,2024,2025")
     parser.add_argument("--skip-upstream", action="store_true")
+    parser.add_argument("--current-deer-quota-source", type=Path)
     parser.add_argument("--model-version", default=MODEL_VERSION)
     parser.add_argument("--rule-version", default=RULE_VERSION)
     args = parser.parse_args()
@@ -2236,6 +2321,7 @@ def main() -> None:
             f"--forecast-year {args.forecast_year}",
             f"--history-years {args.history_years}",
             "--skip-upstream" if args.skip_upstream else "",
+            f"--current-deer-quota-source {args.current_deer_quota_source}" if args.current_deer_quota_source else "",
         ]
     ).strip()
     artifacts = materialize_outputs(
@@ -2244,6 +2330,7 @@ def main() -> None:
         history_years=history_years,
         command_used=command_used,
         run_upstream=not args.skip_upstream,
+        current_deer_quota_source=args.current_deer_quota_source,
     )
     print(json.dumps({key: str(value) for key, value in artifacts.items()}, indent=2))
 

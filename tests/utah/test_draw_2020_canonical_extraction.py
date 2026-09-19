@@ -10,6 +10,7 @@ from scripts.extract_2020_draw_results_from_pdfs import (
     clean_hunt_name,
     count_backed_probability,
     metadata_from_page,
+    normalize_zero_applicant_display_carryover,
     species_for,
     split_draw_table_cells,
 )
@@ -31,6 +32,23 @@ def test_count_backed_probability_uses_exact_counts_before_rounded_ratio() -> No
 
 def test_zero_applicant_row_never_derives_probability_from_display_ratio() -> None:
     assert count_backed_probability("0", "1", "1 in 1.0") == ("", "")
+
+
+def test_empty_top_point_uses_component_permits_and_retains_displayed_carryover_lineage() -> None:
+    total, ratio, note = normalize_zero_applicant_display_carryover(
+        lane="resident",
+        points="15",
+        applicants="0",
+        bonus_permits="0",
+        regular_permits="0",
+        total_permits="1",
+        success_ratio="1 in 1.0",
+    )
+
+    assert total == "0"
+    assert ratio == "N/A"
+    assert "displayed_total_permits=1" in note
+    assert "displayed_success_ratio=1in1.0" in note
 
 
 def test_2020_antlerless_special_species_use_bonus_designs_before_pronghorn_fallback() -> None:
@@ -88,6 +106,61 @@ def test_2019_source_set_uses_draw_date_for_cougar_and_separate_youth_pools() ->
     assert source_files["official_dwr_archive/turkey/2019_youth_turkey_bonus_points.pdf"] == "YOUTH_TURKEY"
 
 
+def test_2020_source_set_uses_the_2020_21_cougar_draw_and_official_archive_paths() -> None:
+    source_files = {source_file: scope for source_file, scope, _ in YEAR_CONFIGS[2020]["sources"]}
+
+    assert source_files["official_dwr_archive/cougar/2021_cougar_odds_report.pdf"] == "COUGAR"
+    assert "official_dwr_archive/cougar/2020_cougar_odds_report.pdf" not in source_files
+    assert source_files["official_dwr_archive/black_bear/20_drawing_odds.pdf"] == "BLACK_BEAR"
+    assert source_files["official_dwr_archive/turkey/2020_turkey_bonus_points_draw_results.pdf"] == "TURKEY"
+    assert YEAR_CONFIGS[2020]["sportsman_file"] == "official_dwr_archive/big_game/20-21_sportsman_odds.pdf"
+
+
+def test_2021_source_set_uses_the_2021_22_cougar_draw() -> None:
+    source_files = {source_file: scope for source_file, scope, _ in YEAR_CONFIGS[2021]["sources"]}
+
+    assert source_files["official_dwr_archive/cougar/2022_cougar_odds_report.pdf"] == "COUGAR"
+    assert "official_dwr_archive/cougar/2021_cougar_odds_report.pdf" not in source_files
+    assert YEAR_CONFIGS[2021]["sportsman_file"] == "official_dwr_archive/big_game/21-22_sportsman_odds.pdf"
+    assert YEAR_CONFIGS[2021]["sportsman_expected_rows"] == 12
+
+
+def test_2022_source_set_uses_the_2022_23_cougar_draw() -> None:
+    source_files = {source_file: scope for source_file, scope, _ in YEAR_CONFIGS[2022]["sources"]}
+
+    assert source_files["official_dwr_archive/cougar/2023_cougar_odds_report.pdf"] == "COUGAR"
+    assert "official_dwr_archive/cougar/2022_cougar_odds_report.pdf" not in source_files
+    assert YEAR_CONFIGS[2022]["sportsman_file"] == "official_dwr_archive/big_game/22-23_sportsman_odds.pdf"
+    assert YEAR_CONFIGS[2022]["sportsman_expected_rows"] == 11
+
+
+def test_2023_source_set_ends_the_historical_cougar_draw_program() -> None:
+    source_files = {source_file: scope for source_file, scope, _ in YEAR_CONFIGS[2023]["sources"]}
+
+    assert "COUGAR" not in set(source_files.values())
+    assert all("cougar" not in source_file.lower() for source_file in source_files)
+    assert YEAR_CONFIGS[2023]["sportsman_file"] == "official_dwr_archive/big_game/23-24_sportsman_odds.pdf"
+    assert YEAR_CONFIGS[2023]["sportsman_expected_rows"] == 10
+
+
+def test_2024_source_set_keeps_post_cougar_draw_scope_separate() -> None:
+    source_files = {source_file: scope for source_file, scope, _ in YEAR_CONFIGS[2024]["sources"]}
+
+    assert not any(scope == "COUGAR" for scope in source_files.values())
+    assert source_files["official_dwr_archive/black_bear/24_drawing_odds.pdf"] == "BLACK_BEAR"
+    assert source_files["official_dwr_archive/big_game/24_youth_deer.pdf"] == "YOUTH_GENERAL_SEASON_DEER"
+    assert YEAR_CONFIGS[2024]["sportsman_file"] == "official_dwr_archive/big_game/24-25_sportsman_odds.pdf"
+    assert YEAR_CONFIGS[2024]["sportsman_expected_rows"] == 10
+
+
+def test_2025_static_pdf_source_set_does_not_invent_a_sportsman_parent() -> None:
+    source_files = {source_file: scope for source_file, scope, _ in YEAR_CONFIGS[2025]["sources"]}
+
+    assert not any(scope == "COUGAR" for scope in source_files.values())
+    assert YEAR_CONFIGS[2025]["sportsman_file"] is None
+    assert YEAR_CONFIGS[2025]["sportsman_expected_rows"] == 0
+
+
 def test_legacy_pdf_hunt_name_does_not_absorb_the_following_report_header() -> None:
     assert clean_hunt_name(
         "Management Rifle Buck Deer - Henry Mtns - Any Legal Weapon "
@@ -119,6 +192,7 @@ def test_legacy_split_output_names_normalize_to_parent_source_roles() -> None:
     assert normalized_source_role(
         {"source_file": "2019_PERMITS=2020_MODEL__CWMU_DOE_PRONGHORN_DRAW_RESULTS.pdf"}
     ) == "ANTLERLESS"
+    assert normalized_source_role({"source_scope": "TURKEY_YOUTH"}) == "YOUTH_TURKEY"
 
 
 def test_comparison_normalizes_printed_number_and_success_ratio_formats() -> None:
@@ -208,14 +282,15 @@ def test_2020_official_pdf_extraction_has_no_unparsed_hunt_pages() -> None:
     assert summary["status"] == "PASS"
     assert summary["unparsed_hunt_page_count"] == 0
     assert summary["duplicate_source_row_key_count"] == 0
-    assert summary["source_pdf_count"] == 13
-    assert summary["rows"] == 33069
+    assert summary["normalized_top_point_total_ratio_carryover_lane_count"] == 7
+    assert summary["source_pdf_count"] == 14
+    assert summary["rows"] == 33363
 
 
 def test_2020_canonical_uses_draw_result_year_and_retains_pdf_lineage() -> None:
     extracted = rows()
 
-    assert len(extracted) == 33069
+    assert len(extracted) == 33363
     assert {row["actual_draw_year"] for row in extracted} == {"2020"}
     assert {row["model_target_year"] for row in extracted} == {"2021"}
     assert all(row["species"] for row in extracted)
@@ -224,6 +299,21 @@ def test_2020_canonical_uses_draw_result_year_and_retains_pdf_lineage() -> None:
     assert {row["source_is_youth"] for row in extracted} == {"false", "true"}
     assert all(row["source_is_youth"] == "true" for row in extracted if row["source_scope"].startswith("YOUTH_"))
     assert all(row["source_is_youth"] == "false" for row in extracted if not row["source_scope"].startswith("YOUTH_"))
+
+
+def test_2020_canonical_includes_the_correct_2020_21_cougar_cycle() -> None:
+    cougar = [row for row in rows() if row["source_scope"] == "COUGAR"]
+
+    assert len(cougar) == 294
+    assert {row["hunt_code"] for row in cougar} == {
+        "CG1029", "CG1030", "CG1034", "CG7502", "CG7503", "CG7506", "CG7602",
+        "CG7603", "CG7605", "CG7610", "CG7612", "CG7613", "CG7615", "CG7619",
+    }
+    assert {row["source_file"] for row in cougar} == {
+        "official_dwr_archive/cougar/2021_cougar_odds_report.pdf"
+    }
+    assert all(row["actual_draw_year"] == "2020" for row in cougar)
+    assert all(row["model_target_year"] == "2021" for row in cougar)
 
 
 def test_2020_public_draw_totals_are_not_residency_collapsed() -> None:
@@ -263,7 +353,9 @@ def test_2018_legacy_layout_is_canonicalized_with_complete_lineage() -> None:
         if row["hunt_code"].startswith("BR") and row["record_type"] == "point_level_draw_result"
     ]
     assert len(bear_points) == 1820
-    assert {row["source_file"] for row in bear_points} == {"official_dwr_archive/black_bear/18_drawing_odds.pdf"}
+    assert {row["source_file"] for row in bear_points} == {
+        "pipeline/RAW/hunt_unit_database/2018/pdf/draw_odds/official_dwr_archive/black_bear/18_drawing_odds.pdf"
+    }
 
 
 def test_2018_eb3100_resident_point_12_uses_exact_permit_applicant_probability() -> None:
@@ -291,22 +383,28 @@ def test_official_hunt_code_prefix_controls_species_over_unit_name() -> None:
     assert species_for("BR7004", "Manti South/San Rafael North") == "Black Bear"
 
 
-def test_2020_pdf_internal_zero_applicant_permit_conflicts_are_explicitly_quarantined() -> None:
-    marker = "OFFICIAL_SOURCE_ZERO_APPLICANT_STRUCTURAL_ROW_WITH_DISPLAYED_PERMIT"
+def test_2020_pdf_top_point_display_carryovers_leave_awards_at_point_14() -> None:
+    marker = "OFFICIAL_SOURCE_TOP_POINT_TOTAL_RATIO_CARRYOVER"
     conflicts = [
         row
         for row in rows()
         if marker in row.get("qa_notes", "")
     ]
 
-    assert len(conflicts) == 6
+    assert len(conflicts) == 7
     assert {row["hunt_code"] for row in conflicts} == {
-        "EA1121", "MA1000", "MA1001", "MA1003", "MA1004", "MA1005"
+        "EA1089", "EA1121", "MA1000", "MA1001", "MA1003", "MA1004", "MA1005"
     }
     assert all(row["points"] == "15" for row in conflicts)
     assert all(row["resident_eligible_applicants"] == "0" for row in conflicts)
-    assert all(int(row["resident_total_permits"]) > 0 for row in conflicts)
-    # Retain DWR's printed counts and success-ratio text, but never allow an
-    # internally impossible lane to become a scoreable derived probability.
+    assert all(row["resident_bonus_permits"] == "0" for row in conflicts)
+    assert all(row["resident_regular_permits"] == "0" for row in conflicts)
+    assert all(row["resident_total_permits"] == "0" for row in conflicts)
+    assert all(row["resident_success_ratio"] == "N/A" for row in conflicts)
+    assert all(row["successful_applicants"] == "0" for row in conflicts)
+    assert all("displayed_total_permits=" in row["qa_notes"] for row in conflicts)
+    assert all("displayed_success_ratio=" in row["qa_notes"] for row in conflicts)
+    # The printed carryover remains in lineage, but point 15 cannot create a
+    # duplicate winner, permit, or probability. The actual awards stay at 14.
     assert all(not row["resident_p_draw"] for row in conflicts)
     assert all(not row["resident_p_draw_percent"] for row in conflicts)

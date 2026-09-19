@@ -411,7 +411,7 @@ Rules:
 
 ## Current Operational Recommendation
 
-Use the committed `DATABASE.csv` plus `draw_results_long.csv` as the active truth foundation for engine work.
+Use yearly canonical draw-result files frozen into `draw_results_long.csv` as historical prediction and scoring truth. Use the committed `DATABASE.csv` only for the current target hunt identity and published permit-reference context; it is never historical draw-result truth.
 
 Use `processed_data/ml_draw_predictions_v1.csv` and `processed_data/draw_reality_engine_predictive_v2.csv` as the latest generated prediction surfaces, but treat the current local regenerated outputs as not-yet-promoted until the dirty `processed_data` bucket is reviewed.
 

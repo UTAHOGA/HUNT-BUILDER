@@ -41,6 +41,15 @@ HARVEST_DISPLAY_FIELDS = {
     "hunter_satisfaction",
     "harvest_total",
     "hunters_afield",
+    "harvest_male",
+    "harvest_female",
+    "trophy_left_points",
+    "trophy_right_points",
+    "trophy_antler_width",
+    "trophy_left_length",
+    "trophy_right_length",
+    "trophy_left_circumference",
+    "trophy_right_circumference",
     "harvest_reported_year",
     "harvest_source_file",
     "harvest_source_page",
@@ -62,6 +71,8 @@ HARVEST_DISPLAY_FIELDS = {
     "average_harvest_age",
     "average_harvest_age_reported_year",
     "average_harvest_age_3yr_reported",
+    "average_harvest_age_3yr_local_computed",
+    "average_harvest_age_3yr_local_computed_status",
     "average_harvest_age_3yr_reported_year",
     "age_source_file",
     "age_source_page",
@@ -247,6 +258,22 @@ def build(base_rows: list[dict[str, object]]) -> tuple[list[dict[str, object]], 
             row[f"{lineage_prefix}_source_file"] = source.get("source_file", "")
             row[f"{lineage_prefix}_source_page"] = source.get("source_page", "") or "N/A - structured source row"
             populated_harvest_sources.append(source)
+        direct_dashboard_field_map = {
+            "harvest_male": "harvest_male",
+            "harvest_female": "harvest_female",
+            "trophy_left_points": "trophy_left_points",
+            "trophy_right_points": "trophy_right_points",
+            "trophy_antler_width": "trophy_antler_width",
+            "trophy_left_length": "trophy_left_length",
+            "trophy_right_length": "trophy_right_length",
+            "trophy_left_circumference": "trophy_left_circumference",
+            "trophy_right_circumference": "trophy_right_circumference",
+            "average_age_3yr_local_computed": "average_harvest_age_3yr_local_computed",
+            "average_age_3yr_local_computed_status": "average_harvest_age_3yr_local_computed_status",
+        }
+        for source_field, target_field in direct_dashboard_field_map.items():
+            source = latest_with_value(compatible, source_field)
+            row[target_field] = source.get(source_field, "") if source is not None else ""
         if populated_harvest_sources:
             latest_harvest_source = max(populated_harvest_sources, key=year)
             row["harvest_reported_year"] = str(year(latest_harvest_source))
@@ -411,6 +438,12 @@ def build(base_rows: list[dict[str, object]]) -> tuple[list[dict[str, object]], 
         "hunters_afield",
         "average_harvest_age",
         "average_harvest_age_3yr_reported",
+        "average_harvest_age_3yr_local_computed",
+        "current_age_3yr_average",
+        "harvest_male",
+        "harvest_female",
+        "trophy_antler_width",
+        "trophy_left_length",
         "current_age_3yr_average",
         "management_objective_target",
         "management_current_value",

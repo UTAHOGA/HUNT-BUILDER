@@ -73,6 +73,8 @@ def _clean_lower(value: object) -> str:
 
 
 def _residency_lane(row: Mapping[str, object]) -> str:
+    if _clean(row.get("residency")) in {"Resident", "Nonresident"}:
+        return _clean(row.get("residency"))
     if _clean_lower(row.get("metric_scope")) == "total":
         return "All"
     return _clean(row.get("residency")) or "All"
@@ -233,7 +235,13 @@ def _looks_like_standard_pool(row: Mapping[str, object]) -> bool:
     draw_pool = _clean_lower(row.get("draw_pool"))
     hunt_class = _clean_lower(row.get("hunt_class"))
     hunt_draw_class = _clean_lower(row.get("hunt_draw_class") or row.get("draw_class_type"))
-    if draw_pool not in {"", "standard", "adult_general_deer", "preference_general_season_buck_deer"}:
+    if draw_pool not in {
+        "",
+        "standard",
+        "adult_general_deer",
+        "general_season_deer",
+        "preference_general_season_buck_deer",
+    }:
         return False
     if hunt_class in {"", "public", "general season"}:
         return True
@@ -467,7 +475,9 @@ def _official_quota_for_residency(
     allocation = target_residency_permit_allocation(
         row,
         forecast_year,
-        source_year=source_year,
+        # Historical realized winners are not a current residency quota.
+        # Blind folds supply explicit target_permits_* source-only proxies.
+        source_year=None,
         draw_system_type="PREFERENCE_GENERAL_SEASON_BUCK_DEER",
     )
     if not allocation.supported:
@@ -543,13 +553,11 @@ def build_preference_general_deer_predictions(
             )
 
     for (hunt_code, draw_pool), db_row in sorted(current_codes.items()):
-        forecast_total = target_permit_total(db_row, forecast_year, source_year=latest_source_year).value
-        if forecast_total <= 0:
-            continue
+        forecast_total = target_permit_total(db_row, forecast_year, source_year=None).value
         target_allocation = target_residency_permit_allocation(
             db_row,
             forecast_year,
-            source_year=latest_source_year,
+            source_year=None,
             draw_system_type="PREFERENCE_GENERAL_SEASON_BUCK_DEER",
         )
         published_res = str(target_allocation.resident) if target_allocation.supported else ""
@@ -574,10 +582,9 @@ def build_preference_general_deer_predictions(
             for code, pool, residency in years_by_key
             if code == hunt_code and pool == draw_pool
         )
-        if "All" in available_residencies:
-            residencies_to_model = ["All"]
-        else:
-            residencies_to_model = available_residencies or ["Resident", "Nonresident"]
+        # A combined historical total cannot replace separately published
+        # residency lanes or authorize a current residency-specific forecast.
+        residencies_to_model = ["Resident", "Nonresident"]
 
         for residency in residencies_to_model:
             available_years = sorted(year for year in set(years_by_key.get((hunt_code, draw_pool, residency), [])) if year in history_year_set)
@@ -587,135 +594,38 @@ def build_preference_general_deer_predictions(
                 forecast_year,
                 source_year=latest_source_year,
             )
-            if not available_years:
-                if residency == "Nonresident" and official_quota is None:
-                    rows.append(
-                        {
-                            "model_version": MODEL_VERSION,
-                            "rule_version": PREFERENCE_RULE_VERSION,
-                            "year": str(forecast_year),
-                            "forecast_year": str(forecast_year),
-                            "hunt_code": hunt_code,
-                            "hunt_name": hunt_name,
-                            "species": species,
-                            "sex_type": "Buck",
-                            "hunt_type": hunt_type,
-                            "hunt_class": hunt_class,
-                            "residency": _output_residency(residency),
-                            "points": "0",
-                            "draw_pool": draw_pool,
-                            "public_permits_2025": 0,
-                            "public_permits_2026": 0,
-                            "permits_2026_res": published_res,
-                            "permits_2026_nr": published_nr,
-                            "permits_2026_total": published_total,
-                            "max_point_permits_2025": "",
-                            "max_point_permits_2026": "",
-                            "random_permits_2025": "",
-                            "random_permits_2026": "",
-                            "guaranteed_at_2025": "",
-                            "guaranteed_at_2026": "",
-                            "applicants_above": 0,
-                            "applicants_at_level": 0,
-                            "probability_applicant_count": 1,
-                            "p_preference_draw": "0.000000",
-                            "p_bonus_pool": "",
-                            "p_random_pool": "",
-                            "p_draw": "0.000000",
-                            "p_bonus_pool_pct": "",
-                            "p_random_pool_pct": "",
-                            "p_draw_pct": "0.000",
-                            "random_draw_odds_2026": "",
-                            "gap": "",
-                            "delta_gap": "",
-                            "status": _status(0.0),
-                            "trend": "YELLOW",
-                            "draw_outlook": _draw_outlook(0.0, None),
-                            "source_years_used": "current_quota_seed",
-                            "source_year_count": 0,
-                            "latest_source_year": "",
-                            "earliest_source_year": "",
-                            "source_dataset": "predictive",
-                            "model_strategy": MODEL_STRATEGY_NAME,
-                            "preference_model_valid": "TRUE",
-                            "preference_model_note": "Structural nonresident point-0 row emitted for a total-only preference hunt with no blind-history nonresident ladder; probability remains zero until source history or explicit quota exists.",
-                            "reason_codes": (
-                                "NO_NONRESIDENT_HISTORY_TOTAL_ONLY_STRUCTURAL_ROW|NO_EXPLICIT_NONRESIDENT_QUOTA"
-                                + (f"|{total_only_reason}" if total_only_quota else "")
-                                + f"|{quota_authority}"
-                            ),
-                            "weapon": weapon,
-                            "draw_system_type": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
-                        }
-                    )
+            if official_quota is None or official_quota <= 0 or not available_years:
+                reason = (
+                    "WITHHELD_NO_CURRENT_PERMIT_ALLOCATION" if official_quota is None else
+                    "INELIGIBLE_ZERO_QUOTA" if official_quota <= 0 else
+                    "WITHHELD_NO_COMPARABLE_SOURCE_HISTORY"
+                )
+                rows.append({
+                    "model_version": MODEL_VERSION, "rule_version": PREFERENCE_RULE_VERSION,
+                    "year": str(forecast_year), "forecast_year": str(forecast_year),
+                    "hunt_code": hunt_code, "hunt_name": hunt_name, "species": species,
+                    "sex_type": "Buck", "hunt_type": hunt_type, "hunt_class": hunt_class,
+                    "weapon": weapon, "draw_pool": draw_pool, "residency": residency, "points": "0",
+                    "draw_system_type": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+                    "algorithm_status": reason, "classification_status": "SOURCE_CLASSIFIED",
+                    "prediction_status": "NOT_SCORED", "status": reason, "probability_model": "NONE",
+                    "model_strategy": MODEL_STRATEGY_NAME, "preference_model_valid": "FALSE",
+                    "reason_codes": f"{reason}|{quota_authority}",
+                    "source_years_used": ",".join(map(str, available_years)),
+                    "source_year_count": str(len(available_years)),
+                    "earliest_source_year": str(min(available_years)) if available_years else "",
+                    "latest_source_year": str(max(available_years)) if available_years else "",
+                    "permits_2026_res": published_res, "permits_2026_nr": published_nr,
+                    "permits_2026_total": published_total,
+                    "quota_source_status": quota_authority, "p_draw": "", "p_draw_mean": "",
+                    "p_draw_pct": "", "p_preference_draw": "",
+                })
                 continue
             code_latest_source_year = max(available_years)
 
             latest_ladder = ladders.get((code_latest_source_year, hunt_code, draw_pool, residency), {})
             prior_total = sum(int(values["drawn"]) for values in latest_ladder.values())
             forecast_quota = official_quota if official_quota is not None else 0
-            if forecast_quota <= 0:
-                if residency == "Nonresident":
-                    rows.append(
-                        {
-                            "model_version": MODEL_VERSION,
-                            "rule_version": PREFERENCE_RULE_VERSION,
-                            "year": str(forecast_year),
-                            "forecast_year": str(forecast_year),
-                            "hunt_code": hunt_code,
-                            "hunt_name": hunt_name,
-                            "species": species,
-                            "sex_type": "Buck",
-                            "hunt_type": hunt_type,
-                            "hunt_class": hunt_class,
-                            "residency": _output_residency(residency),
-                            "points": "0",
-                            "draw_pool": draw_pool,
-                            "public_permits_2025": prior_total,
-                            "public_permits_2026": 0,
-                            "permits_2026_res": published_res,
-                            "permits_2026_nr": published_nr,
-                            "permits_2026_total": published_total,
-                            "max_point_permits_2025": "",
-                            "max_point_permits_2026": "",
-                            "random_permits_2025": "",
-                            "random_permits_2026": "",
-                            "guaranteed_at_2025": "",
-                            "guaranteed_at_2026": "",
-                            "applicants_above": 0,
-                            "applicants_at_level": 0,
-                            "probability_applicant_count": 1,
-                            "p_preference_draw": "0.000000",
-                            "p_bonus_pool": "",
-                            "p_random_pool": "",
-                            "p_draw": "0.000000",
-                            "p_bonus_pool_pct": "",
-                            "p_random_pool_pct": "",
-                            "p_draw_pct": "0.000",
-                            "random_draw_odds_2026": "",
-                            "gap": "",
-                            "delta_gap": "",
-                            "status": _status(0.0),
-                            "trend": "YELLOW",
-                            "draw_outlook": _draw_outlook(0.0, None),
-                            "source_years_used": ",".join(str(year) for year in available_years),
-                            "source_year_count": len(available_years),
-                            "latest_source_year": code_latest_source_year,
-                            "earliest_source_year": min(available_years),
-                            "source_dataset": "predictive",
-                            "model_strategy": MODEL_STRATEGY_NAME,
-                            "preference_model_valid": "TRUE",
-                            "preference_model_note": "Structural nonresident point-0 row emitted because blind-history quota inference produced zero nonresident permits for this total-only preference hunt.",
-                            "reason_codes": (
-                                "ZERO_INFERRED_NONRESIDENT_QUOTA_STRUCTURAL_ROW|NO_EXPLICIT_NONRESIDENT_QUOTA"
-                                + (f"|{total_only_reason}" if total_only_quota else "")
-                            ),
-                            "weapon": weapon,
-                            "draw_system_type": "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
-                        }
-                    )
-                continue
-
             forecast_ladder = (
                 _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)
                 if latest_ladder
@@ -815,6 +725,10 @@ def build_preference_general_deer_predictions(
                 if forecast_applicants_at_level > 0:
                     running_above += forecast_applicants_at_level
 
+    for row in rows:
+        target = current_codes.get((row.get("hunt_code"), row.get("draw_pool")), {})
+        if target.get("target_permits_scope") == "REGULAR_DRAW_AFTER_PROGRAM_ALLOCATIONS":
+            row.update({key: value for key, value in target.items() if key.startswith("target_permits_")})
     return rows
 
 

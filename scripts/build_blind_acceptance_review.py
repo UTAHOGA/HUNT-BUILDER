@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import math
 from collections import defaultdict
@@ -20,6 +21,7 @@ from typing import Any, Iterable
 REPO = Path(__file__).resolve().parents[1]
 FALSE_GUARANTEE_THRESHOLD = 0.999999
 MISSING_SCOREABLE_ACTUAL_DECISION = "missing_prediction_for_scoreable_actual_ladder_row"
+MISSING_SCOREABLE_ACTUAL_DECISIONS = {MISSING_SCOREABLE_ACTUAL_DECISION, "do_not_score_missing_prediction_probability"}
 THRESHOLDS = {
     "minimum_independent_following_year_folds": 2,
     "minimum_joined_rows_per_design": 400,
@@ -99,6 +101,49 @@ def write_csv(path: Path, rows: Iterable[dict[str, object]]) -> None:
         writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="ignore", lineterminator="\n")
         writer.writeheader()
         writer.writerows(materialized)
+
+
+def load_historical_truth_authority_gate(
+    fold: str, scoring_path: Path
+) -> dict[str, object]:
+    metadata_path = scoring_path.parent.parent / "prediction_phase" / "run_metadata.json"
+    if not metadata_path.is_file():
+        raise SystemExit(
+            f"Certification fold {fold} has no prediction run_metadata.json; "
+            "historical DATABASE.csv exclusion cannot be proven."
+        )
+    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    gate = metadata.get("historical_truth_authority_gate")
+    if not isinstance(gate, dict):
+        raise SystemExit(f"Certification fold {fold} has no historical truth-authority gate.")
+    truth_path = clean(gate.get("historical_draw_truth_path"))
+    if clean(metadata.get("runtime_permit_source")) != "source_year_proxy":
+        raise SystemExit(f"Certification fold {fold} used current target permit context.")
+    if clean(gate.get("status")) != "PASS_SOURCE_YEAR_ONLY":
+        raise SystemExit(f"Certification fold {fold} did not pass the source-year-only gate.")
+    if int(gate.get("historical_database_csv_read_count", -1)) != 0:
+        raise SystemExit(f"Certification fold {fold} read DATABASE.csv during historical scoring.")
+    if Path(truth_path).name.lower() == "database.csv":
+        raise SystemExit(f"Certification fold {fold} names DATABASE.csv as historical truth.")
+    final_gate = metadata.get("final_probability_gate")
+    if isinstance(final_gate, dict):
+        final_path = metadata_path.parent / "final_public_predictions.csv"
+        projection_path = scoring_path.parent.parent / "scoring_projection/scoring_projection_manifest.json"
+        if not final_path.is_file() or not projection_path.is_file():
+            raise SystemExit(f"Certification fold {fold} lacks exact final probability artifacts.")
+        final_hash = hashlib.sha256(final_path.read_bytes()).hexdigest()
+        projection = json.loads(projection_path.read_text(encoding="utf-8"))
+        if final_hash != final_gate.get("output_sha256") or final_hash != projection.get("frozen_forecast_sha256"):
+            raise SystemExit(f"Certification fold {fold} did not score its frozen final public probability.")
+    return {
+        "fold": fold,
+        "run_metadata": str(metadata_path),
+        "runtime_permit_source": "source_year_proxy",
+        "historical_database_csv_read_count": 0,
+        "historical_draw_truth_path": truth_path,
+        "database_csv_role": clean(gate.get("database_csv_role")),
+        "final_probability_gate": final_gate,
+    }
 
 
 def review_row(
@@ -181,7 +226,7 @@ def load_actual_gap_fold(fold: str, path: Path) -> tuple[list[dict[str, object]]
         for row in read_csv(classification_path)
     } if classification_path.exists() else {}
     for row in read_csv(path):
-        if clean(row.get("scoring_decision")) != MISSING_SCOREABLE_ACTUAL_DECISION:
+        if clean(row.get("scoring_decision")) not in MISSING_SCOREABLE_ACTUAL_DECISIONS:
             continue
         sidecar = classifications.get(actual_gap_key(row), {})
         classification = clean(sidecar.get("actual_gap_classification") or row.get("actual_gap_classification") or row.get("source_classification") or row.get("unscorable_reason"))
@@ -314,6 +359,7 @@ def main() -> int:
     input_folds: dict[str, str] = {}
     input_actual_gap_folds: dict[str, str] = {}
     input_actual_gap_classification_folds: dict[str, str] = {}
+    historical_truth_authority_folds: list[dict[str, object]] = []
     for value in args.fold:
         if "=" not in value:
             raise SystemExit("Each --fold must be SOURCE_TO_TARGET=SCORING_ROWS_CSV")
@@ -323,6 +369,7 @@ def main() -> int:
         if not fold or not path.exists():
             raise SystemExit(f"Fold name or scoring file is invalid: {value}")
         rows.extend(load_draw_line_fold(fold, path))
+        historical_truth_authority_folds.append(load_historical_truth_authority_gate(fold, path))
         input_folds[fold] = str(path)
         actual_gap_path = path.parent / "draw_line_aware_actual_ladder_scoring_rows.csv"
         fold_gaps, classification_path = load_actual_gap_fold(fold, actual_gap_path)
@@ -351,6 +398,23 @@ def main() -> int:
         "inputs": input_folds,
         "actual_gap_inputs": input_actual_gap_folds,
         "actual_gap_classification_inputs": input_actual_gap_classification_folds,
+        "historical_truth_authority_gate": {
+            "status": "PASS",
+            "fold_count": len(historical_truth_authority_folds),
+            "historical_database_csv_read_count": 0,
+            "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY",
+            "historical_draw_truth_role": "YEARLY_CANONICALS_FROZEN_INTO_DRAW_RESULTS_LONG",
+            "folds": historical_truth_authority_folds,
+        },
+        "final_probability_gate": {
+            "status": "PASS" if historical_truth_authority_folds and all(
+                isinstance(fold.get("final_probability_gate"), dict)
+                and fold["final_probability_gate"].get("status") == "PASS"
+                for fold in historical_truth_authority_folds
+            ) else "NOT_PROVEN",
+            "fold_count": len(historical_truth_authority_folds),
+            "folds": [{"fold": fold["fold"], **(fold.get("final_probability_gate") or {})} for fold in historical_truth_authority_folds],
+        },
         "overall": {
             **overall,
             "classified_actual_gap_rows": sum(not bool(row["is_unclassified"]) for row in actual_gaps),

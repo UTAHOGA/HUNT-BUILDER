@@ -76,7 +76,17 @@ def test_registry_recomputes_certified_experimental_and_insufficient_statuses(tm
     review = tmp_path / "review"
     review.mkdir()
     (review / "acceptance_review_manifest.json").write_text(
-        json.dumps({"acceptance_standard": "ADR-0006", "thresholds": THRESHOLDS}),
+        json.dumps(
+            {
+                "acceptance_standard": "ADR-0006",
+                "thresholds": THRESHOLDS,
+                "historical_truth_authority_gate": {
+                    "status": "PASS",
+                    "historical_database_csv_read_count": 0,
+                    "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY",
+                },
+            }
+        ),
         encoding="utf-8",
     )
     fields = {
@@ -118,6 +128,38 @@ def test_registry_recomputes_certified_experimental_and_insufficient_statuses(tm
     assert registry["families"]["BONUS_OIL_BIG_GAME"]["certification_status"] == CERTIFIED
     assert registry["families"]["BONUS_LE_BIG_GAME"]["certification_status"] == EXPERIMENTAL
     assert registry["families"]["YOUTH_GENERAL_ANY_BULL_ELK"]["certification_status"] == INSUFFICIENT
+
+
+def test_registry_rejects_review_that_cannot_prove_historical_database_exclusion(tmp_path: Path) -> None:
+    review = tmp_path / "review"
+    review.mkdir()
+    (review / "acceptance_review_manifest.json").write_text(
+        json.dumps({"acceptance_standard": "ADR-0006", "thresholds": THRESHOLDS}),
+        encoding="utf-8",
+    )
+    _write_csv(
+        review / "acceptance_by_draw_design.csv",
+        [
+            {
+                "draw_design": "BONUS_OIL_BIG_GAME",
+                "fold_count": "2",
+                "joined_rows": "400",
+                "mae": "0.05",
+                "p90_absolute_error": "0.2",
+                "tail_error_rate_over_25pp": "0.05",
+                "false_guarantee_rows": "0",
+                "unclassified_actual_gap_rows": "0",
+                "acceptance_status": "ACCEPTED",
+            }
+        ],
+    )
+
+    try:
+        build_registry(review)
+    except ValueError as exc:
+        assert "DATABASE.csv exclusion" in str(exc)
+    else:
+        raise AssertionError("Registry must reject evidence without the historical truth-authority gate.")
 
 
 def test_row_annotation_separates_bear_subtypes_and_withholds_uncertified_odds() -> None:
@@ -206,10 +248,10 @@ def test_local_promotion_gate_rejects_public_probability_on_uncertified_row(tmp_
 def test_current_registry_certifies_only_designs_that_pass_coverage_and_metric_gates() -> None:
     registry = json.loads(Path("governance/prediction-family-certification.json").read_text(encoding="utf-8"))
     expected_certified = {
-        "BONUS_LE_BIG_GAME": {"fold_count": 8, "joined_rows": 49_916},
-        "BONUS_OIL_BIG_GAME": {"fold_count": 8, "joined_rows": 34_330},
-        "BONUS_PLE_BIG_GAME": {"fold_count": 5, "joined_rows": 1_912},
-        "PREFERENCE_GENERAL_SEASON_BUCK_DEER": {"fold_count": 8, "joined_rows": 7_783},
+        "BONUS_LE_BIG_GAME": {"fold_count": 9, "joined_rows": 51_270},
+        "BONUS_OIL_BIG_GAME": {"fold_count": 9, "joined_rows": 18_087},
+        "BONUS_PLE_BIG_GAME": {"fold_count": 9, "joined_rows": 2_743},
+        "PREFERENCE_GENERAL_SEASON_BUCK_DEER": {"fold_count": 9, "joined_rows": 8_939},
     }
     assert registry["certified_designs"] == list(expected_certified)
     for design, expected in expected_certified.items():

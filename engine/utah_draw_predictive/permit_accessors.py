@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import re
 from typing import Mapping
 
 
@@ -208,10 +209,23 @@ def _uses_standard_big_game_ten_percent_rule(
     if len(draw_system_tokens) != 1 or not draw_system_tokens.intersection(STANDARD_BIG_GAME_TEN_PERCENT_TYPES):
         return False
 
+    if "PREFERENCE_GENERAL_SEASON_BUCK_DEER" in draw_system_tokens:
+        # DWR Draw Odds User Manual: Lifetime, Dedicated Hunter and youth
+        # allocations precede the regular 90/10 round. A Board/Planner total
+        # is not the adult drawing's quota. Require an explicitly sourced
+        # regular-round total; never infer those preceding deductions.
+        if (_clean(row.get("target_permits_scope")) != "REGULAR_DRAW_AFTER_PROGRAM_ALLOCATIONS"
+                or not _clean(row.get("target_permits_source"))):
+            return False
+
     joined = " ".join(
         _clean(row.get(field)).lower()
         for field in ("hunt_name", "hunt_type", "hunt_class", "draw_pool", "source_type", "record_type")
     )
+    # "Preference" contains the substring "reference". Match the reference
+    # classification token, not part of the preference draw's legitimate name.
+    if re.search(r"(?:^|[^a-z])reference(?:[^a-z]|$)", joined):
+        return False
     return not any(
         marker in joined
         for marker in (
@@ -222,7 +236,6 @@ def _uses_standard_big_game_ten_percent_rule(
             "landowner",
             "private voucher",
             "contact operator",
-            "reference",
             "availability",
             "over the counter",
         )

@@ -37,23 +37,65 @@ applicant will draw.
 
 ## Current Result
 
-The gate was applied to the source-only 2017→2018 through 2024→2025 review.
-The earlier report did not enforce its declared design-level non-joined-actual
-gate. The rebuilt review now counts every scoreable official actual lacking a
-forecast and requires an explicit source classification before certification.
+The following promotion is a historical deployment record. The stricter
+2026-09-19 completion audit described below supersedes it for new promotion
+decisions, without rewriting the retained production registry.
 
-No design is currently certified. `BONUS_OIL_BIG_GAME` passes the joined-row
-probability thresholds but remains experimental because its missing scoreable
-official actuals are not classified by the historical review. This corrects an
-overstatement in the prior metric-only report; it does not change official
-truth or any forecast value.
+The gate was rerun against nine source-only adjacent folds from 2017→2018
+through 2025→2026. The review counts every scoreable official actual lacking a
+forecast, requires an explicit source classification for every gap, and uses
+only pre-draw identity evidence for target-year crosswalk exceptions.
+
+Four designs pass every ADR-0006 metric, coverage, false-certainty, and evidence
+gate: `BONUS_LE_BIG_GAME`, `BONUS_OIL_BIG_GAME`, `BONUS_PLE_BIG_GAME`, and
+`PREFERENCE_GENERAL_SEASON_BUCK_DEER`. They were promoted on 2026-09-10 through
+the `certified_p_draw*`-only public contract. Bear, CWMU, turkey, antlerless,
+Dedicated Hunter, and under-evidenced youth designs remain experimental or
+insufficient-evidence and have no displayed future probability.
 
 ## Consequences
 
-- The existing hosted Research release remains unchanged and explicitly
-  uncertified.
-- A new certification-aware build will show historical evidence and projected
-  lines for non-certified families but withhold their future probability.
+### 2026-09-19 completion requirements
+
+Family certification alone cannot authorize an incomplete runtime population.
+The release gate must independently inventory eligible current hunt/residency
+lanes, verify every source-backed successor point and matching public detail,
+and browser-test every current lane (including honest suppression), not only
+the 13 smoke examples. The ten historical-only classifications must reconcile
+to their source canonicals with no forecast probability.
+
+Historical accuracy evidence must score the exact final website calculation
+through `engine.utah_predictive_mixed.materialize.mixed_row`. Hash-link the final
+file to the scoring projection and bind its implementation hash to the release.
+The four core families preserve their family-engine probability at this final
+step; prior realized winners, quota proxies and harvest context may not re-blend
+it. This changes the declared owner in place; it does not add an engine stack.
+
+A scoreable official actual with a present-but-blank forecast is also a coverage
+gap. It must be source-classified under the same standard as an absent row;
+neither may disappear from certification. The nine-fold completion rerun found
+32 unresolved LE gaps and three general-deer accuracy failures. Only OIL and
+premium LE passed that retained baseline's stricter review; its public candidate
+suppresses both failed designs. The later separately frozen
+`core_le_deer_repair_20260919` resolves all 32 through independent source-only
+replay of the existing no-certainty safeguard, without filling their blank
+probabilities. Excluding duplicate hunt-total awards from the historical deer
+quota adapter brings deer within all frozen limits without a formula change.
+The exact final nine-fold registry certifies all four core designs. Numeric
+errors, including later quota changes, remain in the score; no limit is relaxed.
+
+General-deer Board/Planner totals cannot be split 90/10 as if they were regular
+round quotas. Lifetime, Dedicated Hunter and youth allocations precede that
+round. Current builds may explicitly ingest the official UtahDraws
+`ResidentRegularRoundQuota` and `NonResidentRegularRoundQuota` fields with exact
+identity and season checks, retained source hash and separate `target_permits_*`
+scope. Historical folds remain source-year-only and cannot consume this current
+payload or DATABASE.csv. Existing public permit-reference fields are preserved.
+
+- The hosted Research release publishes certified probability only for the four
+  approved designs and withholds it for every other family.
+- Historical evidence and projected lines remain visible for non-certified
+  families without implying a certified future probability.
 - Certification is granted per draw design, never by aggregate score.
 - Closing a coverage gap requires a source-backed classification or a real
   forecast; deleting or silently dropping the official actual is prohibited.

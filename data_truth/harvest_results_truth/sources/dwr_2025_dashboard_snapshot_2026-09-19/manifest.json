@@ -1,0 +1,109 @@
+{
+  "schema_version": "dwr-harvest-dashboard-snapshot.v1",
+  "source_page": "https://wildlife.utah.gov/biggame/reports",
+  "dashboard_accessed_date": "2026-09-19",
+  "reported_hunt_year": 2025,
+  "status": "OFFICIAL_CURRENT_DASHBOARD_EXPORT_NOT_STANDALONE_FINAL_PDF",
+  "match_rule": "EXACT_HUNT_CODE_PLUS_COMPATIBLE_SPECIES_NAME_UNIT_NEVER_BOUNDARY_ID",
+  "files": [
+    {
+      "file": "deer.csv",
+      "species": "Deer",
+      "dashboard_family": "antlers",
+      "sha256": "5ca9cda02b4c8566a10bd942517715c5d3269ec8d9571d607316c2a372743df2",
+      "bytes": 366419,
+      "rows": 3696,
+      "rows_2025": 421,
+      "min_year": 2016,
+      "max_year": 2025
+    },
+    {
+      "file": "elk.csv",
+      "species": "Elk",
+      "dashboard_family": "antlers",
+      "sha256": "ae83de8c3ed51e88aee4741eeefad36ac03d4de8545e7086104a1551d698a51f",
+      "bytes": 394138,
+      "rows": 4100,
+      "rows_2025": 471,
+      "min_year": 2016,
+      "max_year": 2025
+    },
+    {
+      "file": "moose.csv",
+      "species": "Moose",
+      "dashboard_family": "antlers",
+      "sha256": "f70ee13970551dea488179490228ce217252f964c70ff490f62b81005e711629",
+      "bytes": 37873,
+      "rows": 441,
+      "rows_2025": 43,
+      "min_year": 2016,
+      "max_year": 2025
+    },
+    {
+      "file": "bison.csv",
+      "species": "Bison",
+      "dashboard_family": "horns",
+      "sha256": "cb495a0caa7e711beef4ce24f01663fe594961576d9e071bd52349927ee9a861",
+      "bytes": 17200,
+      "rows": 163,
+      "rows_2025": 18,
+      "min_year": 2016,
+      "max_year": 2025
+    },
+    {
+      "file": "desert_bighorn_sheep.csv",
+      "species": "Desert Bighorn Sheep",
+      "dashboard_family": "horns",
+      "sha256": "892a9315f0479ce67f4b2b3652feb803c6fd2f19f10f6936fceca474019ffe94",
+      "bytes": 22363,
+      "rows": 218,
+      "rows_2025": 25,
+      "min_year": 2016,
+      "max_year": 2025
+    },
+    {
+      "file": "mountain_goat.csv",
+      "species": "Mountain Goat",
+      "dashboard_family": "horns",
+      "sha256": "75ae996d77cb704bc298e89addbf5ffa314433a7a1fb8094edc422dd765f3979",
+      "bytes": 17749,
+      "rows": 180,
+      "rows_2025": 18,
+      "min_year": 2016,
+      "max_year": 2025
+    },
+    {
+      "file": "pronghorn.csv",
+      "species": "Pronghorn",
+      "dashboard_family": "horns",
+      "sha256": "0beb2c47b8e05d010d5896e45757840e5f4a497ccb30afabadd00d3dfbf5283b",
+      "bytes": 115731,
+      "rows": 1131,
+      "rows_2025": 124,
+      "min_year": 2016,
+      "max_year": 2025
+    },
+    {
+      "file": "rocky_mountain_bighorn_sheep.csv",
+      "species": "Rocky Mountain Bighorn Sheep",
+      "dashboard_family": "horns",
+      "sha256": "887e1f13f90e8bd5526aa491156f438764a7f4537c25abde4df138d8852dff9f",
+      "bytes": 19579,
+      "rows": 187,
+      "rows_2025": 21,
+      "min_year": 2016,
+      "max_year": 2025
+    }
+  ],
+  "expected_2025_rows": 1141,
+  "expected_2025_species_counts": {
+    "Bison": 18,
+    "Deer": 421,
+    "Desert Bighorn Sheep": 25,
+    "Elk": 471,
+    "Moose": 43,
+    "Mountain Goat": 18,
+    "Pronghorn": 124,
+    "Rocky Mountain Bighorn Sheep": 21
+  }
+}

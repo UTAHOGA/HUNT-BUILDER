@@ -66,6 +66,6 @@ Generated: 2026-06-01 (America/Denver)
 
 ## 9. Exact next step required if not COMPLETE
 1. Define and freeze a Research Contract v1 schema (required fields + field semantics + source/freshness metadata).
-2. Regenerate `hunt_research_2026.json` to full 2026 hunt-code universe coverage from DATABASE truth crosswalk.
+2. Regenerate `hunt_research_2026.json` to full 2026 hunt-code universe coverage from the current-target DATABASE identity/permit-reference crosswalk; historical probability evidence remains sourced from yearly draw canonicals.
 3. Add missing contract fields needed by runtime promises (especially point-creep, average-harvest-age, and explicit source/model freshness fields) or map UI expectations to existing stable fields.
 4. Refactor Research runtime to consume this JSON as primary contract instead of depending on multiple parallel CSV feeds.

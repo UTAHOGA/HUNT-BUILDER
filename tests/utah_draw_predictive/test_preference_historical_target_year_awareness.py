@@ -7,9 +7,34 @@ from engine.utah_draw_predictive.preference_general_deer import (
     build_preference_general_deer_predictions,
 )
 from engine.utah_draw_predictive.run_all_families import (
+    _aggregate_target_permits,
     _family_for_legacy_row,
     _with_historical_target_metadata,
 )
+
+
+def test_historical_proxy_does_not_add_hunt_total_to_point_awards():
+    base = _split_truth_row(year=2019, hunt_code="DB1501",
+                           hunt_name="Box Elder General Season Buck Deer", species="Deer", sex_type="Buck")
+    base.update(draw_system_type="PREFERENCE_GENERAL_SEASON_BUCK_DEER", draw_pool="adult_general_deer")
+    total = {**base, "points": "", "record_type": "hunt_total_draw_result",
+             "resident_total_permits": "999", "resident_regular_permits": "999"}
+    previous = {**base, "actual_draw_year": "2018", "year": "2018", "points": "2"}
+    rows = [total, base, previous]
+    aggregate = _aggregate_target_permits(rows, 2019)
+    assert aggregate[("preference_general_deer", "DB1501", "adult_general_deer")] == {"res": 20, "nr": 3, "total": 23}
+    assert {r["target_permits_total"] for r in _with_historical_target_metadata(rows, 2019, 2020)} == {23}
+
+
+def test_historical_proxy_explicit_residency_rows_never_sum_retained_broad_columns():
+    base = _split_truth_row(year=2019, hunt_code="DB1501",
+                           hunt_name="Box Elder General Season Buck Deer", species="Deer", sex_type="Buck")
+    base.update(draw_system_type="PREFERENCE_GENERAL_SEASON_BUCK_DEER", draw_pool="adult_general_deer")
+    resident = {**base, "residency": "Resident", "total_permits": "20", "regular_permits": "20"}
+    nonresident = {**base, "residency": "Nonresident", "total_permits": "3", "regular_permits": "3"}
+    expected = {"res": 20, "nr": 3, "total": 23}
+    for rows in ([resident, nonresident], [base], [base, resident, nonresident]):
+        assert _aggregate_target_permits(rows, 2019)[("preference_general_deer", "DB1501", "adult_general_deer")] == expected
 
 
 def _split_truth_row(
@@ -147,6 +172,12 @@ def test_2018_to_2019_preference_families_use_source_year_permits_without_2026()
                 "hunt_type": "General Season",
                 "weapon": "Rifle",
                 "permits_2018_total": "23",
+                # Historical folds explicitly provide a source-year proxy;
+                # an unscoped total cannot become a residency allocation.
+                "target_permits_res": "20",
+                "target_permits_nr": "3",
+                "target_permits_total": "23",
+                "target_permits_source": "source_year_2018_official_residency_proxy",
             }
         ],
         forecast_year=target_year,
@@ -231,7 +262,9 @@ def test_2019_to_2020_ready_preference_families_use_2019_source_permits() -> Non
         ),
     ]
     db_rows = [
-        {"hunt_code": "DB1501", "hunt_name": "Box Elder General Season Buck Deer", "species": "Deer", "sex_type": "Buck", "hunt_type": "General Season", "permits_2019_total": "23"},
+        {"hunt_code": "DB1501", "hunt_name": "Box Elder General Season Buck Deer", "species": "Deer", "sex_type": "Buck", "hunt_type": "General Season", "permits_2019_total": "23",
+         "target_permits_res": "20", "target_permits_nr": "3", "target_permits_total": "23",
+         "target_permits_source": "source_year_2019_official_residency_proxy"},
         {"hunt_code": "DA1001", "hunt_name": "Cache Antlerless Deer", "species": "Deer", "sex_type": "Antlerless", "hunt_type": "General Season", "permits_2019_total": "23"},
         {"hunt_code": "EA1001", "hunt_name": "Central Mountains Antlerless Elk", "species": "Elk", "sex_type": "Antlerless", "hunt_type": "General Season", "permits_2019_total": "23"},
         {"hunt_code": "PB5001", "hunt_name": "West Desert Doe Pronghorn", "species": "Pronghorn", "sex_type": "Doe", "hunt_type": "General Season", "permits_2019_total": "23"},

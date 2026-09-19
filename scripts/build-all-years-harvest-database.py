@@ -20,6 +20,7 @@ from engine.utah.quality.harvest_identity import (
     hunt_name_compatible,
     normalize_code,
     normalize_species,
+    resolve_identity_match,
     species_family,
 )
 
@@ -32,13 +33,14 @@ DATABASE = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "
 HARVEST_ROOT = ROOT / "pipeline" / "RAW" / "hunt_unit_database"
 SOURCE_BUNDLE_ROOT = ROOT / "data_truth" / "harvest_results_truth" / "source_package_bundles"
 MODEL_SOURCE_BUNDLE_ROOT = ROOT / "data_model" / "harvest_quality" / "source_package_bundles"
-DWR_2025_DASHBOARD_DELTA = (
+DWR_2025_DASHBOARD_SNAPSHOT = (
     ROOT
     / "data_truth"
     / "harvest_results_truth"
     / "sources"
-    / "dwr_big_game_harvest_dashboard_2025_delta.json"
+    / "dwr_2025_dashboard_snapshot_2026-09-19"
 )
+DWR_2025_DASHBOARD_MANIFEST = DWR_2025_DASHBOARD_SNAPSHOT / "manifest.json"
 DWR_HISTORY_2017_2021 = (
     ROOT
     / "data_truth"
@@ -70,6 +72,10 @@ NORMALIZED_FIELDS = [
     "hunter_satisfaction",
     "average_age",
     "average_age_3yr_reported",
+    "average_age_3yr_local_computed",
+    "average_age_3yr_local_computed_status",
+    "hunt_planner_current_age_3yr_average",
+    "hunt_planner_current_age_source",
     "average_age_source_file",
     "average_age_source_page",
     "average_age_source_table_title",
@@ -78,6 +84,17 @@ NORMALIZED_FIELDS = [
     "male_harvest",
     "female_harvest",
     "harvest_objective",
+    "trophy_left_points",
+    "trophy_right_points",
+    "trophy_antler_width",
+    "trophy_left_length",
+    "trophy_right_length",
+    "trophy_left_circumference",
+    "trophy_right_circumference",
+    "survey_context_source_file",
+    "survey_context_source_container",
+    "survey_context_source_member",
+    "survey_context_status",
     "source_file",
     "source_page",
     "source_container",
@@ -92,6 +109,24 @@ NORMALIZED_FIELDS = [
     "data_quality_flags",
     "recommended_use",
 ]
+
+OPTIONAL_NORMALIZED_FIELDS = {
+    "average_age_3yr_local_computed",
+    "average_age_3yr_local_computed_status",
+    "hunt_planner_current_age_3yr_average",
+    "hunt_planner_current_age_source",
+    "trophy_left_points",
+    "trophy_right_points",
+    "trophy_antler_width",
+    "trophy_left_length",
+    "trophy_right_length",
+    "trophy_left_circumference",
+    "trophy_right_circumference",
+    "survey_context_source_file",
+    "survey_context_source_container",
+    "survey_context_source_member",
+    "survey_context_status",
+}
 
 
 def read_csv_rows_from_text(text: str) -> tuple[list[dict[str, str]], list[str]]:
@@ -384,6 +419,10 @@ def normalize_row(
         "hunter_satisfaction": first(row, "hunter_satisfaction", "harvest_satisfaction"),
         "average_age": first(row, "average_age", "age_of_sheep", "age_of_sheep_decimal"),
         "average_age_3yr_reported": first(row, "average_age_3yr_reported", "average_harvest_age_3yr"),
+        "average_age_3yr_local_computed": first(row, "average_age_3yr_local_computed"),
+        "average_age_3yr_local_computed_status": first(row, "average_age_3yr_local_computed_status"),
+        "hunt_planner_current_age_3yr_average": first(row, "hunt_planner_current_age_3yr_average"),
+        "hunt_planner_current_age_source": first(row, "hunt_planner_current_age_source"),
         "average_age_source_file": first(row, "average_age_source_file", "age_source_file"),
         "average_age_source_page": first(row, "average_age_source_page", "age_source_page"),
         "average_age_source_table_title": first(
@@ -396,6 +435,17 @@ def normalize_row(
         "male_harvest": first(row, "male_harvest"),
         "female_harvest": first(row, "female_harvest"),
         "harvest_objective": first(row, "harvest_objective"),
+        "trophy_left_points": first(row, "trophy_left_points"),
+        "trophy_right_points": first(row, "trophy_right_points"),
+        "trophy_antler_width": first(row, "trophy_antler_width"),
+        "trophy_left_length": first(row, "trophy_left_length"),
+        "trophy_right_length": first(row, "trophy_right_length"),
+        "trophy_left_circumference": first(row, "trophy_left_circumference"),
+        "trophy_right_circumference": first(row, "trophy_right_circumference"),
+        "survey_context_source_file": first(row, "survey_context_source_file"),
+        "survey_context_source_container": first(row, "survey_context_source_container"),
+        "survey_context_source_member": first(row, "survey_context_source_member"),
+        "survey_context_status": first(row, "survey_context_status"),
         "source_file": first(row, "source_file") or (member or Path(container).name),
         "source_page": first(row, "source_page", "source_page_id"),
         "source_container": container,
@@ -422,73 +472,140 @@ def row_score(row: dict[str, str]) -> tuple[int, int, int]:
     return (priority, filled, has_quality)
 
 
-def _dashboard_addition_row(raw: dict[str, object], delta: dict[str, object]) -> dict[str, str]:
-    hunters = first({key: str(value) for key, value in raw.items()}, "hunters_afield")
-    harvest = first({key: str(value) for key, value in raw.items()}, "harvest")
-    percent_success = ""
-    try:
-        if float(hunters.replace(",", "")) > 0:
-            percent_success = f"{100 * float(harvest.replace(',', '') or 0) / float(hunters.replace(',', '')):.1f}"
-    except ValueError:
-        percent_success = ""
-    return {
-        "reported_hunt_year": str(delta["reported_hunt_year"]),
-        "model_target_year": str(delta["model_target_year"]),
-        "hunt_code": normalize_code(raw.get("hunt_code")),
-        "species": str(raw.get("species", "")),
-        "sex_type": str(raw.get("sex_type", "")),
-        "hunt_name": str(raw.get("hunt_name", "")),
-        "hunt_type": str(raw.get("hunt_type", "")),
-        "weapon": str(raw.get("weapon", "")),
-        "permits": str(raw.get("permits", "")),
-        "hunters_afield": hunters,
-        "harvest_total": harvest,
-        "harvest_male": "",
-        "harvest_female": "",
-        "harvest_young": "",
-        "harvest_unknown": "",
-        "percent_success": percent_success,
-        "average_days": "",
-        "hunter_satisfaction": "",
-        "average_age": "",
-        "average_age_3yr_reported": "",
-        "average_age_source_file": "",
-        "average_age_source_page": "",
-        "average_age_source_table_title": "",
-        "average_age_crosswalk_confidence": "",
-        "average_age_mapping_status": "",
-        "male_harvest": "",
-        "female_harvest": "",
-        "harvest_objective": "",
-        "source_file": "Utah DWR Big Game Harvest & Survey dashboard",
-        "source_page": str(delta["source_url"]),
-        "source_container": str(DWR_2025_DASHBOARD_DELTA.relative_to(ROOT)),
-        "source_member": "",
-        "source_kind": "official_dashboard_current_delta",
-        "source_priority": "110",
-        "source_status": "official_dashboard_current",
-        "parse_status": "REVIEWED_DASHBOARD_TRANSCRIPTION",
-        "do_not_use_for_permit_quota": "True",
-        "do_not_use_directly_for_p_draw": "True",
-        "trend_feature_eligible": "True",
-        "data_quality_flags": "OFFICIAL_DWR_DASHBOARD|HUNT_CODE_KEYED|BIG_GAME_HARVEST",
-        "recommended_use": "harvest quality, demand-signal, and backcheck features only; do not use as permit quota or direct draw probability",
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _dashboard_snapshot_row(
+    raw: dict[str, str], species: str, dashboard_family: str, source_file: Path, source_url: str
+) -> dict[str, str]:
+    row = {field: "" for field in NORMALIZED_FIELDS}
+    row.update(
+        {
+            "reported_hunt_year": infer_year(first(raw, "Year")),
+            "model_target_year": "2026",
+            "hunt_code": normalize_code(first(raw, "Hunt #")),
+            "species": species,
+            "sex_type": first(raw, "Sex"),
+            "hunt_name": first(raw, "Name"),
+            "hunt_type": first(raw, "Type"),
+            "weapon": first(raw, "Weapon"),
+            "permits": first(raw, "Permits"),
+            "hunters_afield": first(raw, "Hunters"),
+            "harvest_total": first(raw, "Harvest"),
+            "harvest_male": first(raw, "Males"),
+            "harvest_female": first(raw, "Females"),
+            "male_harvest": first(raw, "Males"),
+            "female_harvest": first(raw, "Females"),
+            # Preserve DWR's exported value. It is not always a recomputation of
+            # the displayed Harvest and Hunters cells.
+            "percent_success": first(raw, "Success"),
+            "trophy_left_points": first(raw, "Left Pts", "Left pts"),
+            "trophy_right_points": first(raw, "Right Pts", "Right pts"),
+            "trophy_antler_width": first(raw, "Antler Width") if dashboard_family == "antlers" else "",
+            "trophy_left_length": first(raw, "Left length") if dashboard_family == "horns" else "",
+            "trophy_right_length": first(raw, "Right length") if dashboard_family == "horns" else "",
+            "trophy_left_circumference": first(raw, "Left circumference", "Left circumfrence")
+            if dashboard_family == "horns"
+            else "",
+            "trophy_right_circumference": first(raw, "Right circumference", "Right circumfrence")
+            if dashboard_family == "horns"
+            else "",
+            "source_file": source_file.name,
+            "source_page": source_url,
+            "source_container": str(DWR_2025_DASHBOARD_SNAPSHOT.relative_to(ROOT)),
+            "source_member": source_file.name,
+            "source_kind": "official_dashboard_current_snapshot",
+            "source_priority": "120",
+            "source_status": "official_dashboard_current_not_standalone_final_pdf",
+            "parse_status": "EXACT_DWR_DASHBOARD_EXPORT",
+            "do_not_use_for_permit_quota": "True",
+            "do_not_use_directly_for_p_draw": "True",
+            "trend_feature_eligible": "True",
+            "data_quality_flags": "OFFICIAL_DWR_DASHBOARD|HUNT_CODE_KEYED|BIG_GAME_HARVEST|EXACT_EXPORT",
+            "recommended_use": "harvest quality, demand-signal, and backcheck features only; do not use as permit quota or direct draw probability",
+        }
+    )
+    return row
+
+
+def _read_dashboard_snapshot() -> tuple[list[dict[str, str]], dict[str, object]]:
+    manifest = json.loads(DWR_2025_DASHBOARD_MANIFEST.read_text(encoding="utf-8"))
+    source_url = str(manifest["source_page"])
+    current_rows: list[dict[str, str]] = []
+    validated_files: list[dict[str, object]] = []
+    for entry in manifest["files"]:
+        path = DWR_2025_DASHBOARD_SNAPSHOT / str(entry["file"])
+        if _sha256(path) != entry["sha256"]:
+            raise RuntimeError(f"DWR dashboard source hash differs: {path.relative_to(ROOT)}")
+        if path.stat().st_size != int(entry["bytes"]):
+            raise RuntimeError(f"DWR dashboard source byte count differs: {path.relative_to(ROOT)}")
+        rows, headers = read_csv_file(path)
+        if len(rows) != int(entry["rows"]):
+            raise RuntimeError(f"DWR dashboard source row count differs: {path.relative_to(ROOT)}")
+        required = {
+            "Year",
+            "Hunt #",
+            "Name",
+            "Type",
+            "Weapon",
+            "Sex",
+            "Permits",
+            "Hunters",
+            "Harvest",
+            "Males",
+            "Females",
+            "Success",
+        }
+        if not required.issubset(headers):
+            raise RuntimeError(f"DWR dashboard source headers differ: {path.relative_to(ROOT)}")
+        rows_2025 = [row for row in rows if infer_year(row.get("Year", "")) == "2025"]
+        if len(rows_2025) != int(entry["rows_2025"]):
+            raise RuntimeError(f"DWR dashboard 2025 row count differs: {path.relative_to(ROOT)}")
+        current_rows.extend(
+            _dashboard_snapshot_row(
+                raw,
+                str(entry["species"]),
+                str(entry["dashboard_family"]),
+                path,
+                source_url,
+            )
+            for raw in rows_2025
+        )
+        validated_files.append(
+            {
+                "file": str(entry["file"]),
+                "sha256": str(entry["sha256"]),
+                "rows": len(rows),
+                "rows_2025": len(rows_2025),
+            }
+        )
+    return current_rows, {
+        "source_url": source_url,
+        "dashboard_accessed_date": manifest["dashboard_accessed_date"],
+        "snapshot_status": manifest["status"],
+        "validated_files": validated_files,
+        "expected_rows": int(manifest["expected_2025_rows"]),
+        "expected_species_counts": {
+            str(key): int(value) for key, value in manifest["expected_2025_species_counts"].items()
+        },
     }
 
 
 def reconcile_current_2025_dashboard(
     all_rows: list[dict[str, str]],
+    database_rows: dict[str, dict[str, str]],
 ) -> tuple[list[dict[str, str]], dict[str, object]]:
-    delta = json.loads(DWR_2025_DASHBOARD_DELTA.read_text(encoding="utf-8"))
+    current_rows, snapshot = _read_dashboard_snapshot()
     baseline_member = "harvest_results_2025_for_2026_hunt_code_keyed.csv"
-    baseline_candidates = [
+    baseline_source_rows = [
         row
         for row in all_rows
         if row.get("reported_hunt_year") == "2025"
         and Path(row.get("source_member", "")).name == baseline_member
     ]
-    current_by_identity: dict[tuple[str, ...], dict[str, str]] = {}
-    for row in baseline_candidates:
+    baseline_by_identity: dict[tuple[str, ...], dict[str, str]] = {}
+    for row in baseline_source_rows:
         key = tuple(
             row.get(field, "")
             for field in (
@@ -506,52 +623,51 @@ def reconcile_current_2025_dashboard(
                 "hunter_satisfaction",
             )
         )
-        current_by_identity.setdefault(key, dict(row))
-    current_rows = list(current_by_identity.values())
-    if len(current_rows) != int(delta["baseline_expected_rows"]):
-        raise RuntimeError(
-            f"Expected {delta['baseline_expected_rows']} packaged 2025 big-game rows, found {len(current_rows)}"
-        )
+        baseline_by_identity.setdefault(key, row)
+    baseline_candidates = list(baseline_by_identity.values())
+    baseline_by_code: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for row in baseline_candidates:
+        baseline_by_code[normalize_code(row.get("hunt_code"))].append(row)
+    database_by_code: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for row in database_rows.values():
+        database_by_code[normalize_code(row.get("hunt_code"))].append(row)
 
-    correction_count = 0
-    for correction in delta["corrections"]:
-        for collection in (all_rows, current_rows):
-            for row in collection:
-                if row.get("reported_hunt_year") != "2025":
-                    continue
-                if normalize_code(row.get("hunt_code")) != normalize_code(correction["hunt_code"]):
-                    continue
-                row_species = normalize_species(row.get("species"))
-                if row_species not in {
-                    normalize_species(correction["from_species"]),
-                    normalize_species(correction["to_species"]),
-                }:
-                    continue
-                if not hunt_name_compatible(row.get("hunt_name"), correction["hunt_name"]):
-                    continue
-                row["species"] = str(correction["to_species"])
-                flags = [flag for flag in row.get("data_quality_flags", "").split("|") if flag]
-                if "DASHBOARD_SPECIES_CORRECTED" not in flags:
-                    flags.append("DASHBOARD_SPECIES_CORRECTED")
-                row["data_quality_flags"] = "|".join(flags)
-                if collection is current_rows:
-                    correction_count += 1
-    if correction_count != len(delta["corrections"]):
-        raise RuntimeError(
-            f"Expected {len(delta['corrections'])} current dashboard corrections, applied {correction_count}"
-        )
+    survey_match_count = 0
+    survey_unmatched_codes: list[str] = []
+    planner_age_match_count = 0
+    for row in current_rows:
+        code = normalize_code(row.get("hunt_code"))
+        survey_match = resolve_identity_match(row, baseline_by_code.get(code, []))
+        if survey_match.row is not None:
+            source = survey_match.row
+            row["average_days"] = str(source.get("average_days", ""))
+            row["hunter_satisfaction"] = str(source.get("hunter_satisfaction", ""))
+            row["survey_context_source_file"] = str(source.get("source_file", ""))
+            row["survey_context_source_container"] = str(source.get("source_container", ""))
+            row["survey_context_source_member"] = str(source.get("source_member", ""))
+            row["survey_context_status"] = "PRELIMINARY_SURVEY_CONTEXT_RETAINED_EXACT_IDENTITY"
+            row["data_quality_flags"] += "|PRELIMINARY_DAYS_SATISFACTION_RETAINED"
+            survey_match_count += 1
+        else:
+            survey_unmatched_codes.append(code)
 
-    additions = [_dashboard_addition_row(row, delta) for row in delta["additions"]]
-    current_rows.extend(dict(row) for row in additions)
-    all_rows.extend(additions)
+        planner_match = resolve_identity_match(row, database_by_code.get(code, []))
+        if planner_match.row is not None and planner_match.row.get("current_age_3yr_average", ""):
+            row["hunt_planner_current_age_3yr_average"] = str(
+                planner_match.row.get("current_age_3yr_average", "")
+            )
+            row["hunt_planner_current_age_source"] = "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+            planner_age_match_count += 1
+
+    all_rows.extend(dict(row) for row in current_rows)
 
     species_counts = Counter(row["species"] for row in current_rows)
-    expected_counts = Counter({str(key): int(value) for key, value in delta["expected_species_counts"].items()})
+    expected_counts = Counter(snapshot["expected_species_counts"])
     if species_counts != expected_counts:
         raise RuntimeError(f"2025 DWR dashboard species counts differ: {dict(species_counts)}")
-    if len(current_rows) != int(delta["current_expected_rows"]):
+    if len(current_rows) != int(snapshot["expected_rows"]):
         raise RuntimeError(
-            f"Expected {delta['current_expected_rows']} current 2025 dashboard rows, found {len(current_rows)}"
+            f"Expected {snapshot['expected_rows']} current 2025 dashboard rows, found {len(current_rows)}"
         )
     current_rows.sort(
         key=lambda row: (
@@ -562,11 +678,15 @@ def reconcile_current_2025_dashboard(
         )
     )
     return current_rows, {
-        "source_url": delta["source_url"],
-        "dashboard_accessed_date": delta["dashboard_accessed_date"],
-        "baseline_rows": delta["baseline_expected_rows"],
-        "addition_rows": len(additions),
-        "correction_rows": correction_count,
+        "source_url": snapshot["source_url"],
+        "dashboard_accessed_date": snapshot["dashboard_accessed_date"],
+        "snapshot_status": snapshot["snapshot_status"],
+        "source_files": snapshot["validated_files"],
+        "baseline_preliminary_rows": len(baseline_candidates),
+        "survey_context_exact_identity_matches": survey_match_count,
+        "survey_context_unmatched_rows": len(survey_unmatched_codes),
+        "survey_context_unmatched_hunt_codes": sorted(set(survey_unmatched_codes)),
+        "hunt_planner_current_age_matches": planner_age_match_count,
         "current_rows": len(current_rows),
         "species_counts": dict(sorted(species_counts.items())),
     }
@@ -578,45 +698,16 @@ def reconcile_best_history(
 ) -> list[dict[str, str]]:
     """Overlay current dashboard identities without collapsing shared hunt codes."""
 
-    rows = [
-        dict(row)
-        for row in preserved_best_rows
-        if row.get("source_kind") != "official_dashboard_current_delta"
-    ]
-    current_by_identity = {
-        (
-            row.get("reported_hunt_year", ""),
-            normalize_code(row.get("hunt_code")),
-            normalize_species(row.get("species")),
-            row.get("hunt_name", ""),
-            row.get("weapon", ""),
-        ): row
-        for row in current_2025_rows
-    }
-    for row in rows:
-        if row.get("reported_hunt_year") != "2025" or normalize_code(row.get("hunt_code")) != "PB1000":
-            continue
-        if hunt_name_compatible(row.get("hunt_name"), "Pronghorn - Statewide Permit"):
-            row["species"] = "Pronghorn"
-            flags = [flag for flag in row.get("data_quality_flags", "").split("|") if flag]
-            if "DASHBOARD_SPECIES_CORRECTED" not in flags:
-                flags.append("DASHBOARD_SPECIES_CORRECTED")
-            row["data_quality_flags"] = "|".join(flags)
-
-    existing = {
-        (
-            row.get("reported_hunt_year", ""),
-            normalize_code(row.get("hunt_code")),
-            normalize_species(row.get("species")),
-            row.get("hunt_name", ""),
-            row.get("weapon", ""),
+    dashboard_species = {species_family(row.get("species")) for row in current_2025_rows}
+    rows = []
+    for row in preserved_best_rows:
+        is_replaced_2025_big_game = (
+            row.get("reported_hunt_year") == "2025"
+            and species_family(row.get("species")) in dashboard_species
         )
-        for row in rows
-    }
-    for key, row in current_by_identity.items():
-        if row.get("source_kind") == "official_dashboard_current_delta" and key not in existing:
+        if not is_replaced_2025_big_game:
             rows.append(dict(row))
-            existing.add(key)
+    rows.extend(dict(row) for row in current_2025_rows)
     rows.sort(
         key=lambda row: (
             row.get("reported_hunt_year", ""),
@@ -636,7 +727,7 @@ def read_history_2017_2021_repairs() -> list[dict[str, str]]:
             "Run: python scripts/extract-dwr-harvest-history-2017-2021.py"
         )
     rows, headers = read_csv_file(DWR_HISTORY_2017_2021)
-    missing = sorted(set(NORMALIZED_FIELDS) - set(headers))
+    missing = sorted((set(NORMALIZED_FIELDS) - OPTIONAL_NORMALIZED_FIELDS) - set(headers))
     if missing:
         raise RuntimeError(f"2017-2021 DWR harvest repair source is missing columns: {missing}")
     expected_years = {str(year) for year in range(2017, 2022)}
@@ -778,6 +869,57 @@ def merge_age_database(
     }
 
 
+def compute_local_three_year_age(rows: list[dict[str, str]]) -> dict[str, int]:
+    """Compute a distinct local rolling age measure from three annual DWR ages.
+
+    This never replaces the DWR-reported three-year value and never reads the
+    Hunt Planner current-age field. A value is emitted only when the same exact
+    hunt code and compatible species family have one unambiguous annual age in
+    each of the current and prior two reported hunt years.
+    """
+
+    annual_values: dict[tuple[str, str, int], set[float]] = defaultdict(set)
+    for row in rows:
+        text = str(row.get("average_age", "")).strip()
+        year_text = str(row.get("reported_hunt_year", "")).strip()
+        if not text or not year_text.isdigit():
+            continue
+        try:
+            value = float(text)
+        except ValueError:
+            continue
+        key = (normalize_code(row.get("hunt_code")), species_family(row.get("species")), int(year_text))
+        annual_values[key].add(value)
+
+    populated = ambiguous = 0
+    for row in rows:
+        row["average_age_3yr_local_computed"] = ""
+        row["average_age_3yr_local_computed_status"] = ""
+        year_text = str(row.get("reported_hunt_year", "")).strip()
+        if not year_text.isdigit():
+            continue
+        code = normalize_code(row.get("hunt_code"))
+        family = species_family(row.get("species"))
+        values: list[float] = []
+        has_ambiguity = False
+        for year in range(int(year_text) - 2, int(year_text) + 1):
+            candidates = annual_values.get((code, family, year), set())
+            if len(candidates) != 1:
+                has_ambiguity = has_ambiguity or len(candidates) > 1
+                values = []
+                break
+            values.append(next(iter(candidates)))
+        if values:
+            mean = sum(values) / 3
+            row["average_age_3yr_local_computed"] = f"{mean:.2f}".rstrip("0").rstrip(".")
+            row["average_age_3yr_local_computed_status"] = "LOCAL_MEAN_OF_THREE_ANNUAL_DWR_AGES"
+            populated += 1
+        elif has_ambiguity:
+            row["average_age_3yr_local_computed_status"] = "AMBIGUOUS_ANNUAL_AGE_VALUES_WITHHELD"
+            ambiguous += 1
+    return {"populated_rows": populated, "ambiguous_rows": ambiguous}
+
+
 def special_permit_overlay_class(row: dict[str, str], database_row: dict[str, str] | None = None) -> str:
     text = " ".join(
         [
@@ -819,7 +961,8 @@ def main() -> int:
     preserved_rows = [
         row
         for row in read_preserved_normalized_long()
-        if row.get("source_kind") != "official_dashboard_current_delta"
+        if row.get("source_kind")
+        not in {"official_dashboard_current_delta", "official_dashboard_current_snapshot"}
     ]
     if preserved_rows:
         all_rows.extend(preserved_rows)
@@ -888,15 +1031,15 @@ def main() -> int:
         }
     )
 
-    current_2025_rows, current_2025_summary = reconcile_current_2025_dashboard(all_rows)
+    current_2025_rows, current_2025_summary = reconcile_current_2025_dashboard(all_rows, database_rows)
     source_audit.append(
         {
-            "container": str(DWR_2025_DASHBOARD_DELTA.relative_to(ROOT)),
+            "container": str(DWR_2025_DASHBOARD_SNAPSHOT.relative_to(ROOT)),
             "member": "",
-            "source_kind": "official_dashboard_current_delta",
-            "source_priority": 110,
-            "raw_rows": current_2025_summary["addition_rows"],
-            "normalized_rows": current_2025_summary["addition_rows"],
+            "source_kind": "official_dashboard_current_snapshot",
+            "source_priority": 120,
+            "raw_rows": current_2025_summary["current_rows"],
+            "normalized_rows": current_2025_summary["current_rows"],
             "unique_hunt_codes": len({row["hunt_code"] for row in current_2025_rows}),
             "active_database_codes": len({row["hunt_code"] for row in current_2025_rows} & active_codes),
             "reported_hunt_years": "2025",
@@ -928,6 +1071,33 @@ def main() -> int:
     age_rows = read_age_database()
     all_rows, age_long_summary = merge_age_database(all_rows, age_rows)
     best_rows, age_best_summary = merge_age_database(best_rows, age_rows)
+    current_2025_rows, age_current_summary = merge_age_database(current_2025_rows, age_rows)
+    local_age_long_summary = compute_local_three_year_age(all_rows)
+    local_age_best_summary = compute_local_three_year_age(best_rows)
+    local_by_identity = {
+        (
+            normalize_code(row.get("hunt_code")),
+            species_family(row.get("species")),
+            row.get("hunt_name", ""),
+            row.get("weapon", ""),
+        ): (
+            row.get("average_age_3yr_local_computed", ""),
+            row.get("average_age_3yr_local_computed_status", ""),
+        )
+        for row in all_rows
+        if row.get("reported_hunt_year") == "2025"
+        and row.get("source_kind") == "official_dashboard_current_snapshot"
+    }
+    for row in current_2025_rows:
+        key = (
+            normalize_code(row.get("hunt_code")),
+            species_family(row.get("species")),
+            row.get("hunt_name", ""),
+            row.get("weapon", ""),
+        )
+        local_value, local_status = local_by_identity.get(key, ("", ""))
+        row["average_age_3yr_local_computed"] = local_value
+        row["average_age_3yr_local_computed_status"] = local_status
 
     year_counts = Counter(row["reported_hunt_year"] for row in best_rows)
     model_year_counts = Counter(row["model_target_year"] for row in best_rows)
@@ -1025,6 +1195,9 @@ def main() -> int:
             "source": str(AGE_DATABASE.relative_to(ROOT)),
             "normalized_long": age_long_summary,
             "best_by_hunt_identity": age_best_summary,
+            "current_2025_dashboard": age_current_summary,
+            "local_three_year_normalized_long": local_age_long_summary,
+            "local_three_year_best_by_hunt_identity": local_age_best_summary,
         },
         "current_2025_dashboard": current_2025_summary,
         "outputs": {
@@ -1047,7 +1220,8 @@ def main() -> int:
             "Current-row reconciliation requires exact normalized hunt_code plus compatible hunt_name and species; boundary_id is never a match key.",
             "The 2017-2021 repair uses official DWR harvest PDFs/package rows and remains feature-only truth, never permit or direct p_draw truth.",
             "Annual harvest age and DWR-reported three-year harvest age remain separate fields with separate age provenance.",
-            "DWR Hunt Planner current_age_3yr_average is not a harvest-report age field and is not populated by this builder.",
+            "DWR Hunt Planner current_age_3yr_average is retained only in hunt_planner_current_age_3yr_average for exact current identity matches; it never replaces a harvest-report age field.",
+            "Locally computed three-year age is stored separately from DWR-reported three-year age and requires three unambiguous annual DWR ages for the same exact hunt code and compatible species.",
         ],
     }
     (OUT_TRUTH / "harvest_results_all_years_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")

@@ -54,6 +54,11 @@ def test_2017_to_2018_carry_forward_gate() -> None:
 
 def test_2018_to_2019_carry_forward_gate() -> None:
     rows = read_rows("reviewed_hunt_identity_crosswalk_2018_to_2019.csv")
+
+    bear_pursuit = find(rows, "BR1008", "BR1008")
+    assert bear_pursuit["transition_type"] == "SAME_IDENTITY"
+    assert bear_pursuit["applicant_stack_carry_forward_allowed"] == "TRUE"
+    assert bear_pursuit["carry_forward_draw_designs"] == "RESTRICTED_BEAR_PURSUIT"
     assert find(rows, "DA1038", "DA1003")["applicant_stack_carry_forward_allowed"] == "TRUE"
     assert find(rows, "MB6204", "MB6240")["applicant_stack_carry_forward_allowed"] == "TRUE"
     assert find(rows, "DB1259", "DB1259")["transition_type"] == "NAME_ALIAS"

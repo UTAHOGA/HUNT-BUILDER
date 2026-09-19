@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-09T11:15:47+00:00",
+  "generated_at_utc": "2026-09-10T10:32:57+00:00",
   "audit_scope": "2020_hashed_draw_odds_source_parity_for_2021_modeling",
   "legacy_source_dir": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\pipeline\\RAW\\hunt_unit_database\\2020\\pdf\\draw_odds",
   "active_source_dir": "pipeline\\RAW\\hunt_unit_database\\2020\\pdf\\draw_odds",
@@ -191,8 +191,8 @@
   ],
   "source_draw_result_year": "2020",
   "model_target_year": "2021",
-  "draw_truth_2020_rows": 33069,
-  "draw_truth_2020_unique_hunt_codes": 1014,
+  "draw_truth_2020_rows": 33363,
+  "draw_truth_2020_unique_hunt_codes": 1028,
   "draw_truth_2021_rows": 33788,
   "draw_truth_2021_unique_hunt_codes": 1022,
   "draw_truth_2021_source_file_count": 15,

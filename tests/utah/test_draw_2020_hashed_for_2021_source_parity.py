@@ -54,9 +54,9 @@ def test_2020_hashed_draw_truth_anchor_includes_the_extracted_2020_canonical() -
 
     assert summary["source_draw_result_year"] == "2020"
     assert summary["model_target_year"] == "2021"
-    assert summary["draw_truth_2020_rows"] == 33069
-    assert summary["draw_truth_2020_unique_hunt_codes"] == 1014
+    assert summary["draw_truth_2020_rows"] == 33363
+    assert summary["draw_truth_2020_unique_hunt_codes"] == 1028
     assert summary["draw_truth_2021_rows"] == 33788
     assert summary["draw_truth_2021_unique_hunt_codes"] == 1022
-    assert len(summary["draw_truth_2021_source_files"]) == 14
+    assert len(summary["draw_truth_2021_source_files"]) == 15
     assert summary["draw_truth_source_label_status"] == "SOURCE_LABEL_LINEAGE_REVIEW"

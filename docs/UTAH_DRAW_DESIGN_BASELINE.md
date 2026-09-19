@@ -88,13 +88,13 @@ The 2025-to-2026 blind audit now performs this comparison. It scores the declare
 - Missing repo-external bear draw-odds evidence now creates an explicit blocker instead of crashing unrelated classification.
 - The durable project memory now defines draw-family routing, bear subtypes, residency overlays, and last-year unsuccessful cohort priority.
 
-### Still blocks certification
+### Remaining certification boundaries
 
 - Historical winner-share residency fallback has been removed from the family builders. Explicit official splits override all derived values; the central resolver applies approved total-allocation rules only to allowlisted standard preference families and blocks unsupported special families.
 - The generic deterministic simulator has global bonus max/random counters layered over residency buckets; it does not yet perform a fully separate resident round, nonresident round, and later eligible cross-over sequence.
 - Public preference reports state that published odds reflect first choices. Exact second-through-fifth-choice probabilities are not fully observable from those reports.
-- The rebuilt output still contains duplicate bonus prediction identities and the blind join has unexpected key gaps; these block promotion.
-- The official 2018 and 2019 reports are hydrated and have isolated, source-checked reconstructions. Corrected hunt-total lanes, management-buck classification, historical cougar year assignment, separate youth pools, and source-faithful Sportsman/ratio fields remain unpromoted until the complete year-by-year reconciliation gate passes.
+- The nine-fold source-only review has zero duplicate prediction identities, zero unclassified actual gaps, and zero false-certainty rows for the four certified designs. Those four designs were promoted on 2026-09-10 through `certified_p_draw*` fields only.
+- Bear, CWMU, turkey, antlerless, Dedicated Hunter, and under-evidenced youth families remain outside the certified publication allowlist until their own ADR-0006 evidence passes. Their historical/reference data may display, but their future probability remains blank.
 
 ## Official sources
 

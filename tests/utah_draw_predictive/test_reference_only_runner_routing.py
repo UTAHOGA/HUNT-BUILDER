@@ -148,6 +148,26 @@ def test_pb_hunt_codes_route_to_limited_entry_not_premium_limited_entry() -> Non
     assert _source_backed_family_for_row(row) == "bonus_le_big_game"
 
 
+def test_compact_official_dedicated_hunter_filenames_route_to_dedicated_family() -> None:
+    assert _source_backed_family_for_row(
+        {
+            "hunt_code": "DB1769",
+            "species": "Deer",
+            "sex_type": "Buck",
+            "source_file": "official_dwr_archive/big_game/20_dh_odds.pdf",
+        }
+    ) == "dedicated_hunter"
+    assert _source_backed_family_for_row(
+        {
+            "hunt_code": "DB1769",
+            "species": "Deer",
+            "sex_type": "Buck",
+            "source_file": "official_dwr_archive/big_game/20_youth_dh_odds.pdf",
+            "source_is_youth": "true",
+        }
+    ) == "dedicated_hunter"
+
+
 def test_le_child_pdfs_split_into_species_lanes() -> None:
     deer_row = {
         "hunt_code": "DB1201",

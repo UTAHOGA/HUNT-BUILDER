@@ -47,7 +47,16 @@ YEARS = (2023, 2024, 2025)
 
 DWR_REPORTS_URL = "https://wildlife.utah.gov/biggame/reports"
 DWR_REPORT_INDEX_URL = "https://wildlife.utah.gov/hunting/reports"
-DWR_2025_ACCESSED = "2026-09-02"
+DWR_2025_SNAPSHOT_MANIFEST = (
+    ROOT
+    / "data_truth"
+    / "harvest_results_truth"
+    / "sources"
+    / "dwr_2025_dashboard_snapshot_2026-09-19"
+    / "manifest.json"
+)
+_DWR_2025_SNAPSHOT = json.loads(DWR_2025_SNAPSHOT_MANIFEST.read_text(encoding="utf-8"))
+DWR_2025_ACCESSED = str(_DWR_2025_SNAPSHOT["dashboard_accessed_date"])
 
 PAGE_SIZE = landscape(letter)
 PAGE_W, PAGE_H = PAGE_SIZE
@@ -163,6 +172,10 @@ def styles() -> dict[str, ParagraphStyle]:
         "cell_bold": ParagraphStyle(
             "cell_bold", fontName="Helvetica-Bold", fontSize=5.2, leading=6.1,
             textColor=TEXT,
+        ),
+        "cell_header": ParagraphStyle(
+            "cell_header", fontName="Helvetica-Bold", fontSize=4.75, leading=5.2,
+            textColor=colors.white, alignment=TA_CENTER,
         ),
         "toc_species": ParagraphStyle(
             "toc_species", fontName="Helvetica-Bold", fontSize=6.8, leading=7.1,
@@ -522,9 +535,24 @@ def result_table(
     profiles: dict[str, dict[str, str]],
     report_styles: dict[str, ParagraphStyle],
 ) -> Table:
-    data: list[list[object]] = [[
-        "Code", "Hunt / type / weapon", "Permits", "Hunters", "Util.", "Harvest", "Success", "Days", "Satisf.", "Annual age", "DWR 3-year age", "Utah DWR objective", "U.O.G.A. unit quality"
-    ]]
+    header_labels = [
+        "Code",
+        "Hunt / type /<br/>weapon",
+        "Permits",
+        "Hunters",
+        "Util.",
+        "Harvest",
+        "Success",
+        "Days",
+        "Satisf.",
+        "Annual<br/>age",
+        "DWR 3-year<br/>age",
+        "Local 3-year<br/>age",
+        "Planner current<br/>age",
+        "Utah DWR<br/>objective",
+        "U.O.G.A. unit<br/>quality",
+    ]
+    data: list[list[object]] = [[Paragraph(label, report_styles["cell_header"]) for label in header_labels]]
     for row in rows:
         hunt_code = clean(row.get("hunt_code"))
         description = escape(clean(row.get("hunt_name")))
@@ -552,13 +580,15 @@ def result_table(
                 display(row.get("hunter_satisfaction"), 1),
                 display(row.get("average_age"), 1),
                 display(row.get("average_age_3yr_reported"), 1),
+                display(row.get("average_age_3yr_local_computed"), 2),
+                display(row.get("hunt_planner_current_age_3yr_average"), 1),
                 objective_cell(management_row, report_styles),
                 quality_cell(profile_row, report_styles),
             ]
         )
     return table(
         data,
-        [0.46 * inch, 1.8 * inch, 0.47 * inch, 0.49 * inch, 0.45 * inch, 0.47 * inch, 0.47 * inch, 0.4 * inch, 0.45 * inch, 0.45 * inch, 0.52 * inch, 1.5 * inch, 1.55 * inch],
+        [0.42 * inch, 1.45 * inch, 0.42 * inch, 0.45 * inch, 0.43 * inch, 0.45 * inch, 0.46 * inch, 0.38 * inch, 0.42 * inch, 0.42 * inch, 0.46 * inch, 0.46 * inch, 0.5 * inch, 1.32 * inch, 1.45 * inch],
         4.95,
     )
 
@@ -570,7 +600,7 @@ def report_status(year: int) -> str:
         return "VERIFIED DWR ANNUAL PACKAGE"
     if year <= 2024:
         return "VERIFIED DWR REPORT PACKAGE"
-    return "CURRENT DWR DATA - 2026-09-02"
+    return f"CURRENT DWR DATA - {DWR_2025_ACCESSED}"
 
 
 def build_report(
@@ -594,6 +624,8 @@ def build_report(
     groups = species_sex_groups(rows, profiles)
     annual_age_rows = sum(bool(clean(row.get("average_age"))) for row in rows)
     reported_age_rows = sum(bool(clean(row.get("average_age_3yr_reported"))) for row in rows)
+    local_age_rows = sum(bool(clean(row.get("average_age_3yr_local_computed"))) for row in rows)
+    planner_age_rows = sum(bool(clean(row.get("hunt_planner_current_age_3yr_average"))) for row in rows)
     objective_rows = sum(
         bool(clean((compatible_context(row, management.get(clean(row.get("hunt_code")))) or {}).get("management_objective_target")))
         for row in rows
@@ -618,6 +650,7 @@ def build_report(
         ),
         para(
             f"Harvested age is available for {annual_age_rows:,} rows; a DWR-reported three-year harvested-age value is available for {reported_age_rows:,} rows. "
+            f"A separately calculated local three-year mean is available for {local_age_rows:,} rows, and the current Hunt Planner age context is available for {planner_age_rows:,} rows. "
             f"A matching DWR management objective is available for {objective_rows:,} rows, and the evidence-gated U.O.G.A. Hunt Unit Quality score is publishable for {quality_rows:,} rows. "
             "A dash means the matched record does not support that measure; no value or score is inferred.",
             report_styles["body"],
@@ -665,8 +698,8 @@ def build_report(
             [
                 Spacer(1, 0.08 * inch),
                 para(
-                    f"2025 status: current DWR dashboard reconciliation through {DWR_2025_ACCESSED}, plus the preliminary big-game package and the turkey report. "
-                    "The 2025 annual elk, pronghorn, and moose ages and their DWR-reported 2023-2025 averages are included.",
+                    f"2025 status: exact current DWR dashboard exports through {DWR_2025_ACCESSED}, with preliminary-only days hunted and satisfaction retained only for exact compatible hunt identities, plus the turkey report. "
+                    "Annual harvested age, DWR-reported 2023-2025 age, locally calculated three-year age, and Hunt Planner current-age context remain separate columns.",
                     report_styles["note"],
                 ),
             ]
@@ -729,6 +762,8 @@ def build_report(
         "species_groups": len(groups),
         "annual_age_rows": annual_age_rows,
         "reported_three_year_age_rows": reported_age_rows,
+        "local_three_year_age_rows": local_age_rows,
+        "hunt_planner_current_age_rows": planner_age_rows,
         "management_objective_rows": objective_rows,
         "hunt_unit_quality_rows": quality_rows,
         "pages": len(reader.pages),

@@ -9,7 +9,6 @@ ROOT = Path(__file__).resolve().parents[2]
 ML = ROOT / "processed_data" / "ml_draw_predictions_v1.csv"
 SUMMARY = ROOT / "processed_data" / "mixed_predictive_engine_2026_summary.json"
 SPORTSMAN = ROOT / "processed_data" / "sportsman_permit_predictions_v1.csv"
-RUNTIME_PROMOTION = ROOT / "processed_data" / "runtime_family_promotion_report.json"
 
 
 def rows() -> list[dict[str, str]]:
@@ -22,91 +21,105 @@ def sportsman_rows() -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
-def test_materialized_outputs_have_required_fields_and_no_duplicate_keys() -> None:
+def test_public_materialization_has_certified_contract_and_no_duplicate_keys() -> None:
     data = rows()
-    required = {"p_prior_year_baseline", "p_quota_adjusted", "p_rollover_adjusted", "p_harvest_adjusted", "display_odds_text"}
+    required = {
+        "prediction_certification_design",
+        "prediction_certification_status",
+        "prediction_publication_status",
+        "prediction_certification_registry_id",
+        "certified_p_draw",
+    }
     assert required.issubset(data[0])
+
+    # Raw and presentation-ready probability fields belong to isolated candidate
+    # evidence, not to the certified-only public materialization.
+    forbidden = {
+        "p_draw",
+        "p_draw_mean",
+        "p_draw_low",
+        "p_draw_high",
+        "display_odds_text",
+        "p_sportsman_draw",
+    }
+    assert forbidden.isdisjoint(data[0])
+
     keys = [(r["hunt_code"], r["residency"], r["points"], r["draw_pool"]) for r in data]
     assert len(keys) == len(set(keys))
     assert json.loads(SUMMARY.read_text(encoding="utf-8"))["duplicate_key_count"] == 0
 
 
-def test_summary_reports_guardrails_and_accepted_harvest_warning_policy() -> None:
+def test_summary_reports_release_guardrails() -> None:
     summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
     assert summary["probability_field_guardrail_result"] == "PASS"
     assert summary["quota_guardrail_result"] == "PASS"
     assert summary["special_permit_guardrail_result"] == "PASS"
     assert summary["harvest_audit_blocker_count"] == 0
-    assert summary["harvest_audit_warning_count"] == 15529
 
 
-def test_availability_and_allocation_rows_have_blank_p_draw() -> None:
-    for row in rows():
-        if row["algorithm_status"] in {"MODELED_AVAILABILITY", "MODELED_ALLOCATION"}:
-            assert row["p_draw_mean"] == ""
-            assert row["p_draw"] == ""
+def test_only_certified_rows_publish_certified_probability() -> None:
+    data = rows()
+    published = [row for row in data if row["certified_p_draw"]]
+    assert published
+    assert all(row["prediction_certification_status"] == "CERTIFIED" for row in published)
+    assert all(row["prediction_publication_status"] == "CERTIFIED_PROBABILITY" for row in published)
+    assert all(0 <= float(row["certified_p_draw"]) <= 1 for row in published)
+
+    withheld = [row for row in data if row["prediction_certification_status"] != "CERTIFIED"]
+    assert withheld
+    assert all(row["certified_p_draw"] == "" for row in withheld)
+    assert all(row["prediction_publication_status"].endswith("PROBABILITY_WITHHELD") for row in withheld)
 
 
-def test_sportsman_rows_use_sportsman_model_only() -> None:
+def test_only_the_four_certified_core_designs_are_publishable() -> None:
+    data = rows()
+    expected = {
+        "BONUS_LE_BIG_GAME",
+        "BONUS_OIL_BIG_GAME",
+        "BONUS_PLE_BIG_GAME",
+        "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+    }
+    published_designs = {
+        row["prediction_certification_design"]
+        for row in data
+        if row["certified_p_draw"]
+    }
+    assert published_designs == expected
+
+    noncertified_families = {
+        "PREFERENCE_DEDICATED_HUNTER_DEER",
+        "SPORTSMAN_RANDOM_ONLY",
+        "YOUTH_GENERAL_ANY_BULL_ELK",
+    }
+    for row in data:
+        if row["prediction_certification_design"] in noncertified_families:
+            assert row["certified_p_draw"] == ""
+
+
+def test_sportsman_rows_remain_separate_and_unpublished() -> None:
     merged_sportsman = [row for row in rows() if row["algorithm_status"] == "MODELED_SPORTSMAN_DRAW"]
     assert merged_sportsman
     assert all(row["draw_system_type"] == "SPORTSMAN_PERMIT" for row in merged_sportsman)
     assert all(row["sportsman_residency_scope"] == "RESIDENT_ONLY" for row in merged_sportsman)
     assert all(row["residency"] == "Resident" for row in merged_sportsman)
-    assert all(row["p_sportsman_draw"] == row["p_draw"] for row in merged_sportsman)
+    assert all(row["certified_p_draw"] == "" for row in merged_sportsman)
+
     sportsman = [row for row in sportsman_rows() if row["algorithm_status"] == "MODELED_SPORTSMAN_DRAW"]
     assert sportsman
     assert all(row["draw_system_type"] == "SPORTSMAN_PERMIT" for row in sportsman)
     assert all(row["sportsman_residency_scope"] == "RESIDENT_ONLY" for row in sportsman)
 
 
-def test_approved_family_rows_are_promoted_to_runtime() -> None:
-    data = rows()
-    promoted = [row for row in data if row["runtime_promotion_status"] == "PROMOTED_TO_RUNTIME"]
-    assert promoted
-    expected_counts = {
-        "SPORTSMAN_RANDOM_ONLY": 10,
-        "YOUTH_GENERAL_ANY_BULL_ELK": 2,
-        "PREFERENCE_DEDICATED_HUNTER_DEER": 1430,
-        "BONUS_TURKEY": 240,
-        "YOUTH_TURKEY_SET_ASIDE": 232,
-    }
-    report = json.loads(RUNTIME_PROMOTION.read_text(encoding="utf-8"))
-    report_by_family = {row["runtime_promotion_family"]: row for row in report["families"]}
-    assert set(report_by_family) == set(expected_counts)
-    assert {row["runtime_promotion_family"] for row in promoted} == set(expected_counts)
-    for family, expected_count in expected_counts.items():
-        family_rows = [row for row in promoted if row["runtime_promotion_family"] == family]
-        assert len(family_rows) == expected_count
-        assert all(row["runtime_promotion_decision"] == "APPROVED_RUNTIME_PROMOTION_2026_06_29" for row in family_rows)
-        assert all(row["runtime_promotion_source"] == report_by_family[family]["source_report"] for row in family_rows)
-        assert all(row["runtime_promotion_source_report"] == report_by_family[family]["source_report"] for row in family_rows)
-        keys = {(row["hunt_code"], row["residency"], row["points"], row["draw_system_type"]) for row in family_rows}
-        assert len(keys) == len(family_rows)
-
-    assert all(row["runtime_promotion_status"] == "" for row in data if row["draw_system_type"] == "BLACK_BEAR")
-    assert all(row["runtime_promotion_status"] == "" for row in data if row["algorithm_status"] == "MODELED_BONUS" and row["draw_system_type"] not in {"BONUS_TURKEY", "YOUTH_TURKEY_SET_ASIDE"})
-
-    assert report["promotion_ready"] is True
-    assert report["promoted_row_count"] == sum(expected_counts.values())
-    assert report["permit_source_field_contract"].startswith("NOT_REQUIRED_FOR_RUNTIME_PROMOTION")
-
-
-def test_output_display_odds_use_combined_format() -> None:
-    modeled = [row for row in rows() if row["p_draw_mean"] and float(row["p_draw_mean"]) > 0]
-    assert modeled
-    assert all(row["display_odds_text"].startswith("~1 in ") and " or " in row["display_odds_text"] for row in modeled[:100])
-
-
-def test_total_only_preference_permits_do_not_render_as_residency_lane_quota() -> None:
+def test_db1502_uses_published_residency_split_and_certified_probability() -> None:
     db1502 = [row for row in rows() if row["hunt_code"] == "DB1502"]
     assert db1502
     assert {row["permits_2026_total"] for row in db1502} == {"1160"}
-    assert all(row["permits_2026_res"] == "" for row in db1502)
-    assert all(row["permits_2026_nr"] == "" for row in db1502)
-    assert all(row["public_permits_2026"] == "" for row in db1502)
-    assert all("NO_RESIDENCY_LANE_QUOTA" in row["reason_codes"] for row in db1502)
-    assert all("TOTAL_ONLY_QUOTA_RATIO_SKIPPED_NO_RESIDENCY_SPLIT" in row["reason_codes"] for row in db1502)
+    assert {row["permits_2026_res"] for row in db1502} == {"876"}
+    assert {row["permits_2026_nr"] for row in db1502} == {"42"}
+    assert {row["public_permits_2026"] for row in db1502} == {"1160"}
+    assert all("OFFICIAL_EXPLICIT_RESIDENCY_SPLIT" in row["reason_codes"] for row in db1502)
+    assert all(row["prediction_certification_status"] == "CERTIFIED" for row in db1502)
+    assert all(row["certified_p_draw"] for row in db1502)
 
 
 def test_no_published_private_land_rows_are_reference_only_in_ladder() -> None:
@@ -119,7 +132,10 @@ def test_no_published_private_land_rows_are_reference_only_in_ladder() -> None:
     assert all(row["permits_2026_total"] == "" for row in el3002)
     assert all(row["public_permits_2026"] == "" for row in el3002)
     assert all(row["algorithm_status"] == "EXCLUDED_NOT_PREDICTIVE_DRAW" for row in el3002)
+    assert all(row["certified_p_draw"] == "" for row in el3002)
     assert all(row["p_draw_mean"] == "" for row in el3002)
-    assert all(row["display_odds_text"] == "Not available" for row in el3002)
-    assert all("NO_PUBLISHED_PERMIT_AUTHORITY" in row["reason_codes"] for row in el3002)
-    assert all("NO_PUBLISHED_QUOTA_RATIO_SKIPPED" in row["reason_codes"] for row in el3002)
+    assert all(row["display_odds_text"] == "" for row in el3002)
+    official_rows = [row for row in el3002 if "LADDER_MAX_POINT_EXTENSION" not in row["reason_codes"]]
+    assert official_rows
+    assert all("NO_PUBLISHED_PERMIT_AUTHORITY" in row["reason_codes"] for row in official_rows)
+    assert all("NO_PUBLISHED_QUOTA_RATIO_SKIPPED" in row["reason_codes"] for row in official_rows)

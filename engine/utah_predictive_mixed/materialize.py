@@ -15,12 +15,14 @@ from engine.utah_predictive_mixed.prior_year import prior_year_baseline, to_floa
 from engine.utah_predictive_mixed.quota import is_no_published_permit_authority, quota_adjusted_probability, quota_for_row
 from engine.utah.quality.harvest_identity import build_identity_index, resolve_identity_match
 from engine.utah_predictive_mixed.rollover import rollover_probability_from_pools
+from engine.utah_draw_predictive.certification import annotate_prediction_rows, load_registry
 
 
 ROOT = Path(__file__).resolve().parents[2]
 RUNTIME_DRAFTS = ROOT / "data_model" / "runtime_drafts"
 PROCESSED = ROOT / "processed_data"
 DATABASE = ROOT / "pipeline" / "RAW" / "hunt_unit_database" / "2026" / "csv" / "DATABASE.csv"
+PREDICTION_CERTIFICATION_REGISTRY = ROOT / "governance" / "prediction-family-certification.json"
 
 REQUIRED_FIELDS = [
     "prediction_year",
@@ -108,7 +110,13 @@ FAMILY_ENGINE_PROBABILITY_STATUSES = {
     "MODELED_PREFERENCE",
     "MODELED_RANDOM_ONLY",
     "MODELED_SPORTSMAN_DRAW",
+    "MODELED_SOURCE_BACKED_ROLL_FORWARD",
 }
+CORE_FINAL_PROBABILITY_DESIGNS = {
+    "BONUS_LE_BIG_GAME", "BONUS_OIL_BIG_GAME", "BONUS_PLE_BIG_GAME",
+    "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+}
+FINAL_PROBABILITY_CONTRACT = "CORE_FAMILY_MECHANICS_PRESERVED_V1"
 STALE_QUOTA_REASON_CODES = {
     "RAC_CURRENT_YEAR_ALLOTMENT_USED",
     "DATABASE_2026_PERMITS_USED",
@@ -223,7 +231,7 @@ def load_database_permit_authority() -> dict[str, dict[str, str]]:
             authority["permit_allotment_2026_status"] = status
         draw_system = normalize_draw_system_type(row.get("draw_2026_system_type"))
         if draw_system:
-            authority["draw_system_type"] = draw_system
+            authority["current_target_draw_system_type"] = draw_system
         notes = clean(row.get("NOTES"))
         if notes:
             authority["NOTES"] = notes
@@ -263,6 +271,14 @@ def apply_database_permit_authority(rows: list[dict[str, str]], authority_by_cod
         if not authority:
             continue
         row.update(authority)
+        # DATABASE supplies current identity and permit-reference context.  Its
+        # generic MAX_WEIGHTED_SPLIT label cannot replace the more specific
+        # statistical family resolved from official history (LE, OIL, or PLE),
+        # because doing so would erase the certification population after the
+        # probability has been calculated.  Use the target label only when the
+        # family materializer did not resolve a design.
+        if not clean(row.get("draw_system_type")):
+            row["draw_system_type"] = authority.get("current_target_draw_system_type", "")
         public_permits = public_permit_for_residency(authority, clean(row.get("residency")))
         row["public_permits_2026"] = public_permits
         row["public_permits_2026_source"] = authority["permits_2026_source"] if public_permits else ""
@@ -277,7 +293,7 @@ def build_prior_lookup(ladder_rows: list[dict[str, str]], draw_rows: list[dict[s
     return lookup
 
 
-def mixed_row(row: dict[str, str], prior: dict[str, str] | None, harvest: dict[str, str] | None, weights: BlendWeights) -> dict[str, str]:
+def mixed_row(row: dict[str, str], prior: dict[str, str] | None, harvest: dict[str, str] | None, weights: BlendWeights, *, forecast_year: int = 2026) -> dict[str, str]:
     out = dict(row)
     reasons: list[str] = []
     status = row.get("algorithm_status", "")
@@ -345,6 +361,19 @@ def mixed_row(row: dict[str, str], prior: dict[str, str] | None, harvest: dict[s
         blend_reasons.append("SPORTSMAN_SEPARATE_MODEL" if status == "MODELED_SPORTSMAN_DRAW" else "RANDOM_ONLY_SEPARATE_MODEL")
     if row.get("probability_model") == "NONE" or row.get("draw_model_class") == "AVAILABILITY_ONLY":
         p_draw = None
+    core_design = clean(row.get("draw_system_type") or row.get("draw_design")) in CORE_FINAL_PROBABILITY_DESIGNS
+    if core_design:
+        # The family engine already applies demand, quota, residency, and draw
+        # mechanics. A second weighted blend of last year's realized awards is
+        # not part of that model's blind evidence. Preserve its one probability
+        # through every public alias; harvest remains descriptive context.
+        p_draw = p_family_engine if status in FAMILY_ENGINE_PROBABILITY_STATUSES else None
+        if no_published_no_quota or zero_quota or row.get("probability_model") == "NONE":
+            p_draw = None
+        p_prior = p_quota = p_harvest = None
+        p_rollover = p_draw
+        blend_reasons = [FINAL_PROBABILITY_CONTRACT]
+        out["final_probability_contract"] = FINAL_PROBABILITY_CONTRACT
     grade = (harvest or {}).get("harvest_feature_data_quality_grade") or row.get("data_quality_grade") or "C"
     if p_draw is not None and prior is None:
         grade = "C" if grade in {"A", "B"} else grade
@@ -362,14 +391,14 @@ def mixed_row(row: dict[str, str], prior: dict[str, str] | None, harvest: dict[s
     out.update(prior_fields)
     out.update(
         {
-            "prediction_year": "2026",
-            "source_year": "2025",
+            "prediction_year": str(forecast_year),
+            "source_year": str(forecast_year - 1),
             "prior_year_pool_zone": prior_row.get("historical_result_pool") or prior_row.get("point_pool_zone") or row.get("point_pool_zone", ""),
             "rolled_applicants": row.get("rolled_forward_total_applicants", ""),
             "projected_applicants": forecast_applicants,
             "projected_nonwinners_from_prior_year": nonwinners,
             "projected_new_or_returning_applicants": row.get("new_entrant_estimate", ""),
-            "rollover_source_year": row.get("applicant_rollover_source_year") or "2025",
+            "rollover_source_year": row.get("applicant_rollover_source_year") or str(forecast_year - 1),
             "retention_rate_used": row.get("retention_rate_smoothed") or row.get("retention_rate_raw") or "",
             "new_entrant_estimate": row.get("new_entrant_estimate", ""),
             "applicant_forecast_method": row.get("projected_applicants_2026_source") or "prior_year_rollover_public_proxy",
@@ -417,7 +446,7 @@ def mixed_row(row: dict[str, str], prior: dict[str, str] | None, harvest: dict[s
     )
     if p_draw is None and (status in NON_DRAW_STATUSES or no_published_no_quota):
         out["display_odds_text"] = "Not available"
-    if status == "MODELED_PREFERENCE" and row.get("p_preference_draw"):
+    if status == "MODELED_PREFERENCE" and row.get("p_preference_draw") and not core_design:
         out["p_draw"] = row.get("p_preference_draw", "")
         preference_pct = to_float(row.get("p_preference_draw"))
         out["p_draw_pct"] = "" if preference_pct is None else f"{preference_pct * 100:.3f}"
@@ -430,6 +459,7 @@ def materialize(
     output_dir: Path = PROCESSED,
     runtime_drafts_dir: Path = RUNTIME_DRAFTS,
     harvest_path: Path | None = None,
+    certification_registry_path: Path = PREDICTION_CERTIFICATION_REGISTRY,
 ) -> dict[str, object]:
     weights = BlendWeights()
     weights.validate()
@@ -466,6 +496,16 @@ def materialize(
     ladder_materialized = [
         mixed_row(row, prior_lookup.get(row_key(row), row), harvest_for(row), weights) for row in ladder_rows
     ]
+
+    # Mixing changes the final future probability, so the public certified
+    # fields must be regenerated from that post-family value.  Carrying the
+    # pre-mix certified fields forward would silently publish the superseded
+    # family probability and bypass corrections such as the prior random-
+    # winner baseline exclusion.
+    certification_registry = load_registry(Path(certification_registry_path))
+    certification_report = annotate_prediction_rows(materialized, certification_registry)
+    annotate_prediction_rows(successor_materialized, certification_registry)
+    annotate_prediction_rows(ladder_materialized, certification_registry)
 
     fields = list(ml_rows[0].keys()) + [field for field in REQUIRED_FIELDS if field not in ml_rows[0]]
     successor_fields = list(successor_rows[0].keys()) + [field for field in REQUIRED_FIELDS if field not in successor_rows[0]]
@@ -543,6 +583,9 @@ def materialize(
         "harvest_audit_blocker_count": harvest_audit.get("audit_blocker_count", 0),
         "harvest_audit_warning_count": harvest_audit.get("audit_warning_count", 0),
         "publish_ready_for_mixed_predictive_engine": duplicate_keys == 0,
+        "prediction_certification_registry": str(certification_registry_path),
+        "prediction_certification_registry_id": certification_report["registry_id"],
+        "prediction_certification_status_counts": certification_report["certification_status_counts"],
         "weights": weights.__dict__,
     }
     summary["input_dir"] = str(input_dir)
@@ -563,6 +606,12 @@ def main() -> int:
     parser.add_argument("--output-dir", type=Path, default=PROCESSED)
     parser.add_argument("--runtime-drafts-dir", type=Path, default=RUNTIME_DRAFTS)
     parser.add_argument("--harvest-path", type=Path, default=None)
+    parser.add_argument(
+        "--certification-registry",
+        type=Path,
+        default=PREDICTION_CERTIFICATION_REGISTRY,
+        help="Registry applied after the mixed probability is finalized.",
+    )
     args = parser.parse_args()
     print(
         json.dumps(
@@ -571,6 +620,7 @@ def main() -> int:
                 output_dir=args.output_dir,
                 runtime_drafts_dir=args.runtime_drafts_dir,
                 harvest_path=args.harvest_path,
+                certification_registry_path=args.certification_registry,
             ),
             indent=2,
         )

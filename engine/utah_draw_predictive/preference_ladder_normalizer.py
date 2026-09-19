@@ -128,9 +128,18 @@ def _normalize_total_fallback(row: Mapping[str, object]) -> dict[str, object]:
 def normalize_preference_ladder_rows(rows: Iterable[Mapping[str, object]]) -> list[dict[str, object]]:
     normalized: list[dict[str, object]] = []
     for row in rows:
+        # Hunt totals and collapsed point lists are not applicant rungs. In
+        # particular, converting a blank total-row point to zero double counts
+        # the entire hunt in the zero-point cohort.
+        try:
+            point = float(_clean(row.get("points")))
+        except ValueError:
+            continue
+        if point < 0 or not point.is_integer():
+            continue
         if _clean(row.get("residency")) and _clean(row.get("eligible_applicants")):
             out = dict(row)
-            out["metric_scope"] = _clean(out.get("metric_scope")) or _metric_scope_for_residency(out.get("residency"))
+            out["metric_scope"] = _metric_scope_for_residency(out.get("residency"))
             if not _clean(out.get("eligible")):
                 out["eligible"] = _clean(out.get("eligible_applicants"))
             drawn = out.get("drawn") or out.get("successful_applicants") or out.get("regular_permits") or out.get("total_permits")

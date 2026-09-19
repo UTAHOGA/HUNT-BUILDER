@@ -106,7 +106,7 @@ def normalized_source_role(row: dict[str, str]) -> str:
         clean(row.get(field)).upper().replace("\\", "/")
         for field in ("source_scope", "source_file", "source_pdf")
     )
-    if "YOUTH_TURKEY" in text:
+    if "YOUTH_TURKEY" in text or "TURKEY_YOUTH" in text:
         return "YOUTH_TURKEY"
     if "TURKEY" in text:
         return "TURKEY"

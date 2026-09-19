@@ -52,26 +52,28 @@ def test_draw_results_cumulative_counts_are_locked():
     run_builder()
     summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
 
-    assert summary["normalized_long_rows"] == 315512
-    assert summary["unique_draw_years"] == ["2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026"]
+    assert summary["normalized_long_rows"] == 339096
+    assert summary["unique_draw_years"] == ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026"]
     assert summary["draw_year_counts"] == {
+        "2017": 26330,
         "2018": 30338,
         "2019": 33478,
-        "2020": 33069,
+        "2020": 33363,
         "2021": 33788,
         "2022": 34876,
-        "2023": 35834,
+        "2023": 32794,
         "2024": 43175,
         "2025": 38120,
         "2026": 32834,
     }
     assert summary["model_target_year_counts"] == {
+        "2018": 26330,
         "2019": 30338,
         "2020": 33478,
-        "2021": 33069,
+        "2021": 33363,
         "2022": 33788,
         "2023": 34876,
-        "2024": 35834,
+        "2024": 32794,
         "2025": 43175,
         "2026": 38120,
         "2027": 32834,

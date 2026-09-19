@@ -11,7 +11,8 @@ Generated: 2026-07-05T19:13:08.942195
   - `processed_data/hunt_research_2026_ladder_bonus_max_random.json` (max/weighted split engine rows)
 
 ## Sources used
-- DATABASE truth: `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+- Current-target identity and permit reference: `pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv`
+- Historical draw-result truth: yearly canonical draw files frozen into `data_truth/draw_results_truth/normalized/draw_results_long.csv`
 - Master reference resolved: `processed_data/hunt_master_enriched.csv`
 - Point ladder: `processed_data/point_ladder_view.csv`
 - Draw history: `pipeline/RAW/hunt_unit_database/2026/csv/Draw Odds/rebuilt_2025_draw_results_for_2026_modeling.csv`
@@ -35,6 +36,6 @@ Generated: 2026-07-05T19:13:08.942195
 - Fields with no populated values: None
 
 ## Notes
-- `DATABASE.csv` was treated as truth and not modified.
+- `DATABASE.csv` supplied current target hunt identity and published permit-reference context and was not modified. Historical draw-result truth came from the yearly canonical files frozen into `draw_results_long.csv`.
 - Missing values are explicit via `missing_value_classification` (not silently dropped).
 - Completeness status: **COMPLETE**

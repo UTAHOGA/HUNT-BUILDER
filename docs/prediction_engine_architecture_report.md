@@ -38,7 +38,8 @@ Scope: current repo engines + live runtime usage on `https://huntbuilder.uoga.or
 
 ## Truth vs Model vs Display Separation (Current)
 - Truth-source layer:
-  - `DATABASE.csv` (authoritative hunt/permit truth where applicable).
+  - Yearly canonical draw-result files frozen into `draw_results_long.csv` are historical prediction and scoring truth.
+  - `DATABASE.csv` is authoritative only for current target hunt identity and published permit-reference context; it is not historical draw-result truth.
 - Deterministic rules layer:
   - `engine/utah/*` draw mechanics and materialization.
 - Modeled probability layer:
