@@ -26,6 +26,19 @@ def write(name, data):
     (BASE / name).write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
 
 
+def probability_projection(name):
+    with (BASE / "mixed_materialization" / name).open(newline="", encoding="utf-8-sig") as handle:
+        result = {}
+        for row in csv.DictReader(handle):
+            key = tuple(row.get(field, "") for field in ("hunt_code", "residency", "points", "draw_pool"))
+            if key in result:
+                raise ValueError(f"Duplicate prediction key: {name}:{key}")
+            result[key] = tuple(row.get(field, "") for field in (
+                "p_draw", "p_draw_mean", "certified_p_draw", "certified_p_draw_mean", "certified_p_draw_pct"
+            ))
+        return result
+
+
 def main():
     local = read(f"{PUBLIC}/browser_qa.json")
     live = read(f"{PUBLIC}/browser_qa_production_alias.json")
@@ -37,6 +50,17 @@ def main():
     coverage = read("coverage_harvest_preserved.json")
     registry = read("certification_registry.json")
     frozen = read("SELECTED_REPAIR_FREEZE.json")
+    residual = read("residual_error_audit_summary.json")
+    le_blanks = read("le_gap_resolution_summary.json")
+    build = read(f"{PUBLIC}/candidate_build_audit.json")
+    if (residual["rows"], residual["eight_fold_rows_2017_through_2024"], residual["all_errors_retained"]) != (129, 125, True):
+        raise ValueError("Residual numeric-error population changed")
+    if le_blanks["status"] != "PASS" or le_blanks["resolved"] != 32 or le_blanks["invented_probabilities"] or le_blanks["deleted_actuals"]:
+        raise ValueError("LE independent abstention evidence failed")
+    if coverage["status"] != "PASS" or not coverage["complete_eligible_accounting"] or coverage["target_lane_count"] != 1592:
+        raise ValueError("Independent coverage population failed")
+    if build["overlay"]["protected_draw_permit_quota_field_changes"] or build["overlay"]["protected_harvest_context_field_changes"]:
+        raise ValueError("Protected public values changed")
     expected_scenarios = 19 + sum(
         row["coverage_status"] != "HISTORICAL_REFERENCE_ONLY" for row in coverage["inventory"]
     )
@@ -55,10 +79,24 @@ def main():
         raise ValueError("Published Pages file hashes differ from the reviewed overlay")
     if transaction["status"] != "PASS_SIX_OBJECTS_PUBLISHED_AND_HASH_VERIFIED":
         raise ValueError("R2 publication incomplete")
+    rollback_readiness = {
+        "status": "VERIFIED_ROLLBACK_AVAILABLE_NOT_EXECUTED_FOR_SUCCESSFUL_RELEASE",
+        "published_deployment": deployment["url"],
+        "published_deployment_id": deployment["id"],
+        "published_pages_manifest_sha256": sha(BASE / "published_pages_snapshot.json"),
+        "previous_deployment_id": overlay["original_deployment"],
+        "rollback_namespace": transaction["rollback_namespace"],
+        "objects": transaction["objects"],
+        "earlier_aborted_attempt_restoration_record": "r2_publication/rollback_result.json",
+        "earlier_restoration_record_sha256": sha(BASE / "r2_publication/rollback_result.json"),
+    }
+    write("r2_publication_harvest_preserved/rollback_result.json", rollback_readiness)
     for group in ("protected_baselines", "implementation"):
         for relative, expected in frozen[group].items():
             if sha(ROOT / relative) != expected:
                 raise ValueError(f"Frozen {group} changed: {relative}")
+    if probability_projection("ml_draw_predictions_v1.csv") != probability_projection("draw_reality_engine_predictive_v2.csv"):
+        raise ValueError("ML and successor final probability projections differ")
     aliases = []
     for source, destination in (
         ("coverage_harvest_preserved.json", "coverage_final_audited.json"),
@@ -100,6 +138,8 @@ def main():
         "registry_id": registry["registry_id"], "registry_sha256": sha(BASE / "certification_registry.json"),
         "materialization_rows": mixed["prediction_row_count"],
         "materialization_sha256": sha(BASE / "mixed_materialization/ml_draw_predictions_v1.csv"),
+        "successor_materialization_sha256": sha(BASE / "mixed_materialization/draw_reality_engine_predictive_v2.csv"),
+        "ml_successor_probability_projection": "IDENTICAL_BY_HUNT_RESIDENCY_POINTS_POOL",
         "promoted_manifest_sha256": sha(BASE / "promoted_prediction_manifest.json"),
         "cloudflare_pages_deployment": deployment["url"], "deployment_id": deployment["id"],
         "public_alias": "https://huntbuilder.pages.dev/research.html",
@@ -108,6 +148,7 @@ def main():
         "failed_requests": 0, "console_errors": 0,
         "r2_changed_object_count": 6, "r2_post_upload_verification": "ALL_SIX_SHA256_MATCH_CANDIDATE",
         "rollback_namespace": transaction["rollback_namespace"],
+        "active_release_rollback_record": "r2_publication_harvest_preserved/rollback_result.json",
         "r2_objects": transaction["objects"],
         "unchanged_legacy_ladder_sha256": "1a45732cf45232ded9f9f3e81ac9827a0522326020af141abfc9a0b546644a5d",
         "public_probability_contract": "CERTIFIED_P_DRAW_FIELDS_ONLY", "unauthorized_probability_rows": 0,
@@ -115,14 +156,15 @@ def main():
         "original_pages_files": 4249, "pages_changed_files": len(overlay["changed"]),
         "pages_untouched_files": overlay["untouched_file_count"], "pages_added_files": len(overlay["added"]), "pages_deleted_files": 0,
         "coverage": {k: v for k, v in coverage.items() if k not in {"inventory", "sources", "current_deer_regular_quota_evidence"}},
-        "certified_design_metrics": metrics, "residual_error_audit": read("residual_error_audit_summary.json"),
+        "certified_design_metrics": metrics, "residual_error_audit": residual,
+        "independently_source_explained_le_blanks": le_blanks["resolved"],
         "focused_tests_passed": 51, "broader_regression": regression,
         "protected_harvest_context_field_changes": read(f"{PUBLIC}/candidate_build_audit.json")["overlay"]["protected_harvest_context_field_changes"],
         "first_attempt_rollback": read("r2_publication/rollback_result.json"),
         "final_evidence_aliases": aliases,
         "r2_transfer_recovery": transaction.get("transfer_recovery"),
         "repository_head_at_completion": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
-        "external_repository_activity": "Commit d9a5bfec appeared during verification; not created by this release. Frozen source and artifact hashes reverified unchanged.",
+        "external_repository_activity": "Commits d9a5bfec and c7646078 appeared during verification; not created by this release. Frozen source and artifact hashes reverified unchanged.",
         "staged_committed_or_pushed": False,
     }
     write("production_promotion_report.json", report)
@@ -134,27 +176,29 @@ def main():
     for r in metrics:
         lines.append(f"| {r['draw_design']} | {r['joined_rows']} | {float(r['mae'])*100:.3f} | {float(r['p90_absolute_error'])*100:.3f} | {float(r['tail_error_rate_over_25pp'])*100:.3f}% | {r['unclassified_actual_gap_rows']} |")
     lines += ["", "All four have zero forecasted-certainty failures. No thresholds were relaxed. No numeric errors were excluded because of target-year program or quota changes.", "",
+              f"Registry: `{registry['registry_id']}`. Frozen materialization: 31,905 rows, ML SHA-256 `{report['materialization_sha256']}`; successor SHA-256 `{report['successor_materialization_sha256']}`. The CSV schemas differ, but their keyed final probability projections are identical.", "",
               "## Repairs and evidence", "",
               "- Historical deer quota intake now counts official point-level awards once, not hunt totals plus those awards. The preference probability formula is unchanged.",
-              "- All 32 LE blanks have independent source-only replay evidence. No probabilities were invented. See `le_32_no_transition_prediction_annotations.csv` and `le_gap_resolution_summary.json`.",
+              "- All 32 LE blanks have independent source-only replay evidence. No probabilities were invented. Zero carried-forward cohort does not imply zero applicants at that same point in the prior report; the annotation retains the actual prior point counts and predecessor-cohort evidence. See `le_32_no_transition_prediction_annotations.csv` and `le_gap_resolution_summary.json`.",
               "- See `audit_3886_collapse_verification.csv`: 125 current zero-versus-positive errors across eight folds; 129 across nine. Every error stays in the metrics. The supplied 3,886 prior count was not independently reproduced, so no causal reduction is claimed. The supplied six-way catch-all is not proof of a zero-demand defect.",
               "- `deer_9fold_final_website_calc.csv` retains all 8,936 deer scored rows. `SELECTED_REPAIR_FREEZE.json` preserves selection before later-fold evaluation; later years were previously examined in the project and are not described as untouched holdouts.",
               "- The yearly canonicals and long truth are value-for-value equal, with 338,574 rows and complete retained PDF/official-endpoint lineage. No fictional page numbers were assigned to web endpoints.", "",
               "## Coverage and public behavior", "",
-              "796 retained core codes / 1,592 lanes: 847 modeled; 100 zero-quota; 356 historical-only; 7 lack comparable history; 6 lack transition evidence; 276 lack current allocation. All are accounted for; not all receive a prediction.",
+              "796 retained core codes / 1,592 lanes: 847 modeled; 100 zero-quota; 356 historical-only; 7 lack comparable history; 6 lack transition evidence; 276 lack current allocation. All are accounted for; not all receive a prediction. The other 745 lanes have explicit nonforecast dispositions, including 356 historical lanes and 389 current nonforecast lanes. Certification of four designs does not certify unsupported rows or the entire engine portfolio.",
               "All 105 current general-deer hunts retain both official regular-round residency lanes (210 combinations). Planner combined totals were not treated as regular-round quotas.",
-              "Only certified_p_draw* fields display. Bear, CWMU, turkey, antlerless, Dedicated Hunter and youth remain withheld. The label is Projected Draw Line; no future guarantee is displayed.", "",
+              "Only certified_p_draw* fields display. Bear, CWMU, turkey, antlerless, Dedicated Hunter, youth and Sportsman remain non-certified and withheld. The label is Projected Draw Line; no future guarantee is displayed.", "",
               "## Verification and publication", "",
               f"- 1,255/1,255 scenarios pass locally, on the immutable deployment, and on the public alias. Each run has zero failed requests and console errors.",
-              "- 51 focused tests pass. Broader regression status: " + regression["status"] + ". Failures, if any, are retained in regression.log/regression.xml and the JSON promotion report; they are not replaced by production data edits.",
+              "- 51 focused tests pass. The retained broader V3 regression is **356 passed / 19 failed**, not an all-green repository result. Every failure remains in regression.log/regression.xml and the JSON promotion report, with the review in REGRESSION_FAILURE_REVIEW.md. No failing test was deleted or skipped, and production data was not changed to satisfy old fixtures. These separate repository/non-core failures were not reclassified as passing certification tests.",
               "- Project memory, npm tests, public-manifest guard, contract validation, exact-code freeze, source parity, full eligible accounting and release-readiness gates pass.",
               "- Requested final evidence names are exact hash-verified aliases: coverage_final_audited.json, classifications_final_audited.json, and research_final_audited/browser_qa.json (the production-alias browser run). Original evidence paths remain retained.",
               "- Six R2 objects were backed up remotely, read back and hash-verified before replacement. All six replacements were also read back and hash-verified.",
               "- An additional isolation audit caught four derived harvest-context fields in the initial rebuild. The initial R2 attempt was stopped and all six original objects restored and hash-verified before the corrected prediction-only contract was revalidated and published. Both transactions are retained; no Pages deployment occurred during the aborted attempt.",
               f"- Rollback namespace: `{transaction['rollback_namespace']}`. The earlier immutable Pages deployment remains available.",
+              "- Active release hashes and rollback paths are in r2_publication_harvest_preserved/rollback_result.json. The earlier r2_publication/rollback_result.json remains unchanged as proof of the aborted attempt's completed restoration.",
               f"- All 4,249 prior Pages files are retained: {len(overlay['changed'])} explicitly reviewed files updated, {overlay['untouched_file_count']} byte-identical, none added or removed. See pages_overlay_verification_harvest_preserved.json for exact paths and hashes.",
               "- Pages changes: research.html, config.js, hunt-research.js, summary/index, and 1,791 direct hunt details. The oversized legacy archive, harvest reports/data, draw truth, DATABASE.csv and unrelated production assets are unchanged.",
-              "- This release did not stage, commit or push Git. An externally created commit d9a5bfec appeared during verification; frozen source/artifact hashes were reverified unchanged. The release used only the isolated, hash-reviewed Pages directory, not the working tree.", ""]
+              "- This release did not stage, commit or push Git. Externally created commits d9a5bfec and c7646078 appeared during verification; frozen source/artifact hashes were reverified unchanged. The release used only the isolated, hash-reviewed Pages directory, not the working tree.", ""]
     (BASE / "COMPLETION_REPORT.md").write_text("\n".join(lines), encoding="utf-8")
     print(json.dumps({k: report[k] for k in ("status", "registry_id", "materialization_sha256", "promoted_manifest_sha256", "deployment_id")}))
 

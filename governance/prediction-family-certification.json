@@ -1,6 +1,6 @@
 {
   "schema_version": "prediction-family-certification.v1",
-  "registry_id": "adr-0006-6fe5d6162d74",
+  "registry_id": "adr-0006-2200616ce0b9",
   "certification_standard": "docs/decisions/ADR-0006-historical-blind-acceptance-thresholds.md",
   "thresholds": {
     "minimum_independent_following_year_folds": 2,
@@ -12,10 +12,10 @@
     "required_unclassified_actual_gaps": 0
   },
   "evidence": {
-    "acceptance_by_draw_design": "audits/prediction_release_candidates/certified_core_random_winner_20260919/acceptance_review/acceptance_by_draw_design.csv",
-    "acceptance_by_draw_design_sha256": "6fe5d6162d7460ad2d4201918ce56acb7c76927f37e7c15ecc23bd407f3cacb7",
-    "acceptance_review_manifest": "audits/prediction_release_candidates/certified_core_random_winner_20260919/acceptance_review/acceptance_review_manifest.json",
-    "acceptance_review_manifest_sha256": "c39daf36bf22a404fbb3a02ad69f64623ff192f0c7624d8c878138f966485cd5",
+    "acceptance_by_draw_design": "audits/prediction_release_candidates/core_le_deer_repair_20260919/acceptance_review/acceptance_by_draw_design.csv",
+    "acceptance_by_draw_design_sha256": "2200616ce0b9acadb0ca392642c2631bd6a46667ca26ce068d7df315a63055de",
+    "acceptance_review_manifest": "audits/prediction_release_candidates/core_le_deer_repair_20260919/acceptance_review/acceptance_review_manifest.json",
+    "acceptance_review_manifest_sha256": "20b205a66a044f74b5774f4a4f10c5230be13b6f3f86cc392f8000afb5eae0ed",
     "historical_truth_authority_gate": {
       "status": "PASS",
       "fold_count": 9,
@@ -25,91 +25,328 @@
       "folds": [
         {
           "fold": "2017_to_2018",
-          "run_metadata": "audits\\prediction_release_candidates\\certified_core_random_winner_20260919\\historical_folds\\2017_to_2018\\prediction_phase\\run_metadata.json",
+          "run_metadata": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\audits\\prediction_release_candidates\\core_le_deer_repair_20260919\\historical_folds\\2017_to_2018\\prediction_phase\\run_metadata.json",
           "runtime_permit_source": "source_year_proxy",
           "historical_database_csv_read_count": 0,
           "historical_draw_truth_path": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
-          "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY"
+          "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY",
+          "final_probability_gate": {
+            "status": "PASS",
+            "contract": "CORE_FAMILY_MECHANICS_PRESERVED_V1",
+            "entrypoint": "engine.utah_predictive_mixed.materialize.mixed_row",
+            "input_sha256": "7540edda19287e95ae2718f7dff4fa279bbe975a3fcb210df0401548b4dda061",
+            "output_sha256": "db34acc06f02b00994e12967e13c7f98faaf7748c9676cb1721801082d0efc9a",
+            "implementation_sha256": "d589deece27077175c471555b2d7abfe05a8d733660e0b92fde05ffaa1e152fc",
+            "historical_database_csv_read_count": 0,
+            "current_harvest_feature_read_count": 0,
+            "rows": 79638
+          }
         },
         {
           "fold": "2018_to_2019",
-          "run_metadata": "audits\\prediction_release_candidates\\certified_core_random_winner_20260919\\historical_folds\\2018_to_2019\\prediction_phase\\run_metadata.json",
+          "run_metadata": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\audits\\prediction_release_candidates\\core_le_deer_repair_20260919\\historical_folds\\2018_to_2019\\prediction_phase\\run_metadata.json",
           "runtime_permit_source": "source_year_proxy",
           "historical_database_csv_read_count": 0,
           "historical_draw_truth_path": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
-          "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY"
+          "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY",
+          "final_probability_gate": {
+            "status": "PASS",
+            "contract": "CORE_FAMILY_MECHANICS_PRESERVED_V1",
+            "entrypoint": "engine.utah_predictive_mixed.materialize.mixed_row",
+            "input_sha256": "d033c56bb77c6117fdf5cb54e2a461e8763d088ee211020b933908827773af51",
+            "output_sha256": "c447a56e9b946daacd0133dc14fb9b938b00679fa30281e7e977f378b1f27882",
+            "implementation_sha256": "d589deece27077175c471555b2d7abfe05a8d733660e0b92fde05ffaa1e152fc",
+            "historical_database_csv_read_count": 0,
+            "current_harvest_feature_read_count": 0,
+            "rows": 86501
+          }
         },
         {
           "fold": "2019_to_2020",
-          "run_metadata": "audits\\prediction_release_candidates\\certified_core_random_winner_20260919\\historical_folds\\2019_to_2020\\prediction_phase\\run_metadata.json",
+          "run_metadata": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\audits\\prediction_release_candidates\\core_le_deer_repair_20260919\\historical_folds\\2019_to_2020\\prediction_phase\\run_metadata.json",
           "runtime_permit_source": "source_year_proxy",
           "historical_database_csv_read_count": 0,
           "historical_draw_truth_path": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
-          "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY"
+          "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY",
+          "final_probability_gate": {
+            "status": "PASS",
+            "contract": "CORE_FAMILY_MECHANICS_PRESERVED_V1",
+            "entrypoint": "engine.utah_predictive_mixed.materialize.mixed_row",
+            "input_sha256": "2556417b6fb3400203c3aabfc8310b569081786190add574d0443892b5461543",
+            "output_sha256": "cb9684f4ca4caa6e9a10c8bfd6413784f0dc8fd5a99cc5295974540d9cae1038",
+            "implementation_sha256": "d589deece27077175c471555b2d7abfe05a8d733660e0b92fde05ffaa1e152fc",
+            "historical_database_csv_read_count": 0,
+            "current_harvest_feature_read_count": 0,
+            "rows": 94273
+          }
         },
         {
           "fold": "2020_to_2021",
-          "run_metadata": "audits\\prediction_release_candidates\\certified_core_random_winner_20260919\\historical_folds\\2020_to_2021\\prediction_phase\\run_metadata.json",
+          "run_metadata": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\audits\\prediction_release_candidates\\core_le_deer_repair_20260919\\historical_folds\\2020_to_2021\\prediction_phase\\run_metadata.json",
           "runtime_permit_source": "source_year_proxy",
           "historical_database_csv_read_count": 0,
           "historical_draw_truth_path": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
-          "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY"
+          "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY",
+          "final_probability_gate": {
+            "status": "PASS",
+            "contract": "CORE_FAMILY_MECHANICS_PRESERVED_V1",
+            "entrypoint": "engine.utah_predictive_mixed.materialize.mixed_row",
+            "input_sha256": "b1f857254e0ff18afccbae6538d3769f2ef8b7e0708a61fa23a656ca0629512b",
+            "output_sha256": "98d5d2c450be09e9b895ae80c660fa7ef835464544004fbdff7bd017f69be84e",
+            "implementation_sha256": "d589deece27077175c471555b2d7abfe05a8d733660e0b92fde05ffaa1e152fc",
+            "historical_database_csv_read_count": 0,
+            "current_harvest_feature_read_count": 0,
+            "rows": 94437
+          }
         },
         {
           "fold": "2021_to_2022",
-          "run_metadata": "audits\\prediction_release_candidates\\certified_core_random_winner_20260919\\historical_folds\\2021_to_2022\\prediction_phase\\run_metadata.json",
+          "run_metadata": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\audits\\prediction_release_candidates\\core_le_deer_repair_20260919\\historical_folds\\2021_to_2022\\prediction_phase\\run_metadata.json",
           "runtime_permit_source": "source_year_proxy",
           "historical_database_csv_read_count": 0,
           "historical_draw_truth_path": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
-          "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY"
+          "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY",
+          "final_probability_gate": {
+            "status": "PASS",
+            "contract": "CORE_FAMILY_MECHANICS_PRESERVED_V1",
+            "entrypoint": "engine.utah_predictive_mixed.materialize.mixed_row",
+            "input_sha256": "b3097b4fd9724342f25f61982f916492a1e0e6f1defa2d01f375d666712378ca",
+            "output_sha256": "27b0e48f1ff4defb1376c52bbabe49e46c97d8bfe18e0e157866a263a9351011",
+            "implementation_sha256": "d589deece27077175c471555b2d7abfe05a8d733660e0b92fde05ffaa1e152fc",
+            "historical_database_csv_read_count": 0,
+            "current_harvest_feature_read_count": 0,
+            "rows": 95781
+          }
         },
         {
           "fold": "2022_to_2023",
-          "run_metadata": "audits\\prediction_release_candidates\\certified_core_random_winner_20260919\\historical_folds\\2022_to_2023\\prediction_phase\\run_metadata.json",
+          "run_metadata": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\audits\\prediction_release_candidates\\core_le_deer_repair_20260919\\historical_folds\\2022_to_2023\\prediction_phase\\run_metadata.json",
           "runtime_permit_source": "source_year_proxy",
           "historical_database_csv_read_count": 0,
           "historical_draw_truth_path": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
-          "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY"
+          "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY",
+          "final_probability_gate": {
+            "status": "PASS",
+            "contract": "CORE_FAMILY_MECHANICS_PRESERVED_V1",
+            "entrypoint": "engine.utah_predictive_mixed.materialize.mixed_row",
+            "input_sha256": "1397e6f2aee0b449401a4860dc9bc57d90c6796bb076880d991d72eefb9bf38d",
+            "output_sha256": "b4e94da6e4d3accbaeb4cd359b08f39ab1b57c195b58d532c4946816e316839d",
+            "implementation_sha256": "d589deece27077175c471555b2d7abfe05a8d733660e0b92fde05ffaa1e152fc",
+            "historical_database_csv_read_count": 0,
+            "current_harvest_feature_read_count": 0,
+            "rows": 99171
+          }
         },
         {
           "fold": "2023_to_2024",
-          "run_metadata": "audits\\prediction_release_candidates\\certified_core_random_winner_20260919\\historical_folds\\2023_to_2024\\prediction_phase\\run_metadata.json",
+          "run_metadata": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\audits\\prediction_release_candidates\\core_le_deer_repair_20260919\\historical_folds\\2023_to_2024\\prediction_phase\\run_metadata.json",
           "runtime_permit_source": "source_year_proxy",
           "historical_database_csv_read_count": 0,
           "historical_draw_truth_path": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
-          "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY"
+          "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY",
+          "final_probability_gate": {
+            "status": "PASS",
+            "contract": "CORE_FAMILY_MECHANICS_PRESERVED_V1",
+            "entrypoint": "engine.utah_predictive_mixed.materialize.mixed_row",
+            "input_sha256": "d0511b7399494ea9a01e257fe846afe3de5a757b3ce5dd1f722ee778953f9c76",
+            "output_sha256": "30bc9b5f13305d97d61034db994ef80720ad230b367964ecc00bc7daf342f097",
+            "implementation_sha256": "d589deece27077175c471555b2d7abfe05a8d733660e0b92fde05ffaa1e152fc",
+            "historical_database_csv_read_count": 0,
+            "current_harvest_feature_read_count": 0,
+            "rows": 103825
+          }
         },
         {
           "fold": "2024_to_2025",
-          "run_metadata": "audits\\prediction_release_candidates\\certified_core_random_winner_20260919\\historical_folds\\2024_to_2025\\prediction_phase\\run_metadata.json",
+          "run_metadata": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\audits\\prediction_release_candidates\\core_le_deer_repair_20260919\\historical_folds\\2024_to_2025\\prediction_phase\\run_metadata.json",
           "runtime_permit_source": "source_year_proxy",
           "historical_database_csv_read_count": 0,
           "historical_draw_truth_path": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
-          "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY"
+          "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY",
+          "final_probability_gate": {
+            "status": "PASS",
+            "contract": "CORE_FAMILY_MECHANICS_PRESERVED_V1",
+            "entrypoint": "engine.utah_predictive_mixed.materialize.mixed_row",
+            "input_sha256": "e08538a10b24e9cb3fec9f7b1cbe14d812c9c7b71a4f6f7b723446c4183e653d",
+            "output_sha256": "0f0e2577895b9c936bdd270388e889aee89aafbc32891cd3e3256c3d6fabef37",
+            "implementation_sha256": "d589deece27077175c471555b2d7abfe05a8d733660e0b92fde05ffaa1e152fc",
+            "historical_database_csv_read_count": 0,
+            "current_harvest_feature_read_count": 0,
+            "rows": 105855
+          }
         },
         {
           "fold": "2025_to_2026",
-          "run_metadata": "audits\\prediction_release_candidates\\certified_core_random_winner_20260919\\historical_folds\\2025_to_2026\\prediction_phase\\run_metadata.json",
+          "run_metadata": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\audits\\prediction_release_candidates\\core_le_deer_repair_20260919\\historical_folds\\2025_to_2026\\prediction_phase\\run_metadata.json",
           "runtime_permit_source": "source_year_proxy",
           "historical_database_csv_read_count": 0,
           "historical_draw_truth_path": "C:\\Users\\tyler\\GitHub\\HUNT-BUILDER\\data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
-          "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY"
+          "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY",
+          "final_probability_gate": {
+            "status": "PASS",
+            "contract": "CORE_FAMILY_MECHANICS_PRESERVED_V1",
+            "entrypoint": "engine.utah_predictive_mixed.materialize.mixed_row",
+            "input_sha256": "0821ae999a90460b04ae822891f68adabf9651c7625c4e9626531516372cd956",
+            "output_sha256": "9a2716861d147b5336a5aba03b1cb0a6b419791c781fc7b120692f4dac1a46d3",
+            "implementation_sha256": "d589deece27077175c471555b2d7abfe05a8d733660e0b92fde05ffaa1e152fc",
+            "historical_database_csv_read_count": 0,
+            "current_harvest_feature_read_count": 0,
+            "rows": 111716
+          }
+        }
+      ]
+    },
+    "final_probability_gate": {
+      "status": "PASS",
+      "fold_count": 9,
+      "folds": [
+        {
+          "fold": "2017_to_2018",
+          "status": "PASS",
+          "contract": "CORE_FAMILY_MECHANICS_PRESERVED_V1",
+          "entrypoint": "engine.utah_predictive_mixed.materialize.mixed_row",
+          "input_sha256": "7540edda19287e95ae2718f7dff4fa279bbe975a3fcb210df0401548b4dda061",
+          "output_sha256": "db34acc06f02b00994e12967e13c7f98faaf7748c9676cb1721801082d0efc9a",
+          "implementation_sha256": "d589deece27077175c471555b2d7abfe05a8d733660e0b92fde05ffaa1e152fc",
+          "historical_database_csv_read_count": 0,
+          "current_harvest_feature_read_count": 0,
+          "rows": 79638
+        },
+        {
+          "fold": "2018_to_2019",
+          "status": "PASS",
+          "contract": "CORE_FAMILY_MECHANICS_PRESERVED_V1",
+          "entrypoint": "engine.utah_predictive_mixed.materialize.mixed_row",
+          "input_sha256": "d033c56bb77c6117fdf5cb54e2a461e8763d088ee211020b933908827773af51",
+          "output_sha256": "c447a56e9b946daacd0133dc14fb9b938b00679fa30281e7e977f378b1f27882",
+          "implementation_sha256": "d589deece27077175c471555b2d7abfe05a8d733660e0b92fde05ffaa1e152fc",
+          "historical_database_csv_read_count": 0,
+          "current_harvest_feature_read_count": 0,
+          "rows": 86501
+        },
+        {
+          "fold": "2019_to_2020",
+          "status": "PASS",
+          "contract": "CORE_FAMILY_MECHANICS_PRESERVED_V1",
+          "entrypoint": "engine.utah_predictive_mixed.materialize.mixed_row",
+          "input_sha256": "2556417b6fb3400203c3aabfc8310b569081786190add574d0443892b5461543",
+          "output_sha256": "cb9684f4ca4caa6e9a10c8bfd6413784f0dc8fd5a99cc5295974540d9cae1038",
+          "implementation_sha256": "d589deece27077175c471555b2d7abfe05a8d733660e0b92fde05ffaa1e152fc",
+          "historical_database_csv_read_count": 0,
+          "current_harvest_feature_read_count": 0,
+          "rows": 94273
+        },
+        {
+          "fold": "2020_to_2021",
+          "status": "PASS",
+          "contract": "CORE_FAMILY_MECHANICS_PRESERVED_V1",
+          "entrypoint": "engine.utah_predictive_mixed.materialize.mixed_row",
+          "input_sha256": "b1f857254e0ff18afccbae6538d3769f2ef8b7e0708a61fa23a656ca0629512b",
+          "output_sha256": "98d5d2c450be09e9b895ae80c660fa7ef835464544004fbdff7bd017f69be84e",
+          "implementation_sha256": "d589deece27077175c471555b2d7abfe05a8d733660e0b92fde05ffaa1e152fc",
+          "historical_database_csv_read_count": 0,
+          "current_harvest_feature_read_count": 0,
+          "rows": 94437
+        },
+        {
+          "fold": "2021_to_2022",
+          "status": "PASS",
+          "contract": "CORE_FAMILY_MECHANICS_PRESERVED_V1",
+          "entrypoint": "engine.utah_predictive_mixed.materialize.mixed_row",
+          "input_sha256": "b3097b4fd9724342f25f61982f916492a1e0e6f1defa2d01f375d666712378ca",
+          "output_sha256": "27b0e48f1ff4defb1376c52bbabe49e46c97d8bfe18e0e157866a263a9351011",
+          "implementation_sha256": "d589deece27077175c471555b2d7abfe05a8d733660e0b92fde05ffaa1e152fc",
+          "historical_database_csv_read_count": 0,
+          "current_harvest_feature_read_count": 0,
+          "rows": 95781
+        },
+        {
+          "fold": "2022_to_2023",
+          "status": "PASS",
+          "contract": "CORE_FAMILY_MECHANICS_PRESERVED_V1",
+          "entrypoint": "engine.utah_predictive_mixed.materialize.mixed_row",
+          "input_sha256": "1397e6f2aee0b449401a4860dc9bc57d90c6796bb076880d991d72eefb9bf38d",
+          "output_sha256": "b4e94da6e4d3accbaeb4cd359b08f39ab1b57c195b58d532c4946816e316839d",
+          "implementation_sha256": "d589deece27077175c471555b2d7abfe05a8d733660e0b92fde05ffaa1e152fc",
+          "historical_database_csv_read_count": 0,
+          "current_harvest_feature_read_count": 0,
+          "rows": 99171
+        },
+        {
+          "fold": "2023_to_2024",
+          "status": "PASS",
+          "contract": "CORE_FAMILY_MECHANICS_PRESERVED_V1",
+          "entrypoint": "engine.utah_predictive_mixed.materialize.mixed_row",
+          "input_sha256": "d0511b7399494ea9a01e257fe846afe3de5a757b3ce5dd1f722ee778953f9c76",
+          "output_sha256": "30bc9b5f13305d97d61034db994ef80720ad230b367964ecc00bc7daf342f097",
+          "implementation_sha256": "d589deece27077175c471555b2d7abfe05a8d733660e0b92fde05ffaa1e152fc",
+          "historical_database_csv_read_count": 0,
+          "current_harvest_feature_read_count": 0,
+          "rows": 103825
+        },
+        {
+          "fold": "2024_to_2025",
+          "status": "PASS",
+          "contract": "CORE_FAMILY_MECHANICS_PRESERVED_V1",
+          "entrypoint": "engine.utah_predictive_mixed.materialize.mixed_row",
+          "input_sha256": "e08538a10b24e9cb3fec9f7b1cbe14d812c9c7b71a4f6f7b723446c4183e653d",
+          "output_sha256": "0f0e2577895b9c936bdd270388e889aee89aafbc32891cd3e3256c3d6fabef37",
+          "implementation_sha256": "d589deece27077175c471555b2d7abfe05a8d733660e0b92fde05ffaa1e152fc",
+          "historical_database_csv_read_count": 0,
+          "current_harvest_feature_read_count": 0,
+          "rows": 105855
+        },
+        {
+          "fold": "2025_to_2026",
+          "status": "PASS",
+          "contract": "CORE_FAMILY_MECHANICS_PRESERVED_V1",
+          "entrypoint": "engine.utah_predictive_mixed.materialize.mixed_row",
+          "input_sha256": "0821ae999a90460b04ae822891f68adabf9651c7625c4e9626531516372cd956",
+          "output_sha256": "9a2716861d147b5336a5aba03b1cb0a6b419791c781fc7b120692f4dac1a46d3",
+          "implementation_sha256": "d589deece27077175c471555b2d7abfe05a8d733660e0b92fde05ffaa1e152fc",
+          "historical_database_csv_read_count": 0,
+          "current_harvest_feature_read_count": 0,
+          "rows": 111716
         }
       ]
     }
   },
   "families": {
     "BEAR_DRAW_UNCLASSIFIED_SUBTYPE": {
+      "certification_status": "INSUFFICIENT_EVIDENCE",
+      "evidence_sufficiency": "INSUFFICIENT",
+      "fold_count": 9,
+      "joined_rows": 0,
+      "mae": null,
+      "p90_absolute_error": null,
+      "tail_error_rate_over_25pp": null,
+      "false_guarantee_rows": 0,
+      "unclassified_actual_gap_rows": 29,
+      "failure_reasons": "INSUFFICIENT_JOINED_ROWS;MAE_EXCEEDS_LIMIT;P90_ERROR_EXCEEDS_LIMIT;TAIL_ERROR_RATE_EXCEEDS_LIMIT;UNCLASSIFIED_ACTUAL_GAPS"
+    },
+    "BEAR_LIMITED_ENTRY_HUNT_BONUS": {
       "certification_status": "EXPERIMENTAL_NOT_CERTIFIED",
       "evidence_sufficiency": "SUFFICIENT",
       "fold_count": 9,
-      "joined_rows": 7874,
-      "mae": 0.11863459512814326,
+      "joined_rows": 7601,
+      "mae": 0.11558236434942772,
       "p90_absolute_error": 0.3333333333,
-      "tail_error_rate_over_25pp": 0.13906527813055627,
+      "tail_error_rate_over_25pp": 0.13511380081568214,
       "false_guarantee_rows": 0,
       "unclassified_actual_gap_rows": 0,
       "failure_reasons": "MAE_EXCEEDS_LIMIT;P90_ERROR_EXCEEDS_LIMIT;TAIL_ERROR_RATE_EXCEEDS_LIMIT"
+    },
+    "BEAR_RESTRICTED_PURSUIT_BONUS": {
+      "certification_status": "INSUFFICIENT_EVIDENCE",
+      "evidence_sufficiency": "INSUFFICIENT",
+      "fold_count": 9,
+      "joined_rows": 226,
+      "mae": 0.1499648036460177,
+      "p90_absolute_error": 0.34166683335000003,
+      "tail_error_rate_over_25pp": 0.19469026548672566,
+      "false_guarantee_rows": 0,
+      "unclassified_actual_gap_rows": 0,
+      "failure_reasons": "INSUFFICIENT_JOINED_ROWS;MAE_EXCEEDS_LIMIT;P90_ERROR_EXCEEDS_LIMIT;TAIL_ERROR_RATE_EXCEEDS_LIMIT"
     },
     "BONUS_CWMU_BIG_GAME": {
       "certification_status": "EXPERIMENTAL_NOT_CERTIFIED",
@@ -139,10 +376,10 @@
       "certification_status": "CERTIFIED",
       "evidence_sufficiency": "SUFFICIENT",
       "fold_count": 9,
-      "joined_rows": 18087,
-      "mae": 0.044010016197019955,
-      "p90_absolute_error": 0.04767021175999999,
-      "tail_error_rate_over_25pp": 0.04594460109470891,
+      "joined_rows": 34944,
+      "mae": 0.03875042179688931,
+      "p90_absolute_error": 0.055273829400000155,
+      "tail_error_rate_over_25pp": 0.041151556776556776,
       "false_guarantee_rows": 0,
       "unclassified_actual_gap_rows": 0,
       "failure_reasons": ""
@@ -199,10 +436,10 @@
       "certification_status": "EXPERIMENTAL_NOT_CERTIFIED",
       "evidence_sufficiency": "SUFFICIENT",
       "fold_count": 9,
-      "joined_rows": 1408,
-      "mae": 0.21781651743607952,
+      "joined_rows": 2390,
+      "mae": 0.31060070062870293,
       "p90_absolute_error": 0.995,
-      "tail_error_rate_over_25pp": 0.2684659090909091,
+      "tail_error_rate_over_25pp": 0.3489539748953975,
       "false_guarantee_rows": 0,
       "unclassified_actual_gap_rows": 0,
       "failure_reasons": "MAE_EXCEEDS_LIMIT;P90_ERROR_EXCEEDS_LIMIT;TAIL_ERROR_RATE_EXCEEDS_LIMIT"
@@ -223,10 +460,10 @@
       "certification_status": "CERTIFIED",
       "evidence_sufficiency": "SUFFICIENT",
       "fold_count": 9,
-      "joined_rows": 8939,
-      "mae": 0.09266700517657457,
-      "p90_absolute_error": 0.25,
-      "tail_error_rate_over_25pp": 0.09945184025058731,
+      "joined_rows": 8936,
+      "mae": 0.06777179423144584,
+      "p90_absolute_error": 0.22038011694999998,
+      "tail_error_rate_over_25pp": 0.07240376007162042,
       "false_guarantee_rows": 0,
       "unclassified_actual_gap_rows": 0,
       "failure_reasons": ""

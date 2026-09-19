@@ -31,10 +31,14 @@ def main():
         operations[ROOT / "pages-dist" / item["path"]] = (source, item["before_sha256"])
         if item["path"].startswith("processed_data/hunt_research_2026_split/hunts/"):
             operations[ROOT / item["path"]] = (source, item["before_sha256"])
-    for source, name in ((BASE / "certification_registry.json", "governance/prediction-family-certification.json"),
-                         (BASE / "promoted_prediction_manifest.json", "processed_data/utah_bonus_predictive_manifest.json")):
+    authority = json.loads((ROOT / "governance/engine-authority.json").read_text())
+    previous = authority["certified_core_production_promotion_2026_09_19"]
+    for source, name, expected in (
+        (BASE / "certification_registry.json", "governance/prediction-family-certification.json", previous["certification_registry_sha256"]),
+        (BASE / "promoted_prediction_manifest.json", "processed_data/utah_bonus_predictive_manifest.json", previous["promoted_manifest_sha256"]),
+    ):
         dest = ROOT / name
-        operations[dest] = (source, sha(dest))
+        operations[dest] = (source, expected)
     # All normal runtime destinations must still equal the original live copy;
     # an unrelated local edit is a blocker, never permission to overwrite it.
     for dest, (source, expected) in operations.items():

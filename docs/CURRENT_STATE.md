@@ -8,7 +8,7 @@ This is the required short briefing for Hunt Builder, Hunt Research, prediction-
 
 ## Current Classification
 
-### Completion repair: all four core designs pass; release verification underway (2026-09-19)
+### Completion repair: all four core designs published and verified (2026-09-19)
 
 The separately frozen repair is under
 `audits/prediction_release_candidates/core_le_deer_repair_20260919/`.
@@ -20,6 +20,19 @@ Deer has 8,936 scored rows: MAE 6.777 pp, P90 22.038 pp, tail 7.240%, zero
 false-certainty errors and zero unresolved actual gaps. LE's 32 blanks were
 independently replayed against source-only cohort history and the existing
 no-certainty safeguard; they remain blank, with all official actuals retained.
+
+| Certified design | Scored rows | MAE (pp) | P90 (pp) | Error over 25 pp |
+|---|---:|---:|---:|---:|
+| Limited-entry big game | 51,270 | 7.555 | 18.669 | 8.040% |
+| Once-in-a-lifetime big game | 34,944 | 3.875 | 5.527 | 4.115% |
+| Premium limited-entry big game | 2,743 | 2.066 | 2.453 | 1.969% |
+| General-season buck deer | 8,936 | 6.777 | 22.038 | 7.240% |
+
+All four have zero unresolved scoreable gaps and zero false-certainty failures.
+Frozen limits remain MAE <=10 pp, P90 <=30 pp and over-25-pp tail <=10%.
+The 32 LE `NO_TRANSITION_EVIDENCE` records are independently documented
+abstentions, not invented predictions. Zero carried-forward cohort does not
+mean zero applicants at that same point in the prior official report.
 
 The residual LE audit records 125 zero-versus-positive errors over the first
 eight folds and 129 over all nine, all retained in numeric metrics. The old
@@ -33,11 +46,12 @@ universal hunt coverage or a guarantee.
 
 Independent accounting covers 796 codes / 1,592 lanes: 847 modeled, 100
 zero-quota, 356 historical, 7 without comparable history, 6 without transition
-evidence, and 276 without a current published allocation. Only supported
-certified values may display. Final browser/release evidence is required before
-replacing the retained production record below.
+evidence, and 276 without a current published allocation. Thus 745 retained
+lanes have an explicit nonforecast disposition, including 356 historical lanes;
+389 are current nonforecast lanes. All 105 current deer hunts / 210 residency
+combinations are accounted for. Only supported certified values may display.
 
-The current public candidate is `research_candidate_harvest_preserved/`.
+The verified published contract is `research_candidate_harvest_preserved/`.
 An additional isolation check caught four derived harvest-context fields in
 the first contract. The initial R2 attempt was stopped and all six original
 objects restored and hash-verified (`r2_publication/rollback_result.json`). No
@@ -46,6 +60,15 @@ harvest context as well as draw-result/permit/quota values; the release gate
 requires explicit zero-change evidence. Broader regression is 356 passed / 19
 failed, separately documented in `REGRESSION_FAILURE_REVIEW.md`; it is not an
 all-green repository claim. The 51 focused release tests pass.
+
+Deployment `3c71b92f` and `https://huntbuilder.pages.dev/research` both pass
+1,255/1,255 scenarios, with zero failed requests or console errors. The actual
+summary/index fetch response bytes match the reviewed SHA-256 hashes; all
+4,249 deployed file hashes match the isolated release manifest. Exact report:
+`audits/prediction_release_candidates/core_le_deer_repair_20260919/production_promotion_report.json`.
+The requested `coverage_final_audited.json`, `classifications_final_audited.json`
+and `research_final_audited/browser_qa.json` are hash-identical final evidence
+aliases within that candidate. Earlier candidates and rollback records remain.
 
 ### Superseded diagnostic baseline: core_final_coverage_20260919
 
@@ -77,8 +100,11 @@ The final local candidate is `mixed_final_audited/` with the matching
 `research_final_audited/` contract; it withholds LE and general-deer probability.
 This retained baseline was not a production release. Do not describe all four designs as universally complete
 or use the earlier family-only registry to bypass the stricter release gate.
-The production record below describes the earlier deployment, not these repairs.
+This baseline remains audit-only; the production record below is the later
+verified `core_le_deer_repair_20260919` release, not this rejected candidate.
 See `audits/prediction_release_candidates/core_final_coverage_20260919/COMPLETION_REPORT.md`.
+
+### Current production release
 
 - Product phase: `HOSTED_CERTIFIED_CORE_PUBLISHED_NONCERTIFIED_SUPPRESSED`.
 - Hunt Research: hosted and materially functional.
@@ -97,17 +123,21 @@ line, but their future probability is withheld. The line is a structural
 forecast, never a guaranteed draw.
 
 The current production materialization is frozen under
-`audits/prediction_release_candidates/certified_core_random_winner_20260919/`.
-Its primary prediction file contains `28,579` rows at SHA-256
-`f5c6e7bf8d9f0bcf3099dcde6d264e1e15f3d6668e3cca157ff588f136d5059b`.
+`audits/prediction_release_candidates/core_le_deer_repair_20260919/`.
+Its primary prediction file contains `31,905` rows at SHA-256
+`849d9da58fb409232bef8cac9474499b06cfae74b3a4809179bf9be8ff56c6da`.
+The successor CSV used by the public contract has SHA-256
+`bf647645b9c12be9b4377ec3ac79ffc29f752757b6acc6ce60a125de8a7fc00b`;
+its keyed final probability projection is identical to the primary file.
 The public contract certifies only `BONUS_LE_BIG_GAME`, `BONUS_OIL_BIG_GAME`,
 `BONUS_PLE_BIG_GAME`, and `PREFERENCE_GENERAL_SEASON_BUCK_DEER`; every other
 family has blank `certified_p_draw*` fields. Six sanitized R2 objects were
 hash-verified after upload with rollback copies under
-`rollback/20260919T142958Z/`. The oversized legacy ladder archive was not
+`rollback/20260919T211214Z/`. The oversized legacy ladder archive was not
 replaced and is not consumed by the normal page. Cloudflare Pages deployment
-`d6f6feeb` and the public alias both pass the same 13-scenario browser matrix
-with zero failed data requests and zero console errors.
+`3c71b92f` and the public alias both pass the same 1,255-scenario browser matrix
+with zero failed requests and zero console errors. The prior `d6f6feeb`
+deployment and its original rollback evidence remain retained.
 
 The 2026-09-09 post-family carry-forward audit found a separate probability
 defect in `engine/utah_predictive_mixed`: although the family engine removed a

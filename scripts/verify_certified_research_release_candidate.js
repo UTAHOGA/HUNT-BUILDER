@@ -92,13 +92,27 @@ async function main() {
   await Promise.all(batches.map(async (batch) => {
   const page = await browser.newPage({ viewport: { width: 1440, height: 1200 } });
   if (expectedRuntimeHashes) {
-    // The official summary contract exceeds Chromium's default per-resource
-    // inspector cache. Retain its actual response bytes for hash verification
-    // without substituting an independent fetch for what the page received.
-    const networkSession = await page.context().newCDPSession(page);
-    await networkSession.send('Network.enable', {
-      maxTotalBufferSize: 128 * 1024 * 1024,
-      maxResourceBufferSize: 64 * 1024 * 1024,
+    // Hash clones of the page's real fetch responses. The large summary is
+    // evicted from Chromium's inspector cache, so response.body() cannot be
+    // relied on here. This adds no replacement fetch and changes no payload.
+    await page.addInitScript(() => {
+      const originalFetch = window.fetch;
+      window.__CERTIFIED_RELEASE_HASH_TASKS = [];
+      window.fetch = async function (...args) {
+        const response = await originalFetch.apply(this, args);
+        const url = response.url;
+        const role = /\/hunt_research_2026_summary\.json(?:\?|$)/.test(url) ? 'summary'
+          : /\/hunt_research_2026\.index\.json(?:\?|$)/.test(url) ? 'index' : null;
+        if (role && response.ok) {
+          const task = response.clone().arrayBuffer()
+            .then((bytes) => crypto.subtle.digest('SHA-256', bytes))
+            .then((digest) => ({ role, url, sha256: Array.from(new Uint8Array(digest))
+              .map((byte) => byte.toString(16).padStart(2, '0')).join('') }))
+            .catch((error) => ({ role, url, error: error.message }));
+          window.__CERTIFIED_RELEASE_HASH_TASKS.push(task);
+        }
+        return response;
+      };
     });
   }
   page.on('console', (message) => {
@@ -109,16 +123,6 @@ async function main() {
   page.on('response', (response) => {
     if (/hunt_research_2026_(summary|ladder)|hunt_research_2026\.(index|details)/.test(response.url())) {
       dataResponses.push({ url: response.url(), status: response.status() });
-    }
-    const role = /\/hunt_research_2026_summary\.json(?:\?|$)/.test(response.url()) ? 'summary'
-      : /\/hunt_research_2026\.index\.json(?:\?|$)/.test(response.url()) ? 'index' : null;
-    if (expectedRuntimeHashes && role && response.ok()) {
-      runtimeHashTasks.push((async () => {
-        const actual = crypto.createHash('sha256').update(await response.body()).digest('hex');
-        return { role, url: response.url(), sha256: actual,
-          expected_sha256: expectedRuntimeHashes[role].sha256, passed: actual === expectedRuntimeHashes[role].sha256 };
-      })().catch((error) => ({ role, url: response.url(), passed: false,
-        error: error.message, expected_sha256: expectedRuntimeHashes[role].sha256 })));
     }
   });
 
@@ -139,6 +143,16 @@ async function main() {
   }, null, { timeout: 180000 });
   const researchReadyMs = Date.now() - navigationStartedAt;
   startupTimings.push({ dom_content_loaded_ms: domContentLoadedMs, research_ready_ms: researchReadyMs });
+  if (expectedRuntimeHashes) {
+    const hashes = await page.evaluate(() => Promise.all(window.__CERTIFIED_RELEASE_HASH_TASKS));
+    const checks = hashes.map((row) => ({ ...row, expected_sha256: expectedRuntimeHashes[row.role].sha256,
+      passed: row.sha256 === expectedRuntimeHashes[row.role].sha256 }));
+    runtimeHashTasks.push(...checks);
+    if (!['summary', 'index'].every((role) => checks.some((row) => row.role === role)) || checks.some((row) => !row.passed)) {
+      throw new Error(`Actual browser runtime bytes failed verification: ${JSON.stringify(checks)}`);
+    }
+    console.log('RUNTIME_RESPONSE_HASHES=PASS_SUMMARY_AND_INDEX');
+  }
 
   for (const scenario of batch) {
     console.log(`RUNNING_SCENARIO=${scenario.label}`);
