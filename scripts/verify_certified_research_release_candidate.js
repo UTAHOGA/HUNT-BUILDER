@@ -91,6 +91,16 @@ async function main() {
   const batches = Array.from({ length: workerCount }, (_, i) => scenarios.filter((_, j) => j % workerCount === i));
   await Promise.all(batches.map(async (batch) => {
   const page = await browser.newPage({ viewport: { width: 1440, height: 1200 } });
+  if (expectedRuntimeHashes) {
+    // The official summary contract exceeds Chromium's default per-resource
+    // inspector cache. Retain its actual response bytes for hash verification
+    // without substituting an independent fetch for what the page received.
+    const networkSession = await page.context().newCDPSession(page);
+    await networkSession.send('Network.enable', {
+      maxTotalBufferSize: 128 * 1024 * 1024,
+      maxResourceBufferSize: 64 * 1024 * 1024,
+    });
+  }
   page.on('console', (message) => {
     if (message.type() === 'error') consoleErrors.push(message.text());
   });
@@ -107,7 +117,8 @@ async function main() {
         const actual = crypto.createHash('sha256').update(await response.body()).digest('hex');
         return { role, url: response.url(), sha256: actual,
           expected_sha256: expectedRuntimeHashes[role].sha256, passed: actual === expectedRuntimeHashes[role].sha256 };
-      })());
+      })().catch((error) => ({ role, url: response.url(), passed: false,
+        error: error.message, expected_sha256: expectedRuntimeHashes[role].sha256 })));
     }
   });
 

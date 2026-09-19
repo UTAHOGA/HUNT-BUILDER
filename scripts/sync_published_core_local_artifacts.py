@@ -1,4 +1,5 @@
 """Hydrate only verified published artifacts; preserve exact local rollback copies."""
+import argparse
 import json
 import shutil
 from pathlib import Path
@@ -9,9 +10,13 @@ BASE = ROOT / "audits/prediction_release_candidates/core_le_deer_repair_20260919
 
 
 def main():
-    report = json.loads((BASE / "production_promotion_report.json").read_text())
-    if report["status"] != "PASS_PROMOTED_AND_PUBLIC_ALIAS_VERIFIED":
-        raise ValueError("Verified live publication required before local hydration")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--check-only", action="store_true")
+    args = parser.parse_args()
+    if not args.check_only:
+        report = json.loads((BASE / "production_promotion_report.json").read_text())
+        if report["status"] != "PASS_PROMOTED_AND_PUBLIC_ALIAS_VERIFIED":
+            raise ValueError("Verified live publication required before local hydration")
     overlay = json.loads((BASE / "pages_overlay_verification_harvest_preserved.json").read_text())
     release = json.loads((BASE / "research_candidate_harvest_preserved/release_readiness_manifest.json").read_text())
     operations = {}
@@ -35,8 +40,11 @@ def main():
     for dest, (source, expected) in operations.items():
         if not dest.is_file() or sha(dest) != expected:
             raise ValueError(f"Unrelated or unexpected local artifact: {dest}")
-        if not source.is_file():
+        if not source.is_file() and not (args.check_only and source.name == "promoted_prediction_manifest.json"):
             raise FileNotFoundError(source)
+    if args.check_only:
+        print(f"Local hydration preflight passed for {len(operations)} destinations; no files changed")
+        return
     backup = BASE / "local_promotion_backups"
     backup.mkdir(exist_ok=False)
     evidence = []

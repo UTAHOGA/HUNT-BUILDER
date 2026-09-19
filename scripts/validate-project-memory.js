@@ -175,7 +175,8 @@ function validateProjectMemory(root = REPO) {
   check(/^[a-f0-9]{64}$/.test(evidence.frozen_prediction_sha256 || ''), 'Compact prediction evidence has no valid frozen prediction SHA-256.');
 
   const promotionEvidence = authority.lifecycle?.promotion_status === 'PARTIAL_FAMILY_PROMOTION_COMPLETE'
-    ? (authority.latest_evidence?.certified_core_production_promotion_2026_09_19
+    ? (authority.latest_evidence?.certified_core_completion_promotion_2026_09_19
+      || authority.latest_evidence?.certified_core_production_promotion_2026_09_19
       || authority.latest_evidence?.certified_core_production_promotion_2026_09_10
       || {})
     : (authority.latest_evidence?.local_prediction_promotion_2026_08_27 || {});

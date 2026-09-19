@@ -37,6 +37,16 @@ evidence, and 276 without a current published allocation. Only supported
 certified values may display. Final browser/release evidence is required before
 replacing the retained production record below.
 
+The current public candidate is `research_candidate_harvest_preserved/`.
+An additional isolation check caught four derived harvest-context fields in
+the first contract. The initial R2 attempt was stopped and all six original
+objects restored and hash-verified (`r2_publication/rollback_result.json`). No
+Pages deployment occurred in that attempt. The corrected builder preserves
+harvest context as well as draw-result/permit/quota values; the release gate
+requires explicit zero-change evidence. Broader regression is 356 passed / 19
+failed, separately documented in `REGRESSION_FAILURE_REVIEW.md`; it is not an
+all-green repository claim. The 51 focused release tests pass.
+
 ### Superseded diagnostic baseline: core_final_coverage_20260919
 
 The published four-design registry is not proof of complete runtime coverage.

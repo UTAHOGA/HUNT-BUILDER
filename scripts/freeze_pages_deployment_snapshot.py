@@ -17,11 +17,13 @@ def main():
         raise SystemExit("Refusing to overwrite retained deployment evidence")
     auth_path = Path(os.environ["APPDATA"]) / "xdg.config/.wrangler/config/default.toml"
     token = os.environ.get("CLOUDFLARE_API_TOKEN") or tomllib.loads(auth_path.read_text())["oauth_token"]
-    if args.require_current_production:
+    if args.require_current_production or args.deployment == "current":
         project_url = "https://api.cloudflare.com/client/v4/accounts/cd6d0adbdac9690cdae5f1c6d52aaa9b/pages/projects/huntbuilder"
         project_request = urllib.request.Request(project_url, headers={"Authorization": f"Bearer {token}"})
         project = json.load(urllib.request.urlopen(project_request, timeout=30))
         current = project.get("result", {}).get("canonical_deployment", {}).get("id")
+        if args.deployment == "current" and project.get("success") and current:
+            args.deployment = current
         if not project.get("success") or current != args.deployment:
             raise SystemExit(f"Production deployment changed: expected {args.deployment}, current {current}")
     url = f"https://api.cloudflare.com/client/v4/accounts/cd6d0adbdac9690cdae5f1c6d52aaa9b/pages/projects/huntbuilder/deployments/{args.deployment}"

@@ -2,6 +2,8 @@
 import csv
 import hashlib
 import json
+import shutil
+import subprocess
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
@@ -35,9 +37,20 @@ def main():
     coverage = read("coverage_harvest_preserved.json")
     registry = read("certification_registry.json")
     frozen = read("SELECTED_REPAIR_FREEZE.json")
+    expected_scenarios = 19 + sum(
+        row["coverage_status"] != "HISTORICAL_REFERENCE_ONLY" for row in coverage["inventory"]
+    )
     for name, qa in (("local", local), ("production", live), ("deployment", immutable)):
         if qa["status"] != "PASS" or qa["failed_requests"] or qa["console_errors"]:
             raise ValueError(f"Browser QA failed: {name}")
+        if len(qa["scenarios"]) != expected_scenarios or not all(row["passed"] for row in qa["scenarios"]):
+            raise ValueError(f"Incomplete browser scenario population: {name}")
+        if qa["independent_coverage_sha256"] != sha(BASE / "coverage_harvest_preserved.json"):
+            raise ValueError(f"Browser coverage artifact changed: {name}")
+        if name != "local":
+            checks = qa.get("runtime_source_hash_checks", [])
+            if not checks or not all(r["passed"] for r in checks) or {r["role"] for r in checks} != {"summary", "index"}:
+                raise ValueError(f"Public runtime source hashes not verified: {name}")
     if deployment["files"] != overlay["expected_deployment_files"]:
         raise ValueError("Published Pages file hashes differ from the reviewed overlay")
     if transaction["status"] != "PASS_SIX_OBJECTS_PUBLISHED_AND_HASH_VERIFIED":
@@ -46,6 +59,18 @@ def main():
         for relative, expected in frozen[group].items():
             if sha(ROOT / relative) != expected:
                 raise ValueError(f"Frozen {group} changed: {relative}")
+    aliases = []
+    for source, destination in (
+        ("coverage_harvest_preserved.json", "coverage_final_audited.json"),
+        ("classifications.json", "classifications_final_audited.json"),
+        (f"{PUBLIC}/browser_qa_production_alias.json", "research_final_audited/browser_qa.json"),
+    ):
+        target = BASE / destination
+        if target.exists() and sha(target) != sha(BASE / source):
+            raise ValueError(f"Refusing to replace different retained evidence: {destination}")
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(BASE / source, target)
+        aliases.append({"source": source, "alias": destination, "sha256": sha(target)})
     mixed = read("mixed_materialization/mixed_predictive_engine_2026_summary.json")
     manifest = read("family_materialization/utah_bonus_predictive_manifest.json")
     manifest["prediction_family_certification"]["registry_id"] = registry["registry_id"]
@@ -94,6 +119,10 @@ def main():
         "focused_tests_passed": 51, "broader_regression": regression,
         "protected_harvest_context_field_changes": read(f"{PUBLIC}/candidate_build_audit.json")["overlay"]["protected_harvest_context_field_changes"],
         "first_attempt_rollback": read("r2_publication/rollback_result.json"),
+        "final_evidence_aliases": aliases,
+        "r2_transfer_recovery": transaction.get("transfer_recovery"),
+        "repository_head_at_completion": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+        "external_repository_activity": "Commit d9a5bfec appeared during verification; not created by this release. Frozen source and artifact hashes reverified unchanged.",
         "staged_committed_or_pushed": False,
     }
     write("production_promotion_report.json", report)
@@ -119,12 +148,13 @@ def main():
               f"- 1,255/1,255 scenarios pass locally, on the immutable deployment, and on the public alias. Each run has zero failed requests and console errors.",
               "- 51 focused tests pass. Broader regression status: " + regression["status"] + ". Failures, if any, are retained in regression.log/regression.xml and the JSON promotion report; they are not replaced by production data edits.",
               "- Project memory, npm tests, public-manifest guard, contract validation, exact-code freeze, source parity, full eligible accounting and release-readiness gates pass.",
+              "- Requested final evidence names are exact hash-verified aliases: coverage_final_audited.json, classifications_final_audited.json, and research_final_audited/browser_qa.json (the production-alias browser run). Original evidence paths remain retained.",
               "- Six R2 objects were backed up remotely, read back and hash-verified before replacement. All six replacements were also read back and hash-verified.",
               "- An additional isolation audit caught four derived harvest-context fields in the initial rebuild. The initial R2 attempt was stopped and all six original objects restored and hash-verified before the corrected prediction-only contract was revalidated and published. Both transactions are retained; no Pages deployment occurred during the aborted attempt.",
               f"- Rollback namespace: `{transaction['rollback_namespace']}`. The earlier immutable Pages deployment remains available.",
-              f"- All 4,249 prior Pages files are retained: {len(overlay['changed'])} explicitly reviewed files updated, {overlay['untouched_file_count']} byte-identical, none added or removed. See pages_overlay_verification.json for exact paths and hashes.",
+              f"- All 4,249 prior Pages files are retained: {len(overlay['changed'])} explicitly reviewed files updated, {overlay['untouched_file_count']} byte-identical, none added or removed. See pages_overlay_verification_harvest_preserved.json for exact paths and hashes.",
               "- Pages changes: research.html, config.js, hunt-research.js, summary/index, and 1,791 direct hunt details. The oversized legacy archive, harvest reports/data, draw truth, DATABASE.csv and unrelated production assets are unchanged.",
-              "- Nothing staged, committed or pushed. The unrelated dirty worktree was not deployed.", ""]
+              "- This release did not stage, commit or push Git. An externally created commit d9a5bfec appeared during verification; frozen source/artifact hashes were reverified unchanged. The release used only the isolated, hash-reviewed Pages directory, not the working tree.", ""]
     (BASE / "COMPLETION_REPORT.md").write_text("\n".join(lines), encoding="utf-8")
     print(json.dumps({k: report[k] for k in ("status", "registry_id", "materialization_sha256", "promoted_manifest_sha256", "deployment_id")}))
 
