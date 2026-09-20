@@ -13,6 +13,8 @@ import json
 from pathlib import Path
 from typing import Any, Iterable, Mapping
 
+from .exclusions import NO_ORIGINAL_DRAW_PROBABILITY, is_cwmu_operator_reference
+
 
 CERTIFIED = "CERTIFIED"
 EXPERIMENTAL = "EXPERIMENTAL_NOT_CERTIFIED"
@@ -37,6 +39,8 @@ def clean(value: object) -> str:
 def certification_design_for_row(row: Mapping[str, object]) -> str:
     """Resolve the certification population without collapsing Bear programs."""
 
+    if is_cwmu_operator_reference(row):
+        return NO_ORIGINAL_DRAW_PROBABILITY
     design = clean(row.get("draw_system_type") or row.get("draw_design")).upper()
     if design != "BEAR_DRAW":
         return design
@@ -84,6 +88,8 @@ def has_publishable_probability_basis(row: Mapping[str, object]) -> bool:
     certified zero-probability claim.
     """
 
+    if is_cwmu_operator_reference(row):
+        return False
     status = clean(row.get("status")).upper()
     if status == "DISPLAY ONLY - NO FORECASTED APPLICANT COHORT":
         return False

@@ -48,7 +48,12 @@ from .bear import (
 )
 from .bonus import STRATEGY_SPECS as BONUS_SPECS
 from .dedicated_hunter import STRATEGY_SPECS as DEDICATED_SPECS, is_modeled_dedicated_hunter_row
-from .exclusions import STRATEGY_SPECS as EXCLUSION_SPECS
+from .exclusions import (
+    STRATEGY_SPECS as EXCLUSION_SPECS,
+    CWMU_CONTACT_OPERATOR_REFERENCE_ONLY,
+    NO_ORIGINAL_DRAW_PROBABILITY,
+    is_cwmu_operator_reference,
+)
 from .mountain_lion import (
     STRATEGY_SPECS as MOUNTAIN_LION_SPECS,
     DRAW_SYSTEM_TYPE as MOUNTAIN_LION_DRAW_SYSTEM_TYPE,
@@ -151,6 +156,7 @@ BIG_GAME_TOKENS = (
 )
 TARGET_OTHER_TOKENS = ("turkey", "black bear", "bear", "mountain lion", "lion", "cougar")
 TARGET_DRAW_SYSTEM_TYPES = {
+    NO_ORIGINAL_DRAW_PROBABILITY,
     "BONUS_OIL_BIG_GAME",
     "BONUS_LE_BIG_GAME",
     "BONUS_PLE_BIG_GAME",
@@ -280,6 +286,8 @@ def is_target_scope(row: Mapping[str, object]) -> bool:
 
 
 def classify_draw_system_type(row: Mapping[str, object]) -> str:
+    if is_cwmu_operator_reference(row):
+        return NO_ORIGINAL_DRAW_PROBABILITY
     text = _joined_text(row)
     hunt_code = _clean(row.get("hunt_code")).upper()
     hunt_type = _clean_lower(row.get("hunt_type"))
@@ -406,6 +414,8 @@ def classify_draw_system_type(row: Mapping[str, object]) -> str:
 
 
 def resolve_algorithm_status(row: Mapping[str, object], draw_system_type: str | None = None) -> str:
+    if is_cwmu_operator_reference(row):
+        return ALGORITHM_STATUS_EXCLUDED_NOT_PREDICTIVE_DRAW
     draw_system_type = draw_system_type or classify_draw_system_type(row)
     if draw_system_type in LEGACY_BONUS_DRAW_DESIGNS:
         draw_system_type = _canonical_big_game_bonus_draw_system(row)
@@ -458,6 +468,8 @@ def target_scope_label(row: Mapping[str, object], draw_system_type: str | None =
 
 
 def modeled_by_engine(row: Mapping[str, object], draw_system_type: str | None = None, algorithm_status: str | None = None) -> bool:
+    if is_cwmu_operator_reference(row):
+        return False
     draw_system_type = draw_system_type or classify_draw_system_type(row)
     if draw_system_type in LEGACY_BONUS_DRAW_DESIGNS:
         draw_system_type = _canonical_big_game_bonus_draw_system(row)
@@ -543,6 +555,19 @@ def classify_runtime_row(row: Mapping[str, object]) -> dict[str, object]:
 def sanitize_modeled_probability_fields(row: dict[str, object]) -> dict[str, object]:
     classification = classify_runtime_row(row)
     row.update(classification)
+    if classification["draw_system_type"] == NO_ORIGINAL_DRAW_PROBABILITY:
+        # Exclude every prediction alias, including stale certified values.
+        # Keep permit/quota/overlay fields exactly as received for inventory.
+        for key in row:
+            if key.startswith(("p_", "certified_p_draw", "resident_p_draw", "nonresident_p_draw",
+                               "total_p_draw", "display_odds_", "guaranteed_at_", "projected_draw_line_")):
+                row[key] = ""
+        row.update({
+            "prediction_status": NO_ORIGINAL_DRAW_PROBABILITY,
+            "classification_status": CWMU_CONTACT_OPERATOR_REFERENCE_ONLY,
+            "model_prediction_valid": "FALSE",
+            "draw_outlook": NO_ORIGINAL_DRAW_PROBABILITY,
+        })
     if classification["algorithm_status"] == ALGORITHM_STATUS_MODELED_AVAILABILITY:
         for key in (
             "p_draw",
