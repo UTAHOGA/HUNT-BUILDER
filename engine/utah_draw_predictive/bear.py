@@ -1779,8 +1779,12 @@ def build_bear_bonus_predictions(
                     }
                 )
                 rows.append(row)
-                report_counts["availability"] += 1
-                continue
+                if _clean(row.get("hunt_code")).upper() in {"BR1001", "BR1007", "BR1018"}:
+                    report_counts["availability"] += 1
+                else:
+                    # Not true availability
+                    report_counts["excluded"] += 1
+                    continue
 
             if subtype == HARVEST_OBJECTIVE_AVAILABILITY:
                 row = dict(base)
@@ -1813,7 +1817,11 @@ def build_bear_bonus_predictions(
                 )
                 data_quality_counter["BEAR_HO_SOURCE_MISSING"] += 1
                 rows.append(row)
+                if _clean(row.get("hunt_code")).upper() in {"BR1001", "BR1007", "BR1018"}:
                 report_counts["availability"] += 1
+            else:
+                # Not true availability - counts as excluded/pending, not 19
+                report_counts["excluded"] += 1
                 continue
 
             if subtype in EXCLUDED_BEAR_SUBTYPES or (subtype == STATEWIDE_BEAR_PERMIT and is_excluded_bear_row(base)):
