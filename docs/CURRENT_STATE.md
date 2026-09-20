@@ -8,6 +8,87 @@ This is the required short briefing for Hunt Builder, Hunt Research, prediction-
 
 ## Current Classification
 
+### CWMU operator-reference exclusion (2026-09-19, local and unpromoted)
+
+Tyler next authorized CWMU exclusion safety in the existing family engine.
+Explicit CWMU operator/contact reference records now route to
+`NO_ORIGINAL_DRAW_PROBABILITY` with `EXCLUDED_NOT_PREDICTIVE_DRAW`, no raw or
+certified forecast fields, and no stale modeled/guaranteed display claims.
+Family inference, source-probability fallback, final family materialization
+and the certification gate cannot revive these records as public draw odds.
+No CWMU forecast has been enabled or certified.
+
+Do not classify a public drawing as non-draw from a season note alone: DWR
+requires public CWMU winners to contact the operator for hunting dates
+(`https://wildlife.utah.gov/cwmu`). The read-only inventory found 338 CWMU-linked
+current identity rows (290 with season-contact notes), 83,240 CWMU-linked
+unified-truth records, and zero explicitly labeled operator-reference records
+in those populations. This is a preventive boundary repair, not 2,528 repaired
+or deleted operator rows. The retained 2025-to-2026 diagnostic still contains
+exactly 2,528 `SOURCE_VERIFIED_NO_PUBLIC_ODDS_CWMU_EXCLUDED` dispositions.
+
+Public quota accessors and allotment helpers are unchanged. Removing overlay
+allotments from each CWMU identity row produces identical public quota results.
+All 25 protected file hashes match, including ten yearly canonicals, unified
+truth, DATABASE, production registry/manifest/prediction artifacts, the frozen
+core release, Research page, earlier Bear changes and quota helpers. Evidence:
+`audits/prediction_release_candidates/cwmu_reference_boundary_20260919/`.
+
+Focused/boundary regressions pass; the expanded run retains the stale registry
+count assertion (OIL expected 18,087 versus the frozen certified 34,944).
+The broader V3 19-failure record and both pre-existing DATABASE line-ending hash
+validation failures remain unchanged. No stage, commit, upload or deployment.
+
+### Bear-only source/program foundation repair (2026-09-19, local and unpromoted)
+
+Tyler authorized Bear as the only next family. The owning `bear.py` now admits
+the fresh official yearly-canonical schema, retains source-dated hunting versus
+restricted-pursuit identity, and reconciles the published resident/nonresident
+columns. Before this repair, direct Bear intake from the current long truth
+admitted only 77 ladders per residency in 2017 and none in 2018-2025. It now
+admits 90/91/97/100/100/96/96/96/97 exact hunt-program ladders per residency for
+2017-2025. No canonical or unified-truth row was changed.
+
+Bear's local quota input is now the exact source-year canonical lane's awarded
+permits, explicitly `SOURCE_YEAR_CANONICAL_AWARDS_PROXY`, **not a current-year
+allocation**. DATABASE.csv cannot override it. Missing/stale/combined-only
+residency evidence cannot supply a probability. Hunt totals are excluded,
+identical point duplicates are counted once, conflicting counts fail, and the
+2026 code aliases cannot erase historical codes in earlier folds. Retention
+and arrival evidence are isolated by Bear program and residency; the hunting
+point-purchase table cannot corroborate pursuit arrivals.
+
+DWR R657-62-8 and -19 identify two separate bonus-point programs: limited-entry
+hunting and restricted pursuit. A drawn restricted-pursuit winner forfeits that
+program's points; keeping that winner at the old pursuit rung would be wrong.
+Hunting winners leave only the hunting ladder. Harvest-objective permits and
+general pursuit are non-draw availability, and harvest-objective permits do
+not forfeit bonus points. No individual cross-program applicant movement is
+inferred from aggregate reports. Official rule checked:
+https://wildlife.utah.gov/rules/r657-62.
+
+The isolated evidence is
+`audits/prediction_release_candidates/bear_program_source_repair_20260919/`.
+Its `folds_v2/` replay freezes forecasts before opening following-year actuals,
+uses no DATABASE.csv or later-PDF lookup, and reuses the existing projection
+and scorer. All eight 2017-to-2025 adjacent folds completed. This is **not** a
+certification or final post-family website-calculation test. Hunting has 9,367
+scored rows, MAE 20.594 pp and over-25-pp tail 21.672%; pursuit has 311 rows,
+MAE 24.375 pp and tail 30.225%. Both P90 errors are 100 pp. There are 374
+missing/blank scoreable-actual keys requiring source classification. Numeric
+errors remain in the score. The old 75-false-guarantee count belongs to a
+rejected candidate. The existing 0.99 ceiling is unchanged; zero formal
+false-guarantee flags is not proof that structural certainty errors were fixed.
+
+The four-core published registry `adr-0006-2200616ce0b9`, runtime artifacts,
+Research page, all yearly canonicals and unified truth remain byte-identical.
+Bear is still uncertified and probability-suppressed. The existing V3 broader
+19 failures remain documented. Project-memory validation has a pre-existing
+two-check DATABASE byte-hash failure: the working file is CRLF, and its LF
+content hash equals the recorded version. Neither that file nor the frozen
+hash was rewritten or waived. No staging, commit, upload or deployment occurs
+in this Bear repair.
+
 ### Completion repair: all four core designs published and verified (2026-09-19)
 
 The separately frozen repair is under

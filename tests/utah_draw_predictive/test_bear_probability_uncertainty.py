@@ -102,6 +102,12 @@ def test_bear_truth_ladder_uses_actual_draw_year_when_legacy_year_is_none() -> N
         },
     ]
 
+    # Explicit source-year provenance replaces the unrelated 2025 code lookup.
+    # This test is about date parsing, not inferring a historical program from
+    # a current hunt code.
+    for row in rows:
+        row["bear_source_identity_source"] = "RETAINED_OFFICIAL_BLACK_BEAR_PDF"
+        row["qa_status"] = "OFFICIAL_PDF_RESIDENCY_LANE_PROJECTED"
     ladders, _, _ = _build_truth_ladders(rows, {2018, 2019})
 
     assert any(key[1:3] == (2018, "BR7004") for key in ladders)
