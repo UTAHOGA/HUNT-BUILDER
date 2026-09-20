@@ -1,22 +1,22 @@
 {
-  "generated_at_utc": "2026-09-09T11:16:51+00:00",
+  "generated_at_utc": "2026-09-19T22:04:26+00:00",
   "audit_scope": "read_only_draw_truth_year_by_year_hardening",
   "database_path": "pipeline\\RAW\\hunt_unit_database\\2026\\csv\\DATABASE.csv",
   "draw_long_path": "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv",
   "current_database_rows": 1848,
   "current_database_unique_hunt_codes": 1848,
-  "draw_long_rows": 338802,
+  "draw_long_rows": 338574,
   "unique_draw_years": [],
-  "unique_draw_hunt_codes_all_years": 1542,
-  "current_database_codes_covered_any_draw_year": 1540,
-  "current_database_codes_missing_all_draw_years": 308,
+  "unique_draw_hunt_codes_all_years": 1544,
+  "current_database_codes_covered_any_draw_year": 1542,
+  "current_database_codes_missing_all_draw_years": 306,
   "historical_only_draw_codes_not_current_database": 2,
   "draw_hunt_code_growth_note": "Unique draw hunt-code counts should generally increase slightly year over year, or the audit must explain the gap before draw data is combined into prediction features.",
   "field_capture_status": [
     {
       "field": "eligible_applicants",
       "captured_in_draw_truth": true,
-      "nonblank_rows": 338142
+      "nonblank_rows": 338312
     },
     {
       "field": "total_drawn",
@@ -26,27 +26,27 @@
     {
       "field": "bonus_permits",
       "captured_in_draw_truth": true,
-      "nonblank_rows": 338078
+      "nonblank_rows": 338236
     },
     {
       "field": "regular_permits",
       "captured_in_draw_truth": true,
-      "nonblank_rows": 338067
+      "nonblank_rows": 338236
     },
     {
       "field": "total_permits",
       "captured_in_draw_truth": true,
-      "nonblank_rows": 338567
+      "nonblank_rows": 338339
     },
     {
       "field": "success_ratio",
       "captured_in_draw_truth": true,
-      "nonblank_rows": 177848
+      "nonblank_rows": 35347
     },
     {
       "field": "p_draw_percent",
       "captured_in_draw_truth": true,
-      "nonblank_rows": 134972
+      "nonblank_rows": 34790
     },
     {
       "field": "residency",
@@ -56,12 +56,12 @@
     {
       "field": "points",
       "captured_in_draw_truth": true,
-      "nonblank_rows": 333812
+      "nonblank_rows": 326645
     },
     {
       "field": "draw_pool",
       "captured_in_draw_truth": true,
-      "nonblank_rows": 338802
+      "nonblank_rows": 338574
     },
     {
       "field": "draw_method",
@@ -71,12 +71,12 @@
     {
       "field": "hunt_class",
       "captured_in_draw_truth": true,
-      "nonblank_rows": 163127
+      "nonblank_rows": 306518
     },
     {
       "field": "source_file",
       "captured_in_draw_truth": true,
-      "nonblank_rows": 338802
+      "nonblank_rows": 338574
     },
     {
       "field": "page_number",
