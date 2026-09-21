@@ -3,8 +3,10 @@
 
 from __future__ import annotations
 
+import argparse
 import csv
 import json
+import re
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -92,6 +94,39 @@ def read_database() -> list[dict[str, str]]:
     return sorted(rows, key=lambda row: clean(row.get("hunt_code")).upper())
 
 
+def runtime_hunt_name(row: dict[str, str], code: str, boundary_id: str) -> str:
+    """Return the current official hunt name without boundary-ID aliasing.
+
+    Bear names must be explicit current identity values. They may never fall
+    back to a boundary identifier, code, odds ratio, or availability marker.
+    """
+    explicit_name = clean(row.get("hunt_name"))
+    if not code.startswith("BR"):
+        return first(explicit_name, row.get("unit_name"), code)
+
+    aliases = {
+        clean(boundary_id).casefold(),
+        clean(row.get("boundary_id")).casefold(),
+        clean(row.get("boundaryId")).casefold(),
+        clean(row.get("boundaryID")).casefold(),
+        clean(row.get("BoundaryID")).casefold(),
+        code.casefold(),
+    }
+    aliases.discard("")
+    invalid_display_value = (
+        not explicit_name
+        or explicit_name.casefold() in aliases
+        or explicit_name.casefold() in {"n/a", "na", "none"}
+        or re.fullmatch(r"1\s+in\s+[0-9]+(?:\.[0-9]+)?", explicit_name, flags=re.IGNORECASE)
+    )
+    if invalid_display_value:
+        raise ValueError(
+            f"Bear {code} has no valid official hunt_name; boundary IDs and odds text are not names: "
+            f"{explicit_name!r}"
+        )
+    return explicit_name
+
+
 def read_research_summary() -> dict[str, list[dict[str, object]]]:
     if not RESEARCH_SUMMARY.exists():
         return {}
@@ -107,7 +142,7 @@ def read_research_summary() -> dict[str, list[dict[str, object]]]:
 def to_runtime_record(row: dict[str, str], generated_at: str) -> dict[str, object]:
     code = clean(row.get("hunt_code")).upper()
     boundary_id = first(row.get("boundary_id"), row.get("boundaryId"), row.get("BoundaryID"))
-    hunt_name = first(row.get("hunt_name"), row.get("unit_name"), code)
+    hunt_name = runtime_hunt_name(row, code, boundary_id)
     season = first(row.get("season"), row.get("season_dates"))
     total_2026 = first(row.get("permits_2026_total"))
     res_2026 = first(row.get("permits_2026_res"))
@@ -419,24 +454,42 @@ def write_runtime_audit(db_code_count: int) -> list[dict[str, object]]:
     return rows
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--hunt-master-only",
+        action="store_true",
+        help="Rebuild current hunt-master JSON/CSV targets without changing split Research artifacts.",
+    )
+    return parser.parse_args()
+
+
 def main() -> None:
+    args = parse_args()
     generated_at = utc_now()
     db_rows = read_database()
     records = [to_runtime_record(row, generated_at) for row in db_rows]
     db_codes = {str(record["hunt_code"]).upper() for record in records}
-    research_by_code = read_research_summary()
-    missing_research_codes = sorted(db_codes - set(research_by_code))
-    extra_research_codes = sorted(set(research_by_code) - db_codes)
-    if missing_research_codes or extra_research_codes:
-        raise ValueError(
-            "Research summary is not aligned to DATABASE.csv: "
-            f"missing={len(missing_research_codes)} extra={len(extra_research_codes)}"
-        )
+    research_by_code: dict[str, list[dict[str, object]]] = {}
+    if not args.hunt_master_only:
+        research_by_code = read_research_summary()
+        missing_research_codes = sorted(db_codes - set(research_by_code))
+        extra_research_codes = sorted(set(research_by_code) - db_codes)
+        if missing_research_codes or extra_research_codes:
+            raise ValueError(
+                "Research summary is not aligned to DATABASE.csv: "
+                f"missing={len(missing_research_codes)} extra={len(extra_research_codes)}"
+            )
 
     for path in HUNT_MASTER_TARGETS:
         write_json(path, records)
     for path in HUNT_MASTER_CSV_TARGETS:
         write_master_csv(path, records)
+
+    if args.hunt_master_only:
+        print(f"Rebuilt runtime hunt master records: {len(records)}")
+        print("Split Research artifacts preserved (--hunt-master-only).")
+        return
 
     split_summary = rebuild_split(records, research_by_code, generated_at)
     audit_rows = write_runtime_audit(len(db_codes))

@@ -12,6 +12,7 @@ import argparse
 import csv
 import hashlib
 import json
+import math
 import re
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -88,6 +89,16 @@ DIRECT_DETAIL_LADDER_FIELDS = {
     "quota_source_status", "point_pool_zone", "dwr_result_display", "display_2025_draw_results",
     "gap", "delta_gap", "status", "trend", "draw_outlook", "reason", "rule_status",
     "allocation_status", "data_quality_flags",
+    "source_file", "truth_source_file", "pdf_page", "source_page", "truth_source_page",
+    "actual_draw_year", "source_year", "prediction_certification_registry_id",
+}
+
+# A withheld percentage must not leave a future line or advice that implies
+# the same unsupported prediction. Historical actuals and permit facts remain.
+FUTURE_GUIDANCE_FIELDS = {
+    "projected_draw_line_2026", "point_creep", "point_trend", "draw_trend",
+    "trend", "draw_outlook", "gap", "delta_gap", "point_pool_zone",
+    "decision_label", "recommended_action", "catch_up_guidance",
 }
 
 # Historical actual results are intentionally not included.  These fields are
@@ -251,7 +262,56 @@ def sanitize_public_row(row: dict[str, object]) -> dict[str, object]:
     if status != "CERTIFIED":
         for field in CERTIFIED_PROBABILITY_FIELDS:
             sanitized[field] = ""
+    if not has_certified_forecast(sanitized):
+        for field in FUTURE_GUIDANCE_FIELDS:
+            sanitized.pop(field, None)
     return sanitized
+
+
+def has_certified_forecast(row: dict[str, object]) -> bool:
+    if clean(row.get("prediction_certification_status")) != "CERTIFIED":
+        return False
+    for field in ("certified_p_draw_pct", "certified_p_draw_mean", "certified_p_draw"):
+        if not clean(row.get(field)):
+            continue
+        try:
+            value = float(row[field])
+        except (TypeError, ValueError):
+            return False
+        return math.isfinite(value) and 0 <= value <= (100 if field.endswith("_pct") else 1)
+    return False
+
+
+def attach_source_scopes(detail: dict[str, object]) -> dict[str, object]:
+    """Label the composite; never rebrand catalog references as draw truth."""
+    result = dict(detail)
+    previous = detail.get("source_provenance") or {}
+    catalog = previous.get("current_catalog") or {
+        "source_authority": detail.get("source_authority", ""),
+        "source_file": detail.get("source_file", ""),
+        "role": "CURRENT_HUNT_IDENTITY_AND_PERMIT_REFERENCE_ONLY",
+    }
+    sources = sorted({clean(row.get(field))
+                      for group in ("research_summary_rows", "research_ladder_rows")
+                      for row in detail.get(group, []) if isinstance(row, dict)
+                      for field in ("truth_source_file", "source_file")
+                      if clean(row.get(field)) and "database.csv" not in clean(row.get(field)).lower()})
+    result["source_authority"] = "FIELD_SCOPED_RESEARCH_COMPOSITE"
+    result["source_file_role"] = "CURRENT_HUNT_IDENTITY_AND_PERMIT_REFERENCE_ONLY"
+    result["source_provenance"] = {
+        "current_catalog": catalog,
+        "historical_draw_results": {
+            "role": "RETAINED_ROW_LINEAGE_NOT_CURRENT_CATALOG",
+            "recorded_source_files": sources,
+            "lineage_status": "RECORDED_ROW_SOURCES" if sources else "NOT_PRESENT_IN_THIS_PAYLOAD",
+        },
+        "future_predictions": {
+            "role": "CERTIFIED_SELECTED_POINT_FIELDS_ONLY",
+            "artifact_sha256": detail.get("candidate_frozen_prediction_sha256", ""),
+        },
+        "harvest_context": {"role": "SEPARATE_CONTEXT_NOT_DRAW_PROBABILITY_OR_QUOTA"},
+    }
+    return result
 
 
 def is_harvest_context_field(field: str) -> bool:
@@ -512,7 +572,7 @@ def build(
         )
         detail_map[hunt_code] = existing
     sanitized_detail_map = {
-        hunt_code: sanitize_public_row(detail)
+        hunt_code: attach_source_scopes(sanitize_public_row(detail))
         for hunt_code, detail in detail_map.items()
     }
     detail_bundle = {

@@ -362,7 +362,8 @@ def mixed_row(row: dict[str, str], prior: dict[str, str] | None, harvest: dict[s
     if row.get("probability_model") == "NONE" or row.get("draw_model_class") == "AVAILABILITY_ONLY":
         p_draw = None
     core_design = clean(row.get("draw_system_type") or row.get("draw_design")) in CORE_FINAL_PROBABILITY_DESIGNS
-    if core_design:
+    bear_design = clean(row.get("draw_system_type") or row.get("draw_design")) == "BEAR_DRAW"
+    if core_design or bear_design:
         # The family engine already applies demand, quota, residency, and draw
         # mechanics. A second weighted blend of last year's realized awards is
         # not part of that model's blind evidence. Preserve its one probability
@@ -372,8 +373,9 @@ def mixed_row(row: dict[str, str], prior: dict[str, str] | None, harvest: dict[s
             p_draw = None
         p_prior = p_quota = p_harvest = None
         p_rollover = p_draw
-        blend_reasons = [FINAL_PROBABILITY_CONTRACT]
-        out["final_probability_contract"] = FINAL_PROBABILITY_CONTRACT
+        final_contract = "BEAR_FAMILY_MECHANICS_PRESERVED_V1" if bear_design else FINAL_PROBABILITY_CONTRACT
+        blend_reasons = [final_contract]
+        out["final_probability_contract"] = final_contract
     grade = (harvest or {}).get("harvest_feature_data_quality_grade") or row.get("data_quality_grade") or "C"
     if p_draw is not None and prior is None:
         grade = "C" if grade in {"A", "B"} else grade

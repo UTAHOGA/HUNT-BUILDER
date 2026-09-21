@@ -1,0 +1,25 @@
+{
+  "rows": 19474,
+  "year_transitions_tested": [
+    "2017->2018",
+    "2018->2019",
+    "2019->2020",
+    "2020->2021",
+    "2021->2022",
+    "2022->2023",
+    "2023->2024",
+    "2024->2025",
+    "2025->2026"
+  ],
+  "distinct_hunt_code": 1502,
+  "distinct_residency": 2,
+  "nonnull_counts": {
+    "mean_absolute_error_applicants_at_level": 19474,
+    "mean_absolute_error_applicants_above": 19474,
+    "bonus_pool_cutoff_error": 16610,
+    "guaranteed_at_error": 16610,
+    "quota_split_error": 19474,
+    "brier_score_by_point_level": 19474,
+    "calibration_error_by_probability_bucket": 19474
+  }
+}

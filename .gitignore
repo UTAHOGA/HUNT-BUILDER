@@ -883,3 +883,5 @@ data_truth/hunt_code_universe_truth/locked/LOCKED_HUNT_CODE_YEAR_CODE_ROSTER_201
 /processed_data/public_contracts/hunt_predictions.json
 /local_data/outfitters/*
 .vercel
+
+# frozen scorer for bear demand comparisons[STRIPPED 69 bytes].FROZEN.py

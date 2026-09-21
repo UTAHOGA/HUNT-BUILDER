@@ -78,7 +78,19 @@ def test_black_bear_current_only_and_retired_rows_are_explicit_review_evidence()
     assert by_current["BR7021"]["mapping_status"] == "CURRENT_SPLIT_CHILD_NO_PRIOR_DRAW_ROW"
     assert by_current["BR7126"]["mapping_status"] == "CURRENT_SPLIT_CHILD_NO_PRIOR_DRAW_ROW"
     assert by_current["BR7238"]["mapping_status"] == "CURRENT_SPLIT_CHILD_NO_PRIOR_DRAW_ROW"
-    assert by_current["BR7324"]["mapping_status"] == "CURRENT_CONSERVATION_NO_DRAW_SOURCE"
+    # This report inventories positive published permit totals, not every
+    # catalog reference. BR7324 is retained in current identity with no quota;
+    # manufacturing a numeric permit row would violate that source boundary.
+    reference = next(row for row in read_rows(ROOT / "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv")
+                     if row["hunt_code"] == "BR7324")
+    assert reference["hunt_type"] == "Conservation"
+    assert reference["permits_2026_total"] == ""
+    assert "BR7324" not in by_current
     assert by_2024["BR7019"]["mapping_status"] == "RETIRED_AFTER_2024_NO_2025_OR_2026_MATCH"
     assert summary["draw_2025_rows_mapped_to_current_after_crosswalk"] == 97
     assert summary["high_confidence_recode_count"] == 4
+    assert summary["draw_2024_rows"] == 96
+    assert summary["current_2026_rows"] == 105
+    assert summary["current_2026_total_numeric_permits"] == 1110
+    assert summary["mapping_status_counts"]["EXACT_CODE_CURRENT"] == 91
+    assert summary["mapping_status_counts"]["CURRENT_SPLIT_CHILD_NO_PRIOR_DRAW_ROW"] == 3

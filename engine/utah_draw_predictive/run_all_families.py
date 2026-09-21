@@ -1510,6 +1510,15 @@ def _effective_draw_pool_for_family(row: Mapping[str, object], family: str) -> s
         return bucket_pool
 
     draw_pool = _clean(row.get("draw_pool"))
+    if family in {"preference_antlerless_deer", "preference_antlerless_elk", "preference_doe_pronghorn"}:
+        canonical_antlerless_pool = {
+            "antlerless_deer": "general_season_antlerless_deer",
+            "antlerless_elk": "general_season_antlerless_elk",
+            "antlerless_pronghorn": "general_season_doe_pronghorn",
+            "doe_pronghorn": "general_season_doe_pronghorn",
+        }.get(draw_pool.lower())
+        if canonical_antlerless_pool:
+            return canonical_antlerless_pool
     if family == "bonus_cwmu_big_game":
         source_pool = _cwmu_source_pool_from_fields(row, draw_pool)
         if source_pool:
@@ -2304,6 +2313,11 @@ def _historical_source_year_runtime_db_rows(
                 "draw_system_type": draw_system_type,
                 "historical_permit_proxy": "TRUE",
                 "historical_proxy_pool_identity": f"{family}:{pool_identity}",
+                **({field: representative.get(field, "") for field in (
+                    "actual_draw_year", "source_scope", "source_file", "pdf_page", "qa_status", "draw_pool",
+                    "extraction_status", "candidate_promotion_status", "bear_source_classification",
+                    "bear_source_identity_source", "bear_source_identity_file",
+                )} if family == "bonus_bear" else {}),
                 "forecast_permits_res": str(int(round(res))),
                 "forecast_permits_nr": str(int(round(nr))),
                 "forecast_permits_total": str(int(round(total))),

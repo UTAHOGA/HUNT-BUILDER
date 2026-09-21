@@ -445,6 +445,12 @@ def resolve_algorithm_status(row: Mapping[str, object], draw_system_type: str | 
     if draw_system_type == YOUTH_TURKEY_DRAW_SYSTEM_TYPE:
         return ALGORITHM_STATUS_MODELED_BONUS if is_modeled_youth_turkey_row(row) else ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING
     if draw_system_type == BEAR_DRAW_SYSTEM_TYPE:
+        if (_clean(row.get("algorithm_status")) == "NO_TRANSITION_EVIDENCE"
+                and _clean(row.get("model_strategy")) == "bear_bonus_phase8"
+                and _clean(row.get("bear_draw_subtype")) in {LIMITED_ENTRY_BEAR_HUNT, RESTRICTED_BEAR_PURSUIT}):
+            # Preserve the owner's evidence disposition, without attempting
+            # to rediscover a new split code in an older draw-result PDF.
+            return "NO_TRANSITION_EVIDENCE"
         subtype = classify_bear_subtype(row)
         if is_modeled_bear_row(row):
             return ALGORITHM_STATUS_MODELED_BONUS
@@ -555,6 +561,11 @@ def classify_runtime_row(row: Mapping[str, object]) -> dict[str, object]:
 def sanitize_modeled_probability_fields(row: dict[str, object]) -> dict[str, object]:
     classification = classify_runtime_row(row)
     row.update(classification)
+    if classification["algorithm_status"] == "NO_TRANSITION_EVIDENCE":
+        for key in row:
+            if key.startswith(("p_", "certified_p_draw", "guaranteed_at_", "projected_draw_line_")):
+                row[key] = ""
+        row.update(probability_model="NONE", bear_bonus_valid="FALSE", draw_outlook="INSUFFICIENT EVIDENCE")
     if classification["draw_system_type"] == NO_ORIGINAL_DRAW_PROBABILITY:
         # Exclude every prediction alias, including stale certified values.
         # Keep permit/quota/overlay fields exactly as received for inventory.
@@ -843,7 +854,7 @@ def build_draw_system_coverage_report(
     bear_modeled_rows = sum(1 for row in predictive_rows if row["draw_system_type"] == BEAR_DRAW_SYSTEM_TYPE and str(row["modeled_by_engine"]) == "True")
     bear_modeled_bonus_rows = sum(1 for row in predictive_rows if row["draw_system_type"] == BEAR_DRAW_SYSTEM_TYPE and row["algorithm_status"] == ALGORITHM_STATUS_MODELED_BONUS)
     bear_modeled_availability_rows = sum(1 for row in predictive_rows if row["draw_system_type"] == BEAR_DRAW_SYSTEM_TYPE and row["algorithm_status"] == ALGORITHM_STATUS_MODELED_AVAILABILITY)
-    bear_pending_rows = sum(1 for row in predictive_rows if row["draw_system_type"] == BEAR_DRAW_SYSTEM_TYPE and row["algorithm_status"] == ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING)
+    bear_pending_rows = sum(1 for row in predictive_rows if row["draw_system_type"] == BEAR_DRAW_SYSTEM_TYPE and row["algorithm_status"] in {ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING, "NO_TRANSITION_EVIDENCE"})
     bear_excluded_rows = sum(1 for row in predictive_rows if row["draw_system_type"] == BEAR_DRAW_SYSTEM_TYPE and row["algorithm_status"] == ALGORITHM_STATUS_EXCLUDED_NOT_PREDICTIVE_DRAW)
     bear_rows = [row for row in rows if row["draw_system_type"] == BEAR_DRAW_SYSTEM_TYPE]
     predictive_bear_rows = [row for row in predictive_rows if row["draw_system_type"] == BEAR_DRAW_SYSTEM_TYPE]

@@ -1,0 +1,204 @@
+{
+  "model_version": "hybrid_ml_v2.1.0",
+  "rule_version": "utah_bonus_rules_v1.1.0",
+  "forecast_year": 2026,
+  "source_years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "command_used": "python -m engine.utah_bonus_predictive.materialize --output-dir .\\research_candidate --forecast-year 2026 --history-years 2017,2018,2019,2020,2021,2022,2023,2024,2025",
+  "generated_at": "2026-09-20T20:27:56.369534+00:00",
+  "output_files": {
+    "ml_draw_predictions_v1.csv": "research_candidate\\ml_draw_predictions_v1.csv",
+    "ml_draw_predictions_v1_report.json": "research_candidate\\ml_draw_predictions_v1_report.json",
+    "prediction_identity_resolution.csv": "research_candidate\\prediction_identity_resolution.csv",
+    "backtest_utah_bonus_draw.csv": "research_candidate\\backtest_utah_bonus_draw.csv",
+    "backtest_utah_bonus_draw_report.json": "research_candidate\\backtest_utah_bonus_draw_report.json",
+    "draw_reality_engine_predictive_v2.csv": "research_candidate\\draw_reality_engine_predictive_v2.csv",
+    "draw_reality_engine_v2.csv": "research_candidate\\draw_reality_engine_v2.csv",
+    "predictive_coverage_report.json": "research_candidate\\predictive_coverage_report.json",
+    "predictive_coverage_report.csv": "research_candidate\\predictive_coverage_report.csv",
+    "dedicated_hunter_predictions_v1.csv": "research_candidate\\dedicated_hunter_predictions_v1.csv",
+    "dedicated_hunter_report.json": "research_candidate\\dedicated_hunter_report.json",
+    "phase4_antlerless_validation_inventory.csv": "research_candidate\\phase4_antlerless_validation_inventory.csv",
+    "phase4_antlerless_validation_inventory.json": "research_candidate\\phase4_antlerless_validation_inventory.json",
+    "phase6_bonus_special_predictions_v1.csv": "research_candidate\\phase6_bonus_special_predictions_v1.csv",
+    "phase6_bonus_special_report.json": "research_candidate\\phase6_bonus_special_report.json",
+    "turkey_bonus_predictions_v1.csv": "research_candidate\\turkey_bonus_predictions_v1.csv",
+    "turkey_bonus_report.json": "research_candidate\\turkey_bonus_report.json",
+    "youth_turkey_predictions_v1.csv": "research_candidate\\youth_turkey_predictions_v1.csv",
+    "youth_turkey_report.json": "research_candidate\\youth_turkey_report.json",
+    "bear_draw_predictions_v1.csv": "research_candidate\\bear_draw_predictions_v1.csv",
+    "bear_draw_report.json": "research_candidate\\bear_draw_report.json",
+    "bear_predictions_v1.csv": "research_candidate\\bear_predictions_v1.csv",
+    "bear_report.json": "research_candidate\\bear_report.json",
+    "bear_draw_odds_source_audit.csv": "research_candidate\\bear_draw_odds_source_audit.csv",
+    "bear_draw_odds_source_audit.json": "research_candidate\\bear_draw_odds_source_audit.json",
+    "sportsman_permit_predictions_v1.csv": "research_candidate\\sportsman_permit_predictions_v1.csv",
+    "sportsman_permit_report.json": "research_candidate\\sportsman_permit_report.json",
+    "private_lands_antlerless_elk_predictions_v1.csv": "research_candidate\\private_lands_antlerless_elk_predictions_v1.csv",
+    "private_lands_antlerless_elk_allocations_v1.csv": "research_candidate\\private_lands_antlerless_elk_allocations_v1.csv",
+    "private_lands_antlerless_elk_report.json": "research_candidate\\private_lands_antlerless_elk_report.json",
+    "mountain_lion_availability_predictions_v1.csv": "research_candidate\\mountain_lion_availability_predictions_v1.csv",
+    "mountain_lion_availability_report.json": "research_candidate\\mountain_lion_availability_report.json",
+    "prediction_family_certification_report.csv": "research_candidate\\prediction_family_certification_report.csv",
+    "prediction_family_certification_report.json": "research_candidate\\prediction_family_certification_report.json"
+  },
+  "output_row_counts": {
+    "ml_draw_predictions_v1.csv": 26813,
+    "backtest_utah_bonus_draw.csv": 19474,
+    "draw_reality_engine_predictive_v2.csv": 26813,
+    "draw_reality_engine_v2.csv": 620833
+  },
+  "duplicate_key_counts": {
+    "ml_draw_predictions_v1.csv": 0,
+    "draw_reality_engine_predictive_v2.csv": 0
+  },
+  "p_draw_non_null_count": 14246,
+  "p_draw_pct_non_null_count": 14246,
+  "calibration_metric_non_null_count": 19474,
+  "EB3024_regression_result": {
+    "pass": false,
+    "resident_2024": {
+      "public": 14,
+      "bonus": 8,
+      "regular": 6
+    },
+    "resident_2025": {
+      "public": 18,
+      "bonus": 10,
+      "regular": 8
+    },
+    "nonresident_2024": {
+      "public": 2,
+      "bonus": 0,
+      "regular": 2
+    },
+    "nonresident_2025": {
+      "public": 2,
+      "bonus": 0,
+      "regular": 2
+    },
+    "unsuccessful_2024_28": 6,
+    "retention_2024_28_to_2025_29": 0.833333
+  },
+  "one_permit_random_only_result": {
+    "pass": true
+  },
+  "MAX_POOL_safety_result": {
+    "pass": true
+  },
+  "UI_precedence_result": {
+    "precedence_ok": false,
+    "max_pool_force_100_absent": true
+  },
+  "coverage_report_summary": {
+    "total_historical_backtest_hunt_codes": 1502,
+    "total_forecast_hunt_codes": 996,
+    "total_active_2026_forecast_eligible_hunt_codes": 473,
+    "count_excluded_not_OIL_LE_PLE": 563,
+    "count_excluded_not_active_in_2026": 0,
+    "count_excluded_missing_forecast_quota": 318,
+    "count_excluded_missing_required_metadata": 0,
+    "count_excluded_hunt_code_changed_or_not_crosswalked": 2,
+    "count_excluded_other_reason": 6,
+    "count_excluded_missing_model_input_or_not_in_predictive_draft": 6,
+    "forecast_codes_match_active_eligible_universe": false,
+    "active_eligible_codes_missing_from_forecast": 0,
+    "forecast_codes_outside_active_eligible_universe": 523,
+    "reason_counts": {
+      "included_forecast": 996,
+      "not_OIL_LE_PLE": 563,
+      "not_active_in_2026": 0,
+      "missing_forecast_quota": 318,
+      "missing_required_metadata": 0,
+      "hunt_code_changed_or_not_crosswalked": 2,
+      "other_missing_model_input": 6
+    },
+    "source_csv": "research_candidate\\predictive_coverage_report.csv"
+  },
+  "anomaly_checks": {
+    "prediction": {
+      "p_draw_outside_0_1": 0,
+      "p_draw_pct_outside_0_100": 0,
+      "p_draw_pct_null": 12567,
+      "public_permits_gt_0_but_p_draw_null": 373,
+      "status_max_pool_and_p_draw_pct_100": 0,
+      "status_max_pool_and_p_draw_pct_lt_100": 1271,
+      "random_permits_gt_0_and_p_random_pool_0": 238,
+      "duplicate_key_count": 0
+    },
+    "backtest": {
+      "calibration_error_by_probability_bucket_null": 0,
+      "brier_score_by_point_level_null": 0,
+      "guaranteed_at_error_null": 2864,
+      "year_transitions_tested": [
+        "2017->2018",
+        "2018->2019",
+        "2019->2020",
+        "2020->2021",
+        "2021->2022",
+        "2022->2023",
+        "2023->2024",
+        "2024->2025",
+        "2025->2026"
+      ],
+      "distinct_hunt_code_count": 1502,
+      "distinct_residency_count": 2
+    }
+  },
+  "prediction_family_certification": {
+    "registry_id": "adr-0006-2200616ce0b9",
+    "certification_status_counts": {
+      "CERTIFIED": 24045,
+      "EXPERIMENTAL_NOT_CERTIFIED": 2011,
+      "INSUFFICIENT_EVIDENCE": 26,
+      "NOT_EVALUATED": 731
+    },
+    "certification_design_row_counts": {
+      "BEAR_DRAW_UNCLASSIFIED_SUBTYPE": 6,
+      "BEAR_LIMITED_ENTRY_HUNT_BONUS": 204,
+      "BEAR_RESTRICTED_PURSUIT_BONUS": 18,
+      "BONUS_ANTLERLESS_MOOSE": 247,
+      "BONUS_CWMU_BIG_GAME": 9,
+      "BONUS_EWE_BIGHORN": 48,
+      "BONUS_HISTORICAL_COUGAR": 34,
+      "BONUS_LE_BIG_GAME": 19497,
+      "BONUS_OIL_BIG_GAME": 3700,
+      "BONUS_PLE_BIG_GAME": 592,
+      "BONUS_TURKEY": 13,
+      "COUGAR_LICENSE_BASED": 86,
+      "LIMITED_ENTRY_BEAR_HUNT": 20,
+      "PREFERENCE_ANTLERLESS_DEER": 37,
+      "PREFERENCE_ANTLERLESS_ELK": 279,
+      "PREFERENCE_DEDICATED_HUNTER_DEER": 1430,
+      "PREFERENCE_DOE_PRONGHORN": 39,
+      "PREFERENCE_GENERAL_SEASON_BUCK_DEER": 256,
+      "PRIVATE_LANDS_ONLY_ANTLERLESS_ELK": 54,
+      "SPORTSMAN_PERMIT": 10,
+      "YOUTH_GENERAL_ANY_BULL_ELK": 2,
+      "YOUTH_TURKEY_SET_ASIDE": 232
+    },
+    "public_probability_field_contract": [
+      "certified_p_draw",
+      "certified_p_draw_mean",
+      "certified_p_draw_pct"
+    ],
+    "raw_probability_policy": "RETAINED_FOR_DEVELOPMENT_AND_BLIND_SCORING_NOT_AUTHORIZED_AS_CERTIFIED_PUBLIC_ODDS"
+  },
+  "source_files_used": {
+    "data_truth\\draw_results_truth\\normalized\\draw_results_long.csv": "aed03f2def7809428e9ffe8f557614a3b4836d01f320c5edbee1d1514e178a5c",
+    "pipeline\\RAW\\hunt_unit_database\\2026\\csv\\DATABASE.csv": "656ace9ba714e2ab3c2d9cf136e6ee99f67a9ed0382b4c80f1b9b9912fe66f4d",
+    "research_candidate\\draw_reality_engine_v2.csv": "61b72e0e1a375834fb3e1edd4b77d8fec11a46276f66aad2d7eb993329a6bf20",
+    "data_model\\runtime_drafts\\predictive_bonus_engine_2026.materialized.csv": "4a9dea863b6334df5cbda62e85ff460247e08cc18c18eb9465f9dc85357c2769",
+    "hunt-research.js": "a9b753761bdd311c4b37bf47d10cc43637eee70ca1af875aa4d28e7f1cc5cfe4",
+    "config.js": "ef3ed508503142a1d0c97ad6ae9be4fcd709b16af2d7e4911e1698980165027e"
+  }
+}

@@ -300,7 +300,17 @@
     return flags.includes(String(flag || '').toUpperCase());
   }
 
+  function historicalDrawBoundaryReason(row) {
+    // ADR-0008: neither child of the 2026 boundary split inherits parent results.
+    const splitCodes = ['BR7021', 'BR7022', 'BR7126', 'BR7127', 'BR7238', 'BR7239', 'BR7326'];
+    if (splitCodes.includes(normalizeKey(row?.hunt_code)) && Number(RESEARCH_RESULT_YEAR) < 2026) {
+      return `No comparable ${RESEARCH_RESULT_YEAR} draw history; unit boundary changed in 2026.`;
+    }
+    return '';
+  }
+
   function formatHistoricalDrawResult(row) {
+    if (historicalDrawBoundaryReason(row)) return '';
     if (hasDataQualityFlag(row, 'PRIOR_YEAR_ZERO_SUCCESS')) return '';
 
     const dwrDisplay = normalizeHistoricalOddsDisplay(row?.dwr_result_display);
@@ -309,13 +319,9 @@
     const display = normalizeHistoricalOddsDisplay(row?.display_2025_draw_results);
     if (display) return display;
 
-    const totalPermits = num(row?.total_permits);
-    if (totalPermits === null || totalPermits <= 0) return '';
-
-    const applicants = num(row?.applicants ?? row?.eligible_applicants);
-    if (applicants === null || applicants <= 0) return '';
-
-    return `1 in ${(applicants / totalPermits).toFixed(1)}`;
+    // Generic counts can be current quota or projected demand, not historical
+    // awards/applicants. Only an explicit historical-result field may display.
+    return formatHistoricalRatioFromPercent(row?.odds_2025_actual);
   }
 
   function isOddsDisplayText(value) {
@@ -1233,6 +1239,9 @@
       return 'No modeled point-level row is available yet. Use Sources to verify historical draw pages and compare nearby point rows while this hunt is being rebuilt into the modeled ladder.';
     }
 
+    const certification = getCertificationDisplayStatus(row);
+    if (certification) return certification.message;
+
     if (isRandomOnlyBonusCase(meta, row, referenceRow)) {
       return 'This hunt has no meaningful max-pool path at this residency. Your outcome depends on weighted random draw only.';
     }
@@ -1309,6 +1318,13 @@
 
   function renderOutlookLight(signal) {
     if (!els.selectedOutlook) return;
+    els.selectedOutlook.hidden = signal === 'withheld';
+    if (signal === 'withheld') {
+      els.selectedOutlook.innerHTML = '';
+      els.selectedOutlook.setAttribute('aria-label', 'Prediction withheld');
+      if (els.selectedOutlookText) els.selectedOutlookText.textContent = 'Prediction withheld';
+      return;
+    }
     const active = signal || 'red';
     const labels = {
       red: 'Long Shot / Not Catchable',
@@ -1333,6 +1349,12 @@
 
   function renderTrendLight(signal) {
     if (!els.summaryTrend) return;
+    els.summaryTrend.hidden = signal === 'withheld';
+    if (signal === 'withheld') {
+      els.summaryTrend.innerHTML = '';
+      els.summaryTrend.setAttribute('aria-label', 'Prediction withheld');
+      return;
+    }
     const active = signal || 'red';
     els.summaryTrend.innerHTML = `
       <span class="outlook-light red${active === 'red' ? ' is-active' : ''}" aria-hidden="true"></span>
@@ -1383,7 +1405,7 @@
     if (!row) return 'No row is modeled yet, so we cannot tell if this train is catchable.';
     const certification = getCertificationDisplayStatus(row);
     if (certification) {
-      return `${certification.badge}: the projected line is context only and future probability is withheld.`;
+      return `${certification.badge}: future probability, projected line and catch-up guidance are withheld.`;
     }
     const selectedOdds = selectModeOddsPercent(meta, row, referenceRow);
     const gap = num(row.gap);
@@ -1419,6 +1441,7 @@
 
   function getPointCreepDisplay(row) {
     if (!row) return 'Not available';
+    if (getCertificationDisplayStatus(row)) return 'Prediction withheld';
     const parts = [];
     if (hasMeaningfulValue(row.trend)) parts.push(`Trend: ${row.trend}`);
     if (hasMeaningfulValue(row.gap)) parts.push(formatGapStatus(row.gap));
@@ -1612,8 +1635,9 @@
     if (els.summaryPoints) els.summaryPoints.textContent = 'Not applicable';
     if (els.summaryStatus) els.summaryStatus.textContent = 'Over the Counter Hunts';
     if (els.summaryOdds) els.summaryOdds.textContent = 'First come, first served';
-    renderOutlookLight('green');
-    renderTrendLight('green');
+    renderOutlookLight('withheld');
+    renderTrendLight('withheld');
+    if (els.selectedOutlookText) els.selectedOutlookText.textContent = 'Not a draw';
     if (els.summaryTrendText) els.summaryTrendText.textContent = 'Not applicable';
     if (els.summaryRecommendation) els.summaryRecommendation.textContent = 'First come, first served.';
 
@@ -1779,12 +1803,12 @@
     renderTopSummary(meta, row, filters, displayedOdds, referenceRow);
 
     if (!row) {
-      renderOutlookLight('red');
+      renderOutlookLight('withheld');
       if (els.summaryGuaranteed) els.summaryGuaranteed.textContent = 'Not available';
       if (els.summaryPoints) els.summaryPoints.textContent = `${formatInteger(filters.points)} pts`;
       if (els.summaryStatus) els.summaryStatus.textContent = coverageMessage || 'No modeled row available.';
       if (els.summaryOdds) els.summaryOdds.textContent = 'Not available';
-      renderTrendLight('red');
+      renderTrendLight('withheld');
       if (els.summaryTrendText) els.summaryTrendText.textContent = 'Not available';
       if (els.summaryRecommendation) els.summaryRecommendation.textContent = coverageMessage || 'Recommendation not available.';
 
@@ -1824,6 +1848,22 @@
       return;
     }
 
+    const withheld = getCertificationDisplayStatus(row);
+    if (withheld) {
+      renderOutlookLight('withheld');
+      renderTrendLight('withheld');
+      if (els.summaryGuaranteed) els.summaryGuaranteed.textContent = 'Prediction withheld';
+      if (els.summaryGuaranteedTop) els.summaryGuaranteedTop.textContent = 'Prediction withheld';
+      if (els.summaryPoints) els.summaryPoints.textContent = `${formatInteger(filters.points)} pts`;
+      if (els.summaryStatus) els.summaryStatus.textContent = withheld.pointStatus;
+      if (els.summaryOdds) els.summaryOdds.textContent = 'Not available';
+      if (els.summaryTrendText) els.summaryTrendText.textContent = 'Prediction withheld';
+      if (els.summaryRecommendation) els.summaryRecommendation.textContent = withheld.message;
+      if (els.selectedResidentPermits) els.selectedResidentPermits.textContent = getResidentPermitsDisplay(meta, referenceRow);
+      if (els.selectedNonresidentPermits) els.selectedNonresidentPermits.textContent = getNonresidentPermitsDisplay(meta, referenceRow);
+      if (els.selectedHarvestSuccess) els.selectedHarvestSuccess.textContent = getHarvestSuccessDisplay(meta, referenceRow, row);
+      return;
+    }
     const guaranteedLinePoint = getGuaranteedLinePointForDisplay(meta, row, filters);
     const selectedPoint = num(filters.points);
     const exactForecastUnavailableAboveLine = displayedOdds.percent === null
@@ -1912,10 +1952,7 @@
       ? `${RESEARCH_MODEL_YEAR} quota source: ${quotaSourceStatus}`
       : `${RESEARCH_MODEL_YEAR} quota source: Not available`;
     const boxes = [
-      [`${RESEARCH_RESULT_YEAR} Draw Results`, formatHistoricalDrawResult(row)
-        || (Number.isFinite(num(row?.odds_2025_actual))
-          ? formatHistoricalRatioFromPercent(row?.odds_2025_actual)
-          : (row?.odds_2025_actual || ''))],
+      [`${RESEARCH_RESULT_YEAR} Draw Results`, historicalDrawBoundaryReason(row) || formatHistoricalDrawResult(row) || 'Not available'],
       [`${RESEARCH_MODEL_YEAR} Draw Odds`, getDisplayedOdds(meta, row, referenceRow).value],
       [`${RESEARCH_MODEL_YEAR} Quota Source`, quotaSourceDisplay],
       [`${RESEARCH_RESULT_YEAR} Harvest Success`, hasMeaningfulValue(firstMeaningfulValue(referenceRow?.harvest_success_percent_2025, referenceRow?.harvest_success_pct, referenceRow?.percent_success))
@@ -1977,8 +2014,9 @@
 
   function buildDecisionBoxes(meta, row, referenceRow, filters) {
     const displayedOdds = getDisplayedOdds(meta, row, referenceRow);
-    const maxPoolDisplay = getMaxPointPoolDisplay(row) || 'Not currently a max-pool row.';
-    const randomDisplay = getRandomDrawDisplay(row) || (isRandomOnlyBonusCase(meta, row, referenceRow) ? displayedOdds.value : 'Not currently a random-pool row.');
+    const withheld = getCertificationDisplayStatus(row);
+    const maxPoolDisplay = withheld ? 'Prediction withheld' : (getMaxPointPoolDisplay(row) || 'Not currently a max-pool row.');
+    const randomDisplay = withheld ? 'Prediction withheld' : (getRandomDrawDisplay(row) || (isRandomOnlyBonusCase(meta, row, referenceRow) ? displayedOdds.value : 'Not currently a random-pool row.'));
     const boxes = [
       ['Your Points Draw Odds', row ? displayedOdds.value : 'Not available'],
       ['Your Draw Pool', getDrawPoolPositionLabel(meta, row, referenceRow)],
@@ -1986,7 +2024,7 @@
       ['Point Creep Readout', getPointCreepDisplay(row)],
       ['Max Point Pool', maxPoolDisplay],
       ['Random Pool', randomDisplay],
-      ['Last Draw Result', formatHistoricalDrawResult(row) || 'Not available'],
+      ['Last Draw Result', historicalDrawBoundaryReason(row) || formatHistoricalDrawResult(row) || 'Not available'],
       ['Permit Context', `${referenceRow?.permits_2026_total || meta?.public_permits_2026 || 'Not available'} total public permits in ${RESEARCH_MODEL_YEAR}`],
       ['Harvest Snapshot', getHarvestSnapshot(meta, referenceRow)],
       ['Plain-English Formula', getPlainFormulaText(meta, row, referenceRow), 'is-wide'],
@@ -2009,6 +2047,7 @@
     els.sourceModalSubtitle.textContent = `${meta?.hunt_code || ''} | ${meta?.hunt_name || ''} | ${residency || ''} | ${pointLabel} points`;
     els.sourceModalGrid.innerHTML = `
       <p class="source-plain-note">This is the quick interpretation layer: where your points sit, whether you are in the max-point or random pool, what point creep is doing, and what the harvest row says when mapped.</p>
+      <p class="source-plain-note">Current hunt identity and published permit references are catalog information. Historical draw results come from official draw reports and normalized draw truth. Future odds are separate model estimates and display only when certified; catalog permit totals are not draw odds.</p>
       ${buildDecisionBoxes(meta, row, referenceRow, filters)}
     `;
     els.sourceModal.hidden = false;
@@ -2063,6 +2102,7 @@
   }
 
   function getGuaranteedLinePoint(row, rows = [], mode = DRAW_MODE.STATUS_ONLY) {
+    if (getCertificationDisplayStatus(row)) return null;
     const projectedDrawLine = num(row?.projected_draw_line_2026);
     if (projectedDrawLine !== null) return projectedDrawLine;
     const summaryGuaranteedPoint = num(row?.guaranteed_at_2026);
@@ -2074,6 +2114,7 @@
 
   function isGuaranteedLineRow(row, rows = [], mode = DRAW_MODE.STATUS_ONLY) {
     if (!row) return false;
+    if (getCertificationDisplayStatus(row)) return false;
     const rowPoint = num(row.points);
     const guaranteedLinePoint = getGuaranteedLinePoint(row, rows, mode);
     if (rowPoint !== null && guaranteedLinePoint !== null) {
@@ -2113,18 +2154,14 @@
     const minPoint = pointValues.length ? pointValues[0] : null;
     const maxPoint = pointValues.length ? pointValues[pointValues.length - 1] : null;
     if (els.ladderRange) {
-      els.ladderRange.textContent = minPoint !== null && maxPoint !== null ? `Points ${minPoint}-${maxPoint}` : '';
+      const historyNote = historicalDrawBoundaryReason({ hunt_code: huntCode });
+      els.ladderRange.textContent = [minPoint !== null && maxPoint !== null ? `Points ${minPoint}-${maxPoint}` : '', historyNote].filter(Boolean).join(' | ');
     }
 
     function getRowCells(row, historicalPointRow) {
-      const actual2025Display = formatHistoricalDrawResult(row)
+      const actual2025Display = historicalDrawBoundaryReason({ hunt_code: huntCode }) ? '' : (formatHistoricalDrawResult(row)
         || formatHistoricalDrawResult(historicalPointRow)
-        || (Number.isFinite(num(row?.odds_2025_actual))
-          ? formatHistoricalRatioFromPercent(row?.odds_2025_actual)
-          : (Number.isFinite(num(historicalPointRow?.odds_2025_actual))
-            ? formatHistoricalRatioFromPercent(historicalPointRow?.odds_2025_actual)
-            : ''))
-        || '';
+        || '');
       const odds = (mode === DRAW_MODE.PREFERENCE || mode === DRAW_MODE.YOUTH_RESERVE)
         ? selectPreferenceOddsPercent(row)
         : selectDrawOddsPercent(row);

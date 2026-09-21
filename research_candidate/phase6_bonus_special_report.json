@@ -1,0 +1,50 @@
+{
+  "forecast_year": 2026,
+  "source_years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "total_phase6_rows": 304,
+  "rows_by_draw_system_type": {
+    "BONUS_ANTLERLESS_MOOSE": 247,
+    "BONUS_CWMU_BIG_GAME": 9,
+    "BONUS_EWE_BIGHORN": 48
+  },
+  "rows_by_algorithm_status": {
+    "EXCLUDED_NOT_PREDICTIVE_DRAW": 89,
+    "IN_SCOPE_MODEL_PENDING": 3,
+    "MODELED_BONUS": 212
+  },
+  "cwmu_public_modeled_row_count": 0,
+  "cwmu_public_modeled_hunt_code_count": 0,
+  "cwmu_pending_row_count": 0,
+  "cwmu_private_excluded_row_count": 0,
+  "antlerless_moose_modeled_row_count": 164,
+  "antlerless_moose_modeled_hunt_code_count": 5,
+  "antlerless_moose_pending_row_count": 3,
+  "ewe_bighorn_modeled_row_count": 48,
+  "ewe_bighorn_modeled_hunt_code_count": 1,
+  "ewe_bighorn_pending_row_count": 0,
+  "p_bonus_pool_non_null_count": 212,
+  "p_random_pool_non_null_count": 212,
+  "p_draw_non_null_count": 212,
+  "p_draw_pct_non_null_count": 212,
+  "p_preference_draw_non_null_count": 0,
+  "p_draw_outside_0_1_count": 0,
+  "p_draw_pct_outside_0_100_count": 0,
+  "duplicate_key_count": 0,
+  "source_years_used_non_null_count": 304,
+  "data_quality_flags_summary": {
+    "MISSING_LATEST_SOURCE_YEAR": 7,
+    "ONE_PERMIT_RANDOM_ONLY": 5,
+    "NO_MAX_POINT_POOL": 5,
+    "MISSING_MULTIPLE_YEARS": 2
+  }
+}

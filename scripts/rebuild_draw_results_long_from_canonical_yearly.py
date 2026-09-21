@@ -115,6 +115,22 @@ def union_header(headers: list[list[str]]) -> list[str]:
     return output
 
 
+def stable_output_header(headers: list[list[str]]) -> list[str]:
+    """Preserve the established long-file column order when schemas agree.
+
+    The union builder is deterministic, but legacy additions can leave the
+    already-published long file with a different order for otherwise identical
+    columns. A canonical rebuild must not create a header-only diff.
+    """
+    generated = union_header(headers)
+    if not LONG_FILE.exists():
+        return generated
+    existing = read_header(LONG_FILE)
+    if len(existing) == len(set(existing)) and set(existing) == set(generated):
+        return existing
+    return generated
+
+
 def validate_headers(
     files: list[Path],
     headers: dict[Path, list[str]],
@@ -199,7 +215,7 @@ def rebuild(
             "problem_audit": str((AUDIT_DIR / "draw_results_long_rebuild_blockers.csv").relative_to(ROOT)).replace("\\", "/"),
         }
 
-    output_header = union_header(list(headers.values()))
+    output_header = stable_output_header(list(headers.values()))
     row_counts: dict[str, int] = {}
     total_rows = 0
     output_path = LONG_FILE if write else AUDIT_DIR / "draw_results_long_DWR_TABLE_SHAPE_PREVIEW.csv"

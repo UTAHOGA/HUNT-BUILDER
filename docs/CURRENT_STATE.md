@@ -1,12 +1,292 @@
 # Hunt Builder Current State
 
 Memory contract: `1.3.0`
-Last verified: `2026-09-19`
+Last verified: `2026-09-20`
 Machine authority: `governance/engine-authority.json`
 
 This is the required short briefing for Hunt Builder, Hunt Research, prediction-engine, truth, runtime, build, and deployment work. It supersedes older files whose names contain "current" when their generated date is earlier than this document. `WORK_LOG.md` is historical evidence, not current architecture authority.
 
 ## Current Classification
+
+### Bear quota/outcome diagnosis corrected (2026-09-20)
+
+The source-only quota-state and random-outcome review is complete; see
+`docs/bear_quota_outcome_calibration_review_2026.md`. The earlier statement
+that this was the remaining repair was incomplete. Across 1,412 adjacent lane
+transitions, the existing latest same-lane award proxy has lower quota MAE than
+two/three-year means or medians, trend projection and a program/residency
+Markov mode. Replacing it would reduce accuracy.
+
+A frozen Nonresident probability-cell calibration failed 2022 validation and
+worsened the 2023→2024 / 2024→2025 large-error tails. A same-hunt/program/
+residency exact-rung transition-median applicant candidate then failed the first
+six development folds and was removed before late-fold evaluation. These are
+not production modes.
+
+The correct status is not “one known calibration remains.” Current evidence
+has exhausted the reviewed source-only quota smoothing, general demand,
+cumulative demand, transition ensemble, adaptive demand, thin-lane arrival,
+probability calibration and exact-lane median candidates. Bear remains **NOT
+CERTIFIED / DO NOT PROMOTE**.
+
+The retained official 2026 Bear result canonical supplied a genuinely unseen
+2025→2026 fold after those candidate decisions were frozen. It contains 2,814
+public point-level rows across 90 limited-entry and nine restricted-pursuit
+codes. The exact final calculation fails again: limited-entry 1,098 scored rows
+at 13.045 pp MAE / 38.596 pp P90 / 14.845% tail; pursuit 60 rows at 19.726 pp /
+57.591 pp / 25.000% tail. All 129 missing forecasts are source-classified,
+unresolved gaps and false guarantees are zero. The combined nine-fold result
+is limited-entry 10,176 rows at 11.673 pp / 32.879 pp / 13.001% and pursuit 368
+rows at 16.434 pp / 44.444 pp / 21.739%; pursuit also remains below 400 rows.
+The next honest new evidence is the next official draw year or newly discovered
+official pre-draw residency allocation evidence. Known historical outcomes
+must not be repeatedly tuned until they pass.
+
+### Bear nonresident thin-lane review completed (2026-09-20)
+
+The proposed thin-lane repair was evaluated and rejected. The review used the
+same eight 2017→2018 through 2024→2025 source-only folds and the exact final
+`mixed_row` probability calculation. The 400-simulation hierarchical baseline
+still fails: hunting 9,078 rows / 11.507 pp MAE / 32.000 pp P90 / 12.778% tail;
+pursuit 308 rows / 15.792 pp / 42.125 pp / 21.104% tail.
+
+An isolated source-calibrated empty-upper-rung arrival candidate changed 991
+hunting probabilities across 33 codes, reduced hunting MAE by only 0.016 pp
+against its matching 100-simulation baseline, and changed no pursuit row. Its
+final results still fail every accuracy gate: hunting 11.502 pp MAE / 32.000 pp
+P90 / 12.734% tail; pursuit 15.818 pp / 42.055 pp / 21.429% tail, with only 308
+rows. It was removed from the owning engine after evaluation. Defaults,
+production probabilities and the certification registry remain unchanged.
+
+No future-year input, resident/nonresident ladder reuse, split-code history
+inheritance or unexplained coverage gap was found. The remaining blocker is
+recurring thin nonresident quota-state and realized-random-outcome calibration,
+not a universal bonus-pool cap or another broad arrival prior. Evidence is under
+`audits/prediction_release_candidates/bear_lane_cohort_current_mechanics_20260920_v1`
+and `bear_thin_nr_source_arrivals_20260920_v1_100`. Bear remains **NOT CERTIFIED /
+DO NOT PROMOTE**.
+
+### Bear demand candidates evaluated through final calculation (2026-09-20)
+
+The controlled comparison is complete; see `docs/bear_demand_forecast_review_2026.md`.
+Four demand approaches were evaluated on the same eight 2017→2018 through
+2024→2025 comparisons: 9,078 hunting and 308 pursuit scored rows, unchanged
+limits, source-only inputs and the final `mixed_row` calculation. Cumulative
+stack improves pursuit MAE from 15.245 to 14.543 pp but worsens P90. The new
+joint/adaptive candidates do not improve overall accuracy. No candidate passes;
+defaults and production probabilities remain unchanged.
+
+The frozen limited-evidence uncertainty evaluator is now implemented and run
+using 10,000 whole-group resamples per analysis plus year/hunt/residency and
+leave-one-group-out checks. Accuracy and recurring failures block any provisional
+label. Known results are not unseen holdouts. All 666 gaps are source-classified;
+numerical misses remain scored. Twenty protected files are unchanged.
+
+Evidence roots are `bear_demand_forecast_20260920_v1` and `v3` under
+`audits/prediction_release_candidates/`. V2 was invalidated by a concurrent
+scorer edit; V3 pins the original scorer. Bear remains **NOT CERTIFIED / DO NOT
+PROMOTE**. Four-core registry, two project-memory and 19 broader V3 failures
+are unchanged. The seven split codes are three new Dolores seasonal hunts and
+four La Sal recodes, not two plus five. BR7237/BR7325 are separately new in 2025
+and already have 2025 draw history. ADR-0008's boundary restrictions remain.
+
+Full predictive verification completed at 425 passes / nine prior failures;
+afterward a concurrent writer again removed the shared scorer's
+`--exact-codes-only` option. Its fresh readback test fails. V3's frozen-scorer
+results are unaffected, but current working-scorer integration needs single-writer
+coordination. Do not describe the current checkout as fully passing.
+
+### Research evidence display repair (2026-09-20; local, not deployed)
+
+ADR-0010 extends the selected-point certification gate to projected lines,
+traffic lights, point-creep and catch-up advice. Unsupported rows display
+`Prediction withheld`, without raw/summary probability fallback. The four
+certified designs retain their existing probabilities; Bear remains NOT CERTIFIED.
+Candidate composite provenance separates current catalog identity/permit
+references, historical row lineage, future certification and harvest context.
+
+Historical records remain in the audit archive, not automatically on a current
+hunt page. All seven La Sal/Dolores split codes suppress pre-2026 historical
+results. Generic applicant/permit counts can no longer generate a historical
+result in the browser. Explicit applicable historical-result fields remain
+displayable, independently of future model certification. This scoped repair
+does not claim a fresh, complete all-hunt identity/crosswalk audit.
+
+No production artifacts or certification registry were changed. The two
+pre-existing project-memory failures and 19 broader V3 failures are unwaived.
+
+### Restricted-pursuit limited-evidence policy frozen (2026-09-20)
+
+ADR-0009 and `governance/bear-restricted-pursuit-limited-evidence.v1.json`
+record Tyler's approved prospective policy. Their exact SHA-256 hashes are
+pinned in `governance/engine-authority.json`. This is a separate local
+provisional-review pathway for restricted pursuit only, NOT a relaxation of
+ADR-0006 certification or a probability-release authorization.
+
+Before the next revised candidate is scored, freeze its policy/source/code
+manifest, complete eligible history census and reviewed hunt/year groups.
+Keep all accuracy limits unchanged; require resident/nonresident and recurring
+hunt-error checks. Quantify uncertainty with whole hunt/year blocks, whole
+hunt histories and whole draw years, not independent point-row resampling.
+Only a complete passing review may use **“Provisionally validated—limited
+evidence”**, pending a later genuinely unseen draw. Known historical results
+cannot become unseen again. No candidate has received that label and the
+uncertainty evaluator was not implemented by that policy-only change; the later
+demand review above implements and runs it without granting a label.
+
+Bear remains **NOT CERTIFIED / DO NOT PROMOTE**. The 400-row ordinary
+certification requirement, four-core `adr-0006-2200616ce0b9` registry and
+`certified_p_draw*`-only public contract remain unchanged. Existing failed
+scores, two project-memory failures and 19 broader V3 failures are unwaived.
+
+### Bear foundation and split follow-up verified locally (2026-09-20)
+
+**DO NOT PROMOTE.** The current Bear owner now enforces the foundation rules
+directly, not only in an audit adapter: source-dated program classification,
+reconciled R/NR expansion, no `All` reuse, identical-point deduplication with
+conflict rejection, component-award reconciliation, and program/residency-only
+calibration. Both bonus and random winners leave their own program's ladder;
+restricted pursuit does not borrow hunting point purchases or OTC entrants.
+Target-year/future history is rejected and 2026 identity decisions are not
+applied to earlier forecasts.
+
+For all seven split codes, the 2026 owner output AND final classification
+preserve `NO_TRANSITION_EVIDENCE` with every probability blank. The official
+whole-hunt reference totals (2/43/6/27/2/6/14) are expressly NOT residency
+allocations or model quotas. `forecast_quota_proxy` remains blank on these
+rows. Other drawing lanes use exact immediately prior canonical awards,
+`SOURCE_YEAR_CANONICAL_AWARDS_PROXY`, with `quota_is_current_allocation=FALSE`.
+No old parent history or pre-2026 pooled calibration may feed the split codes.
+One source year in 2027 is not a completed, independent historical test fold.
+
+Final evidence is under
+`audits/prediction_release_candidates/bear_program_source_repair_20260919/independent_replay/`:
+`five_folds_final_v6`, `release_review_final_v3`, `current_inventory_final`,
+`retained_reconciliation_final`, and `crosswalk_test_mirror_final`.
+The unchanged five-fold accuracy failures below reproduce through the final
+calculation with all implementation hashes verified. All 374 gaps in the
+older eight-fold diagnostic are separately source-classified (254 absent
+comparable source lanes; 120 zero-award proxies). Its eight forecast files
+and 2,124 large numerical errors remain intact; this is not recertification.
+
+Verification: 67 focused tests pass; the full predictive suite has 383 passes
+and the same nine pre-existing failure identities. The isolated crosswalk
+suite has four passes and reproduces 96/97/105 rows, 994/1110 permit totals,
+four recodes, three split children and 91 exact matches without writing the
+retained crosswalk. Its stale BR7324 assertion now reflects the actual blank
+conservation reference, not an invented positive quota. All 20 protected
+files are unchanged against this work's captured baseline. A separate check
+of the older 19-file foundation snapshot finds 18 matching hashes and one
+pre-existing saved `ml_draw_predictions_v1.csv` difference: old `17c3ea08...`,
+current/start-of-work `90cb4f00...`. This difference also exists in the retained
+availability-audit baseline and is not caused or repaired by this work. Do
+not claim the older 19-file snapshot and current saved artifacts are identical.
+The two project-memory raw-hash/stale-build failures and 19 broader V3
+failures remain unwaived. An isolated LF-byte candidate matches the recorded
+DATABASE hash exactly; no production bytes or frozen provenance were changed.
+
+### Bear post-split boundary and five-fold final-calculation review (2026-09-20)
+
+The controlled review is complete; **Bear remains NOT certified and must not
+be promoted**. See `docs/bear_controlled_review_2026.md` and ADR-0008. The seven
+La Sal/Dolores Triangle hunting codes use only 2026-forward history, with no
+parent inheritance or pre-split pooled calibration. Original unsplit hunts
+remain in earlier historical tests; restricted pursuit is separate.
+
+The five PDF-first 2020→2021 through 2024→2025 comparisons now have been run
+through the exact final `mixed_row` calculation with import-time source guards,
+no historical DATABASE reads, frozen forecasts before actuals and only reviewed
+pre-draw crosswalks. Hunting: 5,958 scored, MAE 12.259 points, P90 35.414 points,
+13.209% above 25-point error. Pursuit: 253 scored, MAE 13.943 points, P90 34.767
+points, 18.972% above 25-point error. Both fail; all 291 coverage gaps are
+source-classified. Pursuit has only 267 possible scorable official rows in the
+window, below the frozen 400 minimum. The unchanged 0.99 ceiling masks 217
+uncapped false-certainty cases and is not treated as a repaired demand model.
+
+Candidate-only registry `adr-0006-731a13966798` keeps every certified probability
+blank; the suppression gate passes, not the certification/promotion gates.
+Evidence: `audits/prediction_release_candidates/bear_controlled_review_20260920/`
+(`five_folds_import_guard_v7`, `release_review_v2`). Current inventory still
+represents 99 draw codes / 198 residency combinations plus four availability
+products. All 14 split lanes remain blank. The name-only 2023 canonical repair
+is prepared, not promoted. All 20 protected data files, the four certified core
+designs and production registry remain unchanged. No staging or publication.
+
+The preceding source-build sections below are retained history, not a claim
+that the new five-fold review is still pending. The nine pre-existing predictive
+test failures, two project-memory failures and 19 broader V3 failures persist.
+
+### Bear PDF-first 2020-2025 history rebuild (2026-09-20, isolated)
+
+Fresh official PDFs, not DATABASE or saved predictions, now independently
+produce 24,942 point/residency records and 1,170 lane-year totals. All printed
+totals and all 195,840 compared canonical numeric cells reconcile. Six 2023
+canonical hunt names are corrupt across 138 rows; the independent candidate
+uses the correct PDF names, while protected canonical files remain unchanged.
+See `docs/bear_availability_validation_2026.md`, section `2020-2025 PDF Validation`.
+Final evidence: `audits/prediction_release_candidates/bear_pdf_history_2020_2025_20260920/assembled_v4/`.
+
+The owning Bear classifier now recognizes verified source-dated PDF identity
+before consulting the latest Bear report and no longer loads Sportsman count
+data to identify explicit Bear programs. No formula, quota accessor, code
+alias or availability allowlist changed. A write-blocked fresh diagnostic
+covers all 99 current guidebook codes / 198 residency combinations plus four
+correct non-draw records. Its raw probabilities are not certified output.
+The prospective evidence gate keeps probabilities blank; seven current codes
+have no exact-code 2020-2025 history: the existing Bear crosswalk links four
+La Sal recodes to predecessors present in all six PDFs and identifies three
+new Dolores Triangle split-child hunts. DWR's 2026 guidebook p. 4 confirms the
+boundary split; code lineage is not automatic full applicant-stack transfer.
+Dated catalog
+evidence for the 24 historical availability product/year combinations was not
+located; do not claim they were all 100% available. Current harvest-objective
+status also remains unknown, not a guaranteed permit.
+
+Six source years provide five adjacent comparisons, not six executed folds.
+This pass builds the baseline and transition audit; it does not execute or
+certify historical accuracy folds. Full predictive tests: 333 passed, same
+nine pre-existing failures. Focused tests: 58 passed. All 20 original protected
+data artifacts remain byte-identical. Both pre-existing project-memory failures
+and the separate 19 broader V3 failures remain unresolved. Nothing staged or
+published. Four certified core designs and Bear's non-certified status remain
+unchanged.
+
+### Bear availability validation and saved-artifact block (2026-09-19)
+
+Current result: local syntax/control-flow and availability-identity safety are
+repaired, but saved Bear artifacts are **not valid release evidence**. See
+`docs/bear_availability_validation_2026.md` for exact source hashes, page images,
+code tables, tests and discrepancies. No production data was regenerated.
+
+Direct inspection of the 2024–2026 official guidebooks confirms 90 hunting-draw
+codes and nine separate restricted-pursuit draw codes in 2026. Four is only the
+current non-draw product/residency inventory: BR1001 Resident/Nonresident harvest
+objective, BR1007 Resident general pursuit, BR1018 Nonresident general pursuit.
+The guidebook establishes these program categories but does not print those
+three catalog IDs. The availability allowlist has not been expanded.
+
+The saved 708-row ML file contains four BR availability records cloned from
+Sportsman Bison, all Bison/Resident, with duplicate BR1001 Resident identity.
+The two saved Bear CSVs still contain 19 availability rows; the saved reports
+disagree about counts and restricted-pursuit modeling. Fresh availability-only
+generation from current catalog identities produces four correct Bear lanes.
+Builder and final family-output gates reject cross-species identity, wrong
+residency/program, duplicates and draw probability on availability records.
+
+The current checkout also differs from the earlier Bear foundation description
+below: its quota accessor still reads target permit context, not exclusively
+source-year canonical awards. The earlier fold results remain retained candidate
+evidence, **not verified behavior of this checkout**. Restoring/verifying that
+foundation is outside this narrow availability repair; the required historical
+canonical-truth authority is unchanged. Bear remains uncertified/unpromoted.
+
+Compilation and AST parsing pass. Focused tests: 22 passed; two additional Bear
+unit checks pass. Full predictive directory: 327 passed, nine failed, versus
+316 passed/nine failed after syntax repair alone. The nine failing test identities
+are unchanged; 135/135 is not this checkout's suite. The separate broader V3
+19-failure record remains unresolved. Project-memory validation retains the two
+pre-existing DATABASE byte-hash failures; no hash or data was rewritten to pass.
+Nothing staged, committed, uploaded or deployed.
 
 ### CWMU operator-reference exclusion (2026-09-19, local and unpromoted)
 
@@ -584,3 +864,23 @@ Stop and reconcile the memory contract instead of improvising when:
 - a generated manifest no longer matches its declared inputs;
 - a task would turn a reference/allocation/availability row into probability truth;
 - a proposed change would publish or deploy without explicit authorization.
+
+## 2026-09-20 Full-engine current-target certification check
+
+The full 2025-source/2026-model-target audit is retained in two separately named candidates. The original 10,367-row scorer result (MAE `0.0792699873`) is preserved at `audits/prediction_release_candidates/full_engine_2025_to_2026_unfiltered_10367_replay_20260920/` with the exact original scorer hash `075d9580c5f2214da3e12aa33a57f5577b32d8ee67f1afc58e9364b9fba583d6`. It remains a superseded mis-year-join diagnostic.
+
+The corrected year-filter result is preserved at `audits/prediction_release_candidates/full_engine_2025_to_2026_year_filtered_7909_20260920/`. It scores `7,909` rows at MAE `0.0684251859` and removes the demonstrated Antelope Island 2021 join. Its scorer hash is `85bb42b60aa179486e9ac069adebf83473bb171b0d11bb172d089229e74e1b9a`. The retained output is not rewritten to fit a claim: its emitted `actual_draw_years_indexed` keys are `2025` and `2026`, while `actual_model_target_years_indexed` contains `2026` and `2027`, because the implemented filter accepts either year field equal to the requested target. This discrepancy is release-blocking evidence, not a reason to discard the corrected audit.
+
+No new family is promoted. Limited-entry remains blocked by the retained strict 10.145% over-25-point tail finding; once-in-a-lifetime retains recurring hunt/regime/residency failures; premium limited-entry has only 76 scored rows in the corrected target audit; and general-season buck deer has zero scored rows. Bear remains not certified and excluded from promotion. Existing historical-fold registry decisions are not silently revoked or widened by this current-target diagnostic.
+
+The full predictive suite completed with `424 passed, 10 failed`: the same nine known failures plus the anticipated concurrent-writer `--exact-codes-only` integration failure. The shared scorer was not overwritten to conceal it.
+
+## 2026-09-20 Bear random-pool mechanics correction
+
+The documented Bear random-pool question has now been resolved in the owning module and reviewed in `docs/bear_random_pool_mechanics_review_2026.md`. Bear does not accept group applications. The former multi-permit shortcut repeatedly sampled ticket share with replacement; the corrected calculation ranks each application's retained minimum random number without replacement, after removing max-pool winners. Focused sanity checks reproduce `17/20` for a 3/2/1-weight, two-permit pool and `2/3` for three equal-weight applications competing for two permits.
+
+The full eight-fold exact-final-calculation candidate is retained under `audits/prediction_release_candidates/bear_random_pool_mechanics_20260920_v2/`. All `9,078` hunting and `308` pursuit score keys are preserved; `666` forecast gaps are source-classified and unresolved gaps remain zero. All 20 protected files are byte-identical.
+
+Correct mechanics do not certify Bear. Hunting scores 12.062 pp MAE, 35.464 pp P90 and 13.384% over-25-point error. Pursuit scores 15.458 pp MAE, 37.581 pp P90 and 22.078% over-25-point error. Nonresident hunting/pursuit MAE is 21.541/22.981 pp. The prior shortcut's slightly better scores were accidental compensation for over-optimistic thin-lane forecasts, not evidence that it represented Utah's rule.
+
+Release decision remains **DO NOT PROMOTE**. No registry, saved prediction, R2 object or website changed. The next repair is the nonresident thin-lane probability contract and recurring hunt/year/residency failures—not Bear party logic, another display filter, or another applicant-demand adjustment without new evidence of a demand defect.

@@ -1,0 +1,98 @@
+{
+  "schema_version": "bear-restricted-pursuit-limited-evidence.v1",
+  "policy_id": "bear-restricted-pursuit-limited-evidence.v1",
+  "accepted_date": "2026-09-20",
+  "status": "FROZEN_BEFORE_NEXT_REVISED_CANDIDATE_SCORE",
+  "adr": "docs/decisions/ADR-0009-restricted-pursuit-limited-evidence-policy.md",
+  "eligible_designs": ["BEAR_RESTRICTED_PURSUIT_BONUS"],
+  "ordinary_certification_thresholds_unchanged": true,
+  "ordinary_minimum_joined_rows_per_design": 400,
+  "provisional_sample_rule": "COMPLETE_OFFICIAL_HISTORY_CENSUS_WITH_GROUPED_UNCERTAINTY",
+  "minimum_independent_following_year_folds": 2,
+  "accuracy_limits": {
+    "maximum_mae": 0.10,
+    "maximum_p90_absolute_error": 0.30,
+    "maximum_tail_error_rate_over_25pp": 0.10,
+    "maximum_false_guarantee_rows": 0,
+    "required_unclassified_actual_gaps": 0
+  },
+  "false_guarantee_probability_threshold": 0.999999,
+  "scoring": {
+    "owner": "scripts/build_blind_acceptance_review.py",
+    "final_calculation": "engine.utah_predictive_mixed.materialize.mixed_row",
+    "row_weighting": "EXISTING_SCORABLE_POINT_ROW_WEIGHTING",
+    "quantile_definition": "EXISTING_SCORER_UNCHANGED",
+    "uncapped_false_certainty_diagnostics_required": true,
+    "numeric_errors_may_be_reclassified_as_gaps": false
+  },
+  "coverage": {
+    "history_start_year": 2017,
+    "cutoff_must_be_frozen_before_scoring": true,
+    "complete_eligible_actual_inventory_required": true,
+    "every_missing_forecast_source_classified": true,
+    "blank_forecasts_count_as_gaps": true,
+    "unresolved_source_or_implementation_gaps_block": true,
+    "historical_database_reads_allowed": false,
+    "target_actuals_may_influence_forecasts": false
+  },
+  "subgroups": {
+    "required_breakdowns": ["target_year", "hunt_identity", "residency", "target_year_residency", "hunt_year_residency"],
+    "accuracy_gates_required_for": ["POOLED_DESIGN", "Resident", "Nonresident"],
+    "recurring_failure_key": ["hunt_identity", "program_regime", "residency", "failed_metric"],
+    "recurring_failure_distinct_target_years": 2,
+    "recurring_failure_blocks_provisional": true
+  },
+  "uncertainty": {
+    "primary_cluster_key": ["target_draw_year", "verified_hunt_identity", "program_regime"],
+    "keep_all_point_rows_and_residencies_together": true,
+    "resampling_analyses": ["WHOLE_HUNT_YEAR_BLOCKS", "WHOLE_HUNT_REGIME_HISTORIES", "WHOLE_DRAW_YEARS"],
+    "replicates_per_analysis": 10000,
+    "rng": "NUMPY_GENERATOR_PCG64",
+    "seed_reset_for_each_analysis": 20260920,
+    "group_order": "LEXICAL",
+    "group_sampling": "EQUAL_PROBABILITY_WITH_REPLACEMENT_ORIGINAL_GROUP_COUNT",
+    "interval_method": "TWO_SIDED_PERCENTILE_LINEAR_QUANTILE",
+    "interval_quantiles": [0.025, 0.975],
+    "metrics": ["mae", "p90_absolute_error", "tail_error_rate_over_25pp", "bias"],
+    "populations": ["POOLED_DESIGN", "Resident", "Nonresident"],
+    "minimum_contributing_groups_per_analysis_population": 2,
+    "undefined_replicates": "REPORT_NEVER_REDRAW_OR_FILL",
+    "unestimable_required_interval_blocks": true,
+    "sensitivity_checks": ["LEAVE_ONE_YEAR_OUT", "LEAVE_ONE_HUNT_OUT"],
+    "point_rows_are_independent_samples": false,
+    "confidence_bound_replaces_accuracy_gate": false,
+    "implementation_tests_required_before_scoring": true
+  },
+  "freeze": {
+    "policy_and_adr_raw_sha256_required": true,
+    "timestamped_candidate_manifest_before_scoring": true,
+    "candidate_manifest_requires": ["policy_hashes", "source_inventory_and_cutoff", "eligibility_and_gap_rules", "identity_groups", "fold_roster", "implementation_and_scorer_hashes", "parameters_and_seeds", "previously_viewed_results"],
+    "forecast_hashes_before_opening_target_actuals": true,
+    "all_candidate_attempts_retained": true,
+    "policy_change_requires_new_version_and_prior_approval": true
+  },
+  "provisional_outcome": {
+    "status": "PROVISIONALLY_VALIDATED_LIMITED_EVIDENCE",
+    "label": "Provisionally validated—limited evidence",
+    "requires_all_accuracy_and_safeguard_gates": true,
+    "accuracy_failure_status": "NOT_VALIDATED_ACCURACY",
+    "missing_evidence_status": "INSUFFICIENT_EVIDENCE",
+    "is_certified": false,
+    "is_production_registry_status": false,
+    "granted_to_existing_candidate": false
+  },
+  "confirmation": {
+    "later_genuinely_unseen_draw_required": true,
+    "forecast_sealed_before_drawing_and_results_seen": true,
+    "same_frozen_requirements_apply": true,
+    "retuning_on_confirmation_result_preserves_unseen_status": false,
+    "automatic_certification_after_confirmation": false,
+    "further_400_row_exception_requires_separate_prospective_approval": true
+  },
+  "publication": {
+    "production_registry_change_authorized": false,
+    "public_probability_authorized": false,
+    "noncertified_certified_p_draw_fields_must_be_blank": true,
+    "production_promotion_authorized": false
+  }
+}

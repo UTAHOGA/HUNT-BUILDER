@@ -24,6 +24,7 @@ from engine.utah_draw_predictive.bear import (
     UNLIMITED_PURSUIT_PERMIT,
     build_bear_draw_odds_source_audit,
     build_bear_bonus_predictions,
+    validate_bear_availability_identity,
 )
 from engine.utah_draw_predictive.dedicated_hunter import build_preference_dedicated_hunter_predictions
 from engine.utah_draw_predictive.mountain_lion import (
@@ -1907,6 +1908,9 @@ def materialize_outputs(
     certification_registry = load_registry(PREDICTION_CERTIFICATION_REGISTRY)
     certification_report = annotate_prediction_rows(prediction_rows, certification_registry)
     annotate_prediction_rows(successor_rows, certification_registry)
+    # Never serialize a cloned cross-species template as Bear availability.
+    validate_bear_availability_identity(prediction_rows, db_rows)
+    validate_bear_availability_identity(successor_rows, db_rows)
 
     prediction_fields = [
         "model_version",

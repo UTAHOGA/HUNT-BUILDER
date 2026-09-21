@@ -292,7 +292,11 @@ def _parse_official_bear_draw_odds_pdf() -> dict[str, dict[str, object]]:
 
 
 def official_bear_draw_odds_hunt_codes() -> set[str]:
-    return set(_parse_official_bear_draw_odds_pdf().keys())
+    base = set(_parse_official_bear_draw_odds_pdf().keys())
+    # 2026 DWR: 5 codes absent from 2026 tables (4 La Sal + BR7237 Monroe fall)
+    retired_2026 = set(BEAR_HISTORICAL_CODE_SUCCESSORS_2026.keys()) | {"BR7237"}
+    new_2026 = {"BR7021","BR7022","BR7126","BR7127","BR7238","BR7239","BR7326"}
+    return (base - retired_2026) | new_2026
 
 
 def official_bear_pursuit_hunt_codes() -> set[str]:
@@ -478,8 +482,8 @@ def classify_bear_subtype(row: Mapping[str, object]) -> str:
     if "remaining permit" in text or " otc" in f" {text}" or "over the counter" in text:
         return REMAINING_PERMIT_AVAILABILITY
     if "restricted pursuit" in text:
-        return UNKNOWN_BEAR_SUBTYPE
-    if hunt_code not in official_draw_codes and (hunt_type == "pursuit" or hunt_type.startswith("pursuit") or weapon == "pursuit only"):
+ return RESTRICTED_BEAR_PURSUIT
+    if hunt_code not in official_draw_codes and hunt_code not in official_pursuit_codes and (hunt_type == "pursuit" or hunt_type.startswith("pursuit") or weapon == "pursuit only"):
         return UNLIMITED_PURSUIT_PERMIT
     if "spot and stalk" in text:
         return LIMITED_ENTRY_BEAR_HUNT

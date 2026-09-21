@@ -48,6 +48,21 @@ def is_no_published_permit_authority(row: dict[str, str]) -> bool:
 
 
 def quota_for_row(row: dict[str, str]) -> tuple[dict[str, str], list[str]]:
+    if row.get("quota_source_type") == "SOURCE_YEAR_CANONICAL_AWARDS_PROXY":
+        # This is an explicitly labeled forecasting assumption, not a current
+        # allocation. Current permit-reference metadata cannot replace it.
+        # Blank is deliberate when a new split has current reference permits
+        # but no immediately-prior official program/lane awards.
+        quota = (to_float(row.get("forecast_quota_proxy")) if "forecast_quota_proxy" in row
+                 else _first_float(row.get("public_permits_target"), row.get("quota_2026_total")))
+        return {
+            "quota_2026_total": "" if quota is None else str(int(quota)),
+            "quota_2026_max_pool": str(row.get("max_point_permits_2026", "")),
+            "quota_2026_random_pool": str(row.get("random_permits_2026", "")),
+            "quota_source_status": "source_year_awards_proxy_not_current_allocation",
+            "quota_source_year": row.get("quota_source_year", ""),
+            "quota_source_file": row.get("quota_source_file", ""),
+        }, ["SOURCE_YEAR_CANONICAL_AWARDS_PROXY"]
     if is_no_published_permit_authority(row):
         return {
             "quota_2026_total": "",
@@ -91,13 +106,17 @@ def quota_for_row(row: dict[str, str]) -> tuple[dict[str, str], list[str]]:
         reasons.append("ZERO_QUOTA_NONPREDICTIVE")
     if quota is None and total is not None and not row.get("permits_2026_res") and not row.get("permits_2026_nr"):
         reasons.append("TOTAL_ONLY_QUOTA")
+    historical_proxy = row.get("quota_source_type") == "SOURCE_YEAR_OFFICIAL_DRAW_RESULT_PERMIT_PROXY"
+    if historical_proxy:
+        reasons = [r for r in reasons if r not in {"OFFICIAL_2026_QUOTA_USED", "DATABASE_2026_PUBLISHED_PERMITS_USED"}]
+        reasons.append("SOURCE_YEAR_OFFICIAL_DRAW_RESULT_PERMIT_PROXY")
     return {
         "quota_2026_total": "" if total is None else str(int(total)),
         "quota_2026_max_pool": "" if max_pool is None else str(int(max_pool)),
         "quota_2026_random_pool": "" if random_pool is None else str(int(random_pool)),
         "quota_source_status": "official" if has_published_permits or total is not None else (row.get("quota_source_status") or "official"),
-        "quota_source_year": "2026",
-        "quota_source_file": OFFICIAL_2026_DATABASE_FILE if has_published_permits or total is not None else row.get("quota_source_file", ""),
+        "quota_source_year": row.get("quota_source_year", "") if historical_proxy else "2026",
+        "quota_source_file": row.get("quota_source_file", "") if historical_proxy else (OFFICIAL_2026_DATABASE_FILE if has_published_permits or total is not None else row.get("quota_source_file", "")),
     }, reasons
 
 

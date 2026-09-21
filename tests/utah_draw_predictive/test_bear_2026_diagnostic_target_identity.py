@@ -55,7 +55,7 @@ def test_new_bear_unit_is_visible_but_never_receives_an_invented_probability(mon
 
     resident = next(row for row in rows if row["residency"] == "Resident")
     assert resident["p_draw"] == ""
-    assert resident["algorithm_status"] == "NOT_SCORED_NEW_UNIT_NO_COMPARABLE_HISTORY"
+    assert resident["algorithm_status"] == "NO_TRANSITION_EVIDENCE"
     assert "NOT_SCORED_NEW_UNIT_NO_COMPARABLE_HISTORY" in resident["reason_codes"]
 
 

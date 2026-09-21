@@ -41,6 +41,31 @@ def test_bear_random_pool_excludes_max_pool_winners() -> None:
     assert probability == pytest.approx(2 / 3)
 
 
+def test_bear_random_pool_ranks_applicant_minimums_without_replacement() -> None:
+    probability = _weighted_random_probability(
+        points=2,
+        applicants_by_points={2: 1, 1: 1, 0: 1},
+        random_permits=2,
+    )
+
+    # The three applications have 3, 2 and 1 random numbers.  Utah retains
+    # each application's lowest number and awards the two lowest applications.
+    # The focal three-number application is last with probability 3/20, so its
+    # exact inclusion probability is 17/20.  Repeated ticket-share sampling
+    # with replacement would incorrectly return 3/4.
+    assert probability == pytest.approx(17 / 20, abs=1e-4)
+
+
+def test_bear_random_pool_equal_weight_applications_are_symmetric() -> None:
+    probability = _weighted_random_probability(
+        points=0,
+        applicants_by_points={0: 3},
+        random_permits=2,
+    )
+
+    assert probability == pytest.approx(2 / 3, abs=1e-10)
+
+
 def test_bear_simulation_mean_does_not_reuse_deterministic_guarantee() -> None:
     sampled_ladders = [
         {5: 0, 4: 1},
@@ -108,6 +133,8 @@ def test_bear_truth_ladder_uses_actual_draw_year_when_legacy_year_is_none() -> N
     for row in rows:
         row["bear_source_identity_source"] = "RETAINED_OFFICIAL_BLACK_BEAR_PDF"
         row["qa_status"] = "OFFICIAL_PDF_RESIDENCY_LANE_PROJECTED"
+        row["residency"] = "Resident"
+        row["metric_scope"] = "resident"
     ladders, _, _ = _build_truth_ladders(rows, {2018, 2019})
 
     assert any(key[1:3] == (2018, "BR7004") for key in ladders)

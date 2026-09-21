@@ -34,13 +34,22 @@ PREFERENCE_ANTLERLESS_DRAW_POOLS = {
     "PREFERENCE_ANTLERLESS_DEER": {
         "",
         "standard",
+        "antlerless_deer",
         "general_season_antlerless_deer",
         "youth_antlerless_deer",
     },
-    "PREFERENCE_ANTLERLESS_ELK": {"", "standard", "general_season_antlerless_elk", "youth_antlerless_elk"},
+    "PREFERENCE_ANTLERLESS_ELK": {
+        "",
+        "standard",
+        "antlerless_elk",
+        "general_season_antlerless_elk",
+        "youth_antlerless_elk",
+    },
     "PREFERENCE_DOE_PRONGHORN": {
         "",
         "standard",
+        "antlerless_pronghorn",
+        "doe_pronghorn",
         "general_season_doe_pronghorn",
         "youth_doe_pronghorn",
     },
@@ -169,6 +178,14 @@ def _skipped_no_history_rows(forecast_year: int) -> list[dict[str, object]]:
 
 def _effective_draw_pool(row: Mapping[str, object], draw_system_type: str | None = None) -> str:
     draw_pool = _clean_lower(row.get("draw_pool"))
+    canonical_pool = {
+        "antlerless_deer": "general_season_antlerless_deer",
+        "antlerless_elk": "general_season_antlerless_elk",
+        "antlerless_pronghorn": "general_season_doe_pronghorn",
+        "doe_pronghorn": "general_season_doe_pronghorn",
+    }.get(draw_pool)
+    if canonical_pool:
+        return canonical_pool
     if draw_pool and draw_pool != "standard":
         return draw_pool
     return {
@@ -437,10 +454,16 @@ def _official_quota_for_residency(
     source_year: int | None = None,
     draw_system_type: str | None = None,
 ) -> tuple[int | None, str]:
+    target_total = target_permit_total(row, forecast_year, source_year=None).value
     allocation = target_residency_permit_allocation(
         row,
         forecast_year,
-        source_year=source_year,
+        # Historical folds declare their source-only quota proxy in the
+        # target_permits_* fields. Do not fall through to permits_<source
+        # year>_* here: for a current total-only hunt that would combine the
+        # new total with last year's residency split and mislabel the result
+        # as an explicit target-year allocation.
+        source_year=None if target_total > 0 else source_year,
         draw_system_type=draw_system_type,
     )
     if not allocation.supported:
@@ -591,7 +614,19 @@ def build_preference_antlerless_predictions(
             )
 
     for (draw_system_type, hunt_code, draw_pool), db_row in sorted(current_codes.items()):
-        forecast_total = target_permit_total(db_row, forecast_year, source_year=latest_source_year).value
+        # Current target totals and source-only fold proxies are both exposed
+        # through target-year/target_permits_* fields. A prior-year permit
+        # value is history, not authority for the next quota.
+        forecast_total = target_permit_total(db_row, forecast_year, source_year=None).value
+        if forecast_total <= 0:
+            # Retrospective unit fixtures may expose only the declared
+            # source-year permit proxy. Production current rows must use the
+            # target-year total above whenever one exists.
+            forecast_total = target_permit_total(
+                db_row,
+                forecast_year,
+                source_year=latest_source_year,
+            ).value
         if forecast_total <= 0:
             continue
 

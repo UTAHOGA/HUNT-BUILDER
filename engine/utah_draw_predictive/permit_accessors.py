@@ -220,10 +220,13 @@ def _uses_standard_big_game_ten_percent_rule(
 
     joined = " ".join(
         _clean(row.get(field)).lower()
-        for field in ("hunt_name", "hunt_type", "hunt_class", "draw_pool", "source_type", "record_type")
+        for field in ("hunt_name", "hunt_type", "hunt_class", "draw_pool")
     )
     # "Preference" contains the substring "reference". Match the reference
     # classification token, not part of the preference draw's legitimate name.
+    # draw_system_tokens above already rejects REFERENCE_ONLY. Do not inspect
+    # record_type here: canonical current rows legitimately retain a
+    # hunt_planner_permit_reference lineage token alongside point-level truth.
     if re.search(r"(?:^|[^a-z])reference(?:[^a-z]|$)", joined):
         return False
     return not any(

@@ -100,3 +100,19 @@ def test_cwmu_text_blocks_percentage_even_with_stale_preference_label() -> None:
 
     assert allocation.supported is False
     assert allocation.authority == UNSUPPORTED_TOTAL_ONLY_RESIDENCY_RULE
+
+
+def test_permit_reference_lineage_does_not_block_valid_preference_total() -> None:
+    allocation = target_residency_permit_allocation(
+        {
+            "draw_system_type": "PREFERENCE_ANTLERLESS_DEER",
+            "hunt_class": "Preference",
+            "record_type": "hunt_planner_permit_reference;point_level_draw_result",
+            "permits_2026_total": "30",
+        },
+        2026,
+    )
+
+    assert allocation.supported is True
+    assert allocation.authority == OFFICIAL_10_PERCENT_TOTAL_ALLOCATION
+    assert (allocation.resident, allocation.nonresident) == (27, 3)

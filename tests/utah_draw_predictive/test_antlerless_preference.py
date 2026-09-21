@@ -1,10 +1,52 @@
 from engine.utah_draw_predictive.preference_antlerless import (
     MODEL_STRATEGY_NAME,
     STRATEGY_SPECS,
+    _effective_draw_pool,
+    _official_quota_for_residency,
     _target_draw_system_type,
     build_preference_antlerless_predictions,
     is_modeled_antlerless_row,
 )
+
+
+def test_official_antlerless_pool_aliases_use_one_adult_identity() -> None:
+    assert _effective_draw_pool(
+        {"draw_pool": "ANTLERLESS_DEER"}, "PREFERENCE_ANTLERLESS_DEER"
+    ) == "general_season_antlerless_deer"
+    assert _effective_draw_pool(
+        {"draw_pool": "ANTLERLESS_ELK"}, "PREFERENCE_ANTLERLESS_ELK"
+    ) == "general_season_antlerless_elk"
+    assert _effective_draw_pool(
+        {"draw_pool": "DOE_PRONGHORN"}, "PREFERENCE_DOE_PRONGHORN"
+    ) == "general_season_doe_pronghorn"
+
+
+def test_current_total_only_quota_does_not_reuse_prior_year_residency_lanes() -> None:
+    row = {
+        "draw_system_type": "PREFERENCE_ANTLERLESS_DEER",
+        "permits_2026_total": "30",
+        "permits_2025_total": "26",
+        "permits_2025_res": "26",
+        "permits_2025_nr": "0",
+    }
+
+    resident, resident_authority = _official_quota_for_residency(
+        row,
+        "Resident",
+        2026,
+        source_year=2025,
+        draw_system_type="PREFERENCE_ANTLERLESS_DEER",
+    )
+    nonresident, nonresident_authority = _official_quota_for_residency(
+        row,
+        "Nonresident",
+        2026,
+        source_year=2025,
+        draw_system_type="PREFERENCE_ANTLERLESS_DEER",
+    )
+
+    assert (resident, nonresident) == (27, 3)
+    assert resident_authority == nonresident_authority == "OFFICIAL_10_PERCENT_TOTAL_ALLOCATION"
 
 
 def test_antlerless_preference_strategies_are_promoted_to_modeled_preference() -> None:
