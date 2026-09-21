@@ -8,6 +8,21 @@ This is the required short briefing for Hunt Builder, Hunt Research, prediction-
 
 ## Current Classification
 
+### Reviewed corrective shell release live (2026-09-21)
+
+See `docs/CORRECTIVE_RELEASE_20260921.md`. This isolated release preserves the
+existing certified runtime and all seven R2 object hashes; it does not certify
+new families. It repairs imports, reference-catalog metadata and clean-build
+asset retention. Website packaging no longer regenerates data from fixture
+fallbacks. The original pending main-checkout work is not included. Both public
+hosts are promoted and hash-verified: Pages `094c2549`, Vercel
+`dpl_F3Zwa8DGDx19CP7HLdr73jRCo7PM`. Vercel live and Pages preview each pass 1,255
+browser scenarios; Pages production passes the 19-case smoke check. All 4,249
+Pages and 4,250 Vercel uploaded assets match the release inventory. The exact
+old/new hashes and rollback references are in
+`governance/releases/20260921-corrective-release.json`.
+
+
 ### Bear quota/outcome diagnosis corrected (2026-09-20)
 
 The source-only quota-state and random-outcome review is complete; see

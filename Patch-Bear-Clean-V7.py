@@ -1,4 +1,6 @@
-﻿import pathlib
+﻿raise SystemExit("DISABLED_UNREVIEWED_REPAIR: regex patch can corrupt Bear source indentation. See docs/CORRECTIVE_RELEASE_20260921.md.")
+
+import pathlib
 p = pathlib.Path('engine/utah_draw_predictive/bear.py').read_text(encoding='utf-8')
 
 # --- keep the 3 availability fixes from fix_and_rebuild_bear.py (they were correct) ---

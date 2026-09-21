@@ -223,6 +223,35 @@ def to_runtime_record(row: dict[str, str], generated_at: str) -> dict[str, objec
             "boundaryLink": f"https://dwrapps.utah.gov/huntboundary/hbstart?HN={code}",
         }
     )
+    # Preserve source provenance and the allocation contract in compact catalogs.
+    # This only describes existing reference values; it cannot certify odds.
+    source_file = "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
+    special = first(row.get("permits_2026_conservation"), row.get("conservation_permits_2026_total"),
+                    row.get("permits_2026_expo"), row.get("permits_2026_sportsman"))
+    if res_2026 and nr_2026 and total_2026:
+        status = "FULL_SPLIT"
+    elif not res_2026 and not nr_2026 and total_2026:
+        status = "TOTAL_ONLY"
+    elif not res_2026 and not nr_2026 and not total_2026:
+        status = "SPECIAL_PERMIT_ONLY" if special else "NO_QUOTA_PUBLISHED"
+    else:
+        status = "PARTIAL_SPLIT"
+    status = first(row.get("permit_status"), status)
+    record.update({
+        "permit_status": status,
+        "permit_allocation_type": first(row.get("permit_allocation_type"),
+            row.get("special_permit_category") if status == "SPECIAL_PERMIT_ONLY" else "", status),
+        "permits_2026_conservation": first(row.get("permits_2026_conservation"), row.get("conservation_permits_2026_total")),
+        "permits_2026_expo": first(row.get("permits_2026_expo")),
+        "permits_2026_sportsman": first(row.get("permits_2026_sportsman")),
+        "permit_source_authority": first(row.get("permit_source_authority"), "DATABASE.csv current permit reference (not prediction truth)"),
+        "permit_overlay_source": first(row.get("permit_overlay_source"), source_file),
+        "permits_2026_source": first(row.get("permits_2026_source"), source_file),
+        "permit_note": first(row.get("permit_note"), row.get("NOTES")),
+        "data_status": first(row.get("data_status"), "SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED" if status == "NO_QUOTA_PUBLISHED" else "COMPLETE"),
+    })
+    for field in ("special_permit_area_id", "special_permit_category", "special_permit_note", "special_permit_overlay_source"):
+        record[field] = first(row.get(field))
     return record
 
 
@@ -485,6 +514,13 @@ def main() -> None:
         write_json(path, records)
     for path in HUNT_MASTER_CSV_TARGETS:
         write_master_csv(path, records)
+
+    # Keep page-contract catalog copies aligned without rewriting their other sections.
+    for relative in ("canonical/hunt-planner-2026.json", "generated/pages/hunt-planner.json"):
+        path = ROOT / relative
+        document = json.loads(path.read_text(encoding="utf-8"))
+        document["hunt_catalog"] = records
+        write_json(path, document)
 
     if args.hunt_master_only:
         print(f"Rebuilt runtime hunt master records: {len(records)}")

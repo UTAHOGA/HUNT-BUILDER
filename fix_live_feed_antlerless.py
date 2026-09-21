@@ -1,4 +1,6 @@
-﻿import json, pathlib
+﻿raise SystemExit("DISABLED_UNREVIEWED_REPAIR: Do not overwrite public quotas without source and release validation. See docs/CORRECTIVE_RELEASE_20260921.md.")
+
+import json, pathlib
 root=pathlib.Path(r"C:\Users\tyler\GitHub\HUNT-BUILDER\processed_data\hunt_research_2026_split\hunts")
 roots=[root]
 pages=pathlib.Path(r"C:\Users\tyler\GitHub\HUNT-BUILDER\pages-dist\processed_data\hunt_research_2026_split\hunts")

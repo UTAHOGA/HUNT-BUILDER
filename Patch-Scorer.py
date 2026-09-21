@@ -1,4 +1,6 @@
 
+raise SystemExit("DISABLED_UNREVIEWED_REPAIR: Do not rewrite scoring contracts with string replacement. See docs/CORRECTIVE_RELEASE_20260921.md.")
+
 import pathlib
 p=pathlib.Path('tools/prediction_accuracy_backtest/score_full_engine_draw_line_aware.py')
 t=p.read_text(encoding='utf-8')
