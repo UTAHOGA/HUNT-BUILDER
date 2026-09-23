@@ -4,6 +4,8 @@ Handles duplicate keys 'weapon'/'Weapon' and 'boundaryId'/'boundaryID' that brea
 Usage: python fix_antlerless_direct.py
 """
 
+raise SystemExit("DISABLED_UNREVIEWED_REPAIR: Do not manufacture certified odds or rewrite frozen artifacts. See docs/CORRECTIVE_RELEASE_20260921.md.")
+
 import json
 import pathlib
 

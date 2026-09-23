@@ -1,4 +1,6 @@
-﻿import json, pathlib
+﻿raise SystemExit("DISABLED_UNREVIEWED_REPAIR: Contact text is not proof of a non-draw CWMU lane. See docs/CORRECTIVE_RELEASE_20260921.md.")
+
+import json, pathlib
 search_roots=[r"C:\Users\tyler\GitHub\HUNT-BUILDER\audits\prediction_release_candidates\core_le_deer_repair_20260919\research_candidate_harvest_preserved\processed_data\hunt_research_2026_split\hunts",r"C:\Users\tyler\GitHub\HUNT-BUILDER\processed_data\hunt_research_2026_split\hunts",r"C:\Users\tyler\GitHub\HUNT-BUILDER\pages-dist\processed_data\hunt_research_2026_split\hunts"]
 patterns=["operator","contact","private","allocation only","landowner","voucher","private allocation"]
 def load_tolerant(p): return json.loads(pathlib.Path(p).read_text(encoding='utf-8'))

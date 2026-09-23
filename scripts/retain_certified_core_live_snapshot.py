@@ -18,8 +18,13 @@ def main():
     if args.output.exists():
         raise SystemExit("Refusing to overwrite retained live evidence")
     report = json.loads(args.production_report.read_text())
-    objects = [(r["key"], r["new_sha256"]) for r in report["r2"]["objects"]]
-    objects.append(("processed_data/hunt_research_2026_ladder.json", report["r2"]["unchanged_legacy_ladder_sha256"]))
+    if "r2_objects" in report:
+        objects = [(r["key"], r["after_sha256"]) for r in report["r2_objects"]]
+        legacy_hash = report["unchanged_legacy_ladder_sha256"]
+    else:
+        objects = [(r["key"], r["new_sha256"]) for r in report["r2"]["objects"]]
+        legacy_hash = report["r2"]["unchanged_legacy_ladder_sha256"]
+    objects.append(("processed_data/hunt_research_2026_ladder.json", legacy_hash))
     args.output.mkdir(parents=True)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
 
@@ -38,7 +43,8 @@ def main():
                 digest = hashlib.file_digest(handle, "sha256")
             url = f"r2://uoga-data/{key}"
         else:
-            with urllib.request.urlopen(url, timeout=60) as response, path.open("wb") as output:
+            request = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            with urllib.request.urlopen(request, timeout=60) as response, path.open("wb") as output:
                 for chunk in iter(lambda: response.read(1024 * 1024), b""):
                     digest.update(chunk)
                     output.write(chunk)
