@@ -974,17 +974,17 @@
     return fallbackRows.find((row) => Number(row.points) === Number(points)) || null;
   }
 
-  function findRowsForHuntResidency(groups, huntCode, residency) {
+  function findRowsForHuntResidency(groups, huntCode, residency, drawPool) {
+    // A default selection may resolve an unambiguous program, never an arbitrary pool.
+    if (normalizeDrawPool(drawPool) !== 'standard') return [];
     const prefix = `${normalizeKey(huntCode)}__${normalizeResidencyLabel(residency)}__`;
-    for (const [key, rows] of groups.entries()) {
-      if (key.startsWith(prefix) && rows.length) return rows;
-    }
-    return [];
+    const matches = Array.from(groups.entries()).filter(([key, rows]) => key.startsWith(prefix) && rows.length);
+    return matches.length === 1 ? matches[0][1] : [];
   }
 
   function getLadderRows(huntCode, residency, drawPool) {
     const exact = state.ladderGroups.get(groupKey(huntCode, residency, drawPool)) || [];
-    return exact.length ? exact : findRowsForHuntResidency(state.ladderGroups, huntCode, residency);
+    return exact.length ? exact : findRowsForHuntResidency(state.ladderGroups, huntCode, residency, drawPool);
   }
 
   function getReferenceRow(huntCode, residency, drawPool) {
@@ -996,12 +996,13 @@
 
   function getEngineRows(huntCode, residency, drawPool) {
     const exact = state.engineGroups.get(groupKey(huntCode, residency, drawPool)) || [];
-    return exact.length ? exact : findRowsForHuntResidency(state.engineGroups, huntCode, residency);
+    return exact.length ? exact : findRowsForHuntResidency(state.engineGroups, huntCode, residency, drawPool);
   }
 
   function getEngineGroupFallbackRow(huntCode, residency, drawPool) {
     const rows = getEngineRows(huntCode, residency, drawPool);
-    return rows.length ? rows[0] : null;
+    return rows.find((row) => num(row.points) === null
+      && /REFERENCE|AVAILABILITY|EXCLUDED|ALLOCATION|OTC/.test(String(row.algorithm_status || '').toUpperCase())) || null;
   }
 
   function getModeledCoverageStatus(meta, hasEngineGroup) {
@@ -1465,20 +1466,11 @@
   }
 
   function getHarvestSuccessDisplay(meta, referenceRow, row) {
-    const fromRow = firstAvailable(row, ['harvest_success_percent_2025', 'success_percent', 'percent_success', 'prior_year_success_rate']);
-    if (fromRow !== null) {
-      const pct = num(fromRow);
-      if (pct !== null) {
-        const normalized = pct <= 1 ? pct * 100 : pct;
-        return `${Number(normalized.toFixed(1)).toString()}%`;
-      }
-      return String(fromRow);
-    }
-    if (referenceRow?.harvest_success_percent_2025 !== undefined && referenceRow?.harvest_success_percent_2025 !== null && String(referenceRow.harvest_success_percent_2025).trim() !== '') {
-      return `${referenceRow.harvest_success_percent_2025}%`;
-    }
-    if (meta?.success_percent !== undefined && meta?.success_percent !== null && String(meta.success_percent).trim() !== '') {
-      return `${meta.success_percent}%`;
+    // Draw success and prior draw probability are never harvest success.
+    const keys = ['harvest_success_pct', 'harvest_success_percent_2025', 'percent_harvest_success_previous_hunting_season', 'percent_harvest_success'];
+    for (const source of [referenceRow, meta, row]) {
+      const pct = num(firstAvailable(source, keys));
+      if (pct !== null && pct >= 0 && pct <= 100) return `${Number(pct.toFixed(1))}%`;
     }
     return 'Not available';
   }
@@ -1955,9 +1947,7 @@
       [`${RESEARCH_RESULT_YEAR} Draw Results`, historicalDrawBoundaryReason(row) || formatHistoricalDrawResult(row) || 'Not available'],
       [`${RESEARCH_MODEL_YEAR} Draw Odds`, getDisplayedOdds(meta, row, referenceRow).value],
       [`${RESEARCH_MODEL_YEAR} Quota Source`, quotaSourceDisplay],
-      [`${RESEARCH_RESULT_YEAR} Harvest Success`, hasMeaningfulValue(firstMeaningfulValue(referenceRow?.harvest_success_percent_2025, referenceRow?.harvest_success_pct, referenceRow?.percent_success))
-        ? `${firstMeaningfulValue(referenceRow?.harvest_success_percent_2025, referenceRow?.harvest_success_pct, referenceRow?.percent_success)}%`
-        : (hasMeaningfulValue(meta?.success_percent) ? `${meta.success_percent}%` : 'Not available')],
+      ['Mapped Harvest Success', getHarvestSuccessDisplay(meta, referenceRow, null)],
       ['Harvest / Hunters', hasMeaningfulValue(firstMeaningfulValue(referenceRow?.harvest_2025, referenceRow?.harvest, referenceRow?.harvest_total)) || hasMeaningfulValue(firstMeaningfulValue(referenceRow?.harvest_hunters_2025, referenceRow?.hunters, referenceRow?.hunters_afield))
         ? `${firstMeaningfulValue(referenceRow?.harvest_2025, referenceRow?.harvest, referenceRow?.harvest_total) || '0'} / ${firstMeaningfulValue(referenceRow?.harvest_hunters_2025, referenceRow?.hunters, referenceRow?.hunters_afield) || '0'}`
         : (hasMeaningfulValue(meta?.success_harvest) || hasMeaningfulValue(meta?.success_hunters)
@@ -1984,19 +1974,12 @@
   }
 
   function getHarvestSnapshot(meta, referenceRow) {
-    const successValue = firstMeaningfulValue(
-      referenceRow?.harvest_success_percent_2025,
-      referenceRow?.harvest_success_pct,
-      referenceRow?.percent_success,
-      meta?.success_percent,
-    );
+    const successDisplay = getHarvestSuccessDisplay(meta, referenceRow, null);
     const harvestValue = firstMeaningfulValue(referenceRow?.harvest_2025, referenceRow?.harvest, referenceRow?.harvest_total, meta?.success_harvest);
     const huntersValue = firstMeaningfulValue(referenceRow?.harvest_hunters_2025, referenceRow?.hunters, referenceRow?.hunters_afield, meta?.success_hunters);
     const daysValue = firstMeaningfulValue(referenceRow?.harvest_average_days_2025, referenceRow?.average_days_hunted, referenceRow?.avg_days);
     const satisfactionValue = firstMeaningfulValue(referenceRow?.harvest_satisfaction_2025, referenceRow?.hunter_satisfaction, referenceRow?.satisfaction);
-    const success = hasMeaningfulValue(successValue)
-      ? `${successValue}% success`
-      : (hasMeaningfulValue(meta?.success_percent) ? `${meta.success_percent}% success` : '');
+    const success = successDisplay === 'Not available' ? '' : `${successDisplay} success`;
     const harvestCount = hasMeaningfulValue(harvestValue) || hasMeaningfulValue(huntersValue)
       ? `${harvestValue || '0'} harvest / ${huntersValue || '0'} hunters`
       : (hasMeaningfulValue(meta?.success_harvest) || hasMeaningfulValue(meta?.success_hunters)
@@ -2269,7 +2252,10 @@
 
   function renderEmpty(filters, coverageMessage) {
     hideOtcHunt();
-    if (els.detailEmpty) els.detailEmpty.hidden = false;
+    if (els.detailEmpty) {
+      els.detailEmpty.hidden = false;
+      els.detailEmpty.textContent = coverageMessage || 'Select a hunt to load the report.';
+    }
     if (els.detailContent) els.detailContent.hidden = true;
     renderSummary(null, null, filters, coverageMessage, null);
     if (els.ladderTableWrap) els.ladderTableWrap.hidden = true;
@@ -2307,6 +2293,16 @@
   }
 
   function renderDetail(filters) {
+    if (!window.UOGA_HUNT_ELIGIBILITY?.isCurrent(filters.huntCode)) {
+      const eligibility = window.UOGA_HUNT_ELIGIBILITY?.get(filters.huntCode);
+      const message = !filters.huntCode ? 'Select a hunt in Hunt Builder or enter a hunt code to load the report.' : eligibility
+        ? 'Historical or reference-only code; not a verified current hunt choice. Its source records remain in the research library.'
+        : 'Current eligibility is not verified for this hunt code.';
+      renderEmpty(filters, message);
+      window.UOGA_HUNT_RESEARCH_SNAPSHOT = { filters, engineRows: [], ladderRows: [], masterRows: [], referenceRows: [], summaryRow: null, eligibility };
+      window.dispatchEvent(new CustomEvent('uoga:hunt-research-rendered', { detail: window.UOGA_HUNT_RESEARCH_SNAPSHOT }));
+      return;
+    }
     const meta = findMeta(filters.huntCode, filters.residency, filters.drawPool);
     const rawEngineRows = getEngineRows(filters.huntCode, filters.residency, filters.drawPool);
     const rawEngineRow = getEngineRow(filters.huntCode, filters.residency, filters.points, filters.drawPool);
@@ -2325,7 +2321,7 @@
     // A selected point-level ladder row must take precedence over a generic
     // hunt/residency fallback. A lower-point forecast is not the user's odds.
     // The fallback remains only for genuinely non-point families.
-    const summaryRow = engineRow || ladderPointRow || engineGroupFallbackRow || null;
+    const summaryRow = ladderPointRow || engineRow || engineGroupFallbackRow || null;
     const referenceRow = getReferenceRow(filters.huntCode, filters.residency, filters.drawPool);
     const certificationGatedDrawRow = Boolean(
       getCertificationDisplayStatus(summaryRow)
@@ -2400,6 +2396,10 @@
       loadedSources: state.loadedSources,
       engineMode: state.engineMode,
       displayMode: isOtcMode ? 'otc_reference' : 'draw_research',
+      displayContext: {
+        harvestSuccess: getHarvestSuccessDisplay(meta, referenceRow, summaryRow),
+        selectedOdds: getDisplayedOdds(meta, summaryRow, referenceRow),
+      },
     };
     window.dispatchEvent(new CustomEvent('uoga:hunt-research-rendered', {
       detail: window.UOGA_HUNT_RESEARCH_SNAPSHOT,
@@ -2580,6 +2580,7 @@
     if (state.loadingPromise) return state.loadingPromise;
 
     state.loadingPromise = (async () => {
+      await window.UOGA_HUNT_ELIGIBILITY.load();
       try {
         if (USE_SPLIT_CANONICAL_CONTRACT) {
           try {

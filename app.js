@@ -2694,7 +2694,8 @@ async function loadHuntData() {
   });
   const syntheticBearHarvestObjectiveHunts = buildSyntheticBlackBearHarvestObjectiveHunts(huntData);
   const syntheticConservationHunts = buildSyntheticConservationPermitHunts(huntData);
-  huntData = [...huntData, ...syntheticBearHarvestObjectiveHunts, ...syntheticConservationHunts];
+  huntData = [...huntData, ...syntheticBearHarvestObjectiveHunts, ...syntheticConservationHunts]
+    .filter(window.UOGA_HUNT_ELIGIBILITY.isCurrent);
   applyBoundaryManifestToHunts(huntData);
   refreshSelectionMatrix();
   updateStatus(`Loaded ${huntData.length} hunts.${boundaryManifestByHuntCode.size ? ` Boundary manifest rows: ${boundaryManifestByHuntCode.size}.` : ''}`);

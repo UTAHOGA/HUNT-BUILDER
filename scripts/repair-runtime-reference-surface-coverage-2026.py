@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 from datetime import datetime, timezone
@@ -22,6 +23,19 @@ SURFACES = {
     "point_ladder_view": POINT_LADDER,
     "draw_reality_engine": DRAW_REALITY,
 }
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Append identity-only DATABASE reference rows to missing runtime surfaces."
+    )
+    parser.add_argument(
+        "--code-prefix",
+        action="append",
+        default=[],
+        help="Limit repairs to a hunt-code prefix. Repeat for multiple prefixes; default is all codes.",
+    )
+    return parser.parse_args()
 
 
 def read_rows(path: Path) -> tuple[list[str], list[dict[str, str]]]:
@@ -175,8 +189,18 @@ def append_missing_surface_rows(
 
 
 def main() -> int:
+    args = parse_args()
+    requested_prefixes = {clean(prefix).upper() for prefix in args.code_prefix if clean(prefix)}
     _, database_rows = read_rows(DATABASE)
-    db_by_code = {clean(row.get("hunt_code")).upper(): row for row in database_rows if clean(row.get("hunt_code"))}
+    db_by_code = {
+        clean(row.get("hunt_code")).upper(): row
+        for row in database_rows
+        if clean(row.get("hunt_code"))
+        and (
+            not requested_prefixes
+            or any(clean(row.get("hunt_code")).upper().startswith(prefix) for prefix in requested_prefixes)
+        )
+    }
     db_codes = set(db_by_code)
 
     repair_rows: list[dict[str, str]] = []
@@ -202,6 +226,7 @@ def main() -> int:
         "artifact": "runtime_reference_surface_coverage_repair_2026",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "database_code_count": len(db_codes),
+        "code_prefix_scope": sorted(requested_prefixes) if requested_prefixes else ["ALL"],
         "guardrail": "Only missing runtime reference-surface rows were appended from DATABASE.csv. Existing numeric permit cells were not overwritten.",
         "surfaces": {},
         "total_rows_added": len(repair_rows) * 2 if False else sum(int(row["rows_added"]) for row in repair_rows),

@@ -49,6 +49,132 @@ def test_zero_applicant_prior_rung_is_source_limitation_not_engine_coverage_defe
     assert evidence["prior_year_eligible_applicants"] == 0.0
 
 
+def test_zero_award_source_lane_to_positive_target_is_official_quota_change():
+    gap = {
+        "draw_design_key": "PREFERENCE_ANTLERLESS_DEER",
+        "draw_pool_key": "preference_antlerless_deer",
+        "hunt_code": "DA1001",
+        "residency": "Nonresident",
+        "points": "2",
+        "actual_probability": "0.5",
+    }
+    key = (
+        "PREFERENCE_ANTLERLESS_DEER",
+        "preference_antlerless_deer",
+        "DA1001",
+        "Nonresident",
+        "2",
+    )
+    prior_point = SimpleNamespace(
+        residency="Nonresident",
+        actual_eligible_applicants=4.0,
+        actual_drawn=0.0,
+    )
+    source_row = {
+        "nonresident_eligible_applicants": "4",
+        "nonresident_total_permits": "0",
+        "source_file": "17_antlerless_points.pdf",
+    }
+
+    classification, status, evidence = classify_gap(
+        gap,
+        exact_rows={key: [(prior_point, source_row)]},
+        lanes={key[:4]},
+        hunts={key[:3]},
+    )
+
+    assert classification == "TARGET_YEAR_OFFICIAL_PROGRAM_OR_QUOTA_CHANGE"
+    assert status == SOURCE_CLASSIFIED
+    assert evidence["source_lane_official_awards"] == 0.0
+    assert evidence["target_official_probability"] == "0.5000000000"
+
+
+def test_zero_award_source_lane_without_positive_target_is_intentional_blank():
+    gap = {
+        "draw_design_key": "PREFERENCE_ANTLERLESS_DEER",
+        "draw_pool_key": "preference_antlerless_deer",
+        "hunt_code": "DA1001",
+        "residency": "Nonresident",
+        "points": "2",
+        "actual_probability": "0",
+    }
+    key = (
+        "PREFERENCE_ANTLERLESS_DEER",
+        "preference_antlerless_deer",
+        "DA1001",
+        "Nonresident",
+        "2",
+    )
+    prior_point = SimpleNamespace(
+        residency="Nonresident",
+        actual_eligible_applicants=4.0,
+        actual_drawn=0.0,
+    )
+    source_row = {
+        "nonresident_eligible_applicants": "4",
+        "nonresident_total_permits": "0",
+        "source_file": "17_antlerless_points.pdf",
+    }
+
+    classification, status, _ = classify_gap(
+        gap,
+        exact_rows={key: [(prior_point, source_row)]},
+        lanes={key[:4]},
+        hunts={key[:3]},
+    )
+
+    assert classification == "SOURCE_LIMITATION_PRIOR_YEAR_ZERO_AWARD_LANE"
+    assert status == SOURCE_CLASSIFIED
+
+
+def test_active_source_lane_is_not_reclassified_as_quota_change():
+    gap = {
+        "draw_design_key": "PREFERENCE_ANTLERLESS_DEER",
+        "draw_pool_key": "preference_antlerless_deer",
+        "hunt_code": "DA1001",
+        "residency": "Resident",
+        "points": "2",
+        "actual_probability": "0.5",
+    }
+    key = (
+        "PREFERENCE_ANTLERLESS_DEER",
+        "preference_antlerless_deer",
+        "DA1001",
+        "Resident",
+        "2",
+    )
+    awarded_key = (*key[:4], "3")
+    prior_point = SimpleNamespace(
+        residency="Resident",
+        actual_eligible_applicants=4.0,
+        actual_drawn=0.0,
+    )
+    awarded_point = SimpleNamespace(
+        residency="Resident",
+        actual_eligible_applicants=1.0,
+        actual_drawn=1.0,
+    )
+    source_row = {
+        "resident_eligible_applicants": "4",
+        "resident_total_permits": "0",
+        "source_file": "17_antlerless_points.pdf",
+    }
+
+    classification, status, evidence = classify_gap(
+        gap,
+        exact_rows={
+            key: [(prior_point, source_row)],
+            awarded_key: [(awarded_point, source_row)],
+        },
+        lanes={key[:4]},
+        hunts={key[:3]},
+    )
+
+    assert classification == "SOURCE_SAFETY_BLOCKED_PRIOR_YEAR_ZERO_OUTCOME"
+    assert status == SOURCE_CLASSIFIED
+    assert evidence["source_lane_official_awards"] == 1.0
+
+
 def test_pre_draw_identity_block_overrides_same_code_source_probability():
     gap = {
         "draw_design_key": "BONUS_OIL_BIG_GAME",

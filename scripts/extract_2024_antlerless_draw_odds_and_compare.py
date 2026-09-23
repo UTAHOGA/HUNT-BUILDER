@@ -10,8 +10,7 @@ import pdfplumber
 
 
 DRAW_PDF_CANDIDATES = [
-    Path(r"pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/24_antlerless_drawing_odds_report.pdf"),
-    Path(r"pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/2024 antlerless draw results.pdf"),
+    Path(r"pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/official_dwr_archive/big_game_antlerless/24_antlerless_drawing_odds_report.pdf"),
 ]
 OUT_DIR = Path(
     r"pipeline/RAW/hunt_unit_database/2025/formatted_tables/draw_odds_results/antlerless_draw_odds_2024_extract"

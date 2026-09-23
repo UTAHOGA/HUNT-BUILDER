@@ -37,6 +37,39 @@ def test_historical_proxy_explicit_residency_rows_never_sum_retained_broad_colum
         assert _aggregate_target_permits(rows, 2019)[("preference_general_deer", "DB1501", "adult_general_deer")] == expected
 
 
+def test_antlerless_preference_uses_point_regular_awards_and_labels_no_double_count_contract():
+    base = _split_truth_row(
+        year=2019,
+        hunt_code="EA1001",
+        hunt_name="Central Mountains Antlerless Elk",
+        species="Elk",
+        sex_type="Antlerless",
+    )
+    # Retained broad totals are lineage fields for preference draws.  The
+    # official point-level regular awards are the quota proxy used by folds.
+    base.update(
+        draw_system_type="PREFERENCE_ANTLERLESS_ELK",
+        resident_regular_permits="20",
+        resident_total_permits="220",
+        nonresident_regular_permits="3",
+        nonresident_total_permits="33",
+        total_regular_permits="23",
+        total_permits="253",
+    )
+
+    aggregate = _aggregate_target_permits([base], 2019)
+    assert aggregate[("preference_antlerless_elk", "EA1001", "general_season_antlerless_elk")] == {
+        "res": 20,
+        "nr": 3,
+        "total": 23,
+    }
+
+    [enriched] = _with_historical_target_metadata([base], 2019, 2020)
+    assert enriched["target_permits_total"] == 23
+    assert enriched["quota_source"] == "OFFICIAL_CANONICAL_POINT_LEVEL_SUM"
+    assert enriched["quota_source_status"] == "PREFERENCE_FIXED_NO_DOUBLE_COUNT"
+
+
 def _split_truth_row(
     *,
     year: int,
@@ -87,10 +120,20 @@ def _split_truth_row(
 
 def _assert_historical_rows(rows: list[dict[str, object]], source_year: int) -> None:
     assert rows
-    assert all(str(row.get("p_draw", "")).strip() for row in rows)
-    assert all(str(row.get("p_draw_pct", "")).strip() for row in rows)
+    for row in rows:
+        if row.get("algorithm_status") == "NO_TRANSITION_EVIDENCE":
+            # These fixtures contain one source year, not an observed adjacent
+            # transition. Require the explicit blank contract, not invented odds.
+            assert row.get("preference_model_valid") == "FALSE"
+            assert "NO_PROGRAM_RESIDENCY_TRANSITION_EVIDENCE" in str(row.get("reason_codes", ""))
+            assert row.get("source_year_count") == 1
+            assert not str(row.get("p_draw", "")).strip()
+            assert not str(row.get("p_draw_pct", "")).strip()
+        else:
+            assert str(row.get("p_draw", "")).strip()
+            assert str(row.get("p_draw_pct", "")).strip()
+            assert row.get("preference_model_valid") == "TRUE"
     assert all(str(row.get("model_strategy", "")).strip() for row in rows)
-    assert {row.get("preference_model_valid") for row in rows} == {"TRUE"}
     assert all(str(source_year) in str(row.get("source_years_used", "")) for row in rows)
     assert all(str(row.get("source_file", "")).find("2026") == -1 for row in rows)
     assert all(str(row.get("reason_codes", "")).find("2026") == -1 for row in rows)

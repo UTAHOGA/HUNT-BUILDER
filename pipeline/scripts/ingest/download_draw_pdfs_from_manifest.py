@@ -2,6 +2,7 @@ import csv
 import hashlib
 import urllib.request
 from pathlib import Path
+from urllib.parse import urlsplit
 
 
 def _repo_root() -> Path:
@@ -25,6 +26,18 @@ def safe_name(name: str) -> str:
     return " ".join(s.split())
 
 
+def existing_official_archive(raw_root: Path, year: str, url: str) -> Path | None:
+    """Return the retained official archive copy instead of creating an alias."""
+    basename = Path(urlsplit(url).path).name
+    archive = raw_root / year / "pdf" / "draw_odds" / "official_dwr_archive"
+    matches = sorted(archive.rglob(basename)) if archive.exists() else []
+    if len(matches) > 1:
+        hashes = {hashlib.sha256(path.read_bytes()).hexdigest() for path in matches}
+        if len(hashes) > 1:
+            raise RuntimeError(f"Conflicting official archive copies for {year}/{basename}")
+    return matches[0] if matches else None
+
+
 def main() -> None:
     rows = list(csv.DictReader(IN_MANIFEST.open("r", encoding="utf-8-sig", newline="")))
     out_rows = []
@@ -44,6 +57,20 @@ def main() -> None:
         prefix = hashlib.sha1(url.encode("utf-8")).hexdigest()[:8]
         fname = safe_name(f"{prefix}__{label}.pdf")
         dest = dest_dir / fname
+
+        archived = existing_official_archive(RAW_ROOT, year, url)
+        if archived is not None:
+            skipped += 1
+            out_rows.append(
+                {
+                    "publish_year": year,
+                    "label": label,
+                    "url": url,
+                    "status": "skipped_official_archive_exists",
+                    "dest_path": str(archived),
+                }
+            )
+            continue
 
         if dest.exists():
             skipped += 1

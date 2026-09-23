@@ -404,6 +404,7 @@ window.UOGA_DATA = (() => {
   }
 
   async function loadHuntDataRecords(deps) {
+    await window.UOGA_HUNT_ELIGIBILITY.load();
     const {
       HUNT_DATA_SOURCES,
       getHuntRecordKey,
@@ -523,7 +524,8 @@ window.UOGA_DATA = (() => {
       }
     }
 
-    return merged;
+    // Keep the source catalog intact; only current evidence-backed choices enter the matrix.
+    return merged.filter(window.UOGA_HUNT_ELIGIBILITY.isCurrent);
   }
 
   async function loadFirstNormalizedList(candidates, normalizer, emptyValue = []) {

@@ -429,3 +429,20 @@ def build_sportsman_predictions(
         "source_files_used": sorted({str(row.get("sportsman_source_file") or "") for row in rows if row.get("sportsman_source_file")}),
     }
     return rows, report
+
+
+def validate_sportsman_output_coverage(rows, expected_rows):
+    """Prevent a merge/export from silently dropping or reclassifying Sportsman."""
+    def point_value(row):
+        return "" if row.get("points") is None else str(row["points"]).strip()
+    expected = {(r["hunt_code"], r["residency"], point_value(r)) for r in expected_rows}
+    actual_rows = [r for r in rows if r.get("draw_system_type") == SPORTSMAN_DRAW_SYSTEM_TYPE]
+    actual = [(r["hunt_code"], r["residency"], point_value(r)) for r in actual_rows]
+    if len(actual) != len(set(actual)) or set(actual) != expected:
+        raise ValueError(f"Sportsman output coverage mismatch: missing={sorted(expected - set(actual))}; extra={sorted(set(actual) - expected)}; duplicates={len(actual) - len(set(actual))}")
+    for row in actual_rows:
+        if row.get("residency") != "Resident" or point_value(row):
+            raise ValueError("Sportsman output must be resident-only with no point rung")
+        for field in ("p_bonus_pool", "p_random_pool", "p_preference_draw"):
+            if row.get(field) is not None and str(row[field]).strip():
+                raise ValueError(f"Sportsman output contains unrelated draw mechanic: {field}")

@@ -1,0 +1,40 @@
+{
+  "schema_version": "prediction-residency-certification.v1",
+  "published_date": "2026-09-22",
+  "acceptance_window": "2017_to_2018 through 2024_to_2025",
+  "policy": "Resident and Nonresident lanes are scored and gated independently wherever Utah publishes separate lanes. A passing combined score cannot conceal a failing residency lane.",
+  "cross_lane_borrowing_allowed": false,
+  "thresholds": {
+    "minimum_independent_following_year_folds": 2,
+    "minimum_joined_rows_per_residency_slice": 400,
+    "maximum_mae_percentage_points": 10,
+    "maximum_p90_absolute_error_percentage_points": 30,
+    "maximum_tail_rate_over_25_percentage_points": 0.1,
+    "maximum_false_guarantees": 0,
+    "required_unclassified_actual_gaps": 0
+  },
+  "certified_designs": {
+    "BONUS_LE_BIG_GAME": {
+      "Resident": {"rows": 26121, "mae_percentage_points": 8.402, "p90_percentage_points": 22.222, "tail_rate": 0.090617, "false_guarantees": 0, "unclassified_gaps": 0, "status": "ACCEPTED"},
+      "Nonresident": {"rows": 22423, "mae_percentage_points": 5.676, "p90_percentage_points": 10.345, "tail_rate": 0.055033, "false_guarantees": 0, "unclassified_gaps": 0, "status": "ACCEPTED"}
+    },
+    "BONUS_OIL_BIG_GAME": {
+      "Resident": {"rows": 12151, "mae_percentage_points": 3.567, "p90_percentage_points": 5.045, "tail_rate": 0.037445, "false_guarantees": 0, "unclassified_gaps": 0, "status": "ACCEPTED"},
+      "Nonresident": {"rows": 4983, "mae_percentage_points": 1.071, "p90_percentage_points": 0.759, "tail_rate": 0.010034, "false_guarantees": 0, "unclassified_gaps": 0, "status": "ACCEPTED"}
+    },
+    "BONUS_PLE_BIG_GAME": {
+      "Resident": {"rows": 1703, "mae_percentage_points": 2.465, "p90_percentage_points": 3.22, "tail_rate": 0.022314, "false_guarantees": 0, "unclassified_gaps": 0, "status": "ACCEPTED"},
+      "Nonresident": {"rows": 1228, "mae_percentage_points": 1.325, "p90_percentage_points": 0.475, "tail_rate": 0.015472, "false_guarantees": 0, "unclassified_gaps": 0, "status": "ACCEPTED"}
+    },
+    "PREFERENCE_GENERAL_SEASON_BUCK_DEER": {
+      "Resident": {"rows": 4202, "mae_percentage_points": 6.752, "p90_percentage_points": 21.324, "tail_rate": 0.070205, "false_guarantees": 0, "unclassified_gaps": 0, "status": "ACCEPTED"},
+      "Nonresident": {"rows": 3577, "mae_percentage_points": 6.746, "p90_percentage_points": 22.826, "tail_rate": 0.072966, "false_guarantees": 0, "unclassified_gaps": 0, "status": "ACCEPTED"}
+    }
+  },
+  "withheld_designs_unchanged": true,
+  "notes": [
+    "This supplemental review does not certify Bear, antlerless, CWMU, turkey, Dedicated Hunter, Sportsman or youth designs.",
+    "The 2025-to-2026 diagnostic is not part of this adopted certification window.",
+    "No prediction probability or official truth row was changed by this publication."
+  ]
+}

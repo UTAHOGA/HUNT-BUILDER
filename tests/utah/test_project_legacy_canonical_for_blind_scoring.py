@@ -28,7 +28,8 @@ def test_actual_cwmu_pool_is_resolved_from_species_and_sex_without_changing_valu
 
     assert cwmu_pool_from_actual_fields(row) == "cwmu_antlerless_deer"
     [projected] = expand_actual(row for row in [row])
-    assert projected["draw_system_type"] == "BONUS_CWMU_BIG_GAME"
+    assert projected["draw_system_type"] == "PREFERENCE_ANTLERLESS_DEER"
+    assert projected["draw_design"] == "PREFERENCE_ANTLERLESS_DEER"
     assert projected["draw_pool"] == "cwmu_antlerless_deer"
     assert projected["eligible_applicants"] == "40"
     assert projected["p_draw"] == "0"
@@ -56,6 +57,29 @@ def test_actual_premium_limited_entry_identity_is_preserved_from_official_hunt_n
     assert projected["hunt_class"] == "PREMIUM_LIMITED_ENTRY"
     assert projected["draw_pool"] == "MAX_WEIGHTED_SPLIT"
     assert projected["p_draw"] == "0.0185185185"
+
+
+def test_hyphenated_premium_limited_entry_identity_is_not_misrouted_as_ordinary_le() -> None:
+    row = {
+        "record_type": "POINT_ROW",
+        "hunt_code": "DB1007",
+        "hunt_name": "Multi-season Premium Limited-entry Buck Deer - Henry Mtns - Any Legal Weapon",
+        "species": "Deer",
+        "sex_type": "Buck",
+        "hunt_type": "L.E.",
+        "draw_design": "BONUS_LE_BIG_GAME",
+        "draw_pool": "LIMITED_ENTRY",
+        "resident_eligible_applicants": "54",
+        "resident_total_permits": "0",
+        "resident_p_draw": "0",
+    }
+
+    [projected] = expand_actual([row])
+
+    assert projected["draw_design"] == "BONUS_PLE_BIG_GAME"
+    assert projected["draw_system_type"] == "BONUS_PLE_BIG_GAME"
+    assert projected["hunt_class"] == "PREMIUM_LIMITED_ENTRY"
+    assert projected["draw_pool"] == "MAX_WEIGHTED_SPLIT"
 
 
 def test_cwmu_projection_preserves_source_derived_species_sex_pool() -> None:

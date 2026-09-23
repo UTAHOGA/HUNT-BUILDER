@@ -19,6 +19,13 @@ machine-generated registry:
 - `INSUFFICIENT_EVIDENCE`: the family lacks the required independent folds,
   joined rows, or complete gate evidence.
 
+For designs with separate resident and nonresident draw lanes, the same
+acceptance metrics are also computed independently for each residency. A
+combined design score cannot conceal a failing residency population. Full
+design promotion requires every applicable residency slice to pass; a future
+residency-limited publication must declare that scope explicitly in its
+registry and public contract.
+
 Raw `p_draw` fields remain available for development and blind scoring. A
 certification-aware public contract may expose future probability only through
 `certified_p_draw`, `certified_p_draw_mean`, or `certified_p_draw_pct`. Those
@@ -28,6 +35,15 @@ blocked when that contract is absent or violated.
 Bear limited-entry hunting and restricted pursuit remain separate
 certification populations. An untyped or combined `BEAR_DRAW` population
 cannot certify either program.
+
+The 2026-09-22 supplemental eight-fold review scored Resident and Nonresident
+lanes separately for all four certified designs. All eight residency/design
+slices pass the unchanged thresholds with zero false guarantees and zero
+unclassified official-actual gaps. The evidence is retained under
+`audits/prediction_release_candidates/residency_lane_acceptance_20260922/`.
+This adds a stricter publication gate; it does not change any forecast
+probability, certify another design, or admit the diagnostic 2025→2026 fold
+into the adopted acceptance window.
 
 The prior `guaranteed_at_*` fields remain temporary compatibility aliases.
 New materializations also emit `projected_draw_line_2025` and
@@ -97,6 +113,10 @@ payload or DATABASE.csv. Existing public permit-reference fields are preserved.
 - Historical evidence and projected lines remain visible for non-certified
   families without implying a certified future probability.
 - Certification is granted per draw design, never by aggregate score.
+- Resident and nonresident evidence is retained as separate acceptance slices;
+  neither lane inherits the other lane's accuracy result.
+- Public lookup must use the exact requested residency and must return no
+  prediction when that lane is absent; cross-residency fallback is prohibited.
 - Closing a coverage gap requires a source-backed classification or a real
   forecast; deleting or silently dropping the official actual is prohibited.
 - Upload, deployment, and production promotion still require Tyler's separate

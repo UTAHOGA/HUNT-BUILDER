@@ -156,3 +156,49 @@ def test_preference_success_is_not_misclassified_as_a_random_winner() -> None:
     assert result["p_prior_year_baseline"] == "0.010000"
     assert result["p_quota_adjusted"] == "0.010000"
     assert "PRIOR_RANDOM_WINNER_BASELINE_WITHHELD_FROM_CURRENT_FORECAST" not in result["reason_codes"]
+
+
+def test_missing_prior_row_does_not_turn_forecast_applicants_into_zero_success_history() -> None:
+    row = {
+        "hunt_code": "PD1000",
+        "residency": "Nonresident",
+        "points": "2",
+        "algorithm_status": "MODELED_PREFERENCE",
+        "p_preference_draw": "0.50",
+        "p_draw": "0.50",
+        "p_draw_mean": "0.50",
+        "applicants_at_level": "10",
+        "public_permits_2025": "1",
+        "public_permits_2026": "1",
+    }
+
+    result = mixed_row(row, None, None, BlendWeights())
+
+    assert result["p_prior_year_baseline"] == ""
+    assert result["p_quota_adjusted"] == ""
+    assert result["p_draw_mean"] == "0.500000"
+    assert "NO_EXACT_PRIOR_YEAR_ROW" in result["reason_codes"]
+
+
+def test_no_transition_evidence_stays_blank_even_when_prior_row_exists() -> None:
+    row = {
+        "hunt_code": "DA1000",
+        "residency": "Resident",
+        "points": "1",
+        "algorithm_status": "NO_TRANSITION_EVIDENCE",
+        "p_draw": "",
+        "p_draw_mean": "",
+        "public_permits_2025": "5",
+        "public_permits_2026": "5",
+    }
+    prior = {
+        "eligible_applicants": "10",
+        "regular_permits": "5",
+        "total_permits": "5",
+        "success_ratio": "0.5",
+    }
+
+    result = mixed_row(row, prior, None, BlendWeights())
+
+    assert result["p_draw"] == ""
+    assert result["p_draw_mean"] == ""

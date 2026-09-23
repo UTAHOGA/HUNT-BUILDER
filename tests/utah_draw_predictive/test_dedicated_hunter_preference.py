@@ -1,6 +1,7 @@
 from engine.utah_draw_predictive.dedicated_hunter import (
     MODEL_STRATEGY_NAME,
     STRATEGY_SPECS,
+    _official_quota_for_residency,
     build_preference_dedicated_hunter_predictions,
     is_modeled_dedicated_hunter_row,
 )
@@ -44,6 +45,36 @@ def test_build_preference_dedicated_hunter_predictions_returns_modeled_rows() ->
             "points": "2",
             "eligible_applicants": "3",
             "total_permits": "2",
+        },
+        {
+            "hunt_code": "DB1770",
+            "hunt_name": "Box Elder",
+            "species": "Deer",
+            "sex_type": "Buck",
+            "hunt_type": "General Season",
+            "hunt_class": "Dedicated Hunter",
+            "weapon": "Dedicated Hunter",
+            "year": "2024",
+            "draw_pool": "dedicated_hunter",
+            "residency": "Resident",
+            "points": "0",
+            "eligible_applicants": "20",
+            "total_permits": "17",
+        },
+        {
+            "hunt_code": "DB1770",
+            "hunt_name": "Box Elder",
+            "species": "Deer",
+            "sex_type": "Buck",
+            "hunt_type": "General Season",
+            "hunt_class": "Dedicated Hunter",
+            "weapon": "Dedicated Hunter",
+            "year": "2024",
+            "draw_pool": "dedicated_hunter",
+            "residency": "Resident",
+            "points": "1",
+            "eligible_applicants": "4",
+            "total_permits": "3",
         },
         {
             "hunt_code": "DB1770",
@@ -267,3 +298,25 @@ def test_dedicated_hunter_does_not_promote_legacy_allotment_to_current_quota() -
     )
 
     assert rows == []
+
+
+def test_current_total_does_not_mix_with_prior_year_residency_winners() -> None:
+    row = {
+        "draw_system_type": "PREFERENCE_DEDICATED_HUNTER_DEER",
+        "draw_pool": "dedicated_hunter",
+        "hunt_class": "Dedicated Hunter",
+        "permits_2026_total": "42",
+        "permits_2025_res": "159",
+        "permits_2025_nr": "14",
+    }
+
+    resident, resident_authority = _official_quota_for_residency(
+        row, "Resident", 2026, source_year=2025
+    )
+    nonresident, nonresident_authority = _official_quota_for_residency(
+        row, "Nonresident", 2026, source_year=2025
+    )
+
+    assert resident == 38
+    assert nonresident == 4
+    assert resident_authority == nonresident_authority == "OFFICIAL_10_PERCENT_TOTAL_ALLOCATION"

@@ -311,6 +311,39 @@
       ]
     }
   },
+  "residency_acceptance": {
+    "policy": "Resident and Nonresident lanes are scored and gated independently wherever official separate lanes exist; a passing combined design score cannot conceal a failing residency lane.",
+    "cross_lane_ladder_borrowing_allowed": false,
+    "acceptance_window": "2017_to_2018 through 2024_to_2025",
+    "evidence": {
+      "acceptance_by_draw_design": "audits/prediction_release_candidates/residency_lane_acceptance_20260922/acceptance_review/acceptance_by_draw_design.csv",
+      "acceptance_by_draw_design_sha256": "cacff07c4b3c61d55c13490bb0e558e3a8654e0b3c5e56331075ee53c8b34b6f",
+      "acceptance_by_draw_design_and_residency": "audits/prediction_release_candidates/residency_lane_acceptance_20260922/acceptance_review/acceptance_by_draw_design_and_residency.csv",
+      "acceptance_by_draw_design_and_residency_sha256": "847efbbe07fed707d342d7ad116f876d2752a53ff46515aad14975e524fedeef",
+      "acceptance_review_manifest": "audits/prediction_release_candidates/residency_lane_acceptance_20260922/acceptance_review/acceptance_review_manifest.json"
+    },
+    "designs": {
+      "BONUS_LE_BIG_GAME": {
+        "Resident": {"joined_rows": 26121, "mae": 0.08401708035820604, "p90_absolute_error": 0.222222, "tail_error_rate_over_25pp": 0.0906167451475824, "false_guarantee_rows": 0, "unclassified_actual_gap_rows": 0, "acceptance_status": "ACCEPTED"},
+        "Nonresident": {"joined_rows": 22423, "mae": 0.05675954343504883, "p90_absolute_error": 0.103448, "tail_error_rate_over_25pp": 0.05503277884315212, "false_guarantee_rows": 0, "unclassified_actual_gap_rows": 0, "acceptance_status": "ACCEPTED"}
+      },
+      "BONUS_OIL_BIG_GAME": {
+        "Resident": {"joined_rows": 12151, "mae": 0.035671884418179575, "p90_absolute_error": 0.050445, "tail_error_rate_over_25pp": 0.03744547773845774, "false_guarantee_rows": 0, "unclassified_actual_gap_rows": 0, "acceptance_status": "ACCEPTED"},
+        "Nonresident": {"joined_rows": 4983, "mae": 0.010708144588099539, "p90_absolute_error": 0.007594785960000008, "tail_error_rate_over_25pp": 0.010034115994380895, "false_guarantee_rows": 0, "unclassified_actual_gap_rows": 0, "acceptance_status": "ACCEPTED"}
+      },
+      "BONUS_PLE_BIG_GAME": {
+        "Resident": {"joined_rows": 1703, "mae": 0.024651245804697592, "p90_absolute_error": 0.03219599764, "tail_error_rate_over_25pp": 0.022313564298297124, "false_guarantee_rows": 0, "unclassified_actual_gap_rows": 0, "acceptance_status": "ACCEPTED"},
+        "Nonresident": {"joined_rows": 1228, "mae": 0.013250817204641694, "p90_absolute_error": 0.004754199999999999, "tail_error_rate_over_25pp": 0.015472312703583062, "false_guarantee_rows": 0, "unclassified_actual_gap_rows": 0, "acceptance_status": "ACCEPTED"}
+      },
+      "PREFERENCE_GENERAL_SEASON_BUCK_DEER": {
+        "Resident": {"joined_rows": 4202, "mae": 0.06752416839681104, "p90_absolute_error": 0.21324299683, "tail_error_rate_over_25pp": 0.07020466444550214, "false_guarantee_rows": 0, "unclassified_actual_gap_rows": 0, "acceptance_status": "ACCEPTED"},
+        "Nonresident": {"joined_rows": 3577, "mae": 0.06745548596471904, "p90_absolute_error": 0.22826086960000003, "tail_error_rate_over_25pp": 0.07296617277047805, "false_guarantee_rows": 0, "unclassified_actual_gap_rows": 0, "acceptance_status": "ACCEPTED"}
+      }
+    },
+    "accepted_slices": 8,
+    "rejected_slices": 0,
+    "new_designs_certified": []
+  },
   "families": {
     "BEAR_DRAW_UNCLASSIFIED_SUBTYPE": {
       "certification_status": "INSUFFICIENT_EVIDENCE",
@@ -488,6 +521,6 @@
     "PREFERENCE_GENERAL_SEASON_BUCK_DEER"
   ],
   "overall_certification_status": "NOT_CERTIFIED",
-  "publication_policy": "Only certified_p_draw fields from CERTIFIED designs may be presented as certified future draw probability.",
+  "publication_policy": "Only certified_p_draw fields from CERTIFIED designs whose applicable Resident and Nonresident acceptance slices also pass may be presented as certified future draw probability.",
   "line_semantics": "projected_draw_line fields are structural forecasts and never guarantees of a future draw."
 }

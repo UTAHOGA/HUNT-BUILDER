@@ -66,6 +66,8 @@ def certification_draw_design(row: dict[str, str]) -> str:
     """
 
     design = clean(row.get("draw_design_key"))
+    if clean(row.get('draw_pool_key')).startswith('youth_'):
+        return design + '__YOUTH_SOURCE_POOL'
     if design != "BEAR_DRAW":
         return design
     subtype = clean(row.get("bear_draw_subtype"))
@@ -165,6 +167,9 @@ def review_row(
         "hunt_code": hunt_code,
         "residency": residency,
         "points": points,
+        "draw_pool_key": clean(row.get("draw_pool_key")),
+        "algorithm_status": clean(row.get("algorithm_status")),
+        "prediction_row_number": clean(row.get("prediction_row_number")),
         "species": species,
         "predicted_probability": predicted,
         "actual_probability": actual,
@@ -176,6 +181,7 @@ def review_row(
 
 def load_draw_line_fold(fold: str, path: Path) -> list[dict[str, object]]:
     rows: list[dict[str, object]] = []
+    seen = set()
     for row in read_csv(path):
         if clean(row.get("scoring_decision")) != "score_probability":
             continue
@@ -183,6 +189,10 @@ def load_draw_line_fold(fold: str, path: Path) -> list[dict[str, object]]:
         actual = number(row.get("actual_probability"))
         if predicted is None or actual is None:
             continue
+        key = actual_gap_key(row)
+        if key in seen:
+            raise ValueError(f'{fold}: repeated official scoring key {key}; reconcile before acceptance')
+        seen.add(key)
         rows.append(
             review_row(
                 fold=fold,
@@ -209,7 +219,7 @@ def actual_gap_key(row: dict[str, str]) -> tuple[str, str, str, str, str]:
     )
 
 
-def load_actual_gap_fold(fold: str, path: Path) -> tuple[list[dict[str, object]], str]:
+def load_actual_gap_fold(fold: str, path: Path, classification_path_override: Path | None = None) -> tuple[list[dict[str, object]], str]:
     """Load scoreable official actuals that did not receive a prediction.
 
     ADR-0006 requires every non-joined official actual to be source-classified.
@@ -220,7 +230,7 @@ def load_actual_gap_fold(fold: str, path: Path) -> tuple[list[dict[str, object]]
     rows: list[dict[str, object]] = []
     if not path.exists():
         return rows, ""
-    classification_path = path.parent / "draw_line_aware_actual_gap_classifications.csv"
+    classification_path = classification_path_override or path.parent / "draw_line_aware_actual_gap_classifications.csv"
     classifications = {
         actual_gap_key(row): row
         for row in read_csv(classification_path)

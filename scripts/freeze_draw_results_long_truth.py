@@ -15,7 +15,7 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
-from rebuild_draw_results_long_from_canonical_yearly import canonical_files, read_header, union_header
+from rebuild_draw_results_long_from_canonical_yearly import canonical_files, read_header, stable_output_header
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,7 +34,10 @@ def sha256(path: Path) -> str:
 def main() -> int:
     files = canonical_files()
     headers = {path: read_header(path) for path in files}
-    expected_header = union_header(list(headers.values()))
+    # Match the owning builder: retain an established column order only when
+    # it is a unique, exact set match to the canonical union. Row/cell parity
+    # below remains strict; this does not excuse missing or duplicate columns.
+    expected_header = stable_output_header(list(headers.values()))
     errors: list[str] = []
     canonical_rows_by_year: Counter[str] = Counter()
     canonical_hashes: dict[str, str] = {}

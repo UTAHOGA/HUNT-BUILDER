@@ -90,6 +90,12 @@ def has_publishable_probability_basis(row: Mapping[str, object]) -> bool:
 
     if is_cwmu_operator_reference(row):
         return False
+    if clean(row.get("probability_publication_eligible")).upper() in {
+        "FALSE",
+        "0",
+        "NO",
+    }:
+        return False
     status = clean(row.get("status")).upper()
     if status == "DISPLAY ONLY - NO FORECASTED APPLICANT COHORT":
         return False

@@ -14,6 +14,10 @@ from typing import Any
 REPO = Path(__file__).resolve().parents[1]
 DEFAULT_REVIEW = REPO / "audits" / "prediction_blind_year_to_year" / "frozen_canonical_long_2017_2025_deterministic_20260906_current_identity_audited_bg_bear_subtype_reporting" / "acceptance_review"
 DEFAULT_OUTPUT = REPO / "governance" / "prediction-family-certification.json"
+RESIDENCY_REVIEW_NAMES = (
+    "acceptance_by_draw_design_and_residency.csv",
+    "acceptance_by_draw_design_residency.csv",
+)
 
 CERTIFIED = "CERTIFIED"
 EXPERIMENTAL = "EXPERIMENTAL_NOT_CERTIFIED"
@@ -123,23 +127,68 @@ def build_registry(review_dir: Path) -> dict[str, Any]:
     with csv_path.open("r", encoding="utf-8-sig", newline="") as handle:
         rows = list(csv.DictReader(handle))
 
+    residency_path = next(
+        (review_dir / name for name in RESIDENCY_REVIEW_NAMES if (review_dir / name).exists()),
+        None,
+    )
+    residency_rows: list[dict[str, str]] = []
+    if residency_path is not None:
+        with residency_path.open("r", encoding="utf-8-sig", newline="") as handle:
+            residency_rows = [
+                row
+                for row in csv.DictReader(handle)
+                if clean(row.get("residency")).lower() in {"resident", "nonresident"}
+            ]
+
+    residency_by_design: dict[str, dict[str, dict[str, Any]]] = {}
+    for row in residency_rows:
+        design = clean(row.get("draw_design"))
+        residency = clean(row.get("residency")).lower()
+        if not design or residency not in {"resident", "nonresident"}:
+            continue
+        lane_name = "Resident" if residency == "resident" else "Nonresident"
+        lanes = residency_by_design.setdefault(design, {})
+        if lane_name in lanes:
+            raise ValueError(f"Duplicate residency certification slice: {design} / {lane_name}")
+        failures = gate_failures(row, thresholds)
+        lanes[lane_name] = {
+            "fold_count": integer(row.get("fold_count")),
+            "joined_rows": integer(row.get("joined_rows")),
+            "mae": number(row.get("mae")),
+            "p90_absolute_error": number(row.get("p90_absolute_error")),
+            "tail_error_rate_over_25pp": number(row.get("tail_error_rate_over_25pp")),
+            "false_guarantee_rows": integer(row.get("false_guarantee_rows")),
+            "unclassified_actual_gap_rows": integer(row.get("unclassified_actual_gap_rows")),
+            "acceptance_status": "ACCEPTED" if not failures else "NOT_ACCEPTED",
+            "failure_reasons": ";".join(failures),
+        }
+
     families: dict[str, dict[str, Any]] = {}
     for row in rows:
         design = clean(row.get("draw_design"))
         if not design or design in families:
             raise ValueError(f"Invalid or duplicate certification design: {design!r}")
-        failures = gate_failures(row, thresholds)
-        recomputed_acceptance = "ACCEPTED" if not failures else "NOT_ACCEPTED"
-        # A legacy review can say ACCEPTED while omitting a newly enforced gate;
-        # that is evidence incompleteness, not evidence tampering.  All other
-        # disagreements stop the registry build.
+        design_failures = gate_failures(row, thresholds)
+        recomputed_design_acceptance = "ACCEPTED" if not design_failures else "NOT_ACCEPTED"
+        # The combined review reports only the combined design gates. Residency
+        # gates are applied below and may intentionally make the final registry
+        # stricter than the combined CSV's acceptance_status.
         reported = clean(row.get("acceptance_status"))
-        legacy_gap_only = failures == ["UNCLASSIFIED_ACTUAL_GAPS_NOT_REPORTED"] and reported == "ACCEPTED"
-        if reported and reported != recomputed_acceptance and not legacy_gap_only:
+        legacy_gap_only = design_failures == ["UNCLASSIFIED_ACTUAL_GAPS_NOT_REPORTED"] and reported == "ACCEPTED"
+        if reported and reported != recomputed_design_acceptance and not legacy_gap_only:
             raise ValueError(
                 f"Review acceptance status disagrees with recomputed gates for {design}: "
-                f"reported={reported} recomputed={recomputed_acceptance} failures={failures}"
+                f"reported={reported} recomputed={recomputed_design_acceptance} failures={design_failures}"
             )
+        failures = list(design_failures)
+        lanes = residency_by_design.get(design)
+        if lanes:
+            for required_lane in ("Resident", "Nonresident"):
+                if required_lane not in lanes:
+                    failures.append(f"RESIDENCY_SLICE_MISSING:{required_lane}")
+            for lane_name, lane in sorted(lanes.items()):
+                if lane["acceptance_status"] != "ACCEPTED":
+                    failures.append(f"RESIDENCY_SLICE_FAILED:{lane_name}")
         status = certification_status(failures)
         families[design] = {
             "certification_status": status,
@@ -155,23 +204,35 @@ def build_registry(review_dir: Path) -> dict[str, Any]:
         }
 
     certified = sorted(design for design, evidence in families.items() if evidence["certification_status"] == CERTIFIED)
+    evidence = {
+        "acceptance_by_draw_design": relative_or_absolute(csv_path),
+        "acceptance_by_draw_design_sha256": sha256(csv_path),
+        "acceptance_review_manifest": relative_or_absolute(manifest_path),
+        "acceptance_review_manifest_sha256": sha256(manifest_path),
+        "historical_truth_authority_gate": authority_gate,
+        "final_probability_gate": manifest.get("final_probability_gate", {"status": "NOT_PROVEN"}),
+    }
+    if residency_path is not None:
+        evidence.update({
+            "acceptance_by_draw_design_and_residency": relative_or_absolute(residency_path),
+            "acceptance_by_draw_design_and_residency_sha256": sha256(residency_path),
+        })
+
     return {
         "schema_version": "prediction-family-certification.v1",
         "registry_id": f"adr-0006-{sha256(csv_path)[:12]}",
         "certification_standard": clean(manifest.get("acceptance_standard")),
         "thresholds": thresholds,
-        "evidence": {
-            "acceptance_by_draw_design": relative_or_absolute(csv_path),
-            "acceptance_by_draw_design_sha256": sha256(csv_path),
-            "acceptance_review_manifest": relative_or_absolute(manifest_path),
-            "acceptance_review_manifest_sha256": sha256(manifest_path),
-            "historical_truth_authority_gate": authority_gate,
-            "final_probability_gate": manifest.get("final_probability_gate", {"status": "NOT_PROVEN"}),
+        "evidence": evidence,
+        "residency_acceptance": {
+            "policy": "Resident and Nonresident lanes are independently scored and gated wherever official separate lanes exist.",
+            "cross_lane_ladder_borrowing_allowed": False,
+            "designs": dict(sorted(residency_by_design.items())),
         },
         "families": dict(sorted(families.items())),
         "certified_designs": certified,
         "overall_certification_status": "CERTIFIED" if families and len(certified) == len(families) else "NOT_CERTIFIED",
-        "publication_policy": "Only certified_p_draw fields from CERTIFIED designs may be presented as certified future draw probability.",
+        "publication_policy": "Only certified_p_draw fields from CERTIFIED designs whose applicable residency slices also pass may be presented as certified future draw probability.",
         "line_semantics": "projected_draw_line fields are structural forecasts and never guarantees of a future draw.",
     }
 

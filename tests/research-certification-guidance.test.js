@@ -20,7 +20,7 @@ function load(relative, exports, overlay = false) {
   return { ...window.test, nodes };
 }
 
-const core = load('hunt-research.js', 'getCertificationGatedOdds,getCertificationDisplayStatus,getGuaranteedLinePoint,isGuaranteedLineRow,getPointCreepDisplay,getRecommendation,renderSummary,formatHistoricalDrawResult,historicalDrawBoundaryReason');
+const core = load('hunt-research.js', 'getCertificationGatedOdds,getCertificationDisplayStatus,getGuaranteedLinePoint,isGuaranteedLineRow,getPointCreepDisplay,getRecommendation,renderSummary,formatHistoricalDrawResult,historicalDrawBoundaryReason,getHarvestSuccessDisplay,getEngineRow,getEngineGroupFallbackRow,getLadderRows,indexData');
 const overlay = load('assets/js/research-outlook-dashboard.js', 'getSelectedOddsInfo,getGuaranteedLine,getPointTrend,getPointStatusLabel,dashboardHtml,applyCoreSnapshot,getSelection,findContext,comparableStatus,sourceDetails', true);
 const filters = { huntCode: 'BR1013', residency: 'Resident', points: 3, drawPool: 'standard' };
 const base = { hunt_code: 'BR1013', hunt_name: 'Bear pursuit', residency: 'Resident', points: 3,
@@ -75,3 +75,29 @@ assert.equal(overlay.getSelection().huntCode, 'BR1013');
 assert.equal(overlay.getSelectedOddsInfo(overlay.findContext(filters).selectedRow).percent, null, 'Never borrow another point rung');
 assert(!overlay.comparableStatus({ modeled_draw_probability: .99 }).includes('99'), 'Comparison cards cannot publish raw odds');
 assert(!overlay.sourceDetails(filters, { source_file: '2026/DATABASE.csv', source_page: '999' }, {}).includes('2026/DATABASE.csv'), 'Inherited catalog provenance is not historical draw evidence');
+
+core.indexData([{ ...base, points: 10, prediction_certification_status: 'CERTIFIED', certified_p_draw_mean: .9 }], [], [], []);
+assert.equal(core.getEngineGroupFallbackRow('BR1013', 'Resident', 'standard'), null, 'No borrowed draw rung when selected point is absent');
+const adult = { ...base, draw_pool: 'adult', certified_p_draw_mean: .2 };
+const youth = { ...base, draw_pool: 'youth', certified_p_draw_mean: .8 };
+core.indexData([adult, youth], [adult, youth], [], []);
+assert.equal(core.getLadderRows('BR1013', 'Resident', 'standard').length, 0, 'Ambiguous adult/youth pools must not silently fall back');
+assert.equal(core.getLadderRows('BR1013', 'Resident', 'other').length, 0, 'Explicit pool must not borrow another pool');
+assert.equal(core.getLadderRows('BR1013', 'Resident', 'youth')[0].certified_p_draw_mean, .8);
+const residentLane = { ...base, residency: 'Resident', draw_pool: 'standard', certified_p_draw_mean: .2 };
+const nonresidentLane = { ...base, residency: 'Nonresident', draw_pool: 'standard', certified_p_draw_mean: .8 };
+core.indexData([residentLane, nonresidentLane], [residentLane, nonresidentLane], [], []);
+assert.equal(core.getEngineRow('BR1013', 'Resident', 3, 'standard').certified_p_draw_mean, .2);
+assert.equal(core.getEngineRow('BR1013', 'Nonresident', 3, 'standard').certified_p_draw_mean, .8);
+assert.equal(core.getLadderRows('BR1013', 'Resident', 'standard')[0].residency, 'Resident');
+assert.equal(core.getLadderRows('BR1013', 'Nonresident', 'standard')[0].residency, 'Nonresident');
+core.indexData([residentLane], [residentLane], [], []);
+assert.equal(core.getEngineRow('BR1013', 'Nonresident', 3, 'standard'), null, 'Missing Nonresident row must remain missing');
+assert.equal(core.getLadderRows('BR1013', 'Nonresident', 'standard').length, 0, 'Missing Nonresident ladder must remain empty');
+assert.equal(core.getHarvestSuccessDisplay({}, {}, { success_percent: 100, success_ratio: 1, prior_year_success_rate: 1 }), 'Not available');
+assert.equal(core.getHarvestSuccessDisplay({}, { harvest_success_pct: 0.5 }, { success_percent: 100 }), '0.5%');
+assert.equal(core.getHarvestSuccessDisplay({}, { harvest_success_pct: 87 }, { success_percent: 1.8 }), '87%');
+const selected = { ...base, prediction_certification_status: 'CERTIFIED', certified_p_draw_mean: .2 };
+overlay.applyCoreSnapshot({ filters, summaryRow: selected, engineRows: [{ ...selected, certified_p_draw_mean: .8 }], ladderRows: [selected] });
+assert.equal(overlay.getSelectedOddsInfo(overlay.findContext(filters).selectedRow).percent, 20, 'Dashboard must use the core exact selected row, not conflicting summary data');
+console.log('Exact point/pool and harvest-source regression checks passed');

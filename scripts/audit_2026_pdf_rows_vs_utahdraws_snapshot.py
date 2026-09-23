@@ -116,6 +116,9 @@ def source_dimension_candidates(
         # DWR Planner record captured 2026-08-28: Kamas / General Buck Deer,
         # nonresident ladder 7/8, 3/3, 1/1, 1/1 at points 0-3.
         ("DB1592", "nonresident", "3"),
+        # User-supplied DWR Planner identity: DB1630 Boulder/Kaiparowits is
+        # General-Season Buck Deer, Restricted Muzzleloader (adult), not youth.
+        ("DB1630", "nonresident", "2"),
     }
     row_key = identity(canonical.get("hunt_code"), canonical.get("residency"), canonical.get("points"))
     if row_key in confirmed_adult_identities:
@@ -151,7 +154,15 @@ def main() -> None:
     for raw in read_csv(SNAPSHOT):
         raw_index[(identity(raw.get("HuntCode"), raw.get("residency_label"), raw.get("Point")), clean(raw.get("source_json_file")))].append(raw)
 
-    planner_index = {clean(row.get("hunt_code")).upper(): row for row in read_csv(PLANNER) if clean(row.get("fetch_status")) == "OK"}
+    planner_index = (
+        {
+            clean(row.get("hunt_code")).upper(): row
+            for row in read_csv(PLANNER)
+            if clean(row.get("fetch_status")) == "OK"
+        }
+        if PLANNER.exists()
+        else {}
+    )
     output: list[dict[str, str]] = []
     for canonical in read_csv(CANONICAL):
         if clean(canonical.get("source_dataset")) != "OFFICIAL_DWR_2026_PDF_DRAW_RESULTS":
@@ -217,6 +228,7 @@ def main() -> None:
         "comparison_identity": "hunt_code + residency + points + expected UtahDraws source package",
         "comparison_metrics": ["eligible_applicants == ParticipantCount", "successful_applicants == SuccessfulCount"],
         "planner_scope": "DWR Planner validates hunt identity/current quota context but is not applicant/success outcome truth.",
+        "planner_snapshot_present": PLANNER.exists(),
         "output_csv": OUT_CSV.relative_to(ROOT).as_posix(),
     }
     OUT_JSON.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")

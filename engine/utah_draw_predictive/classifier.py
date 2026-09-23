@@ -319,6 +319,15 @@ def classify_draw_system_type(row: Mapping[str, object]) -> str:
     if "cwmu" in text and hunt_class == "private":
         return "LANDOWNER_BIG_GAME"
     if "cwmu" in text:
+        # CWMU is an access overlay. Adult antlerless deer/elk/doe-pronghorn
+        # retain their official preference parent; eligible male big game uses
+        # the CWMU bonus/max-weighted design.
+        if ("doe" in text or sex_type in {"antlerless", "doe"}) and "pronghorn" in text:
+            return "PREFERENCE_DOE_PRONGHORN"
+        if ("antlerless" in text or sex_type in {"antlerless", "doe"}) and "deer" in text:
+            return "PREFERENCE_ANTLERLESS_DEER"
+        if ("antlerless" in text or sex_type in {"antlerless", "cow", "cow only"}) and "elk" in text:
+            return "PREFERENCE_ANTLERLESS_ELK"
         return "BONUS_CWMU_BIG_GAME"
     if existing_draw_system_type in LEGACY_BONUS_DRAW_DESIGNS:
         return _canonical_big_game_bonus_draw_system(row)
@@ -367,7 +376,11 @@ def classify_draw_system_type(row: Mapping[str, object]) -> str:
         or "capped permit" in text
     ):
         return "OTC_OR_REMAINING_TARGET"
-    if "restricted pursuit" in text or "extended archery" in text:
+    # Extended archery is a weapon/season descriptor, not a random draw design.
+    # DB0008 is explicitly a general-season buck deer draw (2026 Application
+    # Guidebook pp. 9/44 and typed UtahDraws preference-point endpoint). Let the
+    # existing general-deer/youth routing handle source-classified records.
+    if "restricted pursuit" in text:
         return "RANDOM_ONLY_TARGET"
 
     if "moose" in text and ("antlerless" in text or sex_type in {"antlerless", "cow", "cow only"}):
@@ -446,7 +459,7 @@ def resolve_algorithm_status(row: Mapping[str, object], draw_system_type: str | 
         return ALGORITHM_STATUS_MODELED_BONUS if is_modeled_youth_turkey_row(row) else ALGORITHM_STATUS_IN_SCOPE_MODEL_PENDING
     if draw_system_type == BEAR_DRAW_SYSTEM_TYPE:
         if (_clean(row.get("algorithm_status")) == "NO_TRANSITION_EVIDENCE"
-                and _clean(row.get("model_strategy")) == "bear_bonus_phase8"
+                and _clean(row.get("model_strategy")) in {"bear_bonus_phase8", "bear_bonus_phase9_candidate"}
                 and _clean(row.get("bear_draw_subtype")) in {LIMITED_ENTRY_BEAR_HUNT, RESTRICTED_BEAR_PURSUIT}):
             # Preserve the owner's evidence disposition, without attempting
             # to rediscover a new split code in an older draw-result PDF.

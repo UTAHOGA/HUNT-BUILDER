@@ -62,6 +62,8 @@ def test_restricted_and_limited_entry_rows_do_not_fall_through_or_become_availab
     {"hunt_name": "Sportsman Bison"}, {"species": "Bison"},
     {"residency": "Resident"}, {"bear_draw_subtype": bear.LIMITED_ENTRY_BEAR_HUNT},
     {"p_draw": "0.5"}, {"p_draw": 0}, {"hunt_code": "BR7000"},
+    {"certified_p_draw": 0}, {"p_draw_mean": "0.1"}, {"points": 0},
+    {"weapon": "Archery"}, {"hunt_type": "Limited Entry"},
 ])
 def test_availability_gate_rejects_cross_species_wrong_lane_program_or_probability(change):
     rows, _ = build(targets())
@@ -82,3 +84,40 @@ def test_builder_rejects_bison_template_as_bear_target():
     source[1].update(hunt_name="Sportsman Bison", species="Bison")
     with pytest.raises(ValueError, match="target identity"):
         build(source)
+
+
+def test_identity_gate_accepts_empty_non_availability_projection():
+    bear.validate_bear_availability_identity([], targets())
+
+
+def test_identity_gate_rejects_duplicate_target_metadata():
+    source = targets()
+    source.append(dict(source[-1]))
+    with pytest.raises(ValueError, match="Duplicate.*target"):
+        bear.validate_bear_availability_identity([], source)
+
+
+def test_identity_gate_rejects_conflicting_target_metadata():
+    source = targets()
+    source.append(dict(source[-1], hunt_name="Different unit"))
+    with pytest.raises(ValueError, match="Conflicting Bear availability target identity"):
+        bear.validate_bear_availability_identity([], source)
+
+
+def test_identity_gate_rejects_undocumented_explicit_availability_target():
+    source = targets() + [dict(hunt_code="BR9999", algorithm_status="MODELED_AVAILABILITY")]
+    with pytest.raises(ValueError, match="Invalid Bear availability target identity"):
+        bear.validate_bear_availability_identity([], source)
+
+
+def test_pursuit_inventory_counter_is_not_a_scored_sample_or_accuracy_claim():
+    ladders = {
+        (bear.RESTRICTED_BEAR_PURSUIT, 2020, "BR1008", "Resident"): {
+            1: {"eligible": 3}, 2: {"eligible": 0}},
+        (bear.LIMITED_ENTRY_BEAR_HUNT, 2020, "BR7000", "Resident"): {1: {"eligible": 8}},
+    }
+    assert bear._measured_pursuit_row_count(ladders) == 1
+    _, report = build(targets())
+    assert report['bear_400_plus_below_10pp_claim'] == 'UNVERIFIED'
+    assert report['candidate_behavior_acceptance_status'] == 'NOT_VALIDATED_NOT_FOR_PROMOTION'
+    assert report['restricted_pursuit_measured_row_count_basis'].endswith('NOT_SCORED_FORECASTS')

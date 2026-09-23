@@ -103,7 +103,13 @@ REQUIRED_FIELDS = [
     "reason_codes",
 ]
 
-NON_DRAW_STATUSES = {"MODELED_AVAILABILITY", "MODELED_ALLOCATION", "IN_SCOPE_MODEL_PENDING", "EXCLUDED_NOT_PREDICTIVE_DRAW"}
+NON_DRAW_STATUSES = {
+    "MODELED_AVAILABILITY",
+    "MODELED_ALLOCATION",
+    "IN_SCOPE_MODEL_PENDING",
+    "EXCLUDED_NOT_PREDICTIVE_DRAW",
+    "NO_TRANSITION_EVIDENCE",
+}
 PASSTHROUGH_PROBABILITY_STATUSES = {"MODELED_RANDOM_ONLY", "MODELED_SPORTSMAN_DRAW"}
 FAMILY_ENGINE_PROBABILITY_STATUSES = {
     "MODELED_BONUS",
@@ -298,8 +304,15 @@ def mixed_row(row: dict[str, str], prior: dict[str, str] | None, harvest: dict[s
     reasons: list[str] = []
     status = row.get("algorithm_status", "")
     is_draw_modeled = status not in NON_DRAW_STATUSES or status == "MODELED_SPORTSMAN_DRAW"
-    prior_row = prior or row
+    # A forecast row is not an observed prior-year result. Falling back to it
+    # fabricates zero prior success whenever it has projected applicants but no
+    # awarded-permit fields, which mechanically suppresses preference odds.
+    # Callers that intentionally materialize an observed ladder row already
+    # pass that row explicitly.
+    prior_row = prior if prior is not None else {}
     p_prior, prior_fields, prior_reasons = prior_year_baseline(prior_row)
+    if prior is None:
+        prior_reasons.append("NO_EXACT_PRIOR_YEAR_ROW")
     quota_fields, quota_reasons = quota_for_row(row)
     total_only_no_lane_quota = "NO_RESIDENCY_LANE_QUOTA" in quota_reasons
     no_published_no_quota = "NO_PUBLISHED_PERMIT_AUTHORITY" in quota_reasons

@@ -150,6 +150,8 @@ def main() -> int:
     parser.add_argument("--bonus-central-estimate", choices=["deterministic", "simulation_mean"], default="deterministic")
     parser.add_argument("--bonus-iterations", type=int, default=1)
     parser.add_argument("--final-probability-stage", action="store_true", help="Score the exact public post-family calculation, retaining both input and final forecasts.")
+    parser.add_argument("--all-family-final-stage", action="store_true", help="Apply mixed_row to every family, with no unavailable historical harvest or prior-row blend input.")
+    parser.add_argument("--exact-codes-only", action="store_true", help="Disable implicit current-year scorer identity bridges.")
     parser.add_argument("--reuse-family-predictions", action="store_true", help="Replay final calculation/scoring from the retained family forecasts; never regenerate or change their inputs.")
     parser.add_argument("--refresh-general-deer", action="store_true", help="Rebuild only general deer from source-only canonical history, retaining the original family CSV unchanged.")
     parser.add_argument("--bear-central-estimate", choices=["deterministic", "simulation_mean"], default="deterministic")
@@ -164,6 +166,8 @@ def main() -> int:
         default="off",
     )
     args = parser.parse_args()
+    if args.all_family_final_stage and not args.final_probability_stage:
+        parser.error("--all-family-final-stage requires --final-probability-stage")
     if args.source_end < args.source_start:
         raise SystemExit("--source-end must be at least --source-start")
     truth_year_paths = parse_year_paths(args.truth_year_file, "--truth-year-file")
@@ -247,7 +251,7 @@ def main() -> int:
                 source_predictions = list(csv.DictReader(handle))
             final_predictions = [
                 mixed_row(row, None, None, BlendWeights(), forecast_year=target_year)
-                if row.get("draw_system_type") in CORE_FINAL_PROBABILITY_DESIGNS else row
+                if args.all_family_final_stage or row.get("draw_system_type") in CORE_FINAL_PROBABILITY_DESIGNS else row
                 for row in source_predictions
             ]
             final_path = prediction_dir / "final_public_predictions.csv"
@@ -265,6 +269,9 @@ def main() -> int:
                 "historical_database_csv_read_count": 0,
                 "current_harvest_feature_read_count": 0,
                 "rows": len(final_predictions),
+                "scope": "ALL_FAMILIES" if args.all_family_final_stage else "CORE_DESIGNS_ONLY",
+                "prior_input_policy": "NONE_NO_UNVERIFIED_HISTORICAL_RUNTIME_PRIOR",
+                "harvest_input_policy": "NONE_NO_CURRENT_HARVEST_IN_HISTORICAL_FORECAST",
             }
             metadata_path = prediction_dir / "run_metadata.json"
             metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
@@ -284,6 +291,11 @@ def main() -> int:
                 str(source_year),
                 "--forecast-year",
                 str(target_year),
+                # Source-only scoring identity reconciliation counts an exact
+                # final key once and keeps the declared primary owner when an
+                # OIL or Sportsman fallback is also present.  It never selects
+                # a row from the held-out outcome.
+                "--reconcile-scoring-identities",
         ]
         if args.identity_crosswalk_dir is not None:
             prefix = (
@@ -313,6 +325,7 @@ def main() -> int:
                 str(source_year),
                 "--target-year",
                 str(target_year),
+                *(["--exact-codes-only"] if args.exact_codes_only else []),
             ]
         )
     return 0

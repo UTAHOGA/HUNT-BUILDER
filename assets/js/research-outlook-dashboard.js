@@ -336,6 +336,8 @@
   function applyCoreSnapshot(snapshot) {
     if (!snapshot || typeof snapshot !== "object") return;
     if (snapshot.filters) state.selection = { ...snapshot.filters };
+    state.selectedRow = snapshot.summaryRow || null;
+    state.displayContext = snapshot.displayContext || null;
     state.rows.engine = Array.isArray(snapshot.engineRows) ? snapshot.engineRows : [];
     state.rows.ladder = Array.isArray(snapshot.ladderRows) ? snapshot.ladderRows : [];
     state.rows.master = Array.isArray(snapshot.masterRows) ? snapshot.masterRows : [];
@@ -373,7 +375,12 @@
       .sort((a, b) => (num(b.points) ?? 0) - (num(a.points) ?? 0));
     const enginePoint = engineRows.find((row) => num(row.points) === selection.points) || null;
     // A different point rung or a summary is not the selected-point forecast.
-    const selectedRow = enginePoint || ladderPoint || {};
+    const corePoint = state.selectedRow
+      && normalizeCode(state.selectedRow.hunt_code) === selection.huntCode
+      && normalizeResidency(state.selectedRow.residency) === selection.residency
+      && normalizeDrawPool(state.selection?.drawPool) === selection.drawPool
+      && num(state.selectedRow.points) === selection.points ? state.selectedRow : null;
+    const selectedRow = corePoint || ladderPoint || enginePoint || {};
     const managementRows = Array.isArray(state.rows.management)
       ? state.rows.management.filter((row) => normalizeCode(row.hunt_code) === selection.huntCode)
       : [];
@@ -397,6 +404,7 @@
     const sourceRows = state.rows.outlook.length ? state.rows.outlook : state.rows.master;
     for (const row of sourceRows) {
       const code = normalizeCode(row.hunt_code);
+      if (!window.UOGA_HUNT_ELIGIBILITY?.isCurrent(code)) continue;
       if (!code || seen.has(code)) continue;
       if (normalizeResidency(row.residency) !== selection.residency) continue;
       if (hasValue(row.draw_pool) && normalizeDrawPool(row.draw_pool) !== selection.drawPool) continue;
@@ -441,9 +449,8 @@
   }
 
   function getHarvestSuccess(meta, reference, selectedRow) {
-    return firstValue(meta, ["harvest_success_pct", "success_percent", "harvest_success_percent_2025", "percent_harvest_success", "success_harvest"])
-      || firstValue(reference, ["harvest_success_percent_2025", "success_percent", "percent_harvest_success"])
-      || firstValue(selectedRow, ["success_ratio"]);
+    const keys = ["harvest_success_pct", "harvest_success_percent_2025", "percent_harvest_success_previous_hunting_season", "percent_harvest_success"];
+    return firstValue(reference, keys) || firstValue(meta, keys) || firstValue(selectedRow, keys);
   }
 
   function getAverageDays(meta, reference) {
@@ -776,12 +783,16 @@
     const title = meta?.hunt_name || selectedRow?.hunt_name || reference?.hunt_name || contract.hunt_name || selection.huntCode || "Selected hunt";
     const oddsInfo = getSelectedOddsInfo(selectedRow, ladderPoint, meta, contract);
     const odds = oddsInfo.percent;
-    const oddsDisplay = oddsInfo.display;
+    const sharedOdds = state.displayContext?.selectedOdds;
+    const oddsDisplay = sharedOdds && sharedOdds.percent === oddsInfo.percent
+      ? sharedOdds.value : oddsInfo.display;
     const averageAge = firstValue(contract, ["average_harvest_age"]) || getAge(meta, reference, selectedRow);
     const reportedThreeYearAge = firstValue(contract, ["average_harvest_age_3yr_reported"])
       || getReportedThreeYearAge(meta, reference, selectedRow);
     const currentAge = firstValue(contract, ["current_age_3yr_average"]) || getCurrentAge(meta, reference, selectedRow);
-    const harvestSuccess = firstValue(contract, ["harvest_success_pct"]) || getHarvestSuccess(meta, reference, selectedRow);
+    const harvestSuccess = getHarvestSuccess(meta, reference, selectedRow);
+    const harvestSuccessDisplay = state.displayContext?.harvestSuccess
+      || (num(harvestSuccess) === null ? 'Not available' : `${Number(num(harvestSuccess).toFixed(1))}%`);
     const avgDays = firstValue(contract, ["average_days_hunted"]) || getAverageDays(meta, reference);
     const hunterSatisfaction = firstValue(contract, ["hunter_satisfaction"])
       || getHunterSatisfaction(meta, reference, selectedRow);
@@ -872,7 +883,7 @@
           ${panel("Official DWR Field Evidence", `
             ${panelKicker("Official DWR source fields")}
             ${listRows([
-            metricRow(`${formatValue(contract.harvest_success_reported_year, "Most recent")} harvest success`, formatPercent(harvestSuccess)),
+            metricRow("Most recent mapped harvest success", harvestSuccessDisplay),
             metricRow("3-year average harvest success", formatPercent(contract.harvest_success_3yr_avg)),
             metricRow(`${formatValue(contract.average_days_hunted_reported_year, "Most recent")} average days hunted`, formatValue(avgDays)),
             metricRow(`${formatValue(contract.average_harvest_age_reported_year, "Most recent verified")} annual harvested age`, formatAge(averageAge)),
@@ -1240,6 +1251,10 @@
     }
 
     const selection = getSelection();
+    if (state.coreReady && selection.huntCode && !window.UOGA_HUNT_ELIGIBILITY?.isCurrent(selection.huntCode)) {
+      panel.innerHTML = '<p class="uoga-outlook-muted">Historical/reference record: not a verified current hunt choice. Original evidence remains in the research library.</p>';
+      return;
+    }
     if (!selection.huntCode) {
       panel.innerHTML = `
         <div class="uoga-outlook-dashboard">

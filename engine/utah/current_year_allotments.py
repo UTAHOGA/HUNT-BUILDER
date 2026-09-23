@@ -162,10 +162,15 @@ def apply_official_general_deer_regular_quotas(rows, source_path: Path, forecast
         official[code] = hunt
     source_hash = hashlib.sha256(source_path.read_bytes()).hexdigest()
     result, audit = [], []
+    matched_codes = set()
     for original in rows:
         row = dict(original)
         hunt = official.get(clean(row.get("hunt_code")))
         if hunt is not None:
+            code = clean(row.get("hunt_code"))
+            if code in matched_codes:
+                raise ValueError(f"Duplicate target general-deer code: {code}")
+            matched_codes.add(code)
             seasons = hunt.get("SeasonWeapons") or []
             name_pair = (norm(row.get("hunt_name")), norm(hunt.get("HuntName")))
             name_matches = name_pair[0] == name_pair[1] or name_pair == ("lasalmtns", "lasallasalmtns")
@@ -193,4 +198,68 @@ def apply_official_general_deer_regular_quotas(rows, source_path: Path, forecast
     return result, {"status": "PASS", "source": str(source_path), "sha256": source_hash,
                     "forecast_year": forecast_year, "source_eligible_hunts": len(official),
                     "matched_hunts": len(audit), "rows": audit,
+                    "residency_total_check": "PASS",
+                    "residency_total_check_count": len(audit),
                     "historical_use": "PROHIBITED", "drawing_outcomes_read": False}
+
+
+def export_current_deer_allocations(database_path: Path, source_path: Path,
+                                    output_dir: Path, forecast_year: int):
+    """Materialize current target rows with the existing opt-in quota feeder.
+
+    This is a local current-year input, not a new historical truth authority or
+    a prediction release. Protected inputs are never written. An existing
+    output directory is rejected rather than overwriting a prior review.
+    """
+    if output_dir.exists():
+        raise ValueError(f"Output directory already exists: {output_dir}")
+    with database_path.open(encoding="utf-8-sig", newline="") as handle:
+        original = list(csv.DictReader(handle))
+    enriched, audit = apply_official_general_deer_regular_quotas(
+        original, source_path, forecast_year)
+    codes = {row["hunt_code"] for row in audit["rows"]}
+    if not codes:
+        raise ValueError("No official current general-deer allocations to export")
+    selected = [row for row in enriched if clean(row.get("hunt_code")) in codes]
+    audit.update({
+        "database_identity_source": str(database_path),
+        "database_sha256": hashlib.sha256(database_path.read_bytes()).hexdigest(),
+        "publication_status": "LOCAL_CURRENT_TARGET_INPUT_ONLY",
+        "planner_fields_overwritten": False,
+        "historical_canonicals_changed": False,
+        "residency_rows": len(selected) * 2,
+    })
+    lanes = []
+    for row in selected:
+        for residency, key in (("Resident", "target_permits_res"),
+                               ("Nonresident", "target_permits_nr")):
+            lanes.append({"hunt_code": row["hunt_code"], "residency": residency,
+                          "draw_allocation": row[key],
+                          "draw_allocation_total": row["target_permits_total"],
+                          "scope": row["target_permits_scope"],
+                          "source_sha256": row["target_permits_source_sha256"]})
+    output_dir.mkdir(parents=True)
+    for name, data in (("current_general_deer_target_rows.csv", selected),
+                       ("current_general_deer_residency_rows.csv", lanes)):
+        path = output_dir / name
+        with path.open("w", encoding="utf-8", newline="") as handle:
+            writer = csv.DictWriter(handle, fieldnames=list(data[0]))
+            writer.writeheader()
+            writer.writerows(data)
+        audit.setdefault("outputs", {})[name] = {
+            "rows": len(data), "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+    (output_dir / "official_general_deer_regular_quota_audit.json").write_text(
+        json.dumps(audit, indent=2) + "\n", encoding="utf-8")
+    return audit
+
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description="Export official current general-deer residency allocations; no engine build or promotion.")
+    parser.add_argument("--database", type=Path, required=True)
+    parser.add_argument("--source", type=Path, required=True)
+    parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--forecast-year", type=int, required=True)
+    args = parser.parse_args()
+    report = export_current_deer_allocations(args.database, args.source, args.output_dir, args.forecast_year)
+    print(json.dumps({key: value for key, value in report.items() if key != "rows"}, indent=2))

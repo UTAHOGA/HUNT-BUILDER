@@ -1,7 +1,8 @@
-"""Phase 6 bonus-family predictive helpers for antlerless moose and ewe bighorn.
+"""Phase 6 bonus-family predictions for eligible public CWMU and special hunts.
 
-CWMU rows are retained in database/permit reconciliation surfaces, but they do
-not feed public draw-odds materialization.
+Only official public-draw CWMU ladders are modeled here.  Private-land,
+landowner, voucher, contact-operator, conservation, Expo, Sportsman, OTC, and
+youth/reference rows remain outside the public CWMU probability contract.
 """
 
 from __future__ import annotations
@@ -20,6 +21,12 @@ from .permit_accessors import target_residency_permit_allocation
 MODEL_STRATEGY_NAME = "bonus_special_phase6"
 BONUS_RULE_VERSION = "utah_bonus_special_v1.0.0"
 PHASE6_DRAW_SYSTEM_TYPES = {"BONUS_CWMU_BIG_GAME", "BONUS_ANTLERLESS_MOOSE", "BONUS_EWE_BIGHORN"}
+CWMU_ADULT_DRAW_POOLS = {
+    "cwmu_big_game_deer_buck",
+    "cwmu_big_game_elk_bull",
+    "cwmu_big_game_pronghorn_buck",
+    "cwmu_big_game_moose_bull",
+}
 
 
 def _clean(value: object) -> str:
@@ -109,7 +116,6 @@ def _is_ewe_bighorn(row: Mapping[str, object]) -> bool:
 
 
 def _is_cwmu_public(row: Mapping[str, object]) -> bool:
-    return False
     text = _joined_text(row)
     if "cwmu" not in text:
         return False
@@ -117,12 +123,68 @@ def _is_cwmu_public(row: Mapping[str, object]) -> bool:
         return False
     if _is_antlerless_moose(row) or _is_ewe_bighorn(row):
         return False
+    species = _clean_lower(row.get("species"))
+    sex = _clean_lower(row.get("sex_type"))
+    if species in {"deer", "elk", "pronghorn"} and any(
+        token in " ".join((text, sex)) for token in ("antlerless", "doe", "cow", "female")
+    ):
+        return False
     if any(token in text for token in ("private", "landowner", "voucher", "conservation", "expo", "sportsman", "remaining permit", "over the counter", " otc", "youth")):
         return False
     hunt_type = _clean_lower(row.get("hunt_type"))
     hunt_class = _clean_lower(row.get("hunt_class"))
-    draw_pool = _clean_lower(row.get("draw_pool"))
-    return hunt_type == "cwmu" and not any(token in hunt_class for token in ("private", "landowner", "voucher", "conservation", "expo", "sportsman")) and draw_pool in {"", "standard"}
+    draw_pool = _clean_lower(row.get("draw_pool")).replace("-", "_").replace(" ", "_")
+    allowed_pool = draw_pool in {
+        "",
+        "standard",
+        "max_weighted_split",
+        "cwmu",
+        "cwmu_big_game",
+        "cwmu_antlerless",
+        *CWMU_ADULT_DRAW_POOLS,
+    }
+    return (
+        hunt_type == "cwmu"
+        and not any(token in hunt_class for token in ("private", "landowner", "voucher", "contact operator", "conservation", "expo", "sportsman"))
+        and allowed_pool
+        and not draw_pool.startswith("cwmu_youth_")
+    )
+
+
+def _cwmu_adult_draw_pool(row: Mapping[str, object]) -> str:
+    """Return the source-backed adult CWMU pool identity for one row."""
+    raw = _clean_lower(row.get("draw_pool")).replace("-", "_").replace(" ", "_")
+    if raw in CWMU_ADULT_DRAW_POOLS:
+        return raw
+    if raw.startswith("cwmu_youth_"):
+        return ""
+
+    species = _clean_lower(row.get("species"))
+    text = _joined_text(row)
+    source_is_youth = _clean_lower(row.get("source_is_youth")) in {"true", "1", "yes", "y"}
+    if source_is_youth or "youth" in text:
+        return ""
+    antlerless = any(token in text for token in ("antlerless", "doe", "cow", "female", "either sex"))
+    male = any(token in text for token in ("buck", "bull", "male"))
+    if species == "deer":
+        return "" if antlerless else "cwmu_big_game_deer_buck"
+    if species == "elk":
+        return "" if antlerless else "cwmu_big_game_elk_bull"
+    if species == "pronghorn":
+        return "" if antlerless else "cwmu_big_game_pronghorn_buck"
+    if species == "moose" and (male or not antlerless):
+        return "cwmu_big_game_moose_bull"
+    return ""
+
+
+def _phase6_draw_pool(row: Mapping[str, object], draw_system_type: str) -> str:
+    if draw_system_type == "BONUS_CWMU_BIG_GAME":
+        return _cwmu_adult_draw_pool(row)
+    if draw_system_type == "BONUS_ANTLERLESS_MOOSE":
+        return "bonus_antlerless_moose"
+    if draw_system_type == "BONUS_EWE_BIGHORN":
+        return "bonus_ewe_bighorn"
+    return ""
 
 
 def _classify_phase6_family(row: Mapping[str, object]) -> str | None:
@@ -147,21 +209,39 @@ def _build_truth_ladders(
     truth_rows: Iterable[Mapping[str, object]],
     history_years: set[int],
 ) -> tuple[
-    dict[tuple[str, int, str, str], dict[int, dict[str, int]]],
-    dict[str, dict[str, str]],
-    dict[tuple[str, int], dict[str, int]],
+    dict[tuple[str, int, str, str, str], dict[int, dict[str, int]]],
+    dict[tuple[str, str], dict[str, str]],
+    dict[tuple[str, str, int], dict[str, int]],
     dict[str, int],
 ]:
-    ladders: dict[tuple[str, int, str, str], dict[int, dict[str, int]]] = defaultdict(
+    ladders: dict[tuple[str, int, str, str, str], dict[int, dict[str, int]]] = defaultdict(
         lambda: defaultdict(lambda: {"eligible": 0, "bonus": 0, "regular": 0, "total": 0})
     )
-    meta: dict[str, dict[str, str]] = {}
-    total_drawn_by_code_year: dict[tuple[str, int], dict[str, int]] = defaultdict(lambda: defaultdict(int))
+    meta: dict[tuple[str, str], dict[str, str]] = {}
+    total_drawn_by_code_year: dict[tuple[str, str, int], dict[str, int]] = defaultdict(lambda: defaultdict(int))
     private_cwmu_counter = 0
 
     for row in truth_rows:
-        year = _to_int(row.get("year"))
+        year = _to_int(
+            row.get("actual_draw_year")
+            or row.get("source_year")
+            or row.get("draw_year")
+            or row.get("year")
+        )
         if year not in history_years:
+            continue
+        # A hunt-total row summarizes the same official point ladder. Treating
+        # its blank point as zero duplicates both applicants and permits at the
+        # zero-point rung. Only physical point-level rows belong in a ladder.
+        record_type = _clean_lower(row.get("record_type") or row.get("row_type"))
+        raw_points = _clean(row.get("points"))
+        try:
+            numeric_points = float(raw_points)
+        except ValueError:
+            continue
+        if not numeric_points.is_integer() or numeric_points < 0:
+            continue
+        if record_type and "point" not in record_type:
             continue
         text = _joined_text(row)
         if "cwmu" in text and any(token in text for token in ("private", "landowner", "voucher")):
@@ -170,36 +250,53 @@ def _build_truth_ladders(
         draw_system_type = _classify_phase6_family(row)
         if not draw_system_type:
             continue
-        # Canonical source rows may retain their specific official pool name;
-        # it is still the same special-bonus family and must not be dropped
-        # merely because it is more specific than the legacy ``standard``.
-        allowed_pools = {
-            "BONUS_ANTLERLESS_MOOSE": {"", "standard", "antlerless_moose", "bonus_antlerless_moose"},
-            "BONUS_EWE_BIGHORN": {"", "standard", "ewe_bighorn", "bonus_ewe_bighorn"},
-            "BONUS_CWMU_BIG_GAME": {"", "standard", "cwmu_big_game", "cwmu_antlerless"},
-        }
-        if _clean_lower(row.get("draw_pool")) not in allowed_pools[draw_system_type]:
+        draw_pool = _phase6_draw_pool(row, draw_system_type)
+        if not draw_pool:
             continue
 
         hunt_code = _clean(row.get("hunt_code")).upper()
-        residency = _clean(row.get("residency")) or "Resident"
-        points = _to_int(row.get("points"))
-        eligible = _to_int(row.get("eligible_applicants"))
-        bonus = _to_int(row.get("bonus_permits"))
-        regular = _to_int(row.get("regular_permits"))
-        total = _to_int(row.get("total_permits"))
+        points = int(numeric_points)
 
         if not hunt_code:
             continue
 
-        ladders[(draw_system_type, year, hunt_code, residency)][points]["eligible"] += eligible
-        ladders[(draw_system_type, year, hunt_code, residency)][points]["bonus"] += bonus
-        ladders[(draw_system_type, year, hunt_code, residency)][points]["regular"] += regular
-        ladders[(draw_system_type, year, hunt_code, residency)][points]["total"] += total
-        total_drawn_by_code_year[(hunt_code, year)][residency] += total
+        published_residency = _clean(row.get("residency"))
+        if published_residency.lower().replace("-", "") in {"resident", "nonresident"}:
+            residency = "Nonresident" if published_residency.lower().replace("-", "") == "nonresident" else "Resident"
+            bonus = _to_int(row.get("bonus_permits"))
+            regular = _to_int(row.get("regular_permits"))
+            lane_values = [(
+                residency,
+                _to_int(row.get("eligible_applicants")),
+                bonus,
+                regular,
+                _to_int(row.get("total_permits")) or bonus + regular,
+            )]
+        else:
+            # Older official reports publish both residency lanes on one
+            # physical row.  Expand only their explicit DWR columns; never
+            # infer a residency split from the combined total.
+            lane_values = []
+            for residency, prefix in (("Resident", "resident"), ("Nonresident", "nonresident")):
+                bonus = _to_int(row.get(f"{prefix}_bonus_permits"))
+                regular = _to_int(row.get(f"{prefix}_regular_permits"))
+                lane_values.append((
+                    residency,
+                    _to_int(row.get(f"{prefix}_eligible_applicants")),
+                    bonus,
+                    regular,
+                    _to_int(row.get(f"{prefix}_total_permits")) or bonus + regular,
+                ))
 
-        if hunt_code not in meta:
-            meta[hunt_code] = {
+        for residency, eligible, bonus, regular, total in lane_values:
+            ladders[(draw_system_type, year, hunt_code, draw_pool, residency)][points]["eligible"] += eligible
+            ladders[(draw_system_type, year, hunt_code, draw_pool, residency)][points]["bonus"] += bonus
+            ladders[(draw_system_type, year, hunt_code, draw_pool, residency)][points]["regular"] += regular
+            ladders[(draw_system_type, year, hunt_code, draw_pool, residency)][points]["total"] += total
+            total_drawn_by_code_year[(hunt_code, draw_pool, year)][residency] += total
+
+        if (hunt_code, draw_pool) not in meta:
+            meta[(hunt_code, draw_pool)] = {
                 "hunt_name": _clean(row.get("hunt_name")),
                 "species": _clean(row.get("species")),
                 "hunt_type": _clean(row.get("hunt_type")),
@@ -211,21 +308,21 @@ def _build_truth_ladders(
 
 
 def _build_retention_and_zero_growth(
-    ladders: Mapping[tuple[str, int, str, str], dict[int, dict[str, int]]],
+    ladders: Mapping[tuple[str, int, str, str, str], dict[int, dict[str, int]]],
 ) -> tuple[dict[str, float], float]:
     retention_samples: dict[str, list[float]] = defaultdict(list)
     zero_growth_samples: list[float] = []
-    keys_by_family_code_res: dict[tuple[str, str, str], list[int]] = defaultdict(list)
-    for draw_system_type, year, hunt_code, residency in ladders:
-        keys_by_family_code_res[(draw_system_type, hunt_code, residency)].append(year)
+    keys_by_family_code_pool_res: dict[tuple[str, str, str, str], list[int]] = defaultdict(list)
+    for draw_system_type, year, hunt_code, draw_pool, residency in ladders:
+        keys_by_family_code_pool_res[(draw_system_type, hunt_code, draw_pool, residency)].append(year)
 
-    for (draw_system_type, hunt_code, residency), years in keys_by_family_code_res.items():
+    for (draw_system_type, hunt_code, draw_pool, residency), years in keys_by_family_code_pool_res.items():
         for prior_year in sorted(years):
             next_year = prior_year + 1
             if next_year not in years:
                 continue
-            prior = ladders[(draw_system_type, prior_year, hunt_code, residency)]
-            nxt = ladders[(draw_system_type, next_year, hunt_code, residency)]
+            prior = ladders[(draw_system_type, prior_year, hunt_code, draw_pool, residency)]
+            nxt = ladders[(draw_system_type, next_year, hunt_code, draw_pool, residency)]
             prior_zero = prior.get(0, {}).get("eligible", 0)
             next_zero = nxt.get(0, {}).get("eligible", 0)
             if prior_zero > 0:
@@ -356,6 +453,20 @@ def _forecast_quota_for_residency(
     return allocation.for_residency(residency)
 
 
+def _split_special_bonus_permits(public_quota: int, residency: str, draw_system_type: str):
+    """Apply the official one-permit public CWMU regular-pool rule.
+
+    Published CWMU ladders award a one-permit resident lane in the regular
+    weighted pool (for example DB1204 in the 2025 official result), rather
+    than as a max-point permit.  Larger CWMU pools and the other special bonus
+    families retain Utah's ordinary split.
+    """
+    split = split_utah_bonus_permits(public_quota, residency)
+    if draw_system_type == "BONUS_CWMU_BIG_GAME" and public_quota == 1:
+        return type(split)(publicPermits=1, maxPointPermits=0, randomPermits=1, randomOnly=True)
+    return split
+
+
 def _data_quality_flags(total_applicants: int, public_quota: int, max_point_permits: int, available_years: list[int]) -> list[str]:
     flags: list[str] = []
     if len(available_years) < 2:
@@ -398,23 +509,28 @@ def build_phase6_bonus_special_predictions(
         text = _joined_text(row)
         if "cwmu" in text and draw_system_type is None and any(token in text for token in ("private", "landowner", "voucher", "conservation", "expo", "sportsman", "remaining permit", "over the counter", " otc")):
             excluded_cwmu_nonpublic += 1
-        if draw_system_type and _clean(row.get("hunt_code")):
-            current_candidates.append((draw_system_type, row))
+        draw_pool = _phase6_draw_pool(row, draw_system_type) if draw_system_type else ""
+        if draw_system_type and draw_pool and _clean(row.get("hunt_code")):
+            current_candidates.append((draw_system_type, draw_pool, row))
 
-    current_rows_by_key = {(draw_system_type, _clean(row.get("hunt_code")).upper()): row for draw_system_type, row in current_candidates}
-    years_by_key: dict[tuple[str, str, str], list[int]] = defaultdict(list)
-    for draw_system_type, year, hunt_code, residency in ladders:
-        years_by_key[(draw_system_type, hunt_code, residency)].append(year)
+    current_rows_by_key = {
+        (draw_system_type, _clean(row.get("hunt_code")).upper(), draw_pool): row
+        for draw_system_type, draw_pool, row in current_candidates
+    }
+    years_by_key: dict[tuple[str, str, str, str], list[int]] = defaultdict(list)
+    for draw_system_type, year, hunt_code, draw_pool, residency in ladders:
+        years_by_key[(draw_system_type, hunt_code, draw_pool, residency)].append(year)
 
-    for (draw_system_type, hunt_code), db_row in sorted(current_rows_by_key.items()):
-        hunt_name = _clean(db_row.get("hunt_name")) or meta.get(hunt_code, {}).get("hunt_name", "")
-        species = _clean(db_row.get("species")) or meta.get(hunt_code, {}).get("species", "")
-        hunt_type = _clean(db_row.get("hunt_type")) or meta.get(hunt_code, {}).get("hunt_type", "")
-        weapon = _clean(db_row.get("weapon")) or meta.get(hunt_code, {}).get("weapon", "")
-        sex_type = _clean(db_row.get("sex_type")) or meta.get(hunt_code, {}).get("sex_type", "")
+    for (draw_system_type, hunt_code, draw_pool), db_row in sorted(current_rows_by_key.items()):
+        pool_meta = meta.get((hunt_code, draw_pool), {})
+        hunt_name = _clean(db_row.get("hunt_name")) or pool_meta.get("hunt_name", "")
+        species = _clean(db_row.get("species")) or pool_meta.get("species", "")
+        hunt_type = _clean(db_row.get("hunt_type")) or pool_meta.get("hunt_type", "")
+        weapon = _clean(db_row.get("weapon")) or pool_meta.get("weapon", "")
+        sex_type = _clean(db_row.get("sex_type")) or pool_meta.get("sex_type", "")
 
         for residency in ("Resident", "Nonresident"):
-            available_years = sorted(year for year in set(years_by_key.get((draw_system_type, hunt_code, residency), [])) if year in history_year_set)
+            available_years = sorted(year for year in set(years_by_key.get((draw_system_type, hunt_code, draw_pool, residency), [])) if year in history_year_set)
             latest_year = available_years[-1] if available_years else latest_source_year
             forecast_quota = _forecast_quota_for_residency(
                 db_row,
@@ -422,7 +538,7 @@ def build_phase6_bonus_special_predictions(
                 forecast_year,
                 source_year=latest_year,
             )
-            latest_ladder = ladders.get((draw_system_type, latest_year, hunt_code, residency), {})
+            latest_ladder = ladders.get((draw_system_type, latest_year, hunt_code, draw_pool, residency), {})
             prior_total = sum(int(values.get("total", 0)) for values in latest_ladder.values())
 
             if not available_years or forecast_quota <= 0:
@@ -439,7 +555,7 @@ def build_phase6_bonus_special_predictions(
                     "hunt_class": "CWMU" if draw_system_type == "BONUS_CWMU_BIG_GAME" else _clean(db_row.get("hunt_class")),
                     "residency": residency,
                     "points": "",
-                    "draw_pool": "standard",
+                    "draw_pool": draw_pool,
                     "public_permits_2025": prior_total,
                     "public_permits_2026": forecast_quota,
                     "p_preference_draw": "",
@@ -463,7 +579,7 @@ def build_phase6_bonus_special_predictions(
                 continue
 
             public_quota = forecast_quota
-            split = split_utah_bonus_permits(public_quota, residency)
+            split = _split_special_bonus_permits(public_quota, residency, draw_system_type)
             max_point_permits = split.maxPointPermits
             random_permits = split.randomPermits
             forecast_ladder = _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)
@@ -481,7 +597,7 @@ def build_phase6_bonus_special_predictions(
                     "hunt_class": "CWMU" if draw_system_type == "BONUS_CWMU_BIG_GAME" else _clean(db_row.get("hunt_class")),
                     "residency": residency,
                     "points": "",
-                    "draw_pool": "standard",
+                    "draw_pool": draw_pool,
                     "public_permits_2025": prior_total,
                     "public_permits_2026": public_quota,
                     "p_preference_draw": "",
@@ -534,7 +650,7 @@ def build_phase6_bonus_special_predictions(
                     "hunt_class": "CWMU" if draw_system_type == "BONUS_CWMU_BIG_GAME" else _clean(db_row.get("hunt_class")),
                     "residency": residency,
                     "points": str(points),
-                    "draw_pool": "standard",
+                    "draw_pool": draw_pool,
                     "public_permits_2025": prior_total,
                     "public_permits_2026": public_quota,
                     "max_point_permits_2025": "",
@@ -597,7 +713,7 @@ def build_phase6_bonus_special_predictions(
         "p_preference_draw_non_null_count": sum(1 for row in phase6_rows if _clean(row.get("p_preference_draw"))),
         "p_draw_outside_0_1_count": sum(1 for row in phase6_rows if _clean(row.get("p_draw")) and not (0.0 <= float(_clean(row.get("p_draw"))) <= 1.0)),
         "p_draw_pct_outside_0_100_count": sum(1 for row in phase6_rows if _clean(row.get("p_draw_pct")) and not (0.0 <= float(_clean(row.get("p_draw_pct"))) <= 100.0)),
-        "duplicate_key_count": len([(row.get("hunt_code"), row.get("residency"), row.get("points")) for row in phase6_rows]) - len({(row.get("hunt_code"), row.get("residency"), row.get("points")) for row in phase6_rows}),
+        "duplicate_key_count": len([(row.get("hunt_code"), row.get("draw_pool"), row.get("residency"), row.get("points")) for row in phase6_rows]) - len({(row.get("hunt_code"), row.get("draw_pool"), row.get("residency"), row.get("points")) for row in phase6_rows}),
         "source_years_used_non_null_count": sum(1 for row in phase6_rows if _clean(row.get("source_years_used"))),
         "data_quality_flags_summary": dict(data_quality_counter),
     }

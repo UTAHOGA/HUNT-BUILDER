@@ -55,6 +55,7 @@ const rootFiles = [
 ];
 
 const dataFiles = [
+  'data/hunt-eligibility-2026.json',
   'data/hunt-master-canonical-2026-foundation.json',
   'data/hunt-master-canonical-2026-source-of-truth.json',
   'data/runtime-manifest.json',

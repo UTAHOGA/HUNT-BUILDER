@@ -3,7 +3,9 @@
 The projection is an evaluator adapter, not a truth rewrite: it expands a
 frozen legacy point row's published resident/nonresident fields into two
 scoring lanes and reduces forecast draw-pool labels to the legacy canonical
-contract.  Probabilities and raw source values are not changed.
+contract. Forecast probabilities and raw source values are not changed.
+An explicit hash-linked endpoint audit can authorize filling missing observed
+frequencies in the scoring projection only; empty applicant rows stay empty.
 """
 
 from __future__ import annotations
@@ -12,7 +14,9 @@ import argparse
 import csv
 import hashlib
 import json
-from collections import Counter
+import math
+import sys
+from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -101,6 +105,16 @@ def cwmu_pool_from_actual_fields(row: dict[str, str]) -> str:
     return ""
 
 
+def cwmu_parent_design_from_actual_fields(row: dict[str, str]) -> str:
+    """Return the official parent design beneath the CWMU access overlay."""
+    pool = cwmu_pool_from_actual_fields(row)
+    return {
+        "cwmu_antlerless_deer": "PREFERENCE_ANTLERLESS_DEER",
+        "cwmu_antlerless_elk": "PREFERENCE_ANTLERLESS_ELK",
+        "cwmu_doe_pronghorn": "PREFERENCE_DOE_PRONGHORN",
+    }.get(pool, "BONUS_CWMU_BIG_GAME" if pool else "")
+
+
 def is_premium_limited_entry_actual(row: dict[str, str]) -> bool:
     text = " ".join(
         clean(row.get(field)).lower()
@@ -115,12 +129,82 @@ def is_premium_limited_entry_actual(row: dict[str, str]) -> bool:
             "source_file",
         )
     )
-    return any(token in text for token in ("premium le", "premium limited entry", "big game:premium"))
+    return any(
+        token in text
+        for token in ("premium le", "premium limited entry", "premium limited-entry", "big game:premium")
+    )
 
 
-def expand_actual(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+def verified_outcome_lines(audit_dir: Path, truth: Path, rows: list[dict[str, str]]) -> set[int]:
+    """Recheck retained endpoint evidence; never trust a prior PASS label alone."""
+    sys.path.insert(0, str(REPO))
+    from engine.utah.quality import build_source_mapping_and_hunt_crosswalk as source
+
+    summary = json.loads((audit_dir / 'summary.json').read_text(encoding='utf-8'))
+    relative = truth.resolve().relative_to(REPO).as_posix()
+    if summary['input_hashes'].get(relative) != sha256(truth):
+        raise ValueError('Outcome audit does not match frozen canonical hash')
+    _fields, evidence = read_csv(audit_dir / 'canonical_endpoint_probability_review.csv')
+    indices, accepted, seen = {}, set(), set()
+    for item in evidence:
+        if item['parity'] != 'ENDPOINT_POPULATED_FIELDS_MATCH':
+            continue
+        line = int(item['canonical_csv_line'])
+        if line in seen or not 2 <= line < len(rows) + 2:
+            raise ValueError('Invalid/duplicate canonical evidence line')
+        seen.add(line)
+        row = rows[line - 2]
+        for key in ('hunt_code', 'residency', 'points', 'source_is_youth'):
+            if item[key] != row.get(key, ''):
+                raise ValueError(f'Outcome evidence identity mismatch at line {line}')
+        endpoint = source.local(item['endpoint'])
+        if endpoint not in indices:
+            digest = sha256(endpoint)
+            if digest != item['endpoint_sha256'] or digest != summary['input_hashes'].get(source.rel(endpoint)):
+                raise ValueError(f'Endpoint evidence hash changed: {endpoint}')
+            indices[endpoint] = source.raw_endpoint_index(endpoint)
+        status, _ = source.endpoint_parity(row, indices[endpoint])
+        if status != 'ENDPOINT_POPULATED_FIELDS_MATCH':
+            raise ValueError(f'Endpoint numeric evidence no longer matches line {line}')
+        accepted.add(line)
+    return accepted
+
+
+def prepare_verified_outcome(row: dict[str, str]) -> dict[str, str]:
+    """Observed frequency only; never called on a forecast or unaudited row."""
+    item = dict(row)
+    if ('point' not in clean(row.get('record_type') or row.get('row_type')).lower()
+            or clean(row.get('scoring_allowed')).lower() in {'false', '0', 'no'}
+            or clean(row.get('source_is_youth')).lower() not in {'true', 'false'}
+            or not clean(row.get('source_file'))):
+        return item
+    design = clean(row.get('draw_design')).upper()
+    if set(design.split('_')) & {'REFERENCE', 'AVAILABILITY', 'ALLOCATION', 'OTC'}:
+        return item
+    # Preserve existing explicit outcomes, including zero and malformed values
+    # which require their own review. Never replace a probability to improve error.
+    probability_fields = ('actual_p', 'p_draw', 'p_draw_percent', 'total_p_draw', 'total_p_draw_percent',
+                          'resident_p_draw', 'resident_p_draw_percent', 'nonresident_p_draw', 'nonresident_p_draw_percent')
+    if any(clean(row.get(key)) for key in probability_fields):
+        return item
+    counts = [number(row.get(k)) for k in ('eligible_applicants', 'bonus_permits', 'regular_permits', 'total_permits')]
+    if any(n is None or not math.isfinite(n) or n < 0 or not n.is_integer() for n in counts):
+        return item
+    applicants, bonus, regular, awarded = counts
+    if applicants <= 0 or awarded > applicants or bonus + regular != awarded:
+        return item
+    if clean(row.get('successful_applicants')) and number(row['successful_applicants']) != awarded:
+        return item
+    probability = awarded / applicants
+    item['p_draw'] = f'{probability:.10f}'.rstrip('0').rstrip('.') if probability else '0'
+    item['p_draw_percent'] = f'{probability * 100:.8f}'.rstrip('0').rstrip('.') if probability else '0'
+    item['actual_probability_source'] = 'HASH_VERIFIED_ENDPOINT_COUNTS_AWARDS_DIVIDED_BY_APPLICANTS'
+    return item
+
+
+def expand_actual(rows: list[dict[str, str]], verified_lines: set[int] | None = None) -> list[dict[str, str]]:
     projected: list[dict[str, str]] = []
-    for row in rows:
+    for line, row in enumerate(rows, 2):
         if "POINT" not in clean(row.get("record_type") or row.get("row_type")).upper():
             continue
         # Lifetime-holder/reference rows can appear in a historical point table,
@@ -130,8 +214,9 @@ def expand_actual(rows: list[dict[str, str]]) -> list[dict[str, str]]:
         base = dict(row)
         cwmu_pool = cwmu_pool_from_actual_fields(base)
         if cwmu_pool:
-            base["draw_design"] = "BONUS_CWMU_BIG_GAME"
-            base["draw_system_type"] = "BONUS_CWMU_BIG_GAME"
+            parent_design = cwmu_parent_design_from_actual_fields(base)
+            base["draw_design"] = parent_design
+            base["draw_system_type"] = parent_design
             base["draw_pool"] = cwmu_pool
         elif is_premium_limited_entry_actual(base):
             base["draw_design"] = "BONUS_PLE_BIG_GAME"
@@ -139,6 +224,8 @@ def expand_actual(rows: list[dict[str, str]]) -> list[dict[str, str]]:
             base["hunt_class"] = "PREMIUM_LIMITED_ENTRY"
             base["draw_pool"] = "MAX_WEIGHTED_SPLIT"
         if clean(base.get("residency")):
+            if verified_lines is not None and line in verified_lines:
+                base = prepare_verified_outcome(base)
             projected.append(base)
             continue
         for residency, prefix in (("Resident", "resident"), ("Nonresident", "nonresident")):
@@ -223,6 +310,95 @@ def project_predictions(rows: list[dict[str, str]]) -> list[dict[str, str]]:
         item["draw_pool"] = legacy_pool(item)
         output.append(item)
     return output
+
+
+def dedicated_pool(row: dict[str, str]) -> str:
+    """Preserve the archived report/endpoint youth identity, not the code alone."""
+    flag = clean(row.get('source_is_youth')).lower()
+    text = ' '.join(clean(row.get(k)).lower() for k in
+                    ('source_family', 'source_scope', 'source_file', 'draw_pool', 'hunt_class', 'model_strategy'))
+    youth = flag == 'true' or (flag != 'false' and 'youth' in text)
+    return 'youth_dedicated_hunter' if youth else 'DEDICATED_HUNTER'
+
+
+def source_pool_identity(row: dict[str, str], family: str) -> str:
+    """Keep an explicit source youth dimension in the evaluator's pool key."""
+    if family == 'dedicated_hunter':
+        return dedicated_pool(row)
+    flag = clean(row.get('source_is_youth')).lower()
+    text = ' '.join(clean(row.get(k)).lower() for k in
+                    ('source_family', 'source_scope', 'source_file', 'draw_pool', 'hunt_class'))
+    youth = flag == 'true' or (flag != 'false' and 'youth' in text)
+    if not youth:
+        return clean(row.get('draw_pool'))
+    design = clean(row.get('draw_system_type') or row.get('draw_design')).upper()
+    if family in {'bonus_turkey', 'youth_turkey'} or design == 'BONUS_TURKEY':
+        return 'youth_turkey'
+    if family == 'bonus_cwmu_big_game' or 'CWMU' in design:
+        if clean(row.get('species')).lower() == 'turkey':
+            return 'youth_cwmu_turkey'
+        return clean(row.get('draw_pool'))  # species/sex/youth resolved separately
+    pools = {'PREFERENCE_GENERAL_SEASON_BUCK_DEER': 'youth_general_season_deer',
+             'YOUTH_GENERAL_DEER_RESERVE': 'youth_general_season_deer',
+             'PREFERENCE_ANTLERLESS_DEER': 'youth_antlerless_deer',
+             'PREFERENCE_ANTLERLESS_ELK': 'youth_antlerless_elk',
+             'PREFERENCE_DOE_PRONGHORN': 'youth_doe_pronghorn'}
+    return pools.get(design, clean(row.get('draw_pool')))
+
+
+def reconcile_scoring_identities(actual, forecasts):
+    """Source-only projection repair. Never select a forecast by its outcome.
+
+    OIL/Sportsman fallback is used only when the primary owner is absent.
+    An explicit blank primary also wins: a fallback must not bypass abstention.
+    Other same-key conflicts fail closed rather than choosing min/max/first.
+    """
+    sys.path.insert(0, str(REPO))
+    from tools.prediction_accuracy_backtest import score_full_engine_draw_line_aware as scorer
+    projected_actual = []
+    for row in actual:
+        item = dict(row)
+        item['draw_pool'] = source_pool_identity(item, scorer.family_from_actual(item))
+        projected_actual.append(item)
+    groups = defaultdict(list)
+    for line, row in enumerate(forecasts, 2):
+        item = dict(row)
+        item['draw_pool'] = source_pool_identity(item, item.get('family', ''))
+        key = scorer.prediction_alignment_key(item)[:5]
+        groups[key].append((line, item))
+    retained, decisions = [], []
+    for key, members in groups.items():
+        if len(members) == 1:
+            retained.extend(members)
+            continue
+        if all(row == members[0][1] for _, row in members[1:]):
+            retained.append(members[0])
+            decisions.extend(dict(draw_design=key[0], draw_pool=key[1], hunt_code=key[2],
+                residency=key[3], points=key[4], retained_csv_line=members[0][0], superseded_csv_line=n,
+                retained_algorithm_status=row.get('algorithm_status', ''),
+                superseded_algorithm_status=row.get('algorithm_status', ''),
+                retained_official_score_key=row.get('official_score_key_v2', ''),
+                superseded_official_score_key=row.get('official_score_key_v2', ''),
+                reason='IDENTICAL_FINAL_RECORD_COUNTED_ONCE') for n, row in members[1:])
+            continue
+        owners = {'bonus_oil_big_game': 'generic_big_game_bonus', 'sportsman': 'SPORTSMAN_RANDOM_ONLY'}
+        primary = [(n, r) for n, r in members if r.get('family') in owners
+                   and r.get('model_strategy') == owners[r['family']]]
+        fallback = [(n, r) for n, r in members if r.get('family') in owners
+                    and r.get('model_strategy') == r['family'] + '_source_backed_roll_forward']
+        if len(primary) != 1 or len(primary) + len(fallback) != len(members):
+            raise ValueError(f'Unresolved forecast identity collision: {key}; rows {[n for n, _ in members]}')
+        retained.extend(primary)
+        decisions.extend(dict(draw_design=key[0], draw_pool=key[1], hunt_code=key[2],
+                              residency=key[3], points=key[4], retained_csv_line=primary[0][0],
+                              superseded_csv_line=n, retained_algorithm_status=primary[0][1].get('algorithm_status', ''),
+                              superseded_algorithm_status=r.get('algorithm_status', ''),
+                              retained_official_score_key=primary[0][1].get('official_score_key_v2', ''),
+                              superseded_official_score_key=r.get('official_score_key_v2', ''),
+                              reason='PRIMARY_OWNER_PRESENT_FALLBACK_NOT_APPLICABLE')
+                         for n, r in fallback)
+    retained.sort(key=lambda pair: pair[0])
+    return projected_actual, [r for _, r in retained], decisions
 
 
 def load_reviewed_identity_crosswalk(path: Path) -> dict[str, list[dict[str, str]]]:
@@ -409,6 +585,10 @@ def main() -> int:
     parser.add_argument("--frozen-truth", type=Path, required=True)
     parser.add_argument("--frozen-forecast", type=Path, required=True)
     parser.add_argument("--out-dir", type=Path, required=True)
+    parser.add_argument('--verified-outcome-audit', type=Path,
+                        help='Hash-linked endpoint audit required to derive missing already-split observed outcomes.')
+    parser.add_argument('--reconcile-scoring-identities', action='store_true',
+                        help='Keep Dedicated Hunter youth separate and suppress OIL fallback where primary exists; audit every selection.')
     parser.add_argument(
         "--source-year",
         type=int,
@@ -427,8 +607,18 @@ def main() -> int:
     args = parser.parse_args()
     truth_fields, truth_rows = read_csv(args.frozen_truth)
     prediction_fields, prediction_rows = read_csv(args.frozen_forecast)
-    actual_projection = expand_actual(truth_rows)
+    verified_lines = verified_outcome_lines(args.verified_outcome_audit, args.frozen_truth, truth_rows) if args.verified_outcome_audit else None
+    actual_projection = expand_actual(truth_rows, verified_lines)
+    if any(row.get('actual_probability_source') for row in actual_projection):
+        truth_fields = list(dict.fromkeys([*truth_fields, 'actual_probability_source']))
     prediction_projection = project_predictions(prediction_rows)
+    identity_decisions = []
+    if args.reconcile_scoring_identities:
+        actual_projection, prediction_projection, identity_decisions = reconcile_scoring_identities(actual_projection, prediction_projection)
+        write_csv(args.out_dir / 'forecast_identity_resolution.csv',
+                  ['draw_design', 'draw_pool', 'hunt_code', 'residency', 'points', 'retained_csv_line',
+                   'superseded_csv_line', 'retained_algorithm_status', 'superseded_algorithm_status',
+                   'retained_official_score_key', 'superseded_official_score_key', 'reason'], identity_decisions)
     identity_crosswalk_report: dict[str, object] | None = None
     identity_crosswalk_contract: dict[str, object] | None = None
     if args.identity_crosswalk is not None:
@@ -467,7 +657,11 @@ def main() -> int:
             "actual_draw_year": actual_year,
         },
         "truth_values_changed": False,
+        "observed_outcomes_derived_in_projection": sum(bool(r.get('actual_probability_source')) for r in actual_projection),
+        "verified_outcome_audit": str(args.verified_outcome_audit) if args.verified_outcome_audit else None,
         "forecast_probabilities_changed": False,
+        "scoring_identity_reconciliation": args.reconcile_scoring_identities,
+        "superseded_fallback_rows": len(identity_decisions),
         "certification_eligible": (
             args.identity_crosswalk is None
             or bool(identity_crosswalk_contract and identity_crosswalk_contract["certification_eligible"])

@@ -1,0 +1,8 @@
+﻿DO NOT EDIT scripts/resolve-antlerless-hunt-codes-2026.py — it already passes 3/3 real-PDF (2b1b... 203 pages direct read, sha256 computed, dynamic reference count) + 4 failure-path checks and records blockers on failed runs. Leave it alone.
+
+Only score and certify engines into audit_output_phase1_candidate, preserve audit_output_real_final:
+1. Verify resolver untouched: git diff --stat scripts/resolve-antlerless-hunt-codes-2026.py must be 0
+2. Remove audit_output_phase1_candidate and run FROZEN scorer: python [STRIPPED 68 bytes].FROZEN.py --predictions processed_data/draw_reality_engine_predictive_v2.csv --truth data_truth/draw_results_truth/normalized/draw_results_long.csv --output-dir ./audit_output_phase1_candidate --target-year 2026 --source-year 2025 --families PREFERENCE_ANTLERLESS_DEER,PREFERENCE_DOE_PRONGHORN,PREFERENCE_ANTLERLESS_ELK,CWMU
+3. Run gallery/assess_cert.py and report MAE/P90/tail/false_guarantees for DEER/DOE/ELK/CWMU vs gates MAE<=10 P90<=30 tail<=10% rows>=400 false=0
+4. For ELK FAIL diagnose private-lands 5 codes + p=remaining/applicants + 0-point lane same-family without touching resolver
+5. Output cert_report.json with sha256s, do NOT promote to real_final yet

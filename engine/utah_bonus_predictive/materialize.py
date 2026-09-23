@@ -38,7 +38,7 @@ from engine.utah_draw_predictive.private_lands_antlerless_elk import (
     build_private_lands_antlerless_elk_predictions,
 )
 from engine.utah_draw_predictive.special_bonus import PHASE6_DRAW_SYSTEM_TYPES, build_phase6_bonus_special_predictions
-from engine.utah_draw_predictive.sportsman import SPORTSMAN_DRAW_SYSTEM_TYPE, build_sportsman_predictions
+from engine.utah_draw_predictive.sportsman import SPORTSMAN_DRAW_SYSTEM_TYPE, build_sportsman_predictions, validate_sportsman_output_coverage
 from engine.utah_draw_predictive.turkey import (
     TURKEY_DRAW_SYSTEM_TYPE,
     YOUTH_TURKEY_DRAW_SYSTEM_TYPE,
@@ -2159,6 +2159,8 @@ def materialize_outputs(
     )
 
     ml_predictions_path = output_dir / "ml_draw_predictions_v1.csv"
+    validate_sportsman_output_coverage(prediction_rows, sportsman_rows)
+    validate_sportsman_output_coverage(successor_rows, sportsman_rows)
     prediction_fields = list(dict.fromkeys(prediction_fields + [key for row in prediction_rows for key in row]))
     write_csv(ml_predictions_path, prediction_rows, prediction_fields)
 

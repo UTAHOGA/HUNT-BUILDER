@@ -3,6 +3,7 @@ import hashlib
 import re
 import urllib.request
 from pathlib import Path
+from urllib.parse import urlsplit
 
 
 def _repo_root() -> Path:
@@ -28,6 +29,18 @@ def safe_name(s: str) -> str:
 
 def full_url(href: str) -> str:
     return href if href.startswith("http") else f"https://wildlife.utah.gov{href}"
+
+
+def existing_official_archive(raw_root: Path, year: str, url: str) -> Path | None:
+    """Return the retained official archive copy instead of creating an alias."""
+    basename = Path(urlsplit(url).path).name
+    archive = raw_root / year / "pdf" / "draw_odds" / "official_dwr_archive"
+    matches = sorted(archive.rglob(basename)) if archive.exists() else []
+    if len(matches) > 1:
+        hashes = {hashlib.sha256(path.read_bytes()).hexdigest() for path in matches}
+        if len(hashes) > 1:
+            raise RuntimeError(f"Conflicting official archive copies for {year}/{basename}")
+    return matches[0] if matches else None
 
 
 def infer_publish_year(href: str) -> int | None:
@@ -94,6 +107,11 @@ def main() -> None:
         pref = hashlib.sha1(url.encode("utf-8")).hexdigest()[:8]
         fname = safe_name(f"{pref}__{sp}_{Path(r['href']).name}")
         dest = dest_dir / fname
+        archived = existing_official_archive(RAW_ROOT, year, url)
+        if archived is not None:
+            skipped += 1
+            dlog.append({**r, "status": "skipped_official_archive_exists", "dest_path": str(archived)})
+            continue
         if dest.exists():
             skipped += 1
             dlog.append({**r, "status": "skipped_exists", "dest_path": str(dest)})

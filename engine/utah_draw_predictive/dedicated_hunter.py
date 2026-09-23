@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections import defaultdict
-from statistics import mean
+from statistics import median
 from typing import Iterable, Mapping
 import re
 
@@ -22,7 +22,7 @@ from .preference_ladder_normalizer import normalize_preference_ladder_rows
 
 MODEL_STRATEGY_NAME = "preference_dedicated_hunter_deer"
 YOUTH_MODEL_STRATEGY_NAME = "preference_youth_dedicated_hunter_deer"
-PREFERENCE_RULE_VERSION = "utah_preference_dedicated_hunter_deer_v1.0.0"
+PREFERENCE_RULE_VERSION = "utah_preference_dedicated_hunter_deer_v1.1.0"
 DEDICATED_HUNTER_POOL = "dedicated_hunter"
 YOUTH_DEDICATED_HUNTER_POOL = "youth_dedicated_hunter"
 PREFERENCE_TAIL_FLOOR = 0.001
@@ -31,6 +31,10 @@ PREFERENCE_TAIL_CEILING = 0.995
 # probability lift improves MAE. A broad +0.35 lift overpredicted this family.
 PREFERENCE_REPO_HOLDOUT_BIAS_CORRECTION = 0.0
 TAIL_CALIBRATION_REASON = "PREFERENCE_TAIL_CALIBRATED_FROM_REPO_BACKTEST"
+NO_TRANSITION_EVIDENCE_REASON = "NO_PROGRAM_RESIDENCY_TRANSITION_EVIDENCE"
+THREE_YEAR_ENROLLMENT_PROXY_REASON = "SOURCE_ONLY_THREE_YEAR_ENROLLMENT_EXPIRATION_PROXY"
+NO_EXPIRING_COHORT_REASON = "NO_THREE_YEAR_ENROLLMENT_EXPIRATION_EVIDENCE"
+DEDICATED_HUNTER_MINIMUM_LANE_REASON = "OFFICIAL_DEDICATED_HUNTER_MINIMUM_ONE_PER_RESIDENCY"
 
 
 STRATEGY_SPECS = [
@@ -265,9 +269,15 @@ def _build_truth_ladders(
 
 def _build_retention_and_zero_growth(
     ladders: Mapping[tuple[str, int, str, str], dict[int, dict[str, int]]],
-) -> tuple[dict[str, float], float]:
-    retention_samples: dict[str, list[float]] = defaultdict(list)
-    zero_growth_samples: list[float] = []
+) -> tuple[
+    dict[tuple[str, str, str], float],
+    dict[tuple[str, str], float],
+    dict[tuple[str, str], int],
+]:
+    """Estimate source-only transitions separately by program and residency."""
+    retention_samples: dict[tuple[str, str, str], list[float]] = defaultdict(list)
+    zero_growth_samples: dict[tuple[str, str], list[float]] = defaultdict(list)
+    transition_evidence_count: dict[tuple[str, str], int] = defaultdict(int)
     keys_by_lane_code_res: dict[tuple[str, str, str], list[int]] = defaultdict(list)
     for lane, year, hunt_code, residency in ladders:
         keys_by_lane_code_res[(lane, hunt_code, residency)].append(year)
@@ -279,17 +289,26 @@ def _build_retention_and_zero_growth(
                 continue
             prior = ladders[(lane, prior_year, hunt_code, residency)]
             nxt = ladders[(lane, next_year, hunt_code, residency)]
+            transition_observed = False
             prior_zero = prior.get(0, {}).get("eligible", 0)
             next_zero = nxt.get(0, {}).get("eligible", 0)
             if prior_zero > 0:
-                zero_growth_samples.append(max(0.25, min(2.0, next_zero / prior_zero)))
+                zero_growth_samples[(lane, residency)].append(
+                    max(0.25, min(2.0, next_zero / prior_zero))
+                )
+                transition_observed = True
             for points, values in prior.items():
                 unsuccessful = max(values["eligible"] - values["drawn"], 0)
                 if unsuccessful <= 0:
                     continue
                 band = _band_for_points(points)
                 next_count = nxt.get(points + 1, {}).get("eligible", 0)
-                retention_samples[band].append(max(0.0, min(1.25, next_count / unsuccessful)))
+                retention_samples[(lane, residency, band)].append(
+                    max(0.0, min(1.25, next_count / unsuccessful))
+                )
+                transition_observed = True
+            if transition_observed:
+                transition_evidence_count[(lane, residency)] += 1
 
     default_retention = {
         "0": 0.80,
@@ -299,12 +318,98 @@ def _build_retention_and_zero_growth(
         "6_9": 0.95,
         "10_plus": 0.97,
     }
-    retention_by_band: dict[str, float] = {}
-    for band, fallback in default_retention.items():
-        samples = retention_samples.get(band, [])
-        retention_by_band[band] = round(mean(samples), 4) if samples else fallback
-    zero_growth = round(mean(zero_growth_samples), 4) if zero_growth_samples else 1.0
-    return retention_by_band, zero_growth
+    retention_by_lane_band: dict[tuple[str, str, str], float] = {}
+    zero_growth_by_lane: dict[tuple[str, str], float] = {}
+    lane_keys = {(lane, residency) for lane, _year, _hunt_code, residency in ladders}
+    for lane, residency in lane_keys:
+        for band, fallback in default_retention.items():
+            samples = retention_samples.get((lane, residency, band), [])
+            retention_by_lane_band[(lane, residency, band)] = (
+                round(median(samples), 4) if samples else fallback
+            )
+        samples = zero_growth_samples.get((lane, residency), [])
+        zero_growth_by_lane[(lane, residency)] = round(median(samples), 4) if samples else 1.0
+    return retention_by_lane_band, zero_growth_by_lane, dict(transition_evidence_count)
+
+
+def _build_exact_lane_transition_profiles(
+    ladders: Mapping[tuple[str, int, str, str], dict[int, dict[str, int]]],
+) -> tuple[
+    dict[tuple[str, str, str, str], float],
+    dict[tuple[str, str, str], float],
+]:
+    """Return robust hunt/residency rates only after two observed transitions."""
+    retention_samples: dict[tuple[str, str, str, str], list[float]] = defaultdict(list)
+    zero_growth_samples: dict[tuple[str, str, str], list[float]] = defaultdict(list)
+    years_by_lane: dict[tuple[str, str, str], set[int]] = defaultdict(set)
+    for lane, year, hunt_code, residency in ladders:
+        years_by_lane[(lane, hunt_code, residency)].add(year)
+
+    for lane_key, years in years_by_lane.items():
+        lane, hunt_code, residency = lane_key
+        for prior_year in sorted(years):
+            next_year = prior_year + 1
+            if next_year not in years:
+                continue
+            prior = ladders[(lane, prior_year, hunt_code, residency)]
+            nxt = ladders[(lane, next_year, hunt_code, residency)]
+            prior_zero = prior.get(0, {}).get("eligible", 0)
+            if prior_zero > 0:
+                zero_growth_samples[lane_key].append(
+                    max(0.25, min(2.0, nxt.get(0, {}).get("eligible", 0) / prior_zero))
+                )
+            for points, values in prior.items():
+                unsuccessful = max(values["eligible"] - values["drawn"], 0)
+                if unsuccessful <= 0:
+                    continue
+                band = _band_for_points(points)
+                retention_samples[(*lane_key, band)].append(
+                    max(0.0, min(1.25, nxt.get(points + 1, {}).get("eligible", 0) / unsuccessful))
+                )
+
+    return (
+        {
+            key: round(median(samples), 4)
+            for key, samples in retention_samples.items()
+            if len(samples) >= 2
+        },
+        {
+            key: round(median(samples), 4)
+            for key, samples in zero_growth_samples.items()
+            if len(samples) >= 2
+        },
+    )
+
+
+def _lane_transition_profile(
+    lane: str,
+    hunt_code: str,
+    residency: str,
+    retention_by_lane_band: Mapping[tuple[str, str, str], float],
+    zero_growth_by_lane: Mapping[tuple[str, str], float],
+    exact_retention_by_lane_band: Mapping[tuple[str, str, str, str], float],
+    exact_zero_growth_by_lane: Mapping[tuple[str, str, str], float],
+) -> tuple[dict[str, float], float]:
+    defaults = {
+        "0": 0.80,
+        "1": 0.84,
+        "2_3": 0.88,
+        "4_5": 0.91,
+        "6_9": 0.95,
+        "10_plus": 0.97,
+    }
+    retention = {
+        band: exact_retention_by_lane_band.get(
+            (lane, hunt_code, residency, band),
+            retention_by_lane_band.get((lane, residency, band), fallback),
+        )
+        for band, fallback in defaults.items()
+    }
+    zero_growth = exact_zero_growth_by_lane.get(
+        (lane, hunt_code, residency),
+        zero_growth_by_lane.get((lane, residency), 1.0),
+    )
+    return retention, zero_growth
 
 
 def _preference_probability(quota: int, applicants_above: int, applicants_at_level: int) -> float:
@@ -390,10 +495,14 @@ def _official_quota_for_residency(
     forecast_year: int,
     source_year: int | None = None,
 ) -> tuple[int | None, str]:
+    target_total = target_permit_total(row, forecast_year, source_year=None).value
     allocation = target_residency_permit_allocation(
         row,
         forecast_year,
-        source_year=source_year,
+        # A current target total must never be combined with a prior year's
+        # resident/nonresident winner counts. When the target row is total-
+        # only, apply the declared current allocation rule to that total.
+        source_year=None if target_total > 0 else source_year,
         draw_system_type="PREFERENCE_DEDICATED_HUNTER_DEER",
     )
     if not allocation.supported:
@@ -417,9 +526,11 @@ def _forecast_applicant_ladder(
             int(latest_ladder.get(points - 1, {}).get("eligible", 0)) - int(latest_ladder.get(points - 1, {}).get("drawn", 0)),
             0,
         )
+        # The observed transition ratio already measures the complete next-
+        # year cohort at points+1. Adding a fixed share of the prior same-point
+        # stack double-counts switchers and inflates the cutoff demand.
         retained = unsuccessful_prior * retention_by_band.get(_band_for_points(points - 1), 0.85)
-        switch_proxy = int(latest_ladder.get(points, {}).get("eligible", 0)) * 0.08
-        forecast[points] = _round_count(retained + switch_proxy)
+        forecast[points] = _round_count(retained)
 
     # Preserve the zero-tail rows so the forecast keeps the same table shape as
     # the official source PDFs. Dedicated Hunter pages frequently include upper
@@ -439,7 +550,12 @@ def build_preference_dedicated_hunter_predictions(
         return [_skipped_no_history_row(forecast_year)]
     latest_source_year = max(history_year_set)
     ladders, truth_meta, total_drawn_by_code_year = _build_truth_ladders(truth_rows_list, history_year_set)
-    retention_by_band, zero_growth = _build_retention_and_zero_growth(ladders)
+    retention_by_lane_band, zero_growth_by_lane, transition_evidence_count = (
+        _build_retention_and_zero_growth(ladders)
+    )
+    exact_retention_by_lane_band, exact_zero_growth_by_lane = (
+        _build_exact_lane_transition_profiles(ladders)
+    )
 
     rows: list[dict[str, object]] = []
     current_dedicated_rows = [
@@ -544,8 +660,65 @@ def build_preference_dedicated_hunter_predictions(
 
             latest_ladder = ladders.get((lane, code_latest_source_year, hunt_code, residency), {})
             prior_total = sum(int(values["drawn"]) for values in latest_ladder.values())
+            # The three-season certificate term affects the program's active-
+            # enrollment cap, but the number of certificates that happened to
+            # be awarded three drawings ago is not an official allocation for
+            # this drawing.  Historical folds therefore use only the latest
+            # source-year official draw allocation for this exact program and
+            # residency lane.  The held-out target-year allocation remains
+            # unavailable to the forecast.
+            expiring_proxy_missing = False
             forecast_quota = official_quota if official_quota is not None else 0
             if forecast_quota <= 0:
+                if expiring_proxy_missing:
+                    for points in sorted(int(point) for point in latest_ladder):
+                        rows.append(
+                            {
+                                "model_version": MODEL_VERSION,
+                                "rule_version": PREFERENCE_RULE_VERSION,
+                                "year": str(forecast_year),
+                                "forecast_year": str(forecast_year),
+                                "hunt_code": hunt_code,
+                                "hunt_name": hunt_name,
+                                "species": species,
+                                "sex_type": "Buck",
+                                "hunt_type": hunt_type,
+                                "hunt_class": hunt_class,
+                                "residency": _output_residency(residency),
+                                "points": str(points),
+                                "draw_pool": lane,
+                                "public_permits_2025": prior_total,
+                                "public_permits_2026": "",
+                                "p_preference_draw": "",
+                                "p_bonus_pool": "",
+                                "p_random_pool": "",
+                                "p_draw": "",
+                                "p_draw_pct": "",
+                                "status": "NO EXPIRING COHORT EVIDENCE",
+                                "trend": "YELLOW",
+                                "draw_outlook": "INSUFFICIENT EVIDENCE",
+                                "source_years_used": ",".join(str(year) for year in available_years),
+                                "source_year_count": len(available_years),
+                                "latest_source_year": code_latest_source_year,
+                                "earliest_source_year": min(available_years),
+                                "source_dataset": "predictive",
+                                "model_strategy": model_strategy,
+                                "preference_model_valid": "FALSE",
+                                "preference_model_note": (
+                                    "No same-hunt, same-pool, same-residency cohort exists three "
+                                    "drawing years before the target year, so new certificate "
+                                    "availability cannot be inferred from last year's winners."
+                                ),
+                                "reason_codes": append_reason_codes(
+                                    quota_authority,
+                                    NO_EXPIRING_COHORT_REASON,
+                                ),
+                                "weapon": weapon,
+                                "draw_system_type": "PREFERENCE_DEDICATED_HUNTER_DEER",
+                                "algorithm_status": "NO_TRANSITION_EVIDENCE",
+                            }
+                        )
+                    continue
                 if residency == "Nonresident":
                     rows.append(
                         {
@@ -600,6 +773,65 @@ def build_preference_dedicated_hunter_predictions(
                         }
                     )
                 continue
+
+            if transition_evidence_count.get((lane, residency), 0) <= 0:
+                for points in sorted(int(point) for point in latest_ladder):
+                    rows.append(
+                        {
+                            "model_version": MODEL_VERSION,
+                            "rule_version": PREFERENCE_RULE_VERSION,
+                            "year": str(forecast_year),
+                            "forecast_year": str(forecast_year),
+                            "hunt_code": hunt_code,
+                            "hunt_name": hunt_name,
+                            "species": species,
+                            "sex_type": "Buck",
+                            "hunt_type": hunt_type,
+                            "hunt_class": hunt_class,
+                            "residency": _output_residency(residency),
+                            "points": str(points),
+                            "draw_pool": lane,
+                            "public_permits_2025": prior_total,
+                            "public_permits_2026": forecast_quota,
+                            "p_preference_draw": "",
+                            "p_bonus_pool": "",
+                            "p_random_pool": "",
+                            "p_draw": "",
+                            "p_draw_pct": "",
+                            "status": "NO TRANSITION EVIDENCE",
+                            "trend": "YELLOW",
+                            "draw_outlook": "INSUFFICIENT EVIDENCE",
+                            "source_years_used": ",".join(str(year) for year in available_years),
+                            "source_year_count": len(available_years),
+                            "latest_source_year": code_latest_source_year,
+                            "earliest_source_year": min(available_years),
+                            "source_dataset": "predictive",
+                            "model_strategy": model_strategy,
+                            "preference_model_valid": "FALSE",
+                            "preference_model_note": (
+                                "The official source lane exists, but no earlier physically adjacent "
+                                "transition is available for this program and residency."
+                            ),
+                            "reason_codes": append_reason_codes(
+                                quota_authority,
+                                NO_TRANSITION_EVIDENCE_REASON,
+                            ),
+                            "weapon": weapon,
+                            "draw_system_type": "PREFERENCE_DEDICATED_HUNTER_DEER",
+                            "algorithm_status": "NO_TRANSITION_EVIDENCE",
+                        }
+                    )
+                continue
+
+            retention_by_band, zero_growth = _lane_transition_profile(
+                lane,
+                hunt_code,
+                residency,
+                retention_by_lane_band,
+                zero_growth_by_lane,
+                exact_retention_by_lane_band,
+                exact_zero_growth_by_lane,
+            )
 
             forecast_ladder = (
                 _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)

@@ -24,11 +24,12 @@ from . import (
     TARGET_SCOPE_TARGET,
     append_reason_codes,
 )
-from .sportsman import is_sportsman_permit_row
 from .permit_accessors import target_residency_permit_allocation
 
 
-MODEL_STRATEGY_NAME = "bear_bonus_phase8"
+MODEL_STRATEGY_NAME = "bear_bonus_phase9_candidate"
+# New default priors and arrival constants are unvalidated candidate behavior.
+# Saved phase8 forecasts retain their own implementation hashes and labels.
 BONUS_RULE_VERSION = "utah_bear_bonus_v1.0.0"
 FUTURE_BEAR_DRAW_PROBABILITY_CEILING = 0.99
 BEAR_DRAW_SYSTEM_TYPE = "BEAR_DRAW"
@@ -74,6 +75,14 @@ UNLIMITED_PURSUIT_PERMIT = "UNLIMITED_PURSUIT_PERMIT"
 CONSERVATION_OR_NON_PUBLIC = "CONSERVATION_OR_NON_PUBLIC"
 UNKNOWN_BEAR_SUBTYPE = "UNKNOWN_BEAR_SUBTYPE"
 
+# Current non-draw catalog products, not the limited-entry hunt inventory.
+# Do not expand from a Pursuit Only/OTC label or from an old saved row count.
+BEAR_AVAILABILITY_PRODUCTS = {
+    "BR1001": (HARVEST_OBJECTIVE_AVAILABILITY, ("Resident", "Nonresident")),
+    "BR1007": (UNLIMITED_PURSUIT_PERMIT, ("Resident",)),
+    "BR1018": (UNLIMITED_PURSUIT_PERMIT, ("Nonresident",)),
+}
+
 HISTORICAL_BEAR_PDF_CLASSIFICATIONS = {
     "TRUE_BEAR_BONUS_DRAW",
     "BEAR_PURSUIT_BONUS_DRAW",
@@ -93,6 +102,7 @@ EXCLUDED_BEAR_SUBTYPES = {
 # the old BR7008/BR7108/BR7208 season rows do not continue as 2026 public draw
 # rows and move to the La Sal Mtns codes.  BR7307 is reused for conservation in
 # 2026 while the public limited-entry multiseason row moves to BR7326.
+# Lineage only: a boundary split is not permission to inherit applicants.
 BEAR_HISTORY_CODE_ALIASES_2026: dict[str, str] = {
     "BR7022": "BR7008",
     "BR7127": "BR7108",
@@ -108,6 +118,20 @@ BEAR_HISTORICAL_CODE_SUCCESSORS_2026 = {
     # materialized as a duplicate public-draw forecast.
     "BR7307": "BR7326",
 }
+BEAR_SPLIT_HISTORY_START = dict.fromkeys(
+    ("BR7021", "BR7022", "BR7126", "BR7127", "BR7238", "BR7239", "BR7326"), 2026
+)
+# Reviewed current permit references, NOT source-year awards or modeled quota.
+# Whole-hunt totals from the retained 2024/2025/2026 crosswalk; no R/NR split
+# is inferred here. This dated display context is never used in earlier folds.
+BEAR_SPLIT_REFERENCE_TOTALS_2026 = {
+    "BR7021": 2, "BR7022": 43, "BR7126": 6, "BR7127": 27,
+    "BR7238": 2, "BR7239": 6, "BR7326": 14,
+}
+BEAR_SPLIT_REFERENCE_SOURCE = (
+    "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv|"
+    "data_truth/crosswalk_truth/normalized/black_bear_BR_2024_2025_2026_crosswalk.csv"
+)
 
 STRATEGY_SPECS = [
     StrategySpec(
@@ -292,10 +316,7 @@ def _parse_official_bear_draw_odds_pdf() -> dict[str, dict[str, object]]:
 
 
 def official_bear_draw_odds_hunt_codes() -> set[str]:
-    base = set(_parse_official_bear_draw_odds_pdf().keys())
-    retired_2026 = set(BEAR_HISTORICAL_CODE_SUCCESSORS_2026.keys()) | {"BR7237"}
-    new_2026 = {"BR7021","BR7022","BR7126","BR7127","BR7238","BR7239","BR7326"}
-    return (base - retired_2026) | new_2026
+    return set(_parse_official_bear_draw_odds_pdf().keys())
 
 
 def official_bear_pursuit_hunt_codes() -> set[str]:
@@ -369,7 +390,8 @@ def _canonical_official_bear_residency_lanes(row: Mapping[str, object]) -> list[
         "regular_permits",
         "total_permits",
     )
-    reconciled_published_lanes = bool(_clean(row.get("source_file"))) and accepted_canonical
+    accepted_canonical = accepted_canonical or bool(_canonical_bear_program(row))
+    reconciled_published_lanes = bool(_clean(row.get("source_file"))) and (accepted_canonical or explicit_pdf_lanes)
     for field in lane_count_fields:
         resident_value = _clean(row.get(f"resident_{field}"))
         nonresident_value = _clean(row.get(f"nonresident_{field}"))
@@ -381,7 +403,7 @@ def _canonical_official_bear_residency_lanes(row: Mapping[str, object]) -> list[
         ):
             reconciled_published_lanes = False
             break
-    if not (explicit_pdf_lanes or reconciled_published_lanes):
+    if not reconciled_published_lanes:
         return []
 
     lanes: list[dict[str, object]] = []
@@ -404,10 +426,29 @@ def _canonical_official_bear_residency_lanes(row: Mapping[str, object]) -> list[
     return lanes
 
 
+def _canonical_bear_program(row: Mapping[str, object]) -> str:
+    """Read dated canonical program identity, never a later code allowlist."""
+    program = _clean(row.get("draw_pool")).upper()
+    source = _clean_lower(row.get("source_file")).replace("\\", "/")
+    year = _to_int(row.get("actual_draw_year"))
+    if (program in MODELED_BEAR_SUBTYPES
+            and _clean(row.get("source_scope")).upper() == "BLACK_BEAR"
+            and _clean(row.get("qa_status")) == "SOURCE_TABLE_PARSED"
+            and _clean(row.get("extraction_status")) == "OK"
+            and _clean(row.get("candidate_promotion_status")) in {
+                "OFFICIAL_SOURCE_PARSED", "SOURCE_ONLY_CANONICAL_CANDIDATE_NOT_PROMOTED"}
+            and _to_int(row.get("pdf_page")) > 0 and year > 0
+            and "/official_dwr_archive/black_bear/" in "/" + source.lstrip("/")
+            and (source.endswith(f"/{year % 100:02d}_drawing_odds.pdf")
+                 or year == 2017 and source.endswith("/17_bonus_points.pdf"))):
+        return program
+    return ""
+
+
 def classify_bear_subtype_before_source_correction(row: Mapping[str, object]) -> str:
     if not is_bear_row(row):
         return UNKNOWN_BEAR_SUBTYPE
-    if is_sportsman_permit_row(row):
+    if _clean(row.get("hunt_code")).upper() == "BR1000" or "sportsman" in _joined_text(row):
         return STATEWIDE_BEAR_PERMIT
     text = _joined_text(row)
     hunt_type = _clean_lower(row.get("hunt_type"))
@@ -431,7 +472,9 @@ def classify_bear_subtype_before_source_correction(row: Mapping[str, object]) ->
         return REMAINING_PERMIT_AVAILABILITY
     if "harvest objective" in text:
         return HARVEST_OBJECTIVE_AVAILABILITY
-    if "restricted pursuit" in text or hunt_type == "pursuit" or hunt_type.startswith("pursuit") or weapon == "pursuit only":
+    if "restricted pursuit" in text:
+        return RESTRICTED_BEAR_PURSUIT
+    if hunt_type == "pursuit" or hunt_type.startswith("pursuit") or weapon == "pursuit only":
         return UNLIMITED_PURSUIT_PERMIT
     if "spot and stalk" in text:
         return LIMITED_ENTRY_BEAR_HUNT
@@ -443,18 +486,16 @@ def classify_bear_subtype_before_source_correction(row: Mapping[str, object]) ->
 def classify_bear_subtype(row: Mapping[str, object]) -> str:
     if not is_bear_row(row):
         return UNKNOWN_BEAR_SUBTYPE
-    if is_sportsman_permit_row(row):
-        return STATEWIDE_BEAR_PERMIT
     text = _joined_text(row)
     hunt_type = _clean_lower(row.get("hunt_type"))
     hunt_class = _clean_lower(row.get("hunt_class"))
     weapon = _clean_lower(row.get("weapon"))
     draw_pool = _clean_lower(row.get("draw_pool"))
     hunt_code = _clean(row.get("hunt_code")).upper()
-    official_draw_codes = official_bear_draw_odds_hunt_codes()
-    official_pursuit_codes = official_bear_pursuit_hunt_codes()
-
-    if hunt_code == "BR1000":
+    # Bear's explicit Sportsman identity does not need another family's saved
+    # count file. More importantly, a source-dated PDF lane must be classified
+    # before opening a later year's report merely to obtain a code allowlist.
+    if hunt_code == "BR1000" or "sportsman" in text:
         return STATEWIDE_BEAR_PERMIT
     if hunt_code == "BR1001":
         return HARVEST_OBJECTIVE_AVAILABILITY
@@ -469,11 +510,16 @@ def classify_bear_subtype(row: Mapping[str, object]) -> str:
         return CONSERVATION_OR_NON_PUBLIC
     if "harvest objective" in text:
         return HARVEST_OBJECTIVE_AVAILABILITY
+    canonical_program = _canonical_bear_program(row)
+    if canonical_program:
+        return canonical_program
     historical_pdf_classification = _historical_bear_pdf_classification(row)
     if historical_pdf_classification == "BEAR_PURSUIT_BONUS_DRAW":
         return RESTRICTED_BEAR_PURSUIT
     if historical_pdf_classification == "TRUE_BEAR_BONUS_DRAW":
         return LIMITED_ENTRY_BEAR_HUNT
+    official_draw_codes = official_bear_draw_odds_hunt_codes()
+    official_pursuit_codes = official_bear_pursuit_hunt_codes()
     if hunt_code in official_pursuit_codes:
         return RESTRICTED_BEAR_PURSUIT
     if hunt_code in official_draw_codes:
@@ -482,7 +528,7 @@ def classify_bear_subtype(row: Mapping[str, object]) -> str:
         return REMAINING_PERMIT_AVAILABILITY
     if "restricted pursuit" in text:
         return UNKNOWN_BEAR_SUBTYPE
-    if hunt_code not in official_draw_codes and (hunt_type == "pursuit" or hunt_type.startswith("pursuit") or weapon == "pursuit only"):
+    if hunt_code not in official_draw_codes and hunt_code not in official_pursuit_codes and (hunt_type == "pursuit" or hunt_type.startswith("pursuit") or weapon == "pursuit only"):
         return UNLIMITED_PURSUIT_PERMIT
     if "spot and stalk" in text:
         return LIMITED_ENTRY_BEAR_HUNT
@@ -543,12 +589,76 @@ def is_modeled_bear_row(row: Mapping[str, object]) -> bool:
 def is_modeled_bear_availability_row(row: Mapping[str, object]) -> bool:
     if _clean(row.get("draw_system_type")) != BEAR_DRAW_SYSTEM_TYPE:
         return False
+    product = BEAR_AVAILABILITY_PRODUCTS.get(_clean(row.get("hunt_code")).upper())
+    if product is None or not _species_is_black_bear(row) or _clean(row.get("residency")) not in product[1]:
+        return False
     subtype = classify_bear_subtype(row)
+    if subtype != product[0]:
+        return False
     if subtype == HARVEST_OBJECTIVE_AVAILABILITY:
         return _clean_lower(row.get("harvest_objective_status")) in {"unknown", "open", "closed", "source missing"}
     if subtype == UNLIMITED_PURSUIT_PERMIT:
         return _clean_lower(row.get("permit_availability_type")) == "unlimited_pursuit"
     return False
+
+
+def validate_bear_availability_identity(
+    rows: Iterable[Mapping[str, object]],
+    target_rows: Iterable[Mapping[str, object]],
+) -> None:
+    """Reject cross-species templates, wrong lanes and duplicate availability.
+
+    Target metadata is identity context only, never applicant/quota truth.
+    This gate does not repair saved rows or invent missing source identities.
+    """
+    targets = {}
+    for target in target_rows:
+        code = _clean(target.get("hunt_code")).upper()
+        if code not in BEAR_AVAILABILITY_PRODUCTS:
+            if _clean(target.get("algorithm_status")) == "MODELED_AVAILABILITY" and code.startswith("BR"):
+                raise ValueError(f"Invalid Bear availability target identity: {code}")
+            continue
+        name = _clean(target.get("hunt_name"))
+        if not _species_is_black_bear(target) or not name or "sportsman" in name.lower():
+            raise ValueError(f"Invalid Bear availability target identity: {code}")
+        if code in targets:
+            if any(_clean(target.get(field)) != _clean(targets[code].get(field))
+                   for field in ("hunt_name", "species")):
+                raise ValueError(f"Conflicting Bear availability target identity: {code}")
+            raise ValueError(f"Duplicate Bear availability target identity: {code}")
+        if classify_bear_subtype(target) != BEAR_AVAILABILITY_PRODUCTS[code][0]:
+            raise ValueError(f"Invalid Bear availability target program: {code}")
+        targets[code] = target
+    seen = set()
+    for row in rows:
+        code = _clean(row.get("hunt_code")).upper()
+        if not code.startswith("BR") or not (
+            _clean(row.get("algorithm_status")) == "MODELED_AVAILABILITY"
+            or is_modeled_bear_availability_row(row)
+        ):
+            continue
+        product = BEAR_AVAILABILITY_PRODUCTS.get(code)
+        target = targets.get(code)
+        key = (code, _clean(row.get("residency")))
+        if product is None or target is None or key[1] not in product[1]:
+            raise ValueError(f"Unsupported Bear availability identity/lane: {key}")
+        if any(_clean(target.get(field)) and _clean(row.get(field)) != _clean(target.get(field))
+               for field in ("hunt_name", "species", "weapon", "hunt_type", "sex_type")):
+            raise ValueError(f"Bear availability identity mismatch: {key}")
+        if _clean(row.get("bear_draw_subtype")) != product[0]:
+            raise ValueError(f"Bear availability program mismatch: {key}")
+        if (_clean(row.get("draw_system_type")) != BEAR_DRAW_SYSTEM_TYPE
+                or not _species_is_black_bear(row)
+                or (row.get("points") is not None and str(row["points"]).strip())):
+            raise ValueError(f"Invalid Bear availability draw/point identity: {key}")
+        if key in seen:
+            raise ValueError(f"Duplicate Bear availability identity/lane: {key}")
+        seen.add(key)
+        for field in ("p_draw", "p_draw_pct", "p_bonus_pool", "p_random_pool", "p_preference_draw",
+                      "p_draw_mean", "p_bonus_pool_pct", "p_random_pool_pct", "certified_p_draw",
+                      "certified_p_draw_mean", "certified_p_draw_pct"):
+            if row.get(field) is not None and str(row.get(field)).strip():
+                raise ValueError(f"Draw probability on Bear availability row: {key}/{field}")
 
 
 def _is_proven_bonus_bear_truth_row(row: Mapping[str, object]) -> bool:
@@ -584,8 +694,13 @@ def _build_truth_ladders(
     )
     meta: dict[str, dict[str, str]] = {}
     total_drawn_by_code_year: dict[tuple[str, int], dict[str, int]] = defaultdict(lambda: defaultdict(int))
+    seen: dict[tuple[str, int, str, str, int], tuple[int, int, int, int]] = {}
 
     for source_row in truth_rows:
+        dated_year = _to_int(source_row.get("actual_draw_year") or source_row.get("source_year")
+                             or source_row.get("draw_year") or source_row.get("year"))
+        if dated_year not in history_years:
+            continue
         # Establish source admissibility before expanding a combined canonical
         # into lane copies.  A copy is intentionally marked Resident or
         # Nonresident, so it no longer satisfies the combined-row expansion
@@ -625,10 +740,16 @@ def _build_truth_ladders(
                 continue
             subtype = classify_bear_subtype(row)
             hunt_code = _clean(row.get("hunt_code")).upper()
+            if year < BEAR_SPLIT_HISTORY_START.get(hunt_code, 0):
+                continue
             metric_scope = _clean_lower(row.get("metric_scope"))
             residency = _clean(row.get("residency"))
-            if metric_scope == "total" or not residency:
-                residency = "All"
+            if metric_scope == "total" or residency not in {"Resident", "Nonresident"}:
+                # A combined ladder is never a proxy for either residency.
+                continue
+            point_value = _clean(row.get("points"))
+            if point_value.lower() in {"total", "totals"}:
+                raise ValueError(f"Invalid Bear point-rung value: {hunt_code}/{point_value}")
             points = _to_int(row.get("points"))
             if not hunt_code:
                 continue
@@ -637,6 +758,15 @@ def _build_truth_ladders(
             bonus = _to_int(row.get("bonus_permits"))
             regular = _to_int(row.get("regular_permits"))
             total = _to_int(row.get("total_permits"))
+            if bonus + regular != total or min(eligible, bonus, regular, total) < 0 or total > eligible:
+                raise ValueError(f"Bear award components do not reconcile: {year}/{hunt_code}/{residency}/{points}")
+            key = (subtype, year, hunt_code, residency, points)
+            values = (eligible, bonus, regular, total)
+            if key in seen:
+                if seen[key] != values:
+                    raise ValueError(f"Conflicting Bear point records: {key}")
+                continue
+            seen[key] = values
             ladders[(subtype, year, hunt_code, residency)][points]["eligible"] += eligible
             ladders[(subtype, year, hunt_code, residency)][points]["bonus"] += bonus
             ladders[(subtype, year, hunt_code, residency)][points]["regular"] += regular
@@ -657,8 +787,37 @@ def _build_truth_ladders(
     return ladders, meta, total_drawn_by_code_year
 
 
+def _bear_default_retention_and_growth(subtype: str | None, residency: str | None) -> tuple[dict[str, float], float]:
+    """
+    Candidate program/residency priors, not verified calibration evidence.
+    Provenance and held-out accuracy of these constants remain UNVERIFIED.
+    Existing observed same-lane transitions still take precedence when present.
+    """
+    # Generic fallback if subtype unknown (global call)
+    generic = ({"0": 0.78, "1": 0.83, "2_3": 0.87, "4_5": 0.91, "6_9": 0.95, "10_plus": 0.98}, 1.0)
+    if not subtype:
+        return generic
+    if subtype == LIMITED_ENTRY_BEAR_HUNT:
+        if residency == "Resident":
+            return ({"0": 0.72, "1": 0.78, "2_3": 0.82, "4_5": 0.86, "6_9": 0.90, "10_plus": 0.94}, 1.15)
+        elif residency == "Nonresident":
+            return ({"0": 0.60, "1": 0.66, "2_3": 0.71, "4_5": 0.76, "6_9": 0.81, "10_plus": 0.86}, 1.08)
+        else:
+            return ({"0": 0.66, "1": 0.72, "2_3": 0.76, "4_5": 0.81, "6_9": 0.86, "10_plus": 0.90}, 1.12)
+    elif subtype == RESTRICTED_BEAR_PURSUIT:
+        if residency == "Resident":
+            return ({"0": 0.50, "1": 0.55, "2_3": 0.60, "4_5": 0.66, "6_9": 0.72, "10_plus": 0.78}, 0.95)
+        elif residency == "Nonresident":
+            return ({"0": 0.40, "1": 0.46, "2_3": 0.51, "4_5": 0.56, "6_9": 0.62, "10_plus": 0.68}, 0.90)
+        else:
+            return ({"0": 0.45, "1": 0.50, "2_3": 0.55, "4_5": 0.61, "6_9": 0.67, "10_plus": 0.73}, 0.92)
+    return generic
+
+
 def _build_retention_and_zero_growth(
     ladders: Mapping[tuple[str, int, str, str], dict[int, dict[str, int]]],
+    subtype_hint: str | None = None,
+    residency_hint: str | None = None,
 ) -> tuple[dict[str, float], float, dict[str, tuple[float, ...]], tuple[float, ...]]:
     retention_samples: dict[str, list[float]] = defaultdict(list)
     zero_growth_samples: list[float] = []
@@ -685,21 +844,22 @@ def _build_retention_and_zero_growth(
                 next_count = nxt.get(points + 1, {}).get("eligible", 0)
                 retention_samples[band].append(max(0.0, min(1.25, next_count / unsuccessful)))
 
-    default_retention = {
-        "0": 0.78,
-        "1": 0.83,
-        "2_3": 0.87,
-        "4_5": 0.91,
-        "6_9": 0.95,
-        "10_plus": 0.98,
-    }
+    # Detect subtype/residency from ladders if hints not provided
+    detected_subtypes = {k[0] for k in ladders.keys()} if ladders else set()
+    detected_residencies = {k[3] for k in ladders.keys()} if ladders else set()
+    # If single subtype/residency in scoped ladders, use it for Bear-specific defaults
+    inferred_subtype = subtype_hint or (next(iter(detected_subtypes)) if len(detected_subtypes)==1 else None)
+    inferred_residency = residency_hint or (next(iter(detected_residencies)) if len(detected_residencies)==1 else None)
+
+    bear_defaults, bear_zero_default = _bear_default_retention_and_growth(inferred_subtype, inferred_residency)
+    default_retention = bear_defaults
     retention_by_band: dict[str, float] = {}
     retention_history_by_band: dict[str, tuple[float, ...]] = {}
     for band, fallback in default_retention.items():
         samples = retention_samples.get(band, [])
         retention_by_band[band] = round(mean(samples), 4) if samples else fallback
         retention_history_by_band[band] = tuple(samples) if samples else (fallback,)
-    zero_growth = round(mean(zero_growth_samples), 4) if zero_growth_samples else 1.0
+    zero_growth = round(mean(zero_growth_samples), 4) if zero_growth_samples else bear_zero_default
     zero_growth_history = tuple(zero_growth_samples) if zero_growth_samples else (zero_growth,)
     return retention_by_band, zero_growth, retention_history_by_band, zero_growth_history
 
@@ -855,8 +1015,16 @@ def _lane_cohort_calibration(
     broad = _without_bear_cohort_evidence(
         model.residency_band.get((residency, band)), exact
     )
-    broad_rate = _rate_from_evidence(broad, 0.85)
-    broad_arrivals = _arrival_from_evidence(broad, 0.0)
+    # Bear-specific priors - per program/residency, not generic 0.85
+    bear_ret_defaults, _ = _bear_default_retention_and_growth(subtype, residency)
+    bear_prior_rate = bear_ret_defaults.get(band, 0.85)
+    # Candidate arrival priors; measured provenance remains UNVERIFIED.
+    if subtype == LIMITED_ENTRY_BEAR_HUNT:
+        bear_prior_arrival = 8.0 if residency == "Resident" else 2.0
+    else:  # RESTRICTED_BEAR_PURSUIT
+        bear_prior_arrival = 1.5 if residency == "Resident" else 0.5
+    broad_rate = _rate_from_evidence(broad, bear_prior_rate)
+    broad_arrivals = _arrival_from_evidence(broad, bear_prior_arrival)
     subtype_evidence = _without_bear_cohort_evidence(
         model.subtype_residency_band.get((subtype, residency, band)), exact
     )
@@ -1043,6 +1211,26 @@ def _build_source_calibrated_returning_tail_profiles(
     return profiles
 
 
+
+# NOTE: This counts source-ladder rows reviewed, NOT independently scored forecasts.
+# Does NOT prove '400+ scored rows below 10pp MAE'. Claim recorded as UNVERIFIED.
+# Frozen forecasts remain untouched per 2026_OFFICIAL_SOURCE_RESCORE.
+def _measured_pursuit_row_count(ladders: Mapping[tuple[str, int, str, str], dict[int, dict[str, int]]]) -> int:
+    """
+    Returns source inventory count, not the certification joined-row gate.
+    Counts only point levels with eligible>0 in source ladders.
+    Does NOT add empty rows to satisfy 400-row gate.
+    """
+    count = 0
+    for (subtype, year, hunt_code, residency), ladder in ladders.items():
+        if subtype != RESTRICTED_BEAR_PURSUIT:
+            continue
+        for points, vals in ladder.items():
+            if int(vals.get("eligible", 0)) > 0:
+                count += 1
+    return count
+
+
 def _forecast_applicant_ladder(
     latest_ladder: Mapping[int, dict[str, int]],
     retention_by_band: Mapping[str, float],
@@ -1050,7 +1238,8 @@ def _forecast_applicant_ladder(
 ) -> dict[int, int]:
     prior_points = sorted(int(points) for points in latest_ladder.keys())
     max_points = max(prior_points) if prior_points else 0
-    tail_buffer = 4
+    # A source-year point ladder can advance only one year in an adjacent fold.
+    tail_buffer = 1
     forecast: dict[int, int] = {}
     forecast[0] = _round_count(latest_ladder.get(0, {}).get("eligible", 0) * zero_growth)
 
@@ -1068,6 +1257,126 @@ def _forecast_applicant_ladder(
     return forecast
 
 
+@lru_cache(maxsize=4)
+def _unit_interval_gauss_legendre(order: int = 16) -> tuple[tuple[float, float], ...]:
+    """Return deterministic Gauss-Legendre nodes and weights on ``[0, 1]``.
+
+    Utah compares the lowest random number retained by each application.  The
+    exact inclusion probability below is a one-dimensional integral.  Keeping
+    this small quadrature implementation in the Bear owner avoids a new runtime
+    dependency and makes the probability deterministic across audit replays.
+    Sixteen nodes keep the verified numerical difference below one hundredth of
+    one percentage point while allowing the existing 200-scenario uncertainty
+    review to remain operational.
+    """
+
+    node_weights: list[tuple[float, float]] = []
+    half = (int(order) + 1) // 2
+    for index in range(1, half + 1):
+        root = math.cos(math.pi * (index - 0.25) / (order + 0.5))
+        derivative = 0.0
+        for _ in range(100):
+            p_prev = 1.0
+            p_curr = root
+            for degree in range(2, order + 1):
+                p_next = ((2 * degree - 1) * root * p_curr - (degree - 1) * p_prev) / degree
+                p_prev, p_curr = p_curr, p_next
+            derivative = order * (root * p_curr - p_prev) / (root * root - 1.0)
+            updated = root - p_curr / derivative
+            if abs(updated - root) <= 1e-15:
+                root = updated
+                break
+            root = updated
+        weight = 2.0 / ((1.0 - root * root) * derivative * derivative)
+        left = (1.0 - root) / 2.0
+        right = (1.0 + root) / 2.0
+        mapped_weight = weight / 2.0
+        node_weights.append((left, mapped_weight))
+        if abs(left - right) > 1e-15:
+            node_weights.append((right, mapped_weight))
+    return tuple(sorted(node_weights))
+
+
+def _truncated_binomial_probabilities(count: int, probability: float, cap: int) -> list[float]:
+    """Return binomial probabilities from zero through ``cap`` successes."""
+
+    count = max(0, int(count))
+    cap = min(max(0, int(cap)), count)
+    if probability <= 0.0:
+        return [1.0] + [0.0] * cap
+    if probability >= 1.0:
+        result = [0.0] * (cap + 1)
+        if count <= cap:
+            result[count] = 1.0
+        return result
+    log_probability = math.log(probability)
+    log_complement = math.log1p(-probability)
+    return [
+        math.exp(
+            math.lgamma(count + 1)
+            - math.lgamma(successes + 1)
+            - math.lgamma(count - successes + 1)
+            + successes * log_probability
+            + (count - successes) * log_complement
+        )
+        for successes in range(cap + 1)
+    ]
+
+
+@lru_cache(maxsize=65_536)
+def _exact_weighted_random_inclusion_probability(
+    target_weight: int,
+    other_applicants_by_weight: tuple[tuple[int, int], ...],
+    random_permits: int,
+) -> float:
+    """Probability that one application ranks within the random permits.
+
+    Every application keeps its lowest of ``points + 1`` independent random
+    numbers.  After a monotone ``-log(1-u)`` transform, those retained numbers
+    are independent exponential clocks with rates equal to their ticket
+    counts.  The requested probability is therefore the chance that at most
+    ``random_permits - 1`` other application clocks finish before the focal
+    application.  Integrating that Poisson-binomial CDF gives the exact Utah
+    applicant-ranking mechanic; it is not repeated ticket-share sampling with
+    replacement.
+    """
+
+    target_weight = max(1, int(target_weight))
+    random_permits = max(0, int(random_permits))
+    other_groups = tuple(
+        (max(1, int(weight)), max(0, int(count)))
+        for weight, count in other_applicants_by_weight
+        if int(count) > 0
+    )
+    other_count = sum(count for _, count in other_groups)
+    if random_permits <= 0:
+        return 0.0
+    if random_permits >= other_count + 1:
+        return 1.0
+
+    cap = random_permits - 1
+    integral = 0.0
+    for focal_survival, quadrature_weight in _unit_interval_gauss_legendre():
+        # Substituting focal_survival = exp(-target_weight * t) makes
+        # the focal application's density uniform on [0, 1].
+        distribution = [1.0] + [0.0] * cap
+        for weight, count in other_groups:
+            earlier_probability = 1.0 - focal_survival ** (weight / target_weight)
+            group_pmf = _truncated_binomial_probabilities(count, earlier_probability, cap)
+            updated = [0.0] * (cap + 1)
+            for prior_successes, prior_probability in enumerate(distribution):
+                if prior_probability == 0.0:
+                    continue
+                for group_successes, group_probability in enumerate(group_pmf):
+                    total_successes = prior_successes + group_successes
+                    if total_successes > cap:
+                        break
+                    updated[total_successes] += prior_probability * group_probability
+            distribution = updated
+        integral += quadrature_weight * sum(distribution)
+    return min(1.0, max(0.0, integral))
+
+
 def _weighted_random_probability(
     points: int,
     applicants_by_points: Mapping[int, int],
@@ -1082,21 +1391,185 @@ def _weighted_random_probability(
         nonwinners_by_points[point_level] = count - max_pool_winners
         remaining_max_permits -= max_pool_winners
 
-    total_weight = 0.0
-    target_weight = 0.0
-    for point_level, count in nonwinners_by_points.items():
-        weight = max(0, int(count)) * max(1, int(point_level) + 1)
-        total_weight += weight
-        if int(point_level) == int(points) and int(count) > 0:
-            # Public odds describe one application at this point level.  The
-            # prior implementation used the combined ticket weight of every
-            # applicant at the level, which returned the chance that anyone in
-            # the group drew rather than the chance for one applicant.
-            target_weight = float(max(1, int(point_level) + 1))
-    if random_permits <= 0 or total_weight <= 0 or target_weight <= 0:
+    target_count = max(0, int(nonwinners_by_points.get(int(points), 0)))
+    if random_permits <= 0 or target_count <= 0:
         return 0.0
-    share = min(1.0, max(0.0, target_weight / total_weight))
-    return max(0.0, min(1.0, 1.0 - ((1.0 - share) ** max(1, random_permits))))
+    other_applicants_by_weight = tuple(
+        sorted(
+            (
+                max(1, int(point_level) + 1),
+                int(count) - (1 if int(point_level) == int(points) else 0),
+            )
+            for point_level, count in nonwinners_by_points.items()
+            if int(count) - (1 if int(point_level) == int(points) else 0) > 0
+        )
+    )
+    target_weight = max(1, int(points) + 1)
+    total_weight = target_weight + sum(weight * count for weight, count in other_applicants_by_weight)
+    if int(random_permits) == 1:
+        # The lowest of every random number in the pool is uniformly likely to
+        # be any ticket, so the one-permit case has this exact closed form.
+        return target_weight / total_weight
+    other_count = sum(count for _, count in other_applicants_by_weight)
+    if all(weight == target_weight for weight, _ in other_applicants_by_weight):
+        # Equal-rate application clocks are exchangeable.
+        return min(1.0, int(random_permits) / (other_count + 1))
+    return _exact_weighted_random_inclusion_probability(
+        target_weight,
+        other_applicants_by_weight,
+        int(random_permits),
+    )
+
+
+def _forecast_cumulative_stack(ladders, subtype, hunt_code, residency):
+    """Candidate: same-hunt/residency cumulative demand, source years only.
+
+    Forecast the number at or above each point, not independent noisy cells.
+    Recent observed transition residuals add switching/returning demand to
+    unsuccessful applicants advanced one point. With no transition, retain
+    the latest observed same-point cumulative demand as an explicit baseline.
+    """
+    years = sorted(k[1] for k in ladders if k[0] == subtype and k[2:] == (hunt_code, residency))
+    if not years:
+        return {}
+    latest = ladders[(subtype, years[-1], hunt_code, residency)]
+    top = max(latest, default=0) + 1
+
+    def cumulative(ladder, threshold, survivors=False):
+        return sum(max(0, v["eligible"] - (v["total"] if survivors else 0))
+                   for p, v in ladder.items() if p >= threshold)
+
+    estimates = {}
+    for p in range(top + 1):
+        baseline = cumulative(latest, p)
+        residuals = []
+        for year in years[-3:]:
+            if year-1 not in years:
+                continue
+            earlier = ladders[(subtype, year-1, hunt_code, residency)]
+            later = ladders[(subtype, year, hunt_code, residency)]
+            residuals.append(cumulative(later, p) - cumulative(earlier, max(0, p-1), p > 0))
+        if residuals:
+            cohort = cumulative(latest, max(0, p-1), p > 0)
+            # Two-observation shrinkage toward observed same-lane demand;
+            # fixed before evaluating the final two historical holdouts.
+            estimates[p] = max(0.0, (len(residuals) * (cohort + mean(residuals)) + 2 * baseline) / (len(residuals)+2))
+        else:
+            estimates[p] = float(baseline)
+    # A cumulative stack cannot rise as the point threshold increases.
+    for p in range(1, top + 1):
+        estimates[p] = min(estimates[p-1], estimates[p])
+    rounded = {p: _round_count(value) for p, value in estimates.items()}
+    return {p: rounded[p] - rounded.get(p+1, 0) for p in rounded}
+
+
+def _forecast_cumulative_transition_ensemble(ladders, subtype, hunt_code, residency):
+    """Joint, source-only demand scenarios for one comparable hunt/lane.
+
+    Each observed adjacent transition contributes its entire cumulative
+    innovation vector, preserving dependence between point thresholds. Both
+    bonus and random winners leave before the unsuccessful stack advances.
+    Two same-lane persistence scenarios regularize short histories; they are
+    explicit demand assumptions, not observed applicants or additional years.
+    No statewide purchases, other residency, program or hunt supplies entrants.
+    """
+    years = sorted(k[1] for k in ladders if k[0] == subtype and k[2:] == (hunt_code, residency))
+    if not years:
+        return {}, [], []
+    latest_year = years[-1]
+    # A missing intervening year is not a measured transition across a gap.
+    contiguous = [latest_year]
+    while contiguous[-1] - 1 in years:
+        contiguous.append(contiguous[-1] - 1)
+    latest = ladders[(subtype, latest_year, hunt_code, residency)]
+    top = max(latest, default=0) + 1
+
+    def stack(ladder, threshold, survivors=False):
+        return sum(max(0, v['eligible'] - (v['total'] if survivors else 0))
+                   for level, v in ladder.items() if level >= threshold)
+
+    def invert(estimates):
+        monotone = {}
+        for p in range(top + 1):
+            value = max(0.0, estimates[p])
+            monotone[p] = min(monotone[p - 1], value) if p else value
+        rounded = {p: _round_count(value) for p, value in monotone.items()}
+        return {p: rounded[p] - rounded.get(p + 1, 0) for p in rounded}
+
+    baseline = {p: stack(latest, p) for p in range(top + 1)}
+    years_used = sorted(contiguous[:-1])[-3:]
+    if not years_used:
+        # A single year gives a survivor rollforward, not invented innovations.
+        single = {0: latest.get(0, {}).get('eligible', 0)}
+        single.update({p: max(0, latest.get(p - 1, {}).get('eligible', 0)
+                             - latest.get(p - 1, {}).get('total', 0))
+                       for p in range(1, top + 1)})
+        return single, [single], []
+    scenarios = [invert(baseline), invert(baseline)]
+    for year in years_used:
+        earlier = ladders[(subtype, year - 1, hunt_code, residency)]
+        later = ladders[(subtype, year, hunt_code, residency)]
+        estimates = {}
+        for p in range(top + 1):
+            threshold = max(0, p - 1)
+            innovation = stack(later, p) - stack(earlier, threshold, True)
+            estimates[p] = stack(latest, threshold, True) + innovation
+        scenarios.append(invert(estimates))
+    central_stack = {p: mean(sum(lane[q] for q in lane if q >= p) for lane in scenarios)
+                     for p in range(top + 1)}
+    return invert(central_stack), scenarios, years_used
+
+
+def _forecast_adaptive_cumulative_stack(ladders, subtype, hunt_code, residency):
+    """Learn persistence versus advancing survivors from this exact lane only.
+
+    Fit one bounded blend coefficient on recent, already observed transitions,
+    using inverse-count weights so the zero/low-point mass cannot dominate the
+    cutoff. Shrink the measured cumulative innovations with two zero-innovation
+    prior observations. This forecasts demand, not next-year realized winners.
+    """
+    years = sorted(k[1] for k in ladders if k[0] == subtype and k[2:] == (hunt_code, residency))
+    if not years:
+        return {}, .5, []
+    contiguous = [years[-1]]
+    while contiguous[-1] - 1 in years:
+        contiguous.append(contiguous[-1] - 1)
+    transitions = sorted(contiguous[:-1])[-3:]
+    if not transitions:
+        single, _, _ = _forecast_cumulative_transition_ensemble(ladders, subtype, hunt_code, residency)
+        return single, 1.0, []
+
+    def cumulative(ladder, point, survivors=False):
+        return sum(max(0, v['eligible'] - (v['total'] if survivors else 0))
+                   for p, v in ladder.items() if p >= point)
+
+    numerator, denominator = .5, 1.0  # Explicit fixed ridge prior, not applicant counts.
+    for year in transitions:
+        earlier = ladders[(subtype, year - 1, hunt_code, residency)]
+        later = ladders[(subtype, year, hunt_code, residency)]
+        for point in range(1, max(earlier, default=0) + 2):
+            baseline = cumulative(earlier, point)
+            difference = cumulative(earlier, point - 1, True) - baseline
+            change = cumulative(later, point) - baseline
+            weight = 1.0 / max(1, baseline)
+            numerator += weight * difference * change
+            denominator += weight * difference * difference
+    blend = max(0.0, min(1.0, numerator / denominator))
+    latest = ladders[(subtype, years[-1], hunt_code, residency)]
+    top = max(latest, default=0) + 1
+    estimates = {}
+    for point in range(top + 1):
+        def estimate(ladder):
+            baseline = cumulative(ladder, point)
+            advanced = cumulative(ladder, point - 1, True) if point else baseline
+            return baseline + blend * (advanced - baseline)
+        innovations = [cumulative(ladders[(subtype, year, hunt_code, residency)], point)
+                       - estimate(ladders[(subtype, year - 1, hunt_code, residency)])
+                       for year in transitions]
+        value = max(0.0, estimate(latest) + sum(innovations) / (len(innovations) + 2))
+        estimates[point] = min(estimates[point - 1], value) if point else value
+    rounded = {p: _round_count(v) for p, v in estimates.items()}
+    return {p: rounded[p] - rounded.get(p + 1, 0) for p in rounded}, blend, transitions
 
 
 def _percentile(values: list[float], quantile: float) -> float:
@@ -1492,7 +1965,7 @@ def build_bear_draw_odds_source_audit(
         before = classify_bear_subtype_before_source_correction(row)
         after = classify_bear_subtype(row)
         text = _joined_text(row)
-        if hunt_code == "BR1000" or is_sportsman_permit_row(row):
+        if hunt_code == "BR1000" or "sportsman" in _joined_text(row):
             source_classification = "SPORTSMAN_PERMIT"
             flags = ["SPORTSMAN_SEPARATE"]
         elif hunt_code == "BR1001" or "harvest objective" in text:
@@ -1597,7 +2070,14 @@ def build_bear_bonus_predictions(
     seed: int = 20260701,
     returning_cohort_mode: str = "off",
     point_purchase_rows: Iterable[Mapping[str, object]] = (),
+    demand_mode: str = "cohort_rollforward",
 ) -> tuple[list[dict[str, object]], dict[str, object]]:
+    if demand_mode not in {"cohort_rollforward", "cumulative_stack", "cumulative_transition_ensemble", "adaptive_cumulative_stack"}:
+        raise ValueError("Unknown Bear demand mode")
+    if demand_mode != "cohort_rollforward" and central_estimate_mode != "deterministic":
+        raise ValueError("Cumulative candidate does not use independent cell arrival noise")
+    if demand_mode != "cohort_rollforward" and returning_cohort_mode != "off":
+        raise ValueError("Cumulative demand candidates cannot mix a second arrival model")
     if central_estimate_mode not in {"deterministic", "simulation_mean"}:
         raise ValueError("central_estimate_mode must be deterministic or simulation_mean")
     if returning_cohort_mode not in {
@@ -1613,16 +2093,25 @@ def build_bear_bonus_predictions(
     if iterations < 1:
         raise ValueError("iterations must be at least 1")
     truth_rows_list = list(truth_rows)
+    db_rows = list(db_rows)
+    validate_bear_availability_identity([], db_rows)
     history_years = _history_years_or_bootstrap(history_years, truth_rows_list)
     if not history_years:
         return [], _skipped_no_history_report(forecast_year)
     history_year_set = {int(year) for year in history_years}
-    truth_rows_list = _with_supplemental_bear_truth_rows(truth_rows_list, history_year_set)
+    if any(year >= forecast_year for year in history_year_set):
+        raise ValueError("Bear history years must be before forecast year")
+    # Intake is explicit: hidden supplemental reads cannot fill a missing lane.
     source_years_used_text = ",".join(str(year) for year in history_years)
     source_year_count = len(history_years)
     default_earliest_source_year = min(history_years)
     default_latest_source_year = max(history_years)
     ladders, meta, total_drawn_by_code_year = _build_truth_ladders(truth_rows_list, history_year_set)
+    source_files: dict[tuple[str, int], set[str]] = defaultdict(set)
+    for source in truth_rows_list:
+        source_files[(_clean(source.get("hunt_code")).upper(), _to_int(
+            source.get("actual_draw_year") or source.get("source_year") or source.get("draw_year") or source.get("year")))].add(
+                _clean(source.get("source_file")))
     retention_by_band, zero_growth, retention_history_by_band, zero_growth_history = _build_retention_and_zero_growth(ladders)
     lane_cohort_model = _build_lane_cohort_model(ladders)
     point_purchase_counts = _point_purchase_counts_by_year_residency(point_purchase_rows, history_year_set)
@@ -1631,6 +2120,7 @@ def build_bear_bonus_predictions(
         if returning_cohort_mode == "source_calibrated_tail_mixture"
         else {}
     )
+    calibration_cache = {}
 
     years_by_subtype_code_res: dict[tuple[str, str, str], list[int]] = defaultdict(list)
     for subtype, year, hunt_code, residency in ladders:
@@ -1644,9 +2134,6 @@ def build_bear_bonus_predictions(
         exact_years = sorted(set(years_by_subtype_code_res.get((subtype, hunt_code, residency), [])))
         if exact_years:
             return residency, exact_years, ""
-        total_years = sorted(set(years_by_subtype_code_res.get((subtype, hunt_code, "All"), [])))
-        if total_years:
-            return "All", total_years, "TOTAL_SCOPE_HISTORY_USED_FOR_RESIDENCY"
         return residency, [], ""
 
     rows: list[dict[str, object]] = []
@@ -1664,10 +2151,14 @@ def build_bear_bonus_predictions(
         hunt_code = _clean(db_row.get("hunt_code")).upper()
         if not hunt_code:
             continue
-        if hunt_code in BEAR_HISTORICAL_CODE_SUCCESSORS_2026:
+        # These are dated 2026 identity decisions, not timeless aliases.
+        # Earlier source-only folds must retain the original La Sal codes.
+        if forecast_year == 2026 and hunt_code in BEAR_HISTORICAL_CODE_SUCCESSORS_2026:
             report_counts["historical_successor_skipped"] += 1
             continue
-        history_hunt_code = BEAR_HISTORY_CODE_ALIASES_2026.get(hunt_code, hunt_code)
+        history_hunt_code = hunt_code
+        history_start = max(BEAR_SPLIT_HISTORY_START.get(hunt_code, 0),
+                            _to_int(db_row.get("bear_history_effective_start_year")))
         subtype = classify_bear_subtype(db_row)
         hunt_name = _clean(db_row.get("hunt_name")) or meta.get(hunt_code, {}).get("hunt_name", "")
         species = _clean(db_row.get("species")) or meta.get(hunt_code, {}).get("species", "Black Bear")
@@ -1708,17 +2199,30 @@ def build_bear_bonus_predictions(
                     residencies = ("Resident", "Nonresident")
 
         for residency in residencies:
+            # Calibrate within program/residency. Split hunts cannot inherit
+            # pre-split demand indirectly through pooled retention/arrivals.
+            calibration_key = (subtype, residency, history_start)
+            if calibration_key not in calibration_cache:
+                scoped = {k: v for k, v in ladders.items()
+                          if k[0] == subtype and k[3] == residency and k[1] >= history_start}
+                purchase_scope = {k: v for k, v in point_purchase_counts.items()
+                                  if k[0] >= history_start and subtype == LIMITED_ENTRY_BEAR_HUNT}
+                calibration_cache[calibration_key] = (
+                    _build_retention_and_zero_growth(scoped, subtype_hint=subtype, residency_hint=residency),
+                    _build_lane_cohort_model(scoped),
+                    _build_source_calibrated_returning_tail_profiles(scoped, purchase_scope)
+                    if returning_cohort_mode == "source_calibrated_tail_mixture" else {},
+                )
+            (retention_by_band, zero_growth, retention_history_by_band, zero_growth_history), lane_cohort_model, returning_tail_profiles = calibration_cache[calibration_key]
             history_residency, available_years, history_scope_flag = history_context(subtype, history_hunt_code, residency)
-            latest_year = available_years[-1] if available_years else default_latest_source_year
-            earliest_source_year = available_years[0] if available_years else default_earliest_source_year
-            latest_ladder = ladders.get((subtype, latest_year, history_hunt_code, history_residency), {}) if available_years else {}
+            available_years = [year for year in available_years if year >= history_start]
+            latest_year = forecast_year - 1
+            earliest_source_year = available_years[0] if available_years else ""
+            latest_ladder = ladders.get((subtype, latest_year, history_hunt_code, history_residency), {}) if latest_year in available_years else {}
             prior_total = sum(int(values.get("total", 0)) for values in latest_ladder.values())
-            public_quota = _forecast_quota_for_residency(
-                db_row,
-                residency,
-                forecast_year,
-                source_year=latest_year,
-            )
+            # Forecast assumption only: exact immediately prior program/lane
+            # awards, never a current catalog or another residency's permits.
+            public_quota = prior_total
             base = _base_row(
                 forecast_year=forecast_year,
                 source_years_used_text=source_years_used_text,
@@ -1739,7 +2243,33 @@ def build_bear_bonus_predictions(
                 season_dates=season_dates,
             )
             base["history_hunt_code"] = history_hunt_code
+            base.update(source_years_used=",".join(map(str, available_years)),
+                        source_year_count=len(available_years),
+                        earliest_source_year=earliest_source_year,
+                        latest_source_year=available_years[-1] if available_years else "",
+                        public_permits_target=public_quota,
+                        forecast_quota_proxy=public_quota if latest_ladder else "",
+                        quota_source="SOURCE_YEAR_CANONICAL_AWARDS_PROXY",
+                        quota_source_type="SOURCE_YEAR_CANONICAL_AWARDS_PROXY",
+                        quota_source_year=str(latest_year),
+                        quota_source_file="|".join(sorted(source_files.get((hunt_code, latest_year), set()))),
+                        quota_is_current_allocation="FALSE")
             base["crosswalk_status"] = "DIRECT_HISTORICAL_TO_CURRENT_CODE" if history_hunt_code != hunt_code else ""
+            if history_start:
+                base.update(history_effective_start_year=history_start,
+                            crosswalk_status="BOUNDARY_SPLIT_POST_EFFECTIVE_HISTORY_ONLY",
+                            source_years_used=",".join(map(str, available_years)),
+                            source_year_count=len(available_years),
+                            earliest_source_year=available_years[0] if available_years else "",
+                            latest_source_year=available_years[-1] if available_years else "")
+            if hunt_code in BEAR_SPLIT_HISTORY_START:
+                base.update(effective_split_year=2026, use_pre_split_history=False, use_forward_from=2026)
+                if forecast_year == 2026:
+                    base.update(public_permits_target=BEAR_SPLIT_REFERENCE_TOTALS_2026[hunt_code],
+                                public_permits_target_scope="WHOLE_HUNT_REFERENCE_NOT_MODEL_QUOTA",
+                                public_permits_target_source=BEAR_SPLIT_REFERENCE_SOURCE,
+                                source_file=BEAR_SPLIT_REFERENCE_SOURCE,
+                                source_file_role="CURRENT_IDENTITY_AND_PERMIT_REFERENCE_NOT_DRAW_TRUTH")
             # Retain the narrow current-target identity bridge in diagnostic
             # output. Its current permit split is target configuration only;
             # it never contributes applicant or probability evidence.
@@ -1749,7 +2279,7 @@ def build_bear_bonus_predictions(
                 base["bear_crosswalk_parent_hunt_code"] = _clean(db_row.get("bear_crosswalk_parent_hunt_code"))
                 base["public_permits_source"] = _clean(db_row.get("forecast_permits_source"))
 
-            if subtype == UNLIMITED_PURSUIT_PERMIT:
+            if subtype == UNLIMITED_PURSUIT_PERMIT and hunt_code in BEAR_AVAILABILITY_PRODUCTS:
                 row = dict(base)
                 row.update(
                     {
@@ -1785,7 +2315,7 @@ def build_bear_bonus_predictions(
                 report_counts["availability"] += 1
                 continue
 
-            if subtype == HARVEST_OBJECTIVE_AVAILABILITY:
+            if subtype == HARVEST_OBJECTIVE_AVAILABILITY and hunt_code in BEAR_AVAILABILITY_PRODUCTS:
                 row = dict(base)
                 row.update(
                     {
@@ -1864,8 +2394,8 @@ def build_bear_bonus_predictions(
                 report_counts["pending"] += 1
                 continue
 
-            if public_quota <= 0 and _has_known_zero_residency_quota(db_row, residency):
-                flags = ["KNOWN_ZERO_RESIDENCY_QUOTA", "FIRST_CHOICE_ONLY_MODEL"]
+            if public_quota <= 0 and latest_ladder:
+                flags = ["ZERO_SOURCE_YEAR_AWARDS_PROXY", "FIRST_CHOICE_ONLY_MODEL"]
                 for flag in flags:
                     data_quality_counter[flag] += 1
                 row = dict(base)
@@ -1879,13 +2409,13 @@ def build_bear_bonus_predictions(
                         "p_bonus_pool_pct": "",
                         "p_random_pool_pct": "",
                         "p_draw_pct": "",
-                        "draw_outlook": "NO PERMITS FOR RESIDENCY",
+                        "draw_outlook": "INSUFFICIENT QUOTA EVIDENCE",
                         "bear_bonus_valid": "FALSE",
-                        "bear_bonus_note": "Published 2026 permit split assigns zero permits to this residency.",
+                        "bear_bonus_note": "The source-year official lane awarded zero permits; this proxy does not prove a current zero allocation.",
                         "data_quality_flags": "|".join(flags),
                         "reason_codes": append_reason_codes(
                             row.get("reason_codes"),
-                            "KNOWN_ZERO_RESIDENCY_QUOTA",
+                            "ZERO_SOURCE_YEAR_AWARDS_PROXY",
                             "NO_PUBLIC_DRAW_PROBABILITY_FOR_RESIDENCY",
                         ),
                     }
@@ -1894,14 +2424,18 @@ def build_bear_bonus_predictions(
                 report_counts["excluded"] += 1
                 continue
 
-            if not available_years or public_quota <= 0:
+            if not latest_ladder or public_quota <= 0:
                 flags = []
+                if not latest_ladder:
+                    flags.append("MISSING_SOURCE_YEAR_PROGRAM_RESIDENCY_LADDER")
                 is_new_unit_without_history = (
                     _clean(db_row.get("bear_target_identity_status"))
                     == "CURRENT_NEW_UNIT_NO_COMPARABLE_HISTORY"
                 )
                 if not available_years:
                     flags.append("MISSING_PROVEN_BEAR_DRAW_HISTORY")
+                    if history_start:
+                        flags.append("SPLIT_UNIT_POST_EFFECTIVE_HISTORY_REQUIRED")
                     if is_new_unit_without_history:
                         flags.append("NEW_UNIT_NO_COMPARABLE_HISTORY")
                 elif history_hunt_code != hunt_code:
@@ -1939,18 +2473,33 @@ def build_bear_bonus_predictions(
                         "data_quality_flags": "|".join(flags),
                         "reason_codes": append_reason_codes(
                             row.get("reason_codes"),
+                            "MISSING_SOURCE_YEAR_PROGRAM_RESIDENCY_LADDER" if not latest_ladder else "",
                             BEAR_NO_PRIOR_LADDER_REASON_CODE if "MISSING_PROVEN_BEAR_DRAW_HISTORY" in flags else "",
                             "NOT_SCORED_NEW_UNIT_NO_COMPARABLE_HISTORY" if is_new_unit_without_history else "",
                             "NO_PUBLIC_DRAW_PROBABILITY_FOR_RESIDENCY" if public_quota <= 0 else "",
                         ),
                     }
                 )
+                if history_start and not available_years:
+                    row.update(algorithm_status="NO_TRANSITION_EVIDENCE", probability_model="NONE",
+                               no_transition_reason=(
+                                   "Split-unit effective 2026 per DWR p.4 + WORK_LOG 2026-09-20 + crosswalk "
+                                   "CURRENT_SPLIT_CHILD_NO_PRIOR_DRAW_ROW / HISTORICAL_CODE_RECODED - pre-split "
+                                   "BR7008/7108/7208/7307 2020-2025 not comparable due to boundary change + "
+                                   "applicant redistribution unknown - copying same stack into both child units "
+                                   "invalid - no forward history from 2026 exists yet for 2026 prediction - "
+                                   "will use forward from 2026"
+                                   if hunt_code in BEAR_SPLIT_HISTORY_START else
+                                   f"No comparable program history from effective year {history_start}"),
+                               reason_codes=append_reason_codes(row.get("reason_codes"), "NO_TRANSITION_EVIDENCE"))
                 rows.append(row)
                 report_counts["pending"] += 1
                 continue
 
             max_point_permits, random_permits = _split_bear_bonus_permits(public_quota, residency)
             lane_cohort_calibrations: dict[int, _BearCohortCalibration] = {}
+            joint_transition_years = []
+            adaptive_blend = ""
             if returning_cohort_mode == "lane_cohort_hierarchical":
                 forecast_ladder, lane_cohort_calibrations = _forecast_lane_cohort_ladder(
                     latest_ladder,
@@ -1971,6 +2520,10 @@ def build_bear_bonus_predictions(
                 )
             else:
                 forecast_ladder = _forecast_applicant_ladder(latest_ladder, retention_by_band, zero_growth)
+                if demand_mode == "cumulative_stack":
+                    forecast_ladder = _forecast_cumulative_stack(
+                        {k: v for k, v in ladders.items() if k[1] >= history_start},
+                        subtype, history_hunt_code, history_residency)
                 sampled_ladders = (
                     _sample_bear_forecast_ladders(
                         latest_ladder,
@@ -1983,6 +2536,14 @@ def build_bear_bonus_predictions(
                     if central_estimate_mode == "simulation_mean"
                     else []
                 )
+                if demand_mode == "cumulative_transition_ensemble":
+                    forecast_ladder, sampled_ladders, joint_transition_years = _forecast_cumulative_transition_ensemble(
+                        {k: v for k, v in ladders.items() if k[1] >= history_start},
+                        subtype, history_hunt_code, history_residency)
+                if demand_mode == "adaptive_cumulative_stack":
+                    forecast_ladder, adaptive_blend, joint_transition_years = _forecast_adaptive_cumulative_stack(
+                        {k: v for k, v in ladders.items() if k[1] >= history_start},
+                        subtype, history_hunt_code, history_residency)
             returning_profile_count = len(
                 returning_tail_profiles.get((subtype, history_hunt_code, history_residency), ())
             )
@@ -2024,9 +2585,17 @@ def build_bear_bonus_predictions(
 
             for points in sorted(forecast_ladder.keys(), reverse=True):
                 lane_calibration = lane_cohort_calibrations.get(int(points))
+                has_point_history = any(
+                    values.get("eligible", 0) > 0
+                    for year in available_years
+                    for level, values in ladders[(subtype, year, history_hunt_code, history_residency)].items()
+                    if level in {int(points), int(points)-1}
+                )
                 applicants_by_points = {int(level): int(count) for level, count in forecast_ladder.items()}
-                if returning_cohort_mode == "lane_cohort_hierarchical":
-                    applicants_by_points = _condition_for_focal_bear_applicant(applicants_by_points, points)
+                # Conditional odds for ONE applicant, not the probability that
+                # somebody exists in a rounded demand cell. This does not add
+                # arrivals to the demand forecast used by other point levels.
+                applicants_by_points = _condition_for_focal_bear_applicant(applicants_by_points, points)
                 p_bonus_pool, applicants_above, applicants_at_level = compute_bonus_pool_probability(points, applicants_by_points, max_point_permits)
                 p_random_pool = _weighted_random_probability(points, applicants_by_points, random_permits, max_point_permits)
                 p_draw = combine_probabilities(p_bonus_pool, p_random_pool)
@@ -2056,6 +2625,13 @@ def build_bear_bonus_predictions(
                     p_bonus_pool = min(deterministic_p_bonus_pool, simulated_p_bonus_pool)
                     p_random_pool = min(deterministic_p_random_pool, simulated_p_random_pool)
                     p_draw = combine_probabilities(p_bonus_pool, p_random_pool)
+                if demand_mode == "cumulative_transition_ensemble":
+                    # Average complete scenario probabilities, NOT a product
+                    # of separately averaged max/random components. Their
+                    # dependence is material when a lane moves across cutoff.
+                    p_bonus_pool, p_random_pool, p_draw, p_draw_p10, p_draw_p50, p_draw_p90 = _bear_simulation_probability(
+                        points, sampled_ladders, max_point_permits, random_permits)
+                p_draw_before_existing_ceiling = p_draw
                 structural_future_certainty = p_draw >= 1.0 - 1e-12
                 total_scope_guarantee_blocked = (
                     history_scope_flag == "TOTAL_SCOPE_HISTORY_USED_FOR_RESIDENCY"
@@ -2091,6 +2667,11 @@ def build_bear_bonus_predictions(
                         "p_random_pool": "" if total_scope_guarantee_blocked else f"{p_random_pool:.6f}",
                         "p_draw": "" if total_scope_guarantee_blocked else f"{p_draw:.6f}",
                         "p_draw_mean": "" if total_scope_guarantee_blocked else f"{p_draw:.6f}",
+                        "bear_demand_mode": demand_mode,
+                        "p_draw_before_existing_ceiling": f"{p_draw_before_existing_ceiling:.6f}",
+                        "bear_demand_transition_years": ",".join(map(str, joint_transition_years)),
+                        "bear_demand_adaptive_blend": adaptive_blend,
+                        "bear_demand_scenario_count": len(sampled_ladders) if demand_mode == "cumulative_transition_ensemble" else "",
                         "p_draw_p10": "" if total_scope_guarantee_blocked else f"{p_draw_p10:.6f}",
                         "p_draw_p50": "" if total_scope_guarantee_blocked else f"{p_draw_p50:.6f}",
                         "p_draw_p90": "" if total_scope_guarantee_blocked else f"{p_draw_p90:.6f}",
@@ -2145,17 +2726,31 @@ def build_bear_bonus_predictions(
                     }
                 )
                 rows.append(row)
-                if total_scope_guarantee_blocked:
+                if not has_point_history:
+                    # An empty historical upper rung is neither a zero chance
+                    # nor a guaranteed opportunity. Preserve its reasoned blank.
+                    for field in tuple(row):
+                        if field.startswith("p_") or field in {"display_odds_pct", "guaranteed_at_2026"}:
+                            row[field] = ""
+                    row.update(algorithm_status="NO_TRANSITION_EVIDENCE", bear_bonus_valid="FALSE",
+                               probability_model="NONE", draw_outlook="Insufficient evidence",
+                               bear_bonus_note="No same-lane applicant evidence at this point or its predecessor; probability withheld.",
+                               reason_codes=append_reason_codes(row.get("reason_codes"), "NO_TRANSITION_EVIDENCE"))
+                if total_scope_guarantee_blocked or not has_point_history:
                     report_counts["pending"] += 1
                 else:
                     report_counts["modeled"] += 1
 
-    observed_history_rows = [row for row in truth_rows if is_bear_row(row)]
+    validate_bear_availability_identity(rows, db_rows)
+    observed_history_rows = [row for row in truth_rows_list if is_bear_row(row)]
     review_counter = Counter(classify_bear_subtype(row) for row in review_rows)
     modeled_rows = [row for row in rows if _clean(row.get("bear_bonus_valid")) == "TRUE"]
 
     report = {
         "forecast_year": forecast_year,
+        "quota_authority": "SOURCE_YEAR_CANONICAL_AWARDS_PROXY",
+        "database_quota_used": False,
+        "retention_calibration_boundary": "BEAR_PROGRAM_AND_RESIDENCY",
         "central_estimate_mode": central_estimate_mode,
         "iterations": iterations,
         "returning_cohort_mode": returning_cohort_mode,
@@ -2183,6 +2778,12 @@ def build_bear_bonus_predictions(
         "modeled_bear_hunt_code_count": len({str(row.get("hunt_code", "")).strip() for row in modeled_rows if str(row.get("hunt_code", "")).strip()}),
         "limited_entry_bear_modeled_row_count": sum(1 for row in modeled_rows if row.get("bear_draw_subtype") == LIMITED_ENTRY_BEAR_HUNT),
         "restricted_pursuit_modeled_row_count": sum(1 for row in modeled_rows if row.get("bear_draw_subtype") == RESTRICTED_BEAR_PURSUIT),
+        # Inventory only: never a replacement for independently joined scores or MAE.
+        "restricted_pursuit_measured_row_count": _measured_pursuit_row_count(ladders),
+        "restricted_pursuit_measured_row_count_basis": "SOURCE_LADDER_ELIGIBLE_POSITIVE_POINT_CELLS_NOT_SCORED_FORECASTS",
+        "bear_400_plus_below_10pp_claim": "UNVERIFIED",
+        "candidate_behavior_acceptance_status": "NOT_VALIDATED_NOT_FOR_PROMOTION",
+        "retention_calibration_per_program_residency": "BEAR_PROGRAM_AND_RESIDENCY_SPECIFIC_DEFAULTS_APPLIED",
         "limited_entry_hunt_modeled_hunt_code_count": len({str(row.get("hunt_code", "")).strip() for row in modeled_rows if row.get("bear_draw_subtype") == LIMITED_ENTRY_BEAR_HUNT and str(row.get("hunt_code", "")).strip()}),
         "restricted_pursuit_modeled_hunt_code_count": len({str(row.get("hunt_code", "")).strip() for row in modeled_rows if row.get("bear_draw_subtype") == RESTRICTED_BEAR_PURSUIT and str(row.get("hunt_code", "")).strip()}),
         "harvest_objective_excluded_or_availability_pending_row_count": sum(1 for row in rows if row.get("bear_draw_subtype") == HARVEST_OBJECTIVE_AVAILABILITY),

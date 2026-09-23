@@ -728,11 +728,17 @@ def family_from_actual(row: Mapping[str, Any]) -> str:
         return "bonus_oil_big_game"
     if draw_design == "BONUS_TURKEY" or draw_system_type == "BONUS_TURKEY":
         return "bonus_turkey"
-    # A CWMU antlerless hunt can use a DA/EA/DB/EB code prefix.  The explicit
-    # official CWMU draw-system field controls before those species prefixes;
-    # otherwise a valid public CWMU bonus lane is incorrectly scored as a
-    # regular preference or limited-entry lane and appears to have no forecast.
+    # CWMU is an access overlay, not a universal bonus parent. Official adult
+    # CWMU antlerless deer/elk/doe-pronghorn ladders award regular/preference
+    # permits; eligible male CWMU big game remains max/weighted bonus.
     if draw_design == "BONUS_CWMU_BIG_GAME" or draw_system_type == "BONUS_CWMU_BIG_GAME" or "CWMU" in source_text:
+        sex = clean(row.get("sex_type") or row.get("sex")).lower()
+        if species == "deer" and any(token in sex or token in source_text.lower() for token in ("antlerless", "doe", "female")):
+            return "preference_antlerless_deer"
+        if species == "elk" and any(token in sex or token in source_text.lower() for token in ("antlerless", "cow", "female")):
+            return "preference_antlerless_elk"
+        if species == "pronghorn" and any(token in sex or token in source_text.lower() for token in ("antlerless", "doe", "female")):
+            return "preference_doe_pronghorn"
         return "bonus_cwmu_big_game"
     if draw_design == "COUGAR_LICENSE_BASED" or draw_system_type == "COUGAR_LICENSE_BASED":
         return "cougar"
@@ -758,6 +764,15 @@ def structural_draw_design(family: str, raw_design: Any) -> str:
     distinguishes the underlying design, so normalize that taxonomy label
     symmetrically for scoring instead of dropping valid same-design joins.
     """
+    # Youth is an overlay. Its archived antlerless/deer preference design is
+    # not the random-only youth elk design merely because the owner is youth.
+    if family == "youth_draw" and norm_draw_design(raw_design) == "YOUTH_GENERAL_DEER_RESERVE":
+        return "PREFERENCE_GENERAL_SEASON_BUCK_DEER"
+    if family == "youth_draw" and norm_draw_design(raw_design) in {
+        "PREFERENCE_GENERAL_SEASON_BUCK_DEER", "PREFERENCE_ANTLERLESS_DEER",
+        "PREFERENCE_ANTLERLESS_ELK", "PREFERENCE_DOE_PRONGHORN",
+    }:
+        return norm_draw_design(raw_design)
     by_family = {
         "bonus_le_big_game": "BONUS_LE_BIG_GAME",
         "bonus_ple_big_game": "BONUS_PLE_BIG_GAME",
@@ -855,6 +870,13 @@ def prediction_bear_subtype(row: Mapping[str, Any], draw_design_key: str) -> tup
 
 def structural_draw_pool(family: str, raw_pool: Any) -> str:
     """Return the stable probability-pool label used for historical joins."""
+    if family == "dedicated_hunter" and "youth" in clean(raw_pool).lower():
+        return "youth_dedicated_hunter"
+    normalized = norm_draw_pool(raw_pool)
+    if normalized in {'youth_general_season_deer', 'youth_antlerless_deer',
+                      'youth_antlerless_elk', 'youth_doe_pronghorn', 'youth_turkey',
+                      'youth_cwmu_turkey'}:
+        return normalized
     by_family = {
         "bonus_le_big_game": "max_weighted_split",
         "bonus_ple_big_game": "max_weighted_split",
@@ -1750,16 +1772,17 @@ def run_official_score_key_v2_mode(args: argparse.Namespace, prediction_rows: li
 
 def run(args: argparse.Namespace) -> dict[str, Any]:
     global HUNT_CODE_CROSSWALK, ACTIVE_SCORING_HUNT_CODE_ALIASES
-    crosswalk_dirs = [DEFAULT_HUNT_CODE_CROSSWALK_DIR] + list(args.hunt_code_crosswalk_dir or [])
+    exact_codes_only = bool(getattr(args, "exact_codes_only", False))
+    crosswalk_dirs = ([] if exact_codes_only else [DEFAULT_HUNT_CODE_CROSSWALK_DIR]) + list(args.hunt_code_crosswalk_dir or [])
     crosswalk_files = dedupe_paths(
-        list(DEFAULT_HUNT_CODE_CROSSWALK_FILES)
+        ([] if exact_codes_only else list(DEFAULT_HUNT_CODE_CROSSWALK_FILES))
         + crosswalk_files_from_dirs(crosswalk_dirs)
         + list(args.hunt_code_crosswalk_file or [])
     )
     HUNT_CODE_CROSSWALK = load_hunt_code_crosswalk(crosswalk_files)
-    ACTIVE_SCORING_HUNT_CODE_ALIASES = dict(BASE_SCORING_HUNT_CODE_ALIASES)
+    ACTIVE_SCORING_HUNT_CODE_ALIASES = {} if exact_codes_only else dict(BASE_SCORING_HUNT_CODE_ALIASES)
     ACTIVE_SCORING_HUNT_CODE_ALIASES.update(
-        YEAR_SCOPED_SCORING_HUNT_CODE_ALIASES.get((clean(args.source_year), clean(args.target_year)), {}) if args.source_year is not None else {}
+        YEAR_SCOPED_SCORING_HUNT_CODE_ALIASES.get((clean(args.source_year), clean(args.target_year)), {}) if args.source_year is not None and not exact_codes_only else {}
     )
     prediction_header, prediction_rows = read_csv(args.prediction_file)
     actual_header, actual_rows = read_csv(args.truth_file)
@@ -1927,6 +1950,8 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--source-year", type=int)
     parser.add_argument("--target-year", type=int, required=True)
+    parser.add_argument("--exact-codes-only", action="store_true",
+                        help="Do not load default/current crosswalks or implicit aliases; score frozen identities exactly.")
     parser.add_argument(
         "--hunt-code-crosswalk-file",
         type=Path,

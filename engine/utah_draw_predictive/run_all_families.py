@@ -36,6 +36,7 @@ from .preference_antlerless import build_preference_antlerless_predictions
 from .preference_general_deer import build_preference_general_deer_predictions
 from .preference_ladder_normalizer import normalize_preference_ladder_rows
 from .sportsman import build_sportsman_predictions
+from .special_bonus import build_phase6_bonus_special_predictions
 from .turkey import TURKEY_DRAW_SYSTEM_TYPE, YOUTH_TURKEY_DRAW_SYSTEM_TYPE, build_turkey_bonus_predictions, build_youth_turkey_predictions
 from .youth import (
     build_youth_predictions,
@@ -326,17 +327,17 @@ def _source_file_route(row: Mapping[str, object]) -> dict[str, str]:
 
     if "cwmu" in compact:
         if "youth_antlerless_elk" in compact:
-            draw_pool = "cwmu_youth_antlerless_elk"
+            return route("youth_draw", "YOUTH_ANTLERLESS", "PREFERENCE_ANTLERLESS_ELK", "cwmu_youth_antlerless_elk")
         elif "youth_antlerless_deer" in compact:
-            draw_pool = "cwmu_youth_antlerless_deer"
+            return route("youth_draw", "YOUTH_ANTLERLESS", "PREFERENCE_ANTLERLESS_DEER", "cwmu_youth_antlerless_deer")
         elif "youth_antlerless_pronghorn" in compact or "youth_doe_pronghorn" in compact:
-            draw_pool = "cwmu_youth_doe_pronghorn"
+            return route("youth_draw", "YOUTH_ANTLERLESS", "PREFERENCE_DOE_PRONGHORN", "cwmu_youth_doe_pronghorn")
         elif "antlerless_elk" in compact:
-            draw_pool = "cwmu_antlerless_elk"
+            return route("preference_antlerless_elk", "CWMU_ANTLERLESS", "PREFERENCE_ANTLERLESS_ELK", "cwmu_antlerless_elk")
         elif "antlerless_deer" in compact:
-            draw_pool = "cwmu_antlerless_deer"
+            return route("preference_antlerless_deer", "CWMU_ANTLERLESS", "PREFERENCE_ANTLERLESS_DEER", "cwmu_antlerless_deer")
         elif "doe_pronghorn" in compact or "antlerless_pronghorn" in compact:
-            draw_pool = "cwmu_doe_pronghorn"
+            return route("preference_doe_pronghorn", "CWMU_ANTLERLESS", "PREFERENCE_DOE_PRONGHORN", "cwmu_doe_pronghorn")
         elif "deer_buck" in compact:
             draw_pool = "cwmu_big_game_deer_buck"
         elif "elk_bull" in compact:
@@ -506,9 +507,18 @@ def _youth_draw_pool_for_row(row: Mapping[str, object]) -> str:
     if is_youth_antlerless_or_doe_row(row):
         text = _joined_lower(row, "hunt_code", "hunt_name", "species", "sex_type", "hunt_type", "hunt_class", "weapon", "draw_design", "draw_pool", "source_file")
         species = _clean(row.get("species")).lower()
-        if "elk" in species or "elk" in text:
+        # A shared display label ("Youth Antlerless/Doe Reserve") is not
+        # species evidence. Preserve the explicit source species first.
+        source_pool = {
+            "deer": "youth_antlerless_deer",
+            "elk": "youth_antlerless_elk",
+            "pronghorn": "youth_doe_pronghorn",
+        }.get(species)
+        if source_pool:
+            return source_pool
+        if "elk" in text:
             return "youth_antlerless_elk"
-        if "pronghorn" in species or "pronghorn" in text or "doe" in text:
+        if "pronghorn" in text:
             return "youth_doe_pronghorn"
         return "youth_antlerless_deer"
     if is_youth_general_deer_row(row):
@@ -1091,6 +1101,13 @@ def _source_backed_family_for_row(row: Mapping[str, object]) -> str:
         return "bonus_turkey"
 
     if "cwmu" in text and not any(token in text for token in ("private", "landowner", "voucher")):
+        sex = _clean(row.get("sex_type")).lower()
+        if species == "deer" and any(token in text or token in sex for token in ("antlerless", "doe", "female")):
+            return "preference_antlerless_deer"
+        if species == "elk" and any(token in text or token in sex for token in ("antlerless", "cow", "female")):
+            return "preference_antlerless_elk"
+        if species == "pronghorn" and any(token in text or token in sex for token in ("antlerless", "doe", "female")):
+            return "preference_doe_pronghorn"
         return "bonus_cwmu_big_game"
 
     source_route = _source_file_route(row)
@@ -1180,9 +1197,7 @@ def _source_backed_probability_values(row: Mapping[str, object]) -> list[tuple[s
         eligible = _to_number(row.get("eligible_applicants"))
         successful = _source_backed_successful_applicants(row, _clean(row.get("residency")))
         if probability is None and eligible is not None:
-            if eligible == 0:
-                probability = 0.0
-            elif successful is not None and 0 <= successful <= eligible:
+            if eligible > 0 and successful is not None and 0 <= successful <= eligible:
                 probability = successful / eligible
         if probability is None:
             return []
@@ -1201,9 +1216,7 @@ def _source_backed_probability_values(row: Mapping[str, object]) -> list[tuple[s
         eligible = _to_number(row.get(eligible_field)) if _clean(row.get(eligible_field)) else None
         successful = _source_backed_successful_applicants(row, residency)
         if probability is None and eligible is not None:
-            if eligible == 0:
-                probability = 0.0
-            elif successful is not None and 0 <= successful <= eligible:
+            if eligible > 0 and successful is not None and 0 <= successful <= eligible:
                 probability = successful / eligible
         if probability is not None:
             values.append((residency, probability))
@@ -1216,9 +1229,7 @@ def _source_backed_probability_values(row: Mapping[str, object]) -> list[tuple[s
     total_successful = _source_backed_successful_applicants(row, "")
     if total_probability is None and _clean(total_eligible):
         eligible = _to_number(total_eligible)
-        if eligible == 0:
-            total_probability = 0.0
-        elif eligible is not None and total_successful is not None and 0 <= total_successful <= eligible:
+        if eligible is not None and eligible > 0 and total_successful is not None and 0 <= total_successful <= eligible:
             total_probability = total_successful / eligible
     if total_probability is not None:
         values.append(("", total_probability))
@@ -1243,12 +1254,120 @@ def _source_backed_eligible_applicants(
     return None
 
 
+def _youth_reserve_input_placeholder(row: Mapping[str, object]) -> bool:
+    """A quota-only input placeholder is not a completed probability model.
+
+    This narrow handoff never supersedes modeled rows or intentional
+    NO_TRANSITION/guarantee abstentions. It requires the explicit missing-input
+    flag from the youth reserve builder, not merely a blank probability.
+    """
+    return (
+        _clean(row.get("family")) == "youth_draw"
+        and _clean(row.get("algorithm_status")) == "IN_SCOPE_MODEL_PENDING"
+        and _clean(row.get("model_strategy")) in {
+            "youth_general_deer_reserve_preference_v1",
+            "youth_antlerless_or_doe_reserve_preference_v1",
+        }
+        and _clean(row.get("youth_reserve_model_valid")).upper() == "FALSE"
+        and "YOUTH_RESERVE_PROBABILITY_INPUT_MISSING" in _clean(row.get("data_quality_flags"))
+        and not any(_clean(row.get(k)) for k in ("p_draw", "p_draw_mean", "p_preference_draw"))
+    )
+
+
+def _source_backed_conditional_handoff_placeholder(
+    family: str,
+    row: Mapping[str, object],
+) -> bool:
+    """Identify an unmodeled bonus rung that exact source evidence may fill.
+
+    The primary bonus engine intentionally abstains when its cohort transition
+    cannot support a conditional probability.  That abstention must continue
+    to win for empty, zero-outcome, or certain source rows.  An exact official
+    source row with applicants and a fractional published outcome may use the
+    established source-backed roll-forward instead of leaving a coverage gap.
+    """
+    return (
+        family in {"bonus_le_big_game", "bonus_ple_big_game", "bonus_oil_big_game"}
+        and _clean(row.get("algorithm_status"))
+        == "NOT_SCORED_CONDITIONAL_RUNG_NO_TRANSITION_EVIDENCE"
+        and not any(
+            _clean(row.get(field))
+            for field in ("p_draw", "p_draw_mean", "p_bonus_pool", "p_random_pool")
+        )
+    )
+
+
+def _source_backed_handoff_placeholder(
+    family: str,
+    row: Mapping[str, object],
+) -> bool:
+    return _youth_reserve_input_placeholder(row) or _source_backed_conditional_handoff_placeholder(
+        family, row
+    )
+
+
+def _source_backed_lane_key(family: str, row: Mapping[str, object]) -> tuple[str, str, str, str, str]:
+    return (family, _clean(row.get("hunt_code")).upper(),
+            _effective_draw_pool_for_family(row, family),
+            _metric_scope_for_residency(row.get("residency") or row.get("metric_scope")),
+            _text(row.get("points")))
+
+
+def _source_backed_conditional_lane_key(
+    family: str,
+    row: Mapping[str, object],
+) -> tuple[str, str, str, str]:
+    """Stable exact-lane key for a blank primary bonus-rung handoff.
+
+    Historical primary rows can lack species/sex metadata while the official
+    source-backed row carries it.  Family + hunt + residency + point is the
+    exact applicant lane; including a metadata-derived pool here can prevent
+    the same OIL lane from matching itself before output normalization.
+    """
+    return (
+        family,
+        _clean(row.get("hunt_code")).upper(),
+        _metric_scope_for_residency(row.get("residency") or row.get("metric_scope")),
+        _text(row.get("points")),
+    )
+
+
+def _merge_source_backed_family_rows(family, primary, fallback):
+    """Hand off approved blank placeholders to an exact source-backed row."""
+    replacement_keys = {_source_backed_lane_key(family, r) for r in fallback}
+    conditional_replacement_keys = {
+        _source_backed_conditional_lane_key(family, r) for r in fallback
+    }
+    retained, replaced = [], []
+    for row in primary:
+        youth_handoff = (
+            _youth_reserve_input_placeholder(row)
+            and _source_backed_lane_key(family, row) in replacement_keys
+        )
+        conditional_handoff = (
+            _source_backed_conditional_handoff_placeholder(family, row)
+            and _source_backed_conditional_lane_key(family, row)
+            in conditional_replacement_keys
+        )
+        if youth_handoff or conditional_handoff:
+            replaced.append(dict(row))
+        else:
+            retained.append(row)
+    return retained + list(fallback), replaced
+
+
 def _source_backed_probability_rows(
     source_rows: Sequence[Mapping[str, object]],
     modeled: Mapping[str, Sequence[Mapping[str, object]]],
     source_year: int,
     target_year: int,
 ) -> dict[str, list[dict[str, object]]]:
+    conditional_handoff_keys = {
+        _source_backed_conditional_lane_key(family, row)
+        for family, rows in modeled.items()
+        for row in rows
+        if _source_backed_conditional_handoff_placeholder(family, row)
+    }
     existing_keys = {
         (
             family,
@@ -1260,10 +1379,15 @@ def _source_backed_probability_rows(
         for family, rows in modeled.items()
         for row in rows
         if _clean(row.get("hunt_code"))
+        and not _youth_reserve_input_placeholder(row)
+        and not _source_backed_conditional_handoff_placeholder(family, row)
         and _clean(row.get("draw_system_type")).upper() != "REFERENCE_ONLY"
         and _source_family_for_output_row(family, row) != "LIFETIME_GENERAL_SEASON_DEER"
     }
     rows_by_family: dict[str, list[dict[str, object]]] = defaultdict(list)
+    placeholder_keys = {_source_backed_lane_key(family, row)
+                        for family, rows in modeled.items() for row in rows
+                        if _youth_reserve_input_placeholder(row)}
     added_keys: set[tuple[str, str, str, str]] = set()
 
     for source_row in source_rows:
@@ -1286,17 +1410,33 @@ def _source_backed_probability_rows(
         for residency, probability in _source_backed_probability_values(source_row):
             metric_scope = _metric_scope_for_residency(residency)
             key = (family, hunt_code, draw_pool, metric_scope, points)
+            conditional_key = (family, hunt_code, metric_scope, points)
             if key in existing_keys or key in added_keys:
+                continue
+            # A missing metadata input is handed to the established fallback
+            # only when the exact official source lane has real applicants.
+            if key in placeholder_keys and (_source_backed_eligible_applicants(source_row, residency) or 0) <= 0:
                 continue
             added_keys.add(key)
             copied_guarantee = probability >= 1.0 - 1e-12
+            copied_zero_outcome = probability <= 1e-12
             source_eligible_applicants = _source_backed_eligible_applicants(source_row, residency)
             empty_bear_rung = (
                 family == "bonus_bear"
                 and source_eligible_applicants is not None
                 and source_eligible_applicants <= 0
             )
-            probability_blocked = copied_guarantee or empty_bear_rung
+            # A published source-year 0% is an observed outcome, not evidence
+            # that a future applicant has no chance.  Likewise, an empty
+            # source rung has no applicant transition to roll forward.  Keep
+            # both states as explicit blanks instead of emitting a fabricated
+            # next-year p=0.
+            probability_blocked = copied_guarantee or copied_zero_outcome or empty_bear_rung
+            # Preserve the primary engine's explicit abstention when the
+            # source row itself is zero or certain.  Only a fractional exact
+            # source result may replace this particular blank primary row.
+            if conditional_key in conditional_handoff_keys and probability_blocked:
+                continue
             probability_fields = {
                 "p_preference_draw": f"{probability:.6f}" if family.startswith("preference_") and not probability_blocked else "",
                 "p_bonus_pool": "" if family.startswith("preference_") or probability_blocked else f"{probability:.6f}",
@@ -1313,7 +1453,11 @@ def _source_backed_probability_rows(
                 "display_odds_text": "No next-year modeled chance" if probability_blocked else _render_odds_text(probability),
                 "draw_outlook": "MODEL PENDING" if probability_blocked else _render_odds_text(probability),
             }
-            if empty_bear_rung:
+            if copied_zero_outcome:
+                source_algorithm_status = "NO_TRANSITION_EVIDENCE"
+                source_classification_status = "SOURCE_ROLL_FORWARD_ZERO_OUTCOME_BLOCKED"
+                source_reason_code = "SOURCE_BACKED_OBSERVED_ZERO_IS_NOT_NEXT_YEAR_ZERO_PROBABILITY"
+            elif empty_bear_rung:
                 source_algorithm_status = "NOT_SCORED_SOURCE_ROLL_FORWARD_EMPTY_RUNG"
                 source_classification_status = "SOURCE_ROLL_FORWARD_EMPTY_RUNG_BLOCKED"
                 source_reason_code = "SOURCE_BACKED_EMPTY_APPLICANT_RUNG_NO_NEXT_YEAR_PROBABILITY"
@@ -1353,6 +1497,9 @@ def _source_backed_probability_rows(
                     "weapon": _clean(source_row.get("weapon")),
                     "qa_notes": _clean(source_row.get("qa_notes")),
                     "source_file": _clean(source_row.get("source_file") or source_row.get("draw_source_file") or source_row.get("source_scope")),
+                    "pdf_page": _clean(source_row.get("pdf_page") or source_row.get("official_page")),
+                    "source_is_youth": _clean(source_row.get("source_is_youth")),
+                    "source_row_identifier": _clean(source_row.get("source_row_identifier")),
                     "source_year": str(source_year),
                     "target_year": str(target_year),
                     "prediction_year": str(target_year),
@@ -1458,6 +1605,18 @@ def _cwmu_source_pool_from_fields(row: Mapping[str, object], raw_draw_pool: str)
     generic_pools = {"", "standard", "cwmu_big_game", "cwmu_antlerless", "cwmu"}
     if normalized not in generic_pools:
         return ""
+    identity_text = _joined_lower(
+        row,
+        "hunt_name",
+        "hunt_type",
+        "hunt_class",
+        "draw_design",
+        "draw_system_type",
+        "draw_pool",
+        "source_file",
+    )
+    if "cwmu" not in identity_text and "cwmu" not in normalized:
+        return ""
 
     species = _clean(row.get("species")).lower()
     sex = _joined_lower(row, "sex_type", "sex", "hunt_type", "hunt_name")
@@ -1498,6 +1657,31 @@ def _effective_draw_pool_for_family(row: Mapping[str, object], family: str) -> s
     if family == "youth_turkey":
         return "youth_turkey"
     source_route = _source_file_route(row)
+    if family in {
+        "preference_antlerless_deer",
+        "preference_antlerless_elk",
+        "preference_doe_pronghorn",
+    }:
+        # Historical CWMU antlerless reports use a generic
+        # ``CWMU_ANTLERLESS`` pool while the owning preference engines emit a
+        # species-specific pool.  Normalize both sides at the merge boundary
+        # so an exact modeled lane cannot be duplicated by the source-backed
+        # fallback and collide only after final score-key projection.
+        raw_pools = (
+            source_route.get("draw_pool", ""),
+            REBUILT_BUCKET_TO_DRAW_POOL.get(_rebuilt_bucket(row), ""),
+            _clean(row.get("draw_pool")),
+        )
+        expected_cwmu_pool = {
+            "preference_antlerless_deer": "cwmu_antlerless_deer",
+            "preference_antlerless_elk": "cwmu_antlerless_elk",
+            "preference_doe_pronghorn": "cwmu_doe_pronghorn",
+        }[family]
+        if any(
+            _cwmu_source_pool_from_fields(row, raw_pool) == expected_cwmu_pool
+            for raw_pool in raw_pools
+        ):
+            return expected_cwmu_pool
     if source_route.get("draw_pool"):
         if family == "bonus_cwmu_big_game":
             source_pool = _cwmu_source_pool_from_fields(row, source_route["draw_pool"])
@@ -2114,15 +2298,30 @@ def _aggregate_target_permits(
         key = (family, hunt_code, draw_pool)
         aggregate = aggregates.setdefault(key, {"res": 0.0, "nr": 0.0, "total": 0.0})
         scope = _metric_scope_for_residency(row.get("residency"))
+        is_preference = family.startswith("preference_")
         if scope in {"resident", "nonresident"}:
+            permit_fields = (
+                ("regular_permits", "total_permits", f"{scope}_regular_permits", f"{scope}_total_permits")
+                if is_preference
+                else ("total_permits", "regular_permits", f"{scope}_total_permits", f"{scope}_regular_permits")
+            )
             values = [("res" if scope == "resident" else "nr",
-                       _best_number(row, "total_permits", "regular_permits", f"{scope}_total_permits"))]
+                       _best_number(row, *permit_fields))]
         elif any(_clean(row.get(f"{lane}_total_permits") or row.get(f"{lane}_regular_permits"))
                  for lane in ("resident", "nonresident")):
-            values = [("res", _best_number(row, "resident_total_permits", "resident_regular_permits")),
-                      ("nr", _best_number(row, "nonresident_total_permits", "nonresident_regular_permits"))]
+            if is_preference:
+                values = [("res", _best_number(row, "resident_regular_permits", "resident_total_permits")),
+                          ("nr", _best_number(row, "nonresident_regular_permits", "nonresident_total_permits"))]
+            else:
+                values = [("res", _best_number(row, "resident_total_permits", "resident_regular_permits")),
+                          ("nr", _best_number(row, "nonresident_total_permits", "nonresident_regular_permits"))]
         else:
-            values = [("total", _best_number(row, "total_permits", "total_regular_permits"))]
+            values = [("total", _best_number(
+                row,
+                *("total_regular_permits", "regular_permits", "total_permits")
+                if is_preference
+                else ("total_permits", "total_regular_permits", "regular_permits"),
+            ))]
         for lane, count in values:
             lane_key = (*key, int(point), lane)
             if lane_key in seen_lanes:
@@ -2169,11 +2368,19 @@ def _with_historical_target_metadata(
         item["target_permits_source"] = (
             f"source_year_{source_year}_split_truth_columns_for_target_{target_year}"
         )
-        item["source_column_mapping"] = (
-            "resident_regular_permits|resident_total_permits|"
-            "nonresident_regular_permits|nonresident_total_permits|"
-            "total_regular_permits|total_permits"
-        )
+        if family.startswith("preference_"):
+            item["quota_source"] = "OFFICIAL_CANONICAL_POINT_LEVEL_SUM"
+            item["quota_source_status"] = "PREFERENCE_FIXED_NO_DOUBLE_COUNT"
+            item["source_column_mapping"] = (
+                "regular_permits|resident_regular_permits|nonresident_regular_permits|"
+                "total_regular_permits; total_permits columns are lineage-only fallbacks"
+            )
+        else:
+            item["source_column_mapping"] = (
+                "resident_regular_permits|resident_total_permits|"
+                "nonresident_regular_permits|nonresident_total_permits|"
+                "total_regular_permits|total_permits"
+            )
         if family == "preference_dedicated_hunter_deer":
             item["draw_pool"] = draw_pool
             item["weapon"] = "Any Legal Weapon"
@@ -2915,6 +3122,18 @@ def run_all_families(
     )
     sportsman_rows, sportsman_report = build_sportsman_predictions(history_engine_rows, engine_rows, target_year, history_years)
     sportsman_rows = _with_run_fields(sportsman_rows, source_year, output_target_year, "sportsman")
+    phase6_special_rows, phase6_special_report = build_phase6_bonus_special_predictions(
+        runtime_truth_rows,
+        runtime_db_rows,
+        target_year,
+        runtime_history_years,
+    )
+    cwmu_rows = _with_run_fields(
+        [row for row in phase6_special_rows if row.get("draw_system_type") == "BONUS_CWMU_BIG_GAME"],
+        source_year,
+        output_target_year,
+        "bonus_cwmu_big_game",
+    )
     bear_rows, bear_report = build_bear_bonus_predictions(
         runtime_truth_rows,
         runtime_db_rows,
@@ -2971,6 +3190,7 @@ def run_all_families(
         "preference_antlerless_elk": antlerless_elk_rows,
         "preference_doe_pronghorn": doe_pronghorn_rows,
         "sportsman": sportsman_rows,
+        "bonus_cwmu_big_game": cwmu_rows,
         "bonus_bear": bear_rows,
         "bonus_turkey": turkey_rows,
         "youth_draw": youth_rows,
@@ -2982,7 +3202,11 @@ def run_all_families(
         if not source_backed_rows:
             continue
         modeled.setdefault(family, [])
-        modeled[family].extend(_with_run_fields(source_backed_rows, source_year, output_target_year, family))
+        modeled[family], replaced_placeholders = _merge_source_backed_family_rows(
+            family, modeled[family], _with_run_fields(source_backed_rows, source_year, output_target_year, family)
+        )
+        if family == "youth_draw":
+            youth_report["source_backed_placeholder_handoffs"] = len(replaced_placeholders)
     modeled["preference_antlerless_deer"] = _apply_antlerless_deer_production_calibration(
         modeled["preference_antlerless_deer"],
         enabled=enable_antlerless_deer_calibration,
@@ -3018,6 +3242,7 @@ def run_all_families(
             "draw_system_type": "BONUS_OIL_BIG_GAME",
         },
         "sportsman": sportsman_report,
+        "bonus_cwmu_big_game": phase6_special_report,
         "bonus_bear": bear_report,
         "bonus_turkey": turkey_report,
         "youth_draw": youth_report,

@@ -3,6 +3,8 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+import os
+import tempfile
 import re
 from collections import Counter
 from dataclasses import asdict, dataclass
@@ -14,9 +16,23 @@ import pdfplumber
 
 ROOT = Path(__file__).resolve().parents[1]
 
-SOURCE_PDF = ROOT / "pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/2024 antlerless draw results.pdf"
+SOURCE_PDF = ROOT / "pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/official_dwr_archive/big_game_antlerless/24_antlerless_drawing_odds_report.pdf"
 DATABASE = ROOT / "pipeline/RAW/hunt_unit_database/2026/csv/DATABASE.csv"
 HUNT_MASTER = ROOT / "processed_data/hunt_master_enriched.csv"
+HUNT_MASTER_FALLBACKS = [
+    ROOT / "data/hunt-master-canonical-2026-source-of-truth.csv",
+    ROOT / "data/hunt-master-canonical-2026-foundation.csv",
+    ROOT / "processed_data/hunt-master-canonical-2026-source-of-truth.csv",
+]
+def resolve_hunt_master_path():
+    if HUNT_MASTER.exists():
+        return HUNT_MASTER
+    for fb in HUNT_MASTER_FALLBACKS:
+        if fb.exists():
+            print(f"Using fallback hunt master: {fb}")
+            return fb
+    return HUNT_MASTER
+
 POINT_LADDER = ROOT / "processed_data/point_ladder_view.csv"
 DRAW_REALITY = ROOT / "processed_data/draw_reality_engine.csv"
 PREDICTIVE = ROOT / "processed_data/draw_reality_engine_predictive_v2.csv"
@@ -36,10 +52,11 @@ PROMOTION_JSON = REPORT_DIR / "2026_antlerless_predictive_v2_reference_promotion
 RECONCILIATION_JSON = REPORT_DIR / "2026_antlerless_hunt_code_reconciliation_summary.json"
 RECONCILIATION_MD = REPORT_DIR / "2026_antlerless_hunt_code_reconciliation.md"
 
-SOURCE_PATH = "pipeline/RAW/hunt_unit_database/2025/pdf/draw_odds/2024 antlerless draw results.pdf"
-EXPECTED_SHA256 = "21ea12abd24abb29b074520eccae1ab1b689d6e969d622803f220c0ca4664789"
-EXPECTED_SIZE_BYTES = 732_713
-EXPECTED_PAGES = 198
+SOURCE_PATH = "pipeline/RAW/hunt_unit_database/2024/pdf/draw_odds/official_dwr_archive/big_game_antlerless/24_antlerless_drawing_odds_report.pdf"
+# Fail-closed: real PDF signature 2b1b... from 55fbe7f6__Antlerless big game draw results.pdf
+EXPECTED_SHA256 = "2b1b19782089732b9cacc2fd9ce00e60e1093acda6f3ed70d29e8d6e3ae83b08"
+EXPECTED_SIZE_BYTES = 774859
+EXPECTED_PAGES = 203
 
 TARGET_PREFIXES = {"EA", "DA", "PD", "RE"}
 REFERENCE_MODEL_VERSION = "antlerless_reference_v1.0.0"
@@ -126,27 +143,26 @@ def to_int(value: str) -> int:
     return int(str(value).replace(",", "").strip())
 
 
-def extract_pdf_text_lines() -> list[dict[str, object]]:
+def extract_pdf_text_lines(source_sha256: str | None = None) -> list[dict[str, object]]:
+    source_sha256 = source_sha256 or sha256(SOURCE_PDF)
     rows: list[dict[str, object]] = []
     with pdfplumber.open(SOURCE_PDF) as pdf:
         for page_number, page in enumerate(pdf.pages, start=1):
             for line_number, line in enumerate((page.extract_text() or "").splitlines(), start=1):
                 text = normalized(line)
-                if not text:
-                    continue
-                rows.append(
-                    {
+                if text:
+                    rows.append({
                         "source_file": SOURCE_PATH,
-                        "source_sha256": EXPECTED_SHA256,
+                        "source_sha256": source_sha256,
                         "source_page": page_number,
                         "line_number": line_number,
                         "text": text,
-                    }
-                )
+                    })
     return rows
 
 
-def parse_draw_results() -> list[DrawResultRow]:
+def parse_draw_results(source_sha256: str | None = None) -> list[DrawResultRow]:
+    source_sha256 = source_sha256 or sha256(SOURCE_PDF)
     rows: list[DrawResultRow] = []
     with pdfplumber.open(SOURCE_PDF) as pdf:
         for page_number, page in enumerate(pdf.pages, start=1):
@@ -156,32 +172,30 @@ def parse_draw_results() -> list[DrawResultRow]:
             hunt_match = HUNT_RE.search(text)
             totals_match = TOTALS_RE.search(" ".join(text.split()))
             if not hunt_match or not totals_match:
-                continue
+                raise ValueError(f"unparsed_hunt_page:{page_number}")
             hunt_code = hunt_match.group(1).strip().upper()
             hunt_name = normalized(hunt_match.group(2))
             resident_total = to_int(totals_match.group(4))
             nonresident_total = to_int(totals_match.group(8))
-            rows.append(
-                DrawResultRow(
-                    source_file=SOURCE_PATH,
-                    source_sha256=EXPECTED_SHA256,
-                    source_page=page_number,
-                    hunt_code=hunt_code,
-                    hunt_name=hunt_name,
-                    species_category=parse_species_from_name(hunt_name),
-                    resident_applicants=to_int(totals_match.group(1)),
-                    resident_bonus_permits=to_int(totals_match.group(2)),
-                    resident_regular_permits=to_int(totals_match.group(3)),
-                    resident_total_permits=resident_total,
-                    nonresident_applicants=to_int(totals_match.group(5)),
-                    nonresident_bonus_permits=to_int(totals_match.group(6)),
-                    nonresident_regular_permits=to_int(totals_match.group(7)),
-                    nonresident_total_permits=nonresident_total,
-                    total_permits=resident_total + nonresident_total,
-                    raw_hunt_line=f"Hunt: {hunt_code} {hunt_name}",
-                    raw_totals_line=totals_match.group(0),
-                )
-            )
+            rows.append(DrawResultRow(
+                source_file=SOURCE_PATH,
+                source_sha256=source_sha256,
+                source_page=page_number,
+                hunt_code=hunt_code,
+                hunt_name=hunt_name,
+                species_category=parse_species_from_name(hunt_name),
+                resident_applicants=to_int(totals_match.group(1)),
+                resident_bonus_permits=to_int(totals_match.group(2)),
+                resident_regular_permits=to_int(totals_match.group(3)),
+                resident_total_permits=resident_total,
+                nonresident_applicants=to_int(totals_match.group(5)),
+                nonresident_bonus_permits=to_int(totals_match.group(6)),
+                nonresident_regular_permits=to_int(totals_match.group(7)),
+                nonresident_total_permits=nonresident_total,
+                total_permits=resident_total + nonresident_total,
+                raw_hunt_line=hunt_match.group(0),
+                raw_totals_line=totals_match.group(0),
+            ))
     return rows
 
 
@@ -195,16 +209,6 @@ def rows_by_code(path: Path, prefixes: set[str] | None = None) -> dict[str, list
             continue
         grouped.setdefault(code, []).append(row)
     return grouped
-
-
-def missing_predictive_codes_from_gap_scan() -> set[str]:
-    missing: set[str] = set()
-    for row in read_rows(GAP_SCAN):
-        if row["code_prefix"] not in TARGET_PREFIXES:
-            continue
-        codes = [code for code in row.get("missing_predictive_v2_codes", "").split(";") if code]
-        missing.update(codes)
-    return missing
 
 
 def choose_residency(database_row: dict[str, str]) -> str:
@@ -292,13 +296,17 @@ def build_reference_row(fieldnames: list[str], database_row: dict[str, str], sou
     return row
 
 
-def build_reconciliation_rows(draw_rows: list[DrawResultRow]) -> list[dict[str, object]]:
+def build_reconciliation_rows(draw_rows: list[DrawResultRow], planned_predictive: list[dict[str, str]] | None = None) -> list[dict[str, object]]:
     draw_codes = {row.hunt_code for row in draw_rows if code_prefix(row.hunt_code) in TARGET_PREFIXES}
     database_rows = rows_by_code(DATABASE, TARGET_PREFIXES)
-    hunt_master_rows = rows_by_code(HUNT_MASTER, TARGET_PREFIXES)
+    hunt_master_rows = rows_by_code(resolve_hunt_master_path(), TARGET_PREFIXES)
     point_ladder_rows = rows_by_code(POINT_LADDER, TARGET_PREFIXES)
     draw_reality_rows = rows_by_code(DRAW_REALITY, TARGET_PREFIXES)
-    predictive_rows = rows_by_code(PREDICTIVE, TARGET_PREFIXES)
+    predictive_rows = (
+        rows_by_code(PREDICTIVE, TARGET_PREFIXES)
+        if planned_predictive is None
+        else {row.get("hunt_code", "") for row in planned_predictive}
+    )
     codes = sorted(set(database_rows) | draw_codes)
     rows: list[dict[str, object]] = []
     for code in codes:
@@ -331,201 +339,250 @@ def build_reconciliation_rows(draw_rows: list[DrawResultRow]) -> list[dict[str, 
     return rows
 
 
-def promote_missing_reference_rows(reconciliation_rows: list[dict[str, object]]) -> dict[str, object]:
-    missing_codes = missing_predictive_codes_from_gap_scan()
-    database_rows = {row["hunt_code"]: row for row in read_rows(DATABASE) if code_prefix(row.get("hunt_code", "")) in TARGET_PREFIXES}
-    source_basis_by_code = {str(row["hunt_code"]): str(row["source_basis"]) for row in reconciliation_rows}
-    predictive_rows = read_rows(PREDICTIVE)
-    existing_codes = {row["hunt_code"] for row in predictive_rows if code_prefix(row.get("hunt_code", "")) in TARGET_PREFIXES}
+def prepare_reference_promotion(reconciliation_rows: list[dict[str, object]]):
+    """Compute missing coverage; never replace any owning engine's rows."""
+    database_rows = {
+        row["hunt_code"]: row for row in read_rows(DATABASE)
+        if code_prefix(row.get("hunt_code", "")) in TARGET_PREFIXES
+    }
+    source_basis = {str(row["hunt_code"]): str(row["source_basis"]) for row in reconciliation_rows}
+    original_rows = read_rows(PREDICTIVE)
     with PREDICTIVE.open(newline="", encoding="utf-8-sig") as handle:
         fieldnames = csv.DictReader(handle).fieldnames or []
-    to_promote = sorted(code for code in missing_codes if code in database_rows and code not in existing_codes)
-    promoted_rows = [build_reference_row(fieldnames, database_rows[code], source_basis_by_code.get(code, "current_2026_database_reference_only")) for code in to_promote]
-    if promoted_rows:
-        predictive_rows.extend(promoted_rows)
-        write_rows(PREDICTIVE, fieldnames, predictive_rows)
-
-    final_rows = read_rows(PREDICTIVE)
-    final_codes = {row["hunt_code"] for row in final_rows if code_prefix(row.get("hunt_code", "")) in TARGET_PREFIXES}
-    still_missing = sorted(code for code in missing_codes if code not in final_codes)
-    reference_rows = [
-        row for row in final_rows if row.get("model_version") == REFERENCE_MODEL_VERSION and code_prefix(row.get("hunt_code", "")) in TARGET_PREFIXES
-    ]
-    duplicate_keys = [
-        key
-        for key, count in Counter(
-            (
-                row.get("hunt_code", ""),
-                row.get("residency", ""),
-                row.get("points", ""),
-                row.get("draw_pool", ""),
-                row.get("model_version", ""),
-            )
-            for row in final_rows
-        ).items()
-        if count > 1
-    ]
-    detail_rows = [
-        {
-            "hunt_code": row.get("hunt_code", ""),
-            "hunt_name": row.get("hunt_name", ""),
-            "species": row.get("species", ""),
-            "hunt_type": row.get("hunt_type", ""),
-            "residency": row.get("residency", ""),
-            "permits_2026_total": row.get("permit_allotment_2026_total", ""),
-            "promotion_status": "PROMOTED",
-            "reason": row.get("reason", ""),
-        }
-        for row in sorted(reference_rows, key=lambda item: item["hunt_code"])
-    ]
-    write_rows(
-        PROMOTION_DETAIL_CSV,
-        ["hunt_code", "hunt_name", "species", "hunt_type", "residency", "permits_2026_total", "promotion_status", "reason"],
-        detail_rows,
+    if not fieldnames or "hunt_code" not in fieldnames:
+        raise ValueError("predictive_schema_missing_hunt_code")
+    owned_reference = lambda row: (
+        row.get("model_version") == REFERENCE_MODEL_VERSION
+        and code_prefix(row.get("hunt_code", "")) in TARGET_PREFIXES
     )
+    retained_rows = [row for row in original_rows if not owned_reference(row)]
+    retained_codes = {row.get("hunt_code", "") for row in retained_rows}
+    missing_codes = sorted(set(database_rows) - retained_codes)
+    reference_rows = [
+        build_reference_row(fieldnames, database_rows[code],
+                            source_basis.get(code, "current_2026_database_reference_only"))
+        for code in missing_codes
+    ]
+    # Include the reference contract fields even if a small input omitted them.
+    for row in reference_rows:
+        fieldnames.extend(key for key in row if key not in fieldnames)
+    final_rows = retained_rows + reference_rows
+    final_codes = {row.get("hunt_code", "") for row in final_rows}
+    still_missing = sorted(set(database_rows) - final_codes)
+    reference_keys = Counter(
+        (row["hunt_code"], row["residency"], row["points"], row["draw_pool"], row["model_version"])
+        for row in reference_rows
+    )
+    duplicates = [key for key, count in reference_keys.items() if count > 1]
+    original_codes = {row.get("hunt_code", "") for row in original_rows}
+    newly_promoted = sorted(set(missing_codes) - original_codes)
     summary = {
         "classification": "ANTLERLESS_REFERENCE_PROMOTION",
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
         "target_prefixes": sorted(TARGET_PREFIXES),
-        "initial_missing_predictive_hunt_code_count": len(missing_codes),
-        "newly_promoted_hunt_code_count": len(promoted_rows),
-        "promoted_reference_hunt_code_count": len({row["hunt_code"] for row in reference_rows}),
+        "initial_missing_predictive_hunt_code_count": len(set(database_rows) - original_codes),
+        "newly_promoted_hunt_code_count": len(newly_promoted),
+        "promoted_reference_hunt_code_count": len(missing_codes),
         "still_missing_predictive_hunt_code_count": len(still_missing),
-        "duplicate_reference_key_count": len(duplicate_keys),
-        "newly_promoted_hunt_codes": [row["hunt_code"] for row in promoted_rows],
-        "promoted_reference_hunt_codes": sorted({row["hunt_code"] for row in reference_rows}),
+        "duplicate_reference_key_count": len(duplicates),
+        "newly_promoted_hunt_codes": newly_promoted,
+        "promoted_reference_hunt_codes": missing_codes,
         "still_missing_predictive_hunt_codes": still_missing,
-        "guardrail": "Antlerless reference rows promote current hunt-code coverage only; no draw odds or probability fields are invented.",
+        "duplicate_reference_keys": duplicates,
+        "guardrail": "Reference coverage only; no draw probability is invented.",
     }
-    PROMOTION_JSON.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
+    details = [{
+        "hunt_code": row["hunt_code"],
+        "hunt_name": row["hunt_name"],
+        "species": row["species"],
+        "hunt_type": row["hunt_type"],
+        "residency": row["residency"],
+        "permits_2026_total": row["permit_allotment_2026_total"],
+        "promotion_status": "REFERENCE_ONLY",
+        "reason": row["reason"],
+    } for row in reference_rows]
+    return summary, fieldnames, final_rows, details
+
+
+def write_json(path: Path, value: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8")
+
+
+def publish_tables(
+    tables: list[tuple[Path, list[str], list[dict]]],
+    json_files: list[tuple[Path, dict]] | None = None,
+) -> None:
+    """Stage complete tables before replacement; roll back on a write failure."""
+    staged = []
+    replaced = []
+    try:
+        for path, fields, rows in tables:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            descriptor, name = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
+            os.close(descriptor)
+            temporary = Path(name)
+            staged.append((path, temporary, path.read_bytes() if path.exists() else None))
+            write_rows(temporary, fields, rows)
+        for path, value in json_files or []:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            descriptor, name = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
+            os.close(descriptor)
+            temporary = Path(name)
+            staged.append((path, temporary, path.read_bytes() if path.exists() else None))
+            write_json(temporary, value)
+        for path, temporary, previous in staged:
+            os.replace(temporary, path)
+            replaced.append((path, previous))
+    except Exception:
+        for path, previous in reversed(replaced):
+            if previous is None:
+                path.unlink(missing_ok=True)
+            else:
+                path.write_bytes(previous)
+        raise
+    finally:
+        for _, temporary, _ in staged:
+            temporary.unlink(missing_ok=True)
+
+
+def promote_missing_reference_rows(reconciliation_rows: list[dict[str, object]]) -> dict[str, object]:
+    summary, fields, rows, details = prepare_reference_promotion(reconciliation_rows)
+    if summary["still_missing_predictive_hunt_code_count"] or summary["duplicate_reference_key_count"]:
+        raise ValueError("reference_coverage_validation_failed")
+    publish_tables([
+        (PREDICTIVE, fields, rows),
+        (PROMOTION_DETAIL_CSV, list(details[0]) if details else ["hunt_code"], details),
+    ], [(PROMOTION_JSON, summary)])
     return summary
 
 
 def main() -> int:
-    actual_sha = sha256(SOURCE_PDF)
-    text_lines = extract_pdf_text_lines()
-    draw_rows = parse_draw_results()
-    write_rows(TEXT_LINES_CSV, ["source_file", "source_sha256", "source_page", "line_number", "text"], text_lines)
-    write_rows(
-        DRAW_ROWS_CSV,
-        list(asdict(draw_rows[0]).keys()) if draw_rows else [],
-        [asdict(row) for row in draw_rows],
-    )
-
-    prefixes = Counter(code_prefix(row.hunt_code) for row in draw_rows)
-    with pdfplumber.open(SOURCE_PDF) as pdf:
-        page_count = len(pdf.pages)
     blockers: list[str] = []
-    if actual_sha != EXPECTED_SHA256:
+    failures: list[dict[str, object]] = []
+    real_sha_actual = None
+    real_size_actual = None
+    real_pages = None
+    text_lines = []
+    draw_rows = []
+    if not SOURCE_PDF.exists():
+        blockers.append("source_pdf_missing")
+    else:
+        try:
+            real_size_actual = SOURCE_PDF.stat().st_size
+            real_sha_actual = sha256(SOURCE_PDF)
+            with pdfplumber.open(SOURCE_PDF) as pdf:
+                real_pages = len(pdf.pages)
+            text_lines = extract_pdf_text_lines(real_sha_actual)
+            draw_rows = parse_draw_results(real_sha_actual)
+            if sha256(SOURCE_PDF) != real_sha_actual:
+                blockers.append("source_pdf_changed_during_extraction")
+        except Exception as exc:
+            blockers.append(f"source_pdf_read_or_parse_failed:{type(exc).__name__}:{exc}")
+    if real_sha_actual is not None and real_sha_actual != EXPECTED_SHA256:
         blockers.append("source_sha256_mismatch")
-    if SOURCE_PDF.stat().st_size != EXPECTED_SIZE_BYTES:
+    if real_size_actual is not None and real_size_actual != EXPECTED_SIZE_BYTES:
         blockers.append("source_size_mismatch")
-    if page_count != EXPECTED_PAGES:
-        blockers.append("page_count_mismatch")
-    if not draw_rows:
-        blockers.append("no_draw_rows_parsed")
-
+    if real_pages is not None and real_pages != EXPECTED_PAGES:
+        blockers.append("source_page_count_mismatch")
+    real_lines = len(text_lines)
+    real_rows = len(draw_rows)
+    if real_lines == 0:
+        blockers.append("source_text_lines_empty")
+    if real_rows == 0:
+        blockers.append("source_draw_rows_empty")
+    unique_codes = {row.hunt_code for row in draw_rows}
+    if len(unique_codes) != real_rows:
+        blockers.append("duplicate_source_hunt_codes")
+    prefixes = Counter(code_prefix(row.hunt_code) for row in draw_rows)
     audit_summary = {
         "classification": "ANTLERLESS_DRAW_RESULTS_TRUTH_SOURCE_AUDIT",
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
-        "source_pdf": SOURCE_PATH,
-        "source_sha256": actual_sha,
+        "source_pdf": str(SOURCE_PDF),
+        "source_sha256": real_sha_actual,
         "expected_sha256": EXPECTED_SHA256,
-        "source_size_bytes": SOURCE_PDF.stat().st_size,
+        "source_size_bytes": real_size_actual,
         "expected_size_bytes": EXPECTED_SIZE_BYTES,
-        "pdf_pages": page_count,
-        "text_lines": len(text_lines),
-        "draw_result_rows": len(draw_rows),
-        "unique_draw_result_hunt_codes": len({row.hunt_code for row in draw_rows}),
+        "pdf_pages": real_pages,
+        "expected_pages": EXPECTED_PAGES,
+        "text_lines": real_lines,
+        "draw_result_rows": real_rows,
+        "unique_draw_result_hunt_codes": len(unique_codes),
         "draw_result_prefix_counts": dict(sorted(prefixes.items())),
-        "blockers": len(blockers),
-        "blocker_reasons": blockers,
-        "guardrail": "2024 antlerless draw-results rows are prior draw truth; this audit does not forecast or alter probability math.",
+        "guardrail": "Measured prior draw truth; not prediction certification.",
     }
-    AUDIT_JSON.write_text(json.dumps(audit_summary, indent=2) + "\n", encoding="utf-8")
-    AUDIT_MD.write_text(
-        "\n".join(
-            [
-                "# 2024 Antlerless Draw Results Audit",
-                "",
-                f"- Source PDF: `{SOURCE_PATH}`",
-                f"- Source SHA-256: `{actual_sha}`",
-                f"- PDF pages: `{page_count}`",
-                f"- Extracted text lines: `{len(text_lines)}`",
-                f"- Parsed draw-result hunt rows: `{len(draw_rows)}`",
-                f"- Unique parsed hunt codes: `{audit_summary['unique_draw_result_hunt_codes']}`",
-                f"- Blockers: `{len(blockers)}`",
-                "",
+    promotion_summary = None
+    reconciliation_rows = []
+    if not blockers:
+        try:
+            pre_reconciliation = build_reconciliation_rows(draw_rows)
+            promotion_summary, fields, planned_rows, details = prepare_reference_promotion(pre_reconciliation)
+            reconciliation_rows = build_reconciliation_rows(draw_rows, planned_rows)
+            failures = [
+                row for row in reconciliation_rows
+                if row["database_present"] == "true"
+                and row["current_database_reconciliation_status"] != "PASS"
             ]
-        ),
-        encoding="utf-8",
-    )
+            if promotion_summary["still_missing_predictive_hunt_code_count"]:
+                blockers.append("predictive_reference_coverage_missing")
+            if promotion_summary["duplicate_reference_key_count"]:
+                blockers.append("duplicate_reference_keys")
+        except Exception as exc:
+            blockers.append(f"reconciliation_failed:{type(exc).__name__}:{exc}")
 
-    pre_reconciliation_rows = build_reconciliation_rows(draw_rows)
-    promotion_summary = promote_missing_reference_rows(pre_reconciliation_rows)
-    reconciliation_rows = build_reconciliation_rows(draw_rows)
-    write_rows(
-        CODE_RECONCILIATION_CSV,
-        [
-            "hunt_code",
-            "code_prefix",
-            "hunt_name",
-            "species",
-            "hunt_type",
-            "weapon",
-            "season",
-            "permits_2026_total",
-            "present_in_2024_antlerless_draw_results",
-            "database_present",
-            "hunt_master_present",
-            "point_ladder_present",
-            "draw_reality_present",
-            "predictive_v2_present",
-            "source_basis",
-            "current_database_reconciliation_status",
-        ],
-        reconciliation_rows,
+    if not blockers and not failures:
+        try:
+            # No source, reconciliation or coverage failure may overwrite these tables.
+            publish_tables([
+                (TEXT_LINES_CSV, list(text_lines[0]), text_lines),
+                (DRAW_ROWS_CSV, list(asdict(draw_rows[0])), [asdict(row) for row in draw_rows]),
+                (PREDICTIVE, fields, planned_rows),
+                (CODE_RECONCILIATION_CSV, list(reconciliation_rows[0]), reconciliation_rows),
+                (PROMOTION_DETAIL_CSV, list(details[0]) if details else ["hunt_code"], details),
+            ], [(PROMOTION_JSON, promotion_summary)])
+        except Exception as exc:
+            blockers.append(f"output_write_failed:{type(exc).__name__}:{exc}")
+
+    audit_summary.update(
+        blockers=len(blockers), blocker_reasons=blockers,
+        reconciliation_failure_count=len(failures),
+        reconciliation_failures=[row["hunt_code"] for row in failures],
     )
-    current_rows = [row for row in reconciliation_rows if row["database_present"] == "true"]
-    failures = [row for row in current_rows if row["current_database_reconciliation_status"] != "PASS"]
-    summary = {
-        "classification": "ANTLERLESS_HUNT_CODE_RECONCILIATION",
-        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
-        "target_prefixes": sorted(TARGET_PREFIXES),
-        "current_database_code_count": len(current_rows),
-        "draw_results_2024_code_count": len({row.hunt_code for row in draw_rows if code_prefix(row.hunt_code) in TARGET_PREFIXES}),
-        "current_database_codes_present_in_2024_draw_results_count": sum(
-            1 for row in current_rows if row["present_in_2024_antlerless_draw_results"] == "true"
-        ),
-        "current_database_reconciliation_failure_count": len(failures),
-        "current_database_reconciliation_failures": [row["hunt_code"] for row in failures],
-        "promotion_summary": promotion_summary,
-        "blockers": len(failures)
-        + int(promotion_summary["still_missing_predictive_hunt_code_count"])
-        + int(promotion_summary["duplicate_reference_key_count"])
-        + len(blockers),
-        "guardrail": "Antlerless code reconciliation resolves current database coverage without changing draw odds or model math.",
-    }
-    RECONCILIATION_JSON.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
-    RECONCILIATION_MD.write_text(
-        "\n".join(
-            [
-                "# 2026 Antlerless Hunt-Code Reconciliation",
-                "",
-                f"- Target prefixes: `{', '.join(sorted(TARGET_PREFIXES))}`",
-                f"- Current database codes checked: `{summary['current_database_code_count']}`",
-                f"- 2024 draw-results codes parsed: `{summary['draw_results_2024_code_count']}`",
-                f"- Current database codes present in 2024 draw results: `{summary['current_database_codes_present_in_2024_draw_results_count']}`",
-                f"- Promoted reference codes present: `{promotion_summary['promoted_reference_hunt_code_count']}`",
-                f"- Still missing predictive codes: `{promotion_summary['still_missing_predictive_hunt_code_count']}`",
-                f"- Reconciliation failures: `{summary['current_database_reconciliation_failure_count']}`",
-                f"- Blockers: `{summary['blockers']}`",
-                "",
-            ]
-        ),
+    # Always publish diagnostic evidence, including missing/unreadable source runs.
+    write_json(AUDIT_JSON, audit_summary)
+    AUDIT_MD.parent.mkdir(parents=True, exist_ok=True)
+    AUDIT_MD.write_text(
+        "# 2024 Antlerless Draw Results Audit\n\n"
+        + "\n".join(f"- {key}: {value}" for key, value in audit_summary.items()) + "\n",
         encoding="utf-8",
     )
-    return 1 if summary["blockers"] else 0
+    if reconciliation_rows:
+        current_rows = [row for row in reconciliation_rows if row["database_present"] == "true"]
+        summary = {
+            "classification": "ANTLERLESS_HUNT_CODE_RECONCILIATION",
+            "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+            "target_prefixes": sorted(TARGET_PREFIXES),
+            "current_database_code_count": len(current_rows),
+            "draw_results_2024_code_count": sum(
+                code_prefix(code) in TARGET_PREFIXES for code in unique_codes
+            ),
+            "current_database_codes_present_in_2024_draw_results_count": sum(
+                row["present_in_2024_antlerless_draw_results"] == "true" for row in current_rows
+            ),
+            "current_database_reconciliation_failure_count": len(failures),
+            "current_database_reconciliation_failures": [row["hunt_code"] for row in failures],
+            "promotion_summary": promotion_summary,
+            "blockers": len(blockers),
+            "blocker_reasons": blockers,
+        }
+        write_json(RECONCILIATION_JSON, summary)
+        RECONCILIATION_MD.parent.mkdir(parents=True, exist_ok=True)
+        RECONCILIATION_MD.write_text(
+            "# 2026 Antlerless Hunt-Code Reconciliation\n\n"
+            + "\n".join(f"- {key}: {value}" for key, value in summary.items()) + "\n",
+            encoding="utf-8",
+        )
+    return 1 if blockers or failures else 0
 
 
 if __name__ == "__main__":

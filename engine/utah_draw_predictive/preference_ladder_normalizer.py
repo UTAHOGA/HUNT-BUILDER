@@ -20,6 +20,7 @@ SHARED_FIELDS = (
     "draw_system_type",
     "draw_pool",
     "draw_design",
+    "allocation_type",
     "draw_method",
     "metric_scope",
     "points",
@@ -34,7 +35,8 @@ SHARED_FIELDS = (
 
 
 def _clean(value: object) -> str:
-    return str(value or "").strip()
+    # Zero is published evidence, not a missing value (including numeric input).
+    return "" if value is None else str(value).strip()
 
 
 def _has_value(value: object) -> bool:
@@ -142,11 +144,11 @@ def normalize_preference_ladder_rows(rows: Iterable[Mapping[str, object]]) -> li
             out["metric_scope"] = _metric_scope_for_residency(out.get("residency"))
             if not _clean(out.get("eligible")):
                 out["eligible"] = _clean(out.get("eligible_applicants"))
-            drawn = out.get("drawn") or out.get("successful_applicants") or out.get("regular_permits") or out.get("total_permits")
-            if not _clean(out.get("drawn")):
-                out["drawn"] = _clean(drawn)
-            if not _clean(out.get("successful_applicants")):
-                out["successful_applicants"] = _clean(drawn)
+            drawn = next((out[field] for field in (
+                "regular_permits", "drawn", "successful_applicants", "total_permits"
+            ) if _has_value(out.get(field))), "")
+            out["drawn"] = _clean(drawn)
+            out["successful_applicants"] = _clean(drawn)
             if not _clean(out.get("p_draw_pct")):
                 out["p_draw_pct"] = _clean(out.get("p_draw_percent"))
             if not _clean(out.get("year")):

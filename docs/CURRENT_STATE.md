@@ -22,6 +22,392 @@ Pages and 4,250 Vercel uploaded assets match the release inventory. The exact
 old/new hashes and rollback references are in
 `governance/releases/20260921-corrective-release.json`.
 
+### Residency-separated acceptance and antlerless calibration review (2026-09-22)
+
+Resident and nonresident prediction identities are now explicitly gated and
+reported separately from engine input through historical scoring and Research
+display. The eight-fold reviewer writes per-family/per-residency tables; a
+passing combined family score may not conceal a failing residency slice. The
+Research runtime continues to select exact
+`hunt_code + residency + points + draw_pool` rows and regression coverage proves
+that resident and nonresident rows cannot borrow one another's probability.
+
+The retained adjacent-year canonicals support Tyler's behavioral concern:
+pooled bounded same-lane returns are lower for nonresidents than residents
+(deer 0.5491 vs 0.6663, elk 0.5468 vs 0.7019, doe pronghorn 0.5554 vs
+0.7388). That observation did **not** justify a hard discount. Matched
+development candidates lowering only the nonresident return quantile from Q80
+to Q70 or Q50 worsened the exact final probability result: baseline MAE
+0.1181081, Q70 0.1193634, Q50 0.1207050, with worse tail behavior. Both
+candidates are rejected and the current engine behavior is retained. The next
+antlerless repair must measure nonresident switch-in/arrival placement from
+prior adjacent-year nonresident lanes; it may not pool resident behavior or
+invent hunt choices from statewide point-purchase totals. No forecast,
+certification registry, runtime artifact, R2 object or live site was promoted.
+
+Evidence:
+`audit_output_real_final/current_code_exact_website_eightfold_20260922_v1/review_residency_slices/`,
+`audit_output_real_final/antlerless_residency_return_q80_matched_baseline_20260922_v1/`,
+`audit_output_real_final/antlerless_residency_return_q70_dev_20260922_v1/`, and
+`audit_output_real_final/antlerless_residency_return_calibration_dev_20260922_v1/`.
+
+The compact supplemental certification evidence is now retained under
+`audits/prediction_release_candidates/residency_lane_acceptance_20260922/`.
+All eight Resident/Nonresident slices for the four already-certified core
+designs pass the unchanged ADR-0006 thresholds with zero false guarantees and
+zero unclassified gaps. This tightens the existing certification gate without
+changing a probability, certifying another design, or treating 2025→2026 as an
+acceptance fold. The public evidence contract is
+`public/data/prediction-residency-certification.json`.
+
+### Canonical lineage repair and long-truth freeze complete (2026-09-22)
+
+The yearly canonical source repair is complete and the long truth has been
+rebuilt solely from the ten approved yearly canonicals. The frozen long file
+contains 326,523 rows / 103 columns at SHA-256
+`e2ec4a7ad80cabab64921f22067b6ab49e6f897ccfa2e7601f3a7f33047e82f2`.
+Strict ordered parity with the yearly canonicals passes. Six historical source
+groups / 1,929 rows changed only their retained repository `source_path`; their
+parent PDFs are byte-identical to the former audit copies and no historical
+applicant, permit, probability, ratio, point, residency, or draw-year value
+changed.
+
+The 2026 canonical no longer treats generated UOGA PDF presentation rows as an
+independent truth source. Before removal, all 1,276 scorable reproduction rows
+matched retained UtahDraws endpoint rows across 11,484 numeric cells with zero
+mismatches. The cleanup removed 12,051 reproduction rows: 1,276 scorable
+duplicates, 181 duplicate zero rows, 13 stale zero rows, and 10,581 empty
+presentation rungs without endpoint records. All retained endpoint rows stayed
+numerically unchanged. The 2025 adult/youth antlerless canonicals were already
+correct: 7,940 rows, 63,520 count cells and 15,880 printed ratios independently
+match the retained official PDFs with zero differences.
+
+The official 2024/2025 static-report counts are legitimately different: 2024
+has 14 links and 2025 has 13 because the 2025 DWR list has no separate static
+Sportsman report. Both years retain their proper antlerless reports. Repair and
+rollback evidence is under
+`audit_output_real_final/canonical_source_lineage_repair_20260922_v1/`.
+Existing prediction certification is not silently rebound to the new truth
+hash: current-code eight-fold ADR-0006 replay is required before another
+promotion.
+
+### PDF-year feed check and partial DB0008 routing repair (2026-09-22)
+
+Tyler removed the misplaced legacy 2024 antlerless copy from the 2025 folder;
+do not restore it. The original 2024 source remains in its correct archive.
+Actual 2025 adult/youth antlerless PDFs are
+present under `2025/pdf/draw_odds/official_dwr_archive/big_game_antlerless/`;
+their 7,940 canonical references also occur in the long file with draw year 2025.
+The folder/title cougar difference reflects an earlier drawing year, not proof
+of a wrong canonical year. See `docs/PDF_YEAR_AND_FEED_REVIEW_20260922.md`.
+
+Follow-up: the 2024 resolver DOES write 159 ANTLERLESS_REFERENCE rows into the
+local predictive successor CSV (source_years_used=2024;2026). Their probability
+and applicant/award fields are blank and probability_model=NONE prevents final
+odds, but this is an active legacy artifact writer, not only a stored duplicate.
+Correct canonical references do not prove past engine builds avoided it.
+Separate that reference-writing path and verify exact downstream consumption.
+
+Fresh annual audit checked 132 currently listed official PDF URLs: 131 have
+exact local byte matches; 2019 LE/OIL has identical text on all 551 pages but
+different PDF bytes. Complete independent 2025 adult/youth comparisons pass:
+7,940 hunt-table rows, 63,520 count cells and 15,880 printed ratios, no differences.
+The selected canonical/long row-and-cell multisets also match. This does not
+certify forecast delivery. Seven Python files still reference the removed
+2024-in-2025 path. A separate top-level 2020 antlerless PDF differs from the
+official archive on three pages, including EA1089's printed top-row anomaly;
+the canonical cites the exact official archive and preserves its carryover note.
+Tyler subsequently authorized replacing ONLY that alternate top-level 2020
+PDF. Replacement is complete, matches official SHA256 2efb7b6d...564dc7d04,
+and its original bytes are hash-verified in a separate rollback folder.
+All canonicals and long truth remained unchanged. The engine's default long
+input has exactly the same 7,480 adult/youth 2020 source-scope rows and cells
+as the canonical; no new forecasts were generated. Receipt:
+`audit_output_real_final/antlerless_2020_official_pdf_replacement_20260922_v1/`.
+Do not restore the alternate over official bytes. Full annual
+counts, legitimate publication differences and remaining boundaries:
+`docs/PIPELINE_ANNUAL_SOURCE_AUDIT_20260922.md`.
+
+The classifier no longer labels extended archery as random-only. DB0008's
+legacy canonical metadata/redundant-copy accounting remains pending; do not
+call the full repair or a fresh acceptance run complete. All original frozen
+forecasts remain unchanged. Current classifier code needs a new hash-linked
+review before promotion. Failing-family triage identifies CWMU and youth
+fallback paths and higher nonresident antlerless errors for the next repair.
+
+### DB1592 / DB1630 Planner discrepancy is non-blocking (2026-09-22)
+
+Tyler explicitly accepted the Planner-versus-regular-draw total discrepancy as
+non-blocking. Retained UtahDraws regular-round allocations are DB1592 97 resident
++ 10 nonresident = 107, and DB1630 349 + 39 = 388. Preserve Planner values 200
+and 720 as reference evidence; neither a typo nor a particular explanation for
+the difference has been proven. This discrepancy alone must not block scoring
+or certification, override draw-round supply, or exclude verified hunt lanes.
+The allocation verifier reports `REFERENCE_TOTAL_DIFFERENCE_NON_BLOCKING` while
+still enforcing exact source cells, hashes, unique residency lanes and R + NR =
+regular total. Source-year-only forecasting and all statistical gates remain.
+This does not resolve or admit the two unlabeled legacy adult/youth copies;
+use their separately verified typed endpoint counterparts without double counting.
+
+### Concurrent-change integrity verified; promotion remains held (2026-09-21)
+
+`processed_data/concurrent_change_audit_20260921.txt` records
+`VERIFIED_BUT_NOT_PROMOTION_READY` for the scoped import/helper/frozen-evidence
+checks. The crosswalk import-order repair is retained; the requested helper
+contract is present. All nine saved coverage candidates and original forecasts
+still match their freeze hashes. Fresh outcome-integrity verification confirms
+the earlier eight score CSVs remain byte-identical and all 11,781 verified zero
+outcomes remain in the 2026 projection. No Bear forecasts were regenerated.
+
+The user identified the Bear change as intentional, but its claimed 400+ scored
+rows / below-10-pp MAE improvement is unverified. The source-row counter is not
+the joined scoring population. The concurrent diff review found weakened identity
+validation; those safeguards are restored while preserving the concurrent priors,
+split-code tables and counter. Changed behavior is now labeled
+`bear_bonus_phase9_candidate`; it has NOT been statistically accepted. The
+classifier preserves intentional blanks for both saved phase8 and new candidate
+labels. No frozen forecast regeneration or acceptance registry change.
+
+The source crosswalk now keeps exact row verification separate from legacy
+whole-group status. Mixed verified/pending groups are explicitly `PARTIAL`;
+unresolved totals are not promoted to verified rows. The 1,333 legacy unverified
+groups are not forecast gaps. Follow-up verification resolved 95 of the 97
+potentially scorable unverified rows: 87 Sportsman rows (1,068 cell checks) and
+eight DB0008 rows (40 applicant/award fields). Two legacy general-deer rows
+remain pool-ambiguous; their separately labeled adult and youth endpoint rows
+are already retained and independently verified in the canonical. Do not
+assign the legacy copies a pool or count them again. Source review remains
+BLOCKED, separately from empty displays, aggregate totals and Planner references.
+Fresh output: `audit_output_real_final/source97_verified_row_review_20260921/`;
+targeted receipt: `audit_output_real_final/source97_resolution_20260921/`.
+
+**Newly verified routing discrepancy:** DB0008 is an extended-archery-only
+general-season deer DRAW permit, not availability-only. The retained 2026 Big
+Game Application guidebook pages 9/44 and typed UtahDraws endpoint confirm it.
+The existing canonical availability labels and the classifier's generic
+extended-archery random-target fallback require a scoped metadata/routing repair.
+This verification did not change canonical values, routing engines or frozen
+forecasts. Do not discard DB0008 outcomes as reference-only to clear a gate.
+
+### Original 1,398 coverage gaps repaired; candidate not promoted (2026-09-21)
+
+Latest scoped candidate review:
+`audit_output_real_final/youth_coverage_feed_repair_20260921_v1/review/summary.json`.
+All nine folds have zero unresolved coverage gaps. Independent integrity audit
+verifies all 1,398 original blocking keys are now scored, with no duplicate
+scored keys and every unrelated retained forecast field unchanged. Repaired
+youth general-deer score aliases and explicit unmodeled youth placeholder handoff
+to the pre-existing exact-source fallback; no adult odds borrowed and copied
+prior-year guarantees remain blank.
+
+Combined diagnostic: 137,940 scored keys, 9.0876 pp MAE, 27.6077 pp P90,
+10.4031% tail over 25 pp. Youth designs still fail accuracy/sample gates.
+Coverage completion is not certification. The 2025→2026 diagnostic remains
+separate; two populated unresolved source-youth dimensions are not settled here.
+
+The final protected-file gate correctly fails: source-crosswalk and Bear code
+changed concurrently during the run. Corrected only the crosswalk import-order
+syntax error, preserving the external addition. Did not revert/adopt the Bear
+change. Original frozen forecasts and official canonical/long/DATABASE bytes
+are unchanged. 120 focused tests pass, but no current-tree promotion is approved.
+See `docs/YOUTH_COVERAGE_FEED_REPAIR_20260921.md` for hashes and per-design results.
+No staging, registry change, runtime rebuild, push, R2 upload or deployment.
+
+### Scoring identities repaired; youth source routing corrected locally (2026-09-21)
+
+The preceding identity-only nine-fold review was
+`audit_output_real_final/identity_reconciled_rescore_20260921_v4/review/`.
+Its 2026 CWMU youth-pool correction is superseded separately by
+`audit_output_real_final/identity_reconciled_2026_cwmu_fix_20260921_v5/`.
+The latter has exact scored-key/probability parity with V4, but retains distinct
+adult/youth source evidence. Across these latest projections there are zero
+repeated scored keys and zero conflicting populated actual-key groups. Empty
+display records remain separate; all 11,781 verified zero outcomes are retained.
+
+Combined nine-fold diagnostic: 135,963 independent scored keys, 8.6316 pp MAE,
+25 pp P90, 9.8939% tail over 25 pp; 1,398 blocking coverage gaps remain, mostly
+newly separated youth pools. The adopted eight-fold adult LE, OIL, Premium LE
+and general-deer populations meet the numeric/classified-coverage checks; other
+families still fail accuracy/coverage/sample gates. No new certification is
+granted. Two populated 2026 deer rows still lack verified youth dimensions;
+raw 2026 diagnostic matches are not acceptance evidence for those identities.
+
+The current DATABASE hash delta was proved exclusively CRLF/LF, and the fresh
+existing feeder audit reports zero unexplained current-field deltas. Authority
+records the actual raw hash while retaining the old build digest and explicit
+byte-level manifest drift. Project-memory now passes 151 checks.
+
+After frozen-run verification, corrected the owning family runner so explicit
+Deer species cannot become pronghorn from the shared label "Antlerless/Doe".
+This metadata-only owner change passes regression tests but has not generated
+new forecasts or runtime artifacts. Next: verify the remaining youth source-feed
+and pending-output path using this corrected owner; do not fill youth odds with
+adult probabilities. See `docs/SCORING_IDENTITY_AND_MEMORY_REPAIR_20260921.md`.
+No staging, registry change, push, R2 upload or deployment.
+
+### 2026 diagnostic outcome-normalization hold (2026-09-21)
+
+**Update:** the scoring-only repair and frozen nine-fold replay are complete in
+`audit_output_real_final/verified_outcome_rescore_20260921_v2/`. All 11,781 verified
+zero outcomes are restored only in the scoring projection. Earlier eight score
+CSVs and all nine forecast projections are unchanged. A fresh 2026-only official
+pull independently matches all 29 retained shared endpoint responses. The
+single-actual-row 2026 audit now scores 17,149 rows at 7.7002 pp MAE. Certification
+is still held: repeated OIL/Dedicated Hunter structural forecast keys and coverage
+gaps remain. See `docs/2026_OFFICIAL_SOURCE_RESCORE_20260921.md`; original reports
+and the incomplete preference-guard v1 replay are retained, not promoted.
+
+The closer PDF/endpoint audit found 11,781 exact-source positive-applicant,
+zero-award canonical point records with blank observed probability. The saved
+2026 actual-ladder scorer excludes 11,655 missing-probability keys, including
+5,524 LE and 2,311 OIL. Three visually checked PDF pages match 388 canonical
+count cells; no column shift was found in that sample. Already-split 2026 rows
+bypass the older adapter's count-derived probability fallback. The original
+nine-fold numbers remain evidence, not corrected acceptance results. Next:
+repair the existing scoring projection under source/count guards and rescore
+the same frozen forecasts; do not tune engine behavior to this biased subset.
+See `docs/2026_PDF_PROBABILITY_SEMANTICS_AUDIT_20260921.md`. No protected truth,
+forecast, runtime or certification registry changed in this diagnosis.
+
+### All-family nine-fold scoring complete (2026-09-21)
+
+The current task is all nine adjacent years, 2017→2018 through 2025→2026,
+not further Bear tuning. New isolated evidence is under
+`audit_output_real_final/all_family_nine_fold_20260921_v1/`. Each forecast uses
+only canonical files through its source year. Every family is sent through
+`mixed_row`; unavailable historical runtime prior/harvest blend inputs are
+explicitly `None`. This is a retrospective calculation audit, not proof of
+complete historical website-input parity or permission to promote.
+
+Completed: 141,078 scored rows, MAE 8.259 pp, P90 25 pp, tail >25 pp 9.508%,
+zero reported false guarantees and 547 blocking gaps. The four core designs
+(LE, OIL, premium LE, general deer) pass the combined numerical/coverage gates
+in this replay. Other families fail or lack sufficient evidence. The 2025→2026
+diagnostic is materially worse (6,285 rows / 16.523 pp MAE); do not hide it in
+the pooled average. All 20 protected files are unchanged. No registry or
+production change. Full report: `docs/ALL_FAMILY_NINE_FOLD_SCORING_20260921.md`.
+
+### Bear foundation recovery: corrected mechanics replay supersedes first attempt (2026-09-21)
+
+See `docs/BEAR_FOUNDATION_RESTORE_REVIEW_20260921.md`. The working Bear owner had
+lost the reviewed source-boundary implementation despite its retained tests and
+ADR-0008. Restored dated programs, exact residency/source-year quota proxies,
+split-history isolation, component/duplicate checks and source-only blanks from
+the hash-verified reviewed baseline; preserved the newer strict availability
+guard. The scorer's exact-code option is restored. Broader checks then exposed
+the old with-replacement shortcut and missing opt-in adaptive function. Both
+were recovered from the later hash-verified random-pool mechanics snapshot.
+The corrected v3 run supersedes the initial v2 metrics below. Focused checks:
+128 passed; broader family suite: 476 passed, nine recorded artifact/expectation
+failures. Do not describe the adaptive function as still missing.
+
+Initial v2 (superseded shortcut) eight-fold final-calculation replay: hunting 9,078 rows,
+MAE 12.038 pp / P90 35.294 pp / tail 13.329%; restricted pursuit 308 rows,
+MAE 15.245 pp / P90 36.655 pp / tail 22.078%. Zero unclassified gaps, but both
+designs FAIL. The separate 2025→2026 diagnostic is not acceptance evidence.
+The descriptive nine-fold review exposes 362 pre-ceiling false-certainty cases;
+zero reported false guarantees under the old 0.99 ceiling is NOT a repair.
+The corrected v3 replay is retained separately; no replacement model or forced
+row count was added. No statistical certification is asserted by the recovery.
+
+Corrected v3 is now complete: eight-fold hunting MAE 12.062 pp / P90 35.464 pp /
+tail 13.384%; pursuit MAE 15.458 pp / P90 37.581 pp / tail 22.078%, with the same
+9,078 and 308 row populations and no unclassified gaps. Both fail. The v3 review
+records 364 pre-ceiling false-certainty cases across all nine runs; these remain
+visible despite the existing ceiling. Twenty protected data/runtime/registry
+files are unchanged. This is separate from the all-family run above.
+
+All 105 deer residency splits / 210 rows balance. Existing DATABASE feeder audit
+passes against its retained inputs, but raw-hash approval and release remain
+blocked. Truth, DATABASE, normal runtime and certification registry unchanged.
+Nothing staged or deployed. This entry supersedes stale counts below, not the
+frozen certification thresholds or prior retained experiment evidence.
+
+### BR1000 / Sportsman combined-artifact coverage repair (2026-09-21)
+
+BR1000 remains the resident-only Sportsman Black Bear draw, not Bear bonus or
+non-draw availability. Its official 2026 result and Planner identity are present.
+The local combined ml_draw_predictions_v1.csv contains only 708 rows/19 codes,
+while its companion report claims 40,642/978; only BI1000 remains of ten Sportsman
+codes. The normal family builder emits all ten correctly. The prior writer of
+the partial combined file has not been identified; no upstream routing defect
+has been demonstrated.
+
+The existing materializer now validates Sportsman key coverage before exporting
+either combined surface. A separate candidate at
+audit_output_phase1_candidate/sportsman_coverage_restore_20260921_v2 restores all
+ten Sportsman rows using the existing owner and 2025 input, preserves other-family
+cells, retains Planner season wording and withholds certified probability.
+Its measured 717-row/28-code report explicitly marks the partial base unsuitable
+for promotion. Original local runtime files remain unchanged with verified
+rollback copies. This is NOT a complete runtime rebuild or deployment.
+
+The broader Sportsman test also exposed an existing 2017 Cougar parent-filename
+expectation mismatch (retained source says 2018_sportsman_odds.pdf). It is not
+resolved or relabeled by this 2026 identity repair.
+
+### Bear availability identity safeguard restored locally (2026-09-21)
+
+The current Bear module again defines the validator imported by the existing
+materializer. It checks source-target identity, program, residency, duplicates,
+and blank draw-probability/point fields for documented non-draw availability.
+Unverified pursuit labels cannot qualify as modeled availability. Current
+generation confirms BR1001 in both lanes, BR1007 Resident and BR1018 Nonresident.
+This restores build import and validation, not Bear statistical certification.
+The latest retained nine-fold review has zero false guarantees but still fails
+accuracy/tail gates (and restricted pursuit's minimum population).
+No probability formula, historical truth, DATABASE or live artifact was changed.
+The deer residency staging quality gate now reports Bear import PASS; DATABASE
+hash approval and release authorization remain blocked. One saved-runtime test
+still fails because local ml_draw_predictions_v1.csv lacks BR1000. No deployment.
+
+### Antlerless phase workflow: narrow repairs, no certification (2026-09-21)
+
+The latest review is `docs/ANTLERLESS_PHASE_WORKFLOW_20260921.md` and
+`audit_output_phase1_candidate/pdf_cells_zero_regular_20260921_v1/`.
+The follow-up independently extracted every hunt-table row in the retained 2024
+adult antlerless PDF: 3,960 canonical rows, 31,680 numeric cells and 7,920 printed
+ratios match, including page lineage. This is not an all-year PDF audit. A further
+shared-normalizer repair preserves numeric zero in collapsed lanes and gives
+explicit regular awards precedence over conflicting legacy drawn totals.
+All nine folds were regenerated inside this candidate folder; scores are unchanged.
+The isolated suite passes 93 tests. An initial legacy integration test refreshed
+local resolver audit/reference outputs; that test now uses isolated copies and
+asserts retained output hashes stay unchanged. Canonicals, long truth, DATABASE,
+saved prediction bytes and previous candidate evidence match their start hashes.
+The existing antlerless owner now preserves explicit zero regular awards,
+excludes explicit private-allocation metadata and requires two distinct adjacent
+year pairs before using an exact-hunt point-band transition rate. No engine was
+replaced and no permit mechanics or acceptance limits changed.
+
+All nine known-year folds were regenerated: 8,772 full-adult-census scores remain.
+MAE is 11.620 pp deer / 16.559 pp elk / 12.408 pp doe; all still fail certification.
+This is an evidence-contract repair, not a passing demand model. CWMU's saved
+current records have no numeric forecasts; neither it nor Bear gains promotion
+from source/reference/inventory tests. The prior two stale nonblank test
+assertions now validate explicit NO_TRANSITION_EVIDENCE instead; focused and
+shared tests pass. DATABASE raw-hash/stale-build gate failures persist.
+No production artifact, source truth, DATABASE or certification registry changed.
+
+### Current-hunt filter and selected-point parity repaired locally (2026-09-21)
+
+See `docs/CURRENT_HUNT_ELIGIBILITY_AND_RESEARCH_PARITY_20260921.md`.
+The retained 1,848-code catalog is preserved; its new derived selection manifest
+admits 1,424 evidence-backed current choices and separately retains 424
+historical/noncurrent/unverified reference codes. This is not a fresh DWR census
+or 1,424 certified public-draw predictions. No historical truth or DATABASE row
+was rewritten.
+
+Local Research now shares the exact selected point row between summary, ladder
+and Outlook, prevents ambiguous pool fallback and separates harvest percentages
+from draw success. Six local browser checks pass. This candidate is NOT DEPLOYED.
+
+Fresh nine-fold antlerless full-adult-census verification scores 8,772 rows:
+deer 11.637 pp MAE, elk 16.558 pp, doe pronghorn 12.410 pp. All three still fail
+the frozen accuracy limits; 2,249 missing forecasts remain in the coverage audit.
+This known-year replay does not certify or promote antlerless. Two existing
+historical-adapter test failures and two existing project-memory DATABASE hash /
+stale-build failures remain unwaived. No registry or production artifact changed.
 
 ### Bear quota/outcome diagnosis corrected (2026-09-20)
 
@@ -790,7 +1176,7 @@ The locally promoted prediction runtime was rebuilt on `2026-08-27` from the the
 - Duplicate prediction keys: `0`.
 - Frozen unified prediction SHA-256: `9e4c0f1a66678cd63df88512e45ba71d63746a6b21d7e4038fecb142f40e9d5e`.
 - `DATABASE.csv` SHA-256 at prediction build: `dd87461a76555c73b74fb0df069b47d66ac979b096ab25d9395a2c78f860a24b`.
-- Current reviewed `DATABASE.csv` SHA-256: `bb3c821b7de85735c9d49baddf695abb1744ee5ba6f398488ad6060802339106`. The standalone current-identity/current-quota feeder audit is `processed_data/audits/database_current_identity_quota_2026_feeder_audit_summary.json`: it verifies all 1,433 retained DWR Planner records and all 1,848 database rows with zero unexplained current-field deltas. It retains the reviewed turkey and private-lands source differences as non-draw allocation context, retains the BR7004 official 18/2/20 draw-result split, preserves the PD1056 corrected 36/4/40 official value, and moves BR7324's 2025-27 conservation-cycle count out of current public-quota fields while preserving it in `conservation_permits_2026_total`. The five antlerless-elk conservation reference codes `EA1180`, `EA1270`, `EA1271`, `EA2041`, and `EA2045` retain their separate four-permit conservation counts while their public-draw quota status remains `NO_QUOTA_PUBLISHED`. The database remains current identity/permit-reference context only; the compact prediction-build evidence intentionally retains its earlier build hash until prediction artifacts are rebuilt and accepted.
+- Current reviewed `DATABASE.csv` SHA-256: `a2b5d1049e3286f43b388dc273dacbd0c27453d42e7d90493a34b1af62a501e7`. The standalone current-identity/current-quota feeder audit is `processed_data/audits/database_current_identity_quota_2026_feeder_audit_summary.json`: it verifies all 1,433 retained DWR Planner records and all 1,848 database rows with zero unexplained current-field deltas. On 2026-09-22, the final three legacy RAC-labeled current rows (`BI6506`, `BI6529`, `BI6539`) were relabeled to the retained DWR Hunt Planner `HaNumber` source only after exact code, 2026 hunt year, species, resident, nonresident and total equality; no permit value changed. Zero current DATABASE rows remain RAC-labeled. It retains the reviewed turkey and private-lands source differences as non-draw allocation context, retains the BR7004 official 18/2/20 draw-result split, preserves the PD1056 corrected 36/4/40 official value, and moves BR7324's 2025-27 conservation-cycle count out of current public-quota fields while preserving it in `conservation_permits_2026_total`. The five antlerless-elk conservation reference codes `EA1180`, `EA1270`, `EA1271`, `EA2041`, and `EA2045` retain their separate four-permit conservation counts while their public-draw quota status remains `NO_QUOTA_PUBLISHED`. The database remains current identity/permit-reference context only; the compact prediction-build evidence intentionally retains its earlier build hash until prediction artifacts are rebuilt and accepted.
 
 The full generated prediction manifest is a repo-external build artifact at `processed_data/utah_bonus_predictive_manifest.json`. Its compact integrity evidence—including pipeline and rule versions, forecast year, row counts, source hashes, and the promoted manifest SHA-256—is Git-tracked in `governance/engine-authority.json`. Code-only validation uses that compact record and performs the full manifest hash and field cross-check whenever the generated manifest is locally hydrated.
 
@@ -899,3 +1285,40 @@ The full eight-fold exact-final-calculation candidate is retained under `audits/
 Correct mechanics do not certify Bear. Hunting scores 12.062 pp MAE, 35.464 pp P90 and 13.384% over-25-point error. Pursuit scores 15.458 pp MAE, 37.581 pp P90 and 22.078% over-25-point error. Nonresident hunting/pursuit MAE is 21.541/22.981 pp. The prior shortcut's slightly better scores were accidental compensation for over-optimistic thin-lane forecasts, not evidence that it represented Utah's rule.
 
 Release decision remains **DO NOT PROMOTE**. No registry, saved prediction, R2 object or website changed. The next repair is the nonresident thin-lane probability contract and recurring hunt/year/residency failures—not Bear party logic, another display filter, or another applicant-demand adjustment without new evidence of a demand defect.
+
+## 2026-09-21 current canonical and source crosswalk audit (local only)
+
+The named current master at `data/utah/official_downloads_2026/hunt_master_canonical_2026.csv`
+is under official current-code review, not an approved complete replacement release
+inventory. Fresh Planner matrix/detail evidence has 1,426 explicitly 2026 codes
+versus the master's 1,288: 171 current codes missing from master and 33 master
+codes without matrix confirmation. Direct follow-up confirms PB5329 as current,
+leaving 32 for noncurrent/program review. Absence is not retirement. No current or
+historical canonical was rewritten and no promotion filter was applied.
+
+`docs/CURRENT_CANONICAL_PLANNER_REVIEW_20260921.md` and
+`docs/SOURCE_MAPPING_CROSSWALK_REVIEW_20260921.md` record the evidence. Requested
+current-code review exports are in `processed_data`; final evidence-enriched
+source mapping is in `audit_output_phase1_candidate/source_mapping_crosswalk_20260921_v3`.
+PDF/code/page presence and guidebook listings are not numeric parity or automatic
+predecessor approval. The source closure gate remains BLOCKED, including missing
+adult/youth source dimensions and unresolved total/Sportsman/reference scopes.
+Existing DATABASE raw-hash/stale-build project-memory failures are not waived.
+
+## 2026-09-21 source-pool metadata applied; no engine rebuild
+
+`docs/SOURCE_POOL_LABEL_RECOVERY_20260921.md` supersedes the broad blank-youth
+blocking counts above. Recovered 27,751 missing endpoint-pool labels in the local
+2026 yearly canonical and synchronized exactly those cells into long truth, with
+hash-verified rollback copies. No numbers, other metadata, engine, forecast or
+live artifacts changed. Post-application: 21,806 rows / 109,030 populated numeric
+cells match retained raw endpoints; full long/canonical ordered-value parity
+passes 338,574 rows. Youth-only hunt eligibility remains separate from IsYouth.
+
+Two positive rows still have identical adult/youth source vectors: DB1592 NR at
+3 points and DB1630 NR at 2 points. Another 518 unresolved records have no
+applicants/awards; 10,236 absent endpoint rungs are explicitly structural, and 272
+reference records are not draw truth. General-deer Planner totals do not remove
+the official endpoint residency lanes. Historical freeze reports are retained;
+new hashes and the local-only application are recorded in engine-authority.json.
+No certification or release approval was changed; DATABASE blockers remain.

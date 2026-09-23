@@ -31,6 +31,8 @@ QUOTA_FIELDS = ("permits_2026_res", "permits_2026_nr", "permits_2026_total")
 STALE_CONSERVATION_CODE = "BR7324"
 PD1056_REVIEWED_QUOTA = ("36", "4", "40")
 BR7004_DRAW_RESULT_QUOTA = ("18", "2", "20")
+LEGACY_RAC_SOURCE_LABEL = "2026_RAC_CURRENT_YEAR_ALLOTMENT"
+PLANNER_SOURCE_LABEL = "2026_DWR_HUNT_PLANNER_HANUMBER_CURRENT"
 
 
 def sha256(path: Path) -> str:
@@ -120,6 +122,51 @@ def repair_stale_conservation_reference(database_rows: list[dict[str, str]], pla
     changed = any(row.get(key, "") != value for key, value in expected.items())
     row.update(expected)
     return changed
+
+
+def repair_rac_source_labels_from_planner(
+    database_rows: list[dict[str, str]],
+    planner_by_code: dict[str, dict[str, str]],
+) -> list[str]:
+    """Replace legacy RAC provenance only when current Planner cells match.
+
+    Permit values are never changed here.  Every legacy RAC-labeled current
+    row must have a successful 2026 HaNumber record with matching species and
+    the exact same resident/nonresident/total triple.  Anything else blocks the
+    repair rather than retaining a misleading source claim.
+    """
+    repaired_codes: list[str] = []
+    for row in database_rows:
+        source_fields = (
+            row.get("permits_2026_source", ""),
+            row.get("permits_2026_draw_source", ""),
+            row.get("permit_allotment_2026_source", ""),
+        )
+        if LEGACY_RAC_SOURCE_LABEL not in source_fields:
+            continue
+        code = row.get("hunt_code", "")
+        planner = planner_by_code.get(code)
+        if planner is None:
+            raise RuntimeError(f"Cannot replace RAC source for {code}: no retained Planner row")
+        if planner.get("hunt_year") != "2026":
+            raise RuntimeError(
+                f"Cannot replace RAC source for {code}: Planner hunt year is {planner.get('hunt_year')}"
+            )
+        if row.get("species", "").strip().casefold() != planner.get("dwr_species", "").strip().casefold():
+            raise RuntimeError(f"Cannot replace RAC source for {code}: Planner species differs")
+        if quota(row) != quota(planner):
+            raise RuntimeError(
+                f"Cannot replace RAC source for {code}: {quota(row)} != Planner {quota(planner)}"
+            )
+
+        row["permits_2026_source"] = PLANNER_SOURCE_LABEL
+        if row.get("permits_2026_draw_source") == LEGACY_RAC_SOURCE_LABEL:
+            row["permits_2026_draw_source"] = PLANNER_SOURCE_LABEL
+        row["permit_allotment_2026_source"] = PLANNER_SOURCE_LABEL
+        row["permit_allotment_2026_source_file"] = "processed_data/dwr_huntplanner_hanumber_2026.csv"
+        row["permit_allotment_2026_status"] = "DWR_CURRENT_EXACT"
+        repaired_codes.append(code)
+    return sorted(repaired_codes)
 
 
 def classify(
@@ -270,6 +317,11 @@ def classify(
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repair-stale-conservation-reference", action="store_true", help="Clear BR7324 current quota fields while preserving its dedicated conservation count.")
+    parser.add_argument(
+        "--repair-rac-source-labels-from-planner",
+        action="store_true",
+        help="Replace legacy RAC provenance only when retained current Planner values match exactly.",
+    )
     args = parser.parse_args()
 
     database_rows = read_csv(DATABASE)
@@ -280,10 +332,15 @@ def main() -> int:
     turkey_totals = source_total_map(read_csv(TURKEY_FEEDER))
 
     repaired = False
+    rac_source_labels_repaired: list[str] = []
     if args.repair_stale_conservation_reference:
         repaired = repair_stale_conservation_reference(database_rows, planner_by_code)
-        if repaired:
-            write_csv(DATABASE, database_rows, database_fields)
+    if args.repair_rac_source_labels_from_planner:
+        rac_source_labels_repaired = repair_rac_source_labels_from_planner(
+            database_rows, planner_by_code
+        )
+    if repaired or rac_source_labels_repaired:
+        write_csv(DATABASE, database_rows, database_fields)
 
     audit_rows = [classify(row, planner_by_code.get(row["hunt_code"]), ea_totals, turkey_totals) for row in database_rows]
     audit_fields = list(audit_rows[0])
@@ -306,6 +363,8 @@ def main() -> int:
         "unresolved_current_field_delta_count": len(unresolved),
         "unresolved_current_field_delta_codes": [row["hunt_code"] for row in unresolved],
         "repair_applied_this_run": repaired,
+        "rac_source_label_repair_count": len(rac_source_labels_repaired),
+        "rac_source_label_repair_codes": rac_source_labels_repaired,
         "stale_conservation_reference_status": next(
             row["quota_status"] for row in audit_rows if row["hunt_code"] == STALE_CONSERVATION_CODE
         ),
