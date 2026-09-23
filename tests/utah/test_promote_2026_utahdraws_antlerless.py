@@ -148,6 +148,8 @@ def test_ea1281_is_preserved_only_in_historical_2025_truth() -> None:
         / "draw_results_2025_for_2026_canonical_yearly_draw_results.csv"
     )
     historical_rows = read_rows(historical)
+    ea1281 = [row for row in historical_rows if row["hunt_code"] == "EA1281"]
 
     assert all(row["hunt_code"] != "EA1281" for row in current_rows)
-    assert sum(row["hunt_code"] == "EA1281" for row in historical_rows) == 36
+    assert sum(row["record_type"] == "point_level_draw_result" for row in ea1281) == 36
+    assert sum(row["record_type"] == "hunt_total_draw_result" for row in ea1281) == 2

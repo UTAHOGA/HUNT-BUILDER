@@ -152,6 +152,11 @@ def main() -> int:
     parser.add_argument("--final-probability-stage", action="store_true", help="Score the exact public post-family calculation, retaining both input and final forecasts.")
     parser.add_argument("--all-family-final-stage", action="store_true", help="Apply mixed_row to every family, with no unavailable historical harvest or prior-row blend input.")
     parser.add_argument("--exact-codes-only", action="store_true", help="Disable implicit current-year scorer identity bridges.")
+    parser.add_argument(
+        "--verified-outcome-audit",
+        type=Path,
+        help="Hash-verified 2026 UtahDraws count audit used only to prepare observed 2026 scoring outcomes.",
+    )
     parser.add_argument("--reuse-family-predictions", action="store_true", help="Replay final calculation/scoring from the retained family forecasts; never regenerate or change their inputs.")
     parser.add_argument("--refresh-general-deer", action="store_true", help="Rebuild only general deer from source-only canonical history, retaining the original family CSV unchanged.")
     parser.add_argument("--bear-central-estimate", choices=["deterministic", "simulation_mean"], default="deterministic")
@@ -172,6 +177,18 @@ def main() -> int:
         raise SystemExit("--source-end must be at least --source-start")
     truth_year_paths = parse_year_paths(args.truth_year_file, "--truth-year-file")
     actual_year_paths = parse_year_paths(args.actual_year_file, "--actual-year-file")
+    if args.verified_outcome_audit is not None:
+        audit_summary = args.verified_outcome_audit / "summary.json"
+        if not audit_summary.is_file():
+            raise SystemExit(f"Verified 2026 outcome audit is missing: {audit_summary}")
+        if args.source_start <= 2025 <= args.source_end:
+            current_truth = canonical_actual(2026)
+            truth_key = current_truth.relative_to(REPO).as_posix()
+            recorded_hash = json.loads(audit_summary.read_text(encoding="utf-8")).get(
+                "input_hashes", {}
+            ).get(truth_key)
+            if recorded_hash != sha256(current_truth):
+                raise SystemExit("Verified 2026 outcome audit does not match the current canonical")
     truth_path = build_isolated_truth(truth_year_paths, args.out_dir) if truth_year_paths else TRUTH
     if not truth_path.exists():
         raise SystemExit(f"Normalized official truth is missing: {truth_path}")
@@ -245,8 +262,6 @@ def main() -> int:
                 sys.path.insert(0, str(REPO))
             from engine.utah_predictive_mixed.materialize import CORE_FINAL_PROBABILITY_DESIGNS, FINAL_PROBABILITY_CONTRACT, mixed_row
             from engine.utah_predictive_mixed.models import BlendWeights
-            import hashlib
-            import json
             with forecast_path.open(encoding="utf-8-sig", newline="") as handle:
                 source_predictions = list(csv.DictReader(handle))
             final_predictions = [
@@ -297,6 +312,8 @@ def main() -> int:
                 # a row from the held-out outcome.
                 "--reconcile-scoring-identities",
         ]
+        if target_year == 2026 and args.verified_outcome_audit is not None:
+            projection_command.extend(["--verified-outcome-audit", str(args.verified_outcome_audit)])
         if args.identity_crosswalk_dir is not None:
             prefix = (
                 "pre_draw_hunt_identity_crosswalk"

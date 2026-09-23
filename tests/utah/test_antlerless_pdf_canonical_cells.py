@@ -1,6 +1,6 @@
 import pytest
 
-from scripts.audit_antlerless_pdf_canonical_cells import parse_line
+from scripts.audit_antlerless_pdf_canonical_cells import comparison_status, parse_line
 
 
 def test_pdf_columns_preserve_both_residencies_and_zero_regular():
@@ -26,3 +26,20 @@ def test_mismatched_point_columns_are_rejected():
 
 def test_missing_numeric_cell_is_not_filled():
     assert parse_line('4 0 0 0 N/A 4 0 0 0 0 N/A') is None
+
+
+def test_ratio_spacing_is_documented_but_not_a_numeric_mismatch():
+    assert comparison_status({}, 'resident', 'success_ratio', '1 in 3.0', '1in3.0') == 'RATIO_WHITESPACE_ONLY'
+
+
+def test_approved_source_display_carryover_requires_exact_note_and_zero_components():
+    row = dict(record_type='point_level_draw_result', points='15',
+               resident_eligible_applicants='0', resident_bonus_permits='0',
+               resident_regular_permits='0', resident_total_permits='0',
+               qa_notes='OFFICIAL_SOURCE_TOP_POINT_TOTAL_RATIO_CARRYOVER:resident:points=15:'
+                        'displayed_total_permits=1:displayed_success_ratio=1in1.0')
+    assert comparison_status(row, 'resident', 'total_permits', 1, 0) == 'DOCUMENTED_SOURCE_DISPLAY_CARRYOVER'
+    assert comparison_status(row, 'resident', 'success_ratio', '1 in 1.0', 'N/A') == 'DOCUMENTED_SOURCE_DISPLAY_CARRYOVER'
+    assert comparison_status(row, 'resident', 'total_permits', 2, 0) == 'VALUE_MISMATCH'
+    assert comparison_status({**row, 'resident_eligible_applicants': '1'},
+                             'resident', 'total_permits', 1, 0) == 'VALUE_MISMATCH'

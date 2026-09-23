@@ -50,6 +50,30 @@ def parse_line(line):
     return result
 
 
+def comparison_status(canonical_row, lane, metric, pdf_value, canonical_value):
+    """Explain approved display-only differences without hiding numeric drift."""
+    if pdf_value == canonical_value:
+        return 'MATCH'
+    if metric == 'success_ratio' and re.sub(r'\s+', '', str(pdf_value)) == re.sub(r'\s+', '', str(canonical_value)):
+        return 'RATIO_WHITESPACE_ONLY'
+    marker = f'OFFICIAL_SOURCE_TOP_POINT_TOTAL_RATIO_CARRYOVER:{lane}:points=15:'
+    note = canonical_row.get('qa_notes', '')
+    if (canonical_row.get('record_type') == 'point_level_draw_result'
+            and canonical_row.get('points') == '15'
+            and marker in note
+            and all(canonical_row.get(f'{lane}_{field}') == '0'
+                    for field in ('eligible_applicants', 'bonus_permits', 'regular_permits', 'total_permits'))):
+        printed = note.split(marker, 1)[1].split('|', 1)[0]
+        match = re.search(r'displayed_total_permits=(\d+):displayed_success_ratio=([^:\s]+)', printed)
+        if match:
+            if metric == 'total_permits' and str(pdf_value) == match.group(1) and canonical_value == 0:
+                return 'DOCUMENTED_SOURCE_DISPLAY_CARRYOVER'
+            if (metric == 'success_ratio' and canonical_value == 'N/A'
+                    and re.sub(r'\s+', '', str(pdf_value)) == match.group(2)):
+                return 'DOCUMENTED_SOURCE_DISPLAY_CARRYOVER'
+    return 'VALUE_MISMATCH'
+
+
 def write_csv(path, rows, empty_fields=()):
     fields = list(dict.fromkeys(k for row in rows for k in row)) or list(empty_fields)
     with path.open('w', newline='', encoding='utf-8') as handle:
@@ -151,34 +175,42 @@ def main():
                     actual = raw.strip() if metric == 'success_ratio' else int(raw.replace(',', ''))
                 except (ValueError, AttributeError):
                     actual = None
+                status = comparison_status(canonical_row, lane, metric, expected, actual)
                 comparisons.append(dict(hunt_code=row['hunt_code'], record_type=row['record_type'],
                     points=row['points'], pdf_page=row['pdf_page'], text_line=row['text_line'],
                     field=field, pdf_value=expected, canonical_value=raw,
-                    status='MATCH' if actual == expected else 'VALUE_MISMATCH'))
+                    status=status))
     for k, values in indexed.items():
         if not seen[k]:
             issues.append(dict(status='CANONICAL_ROW_NOT_IN_PDF', key=str(k)))
     for k, count in seen.items():
         if count != 1:
             issues.append(dict(status='DUPLICATE_PDF_KEY', key=str(k), count=count))
-    mismatches = [r for r in comparisons if r['status'] != 'MATCH']
+    documented = [r for r in comparisons if r['status'] in
+                  ('RATIO_WHITESPACE_ONLY', 'DOCUMENTED_SOURCE_DISPLAY_CARRYOVER')]
+    mismatches = [r for r in comparisons if r['status'] == 'VALUE_MISMATCH']
     unchanged = all(sha(ROOT/p) == h for p, h in hashes.items())
-    summary = dict(status='PASS' if extracted and not issues and not mismatches and unchanged else 'BLOCKED',
+    passed = bool(extracted and not issues and not mismatches and unchanged)
+    summary = dict(status=('PASS_WITH_DOCUMENTED_NORMALIZATIONS' if documented else 'PASS') if passed else 'BLOCKED',
         scope=f'Entire retained {actual_year} antlerless report: {parent}; no other source scopes',
         source_hashes=hashes, source_size=pdf.stat().st_size, physical_pages=len(pages),
         page_roles=dict(Counter(r['role'] for r in pages)), hunts=len({r['hunt_code'] for r in extracted}),
         canonical_rows=len(canonical), extracted_rows=len(extracted), matched_rows=matched,
         numeric_cells=sum(r['field'].endswith(METRICS[:-1]) for r in comparisons),
         ratio_cells=sum(r['field'].endswith('success_ratio') for r in comparisons),
-        mismatched_cells=len(mismatches), issues=issues, input_hashes_unchanged=unchanged,
+        mismatched_cells=len(mismatches), documented_normalization_cells=len(documented),
+        documented_normalization_types=dict(Counter(r['status'] for r in documented)),
+        issues=issues, input_hashes_unchanged=unchanged,
         parser='Independent pdfplumber linear text; canonical used PYMUPDF_FIND_TABLES')
     write_csv(out/'pdf_extracted_rows.csv', extracted)
     write_csv(out/'cell_comparisons.csv', comparisons)
+    write_csv(out/'documented_normalizations.csv', documented,
+              ['hunt_code', 'field', 'pdf_value', 'canonical_value', 'status'])
     write_csv(out/'cell_mismatches.csv', mismatches, ['hunt_code', 'field', 'pdf_value', 'canonical_value'])
     write_csv(out/'page_coverage.csv', pages)
     (out/'summary.json').write_text(json.dumps(summary, indent=2)+'\n', encoding='utf-8')
     print(json.dumps(summary, indent=2))
-    return 0 if summary['status'] == 'PASS' else 1
+    return 0 if passed else 1
 
 
 if __name__ == '__main__':
