@@ -74,6 +74,14 @@ UNLIMITED_PURSUIT_PERMIT = "UNLIMITED_PURSUIT_PERMIT"
 CONSERVATION_OR_NON_PUBLIC = "CONSERVATION_OR_NON_PUBLIC"
 UNKNOWN_BEAR_SUBTYPE = "UNKNOWN_BEAR_SUBTYPE"
 
+# Restored from the retained 2026-09-20 availability-validation implementation.
+# These are catalog products, not a count-based substitute for draw identity.
+BEAR_AVAILABILITY_PRODUCTS = {
+    "BR1001": (HARVEST_OBJECTIVE_AVAILABILITY, ("Resident", "Nonresident")),
+    "BR1007": (UNLIMITED_PURSUIT_PERMIT, ("Resident",)),
+    "BR1018": (UNLIMITED_PURSUIT_PERMIT, ("Nonresident",)),
+}
+
 HISTORICAL_BEAR_PDF_CLASSIFICATIONS = {
     "TRUE_BEAR_BONUS_DRAW",
     "BEAR_PURSUIT_BONUS_DRAW",
@@ -482,7 +490,7 @@ def classify_bear_subtype(row: Mapping[str, object]) -> str:
     if "remaining permit" in text or " otc" in f" {text}" or "over the counter" in text:
         return REMAINING_PERMIT_AVAILABILITY
     if "restricted pursuit" in text:
- return RESTRICTED_BEAR_PURSUIT
+        return RESTRICTED_BEAR_PURSUIT
     if hunt_code not in official_draw_codes and hunt_code not in official_pursuit_codes and (hunt_type == "pursuit" or hunt_type.startswith("pursuit") or weapon == "pursuit only"):
         return UNLIMITED_PURSUIT_PERMIT
     if "spot and stalk" in text:
@@ -544,12 +552,65 @@ def is_modeled_bear_row(row: Mapping[str, object]) -> bool:
 def is_modeled_bear_availability_row(row: Mapping[str, object]) -> bool:
     if _clean(row.get("draw_system_type")) != BEAR_DRAW_SYSTEM_TYPE:
         return False
+    product = BEAR_AVAILABILITY_PRODUCTS.get(_clean(row.get("hunt_code")).upper())
+    if product is None:
+        return False
     subtype = classify_bear_subtype(row)
+    if subtype != product[0]:
+        return False
     if subtype == HARVEST_OBJECTIVE_AVAILABILITY:
         return _clean_lower(row.get("harvest_objective_status")) in {"unknown", "open", "closed", "source missing"}
     if subtype == UNLIMITED_PURSUIT_PERMIT:
         return _clean_lower(row.get("permit_availability_type")) == "unlimited_pursuit"
     return False
+
+
+def validate_bear_availability_identity(
+    rows: Iterable[Mapping[str, object]],
+    target_rows: Iterable[Mapping[str, object]],
+) -> None:
+    """Reject cross-species templates, wrong lanes and duplicate availability.
+
+    Target metadata is identity context only, never applicant/quota truth.
+    This gate does not repair saved rows or invent missing source identities.
+    """
+    targets = {}
+    for target in target_rows:
+        code = _clean(target.get("hunt_code")).upper()
+        if code not in BEAR_AVAILABILITY_PRODUCTS:
+            continue
+        name = _clean(target.get("hunt_name"))
+        if not _species_is_black_bear(target) or not name or "sportsman" in name.lower():
+            raise ValueError(f"Invalid Bear availability target identity: {code}")
+        if code in targets and any(
+            _clean(target.get(field)) != _clean(targets[code].get(field))
+            for field in ("hunt_name", "species")
+        ):
+            raise ValueError(f"Conflicting Bear availability target identity: {code}")
+        targets[code] = target
+    seen = set()
+    for row in rows:
+        code = _clean(row.get("hunt_code")).upper()
+        if not code.startswith("BR") or not (
+            _clean(row.get("algorithm_status")) == "MODELED_AVAILABILITY"
+            or is_modeled_bear_availability_row(row)
+        ):
+            continue
+        product = BEAR_AVAILABILITY_PRODUCTS.get(code)
+        target = targets.get(code)
+        key = (code, _clean(row.get("residency")))
+        if product is None or target is None or key[1] not in product[1]:
+            raise ValueError(f"Unsupported Bear availability identity/lane: {key}")
+        if any(_clean(row.get(field)) != _clean(target.get(field)) for field in ("hunt_name", "species")):
+            raise ValueError(f"Bear availability identity mismatch: {key}")
+        if _clean(row.get("bear_draw_subtype")) != product[0]:
+            raise ValueError(f"Bear availability program mismatch: {key}")
+        if key in seen:
+            raise ValueError(f"Duplicate Bear availability identity/lane: {key}")
+        seen.add(key)
+        for field in ("p_draw", "p_draw_pct", "p_bonus_pool", "p_random_pool", "p_preference_draw"):
+            if row.get(field) is not None and str(row.get(field)).strip():
+                raise ValueError(f"Draw probability on Bear availability row: {key}/{field}")
 
 
 def _is_proven_bonus_bear_truth_row(row: Mapping[str, object]) -> bool:
@@ -1614,6 +1675,7 @@ def build_bear_bonus_predictions(
     if iterations < 1:
         raise ValueError("iterations must be at least 1")
     truth_rows_list = list(truth_rows)
+    db_rows = list(db_rows)
     history_years = _history_years_or_bootstrap(history_years, truth_rows_list)
     if not history_years:
         return [], _skipped_no_history_report(forecast_year)
@@ -1750,7 +1812,7 @@ def build_bear_bonus_predictions(
                 base["bear_crosswalk_parent_hunt_code"] = _clean(db_row.get("bear_crosswalk_parent_hunt_code"))
                 base["public_permits_source"] = _clean(db_row.get("forecast_permits_source"))
 
-            if subtype == UNLIMITED_PURSUIT_PERMIT:
+            if subtype == UNLIMITED_PURSUIT_PERMIT and hunt_code in BEAR_AVAILABILITY_PRODUCTS:
                 row = dict(base)
                 row.update(
                     {
@@ -1788,9 +1850,9 @@ def build_bear_bonus_predictions(
                 else:
                     # Not true availability
                     report_counts["excluded"] += 1
-                    continue
+                continue
 
-            if subtype == HARVEST_OBJECTIVE_AVAILABILITY:
+            if subtype == HARVEST_OBJECTIVE_AVAILABILITY and hunt_code in BEAR_AVAILABILITY_PRODUCTS:
                 row = dict(base)
                 row.update(
                     {
@@ -1822,10 +1884,10 @@ def build_bear_bonus_predictions(
                 data_quality_counter["BEAR_HO_SOURCE_MISSING"] += 1
                 rows.append(row)
                 if _clean(row.get("hunt_code")).upper() in {"BR1001", "BR1007", "BR1018"}:
-                report_counts["availability"] += 1
-            else:
-                # Not true availability - counts as excluded/pending, not 19
-                report_counts["excluded"] += 1
+                    report_counts["availability"] += 1
+                else:
+                    # Not true availability - counts as excluded/pending, not 19
+                    report_counts["excluded"] += 1
                 continue
 
             if subtype in EXCLUDED_BEAR_SUBTYPES or (subtype == STATEWIDE_BEAR_PERMIT and is_excluded_bear_row(base)):
@@ -2159,7 +2221,8 @@ def build_bear_bonus_predictions(
                 else:
                     report_counts["modeled"] += 1
 
-    observed_history_rows = [row for row in truth_rows if is_bear_row(row)]
+    validate_bear_availability_identity(rows, db_rows)
+    observed_history_rows = [row for row in truth_rows_list if is_bear_row(row)]
     review_counter = Counter(classify_bear_subtype(row) for row in review_rows)
     modeled_rows = [row for row in rows if _clean(row.get("bear_bonus_valid")) == "TRUE"]
 

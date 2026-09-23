@@ -1,0 +1,25 @@
+name: Engine Code Safety
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  engine-imports-and-display-boundaries:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: python -m pip install pytest pypdf
+      - run: python scripts/validate_engine_imports.py
+      - run: python -m pytest tests/utah_draw_predictive/test_bear_availability_live_generation.py tests/test_corrective_release_safety.py -q
+      - run: node tests/research-certification-guidance.test.js
+      - run: node tests/corrective-catalog.test.js

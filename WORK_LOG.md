@@ -1,3 +1,13 @@
+## 2026-09-21 - Reviewed corrective release on both hosts
+
+- Isolated from remote `0b70665e` in `C:/hb-corrective-20260921`; preserved the original dirty main checkout and unpushed `4c052965`. No resolver changes: Tyler reprioritized completing the release first.
+- Repaired source imports/availability identity validation without a prediction rebuild; disabled eight unsafe direct patchers. Restored allocation status/provenance fields in all 1,848 current catalog records without changing numerical quotas or DATABASE. Historical canonicals remain untouched.
+- Decoupled website packaging from fixture-fallback data generation. Hash-pinned hydration retains 1,867 detail files and all 4,249 previous Pages URLs. A rejected local fixture build was not published; its three new fixture outputs were retained outside the checkout and tracked contracts restored.
+- Saved complete hash-verified Pages rollback and a bounded Vercel public snapshot; retained both prior deployment IDs. Rejected an initial Vercel login-page snapshot. Removed the accidental placeholder project after stopping its upload, then pinned the correct project for deployment.
+- Promoted Cloudflare `094c2549-a0c3-450b-8fe9-c411c0d2e970` and Vercel `dpl_F3Zwa8DGDx19CP7HLdr73jRCo7PM`. All 4,249 / 4,250 uploaded objects match candidate hashes; 56 public readbacks pass. Shared Research dependencies and current Builder catalog are identical between hosts. Other existing host-specific files are preserved.
+- Validation: 61 core tests; 15 safety/availability/catalog tests; allocation-provenance and Research guidance checks; npm test and 141 project-memory checks; website build retention guard. Local and hosted Pages candidate browser checks and Vercel live each pass 1,255/1,255, while Pages production passes 19/19 frozen-expectation smoke cases. Zero failed requests or console errors in passing runs.
+- Seven R2 objects retain the recorded certified-core hashes; no odds, family certification, canonical truth or protected DATABASE source changed. Release authority: `governance/releases/20260921-corrective-release.json`; report: `docs/CORRECTIVE_RELEASE_20260921.md`; external rollback/evidence: `C:/hb-release-evidence-20260921`.
+
 ## 2026-09-06 - Current identity/current quota feeder audit closed
 
 Scope:

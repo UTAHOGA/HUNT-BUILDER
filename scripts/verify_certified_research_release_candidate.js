@@ -9,6 +9,7 @@ const ROOT = path.resolve(__dirname, '..');
 const target = process.env.HUNT_RESEARCH_QA_URL;
 const output = process.env.HUNT_RESEARCH_QA_OUTPUT;
 const coveragePath = process.env.HUNT_RESEARCH_QA_COVERAGE;
+const smokeOnly = process.env.HUNT_RESEARCH_QA_SMOKE_ONLY === '1';
 const contractPath = process.env.HUNT_RESEARCH_QA_CONTRACT;
 const expectedRuntimeHashes = contractPath
   ? JSON.parse(fs.readFileSync(path.join(contractPath, 'candidate_build_audit.json'), 'utf8')).outputs
@@ -55,6 +56,7 @@ if (coveragePath) {
     throw new Error('Independent eligible coverage must pass before browser release QA.');
   }
   for (const lane of coverage.inventory) {
+    if (smokeOnly) continue; // Keep frozen per-rung expectations below, but skip the full inventory sweep.
     if (lane.coverage_status === 'HISTORICAL_REFERENCE_ONLY') continue;
     const points = lane.forecast_points ? lane.forecast_points.split(';') : ['0'];
     scenarios.push({ label: `coverage_${lane.hunt_code}_${lane.residency}`, code: lane.hunt_code,

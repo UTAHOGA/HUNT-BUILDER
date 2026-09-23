@@ -1,3 +1,5 @@
+raise SystemExit("DISABLED_UNREVIEWED_REPAIR: direct source/artifact mutation bypasses reviewed owners. See docs/CORRECTIVE_RELEASE_20260921.md.")
+
 import pathlib, re, sys, csv, json
 
 repo = pathlib.Path(".").resolve()

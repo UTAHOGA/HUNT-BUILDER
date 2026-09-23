@@ -185,11 +185,11 @@ function normalizedAllocation(row) {
     special_permit_category: clean(row.special_permit_category),
     special_permit_note: clean(row.special_permit_note),
     special_permit_overlay_source: clean(row.special_permit_overlay_source),
-    permit_source_authority: clean(row.permit_source_authority) || 'Utah DWR published 2026 permit allocation',
+    permit_source_authority: clean(row.permit_source_authority) || 'DATABASE.csv current permit reference (not prediction truth)',
     permit_note: clean(row.permit_note || row.NOTES),
     permit_overlay_source: clean(row.permit_overlay_source) || SOURCE_FILE,
     data_status: clean(row.data_status) || (status === 'NO_QUOTA_PUBLISHED' ? 'SOURCE_CONFIRMED_NO_QUOTA_PUBLISHED' : 'COMPLETE'),
-    permits_2026_source: SOURCE_LABEL,
+    permits_2026_source: clean(row.permits_2026_source) || SOURCE_FILE,
   };
 }
 
