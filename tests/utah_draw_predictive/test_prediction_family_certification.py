@@ -124,10 +124,141 @@ def test_registry_recomputes_certified_experimental_and_insufficient_statuses(tm
             },
         ],
     )
+    _write_csv(
+        review / "acceptance_by_draw_design_and_residency.csv",
+        [
+            {"draw_design": design, "residency": residency, **fields}
+            for design in ("BONUS_OIL_BIG_GAME", "BONUS_LE_BIG_GAME")
+            for residency in ("Resident", "Nonresident")
+        ],
+    )
     registry = build_registry(review)
     assert registry["families"]["BONUS_OIL_BIG_GAME"]["certification_status"] == CERTIFIED
     assert registry["families"]["BONUS_LE_BIG_GAME"]["certification_status"] == EXPERIMENTAL
     assert registry["families"]["YOUTH_GENERAL_ANY_BULL_ELK"]["certification_status"] == INSUFFICIENT
+
+
+def test_registry_withholds_core_design_when_residency_evidence_is_missing(tmp_path: Path) -> None:
+    review = tmp_path / "review"
+    review.mkdir()
+    (review / "acceptance_review_manifest.json").write_text(
+        json.dumps(
+            {
+                "acceptance_standard": "ADR-0006",
+                "thresholds": THRESHOLDS,
+                "historical_truth_authority_gate": {
+                    "status": "PASS",
+                    "historical_database_csv_read_count": 0,
+                    "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY",
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    passing = {
+        "draw_design": "BONUS_OIL_BIG_GAME",
+        "fold_count": "2",
+        "joined_rows": "400",
+        "mae": "0.05",
+        "p90_absolute_error": "0.2",
+        "tail_error_rate_over_25pp": "0.05",
+        "false_guarantee_rows": "0",
+        "unclassified_actual_gap_rows": "0",
+        "acceptance_status": "ACCEPTED",
+    }
+    _write_csv(
+        review / "acceptance_by_draw_design.csv",
+        [passing, {**passing, "draw_design": "PREFERENCE_ANTLERLESS_ELK"}],
+    )
+
+    registry = build_registry(review)
+    for design in ("BONUS_OIL_BIG_GAME", "PREFERENCE_ANTLERLESS_ELK"):
+        family = registry["families"][design]
+        assert family["certification_status"] == INSUFFICIENT
+        assert family["evidence_sufficiency"] == "INSUFFICIENT"
+        assert "RESIDENCY_SLICE_MISSING:Resident" in family["failure_reasons"]
+        assert "RESIDENCY_SLICE_MISSING:Nonresident" in family["failure_reasons"]
+    assert registry["certified_designs"] == []
+
+
+def test_registry_accepts_declared_resident_only_review_without_nonresident_slice(tmp_path: Path) -> None:
+    review = tmp_path / "review"
+    review.mkdir()
+    (review / "acceptance_review_manifest.json").write_text(
+        json.dumps(
+            {
+                "acceptance_standard": "ADR-0006",
+                "thresholds": THRESHOLDS,
+                "historical_truth_authority_gate": {
+                    "status": "PASS",
+                    "historical_database_csv_read_count": 0,
+                    "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY",
+                },
+                "applicable_residencies_by_design": {"SPORTSMAN_RANDOM_ONLY": ["Resident"]},
+            }
+        ),
+        encoding="utf-8",
+    )
+    passing = {
+        "draw_design": "SPORTSMAN_RANDOM_ONLY",
+        "fold_count": "2",
+        "joined_rows": "400",
+        "mae": "0.05",
+        "p90_absolute_error": "0.2",
+        "tail_error_rate_over_25pp": "0.05",
+        "false_guarantee_rows": "0",
+        "unclassified_actual_gap_rows": "0",
+        "acceptance_status": "ACCEPTED",
+    }
+    _write_csv(review / "acceptance_by_draw_design.csv", [passing])
+    _write_csv(
+        review / "acceptance_by_draw_design_and_residency.csv",
+        [{**passing, "residency": "Resident"}],
+    )
+
+    registry = build_registry(review)
+    assert registry["families"]["SPORTSMAN_RANDOM_ONLY"]["certification_status"] == CERTIFIED
+
+
+def test_registry_rejects_narrowed_core_residency_scope(tmp_path: Path) -> None:
+    review = tmp_path / "review"
+    review.mkdir()
+    (review / "acceptance_review_manifest.json").write_text(
+        json.dumps(
+            {
+                "acceptance_standard": "ADR-0006",
+                "thresholds": THRESHOLDS,
+                "historical_truth_authority_gate": {
+                    "status": "PASS",
+                    "historical_database_csv_read_count": 0,
+                    "database_csv_role": "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY",
+                },
+                "applicable_residencies_by_design": {"BONUS_OIL_BIG_GAME": ["Resident"]},
+            }
+        ),
+        encoding="utf-8",
+    )
+    _write_csv(
+        review / "acceptance_by_draw_design.csv",
+        [{
+            "draw_design": "BONUS_OIL_BIG_GAME",
+            "fold_count": "2",
+            "joined_rows": "400",
+            "mae": "0.05",
+            "p90_absolute_error": "0.2",
+            "tail_error_rate_over_25pp": "0.05",
+            "false_guarantee_rows": "0",
+            "unclassified_actual_gap_rows": "0",
+            "acceptance_status": "ACCEPTED",
+        }],
+    )
+
+    try:
+        build_registry(review)
+    except ValueError as exc:
+        assert "cannot narrow" in str(exc)
+    else:
+        raise AssertionError("A core design cannot omit its Nonresident acceptance lane.")
 
 
 def test_registry_cannot_hide_failing_residency_slice_with_passing_combined_score(tmp_path: Path) -> None:

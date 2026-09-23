@@ -5,6 +5,8 @@ import hashlib
 import json
 from pathlib import Path
 
+from scripts.build_prediction_family_certification_registry import build_registry
+
 
 ROOT = Path(__file__).resolve().parents[2]
 REVIEW = (
@@ -81,3 +83,18 @@ def test_public_residency_summary_matches_gate_scope() -> None:
         for lane in design.values()
     )
     assert public["withheld_designs_unchanged"] is True
+
+
+def test_frozen_residency_packet_rebuilds_without_losing_lane_gates() -> None:
+    registry = build_registry(REVIEW)
+    assert set(registry["certified_designs"]) == {
+        "BONUS_LE_BIG_GAME",
+        "BONUS_OIL_BIG_GAME",
+        "BONUS_PLE_BIG_GAME",
+        "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+    }
+    assert all(
+        set(lanes) == {"Resident", "Nonresident"}
+        and all(lane["acceptance_status"] == "ACCEPTED" for lane in lanes.values())
+        for lanes in registry["residency_acceptance"]["designs"].values()
+    )

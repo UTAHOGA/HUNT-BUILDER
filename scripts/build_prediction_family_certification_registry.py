@@ -18,6 +18,16 @@ RESIDENCY_REVIEW_NAMES = (
     "acceptance_by_draw_design_and_residency.csv",
     "acceptance_by_draw_design_residency.csv",
 )
+TWO_LANE_CORE_DESIGNS = frozenset({
+    "BONUS_LE_BIG_GAME",
+    "BONUS_OIL_BIG_GAME",
+    "BONUS_PLE_BIG_GAME",
+    "PREFERENCE_GENERAL_SEASON_BUCK_DEER",
+})
+OFFICIAL_SINGLE_LANE_SCOPES = {
+    "SPORTSMAN_RANDOM_ONLY": ("Resident",),
+    "BONUS_CWMU_BIG_GAME": ("Resident",),
+}
 
 CERTIFIED = "CERTIFIED"
 EXPERIMENTAL = "EXPERIMENTAL_NOT_CERTIFIED"
@@ -70,10 +80,16 @@ def gate_failures(row: dict[str, str], thresholds: dict[str, Any]) -> list[str]:
     p90 = number(row.get("p90_absolute_error"))
     tail = number(row.get("tail_error_rate_over_25pp"))
     false_guarantees = integer(row.get("false_guarantee_rows"))
+    minimum_rows = thresholds.get(
+        "minimum_joined_rows_per_design",
+        thresholds.get("minimum_joined_rows_per_design_or_residency_slice"),
+    )
+    if minimum_rows is None:
+        raise ValueError("Acceptance review has no minimum joined-row threshold.")
 
     if fold_count is None or fold_count < int(thresholds["minimum_independent_following_year_folds"]):
         failures.append("INSUFFICIENT_INDEPENDENT_FOLDS")
-    if joined_rows is None or joined_rows < int(thresholds["minimum_joined_rows_per_design"]):
+    if joined_rows is None or joined_rows < int(minimum_rows):
         failures.append("INSUFFICIENT_JOINED_ROWS")
     if mae is None or mae > float(thresholds["maximum_mae"]):
         failures.append("MAE_EXCEEDS_LIMIT")
@@ -99,7 +115,10 @@ def gate_failures(row: dict[str, str], thresholds: dict[str, Any]) -> list[str]:
 def certification_status(failures: list[str]) -> str:
     if not failures:
         return CERTIFIED
-    if any(failure in INSUFFICIENT_FAILURES for failure in failures):
+    if any(
+        failure in INSUFFICIENT_FAILURES or failure.startswith("RESIDENCY_SLICE_MISSING:")
+        for failure in failures
+    ):
         return INSUFFICIENT
     return EXPERIMENTAL
 
@@ -124,6 +143,9 @@ def build_registry(review_dir: Path) -> dict[str, Any]:
         raise ValueError("Acceptance review indicates DATABASE.csv was read by a historical fold.")
     if clean(authority_gate.get("database_csv_role")) != "CURRENT_TARGET_IDENTITY_AND_PERMIT_REFERENCE_ONLY":
         raise ValueError("Acceptance review blurs the declared DATABASE.csv authority boundary.")
+    declared_residencies = manifest.get("applicable_residencies_by_design", {})
+    if not isinstance(declared_residencies, dict):
+        raise ValueError("Acceptance review residency applicability must be a design-to-lanes mapping.")
     with csv_path.open("r", encoding="utf-8-sig", newline="") as handle:
         rows = list(csv.DictReader(handle))
 
@@ -182,17 +204,34 @@ def build_registry(review_dir: Path) -> dict[str, Any]:
             )
         failures = list(design_failures)
         lanes = residency_by_design.get(design)
-        if lanes:
-            for required_lane in ("Resident", "Nonresident"):
-                if required_lane not in lanes:
-                    failures.append(f"RESIDENCY_SLICE_MISSING:{required_lane}")
-            for lane_name, lane in sorted(lanes.items()):
-                if lane["acceptance_status"] != "ACCEPTED":
-                    failures.append(f"RESIDENCY_SLICE_FAILED:{lane_name}")
+        # A review lacking lane evidence cannot certify from its combined score.
+        # Resident-only programs must declare that narrower scope in the frozen
+        # review manifest; an absent declaration defaults to both lanes.
+        required_lanes = declared_residencies.get(design, ["Resident", "Nonresident"])
+        if (
+            not isinstance(required_lanes, list)
+            or not required_lanes
+            or len(required_lanes) != len(set(required_lanes))
+            or any(lane not in {"Resident", "Nonresident"} for lane in required_lanes)
+        ):
+            raise ValueError(f"Invalid residency applicability for {design}: {required_lanes!r}")
+        if design in TWO_LANE_CORE_DESIGNS and set(required_lanes) != {"Resident", "Nonresident"}:
+            raise ValueError(f"Core design cannot narrow its official residency scope: {design}")
+        if set(required_lanes) != {"Resident", "Nonresident"} and tuple(required_lanes) != OFFICIAL_SINGLE_LANE_SCOPES.get(design):
+            raise ValueError(f"Unsupported single-lane residency scope for {design}: {required_lanes!r}")
+        for required_lane in required_lanes:
+            if not lanes or required_lane not in lanes:
+                failures.append(f"RESIDENCY_SLICE_MISSING:{required_lane}")
+        for lane_name, lane in sorted((lanes or {}).items()):
+            if lane["acceptance_status"] != "ACCEPTED":
+                failures.append(f"RESIDENCY_SLICE_FAILED:{lane_name}")
         status = certification_status(failures)
         families[design] = {
             "certification_status": status,
-            "evidence_sufficiency": "SUFFICIENT" if not any(item in INSUFFICIENT_FAILURES for item in failures) else "INSUFFICIENT",
+            "evidence_sufficiency": "SUFFICIENT" if not any(
+                item in INSUFFICIENT_FAILURES or item.startswith("RESIDENCY_SLICE_MISSING:")
+                for item in failures
+            ) else "INSUFFICIENT",
             "fold_count": integer(row.get("fold_count")),
             "joined_rows": integer(row.get("joined_rows")),
             "mae": number(row.get("mae")),

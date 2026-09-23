@@ -60,6 +60,17 @@ changing a probability, certifying another design, or treating 2025→2026 as an
 acceptance fold. The public evidence contract is
 `public/data/prediction-residency-certification.json`.
 
+A fresh current-code, source-isolated 2017→2018 through 2024→2025 replay
+under `audit_output_real_final/residency_current_main_eightfold_20260922_v1/`
+reproduced all four combined design results and all eight Resident/Nonresident
+slice metrics exactly, with zero false guarantees and zero unclassified gaps
+in those designs. The local registry builder now withholds a combined passing
+design when its required residency evidence is absent; a resident-only scope
+must be declared in the frozen review manifest and match an approved
+single-lane program, and the four core designs
+cannot narrow their two-lane scope. This is a local gate repair and review,
+not a new forecast, registry promotion, R2 upload, or website deployment.
+
 ### Canonical lineage repair and long-truth freeze complete (2026-09-22)
 
 The yearly canonical source repair is complete and the long truth has been
