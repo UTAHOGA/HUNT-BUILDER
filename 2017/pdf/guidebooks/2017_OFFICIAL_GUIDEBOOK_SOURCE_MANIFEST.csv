@@ -1,0 +1,2 @@
+source_year,source_url,relative_path,file_name,retrieval_status,bytes,sha256,pdf_magic_verified,retrieved_utc,verification_note
+2017,https://wildlife.utah.gov/guidebooks/2017_field_regs.pdf,pipeline/RAW/hunt_unit_database/2017/pdf/guidebooks/2017_field_regs.pdf,2017_field_regs.pdf,FRESH_OFFICIAL_DWR_PULL,4180461,aeb93fc9714fef02ef21c71e9719449613b6c793e5dfa0293daf9a58716f5ae9,True,2026-09-09T16:53:22Z,"Byte-identical to C:\Users\tyler\Downloads\2017_field_regs.pdf. Visible publication is the 2017 Utah Big Game Field Regulations; embedded title metadata is stale."
