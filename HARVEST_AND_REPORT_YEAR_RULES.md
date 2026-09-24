@@ -37,3 +37,37 @@ Manifest output:
 
 Manual review list:
 - `processed_data/pdf_year_manual_review.csv`
+
+## 2024 harvest database integration rule
+
+The 2024 harvest-results database is historical quality data for the 2026 prediction engine. It is not a 2026 permit-allocation source.
+
+Canonical command:
+
+```bash
+python -m engine.utah.quality.build_harvest_quality_history --model-target-year 2026 --years 2024,2025 --update-predictive
+```
+
+Expected outputs:
+
+- `data_truth/harvest_results_truth/harvest_2024_source_inventory.csv`
+- `data_truth/harvest_results_truth/harvest_2024_source_inventory.json`
+- `data_truth/harvest_results_truth/harvest_2024_source_inventory.md`
+- `data_truth/harvest_results_truth/normalized/harvest_results_2024_for_2026_long.csv`
+- `data_truth/harvest_results_truth/normalized/harvest_results_2024_for_2026_rejects.csv`
+- `data_truth/harvest_results_truth/normalized/harvest_results_2024_for_2026_report.json`
+- `data_model/quality/harvest_quality_2024_for_2026.csv`
+- `data_model/quality/harvest_quality_2024_for_2026_vs_database.csv`
+- `data_model/quality/harvest_quality_history_for_2026.csv`
+- `data_model/quality/harvest_quality_2024_2025_features_for_2026.csv`
+- `data_model/quality/harvest_quality_history_for_2026_report.json`
+- `processed_data/harvest_2024_integration_audit.json`
+- `processed_data/harvest_2024_integration_audit.md`
+
+Safeguards:
+
+- 2024 harvest results must not populate 2026 permit quotas.
+- 2024 harvest results must not become official 2026 allotments.
+- 2024 harvest results must not create or modify `p_draw`, `p_draw_pct`, `p_bonus_pool`, `p_random_pool`, or `p_preference_draw`.
+- 2024 + 2025 harvest history may populate additive quality/history fields such as harvest success, harvest count, hunters, average days, satisfaction, and year-over-year deltas.
+- If probability fields change during harvest-quality integration, the builder must fail rather than silently write bad artifacts.
